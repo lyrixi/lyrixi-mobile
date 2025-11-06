@@ -1,5 +1,9 @@
 import React from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 import Img from './Img'
 import Uploading from './../Uploading'
 import Reload from './Reload'
@@ -20,9 +24,7 @@ const Item = ({
     <div
       data-index={index}
       // 状态status: choose|uploading|fail|success
-      className={`lyrixi-image-item${item.className ? ' ' + item.className : ''}${
-        item.status ? ' ' + item.status : ''
-      }`}
+      className={DOMUtil.classNames('lyrixi-image-item', item.className, item.status)}
       onClick={(e) => {
         e.stopPropagation()
 

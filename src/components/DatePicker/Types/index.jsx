@@ -7,6 +7,7 @@ import DateCombo from './DateCombo'
 // 内库使用-start
 import TabBar from './../../TabBar'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -17,6 +18,7 @@ import { TabBar, LocaleUtil } from 'lyrixi-mobile'
 const Types = forwardRef(
   (
     {
+      className,
       min,
       max,
       list = [
@@ -144,7 +146,7 @@ const Types = forwardRef(
     return (
       <div
         {...props}
-        className={`lyrixi-datepicker-types${props.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-datepicker-types', className)}
         ref={rootRef}
       >
         {Array.isArray(list) && (
@@ -152,9 +154,7 @@ const Types = forwardRef(
         )}
         <div
           {...contentProps}
-          className={`lyrixi-datepicker-types-content${
-            contentProps.className ? ' ' + contentProps.className : ''
-          }`}
+          className={DOMUtil.classNames('lyrixi-datepicker-types-content', contentProps?.className)}
         >
           {value?.value instanceof Date ? getPickerNode() : null}
         </div>

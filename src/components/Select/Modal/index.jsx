@@ -111,7 +111,7 @@ const Modal = forwardRef(
         onOk={handleOk}
         ok={multiple !== false}
         portal={portal}
-        modalClassName={DOMUtil.classNames('select-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
         modalStyle={modalStyle}
       >
         {searchHeaderVisible && searchHeaderVisible()}

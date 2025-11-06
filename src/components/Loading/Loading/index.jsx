@@ -36,7 +36,10 @@ const Loading = forwardRef(
     // 组合Node
     let Node = (
       <div
-        className={DOMUtil.classNames(`lyrixi-loading-mask mask lyrixi-active`, maskClassName)}
+        className={DOMUtil.classNames(
+          'lyrixi-loading-mask lyrixi-mask lyrixi-active',
+          maskClassName
+        )}
         style={maskStyle}
         ref={rootRef}
       >

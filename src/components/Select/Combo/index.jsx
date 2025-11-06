@@ -113,7 +113,7 @@ const SelectCombo = forwardRef(
           portal={portal}
           maskClassName={maskClassName}
           maskStyle={maskStyle}
-          modalClassName={DOMUtil.classNames('select-modal', modalClassName)}
+          modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
           modalStyle={modalStyle}
           title={title}
           ok={multiple !== false}

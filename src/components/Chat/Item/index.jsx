@@ -93,7 +93,7 @@ const Chat = (
   return (
     <div
       {...props}
-      className={DOMUtil.classNames(`lyrixi-chat-item`, position, className)}
+      className={DOMUtil.classNames('lyrixi-chat-item', position, className)}
       ref={rootRef}
     >
       {/* Left Checkbox */}

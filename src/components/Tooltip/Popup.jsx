@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import getDataAnimation from './api/getDataAnimation'
 
 // 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
 import getClassNameByAnimation from './../Modal/api/getClassNameByAnimation'
 // 内库使用-end
 
@@ -78,17 +79,22 @@ const Popup = forwardRef(
 
     return createPortal(
       <div
-        className={`mask lyrixi-tooltip-mask${maskClassName ? ' ' + maskClassName : ''}${
-          open ? ' active' : ''
-        }`}
+        className={DOMUtil.classNames(
+          'mask lyrixi-tooltip-mask',
+          maskClassName,
+          open ? 'lyrixi-active' : ''
+        )}
         style={maskStyle}
         onClick={handleMaskClick}
         ref={ref}
       >
         <div
-          className={`lyrixi-modal-animation lyrixi-tooltip tooltip-bottom${
-            position ? ' ' + position : ''
-          }${props.className ? ' ' + props.className : ''}${open ? ' active' : ''}`}
+          className={DOMUtil.classNames(
+            'lyrixi-modal-animation lyrixi-tooltip tooltip-bottom',
+            position,
+            props.className,
+            open ? 'lyrixi-active' : ''
+          )}
           style={style}
           data-animation={dataAnimation}
         >

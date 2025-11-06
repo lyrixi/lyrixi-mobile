@@ -62,7 +62,11 @@ const Message = forwardRef(
 
     return createPortal(
       <div
-        className={DOMUtil.classNames('mask message-mask', maskClassName, getActiveClass())}
+        className={DOMUtil.classNames(
+          'lyrixi-mask lyrixi-message-mask',
+          maskClassName,
+          getActiveClass()
+        )}
         style={maskStyle}
         onClick={handleMaskClick}
         ref={maskRef}

@@ -29,7 +29,7 @@ const Header = forwardRef(
       <div
         ref={rootRef}
         {...props}
-        className={DOMUtil.classNames(`lyrixi-calendar-header`, className)}
+        className={DOMUtil.classNames('lyrixi-calendar-header', className)}
       >
         <div className="lyrixi-calendar-previous-year" onClick={onPreviousYear}>
           &lt;&lt;

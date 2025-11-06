@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
 import FormContext from './../FormContext'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 // layout: horizontal | vertical | inline
 const VirtualForm = forwardRef(
   (
@@ -60,7 +64,7 @@ const VirtualForm = forwardRef(
       >
         <div
           ref={rootRef}
-          className={`lyrixi-form-items lyrixi-virtual${className ? ' ' + className : ''}`}
+          className={DOMUtil.classNames('lyrixi-form-items lyrixi-virtual', className)}
           {...props}
         >
           {children}

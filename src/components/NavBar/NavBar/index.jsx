@@ -10,7 +10,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 const NavBar = forwardRef(({ className, children, ...props }, ref) => {
   return (
-    <div ref={ref} {...props} className={DOMUtil.classNames(`lyrixi-navbar`, className)}>
+    <div ref={ref} {...props} className={DOMUtil.classNames('lyrixi-navbar', className)}>
       {children}
     </div>
   )

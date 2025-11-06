@@ -5,6 +5,7 @@ import Combo from './../Combo'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 import Input from './../../Input'
 // 内库使用-end
 
@@ -94,7 +95,7 @@ const DateCombo = forwardRef(
           {...props}
           value={value}
           type={type}
-          className={`lyrixi-datepicker-types-date${className ? ' ' + className : ''}`}
+          className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
           onChange={onChange}
         >
           <p>{displayValue || ''}</p>

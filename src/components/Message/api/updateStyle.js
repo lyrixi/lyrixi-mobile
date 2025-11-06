@@ -1,3 +1,7 @@
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 // 更新class和style
 function updateStyle(target, { style, className, baseClassName }) {
   if (!target) return
@@ -13,7 +17,7 @@ function updateStyle(target, { style, className, baseClassName }) {
     }
   }
   if (className) {
-    target.className = `${baseClassName}${className ? ' ' + className : ''}`
+    target.className = DOMUtil.classNames(baseClassName, className)
   }
 }
 

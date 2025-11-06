@@ -165,7 +165,7 @@ const InputNode = (
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
         disabled ? 'lyrixi-disabled' : '',
-        readOnly ? 'readonly' : ''
+        readOnly ? 'lyrixi-readOnly' : ''
       )}
       onClick={(e) => {
         if (disabled) return

@@ -6,6 +6,10 @@ import getCustomRangeId from './getCustomRangeId'
 import getDefaultRanges from './../RangeMain/getDefaultRanges'
 import getDefaultRangeId from './getDefaultRangeId'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 import Buttons from './Buttons'
 import Dates from './Dates'
 
@@ -14,6 +18,7 @@ function RangeSelector(
   {
     open,
 
+    className,
     // Main
     value,
     type = 'date', // year | quarter | month | date | time | datetime
@@ -70,7 +75,7 @@ function RangeSelector(
   return (
     <div
       {...props}
-      className={`lyrixi-datepicker-rangeselector-selector${props.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-datepicker-rangeselector-selector', className)}
       ref={mainRef}
     >
       {/* 快捷选择 */}

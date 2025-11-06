@@ -40,6 +40,9 @@ const Combo = (
 
     // Combo
     children,
+
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -91,7 +94,7 @@ const Combo = (
       <div
         ref={comboRef}
         {...props}
-        className={DOMUtil.classNames('share-button', props?.className)}
+        className={DOMUtil.classNames('lyrixi-share-button', className)}
         onClick={handleClick}
       >
         {getChildren()}

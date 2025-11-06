@@ -128,7 +128,7 @@ const Item = ({
       key={index}
       data-index={index}
       // 状态status: choose|uploading|error|success
-      className={DOMUtil.classNames(`lyrixi-attach-item`, item.className, `lyrixi-${item.status}`)}
+      className={DOMUtil.classNames('lyrixi-attach-item', item.className, `lyrixi-${item.status}`)}
       onClick={(e) => {
         e.stopPropagation()
 

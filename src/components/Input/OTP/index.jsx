@@ -150,7 +150,7 @@ const InputOTP = forwardRef(
           'lyrixi-input-otp',
           className,
           disabled ? 'lyrixi-disabled' : '',
-          readOnly ? 'readonly' : ''
+          readOnly ? 'lyrixi-readOnly' : ''
         )}
         style={style}
         {...props}

@@ -1,6 +1,17 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-const Ouroboros = (props, ref) => {
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+const Ouroboros = (
+  {
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
@@ -13,7 +24,7 @@ const Ouroboros = (props, ref) => {
   return (
     <div
       {...props}
-      className={`lyrixi-loading-ouroboros${props?.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-loading-ouroboros', className)}
       ref={rootRef}
     >
       <svg viewBox="25 25 50 50">

@@ -2,6 +2,7 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 // import Sortable from 'sortablejs'
 import { ReactSortable } from 'react-sortablejs'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 
 import Card from './../../Card'
 import Item from './Item'
@@ -19,6 +20,9 @@ const Transfer = (
 
     list,
     titles,
+
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -66,7 +70,7 @@ const Transfer = (
     <>
       <div
         {...props}
-        className={`lyrixi-transfer-main${props?.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-transfer-main', className)}
         ref={mainRef}
       >
         {/* 已添加列表 */}

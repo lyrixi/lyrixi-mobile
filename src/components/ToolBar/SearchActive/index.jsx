@@ -13,14 +13,14 @@ import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 
 const SearchBar = ({ className, style, onCancel, searchProps, ...props }, ref) => {
   return (
-    <div className={DOMUtil.classNames(`lyrixi-toolbar-search-bar`, className)} style={style}>
+    <div className={DOMUtil.classNames('lyrixi-toolbar-search-bar', className)} style={style}>
       {/* 文本框 */}
       <Search
         ref={ref}
         autoFocus
         {...props}
         {...searchProps}
-        className={DOMUtil.classNames(`lyrixi-active`, searchProps?.className)}
+        className={DOMUtil.classNames('lyrixi-active', searchProps?.className)}
       />
 
       {/* 取消按钮 */}

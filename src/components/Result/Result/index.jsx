@@ -1,8 +1,22 @@
 import React from 'react'
 import getStatusDefault from './getStatusDefault'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 // 结果页, status: empty|500|success|waiting|info|warning|error
-function Result({ status, title, description, imageRender, imageUrl, children, ...props }) {
+function Result({
+  status,
+  title,
+  description,
+  imageRender,
+  imageUrl,
+  children,
+  // 其它属性
+  className,
+  ...props
+}) {
   let statusDefault = getStatusDefault(status)
 
   // 渲染图片
@@ -28,7 +42,7 @@ function Result({ status, title, description, imageRender, imageUrl, children, .
   }
 
   return (
-    <div {...props} className={`lyrixi-result${props?.className ? ' ' + props.className : ''}`}>
+    <div {...props} className={DOMUtil.classNames('lyrixi-result', className)}>
       {/* Image */}
       {getImageNode()}
 

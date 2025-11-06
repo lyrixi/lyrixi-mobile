@@ -11,7 +11,15 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传按钮
-const UploadButton = ({ uploading, ...props }, ref) => {
+const UploadButton = (
+  {
+    uploading,
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   const rootRef = useRef(null)
 
   // Expose
@@ -26,7 +34,7 @@ const UploadButton = ({ uploading, ...props }, ref) => {
     <div
       ref={rootRef}
       {...props}
-      className={DOMUtil.classNames('lyrixi-attach-choose-button', props?.className)}
+      className={DOMUtil.classNames('lyrixi-attach-choose-button', className)}
     >
       <i className={`lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add`}></i>
 

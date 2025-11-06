@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react'
 import List from './../../List'
 
 // 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
 import Page from './../../../Page'
 // 内库使用-end
 
@@ -44,7 +45,7 @@ const Main = forwardRef(
       <Page.Main
         {...props}
         ref={ref}
-        className={`lyrixi-list-main${props.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-list-main', props.className)}
         onTopRefresh={onTopRefresh}
         onBottomRefresh={onBottomRefresh}
         onScroll={onScroll}

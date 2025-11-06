@@ -27,6 +27,9 @@ const Main = forwardRef(
       list,
       checkable = true,
       checkboxRender,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -41,11 +44,7 @@ const Main = forwardRef(
     })
 
     return (
-      <div
-        {...props}
-        className={DOMUtil.classNames('lyrixi-select-main', props?.className)}
-        ref={mainRef}
-      >
+      <div {...props} className={DOMUtil.classNames('lyrixi-select-main', className)} ref={mainRef}>
         {_.isEmpty(list) && <Result className="lyrixi-select-main-result" status="empty" />}
 
         {/* 列表 */}

@@ -24,6 +24,8 @@ function FloatButton(
     list,
     onChange,
     onDragEnd,
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -143,7 +145,7 @@ function FloatButton(
     <div
       ref={rootRef}
       {...props}
-      className={DOMUtil.classNames('lyrixi-float-button-container', props?.className)}
+      className={DOMUtil.classNames('lyrixi-float-button-container', className)}
       onTouchStart={draggable ? handleTouchStart : null}
       onTouchMove={draggable ? handleTouchMove : null}
       onTouchEnd={draggable ? handleTouchEnd : null}

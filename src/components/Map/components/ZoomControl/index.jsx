@@ -1,5 +1,9 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 // 缩放控件
 function ZoomControl({ map, onZoomIn, onZoomOut, ...props }, ref) {
   // 容器
@@ -30,7 +34,7 @@ function ZoomControl({ map, onZoomIn, onZoomOut, ...props }, ref) {
     <div
       {...props}
       ref={rootRef}
-      className={`lyrixi-map-zoomControl${props.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-map-zoomControl', props.className)}
     >
       <div className={`lyrixi-map-zoomControl-in`} onClick={zoomIn}>
         <div className="lyrixi-map-zoomControl-icon"></div>

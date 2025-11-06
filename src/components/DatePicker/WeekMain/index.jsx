@@ -3,6 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 import Calendar from './../../Calendar'
 // 内库使用-end
 
@@ -21,6 +22,9 @@ function WeekMain(
     weekStart = 'Monday', // Monday | Sunday
     allowClear,
     onChange,
+
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -77,9 +81,7 @@ function WeekMain(
       value={rangeValueRef.current}
       onChange={handleChange}
       {...props}
-      className={`lyrixi-datepicker-weekmain-calendar${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={DOMUtil.classNames('lyrixi-datepicker-weekmain-calendar', className)}
     />
   )
 }

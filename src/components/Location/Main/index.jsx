@@ -1,5 +1,9 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 import Preview from './Preview'
 import Choose from './Choose'
 
@@ -41,7 +45,7 @@ const Main = forwardRef(
       <div
         id={id}
         style={style}
-        className={`lyrixi-map-main${className ? ' ' + className : ''}`}
+        className={DOMUtil.classNames('lyrixi-map-main', className)}
         ref={mainRef}
       >
         <div className="lyrixi-map-main-map">

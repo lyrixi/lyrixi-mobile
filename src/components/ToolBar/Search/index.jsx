@@ -10,13 +10,21 @@ import Input from './../../Input'
 import { DOMUtil, LocaleUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const Search = ({ placeholder, ...props }, ref) => {
+const Search = (
+  {
+    placeholder,
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   return (
     <Input.Search
       ref={ref}
       leftIcon={<i className="lyrixi-toolbar-search-input-left-icon" />}
       {...props}
-      className={DOMUtil.classNames(`lyrixi-toolbar-search-input`, props?.className)}
+      className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}
       placeholder={placeholder || LocaleUtil.locale('搜索', 'lyrixi_search')}
     />
   )

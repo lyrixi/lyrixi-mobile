@@ -3,6 +3,7 @@ import Combo from './../../WeekCombo'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
+import DOMUtil from './../../../../utils/DOMUtil'
 import Input from './../../../Input'
 // 内库使用-end
 
@@ -61,7 +62,7 @@ const Week = forwardRef(
         <Combo
           {...props}
           value={value}
-          className={`lyrixi-datepicker-types-date${className ? ' ' + className : ''}`}
+          className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
           onChange={(newValue) => {
             onChange && onChange(newValue)
           }}

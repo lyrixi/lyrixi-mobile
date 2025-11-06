@@ -1,10 +1,15 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Checkbox from '../Checkbox'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 // Checkbox-Group
 const CheckboxGroup = forwardRef(
   (
     {
+      className,
       iconRender,
       iconPosition = 'left',
 
@@ -38,7 +43,7 @@ const CheckboxGroup = forwardRef(
         {...props}
         disabled={disabled}
         readOnly={readOnly}
-        className={`lyrixi-checkbox-group${props.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-checkbox-group', className)}
         ref={rootRef}
       >
         {Array.isArray(list) && list.length

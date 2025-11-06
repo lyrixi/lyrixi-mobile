@@ -1,6 +1,10 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import FormContext from './../FormContext'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
   (
@@ -21,7 +25,7 @@ const Form = forwardRef(
       <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM }}>
         <div
           ref={rootRef}
-          className={`lyrixi-form-items${className ? ' ' + className : ''}`}
+          className={DOMUtil.classNames('lyrixi-form-items', className)}
           {...props}
         >
           {children}

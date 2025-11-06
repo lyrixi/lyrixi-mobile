@@ -1,9 +1,13 @@
 import React, { forwardRef } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 // 照片遮罩
 function Mask({ labels, style, className, ...props }, ref) {
   return (
-    <div ref={ref} {...props} className={`lyrixi-image-item-mark${className ? ' ' + className : ''}`}>
+    <div ref={ref} {...props} className={DOMUtil.classNames('lyrixi-image-item-mark', className)}>
       {Array.isArray(labels) && labels.length
         ? labels.map((label, index) => {
             return (

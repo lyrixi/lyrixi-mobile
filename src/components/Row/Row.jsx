@@ -12,7 +12,7 @@ import Col from './Col'
 
 const Row = forwardRef(({ gutter, className, children, ...props }, ref) => {
   return (
-    <div ref={ref} {...props} className={DOMUtil.classNames(`row`, className)}>
+    <div ref={ref} {...props} className={DOMUtil.classNames('lyrixi-row', className)}>
       {children}
     </div>
   )

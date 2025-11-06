@@ -93,8 +93,8 @@ const DropdownModal = forwardRef(
         maskClassName={DOMUtil.classNames(
           maskClassName,
           ![undefined, null].includes(left) || ![undefined, null].includes(right)
-            ? 'dropdownModal-mask-side'
-            : 'dropdownModal-mask-center'
+            ? 'lyrixi-dropdownModal-mask-side'
+            : 'lyrixi-dropdownModal-mask-center'
         )}
         maskStyle={{
           ...maskStyle,
@@ -105,8 +105,8 @@ const DropdownModal = forwardRef(
         modalClassName={DOMUtil.classNames(
           modalClassName,
           ![undefined, null].includes(left) || ![undefined, null].includes(right)
-            ? 'dropdownModal-side'
-            : 'dropdownModal-center'
+            ? 'lyrixi-dropdownModal-side'
+            : 'lyrixi-dropdownModal-center'
         )}
         // Events
         onClose={onClose}

@@ -1,6 +1,17 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-const BallWave = (props, ref) => {
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+const BallWave = (
+  {
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
@@ -13,7 +24,7 @@ const BallWave = (props, ref) => {
   return (
     <div
       {...props}
-      className={`lyrixi-loading-ballwave${props?.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-loading-ballwave', className)}
       ref={rootRef}
     >
       <svg viewBox="20 0 60 40">

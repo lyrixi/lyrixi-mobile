@@ -23,13 +23,13 @@ const Paragraph = ({
   oddStyle,
   evenClassName,
   evenStyle,
+
+  // 其它属性
+  className,
   ...props
 }) => {
   return (
-    <div
-      {...props}
-      className={DOMUtil.classNames('lyrixi-skeleton-paragraph', divider, props?.className)}
-    >
+    <div {...props} className={DOMUtil.classNames('lyrixi-skeleton-paragraph', divider, className)}>
       {(avatarClassName || avatarStyle) && (
         <Block
           animated={animated}

@@ -74,7 +74,7 @@ const ListItem = forwardRef(
                     value?.some?.((selected) => {
                       return selected.id === item.id
                     })
-                      ? ' active'
+                      ? ' lyrixi-active'
                       : ''
                   )}
                   onClick={(e) => {

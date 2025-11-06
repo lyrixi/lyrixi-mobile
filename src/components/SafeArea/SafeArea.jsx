@@ -24,7 +24,7 @@ const SafeArea = forwardRef(({ safeArea, className, ...props }, ref) => {
     <div
       {...props}
       className={DOMUtil.classNames(
-        safeArea === 'auto' ? 'auto-safe-area' : 'lyrixi-safe-area',
+        safeArea ? 'lyrixi-safe-area' : '',
         'lyrixi-height-bottom',
         className
       )}

@@ -4,6 +4,10 @@ import formatValue from './utils/formatValue'
 import getIndex from './utils/getIndex'
 import Slots from './Slots'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 let Main = forwardRef(
   (
     {
@@ -73,7 +77,7 @@ let Main = forwardRef(
     return (
       <div
         {...props}
-        className={`lyrixi-picker-main${props.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-picker-main', props.className)}
         ref={mainRef}
       >
         <div className="lyrixi-picker-layer">

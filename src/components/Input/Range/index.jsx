@@ -12,7 +12,21 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const Range = forwardRef(
-  ({ value = 0, min = 0, max = 100, step = 1, readOnly, disabled, onChange, ...props }, ref) => {
+  (
+    {
+      value = 0,
+      min = 0,
+      max = 100,
+      step = 1,
+      readOnly,
+      disabled,
+      onChange,
+      // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const rootRef = useRef(null)
     const tooltipRef = useRef(null)
     const handleRef = useRef(null)
@@ -68,7 +82,7 @@ const Range = forwardRef(
         {...props}
         className={DOMUtil.classNames(
           'lyrixi-input-range',
-          props?.className,
+          className,
           readOnly ? 'lyrixi-readOnly' : '',
           disabled ? 'lyrixi-disabled' : ''
         )}

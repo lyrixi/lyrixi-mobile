@@ -4,6 +4,10 @@ import createCenterMarkerIcon from './createCenterMarkerIcon'
 import addCenterMarker from './addCenterMarker'
 import clearCenterMarker from './clearCenterMarker'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 // 中心点标注
 const CenterMarker = forwardRef(
   (
@@ -15,6 +19,9 @@ const CenterMarker = forwardRef(
       onClick,
       onDragStart,
       onDragEnd,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -89,7 +96,7 @@ const CenterMarker = forwardRef(
     return (
       <span
         {...props}
-        className={`lyrixi-map-center-marker lyrixi-active${props?.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-map-center-marker lyrixi-active', className)}
         ref={rootRef}
       ></span>
     )

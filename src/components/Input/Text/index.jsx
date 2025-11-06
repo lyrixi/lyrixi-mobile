@@ -358,7 +358,7 @@ const InputText = (
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
         disabled ? 'lyrixi-disabled' : '',
-        readOnly ? 'readonly' : ''
+        readOnly ? 'lyrixi-readOnly' : ''
       )}
       onClick={onClick}
       ref={rootRef}

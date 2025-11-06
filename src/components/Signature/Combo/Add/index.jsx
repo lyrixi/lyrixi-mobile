@@ -20,6 +20,9 @@ const Combo = (
     // 绘画配置
     color,
     backgroundColor,
+
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -65,7 +68,7 @@ const Combo = (
       <div
         ref={comboRef}
         {...props}
-        className={DOMUtil.classNames('lyrixi-signature-button', props?.className)}
+        className={DOMUtil.classNames('lyrixi-signature-button', className)}
         onClick={handleSign}
       >
         <i className={`lyrixi-signature-button-icon-add`}></i>

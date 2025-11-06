@@ -8,6 +8,10 @@ import React, {
 } from 'react'
 import FormContext from './../FormContext'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 const FormItem = forwardRef(
   (
     {
@@ -58,9 +62,11 @@ const FormItem = forwardRef(
     return (
       <div
         {...props}
-        className={`lyrixi-form-item${props.className ? ' ' + props.className : ''}${
-          layout === 'horizontal' ? ` row` : ''
-        }`}
+        className={DOMUtil.classNames(
+          'lyrixi-form-item',
+          props.className,
+          layout === 'horizontal' ? 'lyrixi-row' : ''
+        )}
         style={{ height: height, ...props?.style }}
         id={`${name ? `lyrixi-form-item-${name}` : props?.id || ''}`}
         ref={rootRef}

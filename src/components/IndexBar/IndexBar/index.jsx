@@ -29,6 +29,8 @@ const IndexBar = forwardRef(
       // 实体操作
       scrollerDOM,
       children,
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -183,7 +185,7 @@ const IndexBar = forwardRef(
         {children}
         <div
           {...props}
-          className={`lyrixi-indexbar${props.className ? ' ' + props.className : ''}`}
+          className={DOMUtil.classNames('lyrixi-indexbar', className)}
           ref={sidebarRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}

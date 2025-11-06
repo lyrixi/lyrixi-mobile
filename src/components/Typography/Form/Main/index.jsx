@@ -3,6 +3,10 @@ import Div from './../../Letter/Base'
 import FormContext from './../FormContext'
 import getExtraNode from './getExtraNode'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 const FormMain = forwardRef(
   ({ span, ellipsis, inputExtra, extra, error, children, ...props }, ref) => {
     // 获取全局配置
@@ -24,9 +28,11 @@ const FormMain = forwardRef(
       <div
         {...mainColProps}
         {...props}
-        className={`lyrixi-form-item-main${props.className ? ' ' + props.className : ''}${
-          layout === 'horizontal' ? ` col col-${span || globalSpan || 16}` : ''
-        }`}
+        className={DOMUtil.classNames(
+          'lyrixi-form-item-main',
+          props.className,
+          layout === 'horizontal' ? `lyrixi-col lyrixi-col-${span || globalSpan || 16}` : ''
+        )}
         ref={rootRef}
       >
         <div className="lyrixi-form-item-main-input">

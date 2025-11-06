@@ -10,7 +10,21 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 // 开关控件
 const Switch = forwardRef(
-  ({ readOnly, disabled, checked, on, off, size = 'm', onChange, ...props }, ref) => {
+  (
+    {
+      readOnly,
+      disabled,
+      checked,
+      on,
+      off,
+      size = 'm',
+      onChange,
+      // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const rootRef = useRef(null)
 
     // 节点
@@ -27,7 +41,7 @@ const Switch = forwardRef(
         className={DOMUtil.classNames(
           'lyrixi-switch',
           size,
-          props.className,
+          className,
           checked ? 'lyrixi-active' : '',
           readOnly ? 'lyrixi-readOnly' : '',
           disabled ? 'lyrixi-disabled' : disabled

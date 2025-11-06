@@ -6,6 +6,7 @@ import getVisibleItems from './getVisibleItems'
 import List from './List'
 
 // 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
 import Page from './../../../Page'
 // 内库使用-end
 
@@ -145,7 +146,7 @@ const VirtualList = (
     <Page.Main
       {...props}
       ref={rootRef}
-      className={`lyrixi-list-main${props.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-list-main', props.className)}
       onTopRefresh={onTopRefresh}
       onBottomRefresh={onBottomRefresh}
       onScroll={handleScroll}

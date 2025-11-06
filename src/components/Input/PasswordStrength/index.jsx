@@ -3,13 +3,22 @@ import getStrength from './getStrength'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const PasswordStrength = ({ value = '', ...props }, ref) => {
+const PasswordStrength = (
+  {
+    value = '',
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   let strength = getStrength(value)
 
   const rootRef = useRef(null)
@@ -29,9 +38,11 @@ const PasswordStrength = ({ value = '', ...props }, ref) => {
   return (
     <ul
       {...props}
-      className={`lyrixi-input-password-strength level${strength}${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={DOMUtil.classNames(
+        'lyrixi-input-password-strength',
+        `lyrixi-level${strength}`,
+        className
+      )}
       ref={rootRef}
     >
       <li className="lyrixi-input-password-strength-item lyrixi-level1">

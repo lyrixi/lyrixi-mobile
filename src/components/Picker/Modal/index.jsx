@@ -81,7 +81,7 @@ const Modal = forwardRef(
         onOpen={onOpen}
         onOk={handleOk}
         ok={multiple !== false}
-        modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-picker-modal', modalClassName)}
         modalStyle={modalStyle}
       >
         <Main

@@ -8,6 +8,7 @@ import VirtualList from './VirtualList'
 // 内库使用-start
 import Device from './../../../utils/Device'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 import Result from './../../Result'
 import Button from './../../Button'
 // 内库使用-end
@@ -57,6 +58,8 @@ const Main = forwardRef(
         getItemHeight: () => Number
       }
       */
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -158,7 +161,7 @@ const Main = forwardRef(
         ref={mainRef}
         {...props}
         virtual={virtual}
-        className={`lyrixi-list-main${props.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames('lyrixi-list-main', className)}
         // Request
         onTopRefresh={disableTopRefresh ? null : () => loadPage('topRefresh')}
         onBottomRefresh={disableBottomRefresh ? null : () => loadPage('bottomRefresh')}

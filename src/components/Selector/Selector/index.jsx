@@ -117,7 +117,7 @@ const Selector = forwardRef(
     return (
       <div
         {...props}
-        className={`lyrixi-selector${className ? ' ' + className : ''}`}
+        className={DOMUtil.classNames('lyrixi-selector', className)}
         style={Object.assign({ '--columns': columns }, style)}
         ref={rootRef}
       >

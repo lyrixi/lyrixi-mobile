@@ -2,6 +2,10 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import extractNumber from './extractNumber'
 import Instance from './instance'
 
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+// 内库使用-end
+
 // 生成二维码
 const QRCode = forwardRef(({ style, text, children, ...props }, ref) => {
   // 节点
@@ -46,7 +50,7 @@ const QRCode = forwardRef(({ style, text, children, ...props }, ref) => {
     <span
       style={style}
       {...props}
-      className={`lyrixi-qrcode${props.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-qrcode', props.className)}
       ref={rootRef}
     >
       {children}

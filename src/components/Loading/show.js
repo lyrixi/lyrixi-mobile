@@ -1,4 +1,5 @@
 // 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
 import LocaleUtil from './../../utils/LocaleUtil'
 // 内库使用-end
 
@@ -46,10 +47,7 @@ export default function (props) {
     }
 
     // 更新mask
-    mask.setAttribute(
-      'class',
-      `loading-mask mask active${maskClassName ? ' ' + maskClassName : ''}`
-    )
+    mask.setAttribute('class', DOMUtil.classNames('loading-mask mask active', maskClassName))
     mask.setAttribute('id', loadingId)
     mask.setAttribute('style', '')
     for (let key in maskStyle || {}) {
@@ -59,7 +57,7 @@ export default function (props) {
     // 更新container
     let container = mask.querySelector('.lyrixi-loading')
     if (container) {
-      container?.setAttribute('class', `loading${className ? ' ' + className : ''}`)
+      container?.setAttribute('class', DOMUtil.classNames('loading', className))
       container?.setAttribute('style', '')
       for (let key in style || {}) {
         container.style[key] = style[key]

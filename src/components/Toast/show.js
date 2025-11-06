@@ -1,5 +1,9 @@
 import hide from './hide'
 
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+// 内库使用-end
+
 // 显示Toast
 // eslint-disable-next-line
 function show(props) {
@@ -45,9 +49,11 @@ function show(props) {
     // Update mask
     mask.setAttribute(
       'class',
-      `lyrixi-mask lyrixi-toast-mask${maskClassName ? ' ' + maskClassName : ''}${
-        maskClickable !== false ? ' lyrixi-toast-propagation' : ''
-      }`
+      DOMUtil.classNames(
+        'lyrixi-mask lyrixi-toast-mask',
+        maskClassName,
+        maskClickable !== false ? 'lyrixi-toast-propagation' : ''
+      )
     )
     mask.setAttribute('id', toastId)
     mask.setAttribute('style', '')
@@ -58,13 +64,16 @@ function show(props) {
     // Update container
     let container = mask.querySelector('.lyrixi-toast')
     if (container) {
-      container?.setAttribute('class', `lyrixi-toast ${position || 'lyrixi-middle'}`)
+      container?.setAttribute(
+        'class',
+        DOMUtil.classNames('lyrixi-toast', position || 'lyrixi-middle')
+      )
     }
 
     // Update wrapper
     let wrapper = mask.querySelector('.lyrixi-toast-wrapper')
     if (wrapper) {
-      wrapper?.setAttribute('class', `toast-wrapper ${className ? ' ' + className : ''}`)
+      wrapper?.setAttribute('class', DOMUtil.classNames('toast-wrapper', className))
       wrapper?.setAttribute('style', '')
       for (let key in style || {}) {
         wrapper.style[key] = style[key]

@@ -67,6 +67,9 @@ const LocationCombo = forwardRef(
       // Modal
       modalClassName,
       modalStyle,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -380,7 +383,7 @@ const LocationCombo = forwardRef(
           className={DOMUtil.classNames(
             'lyrixi-location-combo-success',
             'lyrixi-location-combo',
-            props?.className,
+            className,
             locationStatus === '-1' ? 'lyrixi-positioning' : ''
           )}
           inputRender={

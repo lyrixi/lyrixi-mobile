@@ -10,7 +10,16 @@ import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 金额
-function Amount({ precision = 2, currencySymbol, noStyle, className, children, ...props }) {
+function Amount({
+  precision = 2,
+  currencySymbol,
+  noStyle,
+
+  children,
+  // 其它属性
+  className,
+  ...props
+}) {
   if (isNaN(children)) {
     return null
   }
@@ -39,7 +48,7 @@ function Amount({ precision = 2, currencySymbol, noStyle, className, children, .
 
   return (
     <span
-      className={DOMUtil.classNames(noStyle ? '' : 'lyrixi-typography-amount', props?.className)}
+      className={DOMUtil.classNames(noStyle ? '' : 'lyrixi-typography-amount', className)}
       {...props}
     >
       {displayValue}

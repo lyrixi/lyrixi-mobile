@@ -3,6 +3,7 @@ import getSelectorOptions from './../getSelectorOptions'
 
 // 内库使用-start
 import Selector from './../../../Selector'
+import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -12,6 +13,7 @@ import { Selector } from 'lyrixi-mobile'
 // 日期快捷选择
 function RangeMain(
   {
+    className,
     // Main properties
     value,
     allowClear,
@@ -34,9 +36,7 @@ function RangeMain(
   return (
     <div
       {...props}
-      className={`lyrixi-datepicker-rangemain-selector${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={DOMUtil.classNames('lyrixi-datepicker-rangemain-selector', className)}
       ref={rootRef}
     >
       {/* 快捷选择 */}

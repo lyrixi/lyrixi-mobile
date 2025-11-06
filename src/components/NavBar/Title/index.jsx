@@ -1,5 +1,9 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 const NavBarTitle = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
 
@@ -14,7 +18,7 @@ const NavBarTitle = forwardRef(({ children, ...props }, ref) => {
   return (
     <div
       {...props}
-      className={`lyrixi-navbar-title${props.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-navbar-title', props.className)}
       ref={rootRef}
     >
       {children}

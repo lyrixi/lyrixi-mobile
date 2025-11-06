@@ -97,8 +97,8 @@ const Steps = forwardRef(
         className={DOMUtil.classNames(
           'lyrixi-steps',
           props.className,
-          align ? `steps-${align}` : 'steps-center',
-          direction ? `steps-${direction}` : 'lyrixi-steps-vertical'
+          align ? `lyrixi-steps-${align}` : 'lyrixi-steps-center',
+          direction ? `lyrixi-steps-${direction}` : 'lyrixi-steps-vertical'
         )}
         ref={rootRef}
       >

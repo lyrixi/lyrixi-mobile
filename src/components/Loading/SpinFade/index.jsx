@@ -1,6 +1,17 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-const SpinFade = (props, ref) => {
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+const SpinFade = (
+  {
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
@@ -13,7 +24,7 @@ const SpinFade = (props, ref) => {
   return (
     <div
       {...props}
-      className={`lyrixi-loading-spinfade${props?.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-loading-spinfade', className)}
       ref={rootRef}
     >
       <div className="lyrixi-loading-spinfade-item"></div>

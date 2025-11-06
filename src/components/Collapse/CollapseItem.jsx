@@ -20,6 +20,8 @@ const CollapseItem = (
     onOpen,
     onClose,
     children,
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -106,11 +108,7 @@ const CollapseItem = (
     <div
       ref={rootRef}
       {...props}
-      className={DOMUtil.classNames(
-        'lyrixi-collapse-item',
-        props?.className,
-        open ? 'lyrixi-active' : ''
-      )}
+      className={DOMUtil.classNames('lyrixi-collapse-item', className, open ? 'lyrixi-active' : '')}
     >
       <div className="lyrixi-collapse-item-header" onClick={handleClick}>
         {getHeaderNode()}

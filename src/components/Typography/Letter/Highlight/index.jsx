@@ -1,5 +1,9 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
 const Highlight = forwardRef(({ highlight, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
@@ -14,7 +18,7 @@ const Highlight = forwardRef(({ highlight, children, ...props }, ref) => {
   return (
     <div
       {...props}
-      className={`lyrixi-typography-highlight${props.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-typography-highlight', props.className)}
       ref={rootRef}
     >
       {children}

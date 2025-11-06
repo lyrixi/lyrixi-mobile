@@ -1,7 +1,17 @@
 import React from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
 // 序列控件的锚点
-const Anchor = ({ name, children, ...props }) => {
+const Anchor = ({
+  name,
+  children,
+  // 其它属性
+  className,
+  ...props
+}) => {
   if (!name) {
     return children
   }
@@ -9,7 +19,7 @@ const Anchor = ({ name, children, ...props }) => {
   return (
     <div
       {...props}
-      className={`lyrixi-indexbar-anchor${props?.className ? ' ' + props.className : ''}`}
+      className={DOMUtil.classNames('lyrixi-indexbar-anchor', className)}
       data-indexbar-anchor={name}
     >
       {children}
