@@ -15,35 +15,35 @@ toc: content
 
 ### 文字颜色
 
-| 类名                 | 说明           | 变量                           |
-| -------------------- | -------------- | ------------------------------ |
-| `.color-white`       | 白色文字       | `white`                        |
-| `.color-disabled`    | 禁用状态文字   | `--seed-font-color-disabled`   |
-| `.color-default`     | 默认文字颜色   | `--seed-font-color-default`    |
-| `.color-auxiliary`   | 辅助文字颜色   | `--seed-font-color-tertiary`   |
-| `.color-secondary`   | 次要文字颜色   | `--seed-font-color-secondary`  |
-| `.color-tertiary`    | 三级文字颜色   | `--seed-font-color-tertiary`   |
-| `.color-placeholder` | 占位符文字颜色 | `--seed-font-color-quaternary` |
-| `.color-primary`     | 主题色文字     | `--seed-primary`               |
-| `.color-link`        | 链接文字颜色   | `--seed-link`                  |
-| `.color-warning`     | 警告文字颜色   | `--seed-warning`               |
-| `.color-danger`      | 危险文字颜色   | `--seed-danger`                |
-| `.color-success`     | 成功文字颜色   | `--seed-success`               |
+| 类名                 | 说明           | 变量                             |
+| -------------------- | -------------- | -------------------------------- |
+| `.color-white`       | 白色文字       | `white`                          |
+| `.color-disabled`    | 禁用状态文字   | `--lyrixi-font-color-disabled`   |
+| `.color-default`     | 默认文字颜色   | `--lyrixi-font-color-default`    |
+| `.color-auxiliary`   | 辅助文字颜色   | `--lyrixi-font-color-tertiary`   |
+| `.color-secondary`   | 次要文字颜色   | `--lyrixi-font-color-secondary`  |
+| `.color-tertiary`    | 三级文字颜色   | `--lyrixi-font-color-tertiary`   |
+| `.color-placeholder` | 占位符文字颜色 | `--lyrixi-font-color-quaternary` |
+| `.color-primary`     | 主题色文字     | `--lyrixi-primary`               |
+| `.color-link`        | 链接文字颜色   | `--lyrixi-link`                  |
+| `.color-warning`     | 警告文字颜色   | `--lyrixi-warning`               |
+| `.color-danger`      | 危险文字颜色   | `--lyrixi-danger`                |
+| `.color-success`     | 成功文字颜色   | `--lyrixi-success`               |
 
 ### 背景颜色
 
-| 类名                  | 说明           | 变量                         |
-| --------------------- | -------------- | ---------------------------- |
-| `.bg-transparent`     | 透明背景       | `transparent`                |
-| `.bg-white`           | 白色背景       | `white`                      |
-| `.bg-body`            | 页面背景色     | `--seed-bg-default`          |
-| `.bg-disabled`        | 禁用状态背景   | `--seed-font-color-disabled` |
-| `.bg-primary`         | 主题色背景     | `--seed-primary`             |
-| `.bg-primary-lighten` | 主题色浅色背景 | `--seed-primary-lighten`     |
-| `.bg-link`            | 链接背景色     | `--seed-link`                |
-| `.bg-warning`         | 警告背景色     | `--seed-warning`             |
-| `.bg-danger`          | 危险背景色     | `--seed-danger`              |
-| `.bg-success`         | 成功背景色     | `--seed-success`             |
+| 类名                  | 说明           | 变量                           |
+| --------------------- | -------------- | ------------------------------ |
+| `.bg-transparent`     | 透明背景       | `transparent`                  |
+| `.bg-white`           | 白色背景       | `white`                        |
+| `.bg-body`            | 页面背景色     | `--lyrixi-bg-default`          |
+| `.bg-disabled`        | 禁用状态背景   | `--lyrixi-font-color-disabled` |
+| `.bg-primary`         | 主题色背景     | `--lyrixi-primary`             |
+| `.bg-primary-lighten` | 主题色浅色背景 | `--lyrixi-primary-lighten`     |
+| `.bg-link`            | 链接背景色     | `--lyrixi-link`                |
+| `.bg-warning`         | 警告背景色     | `--lyrixi-warning`             |
+| `.bg-danger`          | 危险背景色     | `--lyrixi-danger`              |
+| `.bg-success`         | 成功背景色     | `--lyrixi-success`             |
 
 ## 字体
 
@@ -51,14 +51,14 @@ toc: content
 
 ### 字体大小
 
-| 类名             | 说明     | 变量                   |
-| ---------------- | -------- | ---------------------- |
-| `.font-size-xxl` | 超大字体 | `--seed-font-size-xxl` |
-| `.font-size-xl`  | 大字体   | `--seed-font-size-xl`  |
-| `.font-size-l`   | 较大字体 | `--seed-font-size-l`   |
-| `.font-size-m`   | 中等字体 | `--seed-font-size-m`   |
-| `.font-size-s`   | 小字体   | `--seed-font-size-s`   |
-| `.font-size-xs`  | 超小字体 | `--seed-font-size-xs`  |
+| 类名             | 说明     | 变量                     |
+| ---------------- | -------- | ------------------------ |
+| `.font-size-xxl` | 超大字体 | `--lyrixi-font-size-xxl` |
+| `.font-size-xl`  | 大字体   | `--lyrixi-font-size-xl`  |
+| `.font-size-l`   | 较大字体 | `--lyrixi-font-size-l`   |
+| `.font-size-m`   | 中等字体 | `--lyrixi-font-size-m`   |
+| `.font-size-s`   | 小字体   | `--lyrixi-font-size-s`   |
+| `.font-size-xs`  | 超小字体 | `--lyrixi-font-size-xs`  |
 
 ### 字体粗细
 
@@ -89,14 +89,14 @@ toc: content
 
 6 个层级的圆角规范
 
-| 类名          | 说明     | 变量                |
-| ------------- | -------- | ------------------- |
-| `.radius-xl`  | 超大圆角 | `--seed-radius-xl`  |
-| `.radius-l`   | 大圆角   | `--seed-radius-l`   |
-| `.radius-m`   | 中等圆角 | `--seed-radius-m`   |
-| `.radius-s`   | 小圆角   | `--seed-radius-s`   |
-| `.radius-xs`  | 超小圆角 | `--seed-radius-xs`  |
-| `.radius-xxs` | 极小圆角 | `--seed-radius-xxs` |
+| 类名          | 说明     | 变量                  |
+| ------------- | -------- | --------------------- |
+| `.radius-xl`  | 超大圆角 | `--lyrixi-radius-xl`  |
+| `.radius-l`   | 大圆角   | `--lyrixi-radius-l`   |
+| `.radius-m`   | 中等圆角 | `--lyrixi-radius-m`   |
+| `.radius-s`   | 小圆角   | `--lyrixi-radius-s`   |
+| `.radius-xs`  | 超小圆角 | `--lyrixi-radius-xs`  |
+| `.radius-xxs` | 极小圆角 | `--lyrixi-radius-xxs` |
 
 ## 间距
 
@@ -106,63 +106,63 @@ toc: content
 
 #### 水平内边距
 
-| 类名                       | 说明             | 变量                |
-| -------------------------- | ---------------- | ------------------- |
-| `.padding-horizontal-xxl`  | 超大水平内边距   | `--seed-space-xxl`  |
-| `.padding-horizontal-xl`   | 大水平内边距     | `--seed-space-xl`   |
-| `.padding-horizontal-l`    | 较大水平内边距   | `--seed-space-l`    |
-| `.padding-horizontal-m`    | 中等水平内边距   | `--seed-space-m`    |
-| `.padding-horizontal-s`    | 小水平内边距     | `--seed-space-s`    |
-| `.padding-horizontal-xs`   | 超小水平内边距   | `--seed-space-xs`   |
-| `.padding-horizontal-xss`  | 极小水平内边距   | `--seed-space-xss`  |
-| `.padding-horizontal-xxxs` | 超极小水平内边距 | `--seed-space-xxxs` |
+| 类名                       | 说明             | 变量                  |
+| -------------------------- | ---------------- | --------------------- |
+| `.padding-horizontal-xxl`  | 超大水平内边距   | `--lyrixi-space-xxl`  |
+| `.padding-horizontal-xl`   | 大水平内边距     | `--lyrixi-space-xl`   |
+| `.padding-horizontal-l`    | 较大水平内边距   | `--lyrixi-space-l`    |
+| `.padding-horizontal-m`    | 中等水平内边距   | `--lyrixi-space-m`    |
+| `.padding-horizontal-s`    | 小水平内边距     | `--lyrixi-space-s`    |
+| `.padding-horizontal-xs`   | 超小水平内边距   | `--lyrixi-space-xs`   |
+| `.padding-horizontal-xss`  | 极小水平内边距   | `--lyrixi-space-xss`  |
+| `.padding-horizontal-xxxs` | 超极小水平内边距 | `--lyrixi-space-xxxs` |
 
 #### 垂直内边距
 
-| 类名                     | 说明             | 变量                |
-| ------------------------ | ---------------- | ------------------- |
-| `.padding-vertical-xxl`  | 超大垂直内边距   | `--seed-space-xxl`  |
-| `.padding-vertical-xl`   | 大垂直内边距     | `--seed-space-xl`   |
-| `.padding-vertical-l`    | 较大垂直内边距   | `--seed-space-l`    |
-| `.padding-vertical-m`    | 中等垂直内边距   | `--seed-space-m`    |
-| `.padding-vertical-s`    | 小垂直内边距     | `--seed-space-s`    |
-| `.padding-vertical-xs`   | 超小垂直内边距   | `--seed-space-xs`   |
-| `.padding-vertical-xss`  | 极小垂直内边距   | `--seed-space-xss`  |
-| `.padding-vertical-xxxs` | 超极小垂直内边距 | `--seed-space-xxxs` |
+| 类名                     | 说明             | 变量                  |
+| ------------------------ | ---------------- | --------------------- |
+| `.padding-vertical-xxl`  | 超大垂直内边距   | `--lyrixi-space-xxl`  |
+| `.padding-vertical-xl`   | 大垂直内边距     | `--lyrixi-space-xl`   |
+| `.padding-vertical-l`    | 较大垂直内边距   | `--lyrixi-space-l`    |
+| `.padding-vertical-m`    | 中等垂直内边距   | `--lyrixi-space-m`    |
+| `.padding-vertical-s`    | 小垂直内边距     | `--lyrixi-space-s`    |
+| `.padding-vertical-xs`   | 超小垂直内边距   | `--lyrixi-space-xs`   |
+| `.padding-vertical-xss`  | 极小垂直内边距   | `--lyrixi-space-xss`  |
+| `.padding-vertical-xxxs` | 超极小垂直内边距 | `--lyrixi-space-xxxs` |
 
 ### 外边距（Margin）
 
 #### 水平外边距
 
-| 类名                      | 说明             | 变量                |
-| ------------------------- | ---------------- | ------------------- |
-| `.margin-horizontal-xxl`  | 超大水平外边距   | `--seed-space-xxl`  |
-| `.margin-horizontal-xl`   | 大水平外边距     | `--seed-space-xl`   |
-| `.margin-horizontal-l`    | 较大水平外边距   | `--seed-space-l`    |
-| `.margin-horizontal-m`    | 中等水平外边距   | `--seed-space-m`    |
-| `.margin-horizontal-s`    | 小水平外边距     | `--seed-space-s`    |
-| `.margin-horizontal-xs`   | 超小水平外边距   | `--seed-space-xs`   |
-| `.margin-horizontal-xss`  | 极小水平外边距   | `--seed-space-xss`  |
-| `.margin-horizontal-xxxs` | 超极小水平外边距 | `--seed-space-xxxs` |
+| 类名                      | 说明             | 变量                  |
+| ------------------------- | ---------------- | --------------------- |
+| `.margin-horizontal-xxl`  | 超大水平外边距   | `--lyrixi-space-xxl`  |
+| `.margin-horizontal-xl`   | 大水平外边距     | `--lyrixi-space-xl`   |
+| `.margin-horizontal-l`    | 较大水平外边距   | `--lyrixi-space-l`    |
+| `.margin-horizontal-m`    | 中等水平外边距   | `--lyrixi-space-m`    |
+| `.margin-horizontal-s`    | 小水平外边距     | `--lyrixi-space-s`    |
+| `.margin-horizontal-xs`   | 超小水平外边距   | `--lyrixi-space-xs`   |
+| `.margin-horizontal-xss`  | 极小水平外边距   | `--lyrixi-space-xss`  |
+| `.margin-horizontal-xxxs` | 超极小水平外边距 | `--lyrixi-space-xxxs` |
 
 #### 垂直外边距
 
-| 类名                    | 说明             | 变量                |
-| ----------------------- | ---------------- | ------------------- |
-| `.margin-vertical-xxl`  | 超大垂直外边距   | `--seed-space-xxl`  |
-| `.margin-vertical-xl`   | 大垂直外边距     | `--seed-space-xl`   |
-| `.margin-vertical-l`    | 较大垂直外边距   | `--seed-space-l`    |
-| `.margin-vertical-m`    | 中等垂直外边距   | `--seed-space-m`    |
-| `.margin-vertical-s`    | 小垂直外边距     | `--seed-space-s`    |
-| `.margin-vertical-xs`   | 超小垂直外边距   | `--seed-space-xs`   |
-| `.margin-vertical-xss`  | 极小垂直外边距   | `--seed-space-xss`  |
-| `.margin-vertical-xxxs` | 超极小垂直外边距 | `--seed-space-xxxs` |
+| 类名                    | 说明             | 变量                  |
+| ----------------------- | ---------------- | --------------------- |
+| `.margin-vertical-xxl`  | 超大垂直外边距   | `--lyrixi-space-xxl`  |
+| `.margin-vertical-xl`   | 大垂直外边距     | `--lyrixi-space-xl`   |
+| `.margin-vertical-l`    | 较大垂直外边距   | `--lyrixi-space-l`    |
+| `.margin-vertical-m`    | 中等垂直外边距   | `--lyrixi-space-m`    |
+| `.margin-vertical-s`    | 小垂直外边距     | `--lyrixi-space-s`    |
+| `.margin-vertical-xs`   | 超小垂直外边距   | `--lyrixi-space-xs`   |
+| `.margin-vertical-xss`  | 极小垂直外边距   | `--lyrixi-space-xss`  |
+| `.margin-vertical-xxxs` | 超极小垂直外边距 | `--lyrixi-space-xxxs` |
 
 ### 通用内边距
 
-| 类名       | 说明       | 值                                        |
-| ---------- | ---------- | ----------------------------------------- |
-| `.padding` | 通用内边距 | `var(--seed-space-m) var(--seed-space-l)` |
+| 类名       | 说明       | 值                                            |
+| ---------- | ---------- | --------------------------------------------- |
+| `.padding` | 通用内边距 | `var(--lyrixi-space-m) var(--lyrixi-space-l)` |
 
 ## 布局
 
@@ -252,25 +252,25 @@ toc: content
 
 ### 基础边框
 
-| 类名        | 说明     | 功能                                         |
-| ----------- | -------- | -------------------------------------------- |
-| `.border-0` | 无边框   | 移除所有边框                                 |
-| `.bordered` | 四边边框 | `border: 1px solid var(--seed-border-color)` |
-| `.border`   | 四边边框 | `border: 1px solid var(--seed-border-color)` |
+| 类名        | 说明     | 功能                                           |
+| ----------- | -------- | ---------------------------------------------- |
+| `.border-0` | 无边框   | 移除所有边框                                   |
+| `.bordered` | 四边边框 | `border: 1px solid var(--lyrixi-border-color)` |
+| `.border`   | 四边边框 | `border: 1px solid var(--lyrixi-border-color)` |
 
 ### 单边边框
 
-| 类名         | 说明     | 功能                                                |
-| ------------ | -------- | --------------------------------------------------- |
-| `.border-t`  | 上边框   | `border-top: 1px solid var(--seed-border-color)`    |
-| `.border-b`  | 下边框   | `border-bottom: 1px solid var(--seed-border-color)` |
-| `.border-tb` | 上下边框 | 上下两条边框                                        |
-| `.border-l`  | 左边框   | `border-left: 1px solid var(--seed-border-color)`   |
-| `.border-lt` | 左上边框 | 左上两条边框                                        |
-| `.border-lb` | 左下边框 | 左下两条边框                                        |
-| `.border-r`  | 右边框   | `border-right: 1px solid var(--seed-border-color)`  |
-| `.border-rt` | 右上边框 | 右上两条边框                                        |
-| `.border-rb` | 右下边框 | 右下两条边框                                        |
+| 类名         | 说明     | 功能                                                  |
+| ------------ | -------- | ----------------------------------------------------- |
+| `.border-t`  | 上边框   | `border-top: 1px solid var(--lyrixi-border-color)`    |
+| `.border-b`  | 下边框   | `border-bottom: 1px solid var(--lyrixi-border-color)` |
+| `.border-tb` | 上下边框 | 上下两条边框                                          |
+| `.border-l`  | 左边框   | `border-left: 1px solid var(--lyrixi-border-color)`   |
+| `.border-lt` | 左上边框 | 左上两条边框                                          |
+| `.border-lb` | 左下边框 | 左下两条边框                                          |
+| `.border-r`  | 右边框   | `border-right: 1px solid var(--lyrixi-border-color)`  |
+| `.border-rt` | 右上边框 | 右上两条边框                                          |
+| `.border-rb` | 右下边框 | 右下两条边框                                          |
 
 ### 边框样式
 
@@ -368,44 +368,44 @@ toc: content
 
 ### 间距变量
 
-- `--seed-space-xxl`: 16px
-- `--seed-space-xl`: 14px
-- `--seed-space-l`: 12px
-- `--seed-space-m`: 10px
-- `--seed-space-s`: 8px
-- `--seed-space-xs`: 6px
-- `--seed-space-xss`: 4px
-- `--seed-space-xxxs`: 2px
+- `--lyrixi-space-xxl`: 16px
+- `--lyrixi-space-xl`: 14px
+- `--lyrixi-space-l`: 12px
+- `--lyrixi-space-m`: 10px
+- `--lyrixi-space-s`: 8px
+- `--lyrixi-space-xs`: 6px
+- `--lyrixi-space-xss`: 4px
+- `--lyrixi-space-xxxs`: 2px
 
 ### 字体变量
 
-- `--seed-font-size-xxl`: 20px
-- `--seed-font-size-xl`: 18px
-- `--seed-font-size-l`: 16px
-- `--seed-font-size-m`: 14px
-- `--seed-font-size-s`: 12px
-- `--seed-font-size-xs`: 11px
+- `--lyrixi-font-size-xxl`: 20px
+- `--lyrixi-font-size-xl`: 18px
+- `--lyrixi-font-size-l`: 16px
+- `--lyrixi-font-size-m`: 14px
+- `--lyrixi-font-size-s`: 12px
+- `--lyrixi-font-size-xs`: 11px
 
 ### 圆角变量
 
-- `--seed-radius-xl`: 12px
-- `--seed-radius-l`: 10px
-- `--seed-radius-m`: 8px
-- `--seed-radius-s`: 6px
-- `--seed-radius-xs`: 4px
-- `--seed-radius-xxs`: 3px
+- `--lyrixi-radius-xl`: 12px
+- `--lyrixi-radius-l`: 10px
+- `--lyrixi-radius-m`: 8px
+- `--lyrixi-radius-s`: 6px
+- `--lyrixi-radius-xs`: 4px
+- `--lyrixi-radius-xxs`: 3px
 
 ### 颜色变量
 
-- `--seed-primary`: 主题色
-- `--seed-link`: 链接色
-- `--seed-warning`: 警告色
-- `--seed-danger`: 危险色
-- `--seed-success`: 成功色
-- `--seed-font-color-default`: 默认文字色
-- `--seed-font-color-secondary`: 次要文字色
-- `--seed-font-color-tertiary`: 辅助文字色
-- `--seed-font-color-quaternary`: 占位符文字色
-- `--seed-font-color-disabled`: 禁用文字色
-- `--seed-border-color`: 边框色
-- `--seed-bg-default`: 默认背景色
+- `--lyrixi-primary`: 主题色
+- `--lyrixi-link`: 链接色
+- `--lyrixi-warning`: 警告色
+- `--lyrixi-danger`: 危险色
+- `--lyrixi-success`: 成功色
+- `--lyrixi-font-color-default`: 默认文字色
+- `--lyrixi-font-color-secondary`: 次要文字色
+- `--lyrixi-font-color-tertiary`: 辅助文字色
+- `--lyrixi-font-color-quaternary`: 占位符文字色
+- `--lyrixi-font-color-disabled`: 禁用文字色
+- `--lyrixi-border-color`: 边框色
+- `--lyrixi-bg-default`: 默认背景色

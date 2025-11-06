@@ -1,19 +1,21 @@
 import React, { Fragment, forwardRef } from 'react'
 
 // 内库使用-start
-import LocaleUtil from '../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Result from './../../Result'
 import Button from './../../Button'
 import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Result, Button, IndexBar } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil, Result, Button, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
 const ListItem = forwardRef(
   (
     {
+      className,
       optionProps,
       // 选中列表
       list,
@@ -38,11 +40,7 @@ const ListItem = forwardRef(
     }
 
     return (
-      <div
-        {...props}
-        className={`lyrixi-cascader-body${props?.className ? ' ' + props.className : ''}`}
-        ref={ref}
-      >
+      <div {...props} className={DOMUtil.classNames('lyrixi-cascader-body', className)} ref={ref}>
         {typeof list === 'string' && (
           <Result title={list} status={status} className={`lyrixi-cascader-body-result`}>
             {status === '500' && onReLoad && (
@@ -70,15 +68,15 @@ const ListItem = forwardRef(
                 {anchorBar}
                 <div
                   {...optionProps}
-                  className={`lyrixi-cascader-option${
-                    optionProps.className ? ' ' + optionProps.className : ''
-                  }${
+                  className={DOMUtil.classNames(
+                    `lyrixi-cascader-option`,
+                    optionProps.className,
                     value?.some?.((selected) => {
                       return selected.id === item.id
                     })
                       ? ' active'
                       : ''
-                  }`}
+                  )}
                   onClick={(e) => {
                     e.stopPropagation()
                     onSelect(item)

@@ -1,15 +1,17 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
 import Checkbox from './../../Checkbox'
 // 内库使用-end
 
 /* 测试使用-start
-import { Checkbox } from 'lyrixi-mobile'
+import { DOMUtil, Checkbox } from 'lyrixi-mobile'
 测试使用-end */
 
 const Chat = (
   {
+    className,
     // Item Data
     item,
 
@@ -91,9 +93,7 @@ const Chat = (
   return (
     <div
       {...props}
-      className={`lyrixi-chat-item${position ? ' ' + position : ''}${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={DOMUtil.classNames(`lyrixi-chat-item`, position, className)}
       ref={rootRef}
     >
       {/* Left Checkbox */}

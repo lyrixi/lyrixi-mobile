@@ -1,5 +1,13 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // 复选框
 const Checkbox = forwardRef(
   (
@@ -50,9 +58,11 @@ const Checkbox = forwardRef(
         onClick={handleClick}
         disabled={disabled}
         readOnly={readOnly}
-        className={`lyrixi-checkbox${props.className ? ' ' + props.className : ''}${
-          checked ? ' checked' : ''
-        }`}
+        className={DOMUtil.classNames(
+          `lyrixi-checkbox`,
+          className,
+          checked ? 'lyrixi-checked' : ''
+        )}
         ref={rootRef}
       >
         {iconPosition !== 'right' && IconNode}

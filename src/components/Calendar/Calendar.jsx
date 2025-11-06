@@ -14,12 +14,13 @@ import Header from './Header'
 import Body from './Body'
 
 // 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
 import LocaleUtil from './../../utils/LocaleUtil'
 import DateUtil from './../../utils/DateUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, DateUtil } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil, DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const cellHeight = 40
@@ -29,6 +30,7 @@ const duration = 300
 const Calendar = forwardRef(
   (
     {
+      className,
       type = 'month', // week | month
       value,
       selectionMode, // single | range
@@ -303,9 +305,11 @@ const Calendar = forwardRef(
       <div
         ref={rootRef}
         {...props}
-        className={`calendar${props?.className ? ' ' + props.className : ''}${
-          selectionMode ? ` calendar-mode-${selectionMode}` : ''
-        }`}
+        className={DOMUtil.classNames(
+          'lyrixi-calendar',
+          className,
+          selectionMode ? `lyrixi-calendar-mode-${selectionMode}` : ''
+        )}
       >
         {typeof headerRender === 'function' ? (
           headerRender({

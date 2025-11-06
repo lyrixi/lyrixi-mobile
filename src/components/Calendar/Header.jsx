@@ -1,8 +1,19 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // 日历头部
 const Header = forwardRef(
-  ({ onPreviousMonth, onNextMonth, onPreviousYear, onNextYear, children, ...props }, ref) => {
+  (
+    { className, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear, children, ...props },
+    ref
+  ) => {
     // 容器
     const rootRef = useRef(null)
 
@@ -18,7 +29,7 @@ const Header = forwardRef(
       <div
         ref={rootRef}
         {...props}
-        className={`lyrixi-calendar-header${props?.className ? ' ' + props.className : ''}`}
+        className={DOMUtil.classNames(`lyrixi-calendar-header`, className)}
       >
         <div className="lyrixi-calendar-previous-year" onClick={onPreviousYear}>
           &lt;&lt;

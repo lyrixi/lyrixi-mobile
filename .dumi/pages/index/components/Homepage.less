@@ -1,0 +1,118 @@
+.dumi-default-header + main {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+// 首页主体内容
+.homepage {
+  width: 100%;
+  bottom: 65px;
+  top: 76px;
+  position: absolute;
+  background-image: url('./assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  a {
+    text-decoration: none;
+  }
+
+  // 主体
+  .main {
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+    padding: 0 64px;
+    box-sizing: content-box;
+    text-align: center;
+
+    .buttons {
+      margin-top: 20px;
+    }
+    .title {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1;
+      margin: 0 auto;
+    }
+    .description {
+      margin-top: 16px;
+      font-size: 16px;
+      color: #1f1f1f;
+      margin: 20px auto 56px auto;
+    }
+    .button-start {
+      margin: 28px auto 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      height: 44px;
+      width: 138px;
+      border-radius: 22px;
+      color: #000;
+      background-color: #30e3b2;
+      border: 1px solid #30e3b2;
+      color: white;
+      box-shadow: 0 6px 12px 0 rgba(95, 251, 208, 0.7);
+    }
+  }
+
+  // 下面的卡片
+  .snippets {
+    max-width: 800px;
+    margin: 56px auto 0 auto;
+    padding: 0 64px;
+    gap: 30px;
+    box-sizing: content-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .snippet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    .title {
+      width: 100%;
+      font-size: 24px;
+      color: white;
+    }
+    .description {
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  }
+  .snippet:nth-child(1) {
+    background-color: rgba(48, 227, 178, 0.7);
+    box-shadow: 0 6px 12px 0 rgba(95, 251, 208, 0.7);
+  }
+  .snippet:nth-child(2) {
+    background-color: rgba(250, 124, 231, 0.7);
+    box-shadow: 0 6px 12px 0 rgba(250, 124, 231, 0.7);
+  }
+  .snippet:nth-child(3) {
+    background-color: rgba(250, 215, 49, 0.7);
+    box-shadow: 0 6px 12px 0 rgba(250, 215, 49, 0.7);
+  }
+}
+
+// copyright
+.dumi-default-footer {
+  margin-top: 0;
+  border-top: 0;
+  padding: 0;
+}
+.homepage-copyright {
+  // box-shadow: inset 0 106px 36px -116px rgb(0 0 0 / 14%);
+  padding: 16px 0;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  border-top: 1px solid #e4e9ec;
+}

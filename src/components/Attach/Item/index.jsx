@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
 // 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Clipboard from './../../../utils/Clipboard'
 import AssetUtil from './../../../utils/AssetUtil'
@@ -11,7 +12,7 @@ import Message from './../../Message'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Message } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
 
 // Item
@@ -127,9 +128,7 @@ const Item = ({
       key={index}
       data-index={index}
       // 状态status: choose|uploading|error|success
-      className={`lyrixi-attach-item${item.className ? ' ' + item.className : ''}${
-        item.status ? ' ' + item.status : ''
-      }`}
+      className={DOMUtil.classNames(`lyrixi-attach-item`, item.className, `lyrixi-${item.status}`)}
       onClick={(e) => {
         e.stopPropagation()
 

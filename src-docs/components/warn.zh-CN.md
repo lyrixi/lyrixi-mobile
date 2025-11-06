@@ -14,7 +14,7 @@ toc: content
 错误用法:
 
 ```css
-.seed-input {
+.lyrixi-input {
   height: 40px;
 }
 ```
