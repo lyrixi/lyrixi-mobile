@@ -1817,69 +1817,108 @@ export default AutoFit
 
 // \u5185\u5E93\u4F7F\u7528-start
 import Icon from './../../Icon'
+import DOMUtil from './../../../utils/DOMUtil'
 // \u5185\u5E93\u4F7F\u7528-end
 
 /* \u6D4B\u8BD5\u4F7F\u7528-start
 import { Icon } from 'lyrixi-mobile'
 \u6D4B\u8BD5\u4F7F\u7528-end */
 
-const Clear = forwardRef(({ name, size, ...props }, ref) => {
-  return (
-    <Icon
-      {...props}
-      className={\`lyrixi-input-icon lyrixi-input-icon-clear\${
-        props.className ? ' ' + props.className : ' lyrixi-right-icon'
-      }\`}
-      ref={ref}
-    />
-  )
-})
+const Clear = forwardRef(
+  (
+    {
+      name,
+      size,
+      // \u5176\u5B83\u5C5E\u6027
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Icon
+        {...props}
+        className={DOMUtil.classNames(
+          'lyrixi-input-icon lyrixi-input-icon-clear',
+          className || 'lyrixi-right-icon'
+        )}
+        ref={ref}
+      />
+    )
+  }
+)
 
 export default Clear
 `},57975:function(e,n){n.Z=`import React, { forwardRef } from 'react'
 
 // \u5185\u5E93\u4F7F\u7528-start
 import Icon from './../../Icon'
+import DOMUtil from './../../../utils/DOMUtil'
 // \u5185\u5E93\u4F7F\u7528-end
 
 /* \u6D4B\u8BD5\u4F7F\u7528-start
 import { Icon } from 'lyrixi-mobile'
 \u6D4B\u8BD5\u4F7F\u7528-end */
 
-const IconLeftArrow = forwardRef(({ name, size, ...props }, ref) => {
-  return (
-    <Icon
-      {...props}
-      className={\`lyrixi-input-icon lyrixi-input-icon-left-arrow\${
-        props.className ? ' ' + props.className : ' lyrixi-left-icon'
-      }\`}
-      ref={ref}
-    />
-  )
-})
+const IconLeftArrow = forwardRef(
+  (
+    {
+      name,
+      size,
+      // \u5176\u5B83\u5C5E\u6027
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Icon
+        {...props}
+        className={DOMUtil.classNames(
+          'lyrixi-input-icon lyrixi-input-icon-left-arrow',
+          className || 'lyrixi-left-icon'
+        )}
+        ref={ref}
+      />
+    )
+  }
+)
 
 export default IconLeftArrow
 `},92715:function(e,n){n.Z=`import React, { forwardRef } from 'react'
 
 // \u5185\u5E93\u4F7F\u7528-start
 import Icon from './../../Icon'
+import DOMUtil from './../../../utils/DOMUtil'
 // \u5185\u5E93\u4F7F\u7528-end
 
 /* \u6D4B\u8BD5\u4F7F\u7528-start
 import { Icon } from 'lyrixi-mobile'
 \u6D4B\u8BD5\u4F7F\u7528-end */
 
-const RightArrow = forwardRef(({ name, size, ...props }, ref) => {
-  return (
-    <Icon
-      {...props}
-      className={\`lyrixi-input-icon lyrixi-input-icon-right-arrow\${
-        props.className ? ' ' + props.className : ' lyrixi-right-icon'
-      }\`}
-      ref={ref}
-    />
-  )
-})
+const RightArrow = forwardRef(
+  (
+    {
+      name,
+      size,
+      // \u5176\u5B83\u5C5E\u6027
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Icon
+        {...props}
+        className={DOMUtil.classNames(
+          'lyrixi-input-icon lyrixi-input-icon-right-arrow',
+          className || 'lyrixi-right-icon'
+        )}
+        ref={ref}
+      />
+    )
+  }
+)
 
 export default RightArrow
 `},94400:function(e,n){n.Z=`import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react'
@@ -2049,7 +2088,7 @@ const InputNode = (
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
         disabled ? 'lyrixi-disabled' : '',
-        readOnly ? 'readonly' : ''
+        readOnly ? 'lyrixi-readOnly' : ''
       )}
       onClick={(e) => {
         if (disabled) return
@@ -2816,7 +2855,7 @@ const InputOTP = forwardRef(
           'lyrixi-input-otp',
           className,
           disabled ? 'lyrixi-disabled' : '',
-          readOnly ? 'readonly' : ''
+          readOnly ? 'lyrixi-readOnly' : ''
         )}
         style={style}
         {...props}
@@ -2871,13 +2910,22 @@ import getStrength from './getStrength'
 
 // \u5185\u5E93\u4F7F\u7528-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 // \u5185\u5E93\u4F7F\u7528-end
 
 /* \u6D4B\u8BD5\u4F7F\u7528-start
 import { LocaleUtil } from 'lyrixi-mobile'
 \u6D4B\u8BD5\u4F7F\u7528-end */
 
-const PasswordStrength = ({ value = '', ...props }, ref) => {
+const PasswordStrength = (
+  {
+    value = '',
+    // \u5176\u5B83\u5C5E\u6027
+    className,
+    ...props
+  },
+  ref
+) => {
   let strength = getStrength(value)
 
   const rootRef = useRef(null)
@@ -2897,9 +2945,11 @@ const PasswordStrength = ({ value = '', ...props }, ref) => {
   return (
     <ul
       {...props}
-      className={\`lyrixi-input-password-strength level\${strength}\${
-        props.className ? ' ' + props.className : ''
-      }\`}
+      className={DOMUtil.classNames(
+        'lyrixi-input-password-strength',
+        \`lyrixi-level\${strength}\`,
+        className
+      )}
       ref={rootRef}
     >
       <li className="lyrixi-input-password-strength-item lyrixi-level1">
@@ -2955,7 +3005,21 @@ import { DOMUtil } from 'lyrixi-mobile'
 \u6D4B\u8BD5\u4F7F\u7528-end */
 
 const Range = forwardRef(
-  ({ value = 0, min = 0, max = 100, step = 1, readOnly, disabled, onChange, ...props }, ref) => {
+  (
+    {
+      value = 0,
+      min = 0,
+      max = 100,
+      step = 1,
+      readOnly,
+      disabled,
+      onChange,
+      // \u5176\u5B83\u5C5E\u6027
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const rootRef = useRef(null)
     const tooltipRef = useRef(null)
     const handleRef = useRef(null)
@@ -3011,7 +3075,7 @@ const Range = forwardRef(
         {...props}
         className={DOMUtil.classNames(
           'lyrixi-input-range',
-          props?.className,
+          className,
           readOnly ? 'lyrixi-readOnly' : '',
           disabled ? 'lyrixi-disabled' : ''
         )}
@@ -3873,7 +3937,7 @@ const InputText = (
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
         disabled ? 'lyrixi-disabled' : '',
-        readOnly ? 'readonly' : ''
+        readOnly ? 'lyrixi-readOnly' : ''
       )}
       onClick={onClick}
       ref={rootRef}
@@ -5034,7 +5098,10 @@ const Loading = forwardRef(
     // \u7EC4\u5408Node
     let Node = (
       <div
-        className={DOMUtil.classNames(\`lyrixi-loading-mask mask lyrixi-active\`, maskClassName)}
+        className={DOMUtil.classNames(
+          'lyrixi-loading-mask lyrixi-mask lyrixi-active',
+          maskClassName
+        )}
         style={maskStyle}
         ref={rootRef}
       >
@@ -5061,7 +5128,18 @@ const Loading = forwardRef(
 export default Loading
 `},15375:function(e,n){n.Z=`import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-const SpinFade = (props, ref) => {
+// \u5185\u5E93\u4F7F\u7528-start
+import DOMUtil from './../../../utils/DOMUtil'
+// \u5185\u5E93\u4F7F\u7528-end
+
+const SpinFade = (
+  {
+    // \u5176\u5B83\u5C5E\u6027
+    className,
+    ...props
+  },
+  ref
+) => {
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
@@ -5074,7 +5152,7 @@ const SpinFade = (props, ref) => {
   return (
     <div
       {...props}
-      className={\`lyrixi-loading-spinfade\${props?.className ? ' ' + props.className : ''}\`}
+      className={DOMUtil.classNames('lyrixi-loading-spinfade', className)}
       ref={rootRef}
     >
       <div className="lyrixi-loading-spinfade-item"></div>
@@ -6146,7 +6224,11 @@ const Message = forwardRef(
 
     return createPortal(
       <div
-        className={DOMUtil.classNames('mask message-mask', maskClassName, getActiveClass())}
+        className={DOMUtil.classNames(
+          'lyrixi-mask lyrixi-message-mask',
+          maskClassName,
+          getActiveClass()
+        )}
         style={maskStyle}
         onClick={handleMaskClick}
         ref={maskRef}
@@ -6579,7 +6661,11 @@ function updateAttribute(
 }
 
 export default updateAttribute
-`},61981:function(e,n){n.Z=`// \u66F4\u65B0class\u548Cstyle
+`},61981:function(e,n){n.Z=`// \u5185\u5E93\u4F7F\u7528-start
+import DOMUtil from './../../../utils/DOMUtil'
+// \u5185\u5E93\u4F7F\u7528-end
+
+// \u66F4\u65B0class\u548Cstyle
 function updateStyle(target, { style, className, baseClassName }) {
   if (!target) return
 
@@ -6594,7 +6680,7 @@ function updateStyle(target, { style, className, baseClassName }) {
     }
   }
   if (className) {
-    target.className = \`\${baseClassName}\${className ? ' ' + className : ''}\`
+    target.className = DOMUtil.classNames(baseClassName, className)
   }
 }
 
@@ -7204,7 +7290,7 @@ const SafeArea = forwardRef(({ safeArea, className, ...props }, ref) => {
     <div
       {...props}
       className={DOMUtil.classNames(
-        safeArea === 'auto' ? 'auto-safe-area' : 'lyrixi-safe-area',
+        safeArea ? 'lyrixi-safe-area' : '',
         'lyrixi-height-bottom',
         className
       )}
@@ -8145,6 +8231,10 @@ const Toast = {
 export default Toast
 `},20349:function(e,n){n.Z=`import hide from './hide'
 
+// \u5185\u5E93\u4F7F\u7528-start
+import DOMUtil from './../../utils/DOMUtil'
+// \u5185\u5E93\u4F7F\u7528-end
+
 // \u663E\u793AToast
 // eslint-disable-next-line
 function show(props) {
@@ -8190,9 +8280,11 @@ function show(props) {
     // Update mask
     mask.setAttribute(
       'class',
-      \`lyrixi-mask lyrixi-toast-mask\${maskClassName ? ' ' + maskClassName : ''}\${
-        maskClickable !== false ? ' lyrixi-toast-propagation' : ''
-      }\`
+      DOMUtil.classNames(
+        'lyrixi-mask lyrixi-toast-mask',
+        maskClassName,
+        maskClickable !== false ? 'lyrixi-toast-propagation' : ''
+      )
     )
     mask.setAttribute('id', toastId)
     mask.setAttribute('style', '')
@@ -8203,13 +8295,16 @@ function show(props) {
     // Update container
     let container = mask.querySelector('.lyrixi-toast')
     if (container) {
-      container?.setAttribute('class', \`lyrixi-toast \${position || 'lyrixi-middle'}\`)
+      container?.setAttribute(
+        'class',
+        DOMUtil.classNames('lyrixi-toast', position || 'lyrixi-middle')
+      )
     }
 
     // Update wrapper
     let wrapper = mask.querySelector('.lyrixi-toast-wrapper')
     if (wrapper) {
-      wrapper?.setAttribute('class', \`toast-wrapper \${className ? ' ' + className : ''}\`)
+      wrapper?.setAttribute('class', DOMUtil.classNames('toast-wrapper', className))
       wrapper?.setAttribute('style', '')
       for (let key in style || {}) {
         wrapper.style[key] = style[key]

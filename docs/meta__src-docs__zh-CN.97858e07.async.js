@@ -69,7 +69,7 @@ index.jsx`,paraId:2,tocIndex:3},{value:"api",paraId:3,tocIndex:4},{value:"\u6587
   target: ['browserslist'],
   ...
 }
-`,paraId:9,tocIndex:7},{value:"Visit lyrixi-mobile docs",paraId:10}]},10597:function(d,e,a){a.r(e),a.d(e,{texts:function(){return n}});const n=[{value:"\u9519\u8BEF\u7528\u6CD5:",paraId:0,tocIndex:1},{value:`.seed-input {
+`,paraId:9,tocIndex:7},{value:"Visit lyrixi-mobile docs",paraId:10}]},10597:function(d,e,a){a.r(e),a.d(e,{texts:function(){return n}});const n=[{value:"\u9519\u8BEF\u7528\u6CD5:",paraId:0,tocIndex:1},{value:`.lyrixi-input {
   height: 40px;
 }
 `,paraId:1,tocIndex:1},{value:"\u6B63\u786E\u7528\u6CD5",paraId:2,tocIndex:1},{value:`import { Input } from 'lyrixi-mobile'
