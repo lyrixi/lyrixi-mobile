@@ -1,0 +1,26 @@
+// 内容框-单项内容
+.lyrixi-select-tags-item {
+  display: inline-flex;
+  align-items: center;
+  // background: #fff4e6;
+  background: var(--lyrixi-bg-default);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+.lyrixi-select-tags-item + .lyrixi-select-tags-item {
+  margin-left: 4px;
+}
+
+// 清空按钮
+.lyrixi-select-tags-item-clear {
+  margin-left: 2px;
+  font-family: 'lyrixi-icons';
+  color: var(--lyrixi-font-color-secondary);
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-close all);
+}

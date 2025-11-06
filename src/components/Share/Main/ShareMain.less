@@ -1,0 +1,115 @@
+// Main
+.lyrixi-share-main-result {
+  // Error Info
+}
+
+.lyrixi-share {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  row-gap: 20px;
+
+  &.lyrixi-error {
+    grid-template-columns: none;
+  }
+}
+
+.lyrixi-share-item {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.lyrixi-share-item-icon {
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: contain;
+
+  &.lyrixi-wechat {
+    background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/wechat.png');
+  }
+
+  &.miniprogram {
+    background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/miniprogram.png');
+  }
+
+  &.wecom {
+    background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/wecom.png');
+  }
+
+  &.moments {
+    background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/moments.png');
+  }
+
+  &.dingtalk {
+    background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/dingtalk.png');
+  }
+
+  &.lark {
+    background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/lark.png');
+  }
+}
+
+.share-item-label {
+  margin-top: 10px;
+  color: #666;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+// 微信弹出提示
+.lyrixi-share-tip-arrow {
+  position: absolute;
+  top: 15.15px;
+  right: 19.85px;
+  width: 58.15px;
+  height: 74.35px;
+  background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/tip_arrow.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+
+.lyrixi-share-tip-wechat-friend,
+.lyrixi-share-tip-wechat-moment {
+  display: inline-block;
+  vertical-align: sub;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.lyrixi-share-tip-wechat-friend {
+  background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/tip_friend.png');
+}
+
+.lyrixi-share-tip-wechat-moment {
+  background-image: url('https://lyrixi.github.io/lyrixi-mobile/assets/images/share/tip_moments.png');
+}
+
+.lyrixi-share-tip {
+  position: absolute;
+  top: 104.5px;
+  left: 50%;
+  display: inline-block;
+  width: auto;
+  min-width: 50%;
+  max-width: 85%;
+  padding: 20px 15px;
+  text-align: left;
+  background: #fff;
+  border-radius: 4px;
+  transform: translate(-50%, 0);
+}
+
+.lyrixi-share-tip-text {
+  color: #151515;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.lyrixi-share-tip-text:nth-of-type(even) {
+  margin-top: 10px;
+}

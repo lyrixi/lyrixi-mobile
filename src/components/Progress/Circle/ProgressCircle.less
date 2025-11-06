@@ -1,0 +1,53 @@
+.lyrixi-progress-circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // 默认CSS变量
+  --lyrixi-progress-fill-color: #1890ff;
+  --lyrixi-progress-bg-color: #f0f0f0;
+  --lyrixi-progress-animation-duration: 0.3s;
+  --lyrixi-progress-animation-timing: ease;
+
+  // 基础样式
+  box-sizing: border-box;
+
+  // 颜色
+  &.lyrixi-primary {
+    --lyrixi-progress-fill-color: var(--lyrixi-primary);
+  }
+
+  &.lyrixi-link {
+    --lyrixi-progress-fill-color: var(--lyrixi-link);
+  }
+
+  &.lyrixi-warning {
+    --lyrixi-progress-fill-color: var(--lyrixi-warning);
+  }
+
+  &.lyrixi-danger {
+    --lyrixi-progress-fill-color: var(--lyrixi-danger);
+  }
+
+  &.lyrixi-success {
+    --lyrixi-progress-fill-color: var(--lyrixi-success);
+  }
+
+  // 进度条动画
+  .lyrixi-progress-circle-stroke {
+    transition: stroke-dashoffset var(--lyrixi-progress-animation-duration)
+      var(--lyrixi-progress-animation-timing);
+  }
+
+  // 内容
+  .lyrixi-progress-circle-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}

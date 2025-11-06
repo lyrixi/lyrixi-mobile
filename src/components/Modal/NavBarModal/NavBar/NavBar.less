@@ -1,0 +1,36 @@
+.lyrixi-navbarModal {
+  .lyrixi-navbarModal-button {
+    display: flex;
+    min-width: 60px;
+    justify-content: flex-start;
+  }
+
+  // 右边的按钮右对齐
+  .lyrixi-navbar-title ~ .lyrixi-navbarModal-button {
+    justify-content: flex-end;
+  }
+}
+
+// 标题
+.lyrixi-navbarModal-title {
+  .lyrixi-text-center;
+  font-size: var(--lyrixi-font-size-l);
+  left: 50px;
+  right: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  flex: 1;
+}
+
+.lyrixi-navbarModal-button-close-icon {
+  font-family: 'lyrixi-icons';
+  text-align: center;
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  &:extend(.lyrixi-icon-close all);
+  color: #62666c;
+}

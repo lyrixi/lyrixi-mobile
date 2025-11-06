@@ -1,0 +1,141 @@
+// 开关控件
+.lyrixi-switch {
+  position: relative;
+  display: inline-block;
+  border-radius: 20px;
+  transition-duration: 200ms;
+  transition-property: background-color, border;
+}
+.lyrixi-switch.lyrixi-readOnly,
+.lyrixi-switch.lyrixi-disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+// 圆点
+.lyrixi-switch-handle {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+
+  height: 16px;
+  width: 16px;
+
+  background-color: white;
+  border-radius: 100px;
+  transition-duration: 200ms;
+  transition-property: left;
+  pointer-events: none;
+}
+
+// Texts
+.lyrixi-switch {
+  &:not(.lyrixi-active) {
+    background-color: #a8b1b9;
+
+    .lyrixi-switch-on {
+      visibility: hidden;
+    }
+  }
+  &.lyrixi-active {
+    background-color: var(--lyrixi-primary);
+
+    .lyrixi-switch-off {
+      visibility: hidden;
+    }
+  }
+}
+
+.lyrixi-switch-inner {
+  height: 100%;
+  overflow: hidden;
+}
+
+.lyrixi-switch-on,
+.lyrixi-switch-off {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: var(--lyrixi-font-size-s);
+}
+
+// Size
+.lyrixi-switch.lyrixi-s {
+  height: 18px;
+
+  .lyrixi-switch-on,
+  .lyrixi-switch-off {
+    min-width: 10px;
+  }
+
+  .lyrixi-switch-off {
+    margin-top: -18px;
+  }
+
+  // 激活和非激活的位移与间距
+  &:not(.lyrixi-active) {
+    // 小球
+    .lyrixi-switch-handle {
+      left: 1px;
+    }
+    // 主体内容
+    .lyrixi-switch-inner {
+      padding-left: calc(18px + 2px);
+      padding-right: 6px;
+    }
+  }
+  &.lyrixi-active {
+    // 小球
+    .lyrixi-switch-handle {
+      left: calc(100% - 18px);
+    }
+    // 主体内容
+    .lyrixi-switch-inner {
+      padding-left: 6px;
+      padding-right: calc(18px + 2px);
+    }
+  }
+}
+
+.lyrixi-switch.lyrixi-m {
+  height: var(--lyrixi-input-height-m);
+
+  .lyrixi-switch-on,
+  .lyrixi-switch-off {
+    min-width: 16px;
+  }
+
+  .lyrixi-switch-off {
+    margin-top: -var(--lyrixi-input-height-m);
+  }
+  .lyrixi-switch-handle {
+    height: calc(var(--lyrixi-input-height-m) - 2px);
+    width: calc(var(--lyrixi-input-height-m) - 2px);
+  }
+
+  // 激活和非激活的位移与间距
+  &:not(.lyrixi-active) {
+    // 小球
+    .lyrixi-switch-handle {
+      left: 1px;
+    }
+    // 主体内容
+    .lyrixi-switch-inner {
+      padding-left: calc(var(--lyrixi-input-height-m) + 2px);
+      padding-right: 8px;
+    }
+  }
+  &.lyrixi-active {
+    // 小球
+    .lyrixi-switch-handle {
+      left: calc(100% - var(--lyrixi-input-height-m));
+    }
+    // 主体内容
+    .lyrixi-switch-inner {
+      padding-left: 8px;
+      padding-right: calc(var(--lyrixi-input-height-m) + 2px);
+    }
+  }
+}

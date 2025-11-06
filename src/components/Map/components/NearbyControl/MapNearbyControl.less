@@ -1,0 +1,136 @@
+// 附近推荐
+.lyrixi-map-nearbyControl {
+  .lyrixi-flex;
+  .lyrixi-flex-vertical;
+  position: absolute;
+  right: 12px;
+  left: 12px;
+  bottom: 6px;
+  z-index: 1;
+  background-color: white;
+  background: white;
+  box-shadow: 0px 4px 8px 0px rgba(223, 221, 225, 0.45);
+  border-radius: 12px;
+  overflow: hidden;
+  &.lyrixi-active {
+    height: 80%;
+
+    // 显示附近推荐
+    .lyrixi-map-nearbyControl-body {
+      overflow: auto;
+      .lyrixi-flex;
+      .lyrixi-flex-vertical;
+      .lyrixi-flex-1;
+    }
+
+    // 箭头翻转
+    .lyrixi-map-nearbyControl-toggle-arrow {
+      transform: rotate(0deg);
+    }
+  }
+}
+// .lyrixi-map-nearbyControl-body {
+//   .checkbox {
+//     visibility: hidden;
+//   }
+// }
+.lyrixi-map-nearbyControl-toggle {
+  text-align: center;
+  padding: 10px 0;
+  color: var(--lyrixi-primary);
+}
+.lyrixi-map-nearbyControl-toggle-label {
+}
+.lyrixi-map-nearbyControl-toggle-arrow {
+  width: 8px;
+  height: 8px;
+  font-size: 8px;
+  line-height: 8px;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-triangle-up-fill all);
+  transform: rotate(180deg);
+
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  color: var(--lyrixi-primary);
+}
+.lyrixi-map-nearbyControl-body {
+  display: none;
+}
+
+// 附近推荐-tabs
+.lyrixi-map-nearbyControl-tabs {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 6px;
+  margin: 0 12px;
+}
+.lyrixi-map-nearbyControl-tab {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto; /* 确保子项宽度不会自动伸缩 */
+  background: #f2f2f6;
+  border-radius: 4px;
+  padding: 0 8px;
+  height: 24px;
+  color: #191c1f;
+  font-size: 14px;
+  &.lyrixi-active {
+    color: var(--lyrixi-primary);
+  }
+}
+
+// 附近推荐-结果
+.lyrixi-map-nearbyControl-main {
+  display: block;
+  .lyrixi-flex-1;
+  position: relative;
+  overflow: auto;
+}
+.lyrixi-map-nearbyControl-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px;
+  background-color: white;
+  .lyrixi-border-b;
+}
+.lyrixi-map-nearbyControl-item-content {
+  flex: 1;
+  padding: 12px 0;
+}
+.lyrixi-map-nearbyControl-item-content-title {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  font-size: 16px;
+  color: #1a1c1f;
+  letter-spacing: 0;
+  line-height: 20px;
+  font-weight: 500;
+}
+.lyrixi-map-nearbyControl-item-content-description {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  color: #77818c;
+  margin-top: 6px;
+}
+// .map-nearbyControl-item-checkbox {
+//   .lyrixi-flex;
+//   .lyrixi-flex-vertical;
+//   .lyrixi-flex-bottom;
+// }
+// 导航
+.lyrixi-map-nearbyControl {
+  color: #4e5054;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  .lyrixi-map-nearbyControl-icon {
+    font-family: 'lyrixi-icons';
+    font-size: 14px;
+    &:extend(.lyrixi-icon-navigation all);
+  }
+}

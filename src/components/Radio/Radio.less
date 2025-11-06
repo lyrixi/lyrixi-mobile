@@ -1,0 +1,26 @@
+// input图标
+.lyrixi-checkbox-icon {
+  &.lyrixi-radio {
+    line-height: 14px;
+    border: 1px solid #ced2d8;
+    border-radius: 100%;
+  }
+}
+
+// input图标选中状态
+.lyrixi-checkbox.lyrixi-checked {
+  .lyrixi-checkbox-icon.lyrixi-radio {
+    border: 0;
+    background-color: var(--lyrixi-primary);
+    color: white;
+    font-family: 'lyrixi-icons';
+    &:extend(.lyrixi-icon-ok all);
+    &:before {
+      width: 12px;
+      height: 12px;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: bold;
+    }
+  }
+}

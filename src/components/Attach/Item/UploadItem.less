@@ -1,0 +1,120 @@
+// 内容区域
+.lyrixi-attach-item-main {
+  width: 1px; // 用于解决内容过长时超出屏幕的问题
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 12px 0;
+  margin-left: 10px;
+}
+
+.lyrixi-attach-item:not(:last-child) {
+  .lyrixi-attach-item-main {
+    .lyrixi-border-b;
+  }
+}
+
+// 项内容
+.lyrixi-attach-item {
+  position: relative;
+
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  .lyrixi-attach-uploading-icon-loading {
+    color: #d9d9d9;
+  }
+
+  &.lyrixi-fail {
+    color: var(--lyrixi-danger);
+    .lyrixi-attach-reload {
+      display: flex;
+    }
+  }
+
+  &.lyrixi-uploading {
+    .lyrixi-attach-uploading {
+      display: block;
+    }
+  }
+}
+.lyrixi-attach-item-type {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  .lyrixi-flex-center;
+  color: var(--lyrixi-font-color-tertiary);
+  font-family: 'lyrixi-icons';
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: #f5bda0;
+  // 正方形的图标要略小一些
+  &.lyrixi-word,
+  &.lyrixi-excel,
+  &.lyrixi-ppt {
+    font-size: 18px;
+  }
+  &.lyrixi-video {
+    &:extend(.lyrixi-icon-file-video all);
+  }
+  &.lyrixi-text {
+    &:extend(.lyrixi-icon-file-text all);
+  }
+  &.lyrixi-word {
+    color: #83a4eb;
+    &:extend(.lyrixi-icon-file-word all);
+  }
+  &.lyrixi-unknown {
+    &:extend(.lyrixi-icon-file-unknow all);
+  }
+  &.lyrixi-audio {
+    &:extend(.lyrixi-icon-file-audio all);
+  }
+  &.lyrixi-excel {
+    color: #8ad4aa;
+    &:extend(.lyrixi-icon-file-excel all);
+  }
+  &.lyrixi-pack {
+    &:extend(.lyrixi-icon-file-pack all);
+  }
+  &.lyrixi-pic {
+    &:extend(.lyrixi-icon-file-pic all);
+  }
+  &.lyrixi-pdf {
+    &:extend(.lyrixi-icon-file-pdf all);
+  }
+  &.lyrixi-ppt {
+    color: #e7896d;
+    &:extend(.lyrixi-icon-file-ppt all);
+  }
+}
+.lyrixi-attach-item-title {
+  pointer-events: none;
+  .lyrixi-flex-1;
+  .lyrixi-nowrap;
+  .lyrixi-ellipsis;
+}
+.lyrixi-attach-item-right-icon {
+  margin-left: 12px;
+}
+.lyrixi-attach-delete,
+.lyrixi-attach-reload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a9b1b9;
+  font-family: 'lyrixi-icons';
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+}
+.lyrixi-attach-delete {
+  &:extend(.lyrixi-icon-close all);
+}
+.lyrixi-attach-reload {
+  display: none;
+  &:extend(.lyrixi-icon-map-zoom-update all);
+  overflow: hidden;
+}

@@ -1,0 +1,82 @@
+// Button按钮
+// 基础样式
+.lyrixi-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  // Size
+  &.lyrixi-size-xxs {
+    height: 20px;
+    padding: 0 4px;
+    font-size: var(--lyrixi-font-size-xs);
+    &.lyrixi-shape-square {
+      width: 20px;
+    }
+  }
+  &.lyrixi-size-xs {
+    height: 24px;
+    padding: 0 8px;
+    font-size: var(--lyrixi-font-size-s);
+    &.lyrixi-shape-square {
+      width: 24px;
+    }
+  }
+  &.lyrixi-size-s {
+    height: 32px;
+    padding: 0 12px;
+    font-size: var(--lyrixi-font-size-m);
+    &.lyrixi-shape-square {
+      padding: 0;
+      width: 32px;
+    }
+  }
+  &.lyrixi-size-m {
+    height: 40px;
+    padding: 0 16px;
+    font-size: var(--lyrixi-font-size-l);
+
+    &.lyrixi-shape-square {
+      width: 40px;
+    }
+  }
+  &.lyrixi-size-l {
+    height: 48px;
+    padding: 0 20px;
+    // 字号太大会不好看
+    font-size: var(--lyrixi-font-size-xl);
+
+    &.lyrixi-shape-square {
+      width: 48px;
+    }
+  }
+  &.lyrixi-size-xl {
+    height: 56px;
+    padding: 0 24px;
+    // 字号太大会不好看
+    font-size: var(--lyrixi-font-size-xxl);
+
+    &.lyrixi-shape-square {
+      width: 24px;
+    }
+  }
+
+  // Disabled events
+  &[disabled],
+  &.lyrixi-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+// Icon
+.lyrixi-button-icon {
+  color: currentColor;
+}
+.lyrixi-button-icon + .lyrixi-button-text,
+.lyrixi-button-text + .lyrixi-button-icon {
+  margin-left: 4px;
+}

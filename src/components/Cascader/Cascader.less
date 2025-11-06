@@ -1,0 +1,81 @@
+@import 'Main/CascaderMain.less';
+
+// Modal
+.lyrixi-cascader-modal {
+  height: 504px;
+}
+
+// Main Indexbar
+.lyrixi-cascader-modal {
+  .lyrixi-cascader-indexbar {
+    top: 48px;
+  }
+}
+
+// Main List
+.lyrixi-cascader-option {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  padding: 0 12px;
+  height: 40px;
+  line-height: 40px;
+  * {
+    pointer-events: none;
+  }
+  &.lyrixi-active {
+    background-color: #f8f9f9;
+    .lyrixi-cascader-option-icon {
+      display: block;
+      margin-right: 24px;
+    }
+    .lyrixi-cascader-option-title {
+      color: var(--lyrixi-primary);
+      // font-weight: 600;
+    }
+  }
+}
+.lyrixi-cascader-option-title {
+  .lyrixi-flex-1;
+}
+.lyrixi-cascader-option-icon {
+  display: none;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  color: var(--lyrixi-primary);
+  font-size: 14px;
+  font-family: 'lyrixi-icons';
+  line-height: 14px;
+  &:extend(.lyrixi-icon-ok all);
+}
+
+// Main Tabs
+.lyrixi-cascader-tabs {
+  display: flex;
+  margin: 0 12px;
+  overflow-x: auto;
+  // text-wrap: nowrap;
+  white-space: nowrap;
+  overflow-x: auto;
+  // tab禁用又选中的情况下，不允许点击列表
+  &:has(.lyrixi-active.lyrixi-disabled) {
+    & + .lyrixi-cascader-body .lyrixi-cascader-option {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}
+
+.lyrixi-cascader-tab {
+  height: 32px;
+  margin-right: 20px;
+  line-height: 32px;
+  &.lyrixi-active {
+    font-weight: 600;
+    border-bottom: 2px solid var(--lyrixi-primary);
+  }
+  &.lyrixi-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

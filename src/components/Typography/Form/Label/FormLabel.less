@@ -1,0 +1,33 @@
+.lyrixi-form-item-label {
+  display: flex;
+  position: relative;
+  vertical-align: middle;
+  overflow: hidden;
+  color: #6a737c;
+}
+.lyrixi-form-item-label-text {
+  font-size: var(--lyrixi-font-size-l);
+  vertical-align: middle;
+}
+.lyrixi-form-item-required {
+  font-family: SimSun, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  color: var(--lyrixi-danger);
+  height: var(--lyrixi-input-height-m);
+}
+.lyrixi-form-item-help {
+  display: inline-flex;
+  font-family: 'iconfont';
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  width: 20px;
+  height: var(--lyrixi-input-height-m);
+  margin: 0 2px;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-circle-question all);
+}

@@ -1,0 +1,60 @@
+import DataParse from './DataParse'
+
+const SessionStorage = {
+  setSessionStorage: function (key, value) {
+    window.sessionStorage.setItem(key.toString(), DataParse.stringify(value))
+    return true
+  },
+  getSessionStorage: function (key) {
+    if (!key || typeof key !== 'string') return null
+    return DataParse.parse(window.sessionStorage.getItem(key))
+  },
+  getSessionStorageKeys: function () {
+    let storages = window.sessionStorage.valueOf()
+    let keys = null
+    for (let i = 0; i < storages.length; i++) {
+      if (!keys) keys = []
+      let key = storages.key(i)
+      keys.push(key)
+    }
+    return keys
+  },
+  getSessionStorages: function () {
+    let storages = window.sessionStorage.valueOf()
+    let sessionStorages = null
+    for (let i = 0; i < storages.length; i++) {
+      if (!sessionStorages) sessionStorages = {}
+      let key = storages.key(i)
+      sessionStorages[key] = DataParse.parse(storages[key])
+    }
+    return sessionStorages
+  },
+  removeSessionStorage: function (key) {
+    window.sessionStorage.removeItem(key)
+    return true
+  },
+  removeSessionStorages: function (filter) {
+    if (typeof filter !== 'function') return false
+
+    let removeKeys = []
+    let storages = window.sessionStorage.valueOf()
+    for (let i = 0; i < storages.length; i++) {
+      let key = storages.key(i)
+      if (filter(key)) {
+        removeKeys.push(key)
+      }
+    }
+
+    for (let removeKey of removeKeys) {
+      window.sessionStorage.removeItem(removeKey)
+    }
+
+    return true
+  },
+  clearSessionStorage: function () {
+    window.sessionStorage.clear()
+    return true
+  }
+}
+
+export default SessionStorage

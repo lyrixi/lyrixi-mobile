@@ -1,0 +1,31 @@
+// 定位
+.lyrixi-map-locationControl {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  .lyrixi-inline-flex;
+  .lyrixi-flex-center;
+  .lyrixi-flex-middle;
+  width: 36px;
+  height: 36px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 6px 0px rgba(118, 163, 210, 0.2);
+  border-radius: 8px;
+}
+.lyrixi-map-locationControl-icon {
+  .lyrixi-flex;
+  .lyrixi-flex-center;
+  .lyrixi-flex-middle;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-map-location all);
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+.lyrixi-map-locationControl-label {
+  margin-top: 4px;
+  text-align: center;
+  &:extend(.font-size-s);
+}

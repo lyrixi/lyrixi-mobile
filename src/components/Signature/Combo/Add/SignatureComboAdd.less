@@ -1,0 +1,31 @@
+// 签名按钮
+.lyrixi-signature-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 32px;
+  background-color: #f1f2f5;
+  color: #5c646c;
+  border-radius: 6px;
+
+  &[disabled],
+  &.lyrixi-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+// 上传图标与文字
+.lyrixi-signature-button-icon-add,
+.lyrixi-signature-button-label {
+  pointer-events: none;
+}
+.lyrixi-signature-button-icon-add {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  line-height: 14px;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-signature all);
+  margin-right: 4px;
+}

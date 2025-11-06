@@ -1,0 +1,113 @@
+.lyrixi-tabbar-tabs {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+// Separator
+.lyrixi-tabbar-tabs-separator {
+  display: flex;
+  // 强制拉伸到容器高度
+  align-self: stretch;
+}
+
+// Separator align to name
+.lyrixi-tabbar-tabs-tab-description {
+  &.lyrixi-top {
+    + .lyrixi-tabbar-tabs-separator {
+      align-items: end;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+// 选中效果
+.lyrixi-tabbar-tabs-tab-wrapper.lyrixi-active {
+  color: var(--lyrixi-primary);
+
+  .lyrixi-tabbar-tabs-tab-name {
+    font-weight: 500;
+  }
+
+  // 显示选中条
+  .lyrixi-tabbar-tabs-tab::after {
+    display: block;
+  }
+}
+
+// 选中条
+.lyrixi-tabbar-tabs-tab-line {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--lyrixi-primary);
+  transform-origin: center center;
+  content: '';
+  border-radius: 2px;
+}
+
+.lyrixi-tabbar-tabs-tab {
+  &::after {
+    .lyrixi-tabbar-tabs-tab-line;
+  }
+}
+.lyrixi-tabbar-tabs-tab-wrapper {
+  &::after {
+    .lyrixi-tabbar-tabs-tab-line;
+    left: 12px;
+    right: 12px;
+  }
+}
+
+// 单项
+.lyrixi-tabbar-tabs-tab-wrapper {
+  position: relative;
+  flex: auto;
+  padding: 0 var(--lyrixi-space-xl);
+
+  // 禁用
+  &.lyrixi-disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+// 紧凑显示
+.lyrixi-tabbar-tabs.lyrixi-compact {
+  .lyrixi-tabbar-tabs-tab-wrapper {
+    flex: initial;
+    padding: 0;
+  }
+}
+
+.lyrixi-tabbar-tabs-tab {
+  white-space: nowrap;
+  padding: var(--lyrixi-space-l) 0 var(--lyrixi-space-l);
+  margin: 0 auto;
+  width: min-content;
+  font-size: var(--lyrixi-font-size-l);
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+
+.lyrixi-tabbar-tabs-tab-name {
+  font-size: var(--lyrixi-font-size-l);
+}
+
+.lyrixi-tabbar-tabs-tab-description {
+  color: var(--lyrixi-font-color-secondary);
+  font-size: var(--lyrixi-font-size-s);
+}
+
+.lyrixi-tabbar-tabs-tab-name + .lyrixi-tabbar-tabs-tab-description,
+.lyrixi-tabbar-tabs-tab-description + .lyrixi-tabbar-tabs-tab-name {
+  margin-top: var(--lyrixi-space-s);
+}

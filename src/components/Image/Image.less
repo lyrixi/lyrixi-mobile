@@ -1,0 +1,35 @@
+@import 'Item/ImageItem.less';
+@import 'PreviewModal/ImagePreviewModal.less';
+@import 'PreviewMain/ImagePreviewMain.less';
+@import 'Choose/ImageChoose.less';
+@import 'Uploading/ImageUploading.less';
+@import 'Mark/ImageMark.less';
+
+// 照片视频列表
+.lyrixi-image {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 8px;
+  // 单个照片
+  --cell-width: 85px;
+  --cell-height: 85px;
+  --cell-radius: 10px;
+  --count-font-size: var(--lyrixi-font-size-xl);
+  --choose-icon-size: 22px;
+
+  // 上传中
+  &.lyrixi-uploading {
+    // 显示转圈
+    .lyrixi-image-choose {
+      .lyrixi-image-uploading {
+        display: block;
+      }
+    }
+    // 上传中不允许删除,重传
+    .lyrixi-image-delete,
+    .lyrixi-image-reload {
+      display: none;
+    }
+  }
+}

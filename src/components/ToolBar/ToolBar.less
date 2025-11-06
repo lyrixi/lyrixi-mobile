@@ -1,0 +1,17 @@
+@import 'ToolBar/ToolBar.less';
+@import 'Dropdown/ToolBarDropdown.less';
+@import 'DateRange/ToolBarDateRange.less';
+@import 'Button/ToolBarButton.less';
+@import 'Search/ToolBarSearch.less';
+@import 'SearchActive/ToolBarSearchActive.less';
+
+// 反向颜色改搜索框颜色
+.lyrixi-toolbar.lyrixi-invert {
+  .lyrixi-toolbar-search-bar {
+    background-color: var(--toolbar-invert-bg);
+  }
+
+  .lyrixi-toolbar-search-input {
+    background-color: var(--toolbar-invert-search-input-bg);
+  }
+}

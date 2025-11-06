@@ -1,0 +1,248 @@
+// Calendar日历
+.lyrixi-calendar {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  transition-property: height;
+
+  // 禁用
+  &.lyrixi-disabled {
+    pointer-events: none;
+    opacity: 0.2;
+  }
+}
+// 日历上的点
+.lyrixi-calendar-date-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  left: 50%;
+  margin-left: -2px;
+  border-radius: 100%;
+  bottom: 3px;
+  background-color: var(--lyrixi-primary);
+}
+// 区间选择模式
+.lyrixi-calendar-mode-range {
+  .lyrixi-calendar-date .lyrixi-calendar-date-num {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .lyrixi-calendar-date-today {
+    .lyrixi-calendar-date-num {
+      border-radius: 8px;
+    }
+  }
+
+  .lyrixi-calendar-date-selected {
+    .lyrixi-calendar-date-num {
+      border-radius: 0;
+    }
+  }
+}
+
+// 头部
+.lyrixi-calendar-header {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+
+  padding: 6px 0;
+  margin: 0 2px;
+}
+// 标题
+.lyrixi-calendar-title {
+  .lyrixi-flex-1;
+
+  padding: 6px 0;
+  text-align: center;
+}
+// 左右箭头
+.lyrixi-calendar-previous-month,
+.lyrixi-calendar-next-month,
+.lyrixi-calendar-previous-year,
+.lyrixi-calendar-next-year {
+  height: 38px;
+  width: 38px;
+  color: #b6b6b6;
+  font-size: 16px;
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  .lyrixi-flex-center;
+}
+
+// 周
+.lyrixi-calendar-day {
+  display: inline-block;
+  float: left;
+  width: 14%;
+  height: 24px;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+
+  &:nth-of-type(1),
+  &:nth-last-of-type(1) {
+    width: 15%;
+  }
+}
+
+// 一格
+.lyrixi-calendar-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  width: 14%;
+  text-align: center;
+
+  &:nth-of-type(1),
+  &:nth-last-of-type(1) {
+    width: 15%;
+  }
+}
+
+// New Styles
+
+// Used to replace old class .calendar-day-box
+.lyrixi-calendar-days {
+  color: var(--lyrixi-font-color-tertiary);
+
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+    zoom: 1;
+  }
+}
+
+// Used to replace old class .calendar-wrapper
+.lyrixi-calendar-body {
+  overflow: hidden;
+}
+
+.lyrixi-calendar-body-y {
+  transition-property: transform;
+}
+
+.lyrixi-calendar-body-x {
+  display: flex;
+  width: 300%;
+  transition-property: transform;
+}
+// Used to replace old class .calendar-month
+.lyrixi-calendar-page {
+  flex: 1;
+}
+// Used to replace old class .calendar-monthrow
+.lyrixi-calendar-row::after {
+  display: table;
+  clear: both;
+  content: '';
+  zoom: 1;
+}
+
+// Used to replace old class .calendar-current
+.lyrixi-calendar-date-in-view {
+  color: var(--lyrixi-font-color-default);
+}
+// Used to replace old class .calendar-notcurrent
+.lyrixi-calendar-date-out-view {
+  color: var(--lyrixi-font-color-tertiary);
+}
+// Used to replace old class .calendar-today
+.lyrixi-calendar-date-today {
+  .lyrixi-calendar-date-num {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100%;
+    border-color: var(--lyrixi-primary);
+    color: var(--lyrixi-primary);
+    box-sizing: border-box;
+  }
+}
+// Used to replace old class .calendar-active
+.lyrixi-calendar-date-selected {
+  .lyrixi-calendar-date-num {
+    color: white;
+    font-weight: 600;
+    background-color: var(--lyrixi-primary);
+    border-color: var(--lyrixi-primary);
+    border-radius: 100%;
+  }
+
+  .lyrixi-calendar-date-dot {
+    background-color: white;
+  }
+
+  // Range start and end date radius
+  &.lyrixi-calendar-date-selected-start {
+    .lyrixi-calendar-date-num {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  }
+
+  &.lyrixi-calendar-date-selected-end {
+    .lyrixi-calendar-date-num {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+// Used to replace old class .calendar-datenum
+.lyrixi-calendar-date-num {
+  position: relative;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+}
+// Used to replace old class .calendar-disabled
+.lyrixi-calendar-date-disabled {
+  color: var(--lyrixi-font-color-disabled);
+  font-weight: normal;
+  background-color: transparent;
+  border-color: transparent;
+  pointer-events: none;
+}
+// Calendar slide
+.lyrixi-calendar-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.lyrixi-calendar-toggle-button {
+  padding: 2px 0 10px;
+}
+
+.lyrixi-calendar-toggle-svg {
+  // pointer-events: none;
+  margin: 0 auto;
+  width: 30px;
+  height: 12px;
+  display: block;
+
+  polyline,
+  line,
+  path {
+    fill: none;
+    stroke-width: 24;
+    stroke: #ddd;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 0.5s;
+  }
+}
+
+.lyrixi-calendar.lyrixi-expand .lyrixi-calendar-toggle-svg {
+  path {
+    // Horizontal bar
+    // d: path('M31.5,39L150,39l118.5,0');
+    // Arrow down
+    // d: path('M31.5,17L150,61l118.5,-44');
+    // Arrow up
+    d: path('M31.5,61L150,17l118.5,44');
+  }
+}

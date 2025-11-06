@@ -1,0 +1,49 @@
+.lyrixi-collapse-item {
+}
+
+// Header
+.lyrixi-collapse-item-header {
+}
+// 方便业务替换
+.lyrixi-collapse-item-header-wrapper {
+  display: flex;
+  align-items: center;
+  .lyrixi-border-b;
+}
+.lyrixi-collapse-item-header-title {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  font-size: var(--lyrixi-font-size-m);
+  color: #6a737c;
+  flex: 1;
+}
+.lyrixi-collapse-item-header-arrow {
+  transition: all 0.3s ease;
+  color: var(--lyrixi-font-color-quaternary);
+}
+.lyrixi-collapse-item-header-arrow-icon {
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-arrow-up all);
+}
+
+.lyrixi-collapse-item.lyrixi-active {
+  .lyrixi-collapse-item-header-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+.lyrixi-collapse-item-header-arrow + .lyrixi-collapse-item-header-title {
+  margin-left: 8px;
+}
+
+// Main
+.lyrixi-collapse-item-main {
+  will-change: height;
+  overflow: hidden;
+  box-sizing: border-box;
+}

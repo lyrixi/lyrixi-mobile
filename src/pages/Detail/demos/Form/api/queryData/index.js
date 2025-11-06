@@ -1,0 +1,72 @@
+import { LocaleUtil, Request, Device, Loading } from 'lyrixi-mobile'
+const locale = LocaleUtil.locale
+
+// 获取数据
+function queryData() {
+  return new Promise((resolve) => {
+    // Delete it: Test mock data
+    resolve({
+      data: {
+        input: 'Input content',
+        textarea: 'Textarea content',
+        autoFit:
+          'AutoFit overlength content: AI as a feature involves incorporating AI technologies into existing products to improve their functionalities. On the other hand, AI as a product entails creating standalone AI-driven applications (AI Copilots or Agents) intended to perform specific tasks or deliver unique services',
+        select: [{ id: '2', name: 'Option2' }]
+      }
+    })
+    return
+    // Delete it: end
+
+    // 修改或者复制id
+    let id = Device.getUrlParameter('id')
+
+    // 新增
+    if (!id) {
+      resolve(locale('请传入id'))
+      return
+    }
+
+    // 修改或者复制
+    Loading.show()
+    Request.post('/platform/param/v1/getLoginUser.do', {
+      id: id
+    })
+      .then((result) => {
+        Loading.hide()
+        if (result.code === '1') {
+          // Empty
+          if (_.isEmpty(result.data)) {
+            resolve({
+              status: 'empty',
+              message: locale('暂无数据')
+            })
+          }
+          // Success
+          else {
+            resolve({
+              data: {
+                input: 'Input content',
+                textarea: 'Textarea content',
+                autoFit:
+                  'AutoFit overlength content: AI as a feature involves incorporating AI technologies into existing products to improve their functionalities. On the other hand, AI as a product entails creating standalone AI-driven applications (AI Copilots or Agents) intended to perform specific tasks or deliver unique services',
+                select: [{ id: '2', name: 'Option2' }]
+              }
+            })
+          }
+        }
+        // Error
+        else {
+          resolve({
+            status: '500',
+            message: locale('获取数据错误！')
+          })
+        }
+      })
+      .catch(() => {
+        Loading.hide()
+        resolve(locale('获取数据异常！'))
+      })
+  })
+}
+
+export default queryData

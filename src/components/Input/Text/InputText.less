@@ -1,0 +1,102 @@
+// Input
+.lyrixi-input-text,
+.lyrixi-input-textarea,
+.lyrixi-input-autofit-textarea {
+  &:extend(.appearance);
+
+  display: block;
+  font-size: var(--lyrixi-font-size-l);
+
+  &[disabled] {
+    color: #b2b2b2;
+    opacity: 1; // 解决iosdisabled颜色变淡的问题
+    -webkit-text-fill-color: #b2b2b2; // 解决iosdisabled颜色变淡的问题
+  }
+}
+
+.lyrixi-input-text,
+.lyrixi-input-textarea {
+  // 为了解决ios输入时白屏的BUG
+  position: relative;
+  flex: 1;
+  // 解决flex1失效的问题
+  min-width: 0;
+}
+.lyrixi-input-text {
+  height: calc(var(--lyrixi-input-height-m));
+}
+.lyrixi-input-textarea {
+  height: calc(var(--lyrixi-input-height-m) + 40px);
+}
+.lyrixi-input-autofit-textarea,
+.lyrixi-input-autofit-pre {
+  min-height: var(--lyrixi-input-height-m);
+  max-height: 500px;
+  line-height: var(--lyrixi-input-height-m);
+}
+.lyrixi-input-autofit + .lyrixi-input-formatter {
+  line-height: var(--lyrixi-input-height-m);
+}
+
+// Input: 失焦时显示(不能用flex, 否则text-center不生效)
+.lyrixi-input-formatter {
+  font-size: var(--lyrixi-font-size-l);
+  pointer-events: none;
+
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+// formatter单行文本框一行显示, 多行则多行显示
+.lyrixi-input-text + .lyrixi-input-formatter {
+  // overflow-x: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lyrixi-input-autofit + .lyrixi-input-formatter,
+.lyrixi-input-textarea + .lyrixi-input-formatter {
+  top: 0;
+  bottom: 0;
+}
+
+// Formatter
+.lyrixi-has-formatter {
+  // 失焦隐藏框
+  .lyrixi-input-text,
+  .lyrixi-input-textarea,
+  .lyrixi-input-autofit-textarea {
+    opacity: 0;
+  }
+  // 获焦隐藏formatter, 显示框 (不兼容低端手机不要紧, 暂时无人使用Input.Autofit的formatter)
+  .lyrixi-input-autofit:has(.lyrixi-input-autofit-textarea:focus),
+  .lyrixi-input-text:focus,
+  .lyrixi-input-textarea:focus,
+  .lyrixi-input-autofit-textarea:focus {
+    & + .lyrixi-input-formatter {
+      opacity: 0;
+    }
+    opacity: 1;
+  }
+}
+
+.lyrixi-input-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  // 解决flex1失效的问题
+  min-width: 0;
+  flex: 1;
+}
+
+// Icon
+.lyrixi-left-icon {
+  margin-right: 4px;
+}
+.lyrixi-right-icon {
+  margin-left: 12px;
+}

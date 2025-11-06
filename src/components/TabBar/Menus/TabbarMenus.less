@@ -1,0 +1,80 @@
+.lyrixi-tabbar-menus {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+// Separator
+.lyrixi-tabbar-menus-separator {
+  display: flex;
+  // 强制拉伸到容器高度
+  align-self: stretch;
+}
+
+// Separator align to name
+.lyrixi-tabbar-menus-tab-description {
+  &.lyrixi-top {
+    + .lyrixi-tabbar-menus-separator {
+      align-items: end;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.lyrixi-tabbar-menus-tab-wrapper {
+  flex: auto;
+  padding: 0 var(--lyrixi-space-xl);
+
+  &.lyrixi-active {
+    color: var(--lyrixi-primary);
+
+    .lyrixi-tabbar-menus-tab-icon {
+      color: var(--lyrixi-primary);
+    }
+  }
+
+  // 禁用
+  &.lyrixi-disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.lyrixi-tabbar-menus-tab {
+  white-space: nowrap;
+  padding: var(--lyrixi-space-l) 0 var(--lyrixi-space-xl);
+  margin: 0 auto;
+  font-size: var(--lyrixi-font-size-m);
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+
+.lyrixi-tabbar-menus-tab-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: var(--lyrixi-font-color-secondary);
+}
+
+.lyrixi-tabbar-menus-tab-icon + .lyrixi-tabbar-menus-tab-name,
+.lyrixi-tabbar-menus-tab-icon + .lyrixi-tabbar-menus-tab-description {
+  margin-top: var(--lyrixi-space-xxs);
+}
+
+.lyrixi-tabbar-menus-tab-name {
+  font-size: var(--lyrixi-font-size-s);
+}
+
+.lyrixi-tabbar-menus-tab-description {
+  color: var(--lyrixi-font-color-secondary);
+  font-size: var(--lyrixi-font-size-xs);
+}
+
+.lyrixi-tabbar-menus-tab-name + .lyrixi-tabbar-menus-tab-description,
+.lyrixi-tabbar-menus-tab-description + .lyrixi-tabbar-menus-tab-name {
+  margin-top: var(--lyrixi-space-s);
+}

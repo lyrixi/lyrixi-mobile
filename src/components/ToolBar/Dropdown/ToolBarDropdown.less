@@ -1,0 +1,56 @@
+// ToolBar.List combo
+.lyrixi-toolbar-dropdown-combo {
+  &.lyrixi-auto-fit {
+    .lyrixi-toolbar-dropdown-combo-title {
+      flex: initial;
+    }
+  }
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  &.lyrixi-disabled {
+    opacity: 0.5;
+  }
+  &.lyrixi-expand {
+    .lyrixi-toolbar-dropdown-combo-arrow {
+      transform: rotate(0deg);
+    }
+  }
+}
+.lyrixi-toolbar-dropdown-combo-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lyrixi-toolbar-dropdown-combo-arrow {
+  width: 8px;
+  height: 8px;
+  font-size: 8px;
+  line-height: 8px;
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-triangle-up-fill all);
+  transform: rotate(180deg);
+
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+  color: var(--lyrixi-font-color-secondary);
+}
+
+.lyrixi-toolbar-dropdown-mask {
+}
+.lyrixi-toolbar-dropdown-modal {
+  // 列表
+  .lyrixi-list {
+    margin: 0 8px;
+  }
+  .lyrixi-list-item.lyrixi-active {
+    color: var(--lyrixi-primary);
+    .lyrixi-toolbar-dropdown-item-checkbox {
+      font-family: 'lyrixi-icons';
+      &:extend(.lyrixi-icon-ok all);
+      font-size: 18px;
+    }
+  }
+}

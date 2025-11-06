@@ -1,0 +1,58 @@
+// 范围拖动条
+.lyrixi-input-rate {
+  position: relative;
+  display: inline-flex;
+  gap: 8px;
+  &.lyrixi-disabled,
+  &.lyrixi-readOnly {
+    .lyrixi-input-rate-input {
+      pointer-events: none;
+    }
+  }
+  &.lyrixi-disabled {
+    opacity: 0.5;
+  }
+}
+
+.lyrixi-input-rate-input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.lyrixi-input-rate-item {
+  pointer-events: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lyrixi-input-rate-item-icon,
+.lyrixi-input-rate-item-icon-active {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+
+  &.lyrixi-default {
+    font-family: 'lyrixi-icons';
+    &:extend(.lyrixi-icon-star-fill all);
+  }
+}
+.lyrixi-input-rate-item-icon {
+  color: var(--lyrixi-bg-default);
+}
+.lyrixi-input-rate-item-icon-active {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  color: var(--lyrixi-primary);
+  overflow: hidden;
+}

@@ -1,0 +1,45 @@
+// 缩放插件
+.lyrixi-map-zoomControl {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+  .lyrixi-inline-flex;
+  .lyrixi-flex-center;
+  .lyrixi-flex-middle;
+  .lyrixi-flex-vertical;
+  width: 36px;
+  height: 72px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
+  border-radius: 8px;
+}
+.lyrixi-map-zoomControl-out,
+.lyrixi-map-zoomControl-in {
+  .lyrixi-flex;
+  .lyrixi-flex-center;
+  .lyrixi-flex-middle;
+  width: 32px;
+  height: 36px;
+  .lyrixi-map-zoomControl-icon {
+    .lyrixi-flex;
+    .lyrixi-flex-center;
+    .lyrixi-flex-middle;
+    font-family: 'lyrixi-icons';
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+.lyrixi-map-zoomControl-in {
+  box-shadow: inset 0px -0.5px 0px 0px rgba(230, 231, 232, 1);
+  .lyrixi-map-zoomControl-icon {
+    &:extend(.lyrixi-icon-map-zoom-in all);
+  }
+}
+.lyrixi-map-zoomControl-out {
+  .lyrixi-map-zoomControl-icon {
+    &:extend(.lyrixi-icon-map-zoom-out all);
+  }
+}

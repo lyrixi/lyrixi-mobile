@@ -1,0 +1,154 @@
+.lyrixi-numberbox.lyrixi-xl {
+  border-radius: var(--lyrixi-radius-xl);
+  width: 198px;
+  height: 48px;
+  .lyrixi-numberbox-button {
+    width: 44px;
+  }
+  .lyrixi-numberbox-button,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-l);
+  }
+}
+
+.lyrixi-numberbox.lyrixi-l {
+  border-radius: var(--lyrixi-radius-l);
+  width: 168px;
+  height: 40px;
+  .lyrixi-numberbox-button {
+    width: 32px;
+  }
+  .lyrixi-numberbox-button,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-m);
+  }
+}
+
+.lyrixi-numberbox,
+.lyrixi-numberbox.lyrixi-m {
+  border-radius: var(--lyrixi-radius-m);
+  width: 148px;
+  height: 32px;
+  .lyrixi-numberbox-button {
+    width: 28px;
+  }
+  .lyrixi-numberbox-button,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-s);
+  }
+}
+
+.lyrixi-numberbox.lyrixi-s {
+  border-radius: var(--lyrixi-radius-s);
+  width: 128px;
+  height: 24px;
+  .lyrixi-numberbox-button {
+    width: 20px;
+  }
+  .lyrixi-numberbox-button,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-xs);
+  }
+}
+
+.lyrixi-numberbox.lyrixi-xs {
+  border-radius: var(--lyrixi-radius-xs);
+  width: 128px;
+  height: 20px;
+  .lyrixi-numberbox-button {
+    width: 16px;
+  }
+  .lyrixi-numberbox-button,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-xs);
+  }
+}
+
+.lyrixi-numberbox-button {
+  height: 100%;
+}
+.lyrixi-numberbox-button {
+  flex: none;
+  line-height: 100%;
+}
+
+.lyrixi-numberbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  border: 1px solid var(--lyrixi-border-color);
+  box-sizing: border-box;
+}
+
+// 文本框
+.lyrixi-numberbox-input {
+  height: 100% !important;
+  padding: 0;
+  .lyrixi-input-node {
+    height: 100%;
+    .lyrixi-input-text {
+      text-align: center;
+      text-overflow: ellipsis;
+      height: 100%;
+    }
+    .lyrixi-input-formatter {
+      text-align: center;
+    }
+  }
+}
+
+// 按钮
+.lyrixi-numberbox-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+
+  font-size: 14px;
+  background-color: white;
+  border-width: 0;
+}
+
+.lyrixi-numberbox-button-minus {
+  left: 0;
+  color: var(--lyrixi-primary);
+  border-right: 1px solid var(--lyrixi-border-color);
+  background-color: #f3f4f5;
+  &[disabled] {
+    color: #ccc;
+  }
+}
+.lyrixi-numberbox-button-plus {
+  right: 0;
+  color: white;
+  background-color: var(--lyrixi-primary);
+  border-left: 1px solid var(--lyrixi-primary);
+  &[disabled] {
+    opacity: 0.6;
+  }
+}
+
+.lyrixi-numberbox-button-minus-icon {
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-minus all);
+}
+.lyrixi-numberbox-button-plus-icon {
+  font-family: 'lyrixi-icons';
+  &:extend(.lyrixi-icon-plus all);
+}
+
+.lyrixi-numberbox[disabled] {
+  pointer-events: none;
+
+  .lyrixi-numberbox-button-minus {
+    color: #ccc;
+  }
+  .lyrixi-numberbox-button-plus {
+    opacity: 0.6;
+  }
+}

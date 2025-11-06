@@ -1,0 +1,61 @@
+// 搜索控件
+.lyrixi-map-searchControl-navigation {
+  box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  left: 12px;
+  z-index: 1;
+}
+
+.lyrixi-map-searchControl-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.lyrixi-map-searchControl-header {
+  padding: 12px 12px;
+  background-color: #fff;
+  .lyrixi-toolbar-search-bar {
+    position: relative;
+    background-color: transparent;
+  }
+}
+
+.lyrixi-map-searchControl-body {
+  position: relative;
+  flex: 1;
+  overflow: auto;
+  background-color: white;
+}
+.lyrixi-map-searchControl-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px;
+  background-color: white;
+  .lyrixi-border-b;
+}
+.lyrixi-map-searchControl-item-content {
+  flex: 1;
+  padding: 12px 0;
+}
+.lyrixi-map-searchControl-item-content-title {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  font-size: 16px;
+  color: #1a1c1f;
+  letter-spacing: 0;
+  line-height: 20px;
+  font-weight: bold;
+}
+.lyrixi-map-searchControl-item-content-description {
+  .lyrixi-flex;
+  .lyrixi-flex-middle;
+  color: #77818c;
+  margin-top: 6px;
+}

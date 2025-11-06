@@ -1,0 +1,39 @@
+// OTP 输入框样式
+.lyrixi-input-otp {
+  --lyrixi-input-otp-item-width: 32px;
+  --lyrixi-input-otp-item-height: 32px;
+  --lyrixi-input-otp-item-radius: 4px;
+
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  &.lyrixi-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .lyrixi-input-otp-item {
+    flex: none;
+    width: var(--lyrixi-input-otp-item-width);
+    height: var(--lyrixi-input-otp-item-height);
+    border: 1px solid var(--lyrixi-border-color);
+    border-radius: var(--lyrixi-input-otp-item-radius);
+    text-align: center;
+    font-size: var(--lyrixi-font-size-xxl);
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:focus,
+    &.lyrixi-active {
+      border-color: var(--lyrixi-primary);
+    }
+
+    // Input.Node文本框在内部
+    .lyrixi-input-text {
+      font-size: var(--lyrixi-font-size-xxl);
+      font-weight: 500;
+      justify-content: center;
+    }
+  }
+}
