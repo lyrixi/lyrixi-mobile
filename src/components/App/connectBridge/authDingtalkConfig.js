@@ -33,8 +33,7 @@ function authDingtalkConfig(options) {
     }
 
     // 获取鉴权信息
-    Request.post(options?.url, {
-      data: params,
+    Request.post(options?.url, params, {
       headers: {
         'Content-type': 'application/json'
       }

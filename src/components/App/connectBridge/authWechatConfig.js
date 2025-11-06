@@ -25,8 +25,7 @@ function authWechatConfig(options) {
     }
 
     // 微信鉴权
-    Request.post(options.url, {
-      data: params,
+    Request.post(options.url, params, {
       header: {
         'Content-type': 'application/json'
       }

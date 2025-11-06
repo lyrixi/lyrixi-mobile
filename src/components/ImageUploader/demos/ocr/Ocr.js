@@ -19,14 +19,17 @@ function recognizeItem(item) {
       return
     }
 
-    Request.post('ocrRecognizeUrl', {
-      data: {
+    Request.post(
+      'ocrRecognizeUrl',
+      {
         imageUrl: item.fileUrl
       },
-      headers: {
-        'Content-Type': 'application/json'
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    })
+    )
       .then((result) => {
         item.ocrResult = result || null
 

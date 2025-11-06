@@ -32,8 +32,7 @@ function uploadServerId({
       appId
     }
 
-    Request.post(uploadUrl, {
-      data: uploadParams,
+    Request.post(uploadUrl, uploadParams, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Cookie: document.cookie

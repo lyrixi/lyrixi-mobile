@@ -12,10 +12,8 @@ import { Toast, Request, LocaleUtil } from 'lyrixi-mobile'
 function clearPhotos(id, { url }) {
   return new Promise((resolve) => {
     Request.post(url, {
-      data: {
-        fileCheckKey: id,
-        imageParamList: []
-      }
+      fileCheckKey: id,
+      imageParamList: []
     })
       .then((result) => {
         console.log('照片清除成功:', result)

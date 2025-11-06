@@ -51,8 +51,7 @@ function authWecomAgentConfig(options) {
     if (suitType) {
       queryParams['suiteType'] = suitType
     }
-    Request.post(options?.url, {
-      data: queryParams,
+    Request.post(options?.url, queryParams, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }

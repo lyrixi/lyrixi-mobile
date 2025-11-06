@@ -33,8 +33,7 @@ export default function uploadFile({
   }
 
   return new Promise((resolve) => {
-    Request.post(uploadUrl, {
-      data: formData,
+    Request.post(uploadUrl, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
