@@ -16,11 +16,20 @@ toc: content
 ### 全局规范
 
 - 组件一律用 jsx 后缀
-- 工具类一律用 js 后缀
+
 - 页面上展示的块状分区，均在同级目录下拆成单独的组件，比如一个上中下结构的页面:`index.jsx`可拆成`Header/index.jsx`、`Content/index.jsx`、`Footer/index.jsx`
-- 所有 less 全局变量和全局样式，先从`global-styles.zh-CN.md`中阅读和理解，然后优先使用`global-styles.zh-CN.md`中的样式与变量
+
+- 写组件前，先阅读和理解`src/components`组件文档`index.zh-CN.md`，理解各个组件的用法，然后优先使用内置组件渲染
+
+- 写样式前，先从`global-styles.zh-CN.md`中阅读和理解，然后优先使用`global-styles.zh-CN.md`中的样式与变量
+
 - 所有的显示在页面上的文字都需要用 locale 包裹，例如: locale('Example')，但不要传第二个参数，因为第二个参数是 key，后面由命令`npm run translate`统一补上
+
 - 定义组件不要用 props, 例如: `function Component(props)`，而且是直接用结构后的属性`function Component({style, className})`
+
+- 工具类一律用 js 后缀
+
+- 写工具类前，先阅读和理解`src/utils`组件文档`index.zh-CN.md`，理解各个工具的用法，然后优先使用内置工具类开发
 
 ### 一个页面的目录结构
 
