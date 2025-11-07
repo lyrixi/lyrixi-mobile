@@ -21,6 +21,8 @@ toc: content
 
 - 写组件前，先阅读和理解`src/components`组件文档`index.zh-CN.md`，理解各个组件的用法，然后优先使用内置组件渲染
 
+- 用内置组件，不要强行覆盖内置组件 class 样式，而是通过组件属性去修改，正确示例：`<Input.Text style={{ height: '40px' }} />`，错误示例：`.lyrixi-input { height: 40px; }`
+
 - 写样式前，先从`global-styles.zh-CN.md`中阅读和理解，然后优先使用`global-styles.zh-CN.md`中的样式与变量
 
 - 所有的显示在页面上的文字都需要用 locale 包裹，例如: locale('Example')，但不要传第二个参数，因为第二个参数是 key，后面由命令`npm run translate`统一补上
