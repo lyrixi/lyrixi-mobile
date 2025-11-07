@@ -6,7 +6,9 @@ import listData from './listData'
 
 export default () => {
   const [keyword, setKeyword] = useState('')
-  const [value, setValue] = useState([
+  const [singleValue, setSingleValue] = useState(null)
+
+  const [multipleValue, setMultipleValue] = useState([
     {
       allowClear: true,
       id: '1',
@@ -46,8 +48,8 @@ export default () => {
             allowClear
             multiple={false}
             list={list}
-            value={value}
-            onChange={setValue}
+            value={singleValue}
+            onChange={setSingleValue}
           />
         </Card>
 
@@ -59,8 +61,8 @@ export default () => {
             placeholder="Single Select"
             allowClear
             list={list}
-            value={value}
-            onChange={setValue}
+            value={singleValue}
+            onChange={setSingleValue}
           />
         </Card>
 
@@ -73,8 +75,8 @@ export default () => {
             multiple
             allowClear
             list={list}
-            value={value}
-            onChange={setValue}
+            value={multipleValue}
+            onChange={setMultipleValue}
           />
         </Card>
 
@@ -88,8 +90,8 @@ export default () => {
             separator="|"
             allowClear
             list={list}
-            value={value}
-            onChange={setValue}
+            value={multipleValue}
+            onChange={setMultipleValue}
           />
         </Card>
 
@@ -98,14 +100,14 @@ export default () => {
           <Select.Combo
             title="Select"
             style={{ margin: '0 12px' }}
-            placeholder="Multiple Select"
+            placeholder="Single tags Select"
             mode={'tags'}
             multiple={false}
             // disabled
             allowClear
             list={list}
-            value={value}
-            onChange={setValue}
+            value={singleValue}
+            onChange={setSingleValue}
           />
         </Card>
 
@@ -120,8 +122,8 @@ export default () => {
             // disabled
             allowClear
             list={list}
-            value={value}
-            onChange={setValue}
+            value={multipleValue}
+            onChange={setMultipleValue}
           />
         </Card>
 
@@ -137,8 +139,8 @@ export default () => {
             // disabled
             allowClear
             list={list}
-            value={value}
-            onChange={setValue}
+            value={multipleValue}
+            onChange={setMultipleValue}
           />
         </Card>
 
@@ -151,8 +153,8 @@ export default () => {
             allowClear
             multiple={false}
             list={list}
-            value={value}
-            onChange={setValue}
+            value={singleValue}
+            onChange={setSingleValue}
             checkboxRender={({ checked }) => {
               return <Checkbox checked={checked} />
             }}
@@ -168,9 +170,9 @@ export default () => {
             multiple={false}
             title="Select"
             allowClear
-            value={value}
+            value={singleValue}
             list={list}
-            onChange={setValue}
+            onChange={setSingleValue}
           />
         </Card>
 
@@ -182,11 +184,11 @@ export default () => {
             placeholder="Search"
             multiple={false}
             allowClear
-            value={value}
+            value={multipleValue}
             list={listData}
             onChange={(newValue) => {
               console.log('onChange:', newValue)
-              setValue(newValue)
+              setSingleValue(newValue)
             }}
           />
         </Card>
@@ -202,7 +204,7 @@ export default () => {
               return (
                 <ToolBar invert>
                   <ToolBar.Search
-                    value={keyword}
+                    multipleValue={keyword}
                     onSearch={(newKeyword) => {
                       setKeyword(newKeyword)
                     }}
@@ -211,11 +213,11 @@ export default () => {
               )
             }}
             allowClear
-            value={value}
+            value={singleValue}
             list={List.searchList(list, keyword)}
             onChange={(newValue) => {
               console.log('onChange:', newValue)
-              setValue(newValue)
+              setSingleValue(newValue)
             }}
           />
         </Card>
