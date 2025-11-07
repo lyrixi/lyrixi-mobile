@@ -27,7 +27,7 @@ import { Input } from 'lyrixi-mobile'
 export default () => <Input.Text style={{ height: '40px' }} />
 ```
 
-## 属性不要用动态 props 定义
+## 属性不要用动态 props 定义，因为这样极不利于 AI 生成文档，并且不方便管理
 
 错误定义:
 

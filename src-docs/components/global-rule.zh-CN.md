@@ -47,3 +47,33 @@ index.jsx
 ### 详情页面
 
 ### 详情页面
+
+## 组件属性
+
+### 属性要清晰明确
+
+组件中严禁使用 props.onChange 这种调用方法
+
+正确的属性定义:
+
+```jsx
+function Component({ style, className }) {
+  return <div style={style} className={className}></div>
+}
+```
+
+错误的属性定义 1:
+
+```jsx
+function Component(props) {
+  return <div style={props?.style} className={props?.className}></div>
+}
+```
+
+错误的属性定义 2:
+
+```jsx
+function Component(props) {
+  return <div {...props}></div>
+}
+```
