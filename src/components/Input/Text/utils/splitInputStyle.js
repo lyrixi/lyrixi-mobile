@@ -37,6 +37,11 @@ function splitStyle(externalStyle) {
     inputStyle.lineHeight = lineHeight
   }
 
+  // 强制宽度
+  if (style?.width && !style?.flex) {
+    style.flex = 'none'
+  }
+
   return {
     style: style,
     inputStyle: inputStyle
