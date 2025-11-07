@@ -20,7 +20,7 @@ const Uploading = ({ uploading, item, className }) => {
       return uploading
     }
     return (
-      <div className={`lyrixi-attach-uploading-icon`}>
+      <div className="lyrixi-attach-uploading-icon">
         <Loading.Ouroboros className="lyrixi-attach-uploading-icon-loading" />
       </div>
     )

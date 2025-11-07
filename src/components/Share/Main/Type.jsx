@@ -1,17 +1,18 @@
 import React from 'react'
 
 // 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 function Type({ type, onClick }) {
   return (
     <div className="lyrixi-share-item" onClick={onClick}>
-      <i className={`lyrixi-share-item-icon${type}`}></i>
+      <i className={DOMUtil.classNames('lyrixi-share-item-icon', type)}></i>
       <p className="share-item-label">
         {type === 'wechat' && LocaleUtil.locale('微信', 'lyrixi_we_chat')}
         {type === 'moments' && LocaleUtil.locale('朋友圈', 'lyrixi_we_moment')}

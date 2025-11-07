@@ -24,6 +24,8 @@ const Main = forwardRef(
       onBottomRefresh,
       onScroll,
       children,
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -136,7 +138,7 @@ const Main = forwardRef(
     return (
       <main
         {...props}
-        className={DOMUtil.classNames('lyrixi-page-main', props.className)}
+        className={DOMUtil.classNames('lyrixi-page-main', className)}
         ref={rootRef}
         onTouchStart={onTopRefresh ? handleTouchStart : undefined}
         onTouchMove={onTopRefresh ? handleTouchMove : undefined}

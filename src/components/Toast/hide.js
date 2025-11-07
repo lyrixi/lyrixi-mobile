@@ -1,5 +1,5 @@
 // 移除Toast
-function hide(props) {
+function hide({ onClose } = {}) {
   let toastId = '__lyrixi_toast_el__'
   let mask = document.getElementById(toastId)
 
@@ -7,7 +7,7 @@ function hide(props) {
     if (mask.timeout) window.clearTimeout(mask.timeout)
     mask.timeout = setTimeout(() => {
       mask?.parentNode?.removeChild?.(mask)
-      props?.onClose && props?.onClose()
+      onClose && onClose()
     }, 300)
   }
 }

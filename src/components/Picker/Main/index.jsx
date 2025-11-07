@@ -20,6 +20,9 @@ let Main = forwardRef(
       onChange,
 
       list,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -75,11 +78,7 @@ let Main = forwardRef(
     }
 
     return (
-      <div
-        {...props}
-        className={DOMUtil.classNames('lyrixi-picker-main', props.className)}
-        ref={mainRef}
-      >
+      <div {...props} className={DOMUtil.classNames('lyrixi-picker-main', className)} ref={mainRef}>
         <div className="lyrixi-picker-layer">
           <div className="lyrixi-picker-layer-frame"></div>
         </div>

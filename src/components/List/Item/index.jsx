@@ -55,7 +55,7 @@ const Item = ({
   function getImageNode() {
     if (typeof imageUrl === 'string') {
       return (
-        <div className={`lyrixi-list-item-meta-image`}>
+        <div className="lyrixi-list-item-meta-image">
           <img
             alt=""
             src={imageUrl}
@@ -77,7 +77,7 @@ const Item = ({
   function getAvatarNode() {
     if (typeof avatarUrl === 'string') {
       return (
-        <div className={`lyrixi-list-item-meta-avatar`}>
+        <div className="lyrixi-list-item-meta-avatar">
           <img
             alt=""
             src={avatarUrl}

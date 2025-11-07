@@ -5,11 +5,12 @@ import formatValue from './../RangeMain/formatValue'
 import RangeModal from './../RangeModal'
 
 // 内库使用-start
+import DOMUtil from '../../../utils/DOMUtil'
 import Input from './../../Input'
 // 内库使用-end
 
 /* 测试使用-start
-import { Input } from 'lyrixi-mobile'
+import { DOMUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日期区间
@@ -100,8 +101,8 @@ const RangeCombo = forwardRef(
         <Input.Select
           ref={comboRef}
           {...props}
+          className={DOMUtil.classNames('lyrixi-datepicker-rangecombo', comboClassName)}
           style={comboStyle}
-          className={`lyrixi-datepicker-rangecombo${comboClassName}`}
           leftIcon={comboLeftIcon}
           rightIcon={comboRightIcon}
           separator={separator}

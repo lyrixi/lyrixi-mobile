@@ -12,7 +12,16 @@ import { LocaleUtil, Loading, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 定位控件
-function LocationControl({ map, onChange, ...props }, ref) {
+function LocationControl(
+  {
+    map,
+    onChange,
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) {
   // 容器
   const rootRef = useRef(null)
 
@@ -61,10 +70,10 @@ function LocationControl({ map, onChange, ...props }, ref) {
     <div
       {...props}
       ref={rootRef}
-      className={DOMUtil.classNames('lyrixi-map-locationControl', props.className)}
+      className={DOMUtil.classNames('lyrixi-map-locationControl', className)}
       onClick={handleLocation}
     >
-      <div className={`lyrixi-map-locationControl-icon`}></div>
+      <div className="lyrixi-map-locationControl-icon"></div>
     </div>
   )
 }

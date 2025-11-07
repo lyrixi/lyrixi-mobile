@@ -45,7 +45,7 @@ export default function FooterBarTab({
         disabled ? 'lyrixi-disabled' : ''
       )}
     >
-      <span className={`lyrixi-footerbar-tab-icon`}>{IconNode}</span>
+      <span className="lyrixi-footerbar-tab-icon">{IconNode}</span>
       <div className="lyrixi-footerbar-tab-name">{name}</div>
     </div>
   )

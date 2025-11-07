@@ -16,7 +16,7 @@ const InfiniteScroll = ({ status, content }) => {
 
     if (status === 'loading') {
       return (
-        <div className={`lyrixi-list-infinitescroll-wrapper`}>
+        <div className="lyrixi-list-infinitescroll-wrapper">
           <div className="lyrixi-list-infinitescroll-text">
             {content || LocaleUtil.locale('加载中', 'lyrixi_refreshing')}
           </div>
@@ -28,7 +28,7 @@ const InfiniteScroll = ({ status, content }) => {
     }
     if (status === 'noMore') {
       return (
-        <div className={`lyrixi-list-infinitescroll-wrapper`}>
+        <div className="lyrixi-list-infinitescroll-wrapper">
           <div className="lyrixi-list-infinitescroll-text">
             {content || LocaleUtil.locale('没有更多了', 'lyrixi_no_more_data')}
           </div>
@@ -37,7 +37,7 @@ const InfiniteScroll = ({ status, content }) => {
     }
 
     return (
-      <div className={`lyrixi-list-infinitescroll-wrapper`}>
+      <div className="lyrixi-list-infinitescroll-wrapper">
         <div className="lyrixi-list-infinitescroll-text">
           {content || LocaleUtil.locale('获取数据失败，请稍后再试！', 'lyrixi_query_data_error')}
         </div>
@@ -45,7 +45,7 @@ const InfiniteScroll = ({ status, content }) => {
     )
   }
 
-  return <div className={`lyrixi-list-infinitescroll`}>{getStatusNode()}</div>
+  return <div className="lyrixi-list-infinitescroll">{getStatusNode()}</div>
 }
 
 export default InfiniteScroll

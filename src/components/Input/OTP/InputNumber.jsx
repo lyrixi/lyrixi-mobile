@@ -2,6 +2,14 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import InputNode from './../Node'
 import Keyboard from './../../Keyboard'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 const InputNumber = forwardRef(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -41,9 +49,10 @@ const InputNumber = forwardRef(
             value={value || ''}
             disabled={disabled}
             readOnly={readOnly}
-            className={`lyrixi-input-otp-item${
-              currentIndex === index && keyboardOpen ? ' active' : ''
-            }`}
+            className={DOMUtil.classNames(
+              'lyrixi-input-otp-item',
+              currentIndex === index && keyboardOpen ? 'lyrixi-active' : ''
+            )}
             onClick={() => handleInputClick(index)}
             cursor={keyboardOpen && currentIndex === index}
           />

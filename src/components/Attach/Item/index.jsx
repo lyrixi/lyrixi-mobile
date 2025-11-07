@@ -136,7 +136,13 @@ const Item = ({
       }}
     >
       {/* 文件图标 */}
-      <i className={`lyrixi-icon lyrixi-attach-item-type${getIcon(item.fileUrl)}`}></i>
+      <i
+        className={DOMUtil.classNames(
+          'lyrixi-icon',
+          'lyrixi-attach-item-type',
+          getIcon(item.fileUrl)
+        )}
+      ></i>
       {/* 文件名称 */}
       <div className="lyrixi-attach-item-main">
         <div className="lyrixi-attach-item-title">{item.fileName || item.fileUrl}</div>

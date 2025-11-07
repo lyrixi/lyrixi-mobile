@@ -64,6 +64,8 @@ const Image = forwardRef(
       onChange,
       onPreview,
 
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -316,7 +318,7 @@ const Image = forwardRef(
 
     // Render
     return (
-      <div ref={rootRef} {...props} className={DOMUtil.classNames('lyrixi-image', props.className)}>
+      <div ref={rootRef} {...props} className={DOMUtil.classNames('lyrixi-image', className)}>
         {/* 图片上传: 上传按钮 */}
         {uploadPosition === 'start' && getChooseNode()}
 

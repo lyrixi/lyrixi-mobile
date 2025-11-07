@@ -41,6 +41,9 @@ const VirtualList = (
     append,
 
     children,
+
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -146,7 +149,7 @@ const VirtualList = (
     <Page.Main
       {...props}
       ref={rootRef}
-      className={DOMUtil.classNames('lyrixi-list-main', props.className)}
+      className={DOMUtil.classNames('lyrixi-list-main', className)}
       onTopRefresh={onTopRefresh}
       onBottomRefresh={onBottomRefresh}
       onScroll={handleScroll}

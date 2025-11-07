@@ -71,7 +71,7 @@ const Combo = (
         className={DOMUtil.classNames('lyrixi-signature-button', className)}
         onClick={handleSign}
       >
-        <i className={`lyrixi-signature-button-icon-add`}></i>
+        <i className="lyrixi-signature-button-icon-add"></i>
         {/* 文字 */}
         <div className="lyrixi-signature-button-label">
           {LocaleUtil.locale('签名', 'lyrixi_signature')}

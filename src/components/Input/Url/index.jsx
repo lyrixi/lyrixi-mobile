@@ -16,6 +16,8 @@ import { LocaleUtil, Clipboard, Toast, Message } from 'lyrixi-mobile'
 const Url = forwardRef(
   (
     {
+      readOnly,
+      disabled,
       onClick,
       onPreview, // 是否支持单击预览, readOnly为true时才生效
       type,
@@ -53,7 +55,7 @@ const Url = forwardRef(
 
     const handleClick = async (e) => {
       // 只读才可以复制连接
-      if (!props?.readOnly && !props?.disabled) return
+      if (!readOnly && !disabled) return
 
       // 网址不再需要协议前缀 有前缀则保留，无前缀则手动拼接http协议作为前缀
       let value = e.target.value

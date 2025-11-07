@@ -8,7 +8,19 @@ import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 const FormMain = forwardRef(
-  ({ span, ellipsis, inputExtra, extra, error, children, ...props }, ref) => {
+  (
+    {
+      span,
+      ellipsis,
+      inputExtra,
+      extra,
+      error,
+      children, // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
     // 获取全局配置
     const { layout, mainCol } = useContext(FormContext)
 
@@ -30,7 +42,7 @@ const FormMain = forwardRef(
         {...props}
         className={DOMUtil.classNames(
           'lyrixi-form-item-main',
-          props.className,
+          className,
           layout === 'horizontal' ? `lyrixi-col lyrixi-col-${span || globalSpan || 16}` : ''
         )}
         ref={rootRef}

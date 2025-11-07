@@ -263,7 +263,7 @@ const InputText = (
     // autoFit类型
     if (type === 'autoFit') {
       return (
-        <div className={`lyrixi-input-autofit`}>
+        <div className="lyrixi-input-autofit">
           <textarea
             ref={inputRef}
             name={name}
@@ -283,9 +283,9 @@ const InputText = (
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             style={inputStyle}
-            className={`lyrixi-input-autofit-textarea`}
+            className="lyrixi-input-autofit-textarea"
           ></textarea>
-          <pre className={`lyrixi-input-autofit-pre`} style={inputStyle}>
+          <pre className="lyrixi-input-autofit-pre" style={inputStyle}>
             <span>{value}</span>
           </pre>
         </div>
@@ -313,7 +313,7 @@ const InputText = (
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
-          className={`lyrixi-input-textarea`}
+          className="lyrixi-input-textarea"
           style={inputStyle}
         ></textarea>
       )
@@ -343,7 +343,7 @@ const InputText = (
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
         style={inputStyle}
-        className={`lyrixi-input-text`}
+        className="lyrixi-input-text"
       />
     )
   }
@@ -379,7 +379,7 @@ const InputText = (
         {/* Blur display value */}
         {displayValue ? (
           <div
-            className={`lyrixi-input-formatter`}
+            className="lyrixi-input-formatter"
             style={inputStyle}
             // Click to focus text
             onClick={() => {

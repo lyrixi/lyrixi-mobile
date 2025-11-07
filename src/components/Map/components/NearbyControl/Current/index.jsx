@@ -13,7 +13,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 function Current({ map, value, readOnly, onChange }, ref) {
   return (
     <div
-      className={`lyrixi-map-nearbyControl-item`}
+      className="lyrixi-map-nearbyControl-item"
       onClick={(e) => {
         map?.panTo?.({ longitude: value.longitude, latitude: value.latitude, type: value.type })
         if (!readOnly) {

@@ -67,7 +67,7 @@ const Modal = forwardRef(
 
     // 获取激活状态样式
     function getActiveClass() {
-      return open ? ' active' : ''
+      return open ? 'lyrixi-active' : ''
     }
 
     let ModalNode = (

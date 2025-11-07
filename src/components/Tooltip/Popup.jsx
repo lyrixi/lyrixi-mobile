@@ -31,6 +31,9 @@ const Popup = forwardRef(
       onOpen,
       onClose,
       children,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -92,7 +95,7 @@ const Popup = forwardRef(
           className={DOMUtil.classNames(
             'lyrixi-modal-animation lyrixi-tooltip tooltip-bottom',
             position,
-            props.className,
+            className,
             open ? 'lyrixi-active' : ''
           )}
           style={style}

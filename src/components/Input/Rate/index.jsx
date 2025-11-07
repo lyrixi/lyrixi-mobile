@@ -74,7 +74,7 @@ const Rate = forwardRef(
         {...props}
         className={DOMUtil.classNames(
           'lyrixi-input-rate',
-          props.className,
+          className,
           readOnly ? 'lyrixi-readOnly' : '',
           disabled ? 'lyrixi-disabled' : ''
         )}
@@ -84,7 +84,7 @@ const Rate = forwardRef(
           readOnly={readOnly}
           disabled={disabled}
           type="range"
-          className={`lyrixi-input-rate-input`}
+          className="lyrixi-input-rate-input"
           min={min}
           max={max}
           step={step}

@@ -9,14 +9,17 @@ function Guide({ portal, open, maskClassName, maskStyle, onClose }) {
 
   return createPortal(
     <div
-      className={`mask lyrixi-share-mask${maskClassName ? ' ' + maskClassName : ''}${
-        open ? ' active' : ''
-      }`}
+      className={DOMUtil.classNames(
+        'mask',
+        'lyrixi-share-mask',
+        maskClassName ? ' ' + maskClassName : '',
+        open ? 'lyrixi-active' : ''
+      )}
       style={maskStyle}
       onClick={handlerClick}
     >
       <div className="lyrixi-share-tip-arrow"></div>
-      <div className={`lyrixi-share-tip`}>
+      <div className="lyrixi-share-tip">
         <div className="lyrixi-share-tip-text">1.点击右上角</div>
         <div className="lyrixi-share-tip-text">
           2.点击

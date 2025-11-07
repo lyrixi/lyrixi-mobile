@@ -198,7 +198,7 @@ const InputNode = (
         </div>
 
         {/* Blur display displayValue */}
-        {displayValue ? <div className={`lyrixi-input-formatter`}>{displayValue}</div> : null}
+        {displayValue ? <div className="lyrixi-input-formatter">{displayValue}</div> : null}
       </div>
 
       {/* Clear Icon */}

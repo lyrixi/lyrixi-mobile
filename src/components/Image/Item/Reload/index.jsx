@@ -4,7 +4,7 @@ import React from 'react'
 const Reload = ({ onClick }) => {
   return (
     <div
-      className={`lyrixi-image-reload`}
+      className="lyrixi-image-reload"
       onClick={(e) => {
         e.stopPropagation()
         // 上传失败允许重新上传

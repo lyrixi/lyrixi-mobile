@@ -50,7 +50,7 @@ const SearchPage = ({ keyword, list: treeData, onChange }) => {
         <Result
           title={LocaleUtil.locale('暂无数据', 'lyrixi_no_data')}
           status={'empty'}
-          className={`lyrixi-cascader-body-result`}
+          className="lyrixi-cascader-body-result"
         />
       )
     }

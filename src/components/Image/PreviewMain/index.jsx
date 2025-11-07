@@ -39,8 +39,9 @@ const PreviewMain = forwardRef(
       type, // video | image
       current, // 当前显示的资源序号或者当前资源的src链接
 
-      // Style
+      // 样式
       className,
+      style,
       allowClose = false,
       allowChoose = false,
       allowClear = false,
@@ -62,6 +63,7 @@ const PreviewMain = forwardRef(
       onChange,
 
       onClose,
+
       ...props
     },
     ref
@@ -281,7 +283,7 @@ const PreviewMain = forwardRef(
         style={{
           height: '100%',
           backgroundColor: 'black',
-          ...props?.style
+          ...style
         }}
         // fix touch move
         touchMoveStopPropagation={true}

@@ -68,7 +68,7 @@ const ActionSheetModal = forwardRef(
 
       return (
         <div
-          className={`lyrixi-actionsheet-cancel`}
+          className="lyrixi-actionsheet-cancel"
           onClick={() => {
             if (onCancel) onCancel()
             if (onClose) onClose()

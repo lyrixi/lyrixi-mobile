@@ -10,33 +10,46 @@ import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
 // [safeArea] true: 自动安全区; false: 强制取消安全区
-const Page = forwardRef(({ safeArea, animation, full = true, layout, children, ...props }, ref) => {
-  const rootRef = useRef(null)
+const Page = forwardRef(
+  (
+    {
+      safeArea,
+      animation,
+      full = true,
+      layout,
+      children, // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
 
-  // Expose
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
-    }
-  })
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
 
-  return (
-    <section
-      {...props}
-      className={DOMUtil.classNames(
-        'lyrixi-page',
-        full ? 'lyrixi-full' : '',
-        layout ? `lyrixi-flex-${layout}` : '',
-        props.className
-      )}
-      data-animation={animation}
-      ref={rootRef}
-    >
-      {children}
-      {safeArea === true && <SafeArea />}
-    </section>
-  )
-})
+    return (
+      <section
+        {...props}
+        className={DOMUtil.classNames(
+          'lyrixi-page',
+          full ? 'lyrixi-full' : '',
+          layout ? `lyrixi-flex-${layout}` : '',
+          className
+        )}
+        data-animation={animation}
+        ref={rootRef}
+      >
+        {children}
+        {safeArea === true && <SafeArea />}
+      </section>
+    )
+  }
+)
 
 export default Page

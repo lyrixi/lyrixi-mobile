@@ -54,6 +54,7 @@ const DistrictCombo = forwardRef(
       editableOptions,
 
       // Combo props
+      clearRender,
       onBeforeOpen,
       ...props
     },
@@ -180,8 +181,8 @@ const DistrictCombo = forwardRef(
             }
 
             // 自定义显隐清空按钮
-            if (typeof props?.clearRender === 'function') {
-              return props?.clearRender({ ...clearParams, clearable: clearable })
+            if (typeof clearRender === 'function') {
+              return clearRender({ ...clearParams, clearable: clearable })
             }
 
             // 默认清空按钮显隐

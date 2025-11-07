@@ -15,10 +15,16 @@ import DOMUtil from './../../../../utils/DOMUtil'
 const FormItem = forwardRef(
   (
     {
-      height = 50,
-      // Own properties
-      children,
+      id,
       name,
+      // 样式
+      style,
+      className,
+      height = 50,
+
+      children,
+
+      // 其它属性
       ...props
     },
     ref
@@ -64,11 +70,11 @@ const FormItem = forwardRef(
         {...props}
         className={DOMUtil.classNames(
           'lyrixi-form-item',
-          props.className,
+          className,
           layout === 'horizontal' ? 'lyrixi-row' : ''
         )}
-        style={{ height: height, ...props?.style }}
-        id={`${name ? `lyrixi-form-item-${name}` : props?.id || ''}`}
+        style={{ height: height, ...style }}
+        id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
         ref={rootRef}
       >
         {inViewArea ? children : null}

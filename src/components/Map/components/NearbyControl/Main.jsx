@@ -30,7 +30,7 @@ function Main({
         list.map((item, index) => {
           return (
             <div
-              className={`lyrixi-map-nearbyControl-item`}
+              className="lyrixi-map-nearbyControl-item"
               key={index}
               data-nearby-item-id={`${item.longitude},${item.latitude}`}
               onClick={(e) => {

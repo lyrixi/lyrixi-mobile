@@ -31,7 +31,7 @@ const Item = forwardRef(
         onClick={handleClick}
         disabled={disabled}
         data-checked={checked}
-        className={`lyrixi-selector-item`}
+        className="lyrixi-selector-item"
         ref={rootRef}
       >
         <div className="lyrixi-selector-item-name">{children}</div>

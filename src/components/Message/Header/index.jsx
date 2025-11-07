@@ -8,26 +8,36 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Header = forwardRef(({ children, ...props }, ref) => {
-  const rootRef = useRef(null)
+const Header = forwardRef(
+  (
+    {
+      children,
+      // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
 
-  // Expose
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
-    }
-  })
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
 
-  return (
-    <header
-      {...props}
-      className={DOMUtil.classNames('lyrixi-message-header', props.className)}
-      ref={rootRef}
-    >
-      {children}
-    </header>
-  )
-})
+    return (
+      <header
+        {...props}
+        className={DOMUtil.classNames('lyrixi-message-header', className)}
+        ref={rootRef}
+      >
+        {children}
+      </header>
+    )
+  }
+)
 
 export default Header

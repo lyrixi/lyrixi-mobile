@@ -22,6 +22,9 @@ const Checkbox = forwardRef(
 
       children,
       onChange,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -48,7 +51,7 @@ const Checkbox = forwardRef(
       if (typeof iconRender === 'function') {
         return iconRender({ checked, className: 'checkbox-icon' })
       }
-      return <span className={`lyrixi-checkbox-icon lyrixi-default`} />
+      return <span className="lyrixi-checkbox-icon lyrixi-default" />
     }
     const IconNode = getIconNode()
 
@@ -59,14 +62,14 @@ const Checkbox = forwardRef(
         disabled={disabled}
         readOnly={readOnly}
         className={DOMUtil.classNames(
-          `lyrixi-checkbox`,
+          'lyrixi-checkbox',
           className,
           checked ? 'lyrixi-checked' : ''
         )}
         ref={rootRef}
       >
         {iconPosition !== 'right' && IconNode}
-        {children && <span className={`lyrixi-checkbox-content`}>{children}</span>}
+        {children && <span className="lyrixi-checkbox-content">{children}</span>}
         {iconPosition === 'right' && IconNode}
       </div>
     )

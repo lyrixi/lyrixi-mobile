@@ -4,12 +4,19 @@ import React, { forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const Block = ({ animated = true, ...props }, ref) => {
+const Block = (
+  {
+    animated = true, // 其它属性
+    className,
+    ...props
+  },
+  ref
+) => {
   return (
     <div
       ref={ref}
       {...props}
-      className={DOMUtil.classNames('lyrixi-skeleton-block', animated ? 'animated' : '', props.className)}
+      className={DOMUtil.classNames('lyrixi-skeleton-block', animated ? 'animated' : '', className)}
     ></div>
   )
 }

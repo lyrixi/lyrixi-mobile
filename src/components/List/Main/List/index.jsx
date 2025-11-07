@@ -37,6 +37,9 @@ const Main = forwardRef(
       append,
 
       children,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -45,7 +48,7 @@ const Main = forwardRef(
       <Page.Main
         {...props}
         ref={ref}
-        className={DOMUtil.classNames('lyrixi-list-main', props.className)}
+        className={DOMUtil.classNames('lyrixi-list-main', className)}
         onTopRefresh={onTopRefresh}
         onBottomRefresh={onBottomRefresh}
         onScroll={onScroll}

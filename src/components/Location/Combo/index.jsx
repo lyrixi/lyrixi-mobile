@@ -301,9 +301,11 @@ const LocationCombo = forwardRef(
         rightIconNode.push(
           <i
             key="choose"
-            className={`lyrixi-location-combo-icon lyrixi-location-combo-icon-choose${
-              modalOpen === 'choose' ? ' active' : ''
-            }`}
+            className={DOMUtil.classNames(
+              'lyrixi-location-combo-icon',
+              'lyrixi-location-combo-icon-choose',
+              modalOpen === 'choose' ? 'lyrixi-active' : ''
+            )}
             onClick={(e) => {
               e.stopPropagation()
               setModalOpen('choose')
@@ -316,9 +318,12 @@ const LocationCombo = forwardRef(
         rightIconNode.push(
           <i
             key="preview"
-            className={`lyrixi-location-combo-icon lyrixi-location-combo-icon-preview${
-              _.isEmpty(value) ? ' disabled' : ''
-            }${modalOpen === 'preview' ? ' active' : ''}`}
+            className={DOMUtil.classNames(
+              'lyrixi-location-combo-icon',
+              'lyrixi-location-combo-icon-preview',
+              _.isEmpty(value) ? 'lyrixi-disabled' : '',
+              modalOpen === 'preview' ? 'lyrixi-active' : ''
+            )}
             onClick={(e) => {
               e.stopPropagation()
               if (e.currentTarget.classList.contains('lyrixi-disabled')) return
@@ -332,9 +337,11 @@ const LocationCombo = forwardRef(
         rightIconNode.push(
           <i
             key="location"
-            className={`lyrixi-location-combo-icon lyrixi-location-combo-icon-location${
-              locationStatus === '-1' ? ' active' : ''
-            }`}
+            className={DOMUtil.classNames(
+              'lyrixi-location-combo-icon',
+              'lyrixi-location-combo-icon-location',
+              locationStatus === '-1' ? 'lyrixi-active' : ''
+            )}
             onClick={(e) => {
               e.stopPropagation()
               handleLocation('clickIcon')
@@ -349,11 +356,11 @@ const LocationCombo = forwardRef(
     let statusNode = null
     if (locationStatus === '-1') {
       statusNode = (
-        <div className={`lyrixi-location-combo-positioning lyrixi-input-text`}>{loadingText}</div>
+        <div className="lyrixi-location-combo-positioning lyrixi-input-text">{loadingText}</div>
       )
     } else if (locationStatus === '0') {
       statusNode = (
-        <div className={`lyrixi-location-combo-error lyrixi-input-text`}>{errMsgRef.current}</div>
+        <div className="lyrixi-location-combo-error lyrixi-input-text">{errMsgRef.current}</div>
       )
     }
 

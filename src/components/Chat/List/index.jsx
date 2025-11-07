@@ -84,7 +84,7 @@ const List = (
           // 超过时间间隔，则显示时间分栏
           if (spaceDates.isOverTime) {
             bar = (
-              <div className={`lyrixi-chat-divider-time`}>
+              <div className="lyrixi-chat-divider-time">
                 {DateUtil.format(item.time, 'YYYY-MM-DD hh:mm')}
               </div>
             )

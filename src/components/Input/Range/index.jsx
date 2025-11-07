@@ -94,7 +94,7 @@ const Range = forwardRef(
           readOnly={readOnly}
           disabled={disabled}
           type="range"
-          className={`lyrixi-input-range-input`}
+          className="lyrixi-input-range-input"
           min={min}
           max={max}
           step={step}
@@ -107,7 +107,7 @@ const Range = forwardRef(
         <div ref={handleRef} className="lyrixi-input-range-handle">
           <div className="lyrixi-input-range-handle-icon"></div>
         </div>
-        <div ref={tooltipRef} className={`lyrixi-input-range-tooltip`}>
+        <div ref={tooltipRef} className="lyrixi-input-range-tooltip">
           {value}
         </div>
       </div>

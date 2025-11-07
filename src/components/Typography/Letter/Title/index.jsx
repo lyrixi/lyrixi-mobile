@@ -5,16 +5,27 @@ import Base from './../Base'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-const Text = forwardRef(({ children, ...props }, ref) => {
-  return (
-    <Base
-      {...props}
-      className={DOMUtil.classNames('lyrixi-typography-title', props.className)}
-      ref={ref}
-    >
-      {children}
-    </Base>
-  )
-})
+const Text = forwardRef(
+  (
+    {
+      // 样式
+      className,
+
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Base
+        {...props}
+        className={DOMUtil.classNames('lyrixi-typography-title', className)}
+        ref={ref}
+      >
+        {children}
+      </Base>
+    )
+  }
+)
 
 export default Text

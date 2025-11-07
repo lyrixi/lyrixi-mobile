@@ -36,7 +36,7 @@ const UploadButton = (
       {...props}
       className={DOMUtil.classNames('lyrixi-attach-choose-button', className)}
     >
-      <i className={`lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add`}></i>
+      <i className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add"></i>
 
       {/* Loading图标 */}
       <Uploading uploading={uploading} className="lyrixi-attach-choose-icon" />

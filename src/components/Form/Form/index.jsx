@@ -29,7 +29,7 @@ const FormComponent = forwardRef(
     ref
   ) => {
     return (
-      <Form className={`form`} {...props}>
+      <Form className="form" {...props}>
         <Typography.Form
           ref={ref}
           virtual={virtual}

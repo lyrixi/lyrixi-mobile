@@ -89,14 +89,14 @@ const Group = forwardRef(
                   ? item.iconRender({ checked: checked })
                   : null}
                 {description && descriptionPosition === 'top' ? (
-                  <div className={`lyrixi-tabbar-group-tab-description`}>{description}</div>
+                  <div className="lyrixi-tabbar-group-tab-description">{description}</div>
                 ) : null}
-                {name && <div className={`lyrixi-tabbar-group-tab-name`}>{name}</div>}
+                {name && <div className="lyrixi-tabbar-group-tab-name">{name}</div>}
                 {!name && placeholder ? (
-                  <div className={`tabbar-tabs-tab-placeholder`}>{placeholder}</div>
+                  <div className="tabbar-tabs-tab-placeholder">{placeholder}</div>
                 ) : null}
                 {description && descriptionPosition !== 'top' ? (
-                  <div className={`lyrixi-tabbar-group-tab-description`}>{description}</div>
+                  <div className="lyrixi-tabbar-group-tab-description">{description}</div>
                 ) : null}
                 {getContextNode(item.content, { ...item, checked: checked })}
               </div>

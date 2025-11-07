@@ -47,7 +47,7 @@ const Chat = (
     }
     if (typeof avatar === 'string') {
       return (
-        <div className={`lyrixi-chat-item-avatar`}>
+        <div className="lyrixi-chat-item-avatar">
           <img
             alt=""
             src={avatar}
@@ -73,7 +73,7 @@ const Chat = (
       return author({ ...(item || {}), checked })
     }
     if (typeof author === 'string') {
-      return <div className={`lyrixi-chat-item-content-author`}>{author}</div>
+      return <div className="lyrixi-chat-item-content-author">{author}</div>
     }
     return author
   }
@@ -104,9 +104,9 @@ const Chat = (
         {getAvatarNode()}
 
         {/* Meta */}
-        <div className={`lyrixi-chat-item-content`}>
+        <div className="lyrixi-chat-item-content">
           {getAuthorNode()}
-          <div className={`lyrixi-chat-item-content-bubble`}>{content}</div>
+          <div className="lyrixi-chat-item-content-bubble">{content}</div>
         </div>
       </div>
 

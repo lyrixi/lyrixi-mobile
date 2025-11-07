@@ -15,6 +15,9 @@ const Badge = forwardRef(
       children = '0',
       maxLength = 2,
       ellipsis = '+', // 有maxLength属性时ellipsis才生效
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -40,11 +43,7 @@ const Badge = forwardRef(
       }
     }
     return (
-      <span
-        {...props}
-        className={DOMUtil.classNames('lyrixi-badge', props.className)}
-        ref={rootRef}
-      >
+      <span {...props} className={DOMUtil.classNames('lyrixi-badge', className)} ref={rootRef}>
         {text}
       </span>
     )

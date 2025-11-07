@@ -46,6 +46,9 @@ const MapContainer = forwardRef(
       onDragEnd,
 
       children,
+
+      // 其它属性
+      className,
       ...props
     },
     ref
@@ -336,7 +339,7 @@ const MapContainer = forwardRef(
     }
 
     return (
-      <div {...props} className={DOMUtil.classNames('map', props.className)} ref={rootRef}>
+      <div {...props} className={DOMUtil.classNames('map', className)} ref={rootRef}>
         {/* leaflet地图容器 */}
         <div className="lyrixi-map-container"></div>
         {/* 百度、高德地图容器用于调用api使用，并不展现 */}

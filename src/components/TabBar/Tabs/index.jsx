@@ -97,14 +97,14 @@ const Tabs = forwardRef(
                   ? item.iconRender({ ...item, checked: checked })
                   : null}
                 {description && descriptionPosition === 'top' ? (
-                  <div className={`lyrixi-tabbar-tabs-tab-description`}>{description}</div>
+                  <div className="lyrixi-tabbar-tabs-tab-description">{description}</div>
                 ) : null}
-                {name && <div className={`lyrixi-tabbar-tabs-tab-name`}>{name}</div>}
+                {name && <div className="lyrixi-tabbar-tabs-tab-name">{name}</div>}
                 {!name && placeholder ? (
-                  <div className={`tabbar-tabs-tab-placeholder`}>{placeholder}</div>
+                  <div className="tabbar-tabs-tab-placeholder">{placeholder}</div>
                 ) : null}
                 {description && descriptionPosition !== 'top' ? (
-                  <div className={`lyrixi-tabbar-tabs-tab-description`}>{description}</div>
+                  <div className="lyrixi-tabbar-tabs-tab-description">{description}</div>
                 ) : null}
                 {getContextNode(item.content, { ...item, checked: checked })}
               </div>

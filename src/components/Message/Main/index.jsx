@@ -9,26 +9,36 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-start */
 
 // 下拉刷新容器
-const Main = forwardRef(({ children, ...props }, ref) => {
-  const rootRef = useRef(null)
+const Main = forwardRef(
+  (
+    {
+      children,
+      // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
 
-  // Expose api
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
-    }
-  })
+    // Expose api
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
 
-  return (
-    <main
-      {...props}
-      className={DOMUtil.classNames('lyrixi-message-main', props.className)}
-      ref={rootRef}
-    >
-      {children}
-    </main>
-  )
-})
+    return (
+      <main
+        {...props}
+        className={DOMUtil.classNames('lyrixi-message-main', className)}
+        ref={rootRef}
+      >
+        {children}
+      </main>
+    )
+  }
+)
 
 export default Main

@@ -242,17 +242,17 @@ const Body = forwardRef(
                             return (
                               <div
                                 key={dateIndex}
-                                className={`lyrixi-calendar-date${
+                                className={DOMUtil.classNames(
+                                  'lyrixi-calendar-date',
                                   date.isCurrent
-                                    ? 'calendar-date-in-view'
-                                    : 'calendar-date-out-view'
-                                }${
+                                    ? 'lyrixi-calendar-date-in-view'
+                                    : 'lyrixi-calendar-date-out-view',
                                   DateUtil.compare(new Date(), date) === 0
-                                    ? ' calendar-date-today'
-                                    : ''
-                                }${selectedClassNames ? ' ' + selectedClassNames : ''}${
-                                  isDisabled ? ' calendar-date-disabled' : ''
-                                }`}
+                                    ? 'lyrixi-calendar-date-today'
+                                    : '',
+                                  selectedClassNames,
+                                  isDisabled ? 'lyrixi-calendar-date-disabled' : ''
+                                )}
                                 style={{ height: cellHeight + 'px' }}
                                 onClick={(e) => {
                                   e.stopPropagation()

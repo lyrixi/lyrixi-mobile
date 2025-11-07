@@ -17,12 +17,15 @@ const Steps = forwardRef(
   (
     {
       // Style
+      style,
+      className,
       iconSize = 8,
       align = 'center',
       direction = 'vertical',
       // Data
       value,
       list,
+
       ...props
     },
     ref
@@ -89,14 +92,14 @@ const Steps = forwardRef(
       <div
         {...props}
         style={{
-          ...props?.style,
+          ...style,
           '--steps-title-height':
             typeof iconSize === 'number' && iconSize > 24 ? iconSize + 'px' : '24px',
           '--steps-icon-size': typeof iconSize === 'number' ? iconSize + 'px' : '8px'
         }}
         className={DOMUtil.classNames(
           'lyrixi-steps',
-          props.className,
+          className,
           align ? `lyrixi-steps-${align}` : 'lyrixi-steps-center',
           direction ? `lyrixi-steps-${direction}` : 'lyrixi-steps-vertical'
         )}

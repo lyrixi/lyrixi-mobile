@@ -30,6 +30,7 @@ function Attach(
     uploadPosition,
     upload,
     uploading,
+    fileProps,
 
     // Preview Config: { allowChoose, allowClear }
     preview,
@@ -49,6 +50,9 @@ function Attach(
     onUpload,
     onChange,
     onPreview,
+
+    // 其它属性
+    className,
     ...props
   },
   ref
@@ -357,7 +361,7 @@ function Attach(
         // file框属性
         fileProps={{
           accept: getAccept(extension),
-          ...props?.fileProps
+          ...fileProps
         }}
         // 上传DOM
         upload={upload}
@@ -382,7 +386,7 @@ function Attach(
   }
 
   return (
-    <div ref={rootRef} {...props} className={DOMUtil.classNames('lyrixi-attach', props.className)}>
+    <div ref={rootRef} {...props} className={DOMUtil.classNames('lyrixi-attach', className)}>
       {/* 头部上传按钮 */}
       {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 

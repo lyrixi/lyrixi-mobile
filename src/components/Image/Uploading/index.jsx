@@ -25,7 +25,7 @@ const Uploading = ({ uploading, item }) => {
     )
   }
 
-  return <div className={`lyrixi-image-uploading`}>{getUploadingNode(item)}</div>
+  return <div className="lyrixi-image-uploading">{getUploadingNode(item)}</div>
 }
 
 export default Uploading

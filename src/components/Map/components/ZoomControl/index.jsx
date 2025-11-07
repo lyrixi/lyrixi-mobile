@@ -5,7 +5,17 @@ import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 // 缩放控件
-function ZoomControl({ map, onZoomIn, onZoomOut, ...props }, ref) {
+function ZoomControl(
+  {
+    map,
+    onZoomIn,
+    onZoomOut,
+    // 其它属性
+    className,
+    ...props
+  },
+  ref
+) {
   // 容器
   const rootRef = useRef(null)
 
@@ -34,12 +44,12 @@ function ZoomControl({ map, onZoomIn, onZoomOut, ...props }, ref) {
     <div
       {...props}
       ref={rootRef}
-      className={DOMUtil.classNames('lyrixi-map-zoomControl', props.className)}
+      className={DOMUtil.classNames('lyrixi-map-zoomControl', className)}
     >
-      <div className={`lyrixi-map-zoomControl-in`} onClick={zoomIn}>
+      <div className="lyrixi-map-zoomControl-in" onClick={zoomIn}>
         <div className="lyrixi-map-zoomControl-icon"></div>
       </div>
-      <div className={`lyrixi-map-zoomControl-out`} onClick={zoomOut}>
+      <div className="lyrixi-map-zoomControl-out" onClick={zoomOut}>
         <div className="lyrixi-map-zoomControl-icon"></div>
       </div>
     </div>

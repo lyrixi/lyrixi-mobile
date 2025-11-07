@@ -85,7 +85,7 @@ function Nearby(
   }
 
   return (
-    <div className={`lyrixi-map-nearbyControl`} ref={rootRef}>
+    <div className="lyrixi-map-nearbyControl" ref={rootRef}>
       {/* 当前位置 */}
       <Current
         map={map}
@@ -100,7 +100,7 @@ function Nearby(
           {/* 展开收缩附近 */}
           <Toggle />
           {/* 附近的点 */}
-          <div className={`lyrixi-map-nearbyControl-body`}>
+          <div className="lyrixi-map-nearbyControl-body">
             <Tabs tab={tab} onChange={setTab} />
             <Main
               list={list}

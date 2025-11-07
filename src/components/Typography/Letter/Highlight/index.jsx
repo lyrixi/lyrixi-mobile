@@ -4,26 +4,36 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-const Highlight = forwardRef(({ highlight, children, ...props }, ref) => {
-  const rootRef = useRef(null)
+const Highlight = forwardRef(
+  (
+    {
+      highlight,
+      children, // 其它属性
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
 
-  // Expose
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
-    }
-  })
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
 
-  return (
-    <div
-      {...props}
-      className={DOMUtil.classNames('lyrixi-typography-highlight', props.className)}
-      ref={rootRef}
-    >
-      {children}
-    </div>
-  )
-})
+    return (
+      <div
+        {...props}
+        className={DOMUtil.classNames('lyrixi-typography-highlight', className)}
+        ref={rootRef}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 export default Highlight

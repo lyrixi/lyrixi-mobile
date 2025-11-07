@@ -13,7 +13,7 @@ export default () => {
       <Checkbox
         checked={value}
         onChange={setValue}
-        iconRender={({ checked }) => <span className={`lyrixi-checkbox-icon lyrixi-tick`} />}
+        iconRender={({ checked }) => <span className="lyrixi-checkbox-icon lyrixi-tick" />}
       >
         Custom
       </Checkbox>

@@ -42,7 +42,7 @@ const ListItem = forwardRef(
     return (
       <div {...props} className={DOMUtil.classNames('lyrixi-cascader-body', className)} ref={ref}>
         {typeof list === 'string' && (
-          <Result title={list} status={status} className={`lyrixi-cascader-body-result`}>
+          <Result title={list} status={status} className="lyrixi-cascader-body-result">
             {status === '500' && onReLoad && (
               <Button className="lyrixi-result-button" color="primary" onClick={onReLoad}>
                 {LocaleUtil.locale('重新加载', 'lyrixi_reload')}

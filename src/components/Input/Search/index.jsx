@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect } from 'react'
 import InputText from './../Text'
 
-const Search = forwardRef(({ value, onChange, onSearch, ...props }, ref) => {
+const Search = forwardRef(({ value, onChange, onSearch, onPressEnter, ...props }, ref) => {
   // No onChange, use keyword
   const [keyword, setKeyword] = useState(value)
 
@@ -20,7 +20,7 @@ const Search = forwardRef(({ value, onChange, onSearch, ...props }, ref) => {
       autoCorrect="off"
       spellCheck="false"
       onPressEnter={(e) => {
-        props?.onPressEnter && props.onPressEnter(e)
+        onPressEnter && onPressEnter(e)
         e?.target?.blur?.()
         onSearch && onSearch(typeof onChange === 'function' ? value : keyword)
       }}

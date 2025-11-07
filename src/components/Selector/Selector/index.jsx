@@ -28,6 +28,7 @@ const Selector = forwardRef(
       // 样式
       style,
       className,
+      disabled,
       ...props
     },
     ref
@@ -125,7 +126,7 @@ const Selector = forwardRef(
           return (
             <Item
               key={index}
-              disabled={props.disabled}
+              disabled={disabled}
               checked={getIsActive(item)}
               onChange={(checked) => handleChange(checked, item, index)}
             >

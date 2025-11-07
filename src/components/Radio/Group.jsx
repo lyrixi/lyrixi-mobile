@@ -13,7 +13,7 @@ const Radio = forwardRef(({ icon, className, ...props }, ref) => {
     <Checkbox.Group
       ref={ref}
       {...props}
-      icon={icon === undefined ? <span className={`lyrixi-checkbox-icon lyrixi-radio`} /> : icon}
+      icon={icon === undefined ? <span className="lyrixi-checkbox-icon lyrixi-radio" /> : icon}
       multiple={false}
     />
   )
