@@ -8,7 +8,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Card = forwardRef(({ children, ...props }, ref) => {
+const Card = forwardRef(({ title, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Expose
@@ -21,6 +21,7 @@ const Card = forwardRef(({ children, ...props }, ref) => {
 
   return (
     <div {...props} className={DOMUtil.classNames('lyrixi-card', props.className)} ref={rootRef}>
+      {title && <div className="lyrixi-card-title">{title}</div>}
       {children}
     </div>
   )

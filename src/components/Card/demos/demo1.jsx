@@ -5,7 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Card>1000</Card>
+        <Card title="Title">Content content</Card>
       </Page.Main>
     </Page>
   )
