@@ -17,46 +17,58 @@ import { DOMUtil, Input } from 'lyrixi-mobile'
 const RangeCombo = forwardRef(
   (
     {
-      // Combo properties
-      format,
-      separator,
-
-      // Modal
-      portal,
-      comboStyle,
-      comboClassName,
-      comboLeftIcon,
-      comboRightIcon,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
-      title,
-
-      // Modal properties
-      diff,
-      defaultPickerValue,
-      onError,
-
+      // Combo
+      // Combo: Value & Display Value
       value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
       allowClear,
       multiple,
-      onChange,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIcon,
+      rightIcon,
+      clearRender,
+
+      // Modal
+      // Modal: Value & Display Value
       type = 'date',
+      format,
       min,
       max,
-      hourStep,
-      minuteStep,
-      disabledStart,
-      disabledEnd,
-
+      defaultPickerValue,
       rangeId,
       ranges,
       titles,
+      hourStep,
+      minuteStep,
+      diff,
+      // Modal: Status
+      maskClosable,
+      disabledStart,
+      disabledEnd,
+      // Modal: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      title,
 
-      // Combo props
+      // Events
+      onChange,
       onBeforeOpen,
-      ...props
+      onError
     },
     ref
   ) => {
@@ -100,55 +112,75 @@ const RangeCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
-          className={DOMUtil.classNames('lyrixi-datepicker-rangecombo', comboClassName)}
-          style={comboStyle}
-          leftIcon={comboLeftIcon}
-          rightIcon={comboRightIcon}
-          separator={separator}
-          // 用于回显displayValue
-          formatter={() => {
-            return getDisplayValue({
-              value: formatValue(value),
-              type: format || type,
-              rangeId: rangeIdRef.current,
-              ranges,
-              separator
-            })
-          }}
+          // Combo: Value & Display Value
           value={formatValue(value)}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={
+            formatter ||
+            (() => {
+              return getDisplayValue({
+                value: formatValue(value),
+                type: format || type,
+                rangeId: rangeIdRef.current,
+                ranges,
+                separator
+              })
+            })
+          }
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
           multiple={multiple}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={DOMUtil.classNames('lyrixi-datepicker-rangecombo', className)}
+          // Combo: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Events
           onChange={handleChange}
           onClick={handleOpen}
         />
         <RangeModal
           ref={modalRef}
-          open={open}
-          onClose={handleClose}
+          // Modal: Value & Display Value
           value={formatValue(value)}
-          allowClear={allowClear}
-          multiple={multiple}
-          onChange={handleChange}
-          portal={portal}
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
-          className={modalClassName}
-          style={modalStyle}
-          title={title}
-          defaultPickerValue={defaultPickerValue}
           type={type}
-          diff={diff}
-          onError={onError}
+          format={format}
           min={min}
           max={max}
-          hourStep={hourStep}
-          minuteStep={minuteStep}
-          disabledStart={disabledStart}
-          disabledEnd={disabledEnd}
+          defaultPickerValue={defaultPickerValue}
           rangeId={rangeIdRef.current}
           ranges={ranges}
           titles={titles}
+          hourStep={hourStep}
+          minuteStep={minuteStep}
+          diff={diff}
+          // Modal: Status
+          open={open}
+          maskClosable={maskClosable}
+          allowClear={allowClear}
+          multiple={multiple}
+          disabledStart={disabledStart}
+          disabledEnd={disabledEnd}
+          // Modal: Elements
+          portal={portal}
+          title={title}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={handleChange}
+          onError={onError}
         />
       </>
     )

@@ -13,38 +13,52 @@ import { Input } from 'lyrixi-mobile'
 const ListCombo = forwardRef(
   (
     {
+      // Combo
+      // Combo: Value & Display Value
+      value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
+      allowClear,
+      multiple = false,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIcon,
+      rightIcon,
+      clearRender,
+
       // Modal
-      portal,
-      comboStyle,
-      comboClassName,
-      comboLeftIcon,
-      comboRightIcon,
+      // Modal: Value & Display Value
+      list,
+      loadData,
+      // Modal: Status
+      maskClosable,
+      pagination,
+      disableTopRefresh,
+      disableBottomRefresh,
+      checkable = true,
+      // Modal: Style
+      safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
-
+      // Modal: Elements
+      portal,
       title,
-      value,
-      allowClear,
-
-      list,
-      // 新版：加载数据方法，返回 { status, message, list }
-      loadData,
-      pagination,
-      disableTopRefresh,
-      disableBottomRefresh,
-
-      // List config
       itemRender,
       itemLayout,
-      multiple = false,
-      checkable = true,
 
       // Events
       onChange,
-      onBeforeOpen,
-      ...props
+      onBeforeOpen
     },
     ref
   ) => {
@@ -77,39 +91,58 @@ const ListCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
-          style={comboStyle}
-          className={comboClassName}
-          leftIcon={comboLeftIcon}
-          rightIcon={comboRightIcon}
+          // Combo: Value & Display Value
           value={value}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={formatter}
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
           multiple={multiple}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <ListModal
           ref={modalRef}
-          open={open}
-          onClose={handleClose}
+          // Modal: Value & Display Value
           value={value}
+          list={list}
+          loadData={loadData}
+          // Modal: Status
+          open={open}
+          maskClosable={maskClosable}
           allowClear={allowClear}
           multiple={multiple}
-          onChange={onChange}
-          portal={portal}
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
-          className={modalClassName}
-          style={modalStyle}
-          title={title}
-          list={list}
-          itemRender={itemRender}
-          itemLayout={itemLayout}
-          checkable={checkable}
-          loadData={loadData}
           pagination={pagination}
           disableTopRefresh={disableTopRefresh}
           disableBottomRefresh={disableBottomRefresh}
+          checkable={checkable}
+          // Modal: Elements
+          portal={portal}
+          title={title}
+          itemRender={itemRender}
+          itemLayout={itemLayout}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={onChange}
         />
       </>
     )

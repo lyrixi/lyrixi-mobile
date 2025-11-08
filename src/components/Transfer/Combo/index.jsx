@@ -13,28 +13,45 @@ import { Input } from 'lyrixi-mobile'
 const TransferCombo = forwardRef(
   (
     {
-      // Modal
-      portal,
-      comboStyle,
-      comboClassName,
-      comboLeftIcon,
-      comboRightIcon,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
-      title,
-
+      // Combo
+      // Combo: Value & Display Value
       value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
       allowClear,
       multiple,
-      onChange,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIcon,
+      rightIcon,
+      clearRender,
 
+      // Modal
+      // Modal: Value & Display Value
       list,
+      // Modal: Status
+      maskClosable,
+      // Modal: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      title,
 
-      // Combo props
-      onBeforeOpen,
-      ...props
+      // Events
+      onChange,
+      onBeforeOpen
     },
     ref
   ) => {
@@ -67,32 +84,51 @@ const TransferCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
-          style={comboStyle}
-          className={comboClassName}
-          leftIcon={comboLeftIcon}
-          rightIcon={comboRightIcon}
+          // Combo: Value & Display Value
           value={value}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={formatter}
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
           multiple={multiple}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <Modal
           ref={modalRef}
-          open={open}
-          onClose={handleClose}
+          // Modal: Value & Display Value
           value={value}
+          list={list}
+          // Modal: Status
+          open={open}
+          maskClosable={maskClosable}
           allowClear={allowClear}
           multiple={multiple}
-          onChange={onChange}
+          // Modal: Elements
           portal={portal}
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
-          className={modalClassName}
-          style={modalStyle}
           title={title}
-          list={list}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={onChange}
         />
       </>
     )

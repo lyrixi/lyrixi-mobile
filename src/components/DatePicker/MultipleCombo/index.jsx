@@ -14,37 +14,51 @@ import { Input } from 'lyrixi-mobile'
 const MultipleCombo = forwardRef(
   (
     {
-      // Combo properties
-      separator,
-
-      // Modal
-      portal,
-      comboStyle,
-      comboClassName,
-      comboLeftIcon,
-      comboRightIcon,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
-      title,
-
-      defaultPickerValue,
-      onError,
-
+      // Combo
+      // Combo: Value & Display Value
       value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
       allowClear,
       multiple,
-      onChange,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIcon,
+      rightIcon,
+      clearRender,
+
+      // Modal
+      // Modal: Value & Display Value
       type = 'date',
       min,
       max,
+      defaultPickerValue,
       hourStep,
       minuteStep,
+      // Modal: Status
+      maskClosable,
+      // Modal: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      title,
 
-      // Combo props
+      // Events
+      onChange,
       onBeforeOpen,
-      ...props
+      onError
     },
     ref
   ) => {
@@ -77,45 +91,66 @@ const MultipleCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
-          style={comboStyle}
-          className={comboClassName}
-          leftIcon={comboLeftIcon}
-          rightIcon={comboRightIcon}
-          formatter={() => {
-            return getDisplayValue({
-              type: type,
-              value: value,
-              separator: separator
-            })
-          }}
+          // Combo: Value & Display Value
           value={value}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={
+            formatter ||
+            (() => {
+              return getDisplayValue({
+                type: type,
+                value: value,
+                separator: separator
+              })
+            })
+          }
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
           multiple={multiple}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <MultipleModal
           ref={modalRef}
-          open={open}
-          onClose={handleClose}
+          // Modal: Value & Display Value
           value={value}
-          allowClear={allowClear}
-          multiple={multiple}
-          onChange={onChange}
-          portal={portal}
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
-          className={modalClassName}
-          style={modalStyle}
-          title={title}
-          defaultPickerValue={defaultPickerValue}
-          onError={onError}
           type={type}
           min={min}
           max={max}
+          defaultPickerValue={defaultPickerValue}
           hourStep={hourStep}
           minuteStep={minuteStep}
+          // Modal: Status
+          open={open}
+          maskClosable={maskClosable}
+          allowClear={allowClear}
+          multiple={multiple}
+          // Modal: Elements
+          portal={portal}
+          title={title}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={onChange}
+          onError={onError}
         />
       </>
     )

@@ -14,30 +14,49 @@ import { DOMUtil, Input } from 'lyrixi-mobile'
 const SelectCombo = forwardRef(
   (
     {
-      // Modal
-      portal,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
-      title,
-
+      // Combo
+      // Combo: Value & Display Value
       value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
       allowClear,
       multiple,
-      onChange,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIcon,
+      rightIcon,
+      clearRender,
 
+      // Modal
+      // Modal: Value & Display Value
       list,
-
-      // List config
+      // Modal: Status
+      maskClosable,
+      // Modal: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      title,
       itemRender,
       layout,
       checkable,
       checkboxRender,
 
-      // Combo props
-      onBeforeOpen,
-      ...props
+      // Events
+      onChange,
+      onBeforeOpen
     },
     ref
   ) => {
@@ -98,25 +117,47 @@ const SelectCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
+          // Combo: Value & Display Value
           value={value}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={formatter}
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
           multiple={multiple}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <NavBarModal
           ref={modalRef}
+          // Modal: Status
           open={open}
-          onClose={handleClose}
-          onOk={handleOk}
-          portal={portal}
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
-          modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
+          maskClosable={maskClosable}
+          // Modal: Style
+          safeArea={safeArea}
           modalStyle={modalStyle}
+          modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Modal: Elements
+          portal={portal}
           title={title}
           ok={multiple !== false}
+          // Events
+          onClose={handleClose}
+          onOk={handleOk}
         >
           <Main
             ref={mainRef}

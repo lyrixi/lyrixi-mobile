@@ -13,32 +13,47 @@ import { Input } from 'lyrixi-mobile'
 const CascaderCombo = forwardRef(
   (
     {
+      // Combo
+      // Combo: Value & Display Value
+      value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
+      allowClear,
+      multiple,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIcon,
+      rightIcon,
+      clearRender,
+
       // Modal
-      portal,
-      comboStyle,
-      comboClassName,
-      comboLeftIcon,
-      comboRightIcon,
+      // Modal: Value & Display Value
+      list,
+      loadData,
+      // Modal: Status
+      maskClosable,
+      // Modal: Style
+      safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
-
-      // Components
+      // Modal: Elements
+      portal,
       title,
       searchVisible,
 
-      // Value
-      value,
-      list,
-      allowClear,
-      multiple,
-      loadData,
-
       // Events
       onChange,
-      onBeforeOpen,
-      ...props
+      onBeforeOpen
     },
     ref
   ) => {
@@ -71,34 +86,53 @@ const CascaderCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
-          style={comboStyle}
-          className={comboClassName}
-          leftIcon={comboLeftIcon}
-          rightIcon={comboRightIcon}
+          // Combo: Value & Display Value
           value={value}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={formatter}
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
           multiple={multiple}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <CascaderModal
           ref={modalRef}
-          open={open}
-          onClose={handleClose}
+          // Modal: Value & Display Value
           value={value}
-          allowClear={allowClear}
-          multiple={multiple}
-          onChange={onChange}
-          portal={portal}
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
-          className={modalClassName}
-          style={modalStyle}
-          title={title}
           list={list}
           loadData={loadData}
+          // Modal: Status
+          open={open}
+          maskClosable={maskClosable}
+          allowClear={allowClear}
+          multiple={multiple}
+          // Modal: Elements
+          portal={portal}
+          title={title}
           searchVisible={searchVisible}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={onChange}
         />
       </>
     )

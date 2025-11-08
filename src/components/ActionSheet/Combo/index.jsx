@@ -12,32 +12,47 @@ import { Input } from 'lyrixi-mobile'
 // 卡片选择
 const ActionSheetCombo = (
   {
-    // Components
-    title,
+    // Combo
+    // Combo: Value & Display Value
+    value,
+    placeholder,
+    formatter,
+    autoSize,
+    separator,
+    mode,
+    // Combo: Status
+    readOnly,
+    disabled,
+    allowClear,
+    // Combo: Style
+    style,
+    className,
+    // Combo: Element
     comboRender,
     comboChildren,
-    itemRender,
+    leftIcon,
+    rightIcon,
+    clearRender,
 
     // Modal
-    portal,
-    comboStyle,
-    comboClassName,
-    comboLeftIcon,
-    comboRightIcon,
+    // Modal: Value & Display Value
+    list,
+    // Modal: Status
+    maskClosable,
+    // Modal: Style
+    safeArea,
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
-
-    // Value
-    value,
-    allowClear,
-    list,
+    // Modal: Elements
+    portal,
+    title,
+    itemRender,
 
     // Events
     onBeforeOpen,
-    onChange,
-    ...props
+    onChange
   },
   ref
 ) => {
@@ -85,7 +100,7 @@ const ActionSheetCombo = (
     // 如果有 comboChildren，渲染 comboChildren
     if (comboChildren) {
       return (
-        <div ref={comboRef} onClick={handleOpen}>
+        <div ref={comboRef} style={style} className={className} onClick={handleOpen}>
           {comboChildren}
         </div>
       )
@@ -95,13 +110,25 @@ const ActionSheetCombo = (
     return (
       <Input.Select
         ref={comboRef}
-        {...props}
-        style={comboStyle}
-        className={comboClassName}
-        leftIcon={comboLeftIcon}
-        rightIcon={comboRightIcon}
+        // Combo: Value & Display Value
         value={value}
+        placeholder={placeholder}
+        formatter={formatter}
+        autoSize={autoSize}
+        separator={separator}
+        mode={mode}
+        // Combo: Status
+        readOnly={readOnly}
+        disabled={disabled}
         allowClear={allowClear}
+        // Combo: Style
+        style={style}
+        className={className}
+        // Combo: Element
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        clearRender={clearRender}
+        // Events
         onChange={onChange}
         onClick={handleOpen}
       />
@@ -113,20 +140,23 @@ const ActionSheetCombo = (
       {getComboNode()}
       <Modal
         ref={modalRef}
-        open={open}
-        portal={portal}
-        // Value
+        // Modal: Value & Display Value
         value={value}
         list={list}
+        // Modal: Status
+        open={open}
+        maskClosable={maskClosable}
         allowClear={allowClear}
-        // Components
-        itemRender={itemRender}
-        // Style
+        // Modal: Elements
+        portal={portal}
         title={title}
-        maskClassName={maskClassName}
+        itemRender={itemRender}
+        // Modal: Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={modalClassName}
         maskStyle={maskStyle}
-        className={modalClassName}
-        style={modalStyle}
+        maskClassName={maskClassName}
         // Events
         onClose={handleClose}
         onChange={handleChange}
