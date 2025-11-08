@@ -38,8 +38,7 @@ const Button = forwardRef(
       border = 'solid',
       className,
       children,
-      style,
-      ...props
+      style
     },
     ref
   ) => {
@@ -75,7 +74,6 @@ const Button = forwardRef(
 
     return (
       <div
-        {...props}
         className={DOMUtil.classNames(
           'lyrixi-button',
           isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,

@@ -30,15 +30,23 @@ const duration = 300
 const Calendar = forwardRef(
   (
     {
-      className,
-      type = 'month', // week | month
+      // Value & Display Value
       value,
       selectionMode, // single | range
+      type = 'month', // week | month
       weekStart = 'Monday', // Monday | Sunday
-      titleFormatter = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
+
+      // Style
+      style,
+      className,
+
+      // Status
       min, // 禁用之前日期
       max, // 禁用之后日期
+      // Status
       draggable = ['horizontal', 'vertical'], // 是否允许垂直拖动
+      // Element
+      titleFormatter = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       // 头部渲染
       headerRender,
       // 单个日期渲染
@@ -49,8 +57,7 @@ const Calendar = forwardRef(
       onChange,
       // Event: view change
       onSlideChange,
-      onError,
-      ...props
+      onError
     },
     ref
   ) => {
@@ -304,7 +311,7 @@ const Calendar = forwardRef(
     return (
       <div
         ref={rootRef}
-        {...props}
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-calendar',
           className,
