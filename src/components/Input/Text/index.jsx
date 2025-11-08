@@ -19,10 +19,21 @@ import { DOMUtil, MathUtil } from 'lyrixi-mobile'
 
 const InputText = (
   {
-    // 容器
     id,
     name,
     type = 'text', // 类型: text | number | tel | password | search | textarea | autoSize
+
+    // Value & Display Value
+    value = '',
+    placeholder,
+    formatter,
+
+    // Status
+    readOnly,
+    disabled,
+    allowClear,
+    autoFocus,
+    autoSelect,
 
     // Style
     style: externalStyle,
@@ -33,18 +44,6 @@ const InputText = (
     leftIcon,
     rightIcon,
     clearRender,
-
-    // Status
-    readOnly,
-    disabled,
-    allowClear,
-    autoFocus,
-    autoSelect,
-
-    // Value & Display Value
-    value = '',
-    placeholder,
-    formatter,
 
     // Validate
     precision, // 小数精度, 只有数值框才生效
