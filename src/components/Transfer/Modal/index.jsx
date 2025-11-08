@@ -16,20 +16,33 @@ const NavBarModal = Modal.NavBarModal
 const Modal = forwardRef(
   (
     {
-      // Main: common
+      // Value & Display Value
       value,
+      list,
+
+      // Status
+      open,
+      maskClosable,
       allowClear,
       multiple,
-      onChange,
-      open,
+
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      title,
+      ok,
+      cancel,
+
+      // Events
       onClose,
       onOpen,
-
-      modalClassName,
-      modalStyle,
-
-      list,
-      ...props
+      onChange
     },
     ref
   ) => {
@@ -66,14 +79,24 @@ const Modal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
-        {...props}
+        // Status
         open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('transfer-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={ok !== undefined ? ok : true}
+        cancel={cancel}
+        // Events
         onClose={onClose}
         onOpen={onOpen}
         onOk={handleOk}
-        ok={true}
-        modalClassName={DOMUtil.classNames('transfer-modal', modalClassName)}
-        modalStyle={modalStyle}
       >
         <Main
           ref={mainRef}

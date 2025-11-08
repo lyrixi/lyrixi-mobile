@@ -15,23 +15,34 @@ const NavBarModal = Modal.NavBarModal
 const CascaderModal = forwardRef(
   (
     {
-      // Modal
-      open,
-      onClose,
+      // Value & Display Value
       value,
-      allowClear,
-      multiple,
-      onChange,
-
-      modalClassName,
-      modalStyle,
-
-      // Filter useless props to protect the feature
-      searchVisible,
-
       list,
       loadData,
-      ...props
+
+      // Status
+      open,
+      maskClosable,
+      allowClear,
+      multiple,
+
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      searchVisible, // Filter useless props to protect the feature
+      title,
+      ok,
+      cancel,
+
+      // Events
+      onClose,
+      onChange
     },
     ref
   ) => {
@@ -78,13 +89,23 @@ const CascaderModal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
+        // Status
         open={open}
-        onClose={onClose}
-        ok={null}
-        onOk={handleOk}
-        {...props}
-        modalClassName={DOMUtil.classNames('lyrixi-cascader-modal', modalClassName)}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
         modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-cascader-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={ok}
+        cancel={cancel}
+        // Events
+        onClose={onClose}
+        onOk={handleOk}
       >
         <Main
           ref={mainRef}

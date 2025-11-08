@@ -19,33 +19,45 @@ const NavBarModal = Modal.NavBarModal
 const RangeModal = forwardRef(
   (
     {
-      // Modal
-      open,
-      onClose,
-      onOpen,
+      // Value & Display Value
       value,
-      allowClear,
-      multiple,
-      onChange,
-      defaultPickerValue,
-      onError,
-
-      modalClassName,
-      modalStyle,
-
-      // Main
       type = 'date',
-      diff,
       min,
       max,
+      defaultPickerValue,
       hourStep,
       minuteStep,
+      diff,
       disabledStart,
       disabledEnd,
       rangeId,
       ranges,
       titles,
-      ...props
+
+      // Status
+      open,
+      maskClosable,
+      allowClear,
+      multiple,
+
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      title,
+      ok,
+      cancel,
+
+      // Events
+      onClose,
+      onOpen,
+      onChange,
+      onError
     },
     ref
   ) => {
@@ -111,14 +123,24 @@ const RangeModal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
-        {...props}
+        // Status
         open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={ok !== undefined ? ok : multiple !== false}
+        cancel={cancel}
+        // Events
         onClose={onClose}
         onOpen={onOpen}
         onOk={handleOk}
-        ok={multiple !== false}
-        modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
-        modalStyle={modalStyle}
       >
         <RangeMain
           ref={mainRef}

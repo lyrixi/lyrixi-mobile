@@ -17,30 +17,39 @@ const NavBarModal = Modal.NavBarModal
 const DistrictModal = forwardRef(
   (
     {
-      // Modal
-      open,
-      onClose,
+      // Value & Display Value
       value,
-      allowClear,
-      multiple,
-      onChange,
-
-      // Filter useless props to protect the feature
-      searchVisible,
-      min = '',
-      ok,
-
-      modalClassName,
-      modalStyle,
-
-      // Main
       startType,
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
+      min = '',
       loadCountries,
       loadCountryRegions,
       loadStreets,
       editableOptions,
-      ...props
+
+      // Status
+      open,
+      maskClosable,
+      allowClear,
+      multiple,
+
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      searchVisible,
+      title,
+      ok,
+      cancel,
+
+      // Events
+      onClose,
+      onChange
     },
     ref
   ) => {
@@ -129,13 +138,23 @@ const DistrictModal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
+        // Status
         open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-cascader-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={ok ? ok : okVisible ? '' : null}
+        cancel={cancel}
+        // Events
         onClose={onClose}
         onOk={handleOk}
-        ok={ok ? ok : okVisible ? '' : null}
-        {...props}
-        modalClassName={DOMUtil.classNames('lyrixi-cascader-modal', modalClassName)}
-        modalStyle={modalStyle}
       >
         <DistrictMain
           ref={mainRef}

@@ -17,27 +17,39 @@ const NavBarModal = BaseModal.NavBarModal
 const Modal = forwardRef(
   (
     {
-      // Modal
-      open,
-      onClose,
-      onOpen,
+      // Value & Display Value
       value,
-      allowClear,
-      multiple,
-      onChange,
-      defaultPickerValue,
-      onError,
-
-      modalClassName,
-      modalStyle,
-
-      // Main
       type = 'date',
       min,
       max,
+      defaultPickerValue,
       hourStep,
       minuteStep,
-      ...props
+
+      // Status
+      open,
+      maskClosable,
+      allowClear,
+      multiple,
+
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      title,
+      ok,
+      cancel,
+
+      // Events
+      onClose,
+      onOpen,
+      onChange,
+      onError
     },
     ref
   ) => {
@@ -99,14 +111,24 @@ const Modal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
-        {...props}
+        // Status
         open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={ok !== undefined ? ok : multiple !== false}
+        cancel={cancel}
+        // Events
         onClose={onClose}
         onOpen={onOpen}
         onOk={handleOk}
-        ok={multiple !== false}
-        modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
-        modalStyle={modalStyle}
       >
         <MultipleMain
           ref={mainRef}

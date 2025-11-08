@@ -14,31 +14,37 @@ import { DOMUtil, LocaleUtil, Modal } from 'lyrixi-mobile'
 const ActionSheetModal = forwardRef(
   (
     {
-      open = false,
-
-      // Components
-      itemRender,
-      // Value
-      allowClear,
+      // Value & Display Value
       value,
       list,
 
-      // Style
+      // Status
+      open = false,
       maskClosable = true,
-      title,
-      cancel,
+      allowClear,
+
+      // Style
+      safeArea,
       modalStyle,
       modalClassName,
-      groupClassName,
-      groupStyle,
-      optionClassName,
+      maskStyle,
+      maskClassName,
+
       optionStyle,
+      optionClassName,
+      groupStyle,
+      groupClassName,
+
+      // Elements
+      portal,
+      title,
+      cancel,
+      itemRender,
 
       // Events
       onChange,
       onCancel,
-      onClose,
-      ...props
+      onClose
     },
     ref
   ) => {
@@ -81,12 +87,18 @@ const ActionSheetModal = forwardRef(
     return (
       <Modal
         ref={ref}
+        // Status
         open={open}
-        onClose={onClose}
-        {...props}
+        maskClosable={maskClosable}
+        // Style
+        portal={portal}
+        safeArea={safeArea}
         animation="slideUp"
-        modalClassName={DOMUtil.classNames('lyrixi-actionsheet-modal', modalClassName)}
         modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-actionsheet-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        onClose={onClose}
       >
         {title && (
           <div className="lyrixi-actionsheet-header">

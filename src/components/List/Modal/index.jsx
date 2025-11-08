@@ -15,30 +15,40 @@ const NavBarModal = Modal.NavBarModal
 const ListModal = forwardRef(
   (
     {
-      // Modal
+      // Value & Display Value
       value,
+      loadData,
+      list,
+
+      // Status
+      open,
+      maskClosable,
       allowClear,
       multiple,
-      onChange,
-      open,
-      onClose,
-      onOpen,
-
-      modalClassName,
-      modalStyle,
-
-      // Main
-      // 新版：加载数据方法，返回 { status, message, list }
-      loadData,
       pagination,
       disableTopRefresh,
       disableBottomRefresh,
+      checkable,
 
-      // List config
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      title,
+      ok,
+      cancel,
       itemRender,
       itemLayout,
-      checkable,
-      ...props
+
+      // Events
+      onClose,
+      onOpen,
+      onChange
     },
     ref
   ) => {
@@ -82,14 +92,24 @@ const ListModal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
-        {...props}
+        // Status
         open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('list-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={ok !== undefined ? ok : multiple !== false}
+        cancel={cancel}
+        // Events
         onClose={onClose}
         onOpen={onOpen}
         onOk={handleOk}
-        ok={multiple !== false}
-        modalClassName={DOMUtil.classNames('lyrixi-list-modal', modalClassName)}
-        modalStyle={modalStyle}
       >
         <Main
           ref={mainRef}
@@ -98,6 +118,7 @@ const ListModal = forwardRef(
           allowClear={allowClear}
           multiple={multiple}
           onChange={handleChange}
+          list={list}
           loadData={loadData}
           pagination={pagination}
           disableTopRefresh={disableTopRefresh}
