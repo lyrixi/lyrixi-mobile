@@ -133,8 +133,8 @@ const Edit = () => {
             >
               <Input.Textarea allowClear placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item name="autoFit" label={locale('Auto fit')}>
-              <Input.AutoFit allowClear placeholder={locale('Please input')} />
+            <Form.Item name="autoSize" label={locale('Auto fit')}>
+              <Input.AutoSize allowClear placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item name="selectTags" label={locale('Select Tags')}>
               <Select.Combo

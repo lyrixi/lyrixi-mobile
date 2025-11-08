@@ -14,23 +14,22 @@ import { DOMUtil } from 'lyrixi-mobile'
 const NavBarModal = forwardRef(
   (
     {
-      safeArea,
+      // Status
       open,
-
-      // Modal
-      portal,
       maskClosable,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
 
-      // NavBar
+      // Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
       title,
       ok,
       cancel,
-
-      // Components
       children,
 
       // Events

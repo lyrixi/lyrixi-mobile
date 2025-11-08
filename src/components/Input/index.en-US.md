@@ -8,9 +8,9 @@ title: Input
 
 ## 示例
 
-### Input.AutoFit
+### Input.AutoSize
 
-<code src="./demos/AutoFit/index.jsx"></code>
+<code src="./demos/AutoSize/index.jsx"></code>
 
 ### Input.Number
 

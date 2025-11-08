@@ -7,8 +7,8 @@ export default () => {
     <Page>
       <Page.Main>
         <Divider>Common</Divider>
-        <Input.AutoFit
-          placeholder="AutoFit"
+        <Input.AutoSize
+          placeholder="AutoSize"
           style={{ maxHeight: '100px', backgroundColor: '#f8f8f8' }}
           value={value}
           onChange={setValue}
@@ -19,8 +19,8 @@ export default () => {
         />
 
         <Divider>Formatter</Divider>
-        <Input.AutoFit
-          placeholder="AutoFit"
+        <Input.AutoSize
+          placeholder="AutoSize"
           formatter={(newValue) => {
             return '$' + newValue
           }}

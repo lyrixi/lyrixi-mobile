@@ -21,49 +21,52 @@ const InputText = (
   {
     // 容器
     id,
-    type = 'text', // 类型: text | number | tel | password | search | autoFit
+    name,
+    type = 'text', // 类型: text | number | tel | password | search | textarea | autoSize
+
+    // Style
     style: externalStyle,
     className,
+
+    // Element
+    inputRender,
+    leftIcon,
+    rightIcon,
+    clearRender,
+
+    // Status
     readOnly,
     disabled,
-    // 文本框
-    name,
+    allowClear,
+    autoFocus,
+    autoSelect,
+
+    // Value & Display Value
     value = '',
+    placeholder,
+    formatter,
+
+    // Validate
+    precision, // 小数精度, 只有数值框才生效
+    trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
+    max,
+    min,
+    maxLength,
+
+    // 其它属性
     inputMode,
     enterKeyHint,
     autoComplete,
     autoCorrect,
     spellCheck,
-    formatter, // 指定输入框展示值的格式
-    // 小数精度, 只有数值框才生效
-    precision,
-    // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
-    trim,
-    max,
-    min,
-    placeholder,
-    maxLength,
-    // 自动获取焦点
-    autoFocus, // 渲染时自动获取焦点
-    autoSelect, // 渲染时自动选中
-    // 左右图标
-    leftIcon,
-    rightIcon,
-    // 自定义渲染文本框
-    inputRender,
-    // 清除按键
-    clearRender,
-    allowClear,
-    // events
+
+    // Events
     onClick,
     onChange,
     onBlur,
     onFocus,
     onKeyDown,
-    onPressEnter,
-
-    // 扩展属性
-    ...props
+    onPressEnter
   },
   ref
 ) => {
@@ -260,10 +263,10 @@ const InputText = (
       })
     }
 
-    // autoFit类型
-    if (type === 'autoFit') {
+    // autoSize类型
+    if (type === 'autoSize') {
       return (
-        <div className="lyrixi-input-autofit">
+        <div className="lyrixi-input-autoSize">
           <textarea
             ref={inputRef}
             name={name}
@@ -283,9 +286,9 @@ const InputText = (
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             style={inputStyle}
-            className="lyrixi-input-autofit-textarea"
+            className="lyrixi-input-autoSize-textarea"
           ></textarea>
-          <pre className="lyrixi-input-autofit-pre" style={inputStyle}>
+          <pre className="lyrixi-input-autoSize-pre" style={inputStyle}>
             <span>{value}</span>
           </pre>
         </div>
@@ -350,7 +353,6 @@ const InputText = (
 
   return (
     <div
-      {...props}
       id={id}
       style={style}
       className={DOMUtil.classNames(

@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getDisplayValue from './formatter'
 
 import InputText from './../Text'
-import InputAutoFit from './../AutoFit'
+import InputAutoSize from './../AutoSize'
 import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
 import Tags from './Tags'
@@ -19,29 +19,29 @@ import { ObjectUtil } from 'lyrixi-mobile'
 const Combo = forwardRef(
   (
     {
-      // Style
-      style,
-      className,
-
-      // 图标
-      leftIcon,
-      rightIcon,
-      clearRender: customClearRender,
-
-      // 值
+      // Value & Display Value
       value,
-      allowClear,
-      readOnly,
-      disabled,
       placeholder,
-
-      // Display Value
       formatter,
       autoSize,
       separator,
       mode,
 
-      // 事件
+      // Status
+      readOnly,
+      disabled,
+      allowClear,
+
+      // Style
+      style,
+      className,
+
+      // Element
+      leftIcon,
+      rightIcon,
+      clearRender: customClearRender,
+
+      // Events
       onChange,
       onClick
     },
@@ -105,7 +105,7 @@ const Combo = forwardRef(
     // 文本框
     let InputNode = InputText
     if (autoSize) {
-      InputNode = InputAutoFit
+      InputNode = InputAutoSize
     }
 
     if (mode === 'tags') {

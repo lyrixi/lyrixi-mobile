@@ -65,7 +65,7 @@ export default () => {
             />
           </Form.Item>
           <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>
-            <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
+            <Input.AutoSize placeholder={LocaleUtil.locale('请输入')} />
           </Form.Item>
         </Form>
 
@@ -104,7 +104,7 @@ export default () => {
             />
           </Form.Item>
           <Form.Item name="textarea2" label={LocaleUtil.locale('多行文本框')}>
-            <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
+            <Input.AutoSize placeholder={LocaleUtil.locale('请输入')} />
           </Form.Item>
         </Form>
       </Page.Main>

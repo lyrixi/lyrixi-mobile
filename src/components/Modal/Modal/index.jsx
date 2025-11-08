@@ -14,19 +14,20 @@ import { DOMUtil, SafeArea, Tooltip } from 'lyrixi-mobile'
 const Modal = forwardRef(
   (
     {
-      safeArea,
+      // Status
       open,
-      animation = 'zoom', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
-
-      // Modal
-      portal,
       maskClosable = true,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
 
-      // Components
+      // Style
+      safeArea = true,
+      animation = 'zoom', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
       children,
 
       // Events

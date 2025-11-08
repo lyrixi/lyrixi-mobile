@@ -15,24 +15,23 @@ import { DOMUtil, Tooltip } from 'lyrixi-mobile'
 const DropdownModal = forwardRef(
   (
     {
-      safeArea,
+      // Status
       open,
-
-      // Modal
-      portal,
       maskClosable,
-      maskClassName,
-      maskStyle,
-      modalClassName,
-      modalStyle,
 
-      // Offset
-      referenceDOM: externalReferenceDOM,
+      // Style
+      safeArea,
       offset,
       left,
       right,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
 
-      // Content
+      // Element
+      portal,
+      referenceDOM: externalReferenceDOM,
       children,
 
       // Events

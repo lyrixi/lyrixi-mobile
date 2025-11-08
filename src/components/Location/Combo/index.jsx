@@ -33,7 +33,7 @@ const LocationCombo = forwardRef(
     {
       // 坐标类型
       type = 'gcj02',
-      autoFit,
+      autoSize,
       // 地图加载修改
       config,
       // 获取定位和地址工具类
@@ -367,7 +367,7 @@ const LocationCombo = forwardRef(
     return (
       <Fragment>
         <Input.Text
-          type={autoFit ? 'autoFit' : 'text'}
+          type={autoSize ? 'autoSize' : 'text'}
           readOnly={!editable}
           disabled={disabled}
           onClick={handleClick}

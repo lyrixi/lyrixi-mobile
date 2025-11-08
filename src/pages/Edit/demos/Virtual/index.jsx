@@ -127,8 +127,8 @@ const Edit = () => {
             >
               <Input.Textarea placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item height={44} name="autoFit" label={locale('Auto fit')}>
-              <Input.AutoFit placeholder={locale('Please input')} />
+            <Form.Item height={44} name="autoSize" label={locale('Auto fit')}>
+              <Input.AutoSize placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item height={44} name="select" label={locale('Select')}>
               <Select.Combo

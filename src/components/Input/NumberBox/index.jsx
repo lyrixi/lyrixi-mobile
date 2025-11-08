@@ -24,7 +24,7 @@ const NumberBox = forwardRef(
       // 文本框
       // 容器
       type = 'text', // 类型: text | number | tel | password
-      autoFit, // 自动高度文本框
+      autoSize, // 自动高度文本框
       readOnly,
       disabled,
       // 文本框

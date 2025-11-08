@@ -86,7 +86,7 @@ export default () => {
             //   type: 'bmap'
             // }}
             allowClear
-            autoFit
+            autoSize
             clickAction="location"
             placeholder={'点击定位'}
             value={location}

@@ -1,7 +1,7 @@
 // Input
 .lyrixi-input-text,
 .lyrixi-input-textarea,
-.lyrixi-input-autofit-textarea {
+.lyrixi-input-autoSize-textarea {
   &:extend(.appearance);
 
   display: block;
@@ -28,13 +28,13 @@
 .lyrixi-input-textarea {
   height: calc(var(--lyrixi-input-height-m) + 40px);
 }
-.lyrixi-input-autofit-textarea,
-.lyrixi-input-autofit-pre {
+.lyrixi-input-autoSize-textarea,
+.lyrixi-input-autoSize-pre {
   min-height: var(--lyrixi-input-height-m);
   max-height: 500px;
   line-height: var(--lyrixi-input-height-m);
 }
-.lyrixi-input-autofit + .lyrixi-input-formatter {
+.lyrixi-input-autoSize + .lyrixi-input-formatter {
   line-height: var(--lyrixi-input-height-m);
 }
 
@@ -58,7 +58,7 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.lyrixi-input-autofit + .lyrixi-input-formatter,
+.lyrixi-input-autoSize + .lyrixi-input-formatter,
 .lyrixi-input-textarea + .lyrixi-input-formatter {
   top: 0;
   bottom: 0;
@@ -69,14 +69,14 @@
   // 失焦隐藏框
   .lyrixi-input-text,
   .lyrixi-input-textarea,
-  .lyrixi-input-autofit-textarea {
+  .lyrixi-input-autoSize-textarea {
     opacity: 0;
   }
-  // 获焦隐藏formatter, 显示框 (不兼容低端手机不要紧, 暂时无人使用Input.Autofit的formatter)
-  .lyrixi-input-autofit:has(.lyrixi-input-autofit-textarea:focus),
+  // 获焦隐藏formatter, 显示框 (不兼容低端手机不要紧, 暂时无人使用Input.AutoSize的formatter)
+  .lyrixi-input-autoSize:has(.lyrixi-input-autoSize-textarea:focus),
   .lyrixi-input-text:focus,
   .lyrixi-input-textarea:focus,
-  .lyrixi-input-autofit-textarea:focus {
+  .lyrixi-input-autoSize-textarea:focus {
     & + .lyrixi-input-formatter {
       opacity: 0;
     }

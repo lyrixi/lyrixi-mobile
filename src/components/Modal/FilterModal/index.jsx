@@ -10,25 +10,26 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 /* 测试使用-start
 import { LocaleUtil, Page, NavBar } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
 
 // 侧边查询
 function FilterModal(
   {
-    safeArea,
+    // Status
     open,
-
-    // Modal
-    portal,
     maskClosable,
-    maskClassName,
-    maskStyle,
-    modalClassName,
-    modalStyle,
 
-    // Components
-    footerRender,
+    // Style
+    safeArea,
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
+
+    // Element
+    portal,
     children,
+    footerRender,
 
     // Events
     onClose,

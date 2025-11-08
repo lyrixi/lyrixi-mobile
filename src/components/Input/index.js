@@ -1,4 +1,4 @@
-import AutoFit from './AutoFit'
+import AutoSize from './AutoSize'
 import Number from './Number'
 import NumberBox from './NumberBox'
 import NumberKeyboard from './NumberKeyboard'
@@ -21,7 +21,7 @@ import IconLeftArrow from './Icon/LeftArrow'
 
 // eslint-disable-next-line
 export default {
-  AutoFit: AutoFit,
+  AutoSize: AutoSize,
   Number: Number,
   NumberBox: NumberBox,
   NumberKeyboard: NumberKeyboard,
