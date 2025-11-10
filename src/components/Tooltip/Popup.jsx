@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 import getDataAnimation from './api/getDataAnimation'
 
@@ -95,28 +95,36 @@ const Popup = forwardRef(
 
     return createPortal(
       <div
+        ref={maskRef}
+        // Style
+        style={maskStyle}
         className={DOMUtil.classNames(
           'mask lyrixi-tooltip-mask',
           maskClassName,
           open ? 'lyrixi-active' : ''
         )}
-        style={maskStyle}
+        // Events
         onClick={handleMaskClick}
-        ref={maskRef}
       >
         <div
           ref={modalRef}
+          // Style
+          style={modalStyle}
           className={DOMUtil.classNames(
             'lyrixi-modal-animation lyrixi-tooltip tooltip-bottom',
             position,
             modalClassName,
             open ? 'lyrixi-active' : ''
           )}
-          style={modalStyle}
           data-animation={dataAnimation}
         >
+          {/* Element: Content */}
           <div className="lyrixi-tooltip-content">{children}</div>
+
+          {/* Element: Arrow Outer */}
           <div className="lyrixi-tooltip-arrow-outer" style={arrowOuterStyle}></div>
+
+          {/* Element: Arrow */}
           <div className="lyrixi-tooltip-arrow" style={arrowStyle}></div>
         </div>
       </div>,

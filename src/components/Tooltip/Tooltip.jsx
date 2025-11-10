@@ -6,31 +6,26 @@ import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
 const Tooltip = forwardRef(
   (
     {
-      // Combo
-      // Combo: Style
-      style,
-      className,
-      // Combo: Element
-      comboRender,
-      comboChildren,
-      referenceDOM: externalReferenceDOM,
-
-      // Modal
-      // Modal: Status
+      // Status
       maskClosable = true,
 
-      //  Modal: Style
+      // Style
+      style,
+      className,
       animation = 'slideDownLeft', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
 
-      //  Modal: Element
+      // Element
+      comboRender,
+      comboChildren,
+      referenceDOM: externalReferenceDOM,
       portal,
       children,
 
-      //  Events
+      // Events
       onOpen,
       onClose
     },
@@ -118,7 +113,14 @@ const Tooltip = forwardRef(
       // 如果有 comboChildren，渲染 comboChildren
       if (comboChildren) {
         return (
-          <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
+          <Combo
+            ref={comboRef}
+            // Style
+            style={style}
+            className={className}
+            // Events
+            onClick={handleOpen}
+          >
             {comboChildren}
           </Combo>
         )
@@ -129,19 +131,22 @@ const Tooltip = forwardRef(
 
     return (
       <>
+        {/* Element: Combo */}
         {getComboNode()}
+
+        {/* Element: Popup */}
         <Popup
           ref={modalRef}
-          // Modal: Status
+          // Status
           open={typeof open === 'boolean' ? open : open}
           maskClosable={maskClosable}
-          //  Modal: Style
+          // Style
           animation={animation}
           modalStyle={modalStyle}
           modalClassName={modalClassName}
           maskStyle={maskStyle}
           maskClassName={maskClassName}
-          //  Modal: Element
+          // Element
           portal={portal}
           // Events
           onClose={() => {
