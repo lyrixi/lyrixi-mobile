@@ -13,32 +13,26 @@ import { DOMUtil, Icon } from 'lyrixi-mobile'
 const Button = forwardRef(
   (
     {
-      // Icon
+      // Style
+      color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
+      backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      padding, // 内边距: 数值
+      radius, // 圆角: xxs, xs, s, m, l, xl
+      square, // 是否为正方形
+      border = 'solid', // 边框: none, dotted, dashed, solid
+      style,
+      className,
+
+      // Element
+      children,
       icon,
       iconPosition,
       iconColor,
       iconBackgroundColor,
       iconSize,
       iconPadding,
-      iconRadius,
-
-      // 颜色: default, transparent, primary, link, warning, danger, success
-      color = 'default',
-      // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-      backgroundColor = 'white',
-      // 尺寸: xxs, xs, s, m, l, xl
-      size = 'm',
-      // 内边距: 数值
-      padding,
-      // 圆角: xxs, xs, s, m, l, xl
-      radius,
-      // 是否为正方形
-      square,
-      // 边框: none, dotted, dashed, solid
-      border = 'solid',
-      className,
-      children,
-      style
+      iconRadius
     },
     ref
   ) => {
@@ -74,6 +68,9 @@ const Button = forwardRef(
 
     return (
       <div
+        ref={rootRef}
+        // Style
+        style={buttonStyle}
         className={DOMUtil.classNames(
           'lyrixi-button',
           isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
@@ -85,13 +82,13 @@ const Button = forwardRef(
           square && `lyrixi-shape-square`,
           className
         )}
-        style={buttonStyle}
-        ref={rootRef}
       >
+        {/* Element: Icon Left */}
         {icon && iconPosition !== 'right' && (
           <Icon
             icon={icon}
             className="lyrixi-button-icon"
+            // Style
             color={iconColor}
             backgroundColor={iconBackgroundColor}
             size={iconSize}
@@ -99,11 +96,16 @@ const Button = forwardRef(
             radius={iconRadius}
           />
         )}
+
+        {/* Element: Children */}
         {children && <div className="lyrixi-button-text">{children}</div>}
+
+        {/* Element: Icon Right */}
         {icon && iconPosition === 'right' && (
           <Icon
             icon={icon}
             className="lyrixi-button-icon"
+            // Style
             color={iconColor}
             backgroundColor={iconBackgroundColor}
             size={iconSize}

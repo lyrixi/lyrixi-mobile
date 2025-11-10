@@ -7,15 +7,19 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 // 结果页, status: empty|500|success|waiting|info|warning|error
 function Result({
+  // Value & Display Value
   status,
   title,
   description,
+
+  // Style
+  style,
+  className,
+
+  // Element
   imageRender,
   imageUrl,
-  children,
-  // 其它属性
-  className,
-  ...props
+  children
 }) {
   let statusDefault = getStatusDefault(status)
 
@@ -42,16 +46,21 @@ function Result({
   }
 
   return (
-    <div {...props} className={DOMUtil.classNames('lyrixi-result', className)}>
-      {/* Image */}
+    <div
+      // Style
+      style={style}
+      className={DOMUtil.classNames('lyrixi-result', className)}
+    >
+      {/* Element: Image */}
       {getImageNode()}
 
-      {/* Title */}
+      {/* Value & Display Value: Title */}
       {getTitleNode()}
 
-      {/* Description */}
+      {/* Value & Display Value: Description */}
       {description && <div className="lyrixi-result-description">{description}</div>}
 
+      {/* Element: Children */}
       {children}
     </div>
   )

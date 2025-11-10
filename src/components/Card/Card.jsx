@@ -11,11 +11,13 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Card = forwardRef(
   (
     {
-      title,
-      children,
-      // 其它属性
+      // Style
+      style,
       className,
-      ...props
+
+      // Element
+      title,
+      children
     },
     ref
   ) => {
@@ -30,12 +32,20 @@ const Card = forwardRef(
     })
 
     return (
-      <div {...props} className={DOMUtil.classNames('lyrixi-card', className)} ref={rootRef}>
+      <div
+        ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-card', className)}
+      >
+        {/* Element: Title */}
         {title && (
           <div className="lyrixi-card-header">
             <div>{title}</div>
           </div>
         )}
+
+        {/* Element: Children */}
         {children}
       </div>
     )

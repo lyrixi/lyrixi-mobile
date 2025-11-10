@@ -12,13 +12,16 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Badge = forwardRef(
   (
     {
+      // Value & Display Value
       children = '0',
-      maxLength = 2,
-      ellipsis = '+', // 有maxLength属性时ellipsis才生效
 
-      // 其它属性
+      // Style
       style,
-      className
+      className,
+
+      // Validate
+      maxLength = 2,
+      ellipsis = '+' // 有maxLength属性时ellipsis才生效
     },
     ref
   ) => {
@@ -43,7 +46,12 @@ const Badge = forwardRef(
       }
     }
     return (
-      <span style={style} className={DOMUtil.classNames('lyrixi-badge', className)} ref={rootRef}>
+      <span
+        ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-badge', className)}
+      >
         {text}
       </span>
     )

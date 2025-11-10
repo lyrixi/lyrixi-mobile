@@ -46,8 +46,8 @@ export default () => {
           console.log('修改:', newValue)
           setValue(newValue)
         }}
-        // TabsProps={{ className: 'hide' }}
-        contentProps={{ className: 'flex flex-left' }}
+        // TabsProps={{ className: 'lyrixi-hide' }}
+        contentProps={{ className: 'lyrixi-flex lyrixi-flex-left' }}
         // pickerRender={(tab, { onChange }) => {
         //   if (tab.type === 'week') {
         //     return <div onClick={() => onChange && onChange(new Date('2022-12-12'))}>点我</div>

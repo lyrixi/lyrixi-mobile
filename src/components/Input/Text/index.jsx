@@ -269,23 +269,29 @@ const InputText = (
           <textarea
             ref={inputRef}
             name={name}
+            // Value & Display Value
+            value={value}
+            placeholder={placeholder}
+            // Status
+            readOnly={readOnly}
+            disabled={disabled}
+            autoFocus={autoFocus}
+            // Style
+            style={inputStyle}
+            className="lyrixi-input-autoSize-textarea"
+            // Validate
+            maxLength={maxLength}
+            // Other
             inputMode={inputMode}
             enterKeyHint={enterKeyHint}
             autoComplete={autoComplete}
             autoCorrect={autoCorrect}
             spellCheck={spellCheck}
-            autoFocus={autoFocus}
-            value={value}
-            maxLength={maxLength}
-            readOnly={readOnly}
-            disabled={disabled}
-            placeholder={placeholder}
+            // Events
             onChange={handleChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
-            style={inputStyle}
-            className="lyrixi-input-autoSize-textarea"
           ></textarea>
           <pre className="lyrixi-input-autoSize-pre" style={inputStyle}>
             <span>{value}</span>
@@ -300,23 +306,29 @@ const InputText = (
         <textarea
           ref={inputRef}
           name={name}
+          // Value & Display Value
+          value={value}
+          placeholder={placeholder}
+          // Status
+          readOnly={readOnly}
+          disabled={disabled}
+          autoFocus={autoFocus}
+          // Style
+          style={inputStyle}
+          className="lyrixi-input-textarea"
+          // Validate
+          maxLength={maxLength}
+          // Other
           inputMode={inputMode}
           enterKeyHint={enterKeyHint}
           autoComplete={autoComplete}
           autoCorrect={autoCorrect}
           spellCheck={spellCheck}
-          autoFocus={autoFocus}
-          value={value}
-          maxLength={maxLength}
-          readOnly={readOnly}
-          disabled={disabled}
-          placeholder={placeholder}
+          // Events
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
-          className="lyrixi-input-textarea"
-          style={inputStyle}
         ></textarea>
       )
     }
@@ -327,25 +339,31 @@ const InputText = (
         ref={inputRef}
         name={name}
         type={type} // number类型需要text，否则focus无法设置光标到末尾
+        // Value & Display Value
+        value={value}
+        placeholder={placeholder}
+        // Status
+        readOnly={readOnly}
+        disabled={disabled}
+        autoFocus={autoFocus}
+        // Style
+        style={inputStyle}
+        className="lyrixi-input-text"
+        // Validate
+        min={typeof min === 'number' ? min : ''}
+        max={typeof max === 'number' ? max : ''}
+        maxLength={maxLength}
+        // Other
         inputMode={inputMode}
         enterKeyHint={enterKeyHint}
         autoComplete={autoComplete}
         autoCorrect={autoCorrect}
         spellCheck={spellCheck}
-        autoFocus={autoFocus}
-        value={value}
-        min={typeof min === 'number' ? min : ''}
-        max={typeof max === 'number' ? max : ''}
-        maxLength={maxLength}
-        disabled={disabled}
-        readOnly={readOnly}
-        placeholder={placeholder}
+        // Events
         onChange={handleChange}
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
-        style={inputStyle}
-        className="lyrixi-input-text"
       />
     )
   }

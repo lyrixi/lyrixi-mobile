@@ -30,7 +30,7 @@ export default () => {
             {
               id: '2',
               name: '2',
-              className: 'bg-primary color-white',
+              className: 'lyrixi-bg-primary lyrixi-color-white',
               iconRender: () => (
                 <i className="lyrixi-icon lyrixi-icon-plus" style={{ opacity: '0.5' }}></i>
               )
@@ -43,7 +43,7 @@ export default () => {
             {
               id: '4',
               name: '12345678',
-              className: 'color-primary',
+              className: 'lyrixi-color-primary',
               children: [
                 {
                   id: '3-1',

@@ -12,16 +12,24 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Switch = forwardRef(
   (
     {
+      // Value & Display Value
+      checked,
+
+      // Status
       readOnly,
       disabled,
-      checked,
+
+      // Style
+      size = 'm',
+      style,
+      className,
+
+      // Element
       on,
       off,
-      size = 'm',
-      onChange,
-      // 其它属性
-      className,
-      ...props
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -37,7 +45,9 @@ const Switch = forwardRef(
 
     return (
       <div
-        {...props}
+        ref={rootRef}
+        // Style
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-switch',
           size,
@@ -46,13 +56,16 @@ const Switch = forwardRef(
           readOnly ? 'lyrixi-readOnly' : '',
           disabled ? 'lyrixi-disabled' : disabled
         )}
+        // Events
         onClick={(e) => {
           if (onChange) onChange(!checked)
           e.stopPropagation()
         }}
-        ref={rootRef}
       >
+        {/* Element: Handle */}
         <div className="lyrixi-switch-handle"></div>
+
+        {/* Element: Inner */}
         <div className="lyrixi-switch-inner">
           <div className="lyrixi-switch-on">{on}</div>
           <div className="lyrixi-switch-off">{off}</div>

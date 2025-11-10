@@ -12,20 +12,24 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Checkbox = forwardRef(
   (
     {
-      iconRender,
-      iconPosition = 'left',
-
+      // Value & Display Value
       checked,
 
+      // Status
       readOnly,
       disabled,
 
-      children,
-      onChange,
-
-      // 其它属性
+      // Style
+      style,
       className,
-      ...props
+
+      // Element
+      children,
+      iconRender,
+      iconPosition = 'left',
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -49,7 +53,7 @@ const Checkbox = forwardRef(
     // 获取图标节点
     function getIconNode() {
       if (typeof iconRender === 'function') {
-        return iconRender({ checked, className: 'checkbox-icon' })
+        return iconRender({ checked, className: 'lyrixi-checkbox-icon' })
       }
       return <span className="lyrixi-checkbox-icon lyrixi-default" />
     }
@@ -57,19 +61,27 @@ const Checkbox = forwardRef(
 
     return (
       <div
-        {...props}
-        onClick={handleClick}
+        ref={rootRef}
+        // Status
         disabled={disabled}
         readOnly={readOnly}
+        // Style
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-checkbox',
           className,
           checked ? 'lyrixi-checked' : ''
         )}
-        ref={rootRef}
+        // Events
+        onClick={handleClick}
       >
+        {/* Element: Icon Left */}
         {iconPosition !== 'right' && IconNode}
+
+        {/* Element: Children */}
         {children && <span className="lyrixi-checkbox-content">{children}</span>}
+
+        {/* Element: Icon Right */}
         {iconPosition === 'right' && IconNode}
       </div>
     )

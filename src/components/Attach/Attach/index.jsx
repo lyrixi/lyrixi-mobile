@@ -128,7 +128,7 @@ function Attach(
       itemDOM.classList.add('lyrixi-uploading')
     }
 
-    Loading.show(content ? { content } : { className: 'yrixi-hide' })
+    Loading.show(content ? { content } : { className: 'lyrixi-hide' })
   }
 
   function hideLoading({ failIndexes } = {}) {
@@ -343,7 +343,7 @@ function Attach(
             buttons: [
               {
                 name: '确定',
-                className: 'primary',
+                className: 'lyrixi-primary',
                 onClick: () => true
               }
             ]

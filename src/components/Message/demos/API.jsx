@@ -18,7 +18,7 @@ export default () => {
         },
         {
           name: 'Button 2',
-          className: 'primary',
+          className: 'lyrixi-primary',
           onClick: () => {
             console.log('Button 2 clicked')
             return true // Close the message
@@ -44,7 +44,7 @@ export default () => {
         },
         {
           name: 'Confirm',
-          className: 'primary',
+          className: 'lyrixi-primary',
           onClick: () => {
             console.log('Confirm clicked')
             return true
@@ -61,7 +61,7 @@ export default () => {
       buttons: [
         {
           name: 'OK',
-          className: 'primary',
+          className: 'lyrixi-primary',
           onClick: () => {
             console.log('OK clicked')
             return true

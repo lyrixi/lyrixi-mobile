@@ -10,12 +10,18 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 const CollapseGroup = (
   {
+    // Value & Display Value
     value,
-    onChange,
-    children,
-    // 其它属性
+
+    // Style
+    style,
     className,
-    ...props
+
+    // Element
+    children,
+
+    // Events
+    onChange
   },
   ref
 ) => {
@@ -58,9 +64,11 @@ const CollapseGroup = (
   return (
     <div
       ref={rootRef}
-      {...props}
+      // Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-collapse-group', className)}
     >
+      {/* Element: Children */}
       {React.Children.map(children, (child, index) => {
         return React.cloneElement(child, {
           open: activeIndex === index,

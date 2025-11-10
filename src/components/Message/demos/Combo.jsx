@@ -18,7 +18,7 @@ export default () => {
         },
         {
           name: 'Button2',
-          className: 'primary',
+          className: 'lyrixi-primary',
           onClick: () => {
             console.log('Button2 clicked')
             return true
@@ -53,7 +53,7 @@ export default () => {
                 {
                   id: 'button2',
                   name: 'Button2',
-                  className: 'primary',
+                  className: 'lyrixi-primary',
                   onClick: () => {
                     return true
                   }

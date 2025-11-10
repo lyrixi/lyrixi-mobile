@@ -127,7 +127,7 @@ const Dropdown = forwardRef(
     function getTitleNode(open) {
       if (typeof titleRender === 'function') {
         return titleRender({
-          className: 'toolbar-dropdown-combo-title',
+          className: 'lyrixi-toolbar-dropdown-combo-title',
           open: open
         })
       }

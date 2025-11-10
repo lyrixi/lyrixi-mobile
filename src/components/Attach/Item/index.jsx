@@ -79,7 +79,7 @@ const Item = ({
             buttons: [
               {
                 name: '确定',
-                className: 'primary',
+                className: 'lyrixi-primary',
                 onClick: () => true
               }
             ]

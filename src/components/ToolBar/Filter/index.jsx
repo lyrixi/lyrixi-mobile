@@ -76,9 +76,9 @@ const Filter = forwardRef(
     // 获取图标节点
     function getIconNode() {
       if (typeof iconRender === 'function') {
-        return iconRender({ className: 'toolbar-button-icon' })
+        return iconRender({ className: 'lyrixi-toolbar-button-icon' })
       }
-      return <div className={'toolbar-button-icon toolbar-button-icon-filter'}></div>
+      return <div className="lyrixi-toolbar-button-icon lyrixi-toolbar-button-icon-filter"></div>
     }
     const IconNode = getIconNode()
 

@@ -23,11 +23,11 @@ const Step = ({
     if (typeof iconRender === 'function') {
       return iconRender({
         children: iconChildren,
-        className: 'steps-item-icon-circle',
+        className: 'lyrixi-steps-item-icon-circle',
         status
       })
     }
-    return <div className={'steps-item-icon-circle'}>{iconChildren}</div>
+    return <div className="lyrixi-steps-item-icon-circle">{iconChildren}</div>
   }
   const IconNode = getIconNode()
 

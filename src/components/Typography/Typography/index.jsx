@@ -4,9 +4,12 @@ import DOMUtil from './../../../utils/DOMUtil'
 const Typography = forwardRef(
   (
     {
-      children, // 其它属性
+      // Style
+      style,
       className,
-      ...props
+
+      // Element
+      children
     },
     ref
   ) => {
@@ -21,7 +24,13 @@ const Typography = forwardRef(
     })
 
     return (
-      <div {...props} className={DOMUtil.classNames('lyrixi-typography', className)} ref={rootRef}>
+      <div
+        ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-typography', className)}
+      >
+        {/* Element: Children */}
         {children}
       </div>
     )

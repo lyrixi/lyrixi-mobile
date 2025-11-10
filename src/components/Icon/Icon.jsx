@@ -12,22 +12,21 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Icon = forwardRef(
   (
     {
-      icon,
-      // 颜色: default, transparent, primary, link, warning, danger, success
-      color,
-      // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-      backgroundColor,
-      // 尺寸: xxs, xs, s, m, l, xl
-      size = 'm',
-      // 内边距: 数值
-      padding,
-      // 圆角: xxs, xs, s, m, l, xl
-      radius,
+      // Status
       disabled,
+
+      // Style
+      color, // 颜色: default, transparent, primary, link, warning, danger, success
+      backgroundColor, // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      padding, // 内边距: 数值
+      radius, // 圆角: xxs, xs, s, m, l, xl
       style,
       className,
-      children,
-      ...props
+
+      // Element
+      icon,
+      children
     },
     ref
   ) => {
@@ -63,8 +62,11 @@ const Icon = forwardRef(
 
     return (
       <i
+        ref={rootRef}
+        // Status
+        disabled={disabled}
+        // Style
         style={iconStyle}
-        {...props}
         className={DOMUtil.classNames(
           'lyrixi-icon',
           icon,
@@ -74,9 +76,8 @@ const Icon = forwardRef(
           isRadiusClass && radius && `lyrixi-radius-${radius}`,
           className
         )}
-        disabled={disabled}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
       </i>
     )

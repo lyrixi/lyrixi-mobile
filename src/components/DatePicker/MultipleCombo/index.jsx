@@ -97,11 +97,11 @@ const MultipleCombo = forwardRef(
           formatter={
             formatter ||
             (() => {
-              return getDisplayValue({
-                type: type,
-                value: value,
-                separator: separator
-              })
+            return getDisplayValue({
+              type: type,
+              value: value,
+              separator: separator
+            })
             })
           }
           autoSize={autoSize}

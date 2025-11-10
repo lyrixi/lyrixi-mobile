@@ -51,7 +51,7 @@ function FloatButton(
   // 获取图标
   function getIconNode(item) {
     if (typeof item?.iconRender === 'function') {
-      return item.iconRender({ item, className: 'float-button-icon' })
+      return item.iconRender({ item, className: 'lyrixi-float-button-icon' })
     }
     return null
   }

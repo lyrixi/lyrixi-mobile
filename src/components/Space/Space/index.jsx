@@ -7,13 +7,13 @@ import DOMUtil from './../../../utils/DOMUtil'
 const Space = forwardRef(
   (
     {
-      // 样式
+      // Style
       style,
       size,
       className,
 
-      children,
-      ...props
+      // Element
+      children
     },
     ref
   ) => {
@@ -29,7 +29,8 @@ const Space = forwardRef(
 
     return (
       <div
-        {...props}
+        ref={rootRef}
+        // Style
         className={DOMUtil.classNames('lyrixi-space', className)}
         style={{
           gap: `${typeof size?.[0] === 'number' ? size[0] + 'px' : ''} ${
@@ -37,8 +38,8 @@ const Space = forwardRef(
           }`,
           ...(style || {})
         }}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
       </div>
     )

@@ -8,22 +8,40 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Divider = forwardRef(({ className, children, ...props }, ref) => {
-  const rootRef = useRef(null)
+const Divider = forwardRef(
+  (
+    {
+      // Style
+      style,
+      className,
 
-  // 节点
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
-    }
-  })
+      // Element
+      children
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
 
-  return (
-    <div {...props} className={DOMUtil.classNames('lyrixi-divider', className)} ref={rootRef}>
-      {children}
-    </div>
-  )
-})
+    // 节点
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
+
+    return (
+      <div
+        ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-divider', className)}
+      >
+        {/* Element: Children */}
+        {children}
+      </div>
+    )
+  }
+)
 
 export default Divider

@@ -10,13 +10,31 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 import Col from './Col'
 
-const Row = forwardRef(({ gutter, className, children, ...props }, ref) => {
-  return (
-    <div ref={ref} {...props} className={DOMUtil.classNames('lyrixi-row', className)}>
-      {children}
-    </div>
-  )
-})
+const Row = forwardRef(
+  (
+    {
+      // Style
+      style,
+      className,
+
+      // Element
+      children
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-row', className)}
+      >
+        {/* Element: Children */}
+        {children}
+      </div>
+    )
+  }
+)
 
 Row.Col = Col
 export default Row

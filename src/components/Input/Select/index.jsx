@@ -111,17 +111,22 @@ const Combo = forwardRef(
     if (mode === 'tags') {
       return (
         <Tags
+          // Value & Display Value
+          value={value}
+          placeholder={placeholder}
           separator={separator}
+          // Status
           readOnly={readOnly}
           disabled={disabled}
+          allowClear={allowClear}
+          // Style
+          style={style}
+          className={className}
+          // Element
           leftIcon={leftIcon}
           rightIcon={rightIcon}
-          className={className}
-          style={style}
           clearRender={clearRender}
-          placeholder={placeholder}
-          allowClear={allowClear}
-          value={value}
+          // Events
           onAdd={handleInputClick}
           onEdit={handleInputClick}
           onChange={onChange}
@@ -131,20 +136,24 @@ const Combo = forwardRef(
 
     return (
       <InputNode
-        disabled={disabled}
-        readOnly
-        allowClear={allowClear}
+        ref={comboRef}
+        // Value & Display Value
         value={displayValue}
         placeholder={placeholder}
+        // Status
+        readOnly
+        disabled={disabled}
+        allowClear={allowClear}
+        // Style
+        style={style}
+        className={className}
+        // Element
         leftIcon={leftIcon}
         rightIcon={rightIcon}
-        className={className}
-        style={style}
         clearRender={clearRender}
+        // Events
         onClick={handleInputClick}
-        // 强制只读的控件, 只会清空时触发
-        onChange={onChange}
-        ref={comboRef}
+        onChange={onChange} // 强制只读的控件, 只会清空时触发
       />
     )
   }

@@ -13,13 +13,18 @@ import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 const Page = forwardRef(
   (
     {
+      // Status
       safeArea,
-      animation,
+
+      // Style
       full = true,
       layout,
-      children, // 其它属性
+      animation,
+      style,
       className,
-      ...props
+
+      // Element
+      children
     },
     ref
   ) => {
@@ -35,7 +40,9 @@ const Page = forwardRef(
 
     return (
       <section
-        {...props}
+        ref={rootRef}
+        // Style
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-page',
           full ? 'lyrixi-full' : '',
@@ -43,9 +50,11 @@ const Page = forwardRef(
           className
         )}
         data-animation={animation}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
+
+        {/* Element: SafeArea */}
         {safeArea === true && <SafeArea />}
       </section>
     )

@@ -23,25 +23,7 @@ import { Bridge, LocaleUtil, Toast } from 'lyrixi-mobile'
 const Image = forwardRef(
   (
     {
-      // Style
-      allowChoose = false,
-      allowClear = false,
-      uploadPosition = 'end', // start | end
-      upload, // 上传按钮覆盖的dom
-      uploading,
-
-      // Preview Config: { allowChoose, allowClear }
-      preview,
-
-      // Config
-      async = false,
-      reUpload = true,
-      count,
-      ellipsis,
-      type, // video.录相 | 其它.为拍照
-      sourceType = ['album', 'camera'],
-      sizeType = ['compressed'], // ['original', 'compressed']
-      maxWidth,
+      // Value & Display Value
       list = [],
       /*
       [
@@ -56,17 +38,36 @@ const Image = forwardRef(
       ]
       */
 
+      // Status
+      allowChoose = false,
+      allowClear = false,
+
+      // Style
+      className,
+      uploadPosition = 'end', // start | end
+
+      // Element
+      upload, // 上传按钮覆盖的dom
+      uploading,
+      preview, // Preview Config: { allowChoose, allowClear }
+
+      // Validate
+      count,
+      ellipsis,
+      type, // video.录相 | 其它.为拍照
+      sourceType = ['album', 'camera'],
+      sizeType = ['compressed'], // ['original', 'compressed']
+      maxWidth,
+      async = false,
+      reUpload = true,
+
       // Events
       onBeforeChoose,
       onChoose,
       onFileChange,
       onUpload,
       onChange,
-      onPreview,
-
-      // 其它属性
-      className,
-      ...props
+      onPreview
     },
     ref
   ) => {
@@ -318,34 +319,46 @@ const Image = forwardRef(
 
     // Render
     return (
-      <div ref={rootRef} {...props} className={DOMUtil.classNames('lyrixi-image', className)}>
-        {/* 图片上传: 上传按钮 */}
+      <div
+        ref={rootRef}
+        // Style
+        className={DOMUtil.classNames('lyrixi-image', className)}
+      >
+        {/* Element: 图片上传按钮(start) */}
         {uploadPosition === 'start' && getChooseNode()}
 
-        {/* 图片列表 */}
+        {/* Element: 图片列表 */}
         <List
-          type={type}
+          // Value & Display Value
           list={list}
-          uploading={uploading}
-          ellipsis={ellipsis}
+          // Status
           allowClear={allowClear}
+          // Element
+          uploading={uploading}
+          // Validate
+          type={type}
+          ellipsis={ellipsis}
           // Events
           onChange={onChangeRef.current}
           onReUpload={handleReUpload}
           onPreview={handlePreview}
         />
 
-        {/* 图片上传: 上传按钮 */}
+        {/* Element: 图片上传按钮(end) */}
         {uploadPosition === 'end' && getChooseNode()}
 
-        {/* 预览 */}
+        {/* Element: 预览 */}
         {previewTypeRef.current === 'browser' && (
           <PreviewModal
-            open={typeof previewVisible === 'number'}
-            type={type}
+            // Value & Display Value
             list={list} // 需要预览的资源列表{fileUrl: '图片或视频的地址', type: 'video|image, 默认image', fileThumbnail: '封面地址'}
             current={previewVisible}
-            // Config
+            // Status
+            open={typeof previewVisible === 'number'}
+            // Element
+            {...preview}
+            // Validate
+            type={type}
             count={count}
             sourceType={sourceType}
             sizeType={sizeType}
@@ -356,7 +369,6 @@ const Image = forwardRef(
             onFileChange={onFileChange}
             onUpload={onUpload}
             onChange={onChange}
-            {...preview}
             onOpen={() => {
               preview?.onOpen?.()
             }}

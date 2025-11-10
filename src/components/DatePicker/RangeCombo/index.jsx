@@ -118,13 +118,13 @@ const RangeCombo = forwardRef(
           formatter={
             formatter ||
             (() => {
-              return getDisplayValue({
-                value: formatValue(value),
-                type: format || type,
-                rangeId: rangeIdRef.current,
-                ranges,
-                separator
-              })
+            return getDisplayValue({
+              value: formatValue(value),
+              type: format || type,
+              rangeId: rangeIdRef.current,
+              ranges,
+              separator
+            })
             })
           }
           autoSize={autoSize}

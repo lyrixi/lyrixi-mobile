@@ -12,17 +12,23 @@ import { DOMUtil } from 'lyrixi-mobile'
 // CollapseItem组件
 const CollapseItem = (
   {
-    headerRender,
+    // Status
+    open: externalOpen = true,
+
+    // Style
+    style,
+    className,
+
+    // Element
     title,
+    headerRender,
     arrowRender = 'collapse-item-header-arrow-icon',
     arrowPosition = 'right',
-    open: externalOpen = true,
-    onOpen,
-    onClose,
     children,
-    // 其它属性
-    className,
-    ...props
+
+    // Events
+    onOpen,
+    onClose
   },
   ref
 ) => {
@@ -107,12 +113,16 @@ const CollapseItem = (
   return (
     <div
       ref={rootRef}
-      {...props}
+      // Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-collapse-item', className, open ? 'lyrixi-active' : '')}
     >
+      {/* Element: Header */}
       <div className="lyrixi-collapse-item-header" onClick={handleClick}>
         {getHeaderNode()}
       </div>
+
+      {/* Element: Main */}
       <CollapseTransition open={open}>
         <div className="lyrixi-collapse-item-main">{children}</div>
       </CollapseTransition>

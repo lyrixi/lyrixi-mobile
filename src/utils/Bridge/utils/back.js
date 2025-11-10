@@ -94,7 +94,7 @@ async function back(backLvl, options, Bridge) {
         },
         {
           name: '确定',
-          className: 'primary',
+          className: 'lyrixi-primary',
           onClick: () => {
             // 提示后关闭当前页面
             if (isFromApp.indexOf('confirm-close') !== -1) {

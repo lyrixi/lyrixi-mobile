@@ -1,7 +1,7 @@
 const markerIcons = {
   centerMarkerIcon: {
     active: true,
-    className: 'map-center-marker-icon',
+    className: 'lyrixi-map-center-marker-icon',
     iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-custom-shop.png`,
     iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-custom-shop.png`,
     shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`,

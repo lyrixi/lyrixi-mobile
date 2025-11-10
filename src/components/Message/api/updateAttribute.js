@@ -49,7 +49,7 @@ function updateAttribute(
   updateStyle(mask, {
     className: maskClassName,
     style: maskStyle,
-    baseClassName: 'mask message-mask'
+    baseClassName: 'lyrixi-mask lyrixi-message-mask'
   })
 
   // 更新header
@@ -72,7 +72,7 @@ function updateAttribute(
   updateStyle(titleDOM, {
     className: titleClassName,
     style: titleStyle,
-    baseClassName: 'message-title'
+    baseClassName: 'lyrixi-message-title'
   })
   if (title) {
     hasHeaderContent = true
@@ -94,7 +94,7 @@ function updateAttribute(
   updateStyle(contentDOM, {
     className: contentClassName,
     style: contentStyle,
-    baseClassName: 'message-main'
+    baseClassName: 'lyrixi-message-main'
   })
   if (content) {
     if (typeof content === 'string') {

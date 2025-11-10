@@ -8,12 +8,30 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const NavBar = forwardRef(({ className, children, ...props }, ref) => {
-  return (
-    <div ref={ref} {...props} className={DOMUtil.classNames('lyrixi-navbar', className)}>
-      {children}
-    </div>
-  )
-})
+const NavBar = forwardRef(
+  (
+    {
+      // Style
+      style,
+      className,
+
+      // Element
+      children
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-navbar', className)}
+      >
+        {/* Element: Children */}
+        {children}
+      </div>
+    )
+  }
+)
 
 export default NavBar

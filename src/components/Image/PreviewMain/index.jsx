@@ -268,7 +268,7 @@ const PreviewMain = forwardRef(
         // Bullet pagination
         pagination={{
           type: 'fraction',
-          className: 'image-preview-main-pagination'
+          className: 'lyrixi-image-preview-main-pagination'
         }}
         modules={[Zoom, Pagination]}
         onSlideChange={handleSwipe}

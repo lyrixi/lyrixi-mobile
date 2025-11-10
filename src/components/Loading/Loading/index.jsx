@@ -12,7 +12,24 @@ import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-start */
 
 const Loading = forwardRef(
-  ({ portal, maskClassName, maskStyle, iconRender, content, children, ...props }, ref) => {
+  (
+    {
+      // Value & Display Value
+      content,
+
+      // Style
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
+      iconRender,
+      children
+    },
+    ref
+  ) => {
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
@@ -36,18 +53,22 @@ const Loading = forwardRef(
     // 组合Node
     let Node = (
       <div
+        ref={rootRef}
+        // Style
         className={DOMUtil.classNames(
           'lyrixi-loading-mask lyrixi-mask lyrixi-active',
           maskClassName
         )}
         style={maskStyle}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children !== undefined ? (
           children
         ) : (
-          <div className="lyrixi-loading" {...props}>
+          <div className={DOMUtil.classNames('lyrixi-loading', modalClassName)} style={modalStyle}>
+            {/* Element: Icon */}
             <div className="lyrixi-loading-icon">{IconNode}</div>
+            {/* Value & Display Value: Content */}
             <div className="lyrixi-loading-content">
               {content || `${LocaleUtil.locale('加载中', 'lyrixi_refreshing')}...`}
             </div>
