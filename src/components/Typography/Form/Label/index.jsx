@@ -12,7 +12,7 @@ import { DOMUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormLabel = forwardRef(
-  ({ help, span, ellipsis, required, children, className, ...props }, ref) => {
+  ({ help, span, ellipsis, required, children, style, className }, ref) => {
     // 获取全局配置
     const { layout, labelCol } = useContext(FormContext)
 
@@ -26,14 +26,13 @@ const FormLabel = forwardRef(
       }
     })
 
-    const { span: globalSpan, ellipsis: globalEllipsis, ...labelColProps } = labelCol || {}
+    const { span: globalSpan, ellipsis: globalEllipsis } = labelCol || {}
 
     const isEmpty = !children && !help
 
     return (
       <div
-        {...labelColProps}
-        {...props}
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item-label',
           className,

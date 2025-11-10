@@ -5,12 +5,13 @@ import FormContext from './../FormContext'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // layout: horizontal | vertical | inline
 const VirtualForm = forwardRef(
-  (
-    { layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, className, ...props },
-    ref
-  ) => {
+  ({ layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, className, style }, ref) => {
     const rootRef = useRef(null)
 
     // Virtual
@@ -65,7 +66,7 @@ const VirtualForm = forwardRef(
         <div
           ref={rootRef}
           className={DOMUtil.classNames('lyrixi-form-items lyrixi-virtual', className)}
-          {...props}
+          style={style}
         >
           {children}
         </div>

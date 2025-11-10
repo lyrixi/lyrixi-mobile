@@ -4,13 +4,19 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 const Highlight = forwardRef(
   (
     {
-      highlight,
-      children, // 其它属性
+      // Value & Display Value
+      // Style
+      style,
       className,
-      ...props
+      // Element
+      children
     },
     ref
   ) => {
@@ -26,7 +32,7 @@ const Highlight = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-typography-highlight', className)}
         ref={rootRef}
       >

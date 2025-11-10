@@ -5,17 +5,21 @@ import FormContext from './../FormContext'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 const FormItem = forwardRef(
   (
     {
       id,
       name,
       // 样式
+      style,
       layout,
       className,
 
-      children,
-      ...props
+      children
     },
     ref
   ) => {
@@ -32,7 +36,7 @@ const FormItem = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item',
           className,

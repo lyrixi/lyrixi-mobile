@@ -3,12 +3,41 @@ import CommonForm from './Form'
 import VirtualForm from './VirtualForm'
 
 // layout: horizontal | vertical | inline
-const Form = forwardRef(({ virtual, ...props }, ref) => {
-  // virtual模式下, 使用IntersectionObserver来监听表单项的可见性, 所以无需要传入height
-  if (virtual) {
-    return <VirtualForm ref={ref} {...props} />
+const Form = forwardRef(
+  (
+    { virtual, layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, className, style },
+    ref
+  ) => {
+    // virtual模式下, 使用IntersectionObserver来监听表单项的可见性, 所以无需要传入height
+    if (virtual) {
+      return (
+        <VirtualForm
+          ref={ref}
+          layout={layout}
+          labelCol={labelCol}
+          mainCol={mainCol}
+          scrollerDOM={scrollerDOM}
+          className={className}
+          style={style}
+        >
+          {children}
+        </VirtualForm>
+      )
+    }
+    return (
+      <CommonForm
+        ref={ref}
+        layout={layout}
+        labelCol={labelCol}
+        mainCol={mainCol}
+        scrollerDOM={scrollerDOM}
+        className={className}
+        style={style}
+      >
+        {children}
+      </CommonForm>
+    )
   }
-  return <CommonForm ref={ref} {...props} />
-})
+)
 
 export default Form

@@ -7,6 +7,10 @@ import getExtraNode from './getExtraNode'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 const FormMain = forwardRef(
   (
     {
@@ -17,7 +21,7 @@ const FormMain = forwardRef(
       error,
       children, // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -34,12 +38,11 @@ const FormMain = forwardRef(
       }
     })
 
-    const { span: globalSpan, ellipsis: globalEllipsis, ...mainColProps } = mainCol || {}
+    const { span: globalSpan, ellipsis: globalEllipsis } = mainCol || {}
 
     return (
       <div
-        {...mainColProps}
-        {...props}
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item-main',
           className,

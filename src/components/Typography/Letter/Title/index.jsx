@@ -5,22 +5,33 @@ import Base from './../Base'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 const Text = forwardRef(
   (
     {
-      // 样式
+      // Value & Display Value
+      highlight,
+      ellipsis,
+      // Style
+      style,
       className,
-
-      children,
-      ...props
+      // Element
+      children
     },
     ref
   ) => {
     return (
       <Base
-        {...props}
-        className={DOMUtil.classNames('lyrixi-typography-title', className)}
         ref={ref}
+        // Value & Display Value
+        highlight={highlight}
+        ellipsis={ellipsis}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-typography-title', className)}
       >
         {children}
       </Base>
