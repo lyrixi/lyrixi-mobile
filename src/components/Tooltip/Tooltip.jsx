@@ -1,32 +1,52 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
+import Combo from './../ActionSheet/Combo/Combo'
 import Popup from './Popup'
 import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
 
 const Tooltip = forwardRef(
   (
     {
-      // 动画
-      animation = 'slideDownLeft',
+      // Combo
+      // Combo: Style
       style,
+      className,
+      // Combo: Element
+      comboRender,
+      comboChildren,
       referenceDOM: externalReferenceDOM,
+
+      // Modal
+      // Modal: Status
+      maskClosable = true,
+
+      //  Modal: Style
+      animation = 'slideDownLeft', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      //  Modal: Element
+      portal,
       children,
+
+      //  Events
       onOpen,
-      onClose,
-      ...props
+      onClose
     },
     ref
   ) => {
-    const rootRef = useRef(null)
-    const childrenRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
-    })
-
     // 非受控显隐
     let [open, setOpen] = useState(null)
+    const modalRef = useRef(null)
+    const comboRef = useRef(null)
+
+    useImperativeHandle(ref, () => {
+      return {
+        ...comboRef.current,
+        ...modalRef.current
+      }
+    })
 
     // 受控显隐时, 需要更新容器位置
     useEffect(() => {
@@ -41,7 +61,7 @@ const Tooltip = forwardRef(
       }
     }, [open]) // eslint-disable-line
 
-    // 更新位置
+    // 更新Modal位置
     function updatePosition(argReferenceDOM) {
       // 参考元素
       let referenceDOM =
@@ -51,23 +71,20 @@ const Tooltip = forwardRef(
       }
 
       if (!referenceDOM) {
-        let childrenDOM = childrenRef.current
-        if (typeof childrenRef.current?.getRootDOM === 'function') {
-          childrenDOM = childrenRef.current.getRootDOM()
+        let comboDOM = comboRef?.current?.comboDOM
+        if (!comboDOM && typeof comboRef?.current?.getComboDOM === 'function') {
+          comboDOM = comboRef.current.getComboDOM()
         }
-        referenceDOM = childrenDOM
+        referenceDOM = comboDOM
       }
 
       // 位移元素
-      let tooltipDOM =
-        rootRef?.current?.children && rootRef?.current?.children[0]
-          ? rootRef?.current?.children[0]
-          : null
+      let modalDOM = modalRef?.current?.modalDOM ? modalRef?.current?.modalDOM : null
 
-      if (referenceDOM && tooltipDOM) {
+      if (referenceDOM && modalDOM) {
         // 没有自定义位置时生效
-        if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
-          updatePositionByReferenceDOM(tooltipDOM, {
+        if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
+          updatePositionByReferenceDOM(modalDOM, {
             referenceDOM: referenceDOM,
             animation: animation,
             offset: {
@@ -80,35 +97,59 @@ const Tooltip = forwardRef(
     }
 
     // 非受控显隐, 为子元素增加点击事件显隐
-    let newChildren = React.Children.toArray(children)
-    if (newChildren.length === 1) {
-      newChildren = React.cloneElement(children, {
-        ref: childrenRef,
-        onClick: (e) => {
-          // 没有自定义位置时生效
-          if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
-            updatePosition(e.currentTarget)
-          }
-          setOpen(!open)
-        }
-      })
-    } else {
-      newChildren = children
+    function handleOpen() {
+      // 没有自定义位置时生效
+      if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
+        updatePosition(e.currentTarget)
+      }
+      setOpen(!open)
+    }
+
+    // 获取 Combo 节点
+    function getComboNode() {
+      if (typeof comboRender === 'function') {
+        return comboRender({
+          comboRef,
+          open: open,
+          onClick: handleOpen
+        })
+      }
+
+      // 如果有 comboChildren，渲染 comboChildren
+      if (comboChildren) {
+        return (
+          <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
+            {comboChildren}
+          </Combo>
+        )
+      }
+
+      return null
     }
 
     return (
       <>
+        {getComboNode()}
         <Popup
-          animation={animation}
-          style={style}
+          ref={modalRef}
+          // Modal: Status
           open={typeof open === 'boolean' ? open : open}
+          maskClosable={maskClosable}
+          //  Modal: Style
+          animation={animation}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          //  Modal: Element
+          portal={portal}
+          // Events
           onClose={() => {
             setOpen(false)
           }}
-          {...props}
-          ref={rootRef}
-        />
-        {newChildren}
+        >
+          {children}
+        </Popup>
       </>
     )
   }

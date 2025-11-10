@@ -3,6 +3,7 @@ import Modal from './../Modal'
 
 // 内库使用-start
 import Input from './../../Input'
+import Combo from './Combo'
 // 内库使用-end
 
 /* 测试使用-start
@@ -100,9 +101,9 @@ const ActionSheetCombo = (
     // 如果有 comboChildren，渲染 comboChildren
     if (comboChildren) {
       return (
-        <div ref={comboRef} style={style} className={className} onClick={handleOpen}>
+        <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
           {comboChildren}
-        </div>
+        </Combo>
       )
     }
 

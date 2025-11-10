@@ -5,15 +5,15 @@ export default () => {
   return (
     <>
       <Tooltip
-        content={<p>123412341234</p>}
         onOpen={() => {
           console.log('open:', true)
         }}
         onClose={() => {
           console.log('open:', false)
         }}
+        comboChildren={<div style={{ margin: 100 }}>Combo</div>}
       >
-        <div style={{ margin: 100 }}>点击</div>
+        <p>This is Content</p>
       </Tooltip>
     </>
   )

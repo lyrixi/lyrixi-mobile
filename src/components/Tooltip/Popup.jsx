@@ -15,32 +15,45 @@ const getClassNameByAnimation = Modal.getClassNameByAnimation
 const Popup = forwardRef(
   (
     {
-      // 内容框
-      content,
-      animation,
-      style,
-
-      // Modal
-      portal,
-      maskClassName,
-      maskStyle,
-
-      // 显隐
+      // Status
       open,
       maskClosable = true,
-      onOpen,
-      onClose,
+
+      // Style
+      animation, // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Element
+      portal,
       children,
 
-      // 其它属性
-      className,
-      ...props
+      // Events
+      onClose
     },
     ref
   ) => {
+    const maskRef = useRef(null)
+    const modalRef = useRef(null)
+
     // 构建动画
     let position = getClassNameByAnimation(animation)
     let dataAnimation = getDataAnimation(animation)
+
+    useImperativeHandle(ref, () => {
+      return {
+        maskDOM: maskRef.current,
+        getMaskDOM: () => {
+          return maskRef.current
+        },
+        modalDOM: modalRef.current,
+        getModalDOM: () => {
+          return modalRef.current
+        }
+      }
+    })
 
     // 点击遮罩
     function handleMaskClick(e) {
@@ -51,8 +64,8 @@ const Popup = forwardRef(
     // 箭头颜色: 根据style中的backgroundColor和borderColor
     let arrowStyle = null
     let arrowOuterStyle = null
-    let backgroundColor = style?.backgroundColor
-    let borderColor = style?.borderColor
+    let backgroundColor = modalStyle?.backgroundColor
+    let borderColor = modalStyle?.borderColor
     // 从下往上弹
     if (position.indexOf('bottom') === 0) {
       arrowStyle = backgroundColor
@@ -89,19 +102,20 @@ const Popup = forwardRef(
         )}
         style={maskStyle}
         onClick={handleMaskClick}
-        ref={ref}
+        ref={maskRef}
       >
         <div
+          ref={modalRef}
           className={DOMUtil.classNames(
             'lyrixi-modal-animation lyrixi-tooltip tooltip-bottom',
             position,
-            className,
+            modalClassName,
             open ? 'lyrixi-active' : ''
           )}
-          style={style}
+          style={modalStyle}
           data-animation={dataAnimation}
         >
-          <div className="lyrixi-tooltip-content">{content}</div>
+          <div className="lyrixi-tooltip-content">{children}</div>
           <div className="lyrixi-tooltip-arrow-outer" style={arrowOuterStyle}></div>
           <div className="lyrixi-tooltip-arrow" style={arrowStyle}></div>
         </div>
