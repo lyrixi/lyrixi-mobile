@@ -21,8 +21,8 @@ const CenterMarker = forwardRef(
       onDragEnd,
 
       // 其它属性
-      className,
-      ...props
+      style,
+      className
     },
     ref
   ) => {
@@ -95,7 +95,7 @@ const CenterMarker = forwardRef(
     // 拖拽过程时显示的点, 拖拽结束隐藏
     return (
       <span
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-map-center-marker lyrixi-active', className)}
         ref={rootRef}
       ></span>

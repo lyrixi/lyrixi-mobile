@@ -50,8 +50,22 @@ function MapChoose(
     nearbyControlClassName,
     nearbyControlStyle,
 
-    children,
-    ...props
+    minZoom,
+    maxZoom,
+    openLocation,
+    onZoomStart,
+    onZoom,
+    onZoomEnd,
+    onMoveStart,
+    onMove,
+    onMoveEnd,
+    onDragStart,
+    onDrag,
+    onDragEnd,
+    className,
+    style,
+
+    children
   },
   ref
 ) {
@@ -167,10 +181,23 @@ function MapChoose(
       getAddress={getAddress}
       getLocation={getLocation}
       queryNearby={queryNearby}
-      {...props}
       onLoad={(map) => {
         handleLoadRef.current(map)
       }}
+      minZoom={minZoom}
+      maxZoom={maxZoom}
+      openLocation={openLocation}
+      onZoomStart={onZoomStart}
+      onZoom={onZoom}
+      onZoomEnd={onZoomEnd}
+      onMoveStart={onMoveStart}
+      onMove={onMove}
+      onMoveEnd={onMoveEnd}
+      onDragStart={onDragStart}
+      onDrag={onDrag}
+      onDragEnd={onDragEnd}
+      className={className}
+      style={style}
     >
       {/* 搜索控件 */}
       {readOnly ? null : (

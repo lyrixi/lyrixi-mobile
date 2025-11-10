@@ -12,7 +12,7 @@ function ZoomControl(
     onZoomOut,
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) {
@@ -42,7 +42,7 @@ function ZoomControl(
 
   return (
     <div
-      {...props}
+      style={style}
       ref={rootRef}
       className={DOMUtil.classNames('lyrixi-map-zoomControl', className)}
     >

@@ -18,7 +18,7 @@ function LocationControl(
     onChange,
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) {
@@ -68,7 +68,7 @@ function LocationControl(
 
   return (
     <div
-      {...props}
+      style={style}
       ref={rootRef}
       className={DOMUtil.classNames('lyrixi-map-locationControl', className)}
       onClick={handleLocation}

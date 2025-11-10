@@ -28,8 +28,23 @@ function MapMarkers(
     circlesStyle,
     zoomControlClassName,
     zoomControlStyle,
-    children,
-    ...props
+
+    minZoom,
+    maxZoom,
+    openLocation,
+    onZoomStart,
+    onZoom,
+    onZoomEnd,
+    onMoveStart,
+    onMove,
+    onMoveEnd,
+    onDragStart,
+    onDrag,
+    onDragEnd,
+    className,
+    style,
+
+    children
   },
   ref
 ) {
@@ -63,7 +78,20 @@ function MapMarkers(
       // api
       ref={mapRef}
       zoom={14}
-      {...props}
+      minZoom={minZoom}
+      maxZoom={maxZoom}
+      openLocation={openLocation}
+      onZoomStart={onZoomStart}
+      onZoom={onZoom}
+      onZoomEnd={onZoomEnd}
+      onMoveStart={onMoveStart}
+      onMove={onMove}
+      onMoveEnd={onMoveEnd}
+      onDragStart={onDragStart}
+      onDrag={onDrag}
+      onDragEnd={onDragEnd}
+      className={className}
+      style={style}
       onLoad={(map) => {
         // value没值时，开启自动定位，则先定位
         if (typeof map === 'string') return
