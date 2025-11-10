@@ -11,7 +11,23 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
-  ({ layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, className, style }, ref) => {
+  (
+    {
+      // Value & Display Value
+
+      // Style
+      style,
+      className,
+      layout = 'horizontal',
+      labelCol,
+      mainCol,
+
+      // Element
+      scrollerDOM,
+      children
+    },
+    ref
+  ) => {
     const rootRef = useRef(null)
 
     // Expose
@@ -26,9 +42,11 @@ const Form = forwardRef(
       <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM }}>
         <div
           ref={rootRef}
-          className={DOMUtil.classNames('lyrixi-form-items', className)}
+          // Style
           style={style}
+          className={DOMUtil.classNames('lyrixi-form-items', className)}
         >
+          {/* Element: Children */}
           {children}
         </div>
       </FormContext.Provider>

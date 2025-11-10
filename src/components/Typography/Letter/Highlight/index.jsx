@@ -11,10 +11,10 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Highlight = forwardRef(
   (
     {
-      // Value & Display Value
       // Style
       style,
       className,
+
       // Element
       children
     },
@@ -32,10 +32,12 @@ const Highlight = forwardRef(
 
     return (
       <div
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-typography-highlight', className)}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
       </div>
     )

@@ -12,7 +12,25 @@ import { DOMUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormLabel = forwardRef(
-  ({ help, span, ellipsis, required, children, style, className }, ref) => {
+  (
+    {
+      // Value & Display Value
+      ellipsis,
+
+      // Style
+      style,
+      className,
+      span,
+
+      // Validate
+      required,
+
+      // Element
+      help,
+      children
+    },
+    ref
+  ) => {
     // 获取全局配置
     const { layout, labelCol } = useContext(FormContext)
 
@@ -32,6 +50,8 @@ const FormLabel = forwardRef(
 
     return (
       <div
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item-label',
@@ -39,14 +59,15 @@ const FormLabel = forwardRef(
           isEmpty ? 'lyrixi-hide' : '',
           layout === 'lyrixi-horizontal' ? `lyrixi-col col-${span || globalSpan || 8}` : ''
         )}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children && (
           <Div className="lyrixi-form-item-label-text" ellipsis={ellipsis || globalEllipsis}>
             {children}
           </Div>
         )}
 
+        {/* Value & Display Value: Help */}
         {help && (
           <i
             className="lyrixi-form-item-help"
@@ -55,6 +76,8 @@ const FormLabel = forwardRef(
             }}
           ></i>
         )}
+
+        {/* Value & Display Value: Required */}
         {required && <span className="lyrixi-form-item-required">*</span>}
       </div>
     )

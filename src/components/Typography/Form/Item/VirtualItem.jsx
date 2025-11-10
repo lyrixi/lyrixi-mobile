@@ -19,13 +19,17 @@ import { DOMUtil } from 'lyrixi-mobile'
 const FormItem = forwardRef(
   (
     {
+      // 用于计算虚拟列表的高度
+      height = 50,
       id,
       name,
-      // 样式
+      // Value & Display Value
+
+      // Style
       style,
       className,
-      height = 50,
 
+      // Element
       children
     },
     ref
@@ -68,15 +72,18 @@ const FormItem = forwardRef(
 
     return (
       <div
+        ref={rootRef}
+        // Value & Display Value
+        id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
+        // Style
+        style={{ height: height, ...style }}
         className={DOMUtil.classNames(
           'lyrixi-form-item',
           className,
           layout === 'horizontal' ? 'lyrixi-row' : ''
         )}
-        style={{ height: height, ...style }}
-        id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {inViewArea ? children : null}
       </div>
     )

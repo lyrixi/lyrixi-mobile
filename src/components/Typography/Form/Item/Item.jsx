@@ -14,11 +14,14 @@ const FormItem = forwardRef(
     {
       id,
       name,
-      // 样式
-      style,
-      layout,
-      className,
+      // Value & Display Value
 
+      // Style
+      style,
+      className,
+      layout,
+
+      // Element
       children
     },
     ref
@@ -36,6 +39,10 @@ const FormItem = forwardRef(
 
     return (
       <div
+        ref={rootRef}
+        // Value & Display Value
+        id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
+        // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item',
@@ -44,9 +51,8 @@ const FormItem = forwardRef(
             ? 'lyrixi-form-item-layout-horizontal row'
             : 'lyrixi-form-item-layout-vertical'
         )}
-        id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
       </div>
     )

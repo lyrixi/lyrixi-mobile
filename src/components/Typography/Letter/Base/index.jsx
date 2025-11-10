@@ -111,14 +111,19 @@ const Base = forwardRef(
     }
 
     return (
-      <div className={className} style={{ ...style, ...ellipsisStyle }} ref={rootRef}>
-        {/* 内容 */}
+      <div
+        ref={rootRef}
+        // Style
+        className={className}
+        style={{ ...style, ...ellipsisStyle }}
+      >
+        {/* Element: Content */}
         {getHighlightNode(
           expanded === false && visibleContent ? visibleContent : children,
           highlight
         )}
 
-        {/* 内容溢出显示展开收起按钮 */}
+        {/* Element: Expand/Collapse Button */}
         {overflow && expandable ? (
           <div
             className="lyrixi-typography-ellipsis-toggle"

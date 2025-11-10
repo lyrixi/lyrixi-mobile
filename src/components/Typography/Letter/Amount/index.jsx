@@ -51,9 +51,11 @@ function Amount({
 
   return (
     <span
-      className={DOMUtil.classNames(noStyle ? '' : 'lyrixi-typography-amount', className)}
+      // Style
       style={style}
+      className={DOMUtil.classNames(noStyle ? '' : 'lyrixi-typography-amount', className)}
     >
+      {/* Value & Display Value */}
       {displayValue}
     </span>
   )

@@ -14,14 +14,19 @@ import { DOMUtil } from 'lyrixi-mobile'
 const FormMain = forwardRef(
   (
     {
-      span,
+      // Value & Display Value
       ellipsis,
+
+      // Style
+      style,
+      className,
+      span,
+
+      // Element
+      error,
       inputExtra,
       extra,
-      error,
-      children, // 其它属性
-      className,
-      style
+      children
     },
     ref
   ) => {
@@ -42,27 +47,28 @@ const FormMain = forwardRef(
 
     return (
       <div
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item-main',
           className,
           layout === 'horizontal' ? `lyrixi-col lyrixi-col-${span || globalSpan || 16}` : ''
         )}
-        ref={rootRef}
       >
         <div className="lyrixi-form-item-main-input">
-          {/* Children */}
+          {/* Element: Children */}
           {ellipsis?.rows && typeof children === 'string' ? (
             <Div ellipsis={ellipsis || globalEllipsis}>{children}</Div>
           ) : (
             children
           )}
-          {/* Input extra */}
+          {/* Element: Input extra */}
           {getExtraNode(inputExtra, { className: 'lyrixi-form-item-main-input-extra' })}
         </div>
-        {/* Error */}
+        {/* Value & Display Value: Error */}
         {error && <div className="lyrixi-form-item-main-error">{error}</div>}
-        {/* Main extra */}
+        {/* Element: Main extra */}
         {getExtraNode(extra, { className: 'lyrixi-form-item-main-extra' })}
       </div>
     )
