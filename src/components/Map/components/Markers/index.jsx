@@ -11,10 +11,14 @@ import clearMarkers from './clearMarkers'
 const Markers = forwardRef(
   (
     {
-      map,
+      // Value & Display Value
       points,
-      // Options
+
+      // Element
+      map,
       icon,
+
+      // Events
       onClick
     },
     ref

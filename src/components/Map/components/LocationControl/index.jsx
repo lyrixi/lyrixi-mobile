@@ -14,11 +14,15 @@ import { LocaleUtil, Loading, Toast } from 'lyrixi-mobile'
 // 定位控件
 function LocationControl(
   {
-    map,
-    onChange,
-    // 其它属性
+    // Style
+    style,
     className,
-    style
+
+    // Element
+    map,
+
+    // Events
+    onChange
   },
   ref
 ) {
@@ -68,11 +72,14 @@ function LocationControl(
 
   return (
     <div
-      style={style}
       ref={rootRef}
+      // Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-map-locationControl', className)}
+      // Events
       onClick={handleLocation}
     >
+      {/* Element: Icon */}
       <div className="lyrixi-map-locationControl-icon"></div>
     </div>
   )

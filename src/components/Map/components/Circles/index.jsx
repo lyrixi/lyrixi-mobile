@@ -8,11 +8,15 @@ import clearCircles from './clearCircles'
 const Circles = forwardRef(
   (
     {
-      map,
+      // Value & Display Value
       points,
-      // Options
+
+      // Style
       color,
-      radius
+      radius,
+
+      // Element
+      map
     },
     ref
   ) => {

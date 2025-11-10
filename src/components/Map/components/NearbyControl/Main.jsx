@@ -11,8 +11,10 @@ import { Result, LocaleUtil } from 'lyrixi-mobile'
 
 // 附近结果
 function Main({
-  // value,
+  // Value & Display Value
   list,
+
+  // Events
   onChange
 }) {
   // 错误信息

@@ -8,10 +8,14 @@ import clearPolyline from './clearPolyline'
 const Polyline = forwardRef(
   (
     {
-      map,
+      // Value & Display Value
       points,
-      // Options
-      color
+
+      // Style
+      color,
+
+      // Element
+      map
     },
     ref
   ) => {

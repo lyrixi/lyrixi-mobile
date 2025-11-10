@@ -14,7 +14,17 @@ import { LocaleUtil, Loading, ToolBar, Page, Result, Typography } from 'lyrixi-m
 测试使用-end */
 
 // 搜索
-function SearchPage({ map, open, onOpen, onClose, onChange }) {
+function SearchPage({
+  // Status
+  open,
+
+  // Element
+  map,
+
+  // Events
+  onClose,
+  onChange
+}) {
   let [searchList, setSearchList] = useState(null)
   const [keyword, setKeyword] = useState('')
 
@@ -62,21 +72,23 @@ function SearchPage({ map, open, onOpen, onClose, onChange }) {
 
   return (
     <Page className="lyrixi-map-searchControl-page">
+      {/* Element: Header */}
       <Page.Header className="lyrixi-map-searchControl-header">
         <ToolBar.SearchActive
+          // Value & Display Value
           value={keyword}
+          // Events
           onSearch={(keyword) => {
             setKeyword(keyword)
             handleSearch(keyword)
           }}
-          // onBlur={() => {
-          //   setSearchActive(false)
-          // }}
           onCancel={() => {
             handleBack()
           }}
         />
       </Page.Header>
+
+      {/* Element: Body */}
       <div className="lyrixi-map-searchControl-body">
         {Array.isArray(searchList) && searchList.length
           ? searchList.map((item, index) => {

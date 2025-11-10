@@ -16,12 +16,16 @@ import { LocaleUtil, Result, Button } from 'lyrixi-mobile'
 const APILoader = forwardRef(
   (
     {
+      // Value & Display Value(key: '地图的key', type: 'bmap' | 'amap' | 'google')
       config,
-      // 自定义Loading
+
+      // Element
       loading,
+      children,
+
+      // Events
       onError,
-      onSuccess,
-      children
+      onSuccess
     },
     ref
   ) => {

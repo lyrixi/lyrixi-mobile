@@ -3,11 +3,11 @@ import Modal from './../Modal'
 
 // 内库使用-start
 import Input from './../../Input'
-import Combo from './Combo'
+import Combo from './../../Combo'
 // 内库使用-end
 
 /* 测试使用-start
-import { Input } from 'lyrixi-mobile'
+import { Input, Combo } from 'lyrixi-mobile'
 测试使用-end */
 
 // 卡片选择

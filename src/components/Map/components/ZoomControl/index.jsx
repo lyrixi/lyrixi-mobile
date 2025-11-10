@@ -7,12 +7,16 @@ import DOMUtil from './../../../../utils/DOMUtil'
 // 缩放控件
 function ZoomControl(
   {
-    map,
-    onZoomIn,
-    onZoomOut,
-    // 其它属性
+    // Style
+    style,
     className,
-    style
+
+    // Element
+    map,
+
+    // Events
+    onZoomIn,
+    onZoomOut
   },
   ref
 ) {
@@ -42,13 +46,17 @@ function ZoomControl(
 
   return (
     <div
-      style={style}
       ref={rootRef}
+      // Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-map-zoomControl', className)}
     >
+      {/* Element: Zoom In */}
       <div className="lyrixi-map-zoomControl-in" onClick={zoomIn}>
         <div className="lyrixi-map-zoomControl-icon"></div>
       </div>
+
+      {/* Element: Zoom Out */}
       <div className="lyrixi-map-zoomControl-out" onClick={zoomOut}>
         <div className="lyrixi-map-zoomControl-icon"></div>
       </div>

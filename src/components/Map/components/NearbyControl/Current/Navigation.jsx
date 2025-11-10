@@ -10,23 +10,24 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 // 导航
 function Navigation({
-  // 自定义导航
-  map,
-  // 终点位置
+  // Value & Display Value
   type,
   longitude,
   latitude,
   name,
-  address
+  address,
+
+  // Element
+  map
 }) {
   if (!longitude || !latitude || typeof map?.openLocation !== 'function') return null
   return (
     <span
       className="lyrixi-map-navigation-button"
+      // Events
       onClick={() =>
         map.openLocation({
           map,
-          // 终点位置
           type,
           longitude,
           latitude,
@@ -35,7 +36,10 @@ function Navigation({
         })
       }
     >
+      {/* Element: Icon */}
       <i className="lyrixi-map-navigation-button-icon"></i>
+      
+      {/* Element: Text */}
       <span className="lyrixi-map-navigation-button-text">
         {LocaleUtil.locale('导航', 'lyrixi_navigation')}
       </span>

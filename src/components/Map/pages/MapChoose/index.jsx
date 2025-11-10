@@ -23,36 +23,45 @@ import { Loading, Toast, LocaleUtil } from 'lyrixi-mobile'
 // 地图选点
 function MapChoose(
   {
+    // Value & Display Value
+    value, // {latitude: '纬度', longitude: '经度', address: '地址', type: '坐标类型'}
+    center,
+    minZoom,
+    maxZoom,
+
+    // Status
     readOnly,
     autoLocation = true,
-    // 获取定位和地址工具类
+
+    // Utils
     getAddress,
     getLocation,
     queryNearby,
-    center,
-    // value: {latitude: '纬度', longitude: '经度', address: '地址', type: '坐标类型'}
-    value,
+    openLocation,
+
+    // Style
+    style,
+    className,
+    searchControlStyle,
+    searchControlClassName,
+    centerMarkerStyle,
+    centerMarkerClassName,
+    markersStyle,
+    markersClassName,
+    zoomControlStyle,
+    zoomControlClassName,
+    locationControlStyle,
+    locationControlClassName,
+    nearbyControlStyle,
+    nearbyControlClassName,
+
+    // Elements
+    children,
+
+    // Events
     onLoad,
     onChange,
     onMarkerClick,
-
-    // Control Props
-    searchControlClassName,
-    searchControlStyle,
-    centerMarkerClassName,
-    centerMarkerStyle,
-    markersClassName,
-    markersStyle,
-    zoomControlClassName,
-    zoomControlStyle,
-    locationControlClassName,
-    locationControlStyle,
-    nearbyControlClassName,
-    nearbyControlStyle,
-
-    minZoom,
-    maxZoom,
-    openLocation,
     onZoomStart,
     onZoom,
     onZoomEnd,
@@ -61,11 +70,7 @@ function MapChoose(
     onMoveEnd,
     onDragStart,
     onDrag,
-    onDragEnd,
-    className,
-    style,
-
-    children
+    onDragEnd
   },
   ref
 ) {
@@ -170,23 +175,24 @@ function MapChoose(
 
   return (
     <MapContainer
-      // api
       ref={mapRef}
+      // Value & Display Value
       center={value || center}
       zoom={14}
-      // onMoveEnd={(map) => {
-      //   console.log('获取中心点:', map.getCenter())
-      // }}
-      // 自定义获取地址和定位
+      minZoom={minZoom}
+      maxZoom={maxZoom}
+      // Utils
       getAddress={getAddress}
       getLocation={getLocation}
       queryNearby={queryNearby}
+      openLocation={openLocation}
+      // Style
+      className={className}
+      style={style}
+      // Events
       onLoad={(map) => {
         handleLoadRef.current(map)
       }}
-      minZoom={minZoom}
-      maxZoom={maxZoom}
-      openLocation={openLocation}
       onZoomStart={onZoomStart}
       onZoom={onZoom}
       onZoomEnd={onZoomEnd}
@@ -196,21 +202,23 @@ function MapChoose(
       onDragStart={onDragStart}
       onDrag={onDrag}
       onDragEnd={onDragEnd}
-      className={className}
-      style={style}
     >
-      {/* 搜索控件 */}
+      {/* Element: SearchControl */}
       {readOnly ? null : (
         <SearchControl
+          // Events
           onChange={handleChange}
+          // Style
           className={searchControlClassName}
           style={searchControlStyle}
         />
       )}
 
-      {/* 中心标注点: 仅用于显示 */}
+      {/* Element: CenterMarker */}
       <CenterMarker
+        // Value & Display Value
         value={value}
+        // Events
         onDragEnd={
           readOnly
             ? null
@@ -229,23 +237,28 @@ function MapChoose(
                 handleChange(result)
               }
         }
+        // Style
         className={centerMarkerClassName}
         style={centerMarkerStyle}
       />
 
-      {/* 标注点 */}
+      {/* Element: Markers */}
       {!readOnly ? (
         <Markers
+          // Value & Display Value
           points={points}
+          // Events
           onClick={onMarkerClick}
+          // Style
           className={markersClassName}
           style={markersStyle}
         />
       ) : null}
 
-      {/* 缩放控件 */}
+      {/* Element: ZoomControl */}
       <ZoomControl
         ref={zoomRef}
+        // Events
         onZoomIn={(map) => {
           setTimeout(() => {
             console.log('放大', map.getZoom())
@@ -256,26 +269,32 @@ function MapChoose(
             console.log('缩小', map.getZoom())
           }, 300)
         }}
+        // Style
         className={zoomControlClassName}
         style={{ bottom: readOnly ? '115px' : '145px', ...zoomControlStyle }}
       />
 
-      {/* 定位控件 */}
+      {/* Element: LocationControl */}
       {readOnly ? null : (
         <LocationControl
           ref={locationRef}
-          style={{ bottom: '145px', ...locationControlStyle }}
+          // Events
           onChange={handleChange}
+          // Style
           className={locationControlClassName}
+          style={{ bottom: '145px', ...locationControlStyle }}
         />
       )}
 
-      {/* 附近控件 */}
+      {/* Element: NearbyControl */}
       <NearbyControl
         ref={nearbyRef}
+        // Status
         readOnly={readOnly}
+        // Value & Display Value
         value={value}
         radius={1000}
+        // Events
         onChange={handleChange}
         onLoad={(list) => {
           // 间距调整, 附件面板的高度在展开后会很高会出问题
@@ -287,6 +306,7 @@ function MapChoose(
           // }
           setPoints(list)
         }}
+        // Style
         className={nearbyControlClassName}
         style={nearbyControlStyle}
       />

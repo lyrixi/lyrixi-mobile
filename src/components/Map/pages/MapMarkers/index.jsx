@@ -9,29 +9,35 @@ import Polyline from './../../components/Polyline'
 // 地图标注
 function MapMarkers(
   {
+    // Value & Display Value
     markers,
-    onMarkerClick,
+    minZoom,
+    maxZoom,
     polyline,
     circles,
 
-    icon,
-    // 获取定位和地址工具类
+    // Style
+    style,
+    className,
+    polylineStyle,
+    polylineClassName,
+    circlesStyle,
+    circlesClassName,
+    zoomControlStyle,
+    zoomControlClassName,
+
+    // Utils
     getAddress,
     getLocation,
     queryNearby,
-
-    onLoad,
-    // Control Props
-    polylineClassName,
-    polylineStyle,
-    circlesClassName,
-    circlesStyle,
-    zoomControlClassName,
-    zoomControlStyle,
-
-    minZoom,
-    maxZoom,
     openLocation,
+
+    // Elements
+    children,
+
+    // Events
+    onLoad,
+    onMarkerClick,
     onZoomStart,
     onZoom,
     onZoomEnd,
@@ -40,11 +46,7 @@ function MapMarkers(
     onMoveEnd,
     onDragStart,
     onDrag,
-    onDragEnd,
-    className,
-    style,
-
-    children
+    onDragEnd
   },
   ref
 ) {
@@ -75,23 +77,20 @@ function MapMarkers(
 
   return (
     <MapContainer
-      // api
       ref={mapRef}
+      // Value & Display Value
       zoom={14}
       minZoom={minZoom}
       maxZoom={maxZoom}
+      // Utils
+      getAddress={getAddress}
+      getLocation={getLocation}
+      queryNearby={queryNearby}
       openLocation={openLocation}
-      onZoomStart={onZoomStart}
-      onZoom={onZoom}
-      onZoomEnd={onZoomEnd}
-      onMoveStart={onMoveStart}
-      onMove={onMove}
-      onMoveEnd={onMoveEnd}
-      onDragStart={onDragStart}
-      onDrag={onDrag}
-      onDragEnd={onDragEnd}
+      // Style
       className={className}
       style={style}
+      // Events
       onLoad={(map) => {
         // value没值时，开启自动定位，则先定位
         if (typeof map === 'string') return
@@ -101,37 +100,53 @@ function MapMarkers(
 
         onLoad && onLoad(map)
       }}
-      // 自定义获取地址和定位
-      getAddress={getAddress}
-      getLocation={getLocation}
-      queryNearby={queryNearby}
+      onZoomStart={onZoomStart}
+      onZoom={onZoom}
+      onZoomEnd={onZoomEnd}
+      onMoveStart={onMoveStart}
+      onMove={onMove}
+      onMoveEnd={onMoveEnd}
+      onDragStart={onDragStart}
+      onDrag={onDrag}
+      onDragEnd={onDragEnd}
     >
-      {/* 标注点 */}
-      <Markers ref={markersRef} points={markers} onClick={onMarkerClick} />
+      {/* Element: Markers */}
+      <Markers
+        ref={markersRef}
+        // Value & Display Value
+        points={markers}
+        // Events
+        onClick={onMarkerClick}
+      />
 
-      {/* 圆圈 */}
+      {/* Element: Circles */}
       {circles && (
         <Circles
           ref={circlesRef}
+          // Value & Display Value
           points={circles}
+          // Style
           className={circlesClassName}
           style={circlesStyle}
         />
       )}
 
-      {/* 折线 */}
+      {/* Element: Polyline */}
       {polyline && (
         <Polyline
           ref={polylineRef}
+          // Value & Display Value
           points={polyline}
+          // Style
           className={polylineClassName}
           style={polylineStyle}
         />
       )}
 
-      {/* 缩放控件 */}
+      {/* Element: ZoomControl */}
       <ZoomControl
         ref={zoomRef}
+        // Style
         className={zoomControlClassName}
         style={{ bottom: '20px', ...zoomControlStyle }}
       />

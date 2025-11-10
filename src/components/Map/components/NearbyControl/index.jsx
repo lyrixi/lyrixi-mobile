@@ -18,16 +18,19 @@ import { LocaleUtil, Loading } from 'lyrixi-mobile'
 // 附近推荐
 function Nearby(
   {
-    map,
+    // Value & Display Value
+    value, // {name: '', address: '', longitude: '', latitude: ''}
+
+    // Style
     radius,
+
+    // Status
     readOnly,
-    value,
-    // {
-    //   name: '',
-    //   address: '',
-    //   longitude: '',
-    //   latitude: ''
-    // }
+
+    // Element
+    map,
+
+    // Events
     onChange,
     onLoad
   },
@@ -86,25 +89,40 @@ function Nearby(
 
   return (
     <div className="lyrixi-map-nearbyControl" ref={rootRef}>
-      {/* 当前位置 */}
+      {/* Element: Current */}
       <Current
+        // Element
         map={map}
+        // Status
         readOnly={readOnly}
+        // Value & Display Value
         value={value}
+        // Events
         onChange={(item) => {
           onChange && onChange(item)
         }}
       />
       {readOnly ? null : (
         <>
-          {/* 展开收缩附近 */}
+          {/* Element: Toggle */}
           <Toggle />
-          {/* 附近的点 */}
+
+          {/* Element: Body */}
           <div className="lyrixi-map-nearbyControl-body">
-            <Tabs tab={tab} onChange={setTab} />
+            {/* Element: Tabs */}
+            <Tabs
+              // Value & Display Value
+              tab={tab}
+              // Events
+              onChange={setTab}
+            />
+
+            {/* Element: Main */}
             <Main
+              // Value & Display Value
               list={list}
               value={value}
+              // Events
               onChange={(item) => {
                 map.panTo({ longitude: item.longitude, latitude: item.latitude, type: item.type })
                 onChange && onChange(item)

@@ -12,17 +12,21 @@ import DOMUtil from './../../../../utils/DOMUtil'
 const CenterMarker = forwardRef(
   (
     {
-      map,
+      // Value & Display Value
       value,
-      // Options
+
+      // Style
+      style,
+      className,
+
+      // Element
+      map,
       icon,
+
+      // Events
       onClick,
       onDragStart,
-      onDragEnd,
-
-      // 其它属性
-      style,
-      className
+      onDragEnd
     },
     ref
   ) => {
@@ -95,9 +99,10 @@ const CenterMarker = forwardRef(
     // 拖拽过程时显示的点, 拖拽结束隐藏
     return (
       <span
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-map-center-marker lyrixi-active', className)}
-        ref={rootRef}
       ></span>
     )
   }

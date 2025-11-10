@@ -1,7 +1,14 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
-import Combo from './../ActionSheet/Combo/Combo'
 import Popup from './Popup'
 import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
+
+// 内库使用-start
+import Combo from './../Combo'
+// 内库使用-end
+
+/* 测试使用-start
+import { Combo } from 'lyrixi-mobile'
+测试使用-end */
 
 const Tooltip = forwardRef(
   (

@@ -23,17 +23,26 @@ import { LocaleUtil, GeoUtil, Result } from 'lyrixi-mobile'
 const MapContainer = forwardRef(
   (
     {
+      // Value & Display Value
       center,
       zoom,
       minZoom,
       maxZoom,
-      // 自定义获取地址和定位
 
+      // Utils
       getAddress,
       getLocation,
       openLocation,
       queryNearby,
-      // events
+
+      // Style
+      style,
+      className,
+
+      // Element
+      children,
+
+      // Events
       onLoad,
       onZoomStart,
       onZoom,
@@ -43,13 +52,7 @@ const MapContainer = forwardRef(
       onMoveEnd,
       onDragStart,
       onDrag,
-      onDragEnd,
-
-      children,
-
-      // 其它属性
-      className,
-      style
+      onDragEnd
     },
     ref
   ) => {
@@ -333,12 +336,19 @@ const MapContainer = forwardRef(
     }
 
     return (
-      <div style={style} className={DOMUtil.classNames('map', className)} ref={rootRef}>
-        {/* leaflet地图容器 */}
+      <div
+        ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('map', className)}
+      >
+        {/* Element: Leaflet Map Container */}
         <div className="lyrixi-map-container"></div>
-        {/* 百度、高德地图容器用于调用api使用，并不展现 */}
+
+        {/* Element: API Map Container */}
         <div className="lyrixi-map-api-container"></div>
-        {/* 其它控件 */}
+
+        {/* Element: Children */}
         {leafletMap ? newChildren : null}
       </div>
     )

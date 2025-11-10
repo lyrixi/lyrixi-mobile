@@ -10,7 +10,13 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 选项卡
-function Tabs({ tab, onChange }) {
+function Tabs({
+  // Value & Display Value
+  tab,
+
+  // Events
+  onChange
+}) {
   let tabs = getTabs()
   return (
     <div className="lyrixi-map-nearbyControl-tabs">
@@ -22,6 +28,7 @@ function Tabs({ tab, onChange }) {
               'lyrixi-map-nearbyControl-tab',
               tab.name === item.name ? 'lyrixi-active' : ''
             )}
+            // Events
             onClick={() => {
               onChange && onChange(item)
             }}
