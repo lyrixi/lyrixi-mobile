@@ -1,4 +1,4 @@
-import queryAddress from './../getAddress'
+import defaultGetAddress from './../getAddress'
 import setAddressCache from './setAddressCache'
 import getAddressCache from './getAddressCache'
 
@@ -6,12 +6,7 @@ import getAddressCache from './getAddressCache'
  * @description: 获取地址
  * @param {longitude, latitude, type: 'gcj02|wgs84'} params
  * @return {
- * address,
- * longitude,
- * latitude,
- * province,
- * provinceNumber,
- * provinceMatch
+ * address
  * ...
  * }
  */
@@ -21,8 +16,9 @@ async function getSuperAddress({
   type,
   latitude,
   longitude,
-  success,
-  fail
+  getAddress = defaultGetAddress,
+  onSuccess,
+  onError
 }) {
   // 先查缓存
   const cacheData = await getAddressCache(
@@ -30,17 +26,17 @@ async function getSuperAddress({
     cacheExpiresContinue ? cacheExpires : null
   )
   if (cacheData) {
-    if (typeof success === 'function') success(cacheData)
+    onSuccess && onSuccess(cacheData)
     return cacheData
   }
   // 没有缓存则查接口
-  const result = await queryAddress({
+  const result = await getAddress({
     latitude,
     longitude,
     type,
     cacheExpires,
-    success,
-    fail
+    onSuccess,
+    onError
   })
 
   // 查询成功则缓存结果

@@ -79,7 +79,7 @@ export default () => {
           }}
           // onError={(error) => {
           //   console.log('地图加载失败', error)
-          //   return <div>{error.errMsg}</div>
+          //   return <div>{error.message}</div>
           // }}
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>

@@ -17,14 +17,14 @@ function Main({
 }) {
   // 错误信息
   let status = '500'
-  let errMsg = typeof list === 'string' ? list : null
+  let message = typeof list === 'string' ? list : null
   if (Array.isArray(list) && list.length === 0) {
     status = 'empty'
-    errMsg = LocaleUtil.locale('暂无数据', 'lyrixi_no_data')
+    message = LocaleUtil.locale('暂无数据', 'lyrixi_no_data')
   }
   return (
     <div className="lyrixi-map-nearbyControl-main">
-      {errMsg && <Result className="lyrixi-map-main-result" status={status} title={errMsg} />}
+      {message && <Result className="lyrixi-map-main-result" status={status} title={message} />}
       {Array.isArray(list) &&
         list.length &&
         list.map((item, index) => {

@@ -25,9 +25,9 @@ function getLocation(options) {
     // 开始定位
     Bridge.getLocation({
       type: type,
-      onSuccess: async (data) => {
-        console.log('lyrixi location success:', data)
-        resolve(data)
+      onSuccess: async (res) => {
+        console.log('lyrixi location success:', res)
+        resolve(res)
       },
       onError: (error) => {
         console.error('lyrixi location fail:', error)

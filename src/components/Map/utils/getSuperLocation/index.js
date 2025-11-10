@@ -29,8 +29,8 @@ const errorCodes = {
  *  cacheExpires:Number 缓存过期时间, 单位: 秒
  *  timeout:Number 定位超时时长,
  *  type:String<'wgs84'|'gcj02'> 定位类型
- *  success:Function({longitude, latitude}) 定位成功回调
- *  fail:Function({errMsg, errCode}) 定位失败回调
+ *  onSuccess:Function({status: 'success', data: {longitude, latitude}}) 定位成功回调
+ *  onError:Function({status: 'error', code: 'PERMISSION_DENIED'|'NETWORK_ERROR'|'LOCATION_TIMEOUT'|'UNKNOWN_ERROR', message}) 定位失败回调
  * }}
  * @return {String|Object<{longitude, latitude}>}
  */
@@ -40,8 +40,8 @@ async function getLocation({
   cacheExpires,
   timeout,
   type,
-  success,
-  fail
+  onSuccess,
+  onError
 }) {
   console.log('定位方式:', type)
 
@@ -53,7 +53,7 @@ async function getLocation({
   // 优先读取缓存
   const cacheData = await getLocationCache(type, cacheExpiresContinue ? cacheExpires : null)
   if (cacheData) {
-    success && success(cacheData)
+    onSuccess && onSuccess(cacheData)
     return
   }
 
@@ -69,7 +69,7 @@ async function getLocation({
       getLocationComplete = 2
 
       // 定位超时不显示水印
-      fail &&
+      onError &&
         onError({
           status: 'error',
           code: errorCodes.LOCATION_TIMEOUT,
@@ -81,7 +81,7 @@ async function getLocation({
   // 回调参数
   const params = {
     type: type,
-    success: async (data) => {
+    onSuccess: async (data) => {
       console.log('定位成功', data)
       // 定位完成则不需要响应
       if (getLocationComplete) return
@@ -93,7 +93,7 @@ async function getLocation({
       }
 
       // 定位完成
-      success && success(data)
+      onSuccess && onSuccess(data)
     },
     onError: (res) => {
       console.log('定位失败', res)
@@ -102,28 +102,28 @@ async function getLocation({
       if (getLocationTimeout) window.clearTimeout(getLocationTimeout)
 
       // 浏览器定位返回浏览器的错误码
-      if (res?.errCode) {
-        fail && fail(res)
+      if (res?.status === 'error') {
+        onError && onError(res)
         return
       }
 
       // 客户端定位错误码
       if (
-        res?.errorCode === 'PERMISSION_DENIED' ||
-        res?.errorCode === 'ZK004' ||
-        res?.errorCode === 'ZK002' ||
-        res?.errorCode === 'BD69' ||
-        res?.errorCode === 'BD70' ||
-        res?.errorCode === 'BD71' ||
-        res?.errorCode === 'BD167' ||
-        res?.errorCode === 'GD12' ||
-        res?.errorCode === 'GD13' ||
-        res?.errorCode === 'GD33'
+        res?.code === 'PERMISSION_DENIED' ||
+        res?.code === 'ZK004' ||
+        res?.code === 'ZK002' ||
+        res?.code === 'BD69' ||
+        res?.code === 'BD70' ||
+        res?.code === 'BD71' ||
+        res?.code === 'BD167' ||
+        res?.code === 'GD12' ||
+        res?.code === 'GD13' ||
+        res?.code === 'GD33'
       ) {
-        fail &&
-          fail({
-            errCode: errorCodes.PERMISSION_DENIED,
-            errMsg: LocaleUtil.locale('未开启定位服务或权限，定位失败')
+        onError &&
+          onError({
+            code: errorCodes.PERMISSION_DENIED,
+            message: LocaleUtil.locale('未开启定位服务或权限，定位失败')
           })
         return
       }
@@ -138,18 +138,18 @@ async function getLocation({
         res?.errorCode === 'GD18' ||
         res?.errorCode === 'GD19'
       ) {
-        fail &&
-          fail({
-            errCode: errorCodes.NETWORK_ERROR,
-            errMsg: LocaleUtil.locale('网络异常，定位失败')
+        onError &&
+          onError({
+            code: errorCodes.NETWORK_ERROR,
+            message: LocaleUtil.locale('网络异常，定位失败')
           })
         return
       }
 
-      fail &&
-        fail({
-          errCode: errorCodes.UNKNOWN_ERROR,
-          errMsg: LocaleUtil.locale('网络异常，定位失败')
+      onError &&
+        onError({
+          code: errorCodes.UNKNOWN_ERROR,
+          message: LocaleUtil.locale('网络异常，定位失败')
         })
     }
   }
@@ -167,8 +167,8 @@ function getSuperLocation({
   cacheExpiresContinue,
   cacheExpires,
   type,
-  success,
-  fail
+  onSuccess,
+  onError
 } = {}) {
   if (Device.device === 'pc') {
     getLocation({
@@ -177,8 +177,8 @@ function getSuperLocation({
       cacheExpires,
       timeout: timeout,
       browser: true,
-      fail: fail,
-      success: success
+      onError: onError,
+      onSuccess: onSuccess
     })
     return
   }
@@ -187,11 +187,11 @@ function getSuperLocation({
     cacheExpiresContinue,
     cacheExpires,
     timeout: timeout,
-    success: success,
+    onSuccess: onSuccess,
     // 非超时错误直接fail, 超时错误则再定位一次
-    fail: (error) => {
-      if (error?.errCode !== 'LOCATION_TIMEOUT') {
-        fail(error)
+    onError: (error) => {
+      if (error?.code !== 'LOCATION_TIMEOUT') {
+        onError(error)
         return
       }
       getLocation({
@@ -200,8 +200,8 @@ function getSuperLocation({
         cacheExpires,
         timeout: timeout,
         browser: true,
-        fail: fail,
-        success: success
+        onError: onError,
+        onSuccess: onSuccess
       })
     }
   })

@@ -126,8 +126,8 @@ export default () => {
           onSuccess={() => {
             console.log('地图加载成功')
           }}
-          // onError={(errMsg) => {
-          //   console.log('地图加载失败:', errMsg)
+          // onError={(error) => {
+          //   console.log('地图加载失败:', error.message)
           //   return '错误地址'
           // }}
         >
