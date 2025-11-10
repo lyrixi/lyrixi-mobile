@@ -33,15 +33,15 @@ async function getSuperAddress({
   const result = await getAddress({
     latitude,
     longitude,
-    type,
-    cacheExpires,
-    onSuccess,
-    onError
+    type
   })
 
   // 查询成功则缓存结果
-  if (typeof result !== 'string') {
+  if (result.status === 'success') {
     await setAddressCache({ longitude, latitude, cacheExpires }, result)
+    onSuccess && onSuccess(result)
+  } else {
+    onError && onError(result)
   }
 
   return result

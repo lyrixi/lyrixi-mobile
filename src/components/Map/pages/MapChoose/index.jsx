@@ -95,9 +95,9 @@ function MapChoose(
       Loading.show({ content: LocaleUtil.locale('定位中...', 'lyrixi_positioning') })
       let result = await mapRef.current?.getLocation?.({ type: 'wgs84' })
       Loading.hide()
-      if (typeof result === 'string') {
+      if (result.status === 'error') {
         Toast.show({
-          content: result
+          content: result.message
         })
         return
       }
@@ -112,9 +112,9 @@ function MapChoose(
       Loading.show({ content: LocaleUtil.locale('获取地址中...', 'lyrixi_getting_address') })
       let result = await mapRef.current?.getAddress?.(newValue)
       Loading.hide()
-      if (typeof result === 'string') {
+      if (result.status === 'error') {
         Toast.show({
-          content: result
+          content: result.message
         })
         return
       }

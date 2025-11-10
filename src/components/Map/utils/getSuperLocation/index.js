@@ -162,48 +162,43 @@ async function getLocation({
 }
 
 // 定位：考虑定位超时场景，超时后再尝试浏览器定位
-function getSuperLocation({
-  timeout = 10000,
-  cacheExpiresContinue,
-  cacheExpires,
-  type,
-  onSuccess,
-  onError
-} = {}) {
-  if (Device.device === 'pc') {
-    getLocation({
-      type,
-      cacheExpiresContinue,
-      cacheExpires,
-      timeout: timeout,
-      browser: true,
-      onError: onError,
-      onSuccess: onSuccess
-    })
-    return
-  }
-  getLocation({
-    type,
-    cacheExpiresContinue,
-    cacheExpires,
-    timeout: timeout,
-    onSuccess: onSuccess,
-    // 非超时错误直接fail, 超时错误则再定位一次
-    onError: (error) => {
-      if (error?.code !== 'LOCATION_TIMEOUT') {
-        onError(error)
-        return
-      }
+function getSuperLocation({ timeout = 10000, cacheExpiresContinue, cacheExpires, type } = {}) {
+  return new Promise((resolve, reject) => {
+    if (Device.device === 'pc') {
       getLocation({
         type,
         cacheExpiresContinue,
         cacheExpires,
         timeout: timeout,
         browser: true,
-        onError: onError,
-        onSuccess: onSuccess
+        onError: resolve,
+        onSuccess: resolve
       })
+      return
     }
+    getLocation({
+      type,
+      cacheExpiresContinue,
+      cacheExpires,
+      timeout: timeout,
+      onSuccess: resolve,
+      // 非超时错误直接fail, 超时错误则再定位一次
+      onError: (error) => {
+        if (error?.code !== 'LOCATION_TIMEOUT') {
+          resolve(error)
+          return
+        }
+        getLocation({
+          type,
+          cacheExpiresContinue,
+          cacheExpires,
+          timeout: timeout,
+          browser: true,
+          onError: resolve,
+          onSuccess: resolve
+        })
+      }
+    })
   })
 }
 

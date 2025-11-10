@@ -45,7 +45,7 @@ function LocationControl(
       result = await map.getAddress(result)
 
       // Location success but value no change
-      if (typeof result !== 'string') {
+      if (result.longitude && result.latitude) {
         map.panTo(result)
       }
 
@@ -58,8 +58,8 @@ function LocationControl(
   async function handleLocation() {
     let result = await location()
     // 定位出错
-    if (typeof result === 'string') {
-      Toast.show({ content: result })
+    if (result.status === 'error') {
+      Toast.show({ content: result.message })
       return
     }
     // 视图更新

@@ -105,13 +105,7 @@ const MapContainer = forwardRef(
             ...result
           }
         }
-        // Get address fail
-        else {
-          result =
-            typeof result === 'string'
-              ? result
-              : LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi_get_address_failed')
-        }
+
         return result
       },
       // Get location

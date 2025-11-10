@@ -40,8 +40,8 @@ async function getAddress(params) {
   }
 
   // getAddress failed
-  if (typeof result === 'string') {
-    Toast.show({ content: result })
+  if (result.status === 'error') {
+    Toast.show({ content: result.message })
     return result
   }
 
