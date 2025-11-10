@@ -14,13 +14,13 @@ export default () => {
     })
   }
   async function handleLoadJsByAsync() {
-    let isOk = await AssetUtil.loadJs(
+    let result = await AssetUtil.loadJs(
       '//colaboy.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
       {
         id: 'leaflet-js'
       }
     )
-    if (isOk) {
+    if (result.status === 'success') {
       alert('Js load succeeded')
     } else {
       alert('Js load failed')

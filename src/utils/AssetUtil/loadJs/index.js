@@ -25,27 +25,23 @@ function loadJs(
 
   return new Promise((resolve) => {
     const loadScript = require('./loadscript.js')
-    loadScript(
-      src,
-      {
-        async: async,
-        charset: charset,
-        text: text,
-        type: type,
-        attrs: attrs
+    loadScript(src, {
+      async: async,
+      charset: charset,
+      text: text,
+      type: type,
+      attrs: attrs,
+      onError: (result) => {
+        resolve(result)
+        // 支持新的 onError
+        if (typeof onError === 'function') onError(result)
       },
-      (error, script) => {
-        if (error) {
-          resolve(null)
-          // 支持新的 onError
-          if (typeof onError === 'function') onError(error)
-        } else {
-          resolve(script)
-          // 支持新的 onSuccess
-          if (typeof onSuccess === 'function') onSuccess(script)
-        }
+      onSuccess: (result) => {
+        resolve(result)
+        // 支持新的 onSuccess
+        if (typeof onSuccess === 'function') onSuccess(result)
       }
-    )
+    })
   })
 }
 

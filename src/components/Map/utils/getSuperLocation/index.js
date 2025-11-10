@@ -70,9 +70,10 @@ async function getLocation({
 
       // 定位超时不显示水印
       fail &&
-        fail({
-          errCode: errorCodes.LOCATION_TIMEOUT,
-          errMsg: LocaleUtil.locale('定位超时')
+        onError({
+          status: 'error',
+          code: errorCodes.LOCATION_TIMEOUT,
+          message: LocaleUtil.locale('定位超时')
         })
     }, timeout)
   }
@@ -94,7 +95,7 @@ async function getLocation({
       // 定位完成
       success && success(data)
     },
-    fail: (res) => {
+    onError: (res) => {
       console.log('定位失败', res)
       // 定位完成则不需要响应
       if (getLocationComplete) return

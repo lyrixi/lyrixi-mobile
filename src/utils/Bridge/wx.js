@@ -56,16 +56,16 @@ let Bridge = {
   openLocation: function (params) {
     // 微信PC端不支持地图查看
     if (Device.device === 'pc' || this.platform === 'wechat') {
-      let errMsg = LocaleUtil.locale(
+      let message = LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
         'lyrixi_open_location_prompt',
 
         ['openLocation']
       )
       Toast.show({
-        content: errMsg
+        content: message
       })
-      params?.onError && params.onError({ status: 'error', message: errMsg })
+      params?.onError && params.onError({ status: 'error', message: message })
       return
     }
 
@@ -182,16 +182,16 @@ let Bridge = {
   chooseImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
-      let errMsg = LocaleUtil.locale(
+      let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
         'lyrixi_chooseImage_prompt',
 
         LocaleUtil.locale('', 'lyrixi_chooseimage')
       )
       Toast.show({
-        content: errMsg
+        content: message
       })
-      params?.onError?.({ status: 'PC_NOT_IMPLENMENTED', message: errMsg })
+      params?.onError?.({ status: 'PC_NOT_IMPLENMENTED', message: message })
       return
     }
 
@@ -201,16 +201,16 @@ let Bridge = {
   uploadImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
-      let errMsg = LocaleUtil.locale(
+      let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
         'lyrixi_uploadImage_prompt',
 
         LocaleUtil.locale('', 'lyrixi_uploadimage')
       )
       Toast.show({
-        content: errMsg
+        content: message
       })
-      params?.onError?.({ status: 'PC_NOT_IMPLENMENTED', message: errMsg })
+      params?.onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
       return
     }
     const wrappedParams = wrapCallback(params)
@@ -244,16 +244,16 @@ let Bridge = {
   previewFile: function (params) {
     // 微信PC端不支持预览文件
     if (Device.device === 'pc' || this.platform === 'wechat') {
-      let errMsg = LocaleUtil.locale(
+      let message = LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
         'lyrixi_previewFile_prompt',
 
         ['previewFile']
       )
       Toast.show({
-        content: errMsg
+        content: message
       })
-      params?.onError && params.onError({ message: errMsg })
+      params?.onError && params.onError({ status: 'error', message: message })
       return
     }
 

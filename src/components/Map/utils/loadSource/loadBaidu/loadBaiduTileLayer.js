@@ -27,7 +27,7 @@ function getCrs() {
   })
 }
 // 加载百度插件
-function loadBMapLayer() {
+function loadBaiduTileLayer() {
   if (window.L?.tileLayer?.currentTileLayer) {
     return
   }
@@ -89,4 +89,4 @@ function loadBMapLayer() {
   }
 }
 
-export default loadBMapLayer
+export default loadBaiduTileLayer

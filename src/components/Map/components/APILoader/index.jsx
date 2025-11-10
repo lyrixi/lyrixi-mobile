@@ -25,7 +25,8 @@ const APILoader = forwardRef(
     },
     ref
   ) => {
-    const [errMsg, setErrMsg] = useState(null)
+    // result: {status: 'success'|'error', data: any, message: string}
+    const [result, setResult] = useState(null)
 
     const APIRef = useRef({
       reload: loadData
@@ -57,30 +58,31 @@ const APILoader = forwardRef(
       }
 
       if (!window.APILoaderConfig?.key || !window.APILoaderConfig?.type) {
-        setErrMsg(LocaleUtil.locale('没有key和地图类型, 无法使用地图', 'lyrixi_no_key_type'))
+        setResult({
+          status: 'error',
+          message: LocaleUtil.locale('没有key和地图类型, 无法使用地图', 'lyrixi_no_key_type')
+        })
         return
       }
 
       // Load map resource
-      let result = await loadSource(window.APILoaderConfig)
-      let isOk = true
-      if (typeof result === 'object' && result?.errCode) {
-        isOk = result?.errMsg
+      result = await loadSource(window.APILoaderConfig)
+      if (result?.status === 'error') {
         // 自定义处理错误
         if (onError) {
-          let newIsOk = await onError({ ...{}, ...result, ...APIRef.current })
-          if (newIsOk !== undefined) {
-            isOk = newIsOk
+          let newResult = await onError({ ...{}, ...result, ...APIRef.current })
+          if (newResult !== undefined) {
+            result = newResult
           }
         }
       } else {
         onSuccess && onSuccess(APIRef.current)
       }
-      setErrMsg(isOk)
+      setResult(result)
     }
 
     // 未加载完成显示空
-    if (errMsg === null) {
+    if (result === null) {
       if (React.isValidElement(loading)) {
         return loading
       }
@@ -91,9 +93,9 @@ const APILoader = forwardRef(
     }
 
     // 加载失败
-    if (typeof errMsg === 'string') {
+    if (result.status === 'error' && typeof result.message === 'string') {
       return (
-        <Result title={errMsg} className="lyrixi-map-container-result" status={'500'}>
+        <Result title={result.message} className="lyrixi-map-container-result" status={'500'}>
           <Button
             className="lyrixi-result-button"
             color="primary"
@@ -107,9 +109,9 @@ const APILoader = forwardRef(
       )
     }
 
-    // 渲染自定义DOM
-    if (errMsg && React.isValidElement(errMsg)) {
-      return errMsg
+    // onError可自定义渲染自定义DOM
+    if (result.message && React.isValidElement(result.message)) {
+      return result.message
     }
 
     // Add leaflet plugin: canvas markers(window.L.canvasIconLayer)

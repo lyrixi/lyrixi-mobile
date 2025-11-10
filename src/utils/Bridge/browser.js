@@ -79,6 +79,7 @@ let Bridge = {
       })
       if (params.onError)
         params.onError({
+          status: 'error',
           message: `scanQRCode:${LocaleUtil.locale(
             '扫码失败',
             'lyrixi_scanCode_failed'
@@ -87,7 +88,8 @@ let Bridge = {
       return
     }
     setTimeout(function () {
-      if (params.onSuccess) params.onSuccess({ resultStr: '504823170310092750280333' })
+      if (params.onSuccess)
+        params.onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
     }, 500)
   },
   // 视频文件上传

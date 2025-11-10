@@ -46,7 +46,8 @@ let Bridge = {
       console.log('模拟浏览器定位...', params)
       setTimeout(() => {
         let res = {
-          message: 'getLocation:ok',
+          status: 'success',
+          message: '',
           speed: '0.0',
           accuracy: '3.0.0',
           type: params.type || 'wgs84'
@@ -73,7 +74,8 @@ let Bridge = {
           if (!longitude || !latitude) {
             if (params.onError)
               params.onError({
-                status: 'LATLNG_ERROR',
+                status: 'error',
+                code: 'LATLNG_ERROR',
                 message: `${LocaleUtil.locale('定位失败', 'lyrixi_location_failed')}`
               })
           }
@@ -85,7 +87,8 @@ let Bridge = {
             latitude = points[1]
           }
           let res = {
-            message: 'getLocation:ok',
+            status: 'success',
+            message: '',
             speed: position.coords.speed,
             accuracy: position.coords.accuracy,
             longitude: longitude,
@@ -95,18 +98,18 @@ let Bridge = {
           if (params.onSuccess) params.onSuccess(res)
         },
         (error) => {
-          let status = ''
+          let code = ''
           let message = ''
           switch (error.code) {
             case error.PERMISSION_DENIED:
-              status = 'PERMISSION_DENIED'
+              code = 'PERMISSION_DENIED'
               message = `${LocaleUtil.locale(
                 '定位失败,用户拒绝请求地理定位',
                 'lyrixi_location_permission_denied_error'
               )}`
               break
             case error.POSITION_UNAVAILABLE:
-              status = 'POSITION_UNAVAILABLE'
+              code = 'POSITION_UNAVAILABLE'
               console.log(
                 `${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
@@ -119,7 +122,7 @@ let Bridge = {
               )}`
               break
             case error.TIMEOUT:
-              status = 'TIMEOUT'
+              code = 'TIMEOUT'
               console.log(
                 `${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
@@ -132,7 +135,7 @@ let Bridge = {
               )}`
               break
             case error.UNKNOWN_ERROR:
-              status = 'UNKNOWN_ERROR'
+              code = 'UNKNOWN_ERROR'
               console.log(
                 `${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
@@ -145,11 +148,11 @@ let Bridge = {
               )}`
               break
             default:
-              status = 'LOCATION_ERROR'
+              code = 'LOCATION_ERROR'
               console.log(`${LocaleUtil.locale('定位失败', 'lyrixi_location_failed')}`)
               message = `${LocaleUtil.locale('定位失败', 'lyrixi_location_failed')}`
           }
-          let res = { status: status, message: message }
+          let res = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
           if (params.onError) params.onError(res)
         },
@@ -162,6 +165,8 @@ let Bridge = {
     } else {
       console.log(`${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi_location_not_supported')}`)
       let res = {
+        status: 'error',
+        code: 'LOCATION_NOT_SUPPORTED_ERROR',
         message: `${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi_location_not_supported')}`
       }
       if (params.onError) params.onError(res)
@@ -203,7 +208,7 @@ let Bridge = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ message: message })
+    params?.onError && params.onError({ status: 'error', message: message })
   },
   chooseImage: function (params) {
     let message = LocaleUtil.locale(
@@ -215,7 +220,7 @@ let Bridge = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ message: message })
+    params?.onError && params.onError({ status: 'error', message: message })
   },
   uploadImage: function (params) {
     let message = LocaleUtil.locale(
@@ -226,7 +231,7 @@ let Bridge = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ message: message })
+    params?.onError && params.onError({ status: 'error', message: message })
   },
   previewImage: function (params = {}) {
     let message = LocaleUtil.locale(
@@ -237,7 +242,7 @@ let Bridge = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ message: message })
+    params?.onError && params.onError({ status: 'error', message: message })
   },
   previewFile: function (params = {}) {
     let message = LocaleUtil.locale(
@@ -249,7 +254,7 @@ let Bridge = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ message: message })
+    params?.onError && params.onError({ status: 'error', message: message })
   }
 }
 export default Bridge

@@ -15,29 +15,26 @@ async function loadSource(
   }
 ) {
   // Load leaflet js and css
-  let isOk = await loadLeaflet(options?.leaflet)
-  if (typeof isOk === 'string') {
-    return {
-      errCode: 'LEAFLET_LOAD_ERROR',
-      errMsg: isOk
-    }
+  let result = await loadLeaflet(options?.leaflet)
+  if (result.status === 'error') {
+    return result
   }
 
   // Load google js
   if (options.type === 'google') {
-    isOk = await loadGoogle(options?.key)
-    return isOk
+    result = await loadGoogle(options?.key)
+    return result
   }
 
   // Load bmap js
   if (options.type === 'bmap') {
-    isOk = await loadBaidu(options?.key)
-    return isOk
+    result = await loadBaidu(options?.key)
+    return result
   }
 
   // Load open street
-  await loadOpenstreet()
-  return true
+  result = await loadOpenstreet()
+  return result
 }
 
 export default loadSource

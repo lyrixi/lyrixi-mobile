@@ -5,17 +5,27 @@ function loadImage(src, { onError, onSuccess } = {}) {
     img.src = src
 
     const handleLoad = () => {
-      resolve(true)
+      let result = {
+        status: 'success',
+        img: img,
+        message: ''
+      }
+      resolve(result)
       // 支持新的 onSuccess
-      if (typeof onSuccess === 'function') onSuccess(img)
+      onSuccess && onSuccess(result)
 
       img.removeEventListener('load', handleLoad)
       img.removeEventListener('error', handleError)
     }
     const handleError = (error) => {
-      resolve(false)
+      let result = {
+        status: 'error',
+        img: img,
+        message: 'Load image failed'
+      }
+      resolve(result)
       // 支持新的 onError
-      if (typeof onError === 'function') onError(error)
+      onError && onError(result)
 
       img.removeEventListener('load', handleLoad)
       img.removeEventListener('error', handleError)

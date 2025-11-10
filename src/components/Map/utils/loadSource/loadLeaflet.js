@@ -10,7 +10,10 @@ import { AssetUtil } from 'lyrixi-mobile'
 function loadLeaflet({ css, js } = {}) {
   return new Promise((resolve) => {
     if (window.L) {
-      resolve(window.L)
+      resolve({
+        status: 'success',
+        data: window.L
+      })
       return
     }
 
@@ -43,11 +46,14 @@ function loadLeaflet({ css, js } = {}) {
         id: 'leaflet-js',
         // integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
         // crossorigin: '',
-        onSuccess: () => {
-          resolve(window.L)
+        onSuccess: (result) => {
+          resolve({
+            ...result,
+            data: window.L
+          })
         },
-        onError: () => {
-          resolve(`leaflet加载失败`)
+        onError: (result) => {
+          resolve(result)
         }
       }
     )

@@ -3,21 +3,12 @@ import loadGoogleTileLayer from './loadGoogleTileLayer'
 
 // 加载BMap地图资源
 async function loadGoogle(key) {
-  let isOk = await loadGoogleMap(key)
-  if (typeof isOk === 'string') {
-    return {
-      errCode: 'GOOGLE_LOAD_ERROR',
-      errMsg: isOk
-    }
+  let result = await loadGoogleMap(key)
+  if (result.status === 'error') {
+    return result
   }
-  isOk = await loadGoogleTileLayer()
-  if (typeof isOk === 'string') {
-    return {
-      errCode: 'GOOGLE_MUTANT_LOAD_ERROR',
-      errMsg: isOk
-    }
-  }
-  return true
+  await loadGoogleTileLayer()
+  return result
 }
 
 export default loadGoogle

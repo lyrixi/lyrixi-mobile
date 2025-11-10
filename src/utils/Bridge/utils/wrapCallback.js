@@ -39,8 +39,7 @@ export function wrapCallback(params = {}) {
 
         onError({
           status: 'error',
-          message: message,
-          originalError: err
+          message: message
         })
       }
     },
@@ -85,8 +84,7 @@ export function wrapDingTalkCallback(params = {}) {
 
         onError({
           status: 'error',
-          message: message,
-          originalError: err
+          message: message
         })
       }
     },

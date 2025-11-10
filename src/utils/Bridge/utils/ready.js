@@ -116,6 +116,7 @@ function ready(callback, options = {}, platform) {
     if (options.onError) {
       script.onerror = function () {
         options.onError({
+          status: 'error',
           message: LocaleUtil.locale('微信js加载失败', 'lyrixi_weChat_js_load_failed')
         })
       }

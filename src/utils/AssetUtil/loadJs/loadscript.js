@@ -1,68 +1,73 @@
 // https://github.com/eldargab/load-script
-module.exports = function load(src, opts, cb) {
+module.exports = function load(src, { type, async, text, attrs, onError, onSuccess } = {}) {
   let head = document.head || document.getElementsByTagName('head')[0]
   let script = document.createElement('script')
 
-  if (typeof opts === 'function') {
-    // eslint-disable-next-line
-    cb = opts
-    // eslint-disable-next-line
-    opts = {}
-  }
-
-  // eslint-disable-next-line
-  opts = opts || {}
-  // eslint-disable-next-line
-  cb = cb || function () {}
-
-  script.type = opts.type || 'text/javascript'
-  script.async = 'async' in opts ? !!opts.async : true
+  script.type = type || 'text/javascript'
+  script.async = async
   script.src = src
 
-  if (opts.attrs) {
-    setAttributes(script, opts.attrs)
+  if (attrs) {
+    setAttributes(script, attrs)
   }
 
-  if (opts.text) {
-    script.text = '' + opts.text
+  if (text) {
+    script.text = '' + text
   }
 
   let onend = 'onload' in script ? stdOnEnd : ieOnEnd
-  onend(script, cb)
+  onend(script, { onError, onSuccess })
 
   // some good legacy browsers (firefox) fail the 'in' detection above
   // so as a fallback we always set onload
   // old IE will ignore this and new IE will set onload
   if (!script.onload) {
-    stdOnEnd(script, cb)
+    stdOnEnd(script, { onError, onSuccess })
   }
 
   head.appendChild(script)
 }
 
 function setAttributes(script, attrs) {
+  // eslint-disable-next-line
   for (let attr in attrs) {
     script.setAttribute(attr, attrs[attr])
   }
 }
 
-function stdOnEnd(script, cb) {
+function stdOnEnd(script, { onError, onSuccess } = {}) {
   script.onload = function () {
     this.onerror = this.onload = null
-    cb(null, script)
+    onSuccess &&
+      onSuccess({
+        status: 'success',
+        script: script,
+        message: ''
+      })
   }
   script.onerror = function () {
     // this.onload = null here is necessary
     // because even IE9 works not like others
     this.onerror = this.onload = null
-    cb(new Error('Failed to load ' + this.src), script)
+    onError &&
+      onError({
+        status: 'error',
+        script: script,
+        message: 'Failed to load ' + this.src
+      })
   }
 }
 
-function ieOnEnd(script, cb) {
+// there is no way to catch loading errors in IE8
+function ieOnEnd(script, { onError, onSuccess } = {}) {
   script.onreadystatechange = function () {
     if (this.readyState !== 'complete' && this.readyState !== 'loaded') return
     this.onreadystatechange = null
-    cb(null, script) // there is no way to catch loading errors in IE8
+    onSuccess &&
+      onSuccess({
+        status: 'success',
+        script: script,
+        message: ''
+      })
   }
 }

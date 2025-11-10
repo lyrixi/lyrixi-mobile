@@ -119,17 +119,14 @@ let Bridge = {
           latitude = points[1]
 
           let result = {
-            errMsg: 'getLocation:ok',
+            status: 'success',
             type: targetType,
             latitude: latitude,
             longitude: longitude,
             accuracy: res.accuracy
           }
           console.log('转换后坐标', result)
-          onSuccess({
-            status: 'success',
-            ...result
-          })
+          onSuccess(result)
         }
       : undefined
 

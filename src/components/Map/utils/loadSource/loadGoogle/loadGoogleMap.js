@@ -7,7 +7,7 @@ import { AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 加载google地图资源
-function loadGoogle(key) {
+function loadGoogleMap(key) {
   return new Promise((resolve) => {
     if (window.google) {
       resolve(window.google)
@@ -15,22 +15,29 @@ function loadGoogle(key) {
     }
 
     // Delete old script
-    const scriptTag = document.getElementById('google-map-js')
+    const scriptTag = document.getElementById('lyrixi-google-map-js')
     if (scriptTag) {
       scriptTag.parentNode.removeChild(scriptTag)
     }
 
     // Load js
     AssetUtil.loadJs(`https://maps.googleapis.com/maps/api/js?key=${key}`, {
-      id: 'google-map-js',
-      onSuccess: () => {
-        resolve(window.google)
+      id: 'lyrixi-google-map-js',
+      onSuccess: (result) => {
+        resolve({
+          ...result,
+          data: window.google
+        })
       },
-      onError: () => {
-        resolve(`google地图加载失败`)
+      onError: (result) => {
+        resolve({
+          ...result,
+          code: 'GOOGLE_MAP_LOAD_ERROR',
+          message: 'google地图加载失败'
+        })
       }
     })
   })
 }
 
-export default loadGoogle
+export default loadGoogleMap
