@@ -14,6 +14,7 @@ import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 const Selector = forwardRef(
   (
     {
+      id,
       multiple,
       // 列数
       columns = 2,
@@ -28,8 +29,7 @@ const Selector = forwardRef(
       // 样式
       style,
       className,
-      disabled,
-      ...props
+      disabled
     },
     ref
   ) => {
@@ -117,7 +117,7 @@ const Selector = forwardRef(
 
     return (
       <div
-        {...props}
+        id={id}
         className={DOMUtil.classNames('lyrixi-selector', className)}
         style={Object.assign({ '--columns': columns }, style)}
         ref={rootRef}

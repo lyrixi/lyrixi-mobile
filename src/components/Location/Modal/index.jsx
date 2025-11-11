@@ -19,20 +19,24 @@ const LocationModal = forwardRef(
       // Modal
       open,
       onClose,
-      onOpen,
       value,
       allowClear,
       multiple,
       onChange,
 
+      maskClosable,
+      safeArea,
+      portal,
+
       modalClassName,
       modalStyle,
+
+      cancel,
 
       // Main
       config,
       getLocation,
-      getAddress,
-      ...props
+      getAddress
     },
     ref
   ) => {
@@ -76,19 +80,27 @@ const LocationModal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
+        // Status
+        open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-map-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
         title={
           open === 'choose'
             ? LocaleUtil.locale('选择地址', 'lyrixi_choose_address')
             : LocaleUtil.locale('查看地址', 'lyrixi_view_address')
         }
-        {...props}
         ok={open === 'choose' ? '' : null}
-        open={open}
+        cancel={cancel}
+        // Events
         onClose={onClose}
-        onOpen={onOpen}
         onOk={handleOk}
-        modalClassName={DOMUtil.classNames('lyrixi-map-modal', modalClassName)}
-        modalStyle={modalStyle}
       >
         <Main
           ref={mainRef}

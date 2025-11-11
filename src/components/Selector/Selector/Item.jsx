@@ -1,8 +1,16 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // 按钮选择
 const Item = forwardRef(
-  ({ disabled = false, checked = false, onChange, children, ...props }, ref) => {
+  ({ disabled = false, checked = false, onChange, children, style, className }, ref) => {
     // 节点
     const rootRef = useRef(null)
     const inputRef = useRef(null)
@@ -27,11 +35,11 @@ const Item = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
+        className={DOMUtil.classNames('lyrixi-selector-item', className)}
         onClick={handleClick}
         disabled={disabled}
         data-checked={checked}
-        className="lyrixi-selector-item"
         ref={rootRef}
       >
         <div className="lyrixi-selector-item-name">{children}</div>

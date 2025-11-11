@@ -18,33 +18,44 @@ const NavBarModal = Modal.NavBarModal
 const Modal = forwardRef(
   (
     {
-      // Modal
-      portal,
+      // Value & Display Value
       value,
+      list,
       allowClear,
       multiple,
-      onChange,
-      open,
-      onClose,
-      onOpen,
+
+      // Elements
       headerRender,
-
-      // Main
-      list,
-
-      // List config
       itemRender,
-      layout,
-      checkable,
       checkboxRender,
 
-      modalClassName,
-      modalStyle,
+      // Style
+      layout,
+      checkable,
 
-      ...props
+      // Moda: Status
+      open,
+      maskClosable,
+
+      // Moda: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Moda: Element
+      portal,
+      title,
+      cancel,
+
+      // Events
+      onClose,
+      onChange
     },
     ref
   ) => {
+    const searchVisibleRef = useRef(false)
     // 没有设置headerRender的情况下, 大于15项显示搜索
     const [keyword, setKeyword] = useState('')
     const [currentValue, setCurrentValue] = useState(value)
@@ -65,22 +76,30 @@ const Modal = forwardRef(
       }
     }, [open, value])
 
-    let searchHeaderRender =
-      Array.isArray(list) && list.length > 15
-        ? () => {
-            return (
-              <ToolBar invert>
-                <ToolBar.Search
-                  value={keyword}
-                  onSearch={(newKeyword) => {
-                    setKeyword(newKeyword)
-                  }}
-                />
-              </ToolBar>
-            )
-          }
-        : null
-    let searchHeaderVisible = headerRender !== undefined ? false : searchHeaderRender
+    function getHeaderNode() {
+      searchVisibleRef.current = false
+      if (typeof headerRender === 'function') {
+        return headerRender({
+          open: open,
+          value: value,
+          list: list
+        })
+      }
+      if (Array.isArray(list) && list.length > 15) {
+        searchVisibleRef.current = true
+        return (
+          <ToolBar invert>
+            <ToolBar.Search
+              value={keyword}
+              onSearch={(newKeyword) => {
+                setKeyword(newKeyword)
+              }}
+            />
+          </ToolBar>
+        )
+      }
+      return null
+    }
 
     async function handleOk() {
       if (onChange) {
@@ -104,17 +123,25 @@ const Modal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
-        {...props}
+        // Status
         open={open}
-        onClose={onClose}
-        onOpen={onOpen}
-        onOk={handleOk}
-        ok={multiple !== false}
-        portal={portal}
-        modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
         modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        ok={multiple !== false}
+        cancel={cancel}
+        // Events
+        onOk={handleOk}
+        onClose={onClose}
       >
-        {searchHeaderVisible && searchHeaderVisible()}
+        {getHeaderNode()}
         <Main
           ref={mainRef}
           open={open}
@@ -122,7 +149,7 @@ const Modal = forwardRef(
           allowClear={allowClear}
           multiple={multiple}
           onChange={handleChange}
-          list={searchHeaderVisible ? List.searchList(list, keyword) : list}
+          list={searchVisibleRef.current ? List.searchList(list, keyword) : list}
           itemRender={itemRender}
           layout={layout}
           checkable={checkable}

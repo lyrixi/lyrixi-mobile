@@ -41,7 +41,6 @@ const Modal = forwardRef(
 
       // Events
       onClose,
-      onOpen,
       onChange
     },
     ref
@@ -95,7 +94,6 @@ const Modal = forwardRef(
         cancel={cancel}
         // Events
         onClose={onClose}
-        onOpen={onOpen}
         onOk={handleOk}
       >
         <Main
