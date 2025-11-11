@@ -17,34 +17,43 @@ import { Page } from 'lyrixi-mobile'
 // 列表
 const VirtualList = (
   {
+    // value & display value
+    list,
     virtual,
 
-    // Request
+    // Page: Status
+    threshold = 50,
+    safeArea,
+    touchStopPropagation = true,
+
+    // Page: Style
+    className,
+    style,
+
+    // Page: Element
+    children,
+
+    // Page: Events
     onTopRefresh,
     onBottomRefresh,
-
-    // Main: common
-    allowClear,
-    multiple,
-    value,
-    onChange,
     onScroll,
 
-    // List config
+    // List: Value & Display Value
+    value,
+
+    // List: Status
+    allowClear,
+    multiple,
+
+    // List: Element
+    prepend,
+    append,
     itemRender,
     itemLayout,
     checkable,
 
-    // Render
-    prepend,
-    list,
-    append,
-
-    children,
-
-    // 其它属性
-    className,
-    ...props
+    // List: Events
+    onChange
   },
   ref
 ) => {
@@ -147,36 +156,44 @@ const VirtualList = (
 
   return (
     <Page.Main
-      {...props}
       ref={rootRef}
+      // Page: Status
+      threshold={threshold}
+      safeArea={safeArea}
+      touchStopPropagation={touchStopPropagation}
+      // Page: Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-list-main', className)}
+      // Page: Events
       onTopRefresh={onTopRefresh}
       onBottomRefresh={onBottomRefresh}
       onScroll={handleScroll}
     >
-      {/* 头部 */}
+      {/* Element: Prepend */}
       {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
 
-      {/* 列表 */}
+      {/* Element: List */}
       <List
         ref={listRef}
-        allowClear={allowClear}
-        multiple={multiple}
+        // List: Value & Display Value
         value={value}
         list={visibleItems}
-        onChange={onChange}
-        // List config
+        // List: Status
+        allowClear={allowClear}
+        multiple={multiple}
+        // List: Element
         itemRender={itemRender}
         itemLayout={itemLayout}
         checkable={checkable}
-        // virtual config
         height={totalHeight}
+        // List: Events
+        onChange={onChange}
       />
 
-      {/* 底部 */}
+      {/* Element: Append */}
       {typeof append === 'function' ? append({ list, value, onChange }) : null}
 
-      {/* 其它公共的提示信息 */}
+      {/* Page: Element: Children */}
       {children}
     </Page.Main>
   )
