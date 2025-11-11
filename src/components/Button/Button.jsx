@@ -101,9 +101,9 @@ const Button = forwardRef(
         {children && <div className="lyrixi-button-text">{children}</div>}
 
         {/* Element: Icon Right */}
-        {icon && iconPosition === 'right' && (
+        {iconClassName && iconPosition === 'right' && (
           <Icon
-            icon={icon}
+            iconClassName={iconClassName}
             className="lyrixi-button-icon"
             // Style
             color={iconColor}

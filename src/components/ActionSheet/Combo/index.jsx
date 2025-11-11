@@ -31,8 +31,8 @@ const ActionSheetCombo = (
     // Combo: Element
     comboRender,
     comboChildren,
-    leftIcon,
-    rightIcon,
+    leftIconNode,
+    rightIconNode,
     clearRender,
 
     // Modal
@@ -133,8 +133,8 @@ const ActionSheetCombo = (
         style={style}
         className={className}
         // Combo: Element
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
+        leftIconNode={leftIconNode}
+        rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Events
         onChange={onChange}

@@ -37,8 +37,8 @@ const Combo = forwardRef(
       className,
 
       // Element
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender: customClearRender,
 
       // Events
@@ -123,8 +123,8 @@ const Combo = forwardRef(
           style={style}
           className={className}
           // Element
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
           onAdd={handleInputClick}
@@ -148,8 +148,8 @@ const Combo = forwardRef(
         style={style}
         className={className}
         // Element
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
+        leftIconNode={leftIconNode}
+        rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Events
         onClick={handleInputClick}

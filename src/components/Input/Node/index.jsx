@@ -32,8 +32,8 @@ const InputNode = (
     className,
 
     // Element
-    leftIcon,
-    rightIcon,
+    leftIconNode,
+    rightIconNode,
     clearRender,
 
     // Validate
@@ -181,7 +181,7 @@ const InputNode = (
       }}
     >
       {/* Element: Left Icon */}
-      {leftIcon}
+      {leftIconNode}
 
       {/* Element: Main */}
       <div
@@ -221,7 +221,7 @@ const InputNode = (
           })}
 
       {/* Element: Right Icon */}
-      {rightIcon}
+      {rightIconNode}
     </div>
   )
 }

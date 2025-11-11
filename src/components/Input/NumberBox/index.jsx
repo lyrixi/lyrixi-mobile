@@ -40,8 +40,8 @@ const NumberBox = forwardRef(
 
       // Element
 
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender,
       children,
 
@@ -171,8 +171,8 @@ const NumberBox = forwardRef(
           // Element
           type="number"
           className="lyrixi-numberbox-input"
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Value & Display Value
           value={value}

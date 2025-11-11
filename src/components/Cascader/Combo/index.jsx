@@ -30,8 +30,8 @@ const CascaderCombo = forwardRef(
       style,
       className,
       // Combo: Element
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender,
 
       // Modal
@@ -102,8 +102,8 @@ const CascaderCombo = forwardRef(
           style={style}
           className={className}
           // Combo: Element
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
           onChange={onChange}

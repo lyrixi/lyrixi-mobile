@@ -34,8 +34,8 @@ const SearchBar = (
 
     // Element
     inputRender,
-    leftIcon,
-    rightIcon,
+    leftIconNode,
+    rightIconNode,
     clearRender,
 
     // Validate
@@ -87,8 +87,8 @@ const SearchBar = (
         className={DOMUtil.classNames('lyrixi-active', className)}
         // Element
         inputRender={inputRender}
-        leftIcon={leftIcon || <i className="lyrixi-toolbar-search-input-left-icon" />}
-        rightIcon={rightIcon}
+        leftIconNode={leftIconNode || <i className="lyrixi-toolbar-search-input-left-icon" />}
+        rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Validate
         precision={precision}

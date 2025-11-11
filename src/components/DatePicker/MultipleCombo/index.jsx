@@ -31,8 +31,8 @@ const MultipleCombo = forwardRef(
       style,
       className,
       // Combo: Element
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender,
 
       // Modal
@@ -97,11 +97,11 @@ const MultipleCombo = forwardRef(
           formatter={
             formatter ||
             (() => {
-            return getDisplayValue({
-              type: type,
-              value: value,
-              separator: separator
-            })
+              return getDisplayValue({
+                type: type,
+                value: value,
+                separator: separator
+              })
             })
           }
           autoSize={autoSize}
@@ -116,8 +116,8 @@ const MultipleCombo = forwardRef(
           style={style}
           className={className}
           // Combo: Element
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
           onChange={onChange}

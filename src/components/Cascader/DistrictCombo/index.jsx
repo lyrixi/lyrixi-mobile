@@ -28,8 +28,8 @@ const DistrictCombo = forwardRef(
       portal,
       style,
       className,
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -158,8 +158,8 @@ const DistrictCombo = forwardRef(
           {...props}
           style={style}
           className={className}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           value={value}
           onChange={handleChange}
           multiple={multiple}

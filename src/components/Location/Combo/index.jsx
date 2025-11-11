@@ -386,7 +386,7 @@ const LocationCombo = forwardRef(
           }}
           value={value?.value || value?.address || ''}
           {...props}
-          rightIcon={<>{getRightIconNode()}</>}
+          rightIconNode={<>{getRightIconNode()}</>}
           className={DOMUtil.classNames(
             'lyrixi-location-combo-success',
             'lyrixi-location-combo',

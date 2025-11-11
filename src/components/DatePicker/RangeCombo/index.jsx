@@ -34,8 +34,8 @@ const RangeCombo = forwardRef(
       style,
       className,
       // Combo: Element
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender,
 
       // Modal
@@ -118,13 +118,13 @@ const RangeCombo = forwardRef(
           formatter={
             formatter ||
             (() => {
-            return getDisplayValue({
-              value: formatValue(value),
-              type: format || type,
-              rangeId: rangeIdRef.current,
-              ranges,
-              separator
-            })
+              return getDisplayValue({
+                value: formatValue(value),
+                type: format || type,
+                rangeId: rangeIdRef.current,
+                ranges,
+                separator
+              })
             })
           }
           autoSize={autoSize}
@@ -139,8 +139,8 @@ const RangeCombo = forwardRef(
           style={style}
           className={DOMUtil.classNames('lyrixi-datepicker-rangecombo', className)}
           // Combo: Element
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
           onChange={handleChange}

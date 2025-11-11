@@ -33,8 +33,8 @@ const Search = (
 
     // Element
     inputRender,
-    leftIcon,
-    rightIcon,
+    leftIconNode,
+    rightIconNode,
     clearRender,
 
     // Validate
@@ -78,8 +78,8 @@ const Search = (
       className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}
       // Element
       inputRender={inputRender}
-      leftIcon={<i className="lyrixi-toolbar-search-input-left-icon" />}
-      rightIcon={rightIcon}
+      leftIconNode={<i className="lyrixi-toolbar-search-input-left-icon" />}
+      rightIconNode={rightIconNode}
       clearRender={clearRender}
       // Validate
       precision={precision}

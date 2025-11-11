@@ -25,7 +25,7 @@ const IconLeftArrow = forwardRef(
       className,
 
       // Element ClassName
-      icon
+      iconClassName
     },
     ref
   ) => {
@@ -43,7 +43,7 @@ const IconLeftArrow = forwardRef(
         style={style}
         className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-left-icon', className)}
         // Element ClassName
-        icon={icon || 'lyrixi-input-icon-left-arrow'}
+        iconClassName={iconClassName || 'lyrixi-input-icon-left-arrow'}
       />
     )
   }

@@ -25,8 +25,8 @@ const AutoSize = forwardRef(
 
       // Element
       inputRender,
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender,
 
       // Validate
@@ -74,8 +74,8 @@ const AutoSize = forwardRef(
         className={className}
         // Element
         inputRender={inputRender}
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
+        leftIconNode={leftIconNode}
+        rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Validate
         precision={precision}

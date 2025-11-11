@@ -39,8 +39,8 @@ const NumberKeyboard = forwardRef(
       className,
 
       // Input: Element
-      leftIcon,
-      rightIcon,
+      leftIconNode,
+      rightIconNode,
       clearRender,
 
       // Input: Validate
@@ -113,8 +113,8 @@ const NumberKeyboard = forwardRef(
           style={style}
           className={DOMUtil.classNames('lyrixi-input-numberkeyboard', className)}
           // Input: Element
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Input: Validate
           precision={precision}

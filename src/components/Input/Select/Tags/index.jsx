@@ -7,8 +7,8 @@ const Tags = ({
   // 分隔符
   separator,
   // 左右图标
-  leftIcon,
-  rightIcon,
+  leftIconNode,
+  rightIconNode,
   clearRender,
   className,
   style,
@@ -23,8 +23,8 @@ const Tags = ({
 }) => {
   return (
     <InputNode
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
+      leftIconNode={leftIconNode}
+      rightIconNode={rightIconNode}
       className={className}
       disabled={disabled}
       readOnly={readOnly}

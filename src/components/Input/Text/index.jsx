@@ -41,8 +41,8 @@ const InputText = (
 
     // Element
     inputRender,
-    leftIcon,
-    rightIcon,
+    leftIconNode,
+    rightIconNode,
     clearRender,
 
     // Validate
@@ -386,7 +386,7 @@ const InputText = (
       onClick={onClick}
     >
       {/* Left */}
-      {leftIcon}
+      {leftIconNode}
 
       <div
         className={DOMUtil.classNames(
@@ -427,7 +427,7 @@ const InputText = (
           })}
 
       {/* Right */}
-      {rightIcon}
+      {rightIconNode}
     </div>
   )
 }

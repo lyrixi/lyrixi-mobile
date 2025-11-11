@@ -15,7 +15,7 @@ export default () => {
         readOnly
         placeholder="Input"
         value="www.baidu.com/"
-        rightIcon={<div>click left area will copy link</div>}
+        rightIconNode={<div>click left area will copy link</div>}
       />
     </>
   )
