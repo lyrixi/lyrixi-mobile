@@ -9,20 +9,26 @@ import DOMUtil from './../../../utils/DOMUtil'
 const CheckboxGroup = forwardRef(
   (
     {
-      className,
-      iconRender,
-      iconPosition = 'left',
-
-      allowClear,
-      multiple,
+      // Value & Display Value
       value,
       list,
 
-      readOnly,
+      // Status
       disabled,
+      readOnly,
+      allowClear,
+      multiple,
 
-      onChange,
-      style
+      // Style
+      className,
+      style,
+
+      // Element
+      iconRender,
+      iconPosition = 'left',
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -39,21 +45,27 @@ const CheckboxGroup = forwardRef(
 
     return (
       <div
-        style={style}
+        ref={rootRef}
+        // Status
         disabled={disabled}
         readOnly={readOnly}
+        // Style
+        style={style}
         className={DOMUtil.classNames('lyrixi-checkbox-group', className)}
-        ref={rootRef}
       >
+        {/* Element: Checkboxes */}
         {Array.isArray(list) && list.length
           ? list.map((item) => {
               if (!item?.id) return null
               return (
                 <Checkbox
                   key={item.id}
+                  // Value & Display Value
+                  checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
+                  // Element
                   iconRender={iconRender}
                   iconPosition={iconPosition}
-                  checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
+                  // Events
                   onChange={(checked) => {
                     let newValue = null
                     // 多选
