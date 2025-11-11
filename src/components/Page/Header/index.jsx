@@ -2,16 +2,21 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import SafeArea from './../../SafeArea'
 // 内库使用-end
 
 const Header = forwardRef(
   (
     {
+      // Status
       safeArea,
-      children,
-      // 其它属性
+
+      // Style
       className,
-      style
+      style,
+
+      // Elements
+      children
     },
     ref
   ) => {
@@ -27,11 +32,16 @@ const Header = forwardRef(
 
     return (
       <header
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-page-header', className)}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
+
+        {/* Element: SafeArea */}
+        {safeArea === true && <SafeArea />}
       </header>
     )
   }

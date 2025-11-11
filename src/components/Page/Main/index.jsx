@@ -17,16 +17,22 @@ import { DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 const Main = forwardRef(
   (
     {
-      safeArea,
+      // Status
       threshold = 50,
+      safeArea,
       touchStopPropagation = true,
+
+      // Style
+      className,
+      style,
+
+      // Element
+      children,
+
+      // Events
       onTopRefresh,
       onBottomRefresh,
-      onScroll,
-      children,
-      // 其它属性
-      className,
-      style
+      onScroll
     },
     ref
   ) => {
@@ -137,21 +143,23 @@ const Main = forwardRef(
 
     return (
       <main
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-page-main', className)}
-        ref={rootRef}
+        // Events
         onTouchStart={onTopRefresh ? handleTouchStart : undefined}
         onTouchMove={onTopRefresh ? handleTouchMove : undefined}
         onTouchEnd={onTopRefresh ? handleTouchEnd : undefined}
-        // onClick={(e) => {
-        //   e.stopPropagation()
-        // }}
         onScroll={onScroll || onBottomRefresh ? handleScroll : undefined}
       >
-        {/* 头部刷新 */}
+        {/* Element: Top Container */}
         <TopContainer ref={topContainerRef} />
-        {/* 内容 */}
+
+        {/* Element: Children */}
         {children}
+
+        {/* Element: SafeArea */}
         {safeArea === true && <SafeArea />}
       </main>
     )

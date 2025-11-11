@@ -12,11 +12,15 @@ import { DOMUtil,SafeArea } from 'lyrixi-mobile'
 const Aside = forwardRef(
   (
     {
+      // Status
       safeArea,
-      children,
-      // 其它属性
+
+      // Style
       className,
-      style
+      style,
+
+      // Elements
+      children
     },
     ref
   ) => {
@@ -32,11 +36,15 @@ const Aside = forwardRef(
 
     return (
       <aside
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-page-aside', className)}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
+
+        {/* Element: SafeArea */}
         {safeArea === true && <SafeArea />}
       </aside>
     )
