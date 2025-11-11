@@ -16,27 +16,32 @@ const NavBarModal = Modal.NavBarModal
 const LocationModal = forwardRef(
   (
     {
-      // Modal
-      open,
-      onClose,
+      // Value & Display Value
       value,
-      allowClear,
-      multiple,
-      onChange,
 
+      // Status
+      open,
       maskClosable,
       safeArea,
-      portal,
+      allowClear,
+      multiple,
 
+      // Style
       modalClassName,
       modalStyle,
+      maskStyle,
+      maskClassName,
 
+      // Element
+      portal,
       cancel,
-
-      // Main
       config,
       getLocation,
-      getAddress
+      getAddress,
+
+      // Events
+      onChange,
+      onClose
     },
     ref
   ) => {
@@ -83,8 +88,8 @@ const LocationModal = forwardRef(
         // Status
         open={open}
         maskClosable={maskClosable}
-        // Style
         safeArea={safeArea}
+        // Style
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-map-modal', modalClassName)}
         maskStyle={maskStyle}
@@ -102,16 +107,21 @@ const LocationModal = forwardRef(
         onClose={onClose}
         onOk={handleOk}
       >
+        {/* Element: Main */}
         <Main
           ref={mainRef}
+          // Status
           open={open}
-          value={currentValue}
           allowClear={allowClear}
           multiple={multiple}
-          onChange={handleChange}
+          // Value & Display Value
+          value={currentValue}
+          // Element
           config={config}
           getLocation={getLocation}
           getAddress={getAddress}
+          // Events
+          onChange={handleChange}
         />
       </NavBarModal>
     )

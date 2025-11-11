@@ -15,19 +15,19 @@ import { DOMUtil } from 'lyrixi-mobile'
 let Main = forwardRef(
   (
     {
-      // Modal
-      open = true,
-
-      // Main
+      // Value & Display Value
       value,
-      allowClear,
-      onChange,
-
       list,
 
-      // 其它属性
+      // Status
+      open = true,
+      allowClear,
+
+      // Style
       className,
-      ...props
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -82,13 +82,22 @@ let Main = forwardRef(
     }
 
     return (
-      <div {...props} className={DOMUtil.classNames('lyrixi-picker-main', className)} ref={mainRef}>
+      <div
+        ref={mainRef}
+        // Style
+        className={DOMUtil.classNames('lyrixi-picker-main', className)}
+      >
+        {/* Element: Layer */}
         <div className="lyrixi-picker-layer">
           <div className="lyrixi-picker-layer-frame"></div>
         </div>
+        
+        {/* Element: Slots */}
         <Slots
           ref={slotsRef}
+          // Value & Display Value
           lists={lists}
+          // Events
           onDragEnd={({ rowIndex, slotIndex }) => {
             valueRef.current[slotIndex] = lists[slotIndex][rowIndex]
             onChange && onChange(valueRef.current)

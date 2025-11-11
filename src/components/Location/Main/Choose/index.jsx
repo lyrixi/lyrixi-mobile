@@ -14,17 +14,23 @@ const { APILoader, MapChoose } = Map
 const LocationChoose = forwardRef(
   (
     {
+      // Value & Display Value
+      value,
+
+      // Status
       readOnly,
-      config,
-      loading,
-      onSuccess,
-      onError,
       autoLocation,
+
+      // Element
+      config,
       getLocation,
       getAddress,
-      value,
+      loading,
+
+      // Events
       onChange,
-      ...props
+      onSuccess,
+      onError
     },
     ref
   ) => {
@@ -36,23 +42,29 @@ const LocationChoose = forwardRef(
 
     return (
       <APILoader
+        // Element
         config={{ ...window.APILoaderConfig, ...config }}
         loading={loading}
+        // Events
         onSuccess={onSuccess}
         onError={onError}
       >
+        {/* Element: Map Choose */}
         <MapChoose
           ref={mapRef}
+          // Value & Display Value
+          value={value}
+          // Status
           readOnly={readOnly}
           autoLocation={autoLocation}
+          // Element
           getLocation={getLocation}
           getAddress={getAddress}
-          value={value}
+          // Events
           onChange={(newValue) => {
             console.log('地址选点:', newValue)
             onChange && onChange(newValue)
           }}
-          {...props}
         />
       </APILoader>
     )

@@ -10,7 +10,24 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 // 按钮选择
 const Item = forwardRef(
-  ({ disabled = false, checked = false, onChange, children, style, className }, ref) => {
+  (
+    {
+      // Value & Display Value
+      children,
+
+      // Status
+      disabled = false,
+      checked = false,
+
+      // Style
+      className,
+      style,
+
+      // Events
+      onChange
+    },
+    ref
+  ) => {
     // 节点
     const rootRef = useRef(null)
     const inputRef = useRef(null)
@@ -35,15 +52,20 @@ const Item = forwardRef(
 
     return (
       <div
-        style={style}
-        className={DOMUtil.classNames('lyrixi-selector-item', className)}
-        onClick={handleClick}
+        ref={rootRef}
+        // Status
         disabled={disabled}
         data-checked={checked}
-        ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-selector-item', className)}
+        // Events
+        onClick={handleClick}
       >
+        {/* Element: Name */}
         <div className="lyrixi-selector-item-name">{children}</div>
 
+        {/* Element: Checked Mark */}
         <div className="lyrixi-selector-item-checked-mark">
           <i className="lyrixi-selector-item-checked-mark-icon"></i>
         </div>

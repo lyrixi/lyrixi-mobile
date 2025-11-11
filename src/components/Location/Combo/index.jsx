@@ -31,46 +31,39 @@ const {
 const LocationCombo = forwardRef(
   (
     {
-      // 坐标类型
-      type = 'gcj02',
-      autoSize,
-      // 地图加载修改
-      config,
-      // 获取定位和地址工具类
-      getAddress,
-      getLocation,
-      // 显示定位按钮
-      locationVisible = true,
-      // 自动定位
-      autoLocation = false,
-      // 显示选择按钮
-      chooseVisible = false,
-      // 显示预览按钮
-      previewVisible = false,
-      // 提示信息配置
+      // Value & Display Value
+      value, // {latitude: '纬度', longitude: '经度', value: '地址'}
       failText = LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi_location_failed'),
       loadingText = LocaleUtil.locale('定位中...', 'lyrixi_positioning'),
 
-      // 点击整行触发的动作: location | choose | preview
-      clickAction,
+      // Status
       disabled = false,
       editable = false,
-      value, // {latitude: '纬度', longitude: '经度', value: '地址'}
+      autoLocation = false,
+      locationVisible = true,
+      chooseVisible = false,
+      previewVisible = false,
+      clickAction, // 点击整行触发的动作: location | choose | preview
 
-      portal = document.getElementById('root') || document.body,
-      onOpen,
-      onClose,
-      onLocationStatusChange,
-      onChange,
-      onError,
-
-      // Modal
+      // Style
+      className,
       modalClassName,
       modalStyle,
 
-      // 其它属性
-      className,
-      ...props
+      // Element
+      type = 'gcj02', // 坐标类型
+      autoSize,
+      config, // 地图加载修改
+      getAddress, // 获取定位和地址工具类
+      getLocation, // 获取定位和地址工具类
+      portal = document.getElementById('root') || document.body,
+
+      // Events
+      onChange,
+      onOpen,
+      onClose,
+      onLocationStatusChange,
+      onError
     },
     ref
   ) => {
@@ -366,10 +359,32 @@ const LocationCombo = forwardRef(
 
     return (
       <Fragment>
+        {/* Element: Input Text */}
         <Input.Text
+          ref={comboRef}
+          // Element
           type={autoSize ? 'autoSize' : 'text'}
+          rightIconNode={<>{getRightIconNode()}</>}
+          inputRender={
+            statusNode
+              ? () => {
+                  return statusNode
+                }
+              : null
+          }
+          // Value & Display Value
+          value={value?.value || value?.address || ''}
+          // Status
           readOnly={!editable}
           disabled={disabled}
+          // Style
+          className={DOMUtil.classNames(
+            'lyrixi-location-combo-success',
+            'lyrixi-location-combo',
+            className,
+            locationStatus === '-1' ? 'lyrixi-positioning' : ''
+          )}
+          // Events
           onClick={handleClick}
           onChange={(address, event) => {
             if (event?.action === 'clickClear') {
@@ -384,31 +399,23 @@ const LocationCombo = forwardRef(
             newValue.address = address
             if (onChange) onChange(newValue)
           }}
-          value={value?.value || value?.address || ''}
-          {...props}
-          rightIconNode={<>{getRightIconNode()}</>}
-          className={DOMUtil.classNames(
-            'lyrixi-location-combo-success',
-            'lyrixi-location-combo',
-            className,
-            locationStatus === '-1' ? 'lyrixi-positioning' : ''
-          )}
-          inputRender={
-            statusNode
-              ? () => {
-                  return statusNode
-                }
-              : null
-          }
-          ref={comboRef}
         />
 
-        {/* 地图预览与选择 */}
+        {/* Element: Modal */}
         <Modal
+          // Status
+          open={modalOpen}
+          // Style
+          modalClassName={modalClassName}
+          modalStyle={modalStyle}
+          // Element
           config={config}
           portal={portal}
+          getAddress={getAddress}
+          getLocation={getLocation}
+          // Value & Display Value
           value={coordsToWgs84(value, type)}
-          open={modalOpen}
+          // Events
           onOpen={() => {}}
           onClose={() => setModalOpen('')}
           onChange={(_newValue) => {
@@ -424,10 +431,6 @@ const LocationCombo = forwardRef(
               onChange && onChange(null)
             }
           }}
-          getAddress={getAddress}
-          getLocation={getLocation}
-          className={modalClassName}
-          style={modalStyle}
         />
       </Fragment>
     )

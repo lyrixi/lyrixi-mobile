@@ -11,22 +11,26 @@ import Choose from './Choose'
 const Main = forwardRef(
   (
     {
-      // 显示类型: preview、choose
-      open,
+      // Value & Display Value
+      value, // {latitude: '纬度', longitude: '经度', value: '地址'}
+
+      // Status
+      open, // 显示类型: preview、choose
       allowClear,
-
-      config,
       autoLocation = true,
-      getLocation,
-      getAddress,
-      // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
-      value,
-      onChange,
 
-      id,
+      // Style
       className,
       style,
-      ...props
+
+      // Element
+      id,
+      config,
+      getLocation,
+      getAddress,
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -43,27 +47,42 @@ const Main = forwardRef(
 
     return (
       <div
+        ref={mainRef}
+        // Element
         id={id}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-map-main', className)}
-        ref={mainRef}
       >
+        {/* Element: Map Container */}
         <div className="lyrixi-map-main-map">
+          {/* Element: Preview */}
           {open === 'preview' && (
-            <Preview ref={mapRef} config={config} value={value} {...props} />
+            <Preview
+              ref={mapRef}
+              // Value & Display Value
+              value={value}
+              // Element
+              config={config}
+            />
           )}
+          
+          {/* Element: Choose */}
           {open === 'choose' && (
             <Choose
               ref={mapRef}
-              config={config}
+              // Value & Display Value
+              value={value}
+              // Status
               autoLocation={autoLocation}
+              // Element
+              config={config}
               getLocation={getLocation}
               getAddress={getAddress}
-              value={value}
+              // Events
               onChange={(newValue) => {
                 onChange && onChange(newValue)
               }}
-              {...props}
             />
           )}
         </div>

@@ -1,11 +1,25 @@
 import React from 'react'
 
 // 单项
-const Item = ({ onAdd, onDelete, sortable, children }) => {
+const Item = ({
+  // Value & Display Value
+  children,
+
+  // Status
+  sortable,
+
+  // Events
+  onAdd,
+  onDelete
+}) => {
   return (
     <div className="lyrixi-transfer-item">
-      {/* 操作 */}
-      <div className="lyrixi-transfer-item-operate" onClick={onAdd || onDelete}>
+      {/* Element: Operate */}
+      <div
+        className="lyrixi-transfer-item-operate"
+        // Events
+        onClick={onAdd || onDelete}
+      >
         {onAdd ? (
           <i className="lyrixi-transfer-item-operate-icon lyrixi-add" />
         ) : (
@@ -13,10 +27,10 @@ const Item = ({ onAdd, onDelete, sortable, children }) => {
         )}
       </div>
 
-      {/* 内容 */}
+      {/* Element: Content */}
       <div className="lyrixi-transfer-item-content">{children}</div>
 
-      {/* 拖拽 */}
+      {/* Element: Drop Handle */}
       {sortable && (
         <div className="lyrixi-transfer-item-drop">
           <i className="lyrixi-transfer-item-drop-icon" />

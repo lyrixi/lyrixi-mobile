@@ -15,23 +15,27 @@ import { Result, List } from 'lyrixi-mobile'
 const Main = forwardRef(
   (
     {
-      // Modal
-      open = true,
-
-      // Main
+      // Value & Display Value
       value,
-      multiple,
-      style,
-      className,
-      allowClear,
-      onChange,
-
-      // List
       list,
-      itemRender,
+
+      // Status
+      open = true,
+      allowClear,
+      multiple,
+
+      // Style
+      className,
+      style,
       layout,
       checkable,
-      checkboxRender
+
+      // Element
+      itemRender,
+      checkboxRender,
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -46,21 +50,28 @@ const Main = forwardRef(
 
     return (
       <div
+        ref={mainRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-select-main', className)}
-        ref={mainRef}
       >
+        {/* Element: Empty Result */}
         {_.isEmpty(list) && <Result className="lyrixi-select-main-result" status="empty" />}
 
-        {/* 列表 */}
+        {/* Element: List */}
         <List
-          allowClear={allowClear}
-          multiple={multiple}
+          // Value & Display Value
           value={value}
           list={list}
-          itemRender={itemRender}
-          onChange={onChange}
+          // Status
+          allowClear={allowClear}
+          multiple={multiple}
+          // Style
           checkable={checkable}
+          // Element
+          itemRender={itemRender}
+          // Events
+          onChange={onChange}
         />
       </div>
     )

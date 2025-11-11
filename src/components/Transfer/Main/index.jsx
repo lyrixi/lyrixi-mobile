@@ -10,20 +10,21 @@ import Item from './Item'
 // 穿梭框
 const Transfer = (
   {
-    // Modal
-    open,
-
-    // Main: common
+    // Value & Display Value
     value,
-    allowClear,
-    onChange,
-
     list,
     titles,
 
-    // 其它属性
+    // Status
+    open,
+    allowClear,
+
+    // Style
+    className,
     style,
-    className
+
+    // Events
+    onChange
   },
   ref
 ) => {
@@ -67,70 +68,86 @@ const Transfer = (
   )
 
   return (
-    <>
-      <div
-        style={style}
-        className={DOMUtil.classNames('lyrixi-transfer-main', className)}
-        ref={mainRef}
-      >
-        {/* 已添加列表 */}
-        {value?.length ? (
-          <>
-            <div className="lyrixi-transfer-title">
-              <div className="lyrixi-transfer-title-content">
-                {titles?.selected || LocaleUtil.locale('已添加', 'lyrixi_added')}
-              </div>
-              {`${value.length}/${list?.length || 0}`}
+    <div
+      ref={mainRef}
+      // Style
+      style={style}
+      className={DOMUtil.classNames('lyrixi-transfer-main', className)}
+    >
+      {/* Element: Selected List */}
+      {value?.length ? (
+        <>
+          {/* Element: Selected Title */}
+          <div className="lyrixi-transfer-title">
+            <div className="lyrixi-transfer-title-content">
+              {titles?.selected || LocaleUtil.locale('已添加', 'lyrixi_added')}
             </div>
-            <ReactSortable
-              className="lyrixi-card lyrixi-transfer-card"
-              list={value}
-              setList={(newValue) => {
-                // 如果值未发生变化则不触发onChange
-                if (
-                  JSON.stringify(value.map((item) => item.id)) ===
-                  JSON.stringify(newValue.map((item) => item.id))
-                ) {
-                  return
-                }
-                if (onChange) {
-                  onChange(newValue)
-                }
-              }}
-            >
-              {value.map((item, index) => {
-                return (
-                  <Item key={item.id} onDelete={() => handleDelete(item, index)} sortable>
-                    {item?.name || ''}
-                  </Item>
-                )
-              })}
-            </ReactSortable>
-          </>
-        ) : null}
+            {`${value.length}/${list?.length || 0}`}
+          </div>
+          
+          {/* Element: Sortable List */}
+          <ReactSortable
+            className="lyrixi-card lyrixi-transfer-card"
+            // Value & Display Value
+            list={value}
+            // Events
+            setList={(newValue) => {
+              // 如果值未发生变化则不触发onChange
+              if (
+                JSON.stringify(value.map((item) => item.id)) ===
+                JSON.stringify(newValue.map((item) => item.id))
+              ) {
+                return
+              }
+              if (onChange) {
+                onChange(newValue)
+              }
+            }}
+          >
+            {value.map((item, index) => {
+              return (
+                <Item
+                  key={item.id}
+                  // Events
+                  onDelete={() => handleDelete(item, index)}
+                  sortable
+                >
+                  {item?.name || ''}
+                </Item>
+              )
+            })}
+          </ReactSortable>
+        </>
+      ) : null}
 
-        {/* 未添加列表 */}
-        {unSelectedList?.length ? (
-          <>
-            <div className="lyrixi-transfer-title">
-              <div className="lyrixi-transfer-title-content">
-                {titles?.unSelected || LocaleUtil.locale('未添加', 'lyrixi_not_added')}
-              </div>
-              {`${unSelectedList.length}/${list?.length || 0}`}
+      {/* Element: Unselected List */}
+      {unSelectedList?.length ? (
+        <>
+          {/* Element: Unselected Title */}
+          <div className="lyrixi-transfer-title">
+            <div className="lyrixi-transfer-title-content">
+              {titles?.unSelected || LocaleUtil.locale('未添加', 'lyrixi_not_added')}
             </div>
-            <Card className="lyrixi-transfer-card">
-              {unSelectedList.map((item, index) => {
-                return (
-                  <Item key={item.id} onAdd={() => handleAdd(item, index)}>
-                    {item?.name || ''}
-                  </Item>
-                )
-              })}
-            </Card>
-          </>
-        ) : null}
-      </div>
-    </>
+            {`${unSelectedList.length}/${list?.length || 0}`}
+          </div>
+          
+          {/* Element: Card */}
+          <Card className="lyrixi-transfer-card">
+            {unSelectedList.map((item, index) => {
+              return (
+                <Item
+                  key={item.id}
+                  // Events
+                  onAdd={() => handleAdd(item, index)}
+                >
+                  {item?.name || ''}
+                </Item>
+              )
+            })}
+          </Card>
+        </>
+      ) : null}
+    </div>
   )
 }
 

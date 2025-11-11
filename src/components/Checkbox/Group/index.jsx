@@ -21,9 +21,8 @@ const CheckboxGroup = forwardRef(
       readOnly,
       disabled,
 
-      children,
       onChange,
-      ...props
+      style
     },
     ref
   ) => {
@@ -40,7 +39,7 @@ const CheckboxGroup = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         disabled={disabled}
         readOnly={readOnly}
         className={DOMUtil.classNames('lyrixi-checkbox-group', className)}

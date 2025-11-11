@@ -21,37 +21,33 @@ const Modal = forwardRef(
       // Value & Display Value
       value,
       list,
+
+      // Status
+      open,
+      maskClosable,
+      safeArea,
       allowClear,
       multiple,
 
-      // Elements
-      headerRender,
-      itemRender,
-      checkboxRender,
-
       // Style
-      layout,
-      checkable,
-
-      // Moda: Status
-      open,
-      maskClosable,
-
-      // Moda: Style
-      safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+      layout,
+      checkable,
 
-      // Moda: Element
+      // Element
       portal,
       title,
       cancel,
+      headerRender,
+      itemRender,
+      checkboxRender,
 
       // Events
-      onClose,
-      onChange
+      onChange,
+      onClose
     },
     ref
   ) => {
@@ -126,8 +122,8 @@ const Modal = forwardRef(
         // Status
         open={open}
         maskClosable={maskClosable}
-        // Style
         safeArea={safeArea}
+        // Style
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
         maskStyle={maskStyle}
@@ -138,22 +134,30 @@ const Modal = forwardRef(
         ok={multiple !== false}
         cancel={cancel}
         // Events
-        onOk={handleOk}
         onClose={onClose}
+        onOk={handleOk}
       >
+        {/* Element: Header */}
         {getHeaderNode()}
+        
+        {/* Element: Main */}
         <Main
           ref={mainRef}
+          // Status
           open={open}
-          value={currentValue}
           allowClear={allowClear}
           multiple={multiple}
-          onChange={handleChange}
+          // Value & Display Value
+          value={currentValue}
           list={searchVisibleRef.current ? List.searchList(list, keyword) : list}
+          // Element
           itemRender={itemRender}
+          checkboxRender={checkboxRender}
+          // Style
           layout={layout}
           checkable={checkable}
-          checkboxRender={checkboxRender}
+          // Events
+          onChange={handleChange}
         />
       </NavBarModal>
     )

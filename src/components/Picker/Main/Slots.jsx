@@ -13,10 +13,14 @@ import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 let Lists = forwardRef(
   (
     {
+      // Value & Display Value
       lists,
+
+      // Element
       cellHeight = 44,
-      // 拖动结束返回项数
-      onDragEnd
+
+      // Events
+      onDragEnd // 拖动结束返回项数
     },
     ref
   ) => {
@@ -122,6 +126,7 @@ let Lists = forwardRef(
       <div
         ref={ref}
         className="lyrixi-picker-slotbox"
+        // Events
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}

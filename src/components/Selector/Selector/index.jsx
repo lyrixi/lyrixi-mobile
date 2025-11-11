@@ -14,22 +14,26 @@ import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 const Selector = forwardRef(
   (
     {
-      id,
-      multiple,
-      // 列数
-      columns = 2,
-      // 单选是否允许取消选择
-      allowClear,
+      // Value & Display Value
       value,
       list,
-      onChange,
-      // 省略配置
-      ellipsis,
+      ellipsis, // 省略配置
 
-      // 样式
-      style,
+      // Status
+      disabled,
+      multiple,
+      allowClear, // 单选是否允许取消选择
+
+      // Style
       className,
-      disabled
+      style,
+      columns = 2, // 列数
+
+      // Element
+      id,
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -117,26 +121,34 @@ const Selector = forwardRef(
 
     return (
       <div
-        id={id}
-        className={DOMUtil.classNames('lyrixi-selector', className)}
-        style={Object.assign({ '--columns': columns }, style)}
         ref={rootRef}
+        // Element
+        id={id}
+        // Style
+        style={Object.assign({ '--columns': columns }, style)}
+        className={DOMUtil.classNames('lyrixi-selector', className)}
       >
+        {/* Element: Items */}
         {displayList.map((item, index) => {
           return (
             <Item
               key={index}
+              // Status
               disabled={disabled}
               checked={getIsActive(item)}
+              // Events
               onChange={(checked) => handleChange(checked, item, index)}
             >
               {item.name}
             </Item>
           )
         })}
+        
+        {/* Element: Ellipsis */}
         {hasEllipsis && (
           <div
             className="lyrixi-selector-item lyrixi-selector-item-ellipsis"
+            // Events
             onClick={handleToggleExpand}
           >
             <div className="lyrixi-selector-item-name">
