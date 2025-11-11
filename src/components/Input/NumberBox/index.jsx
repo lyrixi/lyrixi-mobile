@@ -14,54 +14,53 @@ import { MathUtil } from 'lyrixi-mobile'
 const NumberBox = forwardRef(
   (
     {
-      // 加减号
+      id,
+      name,
+
+      // Value & Display Value
+      value,
+      placeholder,
+      formatter,
+
+      // Status
+      readOnly,
+      disabled,
+      allowClear,
+      autoFocus, // 渲染时自动获取焦点
+      autoSelect, // 渲染时自动选中
+      stepFocus, // 点击加减按钮获取焦点
+
+      // Style
+      className,
+      style,
       plusClassName,
       plusStyle,
       minusClassName,
       minusStyle,
-      stepFocus, // 点击加减按钮获取焦点
 
-      // 文本框
-      // 容器
-      type = 'text', // 类型: text | number | tel | password
-      autoSize, // 自动高度文本框
-      readOnly,
-      disabled,
-      // 文本框
-      value,
-      formatter,
-      // 小数精度, 只有数值框才生效
-      precision,
-      // 小数位补0, true: 不补0; false: 补0;
-      trim,
-      max,
-      min,
-      placeholder,
-      maxLength,
-      // 自动获取焦点
-      autoFocus, // 渲染时自动获取焦点
-      autoSelect, // 渲染时自动选中
-      // 左右图标
+      // Element
+
       leftIcon,
       rightIcon,
-      // 清除按键
       clearRender,
-      allowClear,
-      // 子内容
       children,
-      // 事件
+
+      // Validate
+      precision, // 小数精度, 只有数值框才生效
+      trim, // 小数位补0, true: 不补0; false: 补0;
+      min,
+      max,
+      maxLength,
+
+      // Events
       onClick,
-      onCompositionStart, // 输入开始时
-      onCompositionUpdate, // 输入进行中
-      onCompositionEnd, // 输入完成时
-      onInput,
       onChange,
       onBlur,
       onFocus,
-
-      // 其它属性
-      className,
-      style
+      onInput,
+      onCompositionStart, // 输入开始时
+      onCompositionUpdate, // 输入进行中
+      onCompositionEnd // 输入完成时
     },
     ref
   ) => {
@@ -168,32 +167,38 @@ const NumberBox = forwardRef(
       return (
         <InputNumber
           ref={inputRef}
-          className="lyrixi-numberbox-input"
+          name={name}
+          // Element
           type="number"
-          readOnly={readOnly}
-          disabled={disabled}
-          value={value}
-          formatter={formatter}
-          precision={precision}
-          trim={trim}
-          max={max}
-          min={min}
-          placeholder={placeholder}
-          maxLength={maxLength}
-          autoFocus={autoFocus} // 渲染时自动获取焦点
-          autoSelect={autoSelect} // 渲染时自动选中
+          className="lyrixi-numberbox-input"
           leftIcon={leftIcon}
           rightIcon={rightIcon}
-          allowClear={allowClear}
           clearRender={clearRender}
+          // Value & Display Value
+          value={value}
+          placeholder={placeholder}
+          formatter={formatter}
+          // Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          autoFocus={autoFocus} // 渲染时自动获取焦点
+          autoSelect={autoSelect} // 渲染时自动选中
+          // Validate
+          precision={precision}
+          trim={trim}
+          min={min}
+          max={max}
+          maxLength={maxLength}
+          // Events
           onClick={onClick}
-          onCompositionStart={onCompositionStart} // 输入开始时
-          onCompositionUpdate={onCompositionUpdate} // 输入进行中
-          onCompositionEnd={onCompositionEnd} // 输入完成时
-          onInput={onInput}
           onChange={handleChange}
           onBlur={onBlur}
           onFocus={onFocus}
+          onInput={onInput}
+          onCompositionStart={onCompositionStart} // 输入开始时
+          onCompositionUpdate={onCompositionUpdate} // 输入进行中
+          onCompositionEnd={onCompositionEnd} // 输入完成时
         >
           {children}
         </InputNumber>
@@ -202,34 +207,44 @@ const NumberBox = forwardRef(
 
     return (
       <div
-        style={style}
-        disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
-        className={DOMUtil.classNames('lyrixi-numberbox', className)}
+        id={id}
         ref={rootRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-numberbox', className)}
+        // Status
+        disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
       >
+        {/* Element: Minus Button */}
         <div
-          // disabled={minDisabled}
-          style={minusStyle}
           type="button"
+          // Style
+          style={minusStyle}
           className={DOMUtil.classNames(
             'lyrixi-numberbox-button',
             'lyrixi-numberbox-button-minus',
             minusClassName
           )}
+          // Events
           onClick={handleMinus}
         >
           <i className="lyrixi-numberbox-button-minus-icon"></i>
         </div>
+
+        {/* Element: Input */}
         {getInputDOM()}
+
+        {/* Element: Plus Button */}
         <div
-          // disabled={maxDisabled}
-          style={plusStyle}
           type="button"
+          // Style
+          style={plusStyle}
           className={DOMUtil.classNames(
             'lyrixi-numberbox-button',
             'lyrixi-numberbox-button-plus',
             plusClassName
           )}
+          // Events
           onClick={handlePlus}
         >
           <i className="lyrixi-numberbox-button-plus-icon"></i>

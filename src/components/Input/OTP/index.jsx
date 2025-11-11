@@ -14,20 +14,24 @@ import { DOMUtil } from 'lyrixi-mobile'
 const InputOTP = forwardRef(
   (
     {
-      // 值控制
-      value = [],
-      onChange,
-      onComplete,
-
-      // OTP配置
-      maxLength = 6,
       type = 'number', // 'text' 或 'number'
+      // Value & Display Value
+      value = [],
+
+      // Status
       disabled = false,
       readOnly = false,
 
-      // 样式配置
+      // Style
       className,
-      style
+      style,
+
+      // Validate
+      maxLength = 6,
+
+      // Events
+      onChange,
+      onComplete
     },
     ref
   ) => {
@@ -143,22 +147,26 @@ const InputOTP = forwardRef(
     return (
       <div
         ref={rootRef}
+        // Style
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-otp',
           className,
           disabled ? 'lyrixi-input-disabled' : '',
           readOnly ? 'lyrixi-input-readOnly' : ''
         )}
-        style={style}
       >
         <InputComponent
+          ref={inputRef}
+          // Value & Display Value
           values={value}
+          // Status
           disabled={disabled}
           readOnly={readOnly}
+          // Events
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onPaste={handlePaste}
-          ref={inputRef}
         />
       </div>
     )

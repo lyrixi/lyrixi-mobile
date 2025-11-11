@@ -12,8 +12,10 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 const PasswordStrength = (
   {
+    // Value & Display Value
     value = '',
-    // 其它属性
+
+    // Style
     className,
     style
   },
@@ -37,13 +39,14 @@ const PasswordStrength = (
 
   return (
     <ul
+      ref={rootRef}
+      // Style
       style={style}
       className={DOMUtil.classNames(
         'lyrixi-input-password-strength',
         `lyrixi-level${strength}`,
         className
       )}
-      ref={rootRef}
     >
       <li className="lyrixi-input-password-strength-item lyrixi-level1">
         <div className="lyrixi-input-password-strength-progress"></div>

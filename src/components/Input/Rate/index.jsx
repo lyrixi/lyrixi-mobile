@@ -14,14 +14,27 @@ const Rate = forwardRef(
     {
       id,
       name,
-      style,
-      iconRender,
+
+      // Value & Display Value
       value = 0,
+
+      // Status
+      readOnly,
+      disabled,
+
+      // Style
+      style,
+      className,
+
+      // Elements
+      iconRender,
+
+      // Validate
       min = 0,
       max = 5,
       step = 0.5,
-      readOnly,
-      disabled,
+
+      // Events
       onChange
     },
     ref
@@ -86,7 +99,9 @@ const Rate = forwardRef(
 
     return (
       <div
+        ref={rootRef}
         id={id}
+        // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-rate',
@@ -94,22 +109,27 @@ const Rate = forwardRef(
           readOnly ? 'lyrixi-input-readOnly' : '',
           disabled ? 'lyrixi-input-disabled' : ''
         )}
-        ref={rootRef}
       >
+        {/* Element: Range Input */}
         <input
           ref={inputRef}
           name={name}
-          readOnly={readOnly}
-          disabled={disabled}
           type="range"
           className="lyrixi-input-rate-input"
+          // Value & Display Value
+          value={value}
+          // Status
+          readOnly={readOnly}
+          disabled={disabled}
+          // Validate
           min={min}
           max={max}
           step={step}
-          value={value}
+          // Events
           onChange={handleChange}
         />
 
+        {/* Element: Icon & Active Icon */}
         {new Array(max).fill(1).map((item, index) => {
           const IconNode = getIconNode(index, false)
           const ActiveIconNode = getIconNode(index, true)

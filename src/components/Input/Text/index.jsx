@@ -370,7 +370,10 @@ const InputText = (
 
   return (
     <div
+      ref={rootRef}
+      // Element
       id={id}
+      // Style
       style={style}
       className={DOMUtil.classNames(
         `lyrixi-input`,
@@ -379,8 +382,8 @@ const InputText = (
         disabled ? 'lyrixi-input-disabled' : '',
         readOnly ? 'lyrixi-input-readOnly' : ''
       )}
+      // Events
       onClick={onClick}
-      ref={rootRef}
     >
       {/* Left */}
       {leftIcon}

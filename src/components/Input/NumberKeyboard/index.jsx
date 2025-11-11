@@ -95,46 +95,53 @@ const NumberKeyboard = forwardRef(
 
     return (
       <>
-        {/* 输入框 */}
+        {/* Input */}
         <InputNode
           ref={inputRef}
           id={id}
+          type="number"
+          // Input: Value & Display Value
+          value={value}
+          placeholder={placeholder}
+          formatter={formatter}
+          // Input: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          cursor={keyboardOpen} // 键盘打开时显示光标
+          // Input: Style
           style={style}
           className={DOMUtil.classNames('lyrixi-input-numberkeyboard', className)}
-          type="number"
-          // 值控制
-          value={value}
+          // Input: Element
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          clearRender={clearRender}
+          // Input: Validate
+          precision={precision}
+          trim={trim}
+          min={min}
+          max={max}
+          maxLength={maxLength}
+          // Events
           onChange={onChange}
           onClick={handleInputClick}
           onFocus={onFocus}
           onBlur={onBlur}
-          // 数值校验
-          min={min}
-          max={max}
-          maxLength={maxLength}
-          trim={trim}
-          precision={precision}
-          // 输入框配置
-          placeholder={placeholder}
-          formatter={formatter}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
-          clearRender={clearRender}
-          allowClear={allowClear}
-          disabled={disabled}
-          readOnly={readOnly}
-          cursor={keyboardOpen} // 键盘打开时显示光标
         />
 
-        {/* 数字键盘 */}
+        {/* Modal */}
         <Keyboard.Number
+          // Modal: Element
           ok={ok}
+          // Input: Value & Display Value
           value={value}
-          onChange={handleChange}
+          // Modal: Status
           open={keyboardOpen}
-          onClose={handleClose}
           dot={precision === 0 ? null : true}
           minus={min >= 0 ? null : true}
+          // Events
+          onChange={handleChange}
+          onClose={handleClose}
         />
       </>
     )

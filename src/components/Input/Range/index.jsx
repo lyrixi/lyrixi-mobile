@@ -16,16 +16,25 @@ const Range = forwardRef(
     {
       id,
       name,
+
+      // Value & Display Value
       value = 0,
+
+      // Status
+      readOnly,
+      disabled,
+
+      // Style
+      className,
+      style,
+
+      // Validate
       min = 0,
       max = 100,
       step = 1,
-      readOnly,
-      disabled,
-      onChange,
-      // 其它属性
-      className,
-      style
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -84,7 +93,9 @@ const Range = forwardRef(
 
     return (
       <div
+        ref={rootRef}
         id={id}
+        // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-range',
@@ -92,29 +103,40 @@ const Range = forwardRef(
           readOnly ? 'lyrixi-input-readOnly' : '',
           disabled ? 'lyrixi-input-disabled' : ''
         )}
-        ref={rootRef}
+        // Events
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
+        {/* Element: Input */}
         <input
           ref={inputRef}
-          readOnly={readOnly}
-          disabled={disabled}
+          name={name}
           type="range"
           className="lyrixi-input-range-input"
+          // Value & Display Value
+          value={value}
+          // Status
+          readOnly={readOnly}
+          disabled={disabled}
+          // Validate
           min={min}
           max={max}
-          name={name}
           step={step}
-          value={value}
+          // Events
           onChange={handleChange}
         />
+
+        {/* Element: Rail */}
         <div className="lyrixi-input-range-rail">
           <div className="lyrixi-input-range-rail-active" ref={railRef}></div>
         </div>
+
+        {/* Element: Handle */}
         <div ref={handleRef} className="lyrixi-input-range-handle">
           <div className="lyrixi-input-range-handle-icon"></div>
         </div>
+
+        {/* Element: Tooltip */}
         <div ref={tooltipRef} className="lyrixi-input-range-tooltip">
           {value}
         </div>
