@@ -5,31 +5,35 @@ import List from './List'
 
 // 列表下拉
 function ToolBarList({
-  // Combo Style
-  comboColor,
-  comboBackgroundColor,
-  comboShape,
-  comboBorder,
-  comboRadius,
-  comboSize,
-  comboStyle,
-  comboClassName,
+  // Value & Display Value
+  value,
+  placeholder = '',
 
-  // Modal
-  portal,
-  maskClassName,
+  // Style
+  style,
+  className,
+  color,
+  backgroundColor,
+  shape,
+  border,
+  radius,
+  size,
   maskStyle,
-  modalClassName,
+  maskClassName,
   modalStyle,
+  modalClassName,
   offset,
   left,
   right,
-
-  // Combo Value
-  title,
-  arrowRender,
-  value,
   list,
+
+  // Element
+  comboRender,
+  comboChildren,
+  arrowRender,
+  portal,
+
+  // Events
   onChange
 }) {
   const dropdownRef = useRef(null)
@@ -46,27 +50,40 @@ function ToolBarList({
 
   return (
     <Dropdown
+      ref={dropdownRef}
+      // Value & Display Value
+      placeholder={placeholder}
+      // Style
+      style={style}
+      className={className}
+      color={color}
+      backgroundColor={backgroundColor}
+      shape={shape}
+      border={border}
+      radius={radius}
+      size={size}
+      maskStyle={maskStyle}
+      maskClassName={maskClassName}
+      modalStyle={modalStyle}
+      modalClassName={modalClassName}
+      // Element
+      comboRender={comboRender}
+      comboChildren={comboChildren || value?.name || placeholder}
+      arrowRender={arrowRender}
       portal={portal}
       offset={offset}
       left={left}
       right={right}
-      comboColor={comboColor}
-      comboBackgroundColor={comboBackgroundColor}
-      comboShape={comboShape}
-      comboBorder={comboBorder}
-      comboRadius={comboRadius}
-      comboSize={comboSize}
-      comboStyle={comboStyle}
-      comboClassName={comboClassName}
-      maskClassName={maskClassName}
-      maskStyle={maskStyle}
-      modalClassName={modalClassName}
-      modalStyle={modalStyle}
-      title={title || value?.[0]?.name}
-      arrowRender={arrowRender}
-      ref={dropdownRef}
     >
-      <List value={value} list={list} onChange={handleChange} />
+      {/* Element: List */}
+      <List
+        // Value & Display Value
+        value={value}
+        // Element
+        list={list}
+        // Events
+        onChange={handleChange}
+      />
     </Dropdown>
   )
 }

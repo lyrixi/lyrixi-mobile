@@ -61,10 +61,15 @@ const SearchBar = (
   ref
 ) => {
   return (
-    <div className={DOMUtil.classNames('lyrixi-toolbar-search-bar', className)} style={style}>
-      {/* 文本框 */}
+    <div
+      // Style
+      style={style}
+      className={DOMUtil.classNames('lyrixi-toolbar-search-bar', className)}
+    >
+      {/* Element: Search */}
       <Search
         ref={ref}
+        // Element
         id={id}
         name={name}
         // Value & Display Value
@@ -103,9 +108,10 @@ const SearchBar = (
         onSearch={onSearch}
       />
 
-      {/* 取消按钮 */}
+      {/* Element: Cancel Button */}
       <span
         className="lyrixi-toolbar-search-button-cancel"
+        // Events
         onClick={(e) => {
           onCancel && onCancel()
         }}

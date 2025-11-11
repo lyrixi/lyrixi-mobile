@@ -54,19 +54,16 @@ export default () => {
         <Divider>Dropdown</Divider>
         <div className="lyrixi-toolbar-bg">
           <ToolBar>
-            <ToolBar.Dropdown
-              left={12}
-              title="Dropdown left"
-              comboColor="primary"
-              comboBorder="fill"
-            >
+            <ToolBar.Dropdown left={12} placeholder="Dropdown left" color="primary" border="fill">
               <div style={{ height: '300px' }}>Modal Content</div>
             </ToolBar.Dropdown>
-            <ToolBar.Dropdown title="Dropdown ref" ref={dropdownRef}>
+            <ToolBar.Dropdown placeholder="Dropdown ref" ref={dropdownRef}>
               {getDropdownModalNode()}
             </ToolBar.Dropdown>
-            <ToolBar.Dropdown title="Dropdown modal">{getDropdownModalNode()}</ToolBar.Dropdown>
-            <ToolBar.Dropdown right={12} title="Dropdown right">
+            <ToolBar.Dropdown placeholder="Dropdown modal">
+              {getDropdownModalNode()}
+            </ToolBar.Dropdown>
+            <ToolBar.Dropdown right={12} placeholder="Dropdown right">
               <div style={{ height: '300px' }}>Modal Content</div>
             </ToolBar.Dropdown>
           </ToolBar>
@@ -83,7 +80,7 @@ export default () => {
                 return '>'
               }}
               portal={mainDOM}
-              title={!dateRange ? 'DateRange' : undefined}
+              placeholder={'DateRange'}
               value={dateRange}
               // allowClear={true}
               onChange={(newDateRange, { rangeId }) => {
@@ -94,7 +91,7 @@ export default () => {
             />
             <ToolBar.DateRange
               portal={mainDOM}
-              title={!dateRange ? 'DateRange' : undefined}
+              placeholder="DateRange"
               format="MM-DD"
               value={dateRange}
               // allowClear={true}
@@ -106,8 +103,8 @@ export default () => {
             />
             <ToolBar.DateRange
               portal={mainDOM}
-              comboBorder="fill"
-              title={!dateRange ? 'DateRange' : undefined}
+              border="fill"
+              placeholder="DateRange"
               value={dateRange}
               // allowClear={true}
               onChange={(newDateRange, { rangeId }) => {
@@ -125,7 +122,7 @@ export default () => {
             <ToolBar.List
               left={12}
               portal={mainDOM}
-              title={!item ? 'List' : undefined}
+              placeholder="List"
               value={item}
               onChange={setItem}
               list={[
@@ -146,8 +143,8 @@ export default () => {
             />
             <ToolBar.List
               portal={mainDOM}
-              comboBorder="fill"
-              title={!item ? 'List' : undefined}
+              border="fill"
+              placeholder="List"
               value={item}
               onChange={setItem}
               list={[
@@ -174,9 +171,9 @@ export default () => {
           <ToolBar>
             <ToolBar.ActionSheet
               portal={mainDOM}
-              // comboColor="primary"
-              // comboBorder="fill"
-              title={!item ? 'ActionSheet' : undefined}
+              // color="primary"
+              // border="fill"
+              placeholder="List"
               value={item}
               onChange={setItem}
               list={[
@@ -214,9 +211,9 @@ export default () => {
               <ToolBar.List
                 portal={mainDOM}
                 arrowRender={null}
-                comboShape="square"
-                comboBorder="fill"
-                title={<Icon className="lyrixi-icons lyrixi-icon-three-dots"></Icon>}
+                shape="square"
+                border="fill"
+                comboChildren={<Icon className="lyrixi-icons lyrixi-icon-three-dots"></Icon>}
                 maskStyle={{
                   zIndex: 99
                 }}
@@ -236,7 +233,7 @@ export default () => {
               <ToolBar.Button shape="square" onClick={() => console.log(1)}>
                 <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
               </ToolBar.Button>
-              <ToolBar.Filter comboBorder="fill" comboShape="square">
+              <ToolBar.Filter border="fill" shape="square">
                 <div style={{ height: '300px' }}>Modal Content</div>
               </ToolBar.Filter>
             </Space.Compact>
@@ -255,8 +252,8 @@ export default () => {
               Click to toggle filter modal
             </ToolBar.Button>
             <ToolBar.Filter
-              comboColor="primary"
-              comboShape="square"
+              color="primary"
+              shape="square"
               icon={<Icon className="lyrixi-toolbar-button-icon lyrixi-icons lyrixi-icon-search" />}
               onReset={() => {
                 console.log('reset')
@@ -269,8 +266,8 @@ export default () => {
             </ToolBar.Filter>
             <ToolBar.Filter
               ref={filterRef}
-              comboBorder="fill"
-              comboShape="square"
+              border="fill"
+              shape="square"
               onReset={() => {
                 console.log('reset')
               }}
@@ -296,7 +293,7 @@ export default () => {
               <ToolBar.Button shape="square" onClick={() => console.log(1)}>
                 <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
               </ToolBar.Button>
-              <ToolBar.Filter comboBorder="fill" comboShape="square">
+              <ToolBar.Filter border="fill" shape="square">
                 <div style={{ height: '300px' }}>Modal Content</div>
               </ToolBar.Filter>
             </Space.Compact>
@@ -317,7 +314,7 @@ export default () => {
               <ToolBar.Button shape="square" onClick={() => console.log(1)}>
                 <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
               </ToolBar.Button>
-              <ToolBar.Filter comboBorder="fill" comboShape="square">
+              <ToolBar.Filter border="fill" shape="square">
                 <div style={{ height: '300px' }}>Modal Content</div>
               </ToolBar.Filter>
             </Space.Compact>

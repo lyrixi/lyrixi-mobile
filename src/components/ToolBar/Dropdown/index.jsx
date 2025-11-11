@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, useRef, useEffect, useState, forwardRef } from 'react'
 import closeAllDropdown from './../utils/closeAllDropdown'
+import Combo from './../components/Combo'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -16,42 +17,41 @@ const DropdownModal = Modal.DropdownModal
 const Dropdown = forwardRef(
   (
     {
-      // Combo
-      title = '',
-      titleRender,
-      arrowRender = () => (
-        <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
-      ),
+      // Value & Display Value
+      placeholder = '',
 
-      // Button Style
-      comboColor = 'default',
-      comboBackgroundColor,
-      comboShape,
-      comboBorder,
-      comboRadius,
-      comboSize,
-
-      // Mask
-
-      children,
-
-      // Modal
-      portal,
-      maskClassName,
-      maskStyle,
-      modalClassName,
+      // Style
+      style,
+      className,
+      color = 'default',
+      backgroundColor,
+      shape,
+      border,
+      radius,
+      size,
       modalStyle,
-      comboStyle,
-      comboClassName,
+      modalClassName,
+      maskStyle,
+      maskClassName,
       offset = {
         top: 6
       },
       left,
       right,
 
+      // Element
+      comboRender,
+      comboChildren,
+      arrowRender = () => (
+        <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
+      ),
+      portal,
+      children,
+
+      // Events
       onBeforeOpen,
-      onClose,
-      onOpen
+      onOpen,
+      onClose
     },
     ref
   ) => {
@@ -124,62 +124,63 @@ const Dropdown = forwardRef(
     }
 
     // 获取标题节点
-    function getTitleNode(open) {
-      if (typeof titleRender === 'function') {
-        return titleRender({
-          className: 'lyrixi-toolbar-dropdown-combo-title',
-          open: open
+    function getComboNode() {
+      if (typeof comboRender === 'function') {
+        return comboRender({
+          comboRef,
+          open: open,
+          onClick: handleClick
         })
       }
-      return <span className="lyrixi-toolbar-dropdown-combo-title">{title}</span>
+      return (
+        <Combo
+          ref={comboRef}
+          // Status
+          open={open}
+          // Style
+          style={style}
+          className={className}
+          color={color}
+          backgroundColor={backgroundColor}
+          shape={shape}
+          border={border}
+          radius={radius}
+          size={size}
+          // Elements
+          arrowRender={arrowRender}
+          // Events
+          onClick={handleClick}
+        >
+          {comboChildren || placeholder}
+        </Combo>
+      )
     }
 
-    // 获取箭头节点
-    function getArrowNode(open) {
-      if (typeof arrowRender === 'function') {
-        return arrowRender({ open: open })
-      }
-      return <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
-    }
-
+    const ComboNode = getComboNode()
     return (
       <>
         {/* Combo */}
-        <Button
-          ref={comboRef}
-          color={comboColor}
-          backgroundColor={comboBackgroundColor}
-          border={comboBorder}
-          size={comboSize || 's'}
-          radius={comboRadius || 's'}
-          shape={comboShape}
-          className={DOMUtil.classNames(
-            'lyrixi-toolbar-dropdown-combo lyrixi-toolbar-button',
-            comboClassName,
-            open ? 'lyrixi-expand' : ''
-          )}
-          style={comboStyle}
-          onClick={handleClick}
-        >
-          {getTitleNode(open)}
-          {getArrowNode(open)}
-        </Button>
+        {ComboNode}
 
         {/* Modal */}
         <DropdownModal
-          modalClassName={DOMUtil.classNames('lyrixi-toolbar-dropdown-modal', modalClassName)}
-          modalStyle={modalStyle}
-          maskClassName={DOMUtil.classNames('lyrixi-toolbar-dropdown-mask', maskClassName)}
+          // Status
+          open={open}
+          // Style
           maskStyle={maskStyle}
+          maskClassName={DOMUtil.classNames('lyrixi-toolbar-dropdown-mask', maskClassName)}
+          modalStyle={modalStyle}
+          modalClassName={DOMUtil.classNames('lyrixi-toolbar-dropdown-modal', modalClassName)}
+          // Element
+          portal={portal}
           offset={offset}
           left={left}
           right={right}
           referenceDOM={comboRef.current?.rootDOM ? comboRef.current.rootDOM : comboRef.current}
-          portal={portal}
+          // Events
           onClose={() => {
             setOpen(false)
           }}
-          open={open}
         >
           {children}
         </DropdownModal>

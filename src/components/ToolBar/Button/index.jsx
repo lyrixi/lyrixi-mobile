@@ -11,7 +11,23 @@ import { DOMUtil, Button } from 'lyrixi-mobile'
 
 const ToolBarButton = forwardRef(
   (
-    { color, backgroundColor, shape, border, radius, size, className, style, children, onClick },
+    {
+      // Style
+      color,
+      backgroundColor,
+      shape,
+      border,
+      radius,
+      size,
+      className,
+      style,
+
+      // Element
+      children,
+
+      // Events
+      onClick
+    },
     ref
   ) => {
     const rootRef = useRef(null)
@@ -26,17 +42,20 @@ const ToolBarButton = forwardRef(
 
     return (
       <Button
-        style={style}
-        className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
-        size={size || 's'}
-        radius={radius || 's'}
+        ref={rootRef}
+        // Style
         color={color}
         backgroundColor={backgroundColor}
         border={border}
+        size={size || 's'}
+        radius={radius || 's'}
         shape={shape}
+        className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
+        style={style}
+        // Events
         onClick={onClick}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
       </Button>
     )

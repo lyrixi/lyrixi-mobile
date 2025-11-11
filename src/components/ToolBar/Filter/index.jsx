@@ -14,30 +14,30 @@ const FilterModal = Modal.FilterModal
 const Filter = forwardRef(
   (
     {
-      // Button Style
-      comboColor = 'default',
-      comboBackgroundColor,
-      comboShape,
-      comboBorder,
-      comboRadius,
-      comboSize,
-      comboStyle,
-      comboClassName,
-
-      // Content
-      iconRender,
-
-      // Modal
-      portal,
-      maskClassName,
+      // Style
+      style,
+      className,
+      color = 'default',
+      backgroundColor,
+      shape,
+      border,
+      radius,
+      size,
       maskStyle,
-      modalClassName,
+      maskClassName,
       modalStyle,
-      onCancel,
+      modalClassName,
+
+      // Element
+      iconRender,
+      portal,
       footerRender,
+      children,
+
+      // Events
+      onCancel,
       onOpen,
-      onClose,
-      children
+      onClose
     },
     ref
   ) => {
@@ -86,36 +86,41 @@ const Filter = forwardRef(
       <>
         {/* Combo */}
         <Button
-          color={comboColor}
-          backgroundColor={comboBackgroundColor}
-          border={comboBorder}
-          size={comboSize || 's'}
-          radius={comboRadius || 's'}
-          shape={comboShape}
-          className={DOMUtil.classNames('lyrixi-toolbar-button', comboClassName)}
-          style={comboStyle}
+          ref={rootRef}
+          // Style
+          color={color}
+          backgroundColor={backgroundColor}
+          border={border}
+          size={size || 's'}
+          radius={radius || 's'}
+          shape={shape}
+          className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
+          style={style}
+          // Events
           onClick={() => {
             setOpen(true)
           }}
-          ref={rootRef}
         >
+          {/* Element: Icon */}
           {IconNode}
         </Button>
 
         {/* Modal */}
         <FilterModal
-          portal={portal}
-          onCancel={onCancel}
-          footerRender={footerRender}
-          maskClassName={maskClassName}
+          // Status
+          open={open}
+          // Style
           maskStyle={maskStyle}
-          style={{
-            className: modalClassName,
-            style: modalStyle
-          }}
+          maskClassName={maskClassName}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          // Element
+          portal={portal}
+          footerRender={footerRender}
+          // Events
+          onCancel={onCancel}
           onOpen={() => setOpen(true)}
           onClose={() => setOpen(false)}
-          open={open}
         >
           {children}
         </FilterModal>

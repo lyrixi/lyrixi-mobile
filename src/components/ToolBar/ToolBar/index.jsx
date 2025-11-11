@@ -4,16 +4,33 @@ import React, { forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const ToolBar = forwardRef(({ invert, className, children, style }, ref) => {
-  return (
-    <div
-      ref={ref}
-      style={style}
-      className={DOMUtil.classNames('lyrixi-toolbar', invert ? 'invert' : '', className)}
-    >
-      {children}
-    </div>
-  )
-})
+const ToolBar = forwardRef(
+  (
+    {
+      // Status
+      invert,
+
+      // Style
+      className,
+      style,
+
+      // Element
+      children
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-toolbar', invert ? 'invert' : '', className)}
+      >
+        {/* Element: Children */}
+        {children}
+      </div>
+    )
+  }
+)
 
 export default ToolBar

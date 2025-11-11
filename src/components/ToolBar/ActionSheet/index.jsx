@@ -1,110 +1,103 @@
-import React, { useRef } from 'react'
+import React, { forwardRef } from 'react'
+import Combo from './../components/Combo'
 
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
 import ActionSheet from './../../ActionSheet'
-import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, ActionSheet, Button } from 'lyrixi-mobile'
+import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
 // 操作表下拉
-function ToolBarActionSheet({
-  // Combo Style
-  comboColor = 'default',
-  comboBackgroundColor,
-  comboShape,
-  comboBorder,
-  comboRadius,
-  comboSize,
-  comboStyle,
-  comboClassName,
+function ToolBarActionSheet(
+  {
+    // Value & Display Value
+    value,
+    placeholder = '',
 
-  // Modal
-  portal,
-  maskClassName,
-  maskStyle,
-  modalClassName,
-  modalStyle,
+    // Style
+    style,
+    className,
+    color = 'default',
+    backgroundColor,
+    shape,
+    border,
+    radius,
+    size,
+    maskStyle,
+    maskClassName,
+    modalStyle,
+    modalClassName,
 
-  // Combo Value
-  title = '',
-  titleRender,
-  arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>,
-  value,
-  list,
-  onChange
-}) {
-  const dropdownRef = useRef(null)
+    // Element
+    comboRender,
+    comboChildren,
+    arrowRender,
+    portal,
+    list,
 
+    // Events
+    onChange
+  },
+  ref
+) {
   // 修改
   async function handleChange(newValue) {
     if (onChange) {
       let goOn = await onChange([newValue])
       if (goOn === false) return
     }
-
-    // 关闭下拉
-    dropdownRef.current?.close?.()
   }
 
   // 获取标题节点
-  function getTitleNode(open) {
-    if (typeof titleRender === 'function') {
-      return titleRender({
-        className: 'lyrixi-toolbar-dropdown-combo-title',
-        open: open,
-        value: value?.[0]?.name
+  function getComboNode({ comboRef, open, onClick }) {
+    if (typeof comboRender === 'function') {
+      return comboRender({
+        comboRef,
+        open,
+        onClick
       })
     }
-    return <span className="lyrixi-toolbar-dropdown-combo-title">{title || value?.[0]?.name}</span>
-  }
-
-  // 获取箭头节点
-  function getArrowNode(open) {
-    if (typeof arrowRender === 'function') {
-      return arrowRender({ open: open })
-    }
-    return <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
-  }
-
-  // 获取Combo节点
-  function getComboNode({ open, comboRef, onClick }) {
     return (
-      <Button
+      <Combo
         ref={comboRef}
-        color={comboColor}
-        backgroundColor={comboBackgroundColor}
-        border={comboBorder}
-        size={comboSize || 's'}
-        radius={comboRadius || 's'}
-        shape={comboShape}
-        className={DOMUtil.classNames(
-          'lyrixi-toolbar-dropdown-combo lyrixi-toolbar-button',
-          comboClassName,
-          open ? 'lyrixi-expand' : ''
-        )}
-        style={comboStyle}
+        // Status
+        open={open}
+        // Style
+        style={style}
+        className={className}
+        color={color}
+        backgroundColor={backgroundColor}
+        shape={shape}
+        border={border}
+        radius={radius}
+        size={size}
+        // Elements
+        arrowRender={arrowRender}
+        // Events
         onClick={onClick}
       >
-        {getTitleNode(open)}
-        {getArrowNode(open)}
-      </Button>
+        {comboChildren || value?.name || placeholder}
+      </Combo>
     )
   }
 
   return (
     <ActionSheet.Combo
-      portal={portal}
-      maskClassName={maskClassName}
-      maskStyle={maskStyle}
-      modalClassName={modalClassName}
-      modalStyle={modalStyle}
-      comboRender={getComboNode}
-      value={value?.[0]}
+      ref={ref}
+      // Value & Display Value
+      value={value}
       list={list}
+      // Style
+      maskStyle={maskStyle}
+      maskClassName={maskClassName}
+      modalStyle={modalStyle}
+      modalClassName={modalClassName}
+      // Element
+      portal={portal}
+      comboRender={getComboNode}
+      // Events
       onChange={handleChange}
     />
   )
@@ -113,4 +106,4 @@ function ToolBarActionSheet({
 // Component Name, for compact
 ToolBarActionSheet.componentName = 'ToolBar.ActionSheet'
 
-export default ToolBarActionSheet
+export default forwardRef(ToolBarActionSheet)

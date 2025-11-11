@@ -18,35 +18,40 @@ const getDefaultRanges = DatePicker.getDefaultRanges
 
 // 日期区间
 function DateRangeBar({
-  // Combo Style
-  comboColor,
-  comboBackgroundColor,
-  comboShape,
-  comboBorder,
-  comboRadius,
-  comboSize,
-  title,
-  arrowRender,
-  comboStyle,
-  comboClassName,
-
-  // Modal
-  portal,
-  maskClassName,
-  maskStyle,
-  modalClassName,
-  modalStyle,
-
-  // Combo Value
+  // Value & Display Value
+  value: externalValue,
+  rangeId: externalRangeId,
   type = 'date',
+  placeholder = '',
+
+  // Status
+  allowClear,
+
+  // Style
+  style,
+  className,
+  color,
+  backgroundColor,
+  shape,
+  border,
+  radius,
+  size,
+  maskStyle,
+  maskClassName,
+  modalStyle,
+  modalClassName,
+
+  // Element
+  comboRender,
+  comboChildren,
+  arrowRender,
+  portal,
   min,
   max,
-  rangeId: externalRangeId,
   ranges,
-  value: externalValue,
-  allowClear,
+
+  // Events
   onChange
-  // Combo
 }) {
   if (ranges === undefined) {
     // eslint-disable-next-line
@@ -113,37 +118,50 @@ function DateRangeBar({
 
   return (
     <Dropdown
-      portal={portal}
-      title={title || getDisplayValue({ value, type, rangeId, ranges })}
-      arrowRender={arrowRender}
-      comboColor={comboColor}
-      comboBackgroundColor={comboBackgroundColor}
-      comboShape={comboShape}
-      comboBorder={comboBorder}
-      comboRadius={comboRadius}
-      comboSize={comboSize}
-      comboStyle={comboStyle}
-      comboClassName={comboClassName}
-      maskClassName={maskClassName}
-      maskStyle={maskStyle}
-      modalClassName={modalClassName}
-      modalStyle={modalStyle}
-      onClose={handleCancel}
       ref={dropdownRef}
+      // Value & Display Value
+      placeholder={placeholder}
+      // Style
+      style={style}
+      className={className}
+      color={color}
+      backgroundColor={backgroundColor}
+      shape={shape}
+      border={border}
+      radius={radius}
+      size={size}
+      maskStyle={maskStyle}
+      maskClassName={maskClassName}
+      modalStyle={modalStyle}
+      modalClassName={modalClassName}
+      // Element
+      comboRender={comboRender}
+      comboChildren={comboChildren || getDisplayValue({ value, type, rangeId, ranges })}
+      arrowRender={arrowRender}
+      portal={portal}
+      // Events
+      onClose={handleCancel}
     >
       <div className="lyrixi-toolbar-daterange-modal">
+        {/* Element: Body */}
         <div className="lyrixi-toolbar-daterange-modal-body">
           <DateRange
+            // Value & Display Value
+            value={value}
+            rangeId={rangeId}
+            // Status
+            allowClear={allowClear}
+            // Element
+            type={type}
             min={min}
             max={max}
-            type={type}
-            value={value}
-            allowClear={allowClear}
-            rangeId={rangeId}
             ranges={ranges}
+            // Events
             onChange={handleChange}
           />
         </div>
+
+        {/* Element: Footer */}
         <FooterBar>
           <FooterBar.Button onClick={handleCancel}>
             {LocaleUtil.locale('取消', 'lyrixi_cancel')}
