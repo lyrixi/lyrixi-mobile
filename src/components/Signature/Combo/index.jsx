@@ -5,20 +5,28 @@ import Add from './Add'
 // Combo
 const Combo = (
   {
+    // Value & Display Value
     value,
+
+    // Status
     allowClear = true,
-    onChange,
-    onPreview,
+
+    // Style
+    className,
+    style,
     modalClassName,
     modalStyle,
     maskStyle,
     maskClassName,
+
+    // Element
     portal,
-    // 绘画配置
-    color,
-    backgroundColor,
-    className,
-    style
+    color, // 绘画配置: 画笔颜色
+    backgroundColor, // 绘画配置: 背景颜色
+
+    // Events
+    onChange,
+    onPreview
   },
   ref
 ) => {
@@ -27,7 +35,9 @@ const Combo = (
     return (
       <Edit
         ref={ref}
+        // Value & Display Value
         value={value}
+        // Events
         onDelete={allowClear ? onChange : undefined}
         onPreview={onPreview}
       />
@@ -38,18 +48,21 @@ const Combo = (
   return (
     <Add
       ref={ref}
+      // Value & Display Value
       value={value}
-      onChange={onChange}
+      // Style
+      className={className}
+      style={style}
       modalClassName={modalClassName}
       modalStyle={modalStyle}
       maskStyle={maskStyle}
       maskClassName={maskClassName}
+      // Element
       portal={portal}
-      // 绘画配置
-      color={color}
-      backgroundColor={backgroundColor}
-      className={className}
-      style={style}
+      color={color} // 绘画配置: 画笔颜色
+      backgroundColor={backgroundColor} // 绘画配置: 背景颜色
+      // Events
+      onChange={onChange}
     />
   )
 }

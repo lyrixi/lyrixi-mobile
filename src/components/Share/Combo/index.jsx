@@ -15,35 +15,22 @@ import { Bridge } from 'lyrixi-mobile'
 // Combo
 const Combo = (
   {
-    // Combo
-    onBeforeOpen,
+    // Value & Display Value
+    shareTo, // {wechat|moments|miniprogram|wecom|dingtalk|lark: {title = '', description = '', imageUrl = '', url = ''}}
 
-    // Modal
-    portal,
+    // Style
+    className,
     modalClassName,
     modalStyle,
 
-    // Main
-    shareTo,
-    /*
-    {
-      wechat|moments|miniprogram|wecom|dingtalk|lark: {
-        title = '', // 分享标题
-        description = '', // 分享描述
-        imageUrl = '', // 分享图标
-        url = '' // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-      }
-    }
-    */
-    onError,
-    onSuccess,
-
-    // Combo
+    // Element
+    portal,
     children,
 
-    // 其它属性
-    className,
-    ...props
+    // Events
+    onBeforeOpen,
+    onError,
+    onSuccess
   },
   ref
 ) => {
@@ -91,25 +78,32 @@ const Combo = (
 
   return (
     <>
+      {/* Element: Combo Button */}
       <div
         ref={comboRef}
-        {...props}
+        // Style
         className={DOMUtil.classNames('lyrixi-share-button', className)}
+        // Events
         onClick={handleClick}
       >
         {getChildren()}
       </div>
 
+      {/* Element: Modal */}
       <Modal
         ref={modalRef}
-        portal={portal}
-        className={modalClassName}
-        style={modalStyle}
+        // Status
         open={open}
+        // Style
+        modalClassName={modalClassName}
+        modalStyle={modalStyle}
+        // Element
+        portal={portal}
+        // Value & Display Value
+        shareTo={shareTo}
+        // Events
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
-        // Main
-        shareTo={shareTo}
         onError={onError}
         onSuccess={onSuccess}
       />

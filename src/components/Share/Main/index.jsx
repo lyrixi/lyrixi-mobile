@@ -17,7 +17,17 @@ import { LocaleUtil, Bridge, Result } from 'lyrixi-mobile'
 测试使用-end */
 
 // 分享, shareTo: {extensions: [{isVisible: ({ shareTo }) => ture|false, render: ({ shareTo }) => Node, }]}
-function Main({ className, style, shareTo, ...props }, ref) {
+function Main(
+  {
+    // Value & Display Value
+    shareTo,
+
+    // Style
+    className,
+    style
+  },
+  ref
+) {
   const mainRef = useRef(null)
 
   // Expose
@@ -33,16 +43,16 @@ function Main({ className, style, shareTo, ...props }, ref) {
 
   function getShareNodes() {
     if (Bridge.platform === 'wechat') {
-      return <WeChat {...props} shareTo={shareTo} />
+      return <WeChat shareTo={shareTo} />
     }
     if (Bridge.platform === 'wecom') {
-      return <WeCom {...props} shareTo={shareTo} />
+      return <WeCom shareTo={shareTo} />
     }
     if (Bridge.platform === 'lark') {
-      return <Lark {...props} shareTo={shareTo} />
+      return <Lark shareTo={shareTo} />
     }
     if (Bridge.platform === 'dingtalk') {
-      return <DingTalk {...props} shareTo={shareTo} />
+      return <DingTalk shareTo={shareTo} />
     }
 
     // Custom Extension Items
@@ -61,9 +71,10 @@ function Main({ className, style, shareTo, ...props }, ref) {
   let isSupport = support(shareTo)
   return (
     <div
-      className={DOMUtil.classNames('lyrixi-share', className, !isSupport ? 'lyrixi-error' : null)}
-      style={style}
       ref={mainRef}
+      // Style
+      style={style}
+      className={DOMUtil.classNames('lyrixi-share', className, !isSupport ? 'lyrixi-error' : null)}
     >
       {isSupport ? (
         getShareNodes()

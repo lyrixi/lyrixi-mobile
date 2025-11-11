@@ -12,13 +12,15 @@ import { DOMUtil } from 'lyrixi-mobile'
 // 手写签名
 const Signature = (
   {
-    color = '#000',
-    backgroundColor = '#fff',
-    lineWidth = 3,
-    quality = 0.92,
+    // Value & Display Value
     suffix = 'png',
-    // 不能使用style制定宽高,canvas用style的width|height会导致绘图位置不正确
-    style
+    quality = 0.92,
+
+    // Style
+    style, // 不能使用style制定宽高,canvas用style的width|height会导致绘图位置不正确
+    color = '#000', // 绘画配置: 画笔颜色
+    backgroundColor = '#fff', // 绘画配置: 背景颜色
+    lineWidth = 3 // 绘画配置: 线条宽度
   },
   ref
 ) => {
@@ -138,9 +140,16 @@ const Signature = (
   }
 
   return (
-    <div className="lyrixi-signature-main-canvas" ref={rootRef} style={style}>
+    <div
+      ref={rootRef}
+      // Style
+      style={style}
+      className="lyrixi-signature-main-canvas"
+    >
+      {/* Element: Canvas */}
       <canvas
         ref={canvasRef}
+        // Events
         onTouchStart={handleStart}
         onTouchMove={handleMove}
         onTouchEnd={handleEnd}

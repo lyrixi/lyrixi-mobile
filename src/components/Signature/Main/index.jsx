@@ -12,12 +12,14 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // 手写签名
 const Main = (
   {
+    // Style
+    style,
+    color, // 绘画配置: 画笔颜色
+    backgroundColor, // 绘画配置: 背景颜色
+
+    // Events
     onChange,
-    onCancel,
-    // 绘画配置
-    color,
-    backgroundColor,
-    style
+    onCancel
   },
   ref
 ) => {
@@ -36,28 +38,47 @@ const Main = (
   })
 
   return (
-    <div ref={rootRef} className="lyrixi-signature-main" style={style}>
-      {/* 绘制区域 */}
-      <Signature ref={signatureRef} color={color} backgroundColor={backgroundColor} />
-      {/* 按钮区域 */}
+    <div
+      ref={rootRef}
+      // Style
+      style={style}
+      className="lyrixi-signature-main"
+    >
+      {/* Element: Signature Canvas */}
+      <Signature
+        ref={signatureRef}
+        color={color} // 绘画配置: 画笔颜色
+        backgroundColor={backgroundColor} // 绘画配置: 背景颜色
+      />
+      
+      {/* Element: Buttons */}
       <div className="lyrixi-signature-main-buttons">
+        {/* Element: Cancel Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-cancel"
+          // Events
           onClick={onCancel}
         >
           <p>{LocaleUtil.locale('取消', 'lyrixi_cancel')}</p>
         </div>
+        
         <div className="lyrixi-flex-1"></div>
+        
+        {/* Element: Clear Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-clear"
+          // Events
           onClick={() => {
             signatureRef?.current?.clear?.()
           }}
         >
           <p>{LocaleUtil.locale('清除', 'lyrixi_clear')}</p>
         </div>
+        
+        {/* Element: OK Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-ok"
+          // Events
           onClick={async () => {
             let base64 = await signatureRef?.current?.getBase64?.()
             onChange && onChange(base64)

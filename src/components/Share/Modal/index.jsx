@@ -14,31 +14,30 @@ import { LocaleUtil, Modal as BaseModal, SafeArea } from 'lyrixi-mobile'
 const Modal = forwardRef(
   (
     {
-      // Main
-      mainProps,
+      // Value & Display Value
       shareTo,
-      onError,
-      onSuccess,
 
-      // Modal
       // Status
       open,
       maskClosable = true,
+      safeArea = true,
 
       // Style
-      safeArea = true,
-      animation = 'zoom', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+      animation = 'zoom', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
 
       // Element
       portal,
+      mainProps,
       children,
 
       // Events
-      onClose
+      onClose,
+      onError,
+      onSuccess
     },
     ref
   ) => {
@@ -59,32 +58,41 @@ const Modal = forwardRef(
         // Status
         open={open}
         maskClosable={maskClosable}
-        // Style
         safeArea={safeArea}
-        animation="slideUp"
+        // Style
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-share-modal', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
+        animation="slideUp"
         // Element
         portal={portal}
         // Events
         onClose={onClose}
       >
+        {/* Element: Title */}
         <div className="lyrixi-share-modal-title">
           {LocaleUtil.locale('分享到', 'lyrixi_share_to')}
         </div>
+
+        {/* Element: Main */}
         <div className="lyrixi-share-modal-main">
           <Main
-            {...(mainProps || {})}
             ref={mainRef}
+            // Value & Display Value
             shareTo={shareTo}
+            // Element
+            {...(mainProps || {})}
+            // Events
             onError={onError}
             onSuccess={onSuccess}
           />
         </div>
+
+        {/* Element: Cancel Button */}
         <div
           className="lyrixi-share-modal-footer-button-cancel"
+          // Events
           onClick={() => {
             onClose && onClose()
           }}

@@ -15,19 +15,26 @@ import { DOMUtil, Page } from 'lyrixi-mobile'
 const Modal = forwardRef(
   (
     {
-      portal,
-      open,
+      // Value & Display Value
       value,
-      onChange,
-      onOpen,
-      onClose,
+
+      // Status
+      open,
+
+      // Style
       modalClassName,
       modalStyle,
 
-      // 绘画配置
-      color,
-      backgroundColor,
-      mainProps
+      // Element
+      portal,
+      mainProps,
+      color, // 绘画配置: 画笔颜色
+      backgroundColor, // 绘画配置: 背景颜色
+
+      // Events
+      onChange,
+      onOpen,
+      onClose
     },
     ref
   ) => {
@@ -45,24 +52,28 @@ const Modal = forwardRef(
     return createPortal(
       <Page
         ref={modalRef}
+        // Style
+        style={modalStyle}
         className={DOMUtil.classNames(
           'lyrixi-signature-modal',
           modalClassName,
           open === true ? '' : 'lyrixi-hide'
         )}
-        style={modalStyle}
       >
+        {/* Element: Main */}
         {open && (
           <Main
-            {...(mainProps || {})}
+            // Value & Display Value
             value={value}
+            // Element
+            {...(mainProps || {})}
+            color={color} // 绘画配置: 画笔颜色
+            backgroundColor={backgroundColor} // 绘画配置: 背景颜色
+            // Events
             onChange={onChange}
             onCancel={() => {
               onClose && onClose()
             }}
-            // 绘画配置
-            color={color}
-            backgroundColor={backgroundColor}
           />
         )}
       </Page>,

@@ -13,17 +13,21 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // Combo
 const Combo = (
   {
+    // Value & Display Value
     value,
-    onChange,
+
+    // Style
+    className,
+    style,
     modalClassName,
     modalStyle,
-    // 绘画配置
-    color,
-    backgroundColor,
 
-    // 其它属性
-    className,
-    style
+    // Element
+    color, // 绘画配置: 画笔颜色
+    backgroundColor, // 绘画配置: 背景颜色
+
+    // Events
+    onChange
   },
   ref
 ) => {
@@ -65,30 +69,41 @@ const Combo = (
   // 未签显示签名
   return (
     <>
+      {/* Element: Combo Button */}
       <div
         ref={comboRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-signature-button', className)}
+        // Events
         onClick={handleSign}
       >
+        {/* Element: Icon */}
         <i className="lyrixi-signature-button-icon-add"></i>
-        {/* 文字 */}
+
+        {/* Element: Label */}
         <div className="lyrixi-signature-button-label">
           {LocaleUtil.locale('签名', 'lyrixi_signature')}
         </div>
       </div>
+
+      {/* Element: Modal */}
       <Modal
         ref={modalRef}
+        // Status
         open={open}
+        // Style
+        modalClassName={modalClassName}
+        modalStyle={modalStyle}
+        // Value & Display Value
         value={value}
-        onChange={handleChange}
+        // Element
+        color={color} // 绘画配置: 画笔颜色
+        backgroundColor={backgroundColor} // 绘画配置: 背景颜色
+        // Events
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
-        // 绘画配置
-        color={color}
-        backgroundColor={backgroundColor}
-        className={modalClassName}
-        style={modalStyle}
+        onChange={handleChange}
       />
     </>
   )

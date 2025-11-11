@@ -6,7 +6,18 @@ import Thumbnail from './Thumbnail'
 // import { Bridge, Device } from 'lyrixi-mobile'
 
 // 照片视频预览
-const Edit = forwardRef(({ value, onDelete, onPreview }, ref) => {
+const Edit = forwardRef(
+  (
+    {
+      // Value & Display Value
+      value,
+
+      // Events
+      onDelete,
+      onPreview
+    },
+    ref
+  ) => {
   const comboRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
@@ -18,14 +29,23 @@ const Edit = forwardRef(({ value, onDelete, onPreview }, ref) => {
   })
 
   return (
-    <div className="lyrixi-signature-edit-container" ref={comboRef}>
-      {/* 缩略图 */}
-      <Thumbnail src={value} onPreview={onPreview} />
+    <div
+      ref={comboRef}
+      className="lyrixi-signature-edit-container"
+    >
+      {/* Element: Thumbnail */}
+      <Thumbnail
+        // Value & Display Value
+        src={value}
+        // Events
+        onPreview={onPreview}
+      />
 
-      {/* 删除按钮 */}
+      {/* Element: Delete Button */}
       {typeof onDelete === 'function' && (
         <div
           className="lyrixi-signature-edit-image-delete"
+          // Events
           onClick={(e) => {
             e.stopPropagation()
 
