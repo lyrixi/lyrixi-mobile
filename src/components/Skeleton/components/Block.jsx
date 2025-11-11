@@ -6,16 +6,20 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 const Block = (
   {
-    animated = true, // 其它属性
+    // Status
+    animated = true,
+
+    // Style
     className,
-    ...props
+    style
   },
   ref
 ) => {
   return (
     <div
       ref={ref}
-      {...props}
+      // Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-skeleton-block', animated ? 'animated' : '', className)}
     ></div>
   )

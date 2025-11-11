@@ -3,9 +3,34 @@ import React from 'react'
 import Page from './../../Page'
 import Paragraph from './../components/Paragraph'
 
-const Edit = ({ animated, divider, listLength = 8, paragraphLength = 6, ...props }) => {
+const Edit = ({
+  // Value & Display Value
+  listLength = 8,
+  paragraphLength = 6,
+
+  // Status
+  animated,
+  safeArea,
+  full = true,
+
+  // Style
+  className,
+  style,
+  divider,
+  layout,
+  animation
+}) => {
   return (
-    <Page {...props}>
+    <Page
+      // Status
+      safeArea={safeArea}
+      full={full}
+      // Style
+      className={className}
+      style={style}
+      layout={layout}
+      animation={animation}
+    >
       <Page.Main className="lyrixi-overflow-hidden">
         {Array.from({ length: listLength }).map((_, index) => (
           <Paragraph

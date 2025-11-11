@@ -9,9 +9,12 @@ import CompactWrapper from './CompactWrapper'
 const Compact = forwardRef(
   (
     {
-      children, // 其它属性
+      // Style
       className,
-      ...props
+      style,
+
+      // Elements
+      children
     },
     ref
   ) => {
@@ -27,7 +30,7 @@ const Compact = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-space-compact', className)}
         ref={rootRef}
       >

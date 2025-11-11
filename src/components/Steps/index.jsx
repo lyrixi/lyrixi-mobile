@@ -16,17 +16,16 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Steps = forwardRef(
   (
     {
+      // Value & Display Value
+      value,
+      list,
+
       // Style
       style,
       className,
       iconSize = 8,
       align = 'center',
-      direction = 'vertical',
-      // Data
-      value,
-      list,
-
-      ...props
+      direction = 'vertical'
     },
     ref
   ) => {
@@ -90,7 +89,6 @@ const Steps = forwardRef(
 
     return (
       <div
-        {...props}
         style={{
           ...style,
           '--steps-title-height':

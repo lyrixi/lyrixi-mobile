@@ -4,9 +4,34 @@ import Page from './../../Page'
 import Paragraph from './../components/Paragraph'
 import Tabs from './../components/Tabs'
 
-const Detail = ({ animated, divider, listLength = 2, paragraphLength = 10, ...props }) => {
+const Detail = ({
+  // Value & Display Value
+  listLength = 2,
+  paragraphLength = 10,
+
+  // Status
+  animated,
+  safeArea,
+  full = true,
+
+  // Style
+  className,
+  style,
+  divider,
+  layout,
+  animation
+}) => {
   return (
-    <Page {...props}>
+    <Page
+      // Status
+      safeArea={safeArea}
+      full={full}
+      // Style
+      className={className}
+      style={style}
+      layout={layout}
+      animation={animation}
+    >
       <Page.Main className="lyrixi-overflow-hidden">
         <Paragraph
           divider={divider}
