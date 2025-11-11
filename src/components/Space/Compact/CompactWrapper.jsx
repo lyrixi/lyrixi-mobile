@@ -31,7 +31,7 @@ const CompactWrapper = ({ children, targetsBaseClass = {} }) => {
     // 仅克隆当前元素，不处理子元素的子元素
     return React.cloneElement(child, {
       className: mergedClassName,
-      comboClassName: mergedClassName
+      className: mergedClassName
     })
   })
 

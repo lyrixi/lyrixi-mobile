@@ -1,62 +1,85 @@
-import React from 'react'
-import MoreWrapper from './../MoreWrapper'
+import React, { forwardRef } from 'react'
+import Combo from './Combo'
 
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
+import ActionSheet from './../../ActionSheet'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
-// 图文组合
-export default function FooterBarTab({
-  disabled,
-  name,
-  iconRender,
-  moreList,
-  onClick,
-  className,
-  style
-}) {
-  const hasMore = Array.isArray(moreList) && moreList.length
+// 底部按钮
+const FooterBarTab = forwardRef(
+  (
+    {
+      // Combo: Value & Display Value
+      name,
+      list,
+      // Combo: Status
+      disabled,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Elements
+      iconRender,
 
-  // 获取图标节点
-  function getIconNode() {
-    if (typeof iconRender === 'function') {
-      return iconRender()
+      // Modal: Style
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Modal: Element
+      portal,
+
+      // Events
+      onClick
+    },
+    ref
+  ) => {
+    // 获取标题节点
+    function getComboNode({ comboRef, open, onClick }) {
+      return (
+        <Combo
+          ref={comboRef}
+          // Combo: Value & Display Value
+          name={name}
+          list={list}
+          // Combo: Status
+          open={open}
+          disabled={disabled}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Elements
+          iconRender={iconRender}
+          // Events
+          onClick={onClick}
+        >
+          {children}
+        </Combo>
+      )
     }
 
-    // 默认图标
-    if (hasMore) {
-      return <i className="lyrixi-footerbar-tab-icon-more"></i>
-    }
-
-    return null
-  }
-  const IconNode = getIconNode()
-
-  const tab = (
-    <div
-      style={style}
-      className={DOMUtil.classNames(
-        'lyrixi-footerbar-tab',
-        className,
-        disabled ? 'lyrixi-disabled' : ''
-      )}
-    >
-      <span className="lyrixi-footerbar-tab-icon">{IconNode}</span>
-      <div className="lyrixi-footerbar-tab-name">{name}</div>
-    </div>
-  )
-
-  if (moreList) {
     return (
-      <MoreWrapper moreList={moreList} onClick={onClick}>
-        {tab}
-      </MoreWrapper>
+      <ActionSheet.Combo
+        ref={ref}
+        // Modal: Value & Display Value
+        list={list}
+        // Modal: Style
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        modalStyle={modalStyle}
+        modalClassName={modalClassName}
+        // Modal: Element
+        portal={portal}
+        comboRender={getComboNode}
+        // Events
+        onClick={onClick}
+      />
     )
   }
+)
 
-  return React.cloneElement(tab, { onClick })
-}
+export default FooterBarTab

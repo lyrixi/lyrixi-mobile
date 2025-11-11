@@ -25,7 +25,7 @@ const Icon = forwardRef(
       className,
 
       // Element
-      icon,
+      iconClassName,
       children
     },
     ref
@@ -69,7 +69,7 @@ const Icon = forwardRef(
         style={iconStyle}
         className={DOMUtil.classNames(
           'lyrixi-icon',
-          icon,
+          iconClassName,
           isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
           isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
           isSizeClass && size && `lyrixi-size-${size}`,

@@ -12,10 +12,10 @@ import { DOMUtil, Button } from 'lyrixi-mobile'
 // 操作表下拉
 function Combo(
   {
-    // Status
+    // Combo: Status
     open,
 
-    // Style
+    // Combo: Style
     style,
     className,
     color = 'default',
@@ -23,10 +23,7 @@ function Combo(
     shape,
     border,
     radius,
-    size,
-
-    // Element
-    arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
+    size
   },
   ref
 ) {
@@ -38,14 +35,6 @@ function Combo(
     }
   })
 
-  // 获取箭头节点
-  function getArrowNode() {
-    if (typeof arrowRender === 'function') {
-      return arrowRender({ open: open })
-    }
-    return <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
-  }
-
   return (
     <Button
       ref={comboRef}
@@ -56,15 +45,14 @@ function Combo(
       radius={radius || 's'}
       shape={shape}
       className={DOMUtil.classNames(
-        'lyrixi-toolbar-dropdown-combo lyrixi-toolbar-button',
+        'lyrixi-footerbar-button',
         className,
         open ? 'lyrixi-expand' : ''
       )}
       style={style}
       onClick={onClick}
     >
-      <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span>
-      {getArrowNode()}
+      {children}
     </Button>
   )
 }

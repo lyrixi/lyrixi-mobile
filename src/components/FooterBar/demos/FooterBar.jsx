@@ -9,7 +9,7 @@ export default () => {
         <FooterBar>
           <FooterBar.Icon
             className="lyrixi-icon-three-dots"
-            moreList={[
+            list={[
               {
                 id: 'option1',
                 name: 'Option 1',
@@ -59,7 +59,7 @@ export default () => {
           <FooterBar.Icon
             disabled
             className="lyrixi-icon-three-dots"
-            moreList={[
+            list={[
               {
                 id: 'option1',
                 name: 'Option 1',
@@ -110,7 +110,7 @@ export default () => {
         <FooterBar>
           <FooterBar.Tab
             name="More"
-            moreList={[
+            list={[
               {
                 id: 'option1',
                 name: 'Option 1',
@@ -156,7 +156,7 @@ export default () => {
         <FooterBar>
           <FooterBar.Tab
             name="More"
-            moreList={[
+            list={[
               {
                 disabled: true,
                 id: 'option1',

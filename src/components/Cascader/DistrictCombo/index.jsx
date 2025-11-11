@@ -26,10 +26,10 @@ const DistrictCombo = forwardRef(
 
       // Modal
       portal,
-      comboStyle,
-      comboClassName,
-      comboLeftIcon,
-      comboRightIcon,
+      style,
+      className,
+      leftIcon,
+      rightIcon,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -156,10 +156,10 @@ const DistrictCombo = forwardRef(
         <Input.Select
           ref={comboRef}
           {...props}
-          style={comboStyle}
-          className={comboClassName}
-          leftIcon={comboLeftIcon}
-          rightIcon={comboRightIcon}
+          style={style}
+          className={className}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
           value={value}
           onChange={handleChange}
           multiple={multiple}

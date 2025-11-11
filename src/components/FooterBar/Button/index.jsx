@@ -1,53 +1,86 @@
 import React, { forwardRef } from 'react'
-import MoreWrapper from './../MoreWrapper'
+import Combo from './Combo'
 
 // 内库使用-start
-import Button from './../../Button'
-import DOMUtil from './../../../utils/DOMUtil'
+import ActionSheet from './../../ActionSheet'
 // 内库使用-end
 
 /* 测试使用-start
-import { Button, DOMUtil } from 'lyrixi-mobile'
+import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
 // 底部按钮
 const FooterBarButton = forwardRef(
   (
     {
-      color,
-      backgroundColor = 'default',
-      size = 'm',
-      radius = 'm',
-      border = 'none',
+      // Value & Display Value
+
+      // Combo: Style
+      style,
       className,
-      moreList,
-      onClick,
-      ...props
+      color = 'default',
+      backgroundColor,
+      shape,
+      border,
+      radius,
+      size,
+
+      // Modal: Style
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Modal: Element
+      portal,
+      list,
+
+      // Events
+      onClick
     },
     ref
   ) => {
-    const button = (
-      <Button
-        ref={ref}
-        color={color}
-        backgroundColor={backgroundColor}
-        size={size}
-        radius={radius}
-        border={border}
-        className={DOMUtil.classNames('lyrixi-footerbar-button', className)}
-        {...props}
-      />
-    )
-
-    if (moreList) {
+    // 获取标题节点
+    function getComboNode({ comboRef, open, onClick }) {
       return (
-        <MoreWrapper moreList={moreList} onClick={onClick}>
-          {button}
-        </MoreWrapper>
+        <Combo
+          ref={comboRef}
+          open={open}
+          // Combo: Style
+          style={style}
+          className={className}
+          color={color}
+          backgroundColor={backgroundColor}
+          shape={shape}
+          border={border}
+          radius={radius}
+          size={size}
+          // Combo: Elements
+          // Events
+          onClick={onClick}
+        >
+          {children}
+        </Combo>
       )
     }
 
-    return React.cloneElement(button, { onClick })
+    return (
+      <ActionSheet.Combo
+        ref={ref}
+        // Modal: Value & Display Value
+        list={list}
+        // Modal: Style
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        modalStyle={modalStyle}
+        modalClassName={modalClassName}
+        // Modal: Element
+        portal={portal}
+        comboRender={getComboNode}
+        // Events
+        onClick={onClick}
+      />
+    )
   }
 )
 

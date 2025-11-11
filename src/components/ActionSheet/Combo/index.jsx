@@ -53,6 +53,7 @@ const ActionSheetCombo = (
 
     // Events
     onBeforeOpen,
+    onClick,
     onChange
   },
   ref
@@ -74,6 +75,12 @@ const ActionSheetCombo = (
       let goOn = await onBeforeOpen()
       if (goOn === false) return
     }
+
+    // 如果没有 list，则不打开
+    if (!Array.isArray(list) || !list.length) {
+      return
+    }
+    onClick && onClick()
     setOpen(true)
   }
 

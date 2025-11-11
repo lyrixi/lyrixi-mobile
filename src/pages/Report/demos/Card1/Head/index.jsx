@@ -27,8 +27,8 @@ const Head = ({ title, tabs, tab, slides, slide, onTabChange, onSlideChange }) =
             right={12}
             value={tab ? [tab] : null}
             list={tabs}
-            comboClassName="auto-fit nowrap1"
-            comboStyle={{
+            className="auto-fit nowrap1"
+            style={{
               display: 'flex',
               maxWidth: 'initial',
               marginLeft: 'var(--lyrixi-space-xl)'

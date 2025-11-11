@@ -26,7 +26,7 @@ const Button = forwardRef(
 
       // Element
       children,
-      icon,
+      iconClassName,
       iconPosition,
       iconColor,
       iconBackgroundColor,
@@ -84,9 +84,9 @@ const Button = forwardRef(
         )}
       >
         {/* Element: Icon Left */}
-        {icon && iconPosition !== 'right' && (
+        {iconClassName && iconPosition !== 'right' && (
           <Icon
-            icon={icon}
+            iconClassName={iconClassName}
             className="lyrixi-button-icon"
             // Style
             color={iconColor}
