@@ -124,7 +124,6 @@ const NumberKeyboard = forwardRef(
           disabled={disabled}
           readOnly={readOnly}
           cursor={keyboardOpen} // 键盘打开时显示光标
-          {...props}
         />
 
         {/* 数字键盘 */}
