@@ -14,8 +14,7 @@ const QRCode = forwardRef(
       text,
       children,
       // 其它属性
-      className,
-      ...props
+      className
     },
     ref
   ) => {
@@ -58,12 +57,7 @@ const QRCode = forwardRef(
 
     if (!text) return null
     return (
-      <span
-        style={style}
-        {...props}
-        className={DOMUtil.classNames('lyrixi-qrcode', className)}
-        ref={rootRef}
-      >
+      <span style={style} className={DOMUtil.classNames('lyrixi-qrcode', className)} ref={rootRef}>
         {children}
       </span>
     )

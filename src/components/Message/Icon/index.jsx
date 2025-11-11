@@ -14,7 +14,7 @@ const ConfirmIcon = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -30,7 +30,7 @@ const ConfirmIcon = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-message-icon', className)}
         ref={rootRef}
       >

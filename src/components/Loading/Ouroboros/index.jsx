@@ -8,7 +8,7 @@ const Ouroboros = (
   {
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) => {
@@ -23,7 +23,7 @@ const Ouroboros = (
   })
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-loading-ouroboros', className)}
       ref={rootRef}
     >

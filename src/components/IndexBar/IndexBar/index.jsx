@@ -31,7 +31,7 @@ const IndexBar = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -184,7 +184,7 @@ const IndexBar = forwardRef(
       <Fragment>
         {children}
         <div
-          {...props}
+          style={style}
           className={DOMUtil.classNames('lyrixi-indexbar', className)}
           ref={sidebarRef}
           onTouchStart={handleTouchStart}

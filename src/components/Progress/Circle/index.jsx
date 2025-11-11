@@ -16,8 +16,7 @@ const ProgressCircle = forwardRef(
       size = 50,
       style,
       // 其它属性
-      className,
-      ...props
+      className
     },
     ref
   ) => {
@@ -51,7 +50,6 @@ const ProgressCircle = forwardRef(
 
     return (
       <div
-        {...props}
         className={DOMUtil.classNames('lyrixi-progress-circle', className)}
         ref={rootRef}
         style={{

@@ -8,7 +8,7 @@ const SpinFade = (
   {
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) => {
@@ -23,7 +23,7 @@ const SpinFade = (
   })
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-loading-spinfade', className)}
       ref={rootRef}
     >

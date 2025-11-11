@@ -21,7 +21,7 @@ function RangeMain(
 
     rangeId,
     ranges,
-    ...props
+    style
   },
   ref
 ) {
@@ -35,7 +35,7 @@ function RangeMain(
 
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-datepicker-rangemain-selector', className)}
       ref={rootRef}
     >

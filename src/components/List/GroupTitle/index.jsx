@@ -9,7 +9,7 @@ import { IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取分组标题
-function GroupTitle({ anchor, title, description, ...props }) {
+function GroupTitle({ anchor, title, description, style }) {
   let TitleNode = (
     <>
       {title && <div className="lyrixi-list-title">{title}</div>}
@@ -19,14 +19,14 @@ function GroupTitle({ anchor, title, description, ...props }) {
 
   if (anchor) {
     return (
-      <IndexBar.Anchor className="lyrixi-list-divider" {...(props || {})} name={anchor}>
+      <IndexBar.Anchor className="lyrixi-list-divider" style={style} name={anchor}>
         {TitleNode}
       </IndexBar.Anchor>
     )
   }
 
   return (
-    <div className="lyrixi-list-divider" {...(props || {})}>
+    <div className="lyrixi-list-divider" style={style}>
       {TitleNode}
     </div>
   )

@@ -66,7 +66,7 @@ const Types = forwardRef(
       onChange,
 
       // 其它属性
-      ...props
+      style
     },
     ref
   ) => {
@@ -145,7 +145,7 @@ const Types = forwardRef(
     }
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-datepicker-types', className)}
         ref={rootRef}
       >

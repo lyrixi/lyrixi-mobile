@@ -23,7 +23,7 @@ const ListItem = forwardRef(
       onReLoad,
       // 修改
       onSelect,
-      ...props
+      style
     },
     ref
   ) => {
@@ -40,7 +40,11 @@ const ListItem = forwardRef(
     }
 
     return (
-      <div {...props} className={DOMUtil.classNames('lyrixi-cascader-body', className)} ref={ref}>
+      <div
+        style={style}
+        className={DOMUtil.classNames('lyrixi-cascader-body', className)}
+        ref={ref}
+      >
         {typeof list === 'string' && (
           <Result title={list} status={status} className="lyrixi-cascader-body-result">
             {status === '500' && onReLoad && (

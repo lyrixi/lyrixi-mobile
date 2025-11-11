@@ -11,7 +11,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 // 日历头部
 const Header = forwardRef(
   (
-    { className, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear, children, ...props },
+    { className, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear, children, style },
     ref
   ) => {
     // 容器
@@ -28,7 +28,7 @@ const Header = forwardRef(
     return (
       <div
         ref={rootRef}
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-calendar-header', className)}
       >
         <div className="lyrixi-calendar-previous-year" onClick={onPreviousYear}>

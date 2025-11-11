@@ -27,7 +27,7 @@ const MessageCombo = forwardRef(
 
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -66,7 +66,7 @@ const MessageCombo = forwardRef(
       <>
         <div
           ref={comboRef}
-          {...props}
+          style={style}
           className={DOMUtil.classNames('lyrixi-message-combo', className)}
           onClick={handleClick}
         >

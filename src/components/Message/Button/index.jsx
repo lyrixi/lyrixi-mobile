@@ -14,7 +14,7 @@ const Button = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -30,7 +30,7 @@ const Button = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-message-button', className)}
         ref={rootRef}
       >

@@ -5,9 +5,13 @@ import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 // 照片遮罩
-function Mask({ labels, style, className, ...props }, ref) {
+function Mask({ labels, style, className }, ref) {
   return (
-    <div ref={ref} {...props} className={DOMUtil.classNames('lyrixi-image-item-mark', className)}>
+    <div
+      ref={ref}
+      style={style}
+      className={DOMUtil.classNames('lyrixi-image-item-mark', className)}
+    >
       {Array.isArray(labels) && labels.length
         ? labels.map((label, index) => {
             return (

@@ -14,7 +14,7 @@ const ConfirmTitle = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -30,7 +30,7 @@ const ConfirmTitle = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-message-title', className)}
         ref={rootRef}
       >

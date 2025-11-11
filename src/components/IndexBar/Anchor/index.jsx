@@ -10,7 +10,7 @@ const Anchor = ({
   children,
   // 其它属性
   className,
-  ...props
+  style
 }) => {
   if (!name) {
     return children
@@ -18,7 +18,7 @@ const Anchor = ({
 
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-indexbar-anchor', className)}
       data-indexbar-anchor={name}
     >

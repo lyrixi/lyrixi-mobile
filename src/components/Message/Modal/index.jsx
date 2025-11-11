@@ -26,8 +26,7 @@ const Message = forwardRef(
       onOpen,
       onClose,
       animation = 'zoom',
-      children,
-      ...props
+      children
     },
     ref
   ) => {
@@ -72,7 +71,6 @@ const Message = forwardRef(
         ref={maskRef}
       >
         <section
-          {...props}
           className={DOMUtil.classNames(
             'lyrixi-modal-animation lyrixi-message-modal',
             modalClassName,

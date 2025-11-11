@@ -16,7 +16,7 @@ const Aside = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -32,7 +32,7 @@ const Aside = forwardRef(
 
     return (
       <aside
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-page-aside', className)}
         ref={rootRef}
       >

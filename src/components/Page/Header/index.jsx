@@ -11,7 +11,7 @@ const Header = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -27,7 +27,7 @@ const Header = forwardRef(
 
     return (
       <header
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-page-header', className)}
         ref={rootRef}
       >

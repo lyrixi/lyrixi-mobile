@@ -25,7 +25,7 @@ const Chat = (
     avatar,
     author,
     content,
-    ...props
+    style
   },
   ref
 ) => {
@@ -92,7 +92,7 @@ const Chat = (
 
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-chat-item', position, className)}
       ref={rootRef}
     >

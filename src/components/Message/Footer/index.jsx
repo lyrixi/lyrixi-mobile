@@ -15,7 +15,7 @@ const Footer = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -31,7 +31,7 @@ const Footer = forwardRef(
 
     return (
       <footer
-        {...props}
+        style={style}
         data-layout={layout}
         className={DOMUtil.classNames('lyrixi-message-footer', className)}
         ref={rootRef}

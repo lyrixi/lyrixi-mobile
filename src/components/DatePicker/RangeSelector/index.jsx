@@ -35,7 +35,7 @@ function RangeSelector(
     ranges,
     portal,
 
-    ...props
+    style
   },
   ref
 ) {
@@ -74,7 +74,7 @@ function RangeSelector(
 
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-datepicker-rangeselector-selector', className)}
       ref={mainRef}
     >

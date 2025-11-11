@@ -10,7 +10,7 @@ const NavBarTitle = forwardRef(
       children,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -26,7 +26,7 @@ const NavBarTitle = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-navbar-title', className)}
         ref={rootRef}
       >

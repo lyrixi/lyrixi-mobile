@@ -14,7 +14,7 @@ const ProgressBar = forwardRef(
       percent = 0,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -33,7 +33,7 @@ const ProgressBar = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-progress-bar', className)}
         ref={rootRef}
       >

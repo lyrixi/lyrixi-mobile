@@ -8,7 +8,7 @@ const BallWave = (
   {
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) => {
@@ -23,7 +23,7 @@ const BallWave = (
   })
   return (
     <div
-      {...props}
+      style={style}
       className={DOMUtil.classNames('lyrixi-loading-ballwave', className)}
       ref={rootRef}
     >
