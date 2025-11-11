@@ -23,7 +23,7 @@ const Combo = (
 
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) => {
@@ -67,7 +67,7 @@ const Combo = (
     <>
       <div
         ref={comboRef}
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-signature-button', className)}
         onClick={handleSign}
       >

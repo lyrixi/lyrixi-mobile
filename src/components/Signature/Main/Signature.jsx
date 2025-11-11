@@ -18,7 +18,7 @@ const Signature = (
     quality = 0.92,
     suffix = 'png',
     // 不能使用style制定宽高,canvas用style的width|height会导致绘图位置不正确
-    ...props
+    style
   },
   ref
 ) => {
@@ -131,8 +131,14 @@ const Signature = (
     }
   }
 
+  // 不能使用style制定宽高,canvas用style的width|height会导致绘图位置不正确
+  if (style) {
+    delete style?.width
+    delete style?.height
+  }
+
   return (
-    <div className="lyrixi-signature-main-canvas" ref={rootRef} {...props}>
+    <div className="lyrixi-signature-main-canvas" ref={rootRef} style={style}>
       <canvas
         ref={canvasRef}
         onTouchStart={handleStart}

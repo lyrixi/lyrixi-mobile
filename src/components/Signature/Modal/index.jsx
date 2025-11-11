@@ -27,9 +27,7 @@ const Modal = forwardRef(
       // 绘画配置
       color,
       backgroundColor,
-      mainProps,
-
-      ...props
+      mainProps
     },
     ref
   ) => {
@@ -47,7 +45,6 @@ const Modal = forwardRef(
     return createPortal(
       <Page
         ref={modalRef}
-        {...props}
         className={DOMUtil.classNames(
           'lyrixi-signature-modal',
           modalClassName,

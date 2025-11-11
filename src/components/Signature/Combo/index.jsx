@@ -11,10 +11,14 @@ const Combo = (
     onPreview,
     modalClassName,
     modalStyle,
+    maskStyle,
+    maskClassName,
+    portal,
     // 绘画配置
     color,
     backgroundColor,
-    ...props
+    className,
+    style
   },
   ref
 ) => {
@@ -38,10 +42,14 @@ const Combo = (
       onChange={onChange}
       modalClassName={modalClassName}
       modalStyle={modalStyle}
+      maskStyle={maskStyle}
+      maskClassName={maskClassName}
+      portal={portal}
       // 绘画配置
       color={color}
       backgroundColor={backgroundColor}
-      {...props}
+      className={className}
+      style={style}
     />
   )
 }
