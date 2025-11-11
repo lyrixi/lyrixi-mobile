@@ -30,7 +30,7 @@ const Menus = forwardRef(
       disabled,
       descriptionPosition,
       onChange,
-      ...props
+      style
     },
     ref
   ) => {
@@ -112,7 +112,7 @@ const Menus = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-tabbar-menus', className)}
         disabled={disabled}
         ref={rootRef}

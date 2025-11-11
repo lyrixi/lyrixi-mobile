@@ -9,28 +9,44 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const RightArrow = forwardRef(
+const IconRightArrow = forwardRef(
   (
     {
-      name,
-      size,
-      // 其它属性
+      // Status
+      disabled,
+
+      // Style
+      color, // 颜色: default, transparent, primary, link, warning, danger, success
+      backgroundColor, // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      padding, // 内边距: 数值
+      radius, // 圆角: xxs, xs, s, m, l, xl
+      style,
       className,
-      ...props
+
+      // Element ClassName
+      icon
     },
     ref
   ) => {
     return (
       <Icon
-        {...props}
-        className={DOMUtil.classNames(
-          'lyrixi-input-icon lyrixi-input-icon-right-arrow',
-          className || 'lyrixi-right-icon'
-        )}
         ref={ref}
+        // Status
+        disabled={disabled}
+        // Style
+        color={color}
+        backgroundColor={backgroundColor}
+        size={size}
+        padding={padding}
+        radius={radius}
+        style={style}
+        className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-right-icon', className)}
+        // Element ClassName
+        icon={icon || 'lyrixi-input-icon-right-arrow'}
       />
     )
   }
 )
 
-export default RightArrow
+export default IconRightArrow

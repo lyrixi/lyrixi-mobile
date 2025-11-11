@@ -22,8 +22,8 @@ const Transfer = (
     titles,
 
     // 其它属性
-    className,
-    ...props
+    style,
+    className
   },
   ref
 ) => {
@@ -69,7 +69,7 @@ const Transfer = (
   return (
     <>
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-transfer-main', className)}
         ref={mainRef}
       >

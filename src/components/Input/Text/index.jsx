@@ -52,7 +52,7 @@ const InputText = (
     min,
     maxLength,
 
-    // 其它属性
+    // input属性
     inputMode,
     enterKeyHint,
     autoComplete,
@@ -376,8 +376,8 @@ const InputText = (
         `lyrixi-input`,
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
-        disabled ? 'lyrixi-disabled' : '',
-        readOnly ? 'lyrixi-readOnly' : ''
+        disabled ? 'lyrixi-input-disabled' : '',
+        readOnly ? 'lyrixi-input-readOnly' : ''
       )}
       onClick={onClick}
       ref={rootRef}
@@ -388,8 +388,8 @@ const InputText = (
       <div
         className={DOMUtil.classNames(
           'lyrixi-input-node',
-          disabled ? 'lyrixi-disabled' : '',
-          readOnly ? 'lyrixi-readOnly' : ''
+          disabled ? 'lyrixi-input-disabled' : '',
+          readOnly ? 'lyrixi-input-readOnly' : ''
         )}
       >
         {/* Main */}

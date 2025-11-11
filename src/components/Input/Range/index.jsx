@@ -14,6 +14,8 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Range = forwardRef(
   (
     {
+      id,
+      name,
       value = 0,
       min = 0,
       max = 100,
@@ -23,11 +25,12 @@ const Range = forwardRef(
       onChange,
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
     const rootRef = useRef(null)
+    const inputRef = useRef(null)
     const tooltipRef = useRef(null)
     const handleRef = useRef(null)
     const railRef = useRef(null)
@@ -35,7 +38,9 @@ const Range = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
+        inputDOM: inputRef.current,
+        getRootDOM: () => rootRef.current,
+        getInputDOM: () => inputRef.current
       }
     })
 
@@ -79,24 +84,27 @@ const Range = forwardRef(
 
     return (
       <div
-        {...props}
+        id={id}
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-range',
           className,
-          readOnly ? 'lyrixi-readOnly' : '',
-          disabled ? 'lyrixi-disabled' : ''
+          readOnly ? 'lyrixi-input-readOnly' : '',
+          disabled ? 'lyrixi-input-disabled' : ''
         )}
         ref={rootRef}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         <input
+          ref={inputRef}
           readOnly={readOnly}
           disabled={disabled}
           type="range"
           className="lyrixi-input-range-input"
           min={min}
           max={max}
+          name={name}
           step={step}
           value={value}
           onChange={handleChange}

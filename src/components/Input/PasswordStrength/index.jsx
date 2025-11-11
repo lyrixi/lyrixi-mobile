@@ -15,7 +15,7 @@ const PasswordStrength = (
     value = '',
     // 其它属性
     className,
-    ...props
+    style
   },
   ref
 ) => {
@@ -37,7 +37,7 @@ const PasswordStrength = (
 
   return (
     <ul
-      {...props}
+      style={style}
       className={DOMUtil.classNames(
         'lyrixi-input-password-strength',
         `lyrixi-level${strength}`,

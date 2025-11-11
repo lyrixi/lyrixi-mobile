@@ -61,7 +61,7 @@ const NumberBox = forwardRef(
 
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -202,7 +202,7 @@ const NumberBox = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
         className={DOMUtil.classNames('lyrixi-numberbox', className)}
         ref={rootRef}

@@ -12,22 +12,38 @@ import { Icon } from 'lyrixi-mobile'
 const IconLeftArrow = forwardRef(
   (
     {
-      name,
-      size,
-      // 其它属性
+      // Status
+      disabled,
+
+      // Style
+      color, // 颜色: default, transparent, primary, link, warning, danger, success
+      backgroundColor, // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      padding, // 内边距: 数值
+      radius, // 圆角: xxs, xs, s, m, l, xl
+      style,
       className,
-      ...props
+
+      // Element ClassName
+      icon
     },
     ref
   ) => {
     return (
       <Icon
-        {...props}
-        className={DOMUtil.classNames(
-          'lyrixi-input-icon lyrixi-input-icon-left-arrow',
-          className || 'lyrixi-left-icon'
-        )}
         ref={ref}
+        // Status
+        disabled={disabled}
+        // Style
+        color={color}
+        backgroundColor={backgroundColor}
+        size={size}
+        padding={padding}
+        radius={radius}
+        style={style}
+        className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-left-icon', className)}
+        // Element ClassName
+        icon={icon || 'lyrixi-input-icon-left-arrow'}
       />
     )
   }

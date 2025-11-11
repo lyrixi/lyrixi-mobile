@@ -11,14 +11,29 @@ import { DOMUtil } from 'lyrixi-mobile'
 // 评分组件
 const Rate = forwardRef(
   (
-    { iconRender, value = 0, min = 0, max = 5, step = 0.5, readOnly, disabled, onChange, ...props },
+    {
+      id,
+      name,
+      style,
+      iconRender,
+      value = 0,
+      min = 0,
+      max = 5,
+      step = 0.5,
+      readOnly,
+      disabled,
+      onChange
+    },
     ref
   ) => {
     const rootRef = useRef(null)
+    const inputRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
+        inputDOM: inputRef.current,
+        getRootDOM: () => rootRef.current,
+        getInputDOM: () => inputRef.current
       }
     })
 
@@ -71,16 +86,19 @@ const Rate = forwardRef(
 
     return (
       <div
-        {...props}
+        id={id}
+        style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-rate',
           className,
-          readOnly ? 'lyrixi-readOnly' : '',
-          disabled ? 'lyrixi-disabled' : ''
+          readOnly ? 'lyrixi-input-readOnly' : '',
+          disabled ? 'lyrixi-input-disabled' : ''
         )}
         ref={rootRef}
       >
         <input
+          ref={inputRef}
+          name={name}
           readOnly={readOnly}
           disabled={disabled}
           type="range"

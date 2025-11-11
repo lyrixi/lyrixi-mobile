@@ -30,7 +30,7 @@ const Group = forwardRef(
       disabled,
       descriptionPosition,
       onChange,
-      ...props
+      style
     },
     ref
   ) => {
@@ -111,7 +111,7 @@ const Group = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-tabbar-group', className)}
         disabled={disabled}
         ref={rootRef}

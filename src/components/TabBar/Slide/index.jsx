@@ -30,7 +30,7 @@ const Slide = forwardRef(
       disabled,
       descriptionPosition,
       onChange,
-      ...props
+      style
     },
     ref
   ) => {
@@ -110,7 +110,7 @@ const Slide = forwardRef(
 
     return (
       <div
-        {...props}
+        style={style}
         className={DOMUtil.classNames('lyrixi-tabbar-slide', className)}
         disabled={disabled}
         ref={rootRef}

@@ -5,45 +5,56 @@ import InputNode from './../Node'
 import correctInputNumber from './correctInputNumber'
 
 // 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
 import Keyboard from './../../Keyboard'
 import MathUtil from '../../../utils/MathUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Keyboard, MathUtil } from 'lyrixi-mobile'
+import { DOMUtil, Keyboard, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const NumberKeyboard = forwardRef(
   (
     {
+      // Modal
+      // Modal: Elements
       ok = null,
-      // 值控制
-      value = '',
-      onChange,
-      onClick,
-      onBlur,
-      onFocus,
 
-      // 数值校验
-      min,
-      max,
-      maxLength,
-      trim,
-      precision,
+      // Input
+      id,
 
-      // 输入框配置
-      inputMode,
+      // Input: Value & Display Value
+      value,
       placeholder,
       formatter,
+
+      // Input: Status
+      readOnly,
+      disabled,
+      allowClear,
+
+      // Input: Style
+      style,
+      className,
+
+      // Input: Element
       leftIcon,
       rightIcon,
       clearRender,
-      allowClear,
-      disabled,
-      readOnly,
 
-      // 传递给容器的属性
-      ...props
+      // Input: Validate
+      precision,
+      trim,
+      min,
+      max,
+      maxLength,
+
+      // Input: Events
+      onChange,
+      onClick,
+      onFocus,
+      onBlur
     },
     ref
   ) => {
@@ -64,6 +75,7 @@ const NumberKeyboard = forwardRef(
     // 处理输入框点击
     const handleInputClick = (e) => {
       setKeyboardOpen(true)
+      onClick && onClick(e)
     }
 
     const handleChange = (newValue) => {
@@ -86,7 +98,9 @@ const NumberKeyboard = forwardRef(
         {/* 输入框 */}
         <InputNode
           ref={inputRef}
-          className="lyrixi-input-numberkeyboard"
+          id={id}
+          style={style}
+          className={DOMUtil.classNames('lyrixi-input-numberkeyboard', className)}
           type="number"
           // 值控制
           value={value}

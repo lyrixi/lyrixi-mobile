@@ -29,8 +29,8 @@ const VideoPlayer = forwardRef(
       headerRender, // 状态栏
       children,
       // 其它属性
-      className,
-      ...props
+      style,
+      className
     },
     ref
   ) => {
@@ -145,7 +145,7 @@ const VideoPlayer = forwardRef(
     const DOM = (
       <div
         className={DOMUtil.classNames('lyrixi-videoplayer-page', className)}
-        {...props}
+        style={style}
         ref={rootRef}
       >
         <div

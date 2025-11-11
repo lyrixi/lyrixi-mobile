@@ -36,8 +36,7 @@ const Tabs = forwardRef(
       descriptionPosition = 'bottom',
 
       // Events
-      onChange,
-      ...props
+      onChange
     },
     ref
   ) => {
@@ -119,7 +118,6 @@ const Tabs = forwardRef(
 
     return (
       <div
-        {...props}
         style={style}
         className={DOMUtil.classNames('lyrixi-tabbar-tabs', className, gap ? 'lyrixi-compact' : '')}
         disabled={disabled}

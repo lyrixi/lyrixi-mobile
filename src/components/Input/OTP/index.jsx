@@ -27,10 +27,7 @@ const InputOTP = forwardRef(
 
       // 样式配置
       className,
-      style,
-
-      // 其他属性
-      ...props
+      style
     },
     ref
   ) => {
@@ -149,11 +146,10 @@ const InputOTP = forwardRef(
         className={DOMUtil.classNames(
           'lyrixi-input-otp',
           className,
-          disabled ? 'lyrixi-disabled' : '',
-          readOnly ? 'lyrixi-readOnly' : ''
+          disabled ? 'lyrixi-input-disabled' : '',
+          readOnly ? 'lyrixi-input-readOnly' : ''
         )}
         style={style}
-        {...props}
       >
         <InputComponent
           values={value}

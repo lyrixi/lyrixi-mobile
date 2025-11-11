@@ -13,37 +13,41 @@ import { DOMUtil } from 'lyrixi-mobile'
 // 内部显示div
 const InputNode = (
   {
-    type = 'text',
     id,
+    type = 'text', // 类型: text | number
+
+    // Value & Display Value
+    value,
+    placeholder,
+    formatter,
+
+    // Status
+    readOnly,
+    disabled,
+    allowClear,
+    cursor = null, // 文字末尾光标是否显示, null: 不控制, false: 不显示, true: 显示
+
+    // Style
     style: externalStyle,
     className,
 
-    // 值控制
-    value,
-    onChange,
-    onClick,
-    onFocus,
-    onBlur,
-
-    // 数值校验
-    min,
-    max,
-    maxLength,
-    trim,
-    precision,
-
-    // 输入框配置
-    formatter,
-    placeholder,
+    // Element
     leftIcon,
     rightIcon,
     clearRender,
-    allowClear,
-    disabled,
-    readOnly,
 
-    // 光标控制属性, null: 不控制, false: 不显示, true: 显示
-    cursor = null
+    // Validate
+    precision,
+    trim,
+    min,
+    max,
+    maxLength,
+
+    // Events
+    onChange,
+    onClick,
+    onFocus,
+    onBlur
   },
   ref
 ) => {
@@ -158,50 +162,55 @@ const InputNode = (
 
   return (
     <div
+      ref={rootRef}
+      // Element
       id={id}
+      // Style
       style={style}
       className={DOMUtil.classNames(
         `lyrixi-input`,
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
-        disabled ? 'lyrixi-disabled' : '',
-        readOnly ? 'lyrixi-readOnly' : ''
+        disabled ? 'lyrixi-input-disabled' : '',
+        readOnly ? 'lyrixi-input-readOnly' : ''
       )}
+      // Events
       onClick={(e) => {
         if (disabled) return
         onClick && onClick(e)
       }}
-      ref={rootRef}
     >
-      {/* Left */}
+      {/* Element: Left Icon */}
       {leftIcon}
 
-      {/* Main */}
+      {/* Element: Main */}
       <div
         className={DOMUtil.classNames(
           'lyrixi-input-node',
-          disabled ? 'lyrixi-disabled' : '',
-          readOnly ? 'lyrixi-readOnly' : ''
+          disabled ? 'lyrixi-input-disabled' : '',
+          readOnly ? 'lyrixi-input-readOnly' : ''
         )}
       >
+        {/* Element: Input Text */}
         <div
           ref={inputRef}
+          // Style
+          style={inputStyle}
           className={DOMUtil.classNames(
             'lyrixi-input-text',
             // 无值且没有聚焦时, 显示placeholder
-            !value && placeholder && !cursor ? 'lyrixi-placeholder' : '',
-            cursor ? 'lyrixi-focus' : ''
+            !value && placeholder && !cursor ? 'lyrixi-input-placeholder' : '',
+            cursor ? 'lyrixi-input-focus' : ''
           )}
-          style={inputStyle}
         >
           {typeof value === 'object' || !value || cursor ? placeholder : value}
         </div>
 
-        {/* Blur display displayValue */}
+        {/* Value & Display Value: Formatter Display */}
         {displayValue ? <div className="lyrixi-input-formatter">{displayValue}</div> : null}
       </div>
 
-      {/* Clear Icon */}
+      {/* Element: Clear Icon */}
       {disabled || !allowClear
         ? null
         : getClearNode({
@@ -211,7 +220,7 @@ const InputNode = (
             onClear: handleClear
           })}
 
-      {/* Right */}
+      {/* Element: Right Icon */}
       {rightIcon}
     </div>
   )
