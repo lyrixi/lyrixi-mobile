@@ -6,21 +6,20 @@ import Combo from './../components/Combo'
 import ObjectUtil from './../../../utils/ObjectUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import DropdownModal from './../../Modal/DropdownModal'
-import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { ObjectUtil, DOMUtil, Modal, Button } from 'lyrixi-mobile'
+import { ObjectUtil, DOMUtil, Modal } from 'lyrixi-mobile'
 const DropdownModal = Modal.DropdownModal
 测试使用-end */
 
 const Dropdown = forwardRef(
   (
     {
-      // Value & Display Value
+      // Combo: Value & Display Value
       placeholder = '',
 
-      // Style
+      // Combo: Style
       style,
       className,
       color = 'default',
@@ -29,6 +28,15 @@ const Dropdown = forwardRef(
       border,
       radius,
       size,
+
+      // Combo: Element
+      comboRender,
+      comboChildren,
+      arrowRender = () => (
+        <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
+      ),
+
+      // Modal: Style
       modalStyle,
       modalClassName,
       maskStyle,
@@ -39,12 +47,7 @@ const Dropdown = forwardRef(
       left,
       right,
 
-      // Element
-      comboRender,
-      comboChildren,
-      arrowRender = () => (
-        <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
-      ),
+      // Modal: Element
       portal,
       children,
 
