@@ -11,14 +11,13 @@ import { DOMUtil } from 'lyrixi-mobile'
 // 操作表下拉
 function Combo(
   {
+    // Combo: Value & Display Value
+    name,
+    list,
+
     // Combo: Status
     disabled,
     open,
-
-    // Combo: Value & Display Value
-    name,
-
-    list,
 
     // Combo: Style
     style,
@@ -62,6 +61,7 @@ function Combo(
   return (
     <div
       ref={comboRef}
+      // Combo: Style
       style={style}
       className={DOMUtil.classNames(
         'lyrixi-footerbar-tab',
@@ -69,9 +69,13 @@ function Combo(
         disabled ? 'lyrixi-disabled' : '',
         open ? 'lyrixi-expand' : ''
       )}
+      // Events
       onClick={onClick}
     >
+      {/* Element: Icon */}
       <span className="lyrixi-footerbar-tab-icon">{IconNode}</span>
+
+      {/* Element: Name */}
       <div className="lyrixi-footerbar-tab-name">{name}</div>
     </div>
   )

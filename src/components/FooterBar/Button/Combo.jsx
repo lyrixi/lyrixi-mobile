@@ -23,7 +23,13 @@ function Combo(
     shape,
     border,
     radius,
-    size
+    size,
+
+    // Combo: Element
+    children,
+
+    // Events
+    onClick
   },
   ref
 ) {
@@ -38,18 +44,21 @@ function Combo(
   return (
     <Button
       ref={comboRef}
-      color={color}
-      backgroundColor={backgroundColor}
-      border={border}
-      size={size || 's'}
-      radius={radius || 's'}
-      shape={shape}
+      // Combo: Status
+      // Combo: Style
+      style={style}
       className={DOMUtil.classNames(
         'lyrixi-footerbar-button',
         className,
         open ? 'lyrixi-expand' : ''
       )}
-      style={style}
+      color={color}
+      backgroundColor={backgroundColor}
+      shape={shape}
+      border={border}
+      radius={radius || 's'}
+      size={size || 's'}
+      // Events
       onClick={onClick}
     >
       {children}

@@ -13,8 +13,6 @@ import { ActionSheet } from 'lyrixi-mobile'
 const FooterBarButton = forwardRef(
   (
     {
-      // Value & Display Value
-
       // Combo: Style
       style,
       className,
@@ -25,6 +23,9 @@ const FooterBarButton = forwardRef(
       radius,
       size,
 
+      // Modal: Value & Display Value
+      list,
+
       // Modal: Style
       modalStyle,
       modalClassName,
@@ -33,7 +34,6 @@ const FooterBarButton = forwardRef(
 
       // Modal: Element
       portal,
-      list,
 
       // Events
       onClick

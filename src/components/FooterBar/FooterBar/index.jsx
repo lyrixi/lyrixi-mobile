@@ -11,10 +11,12 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Footer = forwardRef(
   (
     {
-      children,
-      // 其它属性
+      // Style
       className,
-      style
+      style,
+
+      // Element
+      children
     },
     ref
   ) => {
@@ -30,10 +32,12 @@ const Footer = forwardRef(
 
     return (
       <footer
+        ref={rootRef}
+        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-footerbar', className)}
-        ref={rootRef}
       >
+        {/* Element: Children */}
         {children}
       </footer>
     )
