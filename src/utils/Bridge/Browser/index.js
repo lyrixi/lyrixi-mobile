@@ -9,14 +9,8 @@ import LocaleUtil from './../LocaleUtil'
 import { GeoUtil, Device, Toast, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-let Bridge = {
+let Browser = {
   platform: Device.platform,
-  // 自定义操作
-  invoke: function () {
-    Toast.show({
-      content: LocaleUtil.locale('invoke仅可在微信或APP中使用', 'lyrixi_invoke_prompt', ['invoke'])
-    })
-  },
   // 拨打电话
   tel: function (number) {
     if (Device.device === 'pc') {
@@ -25,6 +19,19 @@ let Bridge = {
     }
     if (isNaN(number)) return
     window.location.href = 'tel:' + number
+  },
+  /**
+   * 定制功能
+   */
+  load: function (callback) {
+    // 浏览器平台不需要加载脚本，直接回调
+    if (callback)
+      callback({
+        status: 'success'
+      })
+  },
+  back: function (delta) {
+    back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   /**
    * 获取当前地理位置, 所有平台都可以调用
@@ -169,6 +176,37 @@ let Bridge = {
     }
     return
   },
+  // 配置鉴权
+  getLocation: function (params = {}) {
+    this.getBrowserLocation(params)
+  },
+  // 打开新的窗口
+  openWindow: function (params = {}) {
+    let url = params.url
+    if (url.indexOf('h5:') === 0) url = url.replace(/^h5:/, '')
+    else if (url.indexOf('webview:') === 0) url = url.replace(/^webview:/, '')
+    if (params.target === '_self') {
+      window.location.replace(url)
+    }
+    if (Device.device === 'pc') {
+      window.open(url)
+      return
+    }
+    if (url) window.location.href = url
+  },
+  // 关闭窗口
+  closeWindow: function () {
+    window.history.go(-1)
+  },
+  // 返回监听
+  onHistoryBack: function () {
+    Toast.show({
+      content: LocaleUtil.locale(
+        'onHistoryBack仅可在企业微信或APP中使用',
+        'lyrixi_onHistoryBack_prompt'
+      )
+    })
+  },
   /**
    * 修改原生标题
    * @param {Object} params {title: '自定义标题'}
@@ -182,6 +220,41 @@ let Bridge = {
       }
     }
   },
+  /**
+   * 扫描二维码并返回结果
+   * @param {Object} params
+   * @return {Object} {resultStr: ''}
+   */
+  scanQRCode: function (params = {}) {
+    if (!this.debug) {
+      Toast.show({
+        content: LocaleUtil.locale('此功能仅可在微信或APP中使用', 'lyrixi_only_app_wechat', [
+          'scanQRCode'
+        ])
+      })
+      if (params.onError)
+        params.onError({
+          status: 'error',
+          message: `scanQRCode:${LocaleUtil.locale(
+            '扫码失败',
+            'lyrixi_scanCode_failed'
+          )}, ${LocaleUtil.locale('请稍后重试', 'lyrixi_try_again_later')}`
+        })
+      return
+    }
+    setTimeout(function () {
+      if (params.onSuccess)
+        params.onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
+    }, 500)
+  },
+  // 视频文件上传
+  uploadFile: function () {
+    Toast.show({
+      content: LocaleUtil.locale('uploadFile仅可在APP中使用', 'lyrixi_uploadFile_prompt', [
+        'uploadFile'
+      ])
+    })
+  },
   // 返回首页
   goHome: function () {
     window.history.go(-1)
@@ -189,10 +262,6 @@ let Bridge = {
   // 打开新的窗口
   openWindow: function (params = {}) {
     if (params.url) window.location.href = params.url
-  },
-  // 兼容方法
-  logOut: function () {
-    console.log('logOut方法仅在app上工作')
   },
   openLocation: function (params) {
     let message = LocaleUtil.locale(
@@ -253,4 +322,4 @@ let Bridge = {
     params?.onError && params.onError({ status: 'error', message: message })
   }
 }
-export default Bridge
+export default Browser

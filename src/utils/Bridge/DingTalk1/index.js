@@ -3,7 +3,6 @@
 // 鉴权: https://open.dingtalk.com/document/orgapp/jsapi-authentication
 
 import _ from 'lodash'
-import BridgeBase from './../base'
 import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import compressImage from './compressImage'
@@ -19,7 +18,6 @@ import { LocaleUtil, GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  ...BridgeBase,
   load: function (callback, options) {
     // 初始化完成不需要重复加载
     if (window.top.dd) {

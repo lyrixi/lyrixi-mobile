@@ -1,7 +1,6 @@
 // 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 
 import _ from 'lodash'
-import BridgeBase from './base'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
 import wrapCallback from './utils/wrapCallback'
@@ -17,7 +16,6 @@ import { LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  ...BridgeBase,
   load: function (callback, options) {
     const platform = this.platform
     // 初始化完成不需要重复加载
@@ -37,11 +35,11 @@ let Bridge = {
     if (platform === 'wechat') {
       script.src = options.wechat?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wechatMiniprogram') {
-      script.src = options.wechatMiniprogramBridgeSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = options.wechatMiniprogram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wecom') {
       script.src = options.wecom?.src || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
     } else if (platform === 'wecomMiniprogram') {
-      script.src = options.wecomMiniprogramBridgeSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = options.wecomMiniprogram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     }
 
     // 加载完成
@@ -126,7 +124,7 @@ let Bridge = {
     // 微信PC端不支持定位
     if (Device.device === 'pc') {
       console.log('PC端微信定位...', params)
-      Bridge.getBrowserLocation?.(params)
+      this.getBrowserLocation?.(params)
       return
     }
 

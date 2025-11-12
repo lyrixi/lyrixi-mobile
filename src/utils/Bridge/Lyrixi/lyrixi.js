@@ -1,6 +1,4 @@
 import _ from 'lodash'
-import BridgeBase from './base'
-import Device from 'library/utils/Device'
 
 // 内库使用-start
 import LocaleUtil from './../LocaleUtil'
@@ -11,7 +9,6 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  ...BridgeBase,
   load: function (callback, options) {
     // 初始化完成不需要重复加载
     if (window.top.lyrixi) {

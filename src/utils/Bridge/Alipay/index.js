@@ -1,8 +1,6 @@
-// 官方文档: https://open.feishu.cn/document/client-docs/h5/
-// 鉴权: https://open.feishu.cn/document/uYjL24iN/uQjMuQjMuQjM/authentication/h5sdkconfig
-
+// 官方文档: https://myjsapi.alipay.com/alipayjsapi/media/image/chooseImage.html
+// 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
 import _ from 'lodash'
-import BridgeBase from './base'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
 import wrapCallback from './utils/wrapCallback'
@@ -10,17 +8,17 @@ import wrapCallback from './utils/wrapCallback'
 // 内库使用-start
 import GeoUtil from './../GeoUtil'
 import LocaleUtil from './../LocaleUtil'
+import AssetUtil from './../AssetUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { GeoUtil, LocaleUtil } from 'lyrixi-mobile'
+import { GeoUtil, LocaleUtil, AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  ...BridgeBase,
   load: function (callback, options) {
     // 初始化完成不需要重复加载
-    if (window.top.tt && window.top.h5sdk) {
+    if (window.top.ap) {
       if (callback) {
         callback({
           status: 'success'
@@ -32,16 +30,36 @@ let Bridge = {
     let script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = 'defer'
-    script.src = options.larkBridgeSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
+    script.src =
+      options.alipayBridgeSrc ||
+      '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
 
     // 加载完成
-    script.onload = function () {
-      // 飞书
-      if (window.tt && window.h5sdk) {
+    script.onload = async function () {
+      // 支付小程序还需要加载一个js
+      if (platform === 'alipayMiniprogram') {
+        await AssetUtil.loadJs(options.alipayMiniprogramBridgeSrc || 'https://appx/web-view.min.js')
+        // 小程序js加载失败
+        if (!window.my) {
+          console.error('支付小程序js加载失败')
+          if (callback) {
+            callback({
+              status: 'error',
+              message: LocaleUtil.locale(
+                '支付小程序js加载失败',
+                'lyrixi_alipayMiniProgram_js_load_failed'
+              )
+            })
+          }
+          return
+        }
+        window.top.my = window.my
+      }
+
+      // js加载成功
+      if (window.ap) {
         // eslint-disable-next-line
-        window.top.tt = window.tt
-        // eslint-disable-next-line
-        window.top.h5sdk = window.h5sdk
+        window.top.ap = window.ap
       }
 
       if (callback) {
@@ -54,7 +72,7 @@ let Bridge = {
       if (callback) {
         callback({
           status: 'error',
-          message: LocaleUtil.locale('飞书js加载失败', 'lyrixi_lark_js_load_failed')
+          message: LocaleUtil.locale('支付宝js加载失败', 'lyrixi_alipay_js_load_failed')
         })
       }
     }
@@ -64,44 +82,29 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  /**
-   * 定制功能
-   */
   // 关闭窗口
-  closeWindow: function (params) {
-    const wrappedParams = wrapCallback(params)
-    window.top.tt.closeWindow(wrappedParams)
+  closeWindow: function () {
+    window.top.ap?.popWindow()
   },
   // 返回监听
   onHistoryBack: function (params) {
-    console.log('飞书不支持监听物理返回')
+    console.log('支付宝不支持监听物理返回')
   },
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
     let newParams = formatOpenLocationParams(params)
-    console.log('调用飞书地图...', newParams)
-
-    let scale = params?.scale
-    if (!scale) {
-      scale = 12
-    } else if (scale < 5) {
-      scale = 5
-    } else if (scale > 18) {
-      scale = 18
-    }
+    console.log('调用支付宝地图...', newParams)
 
     const wrappedParams = wrapCallback({
       latitude: newParams.latitude,
       longitude: newParams.longitude,
-      scale: scale,
-      name: newParams.name,
-      address: newParams.address,
-      onSuccess: newParams.onSuccess,
-      onError: newParams.onError
+      name: newParams.name || '',
+      address: newParams.address || '',
+      ...newParams
     })
 
-    window.top.tt.openLocation(wrappedParams)
+    window.top.ap.openLocation(wrappedParams)
   },
   /**
    * 获取当前地理位置
@@ -112,15 +115,19 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
-    const { type, onSuccess, onError } = params || {}
-    let targetType = type || 'gcj02'
-    console.log('调用飞书定位...', params)
+    const { type, onSuccess, onError, ...otherParams } = params || {}
+
+    // 调用定位
+    console.log('调用支付宝定位...', params)
 
     // 自定义success处理，但要包装成标准格式
     const customSuccess = onSuccess
       ? function (res) {
-          if (!res.longitude || !res.latitude) {
-            console.error('飞书定位失败', res)
+          let latitude = res.latitude
+          let longitude = res.longitude
+
+          if (!longitude || !latitude) {
+            console.error('支付宝定位失败', res)
             if (onError) {
               onError({
                 status: 'error',
@@ -130,43 +137,30 @@ let Bridge = {
             return
           }
 
-          let result = {
+          if (type === 'wgs84') {
+            const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+            longitude = points[0]
+            latitude = points[1]
+          }
+
+          onSuccess({
             status: 'success',
-            longitude: res.longitude,
-            latitude: res.latitude,
-            type: res.type,
+            longitude: longitude,
+            latitude: latitude,
+            type: type || 'gcj02',
             accuracy: res.accuracy
-          }
-
-          // If result type not params type, transform result type to params type
-          if (res.type && res.type !== targetType) {
-            const points = GeoUtil.coordtransform(
-              [res.longitude, res.latitude],
-              res.type,
-              targetType
-            )
-
-            result = {
-              status: 'success',
-              longitude: points[0],
-              latitude: points[1],
-              type: targetType,
-              accuracy: res.accuracy
-            }
-          }
-
-          onSuccess(result)
+          })
         }
       : undefined
 
     const wrappedParams = wrapCallback({
-      // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-      type: targetType,
+      ...otherParams,
+      type: '2',
       onSuccess: customSuccess,
       onError: onError
     })
 
-    window.top.tt.getLocation(wrappedParams)
+    window.top.ap.getLocation(wrappedParams)
   },
   /**
    * 扫码
@@ -176,14 +170,32 @@ let Bridge = {
   scanQRCode(params = {}) {
     const { scanType, onSuccess, onError } = params || {}
 
+    let type = ''
+    if (scanType.length === 1) {
+      if (scanType.includes('qrCode')) {
+        type = 'qr'
+      } else if (scanType.includes('barCode')) {
+        type = 'bar'
+      }
+    }
+
+    // 自定义success处理，但要包装成标准格式
+    const customSuccess = onSuccess
+      ? function (res) {
+          onSuccess({
+            status: 'success',
+            resultStr: res.code
+          })
+        }
+      : undefined
+
     const wrappedParams = wrapCallback({
-      scanType: scanType,
-      barCodeInput: true,
-      onSuccess: onSuccess,
+      type: type,
+      onSuccess: customSuccess,
       onError: onError
     })
 
-    window.top.tt.scanCode(wrappedParams)
+    window.top.ap.scan(wrappedParams)
   },
   /**
    * 照片预览
@@ -197,19 +209,17 @@ let Bridge = {
   previewImage: function (params) {
     let index = params?.index || 0
     if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
-      index = params?.urls?.indexOf?.(params.current)
+      index = params?.urls?.indexOf?.(params?.current)
       if (index < 0) index = 0
     }
-    let current = params?.urls?.[index]
 
     const wrappedParams = wrapCallback({
       urls: params?.urls,
-      current: current,
-      onSuccess: params?.onSuccess,
-      onError: params?.onError
+      current: index,
+      ...params
     })
 
-    window.top.tt.previewImage(wrappedParams)
+    window.top.ap.previewImage(wrappedParams)
   }
 }
 
