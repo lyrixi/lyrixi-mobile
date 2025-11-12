@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
-import coordToFit from './utils/coordToFit'
+import formatOpenLocationParams from './utils/formatOpenLocationParams'
 import wrapCallback from './utils/wrapCallback'
 
 // 内库使用-start
@@ -98,7 +98,7 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    let newParams = coordToFit(params)
+    let newParams = formatOpenLocationParams(params)
     console.log('调用支付宝地图...', newParams)
 
     const wrappedParams = wrapCallback({

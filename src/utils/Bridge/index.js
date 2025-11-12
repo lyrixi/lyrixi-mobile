@@ -1,7 +1,10 @@
 import Bridge from './Bridge.js'
 import back from './utils/back'
-import coordToFit from './utils/coordToFit'
+import formatOpenLocationParams from './utils/formatOpenLocationParams'
 
-Bridge._back = back
-Bridge._coordToFit = coordToFit
+Bridge.utils = {
+  back: back,
+  formatOpenLocationParams: formatOpenLocationParams
+}
+
 export default Bridge

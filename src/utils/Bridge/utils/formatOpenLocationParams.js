@@ -6,8 +6,8 @@ import GeoUtil from './../../GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 坐标自动转换: 国内转gcj02, 国外转wgs84
-function coordToFit(coord) {
+// 格式化openLocation参数, 坐标自动转换: 国内转gcj02, 国外转wgs84
+function formatOpenLocationParams(coord) {
   // 参数不合法
   if (!coord?.longitude || !coord?.latitude || !coord?.type) {
     return coord
@@ -48,4 +48,4 @@ function coordToFit(coord) {
   }
 }
 
-export default coordToFit
+export default formatOpenLocationParams

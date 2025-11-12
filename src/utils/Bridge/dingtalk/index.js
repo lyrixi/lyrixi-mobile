@@ -5,7 +5,7 @@
 import _ from 'lodash'
 import BridgeBase from './../base'
 import back from './../utils/back'
-import coordToFit from './../utils/coordToFit'
+import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import compressImage from './compressImage'
 import wrapCallback, { wrapDingTalkCallback } from './../utils/wrapCallback'
 
@@ -99,7 +99,7 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    let newParams = coordToFit(params)
+    let newParams = formatOpenLocationParams(params)
     console.log('调用钉钉地图...', newParams)
 
     const wrappedParams = wrapCallback({

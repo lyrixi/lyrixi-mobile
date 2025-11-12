@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
-import coordToFit from './utils/coordToFit'
+import formatOpenLocationParams from './utils/formatOpenLocationParams'
 import wrapCallback from './utils/wrapCallback'
 
 // 内库使用-start
@@ -116,7 +116,7 @@ let Bridge = {
     }
 
     if (_.isEmpty(params)) return
-    let newParams = coordToFit(params)
+    let newParams = formatOpenLocationParams(params)
     console.log('调用企业微信地图...', newParams)
 
     const wrappedParams = wrapCallback(newParams)
