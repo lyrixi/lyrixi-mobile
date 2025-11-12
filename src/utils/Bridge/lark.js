@@ -4,7 +4,6 @@
 import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
-import ready from './utils/ready'
 import coordToFit from './utils/coordToFit'
 import wrapCallback from './utils/wrapCallback'
 
@@ -19,8 +18,48 @@ import { GeoUtil, LocaleUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   ...BridgeBase,
-  ready: function (callback, options) {
-    ready(callback, options, this.platform)
+  load: function (callback, options) {
+    // 初始化完成不需要重复加载
+    if (window.top.tt && window.top.h5sdk) {
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+      return
+    }
+
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.defer = 'defer'
+    script.src = options.larkBridgeSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
+
+    // 加载完成
+    script.onload = function () {
+      // 飞书
+      if (window.tt && window.h5sdk) {
+        // eslint-disable-next-line
+        window.top.tt = window.tt
+        // eslint-disable-next-line
+        window.top.h5sdk = window.h5sdk
+      }
+
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+    }
+    script.onerror = function () {
+      if (callback) {
+        callback({
+          status: 'error',
+          message: LocaleUtil.locale('飞书js加载失败', 'lyrixi_lark_js_load_failed')
+        })
+      }
+    }
+
+    if (script.src) document.body.appendChild(script)
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)

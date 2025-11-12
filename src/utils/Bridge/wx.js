@@ -3,7 +3,6 @@
 import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
-import ready from './utils/ready'
 import coordToFit from './utils/coordToFit'
 import wrapCallback from './utils/wrapCallback'
 
@@ -19,8 +18,55 @@ import { LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 
 let Bridge = {
   ...BridgeBase,
-  ready: function (callback, options) {
-    ready(callback, options, this.platform)
+  load: function (callback, options) {
+    const platform = this.platform
+    // 初始化完成不需要重复加载
+    if (window.top.wx) {
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+      return
+    }
+
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.defer = 'defer'
+
+    if (platform === 'wechat') {
+      script.src = options.wechat?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+    } else if (platform === 'wechatMiniprogram') {
+      script.src = options.wechatMiniprogramBridgeSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+    } else if (platform === 'wecom') {
+      script.src = options.wecom?.src || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
+    } else if (platform === 'wecomMiniprogram') {
+      script.src = options.wecomMiniprogramBridgeSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+    }
+
+    // 加载完成
+    script.onload = function () {
+      // 微信
+      if (window.wx) {
+        // eslint-disable-next-line
+        window.top.wx = window.wx
+      }
+
+      if (callback)
+        callback({
+          status: 'success'
+        })
+    }
+    script.onerror = function () {
+      if (callback) {
+        callback({
+          status: 'error',
+          message: LocaleUtil.locale('微信js加载失败', 'lyrixi_weChat_js_load_failed')
+        })
+      }
+    }
+
+    if (script.src) document.body.appendChild(script)
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)

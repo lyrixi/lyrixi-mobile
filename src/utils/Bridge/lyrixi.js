@@ -12,8 +12,43 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   ...BridgeBase,
-  ready: function (callback, options) {
-    ready(callback, options, this.platform)
+  load: function (callback, options) {
+    // 初始化完成不需要重复加载
+    if (window.top.lyrixi) {
+      if (callback) callback()
+      return
+    }
+
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.defer = 'defer'
+    script.src =
+      options.lyrixi?.src ||
+      'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/lyrixi/lyrixi-0.0.1.js'
+
+    // 加载完成
+    script.onload = function () {
+      if (window.lyrixi) {
+        // eslint-disable-next-line
+        window.top.lyrixi = window.lyrixi
+      }
+
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+    }
+    script.onerror = function () {
+      if (callback) {
+        callback({
+          status: 'error',
+          message: LocaleUtil.locale('乐栖js加载失败', 'lyrixi_lyrixi_js_load_failed')
+        })
+      }
+    }
+
+    if (script.src) document.body.appendChild(script)
   },
   back: function (backLvl, options) {
     BridgeBase._back(backLvl, options, Bridge)

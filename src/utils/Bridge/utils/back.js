@@ -15,35 +15,9 @@ async function back(backLvl, options, Bridge) {
   const { onSuccess, onError } = options || {}
   // 返回操作对象与返回层级
   let _backLvl = backLvl || -1
-
-  // 清空无效的h5返回
-  if (
-    Object.prototype.toString.call(window.onHistoryBacks) !== '[object Object]' ||
-    _.isEmpty(window.onHistoryBacks)
-  ) {
-    window.onHistoryBacks = null
-  }
-
   let isFromApp = Device.getUrlParameter('isFromApp') || ''
 
-  // 自定义返回
-  if (typeof window.onMonitorBack === 'function') {
-    console.log('back:window.onMonitorBack自定义返回')
-    let monitor = await window.onMonitorBack()
-    let isBack = monitor || false
-    if (isBack) {
-      onSuccess && onSuccess()
-    } else {
-      onError &&
-        onError({
-          status: 'error',
-          message: 'back:window.onMonitorBack'
-        })
-    }
-    return isBack
-  }
-  // 关闭返回
-  else if (isFromApp === '1') {
+  if (isFromApp === '1') {
     console.log('back:', Bridge.closeWindow)
     // 关闭当前页面
     try {

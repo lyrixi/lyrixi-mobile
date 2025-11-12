@@ -5,7 +5,6 @@
 import _ from 'lodash'
 import BridgeBase from './../base'
 import back from './../utils/back'
-import ready from './../utils/ready'
 import coordToFit from './../utils/coordToFit'
 import compressImage from './compressImage'
 import wrapCallback, { wrapDingTalkCallback } from './../utils/wrapCallback'
@@ -21,8 +20,47 @@ import { LocaleUtil, GeoUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   ...BridgeBase,
-  ready: function (callback, options) {
-    ready(callback, options, this.platform)
+  load: function (callback, options) {
+    // 初始化完成不需要重复加载
+    if (window.top.dd) {
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+      return
+    }
+
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.defer = 'defer'
+    script.src =
+      options.dingtalkBridgeSrc || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
+
+    // 加载完成
+    script.onload = function () {
+      // 钉钉
+      if (window.dd) {
+        // eslint-disable-next-line
+        window.top.dd = window.dd
+      }
+
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+    }
+    script.onerror = function () {
+      if (callback) {
+        callback({
+          status: 'error',
+          message: LocaleUtil.locale('钉钉js加载失败', 'lyrixi_dingtalk_js_load_failed')
+        })
+      }
+    }
+
+    document.body.appendChild(script)
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)

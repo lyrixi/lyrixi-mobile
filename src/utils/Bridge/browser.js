@@ -1,6 +1,5 @@
 import BridgeBase from './base'
 import back from './utils/back'
-import ready from './utils/ready'
 
 // 内库使用-start
 import Device from './../Device'
@@ -14,8 +13,12 @@ import { Device, Toast, LocaleUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   ...BridgeBase,
-  ready: function (callback, options) {
-    ready(callback, options, 'browser')
+  load: function (callback) {
+    // 浏览器平台不需要加载脚本，直接回调
+    if (callback)
+      callback({
+        status: 'success'
+      })
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)

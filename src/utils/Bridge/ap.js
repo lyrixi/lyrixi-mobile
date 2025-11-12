@@ -3,23 +3,83 @@
 import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
-import ready from './utils/ready'
 import coordToFit from './utils/coordToFit'
 import wrapCallback from './utils/wrapCallback'
 
 // 内库使用-start
 import GeoUtil from './../GeoUtil'
 import LocaleUtil from './../LocaleUtil'
+import AssetUtil from './../AssetUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { GeoUtil, LocaleUtil } from 'lyrixi-mobile'
+import { GeoUtil, LocaleUtil, AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
   ...BridgeBase,
-  ready: function (callback, options) {
-    ready(callback, options, this.platform)
+  load: function (callback, options) {
+    // 初始化完成不需要重复加载
+    if (window.top.ap) {
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+      return
+    }
+
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.defer = 'defer'
+    script.src =
+      options.alipayBridgeSrc ||
+      '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
+
+    // 加载完成
+    script.onload = async function () {
+      // 支付小程序还需要加载一个js
+      if (platform === 'alipayMiniprogram') {
+        await AssetUtil.loadJs(options.alipayMiniprogramBridgeSrc || 'https://appx/web-view.min.js')
+        // 小程序js加载失败
+        if (!window.my) {
+          console.error('支付小程序js加载失败')
+          if (callback) {
+            callback({
+              status: 'error',
+              message: LocaleUtil.locale(
+                '支付小程序js加载失败',
+                'lyrixi_alipayMiniProgram_js_load_failed'
+              )
+            })
+          }
+          return
+        }
+        window.top.my = window.my
+      }
+
+      // js加载成功
+      if (window.ap) {
+        // eslint-disable-next-line
+        window.top.ap = window.ap
+      }
+
+      if (callback) {
+        callback({
+          status: 'success'
+        })
+      }
+    }
+    script.onerror = function () {
+      if (callback) {
+        callback({
+          status: 'error',
+          message: LocaleUtil.locale('支付宝js加载失败', 'lyrixi_alipay_js_load_failed')
+        })
+      }
+    }
+
+    if (script.src) document.body.appendChild(script)
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)
