@@ -1,16 +1,20 @@
 import _ from 'lodash'
+import back from './../utils/back'
+import formatOpenLocationParams from './../utils/formatOpenLocationParams'
+import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
 import LocaleUtil from './../LocaleUtil'
+import Device from './../Device'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
+  platform: 'lyrixi',
   load: function (callback, options) {
-    // 初始化完成不需要重复加载
     if (window.top.lyrixi) {
       if (callback) callback()
       return
@@ -23,10 +27,8 @@ let Bridge = {
       options.lyrixi?.src ||
       'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/lyrixi/lyrixi-0.0.1.js'
 
-    // 加载完成
     script.onload = function () {
       if (window.lyrixi) {
-        // eslint-disable-next-line
         window.top.lyrixi = window.lyrixi
       }
 
@@ -50,38 +52,22 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  /**
-   * 定制功能
-   */
-  /**
-   * 打开新的窗口
-   * @param {Object} params {title: '自定义标题', url: 'url', target: '_self'}}
-   */
-  openWindow: function (params = {}) {
-    window.top.lyrixi?.openWindow(params) // eslint-disable-line
-  },
-  // 关闭窗口
   closeWindow: function (params) {
-    window.top.lyrixi?.closeWindow(params) // eslint-disable-line
+    window.top.lyrixi?.closeWindow(params)
   },
-  // 返回监听
   onHistoryBack: function (params) {
-    window.top.lyrixi?.onHistoryBack(params) // eslint-disable-line
+    window.top.lyrixi?.onHistoryBack(params)
   },
-  // 导航
+  openWindow: function (params = {}) {
+    window.top.lyrixi?.openWindow(params)
+  },
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    let newParams = BridgeBase._coordToFit(params)
+    let newParams = formatOpenLocationParams(params)
     console.log('调用地图...', newParams)
 
     window.top.lyrixi?.openLocation(newParams)
   },
-  /**
-   * 获取当前地理位置
-   * @param {Object} params
-   * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
   getLocation: function (params = {}) {
     if (!params.type) {
       params.type = 'gcj02'
@@ -89,7 +75,6 @@ let Bridge = {
     console.log('调用定位...', params)
     window.top.lyrixi?.getLocation(params)
   },
-  // 扫描二维码并返回结果
   scanQRCode: function (params = {}) {
     const { needResult, scanType, desc, ...othersParams } = params || {}
     window.top.lyrixi?.scanQRCode({
@@ -98,29 +83,19 @@ let Bridge = {
       ...othersParams
     })
   },
-  // 文件选择
-  chooseFile: function (params) {
-    window.top.lyrixi?.chooseFile(params) // eslint-disable-line
+  chooseImage: function (params) {
+    window.top.lyrixi?.chooseImage(params)
   },
-  /**
-   * 文件操作: 文件上传
-   * @param {Object} params
-   * params: {
-   *  localFile: { fileType: '', filePath: '' }, // 本地文件对象(必填)
-   *  url: '', // 需要预览文件的文件名(不填的话取url的最后部分)
-   *  header: {} // 请求头(必填)
-   *  formData: {} // 表单数据(必填)
-   *  onSuccess: function (result) {
-   *    // 成功回调
-   *  }
-   *  onError: function (error) {
-   *    // 失败回调
-   *  }
-   * }
-   * @return {Object} {status: 'success', result: {}}
-   */
+  uploadImage: function (params) {
+    window.top.lyrixi?.uploadFile(params)
+  },
+  previewImage: function (params) {
+    window.top.lyrixi?.previewImage(params)
+  },
+  chooseFile: function (params) {
+    window.top.lyrixi?.chooseFile(params)
+  },
   uploadFile: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
-    // Determine whether the params are valid
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -141,7 +116,6 @@ let Bridge = {
     console.log('调用乐栖uploadImage:', {
       url: url,
       header: header,
-      // Hard coding is fine
       fileName: localFile.fileName,
       filePath: localFile.filePath,
       fileType: localFile.fileType,
@@ -161,21 +135,14 @@ let Bridge = {
 
     window.top.lyrixi.uploadFile(wrappedParams)
   },
-  // 文件操作: 预览文件
   previewFile: function (params) {
-    window.top.lyrixi?.previewFile(params) // eslint-disable-line
+    window.top.lyrixi?.previewFile(params)
   },
-  // 图片操作: 图片选择
-  chooseImage: function (params) {
-    window.top.lyrixi?.chooseImage(params)
+  invoke: function (api, params, callback) {
+    window.top.lyrixi?.invoke(api, params, callback)
   },
-  // 图片操作: 图片上传
-  uploadImage: function (params) {
-    window.top.lyrixi?.uploadFile(params) // eslint-disable-line
-  },
-  // 图片操作: 预览图片
-  previewImage: function (params) {
-    window.top.lyrixi?.previewImage(params) // eslint-disable-line
+  getAppVersion: function () {
+    return Device.platformVersion
   }
 }
 

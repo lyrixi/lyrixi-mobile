@@ -1,7 +1,3 @@
-// 官方文档: https://open.dingtalk.com/document/isvapp/read-before-development
-// API总览: https://open.dingtalk.com/document/orgapp/jsapi-overview-client-org
-// 鉴权: https://open.dingtalk.com/document/orgapp/jsapi-authentication
-
 import _ from 'lodash'
 import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
@@ -19,7 +15,6 @@ import { LocaleUtil, GeoUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   load: function (callback, options) {
-    // 初始化完成不需要重复加载
     if (window.top.dd) {
       if (callback) {
         callback({
@@ -35,11 +30,8 @@ let Bridge = {
     script.src =
       options.dingtalkBridgeSrc || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
 
-    // 加载完成
     script.onload = function () {
-      // 钉钉
       if (window.dd) {
-        // eslint-disable-next-line
         window.top.dd = window.dd
       }
 
@@ -63,10 +55,6 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  /**
-   * 定制功能
-   */
-  // 关闭窗口
   closeWindow: function (params) {
     const wrappedParams = wrapCallback(params)
     if (window.top.dd?.env?.platform === 'pc') {
@@ -76,14 +64,9 @@ let Bridge = {
 
     window.top.dd.closePage(wrappedParams)
   },
-  // 返回监听
   onHistoryBack: function (params) {
     console.log('钉钉不支持监听物理返回')
   },
-  /**
-   * 修改原生标题
-   * @param {Object} params {title: '自定义标题'}
-   */
   setTitle: function (params) {
     if (typeof params?.title === 'string') {
       const wrappedParams = wrapCallback({
@@ -94,7 +77,6 @@ let Bridge = {
       window.top.dd.setNavigationTitle(wrappedParams)
     }
   },
-  // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
     let newParams = formatOpenLocationParams(params)
@@ -111,23 +93,12 @@ let Bridge = {
 
     window.top.dd.openLocation(wrappedParams)
   },
-  /**
-   * 钉钉定位需要鉴权, 获取当前地理位置
-   * @param {Object} params
-   * params: {
-   * type {String}: 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * }
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
   getLocation: function (params = {}) {
-    // 钉钉定位需要鉴权, 使用浏览器定位代替
-    // BridgeBase.getBrowserLocation(params)
     const { type, onSuccess, onError } = params || {}
     let targetType = type || 'gcj02'
     console.log('调用钉钉定位...', params)
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           console.log('钉钉定位完成', res)
           let latitude = res.latitude
@@ -169,26 +140,21 @@ let Bridge = {
     const wrappedParams = wrapCallback({
       type: 0,
       useCache: false,
-      coordinate: '1', // 高德定位
+      coordinate: '1',
       cacheTimeout: 20,
       withReGeocode: false,
       targetAccuracy: '200',
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: onError
     })
 
     window.top.dd.getLocation(wrappedParams)
   },
-  /**
-   * 扫码
-   * @param {Object} params
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
-  scanQRCode(params = {}) {
+  scanQRCode: function (params = {}) {
     const { scanType, onSuccess, onError } = params || {}
 
     let type = 'all'
-    if (scanType.length === 1) {
+    if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
         type = 'qrCode'
       } else if (scanType.includes('barCode')) {
@@ -196,8 +162,7 @@ let Bridge = {
       }
     }
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           onSuccess({
             status: 'success',
@@ -208,36 +173,27 @@ let Bridge = {
 
     const wrappedParams = wrapDingTalkCallback({
       type: type,
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: onError
     })
 
     window.top.dd.biz.util.scan(wrappedParams)
   },
-  // https://open.dingtalk.com/document/isvapp/jsapi-choose-image
   chooseImage: function (params) {
     let count = params?.count || 9
-    // 当sourceType参数内只有camera时，count只能传1，否则会报错。
     if (params?.sourceType?.length === 1 && params.sourceType.includes('camera') && count > 1) {
       count = 1
     }
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = params?.onSuccess
+    const handleSuccess = params?.onSuccess
       ? async function (res) {
           let localFiles = []
           for (let item of res?.files) {
-            // 构建localFiles
             let newItem = {
-              // https://resource/MzNjMmEwN2FjMjg0YTBkYTI4NTdlYmJhNTI3NDhlZWU=.image
               filePath: item.path,
-              // After testing, fileName useless when uploadImage
-              // fileName: item.path.substring(item.path.lastIndexOf('/') + 1) + `.${item.fileType}`,
               fileType: item.fileType
-              // fileSize: item.size // 本地文件大小，单位 B, 压缩后不返回文件大于, 所以此属性不能用。
             }
 
-            // 压缩图片
             if (params?.sizeType?.indexOf?.('compressed') >= 0) {
               newItem = await compressImage(newItem)
             }
@@ -252,10 +208,8 @@ let Bridge = {
         }
       : undefined
 
-    // 自定义fail处理，但要包装成标准格式
     const customError = params?.onError
       ? function (error) {
-          // Cancel: ios返回"11"; android拍照返回11,相册返回-1; 鸿蒙相册返回"-1";
           if (
             error?.errorCode === '11' ||
             error?.errorCode === '-1' ||
@@ -278,15 +232,13 @@ let Bridge = {
       secret: false,
       position: 'back',
       sourceType: params?.sourceType || ['camera', 'album'],
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: customError
     })
 
     window.top.dd.chooseImage(wrappedParams)
   },
-  // https://open.dingtalk.com/document/orgapp/jsapi-upload-file?spm=ding_open_doc.document.0.0.8e3325c7MejZDb
   uploadImage: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
-    // Determine whether the params are valid
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -307,19 +259,16 @@ let Bridge = {
     console.log('调用钉钉uploadImage:', {
       url: url,
       header: header,
-      // Hard coding is fine
       fileName: 'file',
       filePath: localFile.filePath,
       fileType: localFile.fileType,
       formData: formData
     })
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           console.log('钉钉uploadImage成功:', res)
           const { data, statusCode } = res
-          // 官方文档写的String, 但实际返回是Number类型
           if (statusCode !== 200) {
             onError &&
               onError({
@@ -343,7 +292,6 @@ let Bridge = {
         }
       : undefined
 
-    // 自定义fail处理，但要包装成标准格式
     const customError = onError
       ? function (error) {
           console.error('钉钉uploadImage失败:', error)
@@ -361,21 +309,12 @@ let Bridge = {
       filePath: localFile.filePath,
       fileType: localFile.fileType,
       formData: formData,
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: customError
     })
 
     window.top.dd.uploadFile(wrappedParams)
   },
-  /**
-   * 照片预览
-   * @param {Object} params
-     {
-       index: 0, // 当前显示图片索引，默认 0
-       current: '', // 当前显示图片的http链接
-       urls: [] // 需要预览的图片http链接列表
-     }
-   */
   previewImage: function (params) {
     let index = params?.index || 0
     if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
@@ -383,7 +322,6 @@ let Bridge = {
       if (index < 0) index = 0
     }
 
-    // 自定义fail处理，但要包装成标准格式
     const customError = function (error) {
       console.log('钉钉previewImage失败:', error)
       params?.onError &&

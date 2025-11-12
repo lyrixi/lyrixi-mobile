@@ -1,5 +1,3 @@
-// 官方文档: https://myjsapi.alipay.com/alipayjsapi/media/image/chooseImage.html
-// 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
 import _ from 'lodash'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
@@ -9,15 +7,15 @@ import wrapCallback from './../utils/wrapCallback'
 import GeoUtil from './../GeoUtil'
 import LocaleUtil from './../LocaleUtil'
 import AssetUtil from './../AssetUtil'
+import Device from './../Device'
 // 内库使用-end
 
 /* 测试使用-start
-import { GeoUtil, LocaleUtil, AssetUtil } from 'lyrixi-mobile'
+import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
   load: function (callback, options) {
-    // 初始化完成不需要重复加载
     if (window.top.ap) {
       if (callback) {
         callback({
@@ -34,12 +32,9 @@ let Bridge = {
       options.alipayBridgeSrc ||
       '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
 
-    // 加载完成
     script.onload = async function () {
-      // 支付小程序还需要加载一个js
-      if (platform === 'alipayMiniprogram') {
+      if (Device.platform === 'alipayMiniprogram') {
         await AssetUtil.loadJs(options.alipayMiniprogramBridgeSrc || 'https://appx/web-view.min.js')
-        // 小程序js加载失败
         if (!window.my) {
           console.error('支付小程序js加载失败')
           if (callback) {
@@ -56,9 +51,7 @@ let Bridge = {
         window.top.my = window.my
       }
 
-      // js加载成功
       if (window.ap) {
-        // eslint-disable-next-line
         window.top.ap = window.ap
       }
 
@@ -82,15 +75,12 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  // 关闭窗口
   closeWindow: function () {
     window.top.ap?.popWindow()
   },
-  // 返回监听
   onHistoryBack: function (params) {
     console.log('支付宝不支持监听物理返回')
   },
-  // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
     let newParams = formatOpenLocationParams(params)
@@ -106,22 +96,12 @@ let Bridge = {
 
     window.top.ap.openLocation(wrappedParams)
   },
-  /**
-   * 获取当前地理位置
-   * @param {Object} params
-   * params: {
-   * type {String}: 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * }
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
   getLocation: function (params = {}) {
     const { type, onSuccess, onError, ...otherParams } = params || {}
 
-    // 调用定位
     console.log('调用支付宝定位...', params)
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           let latitude = res.latitude
           let longitude = res.longitude
@@ -156,22 +136,17 @@ let Bridge = {
     const wrappedParams = wrapCallback({
       ...otherParams,
       type: '2',
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: onError
     })
 
     window.top.ap.getLocation(wrappedParams)
   },
-  /**
-   * 扫码
-   * @param {Object} params
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
-  scanQRCode(params = {}) {
+  scanQRCode: function (params = {}) {
     const { scanType, onSuccess, onError } = params || {}
 
     let type = ''
-    if (scanType.length === 1) {
+    if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
         type = 'qr'
       } else if (scanType.includes('barCode')) {
@@ -179,8 +154,7 @@ let Bridge = {
       }
     }
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           onSuccess({
             status: 'success',
@@ -191,21 +165,12 @@ let Bridge = {
 
     const wrappedParams = wrapCallback({
       type: type,
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: onError
     })
 
     window.top.ap.scan(wrappedParams)
   },
-  /**
-   * 照片预览
-   * @param {Object} params
-     {
-       index: 0, // 当前显示图片索引，默认 0
-       current: '', // 当前显示图片的http链接
-       urls: [] // 需要预览的图片http链接列表
-     }
-   */
   previewImage: function (params) {
     let index = params?.index || 0
     if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
