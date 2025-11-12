@@ -81,8 +81,8 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  back: function (backLvl, options) {
-    back(backLvl, options, Bridge)
+  back: function (delta) {
+    back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   /**
    * 定制功能
