@@ -1,9 +1,9 @@
 /**
  * 获取平台信息
- * @param {String} ua - userAgent 字符串（小写）
  * @returns {Object} {platform: String, platformVersion: String}
  */
-function getPlatform(ua) {
+function getPlatform() {
+  let ua = navigator.userAgent.toLowerCase()
   let platform = ''
   let platformVersion = ''
   let platformMatch = null

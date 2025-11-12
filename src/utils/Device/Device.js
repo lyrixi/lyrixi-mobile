@@ -25,39 +25,36 @@ import {
 
 // Device
 let Device = (function () {
-  let userAgent = navigator.userAgent
-  let ua = userAgent.toLowerCase()
-
-  // 内核
-  let kernel = getKernel(ua)
-
-  // 设备
-  let device = getDevice(ua)
-
   // 系统
-  let { os, osVersion } = getOS(ua)
+  let { os, osVersion } = getOS()
 
   // 平台
-  let { platform, platformVersion } = getPlatform(ua)
+  let { platform, platformVersion } = getPlatform()
 
   return {
-    // 应用程序判断
+    userAgent: navigator.userAgent,
     language: (window.navigator.browserLanguage || window.navigator.language).toLowerCase(),
+    isOnLine: window.navigator.onLine || true,
     protocol: window.location.protocol,
     host: window.location.host,
     domain: window.location.protocol + '//' + window.location.host,
-    kernel: kernel,
-    device: device,
-    os: os,
-    osVersion: osVersion,
-    model: getModel(userAgent),
-    platform: platform,
-    platformVersion: platformVersion,
-    isOnLine: window.navigator.onLine || true,
-    userAgent: userAgent,
+    // 获取url参数
     getUrlParameter: getUrlParameter,
+    // 屏幕宽高
     screenWidth: getScreenWidth(),
     screenHeight: getScreenHeight(),
+    // 内核
+    kernel: getKernel(),
+    // 设备
+    device: getDevice(),
+    // 系统
+    os: os,
+    osVersion: osVersion,
+    // 型号
+    model: getModel(),
+    // 平台
+    platform: platform,
+    platformVersion: platformVersion,
     // 比较版本号, -1小于 0等于 1大于
     compareVersion: compareVersion
   }

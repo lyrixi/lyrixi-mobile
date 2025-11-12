@@ -1,9 +1,9 @@
 /**
  * 获取操作系统信息
- * @param {String} ua - userAgent 字符串（小写）
  * @returns {Object} {os: String, osVersion: String}
  */
-function getOS(ua) {
+function getOS() {
+  let ua = navigator.userAgent.toLowerCase()
   let os = ''
   let osVersion = ''
   let androidExp = ua.match(/android\s*(\d*\.*\d*)/)

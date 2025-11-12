@@ -1,9 +1,9 @@
 /**
  * 获取浏览器内核
- * @param {String} ua - userAgent 字符串（小写）
  * @returns {String} 内核类型：'trident' | 'presto' | 'webkit' | 'gecko' | ''
  */
-function getKernel(ua) {
+function getKernel() {
+  let ua = navigator.userAgent.toLowerCase()
   if (ua.indexOf('trident') > -1) {
     return 'trident'
   } else if (ua.indexOf('presto') > -1) {

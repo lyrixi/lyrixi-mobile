@@ -1,9 +1,9 @@
 /**
  * 获取设备类型
- * @param {String} ua - userAgent 字符串（小写）
  * @returns {String} 设备类型：'mobile' | 'pc'
  */
-function getDevice(ua) {
+function getDevice() {
+  let ua = navigator.userAgent.toLowerCase()
   if (ua.match(/applewebkit.*mobile.*/)) {
     return 'mobile'
   }

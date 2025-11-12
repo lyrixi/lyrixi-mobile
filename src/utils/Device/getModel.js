@@ -1,9 +1,9 @@
 /**
  * 获取手机型号(ios返回版本号, 因为ios取不到型号)
- * @param {String} userAgent - userAgent 字符串
  * @returns {String} 手机型号
  */
-function getModel(userAgent) {
+function getModel() {
+  let userAgent = navigator.userAgent
   let model = ''
   if (userAgent.toLowerCase().match(/android\s*(\d*\.*\d*)/)) {
     let infos = userAgent.split(';')
