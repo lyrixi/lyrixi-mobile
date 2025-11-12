@@ -74,15 +74,6 @@ let Bridge = {
   /**
    * 定制功能
    */
-
-  // 自定义操作
-  invoke: function (api, params, callback) {
-    if (!window.top.wx.invoke) {
-      console.log('没有wx.invoke的方法')
-      return
-    }
-    window.top.wx.invoke(api, params, callback)
-  },
   // 关闭窗口
   closeWindow: function () {
     // 小程序内web-view关闭
@@ -225,6 +216,7 @@ let Bridge = {
 
     window.top.wx.scanQRCode(wrappedParams)
   },
+  // 图片操作: 图片选择
   chooseImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
@@ -244,6 +236,7 @@ let Bridge = {
     const wrappedParams = wrapCallback(params)
     window.top.wx.chooseImage(wrappedParams)
   },
+  // 图片操作: 图片上传
   uploadImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
@@ -262,6 +255,7 @@ let Bridge = {
     const wrappedParams = wrapCallback(params)
     window.top.wx.uploadImage(wrappedParams)
   },
+  // 图片操作: 预览图片
   previewImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {

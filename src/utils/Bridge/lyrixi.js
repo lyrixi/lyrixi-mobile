@@ -56,11 +56,6 @@ let Bridge = {
   /**
    * 定制功能
    */
-  platform: 'lyrixi',
-  // 自定义操作
-  invoke: function (api, params, callback) {
-    window.top.lyrixi?.invoke(api, params, callback)
-  },
   /**
    * 打开新的窗口
    * @param {Object} params {title: '自定义标题', url: 'url', target: '_self'}}
@@ -110,7 +105,23 @@ let Bridge = {
   chooseFile: function (params) {
     window.top.lyrixi?.chooseFile(params) // eslint-disable-line
   },
-  // 文件操作: 文件上传
+  /**
+   * 文件操作: 文件上传
+   * @param {Object} params
+   * params: {
+   *  localFile: { fileType: '', filePath: '' }, // 本地文件对象(必填)
+   *  url: '', // 需要预览文件的文件名(不填的话取url的最后部分)
+   *  header: {} // 请求头(必填)
+   *  formData: {} // 表单数据(必填)
+   *  onSuccess: function (result) {
+   *    // 成功回调
+   *  }
+   *  onError: function (error) {
+   *    // 失败回调
+   *  }
+   * }
+   * @return {Object} {status: 'success', result: {}}
+   */
   uploadFile: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
     // Determine whether the params are valid
     if (!localFile?.fileType || !localFile?.filePath) {
@@ -157,6 +168,15 @@ let Bridge = {
   previewFile: function (params) {
     window.top.lyrixi?.previewFile(params) // eslint-disable-line
   },
+  // 图片操作: 图片选择
+  chooseImage: function (params) {
+    window.top.lyrixi?.chooseImage(params)
+  },
+  // 图片操作: 图片上传
+  uploadImage: function (params) {
+    window.top.lyrixi?.uploadFile(params) // eslint-disable-line
+  },
+  // 图片操作: 预览图片
   previewImage: function (params) {
     window.top.lyrixi?.previewImage(params) // eslint-disable-line
   }

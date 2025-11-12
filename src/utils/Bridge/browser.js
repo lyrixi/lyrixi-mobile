@@ -26,8 +26,6 @@ let Bridge = {
   /**
    * 定制功能
    */
-  platform: 'browser',
-
   // 配置鉴权
   getLocation: function (params = {}) {
     Bridge.getBrowserLocation(params)
