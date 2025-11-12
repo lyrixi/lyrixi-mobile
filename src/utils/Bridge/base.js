@@ -17,10 +17,6 @@ let Bridge = {
       content: LocaleUtil.locale('invoke仅可在微信或APP中使用', 'lyrixi_invoke_prompt', ['invoke'])
     })
   },
-  // 获得版本信息
-  getAppVersion: function () {
-    return Device.platformVersion
-  },
   // 拨打电话
   tel: function (number) {
     if (Device.device === 'pc') {

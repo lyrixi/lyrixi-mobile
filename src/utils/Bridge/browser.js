@@ -32,10 +32,6 @@ let Bridge = {
   getLocation: function (params = {}) {
     Bridge.getBrowserLocation(params)
   },
-  // 获得版本信息
-  getAppVersion: function () {
-    return ''
-  },
   // 退出到登陆页面
   logOut: function logOut() {
     console.log('logOut方法仅在app上工作')

@@ -61,10 +61,6 @@ let Bridge = {
   invoke: function (api, params, callback) {
     window.top.lyrixi?.invoke(api, params, callback)
   },
-  // 获得版本信息
-  getAppVersion: function () {
-    return Device.platformVersion
-  },
   /**
    * 打开新的窗口
    * @param {Object} params {title: '自定义标题', url: 'url', target: '_self'}}
@@ -101,15 +97,10 @@ let Bridge = {
     console.log('调用定位...', params)
     window.top.lyrixi?.getLocation(params)
   },
-  /**
-   * 扫描二维码并返回结果
-   * @param {Object} params
-   * @return {Object} {resultStr: ''}
-   */
+  // 扫描二维码并返回结果
   scanQRCode: function (params = {}) {
     const { needResult, scanType, desc, ...othersParams } = params || {}
     window.top.lyrixi?.scanQRCode({
-      needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc || LocaleUtil.locale('二维码／条码'),
       ...othersParams
@@ -119,7 +110,7 @@ let Bridge = {
   chooseFile: function (params) {
     window.top.lyrixi?.chooseFile(params) // eslint-disable-line
   },
-  // 文件上传
+  // 文件操作: 文件上传
   uploadFile: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
     // Determine whether the params are valid
     if (!localFile?.fileType || !localFile?.filePath) {
@@ -162,6 +153,7 @@ let Bridge = {
 
     window.top.lyrixi.uploadFile(wrappedParams)
   },
+  // 文件操作: 预览文件
   previewFile: function (params) {
     window.top.lyrixi?.previewFile(params) // eslint-disable-line
   },
