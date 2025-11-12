@@ -208,7 +208,7 @@ let Bridge = {
         }
       : undefined
 
-    const customError = params?.onError
+    const handleError = params?.onError
       ? function (error) {
           if (
             error?.errorCode === '11' ||
@@ -233,7 +233,7 @@ let Bridge = {
       position: 'back',
       sourceType: params?.sourceType || ['camera', 'album'],
       onSuccess: handleSuccess,
-      onError: customError
+      onError: handleError
     })
 
     window.top.dd.chooseImage(wrappedParams)
@@ -292,7 +292,7 @@ let Bridge = {
         }
       : undefined
 
-    const customError = onError
+    const handleError = onError
       ? function (error) {
           console.error('钉钉uploadImage失败:', error)
           onError({
@@ -310,7 +310,7 @@ let Bridge = {
       fileType: localFile.fileType,
       formData: formData,
       onSuccess: handleSuccess,
-      onError: customError
+      onError: handleError
     })
 
     window.top.dd.uploadFile(wrappedParams)
@@ -322,7 +322,7 @@ let Bridge = {
       if (index < 0) index = 0
     }
 
-    const customError = function (error) {
+    const handleError = function (error) {
       console.log('钉钉previewImage失败:', error)
       params?.onError &&
         params.onError({
@@ -335,7 +335,7 @@ let Bridge = {
       urls: params?.urls,
       current: index,
       onSuccess: params?.onSuccess,
-      onError: customError
+      onError: handleError
     })
 
     window.top.dd.previewImage(wrappedParams)
