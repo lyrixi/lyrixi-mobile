@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
-import wrapCallback from './utils/wrapCallback'
+import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
 import GeoUtil from './../GeoUtil'
