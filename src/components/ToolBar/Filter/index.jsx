@@ -58,21 +58,6 @@ const Filter = forwardRef(
       }
     })
 
-    useEffect(() => {
-      // 初始化不回调onOpen/onClose
-      if (!rootRef.current.isNotFirstVisible) {
-        rootRef.current.isNotFirstVisible = true
-        return
-      }
-
-      if (open) {
-        onOpen && onOpen()
-      } else {
-        onClose && onClose()
-      }
-      // eslint-disable-next-line
-    }, [open])
-
     // 获取图标节点
     function getIconNode() {
       if (typeof iconRender === 'function') {
@@ -99,6 +84,7 @@ const Filter = forwardRef(
           // Events
           onClick={() => {
             setOpen(true)
+            onOpen && onOpen()
           }}
         >
           {/* Element: Icon */}
@@ -119,8 +105,10 @@ const Filter = forwardRef(
           footerRender={footerRender}
           // Events
           onCancel={onCancel}
-          onOpen={() => setOpen(true)}
-          onClose={() => setOpen(false)}
+          onClose={() => {
+            setOpen(false)
+            onClose && onClose()
+          }}
         >
           {children}
         </FilterModal>
