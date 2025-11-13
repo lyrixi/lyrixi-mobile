@@ -92,6 +92,7 @@ let Bridge = {
     window.top.lyrixi?.chooseImage(params)
   },
   uploadImage: function (params) {
+    const { localFile, url, onSuccess, onError } = params || {}
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -136,9 +137,6 @@ let Bridge = {
   },
   previewFile: function (params) {
     window.top.lyrixi?.previewFile(params)
-  },
-  invoke: function (api, params, callback) {
-    window.top.lyrixi?.invoke(api, params, callback)
   }
 }
 

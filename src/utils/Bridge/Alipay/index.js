@@ -1,3 +1,5 @@
+// 官方文档: https://opendocs.alipay.com/open/020oit?scene=SC00001851?pathHash=0f29c54b
+
 import _ from 'lodash'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
@@ -170,6 +172,12 @@ let Bridge = {
     })
 
     window.top.ap.scan(wrappedParams)
+  },
+  chooseImage: function (params) {
+    console.log('调用支付宝选择图片暂未实现', params)
+  },
+  uploadImage: function (params) {
+    console.log('调用支付宝选择图片暂未实现', params)
   },
   previewImage: function (params) {
     let index = params?.index || 0

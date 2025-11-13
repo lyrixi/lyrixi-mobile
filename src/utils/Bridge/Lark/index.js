@@ -156,6 +156,12 @@ let Bridge = {
 
     window.top.tt.scanCode(wrappedParams)
   },
+  chooseImage: function (params) {
+    console.log('调用飞书选择图片暂未实现', params)
+  },
+  uploadImage: function (params) {
+    console.log('调用飞书选择图片暂未实现', params)
+  },
   previewImage: function (params) {
     let index = params?.index || 0
     if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
