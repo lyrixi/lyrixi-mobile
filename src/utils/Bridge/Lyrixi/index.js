@@ -13,7 +13,14 @@ import { LocaleUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  platform: 'lyrixi',
+  // 特有方法
+  setTitle: function (params) {
+    window.top.lyrixi?.setTitle(params)
+  },
+  openWindow: function (params = {}) {
+    window.top.lyrixi?.openWindow(params)
+  },
+  // 通用方法
   load: function (callback, options) {
     if (window.top.lyrixi) {
       if (callback) callback()
@@ -58,9 +65,7 @@ let Bridge = {
   onHistoryBack: function (params) {
     window.top.lyrixi?.onHistoryBack(params)
   },
-  openWindow: function (params = {}) {
-    window.top.lyrixi?.openWindow(params)
-  },
+
   openLocation: function (params) {
     if (_.isEmpty(params)) return
     let newParams = formatOpenLocationParams(params)
@@ -87,15 +92,6 @@ let Bridge = {
     window.top.lyrixi?.chooseImage(params)
   },
   uploadImage: function (params) {
-    window.top.lyrixi?.uploadFile(params)
-  },
-  previewImage: function (params) {
-    window.top.lyrixi?.previewImage(params)
-  },
-  chooseFile: function (params) {
-    window.top.lyrixi?.chooseFile(params)
-  },
-  uploadFile: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -134,6 +130,9 @@ let Bridge = {
     })
 
     window.top.lyrixi.uploadFile(wrappedParams)
+  },
+  previewImage: function (params) {
+    window.top.lyrixi?.previewImage(params)
   },
   previewFile: function (params) {
     window.top.lyrixi?.previewFile(params)

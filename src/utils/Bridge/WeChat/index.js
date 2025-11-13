@@ -246,13 +246,6 @@ let Bridge = {
 
     const wrappedParams = wrapCallback(params)
     window.top.wx.previewFile(wrappedParams)
-  },
-  invoke: function (api, params, callback) {
-    if (!window.top.wx.invoke) {
-      console.log('没有wx.invoke的方法')
-      return
-    }
-    window.top.wx.invoke(api, params, callback)
   }
 }
 

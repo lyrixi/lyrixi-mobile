@@ -14,6 +14,18 @@ import { LocaleUtil, GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
+  // 特有方法
+  setTitle: function (params) {
+    if (typeof params?.title === 'string') {
+      const wrappedParams = wrapCallback({
+        title: params?.title,
+        onSuccess: params?.onSuccess,
+        onError: params?.onError
+      })
+      window.top.dd.setNavigationTitle(wrappedParams)
+    }
+  },
+  // 通用方法
   load: function (callback, options) {
     if (window.top.dd) {
       if (callback) {
@@ -52,6 +64,7 @@ let Bridge = {
 
     document.body.appendChild(script)
   },
+
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
@@ -66,16 +79,6 @@ let Bridge = {
   },
   onHistoryBack: function (params) {
     console.log('钉钉不支持监听物理返回')
-  },
-  setTitle: function (params) {
-    if (typeof params?.title === 'string') {
-      const wrappedParams = wrapCallback({
-        title: params?.title,
-        onSuccess: params?.onSuccess,
-        onError: params?.onError
-      })
-      window.top.dd.setNavigationTitle(wrappedParams)
-    }
   },
   openLocation: function (params) {
     if (_.isEmpty(params)) return
