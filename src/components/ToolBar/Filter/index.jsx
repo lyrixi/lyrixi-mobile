@@ -51,9 +51,11 @@ const Filter = forwardRef(
         getRootDOM: () => rootRef.current,
         close: () => {
           setOpen(false)
+          onClose && onClose()
         },
         open: () => {
           setOpen(true)
+          onOpen && onOpen()
         }
       }
     })

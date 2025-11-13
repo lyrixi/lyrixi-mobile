@@ -92,23 +92,21 @@ const Dropdown = forwardRef(
 
     useEffect(() => {
       if (open === null) return
+      // 打开前先关闭其他所有 dropdown
       if (open) {
-        // 打开前先关闭其他所有 dropdown
         closeAllDropdown({ exceptId: idRef.current })
-        onOpen && onOpen()
-      } else {
-        onClose && onClose()
       }
-
       // eslint-disable-next-line
     }, [open])
 
     function _close() {
       setOpen(false)
+      onClose && onClose()
     }
 
     function _open() {
       setOpen(true)
+      onOpen && onOpen()
     }
 
     async function handleClick(e) {
