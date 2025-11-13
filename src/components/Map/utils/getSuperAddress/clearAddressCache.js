@@ -11,7 +11,7 @@ import {Storage } from 'lyrixi-mobile'
 /**
  * 删除地址缓存
  */
-async function removeAddressCache() {
+async function clearAddressCache() {
   try {
     await Storage.removeItem(CacheKey)
   } catch (error) {
@@ -19,4 +19,4 @@ async function removeAddressCache() {
   }
 }
 
-export default removeAddressCache
+export default clearAddressCache

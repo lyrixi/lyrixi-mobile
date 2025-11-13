@@ -1,6 +1,6 @@
 import CacheKey from './CacheKey'
 import setAddressCache from './setAddressCache'
-import removeAddressCache from './removeAddressCache'
+import clearAddressCache from './clearAddressCache'
 
 // 内库使用-start
 import Storage from './../../../utils/Storage'
@@ -26,7 +26,7 @@ async function getAddressCache({ latitude, longitude }, cacheExpires) {
 
     // 检查缓存是否过期
     if (typeof expires === 'number' && Date.now() > expires) {
-      await removeAddressCache()
+      await clearAddressCache()
       return null
     }
 
@@ -43,7 +43,7 @@ async function getAddressCache({ latitude, longitude }, cacheExpires) {
       return data
     } else {
       // 经纬度不同，删除缓存
-      await removeAddressCache()
+      await clearAddressCache()
       return null
     }
   } catch (error) {

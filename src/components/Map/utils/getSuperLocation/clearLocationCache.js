@@ -10,8 +10,15 @@ import {Storage } from 'lyrixi-mobile'
 
 // 清除缓存
 async function clearLocationCache(type) {
-  const cacheKey = `${CacheKeyPrefix}${type}`
-  await Storage.removeItem(cacheKey)
+  if (type) {
+    const cacheKey = `${CacheKeyPrefix}${type}`
+    await Storage.removeItem(cacheKey)
+  } else {
+    const wgs84CacheKey = `${CacheKeyPrefix}wgs84`
+    const gcj02CacheKey = `${CacheKeyPrefix}gcj02`
+    await Storage.removeItem(wgs84CacheKey)
+    await Storage.removeItem(gcj02CacheKey)
+  }
 }
 
 export default clearLocationCache
