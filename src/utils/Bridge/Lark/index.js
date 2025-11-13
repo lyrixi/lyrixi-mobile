@@ -4,7 +4,7 @@
 import _ from 'lodash'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
-import wrapCallback from './utils/wrapCallback'
+import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
 import GeoUtil from './../GeoUtil'
@@ -17,7 +17,6 @@ import { GeoUtil, LocaleUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   load: function (callback, options) {
-    // 初始化完成不需要重复加载
     if (window.top.tt && window.top.h5sdk) {
       if (callback) {
         callback({
@@ -32,13 +31,9 @@ let Bridge = {
     script.defer = 'defer'
     script.src = options.larkBridgeSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
 
-    // 加载完成
     script.onload = function () {
-      // 飞书
       if (window.tt && window.h5sdk) {
-        // eslint-disable-next-line
         window.top.tt = window.tt
-        // eslint-disable-next-line
         window.top.h5sdk = window.h5sdk
       }
 
@@ -62,19 +57,13 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  /**
-   * 定制功能
-   */
-  // 关闭窗口
   closeWindow: function (params) {
     const wrappedParams = wrapCallback(params)
     window.top.tt.closeWindow(wrappedParams)
   },
-  // 返回监听
   onHistoryBack: function (params) {
     console.log('飞书不支持监听物理返回')
   },
-  // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
     let newParams = formatOpenLocationParams(params)
@@ -101,21 +90,12 @@ let Bridge = {
 
     window.top.tt.openLocation(wrappedParams)
   },
-  /**
-   * 获取当前地理位置
-   * @param {Object} params
-   * params: {
-   * type {String}: 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * }
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
   getLocation: function (params = {}) {
     const { type, onSuccess, onError } = params || {}
     let targetType = type || 'gcj02'
     console.log('调用飞书定位...', params)
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           if (!res.longitude || !res.latitude) {
             console.error('飞书定位失败', res)
@@ -136,7 +116,6 @@ let Bridge = {
             accuracy: res.accuracy
           }
 
-          // If result type not params type, transform result type to params type
           if (res.type && res.type !== targetType) {
             const points = GeoUtil.coordtransform(
               [res.longitude, res.latitude],
@@ -158,20 +137,14 @@ let Bridge = {
       : undefined
 
     const wrappedParams = wrapCallback({
-      // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: targetType,
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       onError: onError
     })
 
     window.top.tt.getLocation(wrappedParams)
   },
-  /**
-   * 扫码
-   * @param {Object} params
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
-  scanQRCode(params = {}) {
+  scanQRCode: function (params = {}) {
     const { scanType, onSuccess, onError } = params || {}
 
     const wrappedParams = wrapCallback({
@@ -183,15 +156,6 @@ let Bridge = {
 
     window.top.tt.scanCode(wrappedParams)
   },
-  /**
-   * 照片预览
-   * @param {Object} params
-     {
-       index: 0, // 当前显示图片索引，默认 0
-       current: '', // 当前显示图片的http链接
-       urls: [] // 需要预览的图片http链接列表
-     }
-   */
   previewImage: function (params) {
     let index = params?.index || 0
     if (typeof params?.index !== 'number' && typeof params?.current === 'string') {

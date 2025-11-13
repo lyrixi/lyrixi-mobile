@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
-import wrapCallback from './utils/wrapCallback'
+import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
 import LocaleUtil from './../LocaleUtil'
@@ -17,8 +17,7 @@ import { LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 
 let Bridge = {
   load: function (callback, options) {
-    const platform = this.platform
-    // 初始化完成不需要重复加载
+    const platform = Device.platform
     if (window.top.wx) {
       if (callback) {
         callback({
@@ -42,11 +41,8 @@ let Bridge = {
       script.src = options.wecomMiniprogram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     }
 
-    // 加载完成
     script.onload = function () {
-      // 微信
       if (window.wx) {
-        // eslint-disable-next-line
         window.top.wx = window.wx
       }
 
@@ -69,32 +65,22 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  /**
-   * 定制功能
-   */
-  // 关闭窗口
   closeWindow: function () {
-    // 小程序内web-view关闭
     if (['wechatMiniprogram', 'wecomMiniprogram'].includes(Device.platform || '')) {
-      window.top.wx.miniProgram.navigateBack({}) // eslint-disable-line
+      window.top.wx.miniProgram.navigateBack({})
     }
-    // 微信关闭
-    window.top.wx.closeWindow() // eslint-disable-line
+    window.top.wx.closeWindow()
   },
-  // 返回监听
   onHistoryBack: function (params) {
     if (typeof window.top.wx.onHistoryBack === 'function') {
-      window.top.wx.onHistoryBack(params) // eslint-disable-line
+      window.top.wx.onHistoryBack(params)
     }
   },
-  // 地图查看
   openLocation: function (params) {
-    // 微信PC端不支持地图查看
-    if (Device.device === 'pc' || this.platform === 'wechat') {
+    if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
         'lyrixi_open_location_prompt',
-
         ['openLocation']
       )
       Toast.show({
@@ -109,22 +95,14 @@ let Bridge = {
     console.log('调用企业微信地图...', newParams)
 
     const wrappedParams = wrapCallback(newParams)
-    window.top.wx.openLocation(wrappedParams) // eslint-disable-line
+    window.top.wx.openLocation(wrappedParams)
   },
-  /**
-   * 获取当前地理位置
-   * @param {Object} params
-   * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
-   */
   getLocation: function (params = {}) {
     if (!params?.type) {
       params.type = 'gcj02'
     }
-    // 微信PC端不支持定位
     if (Device.device === 'pc') {
       console.log('PC端微信定位...', params)
-      this.getBrowserLocation?.(params)
       return
     }
 
@@ -132,18 +110,12 @@ let Bridge = {
     const wrappedParams = wrapCallback(params)
     window.top.wx.getLocation(wrappedParams)
   },
-  /*
-   * 扫描二维码并返回结果
-   * 返回：{resultStr:''}
-   * */
-  scanQRCode(params = {}) {
-    // 微信PC端不支持扫码
+  scanQRCode: function (params = {}) {
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
           'lyrixi_scanQRCode_prompt',
-
           LocaleUtil.locale('', 'lyrixi_scancode')
         )
       })
@@ -152,11 +124,9 @@ let Bridge = {
 
     const { needResult, scanType, desc, onSuccess, ...othersParams } = params || {}
 
-    // 自定义success处理，但要包装成标准格式
-    const customSuccess = onSuccess
+    const handleSuccess = onSuccess
       ? function (res) {
           let wxRes = res
-          // 如果没有设置prefix为false或者空,则清除前缀
           if (!params.prefix) {
             if (res.resultStr.indexOf('QR,') >= 0) {
               wxRes.resultStr = res.resultStr.substring('QR,'.length)
@@ -196,7 +166,6 @@ let Bridge = {
               wxRes.resultStr = res.resultStr.substring('RSSEXPANDED,'.length)
             }
           }
-          // 调用原始回调，传入标准格式
           onSuccess({
             status: 'success',
             ...wxRes
@@ -205,23 +174,20 @@ let Bridge = {
       : undefined
 
     const wrappedParams = wrapCallback({
-      needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果
+      needResult: needResult || 1,
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc || '二维码／条码',
-      onSuccess: customSuccess,
+      onSuccess: handleSuccess,
       ...othersParams
     })
 
     window.top.wx.scanQRCode(wrappedParams)
   },
-  // 图片操作: 图片选择
   chooseImage: function (params) {
-    // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
         'lyrixi_chooseImage_prompt',
-
         LocaleUtil.locale('', 'lyrixi_chooseimage')
       )
       Toast.show({
@@ -234,14 +200,11 @@ let Bridge = {
     const wrappedParams = wrapCallback(params)
     window.top.wx.chooseImage(wrappedParams)
   },
-  // 图片操作: 图片上传
   uploadImage: function (params) {
-    // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
         'lyrixi_uploadImage_prompt',
-
         LocaleUtil.locale('', 'lyrixi_uploadimage')
       )
       Toast.show({
@@ -253,15 +216,12 @@ let Bridge = {
     const wrappedParams = wrapCallback(params)
     window.top.wx.uploadImage(wrappedParams)
   },
-  // 图片操作: 预览图片
   previewImage: function (params) {
-    // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.locale(
           'previewImage仅可在移动端微信或APP中使用',
           'lyrixi_previewImage_prompt',
-
           LocaleUtil.locale('', 'lyrixi_previewimage')
         )
       })
@@ -270,22 +230,11 @@ let Bridge = {
     const wrappedParams = wrapCallback(params)
     window.top.wx.previewImage(wrappedParams)
   },
-  /**
-   * 文件操作: 预览文件
-   * @param {Object} params
-   * params: {
-   *  url: '', // 需要预览文件的地址(必填，可以使用相对路径)
-   *  name: '', // 需要预览文件的文件名(不填的话取url的最后部分)
-   *  size: 1048576 // 需要预览文件的字节大小(必填)
-   * }
-   */
   previewFile: function (params) {
-    // 微信PC端不支持预览文件
-    if (Device.device === 'pc' || this.platform === 'wechat') {
+    if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
         'lyrixi_previewFile_prompt',
-
         ['previewFile']
       )
       Toast.show({
@@ -297,6 +246,13 @@ let Bridge = {
 
     const wrappedParams = wrapCallback(params)
     window.top.wx.previewFile(wrappedParams)
+  },
+  invoke: function (api, params, callback) {
+    if (!window.top.wx.invoke) {
+      console.log('没有wx.invoke的方法')
+      return
+    }
+    window.top.wx.invoke(api, params, callback)
   }
 }
 
