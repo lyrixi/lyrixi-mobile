@@ -270,13 +270,6 @@ let Browser = {
     })
     params?.onError && params.onError({ status: 'error', message: message })
   },
-  uploadFile: function () {
-    Toast.show({
-      content: LocaleUtil.locale('uploadFile仅可在APP中使用', 'lyrixi_uploadFile_prompt', [
-        'uploadFile'
-      ])
-    })
-  },
   previewFile: function (params = {}) {
     let message = LocaleUtil.locale(
       'previewFile仅可在企业微信或APP中使用',
