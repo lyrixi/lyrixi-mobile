@@ -139,9 +139,6 @@ let Bridge = {
   },
   invoke: function (api, params, callback) {
     window.top.lyrixi?.invoke(api, params, callback)
-  },
-  getAppVersion: function () {
-    return Device.platformVersion
   }
 }
 
