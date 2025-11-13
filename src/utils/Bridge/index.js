@@ -3,7 +3,7 @@ import formatOpenLocationParams from './utils/formatOpenLocationParams'
 import Browser from './Browser'
 import WeChat from './WeChat'
 import Alipay from './Alipay'
-import DingTalk from './DingTalk1'
+import DingTalk from './DingTalk'
 import Lark from './Lark'
 
 // 内库使用-start
