@@ -1,7 +1,7 @@
 import uploadFile from './uploadFile'
 
 // 上传
-function uploadItem(item, { uploadDir, getUploadUrl, getUploadParams, formatUploadResult }) {
+function uploadItem(item, { uploadDir, getUploadUrl, getUploadParams, formatUploadedItem }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let fileData = item.fileData
@@ -13,7 +13,7 @@ function uploadItem(item, { uploadDir, getUploadUrl, getUploadParams, formatUplo
       uploadDir,
       getUploadUrl,
       getUploadParams,
-      formatUploadResult
+      formatUploadedItem
     })
 
     // 上传失败

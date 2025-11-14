@@ -12,7 +12,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // 上传
 function uploadItem(
   item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadParams, formatUploadResult }
+  { uploadDir, maxWidth, getUploadUrl, getUploadParams, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -27,7 +27,7 @@ function uploadItem(
       maxWidth,
       getUploadUrl,
       getUploadParams,
-      formatUploadResult
+      formatUploadedItem
     })
 
     // 上传失败

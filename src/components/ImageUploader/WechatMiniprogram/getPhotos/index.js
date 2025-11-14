@@ -8,7 +8,7 @@ import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // Get photos by polling interval
-function getPhotos(id, { url, uploadDir, formatUploadResult }) {
+function getPhotos(id, { url, uploadDir, formatUploadedItem }) {
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
@@ -27,12 +27,11 @@ function getPhotos(id, { url, uploadDir, formatUploadResult }) {
             return newItem
           })
 
-          if (typeof formatUploadResult === 'function') {
+          if (typeof formatUploadedItem === 'function') {
             for (let item of list) {
               // eslint-disable-next-line
-              item = await formatUploadResult({
+              item = await formatUploadedItem(item, {
                 platform: 'wechatMiniprogram',
-                uploadItem: item,
                 result: item
               })
             }

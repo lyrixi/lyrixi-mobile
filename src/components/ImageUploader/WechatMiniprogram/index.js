@@ -48,7 +48,7 @@ function WechatMiniprogram(
       filePath: 入库路径
     }
     */
-    formatUploadResult,
+    formatUploadedItem,
     getWatermark,
     getUploadUrl,
     getUploadParams,
@@ -129,7 +129,7 @@ function WechatMiniprogram(
     let photos = await getPhotos(idRef.current, {
       url: getPhotoUrl,
       uploadDir: uploadDir,
-      formatUploadResult: formatUploadResult
+      formatUploadedItem: formatUploadedItem
     })
     console.log('服务器获取照片:', photos)
     // Get photos failed, stop interval

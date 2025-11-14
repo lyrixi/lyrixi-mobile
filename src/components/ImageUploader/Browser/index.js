@@ -45,7 +45,7 @@ function Browser(
       filePath: 入库路径
     }
     */
-    formatUploadResult,
+    formatUploadedItem,
     getWatermark,
     getUploadUrl,
     getUploadParams,
@@ -85,7 +85,7 @@ function Browser(
       maxWidth,
       getUploadUrl,
       getUploadParams,
-      formatUploadResult
+      formatUploadedItem
     })
 
     // 上传失败

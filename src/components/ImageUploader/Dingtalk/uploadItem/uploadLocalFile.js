@@ -8,71 +8,53 @@ import { Bridge } from 'lyrixi-mobile'
 
 // 上传localFile
 function uploadLocalFile({
-  item,
-  watermark,
   localFile,
-  uploadDir,
-  maxWidth,
-  getUploadUrl,
-  getUploadParams,
-  formatUploadResult,
-  appId
+  url,
+  header,
+  data,
+  // 用于构建新Item的入参
+  item,
+  formatUploadedItem
 }) {
   return new Promise((resolve) => {
-    let data = {
-      watermark: JSON.stringify(watermark),
-      fileType: localFile.type,
-      filePath: localFile.path,
-      uploadPath: uploadDir,
-      maxWidth: maxWidth,
-      appId: appId
-    }
-
-    if (watermark) {
-      data.watermark = watermark
-    }
-
-    let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
-    let uploadExtraParams = getUploadParams?.({ platform: 'dingtalk' }) || {}
-
-    if (uploadExtraParams && typeof uploadExtraParams === 'object') {
-      for (const paramKey in uploadExtraParams) {
-        if (uploadExtraParams.hasOwnProperty(paramKey)) {
-          let value = uploadExtraParams[paramKey]
-          data[paramKey] = value
-        }
-      }
-    }
-
-    if (maxWidth) {
-      data.maxWidth = maxWidth
-    }
-
     Bridge.uploadImage({
-      url: window.origin + uploadUrl,
+      url: url,
       localFile: localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
       // 鸿蒙钉钉有bug，上传方法带不上header，导致无法上传
-      header: {
-        'Content-Type': 'multipart/form-data',
-        Cookie: document.cookie
-      },
+      header: header,
       data: data,
       onSuccess: async function (result) {
-        let data = result
+        let newItem = result
 
-        if (typeof formatUploadResult === 'function') {
-          data = await formatUploadResult({
+        if (typeof formatUploadedItem === 'function') {
+          newItem = await formatUploadedItem(item, {
             platform: 'dingtalk',
-            uploadItem: item,
             result: result
           })
         }
 
-        resolve(data)
+        // 校验其是否真的是否法图片
+        let isValid = await validateImageSrc(newItem.fileUrl)
+        if (!isValid) {
+          resolve({
+            ...item,
+            status: 'error',
+            message: LocaleUtil.locale('图片加载失败，请重试')
+          })
+          return
+        }
+
+        resolve({
+          ...newItem,
+          status: 'success'
+        })
       },
-      onError: function (err) {
-        resolve(err.errMsg)
-        console.error(`钉钉上传照片失败:`, localFile, err)
+      onError: function (error) {
+        resolve({
+          ...item,
+          status: 'error',
+          message: error.message
+        })
       }
     })
   })

@@ -13,7 +13,7 @@ export default function uploadFile({
   uploadDir,
   getUploadUrl,
   getUploadParams,
-  formatUploadResult
+  formatUploadedItem
 }) {
   const formData = new FormData()
 
@@ -41,8 +41,8 @@ export default function uploadFile({
       .then(async (result) => {
         let data = result
 
-        if (typeof formatUploadResult === 'function') {
-          data = await formatUploadResult({ platform: 'browser', uploadItem: item, result: result })
+        if (typeof formatUploadedItem === 'function') {
+          data = await formatUploadedItem(item, { platform: 'browser', result: result })
         }
 
         resolve(data)

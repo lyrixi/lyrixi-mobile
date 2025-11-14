@@ -45,7 +45,7 @@ function AttachUploader(
       filePath: 入库路径
     }
     */
-    formatUploadResult,
+    formatUploadedItem,
     getUploadUrl,
     getUploadParams,
     // 仅对客户端有效
@@ -84,7 +84,7 @@ function AttachUploader(
       uploadDir,
       getUploadUrl,
       getUploadParams,
-      formatUploadResult
+      formatUploadedItem
     })
 
     // 上传失败

@@ -14,13 +14,13 @@ import { Storage, LocaleUtil } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadParams, formatUploadResult }
+  { uploadDir, maxWidth, getUploadUrl, getUploadParams, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let localId = item?.localId
+    let localFile = item?.localFile
     let errMsg = ''
-    if (!localId || typeof localId !== 'string') {
+    if (!localFile || !localFile?.path) {
       errMsg = LocaleUtil.locale('没有localId，无法上传！')
       resolve(errMsg)
       return
@@ -48,7 +48,7 @@ function uploadItem(
       maxWidth,
       getUploadUrl,
       getUploadParams,
-      formatUploadResult,
+      formatUploadedItem,
       appId
     })
 

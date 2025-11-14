@@ -85,7 +85,7 @@ async function uploadImage(uploadList, uploadConfig) {
       uploadDir: item?.uploadDir || uploadConfig?.uploadDir,
       getUploadUrl: uploadConfig?.getUploadUrl,
       getUploadParams: uploadConfig?.getUploadParams,
-      formatUploadResult: uploadConfig?.formatUploadResult
+      formatUploadedItem: uploadConfig?.formatUploadedItem
     })
     // 上传失败
     if (typeof result === 'string') {

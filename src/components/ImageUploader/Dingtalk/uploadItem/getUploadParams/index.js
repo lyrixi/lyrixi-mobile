@@ -1,0 +1,43 @@
+// 获取上传入参
+function getUploadParams({
+  watermark,
+  localFile,
+  uploadDir,
+  maxWidth,
+  getUploadUrl,
+  getUploadParams,
+  appId
+}) {
+  let data = {
+    watermark: watermark ? JSON.stringify(watermark) : '',
+    fileType: localFile.type,
+    filePath: localFile.path,
+    uploadPath: uploadDir,
+    maxWidth: maxWidth || '',
+    appId: appId
+  }
+
+  let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
+  let uploadExtraParams = getUploadParams?.({ platform: 'dingtalk' }) || {}
+  if (uploadExtraParams && typeof uploadExtraParams === 'object') {
+    for (const paramKey in uploadExtraParams) {
+      if (uploadExtraParams.hasOwnProperty(paramKey)) {
+        let value = uploadExtraParams[paramKey]
+        data[paramKey] = value
+      }
+    }
+  }
+
+  return {
+    url: window.origin + uploadUrl,
+    localFile: localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
+    // 鸿蒙钉钉有bug，上传方法带不上header，导致无法上传
+    header: {
+      'Content-Type': 'multipart/form-data',
+      Cookie: document.cookie
+    },
+    data: data
+  }
+}
+
+export default getUploadParams

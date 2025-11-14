@@ -39,7 +39,7 @@ export default () => {
           sourceType={['camera']}
           list={list}
           count={15}
-          formatUploadResult={({ platform, result }) => {
+          formatUploadedItem={({ platform, result }) => {
             return Ocr.recognizeItem(result.data.url)
           }}
           // watermark={handleLeaveWM()}

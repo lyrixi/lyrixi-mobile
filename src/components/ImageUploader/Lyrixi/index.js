@@ -48,7 +48,7 @@ function ImageUploader(
       filePath: 入库路径
     }
     */
-    formatUploadResult,
+    formatUploadedItem,
     getWatermark,
     getUploadUrl,
     getUploadParams,
@@ -88,7 +88,7 @@ function ImageUploader(
       uploadDir,
       getUploadUrl,
       getUploadParams,
-      formatUploadResult
+      formatUploadedItem
     })
 
     // 上传失败

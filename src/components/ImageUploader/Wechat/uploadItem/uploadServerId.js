@@ -15,7 +15,7 @@ function uploadServerId({
   uploadDir,
   watermark,
   maxWidth,
-  formatUploadResult,
+  formatUploadedItem,
   appId
 }) {
   return new Promise((resolve) => {
@@ -41,8 +41,8 @@ function uploadServerId({
       .then(async (result) => {
         let data = result
 
-        if (typeof formatUploadResult === 'function') {
-          data = await formatUploadResult({ platform: 'wechat', uploadItem: item, result: result })
+        if (typeof formatUploadedItem === 'function') {
+          data = await formatUploadedItem(item, { platform: 'wechat', result: result })
         }
 
         resolve(data)
