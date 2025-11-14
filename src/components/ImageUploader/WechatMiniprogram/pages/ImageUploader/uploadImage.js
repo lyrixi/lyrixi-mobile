@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-async function upload(file, { uploadDir, watermark, uploadExtraParams, maxWidth }) {
+async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidth }) {
   return new Promise((resolve) => {
     let formData = {
       uploadPath: uploadDir,
@@ -11,10 +11,10 @@ async function upload(file, { uploadDir, watermark, uploadExtraParams, maxWidth 
       formData.watermark = watermark
     }
 
-    if (uploadExtraParams && typeof uploadExtraParams === 'object') {
-      for (const paramKey in uploadExtraParams) {
-        if (uploadExtraParams.hasOwnProperty(paramKey)) {
-          let value = uploadExtraParams[paramKey]
+    if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
+      for (const paramKey in uploadExtraFormData) {
+        if (uploadExtraFormData.hasOwnProperty(paramKey)) {
+          let value = uploadExtraFormData[paramKey]
           formData[paramKey] = value
         }
       }
@@ -53,7 +53,7 @@ async function upload(file, { uploadDir, watermark, uploadExtraParams, maxWidth 
   })
 }
 
-function uploadImage({ sourceType, uploadDir, watermark, uploadExtraParams }) {
+function uploadImage({ sourceType, uploadDir, watermark, uploadExtraFormData }) {
   return new Promise((resolve) => {
     Taro.chooseMedia({
       count: 1,
@@ -67,7 +67,7 @@ function uploadImage({ sourceType, uploadDir, watermark, uploadExtraParams }) {
         const result = await upload(file, {
           uploadDir,
           watermark,
-          uploadExtraParams,
+          uploadExtraFormData,
           maxWidth
         })
         if (result.code === '1' && result.data.length) {

@@ -5,10 +5,10 @@ function getUploadParams({
   uploadDir,
   maxWidth,
   getUploadUrl,
-  getUploadParams,
+  getUploadFormData,
   appId
 }) {
-  let data = {
+  let formData = {
     watermark: watermark ? JSON.stringify(watermark) : '',
     fileType: localFile.type,
     filePath: localFile.path,
@@ -18,12 +18,12 @@ function getUploadParams({
   }
 
   let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
-  let uploadExtraParams = getUploadParams?.({ platform: 'dingtalk' }) || {}
-  if (uploadExtraParams && typeof uploadExtraParams === 'object') {
-    for (const paramKey in uploadExtraParams) {
-      if (uploadExtraParams.hasOwnProperty(paramKey)) {
-        let value = uploadExtraParams[paramKey]
-        data[paramKey] = value
+  let uploadExtraFormData = getUploadFormData?.({ platform: 'dingtalk' }) || {}
+  if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
+    for (const paramKey in uploadExtraFormData) {
+      if (uploadExtraFormData.hasOwnProperty(paramKey)) {
+        let value = uploadExtraFormData[paramKey]
+        formData[paramKey] = value
       }
     }
   }
@@ -36,7 +36,7 @@ function getUploadParams({
       'Content-Type': 'multipart/form-data',
       Cookie: document.cookie
     },
-    data: data
+    formData: formData
   }
 }
 

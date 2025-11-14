@@ -18,7 +18,7 @@ async function saveServer(item, options) {
         {
           ...item,
           watermark: watermark,
-          uploadExtraParams: uploadExtraParams
+          uploadExtraFormData: uploadExtraFormData
         }
       ]
     }

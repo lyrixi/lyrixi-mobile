@@ -10,7 +10,7 @@ import { Toast, Bridge } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { timeout, uploadDir, getUploadUrl, getUploadParams, formatUploadedItem }
+  { timeout, uploadDir, getUploadUrl, getUploadFormData, formatUploadedItem }
 ) {
   return new Promise((resolve) => {
     let localId = item?.localId
@@ -22,11 +22,11 @@ function uploadItem(
     }
 
     let uploadUrl = getUploadUrl?.({ platform: 'lyrixi' }) || {}
-    let uploadExtraParams = getUploadParams?.({ platform: 'lyrixi' }) || {}
+    let uploadExtraFormData = getUploadFormData?.({ platform: 'lyrixi' }) || {}
 
     let uploadParams = {
       url: window.origin + uploadUrl,
-      ...uploadExtraParams,
+      ...uploadExtraFormData,
       // 离线超时时长
       timeout: timeout,
       uploadDir: uploadDir,

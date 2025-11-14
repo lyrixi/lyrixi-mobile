@@ -10,7 +10,7 @@ import { Request, LocaleUtil } from 'lyrixi-mobile'
 function uploadServerId({
   item,
   getUploadUrl,
-  getUploadParams,
+  getUploadFormData,
   serverIds,
   uploadDir,
   watermark,
@@ -20,11 +20,11 @@ function uploadServerId({
 }) {
   return new Promise((resolve) => {
     let uploadUrl = getUploadUrl?.({ platform: 'wechat' }) || {}
-    let uploadExtraParams = getUploadParams?.({ platform: 'wechat' }) || {}
+    let uploadExtraFormData = getUploadFormData?.({ platform: 'wechat' }) || {}
 
     // 构建参数
     let uploadParams = {
-      ...uploadExtraParams,
+      ...uploadExtraFormData,
       serverIds,
       uploadDir,
       watermark,

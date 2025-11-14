@@ -102,7 +102,7 @@ async function uploadImage(uploadList, uploadConfig) {
       timeout: item?.timeout || uploadConfig?.timeout,
       uploadDir: item?.uploadDir || uploadConfig?.uploadDir,
       getUploadUrl: uploadConfig?.getUploadUrl,
-      getUploadParams: uploadConfig?.getUploadParams,
+      getUploadFormData: uploadConfig?.getUploadFormData,
       formatUploadedItem: uploadConfig?.formatUploadedItem
     })
     // 上传失败

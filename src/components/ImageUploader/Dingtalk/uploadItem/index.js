@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { validateImageSrc } from './../../utils'
+import getUploadParams from './getUploadParams'
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
@@ -14,7 +14,7 @@ import { Storage, LocaleUtil } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadParams, formatUploadedItem }
+  { uploadDir, maxWidth, getUploadUrl, getUploadFormData, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -38,7 +38,7 @@ function uploadItem(
       uploadDir,
       maxWidth,
       getUploadUrl,
-      getUploadParams,
+      getUploadFormData,
       appId
     })
 

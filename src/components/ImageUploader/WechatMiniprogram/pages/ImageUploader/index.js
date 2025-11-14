@@ -31,7 +31,7 @@ const ImageUploader = () => {
         ? decodeURIComponent(decodeURIComponent(options?.uploadDir))
         : 'default',
       watermark: parseUrlJson(options.watermark),
-      uploadExtraParams: parseUrlJson(options?.uploadExtraParams)
+      uploadExtraFormData: parseUrlJson(options?.uploadExtraFormData)
     })
     if (typeof isOk === 'string') {
       // 取消选择

@@ -14,7 +14,7 @@ import { Storage, LocaleUtil } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadParams, formatUploadedItem }
+  { uploadDir, maxWidth, getUploadUrl, getUploadFormData, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -47,7 +47,7 @@ function uploadItem(
       uploadDir,
       maxWidth,
       getUploadUrl,
-      getUploadParams,
+      getUploadFormData,
       formatUploadedItem,
       appId
     })
