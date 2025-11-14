@@ -37,10 +37,18 @@ const Image = forwardRef(
         },
       ]
       */
+      count,
+      type, // video.录相 | 其它.为拍照
+      ellipsis,
+      sourceType = ['album', 'camera'],
+      sizeType = ['compressed'], // ['original', 'compressed']
+      maxWidth,
 
       // Status
       allowChoose = false,
       allowClear = false,
+      async = false,
+      reUpload = true,
 
       // Style
       className,
@@ -50,16 +58,6 @@ const Image = forwardRef(
       upload, // 上传按钮覆盖的dom
       uploading,
       preview, // Preview Config: { allowChoose, allowClear }
-
-      // Validate
-      count,
-      ellipsis,
-      type, // video.录相 | 其它.为拍照
-      sourceType = ['album', 'camera'],
-      sizeType = ['compressed'], // ['original', 'compressed']
-      maxWidth,
-      async = false,
-      reUpload = true,
 
       // Events
       onBeforeChoose,

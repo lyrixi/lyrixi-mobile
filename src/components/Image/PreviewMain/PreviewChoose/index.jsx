@@ -4,9 +4,8 @@ import DOMUtil from './../../../../utils/DOMUtil'
 
 // 上传按钮
 const Choose = ({
+  // Value & Display Value
   type,
-
-  // file框属性
   sourceType,
 
   // Events
@@ -57,8 +56,17 @@ const Choose = ({
   // }
 
   return (
-    <div className="lyrixi-image-preview-main-choose" data-type="upload" onClick={handleUploadClick}>
-      <i className={DOMUtil.classNames('lyrixi-image-preview-main-choose-icon', type === 'lyrixi-video' ? 'lyrixi-video' : null)} />
+    <div
+      className="lyrixi-image-preview-main-choose"
+      data-type="upload"
+      onClick={handleUploadClick}
+    >
+      <i
+        className={DOMUtil.classNames(
+          'lyrixi-image-preview-main-choose-icon',
+          type === 'lyrixi-video' ? 'lyrixi-video' : null
+        )}
+      />
       <input
         type="file"
         className="lyrixi-image-preview-main-choose-input-file"
