@@ -34,25 +34,23 @@ const PreviewMain = forwardRef(
       list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
       current, // 当前显示的资源序号或者当前资源的src链接
       type, // video | image
+      sourceType = ['album', 'camera'],
+      sizeType = ['compressed'], // ['original', 'compressed']
+      count,
+      maxWidth,
 
       // Status
       open = true,
       allowClose = false,
       allowChoose = false,
       allowClear = false,
+      async = false,
+      reUpload = true,
 
       // Style
       className,
       style,
       safeArea,
-
-      // Validate
-      async = false,
-      reUpload = true,
-      count,
-      sourceType = ['album', 'camera'],
-      sizeType = ['compressed'], // ['original', 'compressed']
-      maxWidth,
 
       // Events
       onBeforeChoose,
@@ -60,9 +58,7 @@ const PreviewMain = forwardRef(
       onFileChange,
       onUpload,
       onChange,
-      onClose,
-
-      ...props
+      onClose
     },
     ref
   ) => {
@@ -256,7 +252,6 @@ const PreviewMain = forwardRef(
 
     return (
       <Swiper
-        {...props}
         ref={swiperRef}
         spaceBetween={0}
         slidesPerView={1}

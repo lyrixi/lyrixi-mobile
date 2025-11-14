@@ -284,7 +284,7 @@ const Image = forwardRef(
     }
 
     // 上传node
-    function getChooseNode(props) {
+    function getChooseNode({ className } = {}) {
       if (!chooseVisible || typeof onChange !== 'function') {
         return null
       }
@@ -294,6 +294,8 @@ const Image = forwardRef(
           // Value & Display Value
           type={type}
           sourceType={sourceType}
+          // Style
+          className={className}
           // Element
           upload={upload}
           uploading={uploading}
@@ -311,7 +313,6 @@ const Image = forwardRef(
                 }
               : null
           }
-          {...props}
         />
       )
     }

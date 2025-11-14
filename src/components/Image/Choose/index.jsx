@@ -6,7 +6,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 const Choose = ({
   // Value & Display Value
   type,
-
   sourceType,
 
   // Style
