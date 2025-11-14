@@ -7,7 +7,7 @@ import { Device } from 'lyrixi-mobile'
 测试使用-end */
 
 // 订货和外勤原生不支持localId显示图片，需要转成base64后显示
-function getThumbnail(localId) {
+function getPreview(localId) {
   // 安卓可直接显示，无需要转换
   if (Device.os !== 'ios') {
     return localId
@@ -28,4 +28,4 @@ function getThumbnail(localId) {
   })
 }
 
-export default getThumbnail
+export default getPreview

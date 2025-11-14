@@ -194,7 +194,7 @@ let Bridge = {
       let localFiles = []
       for (let file of res?.files) {
         let localFile = {
-          fileThumbnail: file.path,
+          preview: file.path,
           path: file.path,
           type: file.fileType
         }

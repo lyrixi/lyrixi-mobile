@@ -225,7 +225,7 @@ let Bridge = {
    * @param {Number} params.count - 最多可以选择的图片张数，默认为 9
    * @param {Array<String>} params.sizeType - 图片大小，['original', 'compressed']，默认为 ['original', 'compressed']
    * @param {Array<String>} params.sourceType - 图片来源，['camera', 'album']，默认为 ['camera', 'album']
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{fileThumbnail: String, path: String, type: String}>}
+   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{preview: String, path: String, type: String}>}
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}

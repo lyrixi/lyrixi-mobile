@@ -5,6 +5,7 @@ import back from './utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import wrapCallback from './../utils/wrapCallback'
 import uploadServerId from './uploadServerId'
+import getPreview from './getPreview'
 
 // 内库使用-start
 import LocaleUtil from './../LocaleUtil'
@@ -203,8 +204,8 @@ let Bridge = {
       let localFiles = []
       for (let localId of res?.localIds) {
         let localFile = { path: localId }
-        let fileThumbnail = await getThumbnail(localId)
-        localFile.fileThumbnail = fileThumbnail
+        let preview = await getPreview(localId)
+        localFile.preview = preview
         localFiles.push(localFile)
       }
       params.onSuccess &&
