@@ -2,7 +2,7 @@
 
 import _ from 'lodash'
 import back from './utils/back'
-import formatOpenLocationParams from './utils/formatOpenLocationParams'
+import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
