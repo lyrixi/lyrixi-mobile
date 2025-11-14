@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { getRemainCount, getPreviewType } from './../utils'
-import base64LocalIds from './base64LocalIds'
 import uploadImage from './uploadItem'
 
 // 内库使用-start
@@ -126,29 +125,14 @@ function ImageUploader(
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
-          const localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-          if (!Array.isArray(localIds) || !localIds.length) {
-            resolve(null)
-            return
-          }
-
           Loading.show()
-
-          // 异步上传，需要将localId转成base64后显示
-          let base64List = []
-          if (async) {
-            base64List = await base64LocalIds(localIds)
-          }
-
-          // 当前列表
-          let currentList = localIds.map((localId, index) => {
+          let currentList = res.localFiles.map((localFile) => {
             return {
               status: 'choose',
-              localId: localId,
+              localFile: localFile,
               watermark: watermark,
-              // 缩略图：需要转base64方能展现图片
-              fileThumbnail: base64List[index],
-              fileUrl: localId,
+              fileThumbnail: localFile.preview,
+              fileUrl: localFile.preview,
               uploadDir: uploadDir
             }
           })

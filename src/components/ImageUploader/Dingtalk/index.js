@@ -140,8 +140,8 @@ function ImageUploader(
               status: 'choose',
               localFile: localFile,
               watermark: watermark,
-              fileThumbnail: localFile.thumbnail,
-              fileUrl: localFile.thumbnail,
+              fileThumbnail: localFile.preview,
+              fileUrl: localFile.preview,
               uploadDir: uploadDir
             }
           })

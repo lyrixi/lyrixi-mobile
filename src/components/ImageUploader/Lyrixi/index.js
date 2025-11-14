@@ -134,28 +134,16 @@ function ImageUploader(
         watermark: watermark,
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
-          const localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-          if (!Array.isArray(localIds) || !localIds.length) {
-            resolve(null)
-            return
-          }
-
-          // 超时都读localId
-          let base64List = await base64LocalIds(localIds)
-
-          // 当前列表
-          let currentList = localIds.map((localId, index) => {
-            let itemExtra = res?.[localId] || {}
+          let currentList = res.localFiles.map((localFile, index) => {
             return {
               status: 'choose',
-              localId: localId,
+              localFile: localFile,
               watermark: watermark,
               // 缩略图：需要转base64方能展现图片
-              fileThumbnail: base64List[index],
-              fileUrl: base64List[index],
-              fileLocalUrl: base64List[index],
-              uploadDir: uploadDir,
-              ...itemExtra
+              fileThumbnail: localFile.preview,
+              fileUrl: localFile.preview,
+              fileLocalUrl: localFile.preview,
+              uploadDir: uploadDir
             }
           })
 
