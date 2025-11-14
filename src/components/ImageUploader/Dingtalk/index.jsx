@@ -16,23 +16,28 @@ import { Image, Loading, Toast, Bridge } from 'lyrixi-mobile'
 // 照片上传
 function ImageUploader(
   {
-    // 是否异步上传(目前只有app支持)
-    async = false,
-    // 支持重新上传
-    reUpload = true,
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     uploadDir = 'default',
+    chooseExtraParams, // 仅对客户端有效
 
-    // 展示样式
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+
+    // Style
+    uploadPosition,
+
+    // Element
     upload,
     uploading,
-    uploadPosition,
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
-
     /*
     格式化上传结果
     入参:
@@ -48,12 +53,8 @@ function ImageUploader(
     getWatermark,
     getUploadUrl,
     getUploadPayload,
-    // 仅对客户端有效
-    chooseExtraParams,
 
-    // 回调
-    allowClear = true,
-    allowChoose = true,
+    // Events
     onBeforeChoose,
     onChange,
     onPreview,
@@ -164,18 +165,24 @@ function ImageUploader(
   return (
     <Image
       ref={photosRef}
-      async={async}
-      reUpload={reUpload}
+      // Value & Display Value
+      list={list}
+      count={count}
       sourceType={sourceType}
       sizeType={sizeType}
-      upload={upload}
-      uploading={uploading}
-      uploadPosition={uploadPosition}
-      list={list}
-      onChoose={handleChoose}
-      count={count}
+      maxWidth={maxWidth}
+      // Status
+      async={async}
+      reUpload={reUpload}
       allowClear={allowClear}
       allowChoose={allowChoose}
+      // Style
+      uploadPosition={uploadPosition}
+      // Element
+      upload={upload}
+      uploading={uploading}
+      // Events
+      onChoose={handleChoose}
       onChange={onChange}
       onUpload={uploadItem}
       onPreview={async (item, index) => {
