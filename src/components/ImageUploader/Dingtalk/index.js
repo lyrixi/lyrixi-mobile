@@ -140,11 +140,10 @@ function ImageUploader(
           let currentList = localFiles.map((localFile, index) => {
             return {
               status: 'choose',
-              localId: localFile?.filePath,
               localFile: localFile,
               watermark: watermark,
-              fileThumbnail: localFile.filePath,
-              fileUrl: localFile.filePath,
+              fileThumbnail: localFile.path,
+              fileUrl: localFile.path,
               uploadDir: uploadDir
             }
           })

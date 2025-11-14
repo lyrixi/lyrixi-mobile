@@ -1,3 +1,5 @@
+// 官方文档: https://open.dingtalk.com/document/development/jsapi-overview
+
 import _ from 'lodash'
 import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
@@ -193,8 +195,8 @@ let Bridge = {
           let localFiles = []
           for (let item of res?.files) {
             let newItem = {
-              filePath: item.path,
-              fileType: item.fileType
+              path: item.path,
+              type: item.fileType
             }
 
             if (params?.sizeType?.indexOf?.('compressed') >= 0) {
@@ -242,7 +244,7 @@ let Bridge = {
     window.top.dd.chooseImage(wrappedParams)
   },
   uploadImage: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
-    if (!localFile?.fileType || !localFile?.filePath) {
+    if (!localFile?.type || !localFile?.path) {
       onError &&
         onError({
           status: 'error',
@@ -263,8 +265,8 @@ let Bridge = {
       url: url,
       header: header,
       fileName: 'file',
-      filePath: localFile.filePath,
-      fileType: localFile.fileType,
+      filePath: localFile.path,
+      fileType: localFile.type,
       formData: formData
     })
 
@@ -309,8 +311,8 @@ let Bridge = {
       url: url,
       header: header,
       fileName: 'file',
-      filePath: localFile.filePath,
-      fileType: localFile.fileType,
+      filePath: localFile.path,
+      fileType: localFile.type,
       formData: formData,
       onSuccess: handleSuccess,
       onError: handleError

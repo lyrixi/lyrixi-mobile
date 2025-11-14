@@ -21,8 +21,8 @@ function uploadLocalFile({
   return new Promise((resolve) => {
     let formData = {
       watermark: JSON.stringify(watermark),
-      fileType: localFile.fileType,
-      file1: localFile.filePath,
+      fileType: localFile.type,
+      filePath: localFile.path,
       uploadPath: uploadDir,
       maxWidth: maxWidth,
       appId: appId
