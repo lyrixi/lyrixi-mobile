@@ -332,10 +332,9 @@ const PreviewMain = forwardRef(
         {/* Choose */}
         {chooseVisible && typeof onChange === 'function' ? (
           <PreviewChoose
-            // Element
-            type={type}
-            // Validate: file框属性
+            // Value & Display Value
             sourceType={sourceType}
+            type={type}
             // Events
             onChoose={onChoose ? handleChoose : null}
             onFileChange={onFileChange ? handleFileChange : null}

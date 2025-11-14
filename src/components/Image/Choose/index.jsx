@@ -104,7 +104,6 @@ const Choose = ({
           accept="image/*"
           // 以下的属性值会导致: 部分安卓机会不显示拍照
           // accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
-          // Validate: file框属性
           {...(fileProps || {})}
           // Events
           onChange={handleFileChange}

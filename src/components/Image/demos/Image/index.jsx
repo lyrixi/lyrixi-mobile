@@ -114,18 +114,13 @@ export default () => {
             '--count-font-size': '12px',
             '--choose-icon-size': '12px'
           }}
-          preview={{
-            modal: 'page',
-            allowChoose: true,
-            allowClear: true,
-            mainProps: {
-              style: {
-                zIndex: 1000
-              }
-            },
-            onClose: () => {
-              HistoryUtil.back()
-            }
+          previewAllowChoose={true}
+          previewAllowClear={true}
+          onPreviewOpen={() => {
+            console.log('onPreviewOpen')
+          }}
+          onPreviewClose={() => {
+            console.log('onPreviewClose')
           }}
           onPreview={(item, index) => {
             HistoryUtil.navigate('imagePreview=1', {

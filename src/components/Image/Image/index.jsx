@@ -49,6 +49,8 @@ const Image = forwardRef(
       allowClear = false,
       async = false,
       reUpload = true,
+      previewAllowChoose,
+      previewAllowClear,
 
       // Style
       className,
@@ -57,7 +59,7 @@ const Image = forwardRef(
       // Element
       upload, // 上传按钮覆盖的dom
       uploading,
-      preview, // Preview Config: { allowChoose, allowClear }
+      previewPortal,
 
       // Events
       onBeforeChoose,
@@ -65,7 +67,9 @@ const Image = forwardRef(
       onFileChange,
       onUpload,
       onChange,
-      onPreview
+      onPreview,
+      onPreviewOpen,
+      onPreviewClose
     },
     ref
   ) => {
@@ -329,13 +333,12 @@ const Image = forwardRef(
         <List
           // Value & Display Value
           list={list}
+          type={type}
+          ellipsis={ellipsis}
           // Status
           allowClear={allowClear}
           // Element
           uploading={uploading}
-          // Validate
-          type={type}
-          ellipsis={ellipsis}
           // Events
           onChange={onChangeRef.current}
           onReUpload={handleReUpload}
@@ -351,16 +354,17 @@ const Image = forwardRef(
             // Value & Display Value
             list={list} // 需要预览的资源列表{fileUrl: '图片或视频的地址', type: 'video|image, 默认image', fileThumbnail: '封面地址'}
             current={previewVisible}
-            // Status
-            open={typeof previewVisible === 'number'}
-            // Element
-            {...preview}
-            // Validate
             type={type}
             count={count}
             sourceType={sourceType}
             sizeType={sizeType}
             maxWidth={maxWidth}
+            // Status
+            open={typeof previewVisible === 'number'}
+            allowChoose={previewAllowChoose}
+            allowClear={previewAllowClear}
+            // Elements
+            portal={previewPortal}
             // Events
             onBeforeChoose={onBeforeChoose}
             onChoose={onChoose}
@@ -368,10 +372,10 @@ const Image = forwardRef(
             onUpload={onUpload}
             onChange={onChange}
             onOpen={() => {
-              preview?.onOpen?.()
+              onPreviewOpen?.()
             }}
             onClose={() => {
-              preview?.onClose?.()
+              onPreviewClose?.()
               setPreviewVisible(null)
             }}
           />

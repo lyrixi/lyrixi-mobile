@@ -18,24 +18,24 @@ const PreviewModal = forwardRef(
       list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
       current, // 当前显示的资源序号或者当前资源的src链接
       type, // video | image
+      count,
+      sourceType = ['album', 'camera'],
+      sizeType = ['compressed'], // ['original', 'compressed']
+      maxWidth,
 
       // Status
       open,
-
-      // Style
       allowChoose = false,
       allowClear = false,
-      portal,
+
+      // Style
       modalClassName,
       modalStyle,
       mainClassName,
       mainStyle,
 
-      // Validate
-      count,
-      sourceType = ['album', 'camera'],
-      sizeType = ['compressed'], // ['original', 'compressed']
-      maxWidth,
+      // Element
+      portal,
 
       // Events
       onBeforeChoose,
@@ -82,7 +82,12 @@ const PreviewModal = forwardRef(
           ref={ref}
           // Value & Display Value
           list={list}
+          type={type}
           current={current}
+          count={count}
+          sourceType={sourceType}
+          sizeType={sizeType}
+          maxWidth={maxWidth}
           // Status
           open={open}
           allowClose={false}
@@ -91,13 +96,6 @@ const PreviewModal = forwardRef(
           // Style
           className={mainClassName}
           style={mainStyle}
-          // Element
-          type={type}
-          // Validate
-          count={count}
-          sourceType={sourceType}
-          sizeType={sizeType}
-          maxWidth={maxWidth}
           // Events
           onBeforeChoose={onBeforeChoose}
           onChoose={onChoose}
