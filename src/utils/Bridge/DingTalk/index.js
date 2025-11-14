@@ -242,7 +242,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadImage: function ({ localFile, url, header = {}, data = {}, onSuccess, onError } = {}) {
+  uploadImage: function ({ localFile, url, header = {}, payload = {}, onSuccess, onError } = {}) {
     if (!localFile?.type || !localFile?.path) {
       onError &&
         onError({
@@ -260,49 +260,45 @@ let Bridge = {
       return
     }
 
-    const handleSuccess = onSuccess
-      ? function (res) {
-          console.log('钉钉uploadImage成功:', res)
-          const { data, statusCode } = res
-          if (statusCode !== 200) {
-            onError &&
-              onError({
-                status: 'error',
-                message: `${LocaleUtil.locale('网络异常，上传失败', 'lyrixi_upload_network_error')}`
-              })
-            return
-          }
-
-          let result = data
-          if (typeof data === 'string') {
-            try {
-              result = JSON.parse(data)
-            } catch (e) {}
-          }
-
-          onSuccess &&
-            onSuccess({
-              status: 'success',
-              result: result
-            })
-        }
-      : undefined
-
-    const handleError = onError
-      ? function (error) {
-          console.error('钉钉uploadImage失败:', error)
+    const handleSuccess = function (res) {
+      console.log('钉钉uploadImage成功:', res)
+      const { data, statusCode } = res
+      if (statusCode !== 200) {
+        onError &&
           onError({
             status: 'error',
-            code: error?.errorCode || '',
-            message: error?.errorMessage || ''
+            message: `${LocaleUtil.locale('网络异常，上传失败', 'lyrixi_upload_network_error')}`
           })
-        }
-      : undefined
+        return
+      }
+
+      let result = data
+      if (typeof data === 'string') {
+        try {
+          result = JSON.parse(data)
+        } catch (e) {}
+      }
+
+      onSuccess &&
+        onSuccess({
+          status: 'success',
+          result: result
+        })
+    }
+
+    const handleError = function (error) {
+      console.error('钉钉uploadImage失败:', error)
+      onError({
+        status: 'error',
+        code: error?.errorCode || '',
+        message: error?.errorMessage || ''
+      })
+    }
 
     console.log('调用钉钉uploadFile:', {
       url: url,
       header: header,
-      formData: data,
+      formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.path,
       fileType: localFile.type
@@ -311,7 +307,7 @@ let Bridge = {
     window.top.dd.uploadFile({
       url: url,
       header: header,
-      formData: data,
+      formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.path,
       fileType: localFile.type,

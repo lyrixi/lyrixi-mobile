@@ -35,8 +35,6 @@ function uploadItem(
         'Content-Type': 'multipart/form-data',
         Cookie: document.cookie
       },
-      // 全屏遮罩被Loading.show接管
-      isShowProgressTips: 0,
       onSuccess: async function (result) {
         let data = result
 

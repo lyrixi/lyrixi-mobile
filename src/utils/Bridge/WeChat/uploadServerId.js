@@ -7,11 +7,11 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadServerId({ url, header, data }) {
+function uploadServerId({ url, header, payload }) {
   return new Promise((resolve) => {
-    console.log('调用微信uploadServerId:', { url, header, data })
+    console.log('调用微信uploadServerId:', { url, header, payload })
 
-    Request.post(url, data, {
+    Request.post(url, payload, {
       headers: header || {
         'Content-Type': 'multipart/form-data',
         Cookie: document.cookie

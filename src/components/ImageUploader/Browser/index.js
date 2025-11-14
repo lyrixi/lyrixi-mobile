@@ -20,7 +20,6 @@ function Browser(
     // 支持重新上传
     reUpload = true,
     // 全屏遮罩
-    isShowProgressTips = 1,
     count = 5,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']

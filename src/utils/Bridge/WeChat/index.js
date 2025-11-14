@@ -220,7 +220,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadImage: function ({ localFile, url, header, data, onSuccess, onError } = {}) {
+  uploadImage: function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -241,9 +241,9 @@ let Bridge = {
         let result = await uploadServerId({
           url: url,
           header: header,
-          data: {
+          payload: {
             serverId: serverId,
-            ...data
+            ...payload
           }
         })
         onSuccess && onSuccess(result)

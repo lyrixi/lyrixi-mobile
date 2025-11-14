@@ -231,7 +231,7 @@ let Bridge = {
    * @param {Object} params.localFile - 需要上传的图片的本地文件, { path: String, type: String } (必填)
    * @param {String} params.url - 上传地址 (必填)
    * @param {Object} params.header - 请求头, 默认为 { 'Content-Type': 'multipart/form-data', Cookie: document.cookie }
-   * @param {Object} params.data - 表单数据, 默认为 {}
+   * @param {Object} params.payload - 表单数据, 默认为 {}
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}
    * @param {Function} params.onError - 失败回调
    * @returns {void}

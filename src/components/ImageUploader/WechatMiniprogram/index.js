@@ -22,8 +22,6 @@ function WechatMiniprogram(
   {
     // 是否异步上传(目前只有app支持)
     async = false,
-    // 全屏遮罩
-    isShowProgressTips = 1,
     count = 5,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
