@@ -57,7 +57,7 @@ let Bridge = {
   /**
    * 加载平台 SDK
    * @param {Function} callback - 加载完成回调函数
-   * @param {Object} options - 配置选项
+   * @param {Object} options - 配置选项（可选）
    * @param {String} options.wechat?.src - 微信 JS SDK 地址
    * @param {String} options.wecom?.src - 企业微信 JS SDK 地址
    * @param {String} options.alipayBridgeSrc - 支付宝 JS SDK 地址
@@ -66,33 +66,45 @@ let Bridge = {
    * @param {String} options.lyrixi?.src - 乐栖 JS SDK 地址
    * @returns {void}
    */
-  load(...args) {
-    return this._getCurrentBridge().load(...args)
+  load(callback, options) {
+    const bridge = this._getCurrentBridge()
+    if (options !== undefined) {
+      return bridge.load(callback, options)
+    }
+    return bridge.load(callback)
   },
   /**
    * 返回上一页或关闭窗口
    * @param {Number} delta - 返回的页面数，默认为 1
    * @returns {void}
    */
-  back(...args) {
-    return this._getCurrentBridge().back(...args)
+  back(delta) {
+    return this._getCurrentBridge().back(delta)
   },
   /**
    * 关闭窗口
-   * @param {Object} params - 关闭窗口参数
+   * @param {Object} params - 关闭窗口参数（可选）
    * @returns {void}
    */
-  closeWindow(...args) {
-    return this._getCurrentBridge().closeWindow(...args)
+  closeWindow(params) {
+    const bridge = this._getCurrentBridge()
+    if (params !== undefined) {
+      return bridge.closeWindow(params)
+    }
+    return bridge.closeWindow()
   },
   /**
    * 监听物理返回键
-   * @param {Object} params - 监听参数
+   * @param {Object} params - 监听参数（可选）
    * @param {Function} params.onBack - 返回键回调函数
    * @returns {void}
    */
-  onHistoryBack(...args) {
-    return this._getCurrentBridge().onHistoryBack(...args)
+  onHistoryBack(params) {
+    const bridge = this._getCurrentBridge()
+    if (params !== undefined) {
+      return bridge.onHistoryBack(params)
+    }
+    return bridge.onHistoryBack()
   },
   /**
    * 修改原生标题
@@ -102,10 +114,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  setTitle(...args) {
+  setTitle(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.setTitle) {
-      return bridge.setTitle(...args)
+      return bridge.setTitle(params)
     }
     return undefined
   },
@@ -117,10 +129,10 @@ let Bridge = {
    * @param {String} params.target - 打开方式，'_self' 表示当前窗口
    * @returns {void}
    */
-  openWindow(...args) {
+  openWindow(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.openWindow) {
-      return bridge.openWindow(...args)
+      return bridge.openWindow(params)
     }
     return undefined
   },
@@ -128,10 +140,10 @@ let Bridge = {
    * 返回首页
    * @returns {void}
    */
-  goHome(...args) {
+  goHome() {
     const bridge = this._getCurrentBridge()
     if (bridge.goHome) {
-      return bridge.goHome(...args)
+      return bridge.goHome()
     }
     return undefined
   },
@@ -140,10 +152,10 @@ let Bridge = {
    * @param {String|Number} number - 电话号码
    * @returns {void}
    */
-  tel(...args) {
+  tel(number) {
     const bridge = this._getCurrentBridge()
     if (bridge.tel) {
-      return bridge.tel(...args)
+      return bridge.tel(number)
     }
     return undefined
   },
@@ -159,8 +171,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  openLocation(...args) {
-    return this._getCurrentBridge().openLocation(...args)
+  openLocation(params) {
+    return this._getCurrentBridge().openLocation(params)
   },
   /**
    * 获取当前地理位置
@@ -170,8 +182,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getLocation(...args) {
-    return this._getCurrentBridge().getLocation(...args)
+  getLocation(params) {
+    return this._getCurrentBridge().getLocation(params)
   },
   /**
    * 获取浏览器地理位置（所有平台都可以调用）
@@ -181,10 +193,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getBrowserLocation(...args) {
+  getBrowserLocation(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.getBrowserLocation) {
-      return bridge.getBrowserLocation(...args)
+      return bridge.getBrowserLocation(params)
     }
     return undefined
   },
@@ -200,10 +212,10 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  scanQRCode(...args) {
+  scanQRCode(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.scanQRCode) {
-      return bridge.scanQRCode(...args)
+      return bridge.scanQRCode(params)
     }
     return undefined
   },
@@ -218,10 +230,10 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  chooseImage(...args) {
+  chooseImage(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.chooseImage) {
-      return bridge.chooseImage(...args)
+      return bridge.chooseImage(params)
     }
     return undefined
   },
@@ -236,10 +248,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  uploadImage(...args) {
+  uploadImage(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.uploadImage) {
-      return bridge.uploadImage(...args)
+      return bridge.uploadImage(params)
     }
     return undefined
   },
@@ -253,22 +265,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  previewImage(...args) {
-    return this._getCurrentBridge().previewImage(...args)
-  },
-  /**
-   * 文件操作: 文件选择
-   * @param {Object} params - 选择文件参数
-   * @param {Function} params.onSuccess - 成功回调
-   * @param {Function} params.onError - 失败回调
-   * @returns {void}
-   */
-  chooseFile(...args) {
-    const bridge = this._getCurrentBridge()
-    if (bridge.chooseFile) {
-      return bridge.chooseFile(...args)
-    }
-    return undefined
+  previewImage(params) {
+    return this._getCurrentBridge().previewImage(params)
   },
   /**
    * 文件操作: 预览文件
@@ -280,35 +278,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  previewFile(...args) {
+  previewFile(params) {
     const bridge = this._getCurrentBridge()
     if (bridge.previewFile) {
-      return bridge.previewFile(...args)
-    }
-    return undefined
-  },
-  /**
-   * 自定义操作（调用平台特定 API）
-   * @param {String} api - API 名称
-   * @param {Object} params - API 参数
-   * @param {Function} callback - 回调函数
-   * @returns {void}
-   */
-  invoke(...args) {
-    const bridge = this._getCurrentBridge()
-    if (bridge.invoke) {
-      return bridge.invoke(...args)
-    }
-    return undefined
-  },
-  /**
-   * 获得版本信息
-   * @returns {String} 平台版本号
-   */
-  getAppVersion(...args) {
-    const bridge = this._getCurrentBridge()
-    if (bridge.getAppVersion) {
-      return bridge.getAppVersion(...args)
+      return bridge.previewFile(params)
     }
     return undefined
   },
