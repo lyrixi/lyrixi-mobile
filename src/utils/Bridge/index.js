@@ -228,8 +228,11 @@ let Bridge = {
   /**
    * 图片操作: 图片上传
    * @param {Object} params - 上传图片参数
-   * @param {String} params.localId - 需要上传的图片的本地 ID
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', serverId: String}
+   * @param {Object} params.localFile - 需要上传的图片的本地文件, { path: String, type: String } (必填)
+   * @param {String} params.url - 上传地址 (必填)
+   * @param {Object} params.header - 请求头, 默认为 { 'Content-Type': 'multipart/form-data', Cookie: document.cookie }
+   * @param {Object} params.data - 表单数据, 默认为 {}
+   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
@@ -264,27 +267,6 @@ let Bridge = {
     const bridge = this._getCurrentBridge()
     if (bridge.chooseFile) {
       return bridge.chooseFile(...args)
-    }
-    return undefined
-  },
-  /**
-   * 文件操作: 文件上传
-   * @param {Object} params - 上传文件参数
-   * @param {Object} params.localFile - 本地文件对象(必填)
-   * @param {String} params.localFile.fileType - 文件类型(必填)
-   * @param {String} params.localFile.filePath - 文件路径(必填)
-   * @param {String} params.localFile.fileName - 文件名
-   * @param {String} params.url - 上传地址(必填)
-   * @param {Object} params.header - 请求头，默认为 {}
-   * @param {Object} params.formData - 表单数据，默认为 {}
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}
-   * @param {Function} params.onError - 失败回调，返回 {status: 'error', message: String}
-   * @returns {void}
-   */
-  uploadFile(...args) {
-    const bridge = this._getCurrentBridge()
-    if (bridge.uploadFile) {
-      return bridge.uploadFile(...args)
     }
     return undefined
   },

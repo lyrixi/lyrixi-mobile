@@ -1,15 +1,13 @@
 import _ from 'lodash'
 import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
-import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
 import LocaleUtil from './../LocaleUtil'
-import Device from './../Device'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Device } from 'lyrixi-mobile'
+import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
@@ -92,45 +90,7 @@ let Bridge = {
     window.top.lyrixi?.chooseImage(params)
   },
   uploadImage: function (params) {
-    const { localFile, url, onSuccess, onError } = params || {}
-    if (!localFile?.fileType || !localFile?.filePath) {
-      onError &&
-        onError({
-          status: 'error',
-          message: `localFile error`
-        })
-      return
-    }
-    if (!url || typeof url !== 'string') {
-      onError &&
-        onError({
-          status: 'error',
-          message: `url error`
-        })
-      return
-    }
-
-    console.log('调用乐栖uploadImage:', {
-      url: url,
-      header: header,
-      fileName: localFile.fileName,
-      filePath: localFile.filePath,
-      fileType: localFile.fileType,
-      formData: formData
-    })
-
-    const wrappedParams = wrapCallback({
-      url: url,
-      header: header,
-      fileName: localFile.fileName,
-      filePath: localFile.filePath,
-      fileType: localFile.fileType,
-      formData: formData,
-      onSuccess: onSuccess,
-      onError: onError
-    })
-
-    window.top.lyrixi.uploadFile(wrappedParams)
+    window.top.lyrixi.uploadFile(params)
   },
   previewImage: function (params) {
     window.top.lyrixi?.previewImage(params)

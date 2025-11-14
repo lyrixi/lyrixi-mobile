@@ -1,0 +1,33 @@
+// 内库使用-start
+import Request from './../../../../utils/Request'
+import LocaleUtil from './../../../../utils/LocaleUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { Request, LocaleUtil } from 'lyrixi-mobile'
+测试使用-end */
+
+function uploadServerId({ url, header, data }) {
+  return new Promise((resolve) => {
+    Request.post(url, data, {
+      headers: header || {
+        'Content-Type': 'multipart/form-data',
+        Cookie: document.cookie
+      }
+    })
+      .then(async (result) => {
+        resolve({
+          status: 'success',
+          result: result
+        })
+      })
+      .catch((error) => {
+        resolve({
+          status: 'error',
+          message: error?.response?.data?.message || LocaleUtil.locale('上传serverId异常')
+        })
+      })
+  })
+}
+
+export default uploadServerId

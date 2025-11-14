@@ -242,7 +242,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadImage: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
+  uploadImage: function ({ localFile, url, header = {}, data = {}, onSuccess, onError } = {}) {
     if (!localFile?.type || !localFile?.path) {
       onError &&
         onError({
@@ -289,10 +289,11 @@ let Bridge = {
             } catch (e) {}
           }
 
-          onSuccess({
-            status: 'success',
-            ...result
-          })
+          onSuccess &&
+            onSuccess({
+              status: 'success',
+              result: result
+            })
         }
       : undefined
 
@@ -301,23 +302,22 @@ let Bridge = {
           console.error('钉钉uploadImage失败:', error)
           onError({
             status: 'error',
-            message: `${error?.errorCode || ''}`
+            code: error?.errorCode || '',
+            message: error?.errorMessage || ''
           })
         }
       : undefined
 
-    const wrappedParams = wrapCallback({
+    window.top.dd.uploadFile({
       url: url,
       header: header,
-      fileName: 'file',
+      formData: data,
+      fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.path,
       fileType: localFile.type,
-      formData: formData,
-      onSuccess: handleSuccess,
-      onError: handleError
+      success: handleSuccess,
+      fail: handleError
     })
-
-    window.top.dd.uploadFile(wrappedParams)
   },
   previewImage: function (params) {
     let index = params?.index || 0

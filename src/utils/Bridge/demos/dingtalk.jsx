@@ -47,8 +47,8 @@ export default () => {
     Cookie: document.cookie,
     Authorization:  \`Bearer \${localStorage.getItem('xxx-token')}\` // 上传需要单独处理cookie
   },
-  formData: {
-    file1: localFile.filePath,
+  data: {
+    filePath: localFile.filePath,
     uploadPath: uploadDir,
     // other formData
   },

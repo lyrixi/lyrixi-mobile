@@ -219,7 +219,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadImage: function (params) {
+  uploadImage: function ({ localFile, url, header, data, onSuccess, onError } = {}) {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -232,8 +232,25 @@ let Bridge = {
       params?.onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
       return
     }
-    const wrappedParams = wrapCallback(params)
-    window.top.wx.uploadImage(wrappedParams)
+    window.top.wx.uploadImage({
+      localId: localFile?.path,
+      isShowProgressTips: 0,
+      success: async function (res) {
+        let serverId = res.serverId
+        let result = await uploadServerId({
+          url: url,
+          header: header,
+          data: {
+            ...data,
+            serverId: serverId
+          }
+        })
+        onSuccess && onSuccess(result)
+      },
+      fail: function (error) {
+        onError?.({ status: 'error', message: error?.errMsg || '' })
+      }
+    })
   },
   previewImage: function (params) {
     if (Device.device === 'pc') {

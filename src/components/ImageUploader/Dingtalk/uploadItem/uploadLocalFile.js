@@ -19,7 +19,7 @@ function uploadLocalFile({
   appId
 }) {
   return new Promise((resolve) => {
-    let formData = {
+    let data = {
       watermark: JSON.stringify(watermark),
       fileType: localFile.type,
       filePath: localFile.path,
@@ -29,7 +29,7 @@ function uploadLocalFile({
     }
 
     if (watermark) {
-      formData.watermark = watermark
+      data.watermark = watermark
     }
 
     let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
@@ -39,13 +39,13 @@ function uploadLocalFile({
       for (const paramKey in uploadExtraParams) {
         if (uploadExtraParams.hasOwnProperty(paramKey)) {
           let value = uploadExtraParams[paramKey]
-          formData[paramKey] = value
+          data[paramKey] = value
         }
       }
     }
 
     if (maxWidth) {
-      formData.maxWidth = maxWidth
+      data.maxWidth = maxWidth
     }
 
     Bridge.uploadImage({
@@ -56,7 +56,7 @@ function uploadLocalFile({
         'Content-Type': 'multipart/form-data',
         Cookie: document.cookie
       },
-      formData: formData,
+      data: data,
       onSuccess: async function (result) {
         let data = result
 
