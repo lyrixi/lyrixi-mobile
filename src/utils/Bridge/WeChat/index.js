@@ -4,6 +4,7 @@ import _ from 'lodash'
 import back from './utils/back'
 import formatOpenLocationParams from './utils/formatOpenLocationParams'
 import wrapCallback from './../utils/wrapCallback'
+import uploadServerId from './uploadServerId'
 
 // 内库使用-start
 import LocaleUtil from './../LocaleUtil'
@@ -241,8 +242,8 @@ let Bridge = {
           url: url,
           header: header,
           data: {
-            ...data,
-            serverId: serverId
+            serverId: serverId,
+            ...data
           }
         })
         onSuccess && onSuccess(result)

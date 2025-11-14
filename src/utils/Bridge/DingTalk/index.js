@@ -260,15 +260,6 @@ let Bridge = {
       return
     }
 
-    console.log('调用钉钉uploadImage:', {
-      url: url,
-      header: header,
-      fileName: 'file',
-      filePath: localFile.path,
-      fileType: localFile.type,
-      formData: formData
-    })
-
     const handleSuccess = onSuccess
       ? function (res) {
           console.log('钉钉uploadImage成功:', res)
@@ -307,6 +298,15 @@ let Bridge = {
           })
         }
       : undefined
+
+    console.log('调用钉钉uploadFile:', {
+      url: url,
+      header: header,
+      formData: data,
+      fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
+      filePath: localFile.path,
+      fileType: localFile.type
+    })
 
     window.top.dd.uploadFile({
       url: url,

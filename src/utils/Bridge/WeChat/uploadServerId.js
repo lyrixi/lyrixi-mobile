@@ -9,6 +9,8 @@ import { Request, LocaleUtil } from 'lyrixi-mobile'
 
 function uploadServerId({ url, header, data }) {
   return new Promise((resolve) => {
+    console.log('调用微信uploadServerId:', { url, header, data })
+
     Request.post(url, data, {
       headers: header || {
         'Content-Type': 'multipart/form-data',
