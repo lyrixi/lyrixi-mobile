@@ -2,26 +2,26 @@ import Taro from '@tarojs/taro'
 
 async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidth }) {
   return new Promise((resolve) => {
-    let formData = {
+    let payload = {
       uploadPath: uploadDir,
       file1: file.tempFilePath
     }
 
     if (watermark) {
-      formData.watermark = watermark
+      payload.watermark = watermark
     }
 
     if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
       for (const paramKey in uploadExtraFormData) {
         if (uploadExtraFormData.hasOwnProperty(paramKey)) {
           let value = uploadExtraFormData[paramKey]
-          formData[paramKey] = value
+          payload[paramKey] = value
         }
       }
     }
 
     if (maxWidth) {
-      formData.maxWidth = maxWidth
+      payload.maxWidth = maxWidth
     }
 
     Taro.uploadFile({
@@ -31,7 +31,7 @@ async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidt
       filePath: file.tempFilePath,
       name: 'file',
       withCredentials: true,
-      formData: formData,
+      payload: payload,
       header: {
         'Content-Type': 'multipart/form-data',
         Cookie: `x-token=${Taro.getStorageSync('x-token')}`,

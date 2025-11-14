@@ -62,7 +62,7 @@ export default () => {
     }
   })
 
-  const imageLocalIds = useRef(null)
+  const imageLocalFiles = useRef(null)
   useEffect(() => {
     setTimeout(() => {
       setLocation({
@@ -255,7 +255,7 @@ export default () => {
                 onSuccess: (res) => {
                   console.log(res)
                   alert(JSON.stringify(res))
-                  imageLocalIds.current = res?.localIds
+                  imageLocalFiles.current = res?.localFiles
                 },
                 onError: (error) => {
                   console.log(error)
@@ -279,7 +279,7 @@ export default () => {
             style={{ margin: '12px 10px' }}
             radius="m"
             onClick={() => {
-              if (!imageLocalIds.current) {
+              if (!imageLocalFiles.current) {
                 console.log('chooseImage first!')
                 alert('chooseImage first!')
                 return
@@ -288,9 +288,15 @@ export default () => {
                 content: '上传中...'
               })
               Bridge.uploadImage({
-                localId: imageLocalIds.current[0],
-                isShowProgressTips: 0,
-                uploadDir: 'test',
+                url: '',
+                header: {
+                  'Content-Type': 'multipart/form-data',
+                  Cookie: document.cookie
+                },
+                data: {
+                  uploadDir: 'test'
+                },
+                localFile: imageLocalFiles.current[0],
                 onSuccess: function (res) {
                   console.log(res)
                   alert(JSON.stringify(res))

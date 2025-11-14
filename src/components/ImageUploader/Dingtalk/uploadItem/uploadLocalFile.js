@@ -24,7 +24,7 @@ function uploadLocalFile({
       localFile: localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
       // 鸿蒙钉钉有bug，上传方法带不上header，导致无法上传
       header: header,
-      data: data,
+      payload: payload,
       onSuccess: async function (result) {
         let newItem = result
 

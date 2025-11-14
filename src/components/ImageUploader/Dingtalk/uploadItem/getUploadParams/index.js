@@ -8,7 +8,7 @@ function getUploadParams({
   getUploadFormData,
   appId
 }) {
-  let formData = {
+  let payload = {
     watermark: watermark ? JSON.stringify(watermark) : '',
     fileType: localFile.type,
     filePath: localFile.path,
@@ -23,7 +23,7 @@ function getUploadParams({
     for (const paramKey in uploadExtraFormData) {
       if (uploadExtraFormData.hasOwnProperty(paramKey)) {
         let value = uploadExtraFormData[paramKey]
-        formData[paramKey] = value
+        payload[paramKey] = value
       }
     }
   }
@@ -36,7 +36,7 @@ function getUploadParams({
       'Content-Type': 'multipart/form-data',
       Cookie: document.cookie
     },
-    formData: formData
+    payload: payload
   }
 }
 

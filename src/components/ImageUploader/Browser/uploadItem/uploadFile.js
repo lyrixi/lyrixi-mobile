@@ -17,14 +17,14 @@ export default function uploadFile({
   getUploadFormData,
   formatUploadedItem
 }) {
-  const formData = new FormData()
+  const payload = new FormData()
 
-  formData.append('uploadDir', uploadDir)
-  formData.append('file', fileData)
-  formData.append('maxWidth', maxWidth)
+  payload.append('uploadDir', uploadDir)
+  payload.append('file', fileData)
+  payload.append('maxWidth', maxWidth)
 
   if (watermark) {
-    formData.append('watermark', JSON.stringify(watermark))
+    payload.append('watermark', JSON.stringify(watermark))
   }
 
   let uploadUrl = getUploadUrl?.({ platform: 'browser' }) || {}
@@ -34,13 +34,13 @@ export default function uploadFile({
     for (const paramKey in uploadExtraFormData) {
       if (uploadExtraFormData.hasOwnProperty(paramKey)) {
         let value = uploadExtraFormData[paramKey]
-        formData.append(paramKey, typeof value === 'object' ? JSON.stringify(value) : String(value))
+        payload.append(paramKey, typeof value === 'object' ? JSON.stringify(value) : String(value))
       }
     }
   }
 
   return new Promise((resolve) => {
-    Request.post(uploadUrl, formData, {
+    Request.post(uploadUrl, payload, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

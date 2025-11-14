@@ -44,8 +44,7 @@ export default () => {
   localFile: localFile, // { fileType: '', filePath: '' }
   header: {
     'Content-Type': 'multipart/form-data',
-    Cookie: document.cookie,
-    Authorization:  \`Bearer \${localStorage.getItem('xxx-token')}\` // 上传需要单独处理cookie
+    Cookie: document.cookie
   },
   data: {
     filePath: localFile.filePath,
