@@ -184,60 +184,59 @@ let Bridge = {
 
     window.top.dd.biz.util.scan(wrappedParams)
   },
-  chooseImage: function (params) {
-    let count = params?.count || 9
-    if (params?.sourceType?.length === 1 && params.sourceType.includes('camera') && count > 1) {
+  chooseImage: function ({ count, sourceType, sizeType, onSuccess, onError, onCancel } = {}) {
+    let count = count || 9
+    if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
       count = 1
     }
 
-    const handleSuccess = params?.onSuccess
-      ? async function (res) {
-          let localFiles = []
-          for (let item of res?.files) {
-            let newItem = {
-              path: item.path,
-              type: item.fileType
-            }
+    const handleSuccess = async function (res) {
+      let localFiles = []
+      for (let file of res?.files) {
+        let localFile = {
+          fileThumbnail: file.path,
+          path: file.path,
+          type: file.fileType
+        }
 
-            if (params?.sizeType?.indexOf?.('compressed') >= 0) {
-              newItem = await compressImage(newItem)
-            }
+        if (sizeType?.indexOf?.('compressed') >= 0) {
+          localFile = await compressImage(localFile)
+        }
 
-            localFiles.push(newItem)
-          }
+        localFiles.push(localFile)
+      }
 
-          params.onSuccess({
-            status: 'success',
-            localFiles: localFiles
+      onSuccess &&
+        onSuccess({
+          status: 'success',
+          localFiles: localFiles
+        })
+    }
+
+    const handleError = function (error) {
+      if (
+        error?.errorCode === '11' ||
+        error?.errorCode === '-1' ||
+        error?.errorCode === 11 ||
+        error?.errorCode === -1
+      ) {
+        onCancel && onCancel()
+      } else {
+        console.error('钉钉uploadImage失败:', error)
+        onError &&
+          onError({
+            status: 'error',
+            code: error?.errorCode || '',
+            message: error?.errorMessage || ''
           })
-        }
-      : undefined
-
-    const handleError = params?.onError
-      ? function (error) {
-          if (
-            error?.errorCode === '11' ||
-            error?.errorCode === '-1' ||
-            error?.errorCode === 11 ||
-            error?.errorCode === -1
-          ) {
-            params?.onCancel && params.onCancel()
-          } else {
-            console.error('钉钉uploadImage失败:', error)
-            params.onError({
-              status: 'error',
-              code: error?.errorCode || '',
-              message: error?.errorMessage || ''
-            })
-          }
-        }
-      : undefined
+      }
+    }
 
     window.top.dd.chooseImage({
       count: count,
       secret: false,
       position: 'back',
-      sourceType: params?.sourceType || ['camera', 'album'],
+      sourceType: sourceType || ['camera', 'album'],
       success: handleSuccess,
       fail: handleError
     })

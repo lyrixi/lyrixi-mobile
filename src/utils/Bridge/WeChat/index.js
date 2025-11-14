@@ -198,11 +198,14 @@ let Bridge = {
       return
     }
 
-    const handleSuccess = function (res) {
+    const handleSuccess = async function (res) {
       // res.localIds 为数组，每一项是本地临时图片ID
       let localFiles = []
-      if (Array.isArray(res?.localIds)) {
-        localFiles = res.localIds.map((localId) => ({ path: localId }))
+      for (let localId of res?.localIds) {
+        let localFile = { path: localId }
+        let fileThumbnail = await getThumbnail(localId)
+        localFile.fileThumbnail = fileThumbnail
+        localFiles.push(localFile)
       }
       params.onSuccess &&
         params.onSuccess({
