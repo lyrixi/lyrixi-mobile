@@ -197,8 +197,27 @@ let Bridge = {
       return
     }
 
-    const wrappedParams = wrapCallback(params)
-    window.top.wx.chooseImage(wrappedParams)
+    const handleSuccess = function (res) {
+      // res.localIds 为数组，每一项是本地临时图片ID
+      let localFiles = []
+      if (Array.isArray(res?.localIds)) {
+        localFiles = res.localIds.map((localId) => ({ path: localId }))
+      }
+      params.onSuccess &&
+        params.onSuccess({
+          status: 'success',
+          localFiles: localFiles
+        })
+    }
+    const handleError = function (error) {
+      params.onError && params.onError({ status: 'error', message: error?.errMsg || '' })
+    }
+
+    window.top.wx.chooseImage({
+      ...params,
+      success: handleSuccess,
+      fail: handleError
+    })
   },
   uploadImage: function (params) {
     if (Device.device === 'pc') {
