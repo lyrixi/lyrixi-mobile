@@ -30,30 +30,29 @@ import { DOMUtil, SafeArea, LocaleUtil, Toast, VideoPlayer } from 'lyrixi-mobile
 const PreviewMain = forwardRef(
   (
     {
-      safeArea,
-
-      // Modal
-      open = true,
-
-      // Main: common
-      type, // video | image
+      // Value & Display Value
+      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
       current, // 当前显示的资源序号或者当前资源的src链接
+      type, // video | image
 
-      // 样式
-      className,
-      style,
+      // Status
+      open = true,
       allowClose = false,
       allowChoose = false,
       allowClear = false,
 
-      // Config
+      // Style
+      className,
+      style,
+      safeArea,
+
+      // Validate
       async = false,
       reUpload = true,
       count,
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
       maxWidth,
-      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
 
       // Events
       onBeforeChoose,
@@ -61,7 +60,6 @@ const PreviewMain = forwardRef(
       onFileChange,
       onUpload,
       onChange,
-
       onClose,
 
       ...props
@@ -271,7 +269,7 @@ const PreviewMain = forwardRef(
           className: 'lyrixi-image-preview-main-pagination'
         }}
         modules={[Zoom, Pagination]}
-        onSlideChange={handleSwipe}
+        // Style
         className={DOMUtil.classNames(
           'lyrixi-image-preview-main',
           className,
@@ -290,6 +288,8 @@ const PreviewMain = forwardRef(
         touchStartForcePreventDefault={true}
         touchStartPreventDefault={true}
         passiveListeners={true}
+        // Events
+        onSlideChange={handleSwipe}
         onTouchStart={handleTouchStart}
       >
         {Array.isArray(list) &&
@@ -337,10 +337,11 @@ const PreviewMain = forwardRef(
         {/* Choose */}
         {chooseVisible && typeof onChange === 'function' ? (
           <PreviewChoose
+            // Element
             type={type}
-            // file框属性
+            // Validate: file框属性
             sourceType={sourceType}
-            // Choose events
+            // Events
             onChoose={onChoose ? handleChoose : null}
             onFileChange={onFileChange ? handleFileChange : null}
             // File框不支持onBeforeChoose

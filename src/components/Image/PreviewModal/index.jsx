@@ -14,25 +14,28 @@ const NavBarModal = Modal.NavBarModal
 const PreviewModal = forwardRef(
   (
     {
-      open,
-      type, // video | image
-      // list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
+      // Value & Display Value
+      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
       current, // 当前显示的资源序号或者当前资源的src链接
+      type, // video | image
 
-      onOpen,
-      onClose,
+      // Status
+      open,
 
       // Style
       allowChoose = false,
       allowClear = false,
       portal,
+      modalClassName,
+      modalStyle,
+      mainClassName,
+      mainStyle,
 
-      // Config
+      // Validate
       count,
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
       maxWidth,
-      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
 
       // Events
       onBeforeChoose,
@@ -40,11 +43,8 @@ const PreviewModal = forwardRef(
       onFileChange,
       onUpload,
       onChange,
-
-      modalClassName,
-      modalStyle,
-      mainClassName,
-      mainStyle
+      onOpen,
+      onClose
     },
     ref
   ) => {
@@ -65,28 +65,35 @@ const PreviewModal = forwardRef(
 
     return (
       <NavBarModal
+        // Status
+        open={open}
+        // Style
         className={DOMUtil.classNames('lyrixi-image-preview-modal', modalClassName)}
         style={modalStyle}
-        open={open}
+        portal={portal}
+        // Element
         animation="slideUp"
+        ok={false}
+        // Events
         onClose={handleClose}
         onOpen={onOpen}
-        ok={false}
-        portal={portal}
       >
         <PreviewMain
-          className={mainClassName}
-          style={mainStyle}
           ref={ref}
-          open={open}
-          type={type}
+          // Value & Display Value
           list={list}
           current={current}
-          // Style
+          // Status
+          open={open}
           allowClose={false}
           allowChoose={allowChoose}
           allowClear={allowClear}
-          // Config
+          // Style
+          className={mainClassName}
+          style={mainStyle}
+          // Element
+          type={type}
+          // Validate
           count={count}
           sourceType={sourceType}
           sizeType={sizeType}

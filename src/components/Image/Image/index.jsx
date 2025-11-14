@@ -291,14 +291,13 @@ const Image = forwardRef(
 
       return (
         <Choose
+          // Value & Display Value
           type={type}
-          // file框属性
           sourceType={sourceType}
-          // 上传DOM
+          // Element
           upload={upload}
-          // 上传中DOM
           uploading={uploading}
-          // Choose events
+          // Events
           onChoose={onChoose ? handleChoose : null}
           onFileChange={onFileChange ? handleFileChange : null}
           // File框不支持onBeforeChoose

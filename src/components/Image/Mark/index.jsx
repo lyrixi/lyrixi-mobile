@@ -2,10 +2,21 @@ import React, { forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 
 // 照片标识
-function Mark({ labels, style, className }, ref) {
+function Mark(
+  {
+    // Elements
+    labels,
+
+    // Style
+    style,
+    className
+  },
+  ref
+) {
   return (
     <div
       ref={ref}
+      // Style
       style={style}
       className={DOMUtil.classNames('lyrixi-image-item-mark', className)}
     >

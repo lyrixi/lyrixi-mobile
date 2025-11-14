@@ -1,10 +1,15 @@
 import React from 'react'
 
 // 失败重传图标
-const Reload = ({ onClick }) => {
+const Reload = ({
+  // Events
+  onClick
+}) => {
   return (
     <div
+      // Style
       className="lyrixi-image-reload"
+      // Events
       onClick={(e) => {
         e.stopPropagation()
         // 上传失败允许重新上传

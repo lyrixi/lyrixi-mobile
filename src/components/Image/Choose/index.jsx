@@ -4,16 +4,17 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 // 上传按钮
 const Choose = ({
-  className,
+  // Value & Display Value
   type,
 
-  // file框属性
   sourceType,
 
-  // 上传DOM和状态
+  // Style
+  className,
+
+  // Element
   upload,
 
-  // 上传中
   uploading,
 
   // Events
@@ -83,26 +84,34 @@ const Choose = ({
 
   return (
     <div
+      // Style
       className={DOMUtil.classNames('lyrixi-image-item', 'lyrixi-image-choose', className)}
       data-type="upload"
+      // Events
       onClick={handleUploadClick}
     >
       {/* 拍照或者视频图标 */}
-      <div className={DOMUtil.classNames('lyrixi-image-choose-icon', type === 'lyrixi-video' ? 'lyrixi-video' : null)}></div>
+      <div
+        className={DOMUtil.classNames(
+          'lyrixi-image-choose-icon',
+          type === 'lyrixi-video' ? 'lyrixi-video' : null
+        )}
+      ></div>
       {/* 启用file框 */}
       {onFileChange && (
         <input
           type="file"
           className="lyrixi-image-choose-input-file"
-          onChange={handleFileChange}
           accept="image/*"
           // 以下的属性值会导致: 部分安卓机会不显示拍照
           // accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
+          // Validate: file框属性
+          {...(fileProps || {})}
+          // Events
+          onChange={handleFileChange}
           onClick={(e) => {
             e.stopPropagation()
           }}
-          // file框属性
-          {...(fileProps || {})}
         />
       )}
       {uploadNode && uploadNode}

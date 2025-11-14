@@ -10,7 +10,10 @@ import { AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 图片显示
-const Img = ({ fileUrl }) => {
+const Img = ({
+  // Value & Display Value
+  fileUrl
+}) => {
   const [backgroundImage, setBackGroundImage] = useState('')
 
   useEffect(() => {
@@ -27,6 +30,7 @@ const Img = ({ fileUrl }) => {
 
   return (
     <div
+      // Style
       className={DOMUtil.classNames(
         'lyrixi-image-item-img',
         backgroundImage === 'lyrixi-error' ? 'lyrixi-error' : null

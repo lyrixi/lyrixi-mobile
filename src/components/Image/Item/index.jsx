@@ -12,19 +12,26 @@ import RemainCount from './RemainCount'
 
 // 照片视频预览
 const Item = ({
-  remainCount,
+  // Value & Display Value
   item,
   index,
+  remainCount,
+
+  // Element
   uploading,
+
+  // Events
   onDelete,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
 }) => {
   return (
     <div
+      // Element
       data-index={index}
-      // 状态status: choose|uploading|fail|success
+      // Style, 状态status: choose|uploading|fail|success
       className={DOMUtil.classNames('lyrixi-image-item', item.className, item.status)}
+      // Events
       onClick={(e) => {
         e.stopPropagation()
 

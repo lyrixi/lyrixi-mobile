@@ -9,7 +9,12 @@ import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传中图标
-const Uploading = ({ uploading, item }) => {
+const Uploading = ({
+  // Value & Display Value
+  item,
+  // Element
+  uploading
+}) => {
   // 上传中node
   function getUploadingNode(item) {
     if (typeof uploading === 'function') {
