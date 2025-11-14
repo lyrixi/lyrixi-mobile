@@ -1,6 +1,6 @@
-import { validateImageSrc } from './../../utils'
-import uploadLocalId from './uploadLocalId'
-import uploadServerId from './uploadServerId'
+import _ from 'lodash'
+import getUploadParams from './getUploadParams'
+import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
 import Storage from './../../../../utils/Storage'
@@ -18,10 +18,9 @@ function uploadItem(
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let localFile = item?.localFile
     let errMsg = ''
-    if (!localFile || !localFile?.path) {
-      errMsg = LocaleUtil.locale('没有localId，无法上传！')
+    if (_.isEmpty(item?.localFile)) {
+      errMsg = LocaleUtil.locale('没有localFile，无法上传！')
       resolve(errMsg)
       return
     }
@@ -32,49 +31,29 @@ function uploadItem(
       return
     }
 
-    // 上传到微信
-    let res = await uploadLocalId(localId)
-    if (typeof res === 'string') {
-      resolve(res)
-      return
-    }
-
-    // 上传到oss
-    let success = await uploadServerId({
-      item,
-      watermark: item?.watermark || [],
-      serverIds: res.serverId,
+    // 获取上传入参
+    let { localFile, url, header, data } = getUploadParams({
+      watermark: item?.watermark,
+      localFile: item?.localFile,
       uploadDir,
       maxWidth,
       getUploadUrl,
       getUploadPayload,
-      formatUploadedItem,
       appId
     })
 
-    if (typeof success === 'string') {
-      // resolve(success)
-      // 产品要求统一错误提示语
-      resolve(LocaleUtil.locale('照片上传失败，请重新上传'))
-      return
-    }
-
-    // 上传成功图片
-    let serverItem = success[0]
-
-    // 校验其是否真的是否法图片
-    let isValid = await validateImageSrc(serverItem.fileUrl)
-    if (!isValid) {
-      resolve(LocaleUtil.locale('图片加载失败，请重试'))
-      return
-    }
-
-    resolve({
-      ...item,
-      ...serverItem,
-      // 状态
-      status: 'success'
+    // 上传到阿里云
+    let newItem = await uploadLocalFile({
+      localFile,
+      url,
+      header,
+      data,
+      // 用于构建新Item的入参
+      item,
+      formatUploadedItem
     })
+
+    resolve(newItem)
   })
 }
 
