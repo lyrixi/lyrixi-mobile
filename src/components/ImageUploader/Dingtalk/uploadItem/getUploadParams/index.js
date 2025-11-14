@@ -5,7 +5,7 @@ function getUploadParams({
   uploadDir,
   maxWidth,
   getUploadUrl,
-  getUploadFormData,
+  getUploadPayload,
   appId
 }) {
   let payload = {
@@ -18,7 +18,7 @@ function getUploadParams({
   }
 
   let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
-  let uploadExtraFormData = getUploadFormData?.({ platform: 'dingtalk' }) || {}
+  let uploadExtraFormData = getUploadPayload?.({ platform: 'dingtalk' }) || {}
   if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
     for (const paramKey in uploadExtraFormData) {
       if (uploadExtraFormData.hasOwnProperty(paramKey)) {

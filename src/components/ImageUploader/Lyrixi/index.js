@@ -49,7 +49,7 @@ function ImageUploader(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadFormData,
+    getUploadPayload,
     // 仅对客户端有效
     chooseExtraParams,
 
@@ -85,7 +85,7 @@ function ImageUploader(
       timeout,
       uploadDir,
       getUploadUrl,
-      getUploadFormData,
+      getUploadPayload,
       formatUploadedItem
     })
 

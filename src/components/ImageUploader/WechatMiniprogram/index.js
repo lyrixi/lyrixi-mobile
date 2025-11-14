@@ -49,7 +49,7 @@ function WechatMiniprogram(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadFormData,
+    getUploadPayload,
     // 仅对客户端有效
     chooseExtraParams,
 
@@ -199,7 +199,7 @@ function WechatMiniprogram(
 
       console.log('进入小程序拍照')
       try {
-        let uploadExtraFormData = getUploadFormData?.({ platform: 'WechatMiniprogram' }) || {}
+        let uploadExtraFormData = getUploadPayload?.({ platform: 'WechatMiniprogram' }) || {}
         // eslint-disable-next-line
         top.wx.miniProgram.navigateTo({
           url: `/pages/ImageUploader/index?id=${idRef.current}&sourceType=${JSON.stringify(

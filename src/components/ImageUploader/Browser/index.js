@@ -47,7 +47,7 @@ function Browser(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadFormData,
+    getUploadPayload,
     // 仅对客户端有效
     chooseExtraParams,
 
@@ -83,7 +83,7 @@ function Browser(
       uploadDir,
       maxWidth,
       getUploadUrl,
-      getUploadFormData,
+      getUploadPayload,
       formatUploadedItem
     })
 

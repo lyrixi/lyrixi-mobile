@@ -14,7 +14,7 @@ export default function uploadFile({
   uploadDir,
   maxWidth,
   getUploadUrl,
-  getUploadFormData,
+  getUploadPayload,
   formatUploadedItem
 }) {
   const payload = new FormData()
@@ -28,7 +28,7 @@ export default function uploadFile({
   }
 
   let uploadUrl = getUploadUrl?.({ platform: 'browser' }) || {}
-  let uploadExtraFormData = getUploadFormData?.({ platform: 'browser' }) || {}
+  let uploadExtraFormData = getUploadPayload?.({ platform: 'browser' }) || {}
 
   if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
     for (const paramKey in uploadExtraFormData) {

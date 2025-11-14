@@ -48,7 +48,7 @@ function ImageUploader(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadFormData,
+    getUploadPayload,
     chooseExtraParams,
 
     // 回调
@@ -80,7 +80,7 @@ function ImageUploader(
       uploadDir,
       maxWidth,
       getUploadUrl,
-      getUploadFormData,
+      getUploadPayload,
       formatUploadedItem
     })
 

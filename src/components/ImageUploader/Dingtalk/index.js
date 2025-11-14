@@ -47,7 +47,7 @@ function ImageUploader(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadFormData,
+    getUploadPayload,
     // 仅对客户端有效
     chooseExtraParams,
 
@@ -80,7 +80,7 @@ function ImageUploader(
       uploadDir,
       maxWidth,
       getUploadUrl,
-      getUploadFormData,
+      getUploadPayload,
       formatUploadedItem
     })
 
