@@ -226,22 +226,21 @@ let Bridge = {
             console.error('钉钉uploadImage失败:', error)
             params.onError({
               status: 'error',
-              message: `${error?.errorCode || ''}`
+              code: error?.errorCode || '',
+              message: error?.errorMessage || ''
             })
           }
         }
       : undefined
 
-    const wrappedParams = wrapCallback({
+    window.top.dd.chooseImage({
       count: count,
       secret: false,
       position: 'back',
       sourceType: params?.sourceType || ['camera', 'album'],
-      onSuccess: handleSuccess,
-      onError: handleError
+      success: handleSuccess,
+      fail: handleError
     })
-
-    window.top.dd.chooseImage(wrappedParams)
   },
   uploadImage: function ({ localFile, url, header = {}, formData = {}, onSuccess, onError } = {}) {
     if (!localFile?.type || !localFile?.path) {
