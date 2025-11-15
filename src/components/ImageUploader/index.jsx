@@ -27,19 +27,64 @@ import { LocaleUtil, Device, Bridge, Toast } from 'lyrixi-mobile'
 // 照片上传
 function Main(
   {
-    compatible = true,
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
+    count = 5,
+    type, // video.录相 | 其它.为拍照 | browser | wechatMiniprogram(强制拍照类型)
+    ellipsis,
+    sourceType = ['album', 'camera'],
+    sizeType = ['compressed'], // ['original', 'compressed']
+    isSaveToAlbum = 0, // 是否保存到本地
+    maxWidth,
+    uploadDir = 'default',
+    chooseExtraParams, // 仅对客户端有效
+
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+    previewAllowChoose,
+    previewAllowClear,
+    compatible = true, // 允许模式切换（小程序/浏览器）
     timeout,
-    // 强制拍照类型
-    type,
-    reUpload,
-    async,
-    ...props
+
+    // Style
+    className,
+    uploadPosition,
+
+    // Element
+    upload, // 上传按钮覆盖的dom
+    uploading,
+    previewPortal,
+    /*
+    格式化上传结果
+    入参:
+    {platform: 'browser', uploadItem: item, result: result}
+    返回格式:
+    {
+      fileThumbnail: 缩略图,
+      fileUrl: 高清图,
+      filePath: 入库路径
+    }
+    */
+    formatUploadedItem,
+    getWatermark,
+    getUploadUrl,
+    getUploadPayload,
+
+    // Events
+    onBeforeChoose,
+    onChoose,
+    onFileChange,
+    onUpload,
+    onChange,
+    onPreview,
+    onPreviewOpen,
+    onPreviewClose
   },
   ref
 ) {
-  // eslint-disable-next-line
-  if (!props) props = {}
-
   // 鸿蒙小程序微信8.0后报错: chooselmage: permission denied， 解决方法: 此版本鸿蒙微信有bug，强制同步上传(同步上传会用小程序和浏览器上传)
   if (Device?.os === 'harmony' && Bridge.platform === 'wechatMiniprogram') {
     // eslint-disable-next-line
@@ -79,7 +124,49 @@ function Main(
 
   // 优先调用客户端能力
   if (Bridge.platform === 'lyrixi') {
-    return <Lyrixi timeout={timeout} reUpload={reUpload} {...props} ref={ref} />
+    return (
+      <Lyrixi
+        ref={ref}
+        // Value & Display Value
+        list={list}
+        count={count}
+        type={type}
+        ellipsis={ellipsis}
+        sourceType={sourceType}
+        sizeType={sizeType}
+        isSaveToAlbum={isSaveToAlbum}
+        maxWidth={maxWidth}
+        uploadDir={uploadDir}
+        chooseExtraParams={chooseExtraParams}
+        // Status
+        async={async}
+        reUpload={reUpload}
+        allowClear={allowClear}
+        allowChoose={allowChoose}
+        previewAllowChoose={previewAllowChoose}
+        previewAllowClear={previewAllowClear}
+        // Style
+        className={className}
+        uploadPosition={uploadPosition}
+        // Element
+        upload={upload}
+        uploading={uploading}
+        previewPortal={previewPortal}
+        formatUploadedItem={formatUploadedItem}
+        getWatermark={getWatermark}
+        getUploadUrl={getUploadUrl}
+        getUploadPayload={getUploadPayload}
+        // Events
+        onBeforeChoose={onBeforeChoose}
+        onChoose={onChoose}
+        onFileChange={onFileChange}
+        onUpload={onUpload}
+        onChange={onChange}
+        onPreview={onPreview}
+        onPreviewOpen={onPreviewOpen}
+        onPreviewClose={onPreviewClose}
+      />
+    )
   }
 
   // file框模式上传 或 强制使用Browser模式（间隔检测）
@@ -94,7 +181,47 @@ function Main(
             onForceTypeChange={setForceType}
           />
         ) : null}
-        <Browser {...props} ref={ref} />
+        <Browser
+          ref={ref}
+          // Value & Display Value
+          list={list}
+          count={count}
+          type={type}
+          ellipsis={ellipsis}
+          sourceType={sourceType}
+          sizeType={sizeType}
+          isSaveToAlbum={isSaveToAlbum}
+          maxWidth={maxWidth}
+          uploadDir={uploadDir}
+          chooseExtraParams={chooseExtraParams}
+          // Status
+          async={async}
+          reUpload={reUpload}
+          allowClear={allowClear}
+          allowChoose={allowChoose}
+          previewAllowChoose={previewAllowChoose}
+          previewAllowClear={previewAllowClear}
+          // Style
+          className={className}
+          uploadPosition={uploadPosition}
+          // Element
+          upload={upload}
+          uploading={uploading}
+          previewPortal={previewPortal}
+          formatUploadedItem={formatUploadedItem}
+          getWatermark={getWatermark}
+          getUploadUrl={getUploadUrl}
+          getUploadPayload={getUploadPayload}
+          // Events
+          onBeforeChoose={onBeforeChoose}
+          onChoose={onChoose}
+          onFileChange={onFileChange}
+          onUpload={onUpload}
+          onChange={onChange}
+          onPreview={onPreview}
+          onPreviewOpen={onPreviewOpen}
+          onPreviewClose={onPreviewClose}
+        />
       </div>
     )
   }
@@ -103,9 +230,93 @@ function Main(
   if (Bridge.platform === 'dingtalk') {
     // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
     if (Device?.os === 'harmony') {
-      return <Browser reUpload={reUpload} {...props} ref={ref} />
+      return (
+        <Browser
+          ref={ref}
+          // Value & Display Value
+          list={list}
+          count={count}
+          type={type}
+          ellipsis={ellipsis}
+          sourceType={sourceType}
+          sizeType={sizeType}
+          isSaveToAlbum={isSaveToAlbum}
+          maxWidth={maxWidth}
+          uploadDir={uploadDir}
+          chooseExtraParams={chooseExtraParams}
+          // Status
+          async={async}
+          reUpload={reUpload}
+          allowClear={allowClear}
+          allowChoose={allowChoose}
+          previewAllowChoose={previewAllowChoose}
+          previewAllowClear={previewAllowClear}
+          // Style
+          className={className}
+          uploadPosition={uploadPosition}
+          // Element
+          upload={upload}
+          uploading={uploading}
+          previewPortal={previewPortal}
+          formatUploadedItem={formatUploadedItem}
+          getWatermark={getWatermark}
+          getUploadUrl={getUploadUrl}
+          getUploadPayload={getUploadPayload}
+          // Events
+          onBeforeChoose={onBeforeChoose}
+          onChoose={onChoose}
+          onFileChange={onFileChange}
+          onUpload={onUpload}
+          onChange={onChange}
+          onPreview={onPreview}
+          onPreviewOpen={onPreviewOpen}
+          onPreviewClose={onPreviewClose}
+        />
+      )
     }
-    return <Dingtalk reUpload={reUpload} {...props} ref={ref} />
+    return (
+      <Dingtalk
+        ref={ref}
+        // Value & Display Value
+        list={list}
+        count={count}
+        type={type}
+        ellipsis={ellipsis}
+        sourceType={sourceType}
+        sizeType={sizeType}
+        isSaveToAlbum={isSaveToAlbum}
+        maxWidth={maxWidth}
+        uploadDir={uploadDir}
+        chooseExtraParams={chooseExtraParams}
+        // Status
+        async={async}
+        reUpload={reUpload}
+        allowClear={allowClear}
+        allowChoose={allowChoose}
+        previewAllowChoose={previewAllowChoose}
+        previewAllowClear={previewAllowClear}
+        // Style
+        className={className}
+        uploadPosition={uploadPosition}
+        // Element
+        upload={upload}
+        uploading={uploading}
+        previewPortal={previewPortal}
+        formatUploadedItem={formatUploadedItem}
+        getWatermark={getWatermark}
+        getUploadUrl={getUploadUrl}
+        getUploadPayload={getUploadPayload}
+        // Events
+        onBeforeChoose={onBeforeChoose}
+        onChoose={onChoose}
+        onFileChange={onFileChange}
+        onUpload={onUpload}
+        onChange={onChange}
+        onPreview={onPreview}
+        onPreviewOpen={onPreviewOpen}
+        onPreviewClose={onPreviewClose}
+      />
+    )
   }
 
   // 最新的小程序
@@ -117,7 +328,48 @@ function Main(
           forceType={forceType || 'wechatMiniprogram'}
           onForceTypeChange={setForceType}
         />
-        <WechatMiniprogram {...props} ref={ref} onNavigateTo={handleNavigateTo} />
+        <WechatMiniprogram
+          ref={ref}
+          // Value & Display Value
+          list={list}
+          count={count}
+          type={type}
+          ellipsis={ellipsis}
+          sourceType={sourceType}
+          sizeType={sizeType}
+          isSaveToAlbum={isSaveToAlbum}
+          maxWidth={maxWidth}
+          uploadDir={uploadDir}
+          chooseExtraParams={chooseExtraParams}
+          // Status
+          async={async}
+          reUpload={reUpload}
+          allowClear={allowClear}
+          allowChoose={allowChoose}
+          previewAllowChoose={previewAllowChoose}
+          previewAllowClear={previewAllowClear}
+          // Style
+          className={className}
+          uploadPosition={uploadPosition}
+          // Element
+          upload={upload}
+          uploading={uploading}
+          previewPortal={previewPortal}
+          formatUploadedItem={formatUploadedItem}
+          getWatermark={getWatermark}
+          getUploadUrl={getUploadUrl}
+          getUploadPayload={getUploadPayload}
+          // Events
+          onBeforeChoose={onBeforeChoose}
+          onChoose={onChoose}
+          onFileChange={onFileChange}
+          onUpload={onUpload}
+          onChange={onChange}
+          onPreview={onPreview}
+          onPreviewOpen={onPreviewOpen}
+          onPreviewClose={onPreviewClose}
+          onNavigateTo={handleNavigateTo}
+        />
       </div>
     )
   }
@@ -128,9 +380,93 @@ function Main(
     Bridge.platform === 'wechatMiniprogram' ||
     Bridge.platform === 'wecomMiniprogram'
   ) {
-    return <Wechat reUpload={reUpload} {...props} ref={ref} />
+    return (
+      <Wechat
+        ref={ref}
+        // Value & Display Value
+        list={list}
+        count={count}
+        type={type}
+        ellipsis={ellipsis}
+        sourceType={sourceType}
+        sizeType={sizeType}
+        isSaveToAlbum={isSaveToAlbum}
+        maxWidth={maxWidth}
+        uploadDir={uploadDir}
+        chooseExtraParams={chooseExtraParams}
+        // Status
+        async={async}
+        reUpload={reUpload}
+        allowClear={allowClear}
+        allowChoose={allowChoose}
+        previewAllowChoose={previewAllowChoose}
+        previewAllowClear={previewAllowClear}
+        // Style
+        className={className}
+        uploadPosition={uploadPosition}
+        // Element
+        upload={upload}
+        uploading={uploading}
+        previewPortal={previewPortal}
+        formatUploadedItem={formatUploadedItem}
+        getWatermark={getWatermark}
+        getUploadUrl={getUploadUrl}
+        getUploadPayload={getUploadPayload}
+        // Events
+        onBeforeChoose={onBeforeChoose}
+        onChoose={onChoose}
+        onFileChange={onFileChange}
+        onUpload={onUpload}
+        onChange={onChange}
+        onPreview={onPreview}
+        onPreviewOpen={onPreviewOpen}
+        onPreviewClose={onPreviewClose}
+      />
+    )
   }
-  return <Browser {...props} ref={ref} />
+  return (
+    <Browser
+      ref={ref}
+      // Value & Display Value
+      list={list}
+      count={count}
+      type={type}
+      ellipsis={ellipsis}
+      sourceType={sourceType}
+      sizeType={sizeType}
+      isSaveToAlbum={isSaveToAlbum}
+      maxWidth={maxWidth}
+      uploadDir={uploadDir}
+      chooseExtraParams={chooseExtraParams}
+      // Status
+      async={async}
+      reUpload={reUpload}
+      allowClear={allowClear}
+      allowChoose={allowChoose}
+      previewAllowChoose={previewAllowChoose}
+      previewAllowClear={previewAllowClear}
+      // Style
+      className={className}
+      uploadPosition={uploadPosition}
+      // Element
+      upload={upload}
+      uploading={uploading}
+      previewPortal={previewPortal}
+      formatUploadedItem={formatUploadedItem}
+      getWatermark={getWatermark}
+      getUploadUrl={getUploadUrl}
+      getUploadPayload={getUploadPayload}
+      // Events
+      onBeforeChoose={onBeforeChoose}
+      onChoose={onChoose}
+      onFileChange={onFileChange}
+      onUpload={onUpload}
+      onChange={onChange}
+      onPreview={onPreview}
+      onPreviewOpen={onPreviewOpen}
+      onPreviewClose={onPreviewClose}
+    />
+  )
 }
 
 export default forwardRef(Main)

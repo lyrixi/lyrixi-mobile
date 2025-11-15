@@ -303,7 +303,7 @@ const PreviewMain = forwardRef(
                       <img
                         alt=""
                         className="swiper-zoom-target"
-                        fileUrl={item.fileLocalUrl || item.fileUrl}
+                        src={item.fileLocalUrl || item.fileUrl}
                       />
                     )}
                     {type === 'video' && (
