@@ -72,8 +72,7 @@ function WechatMiniprogram(
     onChange,
     onPreview,
     onPreviewOpen,
-    onPreviewClose,
-    onNavigateTo
+    onPreviewClose
   },
   ref
 ) {
@@ -184,12 +183,6 @@ function WechatMiniprogram(
 
   // Jump to WeChat mini program to photo
   async function goCamera(sourceType) {
-    if (onNavigateTo) {
-      let allowNavigateTo = await onNavigateTo()
-      if (allowNavigateTo === false) {
-        return false
-      }
-    }
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // Stop others polling
