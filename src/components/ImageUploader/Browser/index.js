@@ -1,38 +1,49 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import { getPreviewType } from './../utils'
+import { getRemainCount, getPreviewType } from './../utils'
 import uploadImage from './uploadItem'
 
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
+import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
+import Loading from './../../Loading'
 import Image from './../../Image'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, LocaleUtil, Image } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
 function Browser(
   {
-    // 是否异步上传
-    async = false,
-    // 支持重新上传
-    reUpload = true,
-    // 全屏遮罩
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
+    type, // video.录相 | 其它.为拍照
+    ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     uploadDir = 'default',
+    chooseExtraParams, // 仅对客户端有效
 
-    // 展示样式
-    upload,
-    uploading,
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+    previewAllowChoose,
+    previewAllowClear,
+
+    // Style
+    className,
     uploadPosition,
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
+    // Element
+    upload, // 上传按钮覆盖的dom
+    uploading,
+    previewPortal,
     /*
     格式化上传结果
     入参:
@@ -48,17 +59,16 @@ function Browser(
     getWatermark,
     getUploadUrl,
     getUploadPayload,
-    // 仅对客户端有效
-    chooseExtraParams,
 
-    // 回调
-    allowClear = true,
-    allowChoose = true,
+    // Events
     onBeforeChoose,
+    // onChoose,
+    onFileChange,
+    // onUpload,
     onChange,
     onPreview,
-
-    ...props
+    onPreviewOpen,
+    onPreviewClose
   },
   ref
 ) {
@@ -69,7 +79,7 @@ function Browser(
       ...photosRef.current,
       chooseImage: () => {
         Toast.show({
-          content: LocaleUtil.locale('极速上传模式, 不支持编程式调用拍照')
+          content: LocaleUtil.locale('浏览器上传模式, 不支持编程式调用拍照')
         })
         return false
       }
@@ -104,49 +114,66 @@ function Browser(
     return item
   }
 
+  // 选择文件
+  async function handleChoose(localFile) {
+    // eslint-disable-next-line
+    return new Promise(async (resolve) => {
+      // 前置校验
+      if (typeof onBeforeChoose === 'function') {
+        let isOk = await onBeforeChoose()
+        if (isOk === false) {
+          resolve(false)
+          return
+        }
+      }
+
+      // 添加水印
+      let watermark = null
+      if (typeof getWatermark === 'function') {
+        watermark = await getWatermark({ platform: 'dingtalk' })
+      }
+
+      resolve({
+        status: 'choose',
+        localFile: localFile,
+        fileThumbnail: localFile.preview,
+        fileUrl: localFile.preview,
+        watermark: watermark,
+        uploadDir: uploadDir
+      })
+    })
+  }
+
   return (
     <Image
       ref={photosRef}
-      async={async}
-      reUpload={reUpload}
+      // Value & Display Value
+      list={list}
+      count={count}
+      type={type}
+      ellipsis={ellipsis}
       sourceType={sourceType}
       sizeType={sizeType}
       maxWidth={maxWidth}
+      // Status
+      async={async}
+      reUpload={reUpload}
+      allowChoose={allowChoose}
+      allowClear={allowClear}
+      previewAllowChoose={previewAllowChoose}
+      previewAllowClear={previewAllowClear}
+      // Style
+      className={className}
       uploadPosition={uploadPosition}
+      // Element
       upload={upload}
       uploading={uploading}
-      list={list}
-      count={count}
-      allowClear={allowClear}
-      allowChoose={allowChoose}
-      onChange={onChange}
+      previewPortal={previewPortal}
+      // Events
+      onBeforeChoose={onBeforeChoose}
+      onFileChange={handleChoose}
       onUpload={uploadItem}
-      onFileChange={async ({ fileURL, fileData }) => {
-        // 前置校验
-        if (typeof onBeforeChoose === 'function') {
-          let isOk = await onBeforeChoose()
-          if (isOk === false) return false
-        }
-
-        // 添加水印
-        let watermark = null
-        if (typeof getWatermark === 'function') {
-          watermark = await getWatermark({ platform: 'browser' })
-        }
-
-        // 待传文件
-        return [
-          {
-            status: 'choose',
-            localId: fileURL,
-            fileData: fileData,
-            fileThumbnail: fileURL,
-            fileUrl: fileURL,
-            watermark,
-            uploadDir
-          }
-        ]
-      }}
+      onChange={onChange}
       onPreview={async (item, index) => {
         // 自定义预览
         if (typeof onPreview === 'function') {
@@ -154,14 +181,18 @@ function Browser(
           if (goOn === false || goOn === 'browser') return goOn
         }
 
-        // 异步上传使用h5预览
-        if (!item?.fileUrl?.startsWith?.('http')) {
-          return 'browser'
-        }
-
         return getPreviewType('image')
+
+        // 走默认预览
+        // Bridge.previewImage({
+        //   urls: list.map((item) => item.fileUrl),
+        //   current: list[index].fileUrl,
+        //   index: index
+        // })
+        // return false
       }}
-      {...props}
+      onPreviewOpen={onPreviewOpen}
+      onPreviewClose={onPreviewClose}
     />
   )
 }

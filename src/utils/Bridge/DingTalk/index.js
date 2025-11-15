@@ -304,7 +304,7 @@ let Bridge = {
     })
 
     window.top.dd.uploadFile({
-      url: url,
+      url: url.startsWith('http') ? url : window.origin + url,
       header: header,
       formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传

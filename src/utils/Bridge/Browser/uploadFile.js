@@ -7,13 +7,20 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadServerId({ url, header, payload }) {
+function uploadFile({ url, header, payload }) {
   return new Promise((resolve) => {
-    console.log('调用微信uploadServerId:', { url, header, payload })
+    const newPayload = new FormData()
+    for (const key in payload) {
+      if (payload.hasOwnProperty(key)) {
+        newPayload.append(key, payload[key])
+      }
+    }
 
-    Request.post(url, payload, {
+    console.log('调用浏览器uploadFile:', { url, header, newPayload })
+
+    Request.post(url, newPayload, {
       headers: header || {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'multipart/form-data'
       }
     })
       .then(async (result) => {
@@ -31,4 +38,4 @@ function uploadServerId({ url, header, payload }) {
   })
 }
 
-export default uploadServerId
+export default uploadFile

@@ -1,54 +1,59 @@
-import { validateImageSrc } from './../../utils'
-import uploadFile from './uploadFile'
+import _ from 'lodash'
+import getUploadParams from './getUploadParams'
+import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
+import Storage from './../../../../utils/Storage'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { Storage, LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
-// 上传
+// 单张照片上传
 function uploadItem(
   item,
   { uploadDir, maxWidth, getUploadUrl, getUploadPayload, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let fileData = item.fileData
+    let errMsg = ''
+    if (_.isEmpty(item?.localFile)) {
+      errMsg = LocaleUtil.locale('没有localFile，无法上传！')
+      resolve(errMsg)
+      return
+    }
 
-    // 用临时方案尝试
-    let serverItem = await uploadFile({
-      item,
-      watermark: item.watermark,
-      fileData,
+    const appId = Storage.getLocalStorage('appId') || ''
+    if (!appId) {
+      resolve(LocaleUtil.locale('没有appId，无法上传！'))
+      return
+    }
+
+    // 获取上传入参
+    let { localFile, url, header, data } = getUploadParams({
+      watermark: item?.watermark,
+      localFile: item?.localFile,
       uploadDir,
       maxWidth,
       getUploadUrl,
       getUploadPayload,
+      appId
+    })
+
+    // 上传到阿里云
+    let newItem = await uploadLocalFile({
+      localFile,
+      url,
+      header,
+      data,
+      // 用于构建新Item的入参
+      item,
       formatUploadedItem
     })
 
-    // 上传失败
-    if (typeof serverItem === 'string') {
-      resolve(serverItem)
-      return
-    }
-
-    // 校验其是否真的是否法图片
-    let isValid = await validateImageSrc(serverItem.fileUrl)
-    if (!isValid) {
-      resolve(LocaleUtil.locale('图片加载失败，请重试'))
-      return
-    }
-
-    resolve({
-      ...item,
-      ...serverItem,
-      // 状态
-      status: 'success'
-    })
+    resolve(newItem)
   })
 }
 

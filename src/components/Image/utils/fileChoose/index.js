@@ -64,8 +64,9 @@ async function fileChoose({
   if (typeof onFileChange === 'function') {
     const fileURL = URL.createObjectURL(fileData)
     currentList = await onFileChange({
-      fileURL: fileURL,
-      fileData: fileData
+      type: fileData.type,
+      preview: fileURL,
+      path: fileData
     })
   }
 

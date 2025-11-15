@@ -150,9 +150,9 @@ function ImageUploader(
             return {
               status: 'choose',
               localFile: localFile,
-              watermark: watermark,
               fileThumbnail: localFile.preview,
               fileUrl: localFile.preview,
+              watermark: watermark,
               uploadDir: uploadDir
             }
           })

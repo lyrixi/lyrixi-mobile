@@ -78,20 +78,8 @@ export default () => {
           sourceType={['camera', 'album']}
           list={list}
           count={9}
-          onFileChange={async ({ fileURL, fileData }) => {
-            await handleBeforeChoose()
-            // 待传文件
-            return [
-              {
-                status: 'choose',
-                localId: fileURL,
-                fileData: fileData,
-                fileThumbnail: fileURL,
-                fileUrl: fileURL,
-                watermark: watermarkRef.current,
-                filePath: ``
-              }
-            ]
+          onFileChange={(localFile) => {
+            console.log('localFile:', localFile)
           }}
           onChange={(newList) => {
             console.log('修改:', newList)
@@ -135,20 +123,8 @@ export default () => {
           sourceType={['camera', 'album']}
           list={list}
           count={9}
-          onFileChange={async ({ fileURL, fileData }) => {
-            await handleBeforeChoose()
-            // 待传文件
-            return [
-              {
-                status: 'choose',
-                localId: fileURL,
-                fileData: fileData,
-                fileThumbnail: fileURL,
-                fileUrl: fileURL,
-                watermark: watermarkRef.current,
-                filePath: ``
-              }
-            ]
+          onFileChange={({ localFile }) => {
+            console.log('localFile:', localFile)
           }}
           onChange={(newList) => {
             console.log('修改:', newList)

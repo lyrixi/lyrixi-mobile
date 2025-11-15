@@ -1,3 +1,5 @@
+import uploadFile from './uploadFile'
+
 // 内库使用-start
 import Device from './../Device'
 import Toast from './../../components/Toast'
@@ -248,16 +250,21 @@ let Browser = {
     })
     params?.onError && params.onError({ status: 'error', message: message })
   },
-  uploadImage: function (params) {
-    let message = LocaleUtil.locale(
-      'uploadImage仅可在移动端微信或APP中使用',
-      'lyrixi_uploadImage_prompt',
-      ['uploadImage']
-    )
-    Toast.show({
-      content: message
+  uploadImage: async function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
+    let result = await uploadFile({
+      url: url,
+      header: header,
+      payload: {
+        fileData: localFile.path,
+        ...payload
+      }
     })
-    params?.onError && params.onError({ status: 'error', message: message })
+
+    if (result.status === 'success') {
+      onSuccess && onSuccess(result)
+    } else {
+      onError && onError(result)
+    }
   },
   previewImage: function (params = {}) {
     let message = LocaleUtil.locale(
