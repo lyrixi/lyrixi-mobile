@@ -220,11 +220,13 @@ let Bridge = {
     return undefined
   },
   /**
-   * 图片操作: 图片选择
+   * 媒体操作: 视频图片选择
    * @param {Object} params - 选择图片参数
    * @param {Number} params.count - 最多可以选择的图片张数，默认为 9
    * @param {Array<String>} params.sizeType - 图片大小，['original', 'compressed']，默认为 ['original', 'compressed']
    * @param {Array<String>} params.sourceType - 图片来源，['camera', 'album']，默认为 ['camera', 'album']
+   * @param {Array<String>} params.mediaType - 媒体类型，['image', 'video', 'mix']，默认为 ['image']
+   * @param {Number} params.maxDuration - 视频最大时长，单位秒，默认为 10
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{preview: String, path: String, type: String}>}
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
@@ -238,7 +240,7 @@ let Bridge = {
     return undefined
   },
   /**
-   * 图片操作: 图片上传
+   * 图片操作: 文件上传
    * @param {Object} params - 上传图片参数
    * @param {Object} params.localFile - 需要上传的图片的本地文件, { path: String, type: String } (必填)
    * @param {String} params.url - 上传地址 (必填)
