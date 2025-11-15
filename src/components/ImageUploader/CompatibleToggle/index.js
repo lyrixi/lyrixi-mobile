@@ -25,9 +25,15 @@ function CompatibleToggle({ forceType, onForceTypeChange }) {
     }
   }
 
+  if (!compatible) {
+    return null
+  }
+
   return (
     <span style={{ marginBottom: '4px', position: 'relative', overflow: 'visible' }}>
-      {LocaleUtil.locale('如果无法拍照，请切换拍照方式')}
+      {typeof compatible === 'string'
+        ? compatible
+        : LocaleUtil.locale('如果无法拍照，请切换拍照方式')}
       <span
         style={{ textDecoration: 'none' }}
         onClick={(e) => {

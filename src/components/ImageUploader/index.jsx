@@ -27,6 +27,7 @@ import { LocaleUtil, Device, Bridge, Toast } from 'lyrixi-mobile'
 // 照片上传
 function Main(
   {
+    compatible = true,
     timeout,
     // 强制拍照类型
     type,
@@ -87,7 +88,11 @@ function Main(
       <div className="image-container">
         {/* 小程序拍照兼容方式切换, 小程序经常呼不起来 */}
         {Bridge.platform === 'wechatMiniprogram' ? (
-          <CompatibleToggle forceType={forceType || 'browser'} onForceTypeChange={setForceType} />
+          <CompatibleToggle
+            compatible={compatible}
+            forceType={forceType || 'browser'}
+            onForceTypeChange={setForceType}
+          />
         ) : null}
         <Browser {...props} ref={ref} />
       </div>
@@ -108,6 +113,7 @@ function Main(
     return (
       <div className="image-container">
         <CompatibleToggle
+          compatible={compatible}
           forceType={forceType || 'wechatMiniprogram'}
           onForceTypeChange={setForceType}
         />
