@@ -1,4 +1,4 @@
-import { Image, LocaleUtil } from 'lyrixi-mobile'
+import { Media, LocaleUtil } from 'lyrixi-mobile'
 import uploadFile from './uploadFile'
 const locale = LocaleUtil.locale
 // 上传
@@ -19,7 +19,7 @@ function uploadItem(item) {
     }
 
     // 校验其是否真的是否法图片
-    let isValid = await Image.validateImageSrc(serverItem.src)
+    let isValid = await Media.validateImageSrc(serverItem.src)
     if (!isValid) {
       resolve(locale('图片加载失败，请重试', 'library.419ade42d1243fe183355b7930c4f830'))
       return

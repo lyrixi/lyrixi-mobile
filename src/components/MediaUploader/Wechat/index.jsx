@@ -6,11 +6,11 @@ import _uploadItem from './uploadItem'
 import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
 import Loading from './../../Loading'
-import Image from './../../Image'
+import Media from './../../Media'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
@@ -173,7 +173,7 @@ function MediaUploader(
   }
 
   return (
-    <Image
+    <Media
       ref={photosRef}
       // Value & Display Value
       list={list}

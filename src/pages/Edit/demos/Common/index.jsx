@@ -20,7 +20,7 @@ import {
   Location,
   Signature,
   Attach,
-  Image
+  Media
 } from 'lyrixi-mobile'
 
 // 公共组件导入
@@ -348,8 +348,8 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="image" label={locale('Image')}>
-              <Image
+            <Form.Item name="image" label={locale('Media')}>
+              <Media
                 allowChoose
                 allowClear
                 list={[

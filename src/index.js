@@ -45,7 +45,7 @@ export { default as Loading } from './components/Loading'
 export { default as Location } from './components/Location'
 export { default as VideoPlayer } from './components/VideoPlayer' // 不常用
 export { default as Result } from './components/Result'
-export { default as Image } from './components/Image'
+export { default as Media } from './components/Media'
 export { default as MediaUploader } from './components/MediaUploader'
 export { default as Picker } from './components/Picker'
 export { default as Progress } from './components/Progress'

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import vconsole from 'vconsole'
 
-import { Loading, Button, Bridge, Page, Location, Image, Share, Divider, Card } from 'lyrixi-mobile'
+import { Loading, Button, Bridge, Page, Location, Media, Share, Divider, Card } from 'lyrixi-mobile'
 
 new vconsole()
 
@@ -101,12 +101,12 @@ export default () => {
 
         <Card>
           <Divider>拍照</Divider>
-          <Image list={photos} count={20} />
+          <Media list={photos} count={20} />
         </Card>
 
         <Card>
           <Divider>小视频</Divider>
-          <Image list={videos} count={20} type="video" />
+          <Media list={videos} count={20} type="video" />
         </Card>
 
         <Divider>界面接口</Divider>

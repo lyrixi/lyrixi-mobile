@@ -1,16 +1,16 @@
 import validateImageSrc from './utils/validateImageSrc'
 import validateListStatus from './utils/validateListStatus'
-import Image from './Image'
+import Media from './Media'
 import Mark from './Mark'
 import PreviewModal from './PreviewModal'
 import PreviewMain from './PreviewMain'
 import List from './List'
 
-Image.validateImageSrc = validateImageSrc
-Image.validateListStatus = validateListStatus
-Image.Mark = Mark
-Image.PreviewModal = PreviewModal
-Image.PreviewMain = PreviewMain
-Image.List = List
+Media.validateImageSrc = validateImageSrc
+Media.validateListStatus = validateListStatus
+Media.Mark = Mark
+Media.PreviewModal = PreviewModal
+Media.PreviewMain = PreviewMain
+Media.List = List
 
-export default Image
+export default Media

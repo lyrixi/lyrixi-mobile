@@ -8,13 +8,13 @@ import stopAllPolls from './stopAllPolls'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
-import Image from './../../Image'
+import Media from './../../Media'
 import Loading from './../../Loading'
 import ActionSheet from './../../ActionSheet'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, LocaleUtil, Image, Loading, ActionSheet } from 'lyrixi-mobile'
+import { Toast, LocaleUtil, Media, Loading, ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
 // 微信小程序拍照上传, 通过前端id，通过接口与小程序通信，轮询接口获取小程序上传的照片
@@ -265,7 +265,7 @@ function WechatMiniprogram(
 
   return (
     <>
-      <Image
+      <Media
         ref={photosRef}
         // Value & Display Value
         list={list}
