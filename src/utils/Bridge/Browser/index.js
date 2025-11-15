@@ -255,7 +255,8 @@ let Browser = {
       url: url,
       header: header,
       payload: {
-        fileData: localFile.path,
+        filePath: localFile.path,
+        fileType: localFile.type,
         ...payload
       }
     })
