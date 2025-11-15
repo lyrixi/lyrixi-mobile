@@ -241,15 +241,15 @@ export default () => {
           </Button>
         </Card>
 
-        <Divider>图像接口</Divider>
+        <Divider>媒体接口</Divider>
         <Card>
-          <Divider>拍照或从手机相册中选图接口(仅支持客户端,微信,企微,小程序)</Divider>
+          <Divider>拍照或从手机相册选择媒体接口(仅支持客户端,微信,企微,小程序)</Divider>
           <Button
             className="lyrixi-primary lyrixi-flex"
             style={{ margin: '12px 10px' }}
             radius="m"
             onClick={() => {
-              Bridge.chooseImage({
+              Bridge.chooseMedia({
                 sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                 onSuccess: (res) => {
@@ -268,26 +268,26 @@ export default () => {
               })
             }}
           >
-            chooseImage
+            chooseMedia
           </Button>
         </Card>
 
         <Card>
-          <Divider>上传图片接口(仅支持客户端,微信,企微,小程序)</Divider>
+          <Divider>上传文件接口(仅支持客户端,微信,企微,小程序)</Divider>
           <Button
             className="lyrixi-primary lyrixi-flex"
             style={{ margin: '12px 10px' }}
             radius="m"
             onClick={() => {
               if (!imageLocalFiles.current) {
-                console.log('chooseImage first!')
-                alert('chooseImage first!')
+                console.log('chooseMedia first!')
+                alert('chooseMedia first!')
                 return
               }
               Loading.show({
                 content: '上传中...'
               })
-              Bridge.uploadImage({
+              Bridge.uploadFile({
                 url: '',
                 header: {
                   'Content-Type': 'multipart/form-data',
@@ -315,7 +315,7 @@ export default () => {
               })
             }}
           >
-            uploadImage
+            uploadFile
           </Button>
         </Card>
 

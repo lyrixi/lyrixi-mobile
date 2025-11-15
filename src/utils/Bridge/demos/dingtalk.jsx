@@ -20,7 +20,7 @@ export default () => {
           showLineNumbers // 显示行号（可选）
           wrapLongLines // 自动换行（可选
         >
-          {`Bridge.chooseImage({
+          {`Bridge.chooseMedia({
   count: 5,
   sizeType: ['compressed'],
   sourceType: ['album', 'camera'],
@@ -39,7 +39,7 @@ export default () => {
           showLineNumbers // 显示行号（可选）
           wrapLongLines // 自动换行（可选
         >
-          {`Bridge.uploadImage({
+          {`Bridge.uploadFile({
   url: window.origin + ownServerUrl,
   localFile: localFile, // { fileType: '', filePath: '' }
   header: {

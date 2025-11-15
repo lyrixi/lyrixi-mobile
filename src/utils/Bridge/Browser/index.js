@@ -239,18 +239,18 @@ let Browser = {
         params.onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
     }, 500)
   },
-  chooseImage: function (params) {
+  chooseMedia: function (params) {
     let message = LocaleUtil.locale(
-      'chooseImage仅可在移动端微信或APP中使用',
+      'chooseMedia仅可在移动端微信或APP中使用',
       'lyrixi_chooseImage_prompt',
-      ['chooseImage']
+      ['chooseMedia']
     )
     Toast.show({
       content: message
     })
     params?.onError && params.onError({ status: 'error', message: message })
   },
-  uploadImage: async function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
+  uploadFile: async function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
     let result = await uploadFile({
       url: url,
       header: header,

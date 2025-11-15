@@ -232,15 +232,15 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  chooseImage(params) {
+  chooseMedia(params) {
     const bridge = this._getCurrentBridge()
-    if (bridge.chooseImage) {
-      return bridge.chooseImage(params)
+    if (bridge.chooseMedia) {
+      return bridge.chooseMedia(params)
     }
     return undefined
   },
   /**
-   * 图片操作: 文件上传
+   * 文件操作: 文件上传
    * @param {Object} params - 上传图片参数
    * @param {Object} params.localFile - 需要上传的图片的本地文件, { path: String, type: String } (必填)
    * @param {String} params.url - 上传地址 (必填)
@@ -250,10 +250,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  uploadImage(params) {
+  uploadFile(params) {
     const bridge = this._getCurrentBridge()
-    if (bridge.uploadImage) {
-      return bridge.uploadImage(params)
+    if (bridge.uploadFile) {
+      return bridge.uploadFile(params)
     }
     return undefined
   },

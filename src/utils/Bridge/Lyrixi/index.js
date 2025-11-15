@@ -86,10 +86,10 @@ let Bridge = {
       ...othersParams
     })
   },
-  chooseImage: function (params) {
-    window.top.lyrixi?.chooseImage(params)
+  chooseMedia: function (params) {
+    window.top.lyrixi?.chooseMedia(params)
   },
-  uploadImage: function (params) {
+  uploadFile: function (params) {
     window.top.lyrixi.uploadFile(params)
   },
   previewImage: function (params) {

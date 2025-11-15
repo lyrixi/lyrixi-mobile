@@ -173,11 +173,11 @@ let Bridge = {
 
     window.top.ap.scan(wrappedParams)
   },
-  chooseImage: function (params) {
-    console.log('调用支付宝选择图片暂未实现', params)
+  chooseMedia: function (params) {
+    console.log('调用支付宝选择媒体暂未实现', params)
   },
-  uploadImage: function (params) {
-    console.log('调用支付宝选择图片暂未实现', params)
+  uploadFile: function (params) {
+    console.log('调用支付宝上传文件暂未实现', params)
   },
   previewImage: function (params) {
     let index = params?.index || 0

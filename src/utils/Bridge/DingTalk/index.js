@@ -184,7 +184,7 @@ let Bridge = {
 
     window.top.dd.biz.util.scan(wrappedParams)
   },
-  chooseImage: function ({ count, sourceType, sizeType, onSuccess, onError, onCancel } = {}) {
+  chooseMedia: function ({ count, sourceType, sizeType, onSuccess, onError, onCancel } = {}) {
     let count = count || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
       count = 1
@@ -241,7 +241,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadImage: function ({ localFile, url, header = {}, payload = {}, onSuccess, onError } = {}) {
+  uploadFile: function ({ localFile, url, header = {}, payload = {}, onSuccess, onError } = {}) {
     if (!localFile?.type || !localFile?.path) {
       onError &&
         onError({

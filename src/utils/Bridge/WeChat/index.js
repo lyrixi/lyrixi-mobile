@@ -185,7 +185,7 @@ let Bridge = {
 
     window.top.wx.scanQRCode(wrappedParams)
   },
-  chooseImage: function (params) {
+  chooseMedia: function (params) {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
@@ -224,7 +224,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadImage: function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
+  uploadFile: function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
