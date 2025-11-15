@@ -3,22 +3,23 @@ import { getRemainCount } from './../utils'
 import uploadImage from './uploadItem'
 
 // 内库使用-start
-import Image from './../../Image'
-import Loading from './../../Loading'
-import Toast from './../../Toast'
 import Bridge from './../../../utils/Bridge'
+import Toast from './../../Toast'
+import Loading from './../../Loading'
+import Image from './../../Image'
 // 内库使用-end
 
 /* 测试使用-start
-import { Image, Loading, Toast, Bridge } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
 测试使用-end */
-
 // 照片上传
 function ImageUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
+    type, // video.录相 | 其它.为拍照
+    ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
@@ -31,13 +32,17 @@ function ImageUploader(
     reUpload = true, // 支持重新上传
     allowClear = true,
     allowChoose = true,
+    previewAllowChoose,
+    previewAllowClear,
 
     // Style
+    className,
     uploadPosition,
 
     // Element
-    upload,
+    upload, // 上传按钮覆盖的dom
     uploading,
+    previewPortal,
     /*
     格式化上传结果
     入参:
@@ -56,9 +61,13 @@ function ImageUploader(
 
     // Events
     onBeforeChoose,
+    // onChoose,
+    onFileChange,
+    // onUpload,
     onChange,
     onPreview,
-    ...props
+    onPreviewOpen,
+    onPreviewClose
   },
   ref
 ) {
@@ -168,23 +177,31 @@ function ImageUploader(
       // Value & Display Value
       list={list}
       count={count}
+      type={type}
+      ellipsis={ellipsis}
       sourceType={sourceType}
       sizeType={sizeType}
       maxWidth={maxWidth}
       // Status
       async={async}
       reUpload={reUpload}
-      allowClear={allowClear}
       allowChoose={allowChoose}
+      allowClear={allowClear}
+      previewAllowChoose={previewAllowChoose}
+      previewAllowClear={previewAllowClear}
       // Style
+      className={className}
       uploadPosition={uploadPosition}
       // Element
       upload={upload}
       uploading={uploading}
+      previewPortal={previewPortal}
       // Events
+      onBeforeChoose={onBeforeChoose}
       onChoose={handleChoose}
-      onChange={onChange}
+      onFileChange={onFileChange}
       onUpload={uploadItem}
+      onChange={onChange}
       onPreview={async (item, index) => {
         // 自定义预览
         if (typeof onPreview === 'function') {
@@ -204,7 +221,8 @@ function ImageUploader(
         // })
         // return false
       }}
-      {...props}
+      onPreviewOpen={onPreviewOpen}
+      onPreviewClose={onPreviewClose}
     />
   )
 }

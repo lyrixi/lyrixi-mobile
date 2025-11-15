@@ -1,40 +1,50 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-
-import { getRemainCount } from './../utils'
-import base64LocalIds from './base64LocalIds'
+import { getRemainCount, getPreviewType } from './../utils'
 import uploadImage from './uploadItem'
 
 // 内库使用-start
-import Image from './../../Image'
-import Toast from './../../Toast'
 import Bridge from './../../../utils/Bridge'
+import Toast from './../../Toast'
+import Loading from './../../Loading'
+import Image from './../../Image'
 // 内库使用-end
 
 /* 测试使用-start
-import { Image, Toast, Bridge } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
 function ImageUploader(
   {
-    timeout,
-    // 是否异步上传(目前只有app支持)
-    async = false,
-    // 支持重新上传
-    reUpload = true,
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
+    type, // video.录相 | 其它.为拍照
+    ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     uploadDir = 'default',
+    // 特殊的选择逻辑, 仅对客户端有效
+    chooseExtraParams,
 
-    // 展示样式
-    upload,
-    uploading,
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+    previewAllowChoose,
+    previewAllowClear,
+
+    // Style
+    className,
     uploadPosition,
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
+    // Element
+    upload, // 上传按钮覆盖的dom
+    uploading,
+    previewPortal,
     /*
     格式化上传结果
     入参:
@@ -50,23 +60,20 @@ function ImageUploader(
     getWatermark,
     getUploadUrl,
     getUploadPayload,
-    // 仅对客户端有效
-    chooseExtraParams,
 
-    // 回调
-    allowClear = true,
-    allowChoose = true,
+    // Events
     onBeforeChoose,
+    // onChoose,
+    onFileChange,
+    // onUpload,
     onChange,
     onPreview,
-    ...props
+    onPreviewOpen,
+    onPreviewClose
   },
   ref
 ) {
   const photosRef = useRef(null)
-
-  const onChangeRef = useRef()
-  onChangeRef.current = onChange
 
   useImperativeHandle(ref, () => {
     return {
@@ -82,8 +89,8 @@ function ImageUploader(
   async function uploadItem(item) {
     // 开始上传
     let result = await uploadImage(item, {
-      timeout,
       uploadDir,
+      maxWidth,
       getUploadUrl,
       getUploadPayload,
       formatUploadedItem
@@ -122,70 +129,82 @@ function ImageUploader(
       // 添加水印
       let watermark = null
       if (typeof getWatermark === 'function') {
-        watermark = await getWatermark({ platform: 'browser' })
+        watermark = await getWatermark({ platform: 'dingtalk' })
       }
 
       let chooseImageParams = {
-        maxWidth: Number(maxWidth || 0),
         ...chooseExtraParams,
         count: getRemainCount(count, list?.length || 0),
         sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
-        watermark: watermark,
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
-          let currentList = res.localFiles.map((localFile, index) => {
+          const localFiles = res.localFiles
+          if (!Array.isArray(localFiles) || !localFiles.length) {
+            resolve(null)
+            return
+          }
+
+          Loading.show()
+
+          // 当前列表
+          let currentList = localFiles.map((localFile, index) => {
             return {
               status: 'choose',
               localFile: localFile,
               watermark: watermark,
-              // 缩略图：需要转base64方能展现图片
               fileThumbnail: localFile.preview,
               fileUrl: localFile.preview,
-              fileLocalUrl: localFile.preview,
               uploadDir: uploadDir
             }
           })
 
+          console.log('选择完成:', currentList)
           resolve(currentList)
         },
         onError: function (err) {
           if (err && err.errMsg) Toast.show({ content: err.errMsg })
-          resolve(null)
+          resolve(false)
         },
-        cancel: function () {
-          resolve(null)
+        onCancel: function () {
+          resolve(false)
         }
       }
-
       Bridge.chooseImage(chooseImageParams)
-
-      setTimeout(() => {
-        photosRef.current?.hideLoading?.()
-      }, 1000)
     })
   }
 
   return (
     <Image
       ref={photosRef}
-      async={async}
-      reUpload={reUpload}
+      // Value & Display Value
+      list={list}
+      count={count}
+      type={type}
+      ellipsis={ellipsis}
       sourceType={sourceType}
       sizeType={sizeType}
       maxWidth={maxWidth}
+      // Status
+      async={async}
+      reUpload={reUpload}
+      allowChoose={allowChoose}
+      allowClear={allowClear}
+      previewAllowChoose={previewAllowChoose}
+      previewAllowClear={previewAllowClear}
+      // Style
+      className={className}
       uploadPosition={uploadPosition}
+      // Element
       upload={upload}
       uploading={uploading}
-      // 会影响原数组, 如果要修复此bug, 需要测试超级表单和自定义字段
-      list={list}
-      // list={list}
+      previewPortal={previewPortal}
+      // Events
+      onBeforeChoose={onBeforeChoose}
       onChoose={handleChoose}
-      count={count}
-      allowClear={allowClear}
-      allowChoose={allowChoose}
-      onChange={onChange}
+      onFileChange={onFileChange}
       onUpload={uploadItem}
+      onChange={onChange}
       onPreview={async (item, index) => {
         // 自定义预览
         if (typeof onPreview === 'function') {
@@ -193,18 +212,18 @@ function ImageUploader(
           if (goOn === false || goOn === 'browser') return goOn
         }
 
+        return getPreviewType('image')
+
         // 走默认预览
-        Bridge.previewImage({
-          // 兼容老客户端不支持localresource预览
-          // urls: list.map((item) => item.fileUrl.replace(/localresource:\/\//i, '')),
-          urls: list.map((item) => item.localId || item.fileUrl),
-          current: list[index].localId || list[index].fileUrl,
-          item: list[index],
-          index: index
-        })
-        return false
+        // Bridge.previewImage({
+        //   urls: list.map((item) => item.fileUrl),
+        //   current: list[index].fileUrl,
+        //   index: index
+        // })
+        // return false
       }}
-      {...props}
+      onPreviewOpen={onPreviewOpen}
+      onPreviewClose={onPreviewClose}
     />
   )
 }
