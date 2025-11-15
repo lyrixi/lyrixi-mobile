@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "\"openLocation\" galima naudoti tik \"WeCom\" arba \"APP\"",
   "lyrixi_chooseImage_prompt": "\"chooseImage\" galima naudoti tik mobiliajame \"WeChat\" arba APP",
   "lyrixi_uploadImage_prompt": "uploadImage galima naudoti tik mobiliajame \"WeChat\" arba APP",
-  "lyrixi_previewImage_prompt": "previewImage galima naudoti tik mobiliajame \"WeChat\" arba APP",
+  "lyrixi_previewMedia_prompt": "previewImage galima naudoti tik mobiliajame \"WeChat\" arba APP",
   "lyrixi_previewFile_prompt": "previewFile galima naudoti tik WeCom arba APP",
   "lyrixi_onHistoryBack_prompt": "\"onHistoryBack\" galima naudoti tik \"WeCom\" arba \"APP\"",
   "lyrixi_only_app_wechat": "Ši funkcija pasiekiama tik \"WeChat\" arba APP",

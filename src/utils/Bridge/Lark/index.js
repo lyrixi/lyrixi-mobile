@@ -162,17 +162,13 @@ let Bridge = {
   uploadFile: function (params) {
     console.log('调用飞书上传文件暂未实现', params)
   },
-  previewImage: function (params) {
+  previewMedia: function (params) {
     let index = params?.index || 0
-    if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
-      index = params?.urls?.indexOf?.(params.current)
-      if (index < 0) index = 0
-    }
     let current = params?.urls?.[index]
 
     const wrappedParams = wrapCallback({
-      urls: params?.urls,
-      current: current,
+      urls: params?.sources.map((item) => item.fileUrl),
+      current: current.fileUrl,
       onSuccess: params?.onSuccess,
       onError: params?.onError
     })

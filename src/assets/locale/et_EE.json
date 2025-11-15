@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "openLocationi saab kasutada ainult WeComis või APP-is",
   "lyrixi_chooseImage_prompt": "selectImage'i saab kasutada ainult mobiilis WeChat või APP",
   "lyrixi_uploadImage_prompt": "uploadImage'i saab kasutada ainult mobiilis WeChat või APP",
-  "lyrixi_previewImage_prompt": "previewImage'i saab kasutada ainult mobiilses WeChatis või APP-is",
+  "lyrixi_previewMedia_prompt": "previewImage'i saab kasutada ainult mobiilses WeChatis või APP-is",
   "lyrixi_previewFile_prompt": "previewFile'i saab kasutada ainult WeComis või APP-is",
   "lyrixi_onHistoryBack_prompt": "onHistoryBacki saab kasutada ainult WeComis või APP-is",
   "lyrixi_only_app_wechat": "See funktsioon on saadaval ainult WeChatis või APP-is",

@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "openLocation solo se puede usar en WeCom o APP",
   "lyrixi_chooseImage_prompt": "chooseImage solo se puede usar en WeChat móvil o APP",
   "lyrixi_uploadImage_prompt": "uploadImage solo se puede usar en WeChat móvil o APP",
-  "lyrixi_previewImage_prompt": "previewImage solo se puede usar en WeChat móvil o APP",
+  "lyrixi_previewMedia_prompt": "previewImage solo se puede usar en WeChat móvil o APP",
   "lyrixi_previewFile_prompt": "previewFile solo se puede usar en WeCom o APP",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack solo se puede usar en WeCom o APP",
   "lyrixi_only_app_wechat": "Esta función solo está disponible en WeChat o APP",

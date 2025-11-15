@@ -213,9 +213,8 @@ function MediaUploader(
         return getPreviewType('image')
 
         // 走默认预览
-        // Bridge.previewImage({
-        //   urls: list.map((item) => item.fileUrl),
-        //   current: list[index].fileUrl,
+        // Bridge.previewMedia({
+        //   sources: list,
         //   index: index
         // })
         // return false

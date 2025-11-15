@@ -307,9 +307,8 @@ function Attach(
 
     // 本地能力预览照片
     if (previewTypeRef.current === 'nativeImage') {
-      Bridge.previewImage({
-        urls: list.map((item) => item?.localFileUrl || item.fileUrl),
-        current: item?.localFileUrl || item.fileUrl,
+      Bridge.previewMedia({
+        sources: list,
         index: index
       })
     }

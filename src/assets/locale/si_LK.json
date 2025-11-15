@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "OpenLocation භාවිතා කළ හැක්කේ WeCom හෝ APP හි පමණි",
   "lyrixi_chooseImage_prompt": "තෝරන්නරූපය භාවිතා කළ හැක්කේ ජංගම WeChat හෝ APP මත පමණි",
   "lyrixi_uploadImage_prompt": "UploadImage භාවිතා කළ හැක්කේ ජංගම WeChat හෝ APP මත පමණි",
-  "lyrixi_previewImage_prompt": "PreviewImage පමණක් ජංගම WeChat හෝ APP මත භාවිතා කළ හැක",
+  "lyrixi_previewMedia_prompt": "PreviewImage පමණක් ජංගම WeChat හෝ APP මත භාවිතා කළ හැක",
   "lyrixi_previewFile_prompt": "පෙරදසුන් ගොනුව භාවිතා කළ හැක්කේ WeCom හෝ APP හි පමණි",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack භාවිතා කළ හැක්කේ WeCom හෝ APP හි පමණි",
   "lyrixi_only_app_wechat": "මෙම විශේෂාංගය ලබා ගත හැක්කේ WeChat හෝ APP හි පමණි",

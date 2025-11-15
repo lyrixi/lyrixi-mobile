@@ -320,16 +320,16 @@ export default () => {
         </Card>
 
         <Card>
-          <Divider>预览图片接口</Divider>
+          <Divider>媒体文件预览接口</Divider>
           <Button
             className="lyrixi-primary lyrixi-flex"
             style={{ margin: '12px 10px' }}
             radius="m"
             onClick={() => {
-              Bridge.previewImage({
-                urls: [
-                  'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                  'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+              Bridge.previewMedia({
+                sources: [
+                  { fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png' },
+                  { fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png' }
                 ],
 
                 index: 0,
@@ -337,7 +337,7 @@ export default () => {
               })
             }}
           >
-            previewImage
+            previewMedia
           </Button>
         </Card>
 

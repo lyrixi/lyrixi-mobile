@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "ní féidir openLocation a úsáid ach amháin i WeCom nó APP",
   "lyrixi_chooseImage_prompt": "chooseImage is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
   "lyrixi_uploadImage_prompt": "uploadImage is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
-  "lyrixi_previewImage_prompt": "previewImage is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
+  "lyrixi_previewMedia_prompt": "previewImage is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
   "lyrixi_previewFile_prompt": "ní féidir previewFile a úsáid ach amháin i WeCom nó APP",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack is féidir é a úsáid ach amháin i WeCom nó APP",
   "lyrixi_only_app_wechat": "Níl an ghné seo ar fáil ach ar WeChat nó APP",

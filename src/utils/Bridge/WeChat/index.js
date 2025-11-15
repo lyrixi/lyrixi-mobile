@@ -257,18 +257,23 @@ let Bridge = {
       }
     })
   },
-  previewImage: function (params) {
+  previewMedia: function (params) {
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.locale(
-          'previewImage仅可在移动端微信或APP中使用',
-          'lyrixi_previewImage_prompt',
+          'previewMedia仅可在移动端微信或APP中使用',
+          'lyrixi_previewMedia_prompt',
           LocaleUtil.locale('', 'lyrixi_previewimage')
         )
       })
       return
     }
-    const wrappedParams = wrapCallback(params)
+    const wrappedParams = wrapCallback({
+      urls: params?.sources.map((item) => item.fileUrl),
+      index: params.index || 0,
+      onSuccess: params?.onSuccess,
+      onError: params?.onError
+    })
     window.top.wx.previewImage(wrappedParams)
   },
   previewFile: function (params) {

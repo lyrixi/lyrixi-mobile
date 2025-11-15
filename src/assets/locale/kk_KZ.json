@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "openLocation тек WeCom немесе APP бағдарламасында пайдаланылуы мүмкін",
   "lyrixi_chooseImage_prompt": "таңдау Image тек мобильді WeChat немесе APP бағдарламасында пайдалануға болады",
   "lyrixi_uploadImage_prompt": "uploadImage тек мобильді WeChat немесе APP бағдарламасында пайдаланылуы мүмкін",
-  "lyrixi_previewImage_prompt": "алдын ала қарауДы тек мобильді WeChat немесе APP бағдарламасында пайдалануға болады",
+  "lyrixi_previewMedia_prompt": "алдын ала қарауДы тек мобильді WeChat немесе APP бағдарламасында пайдалануға болады",
   "lyrixi_previewFile_prompt": "алдын ала қарауFile тек WeCom немесе APP бағдарламасында пайдалануға болады",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack тек WeCom немесе APP бағдарламасында пайдалануға болады",
   "lyrixi_only_app_wechat": "Бұл мүмкіндік тек WeChat немесе APP бағдарламасында қолжетімді",

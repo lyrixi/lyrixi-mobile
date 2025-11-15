@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "OpenLocation-ის გამოყენება შესაძლებელია მხოლოდ WeCom-ში ან APP-ში",
   "lyrixi_chooseImage_prompt": "ChooseImage შეიძლება გამოყენებულ იქნას მხოლოდ მობილური WeChat ან APP",
   "lyrixi_uploadImage_prompt": "uploadImage შეიძლება გამოყენებულ იქნას მხოლოდ მობილური WeChat ან APP",
-  "lyrixi_previewImage_prompt": "previewImage შეიძლება გამოყენებულ იქნას მხოლოდ მობილური WeChat ან APP",
+  "lyrixi_previewMedia_prompt": "previewImage შეიძლება გამოყენებულ იქნას მხოლოდ მობილური WeChat ან APP",
   "lyrixi_previewFile_prompt": "previewFile შეიძლება გამოყენებულ იქნას მხოლოდ WeCom ან APP",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack შეიძლება გამოყენებულ იქნას მხოლოდ WeCom-ში ან APP-ში",
   "lyrixi_only_app_wechat": "ეს ფუნქცია ხელმისაწვდომია მხოლოდ WeChat ან APP- ზე",

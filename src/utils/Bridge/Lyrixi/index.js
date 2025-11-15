@@ -92,8 +92,8 @@ let Bridge = {
   uploadFile: function (params) {
     window.top.lyrixi.uploadFile(params)
   },
-  previewImage: function (params) {
-    window.top.lyrixi?.previewImage(params)
+  previewMedia: function (params) {
+    window.top.lyrixi?.previewMedia(params)
   },
   previewFile: function (params) {
     window.top.lyrixi?.previewFile(params)

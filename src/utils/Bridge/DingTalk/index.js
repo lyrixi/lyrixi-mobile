@@ -314,13 +314,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  previewImage: function (params) {
-    let index = params?.index || 0
-    if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
-      index = params?.urls.indexOf?.(params?.current)
-      if (index < 0) index = 0
-    }
-
+  previewMedia: function (params) {
     const handleError = function (error) {
       console.log('钉钉previewImage失败:', error)
       params?.onError &&
@@ -331,7 +325,7 @@ let Bridge = {
     }
 
     const wrappedParams = wrapCallback({
-      urls: params?.urls,
+      urls: params?.sources.map((item) => item.fileUrl),
       current: index,
       onSuccess: params?.onSuccess,
       onError: handleError

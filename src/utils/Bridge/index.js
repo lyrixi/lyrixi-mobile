@@ -258,24 +258,23 @@ let Bridge = {
     return undefined
   },
   /**
-   * 图片操作: 预览图片
+   * 媒体操作: 预览视频图片
    * @param {Object} params - 预览图片参数
    * @param {Number} params.index - 当前显示图片索引，默认 0
-   * @param {String} params.current - 当前显示图片的 http 链接
-   * @param {Array<String>} params.urls - 需要预览的图片 http 链接列表
+   * @param {Array<String>} params.sources - 需要预览的图片 http 链接列表，[{fileUrl: '全路径'}]
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  previewImage(params) {
-    return this._getCurrentBridge().previewImage(params)
+  previewMedia(params) {
+    return this._getCurrentBridge().previewMedia(params)
   },
   /**
    * 文件操作: 预览文件
    * @param {Object} params - 预览文件参数
-   * @param {String} params.url - 需要预览文件的地址(必填，可以使用相对路径)
-   * @param {String} params.name - 需要预览文件的文件名(不填的话取url的最后部分)
-   * @param {Number} params.size - 需要预览文件的字节大小(必填)
+   * @param {String} params.fileUrl - 需要预览文件的地址(必填，可以使用相对路径)
+   * @param {String} params.fileName - 需要预览文件的文件名(不填的话取url的最后部分)
+   * @param {Number} params.fileSize - 需要预览文件的字节大小(必填)
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
    * @returns {void}

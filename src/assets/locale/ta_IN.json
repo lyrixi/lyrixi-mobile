@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "openLocation ஐ WeCom அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
   "lyrixi_chooseImage_prompt": "chooseImage ஐ மொபைல் WeChat அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
   "lyrixi_uploadImage_prompt": "uploadImage ஐ மொபைல் WeChat அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
-  "lyrixi_previewImage_prompt": "previewImage ஐ மொபைல் WeChat அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
+  "lyrixi_previewMedia_prompt": "previewImage ஐ மொபைல் WeChat அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
   "lyrixi_previewFile_prompt": "previewFile WeCom அல்லது APP இல் மட்டுமே பயன்படுத்தப்பட முடியும்",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack ஐ WeCom அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
   "lyrixi_only_app_wechat": "இந்த அம்சம் WeChat அல்லது APP இல் மட்டுமே கிடைக்கும்",

@@ -10580,7 +10580,7 @@
     "zh_TW": "uploadImage僅可在移動端微信或APP中使用"
   },
   "previewImage仅可在移动端微信或APP中使用": {
-    "key": "lyrixi_previewImage_prompt",
+    "key": "lyrixi_previewMedia_prompt",
     "en_US": "previewImage can only be used in the app",
     "zh_HK": "previewImage僅可在移動端微信或APP中使用",
     "vi_VN": "previewImage chỉ có thể được sử dụng trên điện thoại di động, WeChat hoặc APP",

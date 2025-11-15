@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "Az openLocation csak a WeComban vagy az APP-ben használható",
   "lyrixi_chooseImage_prompt": "A chooseImage csak mobil WeChat vagy APP rendszeren használható",
   "lyrixi_uploadImage_prompt": "uploadImage csak mobil WeChat vagy APP rendszeren használható",
-  "lyrixi_previewImage_prompt": "A previewImage csak mobil WeChat vagy APP rendszeren használható",
+  "lyrixi_previewMedia_prompt": "A previewImage csak mobil WeChat vagy APP rendszeren használható",
   "lyrixi_previewFile_prompt": "A previewFile csak WeComban vagy APP-ben használható",
   "lyrixi_onHistoryBack_prompt": "Az onHistoryBack csak a WeComban vagy az APP-ben használható",
   "lyrixi_only_app_wechat": "Ez a funkció csak a WeChat vagy az APP alkalmazásban érhető el",

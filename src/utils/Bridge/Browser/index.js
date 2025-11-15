@@ -267,11 +267,11 @@ let Browser = {
       onError && onError(result)
     }
   },
-  previewImage: function (params = {}) {
+  previewMedia: function (params = {}) {
     let message = LocaleUtil.locale(
-      'previewImage仅可在移动端微信或APP中使用',
-      'lyrixi_previewImage_prompt',
-      ['previewImage']
+      'previewMedia仅可在移动端微信或APP中使用',
+      'lyrixi_previewMedia_prompt',
+      ['previewMedia']
     )
     Toast.show({
       content: message

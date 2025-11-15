@@ -268,9 +268,8 @@ const Image = forwardRef(
 
       // 本地能力预览照片
       if (previewTypeRef.current === 'nativeImage') {
-        Bridge.previewImage({
-          urls: list.map((item) => item?.fileLocalUrl || item.fileUrl),
-          current: list[index]?.fileLocalUrl || list[index].fileUrl,
+        Bridge.previewMedia({
+          sources: list,
           index: index
         })
       }

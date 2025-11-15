@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "ပွင့်လင်းမှုကို WeCom (သို့) APP မှာပဲ အသုံးပြုနိုင်ပါတယ်",
   "lyrixi_chooseImage_prompt": "ရွေးချယ်ထားတဲ့ ပုံရိပ်ကို မိုဘိုင်း WeChat (သို့) APP မှာပဲ သုံးနိုင်ပါတယ်",
   "lyrixi_uploadImage_prompt": "မိုဘိုင်း WeChat ဒါမှမဟုတ် APP မှာပဲ တင်နိုင်ပါတယ်",
-  "lyrixi_previewImage_prompt": "ကြိုတင်မြင်ကွင်းကို မိုဘိုင်း WeChat သို့မဟုတ် APP တွင်သာ အသုံးပြုနိုင်ပါသည်",
+  "lyrixi_previewMedia_prompt": "ကြိုတင်မြင်ကွင်းကို မိုဘိုင်း WeChat သို့မဟုတ် APP တွင်သာ အသုံးပြုနိုင်ပါသည်",
   "lyrixi_previewFile_prompt": "ကြိုတင်မြင်ကွင်းဖိုင်ကို WeCom (သို့) APP မှာပဲ အသုံးပြုနိုင်ပါတယ်",
   "lyrixi_onHistoryBack_prompt": "InhistoryBack ကို WeCom (သို့) APP မှာပဲ အသုံးပြုနိုင်ပါတယ်",
   "lyrixi_only_app_wechat": "ဒီအသွင်အပြင်ကို WeChat ဒါမှမဟုတ် APP မှာပဲ ရနိုင်ပါတယ်",

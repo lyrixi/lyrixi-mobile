@@ -179,20 +179,14 @@ let Bridge = {
   uploadFile: function (params) {
     console.log('调用支付宝上传文件暂未实现', params)
   },
-  previewImage: function (params) {
-    let index = params?.index || 0
-    if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
-      index = params?.urls?.indexOf?.(params?.current)
-      if (index < 0) index = 0
-    }
-
+  previewMedia: function (params) {
     const wrappedParams = wrapCallback({
-      urls: params?.urls,
+      urls: params?.sources.map((item) => item.fileUrl),
       current: index,
       ...params
     })
 
-    window.top.ap.previewImage(wrappedParams)
+    window.top.ap.previewMedia(wrappedParams)
   }
 }
 

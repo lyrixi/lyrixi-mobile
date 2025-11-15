@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "OpenLocation WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi_chooseImage_prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ChooseImage ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi_uploadImage_prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ അപ് ലോഡ് ഇമേജ് ഉപയോഗിക്കാൻ കഴിയൂ",
-  "lyrixi_previewImage_prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ പ്രിവ്യൂ ഇമേജ് ഉപയോഗിക്കാൻ കഴിയൂ",
+  "lyrixi_previewMedia_prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ പ്രിവ്യൂ ഇമേജ് ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi_previewFile_prompt": "പ്രിവ്യൂഫൈൽ WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi_onHistoryBack_prompt": "OnHistoryBack WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi_only_app_wechat": "ഈ സവിശേഷത WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ലഭ്യമാകൂ",

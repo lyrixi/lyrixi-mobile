@@ -147,7 +147,7 @@
   "lyrixi_open_location_prompt": "OpenLocation শুধুমাত্র WeCom বা APP এ ব্যবহার করা যাবে",
   "lyrixi_chooseImage_prompt": "চয়ন চিত্র শুধুমাত্র মোবাইল WeChat বা APP এ ব্যবহার করা যাবে",
   "lyrixi_uploadImage_prompt": "আপলোডচিত্র শুধুমাত্র মোবাইল উইচ্যাট বা অ্যাপে ব্যবহার করা যাবে",
-  "lyrixi_previewImage_prompt": "পূর্বরূপচিত্র শুধুমাত্র মোবাইল WeChat বা APP এ ব্যবহার করা যাবে",
+  "lyrixi_previewMedia_prompt": "পূর্বরূপচিত্র শুধুমাত্র মোবাইল WeChat বা APP এ ব্যবহার করা যাবে",
   "lyrixi_previewFile_prompt": "পূর্বরূপফাইল কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
   "lyrixi_onHistoryBack_prompt": "onHistoryBack কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
   "lyrixi_only_app_wechat": "এই বৈশিষ্ট্যটি কেবল WeChat বা অ্যাপে সুলভ",
