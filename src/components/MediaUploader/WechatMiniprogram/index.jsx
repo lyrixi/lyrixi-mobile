@@ -111,7 +111,7 @@ function WechatMiniprogram(
           return false
         }
         let uploadDOM = photosRef.current?.rootDOM?.querySelector?.(
-          '.lyrixi-image-item.image-choose'
+          '.lyrixi-media-item.image-choose'
         )
         if (!uploadDOM) {
           Toast.show({

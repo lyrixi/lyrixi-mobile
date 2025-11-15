@@ -8,7 +8,7 @@ const RemainCount = ({
   return (
     <div
       // Style
-      className="lyrixi-image-item-remain-count"
+      className="lyrixi-media-item-remain-count"
     >
       +{count + 1}
     </div>

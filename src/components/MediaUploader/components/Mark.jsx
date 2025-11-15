@@ -10,12 +10,12 @@ function Mask({ labels, style, className }, ref) {
     <div
       ref={ref}
       style={style}
-      className={DOMUtil.classNames('lyrixi-image-item-mark', className)}
+      className={DOMUtil.classNames('lyrixi-media-item-mark', className)}
     >
       {Array.isArray(labels) && labels.length
         ? labels.map((label, index) => {
             return (
-              <div className="lyrixi-image-item-mark-label" key={index}>
+              <div className="lyrixi-media-item-mark-label" key={index}>
                 <span>{label}</span>
               </div>
             )

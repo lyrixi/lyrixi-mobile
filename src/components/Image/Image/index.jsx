@@ -324,7 +324,7 @@ const Image = forwardRef(
       <div
         ref={rootRef}
         // Style
-        className={DOMUtil.classNames('lyrixi-image', className)}
+        className={DOMUtil.classNames('lyrixi-media', className)}
       >
         {/* Element: 图片上传按钮(start) */}
         {uploadPosition === 'start' && getChooseNode()}

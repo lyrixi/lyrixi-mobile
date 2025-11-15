@@ -30,7 +30,7 @@ const Item = ({
       // Element
       data-index={index}
       // Style, 状态status: choose|uploading|fail|success
-      className={DOMUtil.classNames('lyrixi-image-item', item.className, item.status)}
+      className={DOMUtil.classNames('lyrixi-media-item', item.className, item.status)}
       // Events
       onClick={(e) => {
         e.stopPropagation()

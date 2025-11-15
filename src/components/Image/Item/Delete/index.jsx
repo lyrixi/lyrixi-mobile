@@ -8,7 +8,7 @@ const Delete = ({
   return (
     <div
       // Style
-      className="lyrixi-image-delete"
+      className="lyrixi-media-delete"
       // Events
       onClick={(e) => {
         e.stopPropagation()
@@ -16,7 +16,7 @@ const Delete = ({
         onClick && onClick(e)
       }}
     >
-      <div className="lyrixi-image-delete-icon"></div>
+      <div className="lyrixi-media-delete-icon"></div>
     </div>
   )
 }

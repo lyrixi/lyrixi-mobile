@@ -32,7 +32,7 @@ const Img = ({
     <div
       // Style
       className={DOMUtil.classNames(
-        'lyrixi-image-item-img',
+        'lyrixi-media-item-img',
         backgroundImage === 'lyrixi-error' ? 'lyrixi-error' : null
       )}
       style={{ backgroundImage: backgroundImage === 'error' ? '' : `url(${backgroundImage})` }}

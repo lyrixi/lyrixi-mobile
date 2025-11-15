@@ -6,7 +6,7 @@
 @import 'Mark/ImageMark.less';
 
 // 照片视频列表
-.lyrixi-image {
+.lyrixi-media {
   position: relative;
   display: flex;
   flex-flow: row wrap;
@@ -21,14 +21,14 @@
   // 上传中
   &.lyrixi-uploading {
     // 显示转圈
-    .lyrixi-image-choose {
-      .lyrixi-image-uploading {
+    .lyrixi-media-choose {
+      .lyrixi-media-uploading {
         display: block;
       }
     }
     // 上传中不允许删除,重传
-    .lyrixi-image-delete,
-    .lyrixi-image-reload {
+    .lyrixi-media-delete,
+    .lyrixi-media-reload {
       display: none;
     }
   }

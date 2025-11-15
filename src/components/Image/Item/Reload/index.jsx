@@ -8,7 +8,7 @@ const Reload = ({
   return (
     <div
       // Style
-      className="lyrixi-image-reload"
+      className="lyrixi-media-reload"
       // Events
       onClick={(e) => {
         e.stopPropagation()
@@ -18,8 +18,8 @@ const Reload = ({
         }
       }}
     >
-      <div className="lyrixi-image-reload-icon">
-        <div className="lyrixi-image-reload-icon-fail"></div>
+      <div className="lyrixi-media-reload-icon">
+        <div className="lyrixi-media-reload-icon-fail"></div>
       </div>
     </div>
   )

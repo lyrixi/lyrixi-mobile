@@ -3,14 +3,14 @@ import React from 'react'
 const PreviewReload = ({ onReUpload }) => {
   return (
     <div
-      className="lyrixi-image-preview-main-reload"
+      className="lyrixi-media-preview-main-reload"
       onClick={(e) => {
         e.stopPropagation()
         onReUpload && onReUpload()
       }}
     >
-      <div className="lyrixi-image-preview-main-reload-icon">
-        <div className="lyrixi-image-preview-main-reload-icon-fail"></div>
+      <div className="lyrixi-media-preview-main-reload-icon">
+        <div className="lyrixi-media-preview-main-reload-icon-fail"></div>
       </div>
     </div>
   )

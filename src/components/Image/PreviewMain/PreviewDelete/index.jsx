@@ -3,7 +3,7 @@ import React from 'react'
 const PreviewDelete = ({ onDelete }) => {
   return (
     <div
-      className="lyrixi-image-preview-main-delete"
+      className="lyrixi-media-preview-main-delete"
       onClick={(e) => {
         e.stopPropagation()
         onDelete && onDelete()

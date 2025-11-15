@@ -68,7 +68,7 @@ const PreviewModal = forwardRef(
         // Status
         open={open}
         // Style
-        className={DOMUtil.classNames('lyrixi-image-preview-modal', modalClassName)}
+        className={DOMUtil.classNames('lyrixi-media-preview-modal', modalClassName)}
         style={modalStyle}
         portal={portal}
         // Element

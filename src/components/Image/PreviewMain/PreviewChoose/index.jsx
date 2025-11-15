@@ -57,19 +57,19 @@ const Choose = ({
 
   return (
     <div
-      className="lyrixi-image-preview-main-choose"
+      className="lyrixi-media-preview-main-choose"
       data-type="upload"
       onClick={handleUploadClick}
     >
       <i
         className={DOMUtil.classNames(
-          'lyrixi-image-preview-main-choose-icon',
+          'lyrixi-media-preview-main-choose-icon',
           type === 'lyrixi-video' ? 'lyrixi-video' : null
         )}
       />
       <input
         type="file"
-        className="lyrixi-image-preview-main-choose-input-file"
+        className="lyrixi-media-preview-main-choose-input-file"
         onChange={onFileChange}
         accept="image/*"
         // 以下的属性值会导致: 部分安卓机会不显示拍照

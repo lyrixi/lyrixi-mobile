@@ -4,7 +4,7 @@
 @import url(PreviewClose/PreviewClose.less);
 @import url(PreviewItem/PreviewItem.less);
 
-.lyrixi-image-preview-main {
+.lyrixi-media-preview-main {
   display: flex;
   .swiper-wrapper {
     height: auto;
@@ -47,22 +47,22 @@
   // 上传中
   &.lyrixi-uploading {
     // 显示转圈
-    .lyrixi-image-preview-main-choose {
-      .lyrixi-image-uploading {
+    .lyrixi-media-preview-main-choose {
+      .lyrixi-media-uploading {
         display: block;
       }
     }
     // 上传中不允许删除与关闭
-    .lyrixi-image-preview-main-delete,
-    .lyrixi-image-preview-main-close,
-    .lyrixi-image-preview-main-reload {
+    .lyrixi-media-preview-main-delete,
+    .lyrixi-media-preview-main-close,
+    .lyrixi-media-preview-main-reload {
       display: none;
     }
   }
 }
 
 // 页面级
-.lyrixi-image-preview-main-page {
+.lyrixi-media-preview-main-page {
   position: absolute;
   top: 0;
   left: 0;

@@ -24,13 +24,13 @@ const Uploading = ({
       return uploading
     }
     return (
-      <div className="lyrixi-image-uploading-icon">
-        <Loading.Ouroboros className="lyrixi-image-uploading-icon-loading" />
+      <div className="lyrixi-media-uploading-icon">
+        <Loading.Ouroboros className="lyrixi-media-uploading-icon-loading" />
       </div>
     )
   }
 
-  return <div className="lyrixi-image-uploading">{getUploadingNode(item)}</div>
+  return <div className="lyrixi-media-uploading">{getUploadingNode(item)}</div>
 }
 
 export default Uploading

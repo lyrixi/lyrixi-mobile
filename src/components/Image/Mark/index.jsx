@@ -18,12 +18,12 @@ function Mark(
       ref={ref}
       // Style
       style={style}
-      className={DOMUtil.classNames('lyrixi-image-item-mark', className)}
+      className={DOMUtil.classNames('lyrixi-media-item-mark', className)}
     >
       {Array.isArray(labels) && labels.length
         ? labels.map((label, index) => {
             return (
-              <div className="lyrixi-image-item-mark-label" key={index}>
+              <div className="lyrixi-media-item-mark-label" key={index}>
                 {label}
               </div>
             )

@@ -84,7 +84,7 @@ const Choose = ({
   return (
     <div
       // Style
-      className={DOMUtil.classNames('lyrixi-image-item', 'lyrixi-image-choose', className)}
+      className={DOMUtil.classNames('lyrixi-media-item', 'lyrixi-media-choose', className)}
       data-type="upload"
       // Events
       onClick={handleUploadClick}
@@ -92,7 +92,7 @@ const Choose = ({
       {/* 拍照或者视频图标 */}
       <div
         className={DOMUtil.classNames(
-          'lyrixi-image-choose-icon',
+          'lyrixi-media-choose-icon',
           type === 'lyrixi-video' ? 'lyrixi-video' : null
         )}
       ></div>
@@ -100,7 +100,7 @@ const Choose = ({
       {onFileChange && (
         <input
           type="file"
-          className="lyrixi-image-choose-input-file"
+          className="lyrixi-media-choose-input-file"
           accept="image/*"
           // 以下的属性值会导致: 部分安卓机会不显示拍照
           // accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"

@@ -261,12 +261,12 @@ const PreviewMain = forwardRef(
         // Bullet pagination
         pagination={{
           type: 'fraction',
-          className: 'lyrixi-image-preview-main-pagination'
+          className: 'lyrixi-media-preview-main-pagination'
         }}
         modules={[Zoom, Pagination]}
         // Style
         className={DOMUtil.classNames(
-          'lyrixi-image-preview-main',
+          'lyrixi-media-preview-main',
           className,
           allowClose ? 'lyrixi-closable' : '',
           chooseVisible && typeof onChange === 'function' ? 'lyrixi-choosable' : '',
@@ -296,7 +296,7 @@ const PreviewMain = forwardRef(
               return (
                 <SwiperSlide
                   key={index}
-                  className={DOMUtil.classNames('lyrixi-image-preview-main-item', item.status)}
+                  className={DOMUtil.classNames('lyrixi-media-preview-main-item', item.status)}
                 >
                   <div className="swiper-zoom-container">
                     {type !== 'video' && (
