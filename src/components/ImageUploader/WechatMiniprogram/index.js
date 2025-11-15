@@ -20,21 +20,34 @@ import { Toast, LocaleUtil, Image, Loading, ActionSheet } from 'lyrixi-mobile'
 // 微信小程序拍照上传, 通过前端id，通过接口与小程序通信，轮询接口获取小程序上传的照片
 function WechatMiniprogram(
   {
-    // 是否异步上传(目前只有app支持)
-    async = false,
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
+    type, // video.录相 | 其它.为拍照
+    ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     uploadDir = 'default',
+    chooseExtraParams, // 仅对客户端有效
 
-    // 展示样式
-    upload,
-    uploading,
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+    previewAllowChoose,
+    previewAllowClear,
+
+    // Style
+    className,
     uploadPosition,
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
+    // Element
+    upload, // 上传按钮覆盖的dom
+    uploading,
+    previewPortal,
     /*
     格式化上传结果
     入参:
@@ -50,17 +63,17 @@ function WechatMiniprogram(
     getWatermark,
     getUploadUrl,
     getUploadPayload,
-    // 仅对客户端有效
-    chooseExtraParams,
 
-    // 回调
-    allowClear = true,
-    allowChoose = true,
+    // Events
     onBeforeChoose,
+    onChoose,
+    onFileChange,
+    onUpload,
     onChange,
     onPreview,
-    onNavigateTo,
-    ...props
+    onPreviewOpen,
+    onPreviewClose,
+    onNavigateTo
   },
   ref
 ) {
@@ -254,18 +267,33 @@ function WechatMiniprogram(
     <>
       <Image
         ref={photosRef}
+        // Value & Display Value
+        list={list}
+        count={count}
+        type={type}
+        ellipsis={ellipsis}
         sourceType={sourceType}
         sizeType={sizeType}
         maxWidth={maxWidth}
+        // Status
+        async={async}
+        reUpload={reUpload}
+        allowChoose={allowChoose}
+        allowClear={allowClear}
+        previewAllowChoose={previewAllowChoose}
+        previewAllowClear={previewAllowClear}
+        // Style
+        className={className}
         uploadPosition={uploadPosition}
+        // Element
         upload={upload}
         uploading={uploading}
-        list={list}
-        // 照片数量未超时可以选择
+        previewPortal={previewPortal}
+        // Events
+        onBeforeChoose={onBeforeChoose}
         onChoose={chooseVisible ? handleChoose : null}
-        count={count}
-        allowClear={allowClear}
-        allowChoose={allowChoose}
+        onFileChange={onFileChange}
+        onUpload={onUpload}
         onChange={onChange}
         onPreview={async (item, index) => {
           // 自定义预览
@@ -276,7 +304,8 @@ function WechatMiniprogram(
 
           return getPreviewType('image')
         }}
-        {...props}
+        onPreviewOpen={onPreviewOpen}
+        onPreviewClose={onPreviewClose}
       />
 
       <ActionSheet.Modal
