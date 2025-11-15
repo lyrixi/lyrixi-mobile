@@ -189,7 +189,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
-        'lyrixi_chooseImage_prompt',
+        'lyrixi_chooseMedia_prompt',
         LocaleUtil.locale('', 'lyrixi_chooseimage')
       )
       Toast.show({
@@ -228,7 +228,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
-        'lyrixi_uploadImage_prompt',
+        'lyrixi_uploadMedia_prompt',
         LocaleUtil.locale('', 'lyrixi_uploadimage')
       )
       Toast.show({

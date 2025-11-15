@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import uploadImage from './uploadItem'
+import _uploadItem from './uploadItem'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -75,7 +75,7 @@ function Browser(
   // 上传文件
   async function uploadItem(item) {
     // 开始上传
-    let result = await uploadImage(item, {
+    let result = await _uploadItem(item, {
       uploadDir,
       getUploadUrl,
       getUploadParams,

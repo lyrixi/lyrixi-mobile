@@ -242,7 +242,7 @@ let Browser = {
   chooseMedia: function (params) {
     let message = LocaleUtil.locale(
       'chooseMedia仅可在移动端微信或APP中使用',
-      'lyrixi_chooseImage_prompt',
+      'lyrixi_chooseMedia_prompt',
       ['chooseMedia']
     )
     Toast.show({

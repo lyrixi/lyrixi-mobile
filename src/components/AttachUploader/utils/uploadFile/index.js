@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import uploadLyrixi from './../../Lyrixi/uploadItem'
-import uploadFile from './../../Browser/uploadItem'
+import uploadBrowser from './../../Browser/uploadItem'
 
 // 内库使用-start
 import Toast from './../../../Toast'
@@ -18,7 +18,7 @@ let uploadItem = null
 if (Bridge.platform === 'lyrixi') {
   uploadItem = uploadLyrixi
 } else {
-  uploadItem = uploadFile
+  uploadItem = uploadBrowser
 }
 /**
  * 上传图片
@@ -27,25 +27,25 @@ if (Bridge.platform === 'lyrixi') {
  * @returns {Array} [{原item属性, filePath: '', fileUrl: '', status: 'choose|uploading|fail|success'}]
  */
 
-async function uploadImage(uploadList, uploadConfig) {
-  if (_.isEmpty(uploadList)) {
+async function uploadFile(fileList, uploadConfig) {
+  if (_.isEmpty(fileList)) {
     return null
   }
 
   // 浏览器上传, 客户端不调用浏览器上传
   if (uploadConfig?.type === 'browser') {
-    uploadItem = uploadFile
+    uploadItem = uploadBrowser
   }
 
   let list = null
 
   // 如果是对象则转为数组
-  if (toString.call(uploadList) === '[object Object]') {
-    list = [uploadList]
+  if (toString.call(fileList) === '[object Object]') {
+    list = [fileList]
   }
   // 如果是数组
-  else if (Array.isArray(uploadList)) {
-    list = uploadList
+  else if (Array.isArray(fileList)) {
+    list = fileList
   }
 
   // 过滤非法的list
@@ -54,7 +54,7 @@ async function uploadImage(uploadList, uploadConfig) {
   })
   if (_.isEmpty(list)) {
     Toast.show({
-      content: LocaleUtil.locale('uploadImage参数uploadList错误')
+      content: LocaleUtil.locale('uploadFile参数fileList错误')
     })
     return null
   }
@@ -101,7 +101,7 @@ async function uploadImage(uploadList, uploadConfig) {
     // 重新设置list
     list[index] = item
   }
-  return toString.call(uploadList) === '[object Object]' ? list[0] : list
+  return toString.call(fileList) === '[object Object]' ? list[0] : list
 }
 
-export default uploadImage
+export default uploadFile
