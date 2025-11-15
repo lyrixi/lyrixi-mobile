@@ -53,7 +53,7 @@ async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidt
   })
 }
 
-function uploadImage({ sourceType, uploadDir, watermark, uploadExtraFormData }) {
+function uploadMedia({ sourceType, uploadDir, watermark, uploadExtraFormData }) {
   return new Promise((resolve) => {
     Taro.chooseMedia({
       count: 1,
@@ -85,4 +85,4 @@ function uploadImage({ sourceType, uploadDir, watermark, uploadExtraFormData }) 
     })
   })
 }
-export default uploadImage
+export default uploadMedia

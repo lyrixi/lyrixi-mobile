@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
 import { ImageUploader, Layout, Toast } from 'lyrixi-mobile'
 
-const { uploadImage, validate } = ImageUploader
+const { uploadList, validate } = ImageUploader
 new vconsole()
 export default () => {
   const imageUploaderRef = useRef(null)
@@ -33,7 +33,7 @@ export default () => {
 
   // 异步上传
   async function handleAsyncUploader() {
-    let newList = await uploadImage(list)
+    let newList = await uploadList(list)
     console.log('newList:', newList)
     setList(newList)
   }
@@ -82,7 +82,7 @@ export default () => {
           imageUploaderRef.current.uploadList
         </div>
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleAsyncUploader}>
-          Uploader.uploadImage
+          Uploader.uploadList
         </div>
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleValidate}>
           validate

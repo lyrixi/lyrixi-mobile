@@ -1,11 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import { getRemainCount, getPreviewType } from './../utils'
-import uploadImage from './uploadItem'
+import { getPreviewType } from './../utils'
+import _uploadItem from './uploadItem'
 
 // 内库使用-start
-import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
-import Loading from './../../Loading'
 import Image from './../../Image'
 // 内库使用-end
 
@@ -89,7 +87,7 @@ function Browser(
   // 上传文件
   async function uploadItem(item) {
     // 开始上传
-    let result = await uploadImage(item, {
+    let result = await _uploadItem(item, {
       uploadDir,
       maxWidth,
       getUploadUrl,

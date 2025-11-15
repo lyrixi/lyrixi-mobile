@@ -215,7 +215,7 @@ function WechatMiniprogram(
         let uploadExtraFormData = getUploadPayload?.({ platform: 'WechatMiniprogram' }) || {}
         // eslint-disable-next-line
         top.wx.miniProgram.navigateTo({
-          url: `/pages/ImageUploader/index?id=${idRef.current}&sourceType=${JSON.stringify(
+          url: `/pages/MediaUploader/index?id=${idRef.current}&sourceType=${JSON.stringify(
             sourceType
           )}&uploadDir=${encodeURIComponent(
             encodeURIComponent(uploadDir)

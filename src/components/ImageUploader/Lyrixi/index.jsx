@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { getRemainCount, getPreviewType } from './../utils'
-import uploadImage from './uploadItem'
+import _uploadItem from './uploadItem'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
@@ -88,7 +88,7 @@ function ImageUploader(
   // 上传文件
   async function uploadItem(item) {
     // 开始上传
-    let result = await uploadImage(item, {
+    let result = await _uploadItem(item, {
       uploadDir,
       maxWidth,
       getUploadUrl,
@@ -132,7 +132,7 @@ function ImageUploader(
         watermark = await getWatermark({ platform: 'dingtalk' })
       }
 
-      let chooseImageParams = {
+      let chooseMediaParams = {
         ...chooseExtraParams,
         count: getRemainCount(count, list?.length || 0),
         sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
@@ -170,7 +170,7 @@ function ImageUploader(
           resolve(false)
         }
       }
-      Bridge.chooseImage(chooseImageParams)
+      Bridge.chooseMedia(chooseMediaParams)
     })
   }
 

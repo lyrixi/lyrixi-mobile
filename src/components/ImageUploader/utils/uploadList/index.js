@@ -45,8 +45,8 @@ if (Bridge.platform === 'lyrixi') {
  * @returns {Array} [{原item属性, filePath: '', fileUrl: '', fileThumbnail: '', status: 'choose|uploading|fail|success'}]
  */
 
-async function uploadImage(uploadList, uploadConfig) {
-  if (_.isEmpty(uploadList)) {
+async function uploadList(mediaList, uploadConfig) {
+  if (_.isEmpty(mediaList)) {
     return null
   }
 
@@ -58,12 +58,12 @@ async function uploadImage(uploadList, uploadConfig) {
   let list = null
 
   // 如果是对象则转为数组
-  if (toString.call(uploadList) === '[object Object]') {
-    list = [uploadList]
+  if (toString.call(mediaList) === '[object Object]') {
+    list = [mediaList]
   }
   // 如果是数组
-  else if (Array.isArray(uploadList)) {
-    list = uploadList
+  else if (Array.isArray(mediaList)) {
+    list = mediaList
   }
 
   // 过滤非法的list
@@ -72,7 +72,7 @@ async function uploadImage(uploadList, uploadConfig) {
   })
   if (_.isEmpty(list)) {
     Toast.show({
-      content: LocaleUtil.locale('uploadImage参数uploadList错误')
+      content: LocaleUtil.locale('uploadList参数列表错误')
     })
     return null
   }
@@ -119,7 +119,7 @@ async function uploadImage(uploadList, uploadConfig) {
     // 重新设置list
     list[index] = item
   }
-  return toString.call(uploadList) === '[object Object]' ? list[0] : list
+  return toString.call(mediaList) === '[object Object]' ? list[0] : list
 }
 
-export default uploadImage
+export default uploadList

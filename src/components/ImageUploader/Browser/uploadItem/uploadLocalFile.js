@@ -19,7 +19,7 @@ function uploadLocalFile({
   formatUploadedItem
 }) {
   return new Promise((resolve) => {
-    Bridge.uploadImage({
+    Bridge.uploadFile({
       url: url,
       localFile: localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
       // 鸿蒙钉钉有bug，上传方法带不上header，导致无法上传
