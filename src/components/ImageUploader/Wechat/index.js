@@ -3,36 +3,41 @@ import { getRemainCount, getPreviewType } from './../utils'
 import uploadImage from './uploadItem'
 
 // 内库使用-start
+import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
 import Loading from './../../Loading'
 import Image from './../../Image'
-import Bridge from './../../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Loading, Image, Bridge } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
 function ImageUploader(
   {
-    // 是否异步上传(目前只有app支持)
-    async = false,
-    // 支持重新上传
-    reUpload = true,
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     uploadDir = 'default',
+    chooseExtraParams, // 仅对客户端有效
 
-    // 展示样式
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+
+    // Style
+    uploadPosition,
+
+    // Element
     upload,
     uploading,
-    uploadPosition,
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
-
     /*
     格式化上传结果
     入参:
@@ -48,11 +53,8 @@ function ImageUploader(
     getWatermark,
     getUploadUrl,
     getUploadPayload,
-    chooseExtraParams,
 
-    // 回调
-    allowClear = true,
-    allowChoose = true,
+    // Events
     onBeforeChoose,
     onChange,
     onPreview,
@@ -116,7 +118,7 @@ function ImageUploader(
       // 添加水印
       let watermark = null
       if (typeof getWatermark === 'function') {
-        watermark = await getWatermark({ platform: 'wechat' })
+        watermark = await getWatermark({ platform: 'dingtalk' })
       }
 
       let chooseImageParams = {
@@ -125,8 +127,16 @@ function ImageUploader(
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
+          const localFiles = res.localFiles
+          if (!Array.isArray(localFiles) || !localFiles.length) {
+            resolve(null)
+            return
+          }
+
           Loading.show()
-          let currentList = res.localFiles.map((localFile) => {
+
+          // 当前列表
+          let currentList = localFiles.map((localFile, index) => {
             return {
               status: 'choose',
               localFile: localFile,
@@ -137,13 +147,14 @@ function ImageUploader(
             }
           })
 
+          console.log('选择完成:', currentList)
           resolve(currentList)
         },
         onError: function (err) {
           if (err && err.errMsg) Toast.show({ content: err.errMsg })
           resolve(false)
         },
-        cancel: function () {
+        onCancel: function () {
           resolve(false)
         }
       }
@@ -154,21 +165,24 @@ function ImageUploader(
   return (
     <Image
       ref={photosRef}
-      async={async}
-      reUpload={reUpload}
+      // Value & Display Value
+      list={list}
+      count={count}
       sourceType={sourceType}
       sizeType={sizeType}
       maxWidth={maxWidth}
-      uploadPosition={uploadPosition}
-      // 显示ai上传图
-      upload={upload}
-      // 上传中图片
-      uploading={uploading}
-      list={list}
-      onChoose={handleChoose}
-      count={count}
+      // Status
+      async={async}
+      reUpload={reUpload}
       allowClear={allowClear}
       allowChoose={allowChoose}
+      // Style
+      uploadPosition={uploadPosition}
+      // Element
+      upload={upload}
+      uploading={uploading}
+      // Events
+      onChoose={handleChoose}
       onChange={onChange}
       onUpload={uploadItem}
       onPreview={async (item, index) => {
