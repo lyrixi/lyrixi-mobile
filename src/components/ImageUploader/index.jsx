@@ -2,7 +2,7 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
 // 内部组件导出
 import Mark from './components/Mark'
-import validate from './utils/validate'
+import validateList from './utils/validateList'
 import uploadList from './utils/uploadList'
 
 // 内部组件
@@ -221,4 +221,4 @@ function Main(
 }
 
 export default forwardRef(Main)
-export { Mark, validate, uploadList }
+export { Mark, validateList, uploadList }
