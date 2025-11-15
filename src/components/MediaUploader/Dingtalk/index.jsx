@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import { getRemainCount, getPreviewType } from './../utils'
+import { getRemainCount } from './../utils'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
@@ -12,9 +12,8 @@ import Image from './../../Image'
 /* 测试使用-start
 import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
 测试使用-end */
-
 // 照片上传
-function ImageUploader(
+function MediaUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
@@ -150,9 +149,9 @@ function ImageUploader(
             return {
               status: 'choose',
               localFile: localFile,
+              watermark: watermark,
               fileThumbnail: localFile.preview,
               fileUrl: localFile.preview,
-              watermark: watermark,
               uploadDir: uploadDir
             }
           })
@@ -210,7 +209,9 @@ function ImageUploader(
           if (goOn === false || goOn === 'browser') return goOn
         }
 
-        return getPreviewType('image')
+        // dd.previewImage不支持预览chooseImage返回的filePath(https://resource), 仅支持浏览器预览
+        // return getPreviewType('image')
+        return 'browser'
 
         // 走默认预览
         // Bridge.previewImage({
@@ -226,4 +227,4 @@ function ImageUploader(
   )
 }
 
-export default forwardRef(ImageUploader)
+export default forwardRef(MediaUploader)

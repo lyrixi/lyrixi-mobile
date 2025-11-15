@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
-import { ImageUploader, Layout, Toast } from 'lyrixi-mobile'
+import { MediaUploader, Layout, Toast } from 'lyrixi-mobile'
 
-const { uploadList, validateList } = ImageUploader
+const { uploadList, validateList } = MediaUploader
 new vconsole()
 export default () => {
   const imageUploaderRef = useRef(null)
@@ -49,7 +49,7 @@ export default () => {
     <Layout className="lyrixi-full">
       <Layout.Header className="lyrixi-text-center">普通拍照</Layout.Header>
       <Layout.Main className="lyrixi-bg-white">
-        <ImageUploader
+        <MediaUploader
           // reUpload={false}
           // async
           type="browser"

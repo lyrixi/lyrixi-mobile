@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { ImageUploader, Layout } from 'lyrixi-mobile'
+import { MediaUploader, Layout } from 'lyrixi-mobile'
 import getWatermark from './getWatermark'
 
 new vconsole()
@@ -29,7 +29,7 @@ export default () => {
     <Layout className="lyrixi-full">
       <Layout.Header className="lyrixi-text-center">普通拍照</Layout.Header>
       <Layout.Main className="lyrixi-bg-white">
-        <ImageUploader
+        <MediaUploader
           getWatermark={getWatermark(['$datetime', '$model', '$address $distance:116.37,39.91'])}
           onChange={handlePhotoChange}
         />

@@ -46,7 +46,7 @@ export { default as Location } from './components/Location'
 export { default as VideoPlayer } from './components/VideoPlayer' // 不常用
 export { default as Result } from './components/Result'
 export { default as Image } from './components/Image'
-export { default as ImageUploader } from './components/ImageUploader'
+export { default as MediaUploader } from './components/MediaUploader'
 export { default as Picker } from './components/Picker'
 export { default as Progress } from './components/Progress'
 export { default as QRCode } from './components/QRCode' // 不常用

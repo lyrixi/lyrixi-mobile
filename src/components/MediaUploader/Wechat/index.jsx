@@ -14,7 +14,7 @@ import { Bridge,Toast, Loading, Image } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
-function ImageUploader(
+function MediaUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
@@ -26,8 +26,7 @@ function ImageUploader(
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     uploadDir = 'default',
-    // 特殊的选择逻辑, 仅对客户端有效
-    chooseExtraParams,
+    chooseExtraParams, // 仅对客户端有效
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -133,7 +132,6 @@ function ImageUploader(
       }
 
       let chooseMediaParams = {
-        ...chooseExtraParams,
         count: getRemainCount(count, list?.length || 0),
         sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
@@ -152,9 +150,9 @@ function ImageUploader(
             return {
               status: 'choose',
               localFile: localFile,
-              watermark: watermark,
               fileThumbnail: localFile.preview,
               fileUrl: localFile.preview,
+              watermark: watermark,
               uploadDir: uploadDir
             }
           })
@@ -228,4 +226,4 @@ function ImageUploader(
   )
 }
 
-export default forwardRef(ImageUploader)
+export default forwardRef(MediaUploader)

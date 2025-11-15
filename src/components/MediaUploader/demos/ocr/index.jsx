@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import vconsole from 'vconsole'
-import { Bridge, Layout, ImageUploader } from 'lyrixi-mobile'
+import { Bridge, Layout, MediaUploader } from 'lyrixi-mobile'
 import Ocr from './Ocr'
 Bridge.ready()
 
@@ -33,7 +33,7 @@ export default () => {
     <Layout className="lyrixi-full">
       <Layout.Header className="lyrixi-text-center">OCR识别</Layout.Header>
       <Layout.Main className="lyrixi-bg-white">
-        <ImageUploader
+        <MediaUploader
           uploadDir={`businessName`}
           sizeType={['compressed']}
           sourceType={['camera']}
