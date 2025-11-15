@@ -103,7 +103,7 @@ function WechatMiniprogram(
   useImperativeHandle(ref, () => {
     return {
       ...photosRef.current,
-      chooseImage: async () => {
+      chooseMedia: async () => {
         if (!chooseVisible) {
           Toast.show({
             content: LocaleUtil.locale('此照片控件无拍照功能, 请勿调用拍照')

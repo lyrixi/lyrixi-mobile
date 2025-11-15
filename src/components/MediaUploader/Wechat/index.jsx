@@ -77,7 +77,7 @@ function MediaUploader(
   useImperativeHandle(ref, () => {
     return {
       ...photosRef.current,
-      chooseImage: () => {
+      chooseMedia: () => {
         if (!photosRef.current?.choose) return
         return photosRef.current.choose()
       }

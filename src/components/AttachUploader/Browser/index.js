@@ -63,7 +63,7 @@ function Browser(
   useImperativeHandle(ref, () => {
     return {
       ...attachRef.current,
-      chooseImage: () => {
+      chooseMedia: () => {
         Toast.show({
           content: LocaleUtil.locale('极速上传模式, 不支持编程式调用拍照')
         })

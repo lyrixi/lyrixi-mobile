@@ -75,7 +75,7 @@ function Browser(
   useImperativeHandle(ref, () => {
     return {
       ...photosRef.current,
-      chooseImage: () => {
+      chooseMedia: () => {
         Toast.show({
           content: LocaleUtil.locale('浏览器上传模式, 不支持编程式调用拍照')
         })
