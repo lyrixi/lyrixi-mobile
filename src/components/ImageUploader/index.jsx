@@ -75,7 +75,7 @@ function Main(
 
     // Events
     onBeforeChoose,
-    onChoose,
+    // onChoose,
     onFileChange,
     onUpload,
     onChange,
@@ -158,7 +158,6 @@ function Main(
         getUploadPayload={getUploadPayload}
         // Events
         onBeforeChoose={onBeforeChoose}
-        onChoose={onChoose}
         onFileChange={onFileChange}
         onUpload={onUpload}
         onChange={onChange}
@@ -214,7 +213,6 @@ function Main(
           getUploadPayload={getUploadPayload}
           // Events
           onBeforeChoose={onBeforeChoose}
-          onChoose={onChoose}
           onFileChange={onFileChange}
           onUpload={onUpload}
           onChange={onChange}
@@ -264,7 +262,6 @@ function Main(
           getUploadPayload={getUploadPayload}
           // Events
           onBeforeChoose={onBeforeChoose}
-          onChoose={onChoose}
           onFileChange={onFileChange}
           onUpload={onUpload}
           onChange={onChange}
@@ -308,7 +305,6 @@ function Main(
         getUploadPayload={getUploadPayload}
         // Events
         onBeforeChoose={onBeforeChoose}
-        onChoose={onChoose}
         onFileChange={onFileChange}
         onUpload={onUpload}
         onChange={onChange}
@@ -361,7 +357,6 @@ function Main(
           getUploadPayload={getUploadPayload}
           // Events
           onBeforeChoose={onBeforeChoose}
-          onChoose={onChoose}
           onFileChange={onFileChange}
           onUpload={onUpload}
           onChange={onChange}
@@ -414,7 +409,7 @@ function Main(
         getUploadPayload={getUploadPayload}
         // Events
         onBeforeChoose={onBeforeChoose}
-        onChoose={onChoose}
+        // onChoose={onChoose}
         onFileChange={onFileChange}
         onUpload={onUpload}
         onChange={onChange}
@@ -458,7 +453,7 @@ function Main(
       getUploadPayload={getUploadPayload}
       // Events
       onBeforeChoose={onBeforeChoose}
-      onChoose={onChoose}
+      // onChoose={onChoose}
       onFileChange={onFileChange}
       onUpload={onUpload}
       onChange={onChange}

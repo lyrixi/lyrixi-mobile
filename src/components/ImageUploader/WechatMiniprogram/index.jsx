@@ -66,13 +66,14 @@ function WechatMiniprogram(
 
     // Events
     onBeforeChoose,
-    onChoose,
+    // onChoose,
     onFileChange,
-    onUpload,
+    // onUpload,
     onChange,
     onPreview,
     onPreviewOpen,
-    onPreviewClose
+    onPreviewClose,
+    onNavigateTo
   },
   ref
 ) {
@@ -183,6 +184,12 @@ function WechatMiniprogram(
 
   // Jump to WeChat mini program to photo
   async function goCamera(sourceType) {
+    if (onNavigateTo) {
+      let allowNavigateTo = await onNavigateTo()
+      if (allowNavigateTo === false) {
+        return false
+      }
+    }
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // Stop others polling
@@ -286,7 +293,7 @@ function WechatMiniprogram(
         onBeforeChoose={onBeforeChoose}
         onChoose={chooseVisible ? handleChoose : null}
         onFileChange={onFileChange}
-        onUpload={onUpload}
+        // onUpload={onUpload}
         onChange={onChange}
         onPreview={async (item, index) => {
           // 自定义预览
