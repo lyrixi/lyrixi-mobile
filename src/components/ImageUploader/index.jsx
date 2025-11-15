@@ -3,6 +3,7 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react'
 // 内部组件导出
 import Mark from './components/Mark'
 import validate from './utils/validate'
+import uploadList from './utils/uploadList'
 
 // 内部组件
 import Interval from './utils/Interval'
@@ -220,4 +221,4 @@ function Main(
 }
 
 export default forwardRef(Main)
-export { Mark, validate }
+export { Mark, validate, uploadList }
