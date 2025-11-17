@@ -1,8 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
 // 内部组件导出
-import Mark from './components/Mark'
-import validateList from './utils/validateList'
 import uploadList from './utils/uploadList'
 
 // 内部组件
@@ -26,7 +24,7 @@ import { LocaleUtil, Device, Bridge, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
-function Main(
+function MediaUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
@@ -216,5 +214,6 @@ function Main(
   return <Browser ref={ref} {...commonProps} />
 }
 
-export default forwardRef(Main)
-export { Mark, validateList, uploadList }
+MediaUploader.uploadList = uploadList
+
+export default forwardRef(MediaUploader)
