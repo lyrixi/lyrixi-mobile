@@ -1,16 +1,17 @@
 import _ from 'lodash'
 
 import uploadLyrixi from './../../Lyrixi/uploadItem'
-import uploadBrowser from './../../Browser/uploadItem'
+import uploadFile from './../../Browser/uploadItem'
 
 // 内库使用-start
 import Toast from './../../../Toast'
 import Bridge from './../../../../utils/Bridge'
+import Device from './../../../../utils/Device'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Bridge, LocaleUtil } from 'lyrixi-mobile'
+import { Toast, Bridge, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 导出给外部使用的工具类: 异步上传
@@ -18,34 +19,35 @@ let uploadItem = null
 if (Bridge.platform === 'lyrixi') {
   uploadItem = uploadLyrixi
 } else {
-  uploadItem = uploadBrowser
+  uploadItem = uploadFile
 }
+
 /**
  * 上传图片
  * @param {Array|Object} list ImageUploader控件返回的list
  * @param {Object} uploadConfig
- * @returns {Array} [{原item属性, filePath: '', fileUrl: '', status: 'choose|uploading|fail|success'}]
+ * @returns {Array} [{原item属性, filePath: '', fileUrl: '', fileThumbnail: '', status: 'choose|uploading|fail|success'}]
  */
 
-async function uploadFile(fileList, uploadConfig) {
-  if (_.isEmpty(fileList)) {
+async function uploadList(attachList, uploadConfig) {
+  if (_.isEmpty(attachList)) {
     return null
   }
 
   // 浏览器上传, 客户端不调用浏览器上传
   if (uploadConfig?.type === 'browser') {
-    uploadItem = uploadBrowser
+    uploadItem = uploadFile
   }
 
   let list = null
 
   // 如果是对象则转为数组
-  if (toString.call(fileList) === '[object Object]') {
-    list = [fileList]
+  if (toString.call(attachList) === '[object Object]') {
+    list = [attachList]
   }
   // 如果是数组
-  else if (Array.isArray(fileList)) {
-    list = fileList
+  else if (Array.isArray(attachList)) {
+    list = attachList
   }
 
   // 过滤非法的list
@@ -54,7 +56,7 @@ async function uploadFile(fileList, uploadConfig) {
   })
   if (_.isEmpty(list)) {
     Toast.show({
-      content: LocaleUtil.locale('uploadFile参数fileList错误')
+      content: LocaleUtil.locale('uploadList参数列表错误')
     })
     return null
   }
@@ -63,7 +65,7 @@ async function uploadFile(fileList, uploadConfig) {
   if (!uploadItem) {
     Toast.show({ content: LocaleUtil.locale('不支持此平台上传') })
     return list?.map?.((item) => {
-      if (!item.src?.startsWith?.('http')) {
+      if (!item.fileUrl?.startsWith?.('http')) {
         item.status = 'error'
       }
       return item
@@ -73,7 +75,7 @@ async function uploadFile(fileList, uploadConfig) {
   // 开始上传
   for (let [index, item] of list.entries()) {
     // 已经上传成功的图片无需上传
-    if (item?.src?.startsWith('http') && !item?.src?.startsWith?.('https://resource/')) {
+    if (item?.fileUrl?.startsWith('http') && !item?.fileUrl?.startsWith?.('https://resource/')) {
       console.log('此项无需上传:', item)
       continue
     }
@@ -84,7 +86,7 @@ async function uploadFile(fileList, uploadConfig) {
       timeout: item?.timeout || uploadConfig?.timeout,
       uploadDir: item?.uploadDir || uploadConfig?.uploadDir,
       getUploadUrl: uploadConfig?.getUploadUrl,
-      getUploadParams: uploadConfig?.getUploadParams,
+      getUploadPayload: uploadConfig?.getUploadPayload,
       formatUploadedItem: uploadConfig?.formatUploadedItem
     })
     // 上传失败
@@ -101,7 +103,7 @@ async function uploadFile(fileList, uploadConfig) {
     // 重新设置list
     list[index] = item
   }
-  return toString.call(fileList) === '[object Object]' ? list[0] : list
+  return toString.call(attachList) === '[object Object]' ? list[0] : list
 }
 
-export default uploadFile
+export default uploadList
