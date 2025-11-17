@@ -1,4 +1,4 @@
-// 与Attach.getRemainCount共用
+// 与(Attach.getRemainCount, AttachUploader.getRemainCount, MediaUploader.getRemainCount)共用
 
 // 剩余可上传数量
 function getRemainCount(count, currentCount) {
