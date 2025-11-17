@@ -1,4 +1,5 @@
 import React from 'react'
+import getAccept from './../utils/getAccept'
 import Button from './Button'
 
 // 内库使用-start
@@ -11,19 +12,24 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 // 上传按钮
 const Attach = ({
-  className,
-  // file框属性
-  fileProps,
+  // Value & Display Value
+  sourceType,
 
-  // 上传DOM和状态
-  upload,
-  uploading,
+  // Status
+  disabled,
+
+  // Style
+  className,
+
+  // Element
+  uploadRender,
+
+  uploadingRender,
 
   // Events
   onBeforeChoose,
   onChoose,
-  onFileChange,
-  disabled
+  onFileChange
 }) => {
   // 选择文件
   function handleFileChange(e) {
@@ -62,16 +68,15 @@ const Attach = ({
 
   // 上传node
   function getUploadNode() {
-    if (typeof upload === 'function') {
-      return upload({ disabled, uploading })
+    if (typeof uploadRender === 'function') {
+      return uploadRender({ uploadingType: 'choose' })
     }
-    if (React.isValidElement(upload)) {
-      return upload
-    }
-    return null
+    return <Button disabled={disabled} uploadingRender={uploadingRender} />
   }
 
-  const uploadNode = getUploadNode()
+  const fileProps = {
+    accept: getAccept(sourceType)
+  }
 
   return (
     <div
@@ -83,18 +88,18 @@ const Attach = ({
       onClick={handleUploadClick}
     >
       {/* 上传按钮 */}
-      {uploadNode ? uploadNode : <Button disabled={disabled} uploading={uploading} />}
+      {getUploadNode()}
 
       {/* 启用file框 */}
       {onFileChange && (
         <input
           type="file"
           className="lyrixi-attach-choose-input-file"
+          {...fileProps}
           onChange={handleFileChange}
           onClick={(e) => {
             e.stopPropagation()
           }}
-          {...(fileProps || {})}
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
-import getAccept from './../utils/getAccept'
+
 import fileChoose from './fileChoose'
 import choose from './choose'
 import Choose from './../Choose'
@@ -28,9 +28,8 @@ function Attach(
     allowChoose = false,
     allowClear = false,
     uploadPosition,
-    upload,
-    uploading,
-    fileProps,
+    uploadRender,
+    uploadingRender,
 
     // Preview Config: { allowChoose, allowClear }
     preview,
@@ -39,7 +38,7 @@ function Attach(
     async = false,
     reUpload = true,
     count,
-    extension,
+    sourceType,
     maxSize, // bytes
     list = [], // [{fileName: '附件名称', fileUrl: '全路径', filePath: '目录/年月/文件名.jpg', status: 'choose|uploading|error|success'}]
 
@@ -259,7 +258,7 @@ function Attach(
       async,
       maxSize,
       count,
-      extension,
+      sourceType,
       list,
       uploadPosition,
       uploadList,
@@ -277,7 +276,7 @@ function Attach(
       async,
       maxSize,
       count,
-      extension,
+      sourceType,
       list,
       uploadPosition,
       uploadList,
@@ -357,15 +356,11 @@ function Attach(
     return (
       <Choose
         disabled={disabled}
-        // file框属性
-        fileProps={{
-          accept: getAccept(extension),
-          ...fileProps
-        }}
+        sourceType={sourceType}
         // 上传DOM
-        upload={upload}
+        uploadRender={uploadRender}
         // 上传中DOM
-        uploading={uploading}
+        uploadingRender={uploadingRender}
         // Choose events
         onChoose={onChoose && chooseVisible ? handleChoose : null}
         onBeforeChoose={
@@ -397,7 +392,7 @@ function Attach(
             fileUrl: item.localFileUrl || item.fileUrl
           }
         })}
-        uploading={uploading}
+        uploadingRender={uploadingRender}
         // Events
         onDelete={allowClear ? handleDelete : null}
         onReUpload={handleReUpload}

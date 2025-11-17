@@ -11,7 +11,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传按钮
-const UploadButton = ({ uploading, style, className }, ref) => {
+const UploadButton = ({ uploadingRender, style, className }, ref) => {
   const rootRef = useRef(null)
 
   // Expose
@@ -31,7 +31,11 @@ const UploadButton = ({ uploading, style, className }, ref) => {
       <i className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add"></i>
 
       {/* Loading图标 */}
-      <Uploading uploading={uploading} className="lyrixi-attach-choose-icon" />
+      <Uploading
+        uploadingType="choose"
+        uploadingRender={uploadingRender}
+        className="lyrixi-attach-choose-icon"
+      />
 
       {/* 文字 */}
       <div className="attach-choose-button-label">{LocaleUtil.locale('附件', 'lyrixi_attach')}</div>

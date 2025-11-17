@@ -47,8 +47,8 @@ export default () => {
       <Page.Main>
         <Divider>Default Attach</Divider>
         <Attach
-          // upload={(...params) => {
-          //   console.log(...params)
+          // uploadRender={({uploadType}) => {
+          //   console.log(uploadType)
           //   return <div>上传</div>
           // }}
           ref={uploadRef}

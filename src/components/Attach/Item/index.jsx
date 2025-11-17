@@ -19,7 +19,7 @@ import { DOMUtil, LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Message } fro
 const Item = ({
   item,
   index,
-  uploading,
+  uploadingRender,
   // Events
   onPreview,
   onDelete,
@@ -173,7 +173,11 @@ const Item = ({
         )}
 
         {/* 转圈 */}
-        <Uploading uploading={uploading} item={item} className="lyrixi-attach-item-right-icon" />
+        <Uploading
+          uploadingRender={uploadingRender}
+          uploadingType="item"
+          className="lyrixi-attach-item-right-icon"
+        />
       </div>
     </div>
   )

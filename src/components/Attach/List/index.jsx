@@ -5,7 +5,7 @@ import Item from './../Item'
 // File List
 const List = ({
   list, // [{id: '', fileName: '', fileThumbnail: '', fileUrl: '', status: 'choose|uploading|error|success'}]
-  uploading,
+  uploadingRender,
   // Events
   onDelete,
   onReUpload,
@@ -31,7 +31,7 @@ const List = ({
               key={index}
               item={item}
               index={index}
-              uploading={uploading}
+              uploadingRender={uploadingRender}
               onPreview={onPreviewRef.current}
               onDelete={onDeleteRef.current}
               onReUpload={onReUploadRef.current}

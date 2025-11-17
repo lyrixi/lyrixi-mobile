@@ -18,7 +18,7 @@ async function choose({
   async,
   maxSize,
   count,
-  extension,
+  sourceType,
   list,
   uploadPosition,
   uploadList,
@@ -61,12 +61,12 @@ async function choose({
       })
       return false
     }
-    if (!supportTypes(item.fileName, extension)) {
+    if (!supportTypes(item.fileName, sourceType)) {
       Toast.show({
         content: LocaleUtil.locale(
-          `只支持选择${extension.join(',')}格式的文件`,
+          `只支持选择${sourceType.join(',')}格式的文件`,
           'lyrixi_choose_type_error',
-          [extension.join(',')]
+          [sourceType.join(',')]
         ),
         maskClickable: true
       })

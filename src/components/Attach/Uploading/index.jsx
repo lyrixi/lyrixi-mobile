@@ -10,14 +10,11 @@ import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传中图标
-const Uploading = ({ uploading, item, className }) => {
+const Uploading = ({ uploadingRender, uploadingType, className }) => {
   // 上传中node
-  function getUploadingNode(item) {
-    if (typeof uploading === 'function') {
-      return uploading(item)
-    }
-    if (React.isValidElement(uploading)) {
-      return uploading
+  function getUploadingNode() {
+    if (typeof uploadingRender === 'function') {
+      return uploadingRender({ uploadingType })
     }
     return (
       <div className="lyrixi-attach-uploading-icon">
@@ -28,7 +25,7 @@ const Uploading = ({ uploading, item, className }) => {
 
   return (
     <div className={DOMUtil.classNames('lyrixi-attach-uploading', className)}>
-      {getUploadingNode(item)}
+      {getUploadingNode()}
     </div>
   )
 }
