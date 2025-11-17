@@ -250,7 +250,7 @@ function Attach(
     }
     // 视频使用previewFile预览
     else if (previewTypeRef.current === 'nativeFile') {
-      Bridge.previewFile({ url: item.localFileUrl || item.fileUrl })
+      Bridge.previewFile(item)
     }
     // 浏览器预览
     else if (previewTypeRef.current === 'browser') {

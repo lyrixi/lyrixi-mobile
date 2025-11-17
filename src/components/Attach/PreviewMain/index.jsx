@@ -73,7 +73,7 @@ function AttachPreviewMain(
             <Button
               color="primary"
               onClick={() => {
-                Bridge.previewFile({ url: fileUrl })
+                Bridge.previewFile({ fileUrl: fileUrl })
               }}
             >
               {LocaleUtil.locale('点击预览')}

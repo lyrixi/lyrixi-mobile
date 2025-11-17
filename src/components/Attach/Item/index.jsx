@@ -60,7 +60,7 @@ const Item = ({
 
     // 只有客户端和企微支持预览文件
     if (previewTypeRef.current === 'nativeFile') {
-      Bridge.previewFile({ url: previewUrl, name: item?.fileName, size: item.fileSize })
+      Bridge.previewFile(item)
     }
     // 平台预览需要复制到剪贴板
     else {
