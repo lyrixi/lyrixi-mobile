@@ -67,7 +67,7 @@ function WechatMiniprogram(
     // Events
     onBeforeChoose,
     // onChoose,
-    onFileChange,
+    // onFileChange,
     // onUpload,
     onChange,
     onPreview,

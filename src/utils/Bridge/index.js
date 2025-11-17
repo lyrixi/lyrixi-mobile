@@ -227,7 +227,7 @@ let Bridge = {
    * @param {Array<String>} params.sourceType - 图片来源，['camera', 'album']，默认为 ['camera', 'album']
    * @param {Array<String>} params.mediaType - 媒体类型，['image', 'video', 'mix']，默认为 ['image']
    * @param {Number} params.maxDuration - 视频最大时长，单位秒，默认为 10
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{preview: String, path: String, type: String}>}
+   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{fileUrl: String, filePath: String, fileType: String}>}
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}

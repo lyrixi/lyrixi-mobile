@@ -39,7 +39,6 @@ toc: content
 | uploadPosition  | 上传按钮位置 | `'start' \| 'end'`              | `'end'`               |
 | uploadRender    | 上传按钮     | `function({uploadType: ''})`    | -                     |
 | uploadingRender | 自定义上传中 | `function({uploadingType: ''})` | -                     |
-| preview         | 预览配置     | `object`                        | -                     |
 | async           | 是否异步     | `boolean`                       | `false`               |
 | reUpload        | 是否重新上传 | `boolean`                       | `true`                |
 | count           | 最大数量     | `number`                        | -                     |

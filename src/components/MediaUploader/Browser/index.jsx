@@ -131,8 +131,8 @@ function Browser(
       resolve({
         status: 'choose',
         localFile: localFile,
-        fileThumbnail: localFile.preview,
-        fileUrl: localFile.preview,
+        fileThumbnail: localFile.fileUrl,
+        fileUrl: localFile.fileUrl,
         watermark: watermark,
         uploadDir: uploadDir
       })

@@ -64,7 +64,7 @@ function MediaUploader(
     // Events
     onBeforeChoose,
     // onChoose,
-    onFileChange,
+    // onFileChange,
     // onUpload,
     onChange,
     onPreview
@@ -151,8 +151,8 @@ function MediaUploader(
               status: 'choose',
               localFile: localFile,
               watermark: watermark,
-              fileThumbnail: localFile.preview,
-              fileUrl: localFile.preview,
+              fileThumbnail: localFile.fileUrl,
+              fileUrl: localFile.fileUrl,
               uploadDir: uploadDir
             }
           })
@@ -200,7 +200,7 @@ function MediaUploader(
       // Events
       onBeforeChoose={onBeforeChoose}
       onChoose={handleChoose}
-      onFileChange={onFileChange}
+      // onFileChange={onFileChange}
       onUpload={uploadItem}
       onChange={onChange}
       onPreview={async (item, index) => {

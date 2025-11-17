@@ -3,11 +3,11 @@
 function compressImage(file) {
   return new Promise((resolve) => {
     window.top.dd.compressImage({
-      filePaths: [file.path],
+      filePaths: [file.filePath],
       compressLevel: 2,
       onSuccess: (res) => {
         const { filePaths } = res
-        file.path = filePaths?.[0] || file.path
+        file.filePath = filePaths?.[0] || file.filePath
         resolve(file)
       },
       onError: () => {

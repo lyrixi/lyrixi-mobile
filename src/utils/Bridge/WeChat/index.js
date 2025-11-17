@@ -205,7 +205,7 @@ let Bridge = {
       for (let localId of res?.localIds) {
         let localFile = { path: localId }
         let preview = await getPreview(localId)
-        localFile.preview = preview
+        localFile.fileUrl = preview
         localFiles.push(localFile)
       }
       params.onSuccess &&
@@ -238,7 +238,7 @@ let Bridge = {
       return
     }
     window.top.wx.uploadImage({
-      localId: localFile?.path,
+      localId: localFile?.filePath,
       isShowProgressTips: 0,
       success: async function (res) {
         let serverId = res.serverId

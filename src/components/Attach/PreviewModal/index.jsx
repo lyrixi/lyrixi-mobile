@@ -20,9 +20,9 @@ const AttachPreviewModal = forwardRef(
     {
       // Main: Value & Display Value
       fileName,
-      viewerUrl,
+      previewServerUrl,
       fileUrl,
-      types,
+      previewServerSourceType,
 
       // Modal: Status
       open,
@@ -65,7 +65,12 @@ const AttachPreviewModal = forwardRef(
         open={open}
         onClose={onClose}
       >
-        <PreviewMain fileName={fileName} fileUrl={fileUrl} viewerUrl={viewerUrl} types={types} />
+        <PreviewMain
+          fileName={fileName}
+          fileUrl={fileUrl}
+          previewServerUrl={previewServerUrl}
+          previewServerSourceType={previewServerSourceType}
+        />
       </NavBarModal>
     )
   }

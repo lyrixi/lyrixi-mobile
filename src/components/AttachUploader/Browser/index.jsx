@@ -47,7 +47,11 @@ function Browser(
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
+
+    // Preview Server
     previewPortal,
+    previewServerUrl,
+    previewServerSourceType,
     /*
     格式化上传结果
     入参:
@@ -129,9 +133,9 @@ function Browser(
       resolve({
         status: 'choose',
         localFile: localFile,
-        fileName: localFile.name,
-        fileSize: localFile.size,
-        fileUrl: localFile.preview,
+        fileName: localFile.fileName,
+        fileSize: localFile.fileSize,
+        fileUrl: localFile.fileUrl,
         uploadDir: uploadDir
       })
     })
@@ -156,7 +160,10 @@ function Browser(
       // Element
       uploadRender={uploadRender}
       uploadingRender={uploadingRender}
+      // Preview Server
       previewPortal={previewPortal}
+      previewServerUrl={previewServerUrl}
+      previewServerSourceType={previewServerSourceType}
       // Events
       onBeforeChoose={onBeforeChoose}
       onFileChange={handleChoose}

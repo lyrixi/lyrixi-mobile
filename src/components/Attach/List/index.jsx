@@ -5,7 +5,7 @@ import Item from './../Item'
 // File List
 const List = ({
   // Value & Display Value
-  list, // [{id: '', fileName: '', fileUrl: '', status: 'choose|uploading|error|success'}]
+  list, // [{ fileName: '文件名', fileUrl: '全路径', status: 'choose|uploading|error|success'}]
 
   // Status
   allowClear,

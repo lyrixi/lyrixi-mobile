@@ -74,8 +74,6 @@ function MediaUploader(
 
     // Events
     onBeforeChoose,
-    // onChoose,
-    onFileChange,
     onUpload,
     onChange,
     onPreview
@@ -152,7 +150,6 @@ function MediaUploader(
     getUploadPayload,
     // Events
     onBeforeChoose,
-    onFileChange,
     onUpload,
     onChange,
     onPreview

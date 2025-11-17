@@ -30,9 +30,9 @@ function AttachPreviewMain(
   {
     // Value & Display Value
     fileName,
-    viewerUrl, // 在线预览平台地址, 将会将fileUrl拼接到后面
+    previewServerUrl, // 在线预览平台地址, 将会将fileUrl拼接到后面
     fileUrl,
-    types = ['image', 'video', 'audio', 'pdf']
+    previewServerSourceType = ['image', 'video', 'audio', 'pdf']
   },
   ref
 ) {
@@ -49,11 +49,11 @@ function AttachPreviewMain(
     if (typeof fileUrl !== 'string') {
       return ''
     }
-    if (viewerUrl && typeof viewerUrl === 'string') {
+    if (previewServerUrl && typeof previewServerUrl === 'string') {
       let urlParamSrc = encodeURIComponent(encodeURIComponent(fileUrl))
-      return viewerUrl.indexOf('?') === -1
-        ? `${viewerUrl}?url=${urlParamSrc}}`
-        : `${viewerUrl}&url=${urlParamSrc}}`
+      return previewServerUrl.indexOf('?') === -1
+        ? `${previewServerUrl}?url=${urlParamSrc}}`
+        : `${previewServerUrl}&url=${urlParamSrc}}`
     }
     return fileUrl
   }
@@ -63,7 +63,7 @@ function AttachPreviewMain(
 
   return (
     <div ref={mainRef} className="lyrixi-attach-preview-main" style={{ height: '600px' }}>
-      {supportTypes(fileUrl, types) === false ? (
+      {supportTypes(fileUrl, previewServerSourceType) === false ? (
         <Result
           status="error"
           title={LocaleUtil.locale(`${fileName}`)}

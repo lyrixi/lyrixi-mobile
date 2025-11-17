@@ -89,11 +89,12 @@ async function fileChoose({
   let currentList = null
   if (typeof onFileChange === 'function') {
     currentList = await onFileChange({
-      name: fileName,
-      size: fileSize,
-      type: fileData?.type,
-      path: fileData,
-      preview: fileURL
+      fileName: fileName,
+      fileSize: fileSize,
+      fileType: fileData?.type,
+      filePath: fileData,
+      fileUrl: fileURL,
+      status: 'choose'
     })
   }
 

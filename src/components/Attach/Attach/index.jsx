@@ -53,7 +53,11 @@ function Attach(
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
+
+    // Preview Server
     previewPortal,
+    previewServerUrl,
+    previewServerSourceType,
 
     // Events
     onBeforeChoose,
@@ -322,9 +326,9 @@ function Attach(
         <PreviewModal
           // Value & Display Value
           fileName={list[previewVisible]?.fileName}
-          viewerUrl={preview?.viewerUrl}
+          previewServerUrl={previewServerUrl}
           fileUrl={list[previewVisible]?.fileUrl}
-          types={preview?.types}
+          previewServerSourceType={previewServerSourceType}
           // Status
           open={typeof previewVisible === 'number'}
           // Elements

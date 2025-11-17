@@ -185,8 +185,10 @@ let Bridge = {
     window.top.dd.biz.util.scan(wrappedParams)
   },
   chooseMedia: function ({ count, sourceType, sizeType, onSuccess, onError, onCancel } = {}) {
+    // eslint-disable-next-line
     count = count || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
+      // eslint-disable-next-line
       count = 1
     }
 
@@ -194,9 +196,9 @@ let Bridge = {
       let localFiles = []
       for (let file of res?.files) {
         let localFile = {
-          preview: file.path,
-          path: file.path,
-          type: file.fileType
+          fileUrl: file.path,
+          filePath: file.path,
+          fileType: file.fileType
         }
 
         if (sizeType?.indexOf?.('compressed') >= 0) {
@@ -242,7 +244,7 @@ let Bridge = {
     })
   },
   uploadFile: function ({ localFile, url, header = {}, payload = {}, onSuccess, onError } = {}) {
-    if (!localFile?.type || !localFile?.path) {
+    if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
           status: 'error',
@@ -299,8 +301,8 @@ let Bridge = {
       header: header,
       formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
-      filePath: localFile.path,
-      fileType: localFile.type
+      filePath: localFile.filePath,
+      fileType: localFile.fileType
     })
 
     window.top.dd.uploadFile({
@@ -308,8 +310,8 @@ let Bridge = {
       header: header,
       formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
-      filePath: localFile.path,
-      fileType: localFile.type,
+      filePath: localFile.filePath,
+      fileType: localFile.fileType,
       success: handleSuccess,
       fail: handleError
     })
