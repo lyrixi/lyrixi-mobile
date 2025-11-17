@@ -49,9 +49,7 @@ const List = ({
                 // Events
                 onDelete={typeof onChange === 'function' && allowClear ? handleDelete : null}
                 onReUpload={onReUpload}
-                onPreview={(e) => {
-                  onPreview && onPreview(item, index)
-                }}
+                onPreview={onPreview}
               />
             )
           })

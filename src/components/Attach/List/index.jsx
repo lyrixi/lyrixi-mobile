@@ -4,21 +4,34 @@ import Item from './../Item'
 
 // File List
 const List = ({
-  list, // [{id: '', fileName: '', fileThumbnail: '', fileUrl: '', status: 'choose|uploading|error|success'}]
+  // Value & Display Value
+  list, // [{id: '', fileName: '', fileUrl: '', status: 'choose|uploading|error|success'}]
+
+  // Status
+  allowClear,
+
+  // Element
   uploadingRender,
+
   // Events
-  onDelete,
+  onChange,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
 }) => {
   // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
-  const onDeleteRef = useRef()
   const onReUploadRef = useRef()
   const onPreviewRef = useRef()
 
-  onDeleteRef.current = onDelete
   onReUploadRef.current = onReUpload
   onPreviewRef.current = onPreview
+
+  // Delete
+  function handleDelete(item, index) {
+    let newList = list.filter((attach, attachIndex) => {
+      return attachIndex !== index
+    })
+    onChange && onChange(newList, { action: 'delete' })
+  }
 
   return (
     <>
@@ -32,9 +45,9 @@ const List = ({
               item={item}
               index={index}
               uploadingRender={uploadingRender}
-              onPreview={onPreviewRef.current}
-              onDelete={onDeleteRef.current}
-              onReUpload={onReUploadRef.current}
+              onDelete={typeof onChange === 'function' && allowClear ? handleDelete : null}
+              onReUpload={onReUpload}
+              onPreview={onPreview}
             />
           )
         })}

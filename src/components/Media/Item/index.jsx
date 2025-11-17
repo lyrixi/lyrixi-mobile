@@ -35,7 +35,7 @@ const Item = ({
       onClick={(e) => {
         e.stopPropagation()
 
-        onPreview && onPreview(e)
+        onPreview && onPreview(item, index)
       }}
     >
       {/* 缩略图 */}
