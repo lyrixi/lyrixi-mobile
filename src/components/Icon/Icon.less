@@ -43,6 +43,11 @@
     font-size: var(--font-size-xl);
   }
 }
+// 图标文件, 因为包含文件路径, 所以不能放置到需要外部引入的base.less中
+[class^='lyrixi-iconfont-'],
+[class*=' lyrixi-iconfont-'] {
+  font-family: 'lyrixi-iconfont';
+}
 
 // 文字图标
 @font-face {

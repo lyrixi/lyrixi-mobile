@@ -50,7 +50,7 @@ const ActionSheetModal = forwardRef(
   ) => {
     // 过滤非法数据
     // eslint-disable-next-line
-    list = list.filter((item) => {
+    list = list?.filter?.((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
     })

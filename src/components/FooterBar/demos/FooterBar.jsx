@@ -76,7 +76,7 @@ export default () => {
               }
             ]}
           />
-          <FooterBar.Icon
+          <FooterBar.Button
             disabled
             iconClassName="lyrixi-iconfont-config"
             onClick={(e) => {
@@ -109,6 +109,7 @@ export default () => {
         <Divider>Button</Divider>
         <FooterBar>
           <FooterBar.Button
+            iconPosition="top"
             iconClassName="lyrixi-iconfont-three-dots"
             list={[
               {
@@ -130,6 +131,7 @@ export default () => {
             More
           </FooterBar.Button>
           <FooterBar.Button
+            iconPosition="top"
             iconClassName="lyrixi-iconfont-config"
             onClick={(e) => {
               console.log(e)
@@ -138,6 +140,7 @@ export default () => {
             Config
           </FooterBar.Button>
           <FooterBar.Button
+            backgroundColor="default"
             onClick={(e) => {
               console.log(e)
             }}

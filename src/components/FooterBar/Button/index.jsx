@@ -14,14 +14,17 @@ const FooterBarButton = forwardRef(
   (
     {
       // Combo Button: Style
+      color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
+      backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      size, // 尺寸: xxs, xs, s, m, l, xl
+      radius = 'm', // 圆角: xxs, xs, s, m, l, xl
+      square, // 是否为正方形
+      border = 'none', // 边框: none, dotted, dashed, solid
       style,
       className,
-      color = 'default',
-      backgroundColor,
-      square,
-      border,
-      radius,
-      size,
+
+      // Combo Button: Status
+      disabled,
 
       // Combo Button: Element
       children,
@@ -67,6 +70,8 @@ const FooterBarButton = forwardRef(
           border={border}
           radius={radius}
           size={size}
+          // Combo Button: Status
+          disabled={disabled}
           // Combo Icon: Style
           iconClassName={iconClassName}
           iconPosition={iconPosition}

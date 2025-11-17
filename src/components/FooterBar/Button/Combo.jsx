@@ -16,15 +16,17 @@ function Combo(
     open,
 
     // Button: Style
-    color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
-    backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-    size = 'm', // 尺寸: xxs, xs, s, m, l, xl
-    padding, // 内边距: 数值
+    color, // 颜色: default, transparent, primary, link, warning, danger, success
+    backgroundColor, // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+    size, // 尺寸: xxs, xs, s, m, l, xl
     radius, // 圆角: xxs, xs, s, m, l, xl
     square, // 是否为正方形
-    border = 'solid', // 边框: none, dotted, dashed, solid
+    border, // 边框: none, dotted, dashed, solid
     style,
     className,
+
+    // Button: Status
+    disabled,
 
     // Button: Elements
     children,
@@ -57,17 +59,18 @@ function Combo(
       // Button: Style
       color={color}
       backgroundColor={backgroundColor}
-      size={size || 's'}
-      padding={padding}
+      size={size}
       style={style}
       square={square}
       border={border}
-      radius={radius || 's'}
+      radius={radius}
       className={DOMUtil.classNames(
         'lyrixi-footerbar-button',
         className,
         open ? 'lyrixi-expand' : ''
       )}
+      // Button: Status
+      disabled={disabled}
       // Icon: Style
       iconClassName={iconClassName}
       iconPosition={iconPosition}
