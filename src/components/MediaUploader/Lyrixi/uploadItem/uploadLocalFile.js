@@ -2,10 +2,11 @@ import { validateImageSrc } from './../../utils'
 
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge } from 'lyrixi-mobile'
+import { Bridge, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传localFile
@@ -13,7 +14,7 @@ function uploadLocalFile({
   localFile,
   url,
   header,
-  data,
+  payload,
   // 用于构建新Item的入参
   item,
   formatUploadedItem

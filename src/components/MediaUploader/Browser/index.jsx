@@ -3,12 +3,13 @@ import { getPreviewType } from './../utils'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Media from './../../Media'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
+import { LocaleUtil, Toast, Media } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传

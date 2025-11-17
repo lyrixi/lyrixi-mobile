@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react'
 
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
-import Image from './../../../Image'
+import Media from './../../../Media'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge, Image } from 'lyrixi-mobile'
+import { Bridge, Media } from 'lyrixi-mobile'
 测试使用-end */
 
 // 预览
@@ -54,7 +54,7 @@ function Thumbnail({ src, onPreview }) {
 
       {/* 预览 */}
       {previewTypeRef.current === 'browser' && (
-        <Image.PreviewModal
+        <Media.PreviewModal
           open={typeof previewCurrent === 'number'}
           onClose={() => {
             setPreviewCurrent(null)

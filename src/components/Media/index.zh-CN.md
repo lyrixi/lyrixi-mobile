@@ -3,11 +3,11 @@ group:
   title: 数据录入
   order: 2
 order: 1
-title: Image
+title: Media
 toc: content
 ---
 
-# Image
+# Media
 
 图片组件，用于图片展示、选择和上传。
 
@@ -22,13 +22,13 @@ toc: content
 
 ## 照片
 
-<code src="./demos/Image/index.jsx"></code>
+<code src="./demos/Media/index.jsx"></code>
 
 ## 视频
 
 <code src="./demos/video.jsx"></code>
 
-## Image
+## Media
 
 ### 属性
 

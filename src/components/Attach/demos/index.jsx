@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toast, Page, Divider, Bridge, Button, Attach } from 'lyrixi-mobile'
-import uploadItem from './browser/uploadItem'
 
 export default () => {
   const uploadRef = useRef(null)
@@ -19,7 +18,7 @@ export default () => {
   const [customList, setCustomList] = useState([])
 
   useEffect(() => {
-    Bridge.ready(() => {
+    Bridge.load(() => {
       console.log('加载桥接')
     })
   }, [])
@@ -79,7 +78,10 @@ export default () => {
             console.log('修改:', newList)
             setList(newList)
           }}
-          onUpload={uploadItem}
+          onUpload={(item) => {
+            console.log(item)
+            return item
+          }}
         />
         <Divider>Custom Attach</Divider>
         <Attach
@@ -110,7 +112,10 @@ export default () => {
             console.log('修改:', newList)
             setCustomList(newList)
           }}
-          onUpload={uploadItem}
+          onUpload={(item) => {
+            console.log(item)
+            return item
+          }}
         >
           {Array.isArray(customList) && customList.length ? (
             <Attach.List

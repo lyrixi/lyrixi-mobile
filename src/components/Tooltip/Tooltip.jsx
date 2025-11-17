@@ -102,7 +102,7 @@ const Tooltip = forwardRef(
     function handleOpen() {
       // 没有自定义位置时生效
       if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-        updatePosition(e.currentTarget)
+        updatePosition(comboRef.current?.comboDOM)
       }
       setOpen(!open)
     }

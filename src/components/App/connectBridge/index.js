@@ -26,7 +26,7 @@ async function config(options = {}) {
     return true
   }
   return new Promise((resolve) => {
-    Bridge.ready(async () => {
+    Bridge.load(async () => {
       // 钉钉标题需要手动补充
       let title = decodeURIComponent(decodeURIComponent(Device.getUrlParameter('title') || ''))
       if (Device.platform === 'dingtalk' && document.title) {

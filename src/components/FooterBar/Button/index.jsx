@@ -13,15 +13,27 @@ import { ActionSheet } from 'lyrixi-mobile'
 const FooterBarButton = forwardRef(
   (
     {
-      // Combo: Style
+      // Combo Button: Style
       style,
       className,
       color = 'default',
       backgroundColor,
-      shape,
+      square,
       border,
       radius,
       size,
+
+      // Combo Button: Element
+      children,
+
+      // Combo Icon: Style
+      iconClassName,
+      iconPosition,
+      iconColor,
+      iconBackgroundColor,
+      iconSize,
+      iconPadding,
+      iconRadius,
 
       // Modal: Value & Display Value
       list,
@@ -46,16 +58,23 @@ const FooterBarButton = forwardRef(
         <Combo
           ref={comboRef}
           open={open}
-          // Combo: Style
+          // Combo Button: Style
           style={style}
           className={className}
           color={color}
           backgroundColor={backgroundColor}
-          shape={shape}
+          square={square}
           border={border}
           radius={radius}
           size={size}
-          // Combo: Elements
+          // Combo Icon: Style
+          iconClassName={iconClassName}
+          iconPosition={iconPosition}
+          iconColor={iconColor}
+          iconBackgroundColor={iconBackgroundColor}
+          iconSize={iconSize}
+          iconPadding={iconPadding}
+          iconRadius={iconRadius}
           // Events
           onClick={onClick}
         >

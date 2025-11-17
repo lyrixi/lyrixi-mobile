@@ -1,11 +1,11 @@
 import uploadFile from './uploadFile'
+import back from './../utils/back'
 
 // 内库使用-start
-import Device from './../Device'
-import Toast from './../../components/Toast'
-import GeoUtil from './../GeoUtil'
-import LocaleUtil from './../LocaleUtil'
-import back from './utils/back'
+import GeoUtil from './../../GeoUtil'
+import LocaleUtil from './../../LocaleUtil'
+import Device from './../../Device'
+import Toast from './../../../components/Toast'
 // 内库使用-end
 
 /* 测试使用-start

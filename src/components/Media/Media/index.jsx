@@ -20,7 +20,7 @@ import { Bridge, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片视频预览
-const Image = forwardRef(
+const Media = forwardRef(
   (
     {
       // Value & Display Value
@@ -242,7 +242,7 @@ const Image = forwardRef(
     // 重新上传
     async function handleReUpload(item, index) {
       if (typeof onChange !== 'function') {
-        console.warn('lyrixi Image: onChange is not a function')
+        console.warn('lyrixi Media: onChange is not a function')
         return
       }
       let newList = [...list]
@@ -384,4 +384,4 @@ const Image = forwardRef(
   }
 )
 
-export default Image
+export default Media

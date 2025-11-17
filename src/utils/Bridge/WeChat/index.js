@@ -1,16 +1,16 @@
 // 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 
 import _ from 'lodash'
-import back from './utils/back'
+import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import wrapCallback from './../utils/wrapCallback'
 import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 
 // 内库使用-start
-import LocaleUtil from './../LocaleUtil'
-import Device from './../Device'
-import Toast from './../../components/Toast'
+import LocaleUtil from './../../LocaleUtil'
+import Device from './../../Device'
+import Toast from './../../../components/Toast'
 // 内库使用-end
 
 /* 测试使用-start
@@ -234,7 +234,7 @@ let Bridge = {
       Toast.show({
         content: message
       })
-      params?.onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
+      onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
       return
     }
     window.top.wx.uploadImage({

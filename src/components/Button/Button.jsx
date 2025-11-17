@@ -13,7 +13,7 @@ import { DOMUtil, Icon } from 'lyrixi-mobile'
 const Button = forwardRef(
   (
     {
-      // Style
+      // Button: Style
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
@@ -24,15 +24,20 @@ const Button = forwardRef(
       style,
       className,
 
-      // Element
+      // Button: Elements
       children,
+
+      // Icon: Style
       iconClassName,
       iconPosition,
       iconColor,
       iconBackgroundColor,
       iconSize,
       iconPadding,
-      iconRadius
+      iconRadius,
+
+      // Events
+      onClick
     },
     ref
   ) => {
@@ -82,6 +87,7 @@ const Button = forwardRef(
           square && `lyrixi-shape-square`,
           className
         )}
+        onClick={onClick}
       >
         {/* Element: Icon Left */}
         {iconClassName && iconPosition !== 'right' && (

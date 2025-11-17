@@ -10,7 +10,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 小程序拍照兼容方式切换, 小程序经常呼不起来
-function CompatibleToggle({ forceType, onForceTypeChange }) {
+function CompatibleToggle({ compatible, forceType, onForceTypeChange }) {
   const list = getList()
 
   // 获取当前选中项

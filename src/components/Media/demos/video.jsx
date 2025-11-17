@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Bridge, Image } from 'lyrixi-mobile'
+import { Bridge, Media } from 'lyrixi-mobile'
 
 export default () => {
   useEffect(() => {
-    Bridge.ready(() => {
+    Bridge.load(() => {
       console.log('加载桥接')
     })
   }, [])
@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <div id="root" className="lyrixi-position-relative" style={{ height: '300px' }}>
-      <Image ref={videosRef} type="video" list={list} />
+      <Media ref={videosRef} type="video" list={list} />
     </div>
   )
 }

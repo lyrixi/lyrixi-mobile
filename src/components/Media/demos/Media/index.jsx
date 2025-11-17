@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { SafeArea, HistoryUtil, Toast, Page, Divider, Bridge, Button, Image } from 'lyrixi-mobile'
+import { SafeArea, HistoryUtil, Toast, Page, Divider, Bridge, Button, Media } from 'lyrixi-mobile'
 import uploadItem from './browser/uploadItem'
 // import VConsole from 'vconsole'
 // new VConsole()
@@ -36,14 +36,14 @@ export default () => {
   const [customList, setCustomList] = useState([])
 
   useEffect(() => {
-    Bridge.ready(() => {
+    Bridge.load(() => {
       console.log('加载桥接')
     })
   }, [])
 
   // 异步上传
   async function handleAsyncUpload() {
-    let isOK = Image.validateListStatus(list)
+    let isOK = Media.validateListStatus(list)
     if (isOK !== true) {
       Toast.show({ content: isOK })
       let result = await imageUploaderRef.current.uploadList()
@@ -65,8 +65,8 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Divider>Default Image</Divider>
-        <Image
+        <Divider>Default Media</Divider>
+        <Media
           // async
           // reUpload={false}
 
@@ -89,7 +89,7 @@ export default () => {
         />
 
         <Divider>Preview Operate</Divider>
-        <Image
+        <Media
           ref={imageUploaderRef}
           // Preview operate: start
           upload={<div style={{ width: '100%', height: '100%', backgroundColor: 'ref' }}>1</div>}

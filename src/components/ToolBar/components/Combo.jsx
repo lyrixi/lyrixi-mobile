@@ -26,7 +26,11 @@ function Combo(
     size,
 
     // Element
-    arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
+    arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>,
+    children,
+
+    // Events
+    onClick
   },
   ref
 ) {

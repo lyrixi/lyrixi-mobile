@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import vconsole from 'vconsole'
 import { Bridge, Layout, MediaUploader } from 'lyrixi-mobile'
 import Ocr from './Ocr'
-Bridge.ready()
+Bridge.load()
 
 new vconsole()
 export default () => {

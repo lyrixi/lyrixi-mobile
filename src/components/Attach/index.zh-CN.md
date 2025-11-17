@@ -20,9 +20,9 @@ toc: content
 
 ## 示例
 
-<code src="./demos/FileUpload/index.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
-## Attach
+## Browser
 
 ### 属性
 

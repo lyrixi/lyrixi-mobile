@@ -7,8 +7,8 @@ export default () => {
       <Page.Main>
         <Divider>Text Button</Divider>
         <FooterBar>
-          <FooterBar.Icon
-            className="lyrixi-icon-three-dots"
+          <FooterBar.Button
+            iconClassName="lyrixi-icon-three-dots"
             list={[
               {
                 id: 'option1',
@@ -26,8 +26,8 @@ export default () => {
               }
             ]}
           />
-          <FooterBar.Icon
-            className="lyrixi-icon-config"
+          <FooterBar.Button
+            iconClassName="lyrixi-icon-config"
             onClick={(e) => {
               console.log(e)
             }}
@@ -56,9 +56,9 @@ export default () => {
 
         <Divider>Text Button disabled</Divider>
         <FooterBar>
-          <FooterBar.Icon
+          <FooterBar.Button
             disabled
-            className="lyrixi-icon-three-dots"
+            iconClassName="lyrixi-icon-three-dots"
             list={[
               {
                 id: 'option1',
@@ -78,7 +78,7 @@ export default () => {
           />
           <FooterBar.Icon
             disabled
-            className="lyrixi-icon-config"
+            iconClassName="lyrixi-icon-config"
             onClick={(e) => {
               console.log(e)
             }}
@@ -108,8 +108,8 @@ export default () => {
 
         <Divider>Button</Divider>
         <FooterBar>
-          <FooterBar.Tab
-            name="More"
+          <FooterBar.Button
+            iconClassName="lyrixi-icon-three-dots"
             list={[
               {
                 id: 'option1',
@@ -126,14 +126,17 @@ export default () => {
                 }
               }
             ]}
-          />
-          <FooterBar.Tab
-            iconRender={() => <Icon className="lyrixi-icon-config"></Icon>}
-            name="Config"
+          >
+            More
+          </FooterBar.Button>
+          <FooterBar.Button
+            iconClassName="lyrixi-icon-config"
             onClick={(e) => {
               console.log(e)
             }}
-          />
+          >
+            Config
+          </FooterBar.Button>
           <FooterBar.Button
             onClick={(e) => {
               console.log(e)
@@ -154,8 +157,8 @@ export default () => {
 
         <Divider>Button disabled</Divider>
         <FooterBar>
-          <FooterBar.Tab
-            name="More"
+          <FooterBar.Button
+            iconClassName="lyrixi-icon-three-dots"
             list={[
               {
                 disabled: true,
@@ -173,15 +176,18 @@ export default () => {
                 }
               }
             ]}
-          />
-          <FooterBar.Tab
+          >
+            More
+          </FooterBar.Button>
+          <FooterBar.Button
             disabled
-            iconRender={() => <Icon className="lyrixi-icon-config"></Icon>}
-            name="Config"
+            iconClassName="lyrixi-icon-config"
             onClick={(e) => {
               console.log(e)
             }}
-          />
+          >
+            Config
+          </FooterBar.Button>
           <FooterBar.Button
             disabled
             onClick={(e) => {

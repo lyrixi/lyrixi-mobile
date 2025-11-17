@@ -1,6 +1,14 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 function Guide({ portal, open, maskClassName, maskStyle, onClose }) {
   const handlerClick = (e) => {
     e.stopPropagation()

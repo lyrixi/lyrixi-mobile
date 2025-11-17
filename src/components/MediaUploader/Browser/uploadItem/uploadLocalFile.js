@@ -2,10 +2,11 @@ import { validateImageSrc } from './../../utils'
 
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge } from 'browser-mobile'
+import { Bridge, LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
 // 上传localFile

@@ -1,6 +1,6 @@
 // 内库使用-start
-import Request from './../../../../utils/Request'
-import LocaleUtil from './../../../../utils/LocaleUtil'
+import Request from './../../../utils/Request'
+import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start

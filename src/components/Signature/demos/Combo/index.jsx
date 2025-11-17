@@ -11,7 +11,7 @@ export default () => {
   )
 
   useEffect(() => {
-    Bridge.ready()
+    Bridge.load()
   }, [])
 
   return (

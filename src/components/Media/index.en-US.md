@@ -1,7 +1,7 @@
 ---
 category: Components
 group: Data Entry
-title: Image
+title: Media
 ---
 
-# Image
+# Media

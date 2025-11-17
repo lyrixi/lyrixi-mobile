@@ -1,15 +1,15 @@
 // 官方文档: https://opendocs.alipay.com/open/020oit?scene=SC00001851?pathHash=0f29c54b
 
 import _ from 'lodash'
-import back from './utils/back'
+import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
-import GeoUtil from './../GeoUtil'
-import LocaleUtil from './../LocaleUtil'
-import AssetUtil from './../AssetUtil'
-import Device from './../Device'
+import GeoUtil from './../../GeoUtil'
+import LocaleUtil from './../../LocaleUtil'
+import AssetUtil from './../../AssetUtil'
+import Device from './../../Device'
 // 内库使用-end
 
 /* 测试使用-start
@@ -182,7 +182,7 @@ let Bridge = {
   previewMedia: function (params) {
     const wrappedParams = wrapCallback({
       urls: params?.sources.map((item) => item.fileUrl),
-      current: index,
+      current: params?.index || 0,
       ...params
     })
 

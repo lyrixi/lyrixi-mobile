@@ -185,7 +185,7 @@ let Bridge = {
     window.top.dd.biz.util.scan(wrappedParams)
   },
   chooseMedia: function ({ count, sourceType, sizeType, onSuccess, onError, onCancel } = {}) {
-    let count = count || 9
+    count = count || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
       count = 1
     }
@@ -326,7 +326,7 @@ let Bridge = {
 
     const wrappedParams = wrapCallback({
       urls: params?.sources.map((item) => item.fileUrl),
-      current: index,
+      current: params?.index || 0,
       onSuccess: params?.onSuccess,
       onError: handleError
     })

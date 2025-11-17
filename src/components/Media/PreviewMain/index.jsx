@@ -220,7 +220,7 @@ const PreviewMain = forwardRef(
     // 重新上传
     async function handleReUpload() {
       if (typeof onChange !== 'function') {
-        console.warn('lyrixi Image: onChange is not a function')
+        console.warn('lyrixi Media: onChange is not a function')
         return
       }
       let index = swiperRef.current?.swiper?.activeIndex

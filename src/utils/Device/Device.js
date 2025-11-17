@@ -1,7 +1,7 @@
 import getKernel from './getKernel'
 import getDevice from './getDevice'
 import getOS from './getOS'
-import defaultGetPlatform from './defaultGetPlatform'
+import defaultGetPlatform from './getPlatform'
 import getUrlParameter from './getUrlParameter'
 import { getScreenWidth, getScreenHeight } from './getScreenSize'
 import getModel from './getModel'

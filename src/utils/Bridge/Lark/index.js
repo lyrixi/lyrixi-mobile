@@ -2,13 +2,13 @@
 // 鉴权: https://open.feishu.cn/document/uYjL24iN/uQjMuQjMuQjM/authentication/h5sdkconfig
 
 import _ from 'lodash'
-import back from './utils/back'
+import back from './../utils/back'
 import formatOpenLocationParams from './../utils/formatOpenLocationParams'
 import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
-import GeoUtil from './../GeoUtil'
-import LocaleUtil from './../LocaleUtil'
+import GeoUtil from './../../GeoUtil'
+import LocaleUtil from './../../LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
