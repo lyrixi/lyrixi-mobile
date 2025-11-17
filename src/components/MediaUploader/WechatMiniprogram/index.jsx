@@ -86,7 +86,7 @@ function WechatMiniprogram(
   // Photo and Album select actionsheet visible
   const [visible, setVisible] = useState(false)
 
-  const photosRef = useRef(null)
+  const mediaRef = useRef(null)
 
   // Newest List
   const listRef = useRef(Array.isArray(list) ? list : [])
@@ -100,7 +100,7 @@ function WechatMiniprogram(
 
   useImperativeHandle(ref, () => {
     return {
-      ...photosRef.current,
+      ...mediaRef.current,
       chooseMedia: async () => {
         if (!chooseVisible) {
           Toast.show({
@@ -108,7 +108,7 @@ function WechatMiniprogram(
           })
           return false
         }
-        let uploadDOM = photosRef.current?.rootDOM?.querySelector?.(
+        let uploadDOM = mediaRef.current?.rootDOM?.querySelector?.(
           '.lyrixi-media-item.image-choose'
         )
         if (!uploadDOM) {
@@ -254,9 +254,9 @@ function WechatMiniprogram(
     }
 
     // goCamera
-    photosRef.current?.showLoading?.()
+    mediaRef.current?.showLoading?.()
     let isOk = await goCamera(sourceType)
-    photosRef.current?.hideLoading?.()
+    mediaRef.current?.hideLoading?.()
 
     return isOk
   }
@@ -264,7 +264,7 @@ function WechatMiniprogram(
   return (
     <>
       <Media
-        ref={photosRef}
+        ref={mediaRef}
         // Value & Display Value
         list={list}
         count={count}
@@ -317,9 +317,9 @@ function WechatMiniprogram(
           }
         ]}
         onChange={async (item) => {
-          photosRef.current?.showLoading?.()
+          mediaRef.current?.showLoading?.()
           await goCamera([item.id])
-          photosRef.current?.hideLoading?.()
+          mediaRef.current?.hideLoading?.()
           setVisible(false)
         }}
         onVisibleChange={(newVisible) => {

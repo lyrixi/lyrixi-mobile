@@ -69,14 +69,14 @@ function MediaUploader(
   },
   ref
 ) {
-  const photosRef = useRef(null)
+  const mediaRef = useRef(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...photosRef.current,
+      ...mediaRef.current,
       chooseMedia: () => {
-        if (!photosRef.current?.choose) return
-        return photosRef.current.choose()
+        if (!mediaRef.current?.choose) return
+        return mediaRef.current.choose()
       }
     }
   })
@@ -171,7 +171,7 @@ function MediaUploader(
 
   return (
     <Media
-      ref={photosRef}
+      ref={mediaRef}
       // Value & Display Value
       list={list}
       count={count}

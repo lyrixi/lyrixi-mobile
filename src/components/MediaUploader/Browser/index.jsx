@@ -67,11 +67,11 @@ function Browser(
   },
   ref
 ) {
-  const photosRef = useRef(null)
+  const mediaRef = useRef(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...photosRef.current,
+      ...mediaRef.current,
       chooseMedia: () => {
         Toast.show({
           content: LocaleUtil.locale('浏览器上传模式, 不支持编程式调用拍照')
@@ -141,7 +141,7 @@ function Browser(
 
   return (
     <Media
-      ref={photosRef}
+      ref={mediaRef}
       // Value & Display Value
       list={list}
       count={count}

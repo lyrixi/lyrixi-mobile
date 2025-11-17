@@ -6,11 +6,11 @@ import _uploadItem from './uploadItem'
 import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
 import Loading from './../../Loading'
-import Media from './../../Media'
+import Attach from './../../Attach'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Attach } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
@@ -66,14 +66,14 @@ function MediaUploader(
   },
   ref
 ) {
-  const photosRef = useRef(null)
+  const attachRef = useRef(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...photosRef.current,
-      chooseMedia: () => {
-        if (!photosRef.current?.choose) return
-        return photosRef.current.choose()
+      ...attachRef.current,
+      chooseFile: () => {
+        if (!attachRef.current?.choose) return
+        return attachRef.current.choose()
       }
     }
   })
@@ -168,8 +168,8 @@ function MediaUploader(
   }
 
   return (
-    <Media
-      ref={photosRef}
+    <Attach
+      ref={attachRef}
       // Value & Display Value
       list={list}
       count={count}
