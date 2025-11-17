@@ -11,7 +11,7 @@ const List = ({
   allowClear,
 
   // Element
-  uploading,
+  uploadingRender,
 
   // Events
   onChange,
@@ -44,7 +44,8 @@ const List = ({
                 remainCount={
                   maxVisible && index === maxVisible - 1 ? list.length - maxVisible : null
                 }
-                uploading={uploading}
+                uploadingType="item"
+                uploadingRender={uploadingRender}
                 // Events
                 onDelete={typeof onChange === 'function' && allowClear ? handleDelete : null}
                 onReUpload={onReUpload}

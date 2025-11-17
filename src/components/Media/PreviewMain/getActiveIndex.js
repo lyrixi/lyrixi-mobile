@@ -10,7 +10,7 @@ function getActiveIndex({ current, list }) {
   // Current is fileUrl
   else if (typeof current === 'string') {
     for (let [index, source] of list.entries()) {
-      if (source?.fileLocalUrl === current || source?.fileUrl === current) activeIndex = index
+      if (source?.fileUrl === current) activeIndex = index
     }
   }
 

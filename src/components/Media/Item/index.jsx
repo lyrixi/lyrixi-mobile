@@ -18,7 +18,7 @@ const Item = ({
   remainCount,
 
   // Element
-  uploading,
+  uploadingRender,
 
   // Events
   onDelete,
@@ -39,9 +39,7 @@ const Item = ({
       }}
     >
       {/* 缩略图 */}
-      {item.fileLocalUrl || item.fileThumbnail ? (
-        <Img fileUrl={item.fileLocalUrl || item.fileThumbnail} />
-      ) : null}
+      {item.fileThumbnail ? <Img fileUrl={item.fileThumbnail} /> : null}
 
       {/* 重新上传图标 */}
       <Reload
@@ -51,7 +49,7 @@ const Item = ({
       />
 
       {/* 上传中 */}
-      <Uploading uploading={uploading} item={item} />
+      <Uploading uploadingRender={uploadingRender} item={item} />
 
       {/* 自定义dom */}
       {item.children}

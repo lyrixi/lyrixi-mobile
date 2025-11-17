@@ -12,9 +12,9 @@ const Choose = ({
   className,
 
   // Element
-  upload,
+  uploadRender,
 
-  uploading,
+  uploadingRender,
 
   // Events
   onBeforeChoose,
@@ -54,11 +54,8 @@ const Choose = ({
 
   // 上传node
   function getUploadNode() {
-    if (typeof upload === 'function') {
-      return upload({ uploading })
-    }
-    if (React.isValidElement(upload)) {
-      return upload
+    if (typeof uploadRender === 'function') {
+      return uploadRender({ uploadType: 'choose' })
     }
     return null
   }
@@ -114,7 +111,7 @@ const Choose = ({
       )}
       {uploadNode && uploadNode}
       {/* 上传中 */}
-      <Uploading uploading={uploading} />
+      <Uploading uploadingType="choose" uploadingRender={uploadingRender} />
     </div>
   )
 }

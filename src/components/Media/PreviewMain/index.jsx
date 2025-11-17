@@ -300,19 +300,15 @@ const PreviewMain = forwardRef(
                 >
                   <div className="swiper-zoom-container">
                     {type !== 'video' && (
-                      <img
-                        alt=""
-                        className="swiper-zoom-target"
-                        src={item.fileLocalUrl || item.fileUrl}
-                      />
+                      <img alt="" className="swiper-zoom-target" src={item.fileUrl} />
                     )}
                     {type === 'video' && (
                       <VideoPlayer
                         ref={(currentVideoPlayer) =>
                           (videoPlayers.current[index] = currentVideoPlayer)
                         }
-                        poster={item.fileLocalUrl || item.fileThumbnail}
-                        fileUrl={item.fileLocalUrl || item.fileUrl}
+                        poster={item.fileThumbnail}
+                        fileUrl={item.fileUrl}
                         autoPlay={false}
                       />
                     )}

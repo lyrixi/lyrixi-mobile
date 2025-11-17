@@ -32,7 +32,6 @@ const Media = forwardRef(
           fileUrl: "全路径(必传)",
           filePath: "目录/年月/照片名.jpg(必传)",
           status: "choose|uploading|fail|success",
-          "fileLocalUrl": "本地预览路径, 用于离线场景(非必传)",
           children: node,
         },
       ]
@@ -57,8 +56,8 @@ const Media = forwardRef(
       uploadPosition = 'end', // start | end
 
       // Element
-      upload, // 上传按钮覆盖的dom
-      uploading,
+      uploadRender, // 上传按钮覆盖的dom
+      uploadingRender,
       previewPortal,
 
       // Events
@@ -275,7 +274,7 @@ const Media = forwardRef(
       }
       // 视频使用previewFile预览
       else if (previewTypeRef.current === 'nativeFile') {
-        Bridge.previewFile({ url: item.fileLocalUrl || item.fileUrl })
+        Bridge.previewFile({ url: item.fileUrl })
       }
       // 浏览器预览
       else {
@@ -298,8 +297,8 @@ const Media = forwardRef(
           // Style
           className={className}
           // Element
-          upload={upload}
-          uploading={uploading}
+          uploadRender={uploadRender}
+          uploadingRender={uploadingRender}
           // Events
           onChoose={onChoose ? handleChoose : null}
           onFileChange={onFileChange ? handleFileChange : null}
@@ -337,7 +336,7 @@ const Media = forwardRef(
           // Status
           allowClear={allowClear}
           // Element
-          uploading={uploading}
+          uploadingRender={uploadingRender}
           // Events
           onChange={onChangeRef.current}
           onReUpload={handleReUpload}

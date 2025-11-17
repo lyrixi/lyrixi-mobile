@@ -10,18 +10,14 @@ import { Loading } from 'lyrixi-mobile'
 
 // 上传中图标
 const Uploading = ({
-  // Value & Display Value
-  item,
+  uploadingType,
   // Element
-  uploading
+  uploadingRender
 }) => {
   // 上传中node
-  function getUploadingNode(item) {
-    if (typeof uploading === 'function') {
-      return uploading(item)
-    }
-    if (React.isValidElement(uploading)) {
-      return uploading
+  function getUploadingNode() {
+    if (typeof uploadingRender === 'function') {
+      return uploadingRender({ uploadingType })
     }
     return (
       <div className="lyrixi-media-uploading-icon">
@@ -30,7 +26,7 @@ const Uploading = ({
     )
   }
 
-  return <div className="lyrixi-media-uploading">{getUploadingNode(item)}</div>
+  return <div className="lyrixi-media-uploading">{getUploadingNode()}</div>
 }
 
 export default Uploading
