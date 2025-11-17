@@ -21,7 +21,7 @@ const Cancel = ({ text, onClick }) => {
 
   return (
     <NavBar.Button
-      icon="lyrixi-icon-close"
+      icon="lyrixi-iconfont-close"
       iconSize={20}
       iconPadding={8}
       iconRadius="100%"

@@ -158,7 +158,7 @@ const KeyboardNumber = forwardRef(
             <ButtonNumber className="empty">{/* 空位 */}</ButtonNumber>
             <ButtonNumber onClick={handleNumber}>0</ButtonNumber>
             <ButtonNumber onClick={handleDelete}>
-              <Icon className="lyrixi-keyboard-icon lyrixi-icon-keyboard-delete" />
+              <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
             </ButtonNumber>
           </>
         )
@@ -171,7 +171,7 @@ const KeyboardNumber = forwardRef(
             {minus && <ButtonNumber onClick={handleMinus}>-</ButtonNumber>}
             <ButtonNumber onClick={handleNumber}>0</ButtonNumber>
             <ButtonNumber onClick={handleDelete}>
-              <Icon className="lyrixi-keyboard-icon lyrixi-icon-keyboard-delete" />
+              <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
             </ButtonNumber>
           </>
         )
@@ -215,7 +215,7 @@ const KeyboardNumber = forwardRef(
           {cancel !== null && (
             <ButtonQuick onClick={handleCancel}>
               {cancel !== null ? (
-                <Icon className="lyrixi-keyboard-icon lyrixi-icon-arrow-down" />
+                <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-arrow-down" />
               ) : (
                 cancel
               )}
@@ -255,7 +255,7 @@ const KeyboardNumber = forwardRef(
             {/* 删除键 - 只在有确定按钮时显示在侧边栏 */}
             {isDeleteInMainRef.current === false && (
               <ButtonAction className="lyrixi-delete" onClick={handleDelete}>
-                <Icon className="lyrixi-keyboard-icon lyrixi-icon-keyboard-delete" />
+                <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
               </ButtonAction>
             )}
 

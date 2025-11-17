@@ -8,7 +8,7 @@ export default () => {
         <Divider>Text Button</Divider>
         <FooterBar>
           <FooterBar.Button
-            iconClassName="lyrixi-icon-three-dots"
+            iconClassName="lyrixi-iconfont-three-dots"
             list={[
               {
                 id: 'option1',
@@ -27,7 +27,7 @@ export default () => {
             ]}
           />
           <FooterBar.Button
-            iconClassName="lyrixi-icon-config"
+            iconClassName="lyrixi-iconfont-config"
             onClick={(e) => {
               console.log(e)
             }}
@@ -58,7 +58,7 @@ export default () => {
         <FooterBar>
           <FooterBar.Button
             disabled
-            iconClassName="lyrixi-icon-three-dots"
+            iconClassName="lyrixi-iconfont-three-dots"
             list={[
               {
                 id: 'option1',
@@ -78,7 +78,7 @@ export default () => {
           />
           <FooterBar.Icon
             disabled
-            iconClassName="lyrixi-icon-config"
+            iconClassName="lyrixi-iconfont-config"
             onClick={(e) => {
               console.log(e)
             }}
@@ -109,7 +109,7 @@ export default () => {
         <Divider>Button</Divider>
         <FooterBar>
           <FooterBar.Button
-            iconClassName="lyrixi-icon-three-dots"
+            iconClassName="lyrixi-iconfont-three-dots"
             list={[
               {
                 id: 'option1',
@@ -130,7 +130,7 @@ export default () => {
             More
           </FooterBar.Button>
           <FooterBar.Button
-            iconClassName="lyrixi-icon-config"
+            iconClassName="lyrixi-iconfont-config"
             onClick={(e) => {
               console.log(e)
             }}
@@ -158,7 +158,7 @@ export default () => {
         <Divider>Button disabled</Divider>
         <FooterBar>
           <FooterBar.Button
-            iconClassName="lyrixi-icon-three-dots"
+            iconClassName="lyrixi-iconfont-three-dots"
             list={[
               {
                 disabled: true,
@@ -181,7 +181,7 @@ export default () => {
           </FooterBar.Button>
           <FooterBar.Button
             disabled
-            iconClassName="lyrixi-icon-config"
+            iconClassName="lyrixi-iconfont-config"
             onClick={(e) => {
               console.log(e)
             }}

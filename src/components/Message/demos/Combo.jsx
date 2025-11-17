@@ -4,7 +4,7 @@ import { Icon, Page, Message, Button } from 'lyrixi-mobile'
 export default () => {
   const handleOpenMessage = () => {
     Message.open({
-      icon: 'lyrixi-icon-config color-primary',
+      icon: 'lyrixi-iconfont-config color-primary',
       title: 'Title',
       content: '<div>Content</div>',
       buttonsLayout: 'vertical',
@@ -37,7 +37,7 @@ export default () => {
             <h3>Using Message.Combo Component</h3>
             <Message.Combo
               iconRender={
-                <Icon className="lyrixi-icon-config lyrixi-color-primary" size={80}></Icon>
+                <Icon className="lyrixi-iconfont-config lyrixi-color-primary" size={80}></Icon>
               }
               title="Title"
               content={<div>Content</div>}

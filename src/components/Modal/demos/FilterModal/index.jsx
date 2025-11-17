@@ -25,7 +25,7 @@ export default () => {
             <Page.Footer>
               <FooterBar>
                 <FooterBar.Tab
-                  iconRender={() => <Icon className="lyrixi-icon-config"></Icon>}
+                  iconRender={() => <Icon className="lyrixi-iconfont-config"></Icon>}
                   name="Setting"
                   onClick={() => {
                     console.log('setting')

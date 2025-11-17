@@ -200,7 +200,7 @@ export default () => {
         <div className="lyrixi-toolbar-bg">
           <ToolBar>
             <ToolBar.Button shape="square" onClick={() => console.log(1)}>
-              <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
+              <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
             </ToolBar.Button>
             <Space.Compact>
               <ToolBar.Button>1</ToolBar.Button>
@@ -213,7 +213,7 @@ export default () => {
                 arrowRender={null}
                 shape="square"
                 border="fill"
-                comboChildren={<Icon className="lyrixi-icons lyrixi-icon-three-dots"></Icon>}
+                comboChildren={<Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>}
                 maskStyle={{
                   zIndex: 99
                 }}
@@ -231,7 +231,7 @@ export default () => {
                 ]}
               />
               <ToolBar.Button shape="square" onClick={() => console.log(1)}>
-                <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
+                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
               </ToolBar.Button>
               <ToolBar.Filter border="fill" shape="square">
                 <div style={{ height: '300px' }}>Modal Content</div>
@@ -254,7 +254,9 @@ export default () => {
             <ToolBar.Filter
               color="primary"
               shape="square"
-              icon={<Icon className="lyrixi-toolbar-button-icon lyrixi-icons lyrixi-icon-search" />}
+              icon={
+                <Icon className="lyrixi-toolbar-button-icon lyrixi-iconfont lyrixi-iconfont-search" />
+              }
               onReset={() => {
                 console.log('reset')
               }}
@@ -291,7 +293,7 @@ export default () => {
             />
             <Space.Compact>
               <ToolBar.Button shape="square" onClick={() => console.log(1)}>
-                <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
+                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
               </ToolBar.Button>
               <ToolBar.Filter border="fill" shape="square">
                 <div style={{ height: '300px' }}>Modal Content</div>
@@ -312,7 +314,7 @@ export default () => {
             />
             <Space.Compact>
               <ToolBar.Button shape="square" onClick={() => console.log(1)}>
-                <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
+                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
               </ToolBar.Button>
               <ToolBar.Filter border="fill" shape="square">
                 <div style={{ height: '300px' }}>Modal Content</div>

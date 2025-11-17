@@ -358,10 +358,10 @@ export default () => {
             Round
           </Button>
           <Button square radius="100%" size="s" style={buttonStyle}>
-            <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
+            <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
           <Button square size="s" radius="m" style={buttonStyle}>
-            <Icon className="lyrixi-icons lyrixi-icon-barcode"></Icon>
+            <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
           <br />
 

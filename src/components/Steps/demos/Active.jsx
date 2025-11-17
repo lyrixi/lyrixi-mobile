@@ -50,7 +50,7 @@ export default () => {
             value={{
               id: 'progress',
               status: 'error',
-              icon: <Icon className="lyrixi-icons lyrixi-icon-signature"></Icon>
+              icon: <Icon className="lyrixi-iconfont lyrixi-iconfont-signature"></Icon>
             }}
             list={list}
             align="left"

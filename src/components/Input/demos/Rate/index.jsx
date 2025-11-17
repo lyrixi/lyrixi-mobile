@@ -48,7 +48,7 @@ export default () => {
           <Divider>Icon</Divider>
           <Input.Rate
             style={{ margin: '0 12px' }}
-            iconRender={() => <i className="lyrixi-icon lyrixi-icon-circle-question" />}
+            iconRender={() => <i className="lyrixi-icon lyrixi-iconfont-circle-question" />}
             value={value}
             onChange={setValue}
           />

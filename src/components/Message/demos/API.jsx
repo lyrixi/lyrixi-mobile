@@ -4,7 +4,7 @@ import { Page, Message, Button } from 'lyrixi-mobile'
 export default () => {
   const handleOpenMessage = () => {
     Message.open({
-      icon: 'lyrixi-icon-config color-primary',
+      icon: 'lyrixi-iconfont-config color-primary',
       title: 'Title',
       content: '<div>Content</div>',
       buttonsLayout: 'vertical',
@@ -30,7 +30,7 @@ export default () => {
 
   const handleOpenHorizontalMessage = () => {
     Message.open({
-      icon: 'lyrixi-icon-config color-primary',
+      icon: 'lyrixi-iconfont-config color-primary',
       title: 'Horizontal Layout',
       content: '<div>This message uses horizontal button layout</div>',
       buttonsLayout: 'horizontal',

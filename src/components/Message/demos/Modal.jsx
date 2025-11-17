@@ -15,7 +15,7 @@ export default () => {
       </Page>
       <Message.Modal open={open} onClose={() => setOpen(false)}>
         <Message.Header>
-          <Message.Icon className="lyrixi-icon-config lyrixi-color-primary" />
+          <Message.Icon className="lyrixi-iconfont-config lyrixi-color-primary" />
           <Message.Title>Title</Message.Title>
         </Message.Header>
         <Message.Main>Content</Message.Main>

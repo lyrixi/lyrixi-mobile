@@ -42,13 +42,12 @@
   .lyrixi-flex;
   .lyrixi-flex-middle;
   .lyrixi-flex-center;
-  color: var(--lyrixi-font-color-tertiary);
-  font-family: 'lyrixi-icons';
+  color: var(--lyrixi-primary);
+  font-family: 'lyrixi-iconfont';
   pointer-events: none;
   width: 20px;
   height: 20px;
   font-size: 20px;
-  color: #f5bda0;
   // 正方形的图标要略小一些
   &.lyrixi-word,
   &.lyrixi-excel,
@@ -56,37 +55,37 @@
     font-size: 18px;
   }
   &.lyrixi-video {
-    &:extend(.lyrixi-icon-file-video all);
+    &:extend(.lyrixi-iconfont-file-video all);
   }
   &.lyrixi-text {
-    &:extend(.lyrixi-icon-file-text all);
+    &:extend(.lyrixi-iconfont-file-text all);
   }
   &.lyrixi-word {
     color: #83a4eb;
-    &:extend(.lyrixi-icon-file-word all);
+    &:extend(.lyrixi-iconfont-file-word all);
   }
   &.lyrixi-unknown {
-    &:extend(.lyrixi-icon-file-unknow all);
+    &:extend(.lyrixi-iconfont-file-unknow all);
   }
   &.lyrixi-audio {
-    &:extend(.lyrixi-icon-file-audio all);
+    &:extend(.lyrixi-iconfont-file-audio all);
   }
   &.lyrixi-excel {
     color: #8ad4aa;
-    &:extend(.lyrixi-icon-file-excel all);
+    &:extend(.lyrixi-iconfont-file-excel all);
   }
   &.lyrixi-pack {
-    &:extend(.lyrixi-icon-file-pack all);
+    &:extend(.lyrixi-iconfont-file-pack all);
   }
-  &.lyrixi-pic {
-    &:extend(.lyrixi-icon-file-pic all);
+  &.lyrixi-image {
+    &:extend(.lyrixi-iconfont-file-image all);
   }
   &.lyrixi-pdf {
-    &:extend(.lyrixi-icon-file-pdf all);
+    &:extend(.lyrixi-iconfont-file-pdf all);
   }
   &.lyrixi-ppt {
     color: #e7896d;
-    &:extend(.lyrixi-icon-file-ppt all);
+    &:extend(.lyrixi-iconfont-file-ppt all);
   }
 }
 .lyrixi-attach-item-title {
@@ -104,17 +103,17 @@
   align-items: center;
   justify-content: center;
   color: #a9b1b9;
-  font-family: 'lyrixi-icons';
+  font-family: 'lyrixi-iconfont';
   font-size: 12px;
   width: 16px;
   height: 16px;
   overflow: hidden;
 }
 .lyrixi-attach-delete {
-  &:extend(.lyrixi-icon-close all);
+  &:extend(.lyrixi-iconfont-close all);
 }
 .lyrixi-attach-reload {
   display: none;
-  &:extend(.lyrixi-icon-map-zoom-update all);
+  &:extend(.lyrixi-iconfont-map-zoom-update all);
   overflow: hidden;
 }

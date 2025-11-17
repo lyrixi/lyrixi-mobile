@@ -56,22 +56,22 @@ export default () => {
           list={[
             {
               iconRender: () => (
-                <i className="lyrixi-tabbar-menus-tab-icon lyrixi-icon-file-text"></i>
+                <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-file-text"></i>
               ),
               id: 'Fruit'
             },
             {
               iconRender: () => (
-                <i className="lyrixi-tabbar-menus-tab-icon lyrixi-icon-file-text"></i>
+                <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-file-text"></i>
               ),
               id: 'Vegetable'
             },
             {
               iconRender: ({ checked }) =>
                 checked ? (
-                  <i className="lyrixi-tabbar-menus-tab-icon lyrixi-icon-close"></i>
+                  <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-close"></i>
                 ) : (
-                  <i className="lyrixi-tabbar-menus-tab-icon lyrixi-icon-plus"></i>
+                  <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-plus"></i>
                 ),
               id: 'Animal'
             }
@@ -87,21 +87,21 @@ export default () => {
         <TabBar.Menus
           list={[
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Animal',
               name: 'Animal',
               description: 'description',

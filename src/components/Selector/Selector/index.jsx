@@ -143,7 +143,7 @@ const Selector = forwardRef(
             </Item>
           )
         })}
-        
+
         {/* Element: Ellipsis */}
         {hasEllipsis && (
           <div
@@ -158,7 +158,7 @@ const Selector = forwardRef(
               className={DOMUtil.classNames(
                 'lyrixi-selector-item-ellipsis-icon',
                 expanded ? 'lyrixi-selector-item-ellipsis-icon-expanded' : '',
-                'lyrixi-icon-arrow-down'
+                'lyrixi-iconfont-arrow-down'
               )}
             ></i>
           </div>

@@ -32,13 +32,13 @@ export default () => {
               name: '2',
               className: 'lyrixi-bg-primary lyrixi-color-white',
               iconRender: () => (
-                <i className="lyrixi-icon lyrixi-icon-plus" style={{ opacity: '0.5' }}></i>
+                <i className="lyrixi-icon lyrixi-iconfont-plus" style={{ opacity: '0.5' }}></i>
               )
             },
             {
               id: '3',
               name: '3',
-              iconRender: () => <i className="lyrixi-icon lyrixi-icon-plus"></i>
+              iconRender: () => <i className="lyrixi-icon lyrixi-iconfont-plus"></i>
             },
             {
               id: '4',

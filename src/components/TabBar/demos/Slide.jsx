@@ -63,16 +63,16 @@ export default () => {
         <TabBar.Slide
           list={[
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Fruit',
               name: 'Fruit'
             },
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable'
             },
-            { icon: <i className="lyrixi-icon-file-text"></i>, id: 'Animal', name: 'Animal' }
+            { icon: <i className="lyrixi-iconfont-file-text"></i>, id: 'Animal', name: 'Animal' }
           ]}
           value={value}
           onChange={(newValue) => {
@@ -85,21 +85,21 @@ export default () => {
         <TabBar.Slide
           list={[
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <i className="lyrixi-icon-file-text"></i>,
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
               id: 'Animal',
               name: 'Animal',
               description: 'description',

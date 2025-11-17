@@ -154,7 +154,7 @@ export default () => {
           <Divider>Custom Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
             <Collapse.Item
-              arrowRender={() => <i className="lyrixi-icon lyrixi-icon-star-fill" />}
+              arrowRender={() => <i className="lyrixi-icon lyrixi-iconfont-star-fill" />}
               title="Arrow ClassName"
             >
               <div
@@ -169,7 +169,7 @@ export default () => {
               arrowRender={() => {
                 return (
                   <i
-                    className="lyrixi-icon-star-fill"
+                    className="lyrixi-iconfont-star-fill"
                     style={{
                       fontSize: '14px',
                       color: '#f90'

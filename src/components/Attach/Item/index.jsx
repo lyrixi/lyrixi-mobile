@@ -17,13 +17,17 @@ import { DOMUtil, LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Message } fro
 
 // Item
 const Item = ({
+  // Value & Display Value
   item,
   index,
+
+  // Element
   uploadingRender,
+
   // Events
-  onPreview,
   onDelete,
-  onReUpload
+  onReUpload,
+  onPreview // 是否支持单击预览, readOnly为true时才生效
 }) => {
   // 预览类型: browser|native
   const previewTypeRef = useRef(Bridge?.platform === 'browser' ? 'browser' : null)
@@ -103,7 +107,7 @@ const Item = ({
       return 'audio'
     }
     if ('JPG,JPEG,WEBP,GIF,PNG,TIF,BMP'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'pic'
+      return 'image'
     }
     if ('RAR,ZIP'.indexOf(suffix.toUpperCase()) !== -1) {
       return 'pack'
@@ -140,7 +144,7 @@ const Item = ({
         className={DOMUtil.classNames(
           'lyrixi-icon',
           'lyrixi-attach-item-type',
-          getIcon(item.fileUrl)
+          `lyrixi-${getIcon(item.fileUrl)}`
         )}
       ></i>
       {/* 文件名称 */}
