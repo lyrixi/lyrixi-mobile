@@ -81,7 +81,7 @@ function Browser(
     // 开始上传
     let result = await _uploadItem(item, {
       uploadDir,
-      maxWidth,
+      maxSize,
       getUploadUrl,
       getUploadPayload,
       formatUploadedItem

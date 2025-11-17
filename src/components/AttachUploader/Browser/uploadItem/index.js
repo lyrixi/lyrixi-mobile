@@ -12,10 +12,7 @@ import { Storage, LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
 // 单张照片上传
-function uploadItem(
-  item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadPayload, formatUploadedItem }
-) {
+function uploadItem(item, { uploadDir, getUploadUrl, getUploadPayload, formatUploadedItem }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -36,7 +33,6 @@ function uploadItem(
       watermark: item?.watermark,
       localFile: item?.localFile,
       uploadDir,
-      maxWidth,
       getUploadUrl,
       getUploadPayload,
       appId

@@ -5,16 +5,14 @@ function getUploadParams({
   uploadDir,
   maxWidth,
   getUploadUrl,
-  getUploadPayload,
-  appId
+  getUploadPayload
 }) {
   let payload = {
     watermark: watermark ? JSON.stringify(watermark) : '',
     fileType: localFile.type,
     filePath: localFile.path,
     uploadPath: uploadDir,
-    maxWidth: maxWidth || '',
-    appId: appId
+    maxWidth: maxWidth || ''
   }
 
   let uploadUrl = getUploadUrl?.({ platform: 'lyrixi' }) || {}

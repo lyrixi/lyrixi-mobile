@@ -1,77 +1,79 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-
-import { getRemainCount } from './../utils'
-import uploadAttach from './uploadItem'
+import { getRemainCount, getPreviewType } from './../utils'
+import _uploadItem from './uploadItem'
 
 // 内库使用-start
-import Attach from './../../Attach'
-import Toast from './../../Toast'
 import Bridge from './../../../utils/Bridge'
+import Toast from './../../Toast'
+import Loading from './../../Loading'
+import Media from './../../Media'
 // 内库使用-end
 
 /* 测试使用-start
-import { Attach, Toast, Bridge } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
 测试使用-end */
 
-// 文件上传
-function AttachUploader(
+// 照片上传
+function MediaUploader(
   {
-    timeout,
-    // 是否异步上传(目前只有app支持)
-    async = false,
-    // 支持重新上传
-    reUpload = true,
-    // 体积控制, KB
-    maxSize,
-    // 支持文件扩展名
-    extension,
+    // Value & Display Value
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
+    sourceType,
+    maxSize,
     uploadDir = 'default',
+    // 特殊的选择逻辑, 仅对客户端有效
+    chooseExtraParams,
 
-    // 展示样式
-    upload,
-    uploading,
+    // Status
+    async = false, // 是否异步上传(目前只有app支持)
+    reUpload = true, // 支持重新上传
+    allowClear = true,
+    allowChoose = true,
+
+    // Style
+    className,
     uploadPosition,
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
 
+    // Element
+    uploadRender, // 上传按钮覆盖的dom
+    uploadingRender,
+    previewPortal,
     /*
     格式化上传结果
     入参:
     {platform: 'browser', uploadItem: item, result: result}
     返回格式:
     {
-      fileThumbnail: 缩略图,
       fileUrl: 文件地址,
-      filePath: 入库路径
+      filePath: 入库路径,
+      fileName: 文件名,
+      fileSize: 文件大小(字节),
     }
     */
     formatUploadedItem,
+    getWatermark,
     getUploadUrl,
-    getUploadParams,
-    // 仅对客户端有效
-    chooseExtraParams,
+    getUploadPayload,
 
-    // 回调
-    allowClear = true,
-    allowChoose = true,
+    // Events
     onBeforeChoose,
+    // onChoose,
+    onFileChange,
+    // onUpload,
     onChange,
-    onPreview,
-    ...props
+    onPreview
   },
   ref
 ) {
-  const attachRef = useRef(null)
-
-  const onChangeRef = useRef()
-  onChangeRef.current = onChange
+  const photosRef = useRef(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...attachRef.current,
-      chooseAttach: () => {
-        if (!attachRef.current?.choose) return
-        return attachRef.current.choose()
+      ...photosRef.current,
+      chooseMedia: () => {
+        if (!photosRef.current?.choose) return
+        return photosRef.current.choose()
       }
     }
   })
@@ -79,11 +81,11 @@ function AttachUploader(
   // 上传文件
   async function uploadItem(item) {
     // 开始上传
-    let result = await uploadAttach(item, {
-      timeout,
+    let result = await _uploadItem(item, {
       uploadDir,
+      maxSize,
       getUploadUrl,
-      getUploadParams,
+      getUploadPayload,
       formatUploadedItem
     })
 
@@ -117,68 +119,98 @@ function AttachUploader(
         }
       }
 
-      let chooseAttachParams = {
+      // 添加水印
+      let watermark = null
+      if (typeof getWatermark === 'function') {
+        watermark = await getWatermark({ platform: 'dingtalk' })
+      }
+
+      let chooseMediaParams = {
         ...chooseExtraParams,
         count: getRemainCount(count, list?.length || 0),
+        sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
+        isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
-          const localIds = res.localIds // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-          if (!Array.isArray(localIds) || !localIds.length) {
+          const localFiles = res.localFiles
+          if (!Array.isArray(localFiles) || !localFiles.length) {
             resolve(null)
             return
           }
+
+          Loading.show()
+
           // 当前列表
-          let currentList = localIds.map((localId, index) => {
-            let itemExtra = res?.[localId] || {}
+          let currentList = localFiles.map((localFile, index) => {
             return {
               status: 'choose',
-              localId: localId,
-              fileLocalUrl: localId,
-              uploadDir: uploadDir,
-              ...itemExtra
+              localFile: localFile,
+              watermark: watermark,
+              fileThumbnail: localFile.preview,
+              fileUrl: localFile.preview,
+              uploadDir: uploadDir
             }
           })
 
+          console.log('选择完成:', currentList)
           resolve(currentList)
         },
         onError: function (err) {
           if (err && err.errMsg) Toast.show({ content: err.errMsg })
-          resolve(null)
+          resolve(false)
         },
         onCancel: function () {
-          resolve(null)
+          resolve(false)
         }
       }
-
-      Bridge.chooseFile(chooseAttachParams)
-
-      setTimeout(() => {
-        attachRef.current?.hideLoading?.()
-      }, 1000)
+      Bridge.chooseMedia(chooseMediaParams)
     })
   }
 
   return (
-    <Attach
-      ref={attachRef}
+    <Media
+      ref={photosRef}
+      // Value & Display Value
+      list={list}
+      count={count}
+      sourceType={sourceType}
+      maxSize={maxSize}
+      // Status
       async={async}
       reUpload={reUpload}
-      maxSize={maxSize}
-      extension={extension}
-      uploadPosition={uploadPosition}
-      upload={upload}
-      uploading={uploading}
-      // 会影响原数组, 如果要修复此bug, 需要测试超级表单和自定义字段
-      list={list}
-      onChoose={handleChoose}
-      count={count}
-      allowClear={allowClear}
       allowChoose={allowChoose}
-      onChange={onChange}
+      allowClear={allowClear}
+      // Style
+      className={className}
+      uploadPosition={uploadPosition}
+      // Element
+      uploadRender={uploadRender}
+      uploadingRender={uploadingRender}
+      previewPortal={previewPortal}
+      // Events
+      onBeforeChoose={onBeforeChoose}
+      onChoose={handleChoose}
+      onFileChange={onFileChange}
       onUpload={uploadItem}
-      onPreview={onPreview}
-      {...props}
+      onChange={onChange}
+      onPreview={async (item, index) => {
+        // 自定义预览
+        if (typeof onPreview === 'function') {
+          let goOn = await onPreview(item, index)
+          if (goOn === false || goOn === 'browser') return goOn
+        }
+
+        return getPreviewType('image')
+
+        // 走默认预览
+        // Bridge.previewMedia({
+        //   sources: list,
+        //   index: index
+        // })
+        // return false
+      }}
     />
   )
 }
 
-export default forwardRef(AttachUploader)
+export default forwardRef(MediaUploader)

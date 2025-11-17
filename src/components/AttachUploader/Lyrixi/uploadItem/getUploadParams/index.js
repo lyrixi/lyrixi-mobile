@@ -1,22 +1,14 @@
 // 获取上传入参
-function getUploadParams({
-  watermark,
-  localFile,
-  uploadDir,
-  getUploadUrl,
-  getUploadPayload,
-  appId
-}) {
+function getUploadParams({ watermark, localFile, uploadDir, getUploadUrl, getUploadPayload }) {
   let payload = {
     watermark: watermark ? JSON.stringify(watermark) : '',
     fileType: localFile.type,
     filePath: localFile.path,
-    uploadPath: uploadDir,
-    appId: appId
+    uploadPath: uploadDir
   }
 
-  let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
-  let uploadExtraFormData = getUploadPayload?.({ platform: 'dingtalk' }) || {}
+  let uploadUrl = getUploadUrl?.({ platform: 'lyrixi' }) || {}
+  let uploadExtraFormData = getUploadPayload?.({ platform: 'lyrixi' }) || {}
   if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
     for (const paramKey in uploadExtraFormData) {
       if (uploadExtraFormData.hasOwnProperty(paramKey)) {
