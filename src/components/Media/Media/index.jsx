@@ -52,6 +52,7 @@ const Media = forwardRef(
       previewAllowClear,
 
       // Style
+      style,
       className,
       uploadPosition = 'end', // start | end
 
@@ -282,7 +283,7 @@ const Media = forwardRef(
     }
 
     // 上传node
-    function getChooseNode({ className } = {}) {
+    function getChooseNode() {
       if (!chooseVisible || typeof onChange !== 'function') {
         return null
       }
@@ -292,8 +293,6 @@ const Media = forwardRef(
           // Value & Display Value
           type={type}
           sourceType={sourceType}
-          // Style
-          className={className}
           // Element
           uploadRender={uploadRender}
           uploadingRender={uploadingRender}
@@ -320,6 +319,7 @@ const Media = forwardRef(
       <div
         ref={rootRef}
         // Style
+        style={style}
         className={DOMUtil.classNames('lyrixi-media', className)}
       >
         {/* Element: 图片上传按钮(start) */}

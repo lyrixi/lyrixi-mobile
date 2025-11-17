@@ -47,6 +47,7 @@ function Attach(
     reUpload = true,
 
     // Style
+    style,
     className,
     uploadPosition = 'end', // start | end
 
@@ -263,17 +264,24 @@ function Attach(
   }
 
   // 上传node
-  function getChooseNode(props) {
+  function getChooseNode() {
+    if (!chooseVisible || typeof onChange !== 'function') {
+      return null
+    }
+
     return (
       <Choose
-        disabled={disabled}
+        // Value & Display Value
         sourceType={sourceType}
-        // 上传DOM
+        // Status
+        disabled={disabled}
+        // Element
         uploadRender={uploadRender}
-        // 上传中DOM
         uploadingRender={uploadingRender}
-        // Choose events
-        onChoose={onChoose && chooseVisible ? handleChoose : null}
+        // Events
+        onChoose={onChoose ? handleChoose : null}
+        onFileChange={onFileChange ? handleFileChange : null}
+        // File框不支持onBeforeChoose
         onBeforeChoose={
           typeof onBeforeChoose === 'function'
             ? async (e) => {
@@ -284,14 +292,12 @@ function Attach(
               }
             : null
         }
-        onFileChange={onFileChange && chooseVisible ? handleFileChange : null}
-        {...props}
       />
     )
   }
 
   return (
-    <div ref={rootRef} {...props} className={DOMUtil.classNames('lyrixi-attach', className)}>
+    <div ref={rootRef} style={style} className={DOMUtil.classNames('lyrixi-attach', className)}>
       {/* 头部上传按钮 */}
       {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 
