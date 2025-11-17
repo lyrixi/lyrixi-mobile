@@ -2,15 +2,18 @@ import React from 'react'
 
 // 内库使用-start
 import Loading from './../../Loading'
+import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Loading } from 'lyrixi-mobile'
+import { Loading, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传中图标
 const Uploading = ({
   uploadingType,
+  // Style
+  className,
   // Element
   uploadingRender
 }) => {
@@ -26,7 +29,11 @@ const Uploading = ({
     )
   }
 
-  return <div className="lyrixi-media-uploading">{getUploadingNode()}</div>
+  return (
+    <div className={DOMUtil.classNames('lyrixi-media-uploading', className)}>
+      {getUploadingNode()}
+    </div>
+  )
 }
 
 export default Uploading

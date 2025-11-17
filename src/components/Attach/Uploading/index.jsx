@@ -10,7 +10,13 @@ import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传中图标
-const Uploading = ({ uploadingRender, uploadingType, className }) => {
+const Uploading = ({
+  uploadingType,
+  // Style
+  className,
+  // Element
+  uploadingRender
+}) => {
   // 上传中node
   function getUploadingNode() {
     if (typeof uploadingRender === 'function') {

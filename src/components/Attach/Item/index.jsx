@@ -178,8 +178,8 @@ const Item = ({
 
         {/* 转圈 */}
         <Uploading
-          uploadingRender={uploadingRender}
           uploadingType="item"
+          uploadingRender={uploadingRender}
           className="lyrixi-attach-item-right-icon"
         />
       </div>
