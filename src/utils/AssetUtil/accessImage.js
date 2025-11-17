@@ -1,5 +1,5 @@
 // 校验照片是否存在
-function validateImageSrc(src) {
+function accessImageSrc(src) {
   return new Promise((resolve) => {
     let img = new Image()
     img.src = src
@@ -12,4 +12,4 @@ function validateImageSrc(src) {
   })
 }
 
-export default validateImageSrc
+export default accessImageSrc

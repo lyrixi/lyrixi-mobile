@@ -1,10 +1,9 @@
 // 动态加载script的方法
 function loadImage(src, { onError, onSuccess } = {}) {
   return new Promise((resolve) => {
-    const img = new Image()
+    let img = new Image()
     img.src = src
-
-    const handleLoad = () => {
+    img.onload = function () {
       let result = {
         status: 'success',
         img: img,
@@ -13,11 +12,8 @@ function loadImage(src, { onError, onSuccess } = {}) {
       resolve(result)
       // 支持新的 onSuccess
       onSuccess && onSuccess(result)
-
-      img.removeEventListener('load', handleLoad)
-      img.removeEventListener('error', handleError)
     }
-    const handleError = (error) => {
+    img.onerror = function () {
       let result = {
         status: 'error',
         img: img,
@@ -26,13 +22,7 @@ function loadImage(src, { onError, onSuccess } = {}) {
       resolve(result)
       // 支持新的 onError
       onError && onError(result)
-
-      img.removeEventListener('load', handleLoad)
-      img.removeEventListener('error', handleError)
     }
-
-    img.addEventListener('load', handleLoad)
-    img.addEventListener('error', handleError)
   })
 }
 

@@ -1,12 +1,11 @@
-import { validateImageSrc } from './../../utils'
-
 // 内库使用-start
+import AssetUtil from './../../../../utils/AssetUtil'
 import Bridge from './../../../../utils/Bridge'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge, LocaleUtil } from 'lyrixi-mobile'
+import { AssetUtil, Bridge, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传localFile
@@ -37,7 +36,7 @@ function uploadLocalFile({
         }
 
         // 校验其是否真的是否法图片
-        let isValid = await validateImageSrc(newItem.fileUrl)
+        let isValid = await AssetUtil.accessImage(newItem.fileUrl)
         if (!isValid) {
           resolve({
             ...item,

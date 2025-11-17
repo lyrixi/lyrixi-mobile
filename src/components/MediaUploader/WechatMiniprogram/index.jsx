@@ -1,6 +1,6 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
-import { getPreviewType } from './../utils'
+import getPreviewType from './../utils/getPreviewType'
 import getPhotos from './getPhotos'
 import clearPhotos from './clearPhotos'
 import stopAllPolls from './stopAllPolls'

@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import { getRemainCount, getPreviewType } from './../utils'
+import getRemainCount from './../../Media/utils/getRemainCount'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
@@ -203,22 +203,7 @@ function MediaUploader(
       onFileChange={onFileChange}
       onUpload={uploadItem}
       onChange={onChange}
-      onPreview={async (item, index) => {
-        // 自定义预览
-        if (typeof onPreview === 'function') {
-          let goOn = await onPreview(item, index)
-          if (goOn === false || goOn === 'browser') return goOn
-        }
-
-        return getPreviewType('image')
-
-        // 走默认预览
-        // Bridge.previewMedia({
-        //   sources: list,
-        //   index: index
-        // })
-        // return false
-      }}
+      onPreview={onPreview}
     />
   )
 }

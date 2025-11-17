@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
 import { MediaUploader, Layout, Toast } from 'lyrixi-mobile'
 
-const { uploadList, validateList } = MediaUploader
+const { uploadList, validateListStatus } = MediaUploader
 new vconsole()
 export default () => {
   const imageUploaderRef = useRef(null)
@@ -39,7 +39,7 @@ export default () => {
   }
 
   async function handleValidate() {
-    let isOK = await validateList(list)
+    let isOK = await validateListStatus(list)
     if (isOK !== true) {
       Toast.show({ content: isOK })
     }
@@ -85,7 +85,7 @@ export default () => {
           uploadList
         </div>
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleValidate}>
-          validateList
+          validateListStatus
         </div>
       </Layout.Main>
     </Layout>

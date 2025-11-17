@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import { getRemainCount } from './../utils'
+import getRemainCount from './../../Media/utils/getRemainCount'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start

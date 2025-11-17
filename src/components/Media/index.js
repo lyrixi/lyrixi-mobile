@@ -1,4 +1,3 @@
-import validateImageSrc from './utils/validateImageSrc'
 import validateListStatus from './utils/validateListStatus'
 import Media from './Media'
 import Mark from './Mark'
@@ -6,7 +5,6 @@ import PreviewModal from './PreviewModal'
 import PreviewMain from './PreviewMain'
 import List from './List'
 
-Media.validateImageSrc = validateImageSrc
 Media.validateListStatus = validateListStatus
 Media.Mark = Mark
 Media.PreviewModal = PreviewModal
