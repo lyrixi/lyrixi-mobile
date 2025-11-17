@@ -18,14 +18,20 @@ const NavBarModal = Modal.NavBarModal
 const AttachPreviewModal = forwardRef(
   (
     {
-      // Main
+      // Main: Value & Display Value
       fileName,
       viewerUrl,
       fileUrl,
       types,
 
-      // Modal
+      // Modal: Status
       open,
+
+      // Modal: Elements
+      portal,
+
+      // Events
+      onOpen,
       onClose
     },
     ref
@@ -52,6 +58,7 @@ const AttachPreviewModal = forwardRef(
     return (
       <NavBarModal
         ref={ref}
+        portal={portal}
         title={LocaleUtil.locale('附件预览')}
         ok={LocaleUtil.locale('复制链接')}
         onOk={handleOk}

@@ -28,9 +28,9 @@ import {
 // 附件预览
 function AttachPreviewMain(
   {
+    // Value & Display Value
     fileName,
-    // 在线预览平台地址, 将会将fileUrl拼接到后面
-    viewerUrl,
+    viewerUrl, // 在线预览平台地址, 将会将fileUrl拼接到后面
     fileUrl,
     types = ['image', 'video', 'audio', 'pdf']
   },
@@ -41,7 +41,7 @@ function AttachPreviewMain(
   useImperativeHandle(ref, () => {
     return {
       mainDOM: mainRef.current,
-      getAttachPreviewMainDOM: () => mainRef.current
+      getMainDOM: () => mainRef.current
     }
   })
 

@@ -278,7 +278,7 @@ let Browser = {
     })
     params?.onError && params.onError({ status: 'error', message: message })
   },
-  previewFile: function (params = {}) {
+  previewFile: function ({ fileUrl, onSuccess, onError }) {
     let message = LocaleUtil.locale(
       'previewFile仅可在企业微信或APP中使用',
       'lyrixi_previewFile_prompt',
@@ -287,7 +287,7 @@ let Browser = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ status: 'error', message: message })
+    onError && onError({ status: 'error', message: message })
   }
 }
 export default Browser

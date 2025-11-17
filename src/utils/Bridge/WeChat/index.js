@@ -276,7 +276,7 @@ let Bridge = {
     })
     window.top.wx.previewImage(wrappedParams)
   },
-  previewFile: function (params) {
+  previewFile: function ({ fileUrl, onSuccess, onError }) {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
@@ -286,11 +286,11 @@ let Bridge = {
       Toast.show({
         content: message
       })
-      params?.onError && params.onError({ status: 'error', message: message })
+      onError && onError({ status: 'error', message: message })
       return
     }
 
-    const wrappedParams = wrapCallback(params)
+    const wrappedParams = wrapCallback({ url: fileUrl, onSuccess: onSuccess, onError: onError })
     window.top.wx.previewFile(wrappedParams)
   }
 }

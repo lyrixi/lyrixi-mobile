@@ -1,46 +1,59 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
-
-import fileChoose from './fileChoose'
-import choose from './choose'
-import Choose from './../Choose'
+import fileChoose from './../utils/fileChoose'
+import choose from './../utils/choose'
+import uploadItem from './../utils/uploadItem'
+import showLoading from './../utils/showLoading'
+import hideLoading from './../utils/hideLoading'
 import List from './../List'
+import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
+import copyFileUrl from './copyFileUrl'
 
 // 内库使用-start
-import Clipboard from './../../../utils/Clipboard'
 import Bridge from './../../../utils/Bridge'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import Message from './../../Message'
-import Loading from './../../Loading'
 import Toast from './../../Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { Clipboard, Bridge, DOMUtil, LocaleUtil, Message, Loading, Toast } from 'lyrixi-mobile'
+import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 文件上传
 function Attach(
   {
-    // Style
-    disabled,
-    allowChoose = false,
-    allowClear = false,
-    uploadPosition,
-    uploadRender,
-    uploadingRender,
-
-    // Preview Config: { allowChoose, allowClear }
-    preview,
-
-    // Config
-    async = false,
-    reUpload = true,
+    // Value & Display Value
+    list = [],
+    /*
+    [
+      {
+        fileUrl: "全路径(必传)",
+        filePath: "目录/年月/照片名.jpg(必传)",
+        fileName: "文件名(必传)",
+        fileSize: "文件大小(字节)",
+        status: "choose|uploading|fail|success",
+        children: node,
+      },
+    ]
+    */
     count,
     sourceType,
-    maxSize, // bytes
-    list = [], // [{fileName: '附件名称', fileUrl: '全路径', filePath: '目录/年月/文件名.jpg', status: 'choose|uploading|error|success'}]
+
+    // Status
+    allowChoose = false,
+    allowClear = false,
+    async = false,
+    reUpload = true,
+
+    // Style
+    className,
+    uploadPosition = 'end', // start | end
+
+    // Element
+    uploadRender, // 上传按钮覆盖的dom
+    uploadingRender,
+    previewPortal,
 
     // Events
     onBeforeChoose,
@@ -48,11 +61,7 @@ function Attach(
     onFileChange,
     onUpload,
     onChange,
-    onPreview,
-
-    // 其它属性
-    className,
-    ...props
+    onPreview
   },
   ref
 ) {
@@ -84,10 +93,19 @@ function Attach(
       chooseFile: _choose,
       choose: _choose,
       uploadList: uploadList,
-      showLoading: showLoading,
-      hideLoading: hideLoading
+      showLoading: _showLoading,
+      hideLoading: _hideLoading
     }
   })
+
+  // 显隐Loading
+  function _showLoading(options) {
+    showLoading(rootRef.current, options)
+  }
+
+  function _hideLoading(options) {
+    hideLoading(rootRef.current, options)
+  }
 
   // Expose manual choose
   async function _choose(e) {
@@ -110,80 +128,6 @@ function Attach(
     return chooseOk
   }
 
-  // 显隐Loading
-  function showLoading({ content, index } = {}) {
-    let rootDOM = rootRef.current || null
-    if (!rootDOM) return
-    // 根节点遮罩
-    rootDOM.classList.add('lyrixi-uploading')
-    // 新增按钮遮罩
-    let uploadDOM = rootDOM.querySelector('.lyrixi-attach-choose')
-    if (uploadDOM) uploadDOM.classList.add('lyrixi-uploading')
-    // 当前项遮罩
-    let itemDOM =
-      typeof index === 'number' ? rootDOM.querySelector(`[data-index="${index}"]`) : null
-    if (itemDOM) {
-      itemDOM.classList.remove('lyrixi-error')
-      itemDOM.classList.add('lyrixi-uploading')
-    }
-
-    Loading.show(content ? { content } : { className: 'lyrixi-hide' })
-  }
-
-  function hideLoading({ failIndexes } = {}) {
-    let rootDOM = rootRef.current || null
-    if (!rootDOM) return
-    // 根节点遮罩
-    rootDOM.classList.remove('lyrixi-uploading')
-    // 新增按钮遮罩
-    let uploadDOM = rootDOM.querySelector('.lyrixi-attach-choose')
-    if (uploadDOM) uploadDOM.classList.remove('lyrixi-uploading')
-    // 当前项遮罩
-    let itemsDOM = rootDOM.querySelectorAll(`[data-index]`)
-    if (itemsDOM) {
-      for (let itemDOM of itemsDOM) {
-        let itemIndex = Number(itemDOM.getAttribute('data-index'))
-        itemDOM.classList.remove('lyrixi-uploading')
-        // 更新失败状态
-        if (Array.isArray(failIndexes) && failIndexes.includes(itemIndex)) {
-          itemDOM.classList.add('lyrixi-error')
-        }
-      }
-    }
-
-    Loading.hide()
-  }
-
-  // 上传文件
-  async function uploadItem(item) {
-    if (typeof onUpload !== 'function') {
-      Toast.show({
-        content: `没有onUpload入参, 无法上传`
-      })
-    }
-
-    // 已经上传成功, 无需要再次上传
-    if (item?.fileUrl?.startsWith?.('http')) {
-      item.status = 'success'
-      return item
-    }
-
-    // 开始上传
-    let result = await onUpload(item)
-
-    // 上传失败
-    if (typeof result === 'string') {
-      Toast.show({
-        content: result
-      })
-      item.status = 'error'
-      return item
-    }
-
-    // 更新状态
-    return { ...item, status: 'success', ...result }
-  }
-
   // 上传
   async function uploadList(newList, { action } = {}) {
     if (!newList) {
@@ -194,15 +138,15 @@ function Attach(
 
     let hasUploaded = false
     // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi_uploading') })
+    _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi_uploading') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的文件
       if (item.status === 'choose') {
-        newList[index] = await uploadItem(item, index)
+        newList[index] = await uploadItem(item, { onUpload })
         hasUploaded = true
       }
     }
-    hideLoading()
+    _hideLoading()
 
     // 不支持重新上传，则过滤上传失败的文件
     if (!reUpload) {
@@ -243,16 +187,16 @@ function Attach(
   async function handleReUpload(item, index) {
     let newList = [...list]
     // 开始上传
-    showLoading({ index })
-    newList[index] = await uploadItem(item, index)
-    hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
+    _showLoading({ index })
+    newList[index] = await uploadItem(item, { onUpload })
+    _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
 
     onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
   }
 
   // 选择文件
   async function handleFileChange(e) {
-    showLoading()
+    _showLoading()
     let chooseResult = await fileChoose({
       file: e.nativeEvent.target,
       async,
@@ -265,13 +209,13 @@ function Attach(
       onFileChange,
       onChange: onChangeRef.current
     })
-    hideLoading()
+    _hideLoading()
     return chooseResult
   }
 
   // 选择文件
   async function handleChoose(e) {
-    showLoading()
+    _showLoading()
     let chooseResult = await choose({
       async,
       maxSize,
@@ -283,16 +227,8 @@ function Attach(
       onChoose,
       onChange: onChangeRef.current
     })
-    hideLoading()
+    _hideLoading()
     return chooseResult
-  }
-
-  // 删除
-  function handleDelete(item, index) {
-    let newList = list.filter((current, currentIndex) => {
-      return currentIndex !== index
-    })
-    onChangeRef.current && onChangeRef.current(newList, { action: 'delete' })
   }
 
   // 点击预览
@@ -322,32 +258,7 @@ function Attach(
     }
     // 复制到剪贴板
     else {
-      Clipboard.copy(item.fileUrl, {
-        onSuccess: () => {
-          Toast.show({
-            content: LocaleUtil.locale(
-              '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
-              'lyrixi_clipboard_success'
-            )
-          })
-        },
-        onError: () => {
-          Message.open({
-            content: LocaleUtil.locale(
-              `文件链接复制到剪贴板失败, 请长按复制<br/>${item.fileUrl}`,
-              'lyrixi_clipboard_fail_confirm',
-              [item.fileUrl]
-            ),
-            buttons: [
-              {
-                name: '确定',
-                className: 'lyrixi-primary',
-                onClick: () => true
-              }
-            ]
-          })
-        }
-      })
+      copyFileUrl(item.fileUrl)
     }
   }
 
@@ -366,9 +277,9 @@ function Attach(
         onBeforeChoose={
           typeof onBeforeChoose === 'function'
             ? async (e) => {
-                showLoading()
+                _showLoading()
                 let isOk = await onBeforeChoose(e)
-                hideLoading()
+                _hideLoading()
                 return isOk
               }
             : null
@@ -386,15 +297,14 @@ function Attach(
 
       {/* 列表 */}
       <List
-        list={(list || []).map((item) => {
-          return {
-            ...item,
-            fileUrl: item.localFileUrl || item.fileUrl
-          }
-        })}
+        // Value & Display Value
+        list={list}
+        // Status
+        allowClear={allowClear}
+        // Element
         uploadingRender={uploadingRender}
         // Events
-        onDelete={allowClear ? handleDelete : null}
+        onChange={onChangeRef.current}
         onReUpload={handleReUpload}
         onPreview={handlePreview}
       />
@@ -405,11 +315,16 @@ function Attach(
       {/* 预览 */}
       {previewTypeRef.current === 'browser' && (
         <PreviewModal
-          open={typeof previewVisible === 'number'}
+          // Value & Display Value
           fileName={list[previewVisible]?.fileName}
           viewerUrl={preview?.viewerUrl}
           fileUrl={list[previewVisible]?.fileUrl}
           types={preview?.types}
+          // Status
+          open={typeof previewVisible === 'number'}
+          // Elements
+          portal={previewPortal}
+          // Events
           onClose={() => {
             setPreviewVisible(null)
           }}

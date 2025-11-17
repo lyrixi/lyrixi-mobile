@@ -272,9 +272,9 @@ let Bridge = {
   /**
    * 文件操作: 预览文件
    * @param {Object} params - 预览文件参数
-   * @param {String} params.fileUrl - 需要预览文件的地址(必填，可以使用相对路径)
+   * @param {String} params.fileUrl - 需要预览文件的地址(必填)
    * @param {String} params.fileName - 需要预览文件的文件名(不填的话取url的最后部分)
-   * @param {Number} params.fileSize - 需要预览文件的字节大小(必填)
+   * @param {Number} params.fileSize - 需要预览文件的字节大小
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
    * @returns {void}

@@ -43,7 +43,6 @@ const PreviewModal = forwardRef(
       onFileChange,
       onUpload,
       onChange,
-      onOpen,
       onClose
     },
     ref
@@ -76,7 +75,6 @@ const PreviewModal = forwardRef(
         ok={false}
         // Events
         onClose={handleClose}
-        onOpen={onOpen}
       >
         <PreviewMain
           ref={ref}

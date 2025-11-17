@@ -10,13 +10,13 @@ import PreviewModal from './../PreviewModal'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
+import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
-import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge, LocaleUtil, Toast } from 'lyrixi-mobile'
+import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片视频预览
@@ -66,9 +66,7 @@ const Media = forwardRef(
       onFileChange,
       onUpload,
       onChange,
-      onPreview,
-      onPreviewOpen,
-      onPreviewClose
+      onPreview
     },
     ref
   ) => {
@@ -274,7 +272,7 @@ const Media = forwardRef(
       }
       // 视频使用previewFile预览
       else if (previewTypeRef.current === 'nativeFile') {
-        Bridge.previewFile({ url: item.fileUrl })
+        Bridge.previewFile(item)
       }
       // 浏览器预览
       else {
@@ -369,11 +367,7 @@ const Media = forwardRef(
             onFileChange={onFileChange}
             onUpload={onUpload}
             onChange={onChange}
-            onOpen={() => {
-              onPreviewOpen?.()
-            }}
             onClose={() => {
-              onPreviewClose?.()
               setPreviewVisible(null)
             }}
           />

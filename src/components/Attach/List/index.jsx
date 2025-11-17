@@ -33,6 +33,8 @@ const List = ({
     onChange && onChange(newList, { action: 'delete' })
   }
 
+  console.log(typeof onChange === 'function' && allowClear, '====')
+
   return (
     <>
       {/* 列表 */}
