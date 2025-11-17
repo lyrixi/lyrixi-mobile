@@ -16,7 +16,18 @@ import { LocaleUtil, Toast, Attach } from 'lyrixi-mobile'
 function Browser(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
+    list = [],
+    /*
+    [
+      {
+        fileUrl: "全路径(必传)",
+        filePath: "入库路径(必传)",
+        fileName: "文件名(必传)",
+        fileSize: "文件大小(字节)",
+        status: "choose|uploading|fail|success",
+      },
+    ]
+    */
     count = 5,
     sourceType = ['album', 'camera'],
     maxSize,
@@ -50,7 +61,6 @@ function Browser(
     }
     */
     formatUploadedItem,
-    getWatermark,
     getUploadUrl,
     getUploadPayload,
 
@@ -81,7 +91,6 @@ function Browser(
     // 开始上传
     let result = await _uploadItem(item, {
       uploadDir,
-      maxSize,
       getUploadUrl,
       getUploadPayload,
       formatUploadedItem
@@ -117,18 +126,12 @@ function Browser(
         }
       }
 
-      // 添加水印
-      let watermark = null
-      if (typeof getWatermark === 'function') {
-        watermark = await getWatermark({ platform: 'dingtalk' })
-      }
-
       resolve({
         status: 'choose',
         localFile: localFile,
-        fileThumbnail: localFile.preview,
+        fileName: localFile.name,
+        fileSize: localFile.size,
         fileUrl: localFile.preview,
-        watermark: watermark,
         uploadDir: uploadDir
       })
     })

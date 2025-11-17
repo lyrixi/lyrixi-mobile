@@ -29,11 +29,10 @@ function Attach(
     [
       {
         fileUrl: "全路径(必传)",
-        filePath: "目录/年月/照片名.jpg(必传)",
+        filePath: "入库路径(必传)",
         fileName: "文件名(必传)",
         fileSize: "文件大小(字节)",
         status: "choose|uploading|fail|success",
-        children: node,
       },
     ]
     */

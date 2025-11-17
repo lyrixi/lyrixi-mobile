@@ -17,7 +17,18 @@ import { Bridge,Toast, Loading, Attach } from 'lyrixi-mobile'
 function MediaUploader(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
+    list = [],
+    /*
+    [
+      {
+        fileUrl: "全路径(必传)",
+        filePath: "入库路径(必传)",
+        fileName: "文件名(必传)",
+        fileSize: "文件大小(字节)",
+        status: "choose|uploading|fail|success",
+      },
+    ]
+    */
     count = 5,
     sourceType,
     maxSize,
@@ -52,7 +63,6 @@ function MediaUploader(
     }
     */
     formatUploadedItem,
-    getWatermark,
     getUploadUrl,
     getUploadPayload,
 
@@ -83,7 +93,6 @@ function MediaUploader(
     // 开始上传
     let result = await _uploadItem(item, {
       uploadDir,
-      maxSize,
       getUploadUrl,
       getUploadPayload,
       formatUploadedItem
@@ -119,12 +128,6 @@ function MediaUploader(
         }
       }
 
-      // 添加水印
-      let watermark = null
-      if (typeof getWatermark === 'function') {
-        watermark = await getWatermark({ platform: 'dingtalk' })
-      }
-
       let chooseMediaParams = {
         ...chooseExtraParams,
         count: getRemainCount(count, list?.length || 0),
@@ -145,8 +148,8 @@ function MediaUploader(
             return {
               status: 'choose',
               localFile: localFile,
-              watermark: watermark,
-              fileThumbnail: localFile.preview,
+              fileName: localFile.name,
+              fileSize: localFile.size,
               fileUrl: localFile.preview,
               uploadDir: uploadDir
             }

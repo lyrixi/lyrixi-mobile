@@ -47,7 +47,13 @@ async function fileChoose({
     return false
   }
 
-  if (maxSize && !validateMaxSize(file, maxSize)) {
+  // 数据
+  let fileData = file.files?.[0]
+  let fileName = fileData?.name || file.value
+  let fileURL = URL.createObjectURL(fileData)
+  let fileSize = fileData?.size
+
+  if (maxSize && !validateMaxSize(fileSize, maxSize)) {
     Toast.show({
       content: LocaleUtil.locale(
         `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
@@ -57,12 +63,6 @@ async function fileChoose({
     })
     return false
   }
-
-  // 数据
-  let fileData = file.files?.[0]
-  let fileName = fileData?.name || file.value
-  let fileURL = URL.createObjectURL(fileData)
-  let fileSize = fileData?.size
 
   // 未获取到文件名
   if (!fileName) {
@@ -89,10 +89,11 @@ async function fileChoose({
   let currentList = null
   if (typeof onFileChange === 'function') {
     currentList = await onFileChange({
-      fileName: fileName,
-      fileData: fileData,
-      fileURL: fileURL,
-      fileSize: fileSize
+      name: fileName,
+      size: fileSize,
+      type: fileData?.type,
+      path: fileData,
+      preview: fileURL
     })
   }
 

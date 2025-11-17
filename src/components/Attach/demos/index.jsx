@@ -60,20 +60,6 @@ export default () => {
           maxSize={300 * 1024 * 1024}
           list={list}
           count={9}
-          onFileChange={async ({ fileName, fileSize, fileURL, fileData }) => {
-            await handleBeforeChoose()
-            // 待传文件
-            return [
-              {
-                status: 'choose',
-                fileName: fileName,
-                fileSize: fileSize,
-                uploadDir: 'uploadDir/202504',
-                fileUrl: fileURL,
-                fileData: fileData
-              }
-            ]
-          }}
           onChange={(newList) => {
             console.log('修改:', newList)
             setList(newList)
@@ -94,20 +80,6 @@ export default () => {
           maxSize={300 * 1024 * 1024}
           list={customList}
           count={9}
-          onFileChange={({ fileName, fileSize, fileURL, fileData }) => {
-            // 待传文件
-            return [
-              {
-                sourceType: 'local',
-                status: 'choose',
-                fileName: fileName,
-                fileSize: fileSize,
-                uploadDir: 'uploadDir/202504',
-                fileUrl: fileURL,
-                fileData: fileData
-              }
-            ]
-          }}
           onChange={(newList) => {
             console.log('修改:', newList)
             setCustomList(newList)

@@ -1,14 +1,6 @@
 // 获取上传入参
-function getUploadParams({
-  watermark,
-  localFile,
-  uploadDir,
-  getUploadUrl,
-  getUploadPayload,
-  appId
-}) {
+function getUploadParams({ localFile, uploadDir, getUploadUrl, getUploadPayload, appId }) {
   let payload = {
-    watermark: watermark ? JSON.stringify(watermark) : '',
     fileType: localFile.type,
     filePath: localFile.path,
     uploadPath: uploadDir,

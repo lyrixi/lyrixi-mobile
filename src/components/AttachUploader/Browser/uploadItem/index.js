@@ -30,7 +30,6 @@ function uploadItem(item, { uploadDir, getUploadUrl, getUploadPayload, formatUpl
 
     // 获取上传入参
     let { localFile, url, header, data } = getUploadParams({
-      watermark: item?.watermark,
       localFile: item?.localFile,
       uploadDir,
       getUploadUrl,
