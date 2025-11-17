@@ -55,8 +55,8 @@ function Main(
     uploadPosition,
 
     // Element
-    upload, // 上传按钮覆盖的dom
-    uploading,
+    uploadRender, // 上传按钮覆盖的dom
+    uploadingRender,
     previewPortal,
     /*
     格式化上传结果
@@ -145,8 +145,8 @@ function Main(
     className,
     uploadPosition,
     // Element
-    upload,
-    uploading,
+    uploadRender,
+    uploadingRender,
     previewPortal,
     formatUploadedItem,
     getWatermark,

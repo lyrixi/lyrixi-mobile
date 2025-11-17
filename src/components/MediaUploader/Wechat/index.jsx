@@ -41,8 +41,8 @@ function MediaUploader(
     uploadPosition,
 
     // Element
-    upload, // 上传按钮覆盖的dom
-    uploading,
+    uploadRender, // 上传按钮覆盖的dom
+    uploadingRender,
     previewPortal,
     /*
     格式化上传结果
@@ -192,8 +192,8 @@ function MediaUploader(
       className={className}
       uploadPosition={uploadPosition}
       // Element
-      upload={upload}
-      uploading={uploading}
+      uploadRender={uploadRender}
+      uploadingRender={uploadingRender}
       previewPortal={previewPortal}
       // Events
       onBeforeChoose={onBeforeChoose}
