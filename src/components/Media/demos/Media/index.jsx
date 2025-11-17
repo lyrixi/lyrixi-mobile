@@ -104,12 +104,6 @@ export default () => {
           }}
           previewAllowChoose={true}
           previewAllowClear={true}
-          onPreviewOpen={() => {
-            console.log('onPreviewOpen')
-          }}
-          onPreviewClose={() => {
-            console.log('onPreviewClose')
-          }}
           onPreview={(item, index) => {
             HistoryUtil.navigate('imagePreview=1', {
               onBack: () => {

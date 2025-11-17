@@ -80,9 +80,7 @@ function Main(
     onFileChange,
     onUpload,
     onChange,
-    onPreview,
-    onPreviewOpen,
-    onPreviewClose
+    onPreview
   },
   ref
 ) {
@@ -159,9 +157,7 @@ function Main(
     onFileChange,
     onUpload,
     onChange,
-    onPreview,
-    onPreviewOpen,
-    onPreviewClose
+    onPreview
   }
 
   // 优先调用客户端能力

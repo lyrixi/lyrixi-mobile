@@ -65,9 +65,7 @@ function MediaUploader(
     onFileChange,
     // onUpload,
     onChange,
-    onPreview,
-    onPreviewOpen,
-    onPreviewClose
+    onPreview
   },
   ref
 ) {
@@ -220,8 +218,6 @@ function MediaUploader(
         // })
         // return false
       }}
-      onPreviewOpen={onPreviewOpen}
-      onPreviewClose={onPreviewClose}
     />
   )
 }

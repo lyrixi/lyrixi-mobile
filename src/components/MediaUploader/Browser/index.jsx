@@ -63,9 +63,7 @@ function Browser(
     onBeforeChoose,
     // onUpload,
     onChange,
-    onPreview,
-    onPreviewOpen,
-    onPreviewClose
+    onPreview
   },
   ref
 ) {
@@ -187,8 +185,6 @@ function Browser(
         // })
         // return false
       }}
-      onPreviewOpen={onPreviewOpen}
-      onPreviewClose={onPreviewClose}
     />
   )
 }

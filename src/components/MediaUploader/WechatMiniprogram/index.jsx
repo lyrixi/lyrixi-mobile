@@ -71,8 +71,6 @@ function WechatMiniprogram(
     // onUpload,
     onChange,
     onPreview,
-    onPreviewOpen,
-    onPreviewClose,
     onNavigateTo
   },
   ref
@@ -304,8 +302,6 @@ function WechatMiniprogram(
 
           return getPreviewType('image')
         }}
-        onPreviewOpen={onPreviewOpen}
-        onPreviewClose={onPreviewClose}
       />
 
       <ActionSheet.Modal
