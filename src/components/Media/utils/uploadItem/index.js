@@ -1,3 +1,5 @@
+// 与Attach.uploadItem共用
+
 // 内库使用-start
 import Toast from './../../../Toast'
 // 内库使用-end

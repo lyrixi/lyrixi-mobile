@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import getRemainCount from './../../utils/getRemainCount'
+import getRemainCount from './../../../Media/utils/getRemainCount'
 import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 import convertBytes from './../../utils/convertBytes'

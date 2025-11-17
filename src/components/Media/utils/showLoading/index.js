@@ -1,3 +1,5 @@
+// 与Attach.showLoading共用
+
 // 内库使用-start
 import Loading from './../../../Loading'
 // 内库使用-end

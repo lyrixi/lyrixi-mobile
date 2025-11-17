@@ -1,7 +1,7 @@
 import _ from 'lodash'
+import getRemainCount from './../../../Media/utils/getRemainCount'
 import convertBytes from './../../utils/convertBytes'
 import validateMaxSize from './../../utils/validateMaxSize'
-import getRemainCount from './../../utils/getRemainCount'
 import supportTypes from './../../utils/supportTypes'
 
 // 内库使用-start
