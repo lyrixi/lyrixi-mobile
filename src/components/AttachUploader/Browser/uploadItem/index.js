@@ -1,33 +1,59 @@
-import uploadFile from './uploadFile'
+import _ from 'lodash'
+import getUploadParams from './getUploadParams'
+import uploadLocalFile from './uploadLocalFile'
 
-// 上传
-function uploadItem(item, { uploadDir, getUploadUrl, getUploadParams, formatUploadedItem }) {
+// 内库使用-start
+import Storage from './../../../../utils/Storage'
+import LocaleUtil from './../../../../utils/LocaleUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { Storage, LocaleUtil } from 'browser-mobile'
+测试使用-end */
+
+// 单张照片上传
+function uploadItem(
+  item,
+  { uploadDir, maxWidth, getUploadUrl, getUploadPayload, formatUploadedItem }
+) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let fileData = item.fileData
-
-    // 用临时方案尝试
-    let serverItem = await uploadFile({
-      item,
-      fileData,
-      uploadDir,
-      getUploadUrl,
-      getUploadParams,
-      formatUploadedItem
-    })
-
-    // 上传失败
-    if (typeof serverItem === 'string') {
-      resolve(serverItem)
+    let errMsg = ''
+    if (_.isEmpty(item?.localFile)) {
+      errMsg = LocaleUtil.locale('没有localFile，无法上传！')
+      resolve(errMsg)
       return
     }
 
-    resolve({
-      ...item,
-      ...serverItem,
-      // 状态
-      status: 'success'
+    const appId = Storage.getLocalStorage('appId') || ''
+    if (!appId) {
+      resolve(LocaleUtil.locale('没有appId，无法上传！'))
+      return
+    }
+
+    // 获取上传入参
+    let { localFile, url, header, data } = getUploadParams({
+      watermark: item?.watermark,
+      localFile: item?.localFile,
+      uploadDir,
+      maxWidth,
+      getUploadUrl,
+      getUploadPayload,
+      appId
     })
+
+    // 上传到阿里云
+    let newItem = await uploadLocalFile({
+      localFile,
+      url,
+      header,
+      data,
+      // 用于构建新Item的入参
+      item,
+      formatUploadedItem
+    })
+
+    resolve(newItem)
   })
 }
 

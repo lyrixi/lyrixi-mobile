@@ -61,8 +61,6 @@ function Browser(
 
     // Events
     onBeforeChoose,
-    // onChoose,
-    onFileChange,
     // onUpload,
     onChange,
     onPreview,
