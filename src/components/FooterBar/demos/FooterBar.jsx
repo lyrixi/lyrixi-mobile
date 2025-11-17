@@ -111,6 +111,7 @@ export default () => {
           <FooterBar.Button
             iconPosition="top"
             iconClassName="lyrixi-iconfont-three-dots"
+            iconSize="16px"
             list={[
               {
                 id: 'option1',
@@ -127,6 +128,7 @@ export default () => {
                 }
               }
             ]}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             More
           </FooterBar.Button>
@@ -136,6 +138,7 @@ export default () => {
             onClick={(e) => {
               console.log(e)
             }}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             Config
           </FooterBar.Button>
