@@ -76,7 +76,15 @@
 .lyrixi-button-icon {
   color: currentColor;
 }
-.lyrixi-button-icon + .lyrixi-button-text,
-.lyrixi-button-text + .lyrixi-button-icon {
-  margin-left: 4px;
+.lyrixi-button:not(.lyrixi-flex-vertical) {
+  .lyrixi-button-icon + .lyrixi-button-text,
+  .lyrixi-button-text + .lyrixi-button-icon {
+    margin-left: 4px;
+  }
+}
+.lyrixi-button.lyrixi-flex-vertical {
+  .lyrixi-button-icon + .lyrixi-button-text,
+  .lyrixi-button-text + .lyrixi-button-icon {
+    margin-top: 4px;
+  }
 }

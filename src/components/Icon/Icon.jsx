@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import { colorClasses, backgroundColorClasses, sizeClasses, radiusClasses } from './../Button/enums'
+import getStyle from './getStyle'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -32,26 +32,6 @@ const Icon = forwardRef(
   ) => {
     const rootRef = useRef(null)
 
-    // 判断颜色是否在枚举值中
-    const isColorClass = colorClasses.includes(color)
-    const isBackgroundColorClass = backgroundColorClasses.includes(backgroundColor)
-    const isSizeClass = sizeClasses.includes(size)
-    const isRadiusClass = radiusClasses.includes(radius)
-    let innerSize =
-      typeof size === 'number' && typeof padding === 'number' ? (size || 16) - padding : size
-
-    // 构建自定义样式
-    const iconStyle = {
-      ...(!isColorClass && color ? { color } : {}),
-      ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-      ...(!isSizeClass && innerSize ? { fontSize: `${innerSize}px` } : {}),
-      ...(typeof size === 'number'
-        ? { width: size, height: size, fontSize: innerSize, lineHeight: size }
-        : {}),
-      ...(!isRadiusClass && radius ? { borderRadius: radius } : {}),
-      ...style
-    }
-
     // Expose
     useImperativeHandle(ref, () => {
       return {
@@ -60,22 +40,27 @@ const Icon = forwardRef(
       }
     })
 
+    const { style: newStyle, className: newClassName } = getStyle({
+      // Style
+      color,
+      backgroundColor,
+      size,
+      radius,
+      padding,
+      style,
+      // ClassName
+      iconClassName,
+      className
+    })
+
     return (
       <i
         ref={rootRef}
         // Status
         disabled={disabled}
         // Style
-        style={iconStyle}
-        className={DOMUtil.classNames(
-          'lyrixi-icon',
-          iconClassName,
-          isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
-          isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
-          isSizeClass && size && `lyrixi-size-${size}`,
-          isRadiusClass && radius && `lyrixi-radius-${radius}`,
-          className
-        )}
+        style={newStyle}
+        className={newClassName}
       >
         {/* Element: Children */}
         {children}

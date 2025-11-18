@@ -122,7 +122,8 @@ const ActionSheetModal = forwardRef(
                   disabled={item?.disabled}
                   style={optionStyle}
                   className={optionClassName}
-                  onClick={() => {
+                  onClick={(e) => {
+                    item?.onClick && item?.onClick(e)
                     handleChange(item)
                   }}
                 >

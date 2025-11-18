@@ -10,17 +10,6 @@
   line-height: 1;
 }
 
-.lyrixi-footerbar-button {
-  flex: 1;
-  padding: 0 !important;
-}
-
-.lyrixi-footerbar-icon {
-  color: var(--lyrixi-font-color-secondary);
-  text-align: center;
-  flex: 1;
-}
-
 // Compatiable old models. Don't use gap
 .lyrixi-bad-android,
 .lyrixi-bad-ios {
@@ -30,32 +19,4 @@
       margin-right: 10px;
     }
   }
-}
-
-// Tab
-.lyrixi-footerbar-tab {
-  height: 40px;
-  text-align: center;
-  padding: 0 12px;
-  color: var(--lyrixi-font-color-secondary);
-  &.lyrixi-disabled {
-    pointer-events: none;
-    color: var(--lyrixi-font-color-disabled);
-  }
-}
-.lyrixi-footerbar-tab-icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-}
-.lyrixi-footerbar-tab-name {
-  font-size: var(--lyrixi-font-size-s);
-  margin-top: 4px;
-}
-.lyrixi-footerbar-tab-icon-more {
-  font-family: 'lyrixi-iconfont';
-  &:extend(.lyrixi-iconfont-three-dots all);
 }

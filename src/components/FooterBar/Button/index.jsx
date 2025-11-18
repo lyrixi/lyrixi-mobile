@@ -1,40 +1,40 @@
-import React, { forwardRef } from 'react'
-import Combo from './Combo'
+import React, { useRef, forwardRef, useImperativeHandle, useState } from 'react'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'
+import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { ActionSheet } from 'lyrixi-mobile'
+import { ActionSheet, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-// 底部按钮
 const FooterBarButton = forwardRef(
   (
     {
-      // Combo Button: Style
+      // Button: Style
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-      size, // 尺寸: xxs, xs, s, m, l, xl
+      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      fontSize, // 字体大小: xxs, xs, s, m, l, xl
       radius = 'm', // 圆角: xxs, xs, s, m, l, xl
       square, // 是否为正方形
       border = 'none', // 边框: none, dotted, dashed, solid
       style,
       className,
 
-      // Combo Button: Status
+      // Button: Status
       disabled,
 
-      // Combo Button: Element
+      // Button: Elements
       children,
 
-      // Combo Icon: Style
+      // Icon: Style
       iconClassName,
-      iconPosition,
+      iconPosition = 'top',
       iconColor,
       iconBackgroundColor,
-      iconSize,
+      iconSize = 'l',
       iconPadding,
       iconRadius,
 
@@ -47,7 +47,7 @@ const FooterBarButton = forwardRef(
       maskStyle,
       maskClassName,
 
-      // Modal: Element
+      // Modal: Elements
       portal,
 
       // Events
@@ -55,24 +55,39 @@ const FooterBarButton = forwardRef(
     },
     ref
   ) => {
-    // 获取标题节点
-    function getComboNode({ comboRef, open, onClick }) {
-      return (
-        <Combo
+    const comboRef = useRef(null)
+    const modalRef = useRef(null)
+
+    // Modal: Status
+    const [open, setOpen] = useState(false)
+
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        comboDOM: comboRef.current.rootDOM,
+        getComboDOM: comboRef.current?.getComboDOM,
+        ...modalRef.current
+      }
+    })
+
+    return (
+      <>
+        {/* Element: Button */}
+        <Button
           ref={comboRef}
-          open={open}
-          // Combo Button: Style
-          style={style}
-          className={className}
+          // Button: Style
           color={color}
           backgroundColor={backgroundColor}
+          size={size}
+          fontSize={fontSize}
+          radius={radius}
           square={square}
           border={border}
-          radius={radius}
-          size={size}
-          // Combo Button: Status
+          style={style}
+          className={className}
+          // Button: Status
           disabled={disabled}
-          // Combo Icon: Style
+          // Icon: Style
           iconClassName={iconClassName}
           iconPosition={iconPosition}
           iconColor={iconColor}
@@ -81,31 +96,41 @@ const FooterBarButton = forwardRef(
           iconPadding={iconPadding}
           iconRadius={iconRadius}
           // Events
-          onClick={onClick}
+          onClick={(e) => {
+            setOpen(true)
+            onClick && onClick(e)
+          }}
         >
           {children}
-        </Combo>
-      )
-    }
+        </Button>
 
-    return (
-      <ActionSheet.Combo
-        ref={ref}
-        // Modal: Value & Display Value
-        list={list}
-        // Modal: Style
-        maskStyle={maskStyle}
-        maskClassName={maskClassName}
-        modalStyle={modalStyle}
-        modalClassName={modalClassName}
-        // Modal: Element
-        portal={portal}
-        comboRender={getComboNode}
-        // Events
-        onClick={onClick}
-      />
+        {/* Element: ActionSheet Modal */}
+        {list?.length ? (
+          <ActionSheet.Modal
+            ref={modalRef}
+            // Modal: Value & Display Value
+            list={list}
+            // Modal: Status
+            open={open}
+            // Modal: Style
+            maskStyle={maskStyle}
+            maskClassName={maskClassName}
+            modalStyle={modalStyle}
+            modalClassName={modalClassName}
+            // Modal: Element
+            portal={portal}
+            // Events
+            onClose={() => {
+              setOpen(false)
+            }}
+          />
+        ) : null}
+      </>
     )
   }
 )
+
+// Component Name, for compact
+FooterBarButton.componentName = 'FooterBar.Button'
 
 export default FooterBarButton
