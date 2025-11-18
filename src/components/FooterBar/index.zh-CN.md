@@ -26,6 +26,10 @@ toc: content
 
 <code src="./demos/FooterBar.jsx"></code>
 
+### FooterBar.Button
+
+<code src="./demos/Button.jsx"></code>
+
 ## FooterBar
 
 ### 属性

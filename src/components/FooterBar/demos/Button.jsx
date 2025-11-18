@@ -40,7 +40,6 @@ export default () => {
           <FooterBar.Button
             className="lyrixi-flex-1"
             color="primary"
-            backgroundColor="transparent"
             onClick={(e) => {
               console.log(e)
             }}
@@ -49,7 +48,6 @@ export default () => {
           </FooterBar.Button>
           <FooterBar.Button
             className="lyrixi-flex-1"
-            backgroundColor="transparent"
             size="s"
             onClick={(e) => {
               console.log(e)
@@ -96,7 +94,6 @@ export default () => {
             disabled
             className="lyrixi-flex-1"
             color="primary"
-            backgroundColor="transparent"
             size="s"
             onClick={(e) => {
               console.log(e)
@@ -107,7 +104,6 @@ export default () => {
           <FooterBar.Button
             disabled
             className="lyrixi-flex-1"
-            backgroundColor="transparent"
             size="s"
             onClick={(e) => {
               console.log(e)

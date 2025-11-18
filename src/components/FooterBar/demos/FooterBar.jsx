@@ -1,239 +1,211 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Icon, Page, Divider, FooterBar } from 'lyrixi-mobile'
 
 export default () => {
+  const [selectedItem, setSelectedItem] = useState(null)
+
   return (
     <Page safeArea>
       <Page.Main>
         <Divider>Text Button</Divider>
-        <FooterBar>
-          <FooterBar.Button
-            className="lyrixi-flex-1"
-            iconClassName="lyrixi-iconfont-three-dots"
-            iconSize="xl"
-            list={[
-              {
-                id: 'option1',
-                name: 'Option 1',
-                onClick: (e) => {
-                  console.log(e)
-                }
-              },
-              {
-                id: 'option2',
-                name: 'Option 2',
-                onClick: (e) => {
-                  console.log(e)
-                }
-              }
-            ]}
-          />
-          <FooterBar.Button
-            className="lyrixi-flex-1"
-            iconClassName="lyrixi-iconfont-config"
-            iconSize="xl"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          />
+        <FooterBar
+          list={[
+            {
+              id: 'menu',
+              name: '',
 
-          <FooterBar.Button
-            className="lyrixi-flex-1"
-            color="primary"
-            backgroundColor="transparent"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Ok
-          </FooterBar.Button>
-          <FooterBar.Button
-            className="lyrixi-flex-1"
-            backgroundColor="transparent"
-            size="s"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Cancel
-          </FooterBar.Button>
-        </FooterBar>
+              iconClassName: 'lyrixi-iconfont-three-dots',
+              children: [
+                {
+                  id: 'option1',
+                  name: 'Option 1',
+                  onClick: (e) => {
+                    console.log('Option 1 clicked', e)
+                  }
+                },
+                {
+                  id: 'option2',
+                  name: 'Option 2',
+                  onClick: (e) => {
+                    console.log('Option 2 clicked', e)
+                  }
+                }
+              ]
+            },
+            {
+              id: 'config',
+              name: '',
+              iconClassName: 'lyrixi-iconfont-config'
+            },
+            {
+              id: 'ok',
+              name: 'Ok',
+              color: 'primary'
+            },
+            {
+              id: 'cancel',
+              name: 'Cancel',
+              backgroundColor: 'transparent'
+            }
+          ]}
+          onChange={(item) => {
+            console.log('FooterBar item clicked:', item)
+            setSelectedItem(item)
+          }}
+        />
 
         <Divider>Text Button disabled</Divider>
-        <FooterBar>
-          <FooterBar.Button
-            disabled
-            className="lyrixi-flex-1"
-            iconSize="xl"
-            iconClassName="lyrixi-iconfont-three-dots"
-            list={[
-              {
-                id: 'option1',
-                name: 'Option 1',
-                onClick: (e) => {
-                  console.log(e)
+        <FooterBar
+          list={[
+            {
+              id: 'menu-disabled',
+              name: '',
+
+              iconClassName: 'lyrixi-iconfont-three-dots',
+              disabled: true,
+              children: [
+                {
+                  id: 'option1',
+                  name: 'Option 1',
+                  onClick: (e) => {
+                    console.log('Option 1 clicked', e)
+                  }
+                },
+                {
+                  id: 'option2',
+                  name: 'Option 2',
+                  onClick: (e) => {
+                    console.log('Option 2 clicked', e)
+                  }
                 }
-              },
-              {
-                id: 'option2',
-                name: 'Option 2',
-                onClick: (e) => {
-                  console.log(e)
-                }
-              }
-            ]}
-          />
-          <FooterBar.Button
-            disabled
-            className="lyrixi-flex-1"
-            iconSize="xl"
-            iconClassName="lyrixi-iconfont-config"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          />
-          <FooterBar.Button
-            disabled
-            className="lyrixi-flex-1"
-            color="primary"
-            backgroundColor="transparent"
-            size="s"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Ok
-          </FooterBar.Button>
-          <FooterBar.Button
-            disabled
-            className="lyrixi-flex-1"
-            backgroundColor="transparent"
-            size="s"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Cancel
-          </FooterBar.Button>
-        </FooterBar>
+              ]
+            },
+            {
+              id: 'config-disabled',
+              name: '',
+
+              iconClassName: 'lyrixi-iconfont-config',
+              disabled: true
+            },
+            {
+              id: 'ok-disabled',
+              name: 'Ok',
+
+              color: 'primary',
+              disabled: true
+            },
+            {
+              id: 'cancel-disabled',
+              name: 'Cancel',
+
+              disabled: true
+            }
+          ]}
+          onChange={(item) => {
+            console.log('FooterBar item clicked:', item)
+          }}
+        />
 
         <Divider>Button</Divider>
-        <FooterBar>
-          <FooterBar.Button
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-three-dots"
-            fontSize="12px"
-            list={[
-              {
-                id: 'option1',
-                name: 'Option 1',
-                onClick: (e) => {
-                  console.log(e)
+        <FooterBar
+          list={[
+            {
+              id: 'more',
+              name: 'More',
+
+              iconClassName: 'lyrixi-iconfont-three-dots',
+              children: [
+                {
+                  id: 'option1',
+                  name: 'Option 1',
+                  onClick: (e) => {
+                    console.log('Option 1 clicked', e)
+                  }
+                },
+                {
+                  id: 'option2',
+                  name: 'Option 2',
+                  onClick: (e) => {
+                    console.log('Option 2 clicked', e)
+                  }
                 }
-              },
-              {
-                id: 'option2',
-                name: 'Option 2',
-                onClick: (e) => {
-                  console.log(e)
-                }
-              }
-            ]}
-            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
-          >
-            More
-          </FooterBar.Button>
-          <FooterBar.Button
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-config"
-            fontSize="12px"
-            onClick={(e) => {
-              console.log(e)
-            }}
-            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
-          >
-            Config
-          </FooterBar.Button>
-          <FooterBar.Button
-            className="lyrixi-flex-1"
-            backgroundColor="default"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Cancel
-          </FooterBar.Button>
-          <FooterBar.Button
-            className="lyrixi-flex-1"
-            color="white"
-            backgroundColor="primary"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Ok
-          </FooterBar.Button>
-        </FooterBar>
+              ]
+            },
+            {
+              id: 'config-button',
+              name: 'Config',
+
+              iconClassName: 'lyrixi-iconfont-config'
+            },
+            {
+              id: 'cancel-button',
+              name: 'Cancel',
+              backgroundColor: 'default'
+            },
+            {
+              id: 'ok-button',
+              name: 'Ok',
+              backgroundColor: 'primary',
+              color: 'white'
+            }
+          ]}
+          onChange={(item) => {
+            console.log('FooterBar item clicked:', item)
+          }}
+        />
 
         <Divider>Button disabled</Divider>
-        <FooterBar>
-          <FooterBar.Button
-            disabled
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-three-dots"
-            fontSize="12px"
-            list={[
-              {
-                disabled: true,
-                id: 'option1',
-                name: 'Option 1',
-                onClick: (e) => {
-                  console.log(e)
+        <FooterBar
+          list={[
+            {
+              id: 'more-disabled',
+              name: 'More',
+
+              iconClassName: 'lyrixi-iconfont-three-dots',
+              disabled: true,
+              children: [
+                {
+                  disabled: true,
+                  id: 'option1',
+                  name: 'Option 1',
+                  onClick: (e) => {
+                    console.log('Option 1 clicked', e)
+                  }
+                },
+                {
+                  id: 'option2',
+                  name: 'Option 2',
+                  onClick: (e) => {
+                    console.log('Option 2 clicked', e)
+                  }
                 }
-              },
-              {
-                id: 'option2',
-                name: 'Option 2',
-                onClick: (e) => {
-                  console.log(e)
-                }
-              }
-            ]}
-          >
-            More
-          </FooterBar.Button>
-          <FooterBar.Button
-            disabled
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-config"
-            fontSize="12px"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Config
-          </FooterBar.Button>
-          <FooterBar.Button
-            disabled
-            className="lyrixi-flex-1"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Cancel
-          </FooterBar.Button>
-          <FooterBar.Button
-            disabled
-            className="lyrixi-flex-1"
-            color="white"
-            backgroundColor="primary"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            Ok
-          </FooterBar.Button>
-        </FooterBar>
+              ]
+            },
+            {
+              id: 'config-disabled-button',
+              name: 'Config',
+
+              iconClassName: 'lyrixi-iconfont-config',
+              disabled: true
+            },
+            {
+              id: 'cancel-disabled-button',
+              name: 'Cancel',
+
+              disabled: true
+            },
+            {
+              id: 'ok-disabled-button',
+              name: 'Ok',
+              backgroundColor: 'primary',
+              color: 'white',
+              disabled: true
+            }
+          ]}
+          onChange={(item) => {
+            console.log('FooterBar item clicked:', item)
+          }}
+        />
       </Page.Main>
     </Page>
   )

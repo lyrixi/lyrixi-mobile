@@ -15,16 +15,21 @@ const FooterBarList = ({
   return (
     <>
       {list.map((item) => {
-        const { id, name, backgroundColor, iconClassName, children: itemChildren } = item
+        const {
+          id,
+          name,
+          backgroundColor,
+          color,
+          iconClassName,
+          disabled,
+          children: itemChildren
+        } = item
 
         // 根据是否有 图标 设置不同的样式
         let buttonStyle = {}
         let buttonClassName = ''
         if (iconClassName) {
-          buttonStyle = {
-            fontSize: '12px',
-            style: { fontSize: '12px', flex: 'none', padding: '0 12px' }
-          }
+          buttonStyle = { fontSize: '12px', flex: 'none', padding: '0 12px' }
         } else {
           buttonClassName = 'lyrixi-flex-1'
         }
@@ -34,11 +39,14 @@ const FooterBarList = ({
             key={id}
             // Value & Display Value
             backgroundColor={backgroundColor}
+            color={color}
             iconClassName={iconClassName}
             list={itemChildren}
+            // Status
+            disabled={disabled}
             // Style
-            buttonStyle={buttonStyle}
-            buttonClassName={buttonClassName}
+            style={buttonStyle}
+            className={buttonClassName}
             // Events
             onClick={(e) => {
               e.stopPropagation()
