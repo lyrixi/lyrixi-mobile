@@ -29,8 +29,18 @@ const FooterBarList = ({
         let buttonStyle = {}
         let buttonClassName = ''
         if (iconClassName) {
-          buttonStyle = { fontSize: '12px', flex: 'none', padding: '0 12px' }
-        } else {
+          buttonStyle = { fontSize: '12px', padding: '0 12px' }
+        }
+
+        // 一项时, flex=1
+        let buttonItems = 0
+        if (name) {
+          buttonItems++
+        }
+        if (iconClassName) {
+          buttonItems++
+        }
+        if (buttonItems === 1) {
           buttonClassName = 'lyrixi-flex-1'
         }
 
