@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Page, Card, Divider, Space, Button, Radio, Input } from 'lyrixi-mobile'
+import { Page, Card, Space, Button, Radio, Input } from 'lyrixi-mobile'
 
 const buttons = Array.from({ length: 6 }).map((_, index) => (
   <Button key={index}>Button {index + 1}</Button>
@@ -19,16 +19,24 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Divider>基础间距</Divider>
-        <Space size="l">{buttons.slice(0, 3)}</Space>
+        <Card>
+          <Card.Header>基础间距</Card.Header>
+          <Card.Main>
+            <Space size="l">{buttons.slice(0, 3)}</Space>
+          </Card.Main>
+        </Card>
 
-        <Divider>垂直布局</Divider>
-        <Space direction="vertical" size="m">
-          {buttons.slice(0, 2)}
-        </Space>
+        <Card>
+          <Card.Header>垂直布局</Card.Header>
+          <Card.Main>
+            <Space direction="vertical" size="m">
+              {buttons.slice(0, 2)}
+            </Space>
+          </Card.Main>
+        </Card>
 
-        <Card direction="vertical" size="m">
-          <Card.Header> 间距大小 </Card.Header>
+        <Card>
+          <Card.Header>间距大小</Card.Header>
           <Card.Main>
             <Radio.Group
               multiple={false}
@@ -55,24 +63,36 @@ export default () => {
           </Card.Main>
         </Card>
 
-        <Divider>分隔符</Divider>
-        <Space size="m" separator="|">
-          {buttons.slice(0, 3)}
-        </Space>
+        <Card>
+          <Card.Header>分隔符</Card.Header>
+          <Card.Main>
+            <Space size="m" separator="|">
+              {buttons.slice(0, 3)}
+            </Space>
+          </Card.Main>
+        </Card>
 
-        <Divider>换行</Divider>
-        <Space size={[12, 12]} wrap>
-          {buttons}
-        </Space>
+        <Card>
+          <Card.Header>换行</Card.Header>
+          <Card.Main>
+            <Space size={[12, 12]} wrap>
+              {buttons}
+            </Space>
+          </Card.Main>
+        </Card>
 
-        <Divider>紧凑布局</Divider>
-        <Space.Compact size="m">
-          <Space.Addon>+86</Space.Addon>
-          <Button color="primary" backgroundColor="primary">
-            发送验证码
-          </Button>
-          <Button>重试</Button>
-        </Space.Compact>
+        <Card>
+          <Card.Header>紧凑布局</Card.Header>
+          <Card.Main>
+            <Space.Compact size="m">
+              <Space.Addon>+86</Space.Addon>
+              <Button color="primary" backgroundColor="primary">
+                发送验证码
+              </Button>
+              <Button>重试</Button>
+            </Space.Compact>
+          </Card.Main>
+        </Card>
       </Page.Main>
     </Page>
   )
