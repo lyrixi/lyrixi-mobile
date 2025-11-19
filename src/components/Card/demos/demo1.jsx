@@ -5,7 +5,10 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Card title="Title">Content content</Card>
+        <Card>
+          <Card.Header>Header</Card.Header>
+          <Card.Main>Content content</Card.Main>
+        </Card>
       </Page.Main>
     </Page>
   )

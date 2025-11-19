@@ -8,7 +8,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Card = forwardRef(
+const Main = forwardRef(
   (
     {
       // Style
@@ -35,7 +35,7 @@ const Card = forwardRef(
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames('lyrixi-card', className)}
+        className={DOMUtil.classNames('lyrixi-card-main', className)}
       >
         {/* Element: Children */}
         {children}
@@ -44,4 +44,4 @@ const Card = forwardRef(
   }
 )
 
-export default Card
+export default Main

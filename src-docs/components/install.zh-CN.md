@@ -63,7 +63,6 @@ Add scripts to `index.html`
 <script src="https://lyrixi.github.io/lyrixi-mobile/assets/externals/react-dom.18.2.0.min.js"></script>
 <script src="https://lyrixi.github.io/lyrixi-mobile/assets/externals/axios.1.6.2.min.js"></script>
 <script src="https://lyrixi.github.io/lyrixi-mobile/assets/externals/dayjs.1.11.8.min.js"></script>
-<script src="https://lyrixi.github.io/lyrixi-mobile/assets/externals/ahooks.3.8.1.min.js"></script>
 <script src="https://lyrixi.github.io/lyrixi-mobile/assets/externals/lodash.4.17.21.min.js"></script>
 <!-- Lyrixi must defer -->
 <script
@@ -93,7 +92,6 @@ return {
     axios: 'axios',
     dayjs: 'dayjs',
     lodash: '_',
-    ahooks: 'ahooks',
     'lyrixi-mobile': 'Lyrixi'
   },
   // [自定义修改]公共cdn文件 end
