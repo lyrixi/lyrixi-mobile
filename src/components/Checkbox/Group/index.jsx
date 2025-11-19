@@ -1,9 +1,11 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import Checkbox from '../Checkbox'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
+
+import formatValue from './formatValue'
 
 // Checkbox-Group
 const CheckboxGroup = forwardRef(
@@ -43,6 +45,12 @@ const CheckboxGroup = forwardRef(
       }
     })
 
+    // 格式化 value：将字符串 ID 转换为完整对象
+    const formattedValue = useMemo(
+      () => formatValue(value, list, multiple),
+      [value, list, multiple]
+    )
+
     return (
       <div
         ref={rootRef}
@@ -59,8 +67,8 @@ const CheckboxGroup = forwardRef(
               if (!item?.id) return null
 
               const isChecked = multiple
-                ? value.some((valueItem) => valueItem?.id === item.id)
-                : value?.id === item.id
+                ? formattedValue.some((valueItem) => valueItem?.id === item.id)
+                : formattedValue?.id === item.id
 
               return (
                 <Checkbox
@@ -76,9 +84,9 @@ const CheckboxGroup = forwardRef(
                     // 多选
                     if (multiple) {
                       if (!checked) {
-                        newValue = value.filter((valueItem) => valueItem?.id !== item.id)
+                        newValue = formattedValue.filter((valueItem) => valueItem?.id !== item.id)
                       } else {
-                        newValue = [...(value || []), item]
+                        newValue = [...(formattedValue || []), item]
                       }
                     }
                     // 单选

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Page, Divider, Space, Button, Radio, Input } from 'lyrixi-mobile'
+import { Page, Card, Divider, Space, Button, Radio, Input } from 'lyrixi-mobile'
 
 const buttons = Array.from({ length: 6 }).map((_, index) => (
   <Button key={index}>Button {index + 1}</Button>
@@ -27,28 +27,33 @@ export default () => {
           {buttons.slice(0, 2)}
         </Space>
 
-        <Divider>间距大小</Divider>
-        <Space direction="vertical" size="m">
-          <Radio.Group
-            multiple={false}
-            value={sizeMode}
-            list={[
-              { id: 'l', name: '大' },
-              { id: 'm', name: '中' },
-              { id: 's', name: '小' },
-              { id: 'custom', name: '自定义间距' }
-            ]}
-            onChange={(value) => setSizeMode(value)}
-          />
-          <Input.Range
-            min={0}
-            max={64}
-            value={customGap}
-            disabled={sizeMode !== 'custom'}
-            onChange={(value) => setCustomGap(value)}
-          />
-          <Space size={gapSize}>{buttons.slice(0, 4)}</Space>
-        </Space>
+        <Card direction="vertical" size="m">
+          <Card.Header> 间距大小 </Card.Header>
+          <Card.Main>
+            <Radio.Group
+              multiple={false}
+              value={sizeMode}
+              list={[
+                { id: 'l', name: '大' },
+                { id: 'm', name: '中' },
+                { id: 's', name: '小' },
+                { id: 'custom', name: '自定义间距' }
+              ]}
+              onChange={(value) => {
+                setSizeMode(value?.id)
+              }}
+            />
+            <Input.Range
+              min={0}
+              max={64}
+              value={customGap}
+              disabled={sizeMode !== 'custom'}
+              onChange={(value) => setCustomGap(value)}
+              style={{ width: '50%' }}
+            />
+            <Space size={gapSize}>{buttons.slice(0, 4)}</Space>
+          </Card.Main>
+        </Card>
 
         <Divider>分隔符</Divider>
         <Space size="m" separator="|">
