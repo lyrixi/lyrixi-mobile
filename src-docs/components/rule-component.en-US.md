@@ -1,9 +1,9 @@
 ---
 group:
-  title: Global
+  title: Rule
   order: 0
 order: 3
-title: 全局规则
+title: Rule
 toc: content
 ---
 

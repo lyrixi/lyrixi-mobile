@@ -1,9 +1,9 @@
 ---
 group:
-  title: 通用
+  title: Rule
   order: 0
 order: 3
-title: 页面规则
+title: Rule
 toc: content
 ---
 

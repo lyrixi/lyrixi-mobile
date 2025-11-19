@@ -1,16 +1,15 @@
 ---
 group:
-  title: 通用
+  title: Rule
   order: 0
 order: 3
-title: 组件规则
+title: Rule
 toc: content
 ---
 
 ## 组件
 
 - 后缀: 组件一律用 jsx 后缀
-- 复用: 阅读和理解`src/components`组件文档`index.zh-CN.md`,理解各个组件的用法,然后优先使用内置组件渲染
 
 ## 组件属性
 
