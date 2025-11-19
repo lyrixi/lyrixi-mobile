@@ -57,11 +57,16 @@ const CheckboxGroup = forwardRef(
         {Array.isArray(list) && list.length
           ? list.map((item) => {
               if (!item?.id) return null
+
+              const isChecked = multiple
+                ? value.some((valueItem) => valueItem?.id === item.id)
+                : value?.id === item.id
+
               return (
                 <Checkbox
                   key={item.id}
                   // Value & Display Value
-                  checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
+                  checked={isChecked}
                   // Element
                   iconRender={iconRender}
                   iconPosition={iconPosition}
@@ -79,9 +84,9 @@ const CheckboxGroup = forwardRef(
                     // 单选
                     else {
                       if (!checked) {
-                        newValue = allowClear ? null : [item]
+                        newValue = allowClear ? null : item
                       } else {
-                        newValue = [item]
+                        newValue = item
                       }
                     }
                     onChange && onChange(newValue)
