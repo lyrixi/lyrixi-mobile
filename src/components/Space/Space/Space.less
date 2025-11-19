@@ -1,4 +1,46 @@
 .lyrixi-space {
-  display: flex;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.lyrixi-space-horizontal {
+  flex-direction: row;
+}
+
+.lyrixi-space-vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.lyrixi-space-wrap {
   flex-wrap: wrap;
+}
+
+.lyrixi-space-align-start {
+  align-items: flex-start;
+}
+
+.lyrixi-space-align-end {
+  align-items: flex-end;
+}
+
+.lyrixi-space-align-center {
+  align-items: center;
+}
+
+.lyrixi-space-align-baseline {
+  align-items: baseline;
+}
+
+.lyrixi-space-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lyrixi-space-item-split {
+  display: inline-flex;
+  align-items: center;
+  color: var(--lyrixi-font-color-secondary, rgba(0, 0, 0, 0.45));
 }

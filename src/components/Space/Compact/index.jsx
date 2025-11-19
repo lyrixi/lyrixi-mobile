@@ -1,10 +1,10 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
+
+import { SpaceCompactContext } from './context'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
-import CompactWrapper from './CompactWrapper'
 
 const Compact = forwardRef(
   (
@@ -13,12 +13,30 @@ const Compact = forwardRef(
       className,
       style,
 
+      // Layout
+      direction = 'horizontal',
+      block = false,
+      size = 'middle',
+
       // Elements
-      children
+      children,
+
+      // Rest
+      ...restProps
     },
     ref
   ) => {
     const rootRef = useRef(null)
+
+    const childNodes = useMemo(() => {
+      const nodes = []
+      Children.forEach(children, (child) => {
+        if (child !== null && child !== undefined && child !== false) {
+          nodes.push(child)
+        }
+      })
+      return nodes
+    }, [children])
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -28,25 +46,48 @@ const Compact = forwardRef(
       }
     })
 
+    const contextValue = useMemo(() => ({ size, direction }), [size, direction])
+
+    if (childNodes.length === 0) {
+      return null
+    }
+
     return (
-      <div
-        style={style}
-        className={DOMUtil.classNames('lyrixi-space-compact', className)}
-        ref={rootRef}
-      >
-        <CompactWrapper
-          targetsBaseClass={{
-            Button: 'button',
-            'ToolBar.Button': 'toolbar-button',
-            'ToolBar.Dropdown': 'toolbar-button',
-            'ToolBar.DateRange': 'toolbar-button',
-            'ToolBar.List': 'toolbar-button',
-            'ToolBar.Filter': 'toolbar-button'
-          }}
+      <SpaceCompactContext.Provider value={contextValue}>
+        <div
+          style={style}
+          className={DOMUtil.classNames(
+            'lyrixi-space-compact',
+            `lyrixi-space-compact-${direction}`,
+            size ? `lyrixi-space-compact-size-${size}` : null,
+            {
+              [`lyrixi-space-compact-block`]: block
+            },
+            className
+          )}
+          ref={rootRef}
+          {...restProps}
         >
-          {children}
-        </CompactWrapper>
-      </div>
+          {childNodes.map((child, index) => {
+            const key = child?.key ?? `lyrixi-space-compact-item-${index}`
+            return (
+              <div
+                key={key}
+                className={DOMUtil.classNames(
+                  `lyrixi-space-compact-item`,
+                  `lyrixi-space-compact-item-${direction}`,
+                  {
+                    [`lyrixi-space-compact-item-first`]: index === 0,
+                    [`lyrixi-space-compact-item-last`]: index === childNodes.length - 1
+                  }
+                )}
+              >
+                {child}
+              </div>
+            )
+          })}
+        </div>
+      </SpaceCompactContext.Provider>
     )
   }
 )
