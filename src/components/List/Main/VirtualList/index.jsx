@@ -19,30 +19,25 @@ const VirtualList = (
   {
     // Value & Display Value
     value,
-    multiple,
-    allowClear,
+    list,
 
     // Status
+    virtual,
+    multiple,
+    allowClear,
+    checkable,
     threshold = 50,
-    safeArea,
     touchStopPropagation = true,
 
     // Style
+    safeArea,
+
     className,
     style,
 
-    // Data
-    list,
-
-    // Virtual
-    virtual,
-
-    // List
+    // Elements
     itemRender,
     itemLayout,
-    checkable,
-
-    // Render
     prependRender,
     appendRender,
     children,
