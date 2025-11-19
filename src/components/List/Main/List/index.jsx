@@ -45,35 +45,40 @@ const Main = forwardRef(
   ) => {
     return (
       <Page.Main
-        style={style}
         ref={ref}
+        // Style
         className={DOMUtil.classNames('lyrixi-list-main', className)}
+        style={style}
+        // Events
         onTopRefresh={onTopRefresh}
         onBottomRefresh={onBottomRefresh}
         onScroll={onScroll}
       >
-        {/* 头部 */}
+        {/* Elements: Prepend */}
         {typeof prependRender === 'function' ? prependRender({ list, value, onChange }) : null}
 
-        {/* 列表 */}
+        {/* Elements: List */}
         {Array.isArray(list) && list.length ? (
           <List
-            allowClear={allowClear}
-            multiple={multiple}
+            // Value & Display Value
             value={value}
             list={list}
-            onChange={onChange}
-            // List config
+            // Status
+            multiple={multiple}
+            allowClear={allowClear}
+            checkable={checkable}
+            // Elements
             itemRender={itemRender}
             itemLayout={itemLayout}
-            checkable={checkable}
+            // Events
+            onChange={onChange}
           />
         ) : null}
 
-        {/* 底部 */}
+        {/* Elements: Append */}
         {typeof appendRender === 'function' ? appendRender({ list, value, onChange }) : null}
 
-        {/* 其它公共的提示信息 */}
+        {/* Elements: Children */}
         {children}
       </Page.Main>
     )

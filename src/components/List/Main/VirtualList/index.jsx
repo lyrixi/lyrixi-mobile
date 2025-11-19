@@ -150,43 +150,44 @@ const VirtualList = (
   return (
     <Page.Main
       ref={rootRef}
-      // Page: Status
+      // Status
       threshold={threshold}
-      safeArea={safeArea}
       touchStopPropagation={touchStopPropagation}
-      // Page: Style
+      // Style
+      safeArea={safeArea}
       style={style}
       className={DOMUtil.classNames('lyrixi-list-main', className)}
-      // Page: Events
+      // Events
       onTopRefresh={onTopRefresh}
       onBottomRefresh={onBottomRefresh}
       onScroll={handleScroll}
     >
-      {/* Element: Prepend */}
+      {/* Elements: Prepend */}
       {typeof prependRender === 'function' ? prependRender({ list, value, onChange }) : null}
 
-      {/* Element: List */}
+      {/* Elements: List */}
       <List
         ref={listRef}
-        // List: Value & Display Value
+        // Value & Display Value
         value={value}
         list={visibleItems}
-        // List: Status
-        allowClear={allowClear}
+        // Status
         multiple={multiple}
-        // List: Element
+        allowClear={allowClear}
+        checkable={checkable}
+        // Elements
         itemRender={itemRender}
         itemLayout={itemLayout}
-        checkable={checkable}
-        height={totalHeight}
-        // List: Events
+        // Events
         onChange={onChange}
+        // Virtual
+        height={totalHeight}
       />
 
-      {/* Element: Append */}
+      {/* Elements: Append */}
       {typeof appendRender === 'function' ? appendRender({ list, value, onChange }) : null}
 
-      {/* Page: Element: Children */}
+      {/* Elements: Children */}
       {children}
     </Page.Main>
   )

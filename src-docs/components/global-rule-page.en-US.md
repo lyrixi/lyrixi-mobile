@@ -3,7 +3,7 @@ group:
   title: Global
   order: 0
 order: 3
-title: 全局规则
+title: 通用规则
 toc: content
 ---
 
