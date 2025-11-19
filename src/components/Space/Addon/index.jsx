@@ -6,7 +6,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 import { useSpaceCompactContext } from './../Compact/context'
 
-const SpaceAddon = forwardRef(({ className, style, size, children, ...restProps }, ref) => {
+const SpaceAddon = forwardRef(({ className, style, size, children }, ref) => {
   const compactContext = useSpaceCompactContext()
   const mergedSize = size || compactContext?.size || 'm'
 
@@ -19,7 +19,6 @@ const SpaceAddon = forwardRef(({ className, style, size, children, ...restProps 
         className
       )}
       style={style}
-      {...restProps}
     >
       {children}
     </div>

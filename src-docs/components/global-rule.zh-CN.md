@@ -27,7 +27,7 @@ toc: content
 
 - 所有的显示在页面上的文字都需要用 locale 包裹,例如: locale('Example'),但不要传第二个参数,因为第二个参数是 key,后面由命令`npm run translate`统一补上
 
-- 定义组件不要用 props, 例如: `function Component(props)`,而且是直接用结构后的属性`function Component({style, className})`
+- 定义组件不要用 ...props, 例如: `function Component({...props})`,而且是直接用结构后的属性`function Component({style, className})`
 
 - 工具类一律用 js 后缀
 

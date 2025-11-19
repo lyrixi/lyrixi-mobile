@@ -19,10 +19,7 @@ const Compact = forwardRef(
       size = 'm',
 
       // Elements
-      children,
-
-      // Rest
-      ...restProps
+      children
     },
     ref
   ) => {
@@ -66,7 +63,6 @@ const Compact = forwardRef(
             className
           )}
           ref={rootRef}
-          {...restProps}
         >
           {childNodes.map((child, index) => {
             const key = child?.key ?? `lyrixi-space-compact-item-${index}`

@@ -48,10 +48,7 @@ const Space = forwardRef(
       wrap = false,
 
       // Element
-      children,
-
-      // Rest
-      ...restProps
+      children
     },
     ref
   ) => {
@@ -137,13 +134,7 @@ const Space = forwardRef(
     }
 
     return (
-      <div
-        ref={rootRef}
-        // Style
-        className={rootClassName}
-        style={mergedRootStyle}
-        {...restProps}
-      >
+      <div ref={rootRef} className={rootClassName} style={mergedRootStyle}>
         <SpaceContextProvider value={{ latestIndex }}>
           {childNodes.map((child, index) => {
             const key = child?.key ?? `lyrixi-space-item-${index}`
