@@ -27,11 +27,7 @@ const Main = (
       className="lyrixi-list-pageName"
       virtual={virtual}
       cache={cache}
-      loading={mainLoadingRender}
-      // 开启分页, 并传入每页条数
-      pagination={{
-        rows: 20
-      }}
+      loadingRender={mainLoadingRender}
       loadData={loadData}
       onLoad={onLoad}
     />

@@ -32,21 +32,21 @@ const Main = forwardRef(
       checkable,
 
       // Render
-      prepend,
+      prependRender,
       list,
-      append,
+      appendRender,
 
       children,
 
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
     return (
       <Page.Main
-        {...props}
+        style={style}
         ref={ref}
         className={DOMUtil.classNames('lyrixi-list-main', className)}
         onTopRefresh={onTopRefresh}
@@ -54,7 +54,7 @@ const Main = forwardRef(
         onScroll={onScroll}
       >
         {/* 头部 */}
-        {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
+        {typeof prependRender === 'function' ? prependRender({ list, value, onChange }) : null}
 
         {/* 列表 */}
         {Array.isArray(list) && list.length ? (
@@ -72,7 +72,7 @@ const Main = forwardRef(
         ) : null}
 
         {/* 底部 */}
-        {typeof append === 'function' ? append({ list, value, onChange }) : null}
+        {typeof appendRender === 'function' ? appendRender({ list, value, onChange }) : null}
 
         {/* 其它公共的提示信息 */}
         {children}

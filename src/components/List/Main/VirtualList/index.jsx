@@ -46,8 +46,8 @@ const VirtualList = (
     multiple,
 
     // List: Element
-    prepend,
-    append,
+    prependRender,
+    appendRender,
     itemRender,
     itemLayout,
     checkable,
@@ -170,7 +170,7 @@ const VirtualList = (
       onScroll={handleScroll}
     >
       {/* Element: Prepend */}
-      {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
+      {typeof prependRender === 'function' ? prependRender({ list, value, onChange }) : null}
 
       {/* Element: List */}
       <List
@@ -191,7 +191,7 @@ const VirtualList = (
       />
 
       {/* Element: Append */}
-      {typeof append === 'function' ? append({ list, value, onChange }) : null}
+      {typeof appendRender === 'function' ? appendRender({ list, value, onChange }) : null}
 
       {/* Page: Element: Children */}
       {children}

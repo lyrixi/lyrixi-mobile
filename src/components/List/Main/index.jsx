@@ -49,8 +49,8 @@ const Main = forwardRef(
       checkable,
 
       // Render
-      prepend,
-      append,
+      prependRender,
+      appendRender,
       // Virtual list config
       virtual,
       /*
@@ -60,7 +60,7 @@ const Main = forwardRef(
       */
       // 其它属性
       className,
-      ...props
+      style
     },
     ref
   ) => {
@@ -159,7 +159,7 @@ const Main = forwardRef(
     return (
       <ListNode
         ref={mainRef}
-        {...props}
+        style={style}
         virtual={virtual}
         className={DOMUtil.classNames('lyrixi-list-main', className)}
         // Request
@@ -190,9 +190,9 @@ const Main = forwardRef(
         itemLayout={itemLayout}
         checkable={checkable}
         // Render
-        prepend={prepend}
+        prependRender={prependRender}
         list={result?.list}
-        append={append}
+        appendRender={appendRender}
       >
         {/* 底部错误提示 */}
         {!disableBottomRefresh && ['noMore', 'loading'].includes(result?.status) ? (
