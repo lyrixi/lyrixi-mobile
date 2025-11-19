@@ -1,12 +1,15 @@
 import React from 'react'
-import { Page, Divider, Space } from 'lyrixi-mobile'
+import { Page, Divider, Space, Button } from 'lyrixi-mobile'
 
 export default () => {
   return (
     <Page>
       <Page.Main>
         <Divider>Space</Divider>
-        <Space>1000</Space>
+        <Space>
+          <Button>Button1</Button>
+          <Button>Button2</Button>
+        </Space>
       </Page.Main>
     </Page>
   )
