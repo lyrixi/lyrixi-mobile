@@ -20,7 +20,7 @@ const MessageCombo = forwardRef(
     {
       children,
       iconRender,
-      title,
+      titleNode,
       content,
       buttons,
       buttonsLayout = '', // vertical
@@ -73,10 +73,10 @@ const MessageCombo = forwardRef(
           {children}
         </div>
         <Modal open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>
-          {(IconNode || title) && (
+          {(IconNode || titleNode) && (
             <Header>
               {IconNode}
-              {title && <Title>{title}</Title>}
+              {titleNode && <Title>{titleNode}</Title>}
             </Header>
           )}
           <Main>{content}</Main>

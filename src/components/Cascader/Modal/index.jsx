@@ -33,12 +33,14 @@ const CascaderModal = forwardRef(
       maskStyle,
       maskClassName,
 
-      // Element
+      // Elements
       portal,
       searchVisible, // Filter useless props to protect the feature
-      title,
-      ok,
-      cancel,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
 
       // Events
       onClose,
@@ -100,9 +102,11 @@ const CascaderModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        title={title}
-        ok={ok}
-        cancel={cancel}
+        titleNode={titleNode}
+        okNode={okNode}
+        cancelNode={cancelNode}
+        okVisible={okVisible}
+        cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
         onOk={handleOk}

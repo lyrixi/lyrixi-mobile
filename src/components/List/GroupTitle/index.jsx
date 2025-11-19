@@ -15,12 +15,12 @@ function GroupTitle({
 
   // Elements
   anchor,
-  title,
+  titleNode,
   description
 }) {
   let TitleNode = (
     <>
-      {title && <div className="lyrixi-list-title">{title}</div>}
+      {titleNode && <div className="lyrixi-list-title">{titleNode}</div>}
       {description && <div className="lyrixi-list-description">{description}</div>}
     </>
   )

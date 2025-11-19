@@ -48,7 +48,9 @@ const ActionSheetCombo = (
     maskClassName,
     // Modal: Elements
     portal,
-    title,
+    titleNode,
+    cancelNode,
+    cancelVisible,
     itemRender,
 
     // Events
@@ -157,7 +159,9 @@ const ActionSheetCombo = (
         allowClear={allowClear}
         // Modal: Elements
         portal={portal}
-        title={title}
+        titleNode={titleNode}
+        cancelNode={cancelNode}
+        cancelVisible={cancelVisible}
         itemRender={itemRender}
         // Modal: Style
         safeArea={safeArea}

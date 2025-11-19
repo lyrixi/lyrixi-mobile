@@ -48,7 +48,9 @@ const SelectCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      title,
+      titleNode,
+      cancelNode,
+      cancelVisible,
       itemRender,
       layout,
       checkable,
@@ -153,8 +155,9 @@ const SelectCombo = forwardRef(
           maskClassName={maskClassName}
           // Modal: Elements
           portal={portal}
-          title={title}
-          ok={multiple !== false}
+          titleNode={titleNode}
+          cancelNode={cancelNode}
+          cancelVisible={cancelVisible}
           // Events
           onClose={handleClose}
           onOk={handleOk}

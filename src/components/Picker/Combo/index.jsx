@@ -48,7 +48,11 @@ const PickerCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      title,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
 
       // Events
       onChange,
@@ -121,7 +125,11 @@ const PickerCombo = forwardRef(
           multiple={multiple}
           // Modal: Elements
           portal={portal}
-          title={title}
+          titleNode={titleNode}
+          okNode={okNode}
+          cancelNode={cancelNode}
+          okVisible={okVisible}
+          cancelVisible={cancelVisible}
           // Modal: Style
           safeArea={safeArea}
           modalStyle={modalStyle}

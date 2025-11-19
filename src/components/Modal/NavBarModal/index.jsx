@@ -25,11 +25,13 @@ const NavBarModal = forwardRef(
       maskStyle,
       maskClassName,
 
-      // Element
+      // Elements
       portal,
-      title,
-      ok,
-      cancel,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
       children,
 
       // Events
@@ -70,9 +72,11 @@ const NavBarModal = forwardRef(
         onClose={onClose}
       >
         <NavBar
-          title={title}
-          ok={ok}
-          cancel={cancel}
+          title={titleNode}
+          ok={okNode}
+          cancel={cancelNode}
+          okVisible={okVisible}
+          cancelVisible={cancelVisible}
           onOk={handleOkClick}
           onCancel={handleCancelClick}
         />

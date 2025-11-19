@@ -39,9 +39,11 @@ const ListModal = forwardRef(
 
       // Elements
       portal,
-      title,
-      ok,
-      cancel,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
       itemRender,
       itemLayout,
 
@@ -101,11 +103,13 @@ const ListModal = forwardRef(
         modalClassName={DOMUtil.classNames('list-modal', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        // Element
+        // Elements
         portal={portal}
-        title={title}
-        ok={ok !== undefined ? ok : multiple !== false}
-        cancel={cancel}
+        titleNode={titleNode}
+        okNode={okNode}
+        cancelNode={cancelNode}
+        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
         onOpen={onOpen}

@@ -39,11 +39,13 @@ const Modal = forwardRef(
       maskStyle,
       maskClassName,
 
-      // Element
+      // Elements
       portal,
-      title,
-      ok,
-      cancel,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
 
       // Events
       onClose,
@@ -118,11 +120,13 @@ const Modal = forwardRef(
         modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        // Element
+        // Elements
         portal={portal}
-        title={title}
-        ok={ok !== undefined ? ok : multiple !== false}
-        cancel={cancel}
+        titleNode={titleNode}
+        okNode={okNode}
+        cancelNode={cancelNode}
+        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
         onOpen={onOpen}

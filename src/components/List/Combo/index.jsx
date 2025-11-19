@@ -48,7 +48,11 @@ const ListCombo = forwardRef(
       rightIconNode,
       clearRender,
       portal,
-      title,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
       itemRender,
       itemLayout,
 
@@ -127,7 +131,11 @@ const ListCombo = forwardRef(
           checkable={checkable}
           // Modal: Elements
           portal={portal}
-          title={title}
+          titleNode={titleNode}
+          okNode={okNode}
+          cancelNode={cancelNode}
+          okVisible={okVisible}
+          cancelVisible={cancelVisible}
           itemRender={itemRender}
           itemLayout={itemLayout}
           // Modal: Style

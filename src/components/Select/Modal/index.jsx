@@ -37,10 +37,11 @@ const Modal = forwardRef(
       layout,
       checkable,
 
-      // Element
+      // Elements
       portal,
-      title,
-      cancel,
+      titleNode,
+      cancelNode,
+      cancelVisible,
       headerRender,
       itemRender,
       checkboxRender,
@@ -128,18 +129,19 @@ const Modal = forwardRef(
         modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        // Element
+        // Elements
         portal={portal}
-        title={title}
-        ok={multiple !== false}
-        cancel={cancel}
+        titleNode={titleNode}
+        okVisible={multiple !== false}
+        cancelNode={cancelNode}
+        cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
         onOk={handleOk}
       >
         {/* Element: Header */}
         {getHeaderNode()}
-        
+
         {/* Element: Main */}
         <Main
           ref={mainRef}

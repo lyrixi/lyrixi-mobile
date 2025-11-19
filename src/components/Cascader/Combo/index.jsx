@@ -48,7 +48,11 @@ const CascaderCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      title,
+      titleNode,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
       searchVisible,
 
       // Events
@@ -122,7 +126,11 @@ const CascaderCombo = forwardRef(
           multiple={multiple}
           // Modal: Elements
           portal={portal}
-          title={title}
+          titleNode={titleNode}
+          okNode={okNode}
+          cancelNode={cancelNode}
+          okVisible={okVisible}
+          cancelVisible={cancelVisible}
           searchVisible={searchVisible}
           // Modal: Style
           safeArea={safeArea}

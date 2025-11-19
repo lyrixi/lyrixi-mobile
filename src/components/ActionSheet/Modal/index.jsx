@@ -37,8 +37,9 @@ const ActionSheetModal = forwardRef(
 
       // Elements
       portal,
-      title,
-      cancel,
+      titleNode,
+      cancelNode,
+      cancelVisible,
       itemRender,
 
       // Events
@@ -70,7 +71,7 @@ const ActionSheetModal = forwardRef(
 
     // 获取取消按钮节点
     function getCancelNode() {
-      if (cancel === null) return null
+      if (cancelVisible === false) return null
 
       return (
         <div
@@ -80,7 +81,7 @@ const ActionSheetModal = forwardRef(
             if (onClose) onClose()
           }}
         >
-          {cancel || LocaleUtil.locale('取消', 'lyrixi_cancel')}
+          {cancelNode || LocaleUtil.locale('取消', 'lyrixi_cancel')}
         </div>
       )
     }
@@ -100,9 +101,9 @@ const ActionSheetModal = forwardRef(
         maskClassName={maskClassName}
         onClose={onClose}
       >
-        {title && (
+        {titleNode && (
           <div className="lyrixi-actionsheet-header">
-            <div className="lyrixi-actionsheet-header-title">{title}</div>
+            <div className="lyrixi-actionsheet-header-title">{titleNode}</div>
           </div>
         )}
         <div
