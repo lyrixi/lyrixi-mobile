@@ -20,22 +20,6 @@ export default () => {
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>基础间距</Card.Header>
-          <Card.Main>
-            <Space size="l">{buttons.slice(0, 3)}</Space>
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>垂直布局</Card.Header>
-          <Card.Main>
-            <Space direction="vertical" size="m">
-              {buttons.slice(0, 2)}
-            </Space>
-          </Card.Main>
-        </Card>
-
-        <Card>
           <Card.Header>间距大小</Card.Header>
           <Card.Main>
             <Radio.Group
@@ -59,14 +43,29 @@ export default () => {
               onChange={(value) => setCustomGap(value)}
               style={{ width: '50%' }}
             />
-            <Space size={gapSize}>{buttons.slice(0, 4)}</Space>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>基础间距</Card.Header>
+          <Card.Main>
+            <Space size={gapSize}>{buttons.slice(0, 3)}</Space>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>垂直布局</Card.Header>
+          <Card.Main>
+            <Space direction="vertical" size={gapSize}>
+              {buttons.slice(0, 2)}
+            </Space>
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>分隔符</Card.Header>
           <Card.Main>
-            <Space size="m" separator="|">
+            <Space size={gapSize} separator="|">
               {buttons.slice(0, 3)}
             </Space>
           </Card.Main>
