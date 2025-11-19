@@ -4,12 +4,12 @@ import { SpaceContext } from './context'
 
 const Item = ({
   className,
-  splitClassName,
+  separatorClassName,
   index,
   children,
-  split,
+  separator,
   style,
-  splitStyle
+  separatorStyle
 }) => {
   const { latestIndex } = useContext(SpaceContext)
 
@@ -17,7 +17,7 @@ const Item = ({
     return null
   }
 
-  const showSplit = split && index < latestIndex
+  const showSplit = separator && index < latestIndex
 
   return (
     <Fragment>
@@ -25,8 +25,8 @@ const Item = ({
         {children}
       </div>
       {showSplit && (
-        <span className={splitClassName} style={splitStyle}>
-          {split}
+        <span className={separatorClassName} style={separatorStyle}>
+          {separator}
         </span>
       )}
     </Fragment>
@@ -34,4 +34,3 @@ const Item = ({
 }
 
 export default Item
-

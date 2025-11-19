@@ -16,7 +16,7 @@ const Compact = forwardRef(
       // Layout
       direction = 'horizontal',
       block = false,
-      size = 'middle',
+      size = 'm',
 
       // Elements
       children,

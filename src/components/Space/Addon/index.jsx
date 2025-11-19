@@ -8,7 +8,7 @@ import { useSpaceCompactContext } from './../Compact/context'
 
 const SpaceAddon = forwardRef(({ className, style, size, children, ...restProps }, ref) => {
   const compactContext = useSpaceCompactContext()
-  const mergedSize = size || compactContext?.size || 'middle'
+  const mergedSize = size || compactContext?.size || 'm'
 
   return (
     <div

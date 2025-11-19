@@ -8,9 +8,9 @@ import Item from './Item'
 import { SpaceContextProvider } from './context'
 
 const SIZE_MAP = {
-  small: 8,
-  middle: 16,
-  large: 24
+  s: 8,
+  m: 16,
+  l: 24
 }
 
 const toChildrenArray = (children) => {
@@ -28,7 +28,7 @@ const getNumberSize = (sizeValue) => {
   if (typeof sizeValue === 'string' && sizeValue in SIZE_MAP) {
     return SIZE_MAP[sizeValue]
   }
-  return SIZE_MAP.small
+  return SIZE_MAP.s
 }
 
 const Space = forwardRef(
@@ -41,10 +41,10 @@ const Space = forwardRef(
       styles = {},
 
       // Layout
-      size = 'small',
+      size = 's',
       direction = 'horizontal',
       align,
-      split,
+      separator,
       wrap = false,
 
       // Element
@@ -89,9 +89,12 @@ const Space = forwardRef(
 
     const itemClassName = DOMUtil.classNames(`lyrixi-space-item`, classNames.item)
 
-    const splitClassName = DOMUtil.classNames(`lyrixi-space-item-split`, classNames.split)
+    const separatorClassName = DOMUtil.classNames(
+      `lyrixi-space-item-separator`,
+      classNames.separator
+    )
 
-    const shouldApplyColumnGap = !split
+    const shouldApplyColumnGap = !separator
     const gapStyle = {}
     if (wrap) {
       gapStyle.flexWrap = 'wrap'
@@ -109,15 +112,15 @@ const Space = forwardRef(
       ...(style || {})
     }
 
-    const splitMarginStyle = split
+    const separatorMarginStyle = separator
       ? {
           marginInlineStart: horizontalSize / 2,
           marginInlineEnd: horizontalSize / 2,
           marginBlockStart: verticalSize / 2,
           marginBlockEnd: verticalSize / 2,
-          ...(styles.split || {})
+          ...(styles.separator || {})
         }
-      : styles.split
+      : styles.separator
 
     const itemStyle = styles.item || undefined
 
@@ -148,11 +151,11 @@ const Space = forwardRef(
               <Item
                 key={key}
                 className={itemClassName}
-                splitClassName={splitClassName}
+                separatorClassName={separatorClassName}
                 index={index}
-                split={split}
+                separator={separator}
                 style={itemStyle}
-                splitStyle={splitMarginStyle}
+                separatorStyle={separatorMarginStyle}
               >
                 {child}
               </Item>
