@@ -7,7 +7,7 @@ import Page from './../../../Page'
 // 内库使用-end
 
 /* 测试使用-start
-import { Page } from 'lyrixi-mobile'
+import { DOMUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // 列表

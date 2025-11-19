@@ -14,53 +14,61 @@ import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, LocaleUtil, Result, Button } from 'lyrixi-mobile'
+import { Device, LocaleUtil, DOMUtil, Result, Button } from 'lyrixi-mobile'
 测试使用-end */
 
 const Main = forwardRef(
   (
     {
-      // Modal
+      // Value & Display Value
+      value,
+      multiple,
+      allowClear,
+
+      // Status
       open = true,
 
-      // Main: common
-      initialLoad = true, // 默认加载
-      allowClear,
-      multiple,
-      value,
-      onChange,
-      onScroll,
-      // 骨架屏
-      loadingRender,
-      // 请求属性
-      // loadData: (params: { list: 页面已渲染的列表, action: 'load'|'reload'|'topRefresh'|'bottomRefresh'|'retry' }) => Promise<{
-      //   status?: 'empty'|'error'|'noMore'|'loading', // 'empty' 无数据, 'error' 异常, 'noMore' 没有更多数据, 'loading' 有更多数据
-      //   message?: string,       // 对应status的提示
-      //   list: Array<any>,       // 修改页面渲染列表
-      // }>
-      loadData,
-      disableTopRefresh = false, // 是否允许下拉刷新
-      disableBottomRefresh = false, // 是否允许底部刷新
-      onLoad,
+      // Style
+      className,
+      style,
 
-      // List config
+      // Data
+      initialLoad = true,
+      loadData,
+      /*
+      loadData: (params: { previousResult, action: 'load'|'reload'|'topRefresh'|'bottomRefresh'|'retry' }) => Promise<{
+        status: 'empty'|'error'|'noMore'|'loading',
+        message?: string,
+        list: Array<any>
+      }>
+      */
+
+      // Refresh
+      disableTopRefresh = false,
+      disableBottomRefresh = false,
+
+      // List
       itemRender,
       itemLayout,
       checkable,
 
-      // Render
-      prependRender,
-      appendRender,
-      // Virtual list config
+      // Virtual
       virtual,
       /*
       {
         getItemHeight: () => Number
       }
       */
-      // 其它属性
-      className,
-      style
+
+      // Render
+      loadingRender,
+      prependRender,
+      appendRender,
+
+      // Events
+      onChange,
+      onScroll,
+      onLoad
     },
     ref
   ) => {
