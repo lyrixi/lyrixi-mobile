@@ -10,9 +10,9 @@ import NavBar from './../../../NavBar'
 import { NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
-const Head = forwardRef(({ title, ok, onOk, cancel, onCancel }, ref) => {
+const Head = forwardRef(({ title, ok, okVisible, onOk, cancel, cancelVisible, onCancel }, ref) => {
   // 只显示标题
-  if (cancel === null && ok === null) {
+  if (!okVisible && !cancelVisible) {
     return (
       <NavBar ref={ref}>
         {/* 标题 */}
@@ -25,13 +25,17 @@ const Head = forwardRef(({ title, ok, onOk, cancel, onCancel }, ref) => {
   return (
     <NavBar ref={ref}>
       {/* 取消按钮 */}
-      <Cancel text={cancel} onClick={onCancel} />
+      <Cancel visible={cancelVisible} onClick={onCancel}>
+        {cancel}
+      </Cancel>
 
       {/* 标题 */}
       <NavBar.Title>{title}</NavBar.Title>
 
       {/* 确认 */}
-      <Ok text={ok} onClick={onOk} />
+      <Ok visible={okVisible} onClick={onOk}>
+        {ok}
+      </Ok>
     </NavBar>
   )
 })

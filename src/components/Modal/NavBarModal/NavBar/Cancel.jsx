@@ -8,15 +8,19 @@ import NavBar from './../../../NavBar'
 import { NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
-const Cancel = ({ text, onClick }) => {
+const Cancel = ({ visible, onClick, children }) => {
   // 点击取消
   function handleClick(e) {
     e.stopPropagation()
     if (onClick) onClick(e)
   }
 
-  if (text) {
-    return <NavBar.Button onClick={handleClick}>{text}</NavBar.Button>
+  if (visible === false) {
+    return <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
+  }
+
+  if (children) {
+    return <NavBar.Button onClick={handleClick}>{children}</NavBar.Button>
   }
 
   return (

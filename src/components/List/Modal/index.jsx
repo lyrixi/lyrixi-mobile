@@ -37,7 +37,7 @@ const ListModal = forwardRef(
       maskStyle,
       maskClassName,
 
-      // Element
+      // Elements
       portal,
       title,
       ok,

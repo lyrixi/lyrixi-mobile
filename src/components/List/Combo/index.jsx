@@ -13,44 +13,40 @@ import { Input } from 'lyrixi-mobile'
 const ListCombo = forwardRef(
   (
     {
-      // Combo
-      // Combo: Value & Display Value
+      // Value & Display Value
       value,
+      list,
+      loadData,
       placeholder,
       formatter,
-      autoSize,
       separator,
       mode,
-      // Combo: Status
+
+      // Status
       readOnly,
       disabled,
       allowClear,
       multiple = false,
-      // Combo: Style
-      style,
-      className,
-      // Combo: Element
-      leftIconNode,
-      rightIconNode,
-      clearRender,
-
-      // Modal
-      // Modal: Value & Display Value
-      list,
-      loadData,
-      // Modal: Status
       maskClosable,
       pagination,
       disableTopRefresh,
       disableBottomRefresh,
       checkable = true,
-      // Modal: Style
+      autoSize,
+
+      // Style
+      style,
+      className,
       safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
-      // Modal: Elements
+
+      // Elements
+      leftIconNode,
+      rightIconNode,
+      clearRender,
       portal,
       title,
       itemRender,

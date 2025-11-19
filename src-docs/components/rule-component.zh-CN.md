@@ -23,11 +23,13 @@ toc: content
 
 ```bash
 value,
+placeholder,
 list,
 count,
 sourceType,
 uploadDir,
 chooseExtraParams,
+loadData,
 ```
 
 ### Status
@@ -37,6 +39,7 @@ chooseExtraParams,
 ```bash
 readOnly,
 open,
+visible,
 maskClosable,
 async,
 reUpload,
@@ -75,7 +78,7 @@ groupClassName,
 
 ### Elements
 
-渲染 DOM 属性，通常以 Render 结尾, 例如:
+渲染 DOM 属性，通常以 Render 或 Node 结尾, 例如:
 
 ```bash
 portal,
@@ -83,6 +86,9 @@ comboRender,
 clearRender,
 itemRender,
 xxRender,
+leftIconNode,
+rightIconNode,
+xxNode,
 children,
 ```
 

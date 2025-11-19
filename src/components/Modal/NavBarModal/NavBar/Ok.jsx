@@ -9,20 +9,20 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { NavBar, LocaleUtil } from 'lyrixi-mobile'
 测试使用-start */
 
-const Ok = ({ total, text, onClick }) => {
+const Ok = ({ total, visible, children, onClick }) => {
   // 点击确定
   function handleOkClick(e) {
     e.stopPropagation()
     if (onClick) onClick(e)
   }
 
-  if (!text) {
+  if (visible === false) {
     return <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
   }
 
   return (
     <NavBar.Button className="lyrixi-primary" onClick={handleOkClick}>
-      {text && typeof text === 'string' ? text : LocaleUtil.locale('确定', 'lyrixi_ok')}
+      {children || LocaleUtil.locale('确定', 'lyrixi_ok')}
       {typeof total === 'number' && `(${total})`}
     </NavBar.Button>
   )

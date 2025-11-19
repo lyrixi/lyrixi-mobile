@@ -22,18 +22,6 @@ const Main = forwardRef(
     {
       // Value & Display Value
       value,
-      multiple,
-      allowClear,
-
-      // Status
-      open = true,
-
-      // Style
-      className,
-      style,
-
-      // Data
-      initialLoad = true,
       loadData,
       /*
       loadData: (params: { previousResult, action: 'load'|'reload'|'topRefresh'|'bottomRefresh'|'retry' }) => Promise<{
@@ -43,16 +31,14 @@ const Main = forwardRef(
       }>
       */
 
-      // Refresh
+      // Status
+      open = true,
+      initialLoad = true,
+      multiple,
+      allowClear,
+      checkable,
       disableTopRefresh = false,
       disableBottomRefresh = false,
-
-      // List
-      itemRender,
-      itemLayout,
-      checkable,
-
-      // Virtual
       virtual,
       /*
       {
@@ -60,7 +46,13 @@ const Main = forwardRef(
       }
       */
 
-      // Render
+      // Style
+      className,
+      style,
+
+      // Elements
+      itemRender,
+      itemLayout,
       loadingRender,
       prependRender,
       appendRender,
