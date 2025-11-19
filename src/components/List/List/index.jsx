@@ -5,9 +5,10 @@ import Item from './../Item'
 // List
 const List = (
   {
-    allowClear,
-    multiple,
+    // Value & Display Value
     value,
+    multiple,
+    allowClear,
     list,
     /*
     // Group
@@ -25,12 +26,18 @@ const List = (
       action: ''
     }
     */
-    // Group 配置项
-    // Item 配置项
-    itemLayout, // vertical
-    itemRender,
+
+    // Status
     checkable,
+
+    // Style
+    itemLayout,
+
+    // Elements
+    itemRender,
     checkboxRender,
+
+    // Events
     onChange
   },
   ref

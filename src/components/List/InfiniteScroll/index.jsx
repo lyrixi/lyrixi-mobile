@@ -10,7 +10,13 @@ import { LocaleUtil, Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // status: loading | noMore | [error|自定义错误信息]
-const InfiniteScroll = ({ status, content }) => {
+const InfiniteScroll = ({
+  // Status
+  status,
+
+  // Elements
+  content
+}) => {
   function getStatusNode() {
     if (!status || typeof status !== 'string') return null
 

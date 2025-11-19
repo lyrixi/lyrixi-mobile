@@ -9,7 +9,15 @@ import { IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取分组标题
-function GroupTitle({ anchor, title, description, style }) {
+function GroupTitle({
+  // Style
+  style,
+
+  // Elements
+  anchor,
+  title,
+  description
+}) {
   let TitleNode = (
     <>
       {title && <div className="lyrixi-list-title">{title}</div>}

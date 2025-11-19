@@ -10,11 +10,20 @@ import { DOMUtil,Checkbox } from 'lyrixi-mobile'
 测试使用-end */
 
 const Item = ({
-  // Item Data
-  item,
+  // Value & Display Value
+  checked,
+
+  // Status
+  disabled,
+  checkable,
 
   // Style
-  disabled,
+  className,
+  style,
+  itemLayout,
+
+  // Elements
+  item,
   imageUrl,
   avatarUrl,
   title,
@@ -22,17 +31,10 @@ const Item = ({
   note,
   content,
   action,
-
-  // GLobal Config
-  itemLayout,
-  checkable,
   checkboxRender,
-  checked,
-  onClick,
 
-  // Item Style
-  className,
-  style
+  // Events
+  onClick
 }) => {
   // 获取checkbox
   function getCheckboxNode() {

@@ -17,43 +17,41 @@ import { DOMUtil, Page } from 'lyrixi-mobile'
 // 列表
 const VirtualList = (
   {
-    // value & display value
-    list,
-    virtual,
+    // Value & Display Value
+    value,
+    multiple,
+    allowClear,
 
-    // Page: Status
+    // Status
     threshold = 50,
     safeArea,
     touchStopPropagation = true,
 
-    // Page: Style
+    // Style
     className,
     style,
 
-    // Page: Element
-    children,
+    // Data
+    list,
 
-    // Page: Events
-    onTopRefresh,
-    onBottomRefresh,
-    onScroll,
+    // Virtual
+    virtual,
 
-    // List: Value & Display Value
-    value,
-
-    // List: Status
-    allowClear,
-    multiple,
-
-    // List: Element
-    prependRender,
-    appendRender,
+    // List
     itemRender,
     itemLayout,
     checkable,
 
-    // List: Events
-    onChange
+    // Render
+    prependRender,
+    appendRender,
+    children,
+
+    // Events
+    onChange,
+    onScroll,
+    onTopRefresh,
+    onBottomRefresh
   },
   ref
 ) => {

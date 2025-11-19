@@ -14,33 +14,32 @@ import { DOMUtil, Page } from 'lyrixi-mobile'
 const Main = forwardRef(
   (
     {
-      virtual,
-      // Request
-      onTopRefresh,
-      onBottomRefresh,
-
-      // Main: common
-      allowClear,
-      multiple,
+      // Value & Display Value
       value,
-      onChange,
-      onScroll,
+      list,
 
-      // List config
-      itemRender,
-      itemLayout,
+      // Status
+      virtual,
+      multiple,
+      allowClear,
       checkable,
 
-      // Render
-      prependRender,
-      list,
-      appendRender,
+      // Style
+      className,
+      style,
 
+      // Elements
+      itemRender,
+      itemLayout,
+      prependRender,
+      appendRender,
       children,
 
-      // 其它属性
-      className,
-      style
+      // Events
+      onChange,
+      onScroll,
+      onTopRefresh,
+      onBottomRefresh
     },
     ref
   ) => {
