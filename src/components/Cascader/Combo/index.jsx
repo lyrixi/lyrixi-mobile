@@ -48,7 +48,7 @@ const CascaderCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -126,7 +126,7 @@ const CascaderCombo = forwardRef(
           multiple={multiple}
           // Modal: Elements
           portal={portal}
-          titleNode={titleNode}
+          title={title}
           okNode={okNode}
           cancelNode={cancelNode}
           okVisible={okVisible}

@@ -37,7 +37,7 @@ const ActionSheetModal = forwardRef(
 
       // Elements
       portal,
-      titleNode,
+      title,
       cancelNode,
       cancelVisible,
       itemRender,
@@ -101,9 +101,9 @@ const ActionSheetModal = forwardRef(
         maskClassName={maskClassName}
         onClose={onClose}
       >
-        {titleNode && (
+        {title && (
           <div className="lyrixi-actionsheet-header">
-            <div className="lyrixi-actionsheet-header-title">{titleNode}</div>
+            <div className="lyrixi-actionsheet-header-title">{title}</div>
           </div>
         )}
         <div

@@ -39,7 +39,7 @@ const ListModal = forwardRef(
 
       // Elements
       portal,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -105,7 +105,7 @@ const ListModal = forwardRef(
         maskClassName={maskClassName}
         // Elements
         portal={portal}
-        titleNode={titleNode}
+        title={title}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={okVisible !== undefined ? okVisible : multiple !== false}

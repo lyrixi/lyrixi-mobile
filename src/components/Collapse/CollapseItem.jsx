@@ -20,7 +20,7 @@ const CollapseItem = (
     className,
 
     // Elements
-    titleNode,
+    title,
     headerRender,
     arrowRender = 'collapse-item-header-arrow-icon',
     arrowPosition = 'right',
@@ -99,7 +99,7 @@ const CollapseItem = (
       return (
         <div className="lyrixi-collapse-item-header-wrapper">
           {arrowPosition === 'left' && ArrowNode}
-          <div className="lyrixi-collapse-item-header-title">{titleNode}</div>
+          <div className="lyrixi-collapse-item-header-title">{title}</div>
           {arrowPosition === 'right' && ArrowNode}
         </div>
       )

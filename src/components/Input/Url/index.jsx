@@ -79,7 +79,7 @@ const Url = forwardRef(
             maskStyle: {
               zIndex: 100
             },
-            titleNode: LocaleUtil.locale('提示', 'lyrixi_alert_title'),
+            title: LocaleUtil.locale('提示', 'lyrixi_alert_title'),
             content:
               LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'lyrixi_link_copy_error') +
               `<br/>${url}`,

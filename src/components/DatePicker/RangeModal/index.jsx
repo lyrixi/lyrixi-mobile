@@ -49,7 +49,7 @@ const RangeModal = forwardRef(
 
       // Elements
       portal,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -136,7 +136,7 @@ const RangeModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        titleNode={titleNode}
+        title={title}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={okVisible !== undefined ? okVisible : multiple !== false}

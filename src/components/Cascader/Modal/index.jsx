@@ -36,7 +36,7 @@ const CascaderModal = forwardRef(
       // Elements
       portal,
       searchVisible, // Filter useless props to protect the feature
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -102,7 +102,7 @@ const CascaderModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        titleNode={titleNode}
+        title={title}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={okVisible}

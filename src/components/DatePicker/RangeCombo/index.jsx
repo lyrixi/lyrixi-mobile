@@ -63,7 +63,7 @@ const RangeCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -174,7 +174,7 @@ const RangeCombo = forwardRef(
           disabledEnd={disabledEnd}
           // Modal: Elements
           portal={portal}
-          titleNode={titleNode}
+          title={title}
           okNode={okNode}
           cancelNode={cancelNode}
           okVisible={okVisible}

@@ -35,7 +35,7 @@ const DistrictCombo = forwardRef(
       maskStyle,
       maskClassName,
 
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -206,7 +206,7 @@ const DistrictCombo = forwardRef(
           maskStyle={maskStyle}
           className={modalClassName}
           style={modalStyle}
-          titleNode={titleNode}
+          title={title}
           okNode={okNode}
           cancelNode={cancelNode}
           okVisible={okVisible}

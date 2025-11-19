@@ -9,7 +9,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 function Result({
   // Value & Display Value
   status,
-  titleNode,
+  title,
   description,
 
   // Style
@@ -38,9 +38,9 @@ function Result({
 
   // 渲染标题
   function getTitleNode() {
-    if (titleNode === null) return null
-    if (titleNode) {
-      return <div className="result-title">{titleNode}</div>
+    if (title === null) return null
+    if (title) {
+      return <div className="result-title">{title}</div>
     }
     return <div className="result-title">{statusDefault?.title}</div>
   }

@@ -43,7 +43,7 @@ const DistrictModal = forwardRef(
       // Elements
       portal,
       searchVisible,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       cancelVisible,
@@ -150,7 +150,7 @@ const DistrictModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        titleNode={titleNode}
+        title={title}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={okVisible}

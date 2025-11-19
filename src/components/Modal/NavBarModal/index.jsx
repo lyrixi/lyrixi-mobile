@@ -27,7 +27,7 @@ const NavBarModal = forwardRef(
 
       // Elements
       portal,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -72,7 +72,7 @@ const NavBarModal = forwardRef(
         onClose={onClose}
       >
         <NavBar
-          title={titleNode}
+          title={title}
           ok={okNode}
           cancel={cancelNode}
           okVisible={okVisible}

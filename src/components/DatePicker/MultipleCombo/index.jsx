@@ -53,7 +53,7 @@ const MultipleCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      titleNode,
+      title,
       okNode,
       cancelNode,
       okVisible,
@@ -144,7 +144,7 @@ const MultipleCombo = forwardRef(
           multiple={multiple}
           // Modal: Elements
           portal={portal}
-          titleNode={titleNode}
+          title={title}
           okNode={okNode}
           cancelNode={cancelNode}
           okVisible={okVisible}
