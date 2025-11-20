@@ -37,8 +37,13 @@ const Common = () => {
           const result = await queryData(queryParams, {
             action: action
           })
-          let newList =
-            action === 'bottomRefresh' ? previousResult.list.concat(result.list) : result.list
+          let newList = null
+          if (result.status === 'success') {
+            newList =
+              action === 'bottomRefresh'
+                ? previousResult.rankList.concat(result.rankList)
+                : result.rankList
+          }
 
           return {
             status: result.status,
