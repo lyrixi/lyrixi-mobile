@@ -44,12 +44,15 @@ const Virtual = () => {
         }}
         loadData={async ({ previousResult, action }) => {
           console.log('action:', action)
-          const newList = await queryData({ page: 1, rows: 20, ...queryParams })
-          // 兼容老的 queryData 返回数组，这里转换为新结构
+          const result = await queryData(queryParams, {
+            action: action
+          })
+          let newList = previousResult.list.concat(result.list)
+
           return {
-            status: Array.isArray(newList) && newList.length === 0 ? 'empty' : undefined,
-            message: '',
-            list: Array.isArray(newList) ? newList : []
+            status: result.status,
+            message: result.message,
+            list: newList
           }
         }}
       />

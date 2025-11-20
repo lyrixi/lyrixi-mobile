@@ -12,8 +12,6 @@ const Main = (
   {
     // 虚拟滚动条(不常用)
     virtual,
-    // 缓存(不常用)
-    cache,
     // 加载完成事件(不常用)
     onLoad,
     // 必传参数
@@ -26,7 +24,6 @@ const Main = (
       ref={ref}
       className="lyrixi-list-pageName"
       virtual={virtual}
-      cache={cache}
       loadingRender={mainLoadingRender}
       loadData={loadData}
       onLoad={onLoad}
