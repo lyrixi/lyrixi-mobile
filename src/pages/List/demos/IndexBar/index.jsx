@@ -20,7 +20,7 @@ const IndexBarList = () => {
   const [indexBarVisible, setIndexBarVisible] = useState(undefined)
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import vconsole from 'vconsole'
-import { Bridge, Layout, MediaUploader } from 'lyrixi-mobile'
+import { Bridge, Page, MediaUploader } from 'lyrixi-mobile'
 import Ocr from './Ocr'
 Bridge.load()
 
@@ -30,9 +30,9 @@ export default () => {
     setList(newList)
   }
   return (
-    <Layout className="lyrixi-full">
-      <Layout.Header className="lyrixi-text-center">OCR识别</Layout.Header>
-      <Layout.Main className="lyrixi-bg-white">
+    <Page className="lyrixi-full">
+      <Page.Header className="lyrixi-text-center">OCR识别</Page.Header>
+      <Page.Main className="lyrixi-bg-white">
         <MediaUploader
           uploadDir={`businessName`}
           sizeType={['compressed']}
@@ -45,7 +45,7 @@ export default () => {
           // watermark={handleLeaveWM()}
           onChange={handlePhotoChange}
         />
-      </Layout.Main>
-    </Layout>
+      </Page.Main>
+    </Page>
   )
 }

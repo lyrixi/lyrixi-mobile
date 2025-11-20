@@ -18,7 +18,7 @@ const Common = () => {
   let [queryParams, setQueryParams] = useState(null)
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
-import { MediaUploader, Layout, Toast } from 'lyrixi-mobile'
+import { MediaUploader, Page, Toast } from 'lyrixi-mobile'
 
 const { uploadList, validateListStatus } = MediaUploader
 new vconsole()
@@ -46,9 +46,9 @@ export default () => {
   }
 
   return (
-    <Layout className="lyrixi-full">
-      <Layout.Header className="lyrixi-text-center">普通拍照</Layout.Header>
-      <Layout.Main className="lyrixi-bg-white">
+    <Page className="lyrixi-full">
+      <Page.Header className="lyrixi-text-center">普通拍照</Page.Header>
+      <Page.Main className="lyrixi-bg-white">
         <MediaUploader
           // reUpload={false}
           // async
@@ -87,7 +87,7 @@ export default () => {
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleValidate}>
           validateListStatus
         </div>
-      </Layout.Main>
-    </Layout>
+      </Page.Main>
+    </Page>
   )
 }

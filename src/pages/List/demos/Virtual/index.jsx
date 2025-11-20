@@ -20,7 +20,7 @@ const Virtual = () => {
   const mainRef = useRef(null)
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}

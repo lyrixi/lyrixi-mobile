@@ -1,6 +1,6 @@
 // 第三方库导入
 import React, { useState } from 'react'
-import { Layout, List, Button } from 'lyrixi-mobile'
+import { Page, List, Button } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 // 内部组件函数导入
@@ -19,11 +19,11 @@ const MainUrlDemo = () => {
   }
 
   return (
-    <Layout className="full">
+    <Page className="full">
       {/* 头部 */}
-      <Layout.Header>
+      <Page.Header>
         <Button onClick={toggleParams}>Toggle params</Button>
-      </Layout.Header>
+      </Page.Header>
 
       {/* 列表 */}
       <List.UrlMain
@@ -37,7 +37,7 @@ const MainUrlDemo = () => {
           return formatItem(item)
         }}
       />
-    </Layout>
+    </Page>
   )
 }
 

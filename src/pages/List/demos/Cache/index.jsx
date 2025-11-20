@@ -54,7 +54,7 @@ const Cache = () => {
   }, [])
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}
