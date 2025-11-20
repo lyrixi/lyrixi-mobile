@@ -148,7 +148,7 @@ const Item = ({
           {content && <div className="lyrixi-list-item-content">{content}</div>}
 
           {/* Action */}
-          {action && <div className="lyrixi-list-item-action">{getActionNode()}</div>}
+          {actionRender && <div className="lyrixi-list-item-action">{getActionNode()}</div>}
         </div>
 
         {/* Right Checkbox */}

@@ -18,12 +18,14 @@ const List = (
     },
     // No Group
     {
-      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
       id: '选项1',
       name: '选项1',
       description: '普通描述',
       content: '自定义内容',
-      action: ''
+      actionRender: () => {
+        return <Button>action</Button>
+      }
     }
     */
 

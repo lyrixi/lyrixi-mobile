@@ -4,6 +4,7 @@ import InfiniteScroll from './../InfiniteScroll'
 import Loading from './components/Loading'
 import List from './List'
 import VirtualList from './VirtualList'
+import RetryButton from './components/RetryButton'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
@@ -25,14 +26,16 @@ const Main = forwardRef(
       loadData,
       /*
       loadData: (params: { previousResult, action: 'load'|'reload'|'topRefresh'|'bottomRefresh'|'retry' }) => Promise<{
-        status: 'empty'|'error'|'noMore'|'loading',
-        message?: string,
-        list: Array<any>
+        status: 'empty(暂无数据)'|'error(加载出错)'|'moreError(更多数据加载出错)'|'noMore(没有更多数据)'|'loading(有更多数据)',
+        message?: string(错误信息),
+        list: Array<any>(列表数据)
       }>
       */
+      formatItem,
 
       // Status
-      open = true,
+      errorRetry = true, // 是否显示重试按钮
+      emptyRetry, // 是否显示刷新按钮
       initialLoad = true,
       multiple,
       allowClear,
@@ -79,6 +82,8 @@ const Main = forwardRef(
     }
     */
     const [result, setResult] = useState(null)
+    // 结果状态: empty | error | moreError | noMore | loading
+    const [resultStatus, setResultStatus] = useState('')
     // 加载显示: load | reload | topRefresh | bottomRefresh
     const [loadAction, setLoadAction] = useState('')
 
@@ -132,7 +137,22 @@ const Main = forwardRef(
     async function loadPage(action) {
       if (typeof loadData !== 'function') return
 
-      // Scroll to top in FirstPage
+      if (action === 'bottomRefresh') {
+        // 页面级提示时, 滚动到底部都不允许加载
+        if (result.status === 'error') {
+          return true
+        }
+        // 底部加载完成时, 滚动到底部不再加载
+        if (result?.status === 'noMore') {
+          return true
+        }
+        // 底部加载错误重新加载
+        if (result?.status === 'moreError') {
+          setResultStatus('loading')
+        }
+      }
+
+      // 初次加载/重新加载/重试/触顶刷新/点击重试, 滚动到顶部
       if (['load', 'reload', 'topRefresh', 'retry'].includes(action)) {
         scrollToTop(mainRef.current?.rootDOM)
       }
@@ -150,7 +170,7 @@ const Main = forwardRef(
         return false
       }
       setResult(newResult)
-
+      setResultStatus(newResult?.status)
       return true
     }
 
@@ -191,29 +211,33 @@ const Main = forwardRef(
         checkable={checkable}
         // Render
         prependRender={prependRender}
-        list={result?.list}
+        list={
+          // 格式化Item显示数据, 但仍然需要保留原始数据item
+          typeof formatItem === 'function'
+            ? result?.list?.map((item) => {
+                return { ...formatItem(item), item }
+              })
+            : result?.list
+        }
         appendRender={appendRender}
       >
         {/* 底部错误提示 */}
-        {!disableBottomRefresh && ['noMore', 'loading'].includes(result?.status) ? (
-          <InfiniteScroll status={result?.status} content={result?.message} />
+        {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (
+          <InfiniteScroll status={resultStatus} content={result?.message} />
         ) : null}
         {/* 页面级错误提示 */}
-        {['empty', 'error'].includes(result?.status) && (
+        {['empty', 'error'].includes(resultStatus) && (
           <Result
             className="lyrixi-list-main-result"
-            status={result?.status === 'error' ? '500' : 'empty'}
+            status={resultStatus === 'error' ? '500' : 'empty'}
             title={result?.message}
           >
-            {result?.status !== 'empty' ? (
-              <Button
-                className="lyrixi-result-button"
-                color="primary"
-                onClick={() => loadPage('retry')}
-              >
-                {LocaleUtil.locale('重试', 'lyrixi_retry')}
-              </Button>
-            ) : null}
+            <RetryButton
+              status={resultStatus}
+              errorRetry={errorRetry}
+              emptyRetry={emptyRetry}
+              onClick={() => loadPage('retry')}
+            />
           </Result>
         )}
         {/* 页面加载遮罩 */}

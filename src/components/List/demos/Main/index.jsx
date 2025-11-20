@@ -19,10 +19,9 @@ export default () => {
         value={value}
         loadData={({ previousResult, action }) => {
           console.log({ previousResult, action })
-          // 兼容演示：将原有数组封装为新返回结构
           return {
-            status: listData?.length ? undefined : 'empty',
-            message: '',
+            status: 'noMore', // empty、error、moreError、noMore、loading
+            message: 'No more data',
             list: listData
           }
         }}
