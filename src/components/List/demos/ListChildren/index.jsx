@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react'
-import { Layout } from 'seedsui-react'
+import { Page, List } from 'lyrixi-mobile'
 import listData from './listData'
-// import List from 'library/components/ListV2'
-import List from './../../List'
 
 export default () => {
   const listRef = useRef(null)
@@ -10,8 +8,8 @@ export default () => {
 
   console.log(listRef.current)
   return (
-    <Layout className="full">
-      <Layout.Main>
+    <Page className="full">
+      <Page.Main>
         <List
           ref={listRef}
           checkable
@@ -26,7 +24,7 @@ export default () => {
           // Item 配置
           itemLayout="vertical"
         />
-      </Layout.Main>
-    </Layout>
+      </Page.Main>
+    </Page>
   )
 }

@@ -1,28 +1,8 @@
-import { Device, DateUtil } from 'seedsui-react'
-
-// 将 dateType、rankType、sortType 等转换为 API 参数
-function serverData({ dateType, rankType, sortType }) {
-  if (!dateType || !rankType) return null
-
+// 将 queryParams 转换为 API 参数
+function serverData(queryParams) {
   const params = {
     rows: 50,
-    settingId: Device.getUrlParameter('settingId'),
-    user: window.loginUser?.id,
-    rankType: rankType.id,
-    sort: sortType || '2'
-  }
-
-  // 处理日期参数
-  if (dateType.value) {
-    const date = dateType.value
-    params.year = DateUtil.format(date, 'YYYY')
-    params.cycle = dateType.cycle
-
-    if (dateType.id === 'month' || dateType.id === 'YTM') {
-      params.month = DateUtil.format(date, 'MM')
-    } else if (dateType.id === 'quarter') {
-      params.quarter = DateUtil.format(date, 'Q')
-    }
+    ...queryParams
   }
 
   return params

@@ -6,7 +6,7 @@ import Button from './../../../Button'
 内库使用-end */
 
 // 测试使用-start
-import { LocaleUtil, Button } from 'seedsui-react'
+import { LocaleUtil, Button } from 'lyrixi-mobile'
 // 测试使用-end
 
 // 暂无数据或者错误
