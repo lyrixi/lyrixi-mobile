@@ -20,14 +20,6 @@ toc: content
 
 ## 示例
 
-## List.Combo
-
-<code src="./demos/Combo/index.jsx"></code>
-
-## List.Modal
-
-<code src="./demos/Modal/index.jsx"></code>
-
 ## List.Main
 
 <code src="./demos/Main/index.jsx"></code>
