@@ -25,7 +25,7 @@ toc: content
 
 ### 目录说明
 
-- `api`文件夹用于数据请求与数据转换, `api/queryData/localData`将服务器数据转成本地数据, `api/saveData/validateData`校验数据的正确性, `api/saveData/serverData`将本地数据转成服务器数据, 通常 api 下文件夹的命名范围是`saveXX/deleteXX/queryXX/downloadXX`
+- `api`文件夹用于数据请求与数据转换, `api/(queryData|saveData|deleteData|downloadData)/localData`将服务器数据转成本地数据, `api/(queryData|saveData|deleteData|downloadData)/validateData`校验数据的正确性, `api/(queryData|saveData|deleteData|downloadData)/serverData`将本地数据转成服务器数据, 通常 api 下文件夹的命名范围是`saveXX/deleteXX/queryXX/downloadXX`
 
 - `utils`文件夹用于工具相关
 
@@ -39,17 +39,11 @@ toc: content
 
 这些提示词提供给开发者复制, 可配合 rules 一起使用
 
-### 列表页面参考页面
-
-### 编辑页面参考页面
-
-### 详情页面参考页面
-
 提示词
 
 ```bash
-
-阅读学习"/pages/Detail/demos/Form"页面的架构思维与代码风格,用相同的架构与代码风格开发页面"页面文件夹目录地址",
+先不要写代码,
+阅读学习"模板页面地址"页面的架构思维与代码风格,用相同的架构与代码风格开发页面"页面文件夹目录地址",
 获取数据的接口地址为:"xxx",
 入参为:"{
 id:地址栏的id(用Device.getUrlParameter取),
@@ -66,9 +60,29 @@ message: 'code为0时的错误信息'
 
 页面中需要使用的组件有:"Card(渲染块状区域)"、"DatePicker.Types(渲染头部日期选择)"、"TabBar.Tabs(渲染图表视图切换按钮)"、"F2.Chart(渲染图表）";
 
-页面中需要使用的图标有:"lyrixi-iconfont-circle-question(问号)"、"lyrixi-iconfont-triangle-up-fill(向上箭头)"、"lyrixi-iconfont-triangle-down-fill(向下箭头)";
+页面中需要使用的图标有:"xx(问号)"、"xx(向上箭头)"、"xx(向下箭头)";
 
-为此页面增加路由:"xx".
+
+此页面路径为:"页面路径".
+为此页面增加路由:"路由地址".
+
+基于以上的条件，开始写代码吧
+```
+
+### 列表页面参考页面
+
+```bash
+src/pages/List/demos/Common
+```
+
+### 编辑页面参考页面
+
+```bash
+src/pages/Edit/demos/Cache
 ```
 
 ### 详情页面参考页面
+
+```bash
+src/pages/Detail/demos/Form
+```
