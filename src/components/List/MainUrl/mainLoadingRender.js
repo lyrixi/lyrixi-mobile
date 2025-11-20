@@ -1,5 +1,5 @@
 import React from 'react'
-import { Skeleton, Loading } from 'seedsui-react'
+import { Skeleton, Loading } from 'lyrixi-mobile'
 
 // Loading样式
 const mainLoadingRender = ({ action }) => {
@@ -15,4 +15,3 @@ const mainLoadingRender = ({ action }) => {
 }
 
 export default mainLoadingRender
-

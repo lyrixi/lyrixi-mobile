@@ -1,5 +1,4 @@
-import { Request } from 'seedsui-react'
-import locale from 'library/utils/locale'
+import { Request, LocaleUtil } from 'lyrixi-mobile'
 
 // 获取列表
 let page = 1
@@ -54,7 +53,7 @@ function queryData(url, params, { previousResult, action, onLoad } = {}) {
       .catch((err) => {
         resolve({
           status: 'error',
-          message: err?.data?.message || locale('获取数据异常！'),
+          message: err?.data?.message || LocaleUtil.locale('获取数据异常！'),
           list: null
         })
       })
