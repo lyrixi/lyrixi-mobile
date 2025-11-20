@@ -38,11 +38,11 @@ const Common = () => {
             action: action
           })
           let newList = null
-          if (result.status === 'success') {
+          if (result.status !== 'error') {
             newList =
               action === 'bottomRefresh'
-                ? previousResult.rankList.concat(result.rankList)
-                : result.rankList
+                ? previousResult.list.concat(result.data.list)
+                : result.data.list
           }
 
           return {

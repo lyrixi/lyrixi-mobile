@@ -26,14 +26,24 @@ function queryData(params, { action } = {}) {
       .then((result) => {
         if (result.code === '1') {
           let data = localData(result)
+          let status = 'loading'
+          // 无数据
+          if (data?.list?.length === 0) {
+            status = 'empty'
+          }
+          // 最后一页
+          else if (data.totalPage >= page || data?.list?.length > 50) {
+            status = 'noMore'
+          }
+
           resolve({
-            status: data?.list.length === 0 ? 'empty' : undefined,
+            status: status,
             message: '',
             data: data
           })
         } else {
           resolve({
-            status: '500',
+            status: 'error',
             message: result.message || locale('获取数据错误！'),
             data: null
           })
@@ -41,7 +51,7 @@ function queryData(params, { action } = {}) {
       })
       .catch((err) => {
         resolve({
-          status: '500',
+          status: 'error',
           message: err?.data?.message || locale('获取数据异常！'),
           data: null
         })

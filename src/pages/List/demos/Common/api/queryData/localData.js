@@ -30,7 +30,6 @@ function localData(result) {
 
   return {
     list: list,
-    total: result.total,
     totalPage: result.totalPage
   }
 }
