@@ -30,7 +30,7 @@ const Item = ({
   description,
   note,
   content,
-  action,
+  actionRender,
   checkboxRender,
 
   // Events
@@ -99,8 +99,8 @@ const Item = ({
 
   // 获取action
   function getActionNode() {
-    if (typeof action === 'function') {
-      return action({ ...(item || {}), checked })
+    if (typeof actionRender === 'function') {
+      return actionRender({ ...(item || {}), checked })
     }
 
     return null

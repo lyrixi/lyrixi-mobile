@@ -1,18 +1,22 @@
-import { Request, Device, LocaleUtil } from 'lyrixi-mobile'
-const locale = LocaleUtil.locale
+import { Request } from 'lyrixi-mobile'
+import locale from 'library/utils/locale'
+import serverData from './serverData'
+import localData from './localData'
 
 // 获取列表
+let page = 1
 // 兼容新 List.Main 要求：外部仍返回数组，调用处已包装为新对象
-function queryData(params, { success } = {}) {
+function queryData(params, { action } = {}) {
   return new Promise((resolve) => {
-    // 查询
+    if (typeof action === 'bottomRefresh') {
+      page++
+    } else {
+      page = 1
+    }
+    params.page = page
     Request.post(
-      '/combo/v1/getComboGrid.do?comboCode=employee',
-      {
-        isControl: '0',
-        menuId: Device.getUrlParameter('menuId') || '',
-        ...params
-      },
+      'url',
+      { ...serverData(params) },
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded' // application/json;charset=UTF-8
@@ -20,28 +24,27 @@ function queryData(params, { success } = {}) {
       }
     )
       .then((result) => {
-        if (Array.isArray(result.rows)) {
-          let list = result.rows.map((item) => {
-            return {
-              ...item,
-              id: item.id,
-              name: item.name,
-              description: item.dept_name + ' ' + item.position_name
-            }
+        if (result.code === '1') {
+          let data = localData(result)
+          resolve({
+            status: data?.list.length === 0 ? 'empty' : undefined,
+            message: '',
+            data: data
           })
-          // 设置数据的分页信息, 总条数和总页数只要传一个就行了, 可使List控件更准确的分页
-          // list.totalItems = result.totalItems
-          // list.totalPages = result.totalPages
-
-          success && success({ list: list })
-
-          resolve(list)
         } else {
-          resolve(result.message || locale('获取数据错误！'))
+          resolve({
+            status: '500',
+            message: result.message || locale('获取数据错误！'),
+            data: null
+          })
         }
       })
       .catch((err) => {
-        resolve(err?.data?.message || locale('获取数据异常！'))
+        resolve({
+          status: '500',
+          message: err?.data?.message || locale('获取数据异常！'),
+          data: null
+        })
       })
   })
 }

@@ -10,7 +10,7 @@ export default [
     description: 'description',
     note: 'note',
     content: 'content',
-    action: () => {
+    actionRender: () => {
       return <Button>action</Button>
     }
   },
@@ -20,7 +20,7 @@ export default [
     name: '2',
     description: 'description',
     content: 'content',
-    action: () => {
+    actionRender: () => {
       return <Button>action</Button>
     }
   },
@@ -88,7 +88,7 @@ export default [
     description: 'description',
     note: 'note',
     content: 'content',
-    action: () => {
+    actionRender: () => {
       return <Button>action</Button>
     }
   },
@@ -98,7 +98,7 @@ export default [
     name: '12',
     description: 'description',
     content: 'content',
-    action: () => {
+    actionRender: () => {
       return <Button>action</Button>
     }
   },
