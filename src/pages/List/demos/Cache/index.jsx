@@ -94,7 +94,8 @@ const Cache = () => {
             previousResult: previousResult,
             cacheConfig: cacheConfig
           })
-          let newList = previousResult.list.concat(result.list)
+          let newList =
+            action === 'bottomRefresh' ? previousResult.list.concat(result.list) : result.list
 
           return {
             status: result.status,
