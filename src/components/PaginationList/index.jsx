@@ -2,24 +2,26 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 
 // 内库使用-start
-import Storage from './../../../utils/Storage'
+import Storage from './../../utils/Storage'
+import List from './../List'
 // 内库使用-end
 
 /* 测试使用-start
-import { Storage } from 'lyrixi-mobile'
+import { Storage, List } from 'lyrixi-mobile'
 测试使用-end */
 
 // 项目内部模块导入
-import Main from './../Main'
+
 import queryData from './api/queryData'
 import mainLoadingRender from './mainLoadingRender'
 
 // 简便的列表组件, 只需要传入url和params即可
-const MainUrl = forwardRef(
+const PaginationList = forwardRef(
   (
     {
       // Value & Display Value
       url,
+      headers,
       params, // 查询参数: { rows: 20(必传) }
       formatItem,
       cacheName,
@@ -33,6 +35,7 @@ const MainUrl = forwardRef(
     },
     ref
   ) => {
+    const isFirstLoad = useRef(true)
     const mainRef = useRef(null)
 
     // Expose
@@ -69,12 +72,17 @@ const MainUrl = forwardRef(
 
     // 参数发生变化需要刷新列表
     useEffect(() => {
+      if (isFirstLoad.current) {
+        isFirstLoad.current = false
+        mainRef.current?.reload('load')
+        return
+      }
       mainRef.current?.reload()
       // eslint-disable-next-line
     }, [url, JSON.stringify(params)])
 
     return (
-      <Main
+      <List.Main
         ref={mainRef}
         // Status
         initialLoad={false}
@@ -92,7 +100,7 @@ const MainUrl = forwardRef(
           }
 
           // 在线查询数据
-          const result = await queryData(url, params, {
+          const result = await queryData(url, headers, params, {
             previousResult,
             action,
             onLoad
@@ -117,7 +125,8 @@ const MainUrl = forwardRef(
           // 初始化时, 有缓存时优先读取缓存, 并滚动到缓存位置
           if (action === 'load' && cacheName) {
             let cacheResult = Storage.getCache(cacheName)
-            mainRef.current.rootDOM.scrollTop = cacheResult.scrollTop
+            console.log(mainRef)
+            mainRef.current.rootDOM.scrollTop = cacheResult?.scrollTop || 0
           }
         }}
       />
@@ -125,4 +134,4 @@ const MainUrl = forwardRef(
   }
 )
 
-export default MainUrl
+export default PaginationList

@@ -27,13 +27,6 @@ const Cache = () => {
 
   let [queryParams, setQueryParams] = useState(Storage.getCache(cacheName)?.queryParams || {})
 
-  useEffect(() => {
-    // 离开页面时，更新缓存
-    return () => {
-      mainRef.current.updateCache({ queryParams })
-    }
-  }, [])
-
   return (
     <Page>
       {/* 搜索栏 */}
@@ -52,7 +45,7 @@ const Cache = () => {
         ok={locale('Save cache')}
         onOk={() => {
           console.log(mainRef.current)
-          debugger
+          // 离开页面时，更新缓存
           mainRef.current.updateCache({ queryParams })
           console.log('Save cache success!')
         }}

@@ -88,8 +88,8 @@ const Main = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        mainDOM: mainRef?.current?.rootDOM,
-        getMainDOM: mainRef?.current?.getRootDOM,
+        rootDOM: mainRef?.current?.rootDOM,
+        getRootDOM: mainRef?.current?.getRootDOM,
         // IndexBar
         getAnchors: mainRef?.current?.getAnchors,
         scrollToAnchor: mainRef?.current?.scrollToAnchor,

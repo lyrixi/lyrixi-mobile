@@ -1,6 +1,6 @@
 // 内库使用-start
-import LocaleUtil from './../../../../../utils/LocaleUtil'
-import Request from './../../../../../utils/Request'
+import LocaleUtil from './../../../../utils/LocaleUtil'
+import Request from './../../../../utils/Request'
 // 内库使用-end
 
 /* 测试使用-start
@@ -10,7 +10,7 @@ import { LocaleUtil, Request } from 'lyrixi-mobile'
 // 获取列表
 let page = 1
 // 兼容新 List.Main 要求：外部仍返回数组，调用处已包装为新对象
-function queryData(url, params, { previousResult, action, onLoad } = {}) {
+function queryData(url, headers = {}, params, { previousResult, action, onLoad } = {}) {
   return new Promise((resolve) => {
     if (action === 'bottomRefresh') {
       page++
@@ -27,7 +27,8 @@ function queryData(url, params, { previousResult, action, onLoad } = {}) {
       },
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded' // application/json;charset=UTF-8
+          'Content-Type': 'application/json',
+          ...(headers || {})
         }
       }
     )

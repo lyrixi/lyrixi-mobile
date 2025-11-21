@@ -8,7 +8,7 @@ function formatItem(item) {
     // 头像
     avatarUrl: item.avatarUrl || '',
     // 第一行文字
-    title: item.name,
+    name: item.name,
     // 第二行文字
     description: item.description,
     // 第一行右上角文字
