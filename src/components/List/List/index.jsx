@@ -18,6 +18,7 @@ const List = (
     },
     // No Group
     {
+      _raw: 原始数据, 必传,
       avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
       id: '选项1',
       name: '选项1',
@@ -89,8 +90,10 @@ const List = (
     return (
       <Item
         key={item.id ?? index}
-        // Item Data
-        item={item}
+        // Value & Display Value
+        id={item.id ?? index}
+        _raw={item._raw}
+        checked={checked}
         // Style
         disabled={item.disabled}
         imageUrl={item.imageUrl}
@@ -104,7 +107,7 @@ const List = (
         itemLayout={itemLayout}
         checkable={checkable}
         checkboxRender={checkboxRender}
-        checked={checked}
+        // Events
         onClick={(e) => {
           e.stopPropagation()
           handleChange(item, { checked: !checked })

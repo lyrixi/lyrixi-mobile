@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
+import listFormatter from './utils/listFormatter'
 import InfiniteScroll from './../InfiniteScroll'
 import Loading from './components/Loading'
 import List from './List'
@@ -29,6 +30,7 @@ const Main = forwardRef(
         list: Array<any>(列表数据)
       }>
       */
+      formatList,
       formatItem,
 
       // Status
@@ -209,14 +211,7 @@ const Main = forwardRef(
         checkable={checkable}
         // Render
         prependRender={prependRender}
-        list={
-          // 格式化Item显示数据, 但仍然需要保留原始数据item
-          typeof formatItem === 'function'
-            ? result?.list?.map((item) => {
-                return { ...formatItem(item), item }
-              })
-            : result?.list
-        }
+        list={listFormatter(result?.list, { formatList, formatItem })}
         appendRender={appendRender}
       >
         {/* 底部错误提示 */}

@@ -11,6 +11,8 @@ import { DOMUtil,Checkbox } from 'lyrixi-mobile'
 
 const Item = ({
   // Value & Display Value
+  id,
+  _raw,
   checked,
 
   // Status
@@ -23,7 +25,6 @@ const Item = ({
   itemLayout,
 
   // Elements
-  item,
   imageUrl,
   avatarUrl,
   title,
@@ -41,7 +42,7 @@ const Item = ({
     if (!checkable) return null
 
     if (typeof checkboxRender === 'function') {
-      let newCheckbox = checkboxRender({ ...(item || {}), checked })
+      let newCheckbox = checkboxRender({ id, ...(_raw || {}), checked })
       if (newCheckbox !== undefined) return newCheckbox
     }
 
@@ -100,7 +101,7 @@ const Item = ({
   // 获取action
   function getActionNode() {
     if (typeof actionRender === 'function') {
-      return actionRender({ ...(item || {}), checked })
+      return actionRender({ ...(_raw || {}), checked })
     }
 
     return null
