@@ -7,14 +7,11 @@ import Button from './../Button'
  */
 const FooterBarList = ({
   // Value & Display Value
-  list = [], // 按钮列表: [{id: '', name: '', backgroundColor, iconClassName: '', children: [...]}]
-
-  // Events
-  onChange // 变化回调: (item, e) => void
+  list = [] // 按钮列表: [{id: '', name: '', backgroundColor, iconClassName: '', children: [...], onClick: (e) => void}]
 }) => {
   return (
     <>
-      {list.map((item) => {
+      {list.map((item, index) => {
         const {
           id,
           name,
@@ -22,7 +19,8 @@ const FooterBarList = ({
           color,
           iconClassName,
           disabled,
-          children: itemChildren
+          children: itemChildren,
+          onClick
         } = item
 
         // 根据是否有 图标 设置不同的样式
@@ -46,7 +44,7 @@ const FooterBarList = ({
 
         return (
           <Button
-            key={id}
+            key={id || index}
             // Value & Display Value
             backgroundColor={backgroundColor}
             color={color}
@@ -60,7 +58,7 @@ const FooterBarList = ({
             // Events
             onClick={(e) => {
               e.stopPropagation()
-              onChange && onChange(item)
+              onClick && onClick(e)
             }}
           >
             {name}

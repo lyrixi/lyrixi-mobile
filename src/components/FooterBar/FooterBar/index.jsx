@@ -20,10 +20,7 @@ const Footer = forwardRef(
       list, // 列表数据
 
       // Element
-      children,
-
-      // Events
-      onChange // 变化回调: (item, e) => void
+      children
     },
     ref
   ) => {
@@ -45,7 +42,7 @@ const Footer = forwardRef(
         className={DOMUtil.classNames('lyrixi-footerbar', className)}
       >
         {/* Element: List */}
-        {list?.length ? <List list={list} onChange={onChange} /> : null}
+        {list?.length ? <List list={list} /> : null}
         {/* Element: Children */}
         {children}
       </footer>

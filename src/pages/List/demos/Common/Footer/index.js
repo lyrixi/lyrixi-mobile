@@ -5,17 +5,17 @@ import { Page, FooterBar, LocaleUtil } from 'lyrixi-mobile'
 const locale = LocaleUtil.locale
 
 // 底部
-function Footer({ onOk, onCancel }) {
+function Footer({ ok, cancel, onOk, onCancel }) {
   const buttons = []
   if (onCancel) {
     buttons.push({
-      name: 'Cancel',
+      name: cancel || locale('Cancel'),
       onClick: onCancel
     })
   }
   if (onOk) {
     buttons.push({
-      name: 'Save',
+      name: ok || locale('Save'),
       color: 'primary',
       onClick: onOk
     })

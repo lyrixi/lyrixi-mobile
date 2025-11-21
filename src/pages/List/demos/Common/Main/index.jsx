@@ -1,5 +1,5 @@
 // 第三方库导入
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { List } from 'lyrixi-mobile'
 
 // 项目内部模块导入
@@ -9,9 +9,10 @@ import formatResult from './/formatResult'
 import formatItem from './/formatItem'
 
 // 简便的列表组件, 只需要传入url和params即可
-const Main = ({ cacheName, queryParams }) => {
+const Main = ({ cacheName, queryParams }, ref) => {
   return (
     <List.MainUrl
+      ref={ref}
       cacheName={cacheName}
       url="/"
       params={serverParams(queryParams)}
@@ -26,4 +27,4 @@ const Main = ({ cacheName, queryParams }) => {
   )
 }
 
-export default Main
+export default forwardRef(Main)

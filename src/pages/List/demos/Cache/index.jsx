@@ -51,8 +51,10 @@ const Cache = () => {
       <Footer
         ok={locale('Save cache')}
         onOk={() => {
+          console.log(mainRef.current)
+          debugger
           mainRef.current.updateCache({ queryParams })
-          alert('Clear success!')
+          console.log('Save cache success!')
         }}
       />
     </Page>
