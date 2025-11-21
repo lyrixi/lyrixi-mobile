@@ -43,7 +43,7 @@ function queryData(url, params, { previousResult, action, onLoad } = {}) {
             newResult.status = 'empty'
           }
           // 判断是否有下一页
-          else if (newResult?.totalPage >= page || newResult?.list?.length > params.rows) {
+          else if (newResult?.totalPage >= page || newResult?.list?.length < params.rows) {
             newResult.status = 'noMore'
           }
           // 有更多数据

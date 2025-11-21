@@ -21,7 +21,6 @@ const Common = () => {
         onSearch={(newQueryParams) => {
           queryParams = newQueryParams
           setQueryParams(newQueryParams)
-          mainRef.current.reload()
         }}
       />
 
