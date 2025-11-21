@@ -14,7 +14,7 @@ import { Bridge,Toast, Loading, Attach } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
-function MediaUploader(
+function AttachUploader(
   {
     // Value & Display Value
     list = [],
@@ -132,12 +132,10 @@ function MediaUploader(
         }
       }
 
-      let chooseMediaParams = {
+      let chooseAttachParams = {
         ...chooseExtraParams,
         count: getRemainCount(count, list?.length || 0),
-        sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
-        isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
           const localFiles = res.localFiles
           if (!Array.isArray(localFiles) || !localFiles.length) {
@@ -170,7 +168,7 @@ function MediaUploader(
           resolve(false)
         }
       }
-      Bridge.chooseMedia(chooseMediaParams)
+      Bridge.chooseAttach(chooseAttachParams)
     })
   }
 
@@ -208,4 +206,4 @@ function MediaUploader(
   )
 }
 
-export default forwardRef(MediaUploader)
+export default forwardRef(AttachUploader)

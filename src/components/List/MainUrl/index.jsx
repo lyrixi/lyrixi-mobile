@@ -1,6 +1,13 @@
 // 第三方库导入
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
+
+// 内库使用-start
+import Storage from './../../../utils/Storage'
+// 内库使用-end
+
+/* 测试使用-start
 import { Storage } from 'lyrixi-mobile'
+测试使用-end */
 
 // 项目内部模块导入
 import Main from './../Main'

@@ -1,13 +1,13 @@
 import React from 'react'
 
-/* 内库使用-start
-import LocaleUtil from './../../../LocaleUtil'
+// 内库使用-start
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Button from './../../../Button'
-内库使用-end */
+// 内库使用-end
 
-// 测试使用-start
+/* 测试使用-start
 import { LocaleUtil, Button } from 'lyrixi-mobile'
-// 测试使用-end
+测试使用-end */
 
 // 暂无数据或者错误
 const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {

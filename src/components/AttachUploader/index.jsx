@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import React, { forwardRef } from 'react'
 
 // 内部组件导出
 import uploadList from './utils/uploadList'
@@ -77,9 +77,7 @@ function AttachUploader(
     // Value & Display Value
     list,
     count,
-    type,
     sourceType,
-    isSaveToAlbum,
     maxSize,
     uploadDir,
     chooseExtraParams,

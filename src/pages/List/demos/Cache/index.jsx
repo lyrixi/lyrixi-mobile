@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 // 第三方库导入
-import { LocaleUtil, Storage, Page } from 'lyrixi-mobile'
+import { LocaleUtil, Storage, Page, List } from 'lyrixi-mobile'
 
 // 公共组件导入
 
@@ -66,47 +66,16 @@ const Cache = () => {
       />
 
       {/* 列表 */}
-      <Main
-        ref={mainRef}
-        onLoad={async ({ action }) => {
-          // 加载完成时，读取缓存, 恢复滚动条位置
-          if (action === 'load' && mainRef.current) {
-            if (scrollTop) {
-              mainRef.current.mainDOM.scrollTop = scrollTop
-            }
-          }
+      <List.MainUrl
+      cacheName={}
+        url="/url/xxx"
+        params={serverParams(queryParams)}
+        onLoad={(result) => {
+          let listResult = formatResult(result)
+          return listResult
         }}
-        loadData={async ({ previousResult, action }) => {
-          console.log('action:', action)
-          // 初次加载时使用缓存
-          if (action === 'load') {
-            if (Array.isArray(list) && list.length > 0) {
-              return {
-                status: 'success',
-                message: '',
-                list: list
-              }
-            }
-          }
-
-          const result = await queryData(queryParams, {
-            action: action,
-            previousResult: previousResult,
-            cacheConfig: cacheConfig
-          })
-          let newList = null
-          if (result.status === 'success') {
-            newList =
-              action === 'bottomRefresh'
-                ? previousResult.rankList.concat(result.rankList)
-                : result.rankList
-          }
-
-          return {
-            status: result.status,
-            message: result.message,
-            list: newList
-          }
+        formatItem={(item) => {
+          return formatItem(item)
         }}
       />
 

@@ -26,7 +26,7 @@ const MainUrlDemo = () => {
       </Page.Header>
 
       {/* 列表 */}
-      <List.UrlMain
+      <List.MainUrl
         url="/url/xxx"
         params={serverParams(queryParams)}
         onLoad={(result) => {

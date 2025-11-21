@@ -3,12 +3,11 @@ import getUploadParams from './getUploadParams'
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
-import Storage from './../../../../utils/Storage'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Storage, LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 单张照片上传

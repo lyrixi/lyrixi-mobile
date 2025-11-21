@@ -1,4 +1,11 @@
-import { Request, LocaleUtil } from 'lyrixi-mobile'
+// 内库使用-start
+import LocaleUtil from './../../../../../utils/LocaleUtil'
+import Request from './../../../../../utils/Request'
+// 内库使用-end
+
+/* 测试使用-start
+import { LocaleUtil, Request } from 'lyrixi-mobile'
+测试使用-end */
 
 // 获取列表
 let page = 1

@@ -290,7 +290,7 @@ function WechatMiniprogram(
         // Events
         onBeforeChoose={onBeforeChoose}
         onChoose={chooseVisible ? handleChoose : null}
-        onFileChange={onFileChange}
+        // onFileChange={onFileChange}
         // onUpload={onUpload}
         onChange={onChange}
         onPreview={async (item, index) => {

@@ -8,14 +8,12 @@ import RetryButton from './components/RetryButton'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
-import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import Result from './../../Result'
-import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, LocaleUtil, DOMUtil, Result, Button } from 'lyrixi-mobile'
+import { Device, DOMUtil, Result } from 'lyrixi-mobile'
 测试使用-end */
 
 const Main = forwardRef(

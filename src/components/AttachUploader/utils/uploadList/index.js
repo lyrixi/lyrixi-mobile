@@ -6,12 +6,11 @@ import uploadFile from './../../Browser/uploadItem'
 // 内库使用-start
 import Toast from './../../../Toast'
 import Bridge from './../../../../utils/Bridge'
-import Device from './../../../../utils/Device'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Bridge, Device, LocaleUtil } from 'lyrixi-mobile'
+import { Toast, Bridge, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 导出给外部使用的工具类: 异步上传

@@ -40,10 +40,14 @@ function Attach(
     sourceType,
 
     // Status
+    disabled,
     allowChoose = false,
     allowClear = false,
     async = false,
     reUpload = true,
+
+    // Validate
+    maxSize,
 
     // Style
     style,

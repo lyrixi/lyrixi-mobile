@@ -1,21 +1,23 @@
-import React, { useState, useRef } from 'react'
 // 第三方库导入
-import { Page } from 'lyrixi-mobile'
+import React, { useState } from 'react'
+import { Page, List } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
-import { queryData } from './api'
+// 项目内部模块导入
+// 内部组件函数导入
+import serverParams from './api/queryData/serverParams'
+import formatResult from './api/queryData/formatResult'
+import formatItem from './api/queryData/formatItem'
 import Header from './Header'
-import Main from './Main'
 
-// 样式图片等资源文件导入
-import './index.less'
-
-// 普通列表
+// 简便的列表组件, 只需要传入url和params即可
 const Common = () => {
-  const mainRef = useRef(null)
-  let [queryParams, setQueryParams] = useState(null)
+  // 查询参数
+  let [queryParams, setQueryParams] = useState({ query: '1' })
+
+  // 切换日期类型
+  const toggleParams = () => {
+    setQueryParams(queryParams.query === '1' ? { query: '2' } : { query: '1' })
+  }
 
   return (
     <Page>
@@ -30,30 +32,15 @@ const Common = () => {
       />
 
       {/* 列表 */}
-      <Main
-        ref={mainRef}
-        loadData={async ({ previousResult, action }) => {
-          console.log('action:', action)
-          const result = await queryData(queryParams, {
-            action: action
-          })
-          let newList = null
-          if (result.status !== 'error') {
-            newList =
-              action === 'bottomRefresh'
-                ? previousResult.list.concat(result.data.list)
-                : result.data.list
-          }
-
-          return {
-            status: result.status,
-            message: result.message,
-            list: newList
-          }
+      <List.MainUrl
+        url="/url/xxx"
+        params={serverParams(queryParams)}
+        onLoad={(result) => {
+          let listResult = formatResult(result)
+          return listResult
         }}
-        // value={value}
-        onChange={() => {
-          console.log('onChange:', arguments)
+        formatItem={(item) => {
+          return formatItem(item)
         }}
       />
     </Page>
