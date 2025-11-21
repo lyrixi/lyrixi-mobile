@@ -18,7 +18,11 @@ const Icon = forwardRef(
 
       // Element
       iconClassName,
-      children
+      children,
+
+      // Events
+      onClick,
+      onTouchStart
     },
     ref
   ) => {
@@ -53,6 +57,9 @@ const Icon = forwardRef(
         // Style
         style={newStyle}
         className={newClassName}
+        // Events
+        onClick={onClick}
+        onTouchStart={onTouchStart}
       >
         {/* Element: Children */}
         {children}

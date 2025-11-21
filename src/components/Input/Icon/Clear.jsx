@@ -25,7 +25,11 @@ const IconClear = forwardRef(
       className,
 
       // Element ClassName
-      iconClassName
+      iconClassName,
+
+      // Events
+      onClick,
+      onTouchStart
     },
     ref
   ) => {
@@ -44,6 +48,9 @@ const IconClear = forwardRef(
         className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-right-icon', className)}
         // Element ClassName
         iconClassName={iconClassName || 'lyrixi-input-icon-clear'}
+        // Events
+        onClick={onClick}
+        onTouchStart={onTouchStart}
       />
     )
   }

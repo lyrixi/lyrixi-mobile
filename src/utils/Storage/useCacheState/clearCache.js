@@ -17,6 +17,12 @@ function clearCache(cacheName, { match } = {}) {
     Storage.removeLocalStorages((keyName) => keyName.startsWith(`${cacheName}:`))
     Storage.removeSessionStorages((keyName) => keyName.startsWith(`${cacheName}:`))
   }
+  // 精确清除
+  else {
+    delete window[cacheName]
+    Storage.removeLocalStorage(cacheName)
+    Storage.removeSessionStorage(cacheName)
+  }
 }
 
 export default clearCache

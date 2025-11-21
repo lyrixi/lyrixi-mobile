@@ -49,6 +49,10 @@ const Cache = () => {
           mainRef.current.updateCache({ queryParams })
           console.log('Save cache success!')
         }}
+        cancel={locale('Clear cache')}
+        onCancel={() => {
+          Storage.clearCache(cacheName)
+        }}
       />
     </Page>
   )
