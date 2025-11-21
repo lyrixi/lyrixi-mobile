@@ -13,7 +13,7 @@ const Main = ({ cacheName, queryParams }) => {
   return (
     <List.MainUrl
       cacheName={cacheName}
-      url="/url/xxx"
+      url="/"
       params={serverParams(queryParams)}
       onLoad={(result) => {
         let listResult = formatResult(result)

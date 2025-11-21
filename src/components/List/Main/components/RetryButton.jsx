@@ -16,7 +16,12 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
       return null
     }
     return (
-      <Button className="result-button" color="primary" onClick={onClick}>
+      <Button
+        className="lyrixi-result-button"
+        color="white"
+        backgroundColor="primary"
+        onClick={onClick}
+      >
         {LocaleUtil.locale('重试', 'SeedsUI_retry')}
       </Button>
     )
@@ -26,7 +31,12 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
       return null
     }
     return (
-      <Button className="result-button" color="primary" onClick={onClick}>
+      <Button
+        className="lyrixi-result-button"
+        color="white"
+        backgroundColor="primary"
+        onClick={onClick}
+      >
         {LocaleUtil.locale('刷新', 'SeedsUI_refresh')}
       </Button>
     )

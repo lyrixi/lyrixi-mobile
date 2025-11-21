@@ -55,7 +55,7 @@ const Item = ({
 
   // 渲染图片
   function getImageNode() {
-    if (typeof imageUrl === 'string') {
+    if (imageUrl && typeof imageUrl === 'string') {
       return (
         <div className="lyrixi-list-item-meta-image">
           <img
@@ -77,7 +77,7 @@ const Item = ({
 
   // 渲染头像
   function getAvatarNode() {
-    if (typeof avatarUrl === 'string') {
+    if (avatarUrl && typeof avatarUrl === 'string') {
       return (
         <div className="lyrixi-list-item-meta-avatar">
           <img
