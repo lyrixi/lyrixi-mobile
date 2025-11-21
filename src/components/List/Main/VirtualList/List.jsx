@@ -14,16 +14,39 @@ const List = (
     multiple,
     value,
     list,
-    onChange,
     // List config
     itemRender,
     itemLayout,
     checkable,
     // virtual config
-    height
+    height,
+    // Events
+    onChange
   },
   ref
 ) => {
+  // 回传带checked属性的原始数据
+  function handleChange(_raw) {
+    let newValue = null
+    // 多选
+    if (multiple) {
+      if (!_raw.checked) {
+        newValue = (value || []).filter((valueItem) => valueItem?.id !== _raw.id)
+      } else {
+        newValue = [...(value || []), _raw]
+      }
+    }
+    // 单选
+    else {
+      if (!_raw.checked) {
+        newValue = allowClear ? null : _raw
+      } else {
+        newValue = _raw
+      }
+    }
+    onChange && onChange(newValue, _raw)
+  }
+
   return (
     // 滚动占位元素
     <div
@@ -68,26 +91,7 @@ const List = (
             itemLayout={itemLayout}
             checkable={checkable}
             checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
-            onChange={(checked) => {
-              let newValue = null
-              // 多选
-              if (multiple) {
-                if (!checked) {
-                  newValue = value.filter((valueItem) => valueItem?.id !== item.id)
-                } else {
-                  newValue = [...(value || []), item]
-                }
-              }
-              // 单选
-              else {
-                if (!checked) {
-                  newValue = allowClear ? null : [item]
-                } else {
-                  newValue = [item]
-                }
-              }
-              onChange && onChange(newValue, { checked: checked, item: item })
-            }}
+            onSelect={handleChange}
             // Virtual style
             style={{
               ...item?.style,
