@@ -19,18 +19,38 @@ import mainLoadingRender from './mainLoadingRender'
 const PaginationList = forwardRef(
   (
     {
+      cacheName,
       // Value & Display Value
       url,
       headers,
       params, // 查询参数: { rows: 20(必传) }
       formatItem,
-      cacheName,
+
+      // Status
+      errorRetry,
+      emptyRetry,
+      // initialLoad,
+      multiple,
+      allowClear,
+      checkable,
+      disableTopRefresh,
+      disableBottomRefresh,
+      virtual,
 
       // Style
       className,
       style,
 
+      // Elements
+      itemRender,
+      itemLayout,
+      loadingRender,
+      prependRender,
+      appendRender,
+
       // Events
+      onChange,
+      onScroll,
       onLoad
     },
     ref
@@ -84,12 +104,8 @@ const PaginationList = forwardRef(
     return (
       <List.Main
         ref={mainRef}
-        // Status
-        initialLoad={false}
-        // Style
-        style={style}
-        className={className}
-        // Data
+        // Value & Display Value
+        formatItem={formatItem}
         loadData={async ({ previousResult, action }) => {
           // 初始化时, 有缓存时优先读取缓存
           if (action === 'load' && cacheName) {
@@ -117,10 +133,28 @@ const PaginationList = forwardRef(
             list: newList
           }
         }}
+        // Status
+        initialLoad={false}
+        errorRetry={errorRetry}
+        emptyRetry={emptyRetry}
+        multiple={multiple}
+        allowClear={allowClear}
+        checkable={checkable}
+        disableTopRefresh={disableTopRefresh}
+        disableBottomRefresh={disableBottomRefresh}
+        virtual={virtual}
+        // Style
+        style={style}
+        className={className}
         // Elements
-        loadingRender={mainLoadingRender}
-        formatItem={formatItem}
+        itemRender={itemRender}
+        itemLayout={itemLayout}
+        loadingRender={loadingRender || mainLoadingRender}
+        prependRender={prependRender}
+        appendRender={appendRender}
         // Events
+        onChange={onChange}
+        onScroll={onScroll}
         onLoad={({ action }) => {
           // 初始化时, 有缓存时优先读取缓存, 并滚动到缓存位置
           if (action === 'load' && cacheName) {

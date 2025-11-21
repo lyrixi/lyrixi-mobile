@@ -16,7 +16,7 @@ function formatItem(item) {
     // 第三行文字
     content: item.content,
     // 右侧操作按钮
-    actionRender: ({ item }) => {
+    actionRender: (item) => {
       return <div>Click {item.name}</div>
     }
   }

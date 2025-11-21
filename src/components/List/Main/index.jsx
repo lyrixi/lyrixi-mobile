@@ -32,9 +32,9 @@ const Main = forwardRef(
       formatItem,
 
       // Status
+      initialLoad = true,
       errorRetry = true, // 是否显示重试按钮
       emptyRetry, // 是否显示刷新按钮
-      initialLoad = true,
       multiple,
       allowClear,
       checkable,
