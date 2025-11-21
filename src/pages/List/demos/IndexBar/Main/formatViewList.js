@@ -1,5 +1,5 @@
 // 将列表数据按照 anchor 字段分组
-function formatList(list) {
+function formatViewList(list) {
   if (!Array.isArray(list) || list.length === 0) {
     return []
   }
@@ -49,4 +49,4 @@ function formatList(list) {
   })
 }
 
-export default formatList
+export default formatViewList

@@ -25,8 +25,8 @@ const PaginationList = forwardRef(
       headers,
       params, // 查询参数: { rows: 20(必传) }
       formatResult,
-      formatList,
-      formatItem,
+      formatViewList,
+      formatViewItem,
 
       // Status
       errorRetry,
@@ -107,8 +107,8 @@ const PaginationList = forwardRef(
       <List.Main
         ref={mainRef}
         // Value & Display Value
-        formatList={formatList}
-        formatItem={formatItem}
+        formatViewList={formatViewList}
+        formatViewItem={formatViewItem}
         loadData={async ({ previousResult, action }) => {
           // 初始化时, 有缓存时优先读取缓存
           if (action === 'load' && cacheName) {

@@ -4,9 +4,9 @@ import { PaginationList } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 // 内部组件函数导入
-import serverParams from './/serverParams'
-import formatResult from './/formatResult'
-import formatList from './/formatList'
+import serverParams from './serverParams'
+import formatResult from './formatResult'
+import formatViewList from './formatViewList'
 
 // 简便的列表组件, 只需要传入url和params即可
 const Main = ({ cacheName, virtual, queryParams, onLoad }, ref) => {
@@ -18,7 +18,7 @@ const Main = ({ cacheName, virtual, queryParams, onLoad }, ref) => {
       url="/"
       params={serverParams(queryParams)}
       formatResult={formatResult}
-      formatList={formatList}
+      formatViewList={formatViewList}
       onChange={(value) => {
         console.log(value)
       }}

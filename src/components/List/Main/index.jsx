@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
-import listFormatter from './utils/listFormatter'
+import viewFormatter from './utils/viewFormatter'
 import InfiniteScroll from './../InfiniteScroll'
 import Loading from './components/Loading'
 import List from './List'
@@ -30,8 +30,8 @@ const Main = forwardRef(
         list: Array<any>(列表数据)
       }>
       */
-      formatList,
-      formatItem,
+      formatViewList,
+      formatViewItem,
 
       // Status
       initialLoad = true,
@@ -211,7 +211,7 @@ const Main = forwardRef(
         checkable={checkable}
         // Render
         prependRender={prependRender}
-        list={listFormatter(result?.list, { formatList, formatItem })}
+        list={viewFormatter(result?.list, { formatViewList, formatViewItem })}
         appendRender={appendRender}
       >
         {/* 底部错误提示 */}
