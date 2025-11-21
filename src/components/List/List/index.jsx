@@ -56,25 +56,26 @@ const List = (
     }
   })
 
-  function handleChange(item, { checked }) {
+  // 回传带checked属性的原始数据
+  function handleChange(_raw) {
     let newValue = null
     // 多选
     if (multiple) {
-      if (!checked) {
-        newValue = (value || []).filter((valueItem) => valueItem?.id !== item.id)
+      if (!_raw.checked) {
+        newValue = (value || []).filter((valueItem) => valueItem?.id !== _raw.id)
       } else {
-        newValue = [...(value || []), item]
+        newValue = [...(value || []), _raw]
       }
     }
     // 单选
     else {
-      if (!checked) {
-        newValue = allowClear ? null : item
+      if (!_raw.checked) {
+        newValue = allowClear ? null : _raw
       } else {
-        newValue = item
+        newValue = _raw
       }
     }
-    onChange && onChange(newValue, { checked: checked, item: item })
+    onChange && onChange(newValue, _raw)
   }
 
   // 获取单项
@@ -108,10 +109,7 @@ const List = (
         checkable={checkable}
         checkboxRender={checkboxRender}
         // Events
-        onClick={(e) => {
-          e.stopPropagation()
-          handleChange(item, { checked: !checked })
-        }}
+        onSelect={handleChange}
       />
     )
   }

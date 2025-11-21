@@ -10,7 +10,7 @@ function formatItem(item) {
     // 第一行文字
     name: item.name,
     // 第二行文字
-    description: item.description,
+    description: item.introduce,
     // 第一行右上角文字
     note: item.note,
     // 第三行文字

@@ -2,10 +2,10 @@
 function listFormatter(list, { formatItem, formatList }) {
   // 格式化List显示数据, 但仍然需要保留原始数据list
   if (typeof formatList === 'function') {
-    list?.map((item) => {
+    let newList = list?.map((item) => {
       return { ...item, _raw: item }
     })
-    formatList(item)
+    return formatList(newList)
   }
 
   // 格式化Item显示数据, 但仍然需要保留原始数据item

@@ -35,6 +35,7 @@ const Item = ({
   checkboxRender,
 
   // Events
+  onSelect,
   onClick
 }) => {
   // 获取checkbox
@@ -101,7 +102,7 @@ const Item = ({
   // 获取action
   function getActionNode() {
     if (typeof actionRender === 'function') {
-      return actionRender({ ...(_raw || {}), checked })
+      return actionRender({ id, ...(_raw || {}), checked })
     }
 
     return null
@@ -122,6 +123,7 @@ const Item = ({
         onClick={(e) => {
           e.stopPropagation()
           onClick && onClick(e)
+          onSelect && onSelect({ id, ...(_raw || {}), checked })
         }}
       >
         {/* Left Checkbox */}

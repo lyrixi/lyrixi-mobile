@@ -6,7 +6,7 @@ import { IndexBar, Page } from 'lyrixi-mobile'
 
 // 内部组件导入
 import Header from './../Common/Header'
-import Main from './../Common/Main'
+import Main from './Main'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
