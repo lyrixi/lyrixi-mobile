@@ -6,16 +6,24 @@ const locale = LocaleUtil.locale
 
 // 底部
 function Footer({ onOk, onCancel }) {
+  const buttons = []
+  if (onCancel) {
+    buttons.push({
+      name: 'Cancel',
+      onClick: onCancel
+    })
+  }
+  if (onOk) {
+    buttons.push({
+      name: 'Save',
+      color: 'primary',
+      onClick: onOk
+    })
+  }
+
   return (
     <Page.Footer>
-      <FooterBar>
-        {onCancel && <FooterBar.Button onClick={onCancel}>{locale('Cancel')}</FooterBar.Button>}
-        {onOk && (
-          <FooterBar.Button className="lyrixi-primary" onClick={onOk}>
-            {locale('Ok')}
-          </FooterBar.Button>
-        )}
-      </FooterBar>
+      <FooterBar list={buttons} />
     </Page.Footer>
   )
 }

@@ -49,9 +49,9 @@ const Cache = () => {
 
       {/* 底部 */}
       <Footer
-        ok={locale('Clear cache')}
+        ok={locale('Save cache')}
         onOk={() => {
-          Storage.clearCache(cacheName)
+          mainRef.current.updateCache({ queryParams })
           alert('Clear success!')
         }}
       />
