@@ -24,6 +24,7 @@ const PaginationList = forwardRef(
       url,
       headers,
       params, // 查询参数: { rows: 20(必传) }
+      formatResult,
       formatList,
       formatItem,
 
@@ -121,7 +122,7 @@ const PaginationList = forwardRef(
           const result = await queryData(url, headers, params, {
             previousResult,
             action,
-            onLoad
+            formatResult
           })
           let newList = null
           if (result.status !== 'error') {
@@ -157,13 +158,15 @@ const PaginationList = forwardRef(
         // Events
         onChange={onChange}
         onScroll={onScroll}
-        onLoad={({ action }) => {
+        onLoad={({ result, action }) => {
           // 初始化时, 有缓存时优先读取缓存, 并滚动到缓存位置
           if (action === 'load' && cacheName) {
             let cacheResult = Storage.getCache(cacheName)
             console.log(mainRef)
             mainRef.current.rootDOM.scrollTop = cacheResult?.scrollTop || 0
           }
+
+          onLoad && onLoad({ result: result, action: action })
         }}
       />
     )

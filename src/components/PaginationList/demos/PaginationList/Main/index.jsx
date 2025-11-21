@@ -16,10 +16,7 @@ const Main = ({ cacheName, queryParams }, ref) => {
       cacheName={cacheName}
       url="/"
       params={serverParams(queryParams)}
-      onLoad={(result) => {
-        let listResult = formatResult(result)
-        return listResult
-      }}
+      formatResult={formatResult}
       formatItem={(item) => {
         return formatItem(item)
       }}

@@ -14,6 +14,7 @@ import './../Common/index.less'
 // IndexBar列表示例
 const IndexBarList = () => {
   const mainRef = useRef(null)
+  const indexBarRef = useRef(null)
   let [queryParams, setQueryParams] = useState(null)
   const [anchors, setAnchors] = useState(null)
   const [indexBarVisible, setIndexBarVisible] = useState(undefined)
@@ -31,16 +32,17 @@ const IndexBarList = () => {
       />
 
       {/* 列表 */}
-      <Main ref={mainRef} params={queryParams} />
+      <Main
+        ref={mainRef}
+        params={queryParams}
+        onLoad={() => {
+          setIndexBarVisible(true)
+          indexBarRef?.current?.update?.()
+        }}
+      />
 
       {indexBarVisible && (
-        <IndexBar
-          // 虚拟滚动
-          anchors={anchors}
-          onTouchAnchor={mainRef?.current?.scrollToAnchor}
-          // 实体滚动
-          scrollerDOM={mainRef?.current?.rootDOM}
-        ></IndexBar>
+        <IndexBar indexBarRef={indexBarRef} scrollerDOM={mainRef?.current?.rootDOM}></IndexBar>
       )}
     </Page>
   )
