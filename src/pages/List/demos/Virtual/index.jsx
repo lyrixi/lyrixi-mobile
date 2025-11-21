@@ -5,7 +5,6 @@ import { Page } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
-import { queryData } from './../Common/api'
 import Header from './../Common/Header'
 import Main from './../Common/Main'
 
@@ -42,25 +41,7 @@ const Virtual = () => {
             return 71
           }
         }}
-        loadData={async ({ previousResult, action }) => {
-          console.log('action:', action)
-          const result = await queryData(queryParams, {
-            action: action
-          })
-          let newList = null
-          if (result.status === 'success') {
-            newList =
-              action === 'bottomRefresh'
-                ? previousResult.rankList.concat(result.rankList)
-                : result.rankList
-          }
-
-          return {
-            status: result.status,
-            message: result.message,
-            list: newList
-          }
-        }}
+        params={queryParams}
       />
     </Page>
   )

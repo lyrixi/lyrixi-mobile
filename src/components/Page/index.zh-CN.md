@@ -22,7 +22,7 @@ toc: content
 
 ### 基本使用
 
-<code src="./demos/Layout.jsx"></code>
+<code src="./demos/Page.jsx"></code>
 
 ### 下拉刷新
 

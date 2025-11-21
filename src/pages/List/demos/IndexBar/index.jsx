@@ -5,7 +5,6 @@ import { IndexBar, Page } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
-import { queryData } from './../Common/api'
 import Header from './../Common/Header'
 import Main from './../Common/Main'
 
@@ -32,31 +31,7 @@ const IndexBarList = () => {
       />
 
       {/* 列表 */}
-      <Main
-        ref={mainRef}
-        loadData={async ({ previousResult, action }) => {
-          console.log('action:', action)
-          const newList = await queryData(
-            { page: 1, rows: 20, ...queryParams },
-            {
-              onSuccess: () => {
-                setIndexBarVisible(true)
-              }
-            }
-          )
-          return {
-            status: Array.isArray(newList) && newList.length === 0 ? 'empty' : undefined,
-            message: '',
-            list: Array.isArray(newList) ? newList : []
-          }
-        }}
-        onLoad={() => {
-          console.log('更新IndexBar数据...')
-          // 虚拟滚动获取anchors
-          let newAnchors = mainRef?.current?.getAnchors?.()
-          setAnchors(newAnchors)
-        }}
-      />
+      <Main ref={mainRef} params={queryParams} />
 
       {indexBarVisible && (
         <IndexBar
