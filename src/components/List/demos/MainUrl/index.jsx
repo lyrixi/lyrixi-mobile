@@ -4,9 +4,9 @@ import { Page, List, Button } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 // 内部组件函数导入
-import serverData from './serverData'
-import localData from './localData'
-import formatItem from './formatItem'
+import serverParams from './api/queryData/serverParams'
+import formatResult from './api/queryData/formatResult'
+import formatItem from './api/queryData/formatItem'
 
 // 简便的列表组件, 只需要传入url和params即可
 const MainUrlDemo = () => {
@@ -28,9 +28,9 @@ const MainUrlDemo = () => {
       {/* 列表 */}
       <List.UrlMain
         url="/url/xxx"
-        params={serverData(queryParams)}
+        params={serverParams(queryParams)}
         onLoad={(result) => {
-          let listResult = localData(result)
+          let listResult = formatResult(result)
           return listResult
         }}
         formatItem={(item) => {
