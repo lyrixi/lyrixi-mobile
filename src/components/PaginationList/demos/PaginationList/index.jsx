@@ -25,7 +25,7 @@ const Common = () => {
       />
 
       {/* 列表 */}
-      <Main params={queryParams} />
+      <Main queryParams={queryParams} />
     </Page>
   )
 }
