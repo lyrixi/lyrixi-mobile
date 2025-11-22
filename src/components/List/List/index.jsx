@@ -19,7 +19,7 @@ const List = (
     // No Group
     {
       _raw: 原始数据, 必传,
-      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
       id: '选项1',
       name: '选项1',
       description: '普通描述',

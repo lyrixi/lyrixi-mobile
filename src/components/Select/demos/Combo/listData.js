@@ -1,6 +1,6 @@
 export default [
   {
-    avatar: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+    avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
     id: 'Option',
     name: 'Option',
     description: 'Description',

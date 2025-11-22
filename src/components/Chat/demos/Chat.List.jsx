@@ -9,7 +9,7 @@ export default () => {
           // checkable
           list={[
             {
-              avatar: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+              avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
               id: '1',
               name: '1',
               content: 'content',
@@ -17,7 +17,7 @@ export default () => {
               time: new Date()
             },
             {
-              avatar: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+              avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
               id: '2',
               name: '张三',
               content: 'content',
@@ -25,7 +25,7 @@ export default () => {
               time: new Date()
             },
             {
-              avatar: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+              avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
               id: '3',
               name: '张三',
               content: 'content',

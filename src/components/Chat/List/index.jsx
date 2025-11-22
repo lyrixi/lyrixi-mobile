@@ -20,7 +20,7 @@ const List = (
     /*
     {
       position: 'left',
-      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3',
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
       id: '选项1',
       name: '选项1',
       content: '自定义内容',

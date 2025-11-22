@@ -9,7 +9,7 @@ const list = [
     description: (
       <div className="lyrixi-color-default">
         <List.Item
-          avatar="https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3"
+          avatar="https://api.dicebear.com/7.x/miniavs/svg"
           title="Jerry Input"
           className="border-0"
         />
@@ -22,7 +22,7 @@ const list = [
     description: (
       <div className="lyrixi-color-default">
         <List.Item
-          avatar="https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3"
+          avatar="https://api.dicebear.com/7.x/miniavs/svg"
           title="Tom Input"
           className="border-0"
         />
@@ -35,7 +35,7 @@ const list = [
     description: (
       <div className="lyrixi-color-default">
         <List.Item
-          avatar="https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3"
+          avatar="https://api.dicebear.com/7.x/miniavs/svg"
           title="Morpheus Input"
           className="border-0"
         />

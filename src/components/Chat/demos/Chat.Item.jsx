@@ -6,7 +6,7 @@ export default () => {
     <Page>
       <Page.Main>
         <Chat.Item
-          avatar={'https://api.dicebear.com/7.x/miniavs/svg?lyrixi=3'}
+          avatar={'https://api.dicebear.com/7.x/miniavs/svg'}
           id="1"
           name="1"
           content="content"
