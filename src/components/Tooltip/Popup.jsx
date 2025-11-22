@@ -99,7 +99,7 @@ const Popup = forwardRef(
         // Style
         style={maskStyle}
         className={DOMUtil.classNames(
-          'mask lyrixi-tooltip-mask',
+          'lyrixi-mask lyrixi-tooltip-mask',
           maskClassName,
           open ? 'lyrixi-active' : ''
         )}

@@ -7,7 +7,7 @@ function showMask({ portal, onMaskClick }) {
   if (!mask) {
     // 创建dom
     mask = document.createElement('div')
-    mask.setAttribute('class', `mask message-mask`)
+    mask.setAttribute('class', `lyrixi-mask message-mask`)
     mask.setAttribute('id', globalMessageId)
     mask.innerHTML = `
       <div class="modal-animation message-modal middle" data-animation="zoom">

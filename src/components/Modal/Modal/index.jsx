@@ -75,7 +75,7 @@ const Modal = forwardRef(
       <div
         data-animation={animation}
         style={maskStyle}
-        className={DOMUtil.classNames('mask modal-mask', maskClassName, getActiveClass())}
+        className={DOMUtil.classNames('lyrixi-mask modal-mask', maskClassName, getActiveClass())}
         onClick={handleMaskClick}
         ref={maskRef}
       >
