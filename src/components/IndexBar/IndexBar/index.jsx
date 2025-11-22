@@ -1,12 +1,4 @@
-import React, {
-  Fragment,
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-  useEffect,
-  useState
-} from 'react'
-import getAnchorsByScroller from './getAnchorsByScroller'
+import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
 import getAnchorByPoint from './getAnchorByPoint'
 import getAnchorByViewport from './getAnchorByViewport'
 import activeButton from './activeButton'
@@ -23,22 +15,22 @@ import { DOMUtil } from 'lyrixi-mobile'
 const IndexBar = forwardRef(
   (
     {
-      // 非实体操作
-      anchors: externalAnchors,
-      onTouchAnchor,
-      // 实体操作
+      // Value & Display Value
+      anchors,
+
+      // Elements
       scrollerDOM,
-      children,
-      // 其它属性
+
+      // Style
       className,
-      style
+      style,
+
+      // 自定义滚动到指定位置(虚拟滚动条会找不到位置)
+      scrollToAnchor: externalScrollToAnchor
     },
     ref
   ) => {
-    let [anchors, setAnchors] = useState(null)
-
     // Nodes
-    const scrollerRef = useRef(null)
     const sidebarRef = useRef(null)
     const tooltipRef = useRef(null)
 
@@ -60,66 +52,14 @@ const IndexBar = forwardRef(
             tooltipDOM: tooltipRef.current
           })
         },
-        update: updateAnchors,
+        update: update,
         scrollToAnchor: goAnchor
       }
     })
 
-    useEffect(() => {
-      // 获取滚动容器
-      scrollerRef.current = scrollerDOM || sidebarRef.current?.previousElementSibling
-      if (!scrollerRef.current) return
-
-      // 滚动事件
-      scrollerRef.current.addEventListener('scroll', handleScroll, false)
-
-      // 更新锚记
-      updateAnchors()
-
-      return () => {
-        scrollerRef.current &&
-          scrollerRef.current.removeEventListener('scroll', handleScroll, false)
-      }
-      // eslint-disable-next-line
-    }, [])
-
-    useEffect(() => {
-      // 更新锚记
-      updateAnchors()
-      // eslint-disable-next-line
-    }, [children])
-
-    useEffect(() => {
-      // 更新锚记
-      if (Array.isArray(externalAnchors) && externalAnchors.length) {
-        setAnchors(externalAnchors)
-      } else {
-        setAnchors([])
-      }
-      // eslint-disable-next-line
-    }, [externalAnchors])
-
-    // 获取所有锚点
-    function updateAnchors() {
-      // 自定义anchors
-      if (Array.isArray(externalAnchors) && externalAnchors.length) {
-        setAnchors(externalAnchors)
-        return
-      }
-
-      if (!scrollerRef.current) return
-      anchors = getAnchorsByScroller(scrollerRef.current)
-      setAnchors(anchors)
-
-      // 锚记渲染完成后更新右侧选中效果
-      setTimeout(() => {
-        handleScroll()
-      }, 0)
-    }
-
-    // Scroller scroll to position sidebar
-    function handleScroll() {
-      let currentAnchor = getAnchorByViewport(scrollerRef.current)
+    // 根据滚动条位置, 选中右侧的锚点按钮
+    function update() {
+      let currentAnchor = getAnchorByViewport(scrollerDOM)
       currentAnchor &&
         activeButton({
           anchor: currentAnchor,
@@ -131,18 +71,25 @@ const IndexBar = forwardRef(
     // 触摸时滚动至anchor
     function goAnchor(currentAnchor) {
       if (!currentAnchor) return
-      scrollToAnchor({
-        scrollerDOM: scrollerRef.current,
-        anchor: currentAnchor
-      })
+
+      // 滚动到指定位置
+      if (scrollerDOM) {
+        scrollToAnchor({
+          scrollerDOM,
+          anchor: currentAnchor
+        })
+      }
+      // 自定义滚动到指定位置
+      else {
+        externalScrollToAnchor && externalScrollToAnchor(currentAnchor)
+      }
+
+      // 选中锚点按钮
       activeButton({
         anchor: currentAnchor,
         sidebarDOM: sidebarRef.current,
         tooltipDOM: tooltipRef.current
       })
-
-      // 触发回调
-      onTouchAnchor && onTouchAnchor(currentAnchor)
     }
 
     // Sidebar touch move to position Anchor
@@ -160,6 +107,7 @@ const IndexBar = forwardRef(
         x: touchesRef.current.startX,
         y: e.touches[0].clientY
       })
+
       goAnchor(currentAnchor)
     }
     function handleTouchMove(e) {
@@ -170,6 +118,7 @@ const IndexBar = forwardRef(
         x: touchesRef.current.startX,
         y: e.touches[0].clientY
       })
+
       goAnchor(currentAnchor)
     }
     function handleTouchEnd(e) {
@@ -182,7 +131,6 @@ const IndexBar = forwardRef(
 
     const DOM = (
       <Fragment>
-        {children}
         <div
           style={style}
           className={DOMUtil.classNames('lyrixi-indexbar', className)}

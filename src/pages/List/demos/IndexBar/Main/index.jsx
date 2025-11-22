@@ -19,6 +19,7 @@ const Main = ({ cacheName, virtual, queryParams, onLoad }, ref) => {
       params={serverParams(queryParams)}
       formatResult={formatResult}
       formatViewList={formatViewList}
+      onLoad={onLoad}
       onChange={(value) => {
         console.log(value)
       }}

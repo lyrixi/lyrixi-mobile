@@ -16,8 +16,9 @@ const IndexBarList = () => {
   const mainRef = useRef(null)
   const indexBarRef = useRef(null)
   let [queryParams, setQueryParams] = useState(null)
+
+  // IndexBar anchors
   const [anchors, setAnchors] = useState(null)
-  const [indexBarVisible, setIndexBarVisible] = useState(undefined)
 
   return (
     <Page>
@@ -35,15 +36,23 @@ const IndexBarList = () => {
       <Main
         ref={mainRef}
         params={queryParams}
-        onLoad={() => {
-          setIndexBarVisible(true)
-          indexBarRef?.current?.update?.()
+        onLoad={({ result, action }) => {
+          let newAnchors = {}
+          for (let i = 0; i < result?.list?.length; i++) {
+            let item = result?.list[i]
+            if (item?.anchor) {
+              newAnchors[item?.anchor] = item?.anchor
+            }
+          }
+          setAnchors(Object.values(newAnchors))
         }}
       />
 
-      {indexBarVisible && (
-        <IndexBar indexBarRef={indexBarRef} scrollerDOM={mainRef?.current?.rootDOM}></IndexBar>
-      )}
+      <IndexBar
+        anchors={anchors}
+        indexBarRef={indexBarRef}
+        scrollerDOM={mainRef?.current?.rootDOM}
+      />
     </Page>
   )
 }

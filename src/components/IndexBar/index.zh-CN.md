@@ -25,24 +25,3 @@ IndexBar 需要包裹滚动容器
 <code src="./demos/demo1.jsx"></code>
 
 ## IndexBar
-
-### 属性
-
-| 属性          | 说明         | 类型                       | 默认值 |
-| ------------- | ------------ | -------------------------- | ------ |
-| anchors       | 锚点列表     | `array`                    | -      |
-| onTouchAnchor | 触摸锚点回调 | `(anchor: string) => void` | -      |
-| scrollerDOM   | 滚动容器     | `HTMLElement`              | -      |
-| children      | 子元素       | `ReactNode`                | -      |
-
-### Ref
-
-| 属性           | 说明         | 类型                       |
-| -------------- | ------------ | -------------------------- |
-| rootDOM        | 根元素       | `HtmlDivElement`           |
-| tooltipDOM     | 提示元素     | `HtmlDivElement`           |
-| getRootDOM     | 获取根元素   | () => `HtmlDivElement`     |
-| getTooltipDOM  | 获取提示元素 | () => `HtmlDivElement`     |
-| activeAnchor   | 激活锚点     | `(anchor: string) => void` |
-| update         | 更新锚点     | `() => void`               |
-| scrollToAnchor | 滚动到锚点   | `(anchor: string) => void` |
