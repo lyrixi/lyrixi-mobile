@@ -46,27 +46,25 @@ const IndexBar = forwardRef(
         getRootDOM: () => sidebarRef.current,
         getTooltipDOM: () => sidebarRef.current,
         activeAnchor: (currentAnchor) => {
-          activeButton({
-            anchor: currentAnchor,
-            sidebarDOM: sidebarRef.current,
-            tooltipDOM: tooltipRef.current
-          })
+          if (currentAnchor) {
+            activeButton({
+              anchor: currentAnchor,
+              sidebarDOM: sidebarRef.current,
+              tooltipDOM: tooltipRef.current
+            })
+          } else {
+            let currentAnchor = getAnchorByViewport(scrollerDOM)
+            currentAnchor &&
+              activeButton({
+                anchor: currentAnchor,
+                sidebarDOM: sidebarRef.current,
+                tooltipDOM: tooltipRef.current
+              })
+          }
         },
-        update: update,
         scrollToAnchor: goAnchor
       }
     })
-
-    // 根据滚动条位置, 选中右侧的锚点按钮
-    function update() {
-      let currentAnchor = getAnchorByViewport(scrollerDOM)
-      currentAnchor &&
-        activeButton({
-          anchor: currentAnchor,
-          sidebarDOM: sidebarRef.current,
-          tooltipDOM: tooltipRef.current
-        })
-    }
 
     // 触摸时滚动至anchor
     function goAnchor(currentAnchor) {
