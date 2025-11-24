@@ -6,9 +6,10 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 // 序列控件的锚点
 const Anchor = ({
+  // Value & Display Value
   name,
   children,
-  // 其它属性
+  // Style
   className,
   style
 }) => {

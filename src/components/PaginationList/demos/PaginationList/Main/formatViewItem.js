@@ -8,14 +8,14 @@ function formatViewItem(item) {
     // 头像
     avatarUrl: item.avatarUrl || '',
     // 第一行文字
-    name: item.name,
+    title: item.name,
     // 第二行文字
     description: item.introduce,
     // 第一行右上角文字
     note: item.note,
-    // 第三行文字
+    // vertical: 第三行文字, horizontal: 右侧操作文字
     content: item.content,
-    // 右侧操作按钮
+    // vertical:第四行操作按钮, horizontal: 右侧操作按钮
     actionRender: (item) => {
       return <div>Click {item.name}</div>
     }

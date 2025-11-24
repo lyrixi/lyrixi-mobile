@@ -64,7 +64,7 @@ const List = (
             <GroupTitle
               key={item.id || item.virtualData.index}
               anchor={item.anchor}
-              title={item.name}
+              title={item.title}
               description={item.description}
               // Virtual style
               style={{
@@ -82,7 +82,7 @@ const List = (
             // Custom ItemRender or Item
             itemRender={itemRender}
             // Display Item
-            title={item.name}
+            title={item.title}
             // Other Item
             {...item}
             // Item Data

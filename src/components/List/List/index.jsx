@@ -13,7 +13,7 @@ const List = (
     /*
     // Group
     {
-      name: '',
+      title: '',
       children: ...
     },
     // No Group
@@ -21,7 +21,7 @@ const List = (
       _raw: 原始数据, 必传,
       avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
       id: '选项1',
-      name: '选项1',
+      title: '选项1',
       description: '普通描述',
       content: '自定义内容',
       actionRender: () => {
@@ -99,7 +99,7 @@ const List = (
         disabled={item.disabled}
         imageUrl={item.imageUrl}
         avatarUrl={item.avatarUrl}
-        title={item.name}
+        title={item.title}
         description={item.description}
         note={item.note}
         content={item.content}
@@ -122,7 +122,11 @@ const List = (
           if (Array.isArray(item.children)) {
             return (
               <Fragment key={item.id ?? index}>
-                <GroupTitle title={item.name} anchor={item.anchor} description={item.description} />
+                <GroupTitle
+                  title={item.title}
+                  anchor={item.anchor}
+                  description={item.description}
+                />
 
                 {/* list-items: 原本想包一层, 但VirtualList无法分组包裹 */}
                 {item.children.map((option, optionIndex) => {
