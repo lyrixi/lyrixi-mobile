@@ -168,6 +168,7 @@ const VirtualList = (
       <List
         ref={listRef}
         // Value & Display Value
+        height={totalHeight} // virtual list container height
         value={value}
         list={visibleItems}
         // Status
@@ -179,8 +180,6 @@ const VirtualList = (
         itemLayout={itemLayout}
         // Events
         onChange={onChange}
-        // Virtual
-        height={totalHeight}
       />
 
       {/* Elements: Append */}

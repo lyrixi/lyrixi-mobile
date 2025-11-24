@@ -12,7 +12,7 @@ function formatViewList(list) {
     if (anchor) {
       if (!groupMap.has(anchor)) {
         groupMap.set(anchor, {
-          name: anchor,
+          title: anchor,
           anchor: anchor,
           children: []
         })
@@ -27,7 +27,7 @@ function formatViewList(list) {
         // 头像
         avatarUrl: item.avatarUrl || '',
         // 第一行文字
-        name: item.name,
+        title: item.name,
         // 第二行文字
         description: item.introduce,
         // 第一行右上角文字

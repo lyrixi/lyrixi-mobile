@@ -16,7 +16,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: 'A'
+        title: 'A'
       },
       {
         authNode: '',
@@ -29,7 +29,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: 'B'
+        title: 'B'
       },
       {
         authNode: '',
@@ -42,7 +42,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: 'C'
+        title: 'C'
       },
       {
         authNode: '',
@@ -55,7 +55,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: 'D'
+        title: 'D'
       }
     ],
     code: '',
@@ -66,7 +66,7 @@ export default [
     isCustom: '',
     props: {},
     state: '1',
-    name: '公共客户级别'
+    title: '公共客户级别'
   },
   {
     authNode: '',
@@ -82,7 +82,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '经销商级别'
+        title: '经销商级别'
       }
     ],
     code: '',
@@ -93,7 +93,7 @@ export default [
     isCustom: '',
     props: {},
     state: '1',
-    name: '经销商'
+    title: '经销商'
   },
   {
     authNode: '',
@@ -109,7 +109,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '门店级别'
+        title: '门店级别'
       }
     ],
     code: '',
@@ -120,7 +120,7 @@ export default [
     isCustom: '',
     props: {},
     state: '1',
-    name: '终端'
+    title: '终端'
   },
   {
     authNode: '',
@@ -136,7 +136,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '钻石'
+        title: '钻石'
       },
       {
         authNode: '',
@@ -149,7 +149,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '黄金'
+        title: '黄金'
       },
       {
         authNode: '',
@@ -162,7 +162,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '金牌'
+        title: '金牌'
       },
       {
         authNode: '',
@@ -175,7 +175,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '银牌'
+        title: '银牌'
       },
       {
         authNode: '',
@@ -188,7 +188,7 @@ export default [
         isCustom: '',
         props: {},
         state: '1',
-        name: '铜牌'
+        title: '铜牌'
       }
     ],
     code: '',
@@ -199,6 +199,6 @@ export default [
     isCustom: '',
     props: {},
     state: '1',
-    name: 'kol'
+    title: 'kol'
   }
 ]

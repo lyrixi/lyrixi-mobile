@@ -109,6 +109,8 @@ const List = (
         disabled={item.disabled}
         checkable={checkable}
         // Style
+        style={item.style}
+        className={item.className}
         itemLayout={itemLayout}
         // Elements
         imageUrl={item.imageUrl}

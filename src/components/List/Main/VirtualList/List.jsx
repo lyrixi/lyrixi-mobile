@@ -12,6 +12,7 @@ const itemAbsoluteStyle = {
 const VirtualList = (
   {
     // Value & Display Value
+    height, // virtual list container height
     value,
     multiple,
     allowClear,
