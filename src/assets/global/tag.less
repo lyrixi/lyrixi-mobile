@@ -20,25 +20,11 @@ input[type='search']::-webkit-search-results-button,
 input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
-// 公共面貌样式
-.appearance {
-  background: none;
-  border: none;
-  appearance: none;
-}
 
 // 解决在 ios 下点击 input 页面空白问题
 input {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-}
-
-// ios滚动过程中不允许点击tab，否则可能会局部白屏
-.lyrixi-ios-scrolling {
-  header,
-  footer {
-    pointer-events: none;
-  }
 }
 
 // 设置body样式

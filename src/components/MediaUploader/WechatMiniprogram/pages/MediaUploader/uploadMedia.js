@@ -25,9 +25,7 @@ async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidt
     }
 
     Taro.uploadFile({
-      url: `${Taro.getStorageSync(
-        'appsvrUrl'
-      )}/platform/fileupload/v1/doUploadImageForMinProgram.do`,
+      url: `${Taro.getStorageSync('appsvrUrl')}/媒体上传接口地址`,
       filePath: file.tempFilePath,
       name: 'file',
       withCredentials: true,

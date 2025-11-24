@@ -19,7 +19,7 @@ function queryData() {
 
     // 修改或者复制
     Loading.show()
-    Request.post('/platform/param/v1/getLoginUser.do', {
+    Request.post('获取数据接口地址', {
       id: id
     })
       .then((result) => {

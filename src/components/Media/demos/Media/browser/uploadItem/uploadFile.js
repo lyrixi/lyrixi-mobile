@@ -10,7 +10,7 @@ export default function uploadFile({ fileData }) {
   formData.append('file', fileData)
 
   return new Promise((resolve) => {
-    Request.post('/platform/fileupload/v1/doUploadImageForMinProgram.do', formData, {
+    Request.post('媒体上传接口地址', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

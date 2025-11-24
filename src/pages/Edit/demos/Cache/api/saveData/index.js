@@ -10,13 +10,13 @@ async function saveData({ baseData, data, token }) {
   let params = await serverData({ baseData, data })
 
   // 新增
-  let url = '/platform/param/v1/getLoginUser.do'
+  let url = '提交数据接口地址'
 
   // 编辑
   let id = Device.getUrlParameter('id')
   if (id) {
     params.id = id
-    url = '/platform/param/v1/getLoginUser.do'
+    url = '提交数据接口地址'
   }
 
   return new Promise((resolve) => {

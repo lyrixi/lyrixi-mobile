@@ -40,9 +40,9 @@ function Result({
   function getTitleNode() {
     if (title === null) return null
     if (title) {
-      return <div className="result-title">{title}</div>
+      return <div className="lyrixi-result-title">{title}</div>
     }
-    return <div className="result-title">{statusDefault?.title}</div>
+    return <div className="lyrixi-result-title">{statusDefault?.title}</div>
   }
 
   return (

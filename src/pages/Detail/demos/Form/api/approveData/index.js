@@ -8,7 +8,7 @@ async function approveData() {
 
   return new Promise((resolve) => {
     Request.post(
-      '/platform/param/v1/getLoginUser.do',
+      '审批数据接口地址',
       { id: id },
       {
         headers: {

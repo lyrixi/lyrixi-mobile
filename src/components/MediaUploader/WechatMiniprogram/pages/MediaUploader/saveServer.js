@@ -3,7 +3,7 @@ import parseUrlJson from './parseUrlJson'
 
 async function saveServer(item, options) {
   return new Promise((resolve) => {
-    const url = '/platform/fileupload/v1/saveImageCheckKeyForMinProgram.do'
+    const url = '保存数据接口地址'
 
     let watermark = ''
     try {
