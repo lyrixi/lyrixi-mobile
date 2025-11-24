@@ -59,7 +59,7 @@ let Bridge = {
       if (callback) {
         callback({
           status: 'error',
-          message: LocaleUtil.locale('钉钉js加载失败', 'lyrixi_dingtalk_js_load_failed')
+          message: LocaleUtil.locale('钉钉js加载失败')
         })
       }
     }
@@ -322,7 +322,7 @@ let Bridge = {
       params?.onError &&
         params.onError({
           status: 'error',
-          message: error?.errorMessage || LocaleUtil.locale('预览失败', 'lyrixi_preview_failed')
+          message: error?.errorMessage || LocaleUtil.locale('预览失败')
         })
     }
 

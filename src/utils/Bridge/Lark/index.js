@@ -47,7 +47,7 @@ let Bridge = {
       if (callback) {
         callback({
           status: 'error',
-          message: LocaleUtil.locale('飞书js加载失败', 'lyrixi_lark_js_load_failed')
+          message: LocaleUtil.locale('飞书js加载失败')
         })
       }
     }

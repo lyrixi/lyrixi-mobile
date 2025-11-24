@@ -34,7 +34,7 @@ export function wrapCallback(params = {}) {
 
         // 如果没有错误信息，使用默认文案
         if (!message) {
-          message = LocaleUtil.locale('调用失败', 'lyrixi_call_failed')
+          message = LocaleUtil.locale('调用失败')
         }
 
         onError({
@@ -79,7 +79,7 @@ export function wrapDingTalkCallback(params = {}) {
 
         // 如果没有错误信息，使用默认文案
         if (!message) {
-          message = LocaleUtil.locale('调用失败', 'lyrixi_call_failed')
+          message = LocaleUtil.locale('调用失败')
         }
 
         onError({

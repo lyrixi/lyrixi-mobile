@@ -117,8 +117,7 @@ let Bridge = {
       Toast.show({
         content: LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
-          'lyrixi.scanQRCode.prompt',
-          LocaleUtil.locale('', 'lyrixi_scancode')
+          'lyrixi.scanQRCode.prompt'
         )
       })
       return
@@ -189,8 +188,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
-        'lyrixi.chooseMedia.prompt',
-        LocaleUtil.locale('', 'lyrixi_chooseimage')
+        'lyrixi.chooseMedia.prompt'
       )
       Toast.show({
         content: message
@@ -228,8 +226,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
-        'lyrixi.uploadMedia.prompt',
-        LocaleUtil.locale('', 'lyrixi_uploadimage')
+        'lyrixi.uploadMedia.prompt'
       )
       Toast.show({
         content: message
@@ -262,8 +259,7 @@ let Bridge = {
       Toast.show({
         content: LocaleUtil.locale(
           'previewMedia仅可在移动端微信或APP中使用',
-          'lyrixi.previewMedia.prompt',
-          LocaleUtil.locale('', 'lyrixi_previewimage')
+          'lyrixi.previewMedia.prompt'
         )
       })
       return

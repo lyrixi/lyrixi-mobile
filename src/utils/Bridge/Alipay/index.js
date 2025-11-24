@@ -67,7 +67,7 @@ let Bridge = {
       if (callback) {
         callback({
           status: 'error',
-          message: LocaleUtil.locale('支付宝js加载失败', 'lyrixi_alipay_js_load_failed')
+          message: LocaleUtil.locale('支付宝js加载失败')
         })
       }
     }
