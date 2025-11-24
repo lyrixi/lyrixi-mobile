@@ -156,7 +156,7 @@ const VirtualList = (
       // Style
       safeArea={safeArea}
       style={style}
-      className={DOMUtil.classNames('lyrixi-list-main', className)}
+      className={className}
       // Events
       onTopRefresh={onTopRefresh}
       onBottomRefresh={onBottomRefresh}

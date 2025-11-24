@@ -69,7 +69,7 @@ const Item = ({
             onLoad={(e) => {
               e.target.parentNode.classList.add('lyrixi-success')
             }}
-            className="lyrixi-avatar"
+            className="lyrixi-image"
           />
         </div>
       )

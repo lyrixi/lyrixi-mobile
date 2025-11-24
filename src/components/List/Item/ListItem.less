@@ -81,9 +81,17 @@
 
 // 元数据-Image
 .lyrixi-list-item-meta-image {
-  .lyrixi-bg-image-default;
+  &:extend(.bg-image-default all);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 56px;
   height: 56px;
+
+  .lyrixi-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 // 元数据-Avatar
 .lyrixi-list-item-meta-avatar {
@@ -97,6 +105,9 @@
 }
 
 // 元数据-内容
+.lyrixi-list-item-meta-image + .lyrixi-list-item-meta-avatar {
+  margin-left: var(--lyrixi-space-s);
+}
 .lyrixi-list-item-meta-image + .lyrixi-list-item-meta-content,
 .lyrixi-list-item-meta-avatar + .lyrixi-list-item-meta-content {
   margin-left: 10px;

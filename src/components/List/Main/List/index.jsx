@@ -47,7 +47,7 @@ const Main = forwardRef(
       <Page.Main
         ref={ref}
         // Style
-        className={DOMUtil.classNames('lyrixi-list-main', className)}
+        className={className}
         style={style}
         // Events
         onTopRefresh={onTopRefresh}
