@@ -8,13 +8,12 @@ import VirtualList from './VirtualList'
 import RetryButton from './components/RetryButton'
 
 // 内库使用-start
-import Device from './../../../utils/Device'
 import DOMUtil from './../../../utils/DOMUtil'
 import Result from './../../Result'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, DOMUtil, Result } from 'lyrixi-mobile'
+import { DOMUtil, Result } from 'lyrixi-mobile'
 测试使用-end */
 
 const Main = forwardRef(
