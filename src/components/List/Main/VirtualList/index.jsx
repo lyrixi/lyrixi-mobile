@@ -33,10 +33,13 @@ const VirtualList = (
 
     className,
     style,
+    itemStyle,
+    itemClassName,
+    itemLayout,
 
     // Elements
     itemRender,
-    itemLayout,
+    checkboxRender,
     prependRender,
     appendRender,
     children,
@@ -173,13 +176,17 @@ const VirtualList = (
         height={totalHeight} // virtual list container height
         value={value}
         list={visibleItems}
+        // Style
+        itemStyle={itemStyle}
+        itemClassName={itemClassName}
+        itemLayout={itemLayout}
         // Status
         multiple={multiple}
         allowClear={allowClear}
         checkable={checkable}
         // Elements
         itemRender={itemRender}
-        itemLayout={itemLayout}
+        checkboxRender={checkboxRender}
         // Events
         onChange={onChange}
       />

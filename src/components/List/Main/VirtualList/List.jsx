@@ -41,6 +41,8 @@ const VirtualList = (
     checkable,
 
     // Style
+    itemStyle,
+    itemClassName,
     itemLayout,
 
     // Elements
@@ -77,6 +79,8 @@ const VirtualList = (
         flex: 'none',
         height: height
       }}
+      itemStyle={itemStyle}
+      itemClassName={itemClassName}
       itemLayout={itemLayout}
       // Elements
       itemRender={itemRender}

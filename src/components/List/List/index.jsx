@@ -44,6 +44,8 @@ const List = (
     // Style
     style,
     className,
+    itemStyle,
+    itemClassName,
     itemLayout,
 
     // Elements
@@ -109,9 +111,9 @@ const List = (
         disabled={item.disabled}
         checkable={checkable}
         // Style
-        style={item.style}
-        className={item.className}
-        itemLayout={itemLayout}
+        style={{ ...itemStyle, ...item.style }}
+        className={{ ...itemClassName, ...item.className }}
+        layout={itemLayout}
         // Elements
         imageUrl={item.imageUrl}
         avatarUrl={item.avatarUrl}
@@ -119,7 +121,7 @@ const List = (
         description={item.description}
         note={item.note}
         content={item.content}
-        action={item.action}
+        actionRender={item.actionRender}
         checkboxRender={checkboxRender}
         // Events
         onSelect={handleChange}

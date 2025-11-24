@@ -52,10 +52,13 @@ const Main = forwardRef(
       // Style
       className,
       style,
+      itemStyle,
+      itemClassName,
+      itemLayout,
 
       // Elements
       itemRender,
-      itemLayout,
+      checkboxRender,
       loadingRender,
       prependRender,
       appendRender,
@@ -177,27 +180,31 @@ const Main = forwardRef(
     return (
       <ListNode
         ref={mainRef}
-        style={style}
-        virtual={virtual}
-        className={DOMUtil.classNames('lyrixi-list-main', className)}
-        // Request
-        onTopRefresh={disableTopRefresh ? null : () => loadPage('topRefresh')}
-        onBottomRefresh={disableBottomRefresh ? null : () => loadPage('bottomRefresh')}
-        // Main: common
-        allowClear={allowClear}
-        multiple={multiple}
+        // Value & Display Value
         value={value}
+        list={viewFormatter(result?.list, { formatViewList, formatViewItem })}
+        // Status
+        virtual={virtual}
+        multiple={multiple}
+        allowClear={allowClear}
+        checkable={checkable}
+        // Style
+        className={DOMUtil.classNames('lyrixi-list-main', className)}
+        style={style}
+        itemStyle={itemStyle}
+        itemClassName={itemClassName}
+        itemLayout={itemLayout}
+        // Elements
+        itemRender={itemRender}
+        checkboxRender={checkboxRender}
+        prependRender={prependRender}
+        appendRender={appendRender}
+        // Events
         onChange={onChange}
         onScroll={onScroll}
         onScrollEnd={onScrollEnd}
-        // List config
-        itemRender={itemRender}
-        itemLayout={itemLayout}
-        checkable={checkable}
-        // Render
-        prependRender={prependRender}
-        list={viewFormatter(result?.list, { formatViewList, formatViewItem })}
-        appendRender={appendRender}
+        onTopRefresh={disableTopRefresh ? null : () => loadPage('topRefresh')}
+        onBottomRefresh={disableBottomRefresh ? null : () => loadPage('bottomRefresh')}
       >
         {/* 底部错误提示 */}
         {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (

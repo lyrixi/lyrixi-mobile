@@ -21,8 +21,7 @@ export default () => {
             console.log('onChange:', newValue)
             setValue(newValue)
           }}
-          // Item 配置
-          itemLayout="vertical"
+          itemLayout="horizontal"
         />
       </Page.Main>
     </Page>

@@ -22,7 +22,7 @@ const Item = ({
   // Style
   style,
   className,
-  itemLayout,
+  layout,
 
   // Elements
   imageUrl,
@@ -118,7 +118,7 @@ const Item = ({
           className,
           disabled ? 'lyrixi-disabled' : '',
           checked ? 'lyrixi-checked' : '',
-          itemLayout ? `lyrixi-${itemLayout}` : ''
+          layout ? `lyrixi-${layout}` : ''
         )}
         onClick={(e) => {
           e.stopPropagation()
