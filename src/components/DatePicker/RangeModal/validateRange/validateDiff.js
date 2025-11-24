@@ -26,7 +26,7 @@ function validateDiff(value, { type, diff, onError }) {
         status: 'DATE_RANGE_DAYS_ERROR',
         message: LocaleUtil.locale(
           `日期区间不能超过${diff}${getTypeLocale(type)}`,
-          'lyrixi_dateRange_limit_error',
+          'lyrixi.dateRange.limit.error',
           [diff, getTypeLocale(type)]
         ),
         diff: diff,

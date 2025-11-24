@@ -21,7 +21,7 @@ function validateStartEnd(value, { type, onError }) {
         status: 'DATE_RANGE_START_GREATER_THAN_END_ERROR',
         message: LocaleUtil.locale(
           '开始时间不能大于结束时间',
-          'lyrixi_starttime_greater_than_endtime'
+          'lyrixi.starttime.greater.than.endtime'
         ),
         value: value
       })

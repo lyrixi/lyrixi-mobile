@@ -44,7 +44,7 @@ let Bridge = {
               status: 'error',
               message: LocaleUtil.locale(
                 '支付小程序js加载失败',
-                'lyrixi_alipayMiniProgram_js_load_failed'
+                'lyrixi.alipayMiniProgram.js.load.failed'
               )
             })
           }

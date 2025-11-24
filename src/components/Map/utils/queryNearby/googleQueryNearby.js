@@ -77,7 +77,7 @@ async function nearbySearch({ map, keyword, longitude, latitude, type, radius })
     return list
   }
 
-  return LocaleUtil.locale('查询失败', 'lyrixi_query_failed')
+  return LocaleUtil.locale('查询失败', 'lyrixi.query.failed')
 }
 
 export default nearbySearch

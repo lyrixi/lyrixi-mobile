@@ -82,7 +82,7 @@ function Main(
         <Result
           className="lyrixi-share-main-result"
           status="empty"
-          title={LocaleUtil.locale('此平台暂不支持分享', 'lyrixi_share_no_support')}
+          title={LocaleUtil.locale('此平台暂不支持分享', 'lyrixi.share.no.support')}
         />
       )}
     </div>

@@ -20,7 +20,7 @@ function validateMaxMin(value, { type, min, max, onError } = {}) {
         let isOk = onError({
           status: 'DATE_MIN_ERROR',
           message:
-            LocaleUtil.locale('不能小于', 'lyrixi_cannot_less_than') + DateUtil.format(min, type),
+            LocaleUtil.locale('不能小于', 'lyrixi.cannot.less.than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -36,7 +36,7 @@ function validateMaxMin(value, { type, min, max, onError } = {}) {
         let isOk = onError({
           status: 'DATE_MAX_ERROR',
           message:
-            LocaleUtil.locale('不能大于', 'lyrixi_cannot_greater_than') +
+            LocaleUtil.locale('不能大于', 'lyrixi.cannot.greater.than') +
             DateUtil.format(max, type),
           max: max,
           value: value

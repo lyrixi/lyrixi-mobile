@@ -57,7 +57,7 @@ let Bridge = {
       if (callback) {
         callback({
           status: 'error',
-          message: LocaleUtil.locale('微信js加载失败', 'lyrixi_weChat_js_load_failed')
+          message: LocaleUtil.locale('微信js加载失败', 'lyrixi.weChat.js.load.failed')
         })
       }
     }
@@ -82,7 +82,7 @@ let Bridge = {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
-        'lyrixi_open_location_prompt',
+        'lyrixi.open.location.prompt',
         ['openLocation']
       )
       Toast.show({
@@ -117,7 +117,7 @@ let Bridge = {
       Toast.show({
         content: LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
-          'lyrixi_scanQRCode_prompt',
+          'lyrixi.scanQRCode.prompt',
           LocaleUtil.locale('', 'lyrixi_scancode')
         )
       })
@@ -189,7 +189,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
-        'lyrixi_chooseMedia_prompt',
+        'lyrixi.chooseMedia.prompt',
         LocaleUtil.locale('', 'lyrixi_chooseimage')
       )
       Toast.show({
@@ -228,7 +228,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
-        'lyrixi_uploadMedia_prompt',
+        'lyrixi.uploadMedia.prompt',
         LocaleUtil.locale('', 'lyrixi_uploadimage')
       )
       Toast.show({
@@ -262,7 +262,7 @@ let Bridge = {
       Toast.show({
         content: LocaleUtil.locale(
           'previewMedia仅可在移动端微信或APP中使用',
-          'lyrixi_previewMedia_prompt',
+          'lyrixi.previewMedia.prompt',
           LocaleUtil.locale('', 'lyrixi_previewimage')
         )
       })
@@ -280,7 +280,7 @@ let Bridge = {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
-        'lyrixi_previewFile_prompt',
+        'lyrixi.previewFile.prompt',
         ['previewFile']
       )
       Toast.show({

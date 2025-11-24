@@ -9,23 +9,23 @@ import { LocaleUtil } from 'lyrixi-mobile'
 function getWeekNames(start) {
   if (start === 'Monday') {
     return [
-      LocaleUtil.locale('一', 'lyrixi_calendar_week_monday'),
-      LocaleUtil.locale('二', 'lyrixi_calendar_week_tuesday'),
-      LocaleUtil.locale('三', 'lyrixi_calendar_week_wednesday'),
-      LocaleUtil.locale('四', 'lyrixi_calendar_week_thursday'),
-      LocaleUtil.locale('五', 'lyrixi_calendar_week_friday'),
-      LocaleUtil.locale('六', 'lyrixi_calendar_week_saturday'),
-      LocaleUtil.locale('日', 'lyrixi_unit_date')
+      LocaleUtil.locale('一', 'lyrixi.calendar.week.monday'),
+      LocaleUtil.locale('二', 'lyrixi.calendar.week.tuesday'),
+      LocaleUtil.locale('三', 'lyrixi.calendar.week.wednesday'),
+      LocaleUtil.locale('四', 'lyrixi.calendar.week.thursday'),
+      LocaleUtil.locale('五', 'lyrixi.calendar.week.friday'),
+      LocaleUtil.locale('六', 'lyrixi.calendar.week.saturday'),
+      LocaleUtil.locale('日', 'lyrixi.unit.date')
     ]
   }
   return [
-    LocaleUtil.locale('日', 'lyrixi_unit_date'),
-    LocaleUtil.locale('一', 'lyrixi_calendar_week_monday'),
-    LocaleUtil.locale('二', 'lyrixi_calendar_week_tuesday'),
-    LocaleUtil.locale('三', 'lyrixi_calendar_week_wednesday'),
-    LocaleUtil.locale('四', 'lyrixi_calendar_week_thursday'),
-    LocaleUtil.locale('五', 'lyrixi_calendar_week_friday'),
-    LocaleUtil.locale('六', 'lyrixi_calendar_week_saturday')
+    LocaleUtil.locale('日', 'lyrixi.unit.date'),
+    LocaleUtil.locale('一', 'lyrixi.calendar.week.monday'),
+    LocaleUtil.locale('二', 'lyrixi.calendar.week.tuesday'),
+    LocaleUtil.locale('三', 'lyrixi.calendar.week.wednesday'),
+    LocaleUtil.locale('四', 'lyrixi.calendar.week.thursday'),
+    LocaleUtil.locale('五', 'lyrixi.calendar.week.friday'),
+    LocaleUtil.locale('六', 'lyrixi.calendar.week.saturday')
   ]
 }
 

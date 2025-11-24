@@ -28,7 +28,7 @@ async function fileChoose({
 
   if (!file || !file.files?.[0]) {
     Toast.show({
-      content: LocaleUtil.locale('没有选择文件，无法上传！', 'lyrixi_no_upload_file'),
+      content: LocaleUtil.locale('没有选择文件，无法上传！', 'lyrixi.no.upload.file'),
       maskClickable: true
     })
     return false
@@ -37,7 +37,7 @@ async function fileChoose({
   // 大于总数禁止选择
   if (typeof count === 'number' && getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`照片总数不能大于${count}张`, 'lyrixi_image_cannot_greater_than', [
+      content: LocaleUtil.locale(`照片总数不能大于${count}张`, 'lyrixi.image.cannot.greater.than', [
         count
       ]),
       maskClickable: true

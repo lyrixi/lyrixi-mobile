@@ -11,13 +11,13 @@ import { LocaleUtil } from 'lyrixi-mobile'
 function getStatusDefault(status) {
   if (status === 'empty') {
     return {
-      title: LocaleUtil.locale('暂无数据', 'lyrixi_no_data'),
+      title: LocaleUtil.locale('暂无数据', 'lyrixi.no.data'),
       image: <div className="lyrixi-result-image lyrixi-result-image-empty"></div>
     }
   }
   if (status === '500') {
     return {
-      title: LocaleUtil.locale('获取数据失败，请稍后再试！', 'lyrixi_query_data_error'),
+      title: LocaleUtil.locale('获取数据失败，请稍后再试！', 'lyrixi.query.data.error'),
       image: <div className="lyrixi-result-image lyrixi-result-image-500"></div>
     }
   }

@@ -83,7 +83,7 @@ const Combo = (
 
         {/* Element: Label */}
         <div className="lyrixi-signature-button-label">
-          {LocaleUtil.locale('签名', 'lyrixi_signature')}
+          {LocaleUtil.locale('签名', 'lyrixi.signature')}
         </div>
       </div>
 

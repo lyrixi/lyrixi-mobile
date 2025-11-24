@@ -70,7 +70,7 @@ const Loading = forwardRef(
             <div className="lyrixi-loading-icon">{IconNode}</div>
             {/* Value & Display Value: Content */}
             <div className="lyrixi-loading-content">
-              {content || `${LocaleUtil.locale('加载中', 'lyrixi_refreshing')}...`}
+              {content || `${LocaleUtil.locale('加载中', 'lyrixi.refreshing')}...`}
             </div>
           </div>
         )}

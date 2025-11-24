@@ -46,7 +46,7 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
         }
       })
       .catch((error) => {
-        resolve(LocaleUtil.locale('查询失败', 'lyrixi_query_failed'))
+        resolve(LocaleUtil.locale('查询失败', 'lyrixi.query.failed'))
       })
   })
 }

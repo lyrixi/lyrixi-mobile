@@ -27,7 +27,7 @@ async function back(delta = -1, { closeWindow, goHome }) {
   // 提示后，关闭返回，或者历史返回
   else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
     // 默认提示信息
-    let confirmContent = LocaleUtil.locale('您确定要离开此页面吗?', 'lyrixi_quit_page_confirm')
+    let confirmContent = LocaleUtil.locale('您确定要离开此页面吗?', 'lyrixi.quit.page.confirm')
     // 地址栏动态提示信息
     if (isFromApp.indexOf('confirm-close:') !== -1) {
       let newConfirmContent = isFromApp.replace('confirm-close:', '')
@@ -45,13 +45,13 @@ async function back(delta = -1, { closeWindow, goHome }) {
       content: confirmContent,
       buttons: [
         {
-          name: LocaleUtil.locale('取消', 'lyrixi_cancel'),
+          name: LocaleUtil.locale('取消', 'lyrixi.cancel'),
           onClick: () => {
             return true
           }
         },
         {
-          name: LocaleUtil.locale('确定', 'lyrixi_confirm'),
+          name: LocaleUtil.locale('确定', 'lyrixi.confirm'),
           className: 'lyrixi-primary',
           onClick: () => {
             // 提示后关闭当前页面

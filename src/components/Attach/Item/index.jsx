@@ -44,7 +44,7 @@ const Item = ({
     // 失败的文件用localFileUrl预览
     if (item.status === 'error') {
       Toast.show({
-        content: LocaleUtil.locale('图片未上传成功, 无法预览', 'lyrixi_upload_preview_error')
+        content: LocaleUtil.locale('图片未上传成功, 无法预览', 'lyrixi.upload.preview.error')
       })
       return
     }
@@ -53,7 +53,7 @@ const Item = ({
     let previewUrl = decodeURIComponent(decodeURIComponent(item.fileUrl))
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
-        content: LocaleUtil.locale('预览地址不合法', 'lyrixi_preview_src_error')
+        content: LocaleUtil.locale('预览地址不合法', 'lyrixi.preview.src.error')
       })
       return
     }
@@ -69,7 +69,7 @@ const Item = ({
           Toast.show({
             content: LocaleUtil.locale(
               '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
-              'lyrixi_clipboard_success'
+              'lyrixi.clipboard.success'
             )
           })
         },
@@ -77,7 +77,7 @@ const Item = ({
           Message.open({
             content: LocaleUtil.locale(
               `文件链接复制到剪贴板失败, 请长按复制<br/>${previewUrl}`,
-              'lyrixi_clipboard_fail_confirm',
+              'lyrixi.clipboard.fail.confirm',
               [previewUrl]
             ),
             buttons: [

@@ -42,7 +42,7 @@ function WeekMain(
       ...otherMainRef,
       // 获取标题
       getTitle: () => {
-        let title = LocaleUtil.locale('选择日期', 'lyrixi_dateModal_title_date')
+        let title = LocaleUtil.locale('选择日期', 'lyrixi.dateModal.title.date')
         if (value instanceof Date) {
           title = DateUtil.format(value, 'week')
         }

@@ -73,20 +73,20 @@ const VideoPlayer = forwardRef(
     // 实例化
     async function initInstance(playerId) {
       if (!src) {
-        console.error(LocaleUtil.locale('请传入视频源', 'lyrixi_no_video_src_error'))
+        console.error(LocaleUtil.locale('请传入视频源', 'lyrixi.no.video.src.error'))
         if (onError)
-          onError({ message: LocaleUtil.locale('请传入视频源', 'lyrixi_no_video_src_error') })
+          onError({ message: LocaleUtil.locale('请传入视频源', 'lyrixi.no.video.src.error') })
         return
       }
       if (!(await loadSdk())) {
         console.error(
-          LocaleUtil.locale('加载播放器库出错, 请稍后再试', 'lyrixi_video_sdk_load_failed')
+          LocaleUtil.locale('加载播放器库出错, 请稍后再试', 'lyrixi.video.sdk.load.failed')
         )
         if (onError)
           onError({
             message: LocaleUtil.locale(
               '加载播放器库出错, 请稍后再试',
-              'lyrixi_video_sdk_load_failed'
+              'lyrixi.video.sdk.load.failed'
             )
           })
         return

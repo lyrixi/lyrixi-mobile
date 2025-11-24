@@ -65,7 +65,7 @@ const Search = (
       name={name}
       // Value & Display Value
       value={value}
-      placeholder={placeholder || LocaleUtil.locale('搜索', 'lyrixi_search')}
+      placeholder={placeholder || LocaleUtil.locale('搜索', 'lyrixi.search')}
       formatter={formatter}
       // Status
       readOnly={readOnly}

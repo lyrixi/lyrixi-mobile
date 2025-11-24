@@ -32,10 +32,10 @@ function googleGetAddress(params) {
           }
           resolve(result)
         } else {
-          resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi_get_address_failed'))
+          resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed'))
         }
       } else {
-        resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi_get_address_failed'))
+        resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed'))
       }
     })
   })

@@ -39,7 +39,7 @@ function loadCountryRegions(countryId = '86') {
         resolve(window.countryProvinces[countryId])
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取省市区数据失败', 'lyrixi_cascader_countryRegions_error'))
+        resolve(LocaleUtil.locale('获取省市区数据失败', 'lyrixi.cascader.countryRegions.error'))
       })
   })
 }

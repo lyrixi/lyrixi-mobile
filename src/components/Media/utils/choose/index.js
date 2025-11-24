@@ -15,7 +15,7 @@ async function choose({ async, count, list, uploadPosition, uploadList, onChoose
   // 大于总数禁止选择
   if (typeof count === 'number' && getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`照片总数不能大于${count}张`, 'lyrixi_image_cannot_greater_than', [
+      content: LocaleUtil.locale(`照片总数不能大于${count}张`, 'lyrixi.image.cannot.greater.than', [
         count
       ]),
       maskClickable: true

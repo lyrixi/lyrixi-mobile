@@ -42,7 +42,7 @@ function LocationControl(
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       Loading.show({
-        content: LocaleUtil.locale('定位中...', 'lyrixi_positioning')
+        content: LocaleUtil.locale('定位中...', 'lyrixi.positioning')
       })
       // 当前位置
       let result = await map.getLocation({ type: 'wgs84' })

@@ -59,7 +59,7 @@ const Main = (
           // Events
           onClick={onCancel}
         >
-          <p>{LocaleUtil.locale('取消', 'lyrixi_cancel')}</p>
+          <p>{LocaleUtil.locale('取消', 'lyrixi.cancel')}</p>
         </div>
         
         <div className="lyrixi-flex-1"></div>
@@ -72,7 +72,7 @@ const Main = (
             signatureRef?.current?.clear?.()
           }}
         >
-          <p>{LocaleUtil.locale('清除', 'lyrixi_clear')}</p>
+          <p>{LocaleUtil.locale('清除', 'lyrixi.clear')}</p>
         </div>
         
         {/* Element: OK Button */}
@@ -84,7 +84,7 @@ const Main = (
             onChange && onChange(base64)
           }}
         >
-          <p>{LocaleUtil.locale('确认', 'lyrixi_confirm')}</p>
+          <p>{LocaleUtil.locale('确认', 'lyrixi.confirm')}</p>
         </div>
       </div>
     </div>

@@ -72,7 +72,7 @@ const Modal = forwardRef(
       >
         {/* Element: Title */}
         <div className="lyrixi-share-modal-title">
-          {LocaleUtil.locale('分享到', 'lyrixi_share_to')}
+          {LocaleUtil.locale('分享到', 'lyrixi.share.to')}
         </div>
 
         {/* Element: Main */}
@@ -97,7 +97,7 @@ const Modal = forwardRef(
             onClose && onClose()
           }}
         >
-          {LocaleUtil.locale('取消', 'lyrixi_cancel')}
+          {LocaleUtil.locale('取消', 'lyrixi.cancel')}
         </div>
       </BaseModal>
     )

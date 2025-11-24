@@ -118,7 +118,7 @@ const PreviewMain = forwardRef(
 
       let hasUploaded = false
       // 开始上传
-      _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi_uploading') })
+      _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi.uploading') })
       for (let [index, item] of newList.entries()) {
         // 只上传未上传或上传失败的照片
         if (item.status === 'choose' || item.status === 'error') {
@@ -149,7 +149,7 @@ const PreviewMain = forwardRef(
             Toast.show({
               content: `${LocaleUtil.locale(
                 `网络异常，上传失败${failCount}张`,
-                'lyrixi_upload_error_count',
+                'lyrixi.upload.error.count',
                 [failCount]
               )}`
             })
@@ -233,7 +233,7 @@ const PreviewMain = forwardRef(
       let newList = [...list]
       // 开始上传
       _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi_uploading'),
+        content: LocaleUtil.locale('上传中', 'lyrixi.uploading'),
         index: index
       })
       newList[index] = await uploadItem(item, { onUpload })

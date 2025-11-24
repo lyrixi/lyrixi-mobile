@@ -98,8 +98,8 @@ const LocationModal = forwardRef(
         portal={portal}
         title={
           open === 'choose'
-            ? LocaleUtil.locale('选择地址', 'lyrixi_choose_address')
-            : LocaleUtil.locale('查看地址', 'lyrixi_view_address')
+            ? LocaleUtil.locale('选择地址', 'lyrixi.choose.address')
+            : LocaleUtil.locale('查看地址', 'lyrixi.view.address')
         }
         ok={open === 'choose' ? '' : null}
         cancel={cancel}

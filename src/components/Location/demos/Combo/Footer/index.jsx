@@ -17,7 +17,7 @@ function Foot({ onOk, onClear }) {
     <Page.Footer className="mappage-footer">
       <FooterBar>
         <FooterBar.Button className="lyrixi-primary" onClick={onOk}>
-          {LocaleUtil.locale('确定', 'lyrixi_ok')}
+          {LocaleUtil.locale('确定', 'lyrixi.ok')}
         </FooterBar.Button>
         <FooterBar.Button onClick={onClear}>
           {LocaleUtil.locale('清空标注', 'lyrixi_empty_marker')}

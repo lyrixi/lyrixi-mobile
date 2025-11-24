@@ -32,7 +32,7 @@ function loadCountries() {
         resolve(window.countryData)
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取国家数据失败', 'lyrixi_cascader_countries_error'))
+        resolve(LocaleUtil.locale('获取国家数据失败', 'lyrixi.cascader.countries.error'))
       })
   })
 }

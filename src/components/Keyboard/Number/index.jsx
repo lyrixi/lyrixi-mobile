@@ -262,7 +262,7 @@ const KeyboardNumber = forwardRef(
             {/* 确定按钮 */}
             {ok !== null && (
               <ButtonAction className="lyrixi-ok" onClick={handleOk}>
-                {ok || LocaleUtil.locale('确定', 'lyrixi_ok')}
+                {ok || LocaleUtil.locale('确定', 'lyrixi.ok')}
               </ButtonAction>
             )}
           </Page.Aside>

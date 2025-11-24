@@ -18,7 +18,7 @@ function Toggle() {
       }}
     >
       <span className="lyrixi-map-nearbyControl-toggle-label">
-        {LocaleUtil.locale('附近推荐', 'lyrixi_nearby_recommendation')}
+        {LocaleUtil.locale('附近推荐', 'lyrixi.nearby.recommendation')}
       </span>
       <i className="lyrixi-map-nearbyControl-toggle-arrow"></i>
     </div>

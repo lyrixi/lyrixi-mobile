@@ -49,7 +49,7 @@ export default function CustomDates({
         hourStep={hourStep}
         minuteStep={minuteStep}
         onChange={onChange}
-        placeholder={LocaleUtil.locale('请选择', 'lyrixi_placeholder_select')}
+        placeholder={LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')}
         allowClear={allowClear}
         clearRender={({ clearable, onClear }) => {
           return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />

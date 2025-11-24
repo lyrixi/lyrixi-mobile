@@ -80,7 +80,7 @@ const Transfer = (
           {/* Element: Selected Title */}
           <div className="lyrixi-transfer-title">
             <div className="lyrixi-transfer-title-content">
-              {titles?.selected || LocaleUtil.locale('已添加', 'lyrixi_added')}
+              {titles?.selected || LocaleUtil.locale('已添加', 'lyrixi.added')}
             </div>
             {`${value.length}/${list?.length || 0}`}
           </div>
@@ -126,7 +126,7 @@ const Transfer = (
           {/* Element: Unselected Title */}
           <div className="lyrixi-transfer-title">
             <div className="lyrixi-transfer-title-content">
-              {titles?.unSelected || LocaleUtil.locale('未添加', 'lyrixi_not_added')}
+              {titles?.unSelected || LocaleUtil.locale('未添加', 'lyrixi.not.added')}
             </div>
             {`${unSelectedList.length}/${list?.length || 0}`}
           </div>

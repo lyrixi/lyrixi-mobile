@@ -33,8 +33,8 @@ const LocationCombo = forwardRef(
     {
       // Value & Display Value
       value, // {latitude: '纬度', longitude: '经度', value: '地址'}
-      failText = LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi_location_failed'),
-      loadingText = LocaleUtil.locale('定位中...', 'lyrixi_positioning'),
+      failText = LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi.location.failed'),
+      loadingText = LocaleUtil.locale('定位中...', 'lyrixi.positioning'),
 
       // Status
       disabled = false,
@@ -167,7 +167,7 @@ const LocationCombo = forwardRef(
             ...addrRes
           }
         } else {
-          newValue = LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi_get_address_failed')
+          newValue = LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed')
         }
       }
       return newValue

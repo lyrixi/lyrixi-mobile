@@ -68,7 +68,7 @@ export default function (props) {
     caption =
       typeof caption === 'string'
         ? caption
-        : `${LocaleUtil.locale('加载中', 'lyrixi_refreshing')}...`
+        : `${LocaleUtil.locale('加载中', 'lyrixi.refreshing')}...`
     mask.querySelector('.loading-content').innerHTML = caption
 
     // 显示

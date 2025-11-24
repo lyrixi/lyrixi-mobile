@@ -193,7 +193,7 @@ const Calendar = forwardRef(
           errCode: 'CALENDAR_PREVIOUS_MONTH_ERROR',
           errMsg: LocaleUtil.locale(
             `禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`,
-            'lyrixi_access_error',
+            'lyrixi.access.error',
             [DateUtil.format(newDrawDate, 'YYYY年MM月DD日')]
           )
         }
@@ -225,7 +225,7 @@ const Calendar = forwardRef(
           errCode: 'CALENDAR_NEXT_MONTH_ERROR',
           errMsg: LocaleUtil.locale(
             `禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`,
-            'lyrixi_access_error',
+            'lyrixi.access.error',
             [DateUtil.format(newDrawDate, 'YYYY年MM月DD日')]
           )
         }

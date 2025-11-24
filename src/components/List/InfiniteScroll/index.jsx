@@ -24,7 +24,7 @@ const InfiniteScroll = ({
       return (
         <div className="lyrixi-list-infinitescroll-wrapper">
           <div className="lyrixi-list-infinitescroll-text">
-            {content || LocaleUtil.locale('加载中', 'lyrixi_refreshing')}
+            {content || LocaleUtil.locale('加载中', 'lyrixi.refreshing')}
           </div>
           <div className="lyrixi-list-infinitescroll-icon">
             <Loading.BallWave />
@@ -36,7 +36,7 @@ const InfiniteScroll = ({
       return (
         <div className="lyrixi-list-infinitescroll-wrapper">
           <div className="lyrixi-list-infinitescroll-text">
-            {content || LocaleUtil.locale('没有更多了', 'lyrixi_no_more_data')}
+            {content || LocaleUtil.locale('没有更多了', 'lyrixi.no.more.data')}
           </div>
         </div>
       )
@@ -45,7 +45,7 @@ const InfiniteScroll = ({
     return (
       <div className="lyrixi-list-infinitescroll-wrapper">
         <div className="lyrixi-list-infinitescroll-text">
-          {content || LocaleUtil.locale('获取数据失败，请稍后再试！', 'lyrixi_query_data_error')}
+          {content || LocaleUtil.locale('获取数据失败，请稍后再试！', 'lyrixi.query.data.error')}
         </div>
       </div>
     )

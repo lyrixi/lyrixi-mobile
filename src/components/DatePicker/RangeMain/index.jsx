@@ -45,14 +45,14 @@ function RangeMain(
   // 默认分割符
   if (separator === undefined) {
     // eslint-disable-next-line
-    separator = LocaleUtil.locale('至', 'lyrixi_to')
+    separator = LocaleUtil.locale('至', 'lyrixi.to')
   }
   // 默认标题
   if (titles === undefined) {
     // eslint-disable-next-line
     titles = {
-      selector: LocaleUtil.locale('快捷选择', 'lyrixi_dateRange_selector_title'),
-      custom: LocaleUtil.locale('自定义', 'lyrixi_custom')
+      selector: LocaleUtil.locale('快捷选择', 'lyrixi.dateRange.selector.title'),
+      custom: LocaleUtil.locale('自定义', 'lyrixi.custom')
     }
   }
 

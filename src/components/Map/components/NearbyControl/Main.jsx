@@ -22,7 +22,7 @@ function Main({
   let message = typeof list === 'string' ? list : null
   if (Array.isArray(list) && list.length === 0) {
     status = 'empty'
-    message = LocaleUtil.locale('暂无数据', 'lyrixi_no_data')
+    message = LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
   }
   return (
     <div className="lyrixi-map-nearbyControl-main">

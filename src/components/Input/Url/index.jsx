@@ -71,7 +71,7 @@ const Url = forwardRef(
       Clipboard.copy(url, {
         onSuccess: () => {
           Toast.show({
-            content: LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi_link_copy_success')
+            content: LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi.link.copy.success')
           })
         },
         onError: () => {
@@ -79,9 +79,9 @@ const Url = forwardRef(
             maskStyle: {
               zIndex: 100
             },
-            title: LocaleUtil.locale('提示', 'lyrixi_alert_title'),
+            title: LocaleUtil.locale('提示', 'lyrixi.alert.title'),
             content:
-              LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'lyrixi_link_copy_error') +
+              LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'lyrixi.link.copy.error') +
               `<br/>${url}`,
             buttons: [
               {

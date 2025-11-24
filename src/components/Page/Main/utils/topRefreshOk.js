@@ -15,7 +15,7 @@ function topRefreshOk(topContainer, isOk) {
     let finishMsg = ''
     // 失败
     if (isOk === false) {
-      finishMsg = LocaleUtil.locale('刷新失败', 'lyrixi_refresh_failed')
+      finishMsg = LocaleUtil.locale('刷新失败', 'lyrixi.refresh.failed')
     }
     // 自定义提示信息
     else if (typeof isOk === 'string') {
@@ -23,7 +23,7 @@ function topRefreshOk(topContainer, isOk) {
     }
     // 成功
     else {
-      finishMsg = LocaleUtil.locale('刷新成功', 'lyrixi_refresh_success')
+      finishMsg = LocaleUtil.locale('刷新成功', 'lyrixi.refresh.success')
     }
     if (topText) topText.innerHTML = finishMsg
 

@@ -44,7 +44,7 @@ function SearchPage({
     }
     let center = map.getCenter()
     Loading.show({
-      content: LocaleUtil.locale('搜索中', 'lyrixi_searching')
+      content: LocaleUtil.locale('搜索中', 'lyrixi.searching')
     })
     let list = await map.queryNearby({
       map: map,

@@ -224,7 +224,7 @@ const MapContainer = forwardRef(
     // Load data
     async function loadData() {
       if (!rootRef.current?.querySelector) {
-        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi_map_no_container'))
+        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi.map.no.container'))
         return
       }
 
@@ -239,7 +239,7 @@ const MapContainer = forwardRef(
 
       let currentMapContainer = rootRef?.current?.querySelector?.('.lyrixi-map-api-container')
       if (!currentMapContainer) {
-        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi_map_no_container'))
+        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi.map.no.container'))
         return
       }
 

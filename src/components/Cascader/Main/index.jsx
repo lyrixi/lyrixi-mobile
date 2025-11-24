@@ -159,7 +159,7 @@ const Main = forwardRef(
           isChoose: true,
           parentid: lastTab.id,
           id: '',
-          name: LocaleUtil.locale('请选择', 'lyrixi_placeholder_select')
+          name: LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')
         }
         tabsRef.current.push(lastTab)
       }

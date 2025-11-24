@@ -28,7 +28,7 @@ async function choose({
   // 大于总数禁止选择
   if (typeof count === 'number' && getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`总数不能大于${count}`, 'lyrixi_count_cannot_greater_than', [
+      content: LocaleUtil.locale(`总数不能大于${count}`, 'lyrixi.count.cannot.greater.than', [
         count
       ]),
       maskClickable: true
@@ -49,14 +49,14 @@ async function choose({
   for (let item of currentList) {
     if (!item.fileName) {
       Toast.show({
-        content: LocaleUtil.locale(`未返回fileName, 无法上传`, 'lyrixi_return_no_fileName'),
+        content: LocaleUtil.locale(`未返回fileName, 无法上传`, 'lyrixi.return.no.fileName'),
         maskClickable: true
       })
       return
     }
     if (!item.fileSize) {
       Toast.show({
-        content: LocaleUtil.locale(`未返回fileSize, 无法上传`, 'lyrixi_return_no_fileSize'),
+        content: LocaleUtil.locale(`未返回fileSize, 无法上传`, 'lyrixi.return.no.fileSize'),
         maskClickable: true
       })
       return false
@@ -65,7 +65,7 @@ async function choose({
       Toast.show({
         content: LocaleUtil.locale(
           `只支持选择${sourceType.join(',')}格式的文件`,
-          'lyrixi_choose_type_error',
+          'lyrixi.choose.type.error',
           [sourceType.join(',')]
         ),
         maskClickable: true
@@ -77,7 +77,7 @@ async function choose({
       Toast.show({
         content: LocaleUtil.locale(
           `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
-          'lyrixi_fileSize_cannot_greater_than',
+          'lyrixi.fileSize.cannot.greater.than',
           [Math.abs(convertBytes(maxSize))]
         )
       })

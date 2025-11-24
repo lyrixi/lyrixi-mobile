@@ -22,7 +22,7 @@ const Ok = ({ total, visible, children, onClick }) => {
 
   return (
     <NavBar.Button className="lyrixi-primary" onClick={handleOkClick}>
-      {children || LocaleUtil.locale('确定', 'lyrixi_ok')}
+      {children || LocaleUtil.locale('确定', 'lyrixi.ok')}
       {typeof total === 'number' && `(${total})`}
     </NavBar.Button>
   )

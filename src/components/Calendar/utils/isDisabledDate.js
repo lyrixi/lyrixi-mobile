@@ -13,7 +13,7 @@ function isDisabledDate(date, { min, max }) {
     let errDate = new Date()
     return {
       errCode: 'CALENDAR_INVALID_DATE',
-      errMsg: LocaleUtil.locale(`非法的日期格式`, 'lyrixi_date_format_error'),
+      errMsg: LocaleUtil.locale(`非法的日期格式`, 'lyrixi.date.format.error'),
       date: errDate
     }
   }
@@ -22,7 +22,7 @@ function isDisabledDate(date, { min, max }) {
       errCode: 'CALENDAR_MIN_ERROR',
       errMsg: LocaleUtil.locale(
         `禁止访问小于${DateUtil.format(min, 'YYYY年MM月DD日')}`,
-        'lyrixi_access_min_error',
+        'lyrixi.access.min.error',
         [DateUtil.format(min, 'YYYY年MM月DD日')]
       ),
       date: min
@@ -33,7 +33,7 @@ function isDisabledDate(date, { min, max }) {
       errCode: 'CALENDAR_MAX_ERROR',
       errMsg: LocaleUtil.locale(
         `禁止访问大于${DateUtil.format(max, 'YYYY年MM月DD日')}`,
-        'lyrixi_access_max_error',
+        'lyrixi.access.max.error',
         [DateUtil.format(max, 'YYYY年MM月DD日')]
       ),
       date: max

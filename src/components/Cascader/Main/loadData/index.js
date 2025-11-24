@@ -17,7 +17,7 @@ async function loadData(tabs, { externalLoadData, externalList }) {
   // 接口报错
   if (typeof newList === 'string' || newList === false) {
     let errMsg =
-      typeof newList === 'string' ? newList : LocaleUtil.locale('获取数据失败', 'lyrixi_data_error')
+      typeof newList === 'string' ? newList : LocaleUtil.locale('获取数据失败', 'lyrixi.data.error')
 
     return errMsg
   }
@@ -25,7 +25,7 @@ async function loadData(tabs, { externalLoadData, externalList }) {
   else if (_.isEmpty(newList)) {
     // 无根列表, 接口返回空, 则提示暂无数据
     if (_.isEmpty(externalList) || typeof externalList === 'string') {
-      return LocaleUtil.locale('暂无数据', 'lyrixi_no_data')
+      return LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
     }
 
     // 需要更新externalList、value、tabRef.current的树结构, 增加标识isLeaf

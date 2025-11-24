@@ -23,7 +23,7 @@ function getList(value, type, { hourStep, minuteStep }) {
   for (let item = new Date().getFullYear() - 120; item <= new Date().getFullYear() + 120; item++) {
     years.push({
       id: item,
-      name: LocaleUtil.locale(`${item}年`, 'lyrixi_datePicker_unit_year', [String(item)])
+      name: LocaleUtil.locale(`${item}年`, 'lyrixi.datePicker.unit.year', [String(item)])
     })
   }
 
@@ -32,7 +32,7 @@ function getList(value, type, { hourStep, minuteStep }) {
   for (let item = 1; item <= 12; item++) {
     months.push({
       id: item,
-      name: LocaleUtil.locale(`${item}月`, 'lyrixi_datePicker_unit_month', [String(item)])
+      name: LocaleUtil.locale(`${item}月`, 'lyrixi.datePicker.unit.month', [String(item)])
     })
   }
 
@@ -41,7 +41,7 @@ function getList(value, type, { hourStep, minuteStep }) {
   for (let item = 1; item <= DateUtil.getDaysInMonth(value); item++) {
     dates.push({
       id: item,
-      name: LocaleUtil.locale(`${item}日`, 'lyrixi_datePicker_unit_date', [String(item)])
+      name: LocaleUtil.locale(`${item}日`, 'lyrixi.datePicker.unit.date', [String(item)])
     })
   }
 
@@ -50,7 +50,7 @@ function getList(value, type, { hourStep, minuteStep }) {
   for (let item = 0; item <= 23; item += hourStep) {
     hours.push({
       id: item,
-      name: LocaleUtil.locale(`${item}时`, 'lyrixi_datePicker_unit_hour', [String(item)])
+      name: LocaleUtil.locale(`${item}时`, 'lyrixi.datePicker.unit.hour', [String(item)])
     })
   }
 
@@ -59,7 +59,7 @@ function getList(value, type, { hourStep, minuteStep }) {
   for (let item = 0; item <= 59; item += minuteStep) {
     minutes.push({
       id: item,
-      name: LocaleUtil.locale(`${item}分`, 'lyrixi_datePicker_unit_minute', [String(item)])
+      name: LocaleUtil.locale(`${item}分`, 'lyrixi.datePicker.unit.minute', [String(item)])
     })
   }
 

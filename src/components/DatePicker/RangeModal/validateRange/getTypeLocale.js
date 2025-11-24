@@ -8,13 +8,13 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 function getTypeLocale(type) {
   const typeLocale = {
-    year: LocaleUtil.locale('年', 'lyrixi_unit_year'),
-    quarter: LocaleUtil.locale('季', 'lyrixi_unit_quarter'),
-    month: LocaleUtil.locale('月', 'lyrixi_unit_month'),
-    date: LocaleUtil.locale('日', 'lyrixi_unit_date'),
-    time: LocaleUtil.locale('分', 'lyrixi_unit_minute'),
-    datetime: LocaleUtil.locale('分', 'lyrixi_unit_minute'),
-    week: LocaleUtil.locale('周', 'lyrixi_unit_week')
+    year: LocaleUtil.locale('年', 'lyrixi.unit.year'),
+    quarter: LocaleUtil.locale('季', 'lyrixi.unit.quarter'),
+    month: LocaleUtil.locale('月', 'lyrixi.unit.month'),
+    date: LocaleUtil.locale('日', 'lyrixi.unit.date'),
+    time: LocaleUtil.locale('分', 'lyrixi.unit.minute'),
+    datetime: LocaleUtil.locale('分', 'lyrixi.unit.minute'),
+    week: LocaleUtil.locale('周', 'lyrixi.unit.week')
   }
   return typeLocale[type]
 }

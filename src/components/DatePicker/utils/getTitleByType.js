@@ -8,25 +8,25 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 function getTitleByType(type) {
   if (type === 'year') {
-    return LocaleUtil.locale('选择年', 'lyrixi_dateModal_title_year')
+    return LocaleUtil.locale('选择年', 'lyrixi.dateModal.title.year')
   }
   if (type === 'quarter') {
-    return LocaleUtil.locale('选择季', 'lyrixi_dateModal_title_quarter')
+    return LocaleUtil.locale('选择季', 'lyrixi.dateModal.title.quarter')
   }
   if (type === 'month') {
-    return LocaleUtil.locale('选择年月', 'lyrixi_dateModal_title_month')
+    return LocaleUtil.locale('选择年月', 'lyrixi.dateModal.title.month')
   }
   if (type === 'date') {
-    return LocaleUtil.locale('选择日期', 'lyrixi_dateModal_title_date')
+    return LocaleUtil.locale('选择日期', 'lyrixi.dateModal.title.date')
   }
   if (type === 'time') {
-    return LocaleUtil.locale('选择时间', 'lyrixi_dateModal_title_time')
+    return LocaleUtil.locale('选择时间', 'lyrixi.dateModal.title.time')
   }
   if (type === 'datetime') {
-    return LocaleUtil.locale('选择日期时间', 'lyrixi_dateModal_title_datetime')
+    return LocaleUtil.locale('选择日期时间', 'lyrixi.dateModal.title.datetime')
   }
   if (type === 'week') {
-    return LocaleUtil.locale('选择周', 'lyrixi_dateModal_title_week')
+    return LocaleUtil.locale('选择周', 'lyrixi.dateModal.title.week')
   }
 }
 

@@ -119,14 +119,14 @@ function Attach(
   async function _choose(e) {
     if (!chooseVisible) {
       Toast.show({
-        content: LocaleUtil.locale('此控件无上传功能, 请勿调用拍照', 'lyrixi_no_upload_feature')
+        content: LocaleUtil.locale('此控件无上传功能, 请勿调用拍照', 'lyrixi.no.upload.feature')
       })
       return false
     }
     let uploadDOM = rootRef.current?.querySelector?.('.lyrixi-attach-choose')
     if (!uploadDOM) {
       Toast.show({
-        content: LocaleUtil.locale('未找到上传按钮, 调用上传失败', 'lyrixi_no_upload_button')
+        content: LocaleUtil.locale('未找到上传按钮, 调用上传失败', 'lyrixi.no.upload.button')
       })
       return false
     }
@@ -146,7 +146,7 @@ function Attach(
 
     let hasUploaded = false
     // 开始上传
-    _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi_uploading') })
+    _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi.uploading') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的文件
       if (item.status === 'choose') {
@@ -177,7 +177,7 @@ function Attach(
           Toast.show({
             content: `${LocaleUtil.locale(
               '网络异常，上传失败',
-              'lyrixi_upload_network_error'
+              'lyrixi.upload.network.error'
             )}${failCount}`
           })
         }

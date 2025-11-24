@@ -64,9 +64,9 @@ function FilterModal(
                 onClose && onClose()
               }}
             >
-              {LocaleUtil.locale('取消', 'lyrixi_cancel')}
+              {LocaleUtil.locale('取消', 'lyrixi.cancel')}
             </NavBar.Button>
-            <NavBar.Title>{LocaleUtil.locale('筛选', 'lyrixi_filter')}</NavBar.Title>
+            <NavBar.Title>{LocaleUtil.locale('筛选', 'lyrixi.filter')}</NavBar.Title>
             <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
           </NavBar>
         </Page.Header>

@@ -32,7 +32,7 @@ function getLocation(options) {
       onError: (error) => {
         console.error('lyrixi location fail:', error)
         // 赋值
-        resolve(LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi_location_failed'))
+        resolve(LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi.location.failed'))
       }
     })
   })

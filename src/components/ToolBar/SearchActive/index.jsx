@@ -74,7 +74,7 @@ const SearchBar = (
         name={name}
         // Value & Display Value
         value={value}
-        placeholder={placeholder || LocaleUtil.locale('搜索', 'lyrixi_search')}
+        placeholder={placeholder || LocaleUtil.locale('搜索', 'lyrixi.search')}
         formatter={formatter}
         // Status
         readOnly={readOnly}
@@ -116,7 +116,7 @@ const SearchBar = (
           onCancel && onCancel()
         }}
       >
-        {LocaleUtil.locale('取消', 'lyrixi_cancel')}
+        {LocaleUtil.locale('取消', 'lyrixi.cancel')}
       </span>
     </div>
   )

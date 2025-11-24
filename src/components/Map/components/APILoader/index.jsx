@@ -64,7 +64,7 @@ const APILoader = forwardRef(
       if (!window.APILoaderConfig?.key || !window.APILoaderConfig?.type) {
         setResult({
           status: 'error',
-          message: LocaleUtil.locale('没有key和地图类型, 无法使用地图', 'lyrixi_no_key_type')
+          message: LocaleUtil.locale('没有key和地图类型, 无法使用地图', 'lyrixi.no.key.type')
         })
         return
       }
@@ -107,7 +107,7 @@ const APILoader = forwardRef(
               loadData()
             }}
           >
-            {LocaleUtil.locale('重试', 'lyrixi_retry')}
+            {LocaleUtil.locale('重试', 'lyrixi.retry')}
           </Button>
         </Result>
       )

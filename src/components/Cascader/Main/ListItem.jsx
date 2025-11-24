@@ -35,7 +35,7 @@ const ListItem = forwardRef(
 
     if (Array.isArray(list) && !list.length) {
       // eslint-disable-next-line
-      list = LocaleUtil.locale('暂无数据', 'lyrixi_no_data')
+      list = LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
       status = 'empty'
     }
 
@@ -49,7 +49,7 @@ const ListItem = forwardRef(
           <Result title={list} status={status} className="lyrixi-cascader-body-result">
             {status === '500' && onReLoad && (
               <Button className="lyrixi-result-button" color="primary" onClick={onReLoad}>
-                {LocaleUtil.locale('重新加载', 'lyrixi_reload')}
+                {LocaleUtil.locale('重新加载', 'lyrixi.reload')}
               </Button>
             )}
           </Result>

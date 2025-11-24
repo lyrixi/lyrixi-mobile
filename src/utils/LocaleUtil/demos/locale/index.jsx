@@ -21,7 +21,7 @@ export default () => {
       <Page.Main>
         <Divider>Node</Divider>
         <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
-          {LocaleUtil.locale('近7日', 'lyrixi_last_days', [
+          {LocaleUtil.locale('近7日', 'lyrixi.last.days', [
             <span key={'0'} style={{ color: 'red' }}>
               7
             </span>
@@ -31,7 +31,7 @@ export default () => {
         <Divider>String</Divider>
         <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
           <div>variable:</div>
-          {LocaleUtil.locale('近x日', 'lyrixi_last_days', ['7'])}
+          {LocaleUtil.locale('近x日', 'lyrixi.last.days', ['7'])}
         </Card>
 
         <Divider>No locale data</Divider>

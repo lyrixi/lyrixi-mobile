@@ -53,7 +53,7 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {
           }
           resolve(list)
         } else {
-          resolve(LocaleUtil.locale('查询失败', 'lyrixi_query_failed'))
+          resolve(LocaleUtil.locale('查询失败', 'lyrixi.query.failed'))
         }
       }
     })

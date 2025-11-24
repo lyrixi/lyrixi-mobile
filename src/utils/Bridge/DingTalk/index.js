@@ -113,7 +113,7 @@ let Bridge = {
             if (onError) {
               onError({
                 status: 'error',
-                message: res.errorMessage || LocaleUtil.locale('定位失败', 'lyrixi_location_failed')
+                message: res.errorMessage || LocaleUtil.locale('定位失败', 'lyrixi.location.failed')
               })
             }
             return
@@ -268,7 +268,7 @@ let Bridge = {
         onError &&
           onError({
             status: 'error',
-            message: `${LocaleUtil.locale('网络异常，上传失败', 'lyrixi_upload_network_error')}`
+            message: `${LocaleUtil.locale('网络异常，上传失败', 'lyrixi.upload.network.error')}`
           })
         return
       }

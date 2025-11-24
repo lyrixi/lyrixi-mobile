@@ -133,8 +133,8 @@ const Base = forwardRef(
             }}
           >
             {expanded
-              ? LocaleUtil.locale('收起', 'lyrixi_typography_ellipsis_toggle_collapse')
-              : LocaleUtil.locale('展开', 'lyrixi_typography_ellipsis_toggle_expand')}
+              ? LocaleUtil.locale('收起', 'lyrixi.typography.ellipsis.toggle.collapse')
+              : LocaleUtil.locale('展开', 'lyrixi.typography.ellipsis.toggle.expand')}
           </div>
         ) : null}
       </div>

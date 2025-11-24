@@ -42,7 +42,7 @@ function loadBaiduMap(key) {
                 code: 'BMAP_MAP_LOAD_ERROR',
                 message: LocaleUtil.locale(
                   `地图库加载失败, 请稍后再试`,
-                  'lyrixi_map_js_load_failed'
+                  'lyrixi.map.js.load.failed'
                 )
               })
             }
@@ -52,7 +52,7 @@ function loadBaiduMap(key) {
           resolve({
             ...result,
             code: 'BMAP_JS_LOAD_ERROR',
-            message: LocaleUtil.locale(`地图库加载失败, 请稍后再试`, 'lyrixi_map_js_load_failed')
+            message: LocaleUtil.locale(`地图库加载失败, 请稍后再试`, 'lyrixi.map.js.load.failed')
           })
         }
       }

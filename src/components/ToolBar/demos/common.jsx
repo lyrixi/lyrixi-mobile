@@ -22,7 +22,7 @@ export default () => {
               typeof close === 'function' ? close() : dropdownRef.current.close()
             }}
           >
-            {LocaleUtil.locale('取消', 'lyrixi_cancel')}
+            {LocaleUtil.locale('取消', 'lyrixi.cancel')}
           </FooterBar.Button>
           <FooterBar.Button
             className="lyrixi-primary"
@@ -30,7 +30,7 @@ export default () => {
               console.log('ok')
             }}
           >
-            {LocaleUtil.locale('确定', 'lyrixi_ok')}
+            {LocaleUtil.locale('确定', 'lyrixi.ok')}
           </FooterBar.Button>
         </FooterBar>
       </div>

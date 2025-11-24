@@ -1,6 +1,6 @@
 {
   "取消": {
-    "key": "lyrixi_cancel",
+    "key": "lyrixi.cancel",
     "zh_CN": "取消",
     "en_US": "Cancel",
     "zh_HK": "取消",
@@ -71,7 +71,7 @@
     "zh_TW": "取消"
   },
   "禁止访问{0}": {
-    "key": "lyrixi_access_error",
+    "key": "lyrixi.access.error",
     "en_US": "Forbidden access {0}",
     "zh_HK": "禁止訪問{0}",
     "vi_VN": "Truy cập bị cấm {0}",
@@ -142,7 +142,7 @@
     "zh_TW": "禁止存取{0}"
   },
   "非法的日期格式": {
-    "key": "lyrixi_date_format_error",
+    "key": "lyrixi.date.format.error",
     "en_US": "Illegal date format",
     "zh_HK": "非法嘅日期格式",
     "vi_VN": "Định dạng ngày bất hợp pháp",
@@ -213,7 +213,7 @@
     "zh_TW": "非法的日期格式"
   },
   "禁止访问小于{0}": {
-    "key": "lyrixi_access_min_error",
+    "key": "lyrixi.access.min.error",
     "en_US": "Forbidden access is less than {0}",
     "zh_HK": "禁止訪問小於{0}",
     "vi_VN": "Truy cập bị cấm ít hơn {0}",
@@ -284,7 +284,7 @@
     "zh_TW": "禁止存取小於{0}"
   },
   "禁止访问大于{0}": {
-    "key": "lyrixi_access_max_error",
+    "key": "lyrixi.access.max.error",
     "en_US": "Forbidden access greater than {0}",
     "zh_HK": "禁止訪問大於{0}",
     "vi_VN": "Truy cập bị cấm lớn hơn {0}",
@@ -355,7 +355,7 @@
     "zh_TW": "禁止存取大於{0}"
   },
   "一": {
-    "key": "lyrixi_calendar_week_monday",
+    "key": "lyrixi.calendar.week.monday",
     "zh_CN": "一",
     "en_US": "One",
     "zh_HK": "一",
@@ -426,7 +426,7 @@
     "zh_TW": "一"
   },
   "二": {
-    "key": "lyrixi_calendar_week_tuesday",
+    "key": "lyrixi.calendar.week.tuesday",
     "zh_CN": "二",
     "en_US": "Two",
     "zh_HK": "二",
@@ -497,7 +497,7 @@
     "zh_TW": "二"
   },
   "三": {
-    "key": "lyrixi_calendar_week_wednesday",
+    "key": "lyrixi.calendar.week.wednesday",
     "zh_CN": "三",
     "en_US": "Three",
     "zh_HK": "三",
@@ -568,7 +568,7 @@
     "zh_TW": "三"
   },
   "四": {
-    "key": "lyrixi_calendar_week_thursday",
+    "key": "lyrixi.calendar.week.thursday",
     "zh_CN": "四",
     "en_US": "Four",
     "zh_HK": "四",
@@ -639,7 +639,7 @@
     "zh_TW": "四"
   },
   "五": {
-    "key": "lyrixi_calendar_week_friday",
+    "key": "lyrixi.calendar.week.friday",
     "zh_CN": "五",
     "en_US": "Five",
     "zh_HK": "五",
@@ -710,7 +710,7 @@
     "zh_TW": "五"
   },
   "六": {
-    "key": "lyrixi_calendar_week_saturday",
+    "key": "lyrixi.calendar.week.saturday",
     "zh_CN": "六",
     "en_US": "Six",
     "zh_HK": "六",
@@ -781,7 +781,7 @@
     "zh_TW": "六"
   },
   "日": {
-    "key": "lyrixi_unit_date",
+    "key": "lyrixi.unit.date",
     "zh_CN": "日",
     "en_US": "day",
     "zh_HK": "日",
@@ -852,7 +852,7 @@
     "zh_TW": "日"
   },
   "获取国家数据失败": {
-    "key": "lyrixi_cascader_countries_error",
+    "key": "lyrixi.cascader.countries.error",
     "ar_EG": "فشل في الحصول على البيانات الوطنية",
     "az_AZ": "Milli məlumatlar alına bilmədi",
     "bg_BG": "Не успя да получи национални данни",
@@ -923,7 +923,7 @@
     "zh_TW": "獲取國家數據失敗"
   },
   "获取省市区数据失败": {
-    "key": "lyrixi_cascader_countryRegions_error",
+    "key": "lyrixi.cascader.countryRegions.error",
     "ar_EG": "فشل في الحصول على بيانات المقاطعات والبلديات",
     "az_AZ": "Bələdiyyə və şəhər məlumatlarını əldə etmək baş tutmadı",
     "bg_BG": "Неуспешно получаване на провинциални и общински данни",
@@ -994,7 +994,7 @@
     "zh_TW": "獲取省市區數據失敗"
   },
   "type只支持: province, city, district, street": {
-    "key": "lyrixi_cascader_incorrect_parameter",
+    "key": "lyrixi.cascader.incorrect.parameter",
     "ar_EG": "معلمة غير صحيحة. يمكن أن يمر النوع فقط البلد ، المقاطعة ، المدينة ، المنطقة ، الشارع",
     "az_AZ": "Səhv parametr. növü yalnız ölkə, əyalət, şəhər, rayon, küçə keçə bilər",
     "bg_BG": "Неправилен параметър. Типът може да премине само през държава, провинция, град, област, улица",
@@ -1065,7 +1065,7 @@
     "zh_TW": "type只支持: province, city, district, street"
   },
   "请选择": {
-    "key": "lyrixi_placeholder_select",
+    "key": "lyrixi.placeholder.select",
     "zh_CN": "请选择",
     "en_US": "Please select",
     "zh_HK": "請選擇",
@@ -1136,7 +1136,7 @@
     "zh_TW": "請選擇"
   },
   "暂无数据": {
-    "key": "lyrixi_no_data",
+    "key": "lyrixi.no.data",
     "zh_CN": "暂无数据",
     "en_US": "No data yet",
     "zh_HK": "暫無數據",
@@ -1206,9 +1206,8 @@
     "uz_UZ": "Hozircha maʼlumot yoʻq",
     "zh_TW": "暫無數據"
   },
-
   "重新加载": {
-    "key": "lyrixi_reload",
+    "key": "lyrixi.reload",
     "ar_EG": "تحديث",
     "az_AZ": "yenidən yüklə",
     "bg_BG": "Презареди",
@@ -1279,7 +1278,7 @@
     "zh_TW": "重新載入"
   },
   "获取数据失败": {
-    "key": "lyrixi_data_error",
+    "key": "lyrixi.data.error",
     "en_US": "Failed to get data",
     "zh_HK": "獲取數據失敗",
     "vi_VN": "Không lấy được dữ liệu",
@@ -1350,7 +1349,7 @@
     "zh_TW": "獲取數據失敗"
   },
   "{0}年": {
-    "key": "lyrixi_datePicker_unit_year",
+    "key": "lyrixi.datePicker.unit.year",
     "ar_EG": "{0}Y",
     "az_AZ": "{0}Y",
     "bg_BG": "{0}Y",
@@ -1421,7 +1420,7 @@
     "zh_TW": "{0}年"
   },
   "{0}月": {
-    "key": "lyrixi_datePicker_unit_month",
+    "key": "lyrixi.datePicker.unit.month",
     "ar_EG": "{0}M",
     "az_AZ": "{0}M",
     "bg_BG": "{0}M",
@@ -1492,7 +1491,7 @@
     "zh_TW": "{0}月"
   },
   "{0}日": {
-    "key": "lyrixi_datePicker_unit_date",
+    "key": "lyrixi.datePicker.unit.date",
     "ar_EG": "{0}D",
     "az_AZ": "{0}D",
     "bg_BG": "{0}D",
@@ -1563,7 +1562,7 @@
     "zh_TW": "{0}日"
   },
   "{0}时": {
-    "key": "lyrixi_datePicker_unit_hour",
+    "key": "lyrixi.datePicker.unit.hour",
     "ar_EG": "{0}h",
     "az_AZ": "{0}h",
     "bg_BG": "{0}h",
@@ -1634,7 +1633,7 @@
     "zh_TW": "{0}時"
   },
   "{0}分": {
-    "key": "lyrixi_datePicker_unit_minute",
+    "key": "lyrixi.datePicker.unit.minute",
     "ar_EG": "{0}m",
     "az_AZ": "{0}m",
     "bg_BG": "{0}m",
@@ -1705,7 +1704,7 @@
     "zh_TW": "{0}分"
   },
   "今日": {
-    "key": "lyrixi_today",
+    "key": "lyrixi.today",
     "zh_CN": "今日",
     "en_US": "today",
     "zh_HK": "今日",
@@ -1776,7 +1775,7 @@
     "zh_TW": "今日"
   },
   "昨日": {
-    "key": "lyrixi_yesterday",
+    "key": "lyrixi.yesterday",
     "zh_CN": "昨日",
     "en_US": "yesterday",
     "zh_HK": "昨日",
@@ -1847,7 +1846,7 @@
     "zh_TW": "昨日"
   },
   "近{0}日": {
-    "key": "lyrixi_last_days",
+    "key": "lyrixi.last.days",
     "en_US": "Nearly {0} days",
     "zh_HK": "近 {0} 日",
     "vi_VN": "Gần {0} ngày",
@@ -1918,7 +1917,7 @@
     "zh_TW": "近{0}日"
   },
   "本周": {
-    "key": "lyrixi_this_week",
+    "key": "lyrixi.this.week",
     "zh_CN": "本周",
     "en_US": "Week",
     "zh_HK": "本周",
@@ -1989,7 +1988,7 @@
     "zh_TW": "本週"
   },
   "本月": {
-    "key": "lyrixi_this_month",
+    "key": "lyrixi.this.month",
     "zh_CN": "本月",
     "en_US": "Month",
     "zh_HK": "本月",
@@ -2060,7 +2059,7 @@
     "zh_TW": "本月"
   },
   "上月": {
-    "key": "lyrixi_last_month",
+    "key": "lyrixi.last.month",
     "zh_CN": "上月",
     "en_US": "last month",
     "zh_HK": "上月",
@@ -2131,7 +2130,7 @@
     "zh_TW": "上月"
   },
   "本季度": {
-    "key": "lyrixi_this_quarter",
+    "key": "lyrixi.this.quarter",
     "zh_CN": "本季度",
     "en_US": "This quarter",
     "zh_HK": "本季度",
@@ -2202,7 +2201,7 @@
     "zh_TW": "本季度"
   },
   "今年": {
-    "key": "lyrixi_this_year",
+    "key": "lyrixi.this.year",
     "zh_CN": "今年",
     "en_US": "this year",
     "zh_HK": "今年",
@@ -2273,7 +2272,7 @@
     "zh_TW": "今年"
   },
   "自定义": {
-    "key": "lyrixi_custom",
+    "key": "lyrixi.custom",
     "zh_CN": "自定义",
     "en_US": "Customize",
     "zh_HK": "自定義",
@@ -2344,7 +2343,7 @@
     "zh_TW": "自訂"
   },
   "至": {
-    "key": "lyrixi_to",
+    "key": "lyrixi.to",
     "ar_EG": "وَصَلَ",
     "az_AZ": "çata",
     "bg_BG": "стигам",
@@ -2415,7 +2414,7 @@
     "zh_TW": "至"
   },
   "快捷选择": {
-    "key": "lyrixi_dateRange_selector_title",
+    "key": "lyrixi.dateRange.selector.title",
     "ar_EG": "اختيار سريع",
     "az_AZ": "Cəld seçim",
     "bg_BG": "Бърз избор",
@@ -2486,7 +2485,7 @@
     "zh_TW": "快捷選擇"
   },
   "开始时间": {
-    "key": "lyrixi_start_time",
+    "key": "lyrixi.start.time",
     "zh_CN": "开始时间",
     "en_US": "Start time",
     "zh_HK": "開始時間",
@@ -2557,7 +2556,7 @@
     "zh_TW": "開始時間"
   },
   "结束时间": {
-    "key": "lyrixi_end_time",
+    "key": "lyrixi.end.time",
     "zh_CN": "结束时间",
     "en_US": "End time",
     "zh_HK": "結束時間",
@@ -2628,7 +2627,7 @@
     "zh_TW": "結束時間"
   },
   "年": {
-    "key": "lyrixi_unit_year",
+    "key": "lyrixi.unit.year",
     "zh_CN": "年",
     "en_US": "year",
     "zh_HK": "年",
@@ -2699,7 +2698,7 @@
     "zh_TW": "年"
   },
   "季": {
-    "key": "lyrixi_unit_quarter",
+    "key": "lyrixi.unit.quarter",
     "zh_CN": "季",
     "en_US": "season",
     "zh_HK": "季",
@@ -2770,7 +2769,7 @@
     "zh_TW": "季"
   },
   "月": {
-    "key": "lyrixi_unit_month",
+    "key": "lyrixi.unit.month",
     "zh_CN": "月",
     "en_US": "month",
     "zh_HK": "月",
@@ -2841,7 +2840,7 @@
     "zh_TW": "月"
   },
   "分": {
-    "key": "lyrixi_unit_minute",
+    "key": "lyrixi.unit.minute",
     "zh_CN": "分",
     "en_US": "divide",
     "zh_HK": "分",
@@ -2912,7 +2911,7 @@
     "zh_TW": "分"
   },
   "周": {
-    "key": "lyrixi_unit_week",
+    "key": "lyrixi.unit.week",
     "zh_CN": "周",
     "en_US": "week",
     "zh_HK": "周",
@@ -2983,7 +2982,7 @@
     "zh_TW": "周"
   },
   "日期区间不能超过{0}{1}": {
-    "key": "lyrixi_dateRange_limit_error",
+    "key": "lyrixi.dateRange.limit.error",
     "zh_CN": "日期区间不能超过{0}{1}",
     "en_US": "The date range cannot exceed {0}{1}",
     "zh_HK": "日期區間唔可以超過{0}{1}",
@@ -3054,7 +3053,7 @@
     "zh_TW": "日期區間不能超過{0}{1}"
   },
   "开始时间不能大于结束时间": {
-    "key": "lyrixi_starttime_greater_than_endtime",
+    "key": "lyrixi.starttime.greater.than.endtime",
     "zh_CN": "开始时间不能大于结束时间",
     "en_US": "The start time cannot be greater than the end time",
     "zh_HK": "開始時間不能大於結束時間",
@@ -3125,7 +3124,7 @@
     "zh_TW": "開始時間不能大於結束時間"
   },
   "选择年": {
-    "key": "lyrixi_dateModal_title_year",
+    "key": "lyrixi.dateModal.title.year",
     "ar_EG": "اختر السنة",
     "az_AZ": "İl Seç",
     "bg_BG": "Изберете година",
@@ -3196,7 +3195,7 @@
     "zh_TW": "選擇年"
   },
   "选择季": {
-    "key": "lyrixi_dateModal_title_quarter",
+    "key": "lyrixi.dateModal.title.quarter",
     "ar_EG": "حدد الموسم",
     "az_AZ": "Mövsümü seçin",
     "bg_BG": "Изберете сезона",
@@ -3267,7 +3266,7 @@
     "zh_TW": "選擇季"
   },
   "选择年月": {
-    "key": "lyrixi_dateModal_title_month",
+    "key": "lyrixi.dateModal.title.month",
     "ar_EG": "حدد السنة والشهر",
     "az_AZ": "İl və ayı seçin",
     "bg_BG": "Изберете годината и месеца",
@@ -3338,7 +3337,7 @@
     "zh_TW": "選擇年月"
   },
   "选择日期": {
-    "key": "lyrixi_dateModal_title_date",
+    "key": "lyrixi.dateModal.title.date",
     "en_US": "Select a date",
     "zh_HK": "選擇日期",
     "vi_VN": "Chọn ngày",
@@ -3409,7 +3408,7 @@
     "zh_TW": "選擇日期"
   },
   "选择时间": {
-    "key": "lyrixi_dateModal_title_time",
+    "key": "lyrixi.dateModal.title.time",
     "ar_EG": "حدد وقتا",
     "az_AZ": "Vaxt seçin",
     "bg_BG": "Изберете час",
@@ -3480,7 +3479,7 @@
     "zh_TW": "選擇時間"
   },
   "选择日期时间": {
-    "key": "lyrixi_dateModal_title_datetime",
+    "key": "lyrixi.dateModal.title.datetime",
     "ar_EG": "حدد التاريخ والوقت",
     "az_AZ": "Tarix və vaxt seçin",
     "bg_BG": "Изберете дата и час",
@@ -3551,7 +3550,7 @@
     "zh_TW": "選擇日期時間"
   },
   "选择周": {
-    "key": "lyrixi_dateModal_title_week",
+    "key": "lyrixi.dateModal.title.week",
     "ar_EG": "اختر الأسبوع",
     "az_AZ": "Həftəni seçin",
     "bg_BG": "Изберете седмица",
@@ -3622,7 +3621,7 @@
     "zh_TW": "選擇周"
   },
   "不能小于": {
-    "key": "lyrixi_cannot_less_than",
+    "key": "lyrixi.cannot.less.than",
     "zh_CN": "不能小于",
     "en_US": "It can't be less than",
     "zh_HK": "唔可以小於",
@@ -3693,7 +3692,7 @@
     "zh_TW": "不能小於"
   },
   "不能大于": {
-    "key": "lyrixi_cannot_greater_than",
+    "key": "lyrixi.cannot.greater.than",
     "zh_CN": "不能大于",
     "en_US": "Can't be greater than",
     "zh_HK": "不能大於",
@@ -3764,7 +3763,7 @@
     "zh_TW": "不能大於"
   },
   "此照片控件无拍照功能, 请勿调用拍照": {
-    "key": "lyrixi_image_choose_no_feature",
+    "key": "lyrixi.image.choose.no.feature",
     "ar_EG": "لا يحتوي عنصر التحكم في الصور هذا على وظيفة الصورة ، يرجى عدم الاتصال لالتقاط صورة",
     "az_AZ": "Bu foto tənzimləmənin foto funksiyası yoxdur, xahiş edirik foto çəkmək üçün zəng etməyin",
     "bg_BG": "Този контрол на снимките няма функция за снимки, моля, не се обаждайте, за да направите снимка",
@@ -3835,7 +3834,7 @@
     "zh_TW": "此照片控制件無拍照功能， 請勿呼叫拍照"
   },
   "未找到拍照按钮, 调用拍照失败": {
-    "key": "lyrixi_image_choose_no_upload_button",
+    "key": "lyrixi.image.choose.no.upload.button",
     "ar_EG": "لم يتم العثور على زر الصورة، وفشلت الدعوة لالتقاط صورة",
     "az_AZ": "Şəkil düyməsi tapılmadı, foto çəkmək üçün zəng baş tutmadı",
     "bg_BG": "Бутонът за снимка не беше намерен и обаждането за правене на снимка беше неуспешно",
@@ -3906,7 +3905,7 @@
     "zh_TW": "未找到拍照按鈕， 呼叫拍照失敗"
   },
   "上传中": {
-    "key": "lyrixi_uploading",
+    "key": "lyrixi.uploading",
     "ar_EG": "تحميل",
     "az_AZ": "Yüklənir",
     "bg_BG": "Качване",
@@ -3977,7 +3976,7 @@
     "zh_TW": "上傳中"
   },
   "网络异常，上传失败{0}张": {
-    "key": "lyrixi_upload_error_count",
+    "key": "lyrixi.upload.error.count",
     "ar_EG": "الشبكة غير طبيعية، وتعذر تحميل {0} تحميل",
     "az_AZ": "Şəbəkə anormaldır, {0} upload isə yüklənə bilmədi",
     "bg_BG": "Мрежата е ненормална и качването {0} не е успяло да се качи",
@@ -4048,7 +4047,7 @@
     "zh_TW": "網路異常，上傳失敗{0}張"
   },
   "照片总数不能大于{0}张": {
-    "key": "lyrixi_image_cannot_greater_than",
+    "key": "lyrixi.image.cannot.greater.than",
     "ar_EG": "لا يمكن أن يكون العدد الإجمالي للصور أكبر من {0}",
     "az_AZ": "Fotoların ümumi sayı {0} çox ola bilməz",
     "bg_BG": "Общият брой снимки не може да бъде по-голям от {0}",
@@ -4119,7 +4118,7 @@
     "zh_TW": "照片總數不能大於{0}張"
   },
   "没有选择文件，无法上传！": {
-    "key": "lyrixi_no_upload_file",
+    "key": "lyrixi.no.upload.file",
     "ar_EG": "لم يتم تحديد أي ملف، لا يمكن تحميله!",
     "az_AZ": "Heç bir fayl seçilmir, upload etmək mümkün deyil!",
     "bg_BG": "Не е избран файл, не може да бъде качен!",
@@ -4190,7 +4189,7 @@
     "zh_TW": "沒有選擇檔案，無法上傳！"
   },
   "当前页面存在尚未上传成功的文件，请等待上传成功或删除后再提交": {
-    "key": "lyrixi_file_need_uploaded",
+    "key": "lyrixi.file.need.uploaded",
     "ar_EG": "إذا كانت هناك ملفات على الصفحة الحالية لم يتم تحميلها بعد، فيرجى الانتظار حتى يتم تحميلها أو حذفها قبل إرسالها",
     "az_AZ": "Hazırkı səhifədə hələ yüklənməmiş fayllar varsa, lütfən, göndərmədən əvvəl onların yüklənməsini və ya silinməsini gözləyin",
     "bg_BG": "Ако на текущата страница има файлове, които все още не са качени, моля, изчакайте те да бъдат качени или изтрити, преди да ги изпратите",
@@ -4261,7 +4260,7 @@
     "zh_TW": "當前頁面存在尚未上傳成功的檔，請等待上傳成功或刪除後再提交"
   },
   "弱": {
-    "key": "lyrixi_password_weak",
+    "key": "lyrixi.password.weak",
     "zh_CN": "弱",
     "en_US": "weak",
     "zh_HK": "弱",
@@ -4332,7 +4331,7 @@
     "zh_TW": "弱"
   },
   "中": {
-    "key": "lyrixi_password_medium",
+    "key": "lyrixi.password.medium",
     "zh_CN": "中",
     "en_US": "middle",
     "zh_HK": "中",
@@ -4403,7 +4402,7 @@
     "zh_TW": "中"
   },
   "强": {
-    "key": "lyrixi_password_strong",
+    "key": "lyrixi.password.strong",
     "zh_CN": "强",
     "en_US": "strong",
     "zh_HK": "強",
@@ -4474,7 +4473,7 @@
     "zh_TW": "強"
   },
   "链接已复制到剪贴板": {
-    "key": "lyrixi_link_copy_success",
+    "key": "lyrixi.link.copy.success",
     "ar_EG": "تم نسخ الرابط إلى الحافظة",
     "az_AZ": "Bu linki panoya köçürdürdülər",
     "bg_BG": "Връзката е копирана в клипборда",
@@ -4545,7 +4544,7 @@
     "zh_TW": "連結已複製到剪貼板"
   },
   "提示": {
-    "key": "lyrixi_alert_title",
+    "key": "lyrixi.alert.title",
     "ar_EG": "فوري",
     "az_AZ": "sür'y",
     "bg_BG": "бърз",
@@ -4616,7 +4615,7 @@
     "zh_TW": "提示"
   },
   "链接复制到剪贴板失败, 请长按复制": {
-    "key": "lyrixi_link_copy_error",
+    "key": "lyrixi.link.copy.error",
     "ar_EG": "فشل الارتباط بالحافظة ، يرجى الضغط مع الاستمرار للنسخ",
     "az_AZ": "Panoya bağlantı uğursuz oldu, zəhmət olmasa, basıb saxlayın",
     "bg_BG": "Връзката към клипборда е неуспешна, моля, натиснете и задръжте, за да копирате",
@@ -4687,7 +4686,7 @@
     "zh_TW": "連結複製到剪貼簿失敗， 請長按複製"
   },
   "释放立即刷新": {
-    "key": "lyrixi_release_refresh",
+    "key": "lyrixi.release.refresh",
     "zh_CN": "释放立即刷新",
     "en_US": "Release to refresh immediately",
     "zh_HK": "釋放立即刷新",
@@ -4758,7 +4757,7 @@
     "zh_TW": "釋放立即刷新"
   },
   "下拉可以刷新": {
-    "key": "lyrixi_pull_down_refresh",
+    "key": "lyrixi.pull.down.refresh",
     "en_US": "The drop-down can be refreshed",
     "zh_HK": "下拉可以刷新",
     "vi_VN": "Menu thả xuống có thể được làm mới",
@@ -4829,7 +4828,7 @@
     "zh_TW": "下拉可以刷新"
   },
   "加载中": {
-    "key": "lyrixi_refreshing",
+    "key": "lyrixi.refreshing",
     "zh_CN": "加载中",
     "en_US": "Loading...",
     "zh_HK": "加載中...",
@@ -4900,7 +4899,7 @@
     "zh_TW": "載入中..."
   },
   "刷新失败": {
-    "key": "lyrixi_refresh_failed",
+    "key": "lyrixi.refresh.failed",
     "zh_CN": "刷新失败",
     "en_US": "Refresh failed",
     "zh_HK": "刷新失敗",
@@ -4971,7 +4970,7 @@
     "zh_TW": "刷新失敗"
   },
   "刷新成功": {
-    "key": "lyrixi_refresh_success",
+    "key": "lyrixi.refresh.success",
     "zh_CN": "刷新成功",
     "en_US": "The refresh was successful",
     "zh_HK": "刷新成功",
@@ -5042,7 +5041,7 @@
     "zh_TW": "刷新成功"
   },
   "没有更多了": {
-    "key": "lyrixi_no_more_data",
+    "key": "lyrixi.no.more.data",
     "zh_CN": "没有更多了",
     "en_US": "There is no more data",
     "zh_HK": "冇更多數據咗",
@@ -5113,7 +5112,7 @@
     "zh_TW": "沒有更多了"
   },
   "获取数据失败，请稍后再试！": {
-    "key": "lyrixi_query_data_error",
+    "key": "lyrixi.query.data.error",
     "ar_EG": "فشل الحصول على البيانات ، يرجى المحاولة مرة أخرى لاحقا!",
     "az_AZ": "Məlumat əldə edə bilmədi, xahiş edirik, daha sonra yenidən cəhd edin!",
     "bg_BG": "Не успя да получите данни, моля, опитайте отново по-късно!",
@@ -5184,7 +5183,7 @@
     "zh_TW": "獲取數據失敗，請稍後再試！"
   },
   "重试": {
-    "key": "lyrixi_retry",
+    "key": "lyrixi.retry",
     "en_US": "retry",
     "zh_HK": "重試",
     "vi_VN": "Thử lại",
@@ -5255,7 +5254,7 @@
     "zh_TW": "重試"
   },
   "定位失败, 请检查定位权限是否开启": {
-    "key": "lyrixi_location_failed",
+    "key": "lyrixi.location.failed",
     "zh_CN": "定位失败, 请检查定位权限是否开启",
     "en_US": "If the location fails, check whether the location permission is enabled",
     "zh_HK": "定位失敗，請檢查定位權限是否開啟",
@@ -5326,7 +5325,7 @@
     "zh_TW": "定位失敗， 請檢查定位權限是否開啟"
   },
   "定位中...": {
-    "key": "lyrixi_positioning",
+    "key": "lyrixi.positioning",
     "zh_CN": "定位中...",
     "en_US": "Positioning...",
     "zh_HK": "定位中...",
@@ -5397,7 +5396,7 @@
     "zh_TW": "定位中..."
   },
   "获取地址失败, 请稍后重试": {
-    "key": "lyrixi_get_address_failed",
+    "key": "lyrixi.get.address.failed",
     "zh_CN": "获取地址失败, 请稍后重试",
     "en_US": "Failed to get the address, please try again later",
     "zh_HK": "獲取地址失敗，請稍後重試",
@@ -5468,7 +5467,7 @@
     "zh_TW": "取得位址失敗， 請稍後重試"
   },
   "选择地址": {
-    "key": "lyrixi_choose_address",
+    "key": "lyrixi.choose.address",
     "zh_CN": "选择地址",
     "en_US": "Select an address",
     "zh_HK": "選擇地址",
@@ -5539,7 +5538,7 @@
     "zh_TW": "選擇位址"
   },
   "查看地址": {
-    "key": "lyrixi_view_address",
+    "key": "lyrixi.view.address",
     "zh_CN": "查看地址",
     "en_US": "Check the address",
     "zh_HK": "查看地址",
@@ -5610,7 +5609,7 @@
     "zh_TW": "查看位址"
   },
   "没有key和地图类型, 无法使用地图": {
-    "key": "lyrixi_no_key_type",
+    "key": "lyrixi.no.key.type",
     "ar_EG": "بدون مفتاح ونوع خريطة، لا يمكنك استخدام الخريطة",
     "az_AZ": "Açar və xəritə tipi olmadan xəritədən istifadə etmək olmaz",
     "bg_BG": "Без ключ и тип карта не можете да използвате картата",
@@ -5681,7 +5680,7 @@
     "zh_TW": "沒有key和地圖類型， 無法使用地圖"
   },
   "No Container": {
-    "key": "lyrixi_map_no_container",
+    "key": "lyrixi.map.no.container",
     "en_US": "No Container",
     "zh_HK": "No Container",
     "vi_VN": "Không có container",
@@ -5752,7 +5751,7 @@
     "zh_TW": "No Container"
   },
   "当前位置": {
-    "key": "lyrixi_current_location",
+    "key": "lyrixi.current.location",
     "zh_CN": "当前位置",
     "en_US": "You are here",
     "zh_HK": "當前位置",
@@ -5823,7 +5822,7 @@
     "zh_TW": "當前位置"
   },
   "导航": {
-    "key": "lyrixi_navigation",
+    "key": "lyrixi.navigation",
     "zh_CN": "导航",
     "en_US": "navigation",
     "zh_HK": "導航",
@@ -5894,7 +5893,7 @@
     "zh_TW": "導航"
   },
   "搜索中": {
-    "key": "lyrixi_searching",
+    "key": "lyrixi.searching",
     "zh_CN": "搜索中",
     "en_US": "Searching",
     "zh_HK": "搜索中",
@@ -5965,7 +5964,7 @@
     "zh_TW": "搜索中"
   },
   "附近推荐": {
-    "key": "lyrixi_nearby_recommendation",
+    "key": "lyrixi.nearby.recommendation",
     "zh_CN": "附近推荐",
     "en_US": "Recommended nearby",
     "zh_HK": "附近舉薦",
@@ -6036,7 +6035,7 @@
     "zh_TW": "附近推薦"
   },
   "购物": {
-    "key": "lyrixi_map_nearby_shop",
+    "key": "lyrixi.map.nearby.shop",
     "zh_CN": "购物",
     "en_US": "Shopping",
     "zh_HK": "買嘢",
@@ -6107,7 +6106,7 @@
     "zh_TW": "購物"
   },
   "吃喝": {
-    "key": "lyrixi_map_nearby_restaurant",
+    "key": "lyrixi.map.nearby.restaurant",
     "zh_CN": "吃喝",
     "en_US": "diet",
     "zh_HK": "吃喝",
@@ -6178,7 +6177,7 @@
     "zh_TW": "吃喝"
   },
   "娱乐": {
-    "key": "lyrixi_map_nearby_recreation",
+    "key": "lyrixi.map.nearby.recreation",
     "zh_CN": "娱乐",
     "en_US": "amusement",
     "zh_HK": "娛樂",
@@ -6249,7 +6248,7 @@
     "zh_TW": "娛樂"
   },
   "景点": {
-    "key": "lyrixi_map_nearby_scenery",
+    "key": "lyrixi.map.nearby.scenery",
     "zh_CN": "景点",
     "en_US": "Attractions",
     "zh_HK": "景點",
@@ -6320,7 +6319,7 @@
     "zh_TW": "景點"
   },
   "出行": {
-    "key": "lyrixi_map_nearby_trip",
+    "key": "lyrixi.map.nearby.trip",
     "zh_CN": "出行",
     "en_US": "Travel",
     "zh_HK": "出行",
@@ -6391,7 +6390,7 @@
     "zh_TW": "出行"
   },
   "住宿": {
-    "key": "lyrixi_map_nearby_lodgings",
+    "key": "lyrixi.map.nearby.lodgings",
     "zh_CN": "住宿",
     "en_US": "lodging",
     "zh_HK": "住宿",
@@ -6462,7 +6461,7 @@
     "zh_TW": "住宿"
   },
   "生活": {
-    "key": "lyrixi_map_nearby_live",
+    "key": "lyrixi.map.nearby.live",
     "zh_CN": "生活",
     "en_US": "life",
     "zh_HK": "生活",
@@ -6533,7 +6532,7 @@
     "zh_TW": "生活"
   },
   "搜索": {
-    "key": "lyrixi_search",
+    "key": "lyrixi.search",
     "zh_CN": "搜索",
     "en_US": "Search",
     "zh_HK": "搜尋",
@@ -6604,7 +6603,7 @@
     "zh_TW": "搜索"
   },
   "获取地址中...": {
-    "key": "lyrixi_getting_address",
+    "key": "lyrixi.getting.address",
     "zh_CN": "获取地址中...",
     "en_US": "Get Address...",
     "zh_HK": "獲取地址中...",
@@ -6675,7 +6674,7 @@
     "zh_TW": "取得位址中..."
   },
   "地图库加载失败, 请稍后再试": {
-    "key": "lyrixi_map_js_load_failed",
+    "key": "lyrixi.map.js.load.failed",
     "zh_CN": "地图库加载失败, 请稍后再试",
     "en_US": "The map gallery failed to load, please try again later",
     "zh_HK": "地圖庫加載失敗，請稍後再試",
@@ -6746,7 +6745,7 @@
     "zh_TW": "地圖庫載入失敗， 請稍後再試"
   },
   "查询失败": {
-    "key": "lyrixi_query_failed",
+    "key": "lyrixi.query.failed",
     "zh_CN": "查询失败",
     "en_US": "The query failed",
     "zh_HK": "查詢失敗",
@@ -6817,7 +6816,7 @@
     "zh_TW": "查詢失敗"
   },
   "查询超时": {
-    "key": "lyrixi_query_time_out",
+    "key": "lyrixi.query.time.out",
     "en_US": "The query timed out",
     "zh_HK": "查詢超時",
     "vi_VN": "Truy vấn hết thời gian chờ",
@@ -6888,7 +6887,7 @@
     "zh_TW": "查詢超時"
   },
   "确定": {
-    "key": "lyrixi_ok",
+    "key": "lyrixi.ok",
     "zh_CN": "确定",
     "en_US": "Are you sure",
     "zh_HK": "確定",
@@ -6959,7 +6958,7 @@
     "zh_TW": "確定"
   },
   "设置": {
-    "key": "lyrixi_config",
+    "key": "lyrixi.config",
     "ar_EG": "نصب",
     "az_AZ": "Qur",
     "bg_BG": "Слагам",
@@ -7030,7 +7029,7 @@
     "zh_TW": "設置"
   },
   "重置": {
-    "key": "lyrixi_reset",
+    "key": "lyrixi.reset",
     "ar_EG": "اعاده تعيين",
     "az_AZ": "sıfırla",
     "bg_BG": "Проучване",
@@ -7101,7 +7100,7 @@
     "zh_TW": "重置"
   },
   "筛选": {
-    "key": "lyrixi_filter",
+    "key": "lyrixi.filter",
     "ar_EG": "نخل",
     "az_AZ": "sil",
     "bg_BG": "Пресее",
@@ -7172,7 +7171,7 @@
     "zh_TW": "篩選"
   },
   "Please Select": {
-    "key": "lyrixi_select_placeholder",
+    "key": "lyrixi.select.placeholder",
     "ar_EG": "الرجاء الاختيار",
     "az_AZ": "Xahiş edirik seç",
     "bg_BG": "Моля, изберете",
@@ -7243,7 +7242,7 @@
     "zh_TW": "Please Select"
   },
   "此平台暂不支持分享": {
-    "key": "lyrixi_share_no_support",
+    "key": "lyrixi.share.no.support",
     "en_US": "This platform does not support sharing",
     "zh_HK": "此平台暫不支持分享",
     "vi_VN": "Nền tảng này không hỗ trợ chia sẻ",
@@ -7314,7 +7313,7 @@
     "zh_TW": "此平臺暫不支援分享"
   },
   "微信": {
-    "key": "lyrixi_we_chat",
+    "key": "lyrixi.wechat",
     "en_US": "WeChat",
     "zh_HK": "微信",
     "vi_VN": "Trò chuyện qua mạng",
@@ -7385,7 +7384,7 @@
     "zh_TW": "微信"
   },
   "朋友圈": {
-    "key": "lyrixi_we_moment",
+    "key": "lyrixi.weMoment",
     "en_US": "Circle of friends",
     "zh_HK": "朋友圈",
     "vi_VN": "Vòng kết nối bạn bè",
@@ -7456,7 +7455,7 @@
     "zh_TW": "朋友圈"
   },
   "小程序": {
-    "key": "lyrixi_we_mini_program",
+    "key": "lyrixi.weMiniProgram",
     "en_US": "Mini programs",
     "zh_HK": "細程序",
     "vi_VN": "Các chương trình nhỏ",
@@ -7527,7 +7526,7 @@
     "zh_TW": "小程式"
   },
   "企业微信": {
-    "key": "lyrixi_we_com",
+    "key": "lyrixi.weCom",
     "en_US": "WeCom",
     "zh_HK": "企業微信",
     "vi_VN": "WeCom",
@@ -7598,7 +7597,7 @@
     "zh_TW": "企業微信"
   },
   "钉钉": {
-    "key": "lyrixi_ding_talk",
+    "key": "lyrixi.dingTalk",
     "en_US": "DingTalk",
     "zh_HK": "釘釘",
     "vi_VN": "DingTalk",
@@ -7669,7 +7668,7 @@
     "zh_TW": "釘釘"
   },
   "飞书": {
-    "key": "lyrixi_lark",
+    "key": "lyrixi.lark",
     "en_US": "Lark",
     "zh_HK": "飛書",
     "vi_VN": "Phi Thư",
@@ -7740,7 +7739,7 @@
     "zh_TW": "飛書"
   },
   "分享到": {
-    "key": "lyrixi_share_to",
+    "key": "lyrixi.share.to",
     "zh_CN": "分享到",
     "en_US": "Share on:",
     "zh_HK": "分享到",
@@ -7811,7 +7810,7 @@
     "zh_TW": "分享到"
   },
   "分享失败": {
-    "key": "lyrixi_share_failed",
+    "key": "lyrixi.share.failed",
     "en_US": "Failed to share",
     "zh_HK": "分享失敗",
     "vi_VN": "Không chia sẻ được",
@@ -7882,7 +7881,7 @@
     "zh_TW": "分享失敗"
   },
   "签名": {
-    "key": "lyrixi_signature",
+    "key": "lyrixi.signature",
     "zh_CN": "签名",
     "en_US": "signature",
     "zh_HK": "簽名",
@@ -7953,7 +7952,7 @@
     "zh_TW": "簽名"
   },
   "清除": {
-    "key": "lyrixi_clear",
+    "key": "lyrixi.clear",
     "zh_CN": "清除",
     "en_US": "purge",
     "zh_HK": "清除",
@@ -8024,7 +8023,7 @@
     "zh_TW": "清除"
   },
   "确认": {
-    "key": "lyrixi_confirm",
+    "key": "lyrixi.confirm",
     "zh_CN": "确认",
     "en_US": "Confirm",
     "zh_HK": "確認",
@@ -8095,7 +8094,7 @@
     "zh_TW": "確認"
   },
   "自定义选择": {
-    "key": "lyrixi_dateRange_custom_title",
+    "key": "lyrixi.dateRange.custom.title",
     "ar_EG": "التحديدات المخصصة",
     "az_AZ": "Xüsusi seçimlər",
     "bg_BG": "Персонализирани селекции",
@@ -8166,7 +8165,7 @@
     "zh_TW": "自訂選擇"
   },
   "自定义区间": {
-    "key": "lyrixi_toolbar_date_range_default_display_value",
+    "key": "lyrixi.toolbar.date.range.default.display.value",
     "ar_EG": "مقصورات مخصصة",
     "az_AZ": "Xüsusi kompamentlər",
     "bg_BG": "Персонализирани отделения",
@@ -8237,7 +8236,7 @@
     "zh_TW": "自訂區間"
   },
   "已添加": {
-    "key": "lyrixi_added",
+    "key": "lyrixi.added",
     "en_US": "Added",
     "zh_HK": "已添加",
     "vi_VN": "Thêm",
@@ -8308,7 +8307,7 @@
     "zh_TW": "已添加"
   },
   "未添加": {
-    "key": "lyrixi_not_added",
+    "key": "lyrixi.not.added",
     "en_US": "Not added",
     "zh_HK": "未添加",
     "vi_VN": "Không thêm vào",
@@ -8379,7 +8378,7 @@
     "zh_TW": "未添加"
   },
   "收起": {
-    "key": "lyrixi_typography_ellipsis_toggle_collapse",
+    "key": "lyrixi.typography.ellipsis.toggle.collapse",
     "ar_EG": "تقوض",
     "az_AZ": "Dağılın",
     "bg_BG": "Срив",
@@ -8450,7 +8449,7 @@
     "zh_TW": "收起"
   },
   "展开": {
-    "key": "lyrixi_typography_ellipsis_toggle_expand",
+    "key": "lyrixi.typography.ellipsis.toggle.expand",
     "ar_EG": "تتكشف",
     "az_AZ": "aç",
     "bg_BG": "Развивам",
@@ -8521,7 +8520,7 @@
     "zh_TW": "展開"
   },
   "附件": {
-    "key": "lyrixi_attach",
+    "key": "lyrixi.attach",
     "zh_CN": "附件",
     "en_US": "annex",
     "zh_HK": "附件",
@@ -8592,7 +8591,7 @@
     "zh_TW": "附件"
   },
   "图片未上传成功, 无法预览": {
-    "key": "lyrixi_upload_preview_error",
+    "key": "lyrixi.upload.preview.error",
     "en_US": "The image has not been uploaded successfully and cannot be previewed",
     "zh_HK": "圖片未上傳成功，無法預覽",
     "vi_VN": "Hình ảnh chưa được tải lên thành công và không thể xem trước",
@@ -8663,7 +8662,7 @@
     "zh_TW": "圖片未上傳成功， 無法預覽"
   },
   "预览地址不合法": {
-    "key": "lyrixi_preview_src_error",
+    "key": "lyrixi.preview.src.error",
     "zh_CN": "预览地址不合法",
     "en_US": "The preview address is invalid",
     "zh_HK": "預覽地址唔合法",
@@ -8734,7 +8733,7 @@
     "zh_TW": "預覽位址不合法"
   },
   "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载": {
-    "key": "lyrixi_clipboard_success",
+    "key": "lyrixi.clipboard.success",
     "zh_CN": "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载",
     "en_US": "The link to the file has been copied to the clipboard, please paste it on your system browser to download",
     "zh_HK": "文件連結已複製到剪貼板，請粘貼到系統瀏覽器上下載",
@@ -8805,7 +8804,7 @@
     "zh_TW": "檔案連結已複製到剪貼板，請粘貼到系統瀏覽器上下載"
   },
   "文件链接复制到剪贴板失败, 请长按复制<br/>{0}": {
-    "key": "lyrixi_clipboard_fail_confirm",
+    "key": "lyrixi.clipboard.fail.confirm",
     "zh_CN": "文件链接复制到剪贴板失败, 请长按复制<br/>{0}",
     "en_US": "The file link to the clipboard failed, please long press to copy<br/>{0}",
     "zh_HK": "文件連結複製到剪貼板失敗，請長按複製<br/>{0}",
@@ -8876,7 +8875,7 @@
     "zh_TW": "檔案連結複製到剪貼簿失敗， 請長按複製<br/>{0}"
   },
   "总数不能大于{0}": {
-    "key": "lyrixi_count_cannot_greater_than",
+    "key": "lyrixi.count.cannot.greater.than",
     "ar_EG": "لا يمكن أن يكون المجموع أكبر من {0}",
     "az_AZ": "Ümumi {0} böyük ola bilməz",
     "bg_BG": "Общата сума не може да бъде по-голяма от {0}",
@@ -8947,7 +8946,7 @@
     "zh_TW": "總數不能大於{0}"
   },
   "未返回fileName, 无法上传": {
-    "key": "lyrixi_return_no_fileName",
+    "key": "lyrixi.return.no.fileName",
     "ar_EG": "لم يتم إرجاع اسم الملف، يتعذر تحميله",
     "az_AZ": "FaylAdı qaytarılmır, yüklənə bilmir",
     "bg_BG": "Не се връща fileName, не може да се качи",
@@ -9018,7 +9017,7 @@
     "zh_TW": "未返回fileName， 無法上傳"
   },
   "未返回fileSize, 无法上传": {
-    "key": "lyrixi_return_no_fileSize",
+    "key": "lyrixi.return.no.fileSize",
     "ar_EG": "fileSize لا يتم إرجاع ولا يمكن تحميله",
     "az_AZ": "fileSize qaytarılmır, və upload edilə bilməz",
     "bg_BG": "fileSize не се връща и не може да бъде качен",
@@ -9089,7 +9088,7 @@
     "zh_TW": "未返回fileSize， 無法上傳"
   },
   "只支持选择{0}格式的文件": {
-    "key": "lyrixi_choose_type_error",
+    "key": "lyrixi.choose.type.error",
     "ar_EG": "يمكن تحديد الملفات بتنسيق {0} فقط",
     "az_AZ": "Yalnız {0} formatda olan fayllar seçilə bilər",
     "bg_BG": "Могат да се избират само файлове в {0} формат",
@@ -9160,7 +9159,7 @@
     "zh_TW": "只支援選擇{0}格式的檔"
   },
   "文件大小不能超过{0}M": {
-    "key": "lyrixi_fileSize_cannot_greater_than",
+    "key": "lyrixi.fileSize.cannot.greater.than",
     "ar_EG": "لا يمكن أن يتجاوز حجم الملف {0} مليون",
     "az_AZ": "Fayl böyüklüyü {0}M-dən artıq ola bilməz",
     "bg_BG": "Размерът на файла не може да надвишава {0}M",
@@ -9231,7 +9230,7 @@
     "zh_TW": "檔大小不能超過{0}M"
   },
   "未获取到文件名, 无法上传": {
-    "key": "lyrixi_no_fileName",
+    "key": "lyrixi.no.fileName",
     "ar_EG": "لم يتم الحصول على اسم الملف ولا يمكن تحميله",
     "az_AZ": "Faylın adı alına bilmədi və yüklənə bilmədi",
     "bg_BG": "Името на файла не е получено и не може да бъде качено",
@@ -9302,7 +9301,7 @@
     "zh_TW": "未取得檔案名稱， 無法上傳"
   },
   "此控件无上传功能, 请勿调用拍照": {
-    "key": "lyrixi_no_upload_feature",
+    "key": "lyrixi.no.upload.feature",
     "ar_EG": "لا يحتوي عنصر التحكم هذا على وظيفة تحميل ، يرجى عدم الاتصال لالتقاط صورة",
     "az_AZ": "Bu idarənin upload funksiyası yoxdur, xahiş edirik şəkil çəkmək üçün zəng etməyin",
     "bg_BG": "Този контрол няма функция за качване, моля, не се обаждайте, за да направите снимка",
@@ -9373,7 +9372,7 @@
     "zh_TW": "此控制件無上傳功能， 請勿呼叫拍照"
   },
   "未找到上传按钮, 调用上传失败": {
-    "key": "lyrixi_no_upload_button",
+    "key": "lyrixi.no.upload.button",
     "ar_EG": "لم يتم العثور على زر التحميل، وفشلت مكالمة التحميل",
     "az_AZ": "Yükləmə düyməsi tapılmadı, upload zəngi baş tutmadı",
     "bg_BG": "Бутонът за качване не беше намерен и повикването за качване беше неуспешно",
@@ -9444,7 +9443,7 @@
     "zh_TW": "找不到上傳按鈕， 呼叫上傳失敗"
   },
   "网络异常，上传失败": {
-    "key": "lyrixi_upload_network_error",
+    "key": "lyrixi.upload.network.error",
     "ar_EG": "الشبكة غير طبيعية وفشل التحميل",
     "az_AZ": "Şəbəkə anormaldır və upload uğursuz olur",
     "bg_BG": "Мрежата е ненормална и качването е неуспешно",
@@ -9515,7 +9514,7 @@
     "zh_TW": "網路異常，上傳失敗"
   },
   "请传入视频源": {
-    "key": "lyrixi_no_video_src_error",
+    "key": "lyrixi.no.video.src.error",
     "zh_CN": "请传入视频源",
     "en_US": "Please pass in the video source",
     "zh_HK": "請傳入視頻源",
@@ -9586,7 +9585,7 @@
     "zh_TW": "請傳入視頻源"
   },
   "加载播放器库出错, 请稍后再试": {
-    "key": "lyrixi_video_sdk_load_failed",
+    "key": "lyrixi.video.sdk.load.failed",
     "zh_CN": "加载播放器库出错, 请稍后再试",
     "en_US": "There was an error loading the player library, please try again later",
     "zh_HK": "加載播放器庫出錯，請稍後再試",
@@ -9657,7 +9656,7 @@
     "zh_TW": "載入播放器庫出錯， 請稍後再試"
   },
   "图片地址无效": {
-    "key": "lyrixi_invalid_image_src",
+    "key": "lyrixi.invalid.image.src",
     "zh_CN": "图片地址无效",
     "en_US": "The image address is invalid",
     "zh_HK": "圖片地址無效",
@@ -9728,7 +9727,7 @@
     "zh_TW": "圖片地址無效"
   },
   "图片加载失败": {
-    "key": "lyrixi_image_load_failed",
+    "key": "lyrixi.image.load.failed",
     "zh_CN": "图片加载失败",
     "en_US": "The image failed to load",
     "zh_HK": "圖片加載失敗",
@@ -9799,7 +9798,7 @@
     "zh_TW": "圖片載入失敗"
   },
   "invoke仅可在微信或APP中使用": {
-    "key": "lyrixi_invoke_prompt",
+    "key": "lyrixi.invoke.prompt",
     "en_US": "invoke can only be used in WeChat or APP",
     "zh_HK": "invoke僅可在微信或APP中使用",
     "vi_VN": "gọi chỉ có thể được sử dụng trong WeChat hoặc APP",
@@ -9870,7 +9869,7 @@
     "zh_TW": "invoke僅可在微信或APP中使用"
   },
   "此功能仅可在手机中使用": {
-    "key": "lyrixi_only_mobile",
+    "key": "lyrixi.only.mobile",
     "zh_CN": "此功能仅可在手机中使用",
     "en_US": "This feature is only available on mobile phones",
     "zh_HK": "此功能僅可在手機中使用",
@@ -9941,7 +9940,7 @@
     "zh_TW": "此功能僅可在手機中使用"
   },
   "定位失败": {
-    "key": "lyrixi_location_failed",
+    "key": "lyrixi.location.failed",
     "en_US": "Positioning failed",
     "zh_HK": "定位失敗",
     "vi_VN": "Định vị không thành công",
@@ -10012,7 +10011,7 @@
     "zh_TW": "定位失敗"
   },
   "定位失败,用户拒绝请求地理定位": {
-    "key": "lyrixi_location_permission_denied_error",
+    "key": "lyrixi.location.permission.denied.error",
     "en_US": "Targeting fails, and the user rejects the request for geolocation",
     "zh_HK": "定位失敗，用戶拒絕請求地理定位",
     "vi_VN": "Nhắm mục tiêu không thành công và người dùng từ chối yêu cầu vị trí địa lý",
@@ -10083,7 +10082,7 @@
     "zh_TW": "定位失敗，使用者拒絕請求地理定位"
   },
   "定位失败,位置信息是不可用": {
-    "key": "lyrixi_location_unavailable_error",
+    "key": "lyrixi.location.unavailable.error",
     "en_US": "Location failed, location information is unavailable",
     "zh_HK": "定位失敗，位置信息係不可用",
     "vi_VN": "Vị trí không thành công, thông tin vị trí không có sẵn",
@@ -10154,7 +10153,7 @@
     "zh_TW": "定位失敗，位置資訊是不可用"
   },
   "定位失败,请求获取用户位置超时": {
-    "key": "lyrixi_location_timeout_error",
+    "key": "lyrixi.location.timeout.error",
     "en_US": "The location failed, and the request to get the user's location timed out",
     "zh_HK": "定位失敗，請求獲取用戶位置超時",
     "vi_VN": "Vị trí không thành công và yêu cầu lấy vị trí của người dùng hết thời gian chờ",
@@ -10225,7 +10224,7 @@
     "zh_TW": "定位失敗，請求獲取使用者位置超時"
   },
   "定位失败,定位系统失效": {
-    "key": "lyrixi_location_unknown_error",
+    "key": "lyrixi.location.unknown.error",
     "en_US": "The positioning system fails, and the positioning system fails",
     "zh_HK": "定位失敗，定位系統失效",
     "vi_VN": "Hệ thống định vị bị lỗi và hệ thống định vị bị lỗi",
@@ -10296,7 +10295,7 @@
     "zh_TW": "定位失敗，定位系統失效"
   },
   "当前浏览器不支持定位": {
-    "key": "lyrixi_location_not_supported",
+    "key": "lyrixi.location.not.supported",
     "zh_CN": "当前浏览器不支持定位",
     "en_US": "The current browser does not support positioning",
     "zh_HK": "當前瀏覽器唔支持定位",
@@ -10367,7 +10366,7 @@
     "zh_TW": "當前瀏覽器不支援定位"
   },
   "openLocation仅可在企业微信或APP中使用": {
-    "key": "lyrixi_open_location_prompt",
+    "key": "lyrixi.open.location.prompt",
     "en_US": "openLocation can only be used in WeCom or APP",
     "zh_HK": "openLocation僅可在企業微信或APP中使用",
     "vi_VN": "openLocation chỉ có thể được sử dụng trong WeCom hoặc APP",
@@ -10438,7 +10437,7 @@
     "zh_TW": "openLocation僅可在企業微信或APP中使用"
   },
   "chooseImage仅可在移动端微信或APP中使用": {
-    "key": "lyrixi_chooseMedia_prompt",
+    "key": "lyrixi.chooseMedia.prompt",
     "en_US": "chooseMedia can only be used in WeChat or APP",
     "zh_HK": "chooseImage僅可在移動端微信或APP中使用",
     "vi_VN": "chooseMedia chỉ có thể được sử dụng trên WeChat hoặc APP di động",
@@ -10509,7 +10508,7 @@
     "zh_TW": "chooseImage僅可在移動端微信或APP中使用"
   },
   "uploadImage仅可在移动端微信或APP中使用": {
-    "key": "lyrixi_uploadMedia_prompt",
+    "key": "lyrixi.uploadMedia.prompt",
     "en_US": "uploadFile can only be used in WeChat or APP",
     "zh_HK": "uploadImage僅可在移動端微信或APP中使用",
     "vi_VN": "uploadFile chỉ có thể được sử dụng trên WeChat hoặc APP trên thiết bị di động",
@@ -10580,7 +10579,7 @@
     "zh_TW": "uploadImage僅可在移動端微信或APP中使用"
   },
   "previewImage仅可在移动端微信或APP中使用": {
-    "key": "lyrixi_previewMedia_prompt",
+    "key": "lyrixi.previewMedia.prompt",
     "en_US": "previewMedia can only be used in the app",
     "zh_HK": "previewImage僅可在移動端微信或APP中使用",
     "vi_VN": "previewMedia chỉ có thể được sử dụng trên điện thoại di động, WeChat hoặc APP",
@@ -10651,7 +10650,7 @@
     "zh_TW": "previewImage僅可在移動端微信或APP中使用"
   },
   "previewFile仅可在企业微信或APP中使用": {
-    "key": "lyrixi_previewFile_prompt",
+    "key": "lyrixi.previewFile.prompt",
     "en_US": "previewFile can only be used in WeCom or APP",
     "zh_HK": "previewFile僅可在企業微信或APP中使用",
     "vi_VN": "previewFile chỉ có thể được sử dụng trong WeCom hoặc APP",
@@ -10722,7 +10721,7 @@
     "zh_TW": "previewFile僅可在企業微信或APP中使用"
   },
   "onHistoryBack仅可在企业微信或APP中使用": {
-    "key": "lyrixi_onHistoryBack_prompt",
+    "key": "lyrixi.onHistoryBack.prompt",
     "en_US": "onHistoryBack can only be used in WeCom or APP",
     "zh_HK": "onHistoryBack僅可在企業微信或APP中使用",
     "vi_VN": "onHistoryBack chỉ có thể được sử dụng trong WeCom hoặc APP",
@@ -10793,7 +10792,7 @@
     "zh_TW": "onHistoryBack僅可在企業微信或APP中使用"
   },
   "此功能仅可在微信或APP中使用": {
-    "key": "lyrixi_only_app_wechat",
+    "key": "lyrixi.only.app.wechat",
     "zh_CN": "此功能仅可在微信或APP中使用",
     "en_US": "This feature is only available on WeChat or APP",
     "zh_HK": "此功能僅可在微信或APP中使用",
@@ -10864,7 +10863,7 @@
     "zh_TW": "此功能僅可在微信或APP中使用"
   },
   "扫码失败": {
-    "key": "lyrixi_scanCode_failed",
+    "key": "lyrixi.scanCode.failed",
     "zh_CN": "扫码失败",
     "en_US": "Failed to scan the code",
     "zh_HK": "掃碼失敗",
@@ -10935,7 +10934,7 @@
     "zh_TW": "掃碼失敗"
   },
   "请稍后重试": {
-    "key": "lyrixi_try_again_later",
+    "key": "lyrixi.try.again.later",
     "zh_CN": "请稍后重试",
     "en_US": "Please try again later",
     "zh_HK": "請稍後重試",
@@ -11006,7 +11005,7 @@
     "zh_TW": "請稍後重試"
   },
   "uploadFile仅可在APP中使用": {
-    "key": "lyrixi_uploadFile_prompt",
+    "key": "lyrixi.uploadFile.prompt",
     "en_US": "uploadFile can only be used in the app",
     "zh_HK": "uploadFile僅可在APP中使用",
     "vi_VN": "uploadFile chỉ có thể được sử dụng trong ứng dụng",
@@ -11077,7 +11076,7 @@
     "zh_TW": "uploadFile僅可在APP中使用"
   },
   "您确定要离开此页面吗?": {
-    "key": "lyrixi_quit_page_confirm",
+    "key": "lyrixi.quit.page.confirm",
     "zh_CN": "您确定要离开此页面吗?",
     "en_US": "Are you sure you want to leave this page?",
     "zh_HK": "你確定要離開此頁面啊？",
@@ -11148,7 +11147,7 @@
     "zh_TW": "您確定要離開此頁面嗎？"
   },
   "支付小程序js加载失败": {
-    "key": "lyrixi_alipayMiniProgram_js_load_failed",
+    "key": "lyrixi.alipayMiniProgram.js.load.failed",
     "en_US": "The js of the payment applet failed to load",
     "zh_HK": "支付細程序js加載失敗",
     "vi_VN": "js của applet thanh toán không tải được",
@@ -11219,7 +11218,7 @@
     "zh_TW": "支付小程式js載入失敗"
   },
   "微信js加载失败": {
-    "key": "lyrixi_weChat_js_load_failed",
+    "key": "lyrixi.weChat.js.load.failed",
     "zh_CN": "微信js加载失败",
     "en_US": "WeChat js failed to load",
     "zh_HK": "微信js加载失敗",
@@ -11290,7 +11289,7 @@
     "zh_TW": "微信js載入失敗"
   },
   "scanQRCode仅可在移动端微信或APP中使用": {
-    "key": "lyrixi_scanQRCode_prompt",
+    "key": "lyrixi.scanQRCode.prompt",
     "en_US": "Please use the QR code on WeChat on your mobile phone",
     "zh_HK": "scanQRCode僅可在移動端微信或APP中使用",
     "vi_VN": "scanQRCode chỉ có thể được sử dụng trên WeChat hoặc APP trên thiết bị di động",
@@ -11361,7 +11360,7 @@
     "zh_TW": "scanQRCode僅可在移動端微信或APP中使用"
   },
   "复制到剪贴板成功": {
-    "key": "lyrixi_copy_clipboard_success",
+    "key": "lyrixi.copy.clipboard.success",
     "zh_CN": "复制到剪贴板成功",
     "en_US": "Copied to clipboard successfully",
     "zh_HK": "複製到剪貼板成功",
@@ -11432,7 +11431,7 @@
     "zh_TW": "複製到剪貼板成功"
   },
   "当前设备不允许访问剪贴板": {
-    "key": "lyrixi_copy_clipboard_refuse",
+    "key": "lyrixi.copy.clipboard.refuse",
     "zh_CN": "当前设备不允许访问剪贴板",
     "en_US": "The current device does not allow access to the clipboard",
     "zh_HK": "當前設備唔允許訪問剪貼板",
@@ -11503,7 +11502,7 @@
     "zh_TW": "當前設備不允許訪問剪貼板"
   },
   "打开调试面板失败": {
-    "key": "lyrixi_open_debugger_failed",
+    "key": "lyrixi.open.debugger.failed",
     "en_US": "Failed to open the debug panel",
     "zh_HK": "打開調試面板失敗",
     "vi_VN": "Không mở được bảng gỡ lỗi",

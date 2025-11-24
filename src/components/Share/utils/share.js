@@ -27,7 +27,7 @@ function share(params) {
 
         onError &&
           onError({
-            message: err?.message || LocaleUtil.locale('分享失败', 'lyrixi_share_failed')
+            message: err?.message || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
           })
       }
     })
@@ -45,7 +45,7 @@ function share(params) {
         console.log('DingTalk Share onError:', err)
         onError &&
           onError({
-            message: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi_share_failed')
+            message: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
           })
       }
     })

@@ -30,7 +30,7 @@ let Browser = {
     Toast.show({
       content: LocaleUtil.locale(
         'onHistoryBack仅可在企业微信或APP中使用',
-        'lyrixi_onHistoryBack_prompt'
+        'lyrixi.onHistoryBack.prompt'
       )
     })
   },
@@ -62,7 +62,7 @@ let Browser = {
   },
   tel: function (number) {
     if (Device.device === 'pc') {
-      Toast.show({ content: LocaleUtil.locale('此功能仅可在手机中使用', 'lyrixi_only_mobile') })
+      Toast.show({ content: LocaleUtil.locale('此功能仅可在手机中使用', 'lyrixi.only.mobile') })
       return
     }
     if (isNaN(number)) return
@@ -71,7 +71,7 @@ let Browser = {
   openLocation: function (params) {
     let message = LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
-      'lyrixi_open_location_prompt',
+      'lyrixi.open.location.prompt',
       ['openLocation']
     )
     Toast.show({
@@ -120,7 +120,7 @@ let Browser = {
               params.onError({
                 status: 'error',
                 code: 'LATLNG_ERROR',
-                message: `${LocaleUtil.locale('定位失败', 'lyrixi_location_failed')}`
+                message: `${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`
               })
           }
 
@@ -149,7 +149,7 @@ let Browser = {
               code = 'PERMISSION_DENIED'
               message = `${LocaleUtil.locale(
                 '定位失败,用户拒绝请求地理定位',
-                'lyrixi_location_permission_denied_error'
+                'lyrixi.location.permission.denied.error'
               )}`
               break
             case error.POSITION_UNAVAILABLE:
@@ -157,12 +157,12 @@ let Browser = {
               console.log(
                 `${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
-                  'lyrixi_location_unavailable_error'
+                  'lyrixi.location.unavailable.error'
                 )}`
               )
               message = `${LocaleUtil.locale(
                 '定位失败,位置信息是不可用',
-                'lyrixi_location_unavailable_error'
+                'lyrixi.location.unavailable.error'
               )}`
               break
             case error.TIMEOUT:
@@ -170,12 +170,12 @@ let Browser = {
               console.log(
                 `${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
-                  'lyrixi_location_unavailable_error'
+                  'lyrixi.location.unavailable.error'
                 )}`
               )
               message = `${LocaleUtil.locale(
                 '定位失败,请求获取用户位置超时',
-                'lyrixi_location_timeout_error'
+                'lyrixi.location.timeout.error'
               )}`
               break
             case error.UNKNOWN_ERROR:
@@ -183,18 +183,18 @@ let Browser = {
               console.log(
                 `${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
-                  'lyrixi_location_unavailable_error'
+                  'lyrixi.location.unavailable.error'
                 )}`
               )
               message = `${LocaleUtil.locale(
                 '定位失败,定位系统失效',
-                'lyrixi_location_unknown_error'
+                'lyrixi.location.unknown.error'
               )}`
               break
             default:
               code = 'LOCATION_ERROR'
-              console.log(`${LocaleUtil.locale('定位失败', 'lyrixi_location_failed')}`)
-              message = `${LocaleUtil.locale('定位失败', 'lyrixi_location_failed')}`
+              console.log(`${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`)
+              message = `${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`
           }
           let res = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
@@ -207,11 +207,11 @@ let Browser = {
         }
       )
     } else {
-      console.log(`${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi_location_not_supported')}`)
+      console.log(`${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi.location.not.supported')}`)
       let res = {
         status: 'error',
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
-        message: `${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi_location_not_supported')}`
+        message: `${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi.location.not.supported')}`
       }
       if (params.onError) params.onError(res)
     }
@@ -220,7 +220,7 @@ let Browser = {
   scanQRCode: function (params = {}) {
     if (!this.debug) {
       Toast.show({
-        content: LocaleUtil.locale('此功能仅可在微信或APP中使用', 'lyrixi_only_app_wechat', [
+        content: LocaleUtil.locale('此功能仅可在微信或APP中使用', 'lyrixi.only.app.wechat', [
           'scanQRCode'
         ])
       })
@@ -229,8 +229,8 @@ let Browser = {
           status: 'error',
           message: `scanQRCode:${LocaleUtil.locale(
             '扫码失败',
-            'lyrixi_scanCode_failed'
-          )}, ${LocaleUtil.locale('请稍后重试', 'lyrixi_try_again_later')}`
+            'lyrixi.scanCode.failed'
+          )}, ${LocaleUtil.locale('请稍后重试', 'lyrixi.try.again.later')}`
         })
       return
     }
@@ -242,7 +242,7 @@ let Browser = {
   chooseMedia: function (params) {
     let message = LocaleUtil.locale(
       'chooseMedia仅可在移动端微信或APP中使用',
-      'lyrixi_chooseMedia_prompt',
+      'lyrixi.chooseMedia.prompt',
       ['chooseMedia']
     )
     Toast.show({
@@ -270,7 +270,7 @@ let Browser = {
   previewMedia: function (params = {}) {
     let message = LocaleUtil.locale(
       'previewMedia仅可在移动端微信或APP中使用',
-      'lyrixi_previewMedia_prompt',
+      'lyrixi.previewMedia.prompt',
       ['previewMedia']
     )
     Toast.show({
@@ -281,7 +281,7 @@ let Browser = {
   previewFile: function ({ fileUrl, onSuccess, onError }) {
     let message = LocaleUtil.locale(
       'previewFile仅可在企业微信或APP中使用',
-      'lyrixi_previewFile_prompt',
+      'lyrixi.previewFile.prompt',
       ['previewFile']
     )
     Toast.show({

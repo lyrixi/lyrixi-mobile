@@ -125,7 +125,7 @@ const Media = forwardRef(
         Toast.show({
           content: LocaleUtil.locale(
             '此照片控件无拍照功能, 请勿调用拍照',
-            'lyrixi_image_choose_no_feature'
+            'lyrixi.image.choose.no.feature'
           )
         })
         return false
@@ -135,7 +135,7 @@ const Media = forwardRef(
         Toast.show({
           content: LocaleUtil.locale(
             '未找到拍照按钮, 调用拍照失败',
-            'lyrixi_image_choose_no_upload_button'
+            'lyrixi.image.choose.no.upload.button'
           )
         })
         return false
@@ -154,7 +154,7 @@ const Media = forwardRef(
 
       let hasUploaded = false
       // 开始上传
-      _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi_uploading') })
+      _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi.uploading') })
       for (let [index, item] of newList.entries()) {
         // 只上传未上传或上传失败的照片
         if (item.status === 'choose' || item.status === 'error') {
@@ -185,7 +185,7 @@ const Media = forwardRef(
             Toast.show({
               content: `${LocaleUtil.locale(
                 `网络异常，上传失败${failCount}张`,
-                'lyrixi_upload_error_count',
+                'lyrixi.upload.error.count',
                 [failCount]
               )}`
             })
@@ -246,7 +246,7 @@ const Media = forwardRef(
       let newList = [...list]
       // 开始上传
       _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi_uploading'),
+        content: LocaleUtil.locale('上传中', 'lyrixi.uploading'),
         index: index
       })
       newList[index] = await uploadItem(item, { onUpload })
