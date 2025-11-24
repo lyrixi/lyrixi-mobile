@@ -14,8 +14,8 @@ import { MathUtil } from 'lyrixi-mobile'
  * @returns {string} - 纠正后的值
  */
 function correctInputNumber(val) {
-  // 如果是合法数字，直接返回
-  if (MathUtil.isNumber(val)) {
+  // 如果是合法数字，直接返回(输入中-号允许输入)
+  if (MathUtil.isNumber(val, ['-'])) {
     return val
   }
 
@@ -23,7 +23,7 @@ function correctInputNumber(val) {
   if (val && val.length > 0) {
     const correctedVal = val.slice(0, -1)
     // 检查截取后是否为合法数字
-    if (MathUtil.isNumber(correctedVal)) {
+    if (MathUtil.isNumber(correctedVal, ['-'])) {
       return correctedVal
     }
   }

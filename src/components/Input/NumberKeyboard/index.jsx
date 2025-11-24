@@ -84,7 +84,7 @@ const NumberKeyboard = forwardRef(
       val = precisionFormatter(val, { precision, trim: false })
       val = maxLengthFormatter(val, { maxLength })
       // 输入.不触发onChange
-      console.log('val', val, MathUtil.isNumber(val))
+      console.log('val', val, MathUtil.isNumber(val, ['-']))
       onChange && onChange(correctInputNumber(val))
     }
 
