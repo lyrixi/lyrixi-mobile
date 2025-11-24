@@ -1,8 +1,8 @@
 import React from 'react'
 
-function formatViewItem(item) {
+function formatViewItem(item, index) {
   return {
-    id: item.id,
+    id: item.id ?? index,
     // 左侧图片
     imageUrl: item.imageUrl || '',
     // 头像
