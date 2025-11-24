@@ -2,6 +2,14 @@ import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
 import GroupTitle from './../GroupTitle'
 import Item from './../Item'
 
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // List
 const List = (
   {
@@ -34,6 +42,8 @@ const List = (
     checkable,
 
     // Style
+    style,
+    className,
     itemLayout,
 
     // Elements
@@ -95,8 +105,12 @@ const List = (
         id={item.id ?? index}
         _raw={item._raw}
         checked={checked}
-        // Style
+        // Status
         disabled={item.disabled}
+        checkable={checkable}
+        // Style
+        itemLayout={itemLayout}
+        // Elements
         imageUrl={item.imageUrl}
         avatarUrl={item.avatarUrl}
         title={item.title}
@@ -104,9 +118,6 @@ const List = (
         note={item.note}
         content={item.content}
         action={item.action}
-        // GLobal Config
-        itemLayout={itemLayout}
-        checkable={checkable}
         checkboxRender={checkboxRender}
         // Events
         onSelect={handleChange}
@@ -115,7 +126,7 @@ const List = (
   }
 
   return (
-    <div className="lyrixi-list" ref={rootRef}>
+    <div className={DOMUtil.classNames('lyrixi-list', className)} ref={rootRef} style={style}>
       {Array.isArray(list) &&
         list.map((item, index) => {
           // 渲染分组列表
@@ -126,6 +137,8 @@ const List = (
                   title={item.title}
                   anchor={item.anchor}
                   description={item.description}
+                  style={item.style}
+                  className={item.className}
                 />
 
                 {/* list-items: 原本想包一层, 但VirtualList无法分组包裹 */}

@@ -1,108 +1,89 @@
 import React, { forwardRef } from 'react'
-import Item from './../../Item'
-import GroupTitle from './../../GroupTitle'
+import List from './../../List'
 
+// 虚拟滚动条需要用绝对定位
 const itemAbsoluteStyle = {
   position: 'absolute',
   left: 0,
   right: 0
 }
+
 // 普通列表
-const List = (
+const VirtualList = (
   {
-    allowClear,
-    multiple,
+    // Value & Display Value
     value,
+    multiple,
+    allowClear,
     list,
-    // List config
-    itemRender,
-    itemLayout,
+    /*
+    // Group
+    {
+      title: '',
+      children: ...
+    },
+    // No Group
+    {
+      _raw: 原始数据, 必传,
+      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
+      id: '选项1',
+      title: '选项1',
+      description: '普通描述',
+      content: '自定义内容',
+      actionRender: () => {
+        return <Button>action</Button>
+      }
+    }
+    */
+
+    // Status
     checkable,
-    // virtual config
-    height,
+
+    // Style
+    itemLayout,
+
+    // Elements
+    itemRender,
+    checkboxRender,
+
     // Events
     onChange
   },
   ref
 ) => {
-  // 回传带checked属性的原始数据
-  function handleChange(_raw) {
-    let newValue = null
-    // 多选
-    if (multiple) {
-      if (!_raw.checked) {
-        newValue = (value || []).filter((valueItem) => valueItem?.id !== _raw.id)
-      } else {
-        newValue = [...(value || []), _raw]
-      }
-    }
-    // 单选
-    else {
-      if (!_raw.checked) {
-        newValue = allowClear ? null : _raw
-      } else {
-        newValue = _raw
-      }
-    }
-    onChange && onChange(newValue, _raw)
-  }
-
+  // 滚动占位元素
   return (
-    // 滚动占位元素
-    <div
+    <List
       ref={ref}
+      // Value & Display Value
+      value={value}
+      multiple={multiple}
+      allowClear={allowClear}
+      list={list?.map((item) => {
+        // 虚拟滚动条需要用绝对定位
+        item.style = {
+          ...item?.style,
+          ...itemAbsoluteStyle,
+          top: item.virtualData.top
+        }
+        return item
+      })}
+      // Status
+      checkable={checkable}
+      // Style
       style={{
         position: 'relative',
         flex: 'none',
         height: height
       }}
-    >
-      {/* 可见项容器 */}
-      {(list || []).map((item) => {
-        if (item.virtualData.type === 'group') {
-          return (
-            <GroupTitle
-              key={item.id || item.virtualData.index}
-              anchor={item.anchor}
-              title={item.title}
-              description={item.description}
-              // Virtual style
-              style={{
-                ...item?.style,
-                ...itemAbsoluteStyle,
-                top: item.virtualData.top
-              }}
-            />
-          )
-        }
-        return (
-          <Item
-            key={item.id || item.virtualData.index}
-            multiple={multiple}
-            // Custom ItemRender or Item
-            itemRender={itemRender}
-            // Display Item
-            title={item.title}
-            // Other Item
-            {...item}
-            // Item Data
-            itemData={item}
-            // Global Config
-            itemLayout={itemLayout}
-            checkable={checkable}
-            checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
-            onSelect={handleChange}
-            // Virtual style
-            style={{
-              ...item?.style,
-              ...itemAbsoluteStyle,
-              top: item.virtualData.top
-            }}
-          />
-        )
-      })}
-    </div>
+      itemLayout={itemLayout}
+      // Elements
+      itemRender={itemRender}
+      checkboxRender={checkboxRender}
+      // Events
+      onChange={onChange}
+    />
   )
 }
 
-export default forwardRef(List)
+export default forwardRef(VirtualList)

@@ -1,17 +1,19 @@
 import React from 'react'
 
 // 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
 import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { IndexBar } from 'lyrixi-mobile'
+import { DOMUtil, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取分组标题
 function GroupTitle({
   // Style
   style,
+  className,
 
   // Elements
   anchor,
@@ -34,7 +36,7 @@ function GroupTitle({
   }
 
   return (
-    <div className="lyrixi-list-divider" style={style}>
+    <div className={DOMUtil.classNames('lyrixi-list-divider', className)} style={style}>
       {TitleNode}
     </div>
   )

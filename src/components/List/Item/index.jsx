@@ -20,8 +20,8 @@ const Item = ({
   checkable,
 
   // Style
-  className,
   style,
+  className,
   itemLayout,
 
   // Elements
@@ -118,7 +118,7 @@ const Item = ({
           className,
           disabled ? 'lyrixi-disabled' : '',
           checked ? 'lyrixi-checked' : '',
-          itemLayout ? itemLayout : ''
+          itemLayout ? `lyrixi-${itemLayout}` : ''
         )}
         onClick={(e) => {
           e.stopPropagation()
