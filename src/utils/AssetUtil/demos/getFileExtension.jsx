@@ -6,18 +6,18 @@ export default () => {
     <>
       <div>
         {AssetUtil.getFileExtension(
-          '//colaboy.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js'
+          'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js'
         )}
       </div>
       <div>{AssetUtil.getFileExtension('leaflet.pdf')}</div>
       <div>
         {AssetUtil.getFileExtension(
-          '//colaboy.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.image'
+          'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.image'
         )}
       </div>
       <div>
         {AssetUtil.getFileExtension(
-          '//colaboy.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.'
+          'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.'
         ) || 'No Extension'}
       </div>
       <div>{AssetUtil.getFileExtension('leaflet. a') || 'No Extension'}</div>

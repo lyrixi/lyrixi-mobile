@@ -113,4 +113,4 @@ export default () => (
 )
 ```
 
-[Visit lyrixi-mobile docs](https://colaboy.github.io/lyrixi-mobile/)
+[Visit lyrixi-mobile docs](https://lyrixi.github.io/lyrixi-mobile/)

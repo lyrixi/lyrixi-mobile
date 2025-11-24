@@ -3,7 +3,7 @@ import { AssetUtil } from 'lyrixi-mobile'
 
 export default () => {
   function handleLoadJsByCallback() {
-    AssetUtil.loadJs('//colaboy.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js', {
+    AssetUtil.loadJs('https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js', {
       id: 'leaflet-js',
       onSuccess: () => {
         alert('Js load succeeded')
@@ -15,7 +15,7 @@ export default () => {
   }
   async function handleLoadJsByAsync() {
     let result = await AssetUtil.loadJs(
-      '//colaboy.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
+      'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
       {
         id: 'leaflet-js'
       }
