@@ -9,6 +9,11 @@
     box-sizing: border-box;
   }
 
+  .lyrixi-col-auto {
+    flex: auto;
+    max-width: auto;
+  }
+
   // 定义col, 从col-1开始到col-24结束
   .lyrixi-setCol(@n, @i:1) when(@i<=@n) {
     .lyrixi-col-@{i} {

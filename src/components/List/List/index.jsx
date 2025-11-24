@@ -116,7 +116,9 @@ const List = (
         layout={itemLayout}
         // Elements
         imageUrl={item.imageUrl}
+        imageRender={item.imageRender}
         avatarUrl={item.avatarUrl}
+        avatarRender={item.avatarRender}
         title={item.title}
         description={item.description}
         note={item.note}

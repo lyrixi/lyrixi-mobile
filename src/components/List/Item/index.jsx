@@ -26,7 +26,9 @@ const Item = ({
 
   // Elements
   imageUrl,
+  imageRender,
   avatarUrl,
+  avatarRender,
   title,
   description,
   note,
@@ -57,6 +59,13 @@ const Item = ({
 
   // 渲染图片
   function getImageNode() {
+    if (typeof imageRender === 'function') {
+      return (
+        <div className="lyrixi-list-item-meta-image">
+          {imageRender({ id, ...(_raw || {}), checked })}
+        </div>
+      )
+    }
     if (imageUrl && typeof imageUrl === 'string') {
       return (
         <div className="lyrixi-list-item-meta-image">
@@ -79,6 +88,13 @@ const Item = ({
 
   // 渲染头像
   function getAvatarNode() {
+    if (typeof avatarRender === 'function') {
+      return (
+        <div className="lyrixi-list-item-meta-avatar">
+          {avatarRender({ id, ...(_raw || {}), checked })}
+        </div>
+      )
+    }
     if (avatarUrl && typeof avatarUrl === 'string') {
       return (
         <div className="lyrixi-list-item-meta-avatar">
