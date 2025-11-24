@@ -37,6 +37,7 @@ const Main = forwardRef(
       // Events
       onChange,
       onScroll,
+      onScrollEnd,
       onTopRefresh,
       onBottomRefresh
     },
@@ -52,6 +53,7 @@ const Main = forwardRef(
         onTopRefresh={onTopRefresh}
         onBottomRefresh={onBottomRefresh}
         onScroll={onScroll}
+        onScrollEnd={onScrollEnd}
       >
         {/* Elements: Prepend */}
         {typeof prependRender === 'function' ? prependRender({ list, value, onChange }) : null}

@@ -46,21 +46,19 @@ const IndexBar = forwardRef(
         getRootDOM: () => sidebarRef.current,
         getTooltipDOM: () => sidebarRef.current,
         activeAnchor: (currentAnchor) => {
-          if (currentAnchor) {
-            activeButton({
-              anchor: currentAnchor,
-              sidebarDOM: sidebarRef.current,
-              tooltipDOM: tooltipRef.current
-            })
-          } else {
-            let currentAnchor = getAnchorByViewport(scrollerDOM)
-            currentAnchor &&
-              activeButton({
-                anchor: currentAnchor,
-                sidebarDOM: sidebarRef.current,
-                tooltipDOM: tooltipRef.current
-              })
+          if (!currentAnchor && scrollerDOM) {
+            // eslint-disable-next-line
+            currentAnchor = getAnchorByViewport(scrollerDOM)
           }
+          if (!currentAnchor) {
+            console.error('IndexBar: no anchor found in scrollerDOM')
+            return
+          }
+          activeButton({
+            anchor: currentAnchor,
+            sidebarDOM: sidebarRef.current,
+            tooltipDOM: tooltipRef.current
+          })
         },
         scrollToAnchor: goAnchor
       }

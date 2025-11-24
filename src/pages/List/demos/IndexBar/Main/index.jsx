@@ -9,7 +9,7 @@ import formatResult from './formatResult'
 import formatViewList from './formatViewList'
 
 // 简便的列表组件, 只需要传入url和params即可
-const Main = ({ cacheName, virtual, queryParams, onLoad }, ref) => {
+const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => {
   return (
     <PaginationList
       ref={ref}
@@ -20,6 +20,7 @@ const Main = ({ cacheName, virtual, queryParams, onLoad }, ref) => {
       formatResult={formatResult}
       formatViewList={formatViewList}
       onLoad={onLoad}
+      onScrollEnd={onScrollEnd}
       onChange={(value) => {
         console.log(value)
       }}

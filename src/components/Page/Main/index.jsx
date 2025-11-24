@@ -4,13 +4,14 @@ import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk.js'
 
 // 内库使用-start
+import Device from './../../../utils/Device'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import SafeArea from './../../SafeArea'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
+import { Device, DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-start */
 
 // 下拉刷新容器
@@ -32,13 +33,16 @@ const Main = forwardRef(
       // Events
       onTopRefresh,
       onBottomRefresh,
-      onScroll
+      onScroll,
+      onScrollEnd
     },
     ref
   ) => {
     const rootRef = useRef(null)
     const isLoadingRef = useRef(null)
     const topContainerRef = useRef(null)
+    // 滚动节流定时器
+    const scrollThrottleRef = useRef(null)
 
     // Expose api
     useImperativeHandle(ref, () => {
@@ -133,6 +137,20 @@ const Main = forwardRef(
 
     async function handleScroll(e) {
       if (onScroll) onScroll(e)
+
+      // ios滚动过程中不允许点击tab，否则可能会局部白屏
+      document.documentElement.classList.add(`lyrixi-${Device.os}-scrolling`)
+      if (scrollThrottleRef.current) {
+        window.clearTimeout(scrollThrottleRef.current)
+      }
+      scrollThrottleRef.current = setTimeout(() => {
+        // 因为现在onScrollEnd原生事件兼容性非常不好，暂时使用此方法模拟
+        onScrollEnd && onScrollEnd(e)
+        document.documentElement.classList.remove(`lyrixi-${Device.os}-scrolling`)
+        // 滚动处理完成
+      }, 500)
+
+      // 滚动到底部加载更多
       if (!onBottomRefresh || isLoadingRef.current) return
       if (isBottom(rootRef.current)) {
         isLoadingRef.current = true

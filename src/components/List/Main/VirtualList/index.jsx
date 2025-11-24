@@ -44,6 +44,7 @@ const VirtualList = (
     // Events
     onChange,
     onScroll,
+    onScrollEnd,
     onTopRefresh,
     onBottomRefresh
   },
@@ -160,6 +161,7 @@ const VirtualList = (
       onTopRefresh={onTopRefresh}
       onBottomRefresh={onBottomRefresh}
       onScroll={handleScroll}
+      onScrollEnd={onScrollEnd}
     >
       {/* Elements: Prepend */}
       {typeof prependRender === 'function' ? prependRender({ list, value, onChange }) : null}

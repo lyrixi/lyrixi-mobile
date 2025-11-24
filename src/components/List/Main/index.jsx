@@ -63,13 +63,11 @@ const Main = forwardRef(
       // Events
       onChange,
       onScroll,
+      onScrollEnd,
       onLoad
     },
     ref
   ) => {
-    // 滚动节流定时器
-    const scrollThrottleRef = useRef(null)
-
     // 容器
     const mainRef = useRef(null)
 
@@ -190,21 +188,8 @@ const Main = forwardRef(
         multiple={multiple}
         value={value}
         onChange={onChange}
-        onScroll={(e) => {
-          // Callback
-          onScroll && onScroll(e)
-
-          // ios滚动过程中不允许点击tab，否则可能会局部白屏
-          document.documentElement.classList.add(`lyrixi-${Device.os}-scrolling`)
-
-          if (scrollThrottleRef.current) {
-            window.clearTimeout(scrollThrottleRef.current)
-          }
-          scrollThrottleRef.current = setTimeout(() => {
-            document.documentElement.classList.remove(`lyrixi-${Device.os}-scrolling`)
-            // 滚动处理完成
-          }, 500)
-        }}
+        onScroll={onScroll}
+        onScrollEnd={onScrollEnd}
         // List config
         itemRender={itemRender}
         itemLayout={itemLayout}

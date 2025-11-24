@@ -36,6 +36,7 @@ const IndexBarList = () => {
       <Main
         ref={mainRef}
         params={queryParams}
+        // 列表加载完成后, 更新索引栏anchors
         onLoad={({ result, action }) => {
           let newAnchors = {}
           for (let i = 0; i < result?.list?.length; i++) {
@@ -46,13 +47,12 @@ const IndexBarList = () => {
           }
           setAnchors(Object.values(newAnchors))
         }}
+        onScrollEnd={(e) => {
+          indexBarRef.current.activeAnchor()
+        }}
       />
 
-      <IndexBar
-        anchors={anchors}
-        indexBarRef={indexBarRef}
-        scrollerDOM={mainRef?.current?.rootDOM}
-      />
+      <IndexBar anchors={anchors} ref={indexBarRef} scrollerDOM={mainRef?.current?.rootDOM} />
     </Page>
   )
 }

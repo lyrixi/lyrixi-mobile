@@ -53,6 +53,7 @@ const PaginationList = forwardRef(
       // Events
       onChange,
       onScroll,
+      onScrollEnd,
       onLoad
     },
     ref
@@ -158,6 +159,7 @@ const PaginationList = forwardRef(
         // Events
         onChange={onChange}
         onScroll={onScroll}
+        onScrollEnd={onScrollEnd}
         onLoad={({ result, action }) => {
           // 初始化时, 有缓存时优先读取缓存, 并滚动到缓存位置
           if (action === 'load' && cacheName) {

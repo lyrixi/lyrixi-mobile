@@ -34,9 +34,6 @@ const Edit = () => {
   // 表单
   const [form] = Form.useForm()
 
-  // 滚动节流定时器
-  const scrollThrottleRef = useRef(null)
-
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
 
@@ -109,18 +106,14 @@ const Edit = () => {
   return (
     <Page className="lyrixi-full">
       <Page.Main
-        onScroll={function (e) {
-          if (scrollThrottleRef.current) {
-            window.clearTimeout(scrollThrottleRef.current)
+        // 滚动结束记录滚动条位置
+        onScrollEnd={(e) => {
+          // 记录滚动条位置
+          if (cacheConfig?.name && typeof e?.target?.scrollTop === 'number') {
+            Storage.setCache(`${cacheConfig.name}:scrollTop`, e.target.scrollTop, {
+              persist: cacheConfig?.persist
+            })
           }
-          scrollThrottleRef.current = setTimeout(() => {
-            // 记录滚动条位置
-            if (cacheConfig?.name && typeof e?.target?.scrollTop === 'number') {
-              Storage.setCache(`${cacheConfig.name}:scrollTop`, e.target.scrollTop, {
-                persist: cacheConfig?.persist
-              })
-            }
-          }, 500)
         }}
       >
         <Form
