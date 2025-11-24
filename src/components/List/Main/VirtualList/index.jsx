@@ -6,12 +6,11 @@ import getVisibleItems from './getVisibleItems'
 import List from './List'
 
 // 内库使用-start
-import DOMUtil from './../../../../utils/DOMUtil'
 import Page from './../../../Page'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Page } from 'lyrixi-mobile'
+import { Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // 列表
