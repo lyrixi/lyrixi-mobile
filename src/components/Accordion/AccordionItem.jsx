@@ -2,11 +2,13 @@ import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } f
 import AccordionTransition from './AccordionTransition'
 
 // 内库使用-start
+import LocaleUtil from './../../utils/LocaleUtil'
 import DOMUtil from './../../utils/DOMUtil'
+import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { LocaleUtil, DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 // AccordionItem组件
@@ -22,8 +24,10 @@ const AccordionItem = (
     // Elements
     title,
     headerRender,
-    arrowRender = 'accordion-item-header-arrow-icon',
+    footerRender,
+    arrowClassName = 'lyrixi-iconfont-arrow-up',
     arrowPosition = 'right',
+    arrowRender,
     children,
 
     // Events
@@ -85,29 +89,55 @@ const AccordionItem = (
 
   // 获取箭头节点
   function getArrowNode() {
-    if (typeof arrowRender !== 'function') return null
+    if (typeof arrowRender === 'function') {
+      return <div className="lyrixi-accordion-item-arrow">{arrowRender({ open })}</div>
+    }
 
-    return <div className="lyrixi-accordion-item-header-arrow">{arrowRender({ open })}</div>
+    return (
+      <div className="lyrixi-accordion-item-arrow">
+        <Icon className={arrowClassName} size="xs" onClick={() => setVisible(false)} />
+      </div>
+    )
   }
 
   const ArrowNode = getArrowNode()
 
   // 获取Header节点
   function getHeaderNode() {
-    // 默认Header
-    if (typeof headerRender !== 'function') {
-      return (
-        <div className="lyrixi-accordion-item-header-wrapper">
-          {arrowPosition === 'left' && ArrowNode}
-          <div className="lyrixi-accordion-item-header-title">{title}</div>
-          {arrowPosition === 'right' && ArrowNode}
-        </div>
-      )
+    if (typeof headerRender === 'function') {
+      return headerRender({
+        open,
+        onClick: handleClick
+      })
     }
 
-    return headerRender({
-      open
-    })
+    return (
+      <div className="lyrixi-accordion-item-header" onClick={handleClick}>
+        {arrowPosition === 'left' && ArrowNode}
+        <div className="lyrixi-accordion-item-header-title">{title}</div>
+        {arrowPosition === 'right' && ArrowNode}
+      </div>
+    )
+  }
+
+  // 获取Footer节点
+  function getFooterNode() {
+    if (typeof footerRender === 'function') {
+      return footerRender({
+        open,
+        onClick: handleClick
+      })
+    }
+
+    return (
+      <div className="lyrixi-accordion-item-footer" onClick={handleClick}>
+        {arrowPosition === 'left' && ArrowNode}
+        <div className="lyrixi-accordion-item-footer-title">
+          {open ? LocaleUtil.locale('收起') : LocaleUtil.locale('查看更多')}
+        </div>
+        {arrowPosition === 'right' && ArrowNode}
+      </div>
+    )
   }
 
   return (
@@ -122,14 +152,15 @@ const AccordionItem = (
       )}
     >
       {/* Element: Header */}
-      <div className="lyrixi-accordion-item-header" onClick={handleClick}>
-        {getHeaderNode()}
-      </div>
+      {getHeaderNode()}
 
       {/* Element: Main */}
       <AccordionTransition open={open}>
         <div className="lyrixi-accordion-item-main">{children}</div>
       </AccordionTransition>
+
+      {/* Element: Footer */}
+      {getFooterNode()}
     </div>
   )
 }
