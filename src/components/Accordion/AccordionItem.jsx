@@ -21,6 +21,9 @@ const AccordionItem = (
     style,
     className,
 
+    // Behavior
+    minHeight,
+
     // Elements
     title,
     headerRender,
@@ -95,7 +98,7 @@ const AccordionItem = (
 
     return (
       <div className="lyrixi-accordion-item-arrow">
-        <Icon className={arrowClassName} size="xs" onClick={() => setVisible(false)} />
+        <Icon className={arrowClassName} size="xs" />
       </div>
     )
   }
@@ -155,7 +158,7 @@ const AccordionItem = (
       {getHeaderNode()}
 
       {/* Element: Main */}
-      <AccordionTransition open={open}>
+      <AccordionTransition open={open} minHeight={minHeight}>
         <div className="lyrixi-accordion-item-main">{children}</div>
       </AccordionTransition>
 

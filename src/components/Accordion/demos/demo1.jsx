@@ -94,6 +94,20 @@ export default () => {
         </Card>
 
         <Card>
+          <Divider>Min Height</Divider>
+          <div style={{ margin: '0 12px' }}>
+            <Accordion.Item title="Partial Collapse" open={false} minHeight={60}>
+              <div
+                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                style={{ height: 160 }}
+              >
+                Content keeps 60px visible when collapsed.
+              </div>
+            </Accordion.Item>
+          </div>
+        </Card>
+
+        <Card>
           <Divider>Item(Controlled component)</Divider>
           <div style={{ margin: '0 12px' }}>
             <Accordion.Item

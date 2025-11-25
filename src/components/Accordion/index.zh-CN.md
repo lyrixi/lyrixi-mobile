@@ -41,3 +41,26 @@ toc: content
 | getActiveIndex | 获取激活索引 | `() => number`            |
 | openIndex      | 打开指定索引 | `(index: number) => void` |
 | close          | 关闭所有     | `() => void`              |
+
+## Accordion.Item
+
+### 属性
+
+| 属性           | 说明                       | 类型                 | 默认值                       |
+| -------------- | -------------------------- | -------------------- | ---------------------------- |
+| open           | 是否展开                   | `boolean`            | `true`                       |
+| title          | 标题                       | `ReactNode`          | -                            |
+| minHeight      | 收缩时保留的最小高度（px） | `number`             | -                            |
+| headerRender   | 自定义头部                 | `(ctx) => ReactNode` | -                            |
+| footerRender   | 自定义底部                 | `(ctx) => ReactNode` | -                            |
+| arrowClassName | 箭头图标类名               | `string`             | `'lyrixi-iconfont-arrow-up'` |
+| arrowPosition  | 箭头位置                   | `'left' \| 'right'`  | `'right'`                    |
+| arrowRender    | 自定义箭头                 | `(ctx) => ReactNode` | -                            |
+| children       | 内容                       | `ReactNode`          | -                            |
+
+### 事件
+
+| 事件    | 说明       | 类型         |
+| ------- | ---------- | ------------ |
+| onOpen  | 打开时回调 | `() => void` |
+| onClose | 关闭时回调 | `() => void` |
