@@ -15,7 +15,7 @@ import { LocaleUtil, DOMUtil, Icon } from 'lyrixi-mobile'
 const AccordionItem = (
   {
     // Status
-    open: externalOpen = true,
+    open: externalOpen = false,
 
     // Style
     style,
