@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Divider, Page, Card, Button, Collapse } from 'lyrixi-mobile'
+import { Divider, Page, Card, Button, Accordion } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState(null)
@@ -18,85 +18,85 @@ export default () => {
             Open Third
           </Button>
           {/* Group only allow single item appear */}
-          <Collapse.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
-            <Collapse.Item title="One">
+          <Accordion.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
+            <Accordion.Item title="One">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item title="Two">
+            </Accordion.Item>
+            <Accordion.Item title="Two">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item title="Three">
+            </Accordion.Item>
+            <Accordion.Item title="Three">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item title="Four">
+            </Accordion.Item>
+            <Accordion.Item title="Four">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Collapse.Item>
-          </Collapse.Group>
+            </Accordion.Item>
+          </Accordion.Group>
         </Card>
 
         <Card>
           <Divider>Group</Divider>
           {/* Group only allow single item appear */}
-          <Collapse.Group style={{ margin: '0 12px' }}>
-            <Collapse.Item title="One">
+          <Accordion.Group style={{ margin: '0 12px' }}>
+            <Accordion.Item title="One">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item title="Two">
+            </Accordion.Item>
+            <Accordion.Item title="Two">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item title="Three">
+            </Accordion.Item>
+            <Accordion.Item title="Three">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item title="Four">
+            </Accordion.Item>
+            <Accordion.Item title="Four">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Collapse.Item>
-          </Collapse.Group>
+            </Accordion.Item>
+          </Accordion.Group>
         </Card>
 
         <Card>
           <Divider>Item(Controlled component)</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Collapse.Item
+            <Accordion.Item
               title="One"
               open={value === 0}
               onOpen={() => setValue(0)}
@@ -108,53 +108,53 @@ export default () => {
               >
                 First Text
               </div>
-            </Collapse.Item>
+            </Accordion.Item>
           </div>
         </Card>
 
         <Card>
           <Divider>Left Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Collapse.Item title="One" arrowPosition="left">
+            <Accordion.Item title="One" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item open={false} title="Two" arrowPosition="left">
+            </Accordion.Item>
+            <Accordion.Item open={false} title="Two" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item open={false} title="Three" arrowPosition="left">
+            </Accordion.Item>
+            <Accordion.Item open={false} title="Three" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Collapse.Item>
-            <Collapse.Item open={false} title="Four" arrowPosition="left">
+            </Accordion.Item>
+            <Accordion.Item open={false} title="Four" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Collapse.Item>
+            </Accordion.Item>
           </div>
         </Card>
 
         <Card>
           <Divider>Custom Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Collapse.Item
-              arrowRender={() => <i className="lyrixi-icon lyrixi-iconfont-star-fill" />}
+            <Accordion.Item
+              arrowRender={({ open }) => <i className="lyrixi-icon lyrixi-iconfont-star-fill" />}
               title="Arrow ClassName"
             >
               <div
@@ -163,10 +163,10 @@ export default () => {
               >
                 Arrow ClassName
               </div>
-            </Collapse.Item>
-            <Collapse.Item
+            </Accordion.Item>
+            <Accordion.Item
               open={false}
-              arrowRender={() => {
+              arrowRender={({ open }) => {
                 return (
                   <i
                     className="lyrixi-iconfont-star-fill"
@@ -185,14 +185,14 @@ export default () => {
               >
                 Arrow Node
               </div>
-            </Collapse.Item>
+            </Accordion.Item>
           </div>
         </Card>
 
         <Card>
           <Divider>Custom Header</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Collapse.Item
+            <Accordion.Item
               open={false}
               headerRender={({ open }) => {
                 return (
@@ -212,7 +212,7 @@ export default () => {
               >
                 First Text
               </div>
-            </Collapse.Item>
+            </Accordion.Item>
           </div>
         </Card>
       </Page.Main>

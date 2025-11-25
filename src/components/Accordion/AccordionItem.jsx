@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } from 'react'
-import CollapseTransition from './CollapseTransition'
+import AccordionTransition from './AccordionTransition'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -9,8 +9,8 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// CollapseItem组件
-const CollapseItem = (
+// AccordionItem组件
+const AccordionItem = (
   {
     // Status
     open: externalOpen = true,
@@ -22,7 +22,7 @@ const CollapseItem = (
     // Elements
     title,
     headerRender,
-    arrowRender = 'collapse-item-header-arrow-icon',
+    arrowRender = 'accordion-item-header-arrow-icon',
     arrowPosition = 'right',
     children,
 
@@ -87,7 +87,7 @@ const CollapseItem = (
   function getArrowNode() {
     if (typeof arrowRender !== 'function') return null
 
-    return <div className="lyrixi-collapse-item-header-arrow">{arrowRender({ open })}</div>
+    return <div className="lyrixi-accordion-item-header-arrow">{arrowRender({ open })}</div>
   }
 
   const ArrowNode = getArrowNode()
@@ -97,9 +97,9 @@ const CollapseItem = (
     // 默认Header
     if (typeof headerRender !== 'function') {
       return (
-        <div className="lyrixi-collapse-item-header-wrapper">
+        <div className="lyrixi-accordion-item-header-wrapper">
           {arrowPosition === 'left' && ArrowNode}
-          <div className="lyrixi-collapse-item-header-title">{title}</div>
+          <div className="lyrixi-accordion-item-header-title">{title}</div>
           {arrowPosition === 'right' && ArrowNode}
         </div>
       )
@@ -115,19 +115,23 @@ const CollapseItem = (
       ref={rootRef}
       // Style
       style={style}
-      className={DOMUtil.classNames('lyrixi-collapse-item', className, open ? 'lyrixi-active' : '')}
+      className={DOMUtil.classNames(
+        'lyrixi-accordion-item',
+        className,
+        open ? 'lyrixi-active' : ''
+      )}
     >
       {/* Element: Header */}
-      <div className="lyrixi-collapse-item-header" onClick={handleClick}>
+      <div className="lyrixi-accordion-item-header" onClick={handleClick}>
         {getHeaderNode()}
       </div>
 
       {/* Element: Main */}
-      <CollapseTransition open={open}>
-        <div className="lyrixi-collapse-item-main">{children}</div>
-      </CollapseTransition>
+      <AccordionTransition open={open}>
+        <div className="lyrixi-accordion-item-main">{children}</div>
+      </AccordionTransition>
     </div>
   )
 }
 
-export default forwardRef(CollapseItem)
+export default forwardRef(AccordionItem)

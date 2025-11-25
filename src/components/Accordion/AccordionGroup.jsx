@@ -8,7 +8,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const CollapseGroup = (
+const AccordionGroup = (
   {
     // Value & Display Value
     value,
@@ -66,7 +66,7 @@ const CollapseGroup = (
       ref={rootRef}
       // Style
       style={style}
-      className={DOMUtil.classNames('lyrixi-collapse-group', className)}
+      className={DOMUtil.classNames('lyrixi-accordion-group', className)}
     >
       {/* Element: Children */}
       {React.Children.map(children, (child, index) => {
@@ -95,4 +95,4 @@ const CollapseGroup = (
   )
 }
 
-export default forwardRef(CollapseGroup)
+export default forwardRef(AccordionGroup)

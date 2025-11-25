@@ -1,7 +1,7 @@
 ---
 category: Components
 group: Feedback
-title: Collapse
+title: Accordion
 ---
 
-# Collapse
+# Accordion

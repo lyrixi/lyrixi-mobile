@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
-// CollapseTransition组件
-const CollapseTransition = ({ open, children }) => {
+// AccordionTransition组件
+const AccordionTransition = ({ open, children }) => {
   const rootRef = useRef(null)
   // 显示动画计时器
   const enterTimerRef = useRef(null)
@@ -110,10 +110,10 @@ const CollapseTransition = ({ open, children }) => {
   }
 
   return (
-    <div className="lyrixi-collapse-transition" style={{ overflow: 'hidden' }} ref={rootRef}>
+    <div className="lyrixi-accordion-transition" style={{ overflow: 'hidden' }} ref={rootRef}>
       {children}
     </div>
   )
 }
 
-export default CollapseTransition
+export default AccordionTransition

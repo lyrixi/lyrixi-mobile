@@ -3,11 +3,11 @@ group:
   title: 反馈
   order: 2
 order: 1
-title: Collapse
+title: Accordion
 toc: content
 ---
 
-# Collapse
+# Accordion
 
 折叠面板组件，用于内容展开和收起。
 
@@ -22,7 +22,7 @@ toc: content
 
 <code src="./demos/demo1.jsx"></code>
 
-## Collapse.Group
+## Accordion.Group
 
 ### 属性
 
