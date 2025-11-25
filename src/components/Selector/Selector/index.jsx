@@ -115,9 +115,9 @@ const Selector = forwardRef(
     }
 
     // 判断是否需要显示省略按钮
-    const hasEllipsis = ellipsis && ellipsis.max && list.length > ellipsis.max
+    const hasEllipsis = ellipsis && ellipsis.count && list.length > ellipsis.count
     // 实际显示的列表
-    const displayList = hasEllipsis && !expanded ? list.slice(0, ellipsis.max) : list
+    const displayList = hasEllipsis && !expanded ? list.slice(0, ellipsis.count) : list
 
     return (
       <div

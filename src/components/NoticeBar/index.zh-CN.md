@@ -31,7 +31,6 @@ toc: content
 | title       | 通知标题           | `ReactNode`                                 | -       |
 | description | 通知描述           | `ReactNode`                                 | -       |
 | closable    | 是否可关闭         | `boolean`                                   | `false` |
-| iconNode    | 自定义图标节点     | `ReactNode`                                 | -       |
 | iconRender  | 自定义图标渲染函数 | `() => ReactNode`                           | -       |
 | style       | 自定义样式         | `CSSProperties`                             | -       |
 | className   | 自定义类名         | `string`                                    | -       |

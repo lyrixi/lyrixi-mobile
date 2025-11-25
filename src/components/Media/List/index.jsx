@@ -26,14 +26,14 @@ const List = ({
     onChange && onChange(newList, { action: 'delete' })
   }
 
-  const maxVisible = ellipsis?.max
+  const maxCountVisible = ellipsis?.count
 
   return (
     <>
       {/* 图片列表 */}
       {list && list.length > 0
         ? list.map((item, index) => {
-            if (maxVisible && index + 1 > maxVisible) return null
+            if (maxCountVisible && index + 1 > maxCountVisible) return null
             return (
               <Item
                 key={index}
@@ -42,7 +42,9 @@ const List = ({
                 index={index}
                 // Element
                 remainCount={
-                  maxVisible && index === maxVisible - 1 ? list.length - maxVisible : null
+                  maxCountVisible && index === maxCountVisible - 1
+                    ? list.length - maxCountVisible
+                    : null
                 }
                 uploadingType="item"
                 uploadingRender={uploadingRender}
