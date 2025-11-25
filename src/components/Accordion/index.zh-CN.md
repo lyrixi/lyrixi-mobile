@@ -20,7 +20,13 @@ toc: content
 
 ## 示例
 
+### 头部展开收起
+
 <code src="./demos/Header.jsx"></code>
+
+### 底部展开收起（省略号效果）
+
+<code src="./demos/Ellipsis.jsx"></code>
 
 ## Accordion.Group
 

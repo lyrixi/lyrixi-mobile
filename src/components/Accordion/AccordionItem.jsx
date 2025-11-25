@@ -115,6 +115,10 @@ const AccordionItem = (
       })
     }
 
+    if (!title) {
+      return null
+    }
+
     return (
       <div className="lyrixi-accordion-item-header" onClick={handleClick}>
         {arrowPosition === 'left' && ArrowNode}
