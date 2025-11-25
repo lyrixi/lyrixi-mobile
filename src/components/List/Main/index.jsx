@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
-import viewFormatter from './utils/viewFormatter'
 import InfiniteScroll from './../InfiniteScroll'
 import Loading from './components/Loading'
 import List from './List'
@@ -181,7 +180,9 @@ const Main = forwardRef(
         ref={mainRef}
         // Value & Display Value
         value={value}
-        list={viewFormatter(result?.list, { formatViewList, formatViewItem })}
+        list={result?.list}
+        formatViewList={formatViewList}
+        formatViewItem={formatViewItem}
         // Status
         virtual={virtual}
         multiple={multiple}

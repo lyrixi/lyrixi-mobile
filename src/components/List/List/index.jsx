@@ -1,4 +1,5 @@
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
+import viewFormatter from './viewFormatter'
 import GroupTitle from './../GroupTitle'
 import Item from './../Item'
 
@@ -18,6 +19,8 @@ const List = (
     multiple,
     allowClear,
     list,
+    formatViewList,
+    formatViewItem,
     /*
     // Group
     {
@@ -57,6 +60,9 @@ const List = (
   },
   ref
 ) => {
+  // 格式化为渲染list, 原list记录到_raw中
+  let displayList = viewFormatter(list, { formatViewList, formatViewItem })
+
   // Expose
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
@@ -133,8 +139,8 @@ const List = (
 
   return (
     <div className={DOMUtil.classNames('lyrixi-list', className)} ref={rootRef} style={style}>
-      {Array.isArray(list) &&
-        list.map((item, index) => {
+      {Array.isArray(displayList) &&
+        displayList.map((item, index) => {
           // 渲染分组列表
           if (Array.isArray(item.children)) {
             return (

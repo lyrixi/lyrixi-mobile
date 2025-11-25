@@ -19,6 +19,8 @@ const VirtualList = (
     // Value & Display Value
     value,
     list,
+    formatViewList,
+    formatViewItem,
 
     // Status
     virtual,
@@ -176,6 +178,8 @@ const VirtualList = (
         height={totalHeight} // virtual list container height
         value={value}
         list={visibleItems}
+        formatViewList={formatViewList}
+        formatViewItem={formatViewItem}
         // Style
         itemStyle={itemStyle}
         itemClassName={itemClassName}
