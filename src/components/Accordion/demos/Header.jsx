@@ -208,11 +208,12 @@ export default () => {
           <div style={{ margin: '0 12px' }}>
             <Accordion.Item
               open={false}
-              headerRender={({ open }) => {
+              headerRender={({ open, onClick }) => {
                 return (
                   <div
                     className="lyrixi-flex lyrixi-flex-middle"
                     style={{ height: 40, borderBottom: open ? '1px solid #e8e8e8' : 'none' }}
+                    onClick={onClick}
                   >
                     <div className="lyrixi-flex-1">Custom Header</div>
                     {open ? '^' : 'v'}
