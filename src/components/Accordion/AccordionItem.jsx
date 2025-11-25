@@ -27,7 +27,8 @@ const AccordionItem = (
     // Elements
     title,
     headerRender,
-    footerRender,
+    ellipsis, // {expandText, collapseText}
+    ellipsisRender,
     arrowClassName = 'lyrixi-iconfont-arrow-up',
     arrowPosition = 'right',
     arrowRender,
@@ -124,19 +125,23 @@ const AccordionItem = (
   }
 
   // 获取Footer节点
-  function getFooterNode() {
-    if (typeof footerRender === 'function') {
-      return footerRender({
+  function getEllipsisNode() {
+    if (typeof ellipsisRender === 'function') {
+      return ellipsisRender({
         open,
         onClick: handleClick
       })
     }
 
+    if (!ellipsis?.collapseText || !ellipsis?.expandText) {
+      return null
+    }
+
     return (
-      <div className="lyrixi-accordion-item-footer" onClick={handleClick}>
+      <div className="lyrixi-accordion-item-ellipsis" onClick={handleClick}>
         {arrowPosition === 'left' && ArrowNode}
-        <div className="lyrixi-accordion-item-footer-title">
-          {open ? LocaleUtil.locale('收起') : LocaleUtil.locale('查看更多')}
+        <div className="lyrixi-accordion-item-ellipsis-title">
+          {open ? ellipsis?.collapseText : ellipsis?.expandText}
         </div>
         {arrowPosition === 'right' && ArrowNode}
       </div>
@@ -163,7 +168,7 @@ const AccordionItem = (
       </AccordionTransition>
 
       {/* Element: Footer */}
-      {getFooterNode()}
+      {getEllipsisNode()}
     </div>
   )
 }

@@ -52,7 +52,7 @@ toc: content
 | title          | 标题                       | `ReactNode`          | -                            |
 | minHeight      | 收缩时保留的最小高度（px） | `number`             | -                            |
 | headerRender   | 自定义头部                 | `(ctx) => ReactNode` | -                            |
-| footerRender   | 自定义底部                 | `(ctx) => ReactNode` | -                            |
+| ellipsisRender | 自定义底部                 | `(ctx) => ReactNode` | -                            |
 | arrowClassName | 箭头图标类名               | `string`             | `'lyrixi-iconfont-arrow-up'` |
 | arrowPosition  | 箭头位置                   | `'left' \| 'right'`  | `'right'`                    |
 | arrowRender    | 自定义箭头                 | `(ctx) => ReactNode` | -                            |
