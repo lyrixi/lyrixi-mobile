@@ -88,7 +88,7 @@ const PreviewModal = forwardRef(
           maxWidth={maxWidth}
           // Status
           open={open}
-          allowClose={false}
+          closable={false}
           allowChoose={allowChoose}
           allowClear={allowClear}
           // Style

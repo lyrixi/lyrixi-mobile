@@ -41,7 +41,7 @@ const PreviewMain = forwardRef(
 
       // Status
       open = true,
-      allowClose = false,
+      closable = false,
       allowChoose = false,
       allowClear = false,
       async = false,
@@ -268,7 +268,7 @@ const PreviewMain = forwardRef(
         className={DOMUtil.classNames(
           'lyrixi-media-preview-main',
           className,
-          allowClose ? 'lyrixi-closable' : '',
+          closable ? 'lyrixi-closable' : '',
           chooseVisible && typeof onChange === 'function' ? 'lyrixi-choosable' : '',
           allowClear && typeof onChange === 'function' ? 'lyrixi-clearable' : '',
           open ? '' : 'lyrixi-hide'
@@ -320,7 +320,7 @@ const PreviewMain = forwardRef(
               )
             })}
         {/* Close */}
-        {allowClose && <PreviewClose onClose={onClose} />}
+        {closable && <PreviewClose onClose={onClose} />}
         {/* Delete */}
         {allowClear && typeof onChange === 'function' ? (
           <PreviewDelete onDelete={handleDelete} />
