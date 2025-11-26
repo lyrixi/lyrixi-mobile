@@ -49,7 +49,7 @@ const Item = ({
       />
 
       {/* 上传中 */}
-      <Uploading uploadingRender={uploadingRender} item={item} />
+      <Uploading uploadingType="item" item={item} uploadingRender={uploadingRender} />
 
       {/* 自定义dom */}
       {item.children}

@@ -12,6 +12,7 @@ import { Loading, DOMUtil } from 'lyrixi-mobile'
 // 上传中图标
 const Uploading = ({
   uploadingType,
+  item,
   // Style
   className,
   // Element
@@ -20,7 +21,7 @@ const Uploading = ({
   // 上传中node
   function getUploadingNode() {
     if (typeof uploadingRender === 'function') {
-      return uploadingRender({ uploadingType })
+      return uploadingRender({ ...item, uploadingType })
     }
     return (
       <div className="lyrixi-media-uploading-icon">
