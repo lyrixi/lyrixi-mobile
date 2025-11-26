@@ -1,9 +1,9 @@
 ---
 category: Components
 group: Feedback
-title: FloatButton
+title: Float
 ---
 
-# FloatButton
+# Float
 
 This is an example component.

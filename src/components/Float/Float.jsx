@@ -15,13 +15,12 @@ import { DOMUtil, SafeArea, ActionSheet } from 'lyrixi-mobile'
 测试使用-start */
 
 // 悬浮按钮
-function FloatButton(
+function Float(
   {
     safeArea = true,
     portal,
     draggable,
     gap = { top: 8, right: 8, bottom: 8, left: 8 },
-    list,
     onChange,
     onDragEnd,
     // 其它属性
@@ -94,14 +93,14 @@ function FloatButton(
     // 解除对move时的弹性对当前div的锁定
     e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
 
-    // 获取点击项的id
-    let itemId = e.target.classList.contains('.lyrixi-float-button')
-      ? e.target?.id
-      : e.target.closest('.lyrixi-float-button')?.id
-    let item = getItemById(list, itemId)
+    // 非拖拽, 则触发子项元素点击
+    let childTarget = e.target.classList.contains('.lyrixi-float-button')
+      ? e.target
+      : e.target.closest('.lyrixi-float-button')
 
     if (!touchesRef.current.isDragging) {
-      item && onChange && onChange(item)
+      // 触发指定子项元素点击
+      ReactDOM.findDOMNode(childTarget.id)?.click()
       return
     }
     touchesRef.current.isDragging = false
@@ -128,81 +127,41 @@ function FloatButton(
     })
   }
 
-  // 分组和非分组
-  let groupList = []
-  let unGroupList = []
-  if (!Array.isArray(list) || !list.length) return null
-  for (let item of list) {
-    if (item.group === false) {
-      unGroupList.push(item)
-    } else {
-      groupList.push(item)
-    }
+  // 子元素都添加id,类名和onClick事件
+  const injectChildrenProps = (children) => {
+    return React.Children.map(children, (child) => {
+      if (!React.isValidElement(child)) return child
+
+      // 保留用户原本的onClick
+      const childRawOnClick = child.props.onClick
+      const childOnClick = draggable
+        ? undefined
+        : (e) => {
+            childRawOnClick && childRawOnClick(e)
+            e.stopPropagation()
+          }
+
+      return React.cloneElement(child, {
+        id: child.props.id || DOMUtil.uuid(),
+        className: 'lyrixi-float-button',
+        onClick: childOnClick
+      })
+    })
   }
+
+  const childNodes = useMemo(() => injectChildrenProps(children), [children])
 
   // DOM
   let Node = (
     <div
       ref={rootRef}
       style={style}
-      className={DOMUtil.classNames('lyrixi-float-button-container', className)}
+      className={DOMUtil.classNames('lyrixi-float-container', className)}
       onTouchStart={draggable ? handleTouchStart : null}
       onTouchMove={draggable ? handleTouchMove : null}
       onTouchEnd={draggable ? handleTouchEnd : null}
     >
-      {list.map((item, index) => {
-        // 不能没有id
-        if (!item?.id) {
-          item.id = '' + index
-        }
-
-        // 分组
-        if (Array.isArray(item.children) && item.children.length) {
-          return (
-            <ActionSheet.Combo
-              key={item.id || index}
-              id={item.id}
-              list={item.children}
-              className={DOMUtil.classNames('lyrixi-float-button', item.className)}
-              style={item.style}
-              onChange={onChange}
-              comboRender={({ comboRef, onClick }) => {
-                return (
-                  <div ref={comboRef} onClick={onClick}>
-                    {/* icon更多class：float-button-icon-more */}
-                    {getIconNode(item)}
-                    {item.name ? (
-                      <div className="lyrixi-float-button-label">{item.name}</div>
-                    ) : null}
-                  </div>
-                )
-              }}
-            />
-          )
-        }
-        // 未分组
-        else {
-          return (
-            <div
-              key={item.id || index}
-              id={item.id}
-              className={DOMUtil.classNames('lyrixi-float-button', item.className)}
-              style={item.style}
-              onClick={
-                draggable
-                  ? undefined
-                  : (e) => {
-                      onChange && onChange(item)
-                      e.stopPropagation()
-                    }
-              }
-            >
-              {getIconNode(item)}
-              {item.name ? <div className="lyrixi-float-button-label">{item.name}</div> : null}
-            </div>
-          )
-        }
-      })}
+      {childNodes}
       {safeArea === true && <SafeArea />}
     </div>
   )
@@ -213,4 +172,4 @@ function FloatButton(
   return createPortal(Node, portal || document.getElementById('root'))
 }
 
-export default forwardRef(FloatButton)
+export default forwardRef(Float)

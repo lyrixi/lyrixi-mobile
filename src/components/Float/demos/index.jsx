@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { SafeArea, FloatButton, Page, Divider, Storage } from 'lyrixi-mobile'
+import { SafeArea, Float, Page, Divider, Storage } from 'lyrixi-mobile'
 
 export default () => {
   useEffect(() => {}, [])
 
   return (
     <Page>
-      <Page.Header className="lyrixi-text-center">FloatButton</Page.Header>
+      <Page.Header className="lyrixi-text-center">Float</Page.Header>
       <Page.Main className="lyrixi-bg-white">
-        <Divider>FloatButton</Divider>
-        <FloatButton
+        <Divider>Float</Divider>
+        <Float
           draggable
           // gap={{
           //   top: 12,

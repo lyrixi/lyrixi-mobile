@@ -3,11 +3,11 @@ group:
   title: 反馈
   order: 2
 order: 1
-title: FloatButton
+title: Float
 toc: content
 ---
 
-# FloatButton 悬浮按钮
+# Float 悬浮按钮
 
 悬浮按钮组件，用于快速操作入口。
 
@@ -22,7 +22,7 @@ toc: content
 
 <code src="./demos/index.jsx"></code>
 
-## FloatButton
+## Float
 
 ### 属性
 
