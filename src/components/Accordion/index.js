@@ -1,7 +1,6 @@
 import AccordionGroup from './AccordionGroup'
-import AccordionItem from './AccordionItem'
+import Accordion from './Accordion'
 
-export default {
-  Group: AccordionGroup,
-  Item: AccordionItem
-}
+Accordion.Group = AccordionGroup
+
+export default Accordion

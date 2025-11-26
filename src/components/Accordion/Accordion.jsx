@@ -11,8 +11,8 @@ import Icon from './../Icon'
 import { LocaleUtil, DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-// AccordionItem组件
-const AccordionItem = (
+// Accordion组件
+const Accordion = (
   {
     // Status
     open: externalOpen = false,
@@ -94,11 +94,11 @@ const AccordionItem = (
   // 获取箭头节点
   function getArrowNode() {
     if (typeof arrowRender === 'function') {
-      return <div className="lyrixi-accordion-item-arrow">{arrowRender({ open })}</div>
+      return <div className="lyrixi-accordion-arrow">{arrowRender({ open })}</div>
     }
 
     return (
-      <div className="lyrixi-accordion-item-arrow">
+      <div className="lyrixi-accordion-arrow">
         <Icon className={arrowClassName} size="xs" />
       </div>
     )
@@ -120,9 +120,9 @@ const AccordionItem = (
     }
 
     return (
-      <div className="lyrixi-accordion-item-header" onClick={handleClick}>
+      <div className="lyrixi-accordion-header" onClick={handleClick}>
         {arrowPosition === 'left' && ArrowNode}
-        <div className="lyrixi-accordion-item-header-title">{title}</div>
+        <div className="lyrixi-accordion-header-title">{title}</div>
         {arrowPosition === 'right' && ArrowNode}
       </div>
     )
@@ -142,9 +142,9 @@ const AccordionItem = (
     }
 
     return (
-      <div className="lyrixi-accordion-item-ellipsis" onClick={handleClick}>
+      <div className="lyrixi-accordion-ellipsis" onClick={handleClick}>
         {arrowPosition === 'left' && ArrowNode}
-        <div className="lyrixi-accordion-item-ellipsis-title">
+        <div className="lyrixi-accordion-ellipsis-title">
           {open ? ellipsis?.collapseText : ellipsis?.expandText}
         </div>
         {arrowPosition === 'right' && ArrowNode}
@@ -157,18 +157,14 @@ const AccordionItem = (
       ref={rootRef}
       // Style
       style={style}
-      className={DOMUtil.classNames(
-        'lyrixi-accordion-item',
-        className,
-        open ? 'lyrixi-active' : ''
-      )}
+      className={DOMUtil.classNames('lyrixi-accordion', className, open ? 'lyrixi-active' : '')}
     >
       {/* Element: Header */}
       {getHeaderNode()}
 
       {/* Element: Main */}
       <AccordionTransition open={open} minHeight={minHeight}>
-        <div className="lyrixi-accordion-item-main">{children}</div>
+        <div className="lyrixi-accordion-main">{children}</div>
       </AccordionTransition>
 
       {/* Element: Footer */}
@@ -177,4 +173,4 @@ const AccordionItem = (
   )
 }
 
-export default forwardRef(AccordionItem)
+export default forwardRef(Accordion)

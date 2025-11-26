@@ -48,7 +48,7 @@ toc: content
 | openIndex      | 打开指定索引 | `(index: number) => void` |
 | close          | 关闭所有     | `() => void`              |
 
-## Accordion.Item
+## Accordion
 
 ### 属性
 

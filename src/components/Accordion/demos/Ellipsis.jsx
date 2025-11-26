@@ -19,40 +19,38 @@ export default () => {
           </Button>
           {/* Group only allow single item appear */}
           <Accordion.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
-            <Accordion.Item ellipsis={{ expandText: 'Expand One', collapseText: 'Collapse One' }}>
+            <Accordion ellipsis={{ expandText: 'Expand One', collapseText: 'Collapse One' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item ellipsis={{ expandText: 'Expand Two', collapseText: 'Collapse Two' }}>
+            </Accordion>
+            <Accordion ellipsis={{ expandText: 'Expand Two', collapseText: 'Collapse Two' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item
-              ellipsis={{ expandText: 'Expand Three', collapseText: 'Collapse Three' }}
-            >
+            </Accordion>
+            <Accordion ellipsis={{ expandText: 'Expand Three', collapseText: 'Collapse Three' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item ellipsis={{ expandText: 'Expand Four', collapseText: 'Collapse Four' }}>
+            </Accordion>
+            <Accordion ellipsis={{ expandText: 'Expand Four', collapseText: 'Collapse Four' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </Accordion.Group>
         </Card>
 
@@ -60,45 +58,45 @@ export default () => {
           <Divider>Group</Divider>
           {/* Group only allow single item appear */}
           <Accordion.Group style={{ margin: '0 12px' }}>
-            <Accordion.Item ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
+            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
+            </Accordion>
+            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
+            </Accordion>
+            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
+            </Accordion>
+            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </Accordion.Group>
         </Card>
 
         <Card>
           <Divider>Min Height</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item
+            <Accordion
               open={false}
               minHeight={60}
               ellipsis={{ expandText: 'Expand', collapseText: 'Collapse' }}
@@ -109,14 +107,14 @@ export default () => {
               >
                 Content keeps 60px visible when collapsed.
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
 
         <Card>
-          <Divider>Item(Controlled component)</Divider>
+          <Divider>Accordion(Controlled component)</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item
+            <Accordion
               open={value === 0}
               onOpen={() => setValue(0)}
               onClose={() => setValue(null)}
@@ -128,14 +126,14 @@ export default () => {
               >
                 First Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
 
         <Card>
           <Divider>Custom Ellipsis</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item
+            <Accordion
               open={false}
               ellipsisRender={({ open, onClick }) => {
                 return (
@@ -164,7 +162,7 @@ export default () => {
               >
                 Custom Ellipsis Render
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
       </Page.Main>

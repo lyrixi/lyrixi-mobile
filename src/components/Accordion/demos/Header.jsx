@@ -19,38 +19,38 @@ export default () => {
           </Button>
           {/* Group only allow single item appear */}
           <Accordion.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
-            <Accordion.Item title="One">
+            <Accordion title="One">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item title="Two">
+            </Accordion>
+            <Accordion title="Two">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item title="Three">
+            </Accordion>
+            <Accordion title="Three">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item title="Four">
+            </Accordion>
+            <Accordion title="Four">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </Accordion.Group>
         </Card>
 
@@ -58,59 +58,59 @@ export default () => {
           <Divider>Group</Divider>
           {/* Group only allow single item appear */}
           <Accordion.Group style={{ margin: '0 12px' }}>
-            <Accordion.Item title="One">
+            <Accordion title="One">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item title="Two">
+            </Accordion>
+            <Accordion title="Two">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item title="Three">
+            </Accordion>
+            <Accordion title="Three">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item title="Four">
+            </Accordion>
+            <Accordion title="Four">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </Accordion.Group>
         </Card>
 
         <Card>
           <Divider>Min Height</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item title="Partial Collapse" open={false} minHeight={60}>
+            <Accordion title="Partial Collapse" open={false} minHeight={60}>
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 160 }}
               >
                 Content keeps 60px visible when collapsed.
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
 
         <Card>
-          <Divider>Item(Controlled component)</Divider>
+          <Divider>Accordion(Controlled component)</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item
+            <Accordion
               title="One"
               open={value === 0}
               onOpen={() => setValue(0)}
@@ -122,52 +122,52 @@ export default () => {
               >
                 First Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
 
         <Card>
           <Divider>Left Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item title="One" arrowPosition="left">
+            <Accordion title="One" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item open={false} title="Two" arrowPosition="left">
+            </Accordion>
+            <Accordion open={false} title="Two" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item open={false} title="Three" arrowPosition="left">
+            </Accordion>
+            <Accordion open={false} title="Three" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
               </div>
-            </Accordion.Item>
-            <Accordion.Item open={false} title="Four" arrowPosition="left">
+            </Accordion>
+            <Accordion open={false} title="Four" arrowPosition="left">
               <div
                 className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
 
         <Card>
           <Divider>Custom Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item
+            <Accordion
               arrowRender={({ open }) => <i className="lyrixi-icon lyrixi-iconfont-star-fill" />}
               title="Arrow ClassName"
             >
@@ -177,8 +177,8 @@ export default () => {
               >
                 Arrow ClassName
               </div>
-            </Accordion.Item>
-            <Accordion.Item
+            </Accordion>
+            <Accordion
               open={false}
               arrowRender={({ open }) => {
                 return (
@@ -199,14 +199,14 @@ export default () => {
               >
                 Arrow Node
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
 
         <Card>
           <Divider>Custom Header</Divider>
           <div style={{ margin: '0 12px' }}>
-            <Accordion.Item
+            <Accordion
               open={false}
               headerRender={({ open, onClick }) => {
                 return (
@@ -227,7 +227,7 @@ export default () => {
               >
                 First Text
               </div>
-            </Accordion.Item>
+            </Accordion>
           </div>
         </Card>
       </Page.Main>
