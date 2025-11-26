@@ -2,16 +2,15 @@ import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
-import getItemById from './getItemById'
+import injectChildrenProps from './injectChildrenProps'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 import SafeArea from './../SafeArea'
-import ActionSheet from './../ActionSheet'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, SafeArea, ActionSheet } from 'lyrixi-mobile'
+import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-start */
 
 // 悬浮按钮
@@ -23,6 +22,8 @@ function Float(
     gap = { top: 8, right: 8, bottom: 8, left: 8 },
     onChange,
     onDragEnd,
+    // Elements
+    children,
     // 其它属性
     className,
     style
@@ -93,14 +94,8 @@ function Float(
     // 解除对move时的弹性对当前div的锁定
     e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
 
-    // 非拖拽, 则触发子项元素点击
-    let childTarget = e.target.classList.contains('.lyrixi-float-button')
-      ? e.target
-      : e.target.closest('.lyrixi-float-button')
-
     if (!touchesRef.current.isDragging) {
-      // 触发指定子项元素点击
-      ReactDOM.findDOMNode(childTarget.id)?.click()
+      triggerChildClick(children, e.target)
       return
     }
     touchesRef.current.isDragging = false
@@ -127,30 +122,6 @@ function Float(
     })
   }
 
-  // 子元素都添加id,类名和onClick事件
-  const injectChildrenProps = (children) => {
-    return React.Children.map(children, (child) => {
-      if (!React.isValidElement(child)) return child
-
-      // 保留用户原本的onClick
-      const childRawOnClick = child.props.onClick
-      const childOnClick = draggable
-        ? undefined
-        : (e) => {
-            childRawOnClick && childRawOnClick(e)
-            e.stopPropagation()
-          }
-
-      return React.cloneElement(child, {
-        id: child.props.id || DOMUtil.uuid(),
-        className: 'lyrixi-float-button',
-        onClick: childOnClick
-      })
-    })
-  }
-
-  const childNodes = useMemo(() => injectChildrenProps(children), [children])
-
   // DOM
   let Node = (
     <div
@@ -161,7 +132,7 @@ function Float(
       onTouchMove={draggable ? handleTouchMove : null}
       onTouchEnd={draggable ? handleTouchEnd : null}
     >
-      {childNodes}
+      {injectChildrenProps(children, { draggable })}
       {safeArea === true && <SafeArea />}
     </div>
   )
