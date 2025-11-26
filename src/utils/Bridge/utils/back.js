@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
 import Device from './../../Device'
