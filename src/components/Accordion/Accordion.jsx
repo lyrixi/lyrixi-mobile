@@ -2,13 +2,12 @@ import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } f
 import AccordionTransition from './AccordionTransition'
 
 // 内库使用-start
-import LocaleUtil from './../../utils/LocaleUtil'
 import DOMUtil from './../../utils/DOMUtil'
 import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, DOMUtil, Icon } from 'lyrixi-mobile'
+import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 // Accordion组件
