@@ -21,7 +21,6 @@ function Float(
     portal,
     draggable,
     gap = { top: 8, right: 8, bottom: 8, left: 8 },
-    onChange,
     onDragEnd,
     // Elements
     children,
@@ -32,6 +31,9 @@ function Float(
   ref
 ) {
   const rootRef = useRef(null)
+
+  const newChildren = injectChildrenProps(children, { draggable })
+
   // 拖动信息
   let touchesRef = useRef({
     isDragging: false,
@@ -89,7 +91,7 @@ function Float(
 
     // 点击直接触发子项元素点击
     if (!touchesRef.current.isDragging) {
-      triggerChildClick(children, e.target)
+      triggerChildClick(newChildren, e)
       return
     }
 
@@ -102,7 +104,7 @@ function Float(
     let diffX = touchesRef.current.startX - endX
     let diffY = touchesRef.current.startY - endY
     if (Math.abs(diffX) < 5 && Math.abs(diffY) < 5) {
-      triggerChildClick(children, e.target)
+      triggerChildClick(newChildren, e)
       return
     }
 
@@ -128,7 +130,7 @@ function Float(
       onTouchMove={draggable ? handleTouchMove : null}
       onTouchEnd={draggable ? handleTouchEnd : null}
     >
-      {injectChildrenProps(children, { draggable })}
+      {newChildren}
       {safeArea === true && <SafeArea />}
     </div>
   )

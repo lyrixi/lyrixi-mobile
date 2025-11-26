@@ -23,7 +23,7 @@ const injectChildrenProps = (children, { draggable }) => {
       ),
       onClick: (e) => {
         if (e.currentTarget.classList.contains('lyrixi-float-button-click-disabled')) return
-        child.props.onClick
+        child.props.onClick && child.props.onClick(e)
       }
     })
   })

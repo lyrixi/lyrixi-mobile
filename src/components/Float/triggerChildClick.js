@@ -1,30 +1,27 @@
 import React from 'react'
 
 // 非拖拽, 则触发子项元素点击
-function triggerChildClick(children, target) {
-  let childTarget = target.classList.contains('.lyrixi-float-button')
-    ? target
-    : target.closest('.lyrixi-float-button')
+function triggerChildClick(children, e) {
+  let childDOM = e.target.classList.contains('.lyrixi-float-button')
+    ? e.target
+    : e.target.closest('.lyrixi-float-button')
 
-  if (!childTarget) return
+  if (!childDOM) return
 
   // 根据实体DOM获取id
-  const itemId = childTarget?.id
+  const itemId = childDOM?.id
   if (!itemId) return
 
   // 根据id, 找到Child节点
-  const targetChild = React.Children.toArray(children).find(
+  const childNode = React.Children.toArray(children).find(
     (child) => React.isValidElement(child) && child.props.id === itemId
   )
-  debugger
 
   // 触发子项元素点击
-  childTarget.classList.remove('lyrixi-float-button-click-disabled')
-  const childOnClick = targetChild?.props?.onClick
+  const childOnClick = childNode?.props?.onClick
   if (typeof childOnClick === 'function') {
     childOnClick(e)
   }
-  childTarget.classList.add('lyrixi-float-button-click-disabled')
 }
 
 export default triggerChildClick

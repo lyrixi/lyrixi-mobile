@@ -20,54 +20,51 @@ export default () => {
           style={{
             ...(Storage.getLocalStorage('pos') || {})
           }}
-          // list={[
-          //   {
-          //     id: '1',
-          //     iconRender: () => (
-          //       <i className="lyrixi-float-button-icon lyrixi-float-button-icon-more"></i>
-          //     )
-          //   },
-          //   {
-          //     id: '2',
-          //     name: '2',
-          //     className: 'lyrixi-bg-primary lyrixi-color-white',
-          //     iconRender: () => (
-          //       <i className="lyrixi-icon lyrixi-iconfont-plus" style={{ opacity: '0.5' }}></i>
-          //     )
-          //   },
-          //   {
-          //     id: '3',
-          //     name: '3',
-          //     iconRender: () => <i className="lyrixi-icon lyrixi-iconfont-plus"></i>
-          //   },
-          //   {
-          //     id: '4',
-          //     name: '12345678',
-          //     className: 'lyrixi-color-primary',
-          //     children: [
-          //       {
-          //         id: '3-1',
-          //         name: '3-1'
-          //       }
-          //     ]
-          //   }
-          // ]}
-          onChange={(value) => {
-            console.log(value)
-          }}
           onDragEnd={(e) => {
             Storage.setLocalStorage('pos', e.position)
           }}
+          className="lyrixi-flex-vertical"
         >
           <Button
+            square
+            radius="100%"
             color="white"
-            backgroundColor="primary-lighten"
+            iconPosition="top"
+            backgroundColor="primary"
+            border="none"
             iconClassName="lyrixi-iconfont-three-dots"
+            onClick={(e) => {
+              console.log(e)
+            }}
           >
             1
           </Button>
-          <Button iconClassName="lyrixi-iconfont-plus">2</Button>
-          <Button>3</Button>
+          <Button
+            square
+            radius="100%"
+            iconPosition="top"
+            iconClassName="lyrixi-iconfont-plus"
+            onClick={(e) => {
+              console.log(e)
+            }}
+            style={{
+              marginTop: '16px'
+            }}
+          >
+            2
+          </Button>
+          <Button
+            square
+            radius="100%"
+            onClick={(e) => {
+              console.log(e)
+            }}
+            style={{
+              marginTop: '16px'
+            }}
+          >
+            3
+          </Button>
         </Float>
       </Page.Main>
       <Page.Footer style={{ height: '100px' }}></Page.Footer>
