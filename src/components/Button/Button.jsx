@@ -15,6 +15,7 @@ const Button = forwardRef(
       id,
       // Button: Style
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
+      borderColor, // 边框颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
       fontSize, // 字体大小: xxs, xs, s, m, l, xl
@@ -49,6 +50,7 @@ const Button = forwardRef(
     const { style: newStyle, className: newClassName } = getStyle({
       // Style
       color,
+      borderColor,
       backgroundColor,
       size,
       fontSize,
@@ -59,9 +61,7 @@ const Button = forwardRef(
       // ClassName
       className,
       // Icon: Style
-      iconPosition,
-      // Icon: ClassName
-      iconClassName
+      iconPosition
     })
 
     // Expose

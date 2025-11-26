@@ -12,30 +12,66 @@ export default () => {
       <Page.Main>
         <Divider>Color & Background & Border</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button backgroundColor="white" radius="m" style={buttonStyle}>
+          <Button backgroundColor="white" radius="m" borderColor="default" style={buttonStyle}>
             backgroundColor="white"
           </Button>
-          <Button backgroundColor="white" radius="m" disabled style={buttonStyle}>
+          <Button
+            backgroundColor="white"
+            radius="m"
+            borderColor="default"
+            disabled
+            style={buttonStyle}
+          >
             disabled
           </Button>
           <br />
           <Button backgroundColor="default" border="none" radius="m" style={buttonStyle}>
             backgroundColor="default" border="none"
           </Button>
-          <Button backgroundColor="default" border="solid" radius="m" style={buttonStyle}>
+          <Button
+            backgroundColor="default"
+            border="solid"
+            borderColor="default"
+            radius="m"
+            style={buttonStyle}
+          >
             backgroundColor="default" border="solid"
           </Button>
-          <Button backgroundColor="default" border="dashed" radius="m" style={buttonStyle}>
+          <Button
+            backgroundColor="default"
+            border="dashed"
+            borderColor="default"
+            radius="m"
+            style={buttonStyle}
+          >
             backgroundColor="default" border="dashed"
           </Button>
           <br />
-          <Button backgroundColor="transparent" border="none" radius="m" style={buttonStyle}>
+          <Button
+            backgroundColor="transparent"
+            border="none"
+            borderColor="default"
+            radius="m"
+            style={buttonStyle}
+          >
             backgroundColor="transparent" border="none"
           </Button>
-          <Button backgroundColor="transparent" border="solid" radius="m" style={buttonStyle}>
+          <Button
+            backgroundColor="transparent"
+            border="solid"
+            borderColor="default"
+            radius="m"
+            style={buttonStyle}
+          >
             backgroundColor="transparent" border="solid"
           </Button>
-          <Button backgroundColor="transparent" border="dashed" radius="m" style={buttonStyle}>
+          <Button
+            backgroundColor="transparent"
+            border="dashed"
+            borderColor="default"
+            radius="m"
+            style={buttonStyle}
+          >
             backgroundColor="transparent" border="dashed"
           </Button>
         </div>
@@ -357,10 +393,10 @@ export default () => {
           <Button square radius="m" color="white" backgroundColor="primary" style={buttonStyle}>
             Round
           </Button>
-          <Button square radius="100%" size="s" style={buttonStyle}>
+          <Button square radius="100%" size="s" borderColor="default" style={buttonStyle}>
             <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
-          <Button square size="s" radius="m" style={buttonStyle}>
+          <Button square size="s" radius="m" borderColor="default" style={buttonStyle}>
             <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
           <br />

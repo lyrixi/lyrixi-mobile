@@ -20,6 +20,7 @@ function getStyle({
   // Style
   color,
   backgroundColor,
+  borderColor,
   size,
   fontSize,
   radius,
@@ -29,9 +30,7 @@ function getStyle({
   // ClassName
   className,
   // Icon: Style
-  iconPosition,
-  // Icon: ClassName
-  iconClassName
+  iconPosition
 }) {
   // eslint-disable-next-line
   fontSize = pxToNumber(fontSize)
@@ -42,6 +41,7 @@ function getStyle({
 
   // 判断颜色是否在枚举值中
   const isColorClass = DOMUtil.variables.colors.includes(color)
+  const isBorderColorClass = DOMUtil.variables.colors.includes(borderColor)
   const isBackgroundColorClass = DOMUtil.variables.backgroundColors.includes(backgroundColor)
   const isSizeClass = DOMUtil.variables.sizes.includes(size)
   const isRadiusClass = DOMUtil.variables.radiuses.includes(radius)
@@ -50,6 +50,7 @@ function getStyle({
   // 构建自定义样式
   const newStyle = {
     ...(!isColorClass && color ? { color } : {}),
+    ...(!isBorderColorClass && borderColor ? { borderColor } : {}),
     ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
     ...(!isSizeClass && typeof size === 'number'
       ? { height: `${size}px`, width: square ? `${size}px` : 'auto' }
@@ -62,7 +63,8 @@ function getStyle({
   const newClassName = DOMUtil.classNames(
     'lyrixi-button',
     ['top', 'bottom'].includes(iconPosition) && `lyrixi-flex-vertical`,
-    isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
+    isColorClass && color && `lyrixi-color-${color}`,
+    isBorderColorClass && borderColor && `lyrixi-border-color-${borderColor}`,
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
     border !== 'none' && `lyrixi-border-width-default`,
     border && `lyrixi-border-style-${border}`,
