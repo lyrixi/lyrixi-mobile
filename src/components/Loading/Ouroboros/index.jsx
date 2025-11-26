@@ -6,9 +6,11 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 const Ouroboros = (
   {
-    // 其它属性
-    className,
-    style
+    // Style
+    color,
+    size,
+    style,
+    className
   },
   ref
 ) => {
@@ -21,10 +23,22 @@ const Ouroboros = (
       }
     }
   })
+
+  const newStyle = style || {}
+  if (color) {
+    newStyle.color = color
+  }
+  if (size) {
+    newStyle.width = size
+  }
+  if (size) {
+    newStyle.height = size
+  }
+
   return (
     <div
-      style={style}
       className={DOMUtil.classNames('lyrixi-loading-ouroboros', className)}
+      style={newStyle}
       ref={rootRef}
     >
       <svg viewBox="25 25 50 50">

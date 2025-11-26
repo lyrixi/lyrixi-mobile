@@ -6,9 +6,11 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 const BallWave = (
   {
-    // 其它属性
-    className,
-    style
+    // Style
+    color,
+    size,
+    style,
+    className
   },
   ref
 ) => {
@@ -21,9 +23,18 @@ const BallWave = (
       }
     }
   })
+
+  const newStyle = style || {}
+  if (color) {
+    newStyle.color = color
+  }
+  if (size) {
+    newStyle.width = size
+  }
+
   return (
     <div
-      style={style}
+      style={newStyle}
       className={DOMUtil.classNames('lyrixi-loading-ballwave', className)}
       ref={rootRef}
     >

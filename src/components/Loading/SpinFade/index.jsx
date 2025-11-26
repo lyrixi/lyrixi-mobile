@@ -6,9 +6,11 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 const SpinFade = (
   {
-    // 其它属性
-    className,
-    style
+    // Style
+    color,
+    size,
+    style,
+    className
   },
   ref
 ) => {
@@ -21,9 +23,21 @@ const SpinFade = (
       }
     }
   })
+
+  const newStyle = style || {}
+  if (color) {
+    newStyle.color = color
+  }
+  if (size) {
+    newStyle.width = size
+  }
+  if (size) {
+    newStyle.height = size
+  }
+
   return (
     <div
-      style={style}
+      style={newStyle}
       className={DOMUtil.classNames('lyrixi-loading-spinfade', className)}
       ref={rootRef}
     >
