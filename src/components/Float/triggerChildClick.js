@@ -1,7 +1,7 @@
 import React from 'react'
 
+// 非拖拽, 则触发子项元素点击
 function triggerChildClick(children, target) {
-  // 非拖拽, 则触发子项元素点击
   let childTarget = target.classList.contains('.lyrixi-float-button')
     ? target
     : target.closest('.lyrixi-float-button')
@@ -16,12 +16,15 @@ function triggerChildClick(children, target) {
   const targetChild = React.Children.toArray(children).find(
     (child) => React.isValidElement(child) && child.props.id === itemId
   )
+  debugger
 
   // 触发子项元素点击
-  const childOnClick = targetChild?.props?._onClick
+  childTarget.classList.remove('lyrixi-float-button-click-disabled')
+  const childOnClick = targetChild?.props?.onClick
   if (typeof childOnClick === 'function') {
     childOnClick(e)
   }
+  childTarget.classList.add('lyrixi-float-button-click-disabled')
 }
 
 export default triggerChildClick

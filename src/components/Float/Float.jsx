@@ -1,8 +1,9 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
+import injectChildrenProps from './injectChildrenProps'
+import triggerChildClick from './triggerChildClick'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
-import injectChildrenProps from './injectChildrenProps'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -48,14 +49,6 @@ function Float(
     }
   })
 
-  // 获取图标
-  function getIconNode(item) {
-    if (typeof item?.iconRender === 'function') {
-      return item.iconRender({ item, className: 'lyrixi-float-button-icon' })
-    }
-    return null
-  }
-
   // 触摸开始
   function handleTouchStart(e) {
     e.stopPropagation()
@@ -94,10 +87,13 @@ function Float(
     // 解除对move时的弹性对当前div的锁定
     e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
 
+    // 点击直接触发子项元素点击
     if (!touchesRef.current.isDragging) {
       triggerChildClick(children, e.target)
       return
     }
+
+    // 拖拽结束
     touchesRef.current.isDragging = false
 
     // 点击时不要修改位置
@@ -106,7 +102,7 @@ function Float(
     let diffX = touchesRef.current.startX - endX
     let diffY = touchesRef.current.startY - endY
     if (Math.abs(diffX) < 5 && Math.abs(diffY) < 5) {
-      item && onChange && onChange(item)
+      triggerChildClick(children, e.target)
       return
     }
 

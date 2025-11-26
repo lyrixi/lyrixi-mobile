@@ -12,6 +12,7 @@ import { Icon } from 'lyrixi-mobile'
 const Button = forwardRef(
   (
     {
+      id,
       // Button: Style
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
@@ -74,6 +75,7 @@ const Button = forwardRef(
     return (
       <div
         ref={rootRef}
+        id={id}
         // Style
         style={newStyle}
         className={newClassName}
