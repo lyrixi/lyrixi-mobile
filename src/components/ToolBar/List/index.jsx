@@ -13,6 +13,7 @@ function ToolBarList({
   style,
   className,
   color,
+  borderColor,
   backgroundColor,
   shape,
   border,
@@ -57,6 +58,7 @@ function ToolBarList({
       style={style}
       className={className}
       color={color}
+      borderColor={borderColor}
       backgroundColor={backgroundColor}
       shape={shape}
       border={border}

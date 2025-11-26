@@ -23,6 +23,7 @@ const Dropdown = forwardRef(
       style,
       className,
       color = 'default',
+      borderColor = 'default',
       backgroundColor,
       shape,
       border,
@@ -142,6 +143,7 @@ const Dropdown = forwardRef(
           style={style}
           className={className}
           color={color}
+          borderColor={borderColor}
           backgroundColor={backgroundColor}
           shape={shape}
           border={border}

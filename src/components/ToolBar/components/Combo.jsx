@@ -19,6 +19,7 @@ function Combo(
     style,
     className,
     color = 'default',
+    borderColor = 'default',
     backgroundColor,
     shape,
     border,
@@ -54,6 +55,7 @@ function Combo(
     <Button
       ref={comboRef}
       color={color}
+      borderColor={borderColor}
       backgroundColor={backgroundColor}
       border={border}
       size={size || 's'}

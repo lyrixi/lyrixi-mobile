@@ -14,6 +14,7 @@ const ToolBarButton = forwardRef(
     {
       // Style
       color,
+      borderColor,
       backgroundColor,
       shape,
       border,
@@ -45,6 +46,7 @@ const ToolBarButton = forwardRef(
         ref={rootRef}
         // Style
         color={color}
+        borderColor={borderColor}
         backgroundColor={backgroundColor}
         border={border}
         size={size || 's'}

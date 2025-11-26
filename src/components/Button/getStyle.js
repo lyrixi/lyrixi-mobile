@@ -19,8 +19,8 @@ function pxToNumber(value) {
 function getStyle({
   // Style
   color,
-  backgroundColor,
   borderColor,
+  backgroundColor,
   size,
   fontSize,
   radius,

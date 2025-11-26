@@ -18,6 +18,7 @@ const Filter = forwardRef(
       style,
       className,
       color = 'default',
+      borderColor = 'default',
       backgroundColor,
       shape,
       border,
@@ -76,6 +77,7 @@ const Filter = forwardRef(
           ref={rootRef}
           // Style
           color={color}
+          borderColor={borderColor}
           backgroundColor={backgroundColor}
           border={border}
           size={size || 's'}
