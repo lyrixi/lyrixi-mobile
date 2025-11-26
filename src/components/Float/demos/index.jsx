@@ -27,11 +27,12 @@ export default () => {
         >
           <Button
             square
+            size="l"
             radius="100%"
             color="white"
             iconPosition="top"
             backgroundColor="primary"
-            border="none"
+            borderColor="primary"
             iconClassName="lyrixi-iconfont-three-dots"
             onClick={(e) => {
               console.log(e)
@@ -41,9 +42,11 @@ export default () => {
           </Button>
           <Button
             square
+            size="l"
             radius="100%"
             iconPosition="top"
             iconClassName="lyrixi-iconfont-plus"
+            borderColor="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -55,7 +58,9 @@ export default () => {
           </Button>
           <Button
             square
+            size="l"
             radius="100%"
+            borderColor="default"
             onClick={(e) => {
               console.log(e)
             }}
