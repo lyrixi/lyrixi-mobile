@@ -17,16 +17,21 @@ import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 // 悬浮按钮
 function Float(
   {
-    safeArea = true,
-    portal,
+    // Status
     draggable,
+
+    // Style
     gap = { top: 8, right: 8, bottom: 8, left: 8 },
-    onDragEnd,
-    // Elements
-    children,
-    // 其它属性
+    safeArea = true,
+    style,
     className,
-    style
+
+    // Elements
+    portal,
+    children,
+
+    // Events
+    onDragEnd
   },
   ref
 ) {

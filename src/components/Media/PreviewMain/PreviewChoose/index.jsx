@@ -81,7 +81,7 @@ const Choose = ({
         {...(fileProps || {})}
       />
       {/* 上传中 */}
-      <Uploading uploadingType="choose" />
+      <Uploading uploadingType="preview-choose" />
     </div>
   )
 }
