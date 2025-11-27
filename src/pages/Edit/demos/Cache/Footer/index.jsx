@@ -9,9 +9,18 @@ function Footer({ onOk, onCancel }) {
   return (
     <Page.Footer>
       <FooterBar>
-        {onCancel && <FooterBar.Button onClick={onCancel}>{locale('Cancel')}</FooterBar.Button>}
+        {onCancel && (
+          <FooterBar.Button className="lyrixi-flex-1" backgroundColor="default" onClick={onCancel}>
+            {locale('Cancel')}
+          </FooterBar.Button>
+        )}
         {onOk && (
-          <FooterBar.Button className="lyrixi-primary" onClick={onOk}>
+          <FooterBar.Button
+            className="lyrixi-flex-1"
+            backgroundColor="primary"
+            color="white"
+            onClick={onOk}
+          >
             {locale('Ok')}
           </FooterBar.Button>
         )}
