@@ -30,7 +30,7 @@ const APILoader = forwardRef(
     ref
   ) => {
     // result: {status: 'success'|'error', data: any, message: string}
-    const [result, setResult] = useState(null)
+    let [result, setResult] = useState(null)
 
     const APIRef = useRef({
       reload: loadData
