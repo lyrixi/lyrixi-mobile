@@ -16,7 +16,10 @@ function viewFormatter(list, { formatViewItem, formatViewList }) {
   }
 
   return list?.map((item) => {
-    return { ...item, _raw: item }
+    if (!item._raw) {
+      return { ...item, _raw: item }
+    }
+    return item
   })
 }
 
