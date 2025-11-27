@@ -10,10 +10,11 @@ import FormContext from './../FormContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
+import Row from './../../../Row'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil, Row } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormItem = forwardRef(
@@ -28,6 +29,7 @@ const FormItem = forwardRef(
       // Style
       style,
       className,
+      layout,
 
       // Element
       children
@@ -36,21 +38,18 @@ const FormItem = forwardRef(
   ) => {
     const rootRef = useRef(null)
     // Context config
-    const { layout, virtual } = useContext(FormContext)
+    const { layout: globalLayout, virtual } = useContext(FormContext)
 
     // In view area to display
     const [inViewArea, setInViewArea] = useState(false)
 
     // Expose
     useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
+      return rootRef.current
     })
 
     useEffect(() => {
-      const currentElement = rootRef.current
+      const currentElement = rootRef.current.rootDOM
 
       // 检查全局observer是否存在
       if (virtual.observer && currentElement) {
@@ -70,22 +69,23 @@ const FormItem = forwardRef(
       // eslint-disable-next-line
     }, [])
 
+    let layoutClass = ''
+    if (layout || globalLayout) {
+      layoutClass = `lyrixi-form-item-layout-${layout || globalLayout}`
+    }
+
     return (
-      <div
+      <Row
         ref={rootRef}
         // Value & Display Value
         id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
         // Style
         style={{ height: height, ...style }}
-        className={DOMUtil.classNames(
-          'lyrixi-form-item',
-          className,
-          layout === 'horizontal' ? 'lyrixi-row' : ''
-        )}
+        className={DOMUtil.classNames('lyrixi-form-item', className, layoutClass)}
       >
         {/* Element: Children */}
         {inViewArea ? children : null}
-      </div>
+      </Row>
     )
   }
 )

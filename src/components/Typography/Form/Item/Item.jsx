@@ -3,10 +3,11 @@ import FormContext from './../FormContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
+import Row from './../../../Row'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil, Row } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormItem = forwardRef(
@@ -31,30 +32,26 @@ const FormItem = forwardRef(
 
     // Expose
     useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
+      return rootRef.current
     })
 
+    let layoutClass = ''
+    if (layout || globalLayout) {
+      layoutClass = `lyrixi-form-item-layout-${layout || globalLayout}`
+    }
+
     return (
-      <div
+      <Row
         ref={rootRef}
         // Value & Display Value
         id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
         // Style
         style={style}
-        className={DOMUtil.classNames(
-          'lyrixi-form-item',
-          className,
-          (layout || globalLayout) === 'horizontal'
-            ? 'lyrixi-form-item-layout-horizontal row'
-            : 'lyrixi-form-item-layout-vertical'
-        )}
+        className={DOMUtil.classNames('lyrixi-form-item', className, layoutClass)}
       >
         {/* Element: Children */}
         {children}
-      </div>
+      </Row>
     )
   }
 )
