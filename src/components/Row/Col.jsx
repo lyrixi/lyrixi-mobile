@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -17,9 +17,20 @@ const Col = forwardRef(
     },
     ref
   ) => {
+    // Expose
+    const rootRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => {
+          return rootRef.current
+        }
+      }
+    })
+
     return (
       <div
-        ref={ref}
+        ref={rootRef}
         // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-col', `lyrixi-col-${span || 0}`, className)}

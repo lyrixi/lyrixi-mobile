@@ -5,10 +5,11 @@ import Div from './../../Letter/Base'
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 import Toast from './../../../Toast'
+import Row from '../../../Row'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Toast } from 'lyrixi-mobile'
+import { DOMUtil, Toast, Row } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormLabel = forwardRef(
@@ -38,10 +39,7 @@ const FormLabel = forwardRef(
 
     // Expose
     useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
+      return rootRef.current
     })
 
     const { span: globalSpan, ellipsis: globalEllipsis } = labelCol || {}
@@ -49,16 +47,16 @@ const FormLabel = forwardRef(
     const isEmpty = !children && !help
 
     return (
-      <div
+      <Row.Col
         ref={rootRef}
         // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-form-item-label',
           className,
-          isEmpty ? 'lyrixi-hide' : '',
-          layout === 'lyrixi-horizontal' ? `lyrixi-col col-${span || globalSpan || 8}` : ''
+          isEmpty ? 'lyrixi-hide' : ''
         )}
+        span={layout === 'horizontal' ? span || globalSpan || 8 : 24}
       >
         {/* Element: Children */}
         {children && (
@@ -79,7 +77,7 @@ const FormLabel = forwardRef(
 
         {/* Value & Display Value: Required */}
         {required && <span className="lyrixi-form-item-required">*</span>}
-      </div>
+      </Row.Col>
     )
   }
 )

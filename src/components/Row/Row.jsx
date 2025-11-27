@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -7,8 +7,6 @@ import DOMUtil from './../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import Col from './Col'
 
 const Row = forwardRef(
   (
@@ -22,9 +20,20 @@ const Row = forwardRef(
     },
     ref
   ) => {
+    // Expose
+    const rootRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => {
+          return rootRef.current
+        }
+      }
+    })
+
     return (
       <div
-        ref={ref}
+        ref={rootRef}
         // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-row', className)}
@@ -36,5 +45,4 @@ const Row = forwardRef(
   }
 )
 
-Row.Col = Col
 export default Row

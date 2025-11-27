@@ -5,10 +5,11 @@ import getExtraNode from './getExtraNode'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
+import Row from '../../../Row'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil, Row } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormMain = forwardRef(
@@ -37,24 +38,18 @@ const FormMain = forwardRef(
 
     // Expose
     useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
+      return rootRef.current
     })
 
     const { span: globalSpan, ellipsis: globalEllipsis } = mainCol || {}
 
     return (
-      <div
+      <Row.Col
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames(
-          'lyrixi-form-item-main',
-          className,
-          layout === 'horizontal' ? `lyrixi-col lyrixi-col-${span || globalSpan || 16}` : ''
-        )}
+        className={DOMUtil.classNames('lyrixi-form-item-main', className)}
+        span={layout === 'horizontal' ? span || globalSpan || 16 : 24}
       >
         <div className="lyrixi-form-item-main-input">
           {/* Element: Children */}
@@ -70,7 +65,7 @@ const FormMain = forwardRef(
         {error && <div className="lyrixi-form-item-main-error">{error}</div>}
         {/* Element: Main extra */}
         {getExtraNode(extra, { className: 'lyrixi-form-item-main-extra' })}
-      </div>
+      </Row.Col>
     )
   }
 )
