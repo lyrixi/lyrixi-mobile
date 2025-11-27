@@ -15,7 +15,9 @@ function viewFormatter(list, { formatViewItem, formatViewList }) {
     })
   }
 
-  return list
+  return list?.map((item) => {
+    return { ...item, _raw: item }
+  })
 }
 
 export default viewFormatter
