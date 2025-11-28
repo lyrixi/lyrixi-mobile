@@ -1,7 +1,7 @@
 import updateStyle from './updateStyle'
 
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
+import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -60,10 +60,10 @@ function updateAttribute(
   let iconDOM = mask.querySelector('.lyrixi-message-icon')
   if (icon) {
     hasHeaderContent = true
-    iconDOM?.classList?.remove?.('hide')
+    iconDOM?.classList?.remove?.('lyrixi-hide')
     iconDOM.className = DOMUtil.classNames('lyrixi-message-icon', icon)
   } else {
-    iconDOM?.classList?.add?.('hide')
+    iconDOM?.classList?.add?.('lyrixi-hide')
     iconDOM.className = 'lyrixi-message-icon lyrixi-hide'
   }
 
@@ -142,7 +142,7 @@ function updateAttribute(
       }
     })
   } else {
-    footerDOM?.classList?.add?.('hide')
+    footerDOM?.classList?.add?.('lyrixi-hide')
     footerDOM.innerHTML = ''
   }
 

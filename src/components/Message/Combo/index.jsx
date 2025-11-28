@@ -72,7 +72,7 @@ const MessageCombo = forwardRef(
         >
           {children}
         </div>
-        <Modal open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>
+        <Modal open={open} onClose={() => setOpen(false)}>
           {(IconNode || title) && (
             <Header>
               {IconNode}
@@ -83,11 +83,12 @@ const MessageCombo = forwardRef(
           {Array.isArray(buttons) && buttons.length && (
             <Footer layout={buttonsLayout}>
               {buttons.map((button, index) => {
-                const { name, onClick, ...buttonProps } = button
+                const { name, style, className, onClick } = button
                 return (
                   <Button
                     key={button?.id ?? index}
-                    {...buttonProps}
+                    style={style}
+                    className={className}
                     onClick={async (e) => {
                       let newVisible = await onClick(e)
                       if (typeof newVisible === 'boolean') {

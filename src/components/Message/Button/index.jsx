@@ -11,10 +11,13 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Button = forwardRef(
   (
     {
-      children,
-      // 其它属性
+      // Style
       className,
-      style
+      style,
+      // Elements
+      children,
+      // Events
+      onClick
     },
     ref
   ) => {
@@ -32,6 +35,7 @@ const Button = forwardRef(
       <div
         style={style}
         className={DOMUtil.classNames('lyrixi-message-button', className)}
+        onClick={onClick}
         ref={rootRef}
       >
         {children}

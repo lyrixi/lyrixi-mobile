@@ -82,13 +82,13 @@ const CenterMarker = forwardRef(
 
       map.onDragStart = (map) => {
         if (onDragEnd) {
-          rootRef?.current?.classList?.remove?.('active')
+          rootRef?.current?.classList?.remove?.('lyrixi-active')
         }
         onDragStart && onDragStart(map)
       }
       map.onDragEnd = (map) => {
         if (onDragEnd) {
-          rootRef?.current?.classList?.add?.('active')
+          rootRef?.current?.classList?.add?.('lyrixi-active')
           onDragEnd(map)
         }
       }

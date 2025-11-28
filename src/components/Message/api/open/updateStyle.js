@@ -1,5 +1,5 @@
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
+import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 // 更新class和style
@@ -12,6 +12,7 @@ function updateStyle(target, { style, className, baseClassName }) {
 
   // 增加样式
   if (style) {
+    // eslint-disable-next-line
     for (let stylePropName in style) {
       target.style[stylePropName] = style[stylePropName]
     }

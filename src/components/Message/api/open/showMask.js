@@ -1,4 +1,4 @@
-import globalMessageId from './globalMessageId'
+import globalMessageId from './../globalMessageId'
 
 // 渲染Message遮罩
 function showMask({ portal, onMaskClick }) {
@@ -7,16 +7,16 @@ function showMask({ portal, onMaskClick }) {
   if (!mask) {
     // 创建dom
     mask = document.createElement('div')
-    mask.setAttribute('class', `lyrixi-mask message-mask`)
+    mask.setAttribute('class', `lyrixi-mask lyrixi-message-mask`)
     mask.setAttribute('id', globalMessageId)
     mask.innerHTML = `
-      <div class="modal-animation message-modal middle" data-animation="zoom">
-        <div class="message-header hide">
-          <div class="message-icon hide"></div>
-          <div class="message-title hide"></div>
+      <div class="lyrixi-modal-animation lyrixi-modal lyrixi-middle lyrixi-message-modal" data-animation="zoom">
+        <div class="lyrixi-message-header lyrixi-hide">
+          <div class="lyrixi-message-icon lyrixi-hide"></div>
+          <div class="lyrixi-message-title lyrixi-hide"></div>
         </div>
-        <div class="message-main"></div>
-        <div class="message-footer hide">
+        <div class="lyrixi-message-main"></div>
+        <div class="lyrixi-message-footer lyrixi-hide">
         </div>
       </div>
     `

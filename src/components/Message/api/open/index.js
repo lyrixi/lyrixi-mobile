@@ -1,4 +1,4 @@
-import destroy from './destroy'
+import destroy from './../destroy'
 import showMask from './showMask'
 import updateAttribute from './updateAttribute'
 
@@ -74,12 +74,12 @@ export default function open({
       if (result !== false) {
         const onClose = mask?.onClose
         if (onClose) onClose()
-        destroy(e.currentTarget.closest('.message-mask'))
+        destroy(e.currentTarget.closest('.lyrixi-message-mask'))
       }
     } else {
       const onClose = mask?.onClose
       if (onClose) onClose()
-      destroy(e.currentTarget.closest('.message-mask'))
+      destroy(e.currentTarget.closest('.lyrixi-message-mask'))
     }
     e.stopPropagation()
   }

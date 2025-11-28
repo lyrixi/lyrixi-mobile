@@ -4,46 +4,46 @@ function getClassNameByAnimation(animation) {
   let position = ''
   switch (animation) {
     case 'slideLeft':
-      position = 'right-middle'
+      position = 'lyrixi-right-middle'
       break
     case 'slideRight':
-      position = 'left-middle'
+      position = 'lyrixi-left-middle'
       break
     case 'slideUp':
-      position = 'bottom-center'
+      position = 'lyrixi-bottom-center'
       break
     case 'slideDown':
-      position = 'top-center'
+      position = 'lyrixi-top-center'
       break
     case 'zoom':
-      position = 'middle'
+      position = 'lyrixi-middle'
       break
     case 'fade':
-      position = 'middle'
+      position = 'lyrixi-middle'
       break
     // Tooltip弹窗特有属性
     case 'slideUpLeft':
     case 'zoomUpLeft':
     case 'fadeUpLeft':
-      position = 'bottom-left'
+      position = 'lyrixi-bottom-left'
       break
     case 'slideDownLeft':
     case 'zoomDownLeft':
     case 'fadeDownLeft':
-      position = 'top-left'
+      position = 'lyrixi-top-left'
       break
     case 'slideUpRight':
     case 'zoomUpRight':
     case 'fadeUpRight':
-      position = 'bottom-right'
+      position = 'lyrixi-bottom-right'
       break
     case 'slideDownRight':
     case 'zoomDownRight':
     case 'fadeDownRight':
-      position = 'top-right'
+      position = 'lyrixi-top-right'
       break
     default:
-      position = 'middle'
+      position = 'lyrixi-middle'
   }
   return position
 }
