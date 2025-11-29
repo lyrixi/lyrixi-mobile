@@ -5,10 +5,8 @@ import diffDate from './diffDate'
 import diffHour from './diffHour'
 import diffMinute from './diffMinute'
 import diffSecond from './diffSecond'
-// Partial diff
-import partDiffHourMinute from './partDiffHourMinute'
 
-// 比较年月日,大于返回1,等于返回0,小于返回-1, diffUnit: 'year|quarter|month|week|date|day|hour|minute|second|partHourMinute'
+// 比较年月日,大于返回1,等于返回0,小于返回-1, diffUnit: 'year|quarter|month|week|day|hour|minute|second'
 function diff(d1, d2, diffUnit) {
   if (d1 instanceof Date === false || d2 instanceof Date === false) {
     return undefined
@@ -25,15 +23,11 @@ function diff(d1, d2, diffUnit) {
   if (diffUnit === 'hour') {
     return diffHour(d1, d2)
   }
-  if (diffUnit === 'minute' || diffUnit === 'datetime') {
+  if (diffUnit === 'minute') {
     return diffMinute(d1, d2)
   }
   if (diffUnit === 'second') {
     return diffSecond(d1, d2)
-  }
-  // Partial diff hour minute
-  if (diffUnit === 'partHourMinute' || diffUnit === 'time') {
-    return partDiffHourMinute(d1, d2)
   }
 
   return diffDate(d1, d2)

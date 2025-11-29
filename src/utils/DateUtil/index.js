@@ -44,7 +44,7 @@ const dateUtil = {
   compare: compare,
   // 通用方法: 比较两个时间范围，1包含，0相等，-1不包含
   compareRange: compareRange,
-  // 通用方法: 日期相差'year|quarter|month|week|date|day|hour|minute|second|partHourMinute'
+  // 通用方法: 日期相差'year|quarter|month|week|day|hour|minute|second'
   diff: diff,
   // 通用方法: 格式化日期
   format: format,
@@ -70,32 +70,32 @@ const dateUtil = {
       ? new Intl.DateTimeFormat().resolvedOptions().timeZone
       : ''
   },
-  // 时区方法: 获取当前UTC偏移量, 分钟数是国际时区标准
+  // 时区方法: 获取当前UTC偏移量, 分钟数是国际时区标准, 返回: 总分钟数
   utcOffset: utcOffset,
-  // 时区方法: 将 UTC 转为指定时区
+  // 时区方法: 将 UTC 转为指定时区, 入参: "UTC日期, 时区偏移总分钟数", 返回: "日期"
   utcToTimeZone: (utcDate, offset) => {
     if (utcDate && typeof offset === 'number') {
       return utcToTimeZone(utcDate, offset)
     }
     return utcDate || new Date()
   },
-  // 时区方法: 在两个时区间转换
-  betweenTimeZones: (utcDate, fromOffset, toOffset) => {
-    if (utcDate && typeof fromOffset === 'number' && typeof toOffset === 'number') {
-      return betweenTimeZones(utcDate, fromOffset, toOffset)
-    }
-    return utcDate || new Date()
-  },
-  // 时区方法: 将指定时区时间转为 UTC
+  // 时区方法: 将指定时区时间转为 UTC, 入参: "日期, 时区偏移总分钟数", 返回: "UTC日期"
   timeZoneToUtc: (date, offset) => {
     if (date && typeof offset === 'number') {
       return timeZoneToUtc(date, offset)
     }
     return date || new Date()
   },
-  // 时区方法: 解析UTC偏移量
+  // 时区方法: 在两个时区间转换, 入参: "日期, 原时区偏移总分钟数, 目标时区偏移总分钟数", 返回: "日期"
+  timeZoneToTimeZone: (timeZoneDate, fromOffset, toOffset) => {
+    if (timeZoneDate && typeof fromOffset === 'number' && typeof toOffset === 'number') {
+      return timeZoneToTimeZone(timeZoneDate, fromOffset, toOffset)
+    }
+    return timeZoneDate || new Date()
+  },
+  // 时区方法: 解析UTC偏移量, 入参:"UTC+08:00", 返回: 总分钟数
   parseUtcOffset: parseUtcOffset,
-  // 时区方法: 时区字符串化
+  // 时区方法: 时区字符串化，入参: 总分钟数, 返回: "UTC+08:00"
   stringifyUtcOffset: stringifyUtcOffset
 }
 

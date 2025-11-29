@@ -1,4 +1,4 @@
-// 解析UTC偏移量
+// 解析UTC偏移量, 入参:"UTC+08:00", 返回: 总分钟数
 function parseUtcOffset(utcDescription) {
   const match = /^UTC([+-])(\d{2}):(\d{2})$/.exec(utcDescription)
   if (!match) {

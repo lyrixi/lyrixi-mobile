@@ -1,4 +1,4 @@
-// 时区字符串化
+// 时区字符串化，入参: 总分钟数, 返回: "UTC+08:00"
 function stringifyUtcOffset(utcOffset) {
   // 正向或反向偏移
   const sign = utcOffset >= 0 ? '+' : '-'
