@@ -30,7 +30,7 @@ export default () => {
     setList(newList)
   }
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Header className="lyrixi-text-center">OCR识别</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <MediaUploader

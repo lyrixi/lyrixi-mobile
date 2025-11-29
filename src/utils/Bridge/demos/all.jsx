@@ -75,7 +75,7 @@ export default () => {
   }, [])
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Divider>组件</Divider>
         <Card>

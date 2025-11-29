@@ -7,7 +7,7 @@ export default () => {
     persist: true
   })
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <h1>Cache State</h1>
         <p>{JSON.stringify(data)}</p>

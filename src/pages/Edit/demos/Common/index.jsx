@@ -99,7 +99,7 @@ const Edit = () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Card>
           <Divider>Horizontal Layout</Divider>
@@ -394,9 +394,7 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {result?.message && (
-        <Result className="lyrixi-full" status={result.status} title={result.title} />
-      )}
+      {result?.message && <Result status={result.status} title={result.title} />}
     </Page>
   )
 }

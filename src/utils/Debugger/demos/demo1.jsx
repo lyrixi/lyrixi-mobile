@@ -8,7 +8,7 @@ export default () => {
   }, [])
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>左下角点击10次呼出暗门</Page.Main>
     </Page>
   )

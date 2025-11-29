@@ -4,7 +4,7 @@ import { Page, Device, Card } from 'lyrixi-mobile'
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <p className="demo-title">language</p>
         <Card style={{ padding: 12 }}>{Device.language}</Card>

@@ -69,7 +69,7 @@ export default () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Divider>Storage (LocalForage) 示例</Divider>
 

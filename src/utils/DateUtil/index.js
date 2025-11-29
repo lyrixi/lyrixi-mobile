@@ -20,7 +20,7 @@ import quarter from './quarter'
 // 与add功能重复, 但为了兼容旧版本, 保留
 
 // 时区方法
-import betweenTimeZones from './utc/betweenTimeZones.js'
+import timeZoneToTimeZone from './utc/timeZoneToTimeZone.js'
 import utcToTimeZone from './utc/utcToTimeZone.js'
 import timeZoneToUtc from './utc/timeZoneToUtc.js'
 import utcOffset from './utc/utcOffset'

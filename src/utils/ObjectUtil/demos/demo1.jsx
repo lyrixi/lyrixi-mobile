@@ -7,7 +7,7 @@ new vconsole()
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Divider>ObjectUtil</Divider>
         {ObjectUtil.isEmpty({}) ? '{} is empty' : '{} is not empty'}

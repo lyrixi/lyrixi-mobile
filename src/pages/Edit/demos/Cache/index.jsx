@@ -104,7 +104,7 @@ const Edit = () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main
         // 滚动结束记录滚动条位置
         onScrollEnd={(e) => {
@@ -325,9 +325,7 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {result?.message && (
-        <Result className="lyrixi-full" status={result.status} title={result.message} />
-      )}
+      {result?.message && <Result status={result.status} title={result.message} />}
     </Page>
   )
 }

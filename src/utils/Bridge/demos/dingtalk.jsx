@@ -8,7 +8,7 @@ import { Page, Divider } from 'lyrixi-mobile'
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Divider>钉钉选择照片(结果不同)</Divider>
         <SyntaxHighlighter

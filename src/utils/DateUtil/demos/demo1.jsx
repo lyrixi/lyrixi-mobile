@@ -3,7 +3,7 @@ import { Page, Card, Divider, DateUtil } from 'lyrixi-mobile'
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Card>
           <Divider>toDate</Divider>
@@ -40,7 +40,7 @@ export default () => {
                 'Utc to Timezone UTC+8:',
                 DateUtil.format(utcToTimeZone, 'YYYY-MM-DD hh:mm:ss')
               )
-              let utcToDate2 = DateUtil.betweenTimeZones(
+              let utcToDate2 = DateUtil.timeZoneToTimeZone(
                 new Date('2025-05-09 01:01:36'),
                 DateUtil.parseUtcOffset('UTC+08:00'),
                 DateUtil.parseUtcOffset('UTC+09:00')

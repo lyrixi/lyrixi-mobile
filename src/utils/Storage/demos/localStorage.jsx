@@ -42,7 +42,7 @@ export default () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Divider>LocalStorage 示例</Divider>
 

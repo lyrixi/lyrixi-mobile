@@ -68,7 +68,7 @@ const FormDetail = () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       {/* Data success */}
       {result?.data && (
         <Page.Main>
@@ -115,9 +115,7 @@ const FormDetail = () => {
       <Footer onOk={handleApprove} />
 
       {/* Data error */}
-      {result?.status && (
-        <Result className="lyrixi-full" status={result.status} title={result.message} />
-      )}
+      {result?.status && <Result status={result.status} title={result.message} />}
     </Page>
   )
 }

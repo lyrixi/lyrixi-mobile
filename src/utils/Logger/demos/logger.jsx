@@ -4,7 +4,7 @@ import upload from './upload'
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Card>
           <Divider>Function</Divider>

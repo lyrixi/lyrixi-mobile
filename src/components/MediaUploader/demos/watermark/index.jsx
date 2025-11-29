@@ -26,7 +26,7 @@ export default () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Header className="lyrixi-text-center">普通拍照</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <MediaUploader

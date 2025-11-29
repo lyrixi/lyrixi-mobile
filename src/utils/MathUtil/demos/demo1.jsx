@@ -15,7 +15,7 @@ new vconsole()
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <h2>组件</h2>
         <p className="demo-title">计算</p>

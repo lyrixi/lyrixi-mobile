@@ -99,7 +99,7 @@ const Edit = () => {
   }
 
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Card>
           <Form form={form} style={{ margin: '0 12px' }} virtual={true}>
@@ -298,9 +298,7 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {result?.message && (
-        <Result className="lyrixi-full" status={mainStatus.status} title={mainStatus.title} />
-      )}
+      {result?.message && <Result status={mainStatus.status} title={mainStatus.title} />}
     </Page>
   )
 }

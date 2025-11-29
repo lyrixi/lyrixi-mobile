@@ -17,7 +17,7 @@ LocaleUtil.setLocale('en_US', enUS)
 
 export default () => {
   return (
-    <Page className="lyrixi-full">
+    <Page>
       <Page.Main>
         <Divider>Node</Divider>
         <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
