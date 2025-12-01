@@ -93,8 +93,8 @@ const Modal = forwardRef(
         portal={portal}
         title={title}
         okNode={okNode}
-        cancelNode={cancelNode}
         okVisible={okVisible !== undefined ? okVisible : true}
+        cancelNode={cancelNode}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}

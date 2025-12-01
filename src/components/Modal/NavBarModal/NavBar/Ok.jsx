@@ -9,15 +9,11 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { NavBar, LocaleUtil } from 'lyrixi-mobile'
 测试使用-start */
 
-const Ok = ({ total, visible, children, onClick }) => {
+const Ok = ({ total, children, onClick }) => {
   // 点击确定
   function handleOkClick(e) {
     e.stopPropagation()
     if (onClick) onClick(e)
-  }
-
-  if (visible === false) {
-    return <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
   }
 
   return (

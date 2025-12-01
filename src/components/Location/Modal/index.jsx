@@ -34,7 +34,6 @@ const LocationModal = forwardRef(
 
       // Element
       portal,
-      cancel,
       config,
       getLocation,
       getAddress,
@@ -101,8 +100,7 @@ const LocationModal = forwardRef(
             ? LocaleUtil.locale('选择地址', 'lyrixi.choose.address')
             : LocaleUtil.locale('查看地址', 'lyrixi.view.address')
         }
-        ok={open === 'choose' ? '' : null}
-        cancel={cancel}
+        okVisible={open === 'choose' ? '' : null}
         // Events
         onClose={onClose}
         onOk={handleOk}

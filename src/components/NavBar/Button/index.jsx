@@ -12,23 +12,33 @@ import { DOMUtil, Button } from 'lyrixi-mobile'
 const NavBarButton = forwardRef(
   (
     {
-      // Icon
-      icon,
+      padding,
+      // Button: Style
+      color = 'secondary',
+      borderColor,
+      backgroundColor,
+      size = 22,
+      fontSize,
+      radius,
+      square,
+      border = 'none',
+      style,
+      className,
+
+      // Button: Status
+      disabled,
+
+      // Button: Elements
+      children,
+
+      // Icon: Style
+      iconClassName,
       iconPosition,
       iconColor,
       iconBackgroundColor,
       iconSize = 16,
       iconPadding,
       iconRadius,
-
-      // Button
-      color = 'secondary',
-      backgroundColor,
-      size = 22,
-      padding = 8,
-      style,
-      className,
-      children,
 
       // Events
       onClick
@@ -37,23 +47,30 @@ const NavBarButton = forwardRef(
   ) => {
     return (
       <Button
-        // Icon
-        icon={icon}
+        // Button: Style
+        color={color}
+        borderColor={borderColor}
+        backgroundColor={backgroundColor}
+        size={size}
+        fontSize={fontSize}
+        radius={radius}
+        square={square}
+        border={border}
+        style={{
+          ...style,
+          padding: padding
+        }}
+        className={DOMUtil.classNames('lyrixi-navbar-button', className)}
+        // Button: Status
+        disabled={disabled}
+        // Icon: Style
+        iconClassName={iconClassName}
         iconPosition={iconPosition}
         iconColor={iconColor}
         iconBackgroundColor={iconBackgroundColor}
         iconSize={iconSize}
         iconPadding={iconPadding}
         iconRadius={iconRadius}
-        // Button
-        color={color}
-        backgroundColor={backgroundColor}
-        size={size}
-        padding={padding}
-        radius=""
-        border="null"
-        style={style}
-        className={DOMUtil.classNames('lyrixi-navbar-button', className)}
         onClick={onClick}
         ref={ref}
       >

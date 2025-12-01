@@ -26,6 +26,7 @@ export default () => {
           NavBarModal open toggle
         </div>
         <Modal.NavBarModal
+          cancelPosition="right"
           open={open}
           onClose={() => setOpen(false)}
           title="Title"

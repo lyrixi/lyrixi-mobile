@@ -72,7 +72,6 @@ const PreviewModal = forwardRef(
         portal={portal}
         // Element
         animation="slideUp"
-        ok={false}
         // Events
         onClose={handleClose}
       >

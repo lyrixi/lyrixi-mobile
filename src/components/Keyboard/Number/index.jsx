@@ -30,8 +30,10 @@ const KeyboardNumber = forwardRef(
       // 按钮配置
       dot, // 小数点按钮
       minus, // 负号按钮
-      ok,
-      cancel,
+      okNode,
+      okVisible,
+      cancelNode,
+      cancelVisible,
       onOk,
       onCancel,
 
@@ -152,7 +154,7 @@ const KeyboardNumber = forwardRef(
     function getOperateRowNode() {
       isDeleteInMainRef.current = true
       // 当ok、dot、minus都没有时, 删除按钮放在右下角
-      if (ok === null && !dot && !minus) {
+      if (!okVisible && !dot && !minus) {
         return (
           <>
             <ButtonNumber className="empty">{/* 空位 */}</ButtonNumber>
@@ -164,7 +166,7 @@ const KeyboardNumber = forwardRef(
         )
       }
       // 当没有ok, 但dot和minus有一个时, 删除按钮放在右下角, 其他按钮放在左下角
-      if (ok === null && ((dot && !minus) || (!dot && minus))) {
+      if (!okVisible && ((dot && !minus) || (!dot && minus))) {
         return (
           <>
             {dot && <ButtonNumber onClick={handleDot}>.</ButtonNumber>}
@@ -205,19 +207,19 @@ const KeyboardNumber = forwardRef(
           'lyrixi-modal-animation lyrixi-bottom-center lyrixi-keyboardNumberModal',
           modalClassName,
           open ? 'lyrixi-active' : '',
-          ok !== null ? 'lyrixi-keyboard-has-ok' : ''
+          okVisible ? 'lyrixi-keyboard-has-ok' : ''
         )}
         style={modalStyle}
         onClick={(e) => e.stopPropagation()}
       >
         {/* 顶部操作栏 */}
         <Page.Header>
-          {cancel !== null && (
+          {cancelVisible && (
             <ButtonQuick onClick={handleCancel}>
-              {cancel !== null ? (
+              {!cancelNode ? (
                 <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-arrow-down" />
               ) : (
-                cancel
+                cancelNode
               )}
             </ButtonQuick>
           )}
@@ -260,9 +262,9 @@ const KeyboardNumber = forwardRef(
             )}
 
             {/* 确定按钮 */}
-            {ok !== null && (
+            {okVisible && (
               <ButtonAction className="lyrixi-ok" onClick={handleOk}>
-                {ok || LocaleUtil.locale('确定', 'lyrixi.ok')}
+                {okNode || LocaleUtil.locale('确定', 'lyrixi.ok')}
               </ButtonAction>
             )}
           </Page.Aside>

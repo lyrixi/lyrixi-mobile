@@ -152,8 +152,8 @@ const DistrictModal = forwardRef(
         portal={portal}
         title={title}
         okNode={okNode}
-        cancelNode={cancelNode}
         okVisible={okVisible}
+        cancelNode={cancelNode}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}

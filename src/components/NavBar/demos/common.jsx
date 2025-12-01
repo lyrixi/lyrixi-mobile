@@ -8,7 +8,7 @@ export default () => {
       <Page.Main>
         <Divider>Normal</Divider>
         <NavBar>
-          <NavBar.Button icon="lyrixi-iconfont-arrow-left">Back</NavBar.Button>
+          <NavBar.Button iconClassName="lyrixi-iconfont-arrow-left">Back</NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>
           <NavBar.Button color="primary">Ok</NavBar.Button>
         </NavBar>
@@ -16,14 +16,14 @@ export default () => {
         <Divider>Button Shape</Divider>
         <NavBar>
           <NavBar.Button
-            icon="lyrixi-iconfont-close"
+            iconClassName="lyrixi-iconfont-close"
             iconSize={20}
             iconPadding={8}
             iconRadius="100%"
             iconBackgroundColor="secondary"
           />
           <NavBar.Button
-            icon="lyrixi-iconfont-three-dots"
+            iconClassName="lyrixi-iconfont-three-dots"
             iconSize={20}
             iconPadding={8}
             iconRadius="2px"
@@ -36,7 +36,7 @@ export default () => {
         <Divider>Title</Divider>
         <NavBar>
           <NavBar.Button
-            icon="lyrixi-iconfont-close"
+            iconClassName="lyrixi-iconfont-close"
             iconSize={20}
             iconPadding={8}
             iconRadius="100%"

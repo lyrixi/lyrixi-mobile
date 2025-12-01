@@ -10,34 +10,51 @@ import NavBar from './../../../NavBar'
 import { NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
-const Head = forwardRef(({ title, ok, okVisible, onOk, cancel, cancelVisible, onCancel }, ref) => {
-  // 只显示标题
-  if (!okVisible && !cancelVisible) {
+const Head = forwardRef(
+  (
+    {
+      title,
+      okNode,
+      okVisible,
+      okPosition,
+      onOk,
+      cancelNode,
+      cancelVisible,
+      cancelPosition,
+      onCancel
+    },
+    ref
+  ) => {
+    // 只显示标题
+    if (!okVisible && !cancelVisible) {
+      return (
+        <NavBar ref={ref}>
+          {/* 标题 */}
+          <NavBar.Title>{title}</NavBar.Title>
+        </NavBar>
+      )
+    }
+
+    let CancelNode = cancelVisible ? <Cancel onClick={onCancel}>{cancelNode}</Cancel> : null
+
+    let OkNode = okVisible ? <Ok onClick={onOk}>{okNode}</Ok> : null
+
+    // 带按钮
     return (
       <NavBar ref={ref}>
+        {/* 取消按钮 */}
+        {cancelPosition === 'left' && CancelNode}
+        {okPosition === 'left' && OkNode}
+
         {/* 标题 */}
         <NavBar.Title>{title}</NavBar.Title>
+
+        {/* 确认 */}
+        {cancelPosition === 'right' && CancelNode}
+        {okPosition === 'right' && OkNode}
       </NavBar>
     )
   }
-
-  // 带按钮
-  return (
-    <NavBar ref={ref}>
-      {/* 取消按钮 */}
-      <Cancel visible={cancelVisible} onClick={onCancel}>
-        {cancel}
-      </Cancel>
-
-      {/* 标题 */}
-      <NavBar.Title>{title}</NavBar.Title>
-
-      {/* 确认 */}
-      <Ok visible={okVisible} onClick={onOk}>
-        {ok}
-      </Ok>
-    </NavBar>
-  )
-})
+)
 
 export default Head

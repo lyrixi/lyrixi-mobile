@@ -29,9 +29,11 @@ const NavBarModal = forwardRef(
       portal,
       title,
       okNode,
-      cancelNode,
       okVisible,
-      cancelVisible,
+      okPosition = 'right',
+      cancelNode,
+      cancelVisible = true,
+      cancelPosition = 'left',
       children,
 
       // Events
@@ -73,10 +75,12 @@ const NavBarModal = forwardRef(
       >
         <NavBar
           title={title}
-          ok={okNode}
-          cancel={cancelNode}
+          okNode={okNode}
+          cancelNode={cancelNode}
           okVisible={okVisible}
+          okPosition={okPosition}
           cancelVisible={cancelVisible}
+          cancelPosition={cancelPosition}
           onOk={handleOkClick}
           onCancel={handleCancelClick}
         />

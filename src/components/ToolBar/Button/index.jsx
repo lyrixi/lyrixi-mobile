@@ -16,7 +16,7 @@ const ToolBarButton = forwardRef(
       color,
       borderColor,
       backgroundColor,
-      shape,
+      square,
       border,
       radius,
       size,
@@ -51,7 +51,7 @@ const ToolBarButton = forwardRef(
         border={border}
         size={size || 's'}
         radius={radius || 's'}
-        shape={shape}
+        square={square}
         className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
         style={style}
         // Events

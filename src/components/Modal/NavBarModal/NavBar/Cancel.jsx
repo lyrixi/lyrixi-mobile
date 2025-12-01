@@ -8,15 +8,11 @@ import NavBar from './../../../NavBar'
 import { NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
-const Cancel = ({ visible, onClick, children }) => {
+const Cancel = ({ onClick, children }) => {
   // 点击取消
   function handleClick(e) {
     e.stopPropagation()
     if (onClick) onClick(e)
-  }
-
-  if (visible === false) {
-    return <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
   }
 
   if (children) {
@@ -25,8 +21,9 @@ const Cancel = ({ visible, onClick, children }) => {
 
   return (
     <NavBar.Button
-      icon="lyrixi-iconfont-close"
+      iconClassName="lyrixi-iconfont-close"
       iconSize={20}
+      square
       iconPadding={8}
       iconRadius="100%"
       iconBackgroundColor="secondary"
