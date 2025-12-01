@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
 import Modal from './../Modal'
+import NavBar from './../NavBarModal/NavBar'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Page from './../../Page'
-import NavBar from './../../NavBar'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
@@ -46,7 +46,7 @@ function FilterModal(
       animation="slideLeft"
       // Style
       maskClosable={maskClosable}
-      maskClassName={DOMUtil.classNames('filterModal-mask', maskClassName)}
+      maskClassName={DOMUtil.classNames('lyrixi-filterModal-mask', maskClassName)}
       maskStyle={maskStyle}
       modalClassName={DOMUtil.classNames('lyrixi-filterModal', modalClassName)}
       modalStyle={modalStyle}
@@ -55,20 +55,16 @@ function FilterModal(
     >
       <Page className="lyrixi-full lyrixi-bg-white">
         <Page.Header className="lyrixi-bg-default">
-          <NavBar>
-            <NavBar.Button
-              onClick={(e) => {
-                e.stopPropagation()
+          <NavBar
+            title={LocaleUtil.locale('筛选', 'lyrixi.filter')}
+            cancelNode={LocaleUtil.locale('取消', 'lyrixi.cancel')}
+            onCancel={(e) => {
+              e.stopPropagation()
 
-                onCancel && onCancel()
-                onClose && onClose()
-              }}
-            >
-              {LocaleUtil.locale('取消', 'lyrixi.cancel')}
-            </NavBar.Button>
-            <NavBar.Title>{LocaleUtil.locale('筛选', 'lyrixi.filter')}</NavBar.Title>
-            <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
-          </NavBar>
+              onCancel && onCancel()
+              onClose && onClose()
+            }}
+          />
         </Page.Header>
         <Page.Main>{children}</Page.Main>
         {/* 底部 */}

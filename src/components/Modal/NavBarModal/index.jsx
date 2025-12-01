@@ -30,10 +30,10 @@ const NavBarModal = forwardRef(
       title,
       okNode,
       okVisible,
-      okPosition = 'right',
+      okPosition,
       cancelNode,
-      cancelVisible = true,
-      cancelPosition = 'left',
+      cancelVisible,
+      cancelPosition,
       children,
 
       // Events

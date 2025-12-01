@@ -24,14 +24,17 @@ export default () => {
           footerRender={({ close }) => (
             <Page.Footer>
               <FooterBar>
-                <FooterBar.Tab
-                  iconRender={() => <Icon className="lyrixi-iconfont-config"></Icon>}
-                  name="Setting"
+                <FooterBar.Button
+                  iconClassName="lyrixi-iconfont-config"
                   onClick={() => {
                     console.log('setting')
                   }}
-                />
+                >
+                  Setting
+                </FooterBar.Button>
                 <FooterBar.Button
+                  className="lyrixi-flex-1"
+                  backgroundColor="default"
                   onClick={() => {
                     console.log('reset')
                   }}
@@ -39,6 +42,7 @@ export default () => {
                   Reset
                 </FooterBar.Button>
                 <FooterBar.Button
+                  className="lyrixi-flex-1"
                   color="white"
                   backgroundColor="primary"
                   onClick={() => {

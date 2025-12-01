@@ -16,11 +16,11 @@ const Head = forwardRef(
       title,
       okNode,
       okVisible,
-      okPosition,
+      okPosition = 'right',
       onOk,
       cancelNode,
-      cancelVisible,
-      cancelPosition,
+      cancelVisible = true,
+      cancelPosition = 'left',
       onCancel
     },
     ref
@@ -39,6 +39,7 @@ const Head = forwardRef(
 
     let OkNode = okVisible ? <Ok onClick={onOk}>{okNode}</Ok> : null
 
+    console.log('cancelNode', cancelNode)
     // 带按钮
     return (
       <NavBar ref={ref}>

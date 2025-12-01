@@ -81,7 +81,7 @@ const Modal = forwardRef(
       >
         <div
           className={DOMUtil.classNames(
-            'lyrixi-modal-animation lyrixi-modal',
+            'lyrixi-modal-animation',
             animationClassName ? ' ' + animationClassName : '',
             modalClassName,
             getActiveClass()

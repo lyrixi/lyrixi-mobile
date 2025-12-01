@@ -10,7 +10,7 @@ function showMask({ portal, onMaskClick }) {
     mask.setAttribute('class', `lyrixi-mask lyrixi-message-mask`)
     mask.setAttribute('id', globalMessageId)
     mask.innerHTML = `
-      <div class="lyrixi-modal-animation lyrixi-modal lyrixi-middle lyrixi-message-modal" data-animation="zoom">
+      <div class="lyrixi-modal-animation lyrixi-middle lyrixi-message-modal" data-animation="zoom">
         <div class="lyrixi-message-header lyrixi-hide">
           <div class="lyrixi-message-icon lyrixi-hide"></div>
           <div class="lyrixi-message-title lyrixi-hide"></div>
