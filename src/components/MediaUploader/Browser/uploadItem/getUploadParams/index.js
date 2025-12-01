@@ -17,7 +17,7 @@ function getUploadParams({
     appId: appId
   }
 
-  let uploadUrl = getUploadUrl?.({ platform: 'dingtalk' }) || {}
+  let uploadUrl = getUploadUrl?.({ platform: 'browser' }) || {}
   let uploadExtraFormData = getUploadPayload?.({ platform: 'dingtalk' }) || {}
   if (uploadExtraFormData && typeof uploadExtraFormData === 'object') {
     for (const paramKey in uploadExtraFormData) {
