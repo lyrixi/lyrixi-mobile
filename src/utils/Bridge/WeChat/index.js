@@ -35,12 +35,12 @@ let Bridge = {
 
     if (platform === 'wechat') {
       script.src = options.wechat?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
-    } else if (platform === 'wechatMiniprogram') {
-      script.src = options.wechatMiniprogram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+    } else if (platform === 'wechatMiniProgram') {
+      script.src = options.wechatMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wecom') {
       script.src = options.wecom?.src || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
-    } else if (platform === 'wecomMiniprogram') {
-      script.src = options.wecomMiniprogram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+    } else if (platform === 'wecomMiniProgram') {
+      script.src = options.wecomMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     }
 
     script.onload = function () {
@@ -68,7 +68,7 @@ let Bridge = {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function () {
-    if (['wechatMiniprogram', 'wecomMiniprogram'].includes(Device.platform || '')) {
+    if (['wechatMiniProgram', 'wecomMiniProgram'].includes(Device.platform || '')) {
       window.top.wx.miniProgram.navigateBack({})
     }
     window.top.wx.closeWindow()

@@ -28,8 +28,8 @@ if (Bridge.platform === 'dingtalk') {
 } else if (
   Bridge.platform === 'wechat' ||
   Bridge.platform === 'wecom' ||
-  Bridge.platform === 'wechatMiniprogram' ||
-  Bridge.platform === 'wecomMiniprogram'
+  Bridge.platform === 'wechatMiniProgram' ||
+  Bridge.platform === 'wecomMiniProgram'
 ) {
   uploadItem = uploadWechat
 }

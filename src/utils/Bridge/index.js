@@ -38,8 +38,8 @@ let Bridge = {
     if (
       platform === 'wechat' ||
       platform === 'wecom' ||
-      platform === 'wechatMiniprogram' ||
-      platform === 'wecomMiniprogram'
+      platform === 'wechatMiniProgram' ||
+      platform === 'wecomMiniProgram'
     ) {
       return { ...Browser, ...WeChat }
     } else if (platform === 'alipay' || platform === 'alipayMiniprogram') {

@@ -25,7 +25,7 @@ function authWecomAgentConfig(options) {
       resolve(true)
       return
     }
-    if (Bridge.platform !== 'wework' && Bridge.platform !== 'weworkBrowser') {
+    if (Bridge.platform !== 'wecom' && Bridge.platform !== 'wecomBrowser') {
       resolve(true)
       return
     }

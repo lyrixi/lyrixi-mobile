@@ -31,7 +31,7 @@ export default function uploadFile({ fileData }) {
 
         resolve({
           fileThumbnail: data.previewUrl,
-          uploadDir: '2025/04',
+          uploadPath: '2025/04',
           fileUrl: data.previewUrl,
           tenantId: tenantId,
           filePath: data.filePath

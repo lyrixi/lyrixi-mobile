@@ -31,7 +31,6 @@ function WechatMiniprogram(
     maxWidth,
     chooseExtraParams, // 仅对客户端有效
     // 小程序专用
-    uploadDir,
     miniProgramPageUrl = '/pages/MediaUploader/index',
 
     // Status
@@ -79,7 +78,7 @@ function WechatMiniprogram(
   ref
 ) {
   // 返回{saveMediaUrl, getMediaUrl}
-  const uploadUrl = getUploadUrl?.({ platform: 'wechatMiniprogram' }) || {}
+  const uploadUrl = getUploadUrl?.({ platform: 'wechatMiniProgram' }) || {}
   const saveMediaUrl = uploadUrl.saveMediaUrl || ''
   const getMediaUrl = uploadUrl.getMediaUrl || ''
 
@@ -215,6 +214,13 @@ function WechatMiniprogram(
       try {
         let uploadExtraFormData = formatPayload?.({ platform: 'WechatMiniprogram' }) || {}
 
+        miniProgramNavigate({
+          id: idRef.current,
+          sourceType: sourceType,
+          watermark: watermark,
+          uploadExtraFormData: uploadExtraFormData,
+          maxWidth: maxWidth
+        })
         // eslint-disable-next-line
         top.wx.miniProgram.navigateTo({
           url: `${miniProgramPageUrl}?id=${idRef.current}&sourceType=${JSON.stringify(

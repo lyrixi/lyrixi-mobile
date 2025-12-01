@@ -9,7 +9,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 function getList(forceType) {
   const list = [
     {
-      id: 'wechatMiniprogram',
+      id: 'wechatMiniProgram',
       // 需要相反显示
       name: LocaleUtil.locale('浏览器拍照')
     },
@@ -23,7 +23,7 @@ function getList(forceType) {
   if (forceType === 'browser') {
     return list[1]
   }
-  if (forceType === 'wechatMiniprogram') {
+  if (forceType === 'wechatMiniProgram') {
     return list[0]
   }
   return list

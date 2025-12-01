@@ -47,11 +47,11 @@ async function config(options = {}) {
 
       // 其它平台鉴权
       if (
-        Bridge.platform === 'wechatMiniprogram' ||
-        Bridge.platform === 'weworkMiniprogram' ||
+        Bridge.platform === 'wechatMiniProgram' ||
+        Bridge.platform === 'wecomMiniProgram' ||
         Bridge.platform === 'wechat' ||
-        Bridge.platform === 'wework' ||
-        Bridge.platform === 'weworkBrowser'
+        Bridge.platform === 'wecom' ||
+        Bridge.platform === 'wecomBrowser'
       ) {
         let isOk = await authWechatConfig(wechat)
         resolve(isOk)

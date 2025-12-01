@@ -1,9 +1,9 @@
 import Taro from '@tarojs/taro'
 
-async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidth }) {
+async function upload(file, { uploadPath, watermark, uploadExtraFormData, maxWidth }) {
   return new Promise((resolve) => {
     let payload = {
-      uploadPath: uploadDir,
+      uploadPath: uploadPath,
       file1: file.tempFilePath
     }
 
@@ -51,7 +51,7 @@ async function upload(file, { uploadDir, watermark, uploadExtraFormData, maxWidt
   })
 }
 
-function uploadMedia({ sourceType, uploadDir, watermark, uploadExtraFormData }) {
+function uploadMedia({ sourceType, uploadPath, watermark, uploadExtraFormData }) {
   return new Promise((resolve) => {
     Taro.chooseMedia({
       count: 1,
@@ -63,7 +63,7 @@ function uploadMedia({ sourceType, uploadDir, watermark, uploadExtraFormData }) 
 
         const file = files[0]
         const result = await upload(file, {
-          uploadDir,
+          uploadPath,
           watermark,
           uploadExtraFormData,
           maxWidth

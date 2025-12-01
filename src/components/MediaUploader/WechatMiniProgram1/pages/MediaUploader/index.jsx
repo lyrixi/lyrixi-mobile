@@ -8,7 +8,7 @@ import uploadMedia from './uploadMedia'
 import saveServer from './saveServer'
 import showToast from './showToast'
 
-// wechatMiniprogram: 0.3
+// wechatMiniProgram: 0.3
 const MediaUploader = () => {
   useLoad((op) => {
     // 延迟200ms，解决ios无法呼出拍照功能的问题，安卓鸿蒙无此问题
@@ -18,7 +18,7 @@ const MediaUploader = () => {
   })
 
   async function init(options) {
-    if (!options?.id || !options?.sourceType || !options?.uploadDir) {
+    if (!options?.id || !options?.sourceType || !options?.uploadPath) {
       showToast('缺少参数')
       return
     }
@@ -27,8 +27,8 @@ const MediaUploader = () => {
     // 上传图片
     let isOk = await uploadMedia({
       sourceType: options?.sourceType ? JSON.parse(options?.sourceType) : '',
-      uploadDir: options?.uploadDir
-        ? decodeURIComponent(decodeURIComponent(options?.uploadDir))
+      uploadPath: options?.uploadPath
+        ? decodeURIComponent(decodeURIComponent(options?.uploadPath))
         : 'default',
       watermark: parseUrlJson(options.watermark),
       uploadExtraFormData: parseUrlJson(options?.uploadExtraFormData)

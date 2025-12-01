@@ -8,14 +8,14 @@ import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // Get photos by polling interval
-function getPhotos(id, { url, uploadDir, formatResult, formatUploadedItem }) {
+function getPhotos(id, { url, formatResult, formatUploadedItem }) {
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
         if (typeof formatResult === 'function') {
           // eslint-disable-next-line
           result = await formatResult({
-            platform: 'wechatMiniprogram',
+            platform: 'wechatMiniProgram',
             result: result
           })
         }
@@ -28,7 +28,6 @@ function getPhotos(id, { url, uploadDir, formatResult, formatUploadedItem }) {
               fileThumbnail: item?.fileThumbnail || item?.fileUrl || '',
               fileUrl: item?.fileUrl || '',
               filePath: item?.filePath || '',
-              uploadDir: uploadDir,
               status: 'success'
             }
 
@@ -39,7 +38,7 @@ function getPhotos(id, { url, uploadDir, formatResult, formatUploadedItem }) {
             for (let item of list) {
               // eslint-disable-next-line
               item = await formatUploadedItem(item, {
-                platform: 'wechatMiniprogram',
+                platform: 'wechatMiniProgram',
                 result: item
               })
             }

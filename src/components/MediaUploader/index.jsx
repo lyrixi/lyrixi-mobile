@@ -6,7 +6,7 @@ import uploadList from './utils/uploadList'
 // 内部组件
 import Interval from './utils/Interval'
 import CompatibleToggle from './CompatibleToggle'
-import WechatMiniprogram from './WechatMiniprogram'
+import WechatMiniProgram from './WechatMiniProgram1'
 import Browser from './Browser'
 import Wechat from './Wechat'
 import Dingtalk from './Dingtalk'
@@ -28,15 +28,14 @@ function MediaUploader(
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
     count = 5,
-    type, // video.录相 | 其它.为拍照 | browser | wechatMiniprogram(强制拍照类型)
+    type, // video.录相 | 其它.为拍照 | browser | wechatMiniProgram(强制拍照类型)
     ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     // 小程序专用
-    uploadDir, // 上传目录
-    miniProgramPageUrl, // 小程序页面地址
+    miniProgramNavigate, // 小程序页面地址
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -82,7 +81,7 @@ function MediaUploader(
   ref
 ) {
   // 鸿蒙小程序微信8.0后报错: chooselmage: permission denied， 解决方法: 此版本鸿蒙微信有bug，强制同步上传(同步上传会用小程序和浏览器上传)
-  if (Device?.os === 'harmony' && Bridge.platform === 'wechatMiniprogram') {
+  if (Device?.os === 'harmony' && Bridge.platform === 'wechatMiniProgram') {
     // eslint-disable-next-line
     async = false
   }
@@ -94,7 +93,7 @@ function MediaUploader(
   const intervalRef = useRef(new Interval(5000))
 
   useEffect(() => {
-    if (['browser', 'wechatMiniprogram'].includes(type)) {
+    if (['browser', 'wechatMiniProgram'].includes(type)) {
       setForceType(type)
     }
     // eslint-disable-next-line
@@ -161,7 +160,7 @@ function MediaUploader(
     return (
       <div className="image-container">
         {/* 小程序拍照兼容方式切换, 小程序经常呼不起来 */}
-        {Bridge.platform === 'wechatMiniprogram' ? (
+        {Bridge.platform === 'wechatMiniProgram' ? (
           <CompatibleToggle
             compatible={compatible}
             forceType={forceType || 'browser'}
@@ -183,18 +182,17 @@ function MediaUploader(
   }
 
   // 最新的小程序
-  if (Bridge.platform === 'wechatMiniprogram' && !async) {
+  if (Bridge.platform === 'wechatMiniProgram' && !async) {
     return (
       <div className="image-container">
         <CompatibleToggle
           compatible={compatible}
-          forceType={forceType || 'wechatMiniprogram'}
+          forceType={forceType || 'wechatMiniProgram'}
           onForceTypeChange={setForceType}
         />
-        <WechatMiniprogram
+        <WechatMiniProgram
           ref={ref}
-          uploadDir={uploadDir}
-          miniProgramPageUrl={miniProgramPageUrl}
+          miniProgramNavigate={miniProgramNavigate}
           {...commonProps}
           onNavigateTo={handleNavigateTo}
         />
@@ -205,8 +203,8 @@ function MediaUploader(
   if (
     Bridge.platform === 'wechat' ||
     Bridge.platform === 'wecom' ||
-    Bridge.platform === 'wechatMiniprogram' ||
-    Bridge.platform === 'wecomMiniprogram'
+    Bridge.platform === 'wechatMiniProgram' ||
+    Bridge.platform === 'wecomMiniProgram'
   ) {
     return <Wechat ref={ref} {...commonProps} />
   }

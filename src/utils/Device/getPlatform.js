@@ -11,10 +11,10 @@ function getPlatform() {
   // 微信小程序
   if (ua.indexOf('miniprogram') > -1 && ua.indexOf('micromessenger') > -1) {
     if (ua.indexOf('wxwork') > -1) {
-      platform = 'wecomMiniprogram'
+      platform = 'wecomMiniProgram'
       platformMatch = ua.match(/wxwork\/([\w.]*)/)
     } else if (ua.indexOf('micromessenger') > -1) {
-      platform = 'wechatMiniprogram'
+      platform = 'wechatMiniProgram'
       platformMatch = ua.match(/micromessenger\/([\w.]*)/)
     }
     if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
