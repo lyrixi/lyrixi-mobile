@@ -75,10 +75,10 @@ function WechatMiniprogram(
   },
   ref
 ) {
-  // 返回{savePhotoUrl, getPhotoUrl}
+  // 返回{saveMediaUrl, getMediaUrl}
   const uploadUrl = getUploadUrl?.({ platform: 'wechatMiniprogram' }) || {}
-  const savePhotoUrl = uploadUrl.savePhotoUrl || ''
-  const getPhotoUrl = uploadUrl.getPhotoUrl || ''
+  const saveMediaUrl = uploadUrl.saveMediaUrl || ''
+  const getMediaUrl = uploadUrl.getMediaUrl || ''
 
   // Auto generate id, used to get photos form server
   const idRef = useRef(Object.generateGUID())
@@ -136,7 +136,7 @@ function WechatMiniprogram(
   // Get photos by polling interval
   async function updatePhotos() {
     let photos = await getPhotos(idRef.current, {
-      url: getPhotoUrl,
+      url: getMediaUrl,
       uploadDir: uploadDir,
       formatUploadedItem: formatUploadedItem
     })
@@ -154,7 +154,7 @@ function WechatMiniprogram(
       listRef.current = listRef.current.concat(photos)
       console.log('照片拍完, 清空redis', listRef.current)
       onChangeRef.current && onChangeRef.current(listRef.current)
-      await clearPhotos(idRef.current, { url: savePhotoUrl })
+      await clearPhotos(idRef.current, { url: saveMediaUrl })
       return
     }
     // Null Get photos by polling interval 3s
