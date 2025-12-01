@@ -47,7 +47,7 @@ const Button = forwardRef(
   ) => {
     const rootRef = useRef(null)
 
-    const { style: newStyle, className: newClassName } = getStyle({
+    let { style: newStyle, className: newClassName } = getStyle({
       // Style
       color,
       borderColor,

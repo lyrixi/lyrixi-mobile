@@ -12,11 +12,10 @@ import { DOMUtil, Button } from 'lyrixi-mobile'
 const NavBarButton = forwardRef(
   (
     {
-      padding,
       // Button: Style
       color = 'secondary',
       borderColor,
-      backgroundColor,
+      backgroundColor = 'transparent',
       size = 22,
       fontSize,
       radius,
@@ -56,10 +55,7 @@ const NavBarButton = forwardRef(
         radius={radius}
         square={square}
         border={border}
-        style={{
-          ...style,
-          padding: padding
-        }}
+        style={style}
         className={DOMUtil.classNames('lyrixi-navbar-button', className)}
         // Button: Status
         disabled={disabled}
