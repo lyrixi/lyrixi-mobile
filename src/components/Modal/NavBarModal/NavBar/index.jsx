@@ -13,28 +13,25 @@ import { NavBar } from 'lyrixi-mobile'
 const Head = forwardRef(
   (
     {
+      // Style
+      style,
+      className,
+
+      // Elements
       title,
       okNode,
       okVisible,
       okPosition = 'right',
-      onOk,
       cancelNode,
       cancelVisible = true,
       cancelPosition = 'left',
+
+      // Events
+      onOk,
       onCancel
     },
     ref
   ) => {
-    // 只显示标题
-    if (!okVisible && !cancelVisible) {
-      return (
-        <NavBar ref={ref}>
-          {/* 标题 */}
-          <NavBar.Title>{title}</NavBar.Title>
-        </NavBar>
-      )
-    }
-
     let CancelNode = cancelVisible ? <Cancel onClick={onCancel}>{cancelNode}</Cancel> : null
 
     let OkNode = okVisible ? <Ok onClick={onOk}>{okNode}</Ok> : null
@@ -42,7 +39,7 @@ const Head = forwardRef(
     console.log('cancelNode', cancelNode)
     // 带按钮
     return (
-      <NavBar ref={ref}>
+      <NavBar ref={ref} style={style} className={className}>
         {/* 取消按钮 */}
         {cancelPosition === 'left' && CancelNode}
         {okPosition === 'left' && OkNode}

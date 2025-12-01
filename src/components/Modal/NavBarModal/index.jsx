@@ -20,6 +20,8 @@ const NavBarModal = forwardRef(
 
       // Style
       safeArea,
+      navBarStyle,
+      navBarClassName,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -74,6 +76,10 @@ const NavBarModal = forwardRef(
         onClose={onClose}
       >
         <NavBar
+          // Style
+          style={navBarStyle}
+          className={navBarClassName}
+          // Elements
           title={title}
           okNode={okNode}
           cancelNode={cancelNode}
@@ -81,6 +87,7 @@ const NavBarModal = forwardRef(
           okPosition={okPosition}
           cancelVisible={cancelVisible}
           cancelPosition={cancelPosition}
+          // Events
           onOk={handleOkClick}
           onCancel={handleCancelClick}
         />
