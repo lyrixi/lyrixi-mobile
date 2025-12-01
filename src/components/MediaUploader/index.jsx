@@ -34,6 +34,9 @@ function MediaUploader(
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
+    // 小程序专用
+    uploadDir, // 上传目录
+    miniProgramPageUrl, // 小程序页面地址
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -188,7 +191,13 @@ function MediaUploader(
           forceType={forceType || 'wechatMiniprogram'}
           onForceTypeChange={setForceType}
         />
-        <WechatMiniprogram ref={ref} {...commonProps} onNavigateTo={handleNavigateTo} />
+        <WechatMiniprogram
+          ref={ref}
+          uploadDir={uploadDir}
+          miniProgramPageUrl={miniProgramPageUrl}
+          {...commonProps}
+          onNavigateTo={handleNavigateTo}
+        />
       </div>
     )
   }
