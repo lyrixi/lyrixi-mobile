@@ -24,8 +24,6 @@ function MediaUploader(
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
-    uploadDir = 'default',
-    chooseExtraParams, // 仅对客户端有效
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -57,7 +55,8 @@ function MediaUploader(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadPayload,
+    formatPayload,
+    formatResult,
 
     // Events
     onBeforeChoose,
@@ -85,10 +84,10 @@ function MediaUploader(
   async function uploadItem(item) {
     // 开始上传
     let result = await _uploadItem(item, {
-      uploadDir,
       maxWidth,
       getUploadUrl,
-      getUploadPayload,
+      formatPayload,
+      formatResult,
       formatUploadedItem
     })
 
@@ -149,8 +148,7 @@ function MediaUploader(
               localFile: localFile,
               watermark: watermark,
               fileThumbnail: localFile.fileUrl,
-              fileUrl: localFile.fileUrl,
-              uploadDir: uploadDir
+              fileUrl: localFile.fileUrl
             }
           })
 

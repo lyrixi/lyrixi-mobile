@@ -32,7 +32,7 @@ function uploadFile({ url, header, payload }) {
       .catch((error) => {
         resolve({
           status: 'error',
-          message: error?.response?.data?.message || LocaleUtil.locale('上传serverId异常')
+          message: error?.response?.data?.message || LocaleUtil.locale('浏览器上传异常')
         })
       })
   })

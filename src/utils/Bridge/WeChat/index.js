@@ -222,7 +222,15 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadFile: function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
+  uploadFile: function ({
+    localFile,
+    getUploadUrl,
+    header,
+    formatPayload,
+    formatResult,
+    onSuccess,
+    onError
+  } = {}) {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -234,19 +242,30 @@ let Bridge = {
       onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
       return
     }
+
     window.top.wx.uploadImage({
       localId: localFile?.filePath,
       isShowProgressTips: 0,
       success: async function (res) {
         let serverId = res.serverId
+        let payload = {
+          serverId: serverId,
+          filePath: localFile.filePath,
+          fileType: localFile.fileType
+        }
         let result = await uploadServerId({
-          url: url,
+          url: getUploadUrl?.({ platform: 'wechat' }) || '',
           header: header,
-          payload: {
-            serverId: serverId,
-            ...payload
-          }
+          payload:
+            typeof formatPayload === 'function'
+              ? formatPayload(payload, { platform: 'wechat' })
+              : payload
         })
+
+        if (typeof formatResult === 'function') {
+          result = formatResult(result, { platform: 'wechat' })
+        }
+
         onSuccess && onSuccess(result)
       },
       fail: function (error) {

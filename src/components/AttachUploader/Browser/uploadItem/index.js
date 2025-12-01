@@ -12,7 +12,7 @@ import { Storage, LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
 // 单张照片上传
-function uploadItem(item, { uploadDir, getUploadUrl, getUploadPayload, formatUploadedItem }) {
+function uploadItem(item, { getUploadUrl, formatPayload, formatResult, formatUploadedItem }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -22,27 +22,12 @@ function uploadItem(item, { uploadDir, getUploadUrl, getUploadPayload, formatUpl
       return
     }
 
-    const appId = Storage.getLocalStorage('appId') || ''
-    if (!appId) {
-      resolve(LocaleUtil.locale('没有appId，无法上传！'))
-      return
-    }
-
-    // 获取上传入参
-    let { localFile, url, header, data } = getUploadParams({
-      localFile: item?.localFile,
-      uploadDir,
-      getUploadUrl,
-      getUploadPayload,
-      appId
-    })
-
     // 上传到阿里云
     let newItem = await uploadLocalFile({
-      localFile,
-      url,
-      header,
-      data,
+      localFile: item?.localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
+      getUploadUrl,
+      formatPayload,
+      formatResult,
       // 用于构建新Item的入参
       item,
       formatUploadedItem

@@ -5,15 +5,6 @@ import uploadList from './utils/uploadList'
 
 // 内部组件
 import Browser from './Browser'
-import Lyrixi from './Lyrixi'
-
-// 内库使用-start
-import Bridge from './../../utils/Bridge'
-// 内库使用-end
-
-/* 测试使用-start
-import { Bridge } from 'lyrixi-mobile'
-测试使用-end */
 
 // 照片上传
 function AttachUploader(
@@ -23,8 +14,6 @@ function AttachUploader(
     count = 5,
     sourceType,
     maxSize,
-    uploadDir = 'default',
-    chooseExtraParams, // 仅对客户端有效
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -60,7 +49,8 @@ function AttachUploader(
     */
     formatUploadedItem,
     getUploadUrl,
-    getUploadPayload,
+    formatPayload,
+    formatResult,
 
     // Events
     onBeforeChoose,
@@ -79,8 +69,6 @@ function AttachUploader(
     count,
     sourceType,
     maxSize,
-    uploadDir,
-    chooseExtraParams,
     // Status
     async,
     reUpload,
@@ -98,18 +86,14 @@ function AttachUploader(
     previewServerSourceType,
     formatUploadedItem,
     getUploadUrl,
-    getUploadPayload,
+    formatPayload,
+    formatResult,
     // Events
     onBeforeChoose,
     onFileChange,
     onUpload,
     onChange,
     onPreview
-  }
-
-  // 优先调用客户端能力
-  if (Bridge.platform === 'lyrixi') {
-    return <Lyrixi ref={ref} {...commonProps} timeout={timeout} />
   }
 
   return <Browser ref={ref} {...commonProps} />

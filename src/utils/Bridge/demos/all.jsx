@@ -328,8 +328,12 @@ export default () => {
             onClick={() => {
               Bridge.previewMedia({
                 sources: [
-                  { fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png' },
-                  { fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png' }
+                  {
+                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  },
+                  {
+                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  }
                 ],
 
                 index: 0,

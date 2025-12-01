@@ -11,20 +11,19 @@ import { AssetUtil, Bridge, LocaleUtil } from 'lyrixi-mobile'
 // 上传localFile
 function uploadLocalFile({
   localFile,
-  url,
-  header,
-  payload,
+  getUploadUrl,
+  formatPayload,
+  formatResult,
   // 用于构建新Item的入参
   item,
   formatUploadedItem
 }) {
   return new Promise((resolve) => {
     Bridge.uploadFile({
-      url: url,
-      localFile: localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
-      // 鸿蒙钉钉有bug，上传方法带不上header，导致无法上传
-      header: header,
-      payload: payload,
+      getUploadUrl,
+      localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
+      formatPayload,
+      formatResult,
       onSuccess: async function (result) {
         let newItem = result
 

@@ -1,26 +1,22 @@
 import _ from 'lodash'
 
-import uploadLyrixi from './../../Lyrixi/uploadItem'
 import uploadWechat from './../../Wechat/uploadItem'
 import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
 
 // 内库使用-start
 import Toast from './../../../Toast'
-import Bridge from './../../../../utils/Bridge'
 import Device from './../../../../utils/Device'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Bridge, Device, LocaleUtil } from 'lyrixi-mobile'
+import { Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 导出给外部使用的工具类: 异步上传
 let uploadItem = null
-if (Bridge.platform === 'lyrixi') {
-  uploadItem = uploadLyrixi
-} else if (Bridge.platform === 'dingtalk') {
+if (Bridge.platform === 'dingtalk') {
   // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
   if (Device?.os === 'harmony') {
     uploadItem = uploadFile
@@ -100,9 +96,9 @@ async function uploadList(mediaList, uploadConfig) {
     // 开始上传
     let result = await uploadItem(item, {
       timeout: item?.timeout || uploadConfig?.timeout,
-      uploadDir: item?.uploadDir || uploadConfig?.uploadDir,
       getUploadUrl: uploadConfig?.getUploadUrl,
-      getUploadPayload: uploadConfig?.getUploadPayload,
+      formatPayload: uploadConfig?.formatPayload,
+      formatResult: uploadConfig?.formatResult,
       formatUploadedItem: uploadConfig?.formatUploadedItem
     })
     // 上传失败

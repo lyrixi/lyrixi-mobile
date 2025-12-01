@@ -30,8 +30,6 @@ function Browser(
     count = 5,
     sourceType = ['album', 'camera'],
     maxSize,
-    uploadDir = 'default',
-    chooseExtraParams, // 仅对客户端有效
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -65,7 +63,8 @@ function Browser(
     */
     formatUploadedItem,
     getUploadUrl,
-    getUploadPayload,
+    formatPayload,
+    formatResult,
 
     // Events
     onBeforeChoose,
@@ -93,9 +92,9 @@ function Browser(
   async function uploadItem(item) {
     // 开始上传
     let result = await _uploadItem(item, {
-      uploadDir,
       getUploadUrl,
-      getUploadPayload,
+      formatPayload,
+      formatResult,
       formatUploadedItem
     })
 
@@ -132,10 +131,8 @@ function Browser(
       resolve({
         status: 'choose',
         localFile: localFile,
-        fileName: localFile.fileName,
         fileSize: localFile.fileSize,
-        fileUrl: localFile.fileUrl,
-        uploadDir: uploadDir
+        fileUrl: localFile.fileUrl
       })
     })
   }

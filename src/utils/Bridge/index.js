@@ -243,9 +243,10 @@ let Bridge = {
    * 文件操作: 文件上传
    * @param {Object} params - 上传图片参数
    * @param {Object} params.localFile - 需要上传的图片的本地文件, { path: String, type: String } (必填)
-   * @param {String} params.url - 上传地址 (必填)
+   * @param {String} params.getUploadUrl - 上传地址 (必填), function({ platform: String }) => String
    * @param {Object} params.header - 请求头, 默认为 { 'Content-Type': 'multipart/form-data', Cookie: document.cookie }
-   * @param {Object} params.payload - 表单数据, 默认为 {}
+   * @param {Object} params.formatPayload - 格式化表单数据 function(payload, { platform: String }), 返回 {Object}
+   * @param {Object} params.formatResult - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', result: Object}
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}
    * @param {Function} params.onError - 失败回调
    * @returns {void}

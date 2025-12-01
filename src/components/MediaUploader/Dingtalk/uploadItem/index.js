@@ -14,7 +14,7 @@ import { Storage, LocaleUtil } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadPayload, formatUploadedItem }
+  { maxWidth, getUploadUrl, formatPayload, formatResult, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -31,23 +31,16 @@ function uploadItem(
       return
     }
 
-    // 获取上传入参
-    let { localFile, url, header, data } = getUploadParams({
-      watermark: item?.watermark,
-      localFile: item?.localFile,
-      uploadDir,
-      maxWidth,
-      getUploadUrl,
-      getUploadPayload,
-      appId
-    })
-
     // 上传到阿里云
     let newItem = await uploadLocalFile({
-      localFile,
-      url,
-      header,
-      data,
+      localFile: item?.localFile,
+      getUploadUrl,
+      formatPayload: (payload) =>
+        formatPayload?.(
+          { ...payload, watermark: item?.watermark, maxWidth, appId },
+          { platform: 'browser' }
+        ),
+      formatResult,
       // 用于构建新Item的入参
       item,
       formatUploadedItem

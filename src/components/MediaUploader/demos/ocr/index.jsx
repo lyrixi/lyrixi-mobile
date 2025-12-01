@@ -19,7 +19,6 @@ export default () => {
   ])
 
   function handlePhotoChange(newList) {
-    // debugger
     // setList(
     //   newList.map((item) => {
     //     if (item.ocrResult) item.ocr_result = item.ocrResult
@@ -34,7 +33,6 @@ export default () => {
       <Page.Header className="lyrixi-text-center">OCR识别</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <MediaUploader
-          uploadDir={`businessName`}
           sizeType={['compressed']}
           sourceType={['camera']}
           list={list}

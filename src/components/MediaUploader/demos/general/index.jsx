@@ -22,7 +22,6 @@ export default () => {
 
   function handlePhotoChange(newList) {
     console.log('update:', newList)
-    // debugger
     setList(newList)
   }
   // 异步上传
@@ -56,7 +55,6 @@ export default () => {
           uploadPosition="start"
           ref={imageUploaderRef}
           // timeout={2000}
-          uploadDir={`businessName`}
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}

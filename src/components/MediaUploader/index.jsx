@@ -8,7 +8,6 @@ import Interval from './utils/Interval'
 import CompatibleToggle from './CompatibleToggle'
 import WechatMiniprogram from './WechatMiniprogram'
 import Browser from './Browser'
-import Lyrixi from './Lyrixi'
 import Wechat from './Wechat'
 import Dingtalk from './Dingtalk'
 
@@ -35,8 +34,6 @@ function MediaUploader(
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
-    uploadDir = 'default',
-    chooseExtraParams, // 仅对客户端有效
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -70,7 +67,8 @@ function MediaUploader(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadPayload,
+    formatPayload,
+    formatResult,
 
     // Events
     onBeforeChoose,
@@ -128,8 +126,7 @@ function MediaUploader(
     sizeType,
     isSaveToAlbum,
     maxWidth,
-    uploadDir,
-    chooseExtraParams,
+
     // Status
     async,
     reUpload,
@@ -147,17 +144,13 @@ function MediaUploader(
     formatUploadedItem,
     getWatermark,
     getUploadUrl,
-    getUploadPayload,
+    formatPayload,
+    formatResult,
     // Events
     onBeforeChoose,
     onUpload,
     onChange,
     onPreview
-  }
-
-  // 优先调用客户端能力
-  if (Bridge.platform === 'lyrixi') {
-    return <Lyrixi ref={ref} {...commonProps} />
   }
 
   // file框模式上传 或 强制使用Browser模式（间隔检测）

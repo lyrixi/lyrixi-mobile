@@ -32,7 +32,6 @@ export default () => {
           // visibleCount={1}
           count={2}
           extension={['image']} // ['image', 'video', 'audio', 'jpg等指定后缀']
-          // uploadDir={`businessName`}
           uploadPosition="start"
           timeout={1}
           list={list}

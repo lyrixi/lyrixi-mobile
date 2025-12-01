@@ -243,7 +243,15 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadFile: function ({ localFile, url, header = {}, payload = {}, onSuccess, onError } = {}) {
+  uploadFile: function ({
+    localFile,
+    getUploadUrl,
+    header = {},
+    formatPayload,
+    formatResult,
+    onSuccess,
+    onError
+  } = {}) {
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -261,6 +269,8 @@ let Bridge = {
       return
     }
 
+    let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
+
     const handleSuccess = function (res) {
       console.log('钉钉uploadImage成功:', res)
       const { data, statusCode } = res
@@ -273,11 +283,27 @@ let Bridge = {
         return
       }
 
-      let result = data
+      let result = {
+        code: 'success',
+        result: data
+      }
       if (typeof data === 'string') {
         try {
-          result = JSON.parse(data)
+          result.result = JSON.parse(data)
         } catch (e) {}
+      }
+
+      if (typeof formatResult === 'function') {
+        result = formatResult(result, { platform: 'dingtalk' })
+      }
+
+      if (result.code !== 'success') {
+        onError &&
+          onError({
+            status: 'error',
+            message: result.message
+          })
+        return
       }
 
       onSuccess &&
@@ -297,9 +323,12 @@ let Bridge = {
     }
 
     console.log('调用钉钉uploadFile:', {
-      url: url,
+      url: getUploadUrl?.({ platform: 'dingtalk' }) || '',
       header: header,
-      formData: payload,
+      formData:
+        typeof formatPayload === 'function'
+          ? formatPayload(payload, { platform: 'dingtalk' })
+          : payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.filePath,
       fileType: localFile.fileType

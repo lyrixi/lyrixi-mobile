@@ -3,18 +3,17 @@ import getUploadParams from './getUploadParams'
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
-import Storage from './../../../../utils/Storage'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Storage, LocaleUtil } from 'browser-mobile'
+import { LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
 // 单张照片上传
 function uploadItem(
   item,
-  { uploadDir, maxWidth, getUploadUrl, getUploadPayload, formatUploadedItem }
+  { maxWidth, getUploadUrl, formatPayload, formatResult, formatUploadedItem }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -25,29 +24,16 @@ function uploadItem(
       return
     }
 
-    const appId = Storage.getLocalStorage('appId') || ''
-    if (!appId) {
-      resolve(LocaleUtil.locale('没有appId，无法上传！'))
-      return
-    }
-
-    // 获取上传入参
-    let { localFile, url, header, data } = getUploadParams({
-      watermark: item?.watermark,
-      localFile: item?.localFile,
-      uploadDir,
-      maxWidth,
-      getUploadUrl,
-      getUploadPayload,
-      appId
-    })
-
     // 上传到阿里云
     let newItem = await uploadLocalFile({
-      localFile,
-      url,
-      header,
-      data,
+      localFile: item?.localFile,
+      getUploadUrl,
+      formatPayload: (payload) =>
+        formatPayload?.(
+          { ...payload, watermark: item?.watermark, maxWidth },
+          { platform: 'browser' }
+        ),
+      formatResult,
       // 用于构建新Item的入参
       item,
       formatUploadedItem

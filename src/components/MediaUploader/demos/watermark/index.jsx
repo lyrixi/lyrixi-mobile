@@ -21,7 +21,6 @@ export default () => {
 
   function handlePhotoChange(newList) {
     console.log('update:', newList)
-    // debugger
     setList(newList)
   }
 

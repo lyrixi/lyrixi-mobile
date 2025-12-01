@@ -250,16 +250,29 @@ let Browser = {
     })
     params?.onError && params.onError({ status: 'error', message: message })
   },
-  uploadFile: async function ({ localFile, url, header, payload, onSuccess, onError } = {}) {
+  uploadFile: async function ({
+    localFile,
+    getUploadUrl,
+    header,
+    formatPayload,
+    formatResult,
+    onSuccess,
+    onError
+  } = {}) {
+    let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
+
     let result = await uploadFile({
-      url: url,
+      url: getUploadUrl?.({ platform: 'browser' }) || '',
       header: header,
-      payload: {
-        filePath: localFile.filePath,
-        fileType: localFile.fileType,
-        ...payload
-      }
+      payload:
+        typeof formatPayload === 'function'
+          ? formatPayload(payload, { platform: 'browser' })
+          : payload
     })
+
+    if (typeof formatResult === 'function') {
+      result = formatResult(result, { platform: 'browser' })
+    }
 
     if (result.status === 'success') {
       onSuccess && onSuccess(result)
