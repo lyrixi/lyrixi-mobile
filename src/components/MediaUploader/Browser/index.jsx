@@ -87,6 +87,7 @@ function Browser(
       maxWidth,
       getUploadUrl,
       formatPayload,
+      formatResult,
       formatUploadedItem
     })
 
