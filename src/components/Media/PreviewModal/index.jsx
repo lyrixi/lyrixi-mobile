@@ -29,10 +29,12 @@ const PreviewModal = forwardRef(
       allowClear = false,
 
       // Style
-      modalClassName,
-      modalStyle,
-      mainClassName,
       mainStyle,
+      mainClassName,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
 
       // Element
       portal,
@@ -67,8 +69,10 @@ const PreviewModal = forwardRef(
         // Status
         open={open}
         // Style
-        className={DOMUtil.classNames('lyrixi-media-preview-modal', modalClassName)}
-        style={modalStyle}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-media-preview-modal', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
         portal={portal}
         // Element
         animation="slideUp"

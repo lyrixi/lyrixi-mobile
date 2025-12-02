@@ -55,6 +55,10 @@ const Media = forwardRef(
       style,
       className,
       uploadPosition = 'end', // start | end
+      previewMaskStyle,
+      previewMaskClassName,
+      previewModalStyle,
+      previewModalClassName,
 
       // Element
       uploadRender, // 上传按钮覆盖的dom
@@ -355,6 +359,11 @@ const Media = forwardRef(
             sourceType={sourceType}
             sizeType={sizeType}
             maxWidth={maxWidth}
+            // Style
+            maskStyle={previewMaskStyle}
+            maskClassName={previewMaskClassName}
+            modalStyle={previewModalStyle}
+            modalClassName={previewModalClassName}
             // Status
             open={typeof previewVisible === 'number'}
             allowChoose={previewAllowChoose}

@@ -38,6 +38,10 @@ function MediaUploader(
     // Style
     className,
     uploadPosition,
+    previewMaskStyle,
+    previewMaskClassName,
+    previewModalStyle,
+    previewModalClassName,
 
     // Element
     uploadRender, // 上传按钮覆盖的dom
@@ -190,6 +194,10 @@ function MediaUploader(
       // Style
       className={className}
       uploadPosition={uploadPosition}
+      previewMaskStyle={previewMaskStyle}
+      previewMaskClassName={previewMaskClassName}
+      previewModalStyle={previewModalStyle}
+      previewModalClassName={previewModalClassName}
       // Element
       uploadRender={uploadRender}
       uploadingRender={uploadingRender}
