@@ -259,7 +259,7 @@ let Browser = {
     onSuccess,
     onError
   } = {}) {
-    let url = getUploadUrl?.({ platform: 'browser' }) || ''
+    let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
       onError &&
         onError({
@@ -270,11 +270,11 @@ let Browser = {
     }
     let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
     if (typeof formatPayload === 'function') {
-      payload = formatPayload(payload, { platform: 'browser' })
+      payload = await formatPayload(payload, { platform: 'browser' })
     }
     let header = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeader === 'function') {
-      header = formatHeader(header, { platform: 'browser' })
+      header = await formatHeader(header, { platform: 'browser' })
     }
 
     let result = await uploadFile({
@@ -284,7 +284,7 @@ let Browser = {
     })
 
     if (typeof formatResult === 'function') {
-      result = formatResult(result, { platform: 'browser' })
+      result = await formatResult(result, { platform: 'browser' })
     }
 
     if (result.status === 'success') {

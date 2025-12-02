@@ -222,7 +222,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadFile: function ({
+  uploadFile: async function ({
     localFile,
     getUploadUrl,
     formatHeader,
@@ -243,7 +243,7 @@ let Bridge = {
       return
     }
 
-    let url = getUploadUrl?.({ platform: 'wechat' }) || ''
+    let url = (await getUploadUrl?.({ platform: 'wechat' })) || ''
     if (!url || typeof url !== 'string') {
       onError &&
         onError({
@@ -264,24 +264,21 @@ let Bridge = {
           fileType: localFile.fileType
         }
         if (typeof formatPayload === 'function') {
-          payload = formatPayload(payload, { platform: 'dingtalk' })
+          payload = await formatPayload(payload, { platform: 'dingtalk' })
         }
         let header = { 'Content-Type': 'multipart/form-data' }
         if (typeof formatHeader === 'function') {
-          header = formatHeader(header, { platform: 'dingtalk' })
+          header = await formatHeader(header, { platform: 'dingtalk' })
         }
 
         let result = await uploadServerId({
           url: url,
           header: header,
-          payload:
-            typeof formatPayload === 'function'
-              ? formatPayload(payload, { platform: 'wechat' })
-              : payload
+          payload: payload
         })
 
         if (typeof formatResult === 'function') {
-          result = formatResult(result, { platform: 'wechat' })
+          result = await formatResult(result, { platform: 'wechat' })
         }
 
         onSuccess && onSuccess(result)

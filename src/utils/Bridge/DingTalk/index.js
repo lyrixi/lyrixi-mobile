@@ -243,7 +243,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadFile: function ({
+  uploadFile: async function ({
     localFile,
     getUploadUrl,
     formatHeader,
@@ -252,7 +252,7 @@ let Bridge = {
     onSuccess,
     onError
   } = {}) {
-    const url = getUploadUrl?.({ platform: 'dingtalk' }) || ''
+    const url = (await getUploadUrl?.({ platform: 'dingtalk' })) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -272,14 +272,14 @@ let Bridge = {
 
     let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
     if (typeof formatPayload === 'function') {
-      payload = formatPayload(payload, { platform: 'dingtalk' })
+      payload = await formatPayload(payload, { platform: 'dingtalk' })
     }
     let header = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeader === 'function') {
-      header = formatHeader(header, { platform: 'dingtalk' })
+      header = await formatHeader(header, { platform: 'dingtalk' })
     }
 
-    const handleSuccess = function (res) {
+    const handleSuccess = async function (res) {
       console.log('钉钉uploadImage成功:', res)
       const { data, statusCode } = res
       if (statusCode !== 200) {
@@ -302,7 +302,7 @@ let Bridge = {
       }
 
       if (typeof formatResult === 'function') {
-        result = formatResult(result, { platform: 'dingtalk' })
+        result = await formatResult(result, { platform: 'dingtalk' })
       }
 
       if (result.code !== 'success') {
