@@ -79,7 +79,7 @@ const PreviewModal = forwardRef(
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-media-preview-modal', modalClassName)}
         maskStyle={maskStyle}
-        maskClassName={maskClassName}
+        maskClassName={DOMUtil.classNames('lyrixi-media-preview-mask', maskClassName)}
         // Element
         portal={portal}
         cancelPosition={cancelPosition}
