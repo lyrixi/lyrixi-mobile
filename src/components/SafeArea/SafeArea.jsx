@@ -13,7 +13,8 @@ const SafeArea = forwardRef(
   (
     {
       // Style
-      safeArea = true,
+      type = 'height', // height | padding | margin | border | before | after
+      position = 'bottom', // top | bottom
       style,
       className
     },
@@ -34,11 +35,7 @@ const SafeArea = forwardRef(
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames(
-          safeArea ? 'lyrixi-safe-area' : '',
-          'lyrixi-height-bottom',
-          className
-        )}
+        className={DOMUtil.classNames('lyrixi-safe-area', `lyrixi-${type}-${position}`, className)}
       ></div>
     )
   }
