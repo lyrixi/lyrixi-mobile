@@ -357,7 +357,7 @@ const Media = forwardRef(
           <PreviewModal
             // Value & Display Value
             list={list} // 需要预览的资源列表{fileUrl: '图片或视频的地址', type: 'video|image, 默认image', fileThumbnail: '封面地址'}
-            current={previewVisible}
+            index={previewVisible}
             type={type}
             count={count}
             sourceType={sourceType}

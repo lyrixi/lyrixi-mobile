@@ -1,5 +1,6 @@
 import React from 'react'
 import Item from './../Item'
+import isAllowClear from './../utils/isAllowClear'
 
 // 照片视频预览
 const List = ({
@@ -34,6 +35,10 @@ const List = ({
       {list && list.length > 0
         ? list.map((item, index) => {
             if (maxCountVisible && index + 1 > maxCountVisible) return null
+
+            // 判断当前项是否允许删除
+            const canClear = typeof onChange === 'function' && isAllowClear(allowClear, item)
+
             return (
               <Item
                 key={index}
@@ -49,7 +54,7 @@ const List = ({
                 uploadingType="item"
                 uploadingRender={uploadingRender}
                 // Events
-                onDelete={typeof onChange === 'function' && allowClear ? handleDelete : null}
+                onDelete={canClear ? handleDelete : null}
                 onReUpload={onReUpload}
                 onPreview={onPreview}
               />

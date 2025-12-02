@@ -2,6 +2,14 @@ import React, { useRef } from 'react'
 
 import Item from './../Item'
 
+// 内库使用-start
+import Media from './../../Media'
+// 内库使用-end
+
+/* 测试使用-start
+import { Media } from 'lyrixi-mobile'
+测试使用-end */
+
 // File List
 const List = ({
   // Value & Display Value
@@ -39,13 +47,16 @@ const List = ({
       {list &&
         list.length > 0 &&
         list.map((item, index) => {
+          // 判断当前项是否允许删除
+          const canClear = typeof onChange === 'function' && Media.isAllowClear(allowClear, item)
+
           return (
             <Item
               key={index}
               item={item}
               index={index}
               uploadingRender={uploadingRender}
-              onDelete={typeof onChange === 'function' && allowClear ? handleDelete : null}
+              onDelete={canClear ? handleDelete : null}
               onReUpload={onReUpload}
               onPreview={onPreview}
             />

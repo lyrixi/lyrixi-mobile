@@ -5,3 +5,5 @@ title: Media
 ---
 
 # Media
+
+Media component for displaying, selecting and uploading images and videos.

@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef, useImperativeHandle, useRef } from 'react'
+import React, { useEffect, forwardRef, useImperativeHandle, useRef, useState } from 'react'
 // Compatible with lower version
 // import 'core-js/es/array/flat'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -8,6 +8,7 @@ import choose from './../utils/choose'
 import uploadItem from './../utils/uploadItem'
 import showLoading from './../utils/showLoading'
 import hideLoading from './../utils/hideLoading'
+import isAllowClear from './../utils/isAllowClear'
 import getActiveIndex from './getActiveIndex'
 
 import PreviewDelete from './PreviewDelete'
@@ -32,7 +33,7 @@ const PreviewMain = forwardRef(
     {
       // Value & Display Value
       list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
-      current, // 当前显示的资源序号或者当前资源的src链接
+      index, // 当前显示的资源序号
       type, // video | image
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
@@ -64,6 +65,8 @@ const PreviewMain = forwardRef(
   ) => {
     const videoPlayers = useRef([])
     const swiperRef = useRef(null)
+    // 显示项, 用于判断是否允许删除
+    const [activeIndex, setActiveIndex] = useState(0)
 
     // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
     const onFileChangeRef = useRef()
@@ -78,6 +81,9 @@ const PreviewMain = forwardRef(
       chooseVisible = false
     }
 
+    // 判断当前项是否允许删除
+    const canClear = typeof onChange === 'function' && isAllowClear(allowClear, list?.[activeIndex])
+
     // Expose
     useImperativeHandle(ref, () => {
       return {
@@ -87,7 +93,9 @@ const PreviewMain = forwardRef(
     })
     useEffect(() => {
       if (!open || typeof swiperRef?.current?.swiper?.slideTo !== 'function') return
-      swiperRef.current.swiper.slideTo(getActiveIndex({ current, list }), 0)
+      activeIndex = getActiveIndex({ index, list })
+      swiperRef.current.swiper.slideTo(activeIndex, 0)
+      setActiveIndex(activeIndex)
       // eslint-disable-next-line
     }, [open])
 
@@ -101,7 +109,10 @@ const PreviewMain = forwardRef(
     }
 
     // 滑动视频需要暂停其它视频
-    function handleSwipe() {
+    function handleSwipe(swiper) {
+      // 更新当前激活的索引
+      setActiveIndex(swiper.activeIndex)
+
       // 暂停所有视频
       if (type === 'video') {
         for (let videoPlayer of videoPlayers.current) {
@@ -322,9 +333,7 @@ const PreviewMain = forwardRef(
         {/* Close */}
         {closable && <PreviewClose onClose={onClose} />}
         {/* Delete */}
-        {allowClear && typeof onChange === 'function' ? (
-          <PreviewDelete onDelete={handleDelete} />
-        ) : null}
+        {canClear ? <PreviewDelete onDelete={handleDelete} /> : null}
         {/* Choose */}
         {chooseVisible && typeof onChange === 'function' ? (
           <PreviewChoose

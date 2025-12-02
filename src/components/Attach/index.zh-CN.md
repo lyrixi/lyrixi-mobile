@@ -29,7 +29,7 @@ toc: content
 | 属性            | 说明         | 类型                            | 默认值  |
 | --------------- | ------------ | ------------------------------- | ------- |
 | allowChoose     | 是否允许选择 | `boolean`                       | `false` |
-| allowClear      | 是否允许清除 | `boolean`                       | `false` |
+| allowClear      | 是否允许清除 | `boolean \| (item) => boolean`  | `false` |
 | uploadPosition  | 上传按钮位置 | `string`                        | -       |
 | uploadRender    | 上传按钮     | `function({uploadType: ''})`    | -       |
 | uploadingRender | 是否上传中   | `function({uploadingType: ''})` | -       |
