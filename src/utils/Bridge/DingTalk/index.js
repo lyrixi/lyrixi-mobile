@@ -42,7 +42,7 @@ let Bridge = {
     script.type = 'text/javascript'
     script.defer = 'defer'
     script.src =
-      options.dingtalkBridgeSrc || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
+      options.dingtalk?.src || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
 
     script.onload = function () {
       if (window.dd) {

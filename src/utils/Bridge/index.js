@@ -59,10 +59,12 @@ let Bridge = {
    * @param {Function} callback - 加载完成回调函数
    * @param {Object} options - 配置选项（可选）
    * @param {String} options.wechat?.src - 微信 JS SDK 地址
+   * @param {String} options.wechatMiniProgram?.src - 微信 JS SDK 地址
    * @param {String} options.wecom?.src - 企业微信 JS SDK 地址
-   * @param {String} options.alipayBridgeSrc - 支付宝 JS SDK 地址
-   * @param {String} options.dingtalkBridgeSrc - 钉钉 JS SDK 地址
-   * @param {String} options.larkBridgeSrc - 飞书 JS SDK 地址
+   * @param {String} options.alipay?.src - 支付宝 JS SDK 地址
+   * @param {String} options.alipayMiniprogram?.src - 支付宝小程序 JS SDK 地址
+   * @param {String} options.dingtalk?.src - 钉钉 JS SDK 地址
+   * @param {String} options.lark?.src - 飞书 JS SDK 地址
    * @returns {void}
    */
   load(callback, options) {

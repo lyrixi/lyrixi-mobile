@@ -31,12 +31,12 @@ let Bridge = {
     script.type = 'text/javascript'
     script.defer = 'defer'
     script.src =
-      options.alipayBridgeSrc ||
+      options.alipay?.src ||
       '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
 
     script.onload = async function () {
       if (Device.platform === 'alipayMiniprogram') {
-        await AssetUtil.loadJs(options.alipayMiniprogramBridgeSrc || 'https://appx/web-view.min.js')
+        await AssetUtil.loadJs(options.alipayMiniprogram?.src || 'https://appx/web-view.min.js')
         if (!window.my) {
           console.error('支付小程序js加载失败')
           if (callback) {
