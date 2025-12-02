@@ -66,6 +66,8 @@ const Item = ({
       {typeof remainCount === 'number' && remainCount > 0 ? (
         <RemainCount count={remainCount} />
       ) : null}
+
+      {itemRender && itemRender(item)}
     </div>
   )
 }

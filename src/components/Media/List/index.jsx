@@ -13,6 +13,7 @@ const List = ({
 
   // Element
   uploadingRender,
+  itemRender,
 
   // Events
   onChange,
@@ -53,6 +54,7 @@ const List = ({
                 }
                 uploadingType="item"
                 uploadingRender={uploadingRender}
+                itemRender={itemRender}
                 // Events
                 onDelete={canClear ? handleDelete : null}
                 onReUpload={onReUpload}

@@ -66,6 +66,7 @@ const Media = forwardRef(
       // Element
       uploadRender, // 上传按钮覆盖的dom
       uploadingRender,
+      itemRender,
       previewPortal,
       previewCancelPosition,
 
@@ -343,6 +344,7 @@ const Media = forwardRef(
           allowClear={allowClear}
           // Element
           uploadingRender={uploadingRender}
+          itemRender={itemRender}
           // Events
           onChange={onChangeRef.current}
           onReUpload={handleReUpload}
