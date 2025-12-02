@@ -16,20 +16,20 @@ import { Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 
 // 导出给外部使用的工具类: 异步上传
 let uploadItem = null
-if (Bridge.platform === 'dingtalk') {
+if (Device.platform === 'dingtalk') {
   // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
   if (Device?.os === 'harmony') {
     uploadItem = uploadFile
   } else {
     uploadItem = uploadDingtalk
   }
-} else if (Device.device === 'pc' || Bridge.platform === 'lark') {
+} else if (Device.device === 'pc' || Device.platform === 'lark') {
   uploadItem = uploadFile
 } else if (
-  Bridge.platform === 'wechat' ||
-  Bridge.platform === 'wecom' ||
-  Bridge.platform === 'wechatMiniProgram' ||
-  Bridge.platform === 'wecomMiniProgram'
+  Device.platform === 'wechat' ||
+  Device.platform === 'wecom' ||
+  Device.platform === 'wechatMiniProgram' ||
+  Device.platform === 'wecomMiniProgram'
 ) {
   uploadItem = uploadWechat
 }

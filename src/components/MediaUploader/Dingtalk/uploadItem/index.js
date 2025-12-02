@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import getUploadParams from './getUploadParams'
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
