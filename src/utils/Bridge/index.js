@@ -63,7 +63,6 @@ let Bridge = {
    * @param {String} options.alipayBridgeSrc - 支付宝 JS SDK 地址
    * @param {String} options.dingtalkBridgeSrc - 钉钉 JS SDK 地址
    * @param {String} options.larkBridgeSrc - 飞书 JS SDK 地址
-   * @param {String} options.lyrixi?.src - 乐栖 JS SDK 地址
    * @returns {void}
    */
   load(callback, options) {
