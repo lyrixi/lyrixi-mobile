@@ -31,7 +31,7 @@ function WechatMiniprogram(
     maxWidth,
     chooseExtraParams, // 仅对客户端有效
     // 小程序专用
-    miniProgramPageUrl = '/pages/MediaUploader/index',
+    wechatMiniProgramNavigate,
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -214,28 +214,12 @@ function WechatMiniprogram(
       try {
         let uploadExtraFormData = formatPayload?.({ platform: 'WechatMiniprogram' }) || {}
 
-        miniProgramNavigate({
+        wechatMiniProgramNavigate({
           id: idRef.current,
           sourceType: sourceType,
           watermark: watermark,
           uploadExtraFormData: uploadExtraFormData,
           maxWidth: maxWidth
-        })
-        // eslint-disable-next-line
-        top.wx.miniProgram.navigateTo({
-          url: `${miniProgramPageUrl}?id=${idRef.current}&sourceType=${JSON.stringify(
-            sourceType
-          )}&uploadDir=${encodeURIComponent(
-            encodeURIComponent(uploadDir)
-          )}&watermark=${encodeURIComponent(
-            encodeURIComponent(JSON.stringify(watermark || ''))
-          )}&uploadExtraFormData=${encodeURIComponent(
-            encodeURIComponent(JSON.stringify(uploadExtraFormData || {}))
-          )}&maxWidth=${maxWidth}`,
-          success: () => {},
-          fail: () => {
-            Toast.show({ content: '呼起小程序拍照失败,请点击重试' })
-          }
         })
 
         // Invoke camera start interval list

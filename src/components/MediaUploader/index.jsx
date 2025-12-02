@@ -35,7 +35,7 @@ function MediaUploader(
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     // 小程序专用
-    miniProgramNavigate, // 小程序页面地址
+    wechatMiniProgramNavigate, // 小程序页面地址
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -192,7 +192,7 @@ function MediaUploader(
         />
         <WechatMiniProgram
           ref={ref}
-          miniProgramNavigate={miniProgramNavigate}
+          wechatMiniProgramNavigate={wechatMiniProgramNavigate}
           {...commonProps}
           onNavigateTo={handleNavigateTo}
         />
