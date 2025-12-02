@@ -11,7 +11,7 @@ import { Loading } from 'lyrixi-mobile'
 function hideLoading(rootDOM, { failIndexes } = {}) {
   if (!rootDOM) return
   // 根节点遮罩
-  rootDOM.classList.remove('uploading')
+  rootDOM.classList.remove('lyrixi-uploading')
   // 新增按钮遮罩
   let chooseDOM = rootDOM.querySelector('[data-type="upload"]')
   if (chooseDOM) chooseDOM.classList.remove('lyrixi-uploading')
