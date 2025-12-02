@@ -246,7 +246,8 @@ const LocationCombo = forwardRef(
         errMsgRef.current = typeof newValue === 'string' ? newValue : failText
         if (onErrorRef?.current) {
           onErrorRef.current({
-            errMsg: `getLocation:fail${errMsgRef.current}`
+            status: 'error',
+            message: `${errMsgRef.current}`
           })
         }
         locationStatus = '0'

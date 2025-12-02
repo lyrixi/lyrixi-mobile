@@ -10,7 +10,7 @@ const PreviewReload = ({ onReUpload }) => {
       }}
     >
       <div className="lyrixi-media-preview-main-reload-icon">
-        <div className="lyrixi-media-preview-main-reload-icon-fail"></div>
+        <div className="lyrixi-media-preview-main-reload-icon-error"></div>
       </div>
     </div>
   )

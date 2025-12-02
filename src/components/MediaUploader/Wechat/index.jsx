@@ -18,7 +18,7 @@ import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
 function MediaUploader(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
     count = 5,
     type, // video.录相 | 其它.为拍照
     ellipsis,

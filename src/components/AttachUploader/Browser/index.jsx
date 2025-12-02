@@ -23,7 +23,7 @@ function Browser(
         filePath: "入库路径(必传)",
         fileName: "文件名(必传)",
         fileSize: "文件大小(字节)",
-        status: "choose|uploading|fail|success",
+        status: "choose|uploading|error|success",
       },
     ]
     */

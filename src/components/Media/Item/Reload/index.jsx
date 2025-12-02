@@ -19,7 +19,7 @@ const Reload = ({
       }}
     >
       <div className="lyrixi-media-reload-icon">
-        <div className="lyrixi-media-reload-icon-fail"></div>
+        <div className="lyrixi-media-reload-icon-error"></div>
       </div>
     </div>
   )
