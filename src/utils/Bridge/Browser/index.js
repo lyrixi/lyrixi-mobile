@@ -253,21 +253,34 @@ let Browser = {
   uploadFile: async function ({
     localFile,
     getUploadUrl,
-    header,
+    formatHeader,
     formatPayload,
     formatResult,
     onSuccess,
     onError
   } = {}) {
+    let url = getUploadUrl?.({ platform: 'browser' }) || ''
+    if (!url || typeof url !== 'string') {
+      onError &&
+        onError({
+          status: 'error',
+          message: `url error`
+        })
+      return
+    }
     let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
+    if (typeof formatPayload === 'function') {
+      payload = formatPayload(payload, { platform: 'browser' })
+    }
+    let header = { 'Content-Type': 'multipart/form-data' }
+    if (typeof formatHeader === 'function') {
+      header = formatHeader(header, { platform: 'browser' })
+    }
 
     let result = await uploadFile({
-      url: getUploadUrl?.({ platform: 'browser' }) || '',
+      url: url,
       header: header,
-      payload:
-        typeof formatPayload === 'function'
-          ? formatPayload(payload, { platform: 'browser' })
-          : payload
+      payload: payload
     })
 
     if (typeof formatResult === 'function') {

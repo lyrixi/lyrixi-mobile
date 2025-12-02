@@ -225,7 +225,7 @@ let Bridge = {
   uploadFile: function ({
     localFile,
     getUploadUrl,
-    header,
+    formatHeader,
     formatPayload,
     formatResult,
     onSuccess,
@@ -243,6 +243,16 @@ let Bridge = {
       return
     }
 
+    let url = getUploadUrl?.({ platform: 'wechat' }) || ''
+    if (!url || typeof url !== 'string') {
+      onError &&
+        onError({
+          status: 'error',
+          message: `url error`
+        })
+      return
+    }
+
     window.top.wx.uploadImage({
       localId: localFile?.filePath,
       isShowProgressTips: 0,
@@ -253,8 +263,16 @@ let Bridge = {
           filePath: localFile.filePath,
           fileType: localFile.fileType
         }
+        if (typeof formatPayload === 'function') {
+          payload = formatPayload(payload, { platform: 'dingtalk' })
+        }
+        let header = { 'Content-Type': 'multipart/form-data' }
+        if (typeof formatHeader === 'function') {
+          header = formatHeader(header, { platform: 'dingtalk' })
+        }
+
         let result = await uploadServerId({
-          url: getUploadUrl?.({ platform: 'wechat' }) || '',
+          url: url,
           header: header,
           payload:
             typeof formatPayload === 'function'

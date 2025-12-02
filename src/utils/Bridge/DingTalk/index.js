@@ -246,7 +246,7 @@ let Bridge = {
   uploadFile: function ({
     localFile,
     getUploadUrl,
-    header = {},
+    formatHeader,
     formatPayload,
     formatResult,
     onSuccess,
@@ -271,6 +271,13 @@ let Bridge = {
     }
 
     let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
+    if (typeof formatPayload === 'function') {
+      payload = formatPayload(payload, { platform: 'dingtalk' })
+    }
+    let header = { 'Content-Type': 'multipart/form-data' }
+    if (typeof formatHeader === 'function') {
+      header = formatHeader(header, { platform: 'dingtalk' })
+    }
 
     const handleSuccess = function (res) {
       console.log('钉钉uploadImage成功:', res)
@@ -326,10 +333,7 @@ let Bridge = {
     console.log('调用钉钉uploadFile:', {
       url: url,
       header: header,
-      formData:
-        typeof formatPayload === 'function'
-          ? formatPayload(payload, { platform: 'dingtalk' })
-          : payload,
+      formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.filePath,
       fileType: localFile.fileType
