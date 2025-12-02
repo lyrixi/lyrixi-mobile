@@ -45,7 +45,7 @@ const Accordion = (
 
   // Controlled component
   useEffect(() => {
-    if (typeof externalOpen === 'boolean' && (onOpen || onClose)) {
+    if (typeof externalOpen === 'boolean') {
       setOpen(externalOpen)
     }
     // eslint-disable-next-line
