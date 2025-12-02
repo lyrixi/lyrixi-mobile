@@ -252,6 +252,7 @@ let Bridge = {
     onSuccess,
     onError
   } = {}) {
+    const url = getUploadUrl?.({ platform: 'dingtalk' }) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
         onError({
@@ -323,7 +324,7 @@ let Bridge = {
     }
 
     console.log('调用钉钉uploadFile:', {
-      url: getUploadUrl?.({ platform: 'dingtalk' }) || '',
+      url: url,
       header: header,
       formData:
         typeof formatPayload === 'function'
