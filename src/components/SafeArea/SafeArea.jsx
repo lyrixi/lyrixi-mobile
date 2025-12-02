@@ -13,7 +13,7 @@ const SafeArea = forwardRef(
   (
     {
       // Style
-      safeArea,
+      safeArea = true,
       style,
       className
     },
