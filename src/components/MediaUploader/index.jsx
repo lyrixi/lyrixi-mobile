@@ -50,15 +50,19 @@ function MediaUploader(
     // Style
     className,
     uploadPosition,
-    previewMaskStyle,
-    previewMaskClassName,
+    previewSafeArea,
+    previewNavBarStyle,
+    previewNavBarClassName,
     previewModalStyle,
     previewModalClassName,
+    previewMaskStyle,
+    previewMaskClassName,
 
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
     previewPortal,
+    previewCancelPosition,
     /*
     格式化上传结果
     入参:
@@ -143,14 +147,18 @@ function MediaUploader(
     // Style
     className,
     uploadPosition,
-    previewMaskStyle,
-    previewMaskClassName,
+    previewSafeArea,
+    previewNavBarStyle,
+    previewNavBarClassName,
     previewModalStyle,
     previewModalClassName,
+    previewMaskStyle,
+    previewMaskClassName,
     // Element
     uploadRender,
     uploadingRender,
     previewPortal,
+    previewCancelPosition,
     formatUploadedItem,
     getWatermark,
     getUploadUrl,

@@ -55,15 +55,19 @@ const Media = forwardRef(
       style,
       className,
       uploadPosition = 'end', // start | end
-      previewMaskStyle,
-      previewMaskClassName,
+      previewSafeArea,
+      previewNavBarStyle,
+      previewNavBarClassName,
       previewModalStyle,
       previewModalClassName,
+      previewMaskStyle,
+      previewMaskClassName,
 
       // Element
       uploadRender, // 上传按钮覆盖的dom
       uploadingRender,
       previewPortal,
+      previewCancelPosition,
 
       // Events
       onBeforeChoose,
@@ -360,16 +364,20 @@ const Media = forwardRef(
             sizeType={sizeType}
             maxWidth={maxWidth}
             // Style
-            maskStyle={previewMaskStyle}
-            maskClassName={previewMaskClassName}
+            safeArea={previewSafeArea}
+            previewNavBarStyle={previewNavBarStyle}
+            previewNavBarClassName={previewNavBarClassName}
             modalStyle={previewModalStyle}
             modalClassName={previewModalClassName}
+            maskStyle={previewMaskStyle}
+            maskClassName={previewMaskClassName}
             // Status
             open={typeof previewVisible === 'number'}
             allowChoose={previewAllowChoose}
             allowClear={previewAllowClear}
             // Elements
             portal={previewPortal}
+            cancelPosition={previewCancelPosition}
             // Events
             onBeforeChoose={onBeforeChoose}
             onChoose={onChoose}

@@ -36,15 +36,19 @@ function Browser(
     // Style
     className,
     uploadPosition,
-    previewMaskStyle,
-    previewMaskClassName,
+    previewSafeArea,
+    navBarStyle,
+    navBarClassName,
     previewModalStyle,
     previewModalClassName,
+    previewMaskStyle,
+    previewMaskClassName,
 
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
     previewPortal,
+    previewCancelPosition,
     /*
     格式化上传结果
     入参:
@@ -164,14 +168,18 @@ function Browser(
       // Style
       className={className}
       uploadPosition={uploadPosition}
-      previewMaskStyle={previewMaskStyle}
-      previewMaskClassName={previewMaskClassName}
+      previewSafeArea={previewSafeArea}
+      navBarStyle={navBarStyle}
+      navBarClassName={navBarClassName}
       previewModalStyle={previewModalStyle}
       previewModalClassName={previewModalClassName}
+      previewMaskStyle={previewMaskStyle}
+      previewMaskClassName={previewMaskClassName}
       // Element
       uploadRender={uploadRender}
       uploadingRender={uploadingRender}
       previewPortal={previewPortal}
+      previewCancelPosition={previewCancelPosition}
       // Events
       onBeforeChoose={onBeforeChoose}
       onFileChange={handleChoose}

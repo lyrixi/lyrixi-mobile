@@ -31,6 +31,9 @@ const PreviewModal = forwardRef(
       // Style
       mainStyle,
       mainClassName,
+      safeArea,
+      navBarStyle,
+      navBarClassName,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -38,6 +41,7 @@ const PreviewModal = forwardRef(
 
       // Element
       portal,
+      cancelPosition = 'right',
 
       // Events
       onBeforeChoose,
@@ -69,12 +73,16 @@ const PreviewModal = forwardRef(
         // Status
         open={open}
         // Style
+        safeArea={safeArea}
+        navBarStyle={navBarStyle}
+        navBarClassName={navBarClassName}
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-media-preview-modal', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        portal={portal}
         // Element
+        portal={portal}
+        cancelPosition={cancelPosition}
         animation="slideUp"
         // Events
         onClose={handleClose}
