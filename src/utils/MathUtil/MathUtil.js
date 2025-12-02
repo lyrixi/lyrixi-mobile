@@ -2,6 +2,8 @@
 function isNumber(str, validValues = []) {
   if (validValues.includes(str)) return true
 
+  if (typeof str === 'number') return true
+
   // 1. 基础检查：空值/空白字符
   if (typeof str !== 'string' || str.trim() === '') return false
 
