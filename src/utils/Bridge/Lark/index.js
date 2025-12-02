@@ -29,7 +29,7 @@ let Bridge = {
     let script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = 'defer'
-    script.src = options.larkBridgeSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
+    script.src = options.lark?.src || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
 
     script.onload = function () {
       if (window.tt && window.h5sdk) {

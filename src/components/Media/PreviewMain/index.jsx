@@ -93,9 +93,9 @@ const PreviewMain = forwardRef(
     })
     useEffect(() => {
       if (!open || typeof swiperRef?.current?.swiper?.slideTo !== 'function') return
-      activeIndex = getActiveIndex({ index, list })
-      swiperRef.current.swiper.slideTo(activeIndex, 0)
-      setActiveIndex(activeIndex)
+      let newActiveIndex = getActiveIndex({ index, list })
+      swiperRef.current.swiper.slideTo(newActiveIndex, 0)
+      setActiveIndex(newActiveIndex)
       // eslint-disable-next-line
     }, [open])
 
