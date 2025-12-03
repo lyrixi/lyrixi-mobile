@@ -23,6 +23,7 @@ const Item = ({
 
   // Element
   uploadingRender,
+  itemRender,
 
   // Events
   onDelete,
@@ -183,6 +184,9 @@ const Item = ({
           className="lyrixi-attach-item-right-icon"
         />
       </div>
+
+      {/* 自定义渲染 */}
+      {itemRender && itemRender(item)}
     </div>
   )
 }

@@ -45,6 +45,7 @@ function Browser(
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
+    itemRender,
 
     // Preview Server
     previewPortal,
@@ -159,6 +160,7 @@ function Browser(
       // Element
       uploadRender={uploadRender}
       uploadingRender={uploadingRender}
+      itemRender={itemRender}
       // Preview Server
       previewPortal={previewPortal}
       previewServerUrl={previewServerUrl}
