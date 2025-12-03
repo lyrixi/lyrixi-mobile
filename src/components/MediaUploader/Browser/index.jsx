@@ -34,6 +34,7 @@ function Browser(
     previewAllowClear,
 
     // Style
+    style,
     className,
     uploadPosition,
     previewSafeArea,
