@@ -17,7 +17,8 @@ function MediaUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
-    count = 5,
+    maxUploadCount = 5,
+    maxChooseCount = 9,
     type, // video.录相 | 其它.为拍照
     ellipsis,
     sourceType = ['album', 'camera'],
@@ -138,7 +139,7 @@ function MediaUploader(
       }
 
       let chooseMediaParams = {
-        count: getRemainCount(count, list?.length || 0),
+        count: getRemainCount(maxUploadCount, list?.length || 0, maxChooseCount),
         sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
@@ -182,7 +183,7 @@ function MediaUploader(
       ref={mediaRef}
       // Value & Display Value
       list={list}
-      count={count}
+      maxUploadCount={maxUploadCount}
       type={type}
       ellipsis={ellipsis}
       sourceType={sourceType}

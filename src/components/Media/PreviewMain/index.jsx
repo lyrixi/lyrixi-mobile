@@ -37,7 +37,7 @@ const PreviewMain = forwardRef(
       type, // video | image
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
-      count,
+      maxCount,
       maxWidth,
 
       // Status
@@ -77,7 +77,7 @@ const PreviewMain = forwardRef(
 
     // Judge wether to display choose button
     let chooseVisible = allowChoose
-    if (typeof count === 'number' && (list || []).length >= count) {
+    if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
       chooseVisible = false
     }
 
@@ -197,7 +197,7 @@ const PreviewMain = forwardRef(
         async,
         sizeType,
         maxWidth,
-        count,
+        maxCount,
         list,
         uploadPosition: 'end',
         uploadList,
@@ -216,7 +216,7 @@ const PreviewMain = forwardRef(
         async,
         sizeType,
         maxWidth,
-        count,
+        maxCount,
         list,
         uploadPosition: 'end',
         uploadList,

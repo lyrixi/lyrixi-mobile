@@ -22,7 +22,8 @@ function WechatMiniprogram(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
-    count = 5,
+    maxUploadCount = 5,
+    maxChooseCount = 9,
     type, // video.录相 | 其它.为拍照
     ellipsis,
     sourceType = ['album', 'camera'],
@@ -107,19 +108,10 @@ function WechatMiniprogram(
   const onChangeRef = useRef()
   onChangeRef.current = onChange
 
-  // Judge wether to display choose button
-  const chooseVisible = onChange && (list || []).length < count ? true : false
-
   useImperativeHandle(ref, () => {
     return {
       ...mediaRef.current,
       chooseMedia: async () => {
-        if (!chooseVisible) {
-          Toast.show({
-            content: LocaleUtil.locale('此照片控件无拍照功能, 请勿调用拍照')
-          })
-          return false
-        }
         let uploadDOM = mediaRef.current?.rootDOM?.querySelector?.(
           '.lyrixi-media-item.image-choose'
         )
@@ -228,6 +220,7 @@ function WechatMiniprogram(
           id: idRef.current,
           sourceType: sourceType,
           watermark: watermark,
+          maxChooseCount: maxChooseCount,
           uploadExtraFormData: uploadExtraFormData,
           maxWidth: maxWidth
         })
@@ -271,7 +264,7 @@ function WechatMiniprogram(
         ref={mediaRef}
         // Value & Display Value
         list={list}
-        count={count}
+        maxUploadCount={maxUploadCount}
         type={type}
         ellipsis={ellipsis}
         sourceType={sourceType}
@@ -303,7 +296,7 @@ function WechatMiniprogram(
         previewCancelPosition={previewCancelPosition}
         // Events
         onBeforeChoose={onBeforeChoose}
-        onChoose={chooseVisible ? handleChoose : null}
+        onChoose={handleChoose}
         // onFileChange={onFileChange}
         // onUpload={onUpload}
         onChange={onChange}

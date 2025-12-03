@@ -77,7 +77,7 @@ export default () => {
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
-          count={9}
+          maxCount={9}
           onFileChange={(localFile) => {
             console.log('localFile:', localFile)
           }}
@@ -116,7 +116,7 @@ export default () => {
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
-          count={9}
+          maxCount={9}
           onFileChange={({ localFile }) => {
             console.log('localFile:', localFile)
           }}

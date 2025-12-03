@@ -27,7 +27,8 @@ function Browser(
       },
     ]
     */
-    count = 5,
+    maxCount = 5,
+    maxChooseCount = 1,
     sourceType = ['album', 'camera'],
     maxSize,
 
@@ -63,6 +64,7 @@ function Browser(
     */
     formatUploadedItem,
     getUploadUrl,
+    formatHeader,
     formatPayload,
     formatResult,
 
@@ -93,6 +95,7 @@ function Browser(
     // 开始上传
     let result = await _uploadItem(item, {
       getUploadUrl,
+      formatHeader,
       formatPayload,
       formatResult,
       formatUploadedItem
@@ -142,7 +145,7 @@ function Browser(
       ref={attachRef}
       // Value & Display Value
       list={list}
-      count={count}
+      maxCount={maxCount}
       sourceType={sourceType}
       maxSize={maxSize}
       // Status

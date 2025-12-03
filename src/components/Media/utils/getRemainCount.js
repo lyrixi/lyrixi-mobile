@@ -1,25 +1,32 @@
 // 与(Attach.getRemainCount, AttachUploader.getRemainCount, MediaUploader.getRemainCount)共用
 
 // 剩余可上传数量
-function getRemainCount(count, currentCount) {
-  if (!count || isNaN(count)) {
+function getRemainCount(maxCount, currentCount, maxSelectCount) {
+  // 矫正错误的入参
+  if (!maxCount || isNaN(maxCount)) {
     // eslint-disable-next-line
-    count = 5
+    maxCount = 5
+  }
+  if (maxCount < 1) {
+    // eslint-disable-next-line
+    maxCount = 1
   }
   if (!currentCount || isNaN(currentCount)) {
     // eslint-disable-next-line
     currentCount = 0
   }
-  let maxCount = count - currentCount
-  // 参数count超出最大限制9个:由${maxCount}纠正为9
-  if (maxCount > 9) {
-    maxCount = 9
+
+  // 计算剩余可上传数量
+  let remainCount = maxCount - currentCount
+
+  // 单次上传限制
+  if (maxSelectCount) {
+    if (remainCount > maxSelectCount) {
+      return maxSelectCount
+    }
   }
-  // 参数count小于最小限制1个:由${maxCount}纠正为1
-  else if (maxCount < 1) {
-    maxCount = 1
-  }
-  return maxCount
+
+  return remainCount
 }
 
 export default getRemainCount

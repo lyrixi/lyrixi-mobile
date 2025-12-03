@@ -18,7 +18,7 @@ async function fileChoose({
   file,
   async,
   maxSize,
-  count,
+  maxCount,
   sourceType,
   list,
   uploadPosition,
@@ -37,10 +37,10 @@ async function fileChoose({
   }
 
   // 大于总数禁止选择
-  if (typeof count === 'number' && getRemainCount(count, list?.length || 0) <= 0) {
+  if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`总数不能大于${count}`, 'lyrixi.count.cannot.greater.than', [
-        count
+      content: LocaleUtil.locale(`总数不能大于${maxCount}`, 'lyrixi.maxCount.cannot.greater.than', [
+        maxCount
       ]),
       maskClickable: true
     })

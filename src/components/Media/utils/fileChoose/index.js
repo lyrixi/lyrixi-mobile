@@ -17,7 +17,7 @@ async function fileChoose({
   async,
   sizeType,
   maxWidth,
-  count,
+  maxCount,
   list,
   uploadPosition,
   uploadList,
@@ -35,11 +35,13 @@ async function fileChoose({
   }
 
   // 大于总数禁止选择
-  if (typeof count === 'number' && getRemainCount(count, list?.length || 0) <= 0) {
+  if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`照片总数不能大于${count}张`, 'lyrixi.image.cannot.greater.than', [
-        count
-      ]),
+      content: LocaleUtil.locale(
+        `照片总数不能大于${maxCount}张`,
+        'lyrixi.image.cannot.greater.than',
+        [maxCount]
+      ),
       maskClickable: true
     })
     return false

@@ -18,7 +18,7 @@ const PreviewModal = forwardRef(
       list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
       index, // 当前显示的资源序号或者当前资源的src链接
       type, // video | image
-      count,
+      maxCount,
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
       maxWidth,
@@ -93,7 +93,7 @@ const PreviewModal = forwardRef(
           list={list}
           index={index}
           type={type}
-          count={count}
+          maxCount={maxCount}
           sourceType={sourceType}
           sizeType={sizeType}
           maxWidth={maxWidth}

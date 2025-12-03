@@ -30,7 +30,7 @@ export default () => {
       <Page.Main className="lyrixi-bg-white">
         <AttachUploader
           // visibleCount={1}
-          count={2}
+          maxCount={2}
           extension={['image']} // ['image', 'video', 'audio', 'jpg等指定后缀']
           uploadPosition="start"
           timeout={1}

@@ -17,7 +17,8 @@ function Browser(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
-    count = 5,
+    maxUploadCount = 5,
+    maxChooseCount = 1,
     type, // video.录相 | 其它.为拍照
     ellipsis,
     sourceType = ['album', 'camera'],
@@ -154,7 +155,7 @@ function Browser(
       ref={mediaRef}
       // Value & Display Value
       list={list}
-      count={count}
+      maxUploadCount={maxUploadCount}
       type={type}
       ellipsis={ellipsis}
       sourceType={sourceType}

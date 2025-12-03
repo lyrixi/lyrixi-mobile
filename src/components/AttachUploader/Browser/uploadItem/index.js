@@ -10,7 +10,10 @@ import { LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
 // 单张照片上传
-function uploadItem(item, { getUploadUrl, formatPayload, formatResult, formatUploadedItem }) {
+function uploadItem(
+  item,
+  { getUploadUrl, formatHeader, formatPayload, formatResult, formatUploadedItem }
+) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -24,6 +27,7 @@ function uploadItem(item, { getUploadUrl, formatPayload, formatResult, formatUpl
     let newItem = await uploadLocalFile({
       localFile: item?.localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
       getUploadUrl,
+      formatHeader,
       formatPayload,
       formatResult,
       // 用于构建新Item的入参

@@ -36,7 +36,7 @@ export default () => {
           sizeType={['compressed']}
           sourceType={['camera']}
           list={list}
-          count={15}
+          maxUploadCount={15}
           formatUploadedItem={({ platform, result }) => {
             return Ocr.recognizeItem(result.data.url)
           }}

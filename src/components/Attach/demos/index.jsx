@@ -59,7 +59,7 @@ export default () => {
           uploadPosition="start"
           maxSize={300 * 1024 * 1024}
           list={list}
-          count={9}
+          maxCount={9}
           onChange={(newList) => {
             console.log('修改:', newList)
             setList(newList)
@@ -79,7 +79,7 @@ export default () => {
           uploadPosition="start"
           maxSize={300 * 1024 * 1024}
           list={customList}
-          count={9}
+          maxCount={9}
           onChange={(newList) => {
             console.log('修改:', newList)
             setCustomList(newList)

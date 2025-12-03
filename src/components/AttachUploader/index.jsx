@@ -11,7 +11,8 @@ function AttachUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
-    count = 5,
+    maxCount,
+    maxChooseCount,
     sourceType,
     maxSize,
 
@@ -49,6 +50,7 @@ function AttachUploader(
     */
     formatUploadedItem,
     getUploadUrl,
+    formatHeader,
     formatPayload,
     formatResult,
 
@@ -66,7 +68,8 @@ function AttachUploader(
   const commonProps = {
     // Value & Display Value
     list,
-    count,
+    maxCount,
+    maxChooseCount,
     sourceType,
     maxSize,
     // Status
@@ -86,6 +89,7 @@ function AttachUploader(
     previewServerSourceType,
     formatUploadedItem,
     getUploadUrl,
+    formatHeader,
     formatPayload,
     formatResult,
     // Events

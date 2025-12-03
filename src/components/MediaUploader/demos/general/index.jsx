@@ -58,7 +58,7 @@ export default () => {
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
-          count={4}
+          maxUploadCount={4}
           // 离北京天安门差不多2.4公里
           watermark={['$address']}
           // watermark={['$datetime', '$model', '$address $distance:116.37,39.91']}

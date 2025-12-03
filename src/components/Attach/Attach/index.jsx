@@ -36,7 +36,7 @@ function Attach(
       },
     ]
     */
-    count,
+    maxCount,
     sourceType,
 
     // Status
@@ -80,7 +80,7 @@ function Attach(
 
   // Judge wether to display choose button
   let chooseVisible = allowChoose
-  if (typeof count === 'number' && (list || []).length >= count) {
+  if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
     chooseVisible = false
   }
 
@@ -209,7 +209,7 @@ function Attach(
       file: e.nativeEvent.target,
       async,
       maxSize,
-      count,
+      maxCount,
       sourceType,
       list,
       uploadPosition,
@@ -227,7 +227,7 @@ function Attach(
     let chooseResult = await choose({
       async,
       maxSize,
-      count,
+      maxCount,
       sourceType,
       list,
       uploadPosition,

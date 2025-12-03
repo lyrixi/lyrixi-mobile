@@ -41,7 +41,7 @@ toc: content
 | uploadingRender | 自定义上传中 | `function({uploadingType: ''})` | -                     |
 | async           | 是否异步     | `boolean`                       | `false`               |
 | reUpload        | 是否重新上传 | `boolean`                       | `true`                |
-| count           | 最大数量     | `number`                        | -                     |
+| maxCount        | 最大数量     | `number`                        | -                     |
 | visibleCount    | 可见数量     | `number`                        | -                     |
 | type            | 选择类型     | `'video' \| 'image'`            | -                     |
 | sourceType      | 来源类型     | `array`                         | `['album', 'camera']` |

@@ -77,6 +77,7 @@ async function uploadList(attachList, uploadConfig) {
     let result = await uploadItem(item, {
       timeout: item?.timeout || uploadConfig?.timeout,
       getUploadUrl: uploadConfig?.getUploadUrl,
+      formatHeader: uploadConfig?.formatHeader,
       formatPayload: uploadConfig?.formatPayload,
       formatResult: uploadConfig?.formatResult,
       formatUploadedItem: uploadConfig?.formatUploadedItem

@@ -36,7 +36,7 @@ const Media = forwardRef(
         },
       ]
       */
-      count,
+      maxCount,
       type, // video.录相 | 其它.为拍照
       ellipsis,
       sourceType = ['album', 'camera'],
@@ -91,7 +91,7 @@ const Media = forwardRef(
 
     // Judge wether to display choose button
     let chooseVisible = allowChoose
-    if (typeof count === 'number' && (list || []).length >= count) {
+    if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
       chooseVisible = false
     }
 
@@ -217,7 +217,7 @@ const Media = forwardRef(
         async,
         sizeType,
         maxWidth,
-        count,
+        maxCount,
         list,
         uploadPosition,
         uploadList,
@@ -235,7 +235,7 @@ const Media = forwardRef(
         async,
         sizeType,
         maxWidth,
-        count,
+        maxCount,
         list,
         uploadPosition,
         uploadList,
@@ -361,7 +361,7 @@ const Media = forwardRef(
             list={list} // 需要预览的资源列表{fileUrl: '图片或视频的地址', type: 'video|image, 默认image', fileThumbnail: '封面地址'}
             index={previewVisible}
             type={type}
-            count={count}
+            maxCount={maxCount}
             sourceType={sourceType}
             sizeType={sizeType}
             maxWidth={maxWidth}

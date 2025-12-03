@@ -35,7 +35,7 @@ toc: content
 | uploadingRender | 是否上传中   | `function({uploadingType: ''})` | -       |
 | async           | 是否异步     | `boolean`                       | `false` |
 | reUpload        | 是否重新上传 | `boolean`                       | `true`  |
-| count           | 最大数量     | `number`                        | -       |
+| maxCount        | 最大数量     | `number`                        | -       |
 | sourceType      | 文件扩展名   | `Array<string>`                 | -       |
 | maxSize         | 最大文件大小 | `number`                        | -       |
 | list            | 文件列表     | `array`                         | `[]`    |

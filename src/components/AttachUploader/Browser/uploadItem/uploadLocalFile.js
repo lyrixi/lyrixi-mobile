@@ -12,6 +12,7 @@ import { AssetUtil, Bridge, LocaleUtil } from 'browser-mobile'
 function uploadLocalFile({
   localFile,
   getUploadUrl,
+  formatHeader,
   formatPayload,
   formatResult,
   // 用于构建新Item的入参
@@ -22,6 +23,7 @@ function uploadLocalFile({
     Bridge.uploadFile({
       getUploadUrl,
       localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
+      formatHeader,
       formatPayload,
       formatResult,
       onSuccess: async function (result) {
