@@ -34,6 +34,7 @@ function MediaUploader(
     previewAllowClear,
 
     // Style
+    style,
     className,
     uploadPosition,
     previewSafeArea,
@@ -47,6 +48,7 @@ function MediaUploader(
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
+    itemRender,
     previewPortal,
     previewCancelPosition,
     /*
@@ -194,6 +196,7 @@ function MediaUploader(
       previewAllowChoose={previewAllowChoose}
       previewAllowClear={previewAllowClear}
       // Style
+      style={style}
       className={className}
       uploadPosition={uploadPosition}
       previewSafeArea={previewSafeArea}
@@ -206,6 +209,7 @@ function MediaUploader(
       // Element
       uploadRender={uploadRender}
       uploadingRender={uploadingRender}
+      itemRender={itemRender}
       previewPortal={previewPortal}
       previewCancelPosition={previewCancelPosition}
       // Events

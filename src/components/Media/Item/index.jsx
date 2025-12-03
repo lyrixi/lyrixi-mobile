@@ -19,6 +19,7 @@ const Item = ({
 
   // Element
   uploadingRender,
+  itemRender,
 
   // Events
   onDelete,

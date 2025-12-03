@@ -48,6 +48,7 @@ function MediaUploader(
     timeout,
 
     // Style
+    style,
     className,
     uploadPosition,
     previewSafeArea,
@@ -61,6 +62,7 @@ function MediaUploader(
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
+    itemRender,
     previewPortal,
     previewCancelPosition,
     /*
@@ -145,6 +147,7 @@ function MediaUploader(
     previewAllowChoose,
     previewAllowClear,
     // Style
+    style,
     className,
     uploadPosition,
     previewSafeArea,
@@ -157,6 +160,7 @@ function MediaUploader(
     // Element
     uploadRender,
     uploadingRender,
+    itemRender,
     previewPortal,
     previewCancelPosition,
     formatUploadedItem,

@@ -42,6 +42,7 @@ function WechatMiniprogram(
     previewAllowClear,
 
     // Style
+    style,
     className,
     uploadPosition,
     previewSafeArea,
@@ -55,6 +56,7 @@ function WechatMiniprogram(
     // Element
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
+    itemRender,
     previewPortal,
     previewCancelPosition,
     /*
@@ -283,6 +285,7 @@ function WechatMiniprogram(
         previewAllowChoose={previewAllowChoose}
         previewAllowClear={previewAllowClear}
         // Style
+        style={style}
         className={className}
         uploadPosition={uploadPosition}
         previewSafeArea={previewSafeArea}
@@ -295,6 +298,7 @@ function WechatMiniprogram(
         // Element
         uploadRender={uploadRender}
         uploadingRender={uploadingRender}
+        itemRender={itemRender}
         previewPortal={previewPortal}
         previewCancelPosition={previewCancelPosition}
         // Events
