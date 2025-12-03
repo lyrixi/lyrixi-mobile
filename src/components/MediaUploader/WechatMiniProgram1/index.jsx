@@ -31,8 +31,6 @@ function WechatMiniprogram(
     isSaveToAlbum = 0, // 是否保存到本地
     maxWidth,
     chooseExtraParams, // 仅对客户端有效
-    // 小程序专用
-    wechatMiniProgramNavigate,
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
@@ -84,7 +82,8 @@ function WechatMiniprogram(
     // onUpload,
     onChange,
     onPreview,
-    onNavigateTo
+    onNavigateTo,
+    wechatMiniProgramNavigate
   },
   ref
 ) {
