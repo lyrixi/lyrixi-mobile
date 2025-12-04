@@ -6,7 +6,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getList(forceType) {
+function getList(platform) {
   const list = [
     {
       id: 'wechatMiniProgram',
@@ -20,10 +20,10 @@ function getList(forceType) {
     }
   ]
 
-  if (forceType === 'browser') {
+  if (platform === 'browser') {
     return list[1]
   }
-  if (forceType === 'wechatMiniProgram') {
+  if (platform === 'wechatMiniProgram') {
     return list[0]
   }
   return list

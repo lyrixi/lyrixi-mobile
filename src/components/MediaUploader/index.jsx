@@ -13,23 +13,23 @@ import Dingtalk from './Dingtalk'
 
 // 内库使用-start
 import Device from './../../utils/Device'
-import Bridge from './../../utils/Bridge'
 import Toast from './../Toast'
 import LocaleUtil from './../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Device, Bridge, Toast } from 'lyrixi-mobile'
+import { LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
 function MediaUploader(
   {
     // Value & Display Value
+    type,
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
     maxUploadCount,
     maxChooseCount,
-    type, // video.录相 | 其它.为拍照 | browser | wechatMiniProgram(强制拍照类型)
+    platform, // 强制上传平台: browser | wechatMiniProgram | wechat | wecom | wecomMiniProgram | dingtalk
     ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
@@ -45,7 +45,7 @@ function MediaUploader(
     allowChoose = true,
     previewAllowChoose,
     previewAllowClear,
-    compatible = true, // 允许模式切换（小程序/浏览器）
+    compatible = true, // 兼容模式, 允许模式切换（小程序/浏览器）
     timeout,
 
     // Style
@@ -92,23 +92,23 @@ function MediaUploader(
   ref
 ) {
   // 鸿蒙小程序微信8.0后报错: chooselmage: permission denied， 解决方法: 此版本鸿蒙微信有bug，强制同步上传(同步上传会用小程序和浏览器上传)
-  if (Device?.os === 'harmony' && Bridge.platform === 'wechatMiniProgram') {
+  if (Device?.os === 'harmony' && platform === 'wechatMiniProgram') {
     // eslint-disable-next-line
     async = false
   }
 
   // 间隔追踪器状态
-  const [forceType, setForceType] = useState(type)
+  const [compatiblePlatform, setCompatiblePlatform] = useState(platform)
 
   // 5秒间隔自动切成浏览器定位
   const intervalRef = useRef(new Interval(5000))
 
   useEffect(() => {
-    if (['browser', 'wechatMiniProgram'].includes(type)) {
-      setForceType(type)
+    if (['browser', 'wechatMiniProgram'].includes(platform)) {
+      setCompatiblePlatform(platform)
     }
     // eslint-disable-next-line
-  }, [type])
+  }, [platform])
 
   // 小程序跳转onNavigateTo两次间隔小于5秒，则使用浏览器拍照
   const handleNavigateTo = () => {
@@ -119,7 +119,7 @@ function MediaUploader(
         content: LocaleUtil.locale('检测到您的机型不支持小程序拍照，已强制为您切换成浏览器拍照'),
         onVisibleChange: (visible) => {
           if (visible === false) {
-            setForceType('browser')
+            setCompatiblePlatform('browser')
           }
         }
       })
@@ -131,10 +131,10 @@ function MediaUploader(
   // 公共属性对象，所有平台组件共享
   const commonProps = {
     // Value & Display Value
+    type,
     list,
     maxUploadCount,
     maxChooseCount,
-    type,
     ellipsis,
     sourceType,
     sizeType,
@@ -178,15 +178,15 @@ function MediaUploader(
   }
 
   // file框模式上传 或 强制使用Browser模式（间隔检测）
-  if (forceType === 'browser' || Device.device === 'pc') {
+  if (compatiblePlatform === 'browser' || Device.device === 'pc') {
     return (
-      <div className="image-container">
+      <div className="lyrixi-media-compatible">
         {/* 小程序拍照兼容方式切换, 小程序经常呼不起来 */}
-        {Bridge.platform === 'wechatMiniProgram' ? (
+        {platform === 'wechatMiniProgram' ? (
           <CompatibleToggle
             compatible={compatible}
-            forceType={forceType || 'browser'}
-            onForceTypeChange={setForceType}
+            compatiblePlatform={compatiblePlatform || 'browser'}
+            onCompatiblePlatformChange={setCompatiblePlatform}
           />
         ) : null}
         <Browser ref={ref} {...commonProps} />
@@ -195,7 +195,7 @@ function MediaUploader(
   }
 
   // 钉钉上传
-  if (Bridge.platform === 'dingtalk') {
+  if (platform === 'dingtalk') {
     // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
     if (Device?.os === 'harmony') {
       return <Browser ref={ref} {...commonProps} />
@@ -204,13 +204,13 @@ function MediaUploader(
   }
 
   // 最新的小程序
-  if (Bridge.platform === 'wechatMiniProgram' && !async) {
+  if (platform === 'wechatMiniProgram' && !async) {
     return (
-      <div className="image-container">
+      <div className="lyrixi-media-compatible">
         <CompatibleToggle
           compatible={compatible}
-          forceType={forceType || 'wechatMiniProgram'}
-          onForceTypeChange={setForceType}
+          compatiblePlatform={compatiblePlatform || 'wechatMiniProgram'}
+          onCompatiblePlatformChange={setCompatiblePlatform}
         />
         <WechatMiniProgram
           ref={ref}
@@ -223,10 +223,10 @@ function MediaUploader(
   }
 
   if (
-    Bridge.platform === 'wechat' ||
-    Bridge.platform === 'wecom' ||
-    Bridge.platform === 'wechatMiniProgram' ||
-    Bridge.platform === 'wecomMiniProgram'
+    platform === 'wechat' ||
+    platform === 'wecom' ||
+    platform === 'wechatMiniProgram' ||
+    platform === 'wecomMiniProgram'
   ) {
     return <Wechat ref={ref} {...commonProps} />
   }

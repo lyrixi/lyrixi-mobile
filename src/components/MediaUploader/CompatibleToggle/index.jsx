@@ -10,18 +10,18 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 小程序拍照兼容方式切换, 小程序经常呼不起来
-function CompatibleToggle({ compatible, forceType, onForceTypeChange }) {
+function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }) {
   const list = getList()
 
   // 获取当前选中项
-  const currentItem = getList(forceType)
+  const currentItem = getList(compatiblePlatform)
 
   // 获取另一项用于切换
   const otherItem = list.find((item) => item.id !== currentItem.id)
 
   const handleToggle = () => {
-    if (otherItem && onForceTypeChange) {
-      onForceTypeChange(otherItem.id)
+    if (otherItem && onCompatiblePlatformChange) {
+      onCompatiblePlatformChange(otherItem.id)
     }
   }
 
