@@ -93,14 +93,14 @@ const List = (
         newValue = _raw
       }
     }
-    onChange && onChange(newValue, _raw)
+    onChange && onChange(newValue, { checkedItem: _raw })
   }
 
   // 获取单项
   function getItemNode(item, index) {
     let checked = multiple
-      ? value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0
-      : value?.id === item.id
+      ? value?.findIndex?.((valueItem) => valueItem?.id === item?._raw?.id) >= 0
+      : value?.id === item?._raw?.id
 
     if (typeof itemRender === 'function') {
       return itemRender(item, { checked, onChange: handleChange })
