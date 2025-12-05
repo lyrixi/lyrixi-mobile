@@ -20,7 +20,7 @@ function getPreviewType(type) {
       Bridge.platform === 'lark' ||
       Bridge.platform === 'wechatMiniProgram' ||
       Bridge.platform === 'wecomMiniProgram' ||
-      Bridge.platform === 'alipayMiniprogram')
+      Bridge.platform === 'alipayMiniProgram')
   ) {
     return 'nativeImage'
   }

@@ -42,7 +42,7 @@ let Bridge = {
       platform === 'wecomMiniProgram'
     ) {
       return { ...Browser, ...WeChat }
-    } else if (platform === 'alipay' || platform === 'alipayMiniprogram') {
+    } else if (platform === 'alipay' || platform === 'alipayMiniProgram') {
       return { ...Browser, ...Alipay }
     } else if (platform === 'dingtalk') {
       return { ...Browser, ...DingTalk }
@@ -62,7 +62,7 @@ let Bridge = {
    * @param {String} options.wechatMiniProgram?.src - 微信 JS SDK 地址
    * @param {String} options.wecom?.src - 企业微信 JS SDK 地址
    * @param {String} options.alipay?.src - 支付宝 JS SDK 地址
-   * @param {String} options.alipayMiniprogram?.src - 支付宝小程序 JS SDK 地址
+   * @param {String} options.alipayMiniProgram?.src - 支付宝小程序 JS SDK 地址
    * @param {String} options.dingtalk?.src - 钉钉 JS SDK 地址
    * @param {String} options.lark?.src - 飞书 JS SDK 地址
    * @returns {void}

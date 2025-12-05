@@ -35,7 +35,7 @@ function getPlatform() {
   else if (ua.indexOf('alipay') > -1) {
     platform = 'alipay'
     if (ua.indexOf('miniprogram') > -1) {
-      platform = 'alipayMiniprogram'
+      platform = 'alipayMiniProgram'
     }
     platformMatch = ua.match(/alipayclient\/([\w.]*)/)
     if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]

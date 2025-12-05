@@ -18,7 +18,7 @@ import { Toast, LocaleUtil, Media, Loading, ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
 // 微信小程序拍照上传, 通过前端id，通过接口与小程序通信，轮询接口获取小程序上传的照片
-function WechatMiniprogram(
+function WechatMiniProgram(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
@@ -213,7 +213,7 @@ function WechatMiniprogram(
 
       console.log('进入小程序拍照')
       try {
-        let uploadExtraFormData = formatPayload?.({ platform: 'WechatMiniprogram' }) || {}
+        let uploadExtraFormData = formatPayload?.({ platform: 'wechatMiniProgram' }) || {}
 
         wechatMiniProgramNavigate({
           id: idRef.current,
@@ -336,4 +336,4 @@ function WechatMiniprogram(
   )
 }
 
-export default forwardRef(WechatMiniprogram)
+export default forwardRef(WechatMiniProgram)
