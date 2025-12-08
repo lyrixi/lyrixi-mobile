@@ -25,7 +25,7 @@ function Result({
 
   // 渲染图片
   function getImageNode() {
-    if (imageUrl === null && imageRender === null) return null
+    if (imageUrl === null) return null
 
     if (imageRender) {
       return imageRender()

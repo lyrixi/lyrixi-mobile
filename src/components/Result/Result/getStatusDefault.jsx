@@ -15,7 +15,7 @@ function getStatusDefault(status) {
       image: <div className="lyrixi-result-image lyrixi-result-image-empty"></div>
     }
   }
-  if (status === '500') {
+  if (status === 'error' || status === '500') {
     return {
       title: LocaleUtil.locale('获取数据失败，请稍后再试！', 'lyrixi.query.data.error'),
       image: <div className="lyrixi-result-image lyrixi-result-image-500"></div>
