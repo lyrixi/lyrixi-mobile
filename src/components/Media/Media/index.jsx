@@ -32,7 +32,6 @@ const Media = forwardRef(
           fileUrl: "全路径(必传)",
           filePath: "目录/年月/照片名.jpg(必传)",
           status: "choose|uploading|error|success",
-          children: node,
         },
       ]
       */

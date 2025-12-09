@@ -21,7 +21,7 @@ import { Toast, LocaleUtil, Media, Loading, ActionSheet } from 'lyrixi-mobile'
 function WechatMiniProgram(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
     maxUploadCount = 5,
     maxChooseCount = 9,
     mediaType, // video.录相 | 其它.为拍照
@@ -176,9 +176,6 @@ function WechatMiniProgram(
   // 外部强行修改list, 需要同步到服务器
   useEffect(() => {
     if (Array.isArray(list) === false) return
-    let currentList = (listRef.current || []).filter((item) => !item.children)
-    let externalList = (list || []).filter((item) => !item.children)
-    if (JSON.stringify(currentList) === JSON.stringify(externalList)) return
     listRef.current = list
     // eslint-disable-next-line
   }, [list])

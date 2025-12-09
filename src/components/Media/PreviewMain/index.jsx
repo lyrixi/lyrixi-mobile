@@ -32,7 +32,7 @@ const PreviewMain = forwardRef(
   (
     {
       // Value & Display Value
-      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', fileType: 'video|image', children: node}
+      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', fileType: 'video|image'}
       index, // 当前显示的资源序号
       mediaType,
       sourceType = ['album', 'camera'],
@@ -327,7 +327,6 @@ const PreviewMain = forwardRef(
                         autoPlay={false}
                       />
                     )}
-                    {item.children}
                   </div>
                   {/* ReUpload: Display while parentNode has fail class  */}
                   <PreviewReload onReUpload={handleReUpload} />

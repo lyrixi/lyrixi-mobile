@@ -151,8 +151,6 @@ const Item = ({
       {/* 文件名称 */}
       <div className="lyrixi-attach-item-main">
         <div className="lyrixi-attach-item-title">{item.fileName || item.fileUrl}</div>
-        {/* 自定义dom */}
-        {item.children}
         {/* 重新上传 */}
         {onReUpload && (
           <div

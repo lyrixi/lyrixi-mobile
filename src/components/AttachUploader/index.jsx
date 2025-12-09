@@ -10,7 +10,7 @@ import Browser from './Browser'
 function AttachUploader(
   {
     // Value & Display Value
-    list = [], // [{fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
+    list = [], // [{fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
     maxCount,
     maxChooseCount,
     sourceType,

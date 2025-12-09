@@ -27,7 +27,7 @@ function MediaUploader(
   {
     // Value & Display Value
     mediaType = ['image'],
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
     maxUploadCount,
     maxChooseCount,
     platform, // 强制上传平台: browser | wechatMiniProgram | wechat | wecom | wecomMiniProgram | dingtalk

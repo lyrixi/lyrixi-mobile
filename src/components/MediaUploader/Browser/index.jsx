@@ -16,7 +16,7 @@ import { LocaleUtil, Toast, Media } from 'lyrixi-mobile'
 function Browser(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
+    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
     maxUploadCount = 5,
     maxChooseCount = 1,
     mediaType,

@@ -54,9 +54,6 @@ const Item = ({
       {/* 上传中 */}
       <Uploading uploadingType="item" item={item} uploadingRender={uploadingRender} />
 
-      {/* 自定义dom */}
-      {item.children}
-
       {/* 删除按钮 */}
       {onDelete && (
         <Delete
