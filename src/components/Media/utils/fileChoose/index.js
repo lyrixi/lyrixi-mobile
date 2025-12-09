@@ -17,6 +17,7 @@ async function fileChoose({
   async,
   sizeType,
   maxWidth,
+  quality,
   maxCount,
   list,
   uploadPosition,
@@ -24,8 +25,10 @@ async function fileChoose({
   onFileChange,
   onChange
 }) {
+  // 选择非法文件
   if (file?.type !== 'file') return false
 
+  // 没有选择文件
   if (!file || !file.files?.[0]) {
     Toast.show({
       content: LocaleUtil.locale('没有选择文件，无法上传！', 'lyrixi.no.upload.file'),
@@ -49,12 +52,20 @@ async function fileChoose({
 
   // 数据
   let fileData = file.files?.[0]
+  let fileType = fileData?.type
+  if (fileType?.includes?.('image')) {
+    fileType = 'image'
+  } else if (fileType?.includes?.('video')) {
+    fileType = 'video'
+  } else {
+    fileType = 'file'
+  }
 
   // 压缩图片
-  if (JSON.stringify(sizeType || []) !== JSON.stringify(['original'])) {
+  if (fileType !== 'video' && JSON.stringify(sizeType || []) !== JSON.stringify(['original'])) {
     try {
       let startCompressLog = Date.now()
-      fileData = await compressImage(fileData, 'file', { maxWidth: maxWidth })
+      fileData = await compressImage(fileData, 'file', { maxWidth: maxWidth, quality: quality })
       let endCompressLog = Date.now()
       console.log('图片压缩完成, 用时: ' + (endCompressLog - startCompressLog) / 1000 + '秒')
     } catch (error) {
@@ -68,7 +79,7 @@ async function fileChoose({
     currentList = await onFileChange({
       fileName: fileData?.name || file.value,
       fileSize: fileData?.size,
-      fileType: fileData?.type,
+      fileType: fileType,
       fileUrl: fileURL,
       filePath: fileData,
       status: 'choose'

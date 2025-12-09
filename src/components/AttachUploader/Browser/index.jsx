@@ -63,11 +63,10 @@ function Browser(
       fileSize: 文件大小(字节),
     }
     */
-    formatUploadedItem,
     getUploadUrl,
     formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
 
     // Events
     onBeforeChoose,
@@ -93,30 +92,17 @@ function Browser(
 
   // 上传文件
   async function uploadItem(item) {
-    // 开始上传
-    let result = await _uploadItem(item, {
+    // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
+    let newItem = await _uploadItem(item, {
       getUploadUrl,
       formatHeader,
       formatPayload,
-      formatResult,
-      formatUploadedItem
+      formatResponse
     })
 
-    // 上传失败
-    if (typeof result === 'string') {
-      Toast.show({
-        content: result
-      })
-      item.status = 'error'
-    }
-    // 上传成功
-    else {
-      // eslint-disable-next-line
-      item = result
-    }
-
+    console.log('浏览器上传后新item:', newItem)
     // 更新状态
-    return item
+    return newItem
   }
 
   // 选择文件

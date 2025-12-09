@@ -5,7 +5,6 @@ import uploadItem from './browser/uploadItem'
 // new VConsole()
 export default () => {
   const imageUploaderRef = useRef(null)
-  const watermarkRef = useRef(null)
 
   const [list, setList] = useState([
     {
@@ -50,16 +49,6 @@ export default () => {
       console.log('上传结果：', result)
       return
     }
-  }
-
-  function handleBeforeChoose() {
-    watermarkRef.current = null
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        watermarkRef.current = ['watermark line1']
-        resolve(true)
-      }, 2000)
-    })
   }
 
   return (

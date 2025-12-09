@@ -37,11 +37,11 @@ const Media = forwardRef(
       ]
       */
       maxCount,
-      type, // video.录相 | 其它.为拍照
+      mediaType = ['image'], // video.录相 | 其它.为拍照
       ellipsis,
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
-      maxWidth,
+      fileImageCompress, // 浏览器选择图片压缩配置, { maxWidth: 最大宽度, quality: 质量 }
 
       // Status
       allowChoose = false,
@@ -216,7 +216,8 @@ const Media = forwardRef(
         file: e.nativeEvent.target,
         async,
         sizeType,
-        maxWidth,
+        maxWidth: fileImageCompress?.maxWidth,
+        quality: fileImageCompress?.quality,
         maxCount,
         list,
         uploadPosition,
@@ -234,7 +235,6 @@ const Media = forwardRef(
       let chooseResult = await choose({
         async,
         sizeType,
-        maxWidth,
         maxCount,
         list,
         uploadPosition,
@@ -249,7 +249,7 @@ const Media = forwardRef(
     // 重新上传
     async function handleReUpload(item, index) {
       if (typeof onChange !== 'function') {
-        console.warn('lyrixi Media: onChange is not a function')
+        console.warn('Media: onChange is not a function')
         return
       }
       let newList = [...list]
@@ -274,7 +274,7 @@ const Media = forwardRef(
       }
 
       // 本地能力预览照片
-      if (previewTypeRef.current === 'nativeImage') {
+      if (previewTypeRef.current === 'nativeMedia') {
         Bridge.previewMedia({
           sources: list,
           index: index
@@ -300,7 +300,7 @@ const Media = forwardRef(
       return (
         <Choose
           // Value & Display Value
-          type={type}
+          mediaType={mediaType}
           sourceType={sourceType}
           // Element
           uploadRender={uploadRender}
@@ -338,7 +338,7 @@ const Media = forwardRef(
         <List
           // Value & Display Value
           list={list}
-          type={type}
+          mediaType={mediaType}
           ellipsis={ellipsis}
           // Status
           allowClear={allowClear}
@@ -360,11 +360,11 @@ const Media = forwardRef(
             // Value & Display Value
             list={list} // 需要预览的资源列表{fileUrl: '图片或视频的地址', type: 'video|image, 默认image', fileThumbnail: '封面地址'}
             index={previewVisible}
-            type={type}
+            mediaType={mediaType}
             maxCount={maxCount}
             sourceType={sourceType}
             sizeType={sizeType}
-            maxWidth={maxWidth}
+            fileImageCompress={fileImageCompress}
             // Style
             safeArea={previewSafeArea}
             previewNavBarStyle={previewNavBarStyle}

@@ -5,7 +5,7 @@ import DOMUtil from './../../../../utils/DOMUtil'
 // 上传按钮
 const Choose = ({
   // Value & Display Value
-  type,
+  mediaType,
   sourceType,
 
   // Events
@@ -64,14 +64,14 @@ const Choose = ({
       <i
         className={DOMUtil.classNames(
           'lyrixi-media-preview-main-choose-icon',
-          type === 'lyrixi-video' ? 'lyrixi-video' : null
+          mediaType?.includes?.('video') ? 'lyrixi-video' : null
         )}
       />
       <input
         type="file"
         className="lyrixi-media-preview-main-choose-input-file"
         onChange={onFileChange}
-        accept="image/*"
+        accept={mediaType?.includes?.('video') ? 'video/*' : 'image/*'}
         // 以下的属性值会导致: 部分安卓机会不显示拍照
         // accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
         onClick={(e) => {

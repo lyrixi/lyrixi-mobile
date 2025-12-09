@@ -51,7 +51,7 @@ export default () => {
         <MediaUploader
           // reUpload={false}
           // async
-          type="browser"
+          platform="browser"
           uploadPosition="start"
           ref={imageUploaderRef}
           // timeout={2000}
@@ -59,10 +59,6 @@ export default () => {
           sourceType={['camera', 'album']}
           list={list}
           maxUploadCount={4}
-          // 离北京天安门差不多2.4公里
-          watermark={['$address']}
-          // watermark={['$datetime', '$model', '$address $distance:116.37,39.91']}
-          // watermark={['0924-定位拍照', '$name $datetime', '$address $distance:116.37,39.91']}
           onChange={handlePhotoChange}
           upload={<div style={{ width: '100%', height: '100%', backgroundColor: 'ref' }}>1</div>}
           // allowChoose={list?.length ? false : true}

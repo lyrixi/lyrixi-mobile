@@ -37,10 +37,6 @@ export default () => {
           sourceType={['camera']}
           list={list}
           maxUploadCount={15}
-          formatUploadedItem={({ platform, result }) => {
-            return Ocr.recognizeItem(result.data.url)
-          }}
-          // watermark={handleLeaveWM()}
           onChange={handlePhotoChange}
         />
       </Page.Main>

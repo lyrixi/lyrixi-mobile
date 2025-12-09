@@ -250,7 +250,7 @@ function Attach(
     }
 
     // 本地能力预览照片
-    if (previewTypeRef.current === 'nativeImage') {
+    if (previewTypeRef.current === 'nativeMedia') {
       Bridge.previewMedia({
         sources: list,
         index: index

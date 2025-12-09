@@ -10,7 +10,7 @@ import Browser from './Browser'
 function AttachUploader(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
+    list = [], // [{fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
     maxCount,
     maxChooseCount,
     sourceType,
@@ -21,7 +21,6 @@ function AttachUploader(
     reUpload = true, // 支持重新上传
     allowClear = true,
     allowChoose = true,
-    timeout,
 
     // Style
     className,
@@ -49,11 +48,10 @@ function AttachUploader(
         fileSize: "文件大小(字节)",
       },
     */
-    formatUploadedItem,
     getUploadUrl,
     formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
 
     // Events
     onBeforeChoose,
@@ -89,11 +87,10 @@ function AttachUploader(
     previewPortal,
     previewServerUrl,
     previewServerSourceType,
-    formatUploadedItem,
     getUploadUrl,
     formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
     // Events
     onBeforeChoose,
     onFileChange,

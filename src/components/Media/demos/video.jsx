@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <div id="root" className="lyrixi-position-relative" style={{ height: '300px' }}>
-      <Media ref={videosRef} type="video" list={list} />
+      <Media ref={videosRef} mediaType={['video']} list={list} />
     </div>
   )
 }

@@ -1,31 +1,29 @@
 // 内库使用-start
 import Device from './../../../utils/Device'
-import Bridge from './../../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Bridge } from 'lyrixi-mobile'
+import { Device } from 'lyrixi-mobile'
 测试使用-end */
 
-function getPreviewType(type) {
+function getPreviewType(mediaType) {
   // Not video
   if (
-    type !== 'video' &&
+    mediaType !== 'video' &&
     Device.device === 'mobile' &&
-    (Bridge.platform === 'lyrixi' ||
-      Bridge.platform === 'wechat' ||
-      Bridge.platform === 'wecom' ||
-      Bridge.platform === 'alipay' ||
-      Bridge.platform === 'dingtalk' ||
-      Bridge.platform === 'lark' ||
-      Bridge.platform === 'wechatMiniProgram' ||
-      Bridge.platform === 'wecomMiniProgram' ||
-      Bridge.platform === 'alipayMiniProgram')
+    (Device.platform === 'wechat' ||
+      Device.platform === 'wecom' ||
+      Device.platform === 'alipay' ||
+      Device.platform === 'dingtalk' ||
+      Device.platform === 'lark' ||
+      Device.platform === 'wechatMiniProgram' ||
+      Device.platform === 'wecomMiniProgram' ||
+      Device.platform === 'alipayMiniProgram')
   ) {
-    return 'nativeImage'
+    return 'nativeMedia'
   }
   // Video
-  if (Bridge.platform === 'lyrixi' && type === 'video') {
+  if (mediaType === 'video') {
     return 'nativeFile'
   }
 

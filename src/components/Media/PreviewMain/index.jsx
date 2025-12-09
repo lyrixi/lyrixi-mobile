@@ -32,13 +32,13 @@ const PreviewMain = forwardRef(
   (
     {
       // Value & Display Value
-      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
+      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', fileType: 'video|image', children: node}
       index, // 当前显示的资源序号
-      type, // video | image
+      mediaType,
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
       maxCount,
-      maxWidth,
+      fileImageCompress,
 
       // Status
       open = true,
@@ -114,7 +114,7 @@ const PreviewMain = forwardRef(
       setActiveIndex(swiper.activeIndex)
 
       // 暂停所有视频
-      if (type === 'video') {
+      if (list?.some?.((item) => item?.fileType === 'video')) {
         for (let videoPlayer of videoPlayers.current) {
           videoPlayer?.pause?.()
         }
@@ -179,7 +179,7 @@ const PreviewMain = forwardRef(
     function handleDelete() {
       let index = swiperRef.current?.swiper?.activeIndex
       if (typeof index !== 'number') {
-        console.error('lyrixi PreviewMain: index is not a number', swiperRef.current)
+        console.error('PreviewMain: index is not a number', swiperRef.current)
         return
       }
 
@@ -196,7 +196,8 @@ const PreviewMain = forwardRef(
         file: e.nativeEvent.target,
         async,
         sizeType,
-        maxWidth,
+        maxWidth: fileImageCompress?.maxWidth,
+        quality: fileImageCompress?.quality,
         maxCount,
         list,
         uploadPosition: 'end',
@@ -215,7 +216,6 @@ const PreviewMain = forwardRef(
       let chooseResult = await choose({
         async,
         sizeType,
-        maxWidth,
         maxCount,
         list,
         uploadPosition: 'end',
@@ -231,12 +231,12 @@ const PreviewMain = forwardRef(
     // 重新上传
     async function handleReUpload() {
       if (typeof onChange !== 'function') {
-        console.warn('lyrixi Media: onChange is not a function')
+        console.warn('Media: onChange is not a function')
         return
       }
       let index = swiperRef.current?.swiper?.activeIndex
       if (typeof index !== 'number') {
-        console.error('lyrixi PreviewMain: index is not a number', swiperRef.current)
+        console.error('PreviewMain: index is not a number', swiperRef.current)
         return
       }
 
@@ -268,7 +268,7 @@ const PreviewMain = forwardRef(
         slidesPerView={1}
         // initialSlide={activeIndex}
         navigation={false}
-        zoom={type !== 'video' ? true : false}
+        zoom={list?.[activeIndex]?.fileType !== 'video' ? true : false}
         // Bullet pagination
         pagination={{
           type: 'fraction',
@@ -301,7 +301,7 @@ const PreviewMain = forwardRef(
         {Array.isArray(list) &&
           list
             .filter((item) => {
-              return item?.fileUrl || false
+              return item?.localFile?.tempFileUrl || item?.fileUrl || false
             })
             .map((item, index) => {
               return (
@@ -310,16 +310,20 @@ const PreviewMain = forwardRef(
                   className={DOMUtil.classNames('lyrixi-media-preview-main-item', item.status)}
                 >
                   <div className="swiper-zoom-container">
-                    {type !== 'video' && (
-                      <img alt="" className="swiper-zoom-target" src={item.fileUrl} />
+                    {list?.[activeIndex]?.fileType !== 'video' && (
+                      <img
+                        alt=""
+                        className="swiper-zoom-target"
+                        src={item?.localFile?.tempFileUrl || item?.fileUrl}
+                      />
                     )}
-                    {type === 'video' && (
+                    {list?.[activeIndex]?.fileType === 'video' && (
                       <VideoPlayer
                         ref={(currentVideoPlayer) =>
                           (videoPlayers.current[index] = currentVideoPlayer)
                         }
-                        poster={item.fileThumbnail}
-                        fileUrl={item.fileUrl}
+                        poster={item?.localFile?.tempFileThumbnail || item?.fileThumbnail}
+                        fileUrl={item?.localFile?.tempFileUrl || item?.fileUrl}
                         autoPlay={false}
                       />
                     )}
@@ -339,7 +343,7 @@ const PreviewMain = forwardRef(
           <PreviewChoose
             // Value & Display Value
             sourceType={sourceType}
-            type={type}
+            mediaType={mediaType}
             // Events
             onChoose={onChoose ? handleChoose : null}
             onFileChange={onFileChange ? handleFileChange : null}

@@ -39,14 +39,14 @@ const AttachPreviewModal = forwardRef(
     // 事件
     async function handleOk() {
       Clipboard.copy(fileUrl, {
-        success: () => {
+        onSuccess: () => {
           Toast.show({
             content: LocaleUtil.locale('文件链接已复制到剪贴板，请粘贴到系统浏览器上预览'),
 
             maskClickable: true
           })
         },
-        fail: () => {
+        onError: () => {
           Message.open({
             title: LocaleUtil.locale('提示'),
             content: LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制') + `<br/>${fileUrl}`

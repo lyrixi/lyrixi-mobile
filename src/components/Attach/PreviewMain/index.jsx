@@ -3,12 +3,9 @@ import supportTypes from './../utils/supportTypes'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
-import Clipboard from './../../../utils/Clipboard'
 import Bridge from './../../../utils/Bridge'
-import Toast from './../../Toast'
 import Result from './../../Result'
 import Button from './../../Button'
-import Message from './../../Message'
 import IFrame from './../../IFrame'
 // 内库使用-end
 
@@ -69,38 +66,14 @@ function AttachPreviewMain(
           title={LocaleUtil.locale(`${fileName}`)}
           description={LocaleUtil.locale('暂不支持此类型线上预览')}
         >
-          {Bridge.platform === 'lyrixi' ? (
-            <Button
-              color="primary"
-              onClick={() => {
-                Bridge.previewFile({ fileUrl: fileUrl })
-              }}
-            >
-              {LocaleUtil.locale('点击预览')}
-            </Button>
-          ) : (
-            <Button
-              className="map-result-button-retry lyrixi-primary"
-              onClick={() => {
-                Clipboard.copy(fileUrl, {
-                  onSuccess: () => {
-                    Toast.show({
-                      content: LocaleUtil.locale('链接已复制到剪贴板')
-                    })
-                  },
-                  onError: () => {
-                    Message.open({
-                      title: LocaleUtil.locale('提示'),
-                      content:
-                        LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制') + `<br/>${fileUrl}`
-                    })
-                  }
-                })
-              }}
-            >
-              {LocaleUtil.locale('复制连接')}
-            </Button>
-          )}
+          <Button
+            color="primary"
+            onClick={() => {
+              Bridge.previewFile({ fileUrl: fileUrl })
+            }}
+          >
+            {LocaleUtil.locale('点击预览')}
+          </Button>
         </Result>
       ) : (
         <IFrame src={newSrc} />

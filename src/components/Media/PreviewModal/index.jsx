@@ -3,11 +3,12 @@ import PreviewMain from './../PreviewMain'
 import DOMUtil from './../../../utils/DOMUtil'
 
 // 内库使用-start
+import Page from './../../Page'
 import NavBarModal from './../../Modal/NavBarModal'
 // 内库使用-end
 
 /* 测试使用-start
-import { Modal } from 'lyrixi-mobile'
+import { Page, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
@@ -15,13 +16,13 @@ const PreviewModal = forwardRef(
   (
     {
       // Value & Display Value
-      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', type: 'video|image, 默认image', children: node}
+      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', fileType: 'video|image'}
       index, // 当前显示的资源序号或者当前资源的src链接
-      type, // video | image
+      mediaType, // video | image
       maxCount,
       sourceType = ['album', 'camera'],
       sizeType = ['compressed'], // ['original', 'compressed']
-      maxWidth,
+      fileImageCompress,
 
       // Status
       open,
@@ -87,32 +88,34 @@ const PreviewModal = forwardRef(
         // Events
         onClose={handleClose}
       >
-        <PreviewMain
-          ref={ref}
-          // Value & Display Value
-          list={list}
-          index={index}
-          type={type}
-          maxCount={maxCount}
-          sourceType={sourceType}
-          sizeType={sizeType}
-          maxWidth={maxWidth}
-          // Status
-          open={open}
-          closable={false}
-          allowChoose={allowChoose}
-          allowClear={allowClear}
-          // Style
-          className={mainClassName}
-          style={mainStyle}
-          // Events
-          onBeforeChoose={onBeforeChoose}
-          onChoose={onChoose}
-          onFileChange={onFileChange}
-          onUpload={onUpload}
-          onChange={onChange}
-          onClose={onClose}
-        />
+        <Page.Main>
+          <PreviewMain
+            ref={ref}
+            // Value & Display Value
+            list={list}
+            index={index}
+            mediaType={mediaType}
+            maxCount={maxCount}
+            sourceType={sourceType}
+            sizeType={sizeType}
+            fileImageCompress={fileImageCompress}
+            // Status
+            open={open}
+            closable={false}
+            allowChoose={allowChoose}
+            allowClear={allowClear}
+            // Style
+            className={mainClassName}
+            style={mainStyle}
+            // Events
+            onBeforeChoose={onBeforeChoose}
+            onChoose={onChoose}
+            onFileChange={onFileChange}
+            onUpload={onUpload}
+            onChange={onChange}
+            onClose={onClose}
+          />
+        </Page.Main>
       </NavBarModal>
     )
   }

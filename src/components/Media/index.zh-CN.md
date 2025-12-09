@@ -43,7 +43,7 @@ toc: content
 | reUpload        | 是否重新上传 | `boolean`                       | `true`                |
 | maxCount        | 最大数量     | `number`                        | -                     |
 | visibleCount    | 可见数量     | `number`                        | -                     |
-| type            | 选择类型     | `'video' \| 'image'`            | -                     |
+| mediaType       | 选择类型     | `[video,image]`                 | -                     |
 | sourceType      | 来源类型     | `array`                         | `['album', 'camera']` |
 | sizeType        | 尺寸类型     | `array`                         | `['compressed']`      |
 | maxWidth        | 最大宽度     | `number`                        | -                     |

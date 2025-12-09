@@ -12,7 +12,7 @@ import { LocaleUtil } from 'browser-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { maxWidth, getUploadUrl, formatPayload, formatResult, formatUploadedItem }
+  { getUploadUrl, formatHeader, formatPayload, formatResponse, verifyImage }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -27,15 +27,13 @@ function uploadItem(
     let newItem = await uploadLocalFile({
       localFile: item?.localFile,
       getUploadUrl,
-      formatPayload: (payload) =>
-        formatPayload?.(
-          { ...payload, watermark: item?.watermark, maxWidth },
-          { platform: 'browser' }
-        ),
-      formatResult,
+      formatHeader,
+      formatPayload: (payload, payloadExtra) =>
+        formatPayload?.({ ...payload, ...item }, payloadExtra),
+      formatResponse,
+      verifyImage,
       // 用于构建新Item的入参
-      item,
-      formatUploadedItem
+      item
     })
 
     resolve(newItem)

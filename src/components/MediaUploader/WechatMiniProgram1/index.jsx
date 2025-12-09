@@ -24,16 +24,17 @@ function WechatMiniProgram(
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
     maxUploadCount = 5,
     maxChooseCount = 9,
-    type, // video.录相 | 其它.为拍照
+    mediaType, // video.录相 | 其它.为拍照
     ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
-    maxWidth,
+    fileImageCompress,
     chooseExtraParams, // 仅对客户端有效
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
+    verifyImage,
     reUpload = true, // 支持重新上传
     allowClear = true,
     allowChoose = true,
@@ -69,11 +70,12 @@ function WechatMiniProgram(
       filePath: 入库路径
     }
     */
-    formatUploadedItem,
-    getWatermark,
+    getItemExtra,
     getUploadUrl,
+    formatChoose,
+    formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
 
     // Events
     onBeforeChoose,
@@ -82,8 +84,7 @@ function WechatMiniProgram(
     // onUpload,
     onChange,
     onPreview,
-    onNavigateTo,
-    wechatMiniProgramNavigate
+    onNavigateTo
   },
   ref
 ) {
@@ -95,8 +96,8 @@ function WechatMiniProgram(
   // Auto generate id, used to get photos form server
   const idRef = useRef(Object.generateGUID())
 
-  // Photo and Album select actionsheet visible
-  const [visible, setVisible] = useState(false)
+  // Photo and Album select actionsheet open
+  const [open, setOpen] = useState(false)
 
   const mediaRef = useRef(null)
 
@@ -140,8 +141,7 @@ function WechatMiniProgram(
   async function updatePhotos() {
     let photos = await getPhotos(idRef.current, {
       url: getMediaUrl,
-      formatResult,
-      formatUploadedItem
+      formatResponse
     })
     console.log('服务器获取照片:', photos)
     // Get photos failed, stop interval
@@ -185,21 +185,19 @@ function WechatMiniProgram(
 
   // Jump to WeChat mini program to photo
   async function goCamera(sourceType) {
-    if (onNavigateTo) {
-      let allowNavigateTo = await onNavigateTo()
-      if (allowNavigateTo === false) {
-        return false
-      }
+    if (typeof uploadUrl.navigateToMiniProgram !== 'function') {
+      Toast.show({ content: 'uploadUrl.navigateToMiniProgram is not a function' })
+      return false
     }
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // Stop others polling
       stopAllPolls(idRef.current)
 
-      // 添加水印
-      let watermark = null
-      if (typeof getWatermark === 'function') {
-        watermark = await getWatermark({ platform: 'browser' })
+      // 添加额外的item信息, 方便传递, 例如水印等
+      let itemExtra = null
+      if (typeof getItemExtra === 'function') {
+        itemExtra = await getItemExtra({ platform: 'browser' })
       }
 
       // Protect click
@@ -213,16 +211,34 @@ function WechatMiniProgram(
 
       console.log('进入小程序拍照')
       try {
-        let uploadExtraFormData = formatPayload?.({ platform: 'wechatMiniProgram' }) || {}
+        let payload = undefined
+        if (typeof formatPayload === 'function') {
+          payload = await formatPayload?.({ ...itemExtra }, { platform: 'wechatMiniProgram' })
+        }
 
-        wechatMiniProgramNavigate({
+        let goOn = await onNavigateTo({
           id: idRef.current,
           sourceType: sourceType,
-          watermark: watermark,
           maxChooseCount: maxChooseCount,
-          uploadExtraFormData: uploadExtraFormData,
-          maxWidth: maxWidth
+          payload: payload,
+          ...itemExtra
         })
+
+        if (goOn === false) {
+          return
+        }
+
+        goOn = await uploadUrl.navigateToMiniProgram({
+          id: idRef.current,
+          sourceType: sourceType,
+          maxChooseCount: maxChooseCount,
+          payload: payload,
+          ...itemExtra
+        })
+
+        if (goOn === false) {
+          return
+        }
 
         // Invoke camera start interval list
         updatePhotos()
@@ -236,7 +252,6 @@ function WechatMiniProgram(
 
   // 选择文件
   async function handleChoose() {
-    console.log('新小程序选择照片')
     // 前置校验
     if (typeof onBeforeChoose === 'function') {
       let isOk = await onBeforeChoose()
@@ -245,7 +260,7 @@ function WechatMiniProgram(
 
     // Camera and Album actionsheet select
     if (sourceType.includes('album') && sourceType.includes('camera')) {
-      setVisible(true)
+      setOpen(true)
       return true
     }
 
@@ -264,11 +279,10 @@ function WechatMiniProgram(
         // Value & Display Value
         list={list}
         maxUploadCount={maxUploadCount}
-        type={type}
+        mediaType={mediaType}
         ellipsis={ellipsis}
         sourceType={sourceType}
         sizeType={sizeType}
-        maxWidth={maxWidth}
         // Status
         async={async}
         reUpload={reUpload}
@@ -303,7 +317,7 @@ function WechatMiniProgram(
           // 自定义预览
           if (typeof onPreview === 'function') {
             let goOn = await onPreview(item, index)
-            if (goOn === false || goOn === 'browser') return goOn
+            if (goOn !== true) return goOn
           }
 
           return getPreviewType('image')
@@ -311,7 +325,7 @@ function WechatMiniProgram(
       />
 
       <ActionSheet.Modal
-        visible={visible}
+        open={open}
         list={[
           {
             id: 'camera',
@@ -326,10 +340,10 @@ function WechatMiniProgram(
           mediaRef.current?.showLoading?.()
           await goCamera([item.id])
           mediaRef.current?.hideLoading?.()
-          setVisible(false)
+          setOpen(false)
         }}
-        onVisibleChange={(newVisible) => {
-          setVisible(newVisible)
+        onClose={() => {
+          setOpen(false)
         }}
       />
     </>

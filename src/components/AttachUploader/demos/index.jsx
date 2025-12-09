@@ -33,7 +33,6 @@ export default () => {
           maxCount={2}
           extension={['image']} // ['image', 'video', 'audio', 'jpg等指定后缀']
           uploadPosition="start"
-          timeout={1}
           list={list}
           onChange={handlePhotoChange}
           onDelete={handlePhotoChange}

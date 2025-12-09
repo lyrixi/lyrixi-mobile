@@ -16,30 +16,30 @@ let uploadItem = uploadFile
 
 /**
  * 上传图片
- * @param {Array|Object} list ImageUploader控件返回的list
- * @param {Object} uploadConfig
- * @returns {Array} [{原item属性, filePath: '', fileUrl: '', fileThumbnail: '', status: 'choose|uploading|fail|success'}]
+ * @param {Array|Object} pendingList AttachUploader控件返回的待传列表
+ * @param {Object} uploadConfig {platform: 'browser强制上传方式', getUploadUrl: function({platform}), formatHeader: function(header, {platform}), formatPayload: function(payload, {platform}), formatResponse: function(response, {platform})}
+ * @returns {Array} [{原item属性, filePath: '', fileUrl: '', status: 'choose|uploading|fail|success'}]
  */
 
-async function uploadList(attachList, uploadConfig) {
-  if (_.isEmpty(attachList)) {
+async function uploadList(pendingList, uploadConfig) {
+  if (_.isEmpty(pendingList)) {
     return null
   }
 
-  // 浏览器上传, 客户端不调用浏览器上传
-  if (uploadConfig?.type === 'browser') {
+  // 强制上传方式
+  if (uploadConfig?.platform === 'browser') {
     uploadItem = uploadFile
   }
 
   let list = null
 
   // 如果是对象则转为数组
-  if (toString.call(attachList) === '[object Object]') {
-    list = [attachList]
+  if (toString.call(pendingList) === '[object Object]') {
+    list = [pendingList]
   }
   // 如果是数组
-  else if (Array.isArray(attachList)) {
-    list = attachList
+  else if (Array.isArray(pendingList)) {
+    list = pendingList
   }
 
   // 过滤非法的list
@@ -66,6 +66,11 @@ async function uploadList(attachList, uploadConfig) {
 
   // 开始上传
   for (let [index, item] of list.entries()) {
+    // 已经上传成功
+    if (item?.status === 'success') {
+      console.log('此项无需上传:', item)
+      continue
+    }
     // 已经上传成功的图片无需上传
     if (item?.fileUrl?.startsWith('http') && !item?.fileUrl?.startsWith?.('https://resource/')) {
       console.log('此项无需上传:', item)
@@ -73,30 +78,20 @@ async function uploadList(attachList, uploadConfig) {
     }
 
     console.log('上传此项:', item)
-    // 开始上传
-    let result = await uploadItem(item, {
-      timeout: item?.timeout || uploadConfig?.timeout,
+    // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
+    let newItem = await uploadItem(item, {
       getUploadUrl: uploadConfig?.getUploadUrl,
       formatHeader: uploadConfig?.formatHeader,
       formatPayload: uploadConfig?.formatPayload,
-      formatResult: uploadConfig?.formatResult,
-      formatUploadedItem: uploadConfig?.formatUploadedItem
+      formatResponse: uploadConfig?.formatResponse
     })
-    // 上传失败
-    if (typeof result === 'string') {
-      item.status = 'fail'
-    }
-    // 上传成功
-    else {
-      // eslint-disable-next-line
-      item = result
-    }
-    console.log(`上传结果：`, item)
+
+    console.log(`上传结果：`, newItem)
 
     // 重新设置list
-    list[index] = item
+    list[index] = newItem
   }
-  return toString.call(attachList) === '[object Object]' ? list[0] : list
+  return toString.call(pendingList) === '[object Object]' ? list[0] : list
 }
 
 export default uploadList

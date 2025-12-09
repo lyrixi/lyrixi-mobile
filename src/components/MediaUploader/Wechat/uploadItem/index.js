@@ -2,18 +2,17 @@ import _ from 'lodash'
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
-import Storage from './../../../../utils/Storage'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Storage, LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 单张照片上传
 function uploadItem(
   item,
-  { maxWidth, getUploadUrl, formatPayload, formatResult, formatUploadedItem }
+  { getUploadUrl, formatHeader, formatPayload, formatResponse, verifyImage }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -24,25 +23,17 @@ function uploadItem(
       return
     }
 
-    const appId = Storage.getLocalStorage('appId') || ''
-    if (!appId) {
-      resolve(LocaleUtil.locale('没有appId，无法上传！'))
-      return
-    }
-
     // 上传到阿里云
     let newItem = await uploadLocalFile({
       localFile: item?.localFile,
       getUploadUrl,
-      formatPayload: (payload) =>
-        formatPayload?.(
-          { ...payload, watermark: item?.watermark, maxWidth },
-          { platform: 'browser' }
-        ),
-      formatResult,
+      formatHeader,
+      formatPayload: (payload, payloadExtra) =>
+        formatPayload?.({ ...payload, ...item }, payloadExtra),
+      formatResponse,
+      verifyImage,
       // 用于构建新Item的入参
-      item,
-      formatUploadedItem
+      item
     })
 
     resolve(newItem)

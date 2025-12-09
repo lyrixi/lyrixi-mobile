@@ -10,10 +10,7 @@ import { LocaleUtil } from 'browser-mobile'
 测试使用-end */
 
 // 单张照片上传
-function uploadItem(
-  item,
-  { getUploadUrl, formatHeader, formatPayload, formatResult, formatUploadedItem }
-) {
+function uploadItem(item, { getUploadUrl, formatHeader, formatPayload, formatResponse }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -29,10 +26,9 @@ function uploadItem(
       getUploadUrl,
       formatHeader,
       formatPayload,
-      formatResult,
+      formatResponse,
       // 用于构建新Item的入参
-      item,
-      formatUploadedItem
+      item
     })
 
     resolve(newItem)

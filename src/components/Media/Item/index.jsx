@@ -40,7 +40,9 @@ const Item = ({
       }}
     >
       {/* 缩略图 */}
-      {item.fileThumbnail ? <Img fileUrl={item.fileThumbnail} /> : null}
+      {item?.localFile?.tempFileThumbnail || item?.fileThumbnail ? (
+        <Img fileUrl={item?.localFile?.tempFileThumbnail || item?.fileThumbnail} />
+      ) : null}
 
       {/* 重新上传图标 */}
       <Reload

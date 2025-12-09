@@ -52,6 +52,14 @@ async function fileChoose({
   let fileName = fileData?.name || file.value
   let fileURL = URL.createObjectURL(fileData)
   let fileSize = fileData?.size
+  let fileType = fileData?.type
+  if (fileType?.includes?.('image')) {
+    fileType = 'image'
+  } else if (fileType?.includes?.('video')) {
+    fileType = 'video'
+  } else {
+    fileType = 'file'
+  }
 
   if (maxSize && !validateMaxSize(fileSize, maxSize)) {
     Toast.show({
@@ -91,7 +99,7 @@ async function fileChoose({
     currentList = await onFileChange({
       fileName: fileName,
       fileSize: fileSize,
-      fileType: fileData?.type,
+      fileType: fileType,
       filePath: fileData,
       fileUrl: fileURL,
       status: 'choose'

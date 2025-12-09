@@ -5,7 +5,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 // 上传按钮
 const Choose = ({
   // Value & Display Value
-  type,
+  mediaType,
   sourceType,
 
   // Style
@@ -90,7 +90,7 @@ const Choose = ({
       <div
         className={DOMUtil.classNames(
           'lyrixi-media-choose-icon',
-          type === 'lyrixi-video' ? 'lyrixi-video' : null
+          mediaType?.includes?.('video') ? 'lyrixi-video' : null
         )}
       ></div>
       {/* 启用file框 */}

@@ -1,25 +1,26 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import getPreviewType from './../utils/getPreviewType'
+import getRemainCount from './../../Media/utils/getRemainCount'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
+import Bridge from './../../../utils/Bridge'
+import Device from './../../../utils/Device'
 import Toast from './../../Toast'
+import Loading from './../../Loading'
 import Media from './../../Media'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Toast, Media } from 'lyrixi-mobile'
+import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
 测试使用-end */
-
 // 照片上传
-function Browser(
+function MediaUploader(
   {
     // Value & Display Value
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
     maxUploadCount = 5,
-    maxChooseCount = 1,
-    mediaType,
+    maxChooseCount = 9,
+    mediaType, // video.录相 | 其它.为拍照
     ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
@@ -40,8 +41,8 @@ function Browser(
     className,
     uploadPosition,
     previewSafeArea,
-    navBarStyle,
-    navBarClassName,
+    previewNavBarStyle,
+    previewNavBarClassName,
     previewModalStyle,
     previewModalClassName,
     previewMaskStyle,
@@ -73,6 +74,8 @@ function Browser(
 
     // Events
     onBeforeChoose,
+    // onChoose,
+    // onFileChange,
     // onUpload,
     onChange,
     onPreview
@@ -85,10 +88,8 @@ function Browser(
     return {
       ...mediaRef.current,
       chooseMedia: () => {
-        Toast.show({
-          content: LocaleUtil.locale('浏览器上传模式, 不支持编程式调用拍照')
-        })
-        return false
+        if (!mediaRef.current?.choose) return
+        return mediaRef.current.choose()
       }
     }
   })
@@ -104,13 +105,13 @@ function Browser(
       verifyImage
     })
 
-    console.log('浏览器上传后新item:', newItem)
+    console.log('自定义上传后新item:', newItem)
     // 更新状态
     return newItem
   }
 
   // 选择文件
-  async function handleChoose(localFile) {
+  async function handleChoose() {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // 前置校验
@@ -125,19 +126,56 @@ function Browser(
       // 添加额外的item信息, 方便传递, 例如水印等
       let itemExtra = null
       if (typeof getItemExtra === 'function') {
-        itemExtra = await getItemExtra({ platform: 'browser' })
+        itemExtra = await getItemExtra({ platform: Device.platform })
       }
 
-      resolve([
-        {
-          status: 'choose',
-          localFile: localFile,
-          fileThumbnail: localFile.fileUrl,
-          fileUrl: localFile.fileUrl,
-          fileType: localFile.fileType,
-          ...itemExtra
+      let chooseMediaParams = {
+        count: getRemainCount(maxUploadCount, list?.length || 0, maxChooseCount),
+        sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
+        mediaType: mediaType,
+        isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
+        onSuccess: async (res) => {
+          const localFiles = res.localFiles
+          if (!Array.isArray(localFiles) || !localFiles.length) {
+            resolve(null)
+            return
+          }
+
+          Loading.show()
+
+          // 当前列表
+          let currentList = localFiles.map((localFile, index) => {
+            return {
+              status: 'choose',
+              localFile: localFile,
+              fileThumbnail: localFile.fileUrl,
+              fileUrl: localFile.fileUrl,
+              fileType: localFile.fileType,
+              ...itemExtra
+            }
+          })
+
+          console.log('选择完成:', currentList)
+          resolve(currentList)
+        },
+        onError: function (err) {
+          if (err && err.errMsg) Toast.show({ content: err.errMsg })
+          resolve(false)
+        },
+        onCancel: function () {
+          resolve(false)
         }
-      ])
+      }
+
+      if (typeof formatChoose === 'function') {
+        chooseMediaParams = await formatChoose(
+          { ...chooseMediaParams, ...itemExtra },
+          { platform: Device.platform }
+        )
+      }
+
+      Bridge.chooseMedia(chooseMediaParams)
     })
   }
 
@@ -151,7 +189,6 @@ function Browser(
       ellipsis={ellipsis}
       sourceType={sourceType}
       sizeType={sizeType}
-      fileImageCompress={fileImageCompress}
       // Status
       async={async}
       reUpload={reUpload}
@@ -164,8 +201,8 @@ function Browser(
       className={className}
       uploadPosition={uploadPosition}
       previewSafeArea={previewSafeArea}
-      navBarStyle={navBarStyle}
-      navBarClassName={navBarClassName}
+      previewNavBarStyle={previewNavBarStyle}
+      previewNavBarClassName={previewNavBarClassName}
       previewModalStyle={previewModalStyle}
       previewModalClassName={previewModalClassName}
       previewMaskStyle={previewMaskStyle}
@@ -178,7 +215,8 @@ function Browser(
       previewCancelPosition={previewCancelPosition}
       // Events
       onBeforeChoose={onBeforeChoose}
-      onFileChange={handleChoose}
+      onChoose={handleChoose}
+      // onFileChange={onFileChange}
       onUpload={uploadItem}
       onChange={onChange}
       onPreview={async (item, index) => {
@@ -188,10 +226,10 @@ function Browser(
           if (goOn !== true) return goOn
         }
 
-        return getPreviewType('image')
+        return 'nativeMedia'
       }}
     />
   )
 }
 
-export default forwardRef(Browser)
+export default forwardRef(MediaUploader)

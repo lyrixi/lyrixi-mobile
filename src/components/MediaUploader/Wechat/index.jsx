@@ -21,15 +21,16 @@ function MediaUploader(
     list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success', children: node}]
     maxUploadCount = 5,
     maxChooseCount = 9,
-    type, // video.录相 | 其它.为拍照
+    mediaType, // video.录相 | 其它.为拍照
     ellipsis,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     isSaveToAlbum = 0, // 是否保存到本地
-    maxWidth,
+    fileImageCompress,
 
     // Status
     async = false, // 是否异步上传(目前只有app支持)
+    verifyImage,
     reUpload = true, // 支持重新上传
     allowClear = true,
     allowChoose = true,
@@ -65,11 +66,12 @@ function MediaUploader(
       filePath: 入库路径
     }
     */
-    formatUploadedItem,
-    getWatermark,
+    getItemExtra,
     getUploadUrl,
+    formatChoose,
+    formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
 
     // Events
     onBeforeChoose,
@@ -95,30 +97,18 @@ function MediaUploader(
 
   // 上传文件
   async function uploadItem(item) {
-    // 开始上传
-    let result = await _uploadItem(item, {
-      maxWidth,
+    // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
+    let newItem = await _uploadItem(item, {
       getUploadUrl,
+      formatHeader,
       formatPayload,
-      formatResult,
-      formatUploadedItem
+      formatResponse,
+      verifyImage
     })
 
-    // 上传失败
-    if (typeof result === 'string') {
-      Toast.show({
-        content: result
-      })
-      item.status = 'error'
-    }
-    // 上传成功
-    else {
-      // eslint-disable-next-line
-      item = result
-    }
-
+    console.log('微信上传后新item:', newItem)
     // 更新状态
-    return item
+    return newItem
   }
 
   // 选择文件
@@ -134,16 +124,17 @@ function MediaUploader(
         }
       }
 
-      // 添加水印
-      let watermark = null
-      if (typeof getWatermark === 'function') {
-        watermark = await getWatermark({ platform: 'dingtalk' })
+      // 添加额外的item信息, 方便传递, 例如水印等
+      let itemExtra = null
+      if (typeof getItemExtra === 'function') {
+        itemExtra = await getItemExtra({ platform: 'browser' })
       }
 
       let chooseMediaParams = {
         count: getRemainCount(maxUploadCount, list?.length || 0, maxChooseCount),
         sizeType: sizeType, // 可以指定是原图还是压缩图，默认二者都有
         sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
+        mediaType: mediaType,
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
           const localFiles = res.localFiles
@@ -161,7 +152,8 @@ function MediaUploader(
               localFile: localFile,
               fileThumbnail: localFile.fileUrl,
               fileUrl: localFile.fileUrl,
-              watermark: watermark
+              fileType: localFile.fileType,
+              ...itemExtra
             }
           })
 
@@ -176,6 +168,14 @@ function MediaUploader(
           resolve(false)
         }
       }
+
+      if (typeof formatChoose === 'function') {
+        chooseMediaParams = await formatChoose(
+          { ...chooseMediaParams, ...itemExtra },
+          { platform: 'wechat' }
+        )
+      }
+
       Bridge.chooseMedia(chooseMediaParams)
     })
   }
@@ -186,11 +186,11 @@ function MediaUploader(
       // Value & Display Value
       list={list}
       maxUploadCount={maxUploadCount}
-      type={type}
+      mediaType={mediaType}
       ellipsis={ellipsis}
       sourceType={sourceType}
       sizeType={sizeType}
-      maxWidth={maxWidth}
+      fileImageCompress={fileImageCompress}
       // Status
       async={async}
       reUpload={reUpload}
@@ -225,17 +225,10 @@ function MediaUploader(
         // 自定义预览
         if (typeof onPreview === 'function') {
           let goOn = await onPreview(item, index)
-          if (goOn === false || goOn === 'browser') return goOn
+          if (goOn !== true) return goOn
         }
 
         return getPreviewType('image')
-
-        // 走默认预览
-        // Bridge.previewMedia({
-        //   sources: list,
-        //   index: index
-        // })
-        // return false
       }}
     />
   )
