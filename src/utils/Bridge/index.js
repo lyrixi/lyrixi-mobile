@@ -228,7 +228,7 @@ let Bridge = {
    * @param {Array<String>} params.sourceType - 图片来源，['camera', 'album']，默认为 ['camera', 'album']
    * @param {Array<String>} params.mediaType - 媒体类型，['image', 'video', 'mix']，默认为 ['image']
    * @param {Number} params.maxDuration - 视频最大时长，单位秒，默认为 10
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{fileUrl: String, filePath: String, fileType: String}>}
+   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{fileUrl: 预览url, filePath: 上传url或id, fileType: 文件类型(image|video|file)}>}
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
@@ -247,9 +247,10 @@ let Bridge = {
    * @param {String} params.getUploadUrl - 上传地址 (必填), function({ platform: String }) => String
    * @param {Object} params.formatHeader - 格式化请求头, function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object
    * @param {Object} params.formatPayload - 格式化表单数据 function(payload, { platform: String }), 返回 {Object}
-   * @param {Object} params.formatResult - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', result: Object}
+   * @param {Object} params.formatResponse - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', result: Object}
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}
    * @param {Function} params.onError - 失败回调
+   * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
   uploadFile(params) {
@@ -263,9 +264,10 @@ let Bridge = {
    * 媒体操作: 预览视频图片
    * @param {Object} params - 预览图片参数
    * @param {Number} params.index - 当前显示图片索引，默认 0
-   * @param {Array<String>} params.sources - 需要预览的图片 http 链接列表，[{fileUrl: '全路径'}]
+   * @param {Array<String>} params.sources - 需要预览的图片 http 链接列表，[{fileUrl: '全路径', fileType: 'image|video', poster: '视频封面图片全路径'}]
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
+   * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
   previewMedia(params) {

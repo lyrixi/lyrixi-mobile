@@ -180,13 +180,7 @@ let Bridge = {
     console.log('调用支付宝上传文件暂未实现', params)
   },
   previewMedia: function (params) {
-    const wrappedParams = wrapCallback({
-      urls: params?.sources.map((item) => item.fileUrl),
-      current: params?.index || 0,
-      ...params
-    })
-
-    window.top.ap.previewMedia(wrappedParams)
+    console.log('调用支付宝预览文件暂未实现', params)
   }
 }
 

@@ -255,7 +255,7 @@ let Browser = {
     getUploadUrl,
     formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
     onSuccess,
     onError
   } = {}) {
@@ -277,32 +277,31 @@ let Browser = {
       header = await formatHeader(header, { platform: 'browser' })
     }
 
-    let result = await uploadFile({
+    let response = await uploadFile({
       url: url,
       header: header,
       payload: payload
     })
 
-    if (typeof formatResult === 'function') {
-      result = await formatResult(result, { platform: 'browser' })
+    if (response.status === 'success' && typeof formatResponse === 'function') {
+      response = await formatResponse(response, { platform: 'browser' })
     }
 
-    if (result.status === 'success') {
-      onSuccess && onSuccess(result)
+    if (response.status === 'success') {
+      onSuccess?.(response)
     } else {
-      onError && onError(result)
+      onError?.(response)
     }
   },
-  previewMedia: function (params = {}) {
-    let message = LocaleUtil.locale(
-      'previewMedia仅可在移动端微信或APP中使用',
-      'lyrixi.previewMedia.prompt',
-      ['previewMedia']
-    )
-    Toast.show({
-      content: message
+  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
+    onError?.({
+      status: 'error',
+      message: LocaleUtil.locale(
+        'previewMedia仅可在移动端微信或APP中使用',
+        'lyrixi.previewMedia.prompt',
+        ['previewMedia']
+      )
     })
-    params?.onError && params.onError({ status: 'error', message: message })
   },
   previewFile: function ({ fileUrl, onSuccess, onError }) {
     let message = LocaleUtil.locale(

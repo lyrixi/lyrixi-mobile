@@ -8,11 +8,12 @@ import wrapCallback from './../utils/wrapCallback'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
+import Clipboard from './../../Clipboard'
 import LocaleUtil from './../../LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { GeoUtil, LocaleUtil } from 'lyrixi-mobile'
+import { GeoUtil, Clipboard, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
@@ -162,18 +163,34 @@ let Bridge = {
   uploadFile: function (params) {
     console.log('调用飞书上传文件暂未实现', params)
   },
-  previewMedia: function (params) {
-    let index = params?.index || 0
-    let current = params?.urls?.[index]
+  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
+    let urls = sources.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
+    let current = sources?.[index]
 
-    const wrappedParams = wrapCallback({
-      urls: params?.sources.map((item) => item.fileUrl),
-      current: current.fileUrl,
-      onSuccess: params?.onSuccess,
-      onError: params?.onError
+    // 预览视频
+    if (current?.fileType === 'video') {
+      Clipboard.copyText(current.fileUrl)
+      return
+    }
+
+    // 预览图片
+    window.top.tt.previewImage({
+      urls: urls,
+      current: urls?.[index],
+      success: () => {
+        onSuccess?.({
+          status: 'success'
+        })
+      },
+      fail: (error) => {
+        console.log('飞书previewImage失败:', error)
+        onError?.({
+          status: 'error',
+          message: error?.errMsg || LocaleUtil.locale('预览失败')
+        })
+      },
+      onCancel: onCancel
     })
-
-    window.top.tt.previewImage(wrappedParams)
   }
 }
 

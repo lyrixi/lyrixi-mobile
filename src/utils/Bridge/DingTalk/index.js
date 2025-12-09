@@ -8,11 +8,12 @@ import wrapCallback, { wrapDingTalkCallback } from './../utils/wrapCallback'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
+import Clipboard from './../../Clipboard'
 import GeoUtil from './../../GeoUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, GeoUtil } from 'lyrixi-mobile'
+import { LocaleUtil, Clipboard, GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
@@ -184,7 +185,16 @@ let Bridge = {
 
     window.top.dd.biz.util.scan(wrappedParams)
   },
-  chooseMedia: function ({ count, sourceType, sizeType, onSuccess, onError, onCancel } = {}) {
+  chooseMedia: function ({
+    count,
+    sourceType,
+    sizeType,
+    mediaType,
+    maxDuration,
+    onSuccess,
+    onError,
+    onCancel
+  } = {}) {
     // eslint-disable-next-line
     count = count || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
@@ -196,9 +206,11 @@ let Bridge = {
       let localFiles = []
       for (let file of res?.files) {
         let localFile = {
+          fileThumbnail: file.path,
           fileUrl: file.path,
           filePath: file.path,
-          fileType: file.fileType
+          fileType: 'image',
+          fileExtension: file.fileType
         }
 
         if (sizeType?.indexOf?.('compressed') >= 0) {
@@ -234,6 +246,12 @@ let Bridge = {
       }
     }
 
+    console.log('调用钉钉chooseImage:', {
+      count: count,
+      secret: false,
+      position: 'back',
+      sourceType: sourceType || ['camera', 'album']
+    })
     window.top.dd.chooseImage({
       count: count,
       secret: false,
@@ -248,9 +266,10 @@ let Bridge = {
     getUploadUrl,
     formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
     onSuccess,
-    onError
+    onError,
+    onCancel
   } = {}) {
     const url = (await getUploadUrl?.({ platform: 'dingtalk' })) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
@@ -291,47 +310,29 @@ let Bridge = {
         return
       }
 
-      let result = {
+      let response = {
         code: 'success',
         result: data
       }
       if (typeof data === 'string') {
         try {
-          result.result = JSON.parse(data)
+          response.result = JSON.parse(data)
         } catch (e) {}
       }
 
-      if (typeof formatResult === 'function') {
-        result = await formatResult(result, { platform: 'dingtalk' })
+      if (typeof formatResponse === 'function') {
+        response = await formatResponse(response, { platform: 'dingtalk' })
       }
 
-      if (result.code !== 'success') {
-        onError &&
-          onError({
-            status: 'error',
-            message: result.message
-          })
-        return
+      if (response.status === 'success') {
+        onSuccess?.(response)
+      } else {
+        onError?.(response)
       }
-
-      onSuccess &&
-        onSuccess({
-          status: 'success',
-          result: result
-        })
-    }
-
-    const handleError = function (error) {
-      console.error('钉钉uploadImage失败:', error)
-      onError({
-        status: 'error',
-        code: error?.errorCode || '',
-        message: error?.errorMessage || ''
-      })
     }
 
     console.log('调用钉钉uploadFile:', {
-      url: url,
+      url: url.startsWith('http') ? url : window.origin + url,
       header: header,
       formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
@@ -347,27 +348,44 @@ let Bridge = {
       filePath: localFile.filePath,
       fileType: localFile.fileType,
       success: handleSuccess,
-      fail: handleError
+      fail: (error) => {
+        onError?.({
+          status: 'error',
+          code: error?.errorCode || '',
+          message: error?.errorMessage || ''
+        })
+      },
+      cancel: onCancel
     })
   },
-  previewMedia: function (params) {
-    const handleError = function (error) {
-      console.log('钉钉previewImage失败:', error)
-      params?.onError &&
-        params.onError({
+  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
+    let urls = sources.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
+    let current = sources?.[index]
+
+    // 预览视频
+    if (current?.fileType === 'video') {
+      Clipboard.copyText(current.fileUrl)
+      return
+    }
+
+    // 预览图片
+    window.top.dd.previewImage({
+      urls: urls,
+      current: index || 0,
+      success: () => {
+        onSuccess?.({
+          status: 'success'
+        })
+      },
+      fail: (error) => {
+        console.log('钉钉previewImage失败:', error)
+        onError?.({
           status: 'error',
           message: error?.errorMessage || LocaleUtil.locale('预览失败')
         })
-    }
-
-    const wrappedParams = wrapCallback({
-      urls: params?.sources.map((item) => item.fileUrl),
-      current: params?.index || 0,
-      onSuccess: params?.onSuccess,
-      onError: handleError
+      },
+      cancel: onCancel
     })
-
-    window.top.dd.previewImage(wrappedParams)
   }
 }
 

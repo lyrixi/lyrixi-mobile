@@ -9,12 +9,13 @@ import getPreview from './getPreview'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
+import Clipboard from './../../Clipboard'
 import Device from './../../Device'
 import Toast from './../../../components/Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Device, Toast } from 'lyrixi-mobile'
+import { LocaleUtil, Clipboard, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
@@ -184,7 +185,16 @@ let Bridge = {
 
     window.top.wx.scanQRCode(wrappedParams)
   },
-  chooseMedia: function (params) {
+  chooseMedia: function ({
+    count,
+    sourceType,
+    sizeType,
+    mediaType,
+    maxDuration,
+    onSuccess,
+    onError,
+    onCancel
+  } = {}) {
     if (Device.device === 'pc') {
       let message = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
@@ -193,7 +203,7 @@ let Bridge = {
       Toast.show({
         content: message
       })
-      params?.onError?.({ status: 'PC_NOT_IMPLENMENTED', message: message })
+      onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
       return
     }
 
@@ -201,33 +211,61 @@ let Bridge = {
       // res.localIds 为数组，每一项是本地临时图片ID
       let localFiles = []
       for (let localId of res?.localIds) {
-        let localFile = { path: localId }
+        // 缩略图用base64显示, 非缩略图用localId显示
         let preview = await getPreview(localId)
-        localFile.fileUrl = preview
+        let localFile = {
+          fileThumbnail: preview,
+          fileUrl: localId,
+          filePath: localId,
+          fileType: 'image'
+        }
         localFiles.push(localFile)
       }
-      params.onSuccess &&
-        params.onSuccess({
-          status: 'success',
-          localFiles: localFiles
-        })
+      onSuccess?.({
+        status: 'success',
+        localFiles: localFiles
+      })
     }
     const handleError = function (error) {
-      params.onError && params.onError({ status: 'error', message: error?.errMsg || '' })
+      onError?.({ status: 'error', message: error?.errMsg || '' })
     }
 
-    window.top.wx.chooseImage({
-      ...params,
+    const chooseImageParams = {
+      count,
+      sourceType,
+      sizeType,
       success: handleSuccess,
-      fail: handleError
-    })
+      fail: handleError,
+      cancel: onCancel
+    }
+    console.log('调用微信chooseImage:', chooseImageParams)
+    window.top.wx.chooseImage(chooseImageParams)
+
+    // 测试
+    // setTimeout(() => {
+    //   onSuccess?.({
+    //     status: 'success',
+    //     localFiles: [
+    //       {
+    //         fileUrl: '111',
+    //         filePath: '111',
+    //         fileType: 'image'
+    //       },
+    //       {
+    //         fileUrl: '222',
+    //         filePath: '222',
+    //         fileType: 'image'
+    //       }
+    //     ]
+    //   })
+    // }, 1000)
   },
   uploadFile: async function ({
     localFile,
     getUploadUrl,
     formatHeader,
     formatPayload,
-    formatResult,
+    formatResponse,
     onSuccess,
     onError
   } = {}) {
@@ -253,6 +291,10 @@ let Bridge = {
       return
     }
 
+    console.log('调用微信uploadImage:', {
+      localId: localFile?.filePath
+    })
+
     window.top.wx.uploadImage({
       localId: localFile?.filePath,
       isShowProgressTips: 0,
@@ -264,31 +306,43 @@ let Bridge = {
           fileType: localFile.fileType
         }
         if (typeof formatPayload === 'function') {
-          payload = await formatPayload(payload, { platform: 'dingtalk' })
+          payload = await formatPayload(payload, { platform: 'wechat' })
         }
         let header = { 'Content-Type': 'multipart/form-data' }
         if (typeof formatHeader === 'function') {
-          header = await formatHeader(header, { platform: 'dingtalk' })
+          header = await formatHeader(header, { platform: 'wechat' })
         }
 
-        let result = await uploadServerId({
+        console.log('调用微信uploadServerId:', {
           url: url,
           header: header,
           payload: payload
         })
 
-        if (typeof formatResult === 'function') {
-          result = await formatResult(result, { platform: 'wechat' })
+        let response = await uploadServerId({
+          url: url,
+          header: header,
+          payload: payload
+        })
+
+        console.log('调用微信uploadServerId成功:', response)
+
+        if (response.status === 'success' && typeof formatResponse === 'function') {
+          response = await formatResponse(response, { platform: 'wechat' })
         }
 
-        onSuccess && onSuccess(result)
+        if (response.status === 'success') {
+          onSuccess?.(response)
+        } else {
+          onError?.(response)
+        }
       },
       fail: function (error) {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       }
     })
   },
-  previewMedia: function (params) {
+  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.locale(
@@ -298,13 +352,41 @@ let Bridge = {
       })
       return
     }
-    const wrappedParams = wrapCallback({
-      urls: params?.sources.map((item) => item.fileUrl),
-      index: params.index || 0,
-      onSuccess: params?.onSuccess,
-      onError: params?.onError
+    let urls = sources.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
+    let current = sources?.[index]
+
+    // 预览视频
+    if (current?.fileType === 'video') {
+      if (Device.platform === 'wecom') {
+        window.top.wx.previewFile({
+          url: current.fileUrl,
+          name: current.fileName || current.filePath,
+          size: current.fileSize
+        })
+        return
+      }
+      Clipboard.copyText(current.fileUrl)
+      return
+    }
+
+    // 预览图片
+    window.top.wx?.previewImage({
+      urls: urls,
+      current: urls[index || 0],
+      success: () => {
+        onSuccess?.({
+          status: 'success'
+        })
+      },
+      fail: (error) => {
+        console.log('微信previewImage失败:', error)
+        onError?.({
+          status: 'error',
+          message: error?.errMsg || LocaleUtil.locale('预览失败')
+        })
+      },
+      onCancel: onCancel
     })
-    window.top.wx.previewImage(wrappedParams)
   },
   previewFile: function ({ fileUrl, onSuccess, onError }) {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
