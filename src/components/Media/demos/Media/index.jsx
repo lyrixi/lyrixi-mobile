@@ -122,8 +122,17 @@ export default () => {
           sourceType={['camera', 'album']}
           list={list}
           maxCount={9}
-          onFileChange={({ localFile }) => {
-            console.log('localFile:', localFile)
+          // onFileChange和onChoose的返回值一致, 都是数组
+          onFileChange={(localFile) => {
+            return [
+              {
+                status: 'choose',
+                localFile: localFile,
+                fileThumbnail: localFile.fileUrl,
+                fileUrl: localFile.fileUrl,
+                fileType: localFile.fileType
+              }
+            ]
           }}
           onChange={(newList) => {
             console.log('修改:', newList)

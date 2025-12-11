@@ -253,8 +253,6 @@ const PreviewMain = forwardRef(
       e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
     }
 
-    console.log('list:', activeIndex, list[activeIndex])
-
     return (
       <Swiper
         ref={swiperRef}

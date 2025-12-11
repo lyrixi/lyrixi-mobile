@@ -59,7 +59,6 @@ const VideoPlayer = forwardRef(
       onError?.({ status: 'error', message: errorMsg, error: err })
     }
 
-    console.log('src:', src)
     const DOM = (
       <div
         className={DOMUtil.classNames('lyrixi-videoplayer-page', className)}
