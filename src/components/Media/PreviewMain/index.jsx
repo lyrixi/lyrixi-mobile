@@ -63,7 +63,6 @@ const PreviewMain = forwardRef(
     },
     ref
   ) => {
-    const videoPlayers = useRef([])
     const swiperRef = useRef(null)
     // 显示项, 用于判断是否允许删除
     const [activeIndex, setActiveIndex] = useState(0)
@@ -112,13 +111,6 @@ const PreviewMain = forwardRef(
     function handleSwipe(swiper) {
       // 更新当前激活的索引
       setActiveIndex(swiper.activeIndex)
-
-      // 暂停所有视频
-      if (list?.some?.((item) => item?.fileType === 'video')) {
-        for (let videoPlayer of videoPlayers.current) {
-          videoPlayer?.pause?.()
-        }
-      }
     }
 
     // 上传
@@ -261,6 +253,8 @@ const PreviewMain = forwardRef(
       e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
     }
 
+    console.log('list:', activeIndex, list[activeIndex])
+
     return (
       <Swiper
         ref={swiperRef}
@@ -310,18 +304,15 @@ const PreviewMain = forwardRef(
                   className={DOMUtil.classNames('lyrixi-media-preview-main-item', item.status)}
                 >
                   <div className="swiper-zoom-container">
-                    {list?.[activeIndex]?.fileType !== 'video' && (
+                    {list?.[index]?.fileType !== 'video' && (
                       <img
                         alt=""
                         className="swiper-zoom-target"
                         src={item?.localFile?.tempFileUrl || item?.fileUrl}
                       />
                     )}
-                    {list?.[activeIndex]?.fileType === 'video' && (
+                    {list?.[index]?.fileType === 'video' && (
                       <VideoPlayer
-                        ref={(currentVideoPlayer) =>
-                          (videoPlayers.current[index] = currentVideoPlayer)
-                        }
                         poster={item?.localFile?.tempFileThumbnail || item?.fileThumbnail}
                         src={item?.localFile?.tempFileUrl || item?.fileUrl}
                         autoPlay={false}

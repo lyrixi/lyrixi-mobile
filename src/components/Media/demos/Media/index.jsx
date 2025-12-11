@@ -9,42 +9,41 @@ export default () => {
   const [list, setList] = useState([
     {
       id: '1',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=1',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=1',
       fileType: 'image',
       status: 'error'
     },
     {
       id: '2',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileUrl:
-        'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=2',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=2',
       fileType: 'image'
       // status: 'uploading'
     },
     {
       id: '3',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=3',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=3',
       fileType: 'image'
     },
     {
       id: '4',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=4',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=4',
       fileType: 'image'
     },
     {
       id: '5',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=5',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4?id=5',
       fileType: 'video',
       status: 'success'
     },
     {
       id: '6',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=6',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4?id=6',
       fileType: 'video',
       status: 'error'
     }
