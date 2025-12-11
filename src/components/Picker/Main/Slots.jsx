@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react'
+import React, { useRef, forwardRef, useEffect } from 'react'
 import getTranslateValue from './utils/getTranslateValue'
 
 // 内库使用-start
@@ -16,6 +16,9 @@ let Lists = forwardRef(
       // Value & Display Value
       lists,
 
+      // Status
+      open = true,
+
       // Element
       cellHeight = 44,
 
@@ -24,6 +27,9 @@ let Lists = forwardRef(
     },
     ref
   ) => {
+    // 标识是否正在绘制，用于解决鼠标移动时，没有开始绘制，则不处理
+    const isDrawingRef = useRef(false)
+
     let touchesRef = useRef({
       startX: 0,
       startY: 0,
@@ -46,18 +52,30 @@ let Lists = forwardRef(
       slotHeight: null
     })
 
+    useEffect(() => {
+      isDrawingRef.current = false
+      // eslint-disable-next-line
+    }, [open])
+
     // 触摸事件
     function handleTouchStart(e) {
       e.stopPropagation()
+
+      // 鼠标开始绘制
+      isDrawingRef.current = true
+
       // 解决拖动时影响document弹性
-      e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
+      if (e.type === 'touchstart') {
+        e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
+      }
 
       slotRef.current.slotDOM = e.target
       slotRef.current.slotIndex = slotRef.current.slotDOM.getAttribute('slotindex')
       slotRef.current.slotHeight = (lists[slotRef.current.slotIndex].length - 1) * cellHeight
 
-      touchesRef.current.startX = e.clientX || e.touches[0].clientX
-      touchesRef.current.startY = e.clientY || e.touches[0].clientY
+      const pos = DOMUtil.getEventPosition(e)
+      touchesRef.current.startX = pos.clientX
+      touchesRef.current.startY = pos.clientY
       touchesRef.current.posY = Number(
         getTranslateValue(slotRef.current.slotDOM.style.transform) || 0
       )
@@ -69,9 +87,15 @@ let Lists = forwardRef(
       touchesRef.current.startTimeStamp = e.timeStamp
     }
     function handleTouchMove(e) {
+      // 鼠标移动时，如果没有开始绘制，则不处理
+      if (!isDrawingRef.current) {
+        return
+      }
+
       e.stopPropagation()
 
-      touchesRef.current.currentY = e.clientY || e.touches[0].clientY
+      const pos = DOMUtil.getEventPosition(e)
+      touchesRef.current.currentY = pos.clientY
       touchesRef.current.diffY = touchesRef.current.startY - touchesRef.current.currentY
       touchesRef.current.currentPosY = touchesRef.current.posY - touchesRef.current.diffY
 
@@ -81,11 +105,18 @@ let Lists = forwardRef(
     }
     function handleTouchEnd(e) {
       e.stopPropagation()
-      // 解除对move时的弹性对当前div的锁定
-      e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
 
-      touchesRef.current.endX = e.clientX || e.changedTouches[0].clientX
-      touchesRef.current.endY = e.clientY || e.changedTouches[0].clientY
+      // 鼠标结束绘制
+      isDrawingRef.current = false
+
+      // 解除对move时的弹性对当前div的锁定
+      if (e.type === 'touchend') {
+        e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
+      }
+
+      const pos = DOMUtil.getEventPosition(e)
+      touchesRef.current.endX = pos.clientX
+      touchesRef.current.endY = pos.clientY
       touchesRef.current.diffX = touchesRef.current.startX - touchesRef.current.endX
       touchesRef.current.diffY = touchesRef.current.startY - touchesRef.current.endY
       // 判断是否是tap
@@ -130,6 +161,9 @@ let Lists = forwardRef(
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleTouchStart}
+        onMouseMove={handleTouchMove}
+        onMouseUp={handleTouchEnd}
       >
         {(lists || []).map((list, index) => {
           return (

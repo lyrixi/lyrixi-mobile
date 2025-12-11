@@ -91,12 +91,14 @@ let Main = forwardRef(
         <div className="lyrixi-picker-layer">
           <div className="lyrixi-picker-layer-frame"></div>
         </div>
-        
+
         {/* Element: Slots */}
         <Slots
           ref={slotsRef}
           // Value & Display Value
           lists={lists}
+          // Status
+          open={open}
           // Events
           onDragEnd={({ rowIndex, slotIndex }) => {
             valueRef.current[slotIndex] = lists[slotIndex][rowIndex]

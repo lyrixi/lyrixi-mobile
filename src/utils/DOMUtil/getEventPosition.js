@@ -4,12 +4,22 @@
  * @returns {{clientX: number, clientY: number}} 坐标对象
  */
 function getEventPosition(e) {
-  if (e.changedTouches && e.changedTouches[0]) {
+  // touchstart & touchmove & touchend
+  if (e?.changedTouches?.[0]) {
     return {
       clientX: e.changedTouches[0].clientX,
       clientY: e.changedTouches[0].clientY
     }
   }
+
+  // 兼容touchmove
+  if (e?.touches?.[0]) {
+    return {
+      clientX: e.touches[0].clientX,
+      clientY: e.touches[0].clientY
+    }
+  }
+
   return {
     clientX: e.clientX,
     clientY: e.clientY
