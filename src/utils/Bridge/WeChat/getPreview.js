@@ -1,4 +1,10 @@
-import Device from 'library/v2/utils/Device'
+// 内库使用-start
+import Device from './../../../utils/Device'
+// 内库使用-end
+
+/* 测试使用-start
+import { Device } from 'lyrixi-mobile'
+测试使用-end */
 
 // 微信ios平台不支持localId显示图片，需要转成base64后显示
 function getPreview(localId) {

@@ -20,13 +20,9 @@ toc: content
 
 ## 示例
 
-## 照片
+## 多媒体
 
 <code src="./demos/Media/index.jsx"></code>
-
-## 视频
-
-<code src="./demos/video.jsx"></code>
 
 ## Media
 

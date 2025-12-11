@@ -1,14 +1,5 @@
 import React, { useRef, useState } from 'react'
-
-// 内库使用-start
-import { Page, Calendar } from 'lyrixi-mobile'
-import DateUtil from '../../../utils/DateUtil'
-// 内库使用-end
-
-/* 测试使用-start
-import Calendar from 'library/components/Calendar'
-import { Page, DateUtil } from 'lyrixi-mobile'
-测试使用-end */
+import { Page, Calendar, DateUtil } from 'lyrixi-mobile'
 
 const selectionMode = 'range' // range
 const weekStart = 'Monday' // Monday

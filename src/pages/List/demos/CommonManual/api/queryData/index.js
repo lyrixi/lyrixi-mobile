@@ -1,5 +1,4 @@
-import { Request } from 'lyrixi-mobile'
-import locale from 'library/utils/locale'
+import { LocaleUtil, Request } from 'lyrixi-mobile'
 import serverData from './serverData'
 import localData from './localData'
 
@@ -44,7 +43,7 @@ function queryData(params, { action } = {}) {
         } else {
           resolve({
             status: 'error',
-            message: result.message || locale('获取数据错误！'),
+            message: result.message || LocaleUtil.locale('获取数据错误！'),
             data: null
           })
         }
@@ -52,7 +51,7 @@ function queryData(params, { action } = {}) {
       .catch((err) => {
         resolve({
           status: 'error',
-          message: err?.data?.message || locale('获取数据异常！'),
+          message: err?.data?.message || LocaleUtil.locale('获取数据异常！'),
           data: null
         })
       })

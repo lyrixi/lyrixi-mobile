@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { SafeArea, HistoryUtil, Toast, Page, Divider, Bridge, Button, Media } from 'lyrixi-mobile'
-import uploadItem from './browser/uploadItem'
+import { HistoryUtil, Toast, Page, Divider, Bridge, Media } from 'lyrixi-mobile'
 // import VConsole from 'vconsole'
 // new VConsole()
+
 export default () => {
   const imageUploaderRef = useRef(null)
 
@@ -11,24 +11,42 @@ export default () => {
       id: '1',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileType: 'image',
       status: 'error'
     },
     {
       id: '2',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
       fileUrl:
-        'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg'
+        'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg',
+      fileType: 'image'
       // status: 'uploading'
     },
     {
       id: '3',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileType: 'image'
     },
     {
       id: '4',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileType: 'image'
+    },
+    {
+      id: '5',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4',
+      fileType: 'video',
+      status: 'success'
+    },
+    {
+      id: '6',
+      fileThumbnail: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.jpg',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4',
+      fileType: 'video',
+      status: 'error'
     }
   ])
 
@@ -74,7 +92,6 @@ export default () => {
             console.log('修改:', newList)
             setList(newList)
           }}
-          onUpload={uploadItem}
         />
 
         <Divider>Preview Operate</Divider>
@@ -113,14 +130,8 @@ export default () => {
             console.log('修改:', newList)
             setList(newList)
           }}
-          onUpload={uploadItem}
         />
       </Page.Main>
-      <Page.Footer>
-        <Button className="lyrixi-flex" color="primary" onClick={handleAsyncUpload}>
-          Sync Upload
-        </Button>
-      </Page.Footer>
     </Page>
   )
 }

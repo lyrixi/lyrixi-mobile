@@ -3,12 +3,12 @@ import vconsole from 'vconsole'
 
 import { MathUtil } from 'lyrixi-mobile'
 
-// 内库使用-start
-import { Page } from 'lyrixi-mobile'
+// 内库// 内库使用-start
+import Page from './../../../components/Page'
 // 内库使用-end
 
 /* 测试使用-start
-import Page from 'library/components/Layout'
+import { Page } from 'lyrixi-mobile'
 测试使用-end */
 
 new vconsole()
