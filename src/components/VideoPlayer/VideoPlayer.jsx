@@ -17,20 +17,22 @@ import { LocaleUtil } from 'lyrixi-mobile'
 const VideoPlayer = forwardRef(
   (
     {
-      portal,
-
-      poster = '',
+      // Value & Display Value
       src,
       autoPlay = true,
-      isLive,
-      params,
-      onError,
 
+      // Style
+      style,
+      className,
+
+      // Elements
+      portal,
+      poster = '',
       headerRender, // 状态栏
       children,
-      // 其它属性
-      style,
-      className
+
+      // Events
+      onError
     },
     ref
   ) => {
@@ -59,10 +61,9 @@ const VideoPlayer = forwardRef(
 
     useEffect(() => {
       // Update Player Id
-      let playerId = updatePlayerId(rootRef.current)
-
       if (instance.current) return
-      initInstance(playerId)
+      debugger
+      initInstance()
 
       return () => {
         if (instance.current) instance.current.dispose()
@@ -84,6 +85,7 @@ const VideoPlayer = forwardRef(
         )
         if (onError)
           onError({
+            status: 'error',
             message: LocaleUtil.locale(
               '加载播放器库出错, 请稍后再试',
               'lyrixi.video.sdk.load.failed'
@@ -92,11 +94,14 @@ const VideoPlayer = forwardRef(
         return
       }
       if (!window.Aliplayer) {
-        setTimeout(() => {
-          initInstance(playerId)
-        }, 1000)
+        debugger
+        onError({
+          status: 'error',
+          message: LocaleUtil.locale('加载播放器库出错, 请稍后再试', 'lyrixi.video.sdk.load.failed')
+        })
         return
       }
+      debugger
       // const width = rootRef.current.clientWidth;
       // const height = rootRef.current.clientHeight;
       // 构建参数
@@ -149,6 +154,7 @@ const VideoPlayer = forwardRef(
         ref={rootRef}
       >
         <div
+          id="_lyrixi_videoplayer_player_"
           x5-video-player-type="h5"
           className="videoplayer-page-player prism-player"
           webkit-playsinline="true"

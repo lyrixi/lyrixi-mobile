@@ -43,7 +43,7 @@ export default () => {
     },
     {
       id: '6',
-      fileThumbnail: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.jpg',
+      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4',
       fileType: 'video',
       status: 'error'

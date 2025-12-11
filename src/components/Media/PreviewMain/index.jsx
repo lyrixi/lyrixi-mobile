@@ -323,7 +323,7 @@ const PreviewMain = forwardRef(
                           (videoPlayers.current[index] = currentVideoPlayer)
                         }
                         poster={item?.localFile?.tempFileThumbnail || item?.fileThumbnail}
-                        fileUrl={item?.localFile?.tempFileUrl || item?.fileUrl}
+                        src={item?.localFile?.tempFileUrl || item?.fileUrl}
                         autoPlay={false}
                       />
                     )}
