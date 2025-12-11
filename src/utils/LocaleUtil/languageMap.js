@@ -1,4 +1,5 @@
 // United language list
+// https://ant.design/docs/react/i18n-cn
 // dayjs: https://github.com/iamkun/dayjs/tree/dev/src/locale
 const languageMap = {
   // 阿拉伯语
