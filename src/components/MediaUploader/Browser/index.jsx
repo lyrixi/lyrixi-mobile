@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import getPreviewType from './../utils/getPreviewType'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
@@ -188,7 +187,7 @@ function Browser(
           if (goOn !== true) return goOn
         }
 
-        return getPreviewType('image')
+        return 'browser'
       }}
     />
   )

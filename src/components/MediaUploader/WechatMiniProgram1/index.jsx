@@ -1,6 +1,5 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
-import getPreviewType from './../utils/getPreviewType'
 import getPhotos from './getPhotos'
 import clearPhotos from './clearPhotos'
 import stopAllPolls from './stopAllPolls'
@@ -317,7 +316,7 @@ function WechatMiniProgram(
             if (goOn !== true) return goOn
           }
 
-          return getPreviewType('image')
+          return 'nativeMedia'
         }}
       />
 

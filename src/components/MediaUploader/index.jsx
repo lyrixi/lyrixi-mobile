@@ -243,6 +243,6 @@ function MediaUploader(
   return <Browser ref={ref} {...commonProps} />
 }
 
-MediaUploader.uploadList = uploadList
-
-export default forwardRef(MediaUploader)
+const MediaUploaderComponent = forwardRef(MediaUploader)
+MediaUploaderComponent.uploadList = uploadList
+export default MediaUploaderComponent

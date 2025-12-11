@@ -226,7 +226,6 @@ function MediaUploader(
         }
 
         // dd.previewImage不支持预览chooseImage返回的filePath(https://resource), 仅支持浏览器预览
-        // return getPreviewType('image')
         return 'browser'
       }}
     />

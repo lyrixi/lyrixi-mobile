@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getRemainCount from './../../Media/utils/getRemainCount'
-import getPreviewType from './../utils/getPreviewType'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
@@ -228,7 +227,7 @@ function MediaUploader(
           if (goOn !== true) return goOn
         }
 
-        return getPreviewType('image')
+        return 'nativeMedia'
       }}
     />
   )
