@@ -13,9 +13,6 @@ function loadCountries() {
   return new Promise((resolve) => {
     const language = window.lyrixiLocaleLanguage || 'zh_CN'
 
-    // 测试，后台完成后删除此段
-    // window.countryData = require('library/components/Cascader/utils/data/countriesData')
-
     // 优先读取缓存
     window.countryData =
       window.countryData || JSON.parse(window.sessionStorage.getItem('countryData') || '[]')

@@ -1,10 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-
-// 内库使用
 import { Page, Map, Button } from 'lyrixi-mobile'
-
-// 测试使用
-// import Map from 'library/components/Map'
 
 // 生成随机点
 const { APILoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map

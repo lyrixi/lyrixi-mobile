@@ -1,13 +1,7 @@
 import React, { useRef, useState } from 'react'
-
-// 内库使用
 import { Page, Map, Loading } from 'lyrixi-mobile'
 
-// 测试使用
-// import Map from 'library/components/Map'
-
 const { APILoader, MapChoose, coordsToWgs84 } = Map
-import CustomChild from './CustomChild'
 
 // 生成随机点
 // import getPoints from './getPoints'

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Page } from 'lyrixi-mobile'
 import { Transfer } from 'lyrixi-mobile'
-// import Transfer from 'library/components/Transfer'
 
 export default () => {
   const [value, setValue] = useState([

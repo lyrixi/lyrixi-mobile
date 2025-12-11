@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Page, Button } from 'lyrixi-mobile'
 import { Transfer } from 'lyrixi-mobile'
-// import Transfer from 'library/components/Transfer'
 
 export default () => {
   const transferRef = useRef(null)
