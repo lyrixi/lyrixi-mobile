@@ -40,7 +40,6 @@ const RangeCombo = forwardRef(
       // Modal: Value & Display Value
       defaultPickerValue,
       type = 'date',
-      format,
       min,
       max,
       rangeId,
@@ -122,7 +121,7 @@ const RangeCombo = forwardRef(
             (() => {
               return getDisplayValue({
                 value: formatValue(value),
-                type: format || type,
+                type: type,
                 rangeId: rangeIdRef.current,
                 ranges,
                 separator
