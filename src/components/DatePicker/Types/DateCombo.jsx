@@ -17,15 +17,18 @@ import { DateUtil, Input } from 'lyrixi-mobile'
 const DateCombo = forwardRef(
   (
     {
+      // Value & Display Value
+      value,
+      // Status
       type,
       min,
       max,
-      value,
-      onChange,
-
-      // 其它属性
+      // Style
+      style,
       className,
-      ...props
+
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -92,9 +95,9 @@ const DateCombo = forwardRef(
       <>
         <Input.IconLeftArrow className="lyrixi-datepicker-types-previous" onClick={handlePrev} />
         <Combo
-          {...props}
           value={value}
           type={type}
+          style={style}
           className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
           onChange={onChange}
         >

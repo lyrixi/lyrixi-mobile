@@ -12,17 +12,22 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // 日期区间弹窗
 const PickerMain = function (
   {
-    portal,
-    separator,
+    // Modal: Status
+    open,
+    // Value & Display Value
+    value,
+    // Status
     type,
     min,
     max,
     disabledStart,
     disabledEnd,
     allowClear,
-    value,
-    onChange,
-    ...props
+    // Elements
+    portal,
+    separator,
+    // Events
+    onChange
   },
   ref
 ) {
@@ -73,9 +78,9 @@ const PickerMain = function (
   return (
     <MultipleMain
       ref={mainRef}
-      portal={portal}
-      separator={separator}
-      type={type}
+      // Modal: Status
+      open={open}
+      // Value & Display Value
       value={multipleDate.map((item) => {
         if (item.id === 'start' && disabledStart) {
           item.disabled = true
@@ -84,11 +89,16 @@ const PickerMain = function (
         }
         return item
       })}
+      // Status
+      type={type}
       min={type === 'week' ? min : undefined}
       max={type === 'week' ? max : undefined}
       allowClear={allowClear}
+      // Elements
+      portal={portal}
+      separator={separator}
+      // Events
       onChange={handleChange}
-      {...props}
     />
   )
 }

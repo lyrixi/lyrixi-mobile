@@ -11,15 +11,15 @@ import { DateUtil, Input } from 'lyrixi-mobile'
 
 // Custom Input
 const InputText = ({
-  // RangeCombo properties
-  type,
-  // SelectCombo combo({}) passive properties
+  // Value & Display Value
   value,
-  onChange,
   displayValue,
+  // Status
+  type,
+  // Elements
   separator,
-  // comboRef,
-  ...props
+  // Events
+  onChange
 }) => {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
@@ -42,13 +42,11 @@ const InputText = ({
           </div>
         ) : null
       }}
-      {...props}
       onChange={(val) => {
         if (!val) {
           onChange && onChange(null)
         }
       }}
-      // ref={comboRef}
     />
   )
 }

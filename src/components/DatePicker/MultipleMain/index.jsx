@@ -16,17 +16,21 @@ import { DateUtil, TabBar } from 'lyrixi-mobile'
 // 日期多选
 function MultipleMain(
   {
+    // Modal: Status
     open = true,
 
-    separator,
-    // Main fixed properties
+    // Value & Display Value
     value,
+    // Status
     type = 'date', // year | quarter | month | date | time | datetime | week
     allowClear,
     min,
     max,
     hourStep,
     minuteStep,
+    // Elements
+    separator,
+    // Events
     onChange
   },
   ref

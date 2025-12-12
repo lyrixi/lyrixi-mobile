@@ -17,12 +17,15 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // 日期快捷选择
 function RangeMain(
   {
+    // Modal: Status
     open,
 
-    separator,
-
-    // Main
+    // Value & Display Value
     value,
+    rangeId,
+    ranges,
+
+    // Status
     type = 'date', // year | quarter | month | date | time | datetime
     min,
     max,
@@ -31,14 +34,14 @@ function RangeMain(
     disabledStart,
     disabledEnd,
     allowClear,
-    onChange,
 
-    rangeId,
-    ranges,
+    // Elements
+    separator,
     titles,
     portal,
 
-    ...props
+    // Events
+    onChange
   },
   ref
 ) {
@@ -131,7 +134,6 @@ function RangeMain(
         allowClear={allowClear}
         value={value}
         onChange={handleChange}
-        {...props}
       />
     </>
   )

@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 
-import { validateMaxMin } from './../utils'
 import WeekCombo from './WeekCombo'
 import DateCombo from './DateCombo'
 
@@ -53,17 +52,16 @@ const Types = forwardRef(
       // Style
       style,
       className,
+      contentStyle = {},
+      contentClassName = '',
+      tabbarStyle = {},
+      tabbarClassName = '',
       // Status
       min,
       max,
 
       // Elements
       pickerRender,
-
-      // 配置
-      contentProps = {},
-      TabsProps = {},
-      DatePickerComboProps = {},
 
       // Events
       onChange
@@ -116,18 +114,9 @@ const Types = forwardRef(
       if (pickerNode === undefined) {
         pickerNode =
           value.type === 'week' ? (
-            <WeekCombo
-              {...(DatePickerComboProps || {})}
-              value={value?.value}
-              onChange={handleDate}
-            />
+            <WeekCombo value={value?.value} onChange={handleDate} />
           ) : (
-            <DateCombo
-              {...(DatePickerComboProps || {})}
-              type={value?.type}
-              value={value?.value}
-              onChange={handleDate}
-            />
+            <DateCombo type={value?.type} value={value?.value} onChange={handleDate} />
           )
       }
 
@@ -140,11 +129,17 @@ const Types = forwardRef(
         ref={rootRef}
       >
         {Array.isArray(list) && (
-          <TabBar.Slide onChange={handleTabs} list={list} value={value} {...TabsProps} />
+          <TabBar.Slide
+            onChange={handleTabs}
+            list={list}
+            value={value}
+            className={tabbarClassName}
+            style={tabbarStyle}
+          />
         )}
         <div
-          {...contentProps}
-          className={DOMUtil.classNames('lyrixi-datepicker-types-content', contentProps?.className)}
+          style={contentStyle}
+          className={DOMUtil.classNames('lyrixi-datepicker-types-content', contentClassName)}
         >
           {value?.value instanceof Date ? getPickerNode() : null}
         </div>
