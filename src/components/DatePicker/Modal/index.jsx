@@ -73,7 +73,7 @@ const Modal = forwardRef(
       // 触发 onOk
       if (onOk) {
         let goOn = await onOk(currentValue)
-        if (goOn === false) return
+        if (goOn === false) return false
         if (goOn instanceof Date) {
           currentValue = goOn
         }

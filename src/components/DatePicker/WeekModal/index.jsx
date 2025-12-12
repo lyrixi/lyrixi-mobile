@@ -69,7 +69,7 @@ const WeekModal = forwardRef(
     async function handleOk() {
       if (onOk) {
         let goOn = await onOk(currentValue)
-        if (goOn === false) return
+        if (goOn === false) return false
         if (goOn instanceof Date) {
           currentValue = goOn
         }
