@@ -35,7 +35,7 @@ function RangeSelector(
     portal,
     // Events
     onChange,
-    onBeforeOk
+    onOk
   },
   ref
 ) {
@@ -102,7 +102,7 @@ function RangeSelector(
           portal={portal}
           // Events
           onChange={(newValue) => handleChange(newValue, { rangeId: customRangeId })}
-          onBeforeOk={onBeforeOk}
+          onOk={onOk}
         />
       )}
     </div>

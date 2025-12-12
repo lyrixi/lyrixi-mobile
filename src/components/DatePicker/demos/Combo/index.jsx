@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
-import { Page, Divider, DatePicker, DateUtil, Message, Card, Toast } from 'lyrixi-mobile'
+import { Page, Divider, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState(null)
@@ -79,32 +79,6 @@ export default () => {
         </Card>
 
         <Card>
-          <Divider>Limit</Divider>
-          <DatePicker.Combo
-            style={{ margin: '0 12px' }}
-            min={new Date()}
-            max={DateUtil.add(new Date(), 30, 'day')}
-            placeholder="Limit"
-            value={value}
-            onChange={setValue}
-            allowClear
-          />
-        </Card>
-
-        <Card>
-          <Divider>min & max</Divider>
-          <DatePicker.Combo
-            style={{ margin: '0 12px' }}
-            min={new Date()}
-            max={DateUtil.add(new Date(), 30, 'day')}
-            placeholder="min & max"
-            value={value}
-            onChange={setValue}
-            allowClear
-          />
-        </Card>
-
-        <Card>
           <Divider>Custom Title</Divider>
           <DatePicker.Combo
             style={{ margin: '0 12px' }}
@@ -129,6 +103,34 @@ export default () => {
             minuteStep={5}
             value={value}
             onChange={setValue}
+            allowClear
+          />
+        </Card>
+
+        <Card>
+          <Divider>min & max</Divider>
+          <DatePicker.Combo
+            style={{ margin: '0 12px' }}
+            min={new Date()}
+            max={DateUtil.add(new Date(), 30, 'day')}
+            placeholder="min & max"
+            value={value}
+            onChange={setValue}
+            allowClear
+          />
+        </Card>
+
+        <Card>
+          <Divider>onOk</Divider>
+          <DatePicker.Combo
+            style={{ margin: '0 12px' }}
+            placeholder="Limit"
+            value={value}
+            onChange={setValue}
+            onOk={(newValue) => {
+              Toast.show({ content: 'validate failed' })
+              return false
+            }}
             allowClear
           />
         </Card>

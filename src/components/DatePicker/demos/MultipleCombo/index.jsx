@@ -44,7 +44,7 @@ export default () => {
         min={new Date()}
         hourStep={5}
         minuteStep={5}
-        onBeforeOk={(newValue) => {
+        onOk={(newValue) => {
           Toast.show({ content: 'validate failed' })
           return false
         }}

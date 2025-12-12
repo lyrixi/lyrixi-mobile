@@ -61,7 +61,7 @@ const DatePickerCombo = forwardRef(
       // Events
       onChange,
       onBeforeOpen,
-      onBeforeOk
+      onOk
     },
     ref
   ) => {
@@ -145,7 +145,7 @@ const DatePickerCombo = forwardRef(
           // Events
           onClose={handleClose}
           onChange={onChange}
-          onBeforeOk={onBeforeOk}
+          onOk={onOk}
         />
       </>
     )

@@ -131,9 +131,10 @@ const KeyboardNumber = forwardRef(
     }
 
     // 处理确定按钮
-    const handleOk = () => {
+    const handleOk = async () => {
       if (onOk) {
-        onOk(value)
+        let goOn = await onOk(value)
+        if (goOn === false) return
       }
       if (onClose) {
         onClose()

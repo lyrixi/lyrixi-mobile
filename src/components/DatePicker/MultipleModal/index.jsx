@@ -50,7 +50,7 @@ const Modal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onBeforeOk
+      onOk
     },
     ref
   ) => {
@@ -71,8 +71,8 @@ const Modal = forwardRef(
     }, [value, defaultPickerValue])
 
     async function handleOk() {
-      if (onBeforeOk) {
-        let goOn = await onBeforeOk(currentValue)
+      if (onOk) {
+        let goOn = await onOk(currentValue)
         if (goOn === false) return
         if (goOn instanceof Array) {
           currentValue = goOn

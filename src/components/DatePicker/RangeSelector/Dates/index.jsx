@@ -32,7 +32,7 @@ export default function CustomDates({
   portal,
   // Events
   onChange,
-  onBeforeOk
+  onOk
 }) {
   return (
     <div className="lyrixi-datepicker-rangeselector-date">
@@ -63,7 +63,7 @@ export default function CustomDates({
         }}
         // Events
         onChange={onChange}
-        onBeforeOk={onBeforeOk}
+        onOk={onOk}
       />
     </div>
   )

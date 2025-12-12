@@ -49,7 +49,7 @@ const Modal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onBeforeOk
+      onOk
     },
     ref
   ) => {
@@ -70,14 +70,15 @@ const Modal = forwardRef(
     }, [value, defaultPickerValue])
 
     async function handleOk() {
-      // 触发 onBeforeOk
-      if (onBeforeOk) {
-        let goOn = await onBeforeOk(currentValue)
+      // 触发 onOk
+      if (onOk) {
+        let goOn = await onOk(currentValue)
         if (goOn === false) return
         if (goOn instanceof Date) {
           currentValue = goOn
         }
       }
+
       onChange?.(currentValue)
       onClose && onClose()
     }

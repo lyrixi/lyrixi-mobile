@@ -57,7 +57,7 @@ const RangeModal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onBeforeOk
+      onOk
     },
     ref
   ) => {
@@ -85,8 +85,8 @@ const RangeModal = forwardRef(
     }, [value, defaultPickerValue, rangeId])
 
     async function handleOk() {
-      if (onBeforeOk) {
-        let goOn = await onBeforeOk(currentValue)
+      if (onOk) {
+        let goOn = await onOk(currentValue)
         if (goOn === false) return
         if (goOn instanceof Array) {
           currentValue = goOn

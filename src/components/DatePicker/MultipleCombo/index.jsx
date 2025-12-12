@@ -60,7 +60,7 @@ const MultipleCombo = forwardRef(
       // Events
       onChange,
       onBeforeOpen,
-      onBeforeOk
+      onOk
     },
     ref
   ) => {
@@ -153,7 +153,7 @@ const MultipleCombo = forwardRef(
           // Events
           onClose={handleClose}
           onChange={onChange}
-          onBeforeOk={onBeforeOk}
+          onOk={onOk}
         />
       </>
     )
