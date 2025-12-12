@@ -124,7 +124,7 @@ export default () => {
           <Divider>onOk</Divider>
           <DatePicker.Combo
             style={{ margin: '0 12px' }}
-            placeholder="Limit"
+            placeholder="onOk"
             value={value}
             onChange={setValue}
             onOk={(newValue) => {

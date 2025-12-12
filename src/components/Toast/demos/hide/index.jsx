@@ -4,6 +4,7 @@ import { Page, Toast } from 'lyrixi-mobile'
 export default () => {
   function handleToggle() {
     Toast.show({
+      duration: 1000000,
       content: 'show toast',
       onOpen: () => {
         console.log('open:', true)

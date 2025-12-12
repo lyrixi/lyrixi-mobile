@@ -73,7 +73,7 @@ function show(props) {
     // Update wrapper
     let wrapper = mask.querySelector('.lyrixi-toast-wrapper')
     if (wrapper) {
-      wrapper?.setAttribute('class', DOMUtil.classNames('toast-wrapper', className))
+      wrapper?.setAttribute('class', DOMUtil.classNames('lyrixi-toast-wrapper', className))
       wrapper?.setAttribute('style', '')
       for (let key in style || {}) {
         wrapper.style[key] = style[key]
