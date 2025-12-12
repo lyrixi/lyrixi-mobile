@@ -26,8 +26,8 @@ const RangeModal = forwardRef(
       max,
       hourStep,
       minuteStep,
-      disabledStart,
-      disabledEnd,
+      startDisabled,
+      endDisabled,
       rangeId,
       ranges,
       titles,
@@ -149,8 +149,8 @@ const RangeModal = forwardRef(
           max={max}
           hourStep={hourStep}
           minuteStep={minuteStep}
-          disabledStart={disabledStart}
-          disabledEnd={disabledEnd}
+          startDisabled={startDisabled}
+          endDisabled={endDisabled}
           // Elements
           titles={titles}
           portal={modalRef?.current?.rootDOM}

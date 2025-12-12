@@ -50,8 +50,8 @@ const RangeCombo = forwardRef(
       minuteStep,
       // Modal: Status
       maskClosable,
-      disabledStart,
-      disabledEnd,
+      startDisabled,
+      endDisabled,
       // Modal: Style
       safeArea,
       modalStyle,
@@ -163,8 +163,8 @@ const RangeCombo = forwardRef(
           open={open}
           maskClosable={maskClosable}
           allowClear={allowClear}
-          disabledStart={disabledStart}
-          disabledEnd={disabledEnd}
+          startDisabled={startDisabled}
+          endDisabled={endDisabled}
           // Modal: Elements
           portal={portal}
           titleRender={titleRender}

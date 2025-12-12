@@ -20,8 +20,8 @@ export default function CustomDates({
   max,
   hourStep,
   minuteStep,
-  disabledStart,
-  disabledEnd,
+  startDisabled,
+  endDisabled,
   allowClear,
   // Style
   maskClassName,
@@ -44,8 +44,8 @@ export default function CustomDates({
         // Status
         type={type}
         allowClear={allowClear}
-        disabledStart={disabledStart}
-        disabledEnd={disabledEnd}
+        startDisabled={startDisabled}
+        endDisabled={endDisabled}
         min={min}
         max={max}
         hourStep={hourStep}

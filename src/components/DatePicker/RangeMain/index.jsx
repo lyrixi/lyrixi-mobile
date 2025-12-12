@@ -29,8 +29,8 @@ function RangeMain(
     max,
     hourStep,
     minuteStep,
-    disabledStart,
-    disabledEnd,
+    startDisabled,
+    endDisabled,
     allowClear,
 
     // Elements
@@ -114,8 +114,8 @@ function RangeMain(
         max={max}
         hourStep={hourStep}
         minuteStep={minuteStep}
-        disabledStart={disabledStart}
-        disabledEnd={disabledEnd}
+        startDisabled={startDisabled}
+        endDisabled={endDisabled}
         allowClear={allowClear}
         // Elements
         portal={portal}

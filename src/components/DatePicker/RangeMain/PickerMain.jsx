@@ -20,8 +20,8 @@ const PickerMain = function (
     type,
     min,
     max,
-    disabledStart,
-    disabledEnd,
+    startDisabled,
+    endDisabled,
     allowClear,
     // Elements
     portal,
@@ -82,9 +82,9 @@ const PickerMain = function (
       open={open}
       // Value & Display Value
       value={multipleDate.map((item) => {
-        if (item.id === 'start' && disabledStart) {
+        if (item.id === 'start' && startDisabled) {
           item.disabled = true
-        } else if (item.id === 'end' && disabledEnd) {
+        } else if (item.id === 'end' && endDisabled) {
           item.disabled = true
         }
         return item

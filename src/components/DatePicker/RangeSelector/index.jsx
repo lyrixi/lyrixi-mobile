@@ -25,8 +25,8 @@ function RangeSelector(
     max,
     hourStep,
     minuteStep,
-    disabledStart,
-    disabledEnd,
+    startDisabled,
+    endDisabled,
     allowClear,
     // Style
     style,
@@ -96,8 +96,8 @@ function RangeSelector(
           allowClear={allowClear}
           hourStep={hourStep}
           minuteStep={minuteStep}
-          disabledStart={disabledStart}
-          disabledEnd={disabledEnd}
+          startDisabled={startDisabled}
+          endDisabled={endDisabled}
           // Elements
           portal={portal}
           // Events
