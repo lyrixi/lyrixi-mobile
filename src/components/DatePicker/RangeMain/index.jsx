@@ -43,11 +43,6 @@ function RangeMain(
   },
   ref
 ) {
-  // 默认分割符
-  if (separator === undefined) {
-    // eslint-disable-next-line
-    separator = LocaleUtil.locale('至', 'lyrixi.to')
-  }
   // 默认标题
   if (titles === undefined) {
     // eslint-disable-next-line
