@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
+import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import formatValue from './formatValue'
 import Main from './../Main'
 
@@ -60,11 +60,9 @@ const Modal = forwardRef(
     })
 
     // 同步外部value到内部
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(formatValue(value || defaultPickerValue))
-      }
-    }, [open, value, defaultPickerValue])
+    useEffect(() => {
+      setCurrentValue(formatValue(value || defaultPickerValue))
+    }, [value, defaultPickerValue])
 
     async function handleOk() {
       if (onChange) {

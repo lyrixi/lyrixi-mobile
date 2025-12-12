@@ -92,18 +92,14 @@ export default () => {
         </Card>
 
         <Card>
-          <Divider>onBeforeOk</Divider>
+          <Divider>min & max</Divider>
           <DatePicker.Combo
             style={{ margin: '0 12px' }}
             min={new Date()}
             max={DateUtil.add(new Date(), 30, 'day')}
-            placeholder="onBeforeOk"
+            placeholder="min & max"
             value={value}
             onChange={setValue}
-            onBeforeOk={(newValue) => {
-              Toast.show({ content: 'validate failed' })
-              return false
-            }}
             allowClear
           />
         </Card>

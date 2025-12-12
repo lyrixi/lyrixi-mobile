@@ -67,10 +67,11 @@ let Main = forwardRef(
     useEffect(() => {
       update()
       // eslint-disable-next-line
-    }, [JSON.stringify(value)])
+    }, [value])
 
     // 更新视图
     function update() {
+      console.log('Main value:', value)
       let slots = slotsRef.current?.querySelectorAll?.('.lyrixi-picker-slot')
       for (let i = 0; i < slots.length; i++) {
         let slot = slots[i]
