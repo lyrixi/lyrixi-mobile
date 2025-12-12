@@ -88,7 +88,7 @@ const Modal = forwardRef(
     }
 
     // 自定义标题节点
-    let titleNode = titleRender?.(currentValue, type) || null
+    let titleNode = titleRender?.(currentValue, { type }) || null
 
     return (
       <NavBarModal

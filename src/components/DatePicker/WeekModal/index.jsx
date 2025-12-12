@@ -1,4 +1,5 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import { getTitle } from './../utils'
 import formatValue from './formatValue'
 import WeekMain from './../WeekMain'
 
@@ -83,7 +84,7 @@ const WeekModal = forwardRef(
     }
 
     // 自定义标题节点
-    let titleNode = titleRender?.(currentValue, type) || null
+    let titleNode = titleRender?.(currentValue, { type: 'week' }) || null
 
     return (
       <NavBarModal
@@ -99,7 +100,7 @@ const WeekModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        title={titleNode || getTitle(currentValue, { type })}
+        title={titleNode || getTitle(currentValue, { type: 'week' })}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={true}
