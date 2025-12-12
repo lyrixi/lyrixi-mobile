@@ -22,12 +22,10 @@ const DatePickerCombo = forwardRef(
       formatter,
       autoSize,
       separator,
-      mode,
       // Combo: Status
       readOnly,
       disabled,
       allowClear,
-      multiple,
       // Combo: Style
       style,
       className,
@@ -55,6 +53,7 @@ const DatePickerCombo = forwardRef(
       // Modal: Elements
       portal,
       title,
+      titleRender,
       okNode,
       cancelNode,
       okVisible,
@@ -102,8 +101,6 @@ const DatePickerCombo = forwardRef(
           formatter={formatter || (() => DateUtil.format(value, type))}
           autoSize={autoSize}
           separator={separator}
-          mode={mode}
-          multiple={multiple}
           // Combo: Status
           readOnly={readOnly}
           disabled={disabled}
@@ -133,10 +130,10 @@ const DatePickerCombo = forwardRef(
           open={open}
           maskClosable={maskClosable}
           allowClear={allowClear}
-          multiple={multiple}
           // Modal: Elements
           portal={portal}
           title={title}
+          titleRender={titleRender}
           okNode={okNode}
           cancelNode={cancelNode}
           okVisible={okVisible}

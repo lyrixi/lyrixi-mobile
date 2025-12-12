@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import formatValue from './formatValue'
 import WeekMain from './../WeekMain'
 
@@ -26,7 +26,6 @@ const WeekModal = forwardRef(
       open,
       maskClosable,
       allowClear,
-      multiple,
 
       // Style
       safeArea,
@@ -38,6 +37,7 @@ const WeekModal = forwardRef(
       // Elements
       portal,
       title,
+      titleRender,
       okNode,
       cancelNode,
       okVisible,
@@ -63,11 +63,9 @@ const WeekModal = forwardRef(
     })
 
     // 同步外部value到内部currentValue
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(formatValue(value || defaultPickerValue))
-      }
-    }, [open, value, defaultPickerValue])
+    useEffect(() => {
+      setCurrentValue(formatValue(value || defaultPickerValue))
+    }, [value, defaultPickerValue])
 
     async function handleOk() {
       if (onBeforeOk) {
@@ -83,14 +81,10 @@ const WeekModal = forwardRef(
 
     function handleChange(newValue) {
       setCurrentValue(newValue)
-      // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue)
-        }
-        onClose && onClose()
-      }
     }
+
+    // 自定义标题节点
+    let titleNode = titleRender?.(currentValue, type) || null
 
     return (
       <NavBarModal
@@ -106,10 +100,10 @@ const WeekModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        title={title}
+        title={titleNode || title || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
-        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        okVisible={true}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
@@ -121,7 +115,6 @@ const WeekModal = forwardRef(
           open={open}
           value={currentValue}
           allowClear={allowClear}
-          multiple={multiple}
           onChange={handleChange}
           min={min}
           max={max}

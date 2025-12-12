@@ -29,7 +29,6 @@ const Modal = forwardRef(
       // Status
       open,
       maskClosable,
-      multiple,
 
       // Style
       safeArea,
@@ -41,6 +40,7 @@ const Modal = forwardRef(
       // Elements
       portal,
       title,
+      titleRender,
       okNode,
       cancelNode,
       okVisible,
@@ -85,14 +85,10 @@ const Modal = forwardRef(
 
     function handleChange(newValue) {
       setCurrentValue(newValue)
-      // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue)
-        }
-        onClose && onClose()
-      }
     }
+
+    // 自定义标题节点
+    let titleNode = titleRender?.(currentValue, type) || null
 
     return (
       <NavBarModal
@@ -108,7 +104,7 @@ const Modal = forwardRef(
         maskClassName={maskClassName}
         // Elements
         portal={portal}
-        title={title || getTitle(currentValue, type)}
+        title={titleNode || title || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={true}

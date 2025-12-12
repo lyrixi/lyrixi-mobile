@@ -1,8 +1,7 @@
-import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useRef, forwardRef, useState } from 'react'
+import { getTitle } from './../utils'
 import getDefaultRanges from './../RangeMain/getDefaultRanges'
-import updateRangeValue from './../RangeMain/updateRangeValue'
 import formatValue from './../RangeMain/formatValue'
-import validateRange from './validateRange'
 import RangeMain from './../RangeMain'
 
 // 内库使用-start
@@ -38,7 +37,6 @@ const RangeModal = forwardRef(
       open,
       maskClosable,
       allowClear,
-      multiple,
 
       // Style
       safeArea,
@@ -50,6 +48,7 @@ const RangeModal = forwardRef(
       // Elements
       portal,
       title,
+      titleRender,
       okNode,
       cancelNode,
       okVisible,
@@ -81,12 +80,10 @@ const RangeModal = forwardRef(
     })
 
     // 同步外部value到内部currentValue
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(formatValue(value || defaultPickerValue))
-        setCurrentRangeId(rangeId)
-      }
-    }, [open, value, defaultPickerValue, rangeId])
+    useEffect(() => {
+      setCurrentValue(formatValue(value || defaultPickerValue))
+      setCurrentRangeId(rangeId)
+    }, [value, defaultPickerValue, rangeId])
 
     async function handleOk() {
       if (onBeforeOk) {
@@ -105,14 +102,10 @@ const RangeModal = forwardRef(
     function handleChange(newValue, { rangeId: newRangeId } = {}) {
       setCurrentValue(newValue)
       setCurrentRangeId(newRangeId)
-      // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue, { rangeId: newRangeId, ranges })
-        }
-        onClose && onClose()
-      }
     }
+
+    // 自定义标题节点
+    let titleNode = titleRender?.(currentValue, type) || null
 
     return (
       <NavBarModal
@@ -128,10 +121,10 @@ const RangeModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        title={title}
+        title={titleNode || title || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
-        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        okVisible={true}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
@@ -143,7 +136,6 @@ const RangeModal = forwardRef(
           open={open}
           value={currentValue}
           allowClear={allowClear}
-          multiple={multiple}
           onChange={handleChange}
           type={type}
           min={min}

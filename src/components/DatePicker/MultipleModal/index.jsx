@@ -1,4 +1,5 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import { getTitle } from './../utils'
 import formatValue from './../MultipleMain/formatValue'
 import MultipleMain from './../MultipleMain'
 
@@ -29,7 +30,6 @@ const Modal = forwardRef(
       open,
       maskClosable,
       allowClear,
-      multiple,
 
       // Style
       safeArea,
@@ -41,6 +41,7 @@ const Modal = forwardRef(
       // Elements
       portal,
       title,
+      titleRender,
       okNode,
       cancelNode,
       okVisible,
@@ -66,11 +67,9 @@ const Modal = forwardRef(
     })
 
     // 同步外部value到内部currentValue
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(formatValue(value || defaultPickerValue))
-      }
-    }, [open, value, defaultPickerValue])
+    useEffect(() => {
+      setCurrentValue(formatValue(value || defaultPickerValue))
+    }, [value, defaultPickerValue])
 
     async function handleOk() {
       if (onBeforeOk) {
@@ -88,14 +87,10 @@ const Modal = forwardRef(
 
     function handleChange(newValue) {
       setCurrentValue(newValue)
-      // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue)
-        }
-        onClose && onClose()
-      }
     }
+
+    // 自定义标题节点
+    let titleNode = titleRender?.(currentValue, type) || null
 
     return (
       <NavBarModal
@@ -111,10 +106,10 @@ const Modal = forwardRef(
         maskClassName={maskClassName}
         // Elements
         portal={portal}
-        title={title}
+        title={titleNode || title || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
-        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        okVisible={true}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
@@ -126,7 +121,6 @@ const Modal = forwardRef(
           open={open}
           value={currentValue}
           allowClear={allowClear}
-          multiple={multiple}
           onChange={handleChange}
           type={type}
           min={min}
