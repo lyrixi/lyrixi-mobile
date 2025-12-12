@@ -39,7 +39,6 @@ const Modal = forwardRef(
 
       // Elements
       portal,
-      title,
       titleRender,
       okNode,
       cancelNode,
@@ -104,7 +103,7 @@ const Modal = forwardRef(
         maskClassName={maskClassName}
         // Elements
         portal={portal}
-        title={titleNode || title || getTitle(currentValue, type)}
+        title={titleNode || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={true}

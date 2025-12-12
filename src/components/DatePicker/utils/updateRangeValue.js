@@ -6,7 +6,7 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 边界处理: 00:00:00到23:59:59
+// 边界处理: 00:00:00到23:59:59; 开始日期小于结束日期, 则交换位置
 function updateRangeValue(rangeDates = [], type) {
   if (!Array.isArray(rangeDates) || rangeDates.length !== 2) {
     return null

@@ -52,7 +52,6 @@ const DatePickerCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      title,
       titleRender,
       okNode,
       cancelNode,
@@ -132,7 +131,6 @@ const DatePickerCombo = forwardRef(
           allowClear={allowClear}
           // Modal: Elements
           portal={portal}
-          title={title}
           titleRender={titleRender}
           okNode={okNode}
           cancelNode={cancelNode}

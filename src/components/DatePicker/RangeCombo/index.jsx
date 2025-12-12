@@ -38,11 +38,11 @@ const RangeCombo = forwardRef(
 
       // Modal
       // Modal: Value & Display Value
+      defaultPickerValue,
       type = 'date',
       format,
       min,
       max,
-      defaultPickerValue,
       rangeId,
       ranges,
       titles,
@@ -61,7 +61,6 @@ const RangeCombo = forwardRef(
       maskClassName,
       // Modal: Elements
       portal,
-      title,
       titleRender,
       okNode,
       cancelNode,
@@ -170,7 +169,6 @@ const RangeCombo = forwardRef(
           disabledEnd={disabledEnd}
           // Modal: Elements
           portal={portal}
-          title={title}
           titleRender={titleRender}
           okNode={okNode}
           cancelNode={cancelNode}

@@ -36,7 +36,6 @@ const WeekModal = forwardRef(
 
       // Elements
       portal,
-      title,
       titleRender,
       okNode,
       cancelNode,
@@ -100,7 +99,7 @@ const WeekModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        title={titleNode || title || getTitle(currentValue, type)}
+        title={titleNode || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={true}

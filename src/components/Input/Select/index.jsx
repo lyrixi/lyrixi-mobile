@@ -22,9 +22,7 @@ const Combo = forwardRef(
       // Value & Display Value
       value,
       placeholder,
-      formatter,
       autoSize,
-      separator,
       mode,
 
       // Status
@@ -37,6 +35,8 @@ const Combo = forwardRef(
       className,
 
       // Element
+      formatter,
+      separator,
       leftIconNode,
       rightIconNode,
       clearRender: customClearRender,
