@@ -136,9 +136,7 @@ const KeyboardNumber = forwardRef(
         let goOn = await onOk(value)
         if (goOn === false) return
       }
-      if (onClose) {
-        onClose()
-      }
+      onClose?.()
     }
 
     // 处理取消按钮

@@ -58,7 +58,7 @@ function show(props) {
     mask.setAttribute('id', toastId)
     mask.setAttribute('style', '')
     for (let key in maskStyle || {}) {
-      mask.style[key] = maskStyle[key]
+      if (maskStyle[key] !== undefined) mask.style[key] = maskStyle[key]
     }
 
     // Update container

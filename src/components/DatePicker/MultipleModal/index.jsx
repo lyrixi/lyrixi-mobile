@@ -81,7 +81,7 @@ const Modal = forwardRef(
 
       // 触发 onChange
       onChange?.(currentValue)
-      onClose && onClose()
+      onClose?.()
     }
 
     function handleChange(newValue) {

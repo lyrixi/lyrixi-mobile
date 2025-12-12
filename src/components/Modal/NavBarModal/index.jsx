@@ -53,10 +53,13 @@ const NavBarModal = forwardRef(
       onClose && onClose()
     }
 
-    function handleOkClick(e) {
+    async function handleOkClick(e) {
       e.stopPropagation()
-
-      onOk && onOk({ close: () => onClose && onClose() })
+      if (onOk) {
+        let goOn = await onOk()
+        if (goOn === false) return
+      }
+      onClose?.()
     }
 
     return (

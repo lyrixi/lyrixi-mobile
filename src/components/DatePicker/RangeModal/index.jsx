@@ -95,7 +95,7 @@ const RangeModal = forwardRef(
 
       // 触发 onChange
       onChange?.(currentValue, { rangeId: currentRangeId, ranges })
-      onClose && onClose()
+      onClose?.()
     }
 
     function handleChange(newValue, { rangeId: newRangeId } = {}) {

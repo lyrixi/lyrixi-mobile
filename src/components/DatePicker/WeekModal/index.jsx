@@ -75,7 +75,7 @@ const WeekModal = forwardRef(
         }
       }
       onChange?.(currentValue)
-      onClose && onClose()
+      onClose?.()
     }
 
     function handleChange(newValue) {

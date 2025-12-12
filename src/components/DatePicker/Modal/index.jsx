@@ -80,7 +80,7 @@ const Modal = forwardRef(
       }
 
       onChange?.(currentValue)
-      onClose && onClose()
+      onClose?.()
     }
 
     function handleChange(newValue) {
