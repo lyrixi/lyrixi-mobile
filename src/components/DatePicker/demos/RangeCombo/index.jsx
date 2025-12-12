@@ -137,20 +137,21 @@ export default () => {
         </Card>
 
         <Card>
-          <Divider>onError</Divider>
+          <Divider>onBeforeOk</Divider>
           <DatePicker.RangeCombo
             style={{ margin: '0 12px' }}
             min={new Date()}
             max={DateUtil.add(new Date(), 30, 'day')}
-            placeholder="onError"
+            placeholder="onBeforeOk"
             ranges={null}
             value={value}
             onChange={(newValue) => {
               console.log(newValue)
               setValue(newValue)
             }}
-            onError={(error) => {
-              Toast.show({ content: error.errMsg })
+            onBeforeOk={(newValue) => {
+              Toast.show({ content: 'validate failed' })
+              return false
             }}
             allowClear
           />

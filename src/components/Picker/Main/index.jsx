@@ -15,15 +15,15 @@ import { DOMUtil } from 'lyrixi-mobile'
 let Main = forwardRef(
   (
     {
+      // Modal: Status
+      open,
+
       // Value & Display Value
       value,
       list,
 
-      // Status
-      open = true,
-      allowClear,
-
       // Style
+      style,
       className,
 
       // Events
@@ -65,11 +65,9 @@ let Main = forwardRef(
     })
 
     useEffect(() => {
-      if (open) {
-        update()
-      }
+      update()
       // eslint-disable-next-line
-    }, [open, JSON.stringify(value)])
+    }, [JSON.stringify(value)])
 
     // 更新视图
     function update() {
@@ -85,6 +83,7 @@ let Main = forwardRef(
       <div
         ref={mainRef}
         // Style
+        style={style}
         className={DOMUtil.classNames('lyrixi-picker-main', className)}
       >
         {/* Element: Layer */}
@@ -95,10 +94,10 @@ let Main = forwardRef(
         {/* Element: Slots */}
         <Slots
           ref={slotsRef}
+          // Modal: Status
+          open={open}
           // Value & Display Value
           lists={lists}
-          // Status
-          open={open}
           // Events
           onDragEnd={({ rowIndex, slotIndex }) => {
             valueRef.current[slotIndex] = lists[slotIndex][rowIndex]

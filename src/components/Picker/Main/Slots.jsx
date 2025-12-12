@@ -13,11 +13,11 @@ import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 let Lists = forwardRef(
   (
     {
+      // Modal: Status
+      open = true,
+
       // Value & Display Value
       lists,
-
-      // Status
-      open = true,
 
       // Element
       cellHeight = 44,
@@ -87,12 +87,12 @@ let Lists = forwardRef(
       touchesRef.current.startTimeStamp = e.timeStamp
     }
     function handleTouchMove(e) {
+      e.stopPropagation()
+
       // 鼠标移动时，如果没有开始绘制，则不处理
       if (!isDrawingRef.current) {
         return
       }
-
-      e.stopPropagation()
 
       const pos = DOMUtil.getEventPosition(e)
       touchesRef.current.currentY = pos.clientY

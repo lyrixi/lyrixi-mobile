@@ -51,11 +51,11 @@ const Modal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
@@ -74,28 +74,16 @@ const Modal = forwardRef(
     }, [open, value, defaultPickerValue])
 
     async function handleOk() {
-      let validatedValue = currentValue
-      // 校验
-      if (min || max) {
-        // 校验值是否合法
-        for (let tab of validatedValue) {
-          let newValue = validateMaxMin(tab.value, {
-            type: type,
-            min: min,
-            max: max,
-            onError: onError
-          })
-
-          if (newValue === false) return
-          tab.value = newValue
+      if (onBeforeOk) {
+        let goOn = await onBeforeOk(currentValue)
+        if (goOn === false) return
+        if (goOn instanceof Array) {
+          currentValue = goOn
         }
       }
 
       // 触发 onChange
-      if (onChange) {
-        let goOn = await onChange(validatedValue)
-        if (goOn === false) return
-      }
+      onChange?.(currentValue)
       onClose && onClose()
     }
 

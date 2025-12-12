@@ -14,18 +14,20 @@ import { LocaleUtil, DateUtil, Calendar } from 'lyrixi-mobile'
 // 日期快捷选择
 function WeekMain(
   {
+    // Modal: Status
     open = true,
-
+    // Value & Display Value
     value,
+    // Status
     min,
     max,
-    weekStart = 'Monday', // Monday | Sunday
     allowClear,
-    onChange,
-
-    // 其它属性
+    weekStart = 'Monday', // Monday | Sunday
+    // Style
+    style,
     className,
-    ...props
+    // Events
+    onChange
   },
   ref
 ) {
@@ -73,15 +75,19 @@ function WeekMain(
   return (
     <Calendar
       ref={weekMainRef}
+      // Value & Display Value
+      value={rangeValueRef.current}
+      // Status
       min={min}
       max={max}
       draggable={['horizontal']}
       weekStart={'Monday'}
       selectionMode={'range'}
-      value={rangeValueRef.current}
-      onChange={handleChange}
-      {...props}
+      // Style
+      style={style}
       className={DOMUtil.classNames('lyrixi-datepicker-weekmain-calendar', className)}
+      // Events
+      onChange={handleChange}
     />
   )
 }

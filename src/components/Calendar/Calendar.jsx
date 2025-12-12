@@ -30,6 +30,8 @@ const duration = 300
 const Calendar = forwardRef(
   (
     {
+      // Modal: Status
+      open,
       // Value & Display Value
       value,
       selectionMode, // single | range
@@ -348,15 +350,19 @@ const Calendar = forwardRef(
           })}
         </div>
         <Body
-          cellHeight={cellHeight}
+          // Modal: Status
+          open={open}
+          // Value & Display Value
           pages={pagesRef.current}
           value={value}
+          // Status
+          cellHeight={cellHeight}
           min={min}
           max={max}
           draggable={draggable}
-          // 单个日期渲染
+          // Elements
           dateRender={dateRender}
-          // Event: click date
+          // Events
           onChange={(date) => {
             let newValue = date
             let newDrawDate = date

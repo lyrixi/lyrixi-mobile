@@ -16,9 +16,6 @@ export default () => {
           // max={new Date()}
           rangeId={rangeId}
           value={value}
-          // onError={(error) => {
-          //   console.log(error)
-          // }}
           onChange={(newValue, { rangeId }) => {
             console.log('修改:', newValue, rangeId)
             setValue(newValue)

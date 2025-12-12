@@ -59,7 +59,7 @@ const RangeModal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
@@ -68,7 +68,7 @@ const RangeModal = forwardRef(
       ranges = getDefaultRanges()
     }
 
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const [currentRangeId, setCurrentRangeId] = useState(rangeId)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
@@ -89,24 +89,16 @@ const RangeModal = forwardRef(
     }, [open, value, defaultPickerValue, rangeId])
 
     async function handleOk() {
-      // 校验
-      let validatedValue = updateRangeValue(currentValue, type)
-
-      validatedValue = validateRange(validatedValue, {
-        type: type,
-        min: min,
-        max: max,
-        diff: diff,
-        onError: onError
-      })
-
-      if (validatedValue === false) return
+      if (onBeforeOk) {
+        let goOn = await onBeforeOk(currentValue)
+        if (goOn === false) return
+        if (goOn instanceof Array) {
+          currentValue = goOn
+        }
+      }
 
       // 触发 onChange
-      if (onChange) {
-        let goOn = await onChange(validatedValue, { rangeId: currentRangeId, ranges })
-        if (goOn === false) return
-      }
+      onChange?.(currentValue, { rangeId: currentRangeId, ranges })
       onClose && onClose()
     }
 

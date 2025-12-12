@@ -14,17 +14,22 @@ import { DateUtil } from 'lyrixi-mobile'
 // 日期选择
 function Main(
   {
-    open = true,
-
+    // Modal: Status
+    open,
+    // Value & Display Value
     value,
+    // Style
+    style,
+    className,
+    // Status
     type = 'date', // year | quarter | month | date | time | datetime | week
-    allowClear,
+    hourStep,
     min,
     max,
-    hourStep,
     minuteStep,
-    onChange,
-    ...props
+
+    // Events
+    onChange
   },
   ref
 ) {
@@ -56,11 +61,16 @@ function Main(
     return (
       <WeekMain
         ref={pickerMainRef}
+        // Value & Display Value
         value={value}
+        // Status
         min={min}
         max={max}
+        // Style
+        style={style}
+        className={className}
+        // Events
         onChange={onChange}
-        {...props}
       />
     )
   }
@@ -68,12 +78,21 @@ function Main(
   return (
     <DateMain
       ref={pickerMainRef}
+      // Modal: Status
+      open={open}
+      // Value & Display Value
       value={value}
+      // Status
       type={type}
+      min={min}
+      max={max}
       hourStep={hourStep}
       minuteStep={minuteStep}
+      // Style
+      style={style}
+      className={className}
+      // Events
       onChange={onChange}
-      {...props}
     />
   )
 }

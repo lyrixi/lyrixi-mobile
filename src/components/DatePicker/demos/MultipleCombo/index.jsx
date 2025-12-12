@@ -44,12 +44,10 @@ export default () => {
         min={new Date()}
         hourStep={5}
         minuteStep={5}
-        onError={(err) =>
-          Toast.show({
-            content: err.errMsg || '',
-            maskClickable: true
-          })
-        }
+        onBeforeOk={(newValue) => {
+          Toast.show({ content: 'validate failed' })
+          return false
+        }}
       />
     </>
   )

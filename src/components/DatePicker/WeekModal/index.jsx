@@ -48,11 +48,11 @@ const WeekModal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
@@ -71,26 +71,14 @@ const WeekModal = forwardRef(
     }, [open, value, defaultPickerValue])
 
     async function handleOk() {
-      let validatedValue = currentValue
-      // 校验
-      if ((min || max) && validatedValue) {
-        let newValue = validateMaxMin(validatedValue, {
-          type: 'week',
-          min: min,
-          max: max,
-          onError: onError
-        })
-
-        if (newValue === false) return
-
-        validatedValue = newValue
-      }
-
-      // 触发 onChange
-      if (onChange) {
-        let goOn = await onChange(validatedValue)
+      if (onBeforeOk) {
+        let goOn = await onBeforeOk(currentValue)
         if (goOn === false) return
+        if (goOn instanceof Date) {
+          currentValue = goOn
+        }
       }
+      onChange?.(currentValue)
       onClose && onClose()
     }
 

@@ -72,7 +72,7 @@ const RangeCombo = forwardRef(
       // Events
       onChange,
       onBeforeOpen,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
@@ -188,7 +188,7 @@ const RangeCombo = forwardRef(
           // Events
           onClose={handleClose}
           onChange={handleChange}
-          onError={onError}
+          onBeforeOk={onBeforeOk}
         />
       </>
     )

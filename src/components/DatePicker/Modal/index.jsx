@@ -29,7 +29,6 @@ const Modal = forwardRef(
       // Status
       open,
       maskClosable,
-      allowClear,
       multiple,
 
       // Style
@@ -51,11 +50,11 @@ const Modal = forwardRef(
       onClose,
       onOpen,
       onChange,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
@@ -74,26 +73,15 @@ const Modal = forwardRef(
     }, [open, value, defaultPickerValue])
 
     async function handleOk() {
-      let validatedValue = currentValue
-      // 校验
-      if ((min || max) && validatedValue) {
-        let newValue = validateMaxMin(validatedValue, {
-          type: type,
-          min: min,
-          max: max,
-          onError: onError
-        })
-
-        if (newValue === false) return
-
-        validatedValue = newValue
-      }
-
-      // 触发 onChange
-      if (onChange) {
-        let goOn = await onChange(validatedValue)
+      // 触发 onBeforeOk
+      if (onBeforeOk) {
+        let goOn = await onBeforeOk(currentValue)
         if (goOn === false) return
+        if (goOn instanceof Date) {
+          currentValue = goOn
+        }
       }
+      onChange?.(currentValue)
       onClose && onClose()
     }
 
@@ -125,7 +113,7 @@ const Modal = forwardRef(
         title={title}
         okNode={okNode}
         cancelNode={cancelNode}
-        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        okVisible={true}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
@@ -134,16 +122,18 @@ const Modal = forwardRef(
       >
         <Main
           ref={mainRef}
+          // Modal: Status
           open={open}
+          // Value & Display Value
           value={currentValue}
-          allowClear={allowClear}
-          multiple={multiple}
-          onChange={handleChange}
+          // Status
           type={type}
           min={min}
           max={max}
           hourStep={hourStep}
           minuteStep={minuteStep}
+          // Events
+          onChange={handleChange}
         />
       </NavBarModal>
     )

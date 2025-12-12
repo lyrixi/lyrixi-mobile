@@ -17,18 +17,21 @@ const threshold = 50
 const Body = forwardRef(
   (
     {
-      cellHeight,
-      pages,
-
+      // Modal: Status
+      open,
+      // Value & Display Value
       value,
+      pages,
+      // Style
+      cellHeight,
+      // Status
       min, // 禁用之前日期
       max, // 禁用之后日期
       draggable,
-      // 单个日期渲染
+      // Elements
       dateRender,
-      // Event: click date
+      // Events
       onChange,
-      // Event: view change
       onSlideX,
       onSlideY,
       onToggle
@@ -39,6 +42,9 @@ const Body = forwardRef(
     const rootRef = useRef(null)
     const bodyXRef = useRef(null)
     const bodyYRef = useRef(null)
+
+    // 标识是否正在绘制，用于解决鼠标移动时，没有开始绘制，则不处理
+    const isDrawingRef = useRef(false)
 
     // 触摸信息
     let touchesRef = useRef({
@@ -61,20 +67,39 @@ const Body = forwardRef(
       bodyYRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-y')
     }, [])
 
+    useEffect(() => {
+      isDrawingRef.current = false
+      // eslint-disable-next-line
+    }, [open])
+
     /* --------------------
     Events handle
     -------------------- */
     function handleTouchStart(e) {
       e.stopPropagation()
+
+      // 鼠标开始绘制
+      isDrawingRef.current = true
+
       // 解决拖动时影响document弹性
-      e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
-      touchesRef.current.startX = e.touches[0].clientX
-      touchesRef.current.startY = e.touches[0].clientY
+      if (e.type === 'touchstart') {
+        e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
+      }
+      let pos = DOMUtil.getEventPosition(e)
+      touchesRef.current.startX = pos.clientX
+      touchesRef.current.startY = pos.clientY
     }
     function handleTouchMove(e) {
       e.stopPropagation()
-      let currentX = e.touches[0].clientX
-      let currentY = e.touches[0].clientY
+
+      // 鼠标移动时，如果没有开始绘制，则不处理
+      if (!isDrawingRef.current) {
+        return
+      }
+
+      let pos = DOMUtil.getEventPosition(e)
+      let currentX = pos.clientX
+      let currentY = pos.clientY
       let diffX = touchesRef.current.startX - currentX
       let diffY = touchesRef.current.startY - currentY
 
@@ -140,11 +165,18 @@ const Body = forwardRef(
     }
     async function handleTouchEnd(e) {
       e.stopPropagation()
-      // 解除对move时的弹性对当前div的锁定
-      e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
 
-      let endX = e.clientX || e.changedTouches[0].clientX
-      let endY = e.clientY || e.changedTouches[0].clientY
+      // 鼠标结束绘制
+      isDrawingRef.current = false
+
+      // 解除对move时的弹性对当前div的锁定
+      if (e.type === 'touchend') {
+        e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
+      }
+
+      let pos = DOMUtil.getEventPosition(e)
+      let endX = pos.clientX
+      let endY = pos.clientY
       let diffX = touchesRef.current.startX - endX
       let diffY = touchesRef.current.startY - endY
       let direction = touchesRef.current.direction
@@ -212,6 +244,9 @@ const Body = forwardRef(
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onMouseDown={handleTouchStart}
+          onMouseMove={handleTouchMove}
+          onMouseUp={handleTouchEnd}
         >
           <div className="lyrixi-calendar-body-y">
             <div className="lyrixi-calendar-body-x">
@@ -286,6 +321,9 @@ const Body = forwardRef(
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
+            onMouseDown={handleTouchStart}
+            onMouseMove={handleTouchMove}
+            onMouseUp={handleTouchEnd}
           >
             <Toggle onClick={onToggle} />
           </div>

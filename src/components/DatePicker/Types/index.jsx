@@ -18,9 +18,15 @@ import { TabBar, LocaleUtil } from 'lyrixi-mobile'
 const Types = forwardRef(
   (
     {
-      className,
-      min,
-      max,
+      // Value & Display Value
+      value,
+      /*
+      {
+        type: 'date',
+        name: '日',
+        value: new Date()
+      }
+      */
       list = [
         {
           type: 'date',
@@ -44,17 +50,14 @@ const Types = forwardRef(
           name: LocaleUtil.locale('年', 'lyrixi.unit.year')
         }
       ],
+      // Style
+      style,
+      className,
+      // Status
+      min,
+      max,
 
-      value,
-      /*
-    {
-      type: 'date',
-      name: '日',
-      value: new Date()
-    }
-    */
-
-      // 渲染tab右边的选择器
+      // Elements
       pickerRender,
 
       // 配置
@@ -62,11 +65,8 @@ const Types = forwardRef(
       TabsProps = {},
       DatePickerComboProps = {},
 
-      onError,
-      onChange,
-
-      // 其它属性
-      style
+      // Events
+      onChange
     },
     ref
   ) => {
@@ -91,17 +91,7 @@ const Types = forwardRef(
 
     // 统一的修改方法
     function handleChange(newValue) {
-      let date = validateMaxMin(newValue.value, {
-        type: newValue.type,
-        min: min,
-        max: max,
-        onError: onError
-      })
-      if (date === false) {
-        return
-      }
-      newValue.value = date
-      if (onChange) onChange(newValue)
+      onChange?.(newValue)
     }
 
     // 点击Tab

@@ -14,12 +14,16 @@ import { Picker } from 'lyrixi-mobile'
 // 日期选择
 function Main(
   {
+    // Value & display value
+    value,
+
+    // Status
     type = 'date', // year | quarter | month | date | time | datetime
     hourStep,
     minuteStep,
-    value,
-    onChange,
-    ...props
+
+    // Events
+    onChange
   },
   ref
 ) {
@@ -34,7 +38,6 @@ function Main(
       value={valueToList(value, type)}
       list={getList(value, type, { hourStep, minuteStep })}
       onChange={handleChange}
-      {...props}
     />
   )
 }

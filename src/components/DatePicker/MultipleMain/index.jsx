@@ -78,13 +78,19 @@ function MultipleMain(
             return (
               <Main
                 key={tab.id || index}
+                // Modal: Status
+                open={open}
+                // Value & Display Value
                 value={tab.value}
+                // Style
+                className={tab.disabled ? 'lyrixi-disabled' : ''}
+                // Status
                 type={type}
                 min={min}
                 max={max}
                 hourStep={hourStep}
                 minuteStep={minuteStep}
-                className={tab.disabled ? 'lyrixi-disabled' : ''}
+                // Events
                 onChange={(date) => {
                   tab.value = date
                   tab.name = DateUtil.format(tab.value, type)

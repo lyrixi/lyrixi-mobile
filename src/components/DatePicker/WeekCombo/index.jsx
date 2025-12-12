@@ -61,7 +61,7 @@ const WeekCombo = forwardRef(
       // Events
       onChange,
       onBeforeOpen,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
@@ -146,7 +146,7 @@ const WeekCombo = forwardRef(
           // Events
           onClose={handleClose}
           onChange={onChange}
-          onError={onError}
+          onBeforeOk={onBeforeOk}
         />
       </>
     )

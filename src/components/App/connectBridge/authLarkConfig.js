@@ -76,37 +76,6 @@ function authLarkConfig(options) {
               console.log(`config failed: `, err)
               resolve(`config failed`)
             }
-            // // 成功回调
-            // onSuccess: (res) => {
-            //   console.log('Auth success:', res)
-            //   // 单例
-            //   if (isReady) return
-            //   isReady = true
-
-            //   // console.log('Auth success')
-            //   // window.top.h5sdk.error((err) => {
-            //   //   console.log('Bridge ready failed:', err)
-            //   //   resolve('Bridge ready failed')
-            //   //   // if (typeof callback === 'function')
-            //   //   //   callback({ errCode: 'BRIDGE_ERROR', errMsg: 'Bridge ready failed' })
-            //   // })
-
-            //   // window.top.h5sdk.ready(function () {
-            //   //   console.log('Bridge ready')
-            //   //   resolve(true)
-            //   //   // if (typeof callback === 'function') callback()
-            //   // })
-            //   resolve(true)
-            // },
-            // // 失败回调
-            // onFail: (err) => {
-            //   console.log(err)
-            //   // 单例
-            //   if (isReady) return
-
-            //   console.error('Auth fail')
-            //   resolve(`config failed`)
-            // }
           })
         } else {
           resolve(response.message || LocaleUtil.locale('飞书鉴权接口失败，请稍后重试！'))

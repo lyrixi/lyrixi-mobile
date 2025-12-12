@@ -63,7 +63,7 @@ const DatePickerCombo = forwardRef(
       // Events
       onChange,
       onBeforeOpen,
-      onError
+      onBeforeOk
     },
     ref
   ) => {
@@ -150,7 +150,7 @@ const DatePickerCombo = forwardRef(
           // Events
           onClose={handleClose}
           onChange={onChange}
-          onError={onError}
+          onBeforeOk={onBeforeOk}
         />
       </>
     )
