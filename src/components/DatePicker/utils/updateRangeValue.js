@@ -28,7 +28,7 @@ function updateRangeValue(rangeDates = [], type, { autoSwapValue } = {}) {
     autoSwapValue &&
     DateUtil.startOrEnd(endDate, type).getTime() < DateUtil.startOrEnd(startDate, type).getTime()
   ) {
-    return [adjustEnd(startDate), adjustStart(endDate)]
+    return [adjustStart(endDate), adjustEnd(startDate)]
   }
 
   // startDate greater than endDate

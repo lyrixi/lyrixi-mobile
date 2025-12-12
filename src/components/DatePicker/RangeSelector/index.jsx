@@ -16,7 +16,7 @@ function RangeSelector(
   {
     // Value & Display Value
     value,
-    autoSwapValue,
+    autoSwapValue = true,
     type = 'date', // year | quarter | month | date | time | datetime
     rangeId,
     ranges,

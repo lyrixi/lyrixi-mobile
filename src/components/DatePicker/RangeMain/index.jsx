@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef } from 'react'
-import { updateRangeValue, getDefaultRanges } from './../utils'
+import { getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import SelectorMain from './SelectorMain'
 import PickerMain from './PickerMain'
@@ -20,7 +20,6 @@ function RangeMain(
 
     // Value & Display Value
     value,
-    autoSwapValue,
     rangeId,
     ranges,
 
@@ -77,12 +76,11 @@ function RangeMain(
 
   // unify onChange
   function handleChange(newValue, { rangeId } = {}) {
-    onChange &&
-      onChange(updateRangeValue(newValue, type, { autoSwapValue }), {
-        rangeId: rangeId || null,
-        ranges,
-        displayValue: getDisplayValue({ value: newValue, type, rangeId, ranges, separator })
-      })
+    onChange?.(newValue, {
+      rangeId: rangeId || null,
+      ranges,
+      displayValue: getDisplayValue({ value: newValue, type, rangeId, ranges, separator })
+    })
   }
 
   return (

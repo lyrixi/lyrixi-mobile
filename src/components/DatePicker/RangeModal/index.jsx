@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, useRef, forwardRef, useState } from 'react'
-import { getTitle, getDefaultRanges } from './../utils'
+import { getTitle, getDefaultRanges, updateRangeValue } from './../utils'
 import formatValue from './../RangeMain/formatValue'
 import RangeMain from './../RangeMain'
 
@@ -20,7 +20,7 @@ const RangeModal = forwardRef(
       // Value & Display Value
       value,
       defaultPickerValue,
-      autoSwapValue,
+      autoSwapValue = true,
       type = 'date',
       min,
       max,
@@ -94,7 +94,10 @@ const RangeModal = forwardRef(
       }
 
       // 触发 onChange
-      onChange?.(currentValue, { rangeId: currentRangeId, ranges })
+      onChange?.(updateRangeValue(currentValue, type, { autoSwapValue }), {
+        rangeId: currentRangeId,
+        ranges
+      })
       onClose?.()
     }
 
