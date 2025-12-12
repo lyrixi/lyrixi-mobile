@@ -1,8 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import { updateRangeValue } from './../utils'
+import { updateRangeValue, getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import getCustomRangeId from './getCustomRangeId'
-import getDefaultRanges from './../RangeMain/getDefaultRanges'
 import getDefaultRangeId from './getDefaultRangeId'
 
 // 内库使用-start

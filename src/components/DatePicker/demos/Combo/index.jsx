@@ -105,11 +105,14 @@ export default () => {
         </Card>
 
         <Card>
-          <Divider>Custom</Divider>
+          <Divider>Custom Title</Divider>
           <DatePicker.Combo
             style={{ margin: '0 12px' }}
-            placeholder="Step"
-            title="Custom Title"
+            type="date"
+            placeholder="Custom Title"
+            titleRender={(value) => {
+              return DatePicker.getTitle(value, 'YYYY年MM月DD日 周ddd')
+            }}
             value={value}
             onChange={setValue}
             allowClear

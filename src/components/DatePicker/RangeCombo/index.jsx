@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import getDefaultRanges from './../RangeMain/getDefaultRanges'
+import { getDefaultRanges } from './../utils'
 import getDisplayValue from './getDisplayValue'
 import formatValue from './../RangeMain/formatValue'
 import RangeModal from './../RangeModal'

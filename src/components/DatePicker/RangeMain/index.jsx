@@ -1,8 +1,7 @@
 import React, { useRef, forwardRef } from 'react'
-import { updateRangeValue } from './../utils'
+import { updateRangeValue, getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import SelectorMain from './SelectorMain'
-import getDefaultRanges from './getDefaultRanges'
 import PickerMain from './PickerMain'
 
 // 内库使用-start

@@ -1,6 +1,4 @@
-import getDefaultRanges from './RangeMain/getDefaultRanges'
-import getRangeId from './RangeMain/getRangeId'
-import validateRange from './RangeModal/validateRange'
+import { getTitle, getDefaultRanges, getRangeId, validateRange } from './utils'
 
 import Combo from './Combo'
 import Modal from './Modal'
@@ -19,9 +17,12 @@ import Types from './Types'
 
 // eslint-disable-next-line
 export default {
+  // Utils
+  getTitle: getTitle,
   getDefaultRanges: getDefaultRanges,
   getRangeId: getRangeId,
   validateRange: validateRange,
+  // Components
   Combo: Combo,
   Modal: Modal,
   Main: Main,

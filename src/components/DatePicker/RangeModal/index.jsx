@@ -1,6 +1,5 @@
 import React, { useEffect, useImperativeHandle, useRef, forwardRef, useState } from 'react'
-import { getTitle } from './../utils'
-import getDefaultRanges from './../RangeMain/getDefaultRanges'
+import { getTitle, getDefaultRanges } from './../utils'
 import formatValue from './../RangeMain/formatValue'
 import RangeMain from './../RangeMain'
 
