@@ -19,14 +19,13 @@ const RangeModal = forwardRef(
     {
       // Value & Display Value
       value,
+      defaultPickerValue,
       autoSwapValue,
       type = 'date',
       min,
       max,
-      defaultPickerValue,
       hourStep,
       minuteStep,
-      diff,
       disabledStart,
       disabledEnd,
       rangeId,
@@ -47,6 +46,7 @@ const RangeModal = forwardRef(
 
       // Elements
       portal,
+      separator,
       titleRender,
       okNode,
       cancelNode,
@@ -120,7 +120,7 @@ const RangeModal = forwardRef(
         maskClassName={maskClassName}
         // Element
         portal={portal}
-        title={titleNode || getTitle(currentValue, type)}
+        title={titleNode || getTitle(currentValue, { type, separator })}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={true}

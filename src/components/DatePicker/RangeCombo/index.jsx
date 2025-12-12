@@ -152,7 +152,6 @@ const RangeCombo = forwardRef(
           value={formatValue(value)}
           autoSwapValue={autoSwapValue}
           type={type}
-          format={format}
           min={min}
           max={max}
           defaultPickerValue={defaultPickerValue}
