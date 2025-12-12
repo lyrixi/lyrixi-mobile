@@ -48,7 +48,6 @@ const RangeCombo = forwardRef(
       titles,
       hourStep,
       minuteStep,
-      diff,
       // Modal: Status
       maskClosable,
       disabledStart,
@@ -160,7 +159,6 @@ const RangeCombo = forwardRef(
           titles={titles}
           hourStep={hourStep}
           minuteStep={minuteStep}
-          diff={diff}
           // Modal: Status
           open={open}
           maskClosable={maskClosable}
