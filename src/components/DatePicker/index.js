@@ -1,4 +1,4 @@
-import { getTitle, getDefaultRanges, getRangeId, validateRange } from './utils'
+import { getTitle, getDefaultRanges, getRangeId } from './utils'
 
 import Combo from './Combo'
 import Modal from './Modal'
@@ -21,7 +21,6 @@ export default {
   getTitle: getTitle,
   getDefaultRanges: getDefaultRanges,
   getRangeId: getRangeId,
-  validateRange: validateRange,
   // Components
   Combo: Combo,
   Modal: Modal,
