@@ -1,5 +1,5 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
-import validateMaxMin from '../utils/validateMaxMin'
+import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import { getTitle } from './../utils'
 import formatValue from './formatValue'
 import Main from './../Main'
 
@@ -19,10 +19,10 @@ const Modal = forwardRef(
     {
       // Value & Display Value
       value,
+      defaultPickerValue,
       type = 'date',
       min,
       max,
-      defaultPickerValue,
       hourStep,
       minuteStep,
 
@@ -66,11 +66,9 @@ const Modal = forwardRef(
     })
 
     // 同步外部value到内部currentValue
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(formatValue(value || defaultPickerValue))
-      }
-    }, [open, value, defaultPickerValue])
+    useEffect(() => {
+      setCurrentValue(formatValue(value || defaultPickerValue))
+    }, [value, defaultPickerValue])
 
     async function handleOk() {
       // 触发 onBeforeOk
@@ -110,7 +108,7 @@ const Modal = forwardRef(
         maskClassName={maskClassName}
         // Elements
         portal={portal}
-        title={title}
+        title={title || getTitle(currentValue, type)}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={true}

@@ -1,5 +1,5 @@
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -28,6 +28,7 @@ function getTitleByType(type) {
   if (type === 'week') {
     return LocaleUtil.locale('选择周', 'lyrixi.dateModal.title.week')
   }
+  return LocaleUtil.locale('选择日期', 'lyrixi.dateModal.title.date')
 }
 
 export default getTitleByType

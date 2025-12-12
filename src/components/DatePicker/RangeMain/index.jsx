@@ -1,5 +1,4 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import getTitleByType from './../utils/getTitleByType'
 import updateRangeValue from './updateRangeValue'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import SelectorMain from './SelectorMain'
@@ -60,7 +59,6 @@ function RangeMain(
   }
 
   const selectorRef = useRef(null)
-  const rangeMainRef = useRef(null)
 
   if (ranges === undefined) {
     // eslint-disable-next-line
@@ -76,15 +74,6 @@ function RangeMain(
       }
     }
   }
-
-  useImperativeHandle(ref, () => {
-    return {
-      ...rangeMainRef.current,
-      getTitle: () => {
-        return getTitleByType(type)
-      }
-    }
-  })
 
   // unify onChange
   function handleChange(newValue, { rangeId } = {}) {
@@ -121,9 +110,12 @@ function RangeMain(
         <p className="lyrixi-datepicker-rangemain-selector-title lyrixi-custom">{titles.custom}</p>
       ) : null}
       <PickerMain
-        ref={rangeMainRef}
-        portal={portal}
-        separator={separator}
+        ref={ref}
+        // Modal: Status
+        open={open}
+        // Value & Display Value
+        value={value}
+        // Status
         type={type}
         min={min}
         max={max}
@@ -132,7 +124,9 @@ function RangeMain(
         disabledStart={disabledStart}
         disabledEnd={disabledEnd}
         allowClear={allowClear}
-        value={value}
+        // Elements
+        portal={portal}
+        separator={separator}
         onChange={handleChange}
       />
     </>

@@ -1,14 +1,13 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import Calendar from './../../Calendar'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, DateUtil, Calendar } from 'lyrixi-mobile'
+import { DateUtil, Calendar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日期快捷选择
@@ -42,14 +41,6 @@ function WeekMain(
       mainDOM: mainDOM,
       getMainDOM: getMainDOM,
       ...otherMainRef,
-      // 获取标题
-      getTitle: () => {
-        let title = LocaleUtil.locale('选择日期', 'lyrixi.dateModal.title.date')
-        if (value instanceof Date) {
-          title = DateUtil.format(value, 'week')
-        }
-        return title
-      },
       getValue: () => {
         return value instanceof Date ? value : null
       }

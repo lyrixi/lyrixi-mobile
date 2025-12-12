@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import getTitleByType from './../utils/getTitleByType'
 import updateRangeValue from './../RangeMain/updateRangeValue'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import getCustomRangeId from './getCustomRangeId'
@@ -55,10 +54,7 @@ function RangeSelector(
   useImperativeHandle(ref, () => {
     return {
       mainDOM: mainRef.current,
-      getMainDOM: () => mainRef.current,
-      getTitle: () => {
-        return getTitleByType(type)
-      }
+      getMainDOM: () => mainRef.current
     }
   })
 

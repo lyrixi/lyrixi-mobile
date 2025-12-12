@@ -1,4 +1,3 @@
-import validateMaxMin from './validateMaxMin'
-import getTitleByType from './getTitleByType'
+import getTitle from './getTitle'
 
-export { validateMaxMin, getTitleByType }
+export { getTitle }

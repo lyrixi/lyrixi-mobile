@@ -1,5 +1,4 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
-import validateMaxMin from '../utils/validateMaxMin'
 import formatValue from './../MultipleMain/formatValue'
 import MultipleMain from './../MultipleMain'
 

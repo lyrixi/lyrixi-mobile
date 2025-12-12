@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
-import getTitleByType from './../utils/getTitleByType'
 import Main from './../Main'
 import formatValue from './formatValue'
 import getActiveTab from './getActiveTab'
@@ -46,10 +45,6 @@ function MultipleMain(
     return {
       mainDOM: mainRef.current,
       getMainDOM: () => mainRef.current,
-      // 获取标题
-      getTitle: () => {
-        return getTitleByType(type)
-      },
       getValue: () => {
         return tabsRef.current
       }

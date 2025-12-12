@@ -1,7 +1,6 @@
 import getDefaultRanges from './RangeMain/getDefaultRanges'
 import getRangeId from './RangeMain/getRangeId'
 import validateRange from './RangeModal/validateRange'
-import validateMaxMin from './utils/validateMaxMin'
 
 import Combo from './Combo'
 import Modal from './Modal'
@@ -23,7 +22,6 @@ export default {
   getDefaultRanges: getDefaultRanges,
   getRangeId: getRangeId,
   validateRange: validateRange,
-  validateMaxMin: validateMaxMin,
   Combo: Combo,
   Modal: Modal,
   Main: Main,
