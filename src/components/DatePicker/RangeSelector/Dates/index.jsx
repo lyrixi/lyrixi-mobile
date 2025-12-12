@@ -12,8 +12,10 @@ import { LocaleUtil, Input } from 'lyrixi-mobile'
 
 // 自定义日期选择弹窗: 两框选择
 export default function CustomDates({
-  type,
+  // Value & Display Value
   value,
+  // Status
+  type,
   min,
   max,
   hourStep,
@@ -21,39 +23,47 @@ export default function CustomDates({
   disabledStart,
   disabledEnd,
   allowClear,
-  onChange,
-
-  // Modal
-  portal,
+  // Style
   maskClassName,
   maskStyle,
   modalClassName,
-  modalStyle
+  modalStyle,
+  // Elements
+  portal,
+  // Events
+  onChange,
+  onBeforeOk
 }) {
   return (
     <div className="lyrixi-datepicker-rangeselector-date">
       <RangeCombo
-        ranges={null}
-        maskClassName={maskClassName}
-        maskStyle={maskStyle}
-        modalClassName={modalClassName}
-        modalStyle={modalStyle}
-        portal={portal}
-        type={type}
+        // Value & Display Value
         value={value}
+        placeholder={LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')}
+        ranges={null}
+        // Status
+        type={type}
+        allowClear={allowClear}
         disabledStart={disabledStart}
         disabledEnd={disabledEnd}
         min={min}
         max={max}
-        separator="-"
         hourStep={hourStep}
         minuteStep={minuteStep}
-        onChange={onChange}
-        placeholder={LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')}
-        allowClear={allowClear}
+        // Style
+        maskClassName={maskClassName}
+        maskStyle={maskStyle}
+        modalClassName={modalClassName}
+        modalStyle={modalStyle}
+        // Elements
+        portal={portal}
+        separator="-"
         clearRender={({ clearable, onClear }) => {
           return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
         }}
+        // Events
+        onChange={onChange}
+        onBeforeOk={onBeforeOk}
       />
     </div>
   )

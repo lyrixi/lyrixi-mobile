@@ -20,6 +20,7 @@ const RangeModal = forwardRef(
     {
       // Value & Display Value
       value,
+      autoSwapValue,
       type = 'date',
       min,
       max,
@@ -132,21 +133,27 @@ const RangeModal = forwardRef(
       >
         <RangeMain
           ref={mainRef}
+          // Modal: Status
           open={open}
+          // Value & display value
           value={currentValue}
-          allowClear={allowClear}
-          onChange={handleChange}
+          autoSwapValue={autoSwapValue}
+          rangeId={currentRangeId}
+          ranges={ranges}
+          // Status
           type={type}
+          allowClear={allowClear}
           min={min}
           max={max}
           hourStep={hourStep}
           minuteStep={minuteStep}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
+          // Elements
           titles={titles}
-          ranges={ranges}
           portal={modalRef?.current?.rootDOM}
-          rangeId={currentRangeId}
+          // Events
+          onChange={handleChange}
         />
       </NavBarModal>
     )

@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import updateRangeValue from './../RangeMain/updateRangeValue'
+import { updateRangeValue } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import getCustomRangeId from './getCustomRangeId'
 import getDefaultRanges from './../RangeMain/getDefaultRanges'
@@ -15,12 +15,13 @@ import Dates from './Dates'
 // 日期快捷选择
 function RangeSelector(
   {
-    open,
-
-    className,
-    // Main
+    // Value & Display Value
     value,
+    autoSwapValue,
     type = 'date', // year | quarter | month | date | time | datetime
+    rangeId,
+    ranges,
+    // Status
     min,
     max,
     hourStep,
@@ -28,13 +29,14 @@ function RangeSelector(
     disabledStart,
     disabledEnd,
     allowClear,
-    onChange,
-
-    rangeId,
-    ranges,
+    // Style
+    style,
+    className,
+    // Elements
     portal,
-
-    style
+    // Events
+    onChange,
+    onBeforeOk
   },
   ref
 ) {
@@ -61,7 +63,7 @@ function RangeSelector(
   // unify onChange
   function handleChange(newValue, { rangeId }) {
     onChange &&
-      onChange(updateRangeValue(newValue, type), {
+      onChange(updateRangeValue(newValue, type, { autoSwapValue }), {
         rangeId: rangeId || null,
         ranges,
         displayValue: getDisplayValue({ value: newValue, type, rangeId, ranges })
@@ -86,17 +88,22 @@ function RangeSelector(
       {/* 自定义区间: 文本框选择 */}
       {customRangeId && currentRangeId === customRangeId && (
         <Dates
-          portal={portal}
-          type={type}
-          allowClear={allowClear}
+          // Value & Display Value
           value={value}
           min={min}
           max={max}
+          // Status
+          type={type}
+          allowClear={allowClear}
           hourStep={hourStep}
           minuteStep={minuteStep}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
+          // Elements
+          portal={portal}
+          // Events
           onChange={(newValue) => handleChange(newValue, { rangeId: customRangeId })}
+          onBeforeOk={onBeforeOk}
         />
       )}
     </div>

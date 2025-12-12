@@ -39,6 +39,7 @@ const RangeCombo = forwardRef(
       // Modal
       // Modal: Value & Display Value
       defaultPickerValue,
+      autoSwapValue, // 结束日期大于开始日期时, 是否自动交换开始和结束日期
       type = 'date',
       min,
       max,
@@ -149,6 +150,7 @@ const RangeCombo = forwardRef(
           ref={modalRef}
           // Modal: Value & Display Value
           value={formatValue(value)}
+          autoSwapValue={autoSwapValue}
           type={type}
           format={format}
           min={min}
