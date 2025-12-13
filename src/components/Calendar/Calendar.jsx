@@ -63,6 +63,7 @@ const Calendar = forwardRef(
     },
     ref
   ) => {
+    console.log('value:', value)
     // 容器
     const rootRef = useRef(null)
 

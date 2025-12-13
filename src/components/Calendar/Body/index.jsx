@@ -262,14 +262,14 @@ const Body = forwardRef(
                           {row.map((date, dateIndex) => {
                             let isSelected = isSelectedDate(date, value)
                             let selectedClassNames = []
-                            if (isSelected?.includes('selected')) {
-                              selectedClassNames.push('calendar-date-selected')
+                            if (isSelected?.includes('lyrixi-selected')) {
+                              selectedClassNames.push('lyrixi-calendar-date-selected')
                             }
                             if (isSelected?.includes('selected-start')) {
-                              selectedClassNames.push('calendar-date-selected-start')
+                              selectedClassNames.push('lyrixi-calendar-date-selected-start')
                             }
                             if (isSelected?.includes('selected-end')) {
-                              selectedClassNames.push('calendar-date-selected-end')
+                              selectedClassNames.push('lyrixi-calendar-date-selected-end')
                             }
                             selectedClassNames = selectedClassNames.join(' ')
 

@@ -10,7 +10,7 @@ export default () => {
   const [value, setValue] = useState()
 
   function handleChange(newValue) {
-    console.log('修改', newValue)
+    console.log('修改:', newValue)
     // 设置一周的数据
     // if (Array.isArray(newValue) && newValue.length === 2) {
     //   let weekDates = Calendar.getWeekDates(newValue[0], weekStart)
@@ -41,7 +41,7 @@ export default () => {
           // max={new Date('2024-12-17')}
           ref={calendarRef}
           weekStart={weekStart}
-          // selectionMode={selectionMode}
+          selectionMode={selectionMode}
           value={value}
           // titleFormatter="YYYY-MM-DD W周"
           titleFormatter={(date, info) => {
@@ -54,7 +54,6 @@ export default () => {
             return DateUtil.format(date, `YYYY年MM月DD日 d 第W周`)
           }}
           dateRender={(date, { isSelected, isDisabled, isCurrent }) => {
-            console.log({ date, isSelected, isDisabled, isCurrent })
             return (
               <div className="lyrixi-calendar-date-num">
                 {date.getDate()}

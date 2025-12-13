@@ -14,14 +14,14 @@ function isSelectedDate(date, selected) {
       let isSelected = []
       // Date is between startDate and endDate, add selected class
       if (DateUtil.compare(date, selected[0]) >= 0 && DateUtil.compare(date, selected[1]) <= 0) {
-        isSelected.push('selected')
+        isSelected.push('lyrixi-selected')
       }
 
       if (DateUtil.compare(date, selected[0]) === 0) {
-        isSelected.push('selected-start')
+        isSelected.push('lyrixi-selected-start')
       }
       if (DateUtil.compare(date, selected[1]) === 0) {
-        isSelected.push('selected-end')
+        isSelected.push('lyrixi-selected-end')
       }
       if (isSelected.length) {
         return isSelected
