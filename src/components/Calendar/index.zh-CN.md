@@ -20,9 +20,13 @@ toc: content
 
 ## 示例
 
+## 视图
+
+<code src="./demos/type.jsx"></code>
+
 ## 属性
 
-<code src="./demos/index.jsx"></code>
+<code src="./demos/props.jsx"></code>
 
 ### 选择模式
 
@@ -46,7 +50,7 @@ toc: content
 | value         | 选中值       | `Date \| Date[]`                     | -                            |
 | selectionMode | 选择模式     | `'single' \| 'range'`                | -                            |
 | weekStart     | 周起始日     | `'Monday' \| 'Sunday'`               | `'Sunday'`                   |
-| titleFormat   | 标题格式化   | `string`                             | `'YYYY-MM'`                  |
+| titleRender   | 标题格式化   | `string`                             | `'YYYY-MM'`                  |
 | min           | 最小日期     | `Date`                               | -                            |
 | max           | 最大日期     | `Date`                               | -                            |
 | draggable     | 可拖动方向   | `array`                              | `['horizontal', 'vertical']` |

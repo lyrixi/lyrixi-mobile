@@ -47,7 +47,7 @@ const Calendar = (
     draggable = ['horizontal', 'vertical'], // 是否允许垂直拖动
 
     // Elements
-    titleFormat = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
+    titleRender,
     // 头部渲染
     headerRender,
     // 单个日期渲染
@@ -65,9 +65,11 @@ const Calendar = (
   const rootRef = useRef(null)
 
   // 当前日期，用于绘制日历
-  let drawTypeRef = useRef(type)
-  let [pages, setPages] = useState(null)
   let [drawDate, setDrawDate] = useState(null)
+  // 根据当前日期，构建的三页日期数据
+  let [pages, setPages] = useState(null)
+  // 当前视图类型
+  let [currentType, setCurrentType] = useState(type)
 
   // Expose Methods
   useImperativeHandle(ref, () => {
@@ -91,7 +93,7 @@ const Calendar = (
 
   // 视图
   useEffect(() => {
-    drawTypeRef.current = type
+    setCurrentType(type)
     // eslint-disable-next-line
   }, [type])
 
@@ -124,7 +126,7 @@ const Calendar = (
     }
     onPageChange?.(drawDate, {
       action: 'change',
-      type: drawTypeRef.current,
+      type: currentType,
       pages: pages
     })
     // eslint-disable-next-line
@@ -133,9 +135,9 @@ const Calendar = (
   // 上下滑动
   async function handleSlideY(action) {
     if (action === 'expand') {
-      drawTypeRef.current = 'month'
+      setCurrentType('month')
     } else if (action === 'collapse') {
-      drawTypeRef.current = 'week'
+      setCurrentType('week')
     }
 
     slideY(action, {
@@ -152,7 +154,7 @@ const Calendar = (
   // 左右滑动
   async function handleSlideX(action) {
     let newDrawDate = await slideX(action, {
-      type: drawTypeRef.current,
+      type: currentType,
       min: min,
       max: max,
       duration: duration,
@@ -234,7 +236,7 @@ const Calendar = (
     let newPages = Months.paginateMonths(months, {
       weekStart: weekStart,
       drawDate: newDrawDate,
-      type: drawTypeRef.current
+      type: currentType
     })
 
     // 更新三页数据, 以及选中日期
@@ -253,13 +255,11 @@ const Calendar = (
     >
       {typeof headerRender === 'function' ? (
         headerRender({
-          title: getTitle(drawDate, titleFormat, { type: drawTypeRef.current }),
           onPreviousMonth: handlePreviousMonth,
           onNextMonth: handleNextMonth,
           onPreviousYear: handlePreviousYear,
           onNextYear: handleNextYear,
-          drawDate,
-          titleFormat
+          drawDate
         })
       ) : (
         <Header
@@ -268,7 +268,9 @@ const Calendar = (
           onPreviousYear={handlePreviousYear}
           onNextYear={handleNextYear}
         >
-          {getTitle(drawDate, titleFormat, { type: drawTypeRef.current })}
+          {typeof titleRender === 'function'
+            ? titleRender(drawDate, { type: currentType })
+            : getTitle(drawDate, { type: currentType })}
         </Header>
       )}
       <div className="lyrixi-calendar-days">
@@ -344,7 +346,7 @@ const Calendar = (
         }}
         onSlideY={async (action) => {
           if (!action) {
-            if (drawTypeRef.current === 'week') {
+            if (currentType === 'week') {
               // eslint-disable-next-line
               action = 'collapse'
             } else {
@@ -360,7 +362,7 @@ const Calendar = (
         }}
         // Expand or collapse
         onToggle={(e) => {
-          if (drawTypeRef.current === 'month') {
+          if (currentType === 'month') {
             handleSlideY('collapse')
           } else {
             handleSlideY('expand')

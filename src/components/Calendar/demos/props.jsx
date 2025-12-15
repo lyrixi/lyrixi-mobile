@@ -3,38 +3,15 @@ import { Page, Calendar, DateUtil, Card, Button } from 'lyrixi-mobile'
 
 export default () => {
   const [singleValue, setSingleValue] = useState(null)
-  const [weekValue, setWeekValue] = useState(null)
-  const [monthValue, setMonthValue] = useState(null)
   const [customValue, setCustomValue] = useState(null)
 
   return (
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>Week Type (周视图)</Card.Header>
+          <Card.Header>Calendar default</Card.Header>
           <Card.Main>
-            <Calendar type="week" value={weekValue} onChange={setWeekValue} />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Month Type (月视图)</Card.Header>
-          <Card.Main>
-            <Calendar type="month" value={monthValue} onChange={setMonthValue} />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>WeekStart: Sunday (周日开始)</Card.Header>
-          <Card.Main>
-            <Calendar weekStart="Sunday" value={singleValue} onChange={setSingleValue} />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Title Formatter (标题格式化)</Card.Header>
-          <Card.Main>
-            <Calendar titleFormat="YYYY年MM月" value={singleValue} onChange={setSingleValue} />
+            <Calendar value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
 
@@ -42,8 +19,8 @@ export default () => {
           <Card.Header>Custom Title Formatter (自定义标题格式化)</Card.Header>
           <Card.Main>
             <Calendar
-              titleFormat={(date, info) => {
-                if (info.type === 'month') {
+              titleRender={(date, { type } = {}) => {
+                if (type === 'month') {
                   return DateUtil.format(date, 'YYYY年MM月')
                 }
                 return DateUtil.format(date, 'YYYY年MM月DD日 d 第W周')
