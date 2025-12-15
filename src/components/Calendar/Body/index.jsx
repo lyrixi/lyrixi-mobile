@@ -265,13 +265,13 @@ const Body = forwardRef(
                             let isSelected = isSelectedDate(date, value, selectionMode)
                             let selectedClassNames = []
                             if (isSelected?.includes('lyrixi-selected')) {
-                              selectedClassNames.push('lyrixi-calendar-date-selected')
+                              selectedClassNames.push('lyrixi-selected')
                             }
-                            if (isSelected?.includes('selected-start')) {
-                              selectedClassNames.push('lyrixi-calendar-date-selected-start')
+                            if (isSelected?.includes('lyrixi-selected-start')) {
+                              selectedClassNames.push('lyrixi-selected-start')
                             }
-                            if (isSelected?.includes('selected-end')) {
-                              selectedClassNames.push('lyrixi-calendar-date-selected-end')
+                            if (isSelected?.includes('lyrixi-selected-end')) {
+                              selectedClassNames.push('lyrixi-selected-end')
                             }
                             selectedClassNames = selectedClassNames.join(' ')
 
@@ -296,9 +296,7 @@ const Body = forwardRef(
                                   // 清空
                                   if (
                                     allowClear &&
-                                    e.currentTarget.classList.contains(
-                                      'lyrixi-calendar-date-selected'
-                                    )
+                                    e.currentTarget.classList.contains('lyrixi-selected')
                                   ) {
                                     onChange && onChange(null)
                                     return

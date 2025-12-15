@@ -10,6 +10,21 @@
     pointer-events: none;
     opacity: 0.2;
   }
+
+  // 选中
+  .lyrixi-selected {
+    .lyrixi-calendar-date-num {
+      color: white;
+      font-weight: 600;
+      background-color: var(--lyrixi-primary);
+      border-color: var(--lyrixi-primary);
+      border-radius: 100%;
+    }
+
+    .lyrixi-calendar-date-dot {
+      background-color: white;
+    }
+  }
 }
 // 日历上的点
 .lyrixi-calendar-date-dot {
@@ -24,20 +39,22 @@
 }
 // 区间选择模式
 .lyrixi-calendar-mode-range {
-  .lyrixi-calendar-date .lyrixi-calendar-date-num {
-    width: 100%;
-    border-radius: 0;
-  }
-
-  .lyrixi-calendar-date-today {
-    .lyrixi-calendar-date-num {
-      border-radius: 8px;
-    }
-  }
-
-  .lyrixi-calendar-date-selected {
+  .lyrixi-selected {
     .lyrixi-calendar-date-num {
       border-radius: 0;
+      width: 100%;
+    }
+  }
+  .lyrixi-selected-start {
+    .lyrixi-calendar-date-num {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  }
+  .lyrixi-selected-end {
+    .lyrixi-calendar-date-num {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
   }
 }
@@ -153,34 +170,7 @@
     box-sizing: border-box;
   }
 }
-.lyrixi-calendar-date-selected {
-  .lyrixi-calendar-date-num {
-    color: white;
-    font-weight: 600;
-    background-color: var(--lyrixi-primary);
-    border-color: var(--lyrixi-primary);
-    border-radius: 100%;
-  }
 
-  .lyrixi-calendar-date-dot {
-    background-color: white;
-  }
-
-  // Range start and end date radius
-  &.lyrixi-calendar-date-selected-start {
-    .lyrixi-calendar-date-num {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-    }
-  }
-
-  &.lyrixi-calendar-date-selected-end {
-    .lyrixi-calendar-date-num {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
-  }
-}
 .lyrixi-calendar-date-num {
   position: relative;
   display: flex;
