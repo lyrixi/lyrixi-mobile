@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Page, Calendar, DateUtil } from 'lyrixi-mobile'
 
-const selectionMode = 'range' // range
+const selectionMode = 'multiple' // range
 const weekStart = 'Monday' // Monday
 
 export default () => {

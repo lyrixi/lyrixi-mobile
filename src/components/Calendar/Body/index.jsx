@@ -298,11 +298,11 @@ const Body = forwardRef(
                                     allowClear &&
                                     e.currentTarget.classList.contains('lyrixi-selected')
                                   ) {
-                                    onChange && onChange(null)
+                                    onChange?.(date, { action: 'clear' })
                                     return
                                   }
                                   // 选择日期
-                                  onChange && onChange(date)
+                                  onChange?.(date, { action: 'select' })
                                 }}
                               >
                                 {typeof dateRender === 'function' ? (

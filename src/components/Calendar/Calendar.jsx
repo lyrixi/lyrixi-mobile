@@ -367,10 +367,23 @@ const Calendar = forwardRef(
           // Elements
           dateRender={dateRender}
           // Events
-          onChange={(date) => {
+          onChange={(date, { action } = {}) => {
             // 清空
-            if (date === null) {
-              onChange && onChange(null, { selectDate: null })
+            if (action === 'clear') {
+              // 多选模式, 仅清空当前点击日期, 不改变其他选中日期
+              if (selectionMode === 'multiple') {
+                onChange &&
+                  onChange(
+                    (value || []).filter(
+                      (selectedDate) => DateUtil.compare(selectedDate, date) !== 0
+                    ),
+                    { selectDate: date, action: 'clear' }
+                  )
+              }
+              // 单选和range模式, 清空当前选中日期
+              else {
+                onChange && onChange(null, { selectDate: date, action: 'clear' })
+              }
               return
             }
             // 选择日期
@@ -381,6 +394,11 @@ const Calendar = forwardRef(
             if (selectionMode === 'range') {
               newValue = sortRangeValue(date, value)
               newDrawDate = newValue[0]
+              onChange && onChange(newValue, { selectDate: date })
+            }
+            // Multiple select
+            else if (selectionMode === 'multiple') {
+              newValue = [...(value || []), date]
               onChange && onChange(newValue, { selectDate: date })
             }
             // Date select

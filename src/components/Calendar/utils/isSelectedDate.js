@@ -8,7 +8,7 @@ import { DateUtil } from 'lyrixi-mobile'
 
 // 当前日期是否选中, 空:未选中 数组:[selected:选中 selected-start:开始 selected-end:结束]
 function isSelectedDate(date, selected, selectionMode) {
-  // range mode
+  // 区间匹配开始日期和结束日期
   if (Array.isArray(selected)) {
     if (selectionMode === 'range' && selected.length === 2) {
       let isSelected = []
@@ -27,7 +27,11 @@ function isSelectedDate(date, selected, selectionMode) {
       }
       return null
     }
-    if (selectionMode === 'multiple' && selected.includes(date)) {
+    // 多选精确匹配选中日期
+    if (
+      selectionMode === 'multiple' &&
+      selected.some((selectedDate) => DateUtil.compare(date, selectedDate) === 0)
+    ) {
       return ['lyrixi-selected']
     }
     return null
