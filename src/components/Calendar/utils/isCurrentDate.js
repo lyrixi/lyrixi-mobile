@@ -29,7 +29,6 @@ function isCurrentDate(drawDate, pages) {
       if (date instanceof Date) {
         // 比较月份，如果月份相同则返回 true
         if (DateUtil.compare(drawDate, date, 'month') === 0) {
-          debugger
           return date.isCurrent
         }
       }
