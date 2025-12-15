@@ -22,15 +22,15 @@ toc: content
 
 ### 单选
 
-<code src="./demos/Single.jsx"></code>
+<code src="./demos/single1.jsx"></code>
 
 ### 区间等我以
 
-<code src="./demos/Range.jsx"></code>
+<code src="./demos/range1.jsx"></code>
 
 ### 多选
 
-<code src="./demos/Multiple.jsx"></code>
+<code src="./demos/multiple1.jsx"></code>
 
 ## Calendar
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle, useEffect } from 'react'
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

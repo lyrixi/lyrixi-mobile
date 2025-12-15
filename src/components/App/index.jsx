@@ -100,7 +100,7 @@ function App({
   }
 
   // Error
-  if (typeof result?.status === 'error') {
+  if (result?.status === 'error') {
     return (
       <Result status={result?.status === 'error' ? '500' : 'empty'} title={result?.message}>
         {result?.status !== 'empty' ? (
