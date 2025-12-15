@@ -282,8 +282,8 @@ const Body = forwardRef(
                                 className={DOMUtil.classNames(
                                   'lyrixi-calendar-date',
                                   date.isCurrent
-                                    ? 'lyrixi-calendar-date-in-view'
-                                    : 'lyrixi-calendar-date-out-view',
+                                    ? 'lyrixi-calendar-date-current-month'
+                                    : 'lyrixi-calendar-date-out-month',
                                   DateUtil.compare(new Date(), date) === 0
                                     ? 'lyrixi-calendar-date-today'
                                     : '',
