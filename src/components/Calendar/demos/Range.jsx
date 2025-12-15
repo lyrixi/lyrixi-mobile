@@ -1,9 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Page, Calendar, DateUtil } from 'lyrixi-mobile'
 
-const selectionMode = 'multiple' // range
-const weekStart = 'Monday' // Monday
-
 export default () => {
   const calendarRef = useRef(null)
   const [data, setData] = useState([])
@@ -41,7 +38,7 @@ export default () => {
           // max={new Date('2024-12-17')}
           ref={calendarRef}
           // weekStart={weekStart}
-          selectionMode={selectionMode}
+          selectionMode={'range'}
           value={value}
           // titleFormatter="YYYY-MM-DD W周"
           titleFormatter={(date, info) => {
