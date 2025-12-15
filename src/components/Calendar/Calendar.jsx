@@ -194,8 +194,8 @@ const Calendar = forwardRef(
       if (DateUtil.compare(newDrawDate, drawDate) === 0) {
         // 是否需要校验
         let error = {
-          errCode: 'CALENDAR_PREVIOUS_MONTH_ERROR',
-          errMsg: LocaleUtil.locale(
+          code: 'CALENDAR_PREVIOUS_MONTH_ERROR',
+          message: LocaleUtil.locale(
             `禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`,
             'lyrixi.access.error',
             [DateUtil.format(newDrawDate, 'YYYY年MM月DD日')]
@@ -206,7 +206,7 @@ const Calendar = forwardRef(
           if (isOk === true) error = null
         }
         if (error) {
-          console.log(error.errMsg)
+          console.log(error.message)
           return
         }
 
@@ -226,8 +226,8 @@ const Calendar = forwardRef(
       if (DateUtil.compare(newDrawDate, drawDate) === 0) {
         // 是否需要校验
         let error = {
-          errCode: 'CALENDAR_NEXT_MONTH_ERROR',
-          errMsg: LocaleUtil.locale(
+          code: 'CALENDAR_NEXT_MONTH_ERROR',
+          message: LocaleUtil.locale(
             `禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`,
             'lyrixi.access.error',
             [DateUtil.format(newDrawDate, 'YYYY年MM月DD日')]
@@ -254,7 +254,7 @@ const Calendar = forwardRef(
       // 访问禁止日期
       let error = isDisabledDate(newDrawDate, { min, max })
       if (error) {
-        console.log(error?.errMsg)
+        console.log(error?.message)
         return
       }
 
@@ -270,7 +270,7 @@ const Calendar = forwardRef(
       // 访问禁止日期
       let error = isDisabledDate(newDrawDate, { min, max })
       if (error) {
-        console.log(error?.errMsg)
+        console.log(error?.message)
         return
       }
 

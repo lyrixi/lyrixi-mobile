@@ -61,7 +61,7 @@ export default () => {
               onChange={setSingleValue}
               onError={(error) => {
                 console.log('错误:', error)
-                Toast.show({ content: error.errMsg })
+                Toast.show({ content: error.message })
                 return false // 返回 false 阻止默认错误处理
               }}
             />

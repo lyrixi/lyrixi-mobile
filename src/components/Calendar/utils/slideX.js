@@ -48,7 +48,7 @@ function slideX(
       if (isOk === true) error = null
     }
     if (error) {
-      console.log(error?.errMsg)
+      console.log(error?.message)
       newDrawDate = drawDate
       translateX = -container.clientWidth
     }

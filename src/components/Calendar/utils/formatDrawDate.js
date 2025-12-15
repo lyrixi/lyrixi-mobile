@@ -13,7 +13,7 @@ function formatDrawDate(newValue, { min, max }) {
   // 访问禁止日期
   let error = isDisabledDate(newDrawDate, { min, max })
   if (error) {
-    console.log(error?.errMsg)
+    console.log(error?.message)
     return error.date
   }
 
