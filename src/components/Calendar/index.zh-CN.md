@@ -20,7 +20,7 @@ toc: content
 
 ## 示例
 
-## 综合
+## 属性
 
 <code src="./demos/index.jsx"></code>
 
@@ -28,7 +28,11 @@ toc: content
 
 <code src="./demos/mode.jsx"></code>
 
-### 实例
+### 事件
+
+<code src="./demos/events.jsx"></code>
+
+### ref 实例化
 
 <code src="./demos/instance.jsx"></code>
 

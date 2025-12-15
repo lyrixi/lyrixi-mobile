@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react'
-import { Page, Calendar, DateUtil, Card, Toast } from 'lyrixi-mobile'
+import { Page, Calendar, DateUtil, Card, Button } from 'lyrixi-mobile'
 
 export default () => {
-  const calendarRef = useRef(null)
   const [singleValue, setSingleValue] = useState(null)
   const [weekValue, setWeekValue] = useState(null)
   const [monthValue, setMonthValue] = useState(null)
@@ -129,11 +128,11 @@ export default () => {
                   <div
                     style={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}
                   >
-                    <button onClick={onPreviousYear}>上一年</button>
-                    <button onClick={onPreviousMonth}>上一月</button>
+                    <Button onClick={onPreviousYear}>Previous Year</Button>
+                    <Button onClick={onPreviousMonth}>Previous Month</Button>
                     <span>{title}</span>
-                    <button onClick={onNextMonth}>下一月</button>
-                    <button onClick={onNextYear}>下一年</button>
+                    <Button onClick={onNextMonth}>Next Month</Button>
+                    <Button onClick={onNextYear}>Next Year</Button>
                   </div>
                 )
               }}
@@ -176,122 +175,10 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>onLoad (加载回调)</Card.Header>
+          <Card.Header>allowClear false</Card.Header>
           <Card.Main>
             <Calendar
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-              onLoad={(drawDate, { action, type, monthDates }) => {
-                console.log('日历加载:', { drawDate, action, type, monthDates })
-                Toast.show({ content: '日历加载完成' })
-              }}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>onSlideChange (滑动变化回调)</Card.Header>
-          <Card.Main>
-            <Calendar
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-              onSlideChange={(drawDate, { action, type, monthDates }) => {
-                console.log('视图变化:', { drawDate, action, type, monthDates })
-                Toast.show({ content: `视图变化: ${action}` })
-              }}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>onError (错误回调)</Card.Header>
-          <Card.Main>
-            <Calendar
-              min={new Date()}
-              max={DateUtil.add(new Date(), 7, 'day')}
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-              onError={(error) => {
-                console.log('错误:', error)
-                Toast.show({ content: error.errMsg })
-                return false // 返回 false 阻止默认错误处理
-              }}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Ref Methods (Ref 方法)</Card.Header>
-          <Card.Main>
-            <Calendar
-              ref={calendarRef}
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-            <div style={{ marginTop: '10px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => {
-                  calendarRef.current?.slidePrevious()
-                }}
-              >
-                上一月
-              </button>
-              <button
-                onClick={() => {
-                  calendarRef.current?.slideNext()
-                }}
-              >
-                下一月
-              </button>
-              <button
-                onClick={() => {
-                  calendarRef.current?.slideExpand()
-                }}
-              >
-                展开
-              </button>
-              <button
-                onClick={() => {
-                  calendarRef.current?.slideCollapse()
-                }}
-              >
-                收起
-              </button>
-            </div>
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>allowClear (允许清空)</Card.Header>
-          <Card.Main>
-            <Calendar
-              allowClear={true}
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-            <div style={{ marginTop: '10px' }}>
-              <button
-                onClick={() => {
-                  setSingleValue(null)
-                }}
-              >
-                清空选择
-              </button>
-            </div>
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Style & ClassName (样式)</Card.Header>
-          <Card.Main>
-            <Calendar
-              style={{ border: '2px solid #1890ff', borderRadius: '8px', padding: '10px' }}
-              className="custom-calendar"
+              allowClear={false}
               selectionMode="single"
               value={singleValue}
               onChange={setSingleValue}
