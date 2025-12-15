@@ -13,7 +13,7 @@ function getTitle(drawDate, { type } = {}) {
   }
   let format = 'YYYY-MM'
   if (type === 'week') {
-    format = 'YYYY-MM-DD E W'
+    format = 'YYYY-MM-DD [W]W'
   }
   return DateUtil.format(drawDate, format)
 }
