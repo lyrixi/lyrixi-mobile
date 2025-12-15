@@ -28,8 +28,8 @@ export default () => {
             <Calendar
               selectionMode="single"
               value={singleValue}
-              onChange={(newValue, { action, selectDate }) => {
-                console.log('修改:', { action, selectDate })
+              onChange={(newValue, { action, currentDate }) => {
+                console.log('修改:', { action, currentDate })
                 setSingleValue(newValue)
               }}
             />

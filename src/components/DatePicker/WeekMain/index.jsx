@@ -47,16 +47,8 @@ function WeekMain(
     }
   })
 
-  async function handleChange(rangeValue, { selectDate }) {
-    // 允许清空时, 相同周则清空
-    if (allowClear && value instanceof Date) {
-      if (DateUtil.format(value, 'YYYY-W') === DateUtil.format(selectDate, 'YYYY-W')) {
-        // eslint-disable-next-line
-        selectDate = null
-      }
-    }
-
-    onChange && onChange(selectDate)
+  async function handleChange(rangeValue, { currentDate, action }) {
+    onChange && onChange(action === 'clear' ? null : currentDate)
   }
 
   let weekDates = DateUtil.getWeekDates(value, weekStart)
@@ -74,6 +66,7 @@ function WeekMain(
       draggable={['horizontal']}
       weekStart={'Monday'}
       selectionMode={'range'}
+      allowClear={allowClear}
       // Style
       style={style}
       className={DOMUtil.classNames('lyrixi-datepicker-weekmain-calendar', className)}

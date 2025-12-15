@@ -4,6 +4,7 @@ import {
   getTitle,
   formatDrawDate,
   isDisabledDate,
+  isInCurrentPage,
   slideX,
   slideY,
   sortRangeValue,
@@ -95,12 +96,16 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useEffect(() => {
-      if (drawDate && JSON.stringify(drawDate) === JSON.stringify(value)) {
+      // 获取新的绘制日期
+      let newDrawDate = formatDrawDate(value, { min, max })
+
+      // 如果 drawDate 存在且在当前页，则不需要重新绘制日历
+      if (pagesRef.current && isInCurrentPage(newDrawDate, pagesRef.current)) {
+        setDrawDate(newDrawDate)
         return
       }
 
       // 更新pages
-      let newDrawDate = formatDrawDate(value, { min, max })
       updatePages(newDrawDate)
 
       // 第一次加载
@@ -372,17 +377,16 @@ const Calendar = forwardRef(
             if (action === 'clear') {
               // 多选模式, 仅清空当前点击日期, 不改变其他选中日期
               if (selectionMode === 'multiple') {
-                onChange &&
-                  onChange(
-                    (value || []).filter(
-                      (selectedDate) => DateUtil.compare(selectedDate, date) !== 0
-                    ),
-                    { selectDate: date, action: 'clear' }
-                  )
+                onChange?.(
+                  (value || []).filter(
+                    (selectedDate) => DateUtil.compare(selectedDate, date) !== 0
+                  ),
+                  { currentDate: date, action: 'clear' }
+                )
               }
               // 单选和range模式, 清空当前选中日期
               else {
-                onChange && onChange(null, { selectDate: date, action: 'clear' })
+                onChange?.(null, { currentDate: date, action: 'clear' })
               }
               return
             }
@@ -394,28 +398,28 @@ const Calendar = forwardRef(
             if (selectionMode === 'range') {
               newValue = sortRangeValue(date, value)
               newDrawDate = newValue[0]
-              onChange && onChange(newValue, { selectDate: date })
+              onChange && onChange(newValue, { currentDate: date, action: 'select' })
             }
             // Multiple select
             else if (selectionMode === 'multiple') {
               newValue = [...(value || []), date]
-              onChange && onChange(newValue, { selectDate: date })
+              onChange && onChange(newValue, { currentDate: date, action: 'select' })
             }
             // Date select
             else {
-              onChange && onChange(newValue, { selectDate: newValue })
+              onChange && onChange(newValue, { currentDate: date, action: 'select' })
             }
 
             // 跨月视图发生变化, 需要触发onSlideChange
-            if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {
-              drawDate = newDrawDate
-              triggerSlideChange('change', { drawDate: newDrawDate })
+            // if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {
+            //   drawDate = newDrawDate
+            //   triggerSlideChange('change', { drawDate: newDrawDate })
 
-              // 更新Y轴位置, X轴位轴在Body组件内位移
-              if (drawTypeRef.current === 'week') {
-                handleSlideY('collapse')
-              }
-            }
+            //   // 更新Y轴位置, X轴位轴在Body组件内位移
+            //   if (drawTypeRef.current === 'week') {
+            //     handleSlideY('collapse')
+            //   }
+            // }
           }}
           // Event: view change
           onSlideX={async (action) => {

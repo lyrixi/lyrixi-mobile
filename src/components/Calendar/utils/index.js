@@ -3,6 +3,7 @@ import Months from './Months'
 import formatDrawDate from './formatDrawDate'
 import isSelectedDate from './isSelectedDate'
 import isDisabledDate from './isDisabledDate'
+import isInCurrentPage from './isInCurrentPage'
 import getTranslateValue from './getTranslateValue'
 import getTitle from './getTitle'
 import slideY from './slideY'
@@ -15,6 +16,7 @@ export {
   formatDrawDate,
   isSelectedDate,
   isDisabledDate,
+  isInCurrentPage,
   getTranslateValue,
   getTitle,
   slideY,
