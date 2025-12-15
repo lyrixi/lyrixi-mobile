@@ -10,13 +10,7 @@ import { DateUtil } from 'lyrixi-mobile'
 // drawDate: 要判断的日期
 // pages: 三页数据数组 [previous, current, next]，pages[1] 是当前页
 // 返回: true 表示在当前页，false 表示不在当前页
-function isCurrentDate(drawDate, pages) {
-  if (!drawDate || !pages || !Array.isArray(pages) || pages.length < 2) {
-    return false
-  }
-
-  // pages[1] 是当前页
-  const currentPage = pages[1]
+function isCurrentDate(drawDate, currentPage) {
   if (!currentPage || !Array.isArray(currentPage)) {
     return false
   }

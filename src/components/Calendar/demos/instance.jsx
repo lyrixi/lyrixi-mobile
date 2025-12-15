@@ -7,7 +7,7 @@ const buttonStyle = {
 
 export default () => {
   const calendarRef = useRef(null)
-  const [value, setValue] = useState()
+  const [value, setValue] = useState(null)
 
   return (
     <Page>

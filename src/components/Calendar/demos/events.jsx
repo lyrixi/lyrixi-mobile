@@ -8,25 +8,9 @@ export default () => {
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>onLoad</Card.Header>
-          <Card.Main>
-            <Calendar
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-              onLoad={(drawDate, { action, type, monthDates }) => {
-                console.log('日历加载:', { drawDate, action, type, monthDates })
-                Toast.show({ content: '日历加载完成' })
-              }}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
           <Card.Header>onChange</Card.Header>
           <Card.Main>
             <Calendar
-              selectionMode="single"
               value={singleValue}
               onChange={(newValue, { action, currentDate }) => {
                 console.log('修改:', { action, currentDate })
@@ -36,15 +20,13 @@ export default () => {
           </Card.Main>
         </Card>
         <Card>
-          <Card.Header>onSlideChange</Card.Header>
+          <Card.Header>onPageChange</Card.Header>
           <Card.Main>
             <Calendar
-              selectionMode="single"
               value={singleValue}
               onChange={setSingleValue}
-              onSlideChange={(drawDate, { action, type, monthDates }) => {
-                console.log('视图变化:', { drawDate, action, type, monthDates })
-                Toast.show({ content: `视图变化: ${action}` })
+              onPageChange={(drawDate, { type, pages }) => {
+                console.log('视图变化:', { drawDate, type, pages })
               }}
             />
           </Card.Main>
@@ -54,9 +36,8 @@ export default () => {
           <Card.Header>onError</Card.Header>
           <Card.Main>
             <Calendar
-              min={new Date()}
-              max={DateUtil.add(new Date(), 7, 'day')}
-              selectionMode="single"
+              min={DateUtil.add(new Date(), -2, 'year')}
+              max={DateUtil.add(new Date(), 2, 'year')}
               value={singleValue}
               onChange={setSingleValue}
               onError={(error) => {

@@ -14,48 +14,28 @@ export default () => {
         <Card>
           <Card.Header>Week Type (周视图)</Card.Header>
           <Card.Main>
-            <Calendar
-              type="week"
-              selectionMode="single"
-              value={weekValue}
-              onChange={setWeekValue}
-            />
+            <Calendar type="week" value={weekValue} onChange={setWeekValue} />
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>Month Type (月视图)</Card.Header>
           <Card.Main>
-            <Calendar
-              type="month"
-              selectionMode="single"
-              value={monthValue}
-              onChange={setMonthValue}
-            />
+            <Calendar type="month" value={monthValue} onChange={setMonthValue} />
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>WeekStart: Sunday (周日开始)</Card.Header>
           <Card.Main>
-            <Calendar
-              weekStart="Sunday"
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
+            <Calendar weekStart="Sunday" value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>Title Formatter (标题格式化)</Card.Header>
           <Card.Main>
-            <Calendar
-              titleFormatter="YYYY年MM月"
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
+            <Calendar titleFormatter="YYYY年MM月" value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
 
@@ -69,7 +49,6 @@ export default () => {
                 }
                 return DateUtil.format(date, 'YYYY年MM月DD日 d 第W周')
               }}
-              selectionMode="single"
               value={singleValue}
               onChange={setSingleValue}
             />
@@ -82,7 +61,6 @@ export default () => {
             <Calendar
               min={new Date()}
               max={DateUtil.add(new Date(), 30, 'day')}
-              selectionMode="single"
               value={minMaxValue}
               onChange={setMinMaxValue}
             />
@@ -92,24 +70,14 @@ export default () => {
         <Card>
           <Card.Header>Draggable: horizontal only (仅水平拖动)</Card.Header>
           <Card.Main>
-            <Calendar
-              draggable={['horizontal']}
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
+            <Calendar draggable={['horizontal']} value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>Draggable: vertical only (仅垂直拖动)</Card.Header>
           <Card.Main>
-            <Calendar
-              draggable={['vertical']}
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
+            <Calendar draggable={['vertical']} value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
 
@@ -136,7 +104,6 @@ export default () => {
                   </div>
                 )
               }}
-              selectionMode="single"
               value={singleValue}
               onChange={setSingleValue}
             />
@@ -167,7 +134,6 @@ export default () => {
                   </div>
                 )
               }}
-              selectionMode="single"
               value={customValue}
               onChange={setCustomValue}
             />
@@ -177,12 +143,7 @@ export default () => {
         <Card>
           <Card.Header>allowClear false</Card.Header>
           <Card.Main>
-            <Calendar
-              allowClear={false}
-              selectionMode="single"
-              value={singleValue}
-              onChange={setSingleValue}
-            />
+            <Calendar allowClear={false} value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
       </Page.Main>

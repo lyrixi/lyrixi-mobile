@@ -52,9 +52,8 @@ toc: content
 | draggable      | 可拖动方向   | `array`                              | `['horizontal', 'vertical']` |
 | headerRender   | 头部渲染函数 | `(params: object) => ReactNode`      | -                            |
 | dateRender     | 日期渲染函数 | `function`                           | -                            |
-| onLoad         | 加载回调     | `(date: Date, info: object) => void` | -                            |
 | onChange       | 选择变化回调 | `(date: Date, info: object) => void` | -                            |
-| onSlideChange  | 滑动变化回调 | `(date: Date, info: object) => void` | -                            |
+| onPageChange   | 滑动变化回调 | `(date: Date, info: object) => void` | -                            |
 | onError        | 错误回调     | `(error: Error) => void`             | -                            |
 
 ### Ref

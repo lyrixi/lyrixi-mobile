@@ -12,7 +12,7 @@ export default () => {
         <Card>
           <Card.Header>selectionMode range (Default)</Card.Header>
           <Card.Main>
-            <Calendar selectionMode="single" value={singleValue} onChange={setSingleValue} />
+            <Calendar value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
         <Card>

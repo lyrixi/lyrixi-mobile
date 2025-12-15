@@ -17,7 +17,6 @@ import previousMonth from './previousMonth'
 import nextMonth from './nextMonth'
 import getDaysInMonth from './getDaysInMonth'
 import quarter from './quarter'
-// 与add功能重复, 但为了兼容旧版本, 保留
 
 // 时区方法
 import timeZoneToTimeZone from './utc/timeZoneToTimeZone.js'
