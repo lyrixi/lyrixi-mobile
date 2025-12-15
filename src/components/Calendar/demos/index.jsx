@@ -34,7 +34,7 @@ export default () => {
         <Card>
           <Card.Header>Title Formatter (标题格式化)</Card.Header>
           <Card.Main>
-            <Calendar titleFormatter="YYYY年MM月" value={singleValue} onChange={setSingleValue} />
+            <Calendar titleFormat="YYYY年MM月" value={singleValue} onChange={setSingleValue} />
           </Card.Main>
         </Card>
 
@@ -42,7 +42,7 @@ export default () => {
           <Card.Header>Custom Title Formatter (自定义标题格式化)</Card.Header>
           <Card.Main>
             <Calendar
-              titleFormatter={(date, info) => {
+              titleFormat={(date, info) => {
                 if (info.type === 'month') {
                   return DateUtil.format(date, 'YYYY年MM月')
                 }

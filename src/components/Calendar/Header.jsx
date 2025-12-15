@@ -2,10 +2,11 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
+import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日历头部
@@ -32,17 +33,29 @@ const Header = forwardRef(
         className={DOMUtil.classNames('lyrixi-calendar-header', className)}
       >
         <div className="lyrixi-calendar-previous-year" onClick={onPreviousYear}>
-          &lt;&lt;
+          <Icon className="lyrixi-iconfont-arrow-left" color="tertiary" size="s" />
+          <Icon
+            className="lyrixi-iconfont-arrow-left"
+            color="tertiary"
+            size="s"
+            style={{ marginLeft: '-4px' }}
+          />
         </div>
         <div className="lyrixi-calendar-previous-month" onClick={onPreviousMonth}>
-          &lt;
+          <Icon className="lyrixi-iconfont-arrow-left" color="tertiary" size="s" />
         </div>
         <div className="lyrixi-calendar-title">{children}</div>
         <div className="lyrixi-calendar-next-month" onClick={onNextMonth}>
-          &gt;
+          <Icon className="lyrixi-iconfont-arrow-right" color="tertiary" size="s" />
         </div>
         <div className="lyrixi-calendar-next-year" onClick={onNextYear}>
-          &gt;&gt;
+          <Icon
+            className="lyrixi-iconfont-arrow-right"
+            color="tertiary"
+            size="s"
+            style={{ marginRight: '-4px' }}
+          />
+          <Icon className="lyrixi-iconfont-arrow-right" color="tertiary" size="s" />
         </div>
       </div>
     )

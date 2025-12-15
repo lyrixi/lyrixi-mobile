@@ -47,7 +47,7 @@ const Calendar = (
     draggable = ['horizontal', 'vertical'], // 是否允许垂直拖动
 
     // Elements
-    titleFormatter = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
+    titleFormat = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
     // 头部渲染
     headerRender,
     // 单个日期渲染
@@ -253,13 +253,13 @@ const Calendar = (
     >
       {typeof headerRender === 'function' ? (
         headerRender({
-          title: getTitle(drawDate, titleFormatter, { type: drawTypeRef.current }),
+          title: getTitle(drawDate, titleFormat, { type: drawTypeRef.current }),
           onPreviousMonth: handlePreviousMonth,
           onNextMonth: handleNextMonth,
           onPreviousYear: handlePreviousYear,
           onNextYear: handleNextYear,
           drawDate,
-          titleFormatter
+          titleFormat
         })
       ) : (
         <Header
@@ -268,7 +268,7 @@ const Calendar = (
           onPreviousYear={handlePreviousYear}
           onNextYear={handleNextYear}
         >
-          {getTitle(drawDate, titleFormatter, { type: drawTypeRef.current })}
+          {getTitle(drawDate, titleFormat, { type: drawTypeRef.current })}
         </Header>
       )}
       <div className="lyrixi-calendar-days">

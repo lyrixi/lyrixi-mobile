@@ -40,21 +40,21 @@ toc: content
 
 ### 属性
 
-| 属性           | 说明         | 类型                                 | 默认值                       |
-| -------------- | ------------ | ------------------------------------ | ---------------------------- |
-| type           | 日历类型     | `'week' \| 'month'`                  | `'month'`                    |
-| value          | 选中值       | `Date \| Date[]`                     | -                            |
-| selectionMode  | 选择模式     | `'single' \| 'range'`                | -                            |
-| weekStart      | 周起始日     | `'Monday' \| 'Sunday'`               | `'Sunday'`                   |
-| titleFormatter | 标题格式化   | `string`                             | `'YYYY-MM'`                  |
-| min            | 最小日期     | `Date`                               | -                            |
-| max            | 最大日期     | `Date`                               | -                            |
-| draggable      | 可拖动方向   | `array`                              | `['horizontal', 'vertical']` |
-| headerRender   | 头部渲染函数 | `(params: object) => ReactNode`      | -                            |
-| dateRender     | 日期渲染函数 | `function`                           | -                            |
-| onChange       | 选择变化回调 | `(date: Date, info: object) => void` | -                            |
-| onPageChange   | 滑动变化回调 | `(date: Date, info: object) => void` | -                            |
-| onError        | 错误回调     | `(error: Error) => void`             | -                            |
+| 属性          | 说明         | 类型                                 | 默认值                       |
+| ------------- | ------------ | ------------------------------------ | ---------------------------- |
+| type          | 日历类型     | `'week' \| 'month'`                  | `'month'`                    |
+| value         | 选中值       | `Date \| Date[]`                     | -                            |
+| selectionMode | 选择模式     | `'single' \| 'range'`                | -                            |
+| weekStart     | 周起始日     | `'Monday' \| 'Sunday'`               | `'Sunday'`                   |
+| titleFormat   | 标题格式化   | `string`                             | `'YYYY-MM'`                  |
+| min           | 最小日期     | `Date`                               | -                            |
+| max           | 最大日期     | `Date`                               | -                            |
+| draggable     | 可拖动方向   | `array`                              | `['horizontal', 'vertical']` |
+| headerRender  | 头部渲染函数 | `(params: object) => ReactNode`      | -                            |
+| dateRender    | 日期渲染函数 | `function`                           | -                            |
+| onChange      | 选择变化回调 | `(date: Date, info: object) => void` | -                            |
+| onPageChange  | 滑动变化回调 | `(date: Date, info: object) => void` | -                            |
+| onError       | 错误回调     | `(error: Error) => void`             | -                            |
 
 ### Ref
 
