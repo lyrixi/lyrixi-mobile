@@ -315,7 +315,7 @@ const Body = forwardRef(
             </div>
           </div>
         </div>
-        {draggable.includes('vertical') && (
+        {draggable.includes('lyrixi-vertical') && (
           <div
             className="lyrixi-calendar-footer"
             onTouchStart={handleTouchStart}
