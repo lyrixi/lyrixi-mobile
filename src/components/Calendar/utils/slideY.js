@@ -1,13 +1,13 @@
 import Months from './Months'
 
 // 上下拉动
-function slideY(op, { duration, weekStart, drawDate, cellHeight, bodyHeight, body, bodyY }) {
+function slideY(op, { duration, currentPage, drawDate, cellHeight, bodyHeight, body, bodyY }) {
   // 添加动画
   body.style.transitionDuration = duration + 'ms'
 
   let height = 0
   let translateY = 0
-  let drawDateRowIndex = Months.getDateRowIndex(drawDate, weekStart)
+  let drawDateRowIndex = Months.getDateRowIndex(drawDate, currentPage)
 
   // 样式标记展开和收缩, 暂时无意义
   if (op) {

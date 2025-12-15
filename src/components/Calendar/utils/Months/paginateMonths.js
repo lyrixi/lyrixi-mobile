@@ -10,7 +10,7 @@ function paginateMonths(months, { weekStart, drawDate, type }) {
 
   // 周需要替换同行上周和下周的数据
   if (type === 'week') {
-    let drawDateRowIndex = getDateRowIndex(drawDate, weekStart)
+    let drawDateRowIndex = getDateRowIndex(drawDate, months.current)
 
     // 上周和下周数据
     let weekDates = Weeks.getWeeks(drawDate, { weekStart })

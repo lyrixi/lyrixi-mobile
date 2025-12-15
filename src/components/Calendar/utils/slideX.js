@@ -5,7 +5,7 @@ import Months from './Months'
 // 左右滑动
 function slideX(
   op,
-  { type, min, max, duration, weekStart, drawDate, container, bodyX, bodyY, cellHeight, onError }
+  { type, min, max, duration, currentPage, drawDate, container, bodyX, bodyY, cellHeight, onError }
 ) {
   // 添加动画
   bodyX.style.transitionDuration = duration + 'ms'
@@ -75,7 +75,7 @@ function slideX(
         }
         // 周视图时, 需要移动竖向位置
         else {
-          let drawDateRowIndex = Months.getDateRowIndex(newDrawDate, weekStart)
+          let drawDateRowIndex = Months.getDateRowIndex(newDrawDate, currentPage)
           translateY = -drawDateRowIndex * cellHeight
         }
         bodyY.style.transform = 'translateY(' + translateY + 'px)'

@@ -146,7 +146,7 @@ const Calendar = forwardRef(
 
       slideY(action, {
         duration: duration,
-        weekStart: weekStart,
+        currentPage: pagesRef.current[1],
         cellHeight: cellHeight,
         bodyHeight: cellHeight * 6,
         drawDate: drawDate,
@@ -164,7 +164,7 @@ const Calendar = forwardRef(
         min: min,
         max: max,
         duration: duration,
-        weekStart: weekStart,
+        currentPage: pagesRef.current[1],
         drawDate: drawDate,
         container: rootRef.current,
         bodyX: rootRef.current?.querySelector?.('.lyrixi-calendar-body-x'),

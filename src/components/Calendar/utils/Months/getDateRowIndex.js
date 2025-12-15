@@ -1,28 +1,29 @@
-// 获取日期所在行
-function getDateRowIndex(currentDate, weekStart) {
-  let date = new Date(currentDate)
-  // 获得本月日历, 返回42天
-  // 月头的位置, 周日为0
-  date.setDate(1)
-  let firstDayIndex = date.getDay()
+// 内库使用-start
+import DateUtil from './../../../../utils/DateUtil'
+// 内库使用-end
 
-  // 起始点如果是周一, 则周一为0
-  if (weekStart === 'Monday') {
-    // 周日索引为6
-    if (firstDayIndex === 0) {
-      firstDayIndex = 6
-    }
-    // 其它减1, 保证周一是0
-    else {
-      firstDayIndex = firstDayIndex - 1
+/* 测试使用-start
+import { DateUtil } from 'lyrixi-mobile'
+测试使用-end */
+
+// 获取日期所在行
+function getDateRowIndex(currentDate, currentPage) {
+  // 遍历当前页的所有日期，判断是否有日期与 drawDate 在同一月份
+  for (let rowIndex = 0; rowIndex < currentPage.length; rowIndex++) {
+    let row = currentPage[rowIndex]
+    if (!Array.isArray(row)) continue
+
+    for (let date of row) {
+      if (date instanceof Date) {
+        // 比较月份，如果月份相同则返回 true
+        if (DateUtil.compare(currentDate, date) === 0) {
+          return rowIndex
+        }
+      }
     }
   }
 
-  // 在当月中的位置: 1号的起始位置+当前多少号
-  let monthIndex = firstDayIndex + currentDate.getDate()
-
-  // 今天所在行数: 选中位置(例如14) / 一周7天(例如7) = 所在行数(例如1), 由于索引从0开始的, 所以返回1行
-  return Math.ceil(monthIndex / 7) - 1
+  return 0
 }
 
 export default getDateRowIndex
