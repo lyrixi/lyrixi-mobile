@@ -34,7 +34,7 @@ const Calendar = forwardRef(
       open,
       // Value & Display Value
       value,
-      selectionMode, // single | range
+      selectionMode, // single | multiple | range
       type = 'month', // week | month
       weekStart = 'Monday', // Monday | Sunday
 
@@ -355,6 +355,7 @@ const Calendar = forwardRef(
           open={open}
           // Value & Display Value
           pages={pagesRef.current}
+          selectionMode={selectionMode}
           value={value}
           // Status
           cellHeight={cellHeight}

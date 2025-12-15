@@ -21,6 +21,7 @@ const Body = forwardRef(
       open,
       // Value & Display Value
       value,
+      selectionMode,
       pages,
       // Style
       cellHeight,
@@ -260,7 +261,7 @@ const Body = forwardRef(
                         <div className="lyrixi-calendar-row" key={rowIndex}>
                           {/* 7列 */}
                           {row.map((date, dateIndex) => {
-                            let isSelected = isSelectedDate(date, value)
+                            let isSelected = isSelectedDate(date, value, selectionMode)
                             let selectedClassNames = []
                             if (isSelected?.includes('lyrixi-selected')) {
                               selectedClassNames.push('lyrixi-calendar-date-selected')

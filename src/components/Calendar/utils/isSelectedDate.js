@@ -7,16 +7,15 @@ import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 当前日期是否选中, 空:未选中 数组:[selected:选中 selected-start:开始 selected-end:结束]
-function isSelectedDate(date, selected) {
+function isSelectedDate(date, selected, selectionMode) {
   // range mode
   if (Array.isArray(selected)) {
-    if (selected.length === 2) {
+    if (selectionMode === 'range' && selected.length === 2) {
       let isSelected = []
       // Date is between startDate and endDate, add selected class
       if (DateUtil.compare(date, selected[0]) >= 0 && DateUtil.compare(date, selected[1]) <= 0) {
         isSelected.push('lyrixi-selected')
       }
-
       if (DateUtil.compare(date, selected[0]) === 0) {
         isSelected.push('lyrixi-selected-start')
       }
@@ -28,6 +27,9 @@ function isSelectedDate(date, selected) {
       }
       return null
     }
+    if (selectionMode === 'multiple' && selected.includes(date)) {
+      return ['lyrixi-selected']
+    }
     return null
   }
 
@@ -37,7 +39,7 @@ function isSelectedDate(date, selected) {
   }
 
   if (DateUtil.compare(date, selected) === 0) {
-    return ['selected']
+    return ['lyrixi-selected']
   }
 
   return null
