@@ -45,9 +45,10 @@ const Calendar = forwardRef(
       // Status
       min, // 禁用之前日期
       max, // 禁用之后日期
-      // Status
+      allowClear = true, // 是否允许清空
       draggable = ['horizontal', 'vertical'], // 是否允许垂直拖动
-      // Element
+
+      // Elements
       titleFormatter = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       // 头部渲染
       headerRender,
@@ -362,10 +363,17 @@ const Calendar = forwardRef(
           min={min}
           max={max}
           draggable={draggable}
+          allowClear={allowClear}
           // Elements
           dateRender={dateRender}
           // Events
           onChange={(date) => {
+            // 清空
+            if (date === null) {
+              onChange && onChange(null, { selectDate: null })
+              return
+            }
+            // 选择日期
             let newValue = date
             let newDrawDate = date
 
@@ -377,7 +385,7 @@ const Calendar = forwardRef(
             }
             // Date select
             else {
-              onChange && onChange(newValue)
+              onChange && onChange(newValue, { selectDate: newValue })
             }
 
             // 跨月视图发生变化, 需要触发onSlideChange

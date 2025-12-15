@@ -29,6 +29,7 @@ const Body = forwardRef(
       min, // 禁用之前日期
       max, // 禁用之后日期
       draggable,
+      allowClear,
       // Elements
       dateRender,
       // Events
@@ -292,6 +293,17 @@ const Body = forwardRef(
                                 style={{ height: cellHeight + 'px' }}
                                 onClick={(e) => {
                                   e.stopPropagation()
+                                  // 清空
+                                  if (
+                                    allowClear &&
+                                    e.currentTarget.classList.contains(
+                                      'lyrixi-calendar-date-selected'
+                                    )
+                                  ) {
+                                    onChange && onChange(null)
+                                    return
+                                  }
+                                  // 选择日期
                                   onChange && onChange(date)
                                 }}
                               >
