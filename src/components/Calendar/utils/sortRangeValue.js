@@ -1,4 +1,10 @@
-import dayjs from 'dayjs'
+// 内库使用-start
+import DateUtil from './../../../utils/DateUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DateUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // Range value, sort two date
 function sortRangeValue(newDate, value) {
@@ -8,9 +14,9 @@ function sortRangeValue(newDate, value) {
   }
 
   // Just has start date, select end date
-  if (dayjs(value[0]).isSame(dayjs(value[1]), 'date')) {
+  if (DateUtil.compare(value[0], value[1]) === 0) {
     let newValue = [value[0], newDate]
-    if (dayjs(value[0]).isBefore(dayjs(newDate), 'date') === false) {
+    if (DateUtil.compare(value[0], newDate) === -1) {
       newValue = [newDate, value[0]]
     }
     return newValue

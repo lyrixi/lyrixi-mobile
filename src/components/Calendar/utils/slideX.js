@@ -1,6 +1,13 @@
-import dayjs from 'dayjs'
 import isDisabledDate from './isDisabledDate'
 import Months from './Months'
+
+// 内库使用-start
+import DateUtil from './../../../utils/DateUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DateUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 左右滑动
 function slideX(
@@ -22,9 +29,9 @@ function slideX(
 
     // 日期
     if (type === 'month') {
-      newDrawDate = dayjs(drawDate).subtract(1, 'month').toDate()
+      newDrawDate = DateUtil.add(drawDate, -1, 'month')
     } else {
-      newDrawDate = dayjs(drawDate).subtract(7, 'day').toDate()
+      newDrawDate = DateUtil.add(drawDate, -7, 'day')
     }
   }
   // 右滑动
@@ -34,9 +41,9 @@ function slideX(
 
     // 日期
     if (type === 'month') {
-      newDrawDate = dayjs(drawDate).add(1, 'month').toDate()
+      newDrawDate = DateUtil.add(drawDate, 1, 'month')
     } else {
-      newDrawDate = dayjs(drawDate).add(7, 'day').toDate()
+      newDrawDate = DateUtil.add(drawDate, 7, 'day')
     }
   }
 

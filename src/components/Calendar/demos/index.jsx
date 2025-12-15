@@ -5,7 +5,6 @@ export default () => {
   const [singleValue, setSingleValue] = useState(null)
   const [weekValue, setWeekValue] = useState(null)
   const [monthValue, setMonthValue] = useState(null)
-  const [minMaxValue, setMinMaxValue] = useState(null)
   const [customValue, setCustomValue] = useState(null)
 
   return (
@@ -51,18 +50,6 @@ export default () => {
               }}
               value={singleValue}
               onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>min & max (最小/最大日期)</Card.Header>
-          <Card.Main>
-            <Calendar
-              min={new Date()}
-              max={DateUtil.add(new Date(), 30, 'day')}
-              value={minMaxValue}
-              onChange={setMinMaxValue}
             />
           </Card.Main>
         </Card>

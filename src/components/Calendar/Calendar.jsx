@@ -1,5 +1,4 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import dayjs from 'dayjs'
 import {
   getTitle,
   formatDrawDate,
@@ -193,8 +192,8 @@ const Calendar = (
   // Last year
   function handlePreviousYear(e) {
     e && e.stopPropagation()
-    let lastYear = dayjs(drawDate).subtract(1, 'year')
-    let newDrawDate = lastYear.toDate()
+    let lastYear = DateUtil.add(drawDate, -1, 'year')
+    let newDrawDate = lastYear
 
     // 访问禁止日期
     let error = isDisabledDate(newDrawDate, { min, max })
@@ -210,8 +209,8 @@ const Calendar = (
   // Next year
   function handleNextYear(e) {
     e && e.stopPropagation()
-    let nextYear = dayjs(drawDate).add(1, 'year')
-    let newDrawDate = nextYear.toDate()
+    let nextYear = DateUtil.add(drawDate, 1, 'year')
+    let newDrawDate = nextYear
 
     // 访问禁止日期
     let error = isDisabledDate(newDrawDate, { min, max })
