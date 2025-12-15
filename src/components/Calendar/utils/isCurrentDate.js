@@ -10,7 +10,7 @@ import { DateUtil } from 'lyrixi-mobile'
 // drawDate: 要判断的日期
 // pages: 三页数据数组 [previous, current, next]，pages[1] 是当前页
 // 返回: true 表示在当前页，false 表示不在当前页
-function isInCurrentPage(drawDate, pages) {
+function isCurrentDate(drawDate, pages) {
   if (!drawDate || !pages || !Array.isArray(pages) || pages.length < 2) {
     return false
   }
@@ -29,7 +29,8 @@ function isInCurrentPage(drawDate, pages) {
       if (date instanceof Date) {
         // 比较月份，如果月份相同则返回 true
         if (DateUtil.compare(drawDate, date, 'month') === 0) {
-          return true
+          debugger
+          return date.isCurrent
         }
       }
     }
@@ -38,4 +39,4 @@ function isInCurrentPage(drawDate, pages) {
   return false
 }
 
-export default isInCurrentPage
+export default isCurrentDate

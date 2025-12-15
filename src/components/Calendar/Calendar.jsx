@@ -4,7 +4,7 @@ import {
   getTitle,
   formatDrawDate,
   isDisabledDate,
-  isInCurrentPage,
+  isCurrentDate,
   slideX,
   slideY,
   sortRangeValue,
@@ -100,7 +100,7 @@ const Calendar = forwardRef(
       let newDrawDate = formatDrawDate(value, { min, max })
 
       // 如果 drawDate 存在且在当前页，则不需要重新绘制日历
-      if (pagesRef.current && isInCurrentPage(newDrawDate, pagesRef.current)) {
+      if (pagesRef.current && isCurrentDate(newDrawDate, pagesRef.current)) {
         setDrawDate(newDrawDate)
         return
       }
