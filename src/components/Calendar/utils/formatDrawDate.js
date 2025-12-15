@@ -3,8 +3,8 @@ import isDisabledDate from './isDisabledDate'
 // 获取当前绘制日期
 function formatDrawDate(newValue, { min, max }) {
   let newDrawDate = newValue
-  if (Array.isArray(newValue) && newValue.length === 2) {
-    newDrawDate = newValue[0]
+  if (Array.isArray(newValue)) {
+    newDrawDate = newValue[newValue.length - 1]
   }
   if (newDrawDate instanceof Date === false) {
     newDrawDate = new Date()
