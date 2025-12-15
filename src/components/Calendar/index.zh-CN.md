@@ -20,17 +20,17 @@ toc: content
 
 ## 示例
 
-### 单选
+## 综合
 
-<code src="./demos/single1.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
-### 区间等我以
+### 选择模式
 
-<code src="./demos/range1.jsx"></code>
+<code src="./demos/mode.jsx"></code>
 
-### 多选
+### 实例
 
-<code src="./demos/multiple1.jsx"></code>
+<code src="./demos/instance.jsx"></code>
 
 ## Calendar
 

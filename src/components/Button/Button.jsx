@@ -15,7 +15,7 @@ const Button = forwardRef(
       id,
       // Button: Style
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
-      borderColor, // 边框颜色: default, transparent, primary, link, warning, danger, success
+      borderColor = 'default', // 边框颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
       fontSize, // 字体大小: xxs, xs, s, m, l, xl

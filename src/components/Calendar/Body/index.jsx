@@ -21,7 +21,7 @@ const Body = forwardRef(
       open,
       // Value & Display Value
       value,
-      selectionMode,
+      selectionMode = 'single',
       pages,
       // Style
       cellHeight,
