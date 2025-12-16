@@ -80,6 +80,8 @@ const DateCombo = forwardRef(
         <DatePickerCombo
           value={value}
           type={type}
+          min={min}
+          max={max}
           onChange={onChange}
           comboRender={({ comboRef, onClick }) => {
             return (

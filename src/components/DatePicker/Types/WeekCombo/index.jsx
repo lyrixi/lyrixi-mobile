@@ -47,6 +47,8 @@ const Week = forwardRef(
         <DatePickerCombo
           ref={ref}
           value={value}
+          min={min}
+          max={max}
           onChange={(newValue) => {
             onChange && onChange(newValue)
           }}

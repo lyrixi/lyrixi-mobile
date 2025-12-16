@@ -114,9 +114,15 @@ const Types = forwardRef(
       if (pickerNode === undefined) {
         pickerNode =
           value.type === 'week' ? (
-            <WeekCombo value={value?.value} onChange={handleDate} />
+            <WeekCombo value={value?.value} min={min} max={max} onChange={handleDate} />
           ) : (
-            <DateCombo type={value?.type} value={value?.value} onChange={handleDate} />
+            <DateCombo
+              type={value?.type}
+              value={value?.value}
+              min={min}
+              max={max}
+              onChange={handleDate}
+            />
           )
       }
 
