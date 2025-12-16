@@ -10,11 +10,10 @@ import getClearNode from './getClearNode'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import MathUtil from '../../../utils/MathUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, MathUtil } from 'lyrixi-mobile'
+import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const InputText = (
@@ -158,7 +157,6 @@ const InputText = (
       // 不能校验最小值，因为min={0.1}时，无法删除
       val = minMaxFormatter(val, { max })
       val = precisionFormatter(val, { precision, trim: false })
-      val = MathUtil.extractNumber(val)
       val = maxLengthFormatter(val, { maxLength })
       if (target.value !== val) {
         target.value = val

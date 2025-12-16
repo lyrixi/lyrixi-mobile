@@ -1,10 +1,14 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import extractNumber from './extractNumber'
 import Instance from './instance'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
+import MathUtil from './../../utils/MathUtil'
 // 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil, MathUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 生成二维码
 const QRCode = forwardRef(
@@ -35,16 +39,16 @@ const QRCode = forwardRef(
       if (!instance.current) {
         instance.current = new Instance(rootRef.current, {
           text: text || '',
-          width: extractNumber(style?.width || 230),
-          height: extractNumber(style?.width || 230),
+          width: MathUtil.extractNumber(style?.width || 230),
+          height: MathUtil.extractNumber(style?.width || 230),
           colorDark: style?.color || '#000000',
           colorLight: style?.backgroundColor || '#ffffff',
           correctLevel: Instance.CorrectLevel.M // L,M,Q,H
         })
       }
 
-      const width = extractNumber(style?.width || 0)
-      const height = extractNumber(style?.height || 0)
+      const width = MathUtil.extractNumber(style?.width || 0)
+      const height = MathUtil.extractNumber(style?.height || 0)
       const color = style?.color
       const backgroundColor = style?.backgroundColor
       if (width) instance.current._htOption.width = width
