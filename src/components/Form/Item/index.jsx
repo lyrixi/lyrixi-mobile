@@ -3,7 +3,6 @@ import { Field } from 'rc-field-form'
 
 // 内库使用-start
 import Typography from '../../Typography'
-import getExtraNode from '../../Typography/Form/Main/getExtraNode'
 // 内库使用-end
 
 /* 测试使用-start
@@ -15,24 +14,30 @@ const { Item, Label, Main } = Typography.Form
 const FormItem = forwardRef(
   (
     {
-      // Own properties
-      help,
-      name, // field required property
-      extra,
-      inputExtra,
-      label,
-      layout,
-      labelCol,
-      mainCol,
       // Field properties
+      name, // field required property
       valuePropName,
-      getValueProps,
       shouldUpdate,
       initialValue,
       validateTrigger, // onBlur
       rules,
-      children,
-      ...props
+
+      // Value & Display Value
+      id,
+
+      // Style
+      style,
+      className,
+      layout,
+      labelCol,
+      mainCol,
+
+      // Elements
+      label,
+      inputExtraRender,
+      extraRender,
+      help,
+      children
     },
     ref
   ) => {
@@ -40,7 +45,6 @@ const FormItem = forwardRef(
       <Field
         rules={rules}
         name={name}
-        getValueProps={getValueProps}
         valuePropName={valuePropName}
         shouldUpdate={shouldUpdate}
         initialValue={initialValue}
@@ -48,29 +52,42 @@ const FormItem = forwardRef(
       >
         {(control, renderMeta, context) => {
           return (
-            <Item ref={ref} name={name} layout={layout} {...props}>
+            <Item
+              ref={ref}
+              id={id}
+              name={name}
+              // Value & Display Value
+
+              // Style
+              style={style}
+              className={className}
+              layout={layout}
+            >
               <Label
-                {...labelCol}
-                help={help}
+                // Value & Display Value
+                ellipsis={labelCol?.ellipsis}
+                // Style
+                style={labelCol?.style}
+                className={labelCol?.className}
+                span={labelCol?.span}
+                // Validate
                 required={(rules || []).some((rule) => rule.required)}
+                // Element
+                help={help}
               >
                 {label}
               </Label>
               <Main
-                {...mainCol}
-                extra={() => {
-                  return getExtraNode(extra, {
-                    params: { ...control, errors: renderMeta?.errors },
-                    className: 'lyrixi-form-item-main-input-extra'
-                  })
-                }}
-                inputExtra={() => {
-                  return getExtraNode(inputExtra, {
-                    params: { ...control, errors: renderMeta?.errors },
-                    className: 'lyrixi-form-item-main-input-extra'
-                  })
-                }}
-                error={renderMeta?.errors?.[0] || ''}
+                // Value & Display Value
+                ellipsis={mainCol?.ellipsis}
+                // Style
+                style={mainCol?.style}
+                className={mainCol?.className}
+                span={mainCol?.span}
+                // Element
+                errorMessage={renderMeta?.errors?.[0] || ''}
+                inputExtraNode={inputExtraRender?.({ errors: renderMeta?.errors })}
+                extraNode={extraRender?.({ errors: renderMeta?.errors })}
               >
                 {/* In Form, Set value and onChange props to children: */}
                 {React.Children.map(children, (child) => {
@@ -78,7 +95,7 @@ const FormItem = forwardRef(
                   if (React.isValidElement(child) && typeof child.type !== 'string') {
                     // 克隆该组件并注入新的属性
                     return React.cloneElement(child, {
-                      ...control,
+                      value: control?.value,
                       onChange: (...changeProps) => {
                         // 调用原有onChange（如果存在）
                         if (typeof child.props.onChange === 'function') {

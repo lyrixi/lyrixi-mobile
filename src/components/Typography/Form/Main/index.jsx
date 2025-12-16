@@ -1,7 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 import Div from './../../Letter/Base'
 import FormContext from './../FormContext'
-import getExtraNode from './getExtraNode'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -24,9 +23,9 @@ const FormMain = forwardRef(
       span,
 
       // Element
-      error,
-      inputExtra,
-      extra,
+      errorMessage,
+      inputExtraNode,
+      extraNode,
       children
     },
     ref
@@ -59,12 +58,14 @@ const FormMain = forwardRef(
             children
           )}
           {/* Element: Input extra */}
-          {getExtraNode(inputExtra, { className: 'lyrixi-form-item-main-input-extra' })}
+          {inputExtraNode && (
+            <div className="lyrixi-form-item-main-input-extra">{inputExtraNode}</div>
+          )}
         </div>
         {/* Value & Display Value: Error */}
-        {error && <div className="lyrixi-form-item-main-error">{error}</div>}
+        {errorMessage && <div className="lyrixi-form-item-main-error">{errorMessage}</div>}
         {/* Element: Main extra */}
-        {getExtraNode(extra, { className: 'lyrixi-form-item-main-extra' })}
+        {extraNode && <div className="lyrixi-form-item-main-extra">{extraNode}</div>}
       </Row.Col>
     )
   }

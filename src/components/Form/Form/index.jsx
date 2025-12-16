@@ -24,12 +24,25 @@ const FormComponent = forwardRef(
       className,
       children,
       // Form properties
-      ...props
+      form,
+      name,
+      validateMessages,
+      initialValues,
+      onFieldsChange,
+      onValuesChange
     },
     ref
   ) => {
     return (
-      <Form className="form" {...props}>
+      <Form
+        className="lyrixi-form"
+        form={form}
+        name={name}
+        validateMessages={validateMessages}
+        initialValues={initialValues}
+        onFieldsChange={onFieldsChange}
+        onValuesChange={onValuesChange}
+      >
         <Typography.Form
           ref={ref}
           virtual={virtual}

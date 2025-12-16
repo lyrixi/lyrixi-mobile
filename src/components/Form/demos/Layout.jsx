@@ -34,8 +34,8 @@ export default () => {
             name="input"
             label={LocaleUtil.locale('单行文本框')}
             help="Help info"
-            extra={<div>Main Extra Info</div>}
-            inputExtra={<div>Input Extra Info</div>}
+            extraRender={() => <div>Main Extra Info</div>}
+            inputExtraRender={() => <div>Input Extra Info</div>}
             rules={[
               {
                 required: true,
