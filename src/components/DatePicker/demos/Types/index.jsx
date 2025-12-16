@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
 import { DatePicker, LocaleUtil } from 'lyrixi-mobile'
-// import dayjs from 'dayjs'
-// import isoWeek from 'dayjs/plugin/isoWeek'
-// import quarterOfYear from 'dayjs/plugin/quarterOfYear'
-// import advancedFormat from 'dayjs/plugin/advancedFormat'
-// dayjs.extend(isoWeek)
-// dayjs.extend(quarterOfYear)
-// dayjs.extend(advancedFormat)
 
 export default () => {
   const [value, setValue] = useState()

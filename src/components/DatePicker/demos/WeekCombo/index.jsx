@@ -1,10 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { DatePicker } from 'lyrixi-mobile'
-import dayjs from 'dayjs'
-import isoWeek from 'dayjs/plugin/isoWeek'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
-dayjs.extend(isoWeek)
-dayjs.extend(advancedFormat)
 
 export default () => {
   const date1Ref = useRef(null)
