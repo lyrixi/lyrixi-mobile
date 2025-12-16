@@ -1,5 +1,3 @@
-import dayjs from 'dayjs'
-
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
@@ -14,22 +12,22 @@ function getDefaultRanges() {
   return {
     [LocaleUtil.locale('今日', 'lyrixi.today')]: [new Date(), new Date()],
     [LocaleUtil.locale('昨日', 'lyrixi.yesterday')]: [
-      dayjs().subtract(1, 'day').toDate(),
-      dayjs().subtract(1, 'day').toDate()
+      DateUtil.add(new Date(), -1),
+      DateUtil.add(new Date(), -1)
     ],
 
     [LocaleUtil.locale('近{0}日', 'lyrixi.last.days', ['7'])]: [
-      dayjs().subtract(6, 'day').toDate(),
+      DateUtil.add(new Date(), -6),
       new Date()
     ],
 
     [LocaleUtil.locale('近{0}日', 'lyrixi.last.days', ['30'])]: [
-      dayjs().subtract(29, 'day').toDate(),
+      DateUtil.add(new Date(), -29),
       new Date()
     ],
 
     [LocaleUtil.locale('近{0}日', 'lyrixi.last.days', ['90'])]: [
-      dayjs().subtract(89, 'day').toDate(),
+      DateUtil.add(new Date(), -89),
       new Date()
     ],
 
@@ -42,8 +40,8 @@ function getDefaultRanges() {
       new Date()
     ],
     [LocaleUtil.locale('上月', 'lyrixi.last.month')]: [
-      dayjs().date(1).subtract(1, 'month').toDate(),
-      dayjs().date(1).subtract(1, 'day').toDate()
+      DateUtil.add(DateUtil.startOrEnd(new Date(), 'month', 'start'), -1, 'month'),
+      DateUtil.add(DateUtil.startOrEnd(new Date(), 'month', 'start'), -1, 'date')
     ],
 
     [LocaleUtil.locale('本季度', 'lyrixi.this.quarter')]: [

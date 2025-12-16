@@ -21,10 +21,10 @@ export default () => {
           //   [LocaleUtil.locale('自定义')]: 10
           // }}
           // ranges={{
-          //   ['今日']: [dayjs().toDate(), dayjs().toDate()],
-          //   ['未来一个月']: [new Date(), dayjs().add(29, 'day').toDate()],
+          //   ['今日']: [new Date(), new Date()],
+          //   ['未来一个月']: [new Date(), DateUtil.add(new Date(), 29)],
 
-          //   ['未来三个月']: [new Date(), dayjs().add(89, 'day').toDate()],
+          //   ['未来三个月']: [new Date(), DateUtil.add(new Date(), 89)],
 
           //   ['自定义']: 365
           // }}

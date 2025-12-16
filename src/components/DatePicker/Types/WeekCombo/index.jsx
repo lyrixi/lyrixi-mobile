@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import Combo from './../../WeekCombo'
+import DatePickerCombo from './../../WeekCombo'
+import Combo from './Combo'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -28,22 +29,6 @@ const Week = forwardRef(
     },
     ref
   ) => {
-    // 显示文本
-    let displayValue = DateUtil.format(value, 'week')
-
-    const rootRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef?.current,
-        getRootDOM: () => rootRef?.current,
-        // 显示文本
-        displayValue: displayValue,
-        getDisplayValue: () => {
-          return DateUtil.format(value, 'week')
-        }
-      }
-    })
-
     // 向前
     function handlePrev(e) {
       if (value instanceof Date === false) return
@@ -59,16 +44,24 @@ const Week = forwardRef(
     return (
       <>
         <Input.IconLeftArrow className="lyrixi-datepicker-types-previous" onClick={handlePrev} />
-        <Combo
+        <DatePickerCombo
+          ref={ref}
           value={value}
-          style={style}
-          className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
           onChange={(newValue) => {
             onChange && onChange(newValue)
           }}
-        >
-          <p>{displayValue || ''}</p>
-        </Combo>
+          comboRender={({ comboRef, onClick }) => {
+            return (
+              <Combo
+                ref={comboRef}
+                className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
+                style={style}
+                onClick={onClick}
+                value={value}
+              />
+            )
+          }}
+        />
         <Input.IconRightArrow className="lyrixi-datepicker-types-next" onClick={handleNext} />
       </>
     )

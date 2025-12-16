@@ -30,6 +30,7 @@ const WeekCombo = forwardRef(
       style,
       className,
       // Combo: Element
+      comboRender,
       leftIconNode,
       rightIconNode,
       clearRender,
@@ -88,8 +89,18 @@ const WeekCombo = forwardRef(
       setOpen(false)
     }
 
-    return (
-      <>
+    // 获取 Combo 节点
+    function getComboNode() {
+      if (typeof comboRender === 'function') {
+        return comboRender({
+          comboRef,
+          open: open,
+          onClick: handleOpen
+        })
+      }
+
+      // 默认使用 Input.Select
+      return (
         <Input.Select
           ref={comboRef}
           // Combo: Value & Display Value
@@ -113,6 +124,12 @@ const WeekCombo = forwardRef(
           onChange={onChange}
           onClick={handleOpen}
         />
+      )
+    }
+
+    return (
+      <>
+        {getComboNode()}
         <WeekModal
           ref={modalRef}
           // Modal: Value & Display Value

@@ -1,12 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import dayjs from 'dayjs'
-
-import Combo from './../Combo'
+import DatePickerCombo from './../../Combo'
+import Combo from './Combo'
 
 // 内库使用-start
-import DateUtil from './../../../utils/DateUtil'
-import DOMUtil from './../../../utils/DOMUtil'
-import Input from './../../Input'
+import DateUtil from './../../../../utils/DateUtil'
+import DOMUtil from './../../../../utils/DOMUtil'
+import Input from './../../../Input'
 // 内库使用-end
 
 /* 测试使用-start
@@ -32,22 +31,6 @@ const DateCombo = forwardRef(
     },
     ref
   ) => {
-    // 显示文本
-    let displayValue = DateUtil.format(value, type)
-
-    const rootRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef?.current,
-        getRootDOM: () => rootRef?.current,
-        // 显示文本
-        displayValue: displayValue,
-        getDisplayValue: () => {
-          return displayValue
-        }
-      }
-    })
-
     // 向前
     function handlePrev(e) {
       if (!value) return
@@ -81,11 +64,11 @@ const DateCombo = forwardRef(
       }
 
       if (go === -1) {
-        return dayjs(newValue).subtract(1, type).toDate()
+        return DateUtil.add(newValue, -1, type)
       }
 
       if (go === 1) {
-        return dayjs(newValue).add(1, type).toDate()
+        return DateUtil.add(newValue, -1, type)
       }
 
       return newValue
@@ -94,15 +77,24 @@ const DateCombo = forwardRef(
     return (
       <>
         <Input.IconLeftArrow className="lyrixi-datepicker-types-previous" onClick={handlePrev} />
-        <Combo
+        <DatePickerCombo
           value={value}
           type={type}
-          style={style}
-          className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
           onChange={onChange}
-        >
-          <p>{displayValue || ''}</p>
-        </Combo>
+          comboRender={({ comboRef, onClick }) => {
+            return (
+              <Combo
+                ref={comboRef}
+                className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
+                style={style}
+                onClick={onClick}
+                type={type}
+                value={value}
+              />
+            )
+          }}
+          ref={ref}
+        />
         <Input.IconRightArrow className="lyrixi-datepicker-types-next" onClick={handleNext} />
       </>
     )
