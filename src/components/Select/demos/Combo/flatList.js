@@ -1,17 +1,14 @@
-import React from 'react'
 export default [
   {
     allowClear: true,
     id: '1',
-    name: <div>Option1</div>
+    name: 'Option1'
   },
   {
     id: '2',
     name: 'Option2',
     style: {
-      color: 'red',
-      padding: 0,
-      backgroundColor: 'transparent'
+      color: 'red'
     }
   },
   {

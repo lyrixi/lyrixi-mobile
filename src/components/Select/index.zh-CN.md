@@ -23,15 +23,7 @@ toc: content
 
 <code src="./demos/Combo/index.jsx"></code>
 
-### Select.Modal
-
-<code src="./demos/Modal/index.jsx"></code>
-
-### Select.Main
-
-<code src="./demos/Main/index.jsx"></code>
-
-## Select.Main
+## Select.Combo
 
 ### 属性
 
