@@ -1,5 +1,4 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
-import formatValue from './formatValue'
 import Main from './../Main'
 
 // 内库使用-start
@@ -70,7 +69,7 @@ const Modal = forwardRef(
     // 同步外部value到内部
     React.useEffect(() => {
       if (open) {
-        setCurrentValue(formatValue(value))
+        setCurrentValue(value)
       }
     }, [open, value])
 

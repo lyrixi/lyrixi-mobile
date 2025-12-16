@@ -25,7 +25,6 @@ const PickerCombo = forwardRef(
       readOnly,
       disabled,
       allowClear,
-      multiple,
       // Combo: Style
       style,
       className,
@@ -96,7 +95,6 @@ const PickerCombo = forwardRef(
           autoSize={autoSize}
           separator={separator}
           mode={mode}
-          multiple={multiple}
           // Combo: Status
           readOnly={readOnly}
           disabled={disabled}
@@ -122,7 +120,6 @@ const PickerCombo = forwardRef(
           open={open}
           maskClosable={maskClosable}
           allowClear={allowClear}
-          multiple={multiple}
           // Modal: Elements
           portal={portal}
           title={title}

@@ -25,7 +25,6 @@ const Modal = forwardRef(
       open,
       maskClosable,
       allowClear,
-      multiple,
 
       // Style
       safeArea,
@@ -74,13 +73,6 @@ const Modal = forwardRef(
 
     function handleChange(newValue) {
       setCurrentValue(newValue)
-      // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue)
-        }
-        onClose && onClose()
-      }
     }
 
     return (
@@ -100,7 +92,7 @@ const Modal = forwardRef(
         title={title}
         okNode={okNode}
         cancelNode={cancelNode}
-        okVisible={okVisible !== undefined ? okVisible : multiple !== false}
+        okVisible={true}
         cancelVisible={cancelVisible}
         // Events
         onClose={onClose}
@@ -111,7 +103,6 @@ const Modal = forwardRef(
           open={open}
           value={currentValue}
           allowClear={allowClear}
-          multiple={multiple}
           onChange={handleChange}
           list={list}
         />
