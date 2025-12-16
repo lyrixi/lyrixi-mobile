@@ -23,14 +23,13 @@ const Main = forwardRef(
 
       // Status
       open = true,
-      allowClear,
       multiple,
 
       // Style
       className,
       style,
       layout,
-      checkable,
+      checkable = true,
 
       // Element
       itemRender,
@@ -68,7 +67,7 @@ const Main = forwardRef(
           formatViewList={formatViewList}
           formatViewItem={formatViewItem}
           // Status
-          allowClear={allowClear}
+          allowClear={multiple ? true : false}
           multiple={multiple}
           // Style
           checkable={checkable}

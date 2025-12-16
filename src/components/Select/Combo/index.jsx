@@ -1,6 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import NavBarModal from './../../../components/Modal/NavBarModal'
-import Main from './../Main'
+import Modal from './../Modal'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -53,44 +52,37 @@ const SelectCombo = forwardRef(
       title,
       cancelNode,
       cancelVisible,
+      headerRender,
       itemRender,
       layout,
       checkable,
       checkboxRender,
 
       // Events
+      onOk,
       onChange,
       onBeforeOpen
     },
     ref
   ) => {
     const [open, setOpen] = useState(false)
-    const [currentValue, setCurrentValue] = useState(value)
     const comboRef = useRef(null)
     const modalRef = useRef(null)
-    const mainRef = useRef(null)
 
     useImperativeHandle(ref, () => {
       return {
         ...comboRef.current,
         ...modalRef.current,
-        ...mainRef.current,
         close: () => setOpen(false),
         open: () => setOpen(true)
       }
     })
-
-    // 同步外部value到内部currentValue
-    React.useEffect(() => {
-      setCurrentValue(value)
-    }, [value])
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
         if (goOn === false) return
       }
-      setCurrentValue(value)
       setOpen(true)
     }
 
@@ -98,23 +90,9 @@ const SelectCombo = forwardRef(
       setOpen(false)
     }
 
-    async function handleOk() {
-      if (onChange) {
-        let goOn = await onChange(currentValue)
-        if (goOn === false) return
-      }
-      setOpen(false)
-    }
-
     function handleChange(newValue) {
-      setCurrentValue(newValue)
-      // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue)
-        }
-        setOpen(false)
-      }
+      onChange?.(newValue)
+      setOpen(false)
     }
 
     return (
@@ -144,42 +122,38 @@ const SelectCombo = forwardRef(
           onChange={onChange}
           onClick={handleOpen}
         />
-        <NavBarModal
+        <Modal
           ref={modalRef}
-          // Modal: Status
+          // Value & Display Value
+          value={value}
+          list={list}
+          formatViewList={formatViewList}
+          formatViewItem={formatViewItem}
+          // Status
           open={open}
           maskClosable={maskClosable}
-          // Modal: Style
           safeArea={safeArea}
+          multiple={multiple}
+          // Style
           modalStyle={modalStyle}
           modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
           maskStyle={maskStyle}
           maskClassName={maskClassName}
-          // Modal: Elements
+          layout={layout}
+          checkable={checkable}
+          // Elements
           portal={portal}
           title={title}
           cancelNode={cancelNode}
           cancelVisible={cancelVisible}
+          headerRender={headerRender}
+          itemRender={itemRender}
+          checkboxRender={checkboxRender}
           // Events
+          onOk={onOk}
+          onChange={handleChange}
           onClose={handleClose}
-          onOk={handleOk}
-        >
-          <Main
-            ref={mainRef}
-            open={open}
-            value={currentValue}
-            allowClear={allowClear}
-            multiple={multiple}
-            onChange={handleChange}
-            list={list}
-            formatViewList={formatViewList}
-            formatViewItem={formatViewItem}
-            itemRender={itemRender}
-            layout={layout}
-            checkable={checkable}
-            checkboxRender={checkboxRender}
-          />
-        </NavBarModal>
+        />
       </>
     )
   }

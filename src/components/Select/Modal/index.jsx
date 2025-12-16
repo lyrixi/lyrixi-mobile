@@ -27,7 +27,6 @@ const Modal = forwardRef(
       open,
       maskClosable,
       safeArea,
-      allowClear,
       multiple,
 
       // Style
@@ -48,6 +47,7 @@ const Modal = forwardRef(
       checkboxRender,
 
       // Events
+      onOk,
       onChange,
       onClose
     },
@@ -100,20 +100,22 @@ const Modal = forwardRef(
     }
 
     async function handleOk() {
-      if (onChange) {
-        let goOn = await onChange(currentValue)
-        if (goOn === false) return
+      if (onOk) {
+        let goOn = await onOk(currentValue)
+        if (goOn === false) return false
+        if (goOn instanceof Array || goOn?.id) {
+          currentValue = goOn
+        }
       }
-      onClose && onClose()
+      onChange?.(currentValue)
+      onClose?.()
     }
 
     function handleChange(newValue) {
       setCurrentValue(newValue)
       // 单选时立即关闭
-      if (multiple === false) {
-        if (onChange) {
-          onChange(newValue)
-        }
+      if (!multiple) {
+        onChange?.(newValue)
         onClose && onClose()
       }
     }
@@ -148,7 +150,6 @@ const Modal = forwardRef(
           ref={mainRef}
           // Status
           open={open}
-          allowClear={allowClear}
           multiple={multiple}
           // Value & Display Value
           value={currentValue}
