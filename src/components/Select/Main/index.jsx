@@ -18,6 +18,8 @@ const Main = forwardRef(
       // Value & Display Value
       value,
       list,
+      formatViewList,
+      formatViewItem,
 
       // Status
       open = true,
@@ -63,6 +65,8 @@ const Main = forwardRef(
           // Value & Display Value
           value={value}
           list={list}
+          formatViewList={formatViewList}
+          formatViewItem={formatViewItem}
           // Status
           allowClear={allowClear}
           multiple={multiple}

@@ -58,10 +58,6 @@ export default () => {
                   name: '选项2'
                 }
               ]}
-              // 互斥图标
-              clearRender={({ clearable, onClear }) => {
-                return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
-              }}
             />
           </Form.Item>
           <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>

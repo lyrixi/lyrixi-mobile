@@ -12,8 +12,7 @@ export default () => {
     {
       allowClear: true,
       id: '1',
-      // name: 'Option',
-      name: <div>Option1</div>
+      name: 'Option'
     },
     {
       id: '2',
@@ -214,7 +213,8 @@ export default () => {
             }}
             allowClear
             value={singleValue}
-            list={List.searchList(list, keyword)}
+            // list={list?.filter?.((item) => item.name.includes(keyword)) || []}
+            list={list}
             onChange={(newValue) => {
               console.log('onChange:', newValue)
               setSingleValue(newValue)

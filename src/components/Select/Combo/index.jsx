@@ -38,6 +38,8 @@ const SelectCombo = forwardRef(
       // Modal
       // Modal: Value & Display Value
       list,
+      formatViewList,
+      formatViewItem,
       // Modal: Status
       maskClosable,
       // Modal: Style
@@ -170,6 +172,8 @@ const SelectCombo = forwardRef(
             multiple={multiple}
             onChange={handleChange}
             list={list}
+            formatViewList={formatViewList}
+            formatViewItem={formatViewItem}
             itemRender={itemRender}
             layout={layout}
             checkable={checkable}

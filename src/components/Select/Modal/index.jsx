@@ -5,12 +5,11 @@ import Main from './../Main'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import ToolBar from './../../../components/ToolBar'
-import List from './../../../components/List'
 import NavBarModal from './../../../components/Modal/NavBarModal'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, ToolBar, List, Modal } from 'lyrixi-mobile'
+import { DOMUtil, ToolBar, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
@@ -21,6 +20,8 @@ const Modal = forwardRef(
       // Value & Display Value
       value,
       list,
+      formatViewList,
+      formatViewItem,
 
       // Status
       open,
@@ -151,7 +152,11 @@ const Modal = forwardRef(
           multiple={multiple}
           // Value & Display Value
           value={currentValue}
-          list={searchVisibleRef.current ? List.searchList(list, keyword) : list}
+          list={
+            searchVisibleRef.current ? list.filter((item) => item.name.includes(keyword)) : list
+          }
+          formatViewList={formatViewList}
+          formatViewItem={formatViewItem}
           // Element
           itemRender={itemRender}
           checkboxRender={checkboxRender}

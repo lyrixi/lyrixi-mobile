@@ -125,7 +125,7 @@ const List = (
         imageRender={item.imageRender}
         avatarUrl={item.avatarUrl}
         avatarRender={item.avatarRender}
-        title={item.title}
+        title={item.title || item.name}
         description={item.description}
         note={item.note}
         content={item.content}
@@ -146,7 +146,7 @@ const List = (
             return (
               <Fragment key={item.id ?? index}>
                 <GroupTitle
-                  title={item.title}
+                  title={item.title || item.name}
                   anchor={item.anchor}
                   description={item.description}
                   style={item.style}
