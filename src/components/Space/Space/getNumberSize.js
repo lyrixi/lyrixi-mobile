@@ -16,10 +16,10 @@ const getNumberSize = (size, direction) => {
   let sizeNumber = MathUtil.extractNumber(sizeValue)
 
   if (MathUtil.isNumber(sizeNumber)) {
-    return sizeNumber
+    return sizeNumber + 'px'
   }
 
-  if (['xxs', 'xs', 's', 'm', 'l', 'xl'].includes(sizeValue)) {
+  if (['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'].includes(sizeValue)) {
     return `var(--lyrixi-space-${sizeValue})`
   }
 

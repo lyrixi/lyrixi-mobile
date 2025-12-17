@@ -6,41 +6,40 @@ const buttons = Array.from({ length: 6 }).map((_, index) => (
 ))
 
 export default () => {
+  const [size, setSize] = useState('s')
   const [sizeMode, setSizeMode] = useState('l')
-  const [customGap, setCustomGap] = useState(20)
-
-  const gapSize = useMemo(() => {
-    if (sizeMode === 'custom') {
-      return [customGap, customGap]
-    }
-    return sizeMode
-  }, [customGap, sizeMode])
 
   return (
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>间距大小</Card.Header>
+          <Card.Header>Size Config</Card.Header>
           <Card.Main>
             <Radio.Group
               multiple={false}
               value={sizeMode}
               list={[
-                { id: 'l', name: '大' },
-                { id: 'm', name: '中' },
-                { id: 's', name: '小' },
-                { id: 'custom', name: '自定义间距' }
+                { id: 'xxl', name: 'xxl' },
+                { id: 'xl', name: 'xl' },
+                { id: 'l', name: 'l' },
+                { id: 'm', name: 'm' },
+                { id: 's', name: 's' },
+                { id: 'xs', name: 'xs' },
+                { id: 'xxs', name: 'xxs' },
+                { id: 'xxxs', name: 'xxxs' },
+                { id: 'custom', name: 'Custom' }
               ]}
               onChange={(value) => {
                 setSizeMode(value?.id)
+                setSize(value?.id !== 'custom' ? value?.id : 2)
               }}
             />
             <Input.Range
               min={0}
               max={64}
-              value={customGap}
+              value={typeof size === 'number' ? size : 2}
               disabled={sizeMode !== 'custom'}
-              onChange={(value) => setCustomGap(value)}
+              onChange={(value) => setSize(value)}
               style={{ width: '50%' }}
             />
           </Card.Main>
@@ -49,14 +48,14 @@ export default () => {
         <Card>
           <Card.Header>基础间距</Card.Header>
           <Card.Main>
-            <Space size={gapSize}>{buttons.slice(0, 3)}</Space>
+            <Space size={size}>{buttons.slice(0, 3)}</Space>
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>垂直布局</Card.Header>
           <Card.Main>
-            <Space direction="vertical" size={gapSize}>
+            <Space direction="vertical" size={size}>
               {buttons.slice(0, 2)}
             </Space>
           </Card.Main>
@@ -65,7 +64,7 @@ export default () => {
         <Card>
           <Card.Header>分隔符</Card.Header>
           <Card.Main>
-            <Space size={gapSize} separator="|">
+            <Space size={size} separator="|">
               {buttons.slice(0, 3)}
             </Space>
           </Card.Main>
