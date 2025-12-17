@@ -16,37 +16,41 @@
   flex-direction: column;
 }
 
-.lyrixi-space-compact-item {
-  display: inline-flex;
-  position: relative;
-}
+// .lyrixi-space-compact-item {
+//   display: inline-flex;
+//   position: relative;
+// }
 
 .lyrixi-space-compact-block .lyrixi-space-compact-item {
   flex: 1;
   min-width: 0;
 }
 
-.lyrixi-space-compact-horizontal .lyrixi-space-compact-item {
-  &:not(:last-child) {
+/* 水平方向 */
+.lyrixi-space-compact-horizontal {
+  .lyrixi-space-compact-item:not(:last-child) {
     margin-right: -1px;
   }
 
-  > * {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+  // 中间元素圆角
+  .lyrixi-space-compact-item > * {
+    border-radius: 0;
   }
 
-  &.lyrixi-space-compact-item-first > * {
+  // 第一个元素圆角
+  .lyrixi-space-compact-item-first > * {
     border-top-left-radius: var(--lyrixi-radius-m);
     border-bottom-left-radius: var(--lyrixi-radius-m);
   }
 
-  &.lyrixi-space-compact-item-last > * {
+  // 最后一个元素圆角
+  .lyrixi-space-compact-item-last > * {
     border-top-right-radius: var(--lyrixi-radius-m);
     border-bottom-right-radius: var(--lyrixi-radius-m);
   }
 }
 
+/* 垂直方向 */
 .lyrixi-space-compact-vertical .lyrixi-space-compact-item {
   flex-direction: column;
 

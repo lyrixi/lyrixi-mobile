@@ -39,11 +39,6 @@ export default () => {
 
   return (
     <Page>
-      <Page.Header>
-        <NavBar>
-          <NavBar.Title>ToolBar</NavBar.Title>
-        </NavBar>
-      </Page.Header>
       <Page.Main
         ref={(current) => {
           if (!current?.rootDOM) return

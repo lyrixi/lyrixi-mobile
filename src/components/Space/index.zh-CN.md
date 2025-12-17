@@ -19,7 +19,13 @@ toc: content
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+### 间距
+
+<code src="./demos/space.jsx"></code>
+
+### Compact
+
+<code src="./demos/compact.jsx"></code>
 
 ## Space
 

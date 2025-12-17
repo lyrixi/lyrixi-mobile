@@ -56,7 +56,6 @@ const Compact = forwardRef(
           className={DOMUtil.classNames(
             'lyrixi-space-compact',
             `lyrixi-space-compact-${direction}`,
-            size ? `lyrixi-space-compact-size-${size}` : null,
             {
               [`lyrixi-space-compact-block`]: block
             },

@@ -79,19 +79,6 @@ export default () => {
             </Space>
           </Card.Main>
         </Card>
-
-        <Card>
-          <Card.Header>紧凑布局</Card.Header>
-          <Card.Main>
-            <Space.Compact size="m">
-              <Space.Addon>+86</Space.Addon>
-              <Button color="primary" backgroundColor="primary">
-                发送验证码
-              </Button>
-              <Button>重试</Button>
-            </Space.Compact>
-          </Card.Main>
-        </Card>
       </Page.Main>
     </Page>
   )
