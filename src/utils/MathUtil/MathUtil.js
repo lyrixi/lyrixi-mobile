@@ -19,7 +19,7 @@ function isNumber(str, validValues = []) {
 // 提取数值, 不能在输入中使用, 因为在部分机型中会忽略小数点
 function extractNumber(str) {
   // 匹配包含小数点的连续数值
-  const match = str.match(/-?\d+(?:\.\d+)?/)
+  const match = String(str).match(/-?\d+(?:\.\d+)?/)
   return match ? match[0] : ''
 }
 

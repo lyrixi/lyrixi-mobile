@@ -1,44 +1,27 @@
 import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
+import getNumberSize from './getNumberSize'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 import Item from './Item'
-import { SpaceContextProvider } from './context'
 
-const SIZE_MAP = {
-  s: 8,
-  m: 16,
-  l: 24
-}
-
-const toChildrenArray = (children) => {
-  const result = []
-  Children.forEach(children, (child) => {
-    result.push(child)
-  })
-  return result
-}
-
-const getNumberSize = (sizeValue) => {
-  if (typeof sizeValue === 'number' && !Number.isNaN(sizeValue)) {
-    return sizeValue
-  }
-  if (typeof sizeValue === 'string' && sizeValue in SIZE_MAP) {
-    return SIZE_MAP[sizeValue]
-  }
-  return SIZE_MAP.s
-}
-
+// 间距控制
 const Space = forwardRef(
   (
     {
       // Style
       style,
       className,
-      classNames = {},
-      styles = {},
+      itemStyle,
+      itemClassName,
+      separatorStyle,
+      separatorClassName,
 
       // Layout
       size = 's',
@@ -53,73 +36,15 @@ const Space = forwardRef(
     ref
   ) => {
     const rootRef = useRef(null)
-
-    const childNodes = useMemo(() => toChildrenArray(children), [children])
-
-    const latestIndex = useMemo(() => {
-      let lastIndex = -1
-      childNodes.forEach((child, index) => {
-        if (child !== null && child !== undefined) {
-          lastIndex = index
+    const childNodes = useMemo(() => {
+      const nodes = []
+      Children.forEach(children, (child) => {
+        if (child !== null && child !== undefined && child !== false) {
+          nodes.push(child)
         }
       })
-      return lastIndex
-    }, [childNodes])
-
-    const sizeConfig = Array.isArray(size) ? size : [size, size]
-    const horizontalSize = getNumberSize(sizeConfig[0])
-    const verticalSize = getNumberSize(sizeConfig.length > 1 ? sizeConfig[1] : sizeConfig[0])
-
-    const mergedAlign =
-      align !== undefined ? align : direction === 'horizontal' ? 'center' : undefined
-
-    const rootClassName = DOMUtil.classNames(
-      'lyrixi-space',
-      `lyrixi-space-${direction}`,
-      {
-        [`lyrixi-space-wrap`]: wrap,
-        [`lyrixi-space-align-${mergedAlign}`]: mergedAlign
-      },
-      classNames.root,
-      className
-    )
-
-    const itemClassName = DOMUtil.classNames(`lyrixi-space-item`, classNames.item)
-
-    const separatorClassName = DOMUtil.classNames(
-      `lyrixi-space-item-separator`,
-      classNames.separator
-    )
-
-    const shouldApplyColumnGap = !separator
-    const gapStyle = {}
-    if (wrap) {
-      gapStyle.flexWrap = 'wrap'
-    }
-    if (shouldApplyColumnGap) {
-      gapStyle.columnGap = horizontalSize
-      gapStyle.rowGap = verticalSize
-    } else if (wrap) {
-      gapStyle.rowGap = verticalSize
-    }
-
-    const mergedRootStyle = {
-      ...gapStyle,
-      ...(styles.root || {}),
-      ...(style || {})
-    }
-
-    const separatorMarginStyle = separator
-      ? {
-          marginInlineStart: horizontalSize / 2,
-          marginInlineEnd: horizontalSize / 2,
-          marginBlockStart: verticalSize / 2,
-          marginBlockEnd: verticalSize / 2,
-          ...(styles.separator || {})
-        }
-      : styles.separator
-
-    const itemStyle = styles.item || undefined
+      return nodes
+    }, [children])
 
     // Space
     useImperativeHandle(ref, () => {
@@ -133,26 +58,60 @@ const Space = forwardRef(
       return null
     }
 
+    function getStyle() {
+      const horizontalSize = getNumberSize(size, 'horizontal')
+      const verticalSize = getNumberSize(size, 'vertical')
+
+      let gapStyle = {}
+      if (wrap) {
+        gapStyle.rowGap = verticalSize
+      } else {
+        gapStyle.columnGap = horizontalSize
+        gapStyle.rowGap = verticalSize
+      }
+
+      return {
+        ...gapStyle,
+        ...(style || {})
+      }
+    }
+
     return (
-      <div ref={rootRef} className={rootClassName} style={mergedRootStyle}>
-        <SpaceContextProvider value={{ latestIndex }}>
-          {childNodes.map((child, index) => {
-            const key = child?.key ?? `lyrixi-space-item-${index}`
-            return (
-              <Item
-                key={key}
-                className={itemClassName}
-                separatorClassName={separatorClassName}
-                index={index}
-                separator={separator}
-                style={itemStyle}
-                separatorStyle={separatorMarginStyle}
-              >
-                {child}
-              </Item>
-            )
-          })}
-        </SpaceContextProvider>
+      <div
+        ref={rootRef}
+        className={DOMUtil.classNames(
+          'lyrixi-space',
+          `lyrixi-space-${direction}`,
+          {
+            [`lyrixi-space-wrap`]: wrap,
+            [`lyrixi-space-align-${align}`]: align
+          },
+          className
+        )}
+        style={getStyle()}
+      >
+        {childNodes.map((child, index) => {
+          const key = child?.key ?? `lyrixi-space-item-${index}`
+          return (
+            <Item
+              key={key}
+              // Style
+              style={itemStyle}
+              className={DOMUtil.classNames(`lyrixi-space-item`, itemClassName)}
+              separatorStyle={separatorStyle}
+              separatorClassName={DOMUtil.classNames(
+                `lyrixi-space-item-separator`,
+                separatorClassName
+              )}
+              // Status
+              isLast={childNodes.length - 1 === index}
+              // Elements
+              separator={separator}
+            >
+              {child}
+            </Item>
+          )
+        })}
       </div>
     )
   }

@@ -1,34 +1,31 @@
-import React, { Fragment, useContext } from 'react'
-
-import { SpaceContext } from './context'
+import React, { Fragment } from 'react'
 
 const Item = ({
-  className,
-  separatorClassName,
-  index,
-  children,
-  separator,
+  // Style
   style,
-  separatorStyle
+  className,
+  separatorStyle,
+  separatorClassName,
+  // Status
+  isLast,
+  // Elements
+  separator,
+  children
 }) => {
-  const { latestIndex } = useContext(SpaceContext)
-
   if (children === null || children === undefined) {
     return null
   }
-
-  const showSplit = separator && index < latestIndex
 
   return (
     <Fragment>
       <div className={className} style={style}>
         {children}
       </div>
-      {showSplit && (
+      {separator && !isLast ? (
         <span className={separatorClassName} style={separatorStyle}>
           {separator}
         </span>
-      )}
+      ) : null}
     </Fragment>
   )
 }
