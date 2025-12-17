@@ -1,45 +1,44 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { forwardRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
+import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 const ButtonIcon = forwardRef(
   (
     {
-      // Button: Style
+      // Style
+      color,
+      backgroundColor,
+      size = 'm',
+      padding,
+      radius,
       style,
       className,
 
-      // Button: Elements
+      // Elements
       children
     },
     ref
   ) => {
-    const rootRef = useRef(null)
-
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
-    })
-
     return (
-      <div
-        ref={rootRef}
-        id={id}
-        // Style
+      <Icon
+        ref={ref}
+        color={color}
+        backgroundColor={backgroundColor}
+        size={size}
+        padding={padding}
+        radius={radius}
         style={style}
         className={DOMUtil.classNames('lyrixi-button-icon', className)}
       >
         {children}
-      </div>
+      </Icon>
     )
   }
 )
