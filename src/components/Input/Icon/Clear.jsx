@@ -45,9 +45,12 @@ const IconClear = forwardRef(
         padding={padding}
         radius={radius}
         style={style}
-        className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-right-icon', className)}
-        // Element ClassName
-        iconClassName={iconClassName || 'lyrixi-input-icon-clear'}
+        className={DOMUtil.classNames(
+          'lyrixi-input-icon',
+          'lyrixi-right-icon',
+          iconClassName || 'lyrixi-input-icon-clear',
+          className
+        )}
         // Events
         onClick={onClick}
         onTouchStart={onTouchStart}

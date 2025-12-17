@@ -15,8 +15,6 @@ function getStyle({
   radius,
   padding,
   style,
-  // ClassName
-  iconClassName,
   className
 }) {
   // eslint-disable-next-line
@@ -50,7 +48,6 @@ function getStyle({
 
   const newClassName = DOMUtil.classNames(
     'lyrixi-icon',
-    iconClassName,
     isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
     isSizeClass && size && `lyrixi-icon-size-${size}`,

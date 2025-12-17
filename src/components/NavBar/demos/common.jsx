@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Page, NavBar, Button, Divider } from 'lyrixi-mobile'
+import { Page, NavBar, Divider, Icon } from 'lyrixi-mobile'
 
 export default () => {
   return (
@@ -8,40 +8,48 @@ export default () => {
       <Page.Main>
         <Divider>Normal</Divider>
         <NavBar>
-          <NavBar.Button iconClassName="lyrixi-iconfont-arrow-left">Back</NavBar.Button>
+          <NavBar.Button>
+            <Icon className="lyrixi-iconfont-arrow-left" />
+            Back
+          </NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>
           <NavBar.Button color="primary">Ok</NavBar.Button>
         </NavBar>
 
         <Divider>Button Shape</Divider>
         <NavBar>
-          <NavBar.Button
-            iconClassName="lyrixi-iconfont-close"
-            iconSize={20}
-            iconPadding={8}
-            iconRadius="100%"
-            iconBackgroundColor="secondary"
-          />
-          <NavBar.Button
-            iconClassName="lyrixi-iconfont-three-dots"
-            iconSize={20}
-            iconPadding={8}
-            iconRadius="2px"
-            iconBackgroundColor="secondary"
-          >
+          <NavBar.Button>
+            <Icon
+              className="lyrixi-iconfont-close"
+              size={20}
+              padding={8}
+              radius="100%"
+              backgroundColor="secondary"
+            />
+          </NavBar.Button>
+          <NavBar.Button>
+            <Icon
+              className="lyrixi-iconfont-three-dots"
+              size={20}
+              padding={8}
+              radius="2px"
+              backgroundColor="secondary"
+            />
             More
           </NavBar.Button>
         </NavBar>
 
         <Divider>Title</Divider>
         <NavBar>
-          <NavBar.Button
-            iconClassName="lyrixi-iconfont-close"
-            iconSize={20}
-            iconPadding={8}
-            iconRadius="100%"
-            iconBackgroundColor="secondary"
-          />
+          <NavBar.Button>
+            <Icon
+              className="lyrixi-iconfont-close"
+              size={20}
+              padding={8}
+              radius="100%"
+              backgroundColor="secondary"
+            />
+          </NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>
           <NavBar.Button className="lyrixi-primary">Ok</NavBar.Button>
         </NavBar>

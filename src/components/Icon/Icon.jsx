@@ -17,7 +17,6 @@ const Icon = forwardRef(
       className,
 
       // Element
-      iconClassName,
       children,
 
       // Events
@@ -44,8 +43,6 @@ const Icon = forwardRef(
       radius,
       padding,
       style,
-      // ClassName
-      iconClassName,
       className
     })
 

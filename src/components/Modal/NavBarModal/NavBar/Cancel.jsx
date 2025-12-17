@@ -1,11 +1,12 @@
 import React from 'react'
 
 // 内库使用-start
+import Icon from './../../../Icon'
 import NavBar from './../../../NavBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { NavBar } from 'lyrixi-mobile'
+import { Icon, NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
 const Cancel = ({ onClick, children }) => {
@@ -20,15 +21,15 @@ const Cancel = ({ onClick, children }) => {
   }
 
   return (
-    <NavBar.Button
-      iconClassName="lyrixi-iconfont-close"
-      iconSize={20}
-      sizeEqual
-      iconPadding={8}
-      iconRadius="100%"
-      iconBackgroundColor="secondary"
-      onClick={handleClick}
-    />
+    <NavBar.Button onClick={handleClick}>
+      <Icon
+        className="lyrixi-iconfont-close"
+        size={20}
+        padding={8}
+        radius="100%"
+        backgroundColor="secondary"
+      />
+    </NavBar.Button>
   )
 }
 

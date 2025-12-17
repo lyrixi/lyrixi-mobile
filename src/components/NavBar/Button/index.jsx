@@ -30,15 +30,6 @@ const NavBarButton = forwardRef(
       // Button: Elements
       children,
 
-      // Icon: Style
-      iconClassName,
-      iconPosition,
-      iconColor,
-      iconBackgroundColor,
-      iconSize = 16,
-      iconPadding,
-      iconRadius,
-
       // Events
       onClick
     },
@@ -59,14 +50,7 @@ const NavBarButton = forwardRef(
         className={DOMUtil.classNames('lyrixi-navbar-button', className)}
         // Button: Status
         disabled={disabled}
-        // Icon: Style
-        iconClassName={iconClassName}
-        iconPosition={iconPosition}
-        iconColor={iconColor}
-        iconBackgroundColor={iconBackgroundColor}
-        iconSize={iconSize}
-        iconPadding={iconPadding}
-        iconRadius={iconRadius}
+        // Button: Events
         onClick={onClick}
         ref={ref}
       >

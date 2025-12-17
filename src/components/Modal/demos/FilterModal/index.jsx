@@ -25,12 +25,12 @@ export default () => {
             <Page.Footer>
               <FooterBar>
                 <FooterBar.Button
-                  iconClassName="lyrixi-iconfont-config"
                   style={{ padding: 0 }}
                   onClick={() => {
                     console.log('setting')
                   }}
                 >
+                  <Icon className="lyrixi-iconfont-config" />
                   Setting
                 </FooterBar.Button>
                 <FooterBar.Button

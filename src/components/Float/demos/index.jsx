@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, Float, Page, Divider, Storage } from 'lyrixi-mobile'
+import { Icon, Button, Float, Page, Divider, Storage } from 'lyrixi-mobile'
 
 export default () => {
   useEffect(() => {}, [])
@@ -30,15 +30,13 @@ export default () => {
             size="l"
             radius="100%"
             color="white"
-            iconPosition="top"
             backgroundColor="primary"
             borderColor="primary"
-            iconClassName="lyrixi-iconfont-three-dots"
             onClick={(e) => {
               console.log(e)
             }}
           >
-            1
+            <Icon className="lyrixi-iconfont-three-dots" />1
           </Button>
           <Button
             sizeEqual

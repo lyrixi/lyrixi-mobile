@@ -3,11 +3,10 @@ import getStyle from './getStyle'
 
 // 内库使用-start
 import Space from './../Space'
-import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { Space, Icon } from 'lyrixi-mobile'
+import { Space } from 'lyrixi-mobile'
 测试使用-end */
 
 const Button = forwardRef(
@@ -33,15 +32,6 @@ const Button = forwardRef(
       // Button: Elements
       children,
 
-      // Icon: Style
-      iconClassName,
-      iconPosition = 'left',
-      iconColor,
-      iconBackgroundColor,
-      iconSize,
-      iconPadding,
-      iconRadius,
-
       // Events
       onClick
     },
@@ -63,10 +53,7 @@ const Button = forwardRef(
       border,
       block: block || compactContext?.block || false,
       style,
-      // ClassName
-      className,
-      // Icon: Style
-      iconPosition
+      className
     })
 
     // Expose
@@ -87,36 +74,8 @@ const Button = forwardRef(
         onClick={onClick}
         disabled={disabled}
       >
-        {/* Element: Icon Left */}
-        {iconClassName && ['left', 'top'].includes(iconPosition) && (
-          <Icon
-            iconClassName={iconClassName}
-            className="lyrixi-button-icon"
-            // Style
-            color={iconColor}
-            backgroundColor={iconBackgroundColor}
-            size={iconSize}
-            padding={iconPadding}
-            radius={iconRadius}
-          />
-        )}
-
         {/* Element: Children */}
-        {children && <div className="lyrixi-button-text">{children}</div>}
-
-        {/* Element: Icon Right */}
-        {iconClassName && ['right', 'bottom'].includes(iconPosition) && (
-          <Icon
-            iconClassName={iconClassName}
-            className="lyrixi-button-icon"
-            // Style
-            color={iconColor}
-            backgroundColor={iconBackgroundColor}
-            size={iconSize}
-            padding={iconPadding}
-            radius={iconRadius}
-          />
-        )}
+        {children}
       </div>
     )
   }

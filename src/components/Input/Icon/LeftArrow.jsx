@@ -44,9 +44,12 @@ const IconLeftArrow = forwardRef(
         padding={padding}
         radius={radius}
         style={style}
-        className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-left-icon', className)}
-        // Element ClassName
-        iconClassName={iconClassName || 'lyrixi-input-icon-left-arrow'}
+        className={DOMUtil.classNames(
+          'lyrixi-input-icon',
+          'lyrixi-left-icon',
+          iconClassName || 'lyrixi-input-icon-left-arrow',
+          className
+        )}
         // Events
         onClick={onClick}
       />
