@@ -22,9 +22,9 @@ function getStyle({
   borderColor,
   backgroundColor,
   size,
+  sizeEqual,
   fontSize,
   radius,
-  square,
   border,
   block,
   style,
@@ -43,10 +43,10 @@ function getStyle({
   // 判断颜色是否在枚举值中
   const isColorClass = DOMUtil.variables.colors.includes(color)
   const isBorderColorClass = DOMUtil.variables.colors.includes(borderColor)
-  const isBackgroundColorClass = DOMUtil.variables.backgroundColors.includes(backgroundColor)
+  const isBackgroundColorClass = DOMUtil.variables.colors.includes(backgroundColor)
   const isSizeClass = DOMUtil.variables.sizes.includes(size)
-  const isRadiusClass = DOMUtil.variables.radiuses.includes(radius)
-  const isFontSizeClass = DOMUtil.variables.fontSizes.includes(fontSize)
+  const isRadiusClass = DOMUtil.variables.sizes.includes(radius)
+  const isFontSizeClass = DOMUtil.variables.sizes.includes(fontSize)
 
   // 构建自定义样式
   const newStyle = {
@@ -54,7 +54,7 @@ function getStyle({
     ...(!isBorderColorClass && borderColor ? { borderColor } : {}),
     ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
     ...(!isSizeClass && typeof size === 'number'
-      ? { height: `${size}px`, width: square ? `${size}px` : 'auto' }
+      ? { height: `${size}px`, width: sizeEqual ? `${size}px` : 'auto' }
       : {}),
     ...(!isRadiusClass && radius ? { borderRadius: radius } : {}),
     ...(!isFontSizeClass && fontSize ? { fontSize: fontSize } : {}),
@@ -72,7 +72,7 @@ function getStyle({
     block && `lyrixi-button-block`,
     isSizeClass && size && `lyrixi-size-${size}`,
     isRadiusClass && radius && `lyrixi-radius-${radius}`,
-    square && `lyrixi-shape-square`,
+    sizeEqual && `lyrixi-size-equal`,
     className
   )
 

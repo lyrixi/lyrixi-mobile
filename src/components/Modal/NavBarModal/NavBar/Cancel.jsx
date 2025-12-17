@@ -23,7 +23,7 @@ const Cancel = ({ onClick, children }) => {
     <NavBar.Button
       iconClassName="lyrixi-iconfont-close"
       iconSize={20}
-      square
+      sizeEqual
       iconPadding={8}
       iconRadius="100%"
       iconBackgroundColor="secondary"

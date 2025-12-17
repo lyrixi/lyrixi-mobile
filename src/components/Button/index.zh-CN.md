@@ -30,7 +30,7 @@ toc: content
 | border          | 边框样式   | `'none' \| 'dotted' \| 'dashed' \| 'solid'`                                                                                                                                                               | `'solid'`   |
 | size            | 按钮尺寸   | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                                                                                                                              | `'m'`       |
 | radius          | 圆角大小   | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                                                                                                                              | -           |
-| shape           | 按钮形状   | `'square' \| 'circle' \| 'round'`                                                                                                                                                                         | -           |
+| sizeEqual       | 等宽高     | true/false 'round'`                                                                                                                                                                                       | -           |
 | className       | 自定义类名 | `string`                                                                                                                                                                                                  | -           |
 | children        | 按钮内容   | `ReactNode`                                                                                                                                                                                               | -           |
 

@@ -37,9 +37,9 @@ function getStyle({
 
   // 判断颜色是否在枚举值中
   const isColorClass = DOMUtil.variables.colors.includes(color)
-  const isBackgroundColorClass = DOMUtil.variables.backgroundColors.includes(backgroundColor)
+  const isBackgroundColorClass = DOMUtil.variables.colors.includes(backgroundColor)
   const isSizeClass = DOMUtil.variables.sizes.includes(size)
-  const isRadiusClass = DOMUtil.variables.radiuses.includes(radius)
+  const isRadiusClass = DOMUtil.variables.sizes.includes(radius)
 
   // 图标大小需要减掉间距，若无间距则直接使用size
   let innerSize =
@@ -62,7 +62,7 @@ function getStyle({
     iconClassName,
     isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
-    isSizeClass && size && `lyrixi-size-${size}`,
+    isSizeClass && size && `lyrixi-size-equal lyrixi-size-${size}`,
     isRadiusClass && radius && `lyrixi-radius-${radius}`,
     className
   )

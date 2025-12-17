@@ -203,7 +203,7 @@ export default () => {
           <Card.Header>Button</Card.Header>
           <Card.Main>
             <ToolBar>
-              <ToolBar.Button square onClick={() => console.log(1)}>
+              <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                 <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
               </ToolBar.Button>
               <Space.Compact>
@@ -215,7 +215,7 @@ export default () => {
                 <ToolBar.List
                   portal={mainDOM}
                   arrowRender={null}
-                  square
+                  sizeEqual
                   border="fill"
                   comboChildren={
                     <Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>
@@ -236,10 +236,10 @@ export default () => {
                     }
                   ]}
                 />
-                <ToolBar.Button square onClick={() => console.log(1)}>
+                <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" square>
+                <ToolBar.Filter border="fill" sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>
@@ -261,7 +261,7 @@ export default () => {
               </ToolBar.Button>
               <ToolBar.Filter
                 color="primary"
-                square
+                sizeEqual
                 icon={
                   <Icon className="lyrixi-toolbar-button-icon lyrixi-iconfont lyrixi-iconfont-search" />
                 }
@@ -277,7 +277,7 @@ export default () => {
               <ToolBar.Filter
                 ref={filterRef}
                 border="fill"
-                square
+                sizeEqual
                 onReset={() => {
                   console.log('reset')
                 }}
@@ -302,10 +302,10 @@ export default () => {
                 }}
               />
               <Space.Compact>
-                <ToolBar.Button square onClick={() => console.log(1)}>
+                <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" square>
+                <ToolBar.Filter border="fill" sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>
@@ -325,10 +325,10 @@ export default () => {
                 }}
               />
               <Space.Compact>
-                <ToolBar.Button square onClick={() => console.log(1)}>
+                <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" square>
+                <ToolBar.Filter border="fill" sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>
@@ -353,7 +353,7 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>SearchBar Invert active</Card.Header>
+          <Card.Header>SearchBar variant active</Card.Header>
           <Card.Main>
             <ToolBar variant="filled">
               <ToolBar.Search
@@ -363,6 +363,14 @@ export default () => {
                   setFilledSearchActive(true)
                 }}
               />
+              <Space.Compact>
+                <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                  <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                </ToolBar.Button>
+                <ToolBar.Filter border="fill" sizeEqual>
+                  <div style={{ height: '300px' }}>Modal Content</div>
+                </ToolBar.Filter>
+              </Space.Compact>
               {filledSearchActive && (
                 <ToolBar.SearchActive
                   value={search}

@@ -18,7 +18,7 @@ function isNumber(str, validValues = []) {
 
 // 提取数值, 不能在输入中使用, 因为在部分机型中会忽略小数点
 function extractNumber(str) {
-  if (typeof str !== 'number') return str
+  if (isNumber(str)) return str
   // 匹配包含小数点的连续数值
   const match = String(str).match(/-?\d+(?:\.\d+)?/)
   return match ? match[0] : ''
@@ -142,7 +142,45 @@ function inertia({ cellSize, distance, duration, currentPosition, minPosition, m
   }
 }
 
+/**
+ * 获取间距大小
+ * @param {Array|Number|String} gap
+ * @param {String} direction 'horizontal' | 'vertical'
+ * @returns {String} 间距大小
+ */
+function getGapSize(gap, direction) {
+  const gapValues = Array.isArray(gap) ? gap : [gap, gap]
+  let currentGap = gapValues[0]
+  if (direction === 'vertical') {
+    currentGap = gapValues[1]
+  }
+
+  // 如果是数字，则直接返回
+  let currentGapNumber = extractNumber(currentGap)
+  if (isNumber(currentGapNumber)) {
+    return isNumber(currentGap) ? `${currentGap}px` : currentGap
+  }
+
+  // 如果是间距变量, 则返回变量
+  if (['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'].includes(currentGap)) {
+    return `var(--lyrixi-space-${currentGap})`
+  }
+
+  // 默认返回空字符串
+  return ''
+}
+
 // eslint-disable-next-line
-const MathUtil = { isNumber, extractNumber, round, fixed, strip, thousands, antiThousands, inertia }
+const MathUtil = {
+  isNumber,
+  extractNumber,
+  round,
+  fixed,
+  strip,
+  thousands,
+  antiThousands,
+  inertia,
+  getGapSize
+}
 
 export default MathUtil

@@ -21,7 +21,7 @@ function Combo(
     color = 'default',
     borderColor = 'default',
     backgroundColor,
-    shape,
+    sizeEqual,
     border,
     radius,
     size,
@@ -60,7 +60,7 @@ function Combo(
       border={border}
       size={size || 's'}
       radius={radius || 's'}
-      shape={shape}
+      sizeEqual={sizeEqual}
       className={DOMUtil.classNames(
         'lyrixi-toolbar-dropdown-combo lyrixi-toolbar-button',
         className,

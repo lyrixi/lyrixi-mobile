@@ -19,7 +19,7 @@ const NavBarButton = forwardRef(
       size = 22,
       fontSize,
       radius,
-      square,
+      sizeEqual,
       border = 'none',
       style,
       className,
@@ -53,7 +53,7 @@ const NavBarButton = forwardRef(
         size={size}
         fontSize={fontSize}
         radius={radius}
-        square={square}
+        sizeEqual={sizeEqual}
         border={border}
         style={style}
         className={DOMUtil.classNames('lyrixi-navbar-button', className)}

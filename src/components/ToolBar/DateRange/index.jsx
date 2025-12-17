@@ -33,7 +33,7 @@ function DateRangeBar({
   color,
   borderColor,
   backgroundColor,
-  shape,
+  sizeEqual,
   border,
   radius,
   size,
@@ -128,7 +128,7 @@ function DateRangeBar({
       color={color}
       borderColor={borderColor}
       backgroundColor={backgroundColor}
-      shape={shape}
+      sizeEqual={sizeEqual}
       border={border}
       radius={radius}
       size={size}

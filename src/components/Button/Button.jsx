@@ -18,10 +18,10 @@ const Button = forwardRef(
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
       borderColor = 'default', // 边框颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-      size, // 尺寸: xxs, xs, s, m, l, xl
+      size, // 高度尺寸: xxs, xs, s, m, l, xl, 传数组则为[高度,宽度]
+      sizeEqual, // 是否为等宽高
       fontSize, // 字体大小: xxs, xs, s, m, l, xl
       radius, // 圆角: xxs, xs, s, m, l, xl
-      square, // 是否为正方形
       border = 'solid', // 边框: none, dotted, dashed, solid
       block, // 是否为块级元素
       style,
@@ -57,9 +57,9 @@ const Button = forwardRef(
       borderColor,
       backgroundColor,
       size: size || compactContext?.size || 'm',
+      sizeEqual,
       fontSize,
       radius,
-      square,
       border,
       block: block || compactContext?.block || false,
       style,

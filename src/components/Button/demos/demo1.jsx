@@ -415,7 +415,7 @@ export default () => {
         <Divider>Shape</Divider>
         <div>
           <Button
-            square
+            sizeEqual
             radius="m"
             color="white"
             backgroundColor="primary"
@@ -424,10 +424,10 @@ export default () => {
           >
             Round
           </Button>
-          <Button square radius="100%" size="s" borderColor="default" style={buttonStyle}>
+          <Button sizeEqual radius="100%" size="s" borderColor="default" style={buttonStyle}>
             <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
-          <Button square size="s" radius="m" borderColor="default" style={buttonStyle}>
+          <Button sizeEqual size="s" radius="m" borderColor="default" style={buttonStyle}>
             <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
           <br />

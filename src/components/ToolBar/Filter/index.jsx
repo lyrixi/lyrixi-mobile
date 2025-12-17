@@ -20,7 +20,7 @@ const Filter = forwardRef(
       color = 'default',
       borderColor = 'default',
       backgroundColor,
-      shape,
+      sizeEqual,
       border,
       radius,
       size,
@@ -82,7 +82,7 @@ const Filter = forwardRef(
           border={border}
           size={size || 's'}
           radius={radius || 's'}
-          shape={shape}
+          sizeEqual={sizeEqual}
           className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
           style={style}
           // Events

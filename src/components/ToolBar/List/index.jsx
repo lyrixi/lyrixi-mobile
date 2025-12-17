@@ -15,7 +15,7 @@ function ToolBarList({
   color,
   borderColor,
   backgroundColor,
-  shape,
+  sizeEqual,
   border,
   radius,
   size,
@@ -60,7 +60,7 @@ function ToolBarList({
       color={color}
       borderColor={borderColor}
       backgroundColor={backgroundColor}
-      shape={shape}
+      sizeEqual={sizeEqual}
       border={border}
       radius={radius}
       size={size}

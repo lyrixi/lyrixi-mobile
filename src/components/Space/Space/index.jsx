@@ -1,12 +1,12 @@
 import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
-import getGapSize from './getGapSize'
 
 // 内库使用-start
+import MathUtil from './../../../utils/MathUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 import Item from './Item'
@@ -56,8 +56,8 @@ const Space = forwardRef(
     }
 
     function getStyle() {
-      const horizontalGap = getGapSize(gap, 'horizontal')
-      const verticalGap = getGapSize(gap, 'vertical')
+      const horizontalGap = MathUtil.getGapSize(gap, 'horizontal')
+      const verticalGap = MathUtil.getGapSize(gap, 'vertical')
       let gapStyle = {}
       gapStyle.columnGap = horizontalGap
       gapStyle.rowGap = verticalGap

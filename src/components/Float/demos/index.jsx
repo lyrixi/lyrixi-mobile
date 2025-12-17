@@ -26,7 +26,7 @@ export default () => {
           className="lyrixi-flex-vertical"
         >
           <Button
-            square
+            sizeEqual
             size="l"
             radius="100%"
             color="white"
@@ -41,7 +41,7 @@ export default () => {
             1
           </Button>
           <Button
-            square
+            sizeEqual
             size="l"
             radius="100%"
             iconPosition="top"
@@ -57,7 +57,7 @@ export default () => {
             2
           </Button>
           <Button
-            square
+            sizeEqual
             size="l"
             radius="100%"
             borderColor="default"

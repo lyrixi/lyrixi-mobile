@@ -21,7 +21,7 @@ function ToolBarActionSheet(
     className,
     color = 'default',
     backgroundColor,
-    shape,
+    sizeEqual,
     border,
     radius,
     size,
@@ -69,7 +69,7 @@ function ToolBarActionSheet(
         className={className}
         color={color}
         backgroundColor={backgroundColor}
-        shape={shape}
+        sizeEqual={sizeEqual}
         border={border}
         radius={radius}
         size={size}

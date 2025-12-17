@@ -18,7 +18,7 @@ const FooterBarButton = forwardRef(
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
       fontSize, // 字体大小: xxs, xs, s, m, l, xl
       radius = 'm', // 圆角: xxs, xs, s, m, l, xl
-      square, // 是否为正方形
+      sizeEqual,
       border = 'none', // 边框: none, dotted, dashed, solid
       style,
       className,
@@ -81,7 +81,7 @@ const FooterBarButton = forwardRef(
           size={size}
           fontSize={fontSize}
           radius={radius}
-          square={square}
+          sizeEqual={sizeEqual}
           border={border}
           style={style}
           className={className}
