@@ -6,7 +6,7 @@ import MathUtil from '../../../utils/MathUtil'
 import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const getNumberSize = (size, direction) => {
+const getGapSize = (size, direction) => {
   const sizeValues = Array.isArray(size) ? size : [size, size]
   let sizeValue = sizeValues[0]
   if (direction === 'vertical') {
@@ -26,4 +26,4 @@ const getNumberSize = (size, direction) => {
   return `var(--lyrixi-space-m)`
 }
 
-export default getNumberSize
+export default getGapSize

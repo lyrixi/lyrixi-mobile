@@ -6,8 +6,8 @@ const buttons = Array.from({ length: 6 }).map((_, index) => (
 ))
 
 export default () => {
-  const [size, setSize] = useState('s')
-  const [sizeMode, setSizeMode] = useState('l')
+  const [gap, setGap] = useState('s')
+  const [mode, setMode] = useState('l')
 
   return (
     <Page>
@@ -17,7 +17,7 @@ export default () => {
           <Card.Main>
             <Radio.Group
               multiple={false}
-              value={sizeMode}
+              value={mode}
               list={[
                 { id: 'xxl', name: 'xxl' },
                 { id: 'xl', name: 'xl' },
@@ -30,16 +30,16 @@ export default () => {
                 { id: 'custom', name: 'Custom' }
               ]}
               onChange={(value) => {
-                setSizeMode(value?.id)
-                setSize(value?.id !== 'custom' ? value?.id : 2)
+                setMode(value?.id)
+                setGap(value?.id !== 'custom' ? value?.id : 2)
               }}
             />
             <Input.Range
               min={0}
               max={64}
-              value={typeof size === 'number' ? size : 2}
-              disabled={sizeMode !== 'custom'}
-              onChange={(value) => setSize(value)}
+              value={typeof gap === 'number' ? gap : 2}
+              disabled={mode !== 'custom'}
+              onChange={(value) => setGap(value)}
               style={{ width: '50%' }}
             />
           </Card.Main>
@@ -48,14 +48,14 @@ export default () => {
         <Card>
           <Card.Header>general</Card.Header>
           <Card.Main>
-            <Space size={size}>{buttons.slice(0, 3)}</Space>
+            <Space gap={gap}>{buttons.slice(0, 3)}</Space>
           </Card.Main>
         </Card>
 
         <Card>
           <Card.Header>vertical</Card.Header>
           <Card.Main>
-            <Space direction="vertical" size={size}>
+            <Space direction="vertical" gap={gap}>
               {buttons.slice(0, 2)}
             </Space>
           </Card.Main>
@@ -64,7 +64,7 @@ export default () => {
         <Card>
           <Card.Header>separator</Card.Header>
           <Card.Main>
-            <Space size={size} separator="|">
+            <Space gap={gap} separator="|">
               {buttons.slice(0, 3)}
             </Space>
           </Card.Main>
@@ -73,7 +73,7 @@ export default () => {
         <Card>
           <Card.Header>wrap</Card.Header>
           <Card.Main>
-            <Space size={size} wrap>
+            <Space gap={gap} wrap>
               {buttons}
             </Space>
           </Card.Main>

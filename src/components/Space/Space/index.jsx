@@ -1,5 +1,5 @@
 import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
-import getNumberSize from './getNumberSize'
+import getGapSize from './getGapSize'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -22,7 +22,7 @@ const Space = forwardRef(
       itemClassName,
       separatorStyle,
       separatorClassName,
-      size = 's', // Number | 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'
+      gap = 's', // Number | 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'
       direction = 'horizontal', // 'horizontal', 'vertical'
       wrap = false,
 
@@ -56,11 +56,11 @@ const Space = forwardRef(
     }
 
     function getStyle() {
-      const horizontalSize = getNumberSize(size, 'horizontal')
-      const verticalSize = getNumberSize(size, 'vertical')
+      const horizontalGap = getGapSize(gap, 'horizontal')
+      const verticalGap = getGapSize(gap, 'vertical')
       let gapStyle = {}
-      gapStyle.columnGap = horizontalSize
-      gapStyle.rowGap = verticalSize
+      gapStyle.columnGap = horizontalGap
+      gapStyle.rowGap = verticalGap
 
       return {
         ...gapStyle,

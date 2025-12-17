@@ -1,5 +1,3 @@
-import Row from './Row'
-import Col from './Col'
+import Flex from './Flex'
 
-Row.Col = Col
-export default Row
+export default Flex

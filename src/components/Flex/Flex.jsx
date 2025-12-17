@@ -1,4 +1,5 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef, useMemo } from 'react'
+import getGapSize from './getGapSize'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -36,12 +37,59 @@ const Flex = forwardRef(
       }
     })
 
+    function getStyle() {
+      const horizontalGap = getGapSize(gap, 'horizontal')
+      const verticalGap = getGapSize(gap, 'vertical')
+      let gapStyle = {}
+      gapStyle.columnGap = horizontalGap
+      gapStyle.rowGap = verticalGap
+
+      return {
+        ...gapStyle,
+        ...(style || {})
+      }
+    }
+
+    // evenly 需要通过 style 实现
+    const justifyContentStyle = align === 'evenly' ? { justifyContent: 'space-evenly' } : {}
+
+    const finalStyle = {
+      ...mergedStyle,
+      ...justifyContentStyle
+    }
+
+    function getClassName() {
+      const alignClassMap = {
+        start: direction === 'horizontal' ? 'lyrixi-flex-left' : 'lyrixi-flex-top',
+        end: direction === 'horizontal' ? 'lyrixi-flex-right' : 'lyrixi-flex-bottom',
+        center: direction === 'horizontal' ? 'lyrixi-flex-center' : 'lyrixi-flex-middle',
+        between: 'lyrixi-flex-between',
+        around: 'lyrixi-flex-around',
+        evenly: 'lyrixi-flex-evenly'
+      }
+
+      const directionClassMap = {
+        horizontal: 'lyrixi-flex-horizontal',
+        vertical: 'lyrixi-flex-vertical'
+      }
+
+      return DOMUtil.classNames(
+        'lyrixi-flex',
+        directionClassMap[direction],
+        {
+          'lyrixi-flex-wrap': wrap,
+          [alignClassMap[align || '']]: alignClassMap[align || '']
+        },
+        className
+      )
+    }
+
     return (
       <div
         ref={rootRef}
         // Style
-        style={style}
-        className={DOMUtil.classNames('lyrixi-flex', className)}
+        style={getStyle()}
+        className={getClassName()}
       >
         {/* Element: Children */}
         {children}
