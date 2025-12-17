@@ -2,29 +2,23 @@
   // Bg gray, input white
   --toolbar-bg: var(--lyrixi-bg-default);
   --toolbar-search-input-bg: white;
-  --toolbar-invert-bg: white;
-  --toolbar-invert-search-input-bg: var(--lyrixi-bg-default);
+  --toolbar-filled-bg: white;
+  --toolbar-filled-search-input-bg: var(--lyrixi-bg-default);
 }
 
-.lyrixi-toolbar-bg {
-  background-color: var(--toolbar-bg);
-  &.lyrixi-invert {
-    background-color: var(--toolbar-invert-bg);
-  }
-}
 .lyrixi-toolbar {
   // 相对定位
   position: relative;
   gap: 8px;
-  margin: 0 12px;
+  padding: 0 12px;
   display: flex;
   align-items: center;
   min-height: 44px;
   overflow-x: auto;
-  .lyrixi-toolbar-bg;
+  background-color: var(--toolbar-bg);
 
-  &.lyrixi-invert {
-    .lyrixi-toolbar-bg.lyrixi-invert;
+  &.lyrixi-toolbar-filled {
+    background-color: var(--toolbar-filled-bg);
   }
 
   // 活动状态, 必须关闭弹窗后才可点击

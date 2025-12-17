@@ -19,8 +19,8 @@ export default function SearchHeader({
   onCancel
 }) {
   return (
-    <Page.Header className="lyrixi-cascader-search-header toolbar-invert">
-      <ToolBar invert>
+    <Page.Header className="lyrixi-cascader-search-header">
+      <ToolBar variant="filled">
         <ToolBar.Search
           value={value}
           readOnly

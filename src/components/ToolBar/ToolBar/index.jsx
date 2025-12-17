@@ -7,10 +7,8 @@ import DOMUtil from './../../../utils/DOMUtil'
 const ToolBar = forwardRef(
   (
     {
-      // Status
-      invert,
-
       // Style
+      variant, // 变体: filled, default
       className,
       style,
 
@@ -24,7 +22,11 @@ const ToolBar = forwardRef(
         ref={ref}
         // Style
         style={style}
-        className={DOMUtil.classNames('lyrixi-toolbar', invert ? 'invert' : '', className)}
+        className={DOMUtil.classNames(
+          'lyrixi-toolbar',
+          `lyrixi-toolbar-${variant || 'default'}`,
+          className
+        )}
       >
         {/* Element: Children */}
         {children}

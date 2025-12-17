@@ -85,7 +85,7 @@ const Modal = forwardRef(
       if (Array.isArray(list) && list.length > 15) {
         searchVisibleRef.current = true
         return (
-          <ToolBar invert>
+          <ToolBar variant="filled">
             <ToolBar.Search
               value={keyword}
               onSearch={(newKeyword) => {

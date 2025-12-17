@@ -207,7 +207,7 @@ export default () => {
               title="Select"
               headerRender={() => {
                 return (
-                  <ToolBar invert>
+                  <ToolBar variant="filled">
                     <ToolBar.Search
                       multipleValue={keyword}
                       onSearch={(newKeyword) => {

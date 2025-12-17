@@ -9,7 +9,7 @@ export default () => {
   const [item, setItem] = useState(null)
   const [search, setSearch] = useState('')
   const [searchActive, setSearchActive] = useState(false)
-  const [invertSearchActive, setInvertSearchActive] = useState(false)
+  const [filledSearchActive, setFilledSearchActive] = useState(false)
   const filterRef = useRef(null)
 
   function getDropdownModalNode({ open, close } = {}) {
@@ -52,318 +52,298 @@ export default () => {
       >
         {/* Dropdown */}
         <Divider>Dropdown</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.Dropdown left={12} placeholder="Dropdown left" color="primary" border="fill">
-              <div style={{ height: '300px' }}>Modal Content</div>
-            </ToolBar.Dropdown>
-            <ToolBar.Dropdown placeholder="Dropdown ref" ref={dropdownRef}>
-              {getDropdownModalNode()}
-            </ToolBar.Dropdown>
-            <ToolBar.Dropdown placeholder="Dropdown modal">
-              {getDropdownModalNode()}
-            </ToolBar.Dropdown>
-            <ToolBar.Dropdown right={12} placeholder="Dropdown right">
-              <div style={{ height: '300px' }}>Modal Content</div>
-            </ToolBar.Dropdown>
-          </ToolBar>
-        </div>
+        <ToolBar>
+          <ToolBar.Dropdown left={12} placeholder="Dropdown left" color="primary" border="fill">
+            <div style={{ height: '300px' }}>Modal Content</div>
+          </ToolBar.Dropdown>
+          <ToolBar.Dropdown placeholder="Dropdown ref" ref={dropdownRef}>
+            {getDropdownModalNode()}
+          </ToolBar.Dropdown>
+          <ToolBar.Dropdown placeholder="Dropdown modal">{getDropdownModalNode()}</ToolBar.Dropdown>
+          <ToolBar.Dropdown right={12} placeholder="Dropdown right">
+            <div style={{ height: '300px' }}>Modal Content</div>
+          </ToolBar.Dropdown>
+        </ToolBar>
 
         <Divider>DateRange</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.DateRange
-              arrowRender={({ open }) => {
-                if (open) {
-                  return '^'
-                }
-                return '>'
-              }}
-              portal={mainDOM}
-              placeholder={'DateRange'}
-              value={dateRange}
-              // allowClear={true}
-              onChange={(newDateRange, { rangeId }) => {
-                console.log('修改:', newDateRange)
-                setDateRange(newDateRange)
-                // setDateRangeId(rangeId)
-              }}
-            />
-            <ToolBar.DateRange
-              portal={mainDOM}
-              placeholder="DateRange"
-              format="MM-DD"
-              value={dateRange}
-              // allowClear={true}
-              onChange={(newDateRange, { rangeId }) => {
-                console.log('修改:', newDateRange)
-                setDateRange(newDateRange)
-                // setDateRangeId(rangeId)
-              }}
-            />
-            <ToolBar.DateRange
-              portal={mainDOM}
-              border="fill"
-              placeholder="DateRange"
-              value={dateRange}
-              // allowClear={true}
-              onChange={(newDateRange, { rangeId }) => {
-                console.log('修改:', newDateRange)
-                setDateRange(newDateRange)
-                // setDateRangeId(rangeId)
-              }}
-            />
-          </ToolBar>
-        </div>
+        <ToolBar>
+          <ToolBar.DateRange
+            arrowRender={({ open }) => {
+              if (open) {
+                return '^'
+              }
+              return '>'
+            }}
+            portal={mainDOM}
+            placeholder={'DateRange'}
+            value={dateRange}
+            // allowClear={true}
+            onChange={(newDateRange, { rangeId }) => {
+              console.log('修改:', newDateRange)
+              setDateRange(newDateRange)
+              // setDateRangeId(rangeId)
+            }}
+          />
+          <ToolBar.DateRange
+            portal={mainDOM}
+            placeholder="DateRange"
+            format="MM-DD"
+            value={dateRange}
+            // allowClear={true}
+            onChange={(newDateRange, { rangeId }) => {
+              console.log('修改:', newDateRange)
+              setDateRange(newDateRange)
+              // setDateRangeId(rangeId)
+            }}
+          />
+          <ToolBar.DateRange
+            portal={mainDOM}
+            border="fill"
+            placeholder="DateRange"
+            value={dateRange}
+            // allowClear={true}
+            onChange={(newDateRange, { rangeId }) => {
+              console.log('修改:', newDateRange)
+              setDateRange(newDateRange)
+              // setDateRangeId(rangeId)
+            }}
+          />
+        </ToolBar>
 
         <Divider>List</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.List
-              left={12}
-              portal={mainDOM}
-              placeholder="List"
-              value={item}
-              onChange={setItem}
-              list={[
-                {
-                  disabled: true,
-                  id: '',
-                  name: 'Disabled'
-                },
-                {
-                  id: '1',
-                  name: 'Option1'
-                },
-                {
-                  id: '2',
-                  name: 'Option2'
-                }
-              ]}
-            />
-            <ToolBar.List
-              portal={mainDOM}
-              border="fill"
-              placeholder="List"
-              value={item}
-              onChange={setItem}
-              list={[
-                {
-                  disabled: true,
-                  id: '',
-                  name: 'Disabled'
-                },
-                {
-                  id: '1',
-                  name: 'Option1'
-                },
-                {
-                  id: '2',
-                  name: 'Option2'
-                }
-              ]}
-            />
-          </ToolBar>
-        </div>
+        <ToolBar>
+          <ToolBar.List
+            left={12}
+            portal={mainDOM}
+            placeholder="List"
+            value={item}
+            onChange={setItem}
+            list={[
+              {
+                disabled: true,
+                id: '',
+                name: 'Disabled'
+              },
+              {
+                id: '1',
+                name: 'Option1'
+              },
+              {
+                id: '2',
+                name: 'Option2'
+              }
+            ]}
+          />
+          <ToolBar.List
+            portal={mainDOM}
+            border="fill"
+            placeholder="List"
+            value={item}
+            onChange={setItem}
+            list={[
+              {
+                disabled: true,
+                id: '',
+                name: 'Disabled'
+              },
+              {
+                id: '1',
+                name: 'Option1'
+              },
+              {
+                id: '2',
+                name: 'Option2'
+              }
+            ]}
+          />
+        </ToolBar>
 
         <Divider>ActionSheet</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.ActionSheet
-              portal={mainDOM}
-              // color="primary"
-              // border="fill"
-              placeholder="List"
-              value={item}
-              onChange={setItem}
-              list={[
-                {
-                  disabled: true,
-                  id: '',
-                  name: 'Disabled'
-                },
-                {
-                  id: '1',
-                  name: 'Option1'
-                },
-                {
-                  id: '2',
-                  name: 'Option2'
-                }
-              ]}
-            />
-          </ToolBar>
-        </div>
+        <ToolBar>
+          <ToolBar.ActionSheet
+            portal={mainDOM}
+            // color="primary"
+            // border="fill"
+            placeholder="List"
+            value={item}
+            onChange={setItem}
+            list={[
+              {
+                disabled: true,
+                id: '',
+                name: 'Disabled'
+              },
+              {
+                id: '1',
+                name: 'Option1'
+              },
+              {
+                id: '2',
+                name: 'Option2'
+              }
+            ]}
+          />
+        </ToolBar>
 
         {/* Button */}
         <Divider>Button</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
+        <ToolBar>
+          <ToolBar.Button square onClick={() => console.log(1)}>
+            <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+          </ToolBar.Button>
+          <Space.Compact>
+            <ToolBar.Button>1</ToolBar.Button>
+            <ToolBar.Button>2</ToolBar.Button>
+            <ToolBar.Button>3</ToolBar.Button>
+          </Space.Compact>
+          <Space.Compact>
+            <ToolBar.List
+              portal={mainDOM}
+              arrowRender={null}
+              square
+              border="fill"
+              comboChildren={<Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>}
+              maskStyle={{
+                zIndex: 99
+              }}
+              value={item}
+              onChange={setItem}
+              list={[
+                {
+                  id: 'desc',
+                  name: 'Desc'
+                },
+                {
+                  id: 'asc',
+                  name: 'Asc'
+                }
+              ]}
+            />
             <ToolBar.Button square onClick={() => console.log(1)}>
               <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
             </ToolBar.Button>
-            <Space.Compact>
-              <ToolBar.Button>1</ToolBar.Button>
-              <ToolBar.Button>2</ToolBar.Button>
-              <ToolBar.Button>3</ToolBar.Button>
-            </Space.Compact>
-            <Space.Compact>
-              <ToolBar.List
-                portal={mainDOM}
-                arrowRender={null}
-                square
-                border="fill"
-                comboChildren={<Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>}
-                maskStyle={{
-                  zIndex: 99
-                }}
-                value={item}
-                onChange={setItem}
-                list={[
-                  {
-                    id: 'desc',
-                    name: 'Desc'
-                  },
-                  {
-                    id: 'asc',
-                    name: 'Asc'
-                  }
-                ]}
-              />
-              <ToolBar.Button square onClick={() => console.log(1)}>
-                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-              </ToolBar.Button>
-              <ToolBar.Filter border="fill" square>
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Filter>
-            </Space.Compact>
-          </ToolBar>
-        </div>
+            <ToolBar.Filter border="fill" square>
+              <div style={{ height: '300px' }}>Modal Content</div>
+            </ToolBar.Filter>
+          </Space.Compact>
+        </ToolBar>
 
         {/* Filter */}
         <Divider>Filter Side</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.Button
-              onClick={() => {
-                filterRef.current?.open()
-              }}
-            >
-              Click to toggle filter modal
-            </ToolBar.Button>
-            <ToolBar.Filter
-              color="primary"
-              square
-              icon={
-                <Icon className="lyrixi-toolbar-button-icon lyrixi-iconfont lyrixi-iconfont-search" />
-              }
-              onReset={() => {
-                console.log('reset')
-              }}
-              onOk={() => {
-                console.log('submit')
-              }}
-            >
-              <div style={{ height: '300px' }}>Modal Content</div>
-            </ToolBar.Filter>
-            <ToolBar.Filter
-              ref={filterRef}
-              border="fill"
-              square
-              onReset={() => {
-                console.log('reset')
-              }}
-              onOk={() => {
-                console.log('submit')
-              }}
-            >
-              <div style={{ height: '300px' }}>Modal Content</div>
-            </ToolBar.Filter>
-          </ToolBar>
-        </div>
+        <ToolBar>
+          <ToolBar.Button
+            onClick={() => {
+              filterRef.current?.open()
+            }}
+          >
+            Click to toggle filter modal
+          </ToolBar.Button>
+          <ToolBar.Filter
+            color="primary"
+            square
+            icon={
+              <Icon className="lyrixi-toolbar-button-icon lyrixi-iconfont lyrixi-iconfont-search" />
+            }
+            onReset={() => {
+              console.log('reset')
+            }}
+            onOk={() => {
+              console.log('submit')
+            }}
+          >
+            <div style={{ height: '300px' }}>Modal Content</div>
+          </ToolBar.Filter>
+          <ToolBar.Filter
+            ref={filterRef}
+            border="fill"
+            square
+            onReset={() => {
+              console.log('reset')
+            }}
+            onOk={() => {
+              console.log('submit')
+            }}
+          >
+            <div style={{ height: '300px' }}>Modal Content</div>
+          </ToolBar.Filter>
+        </ToolBar>
 
         <Divider>SearchBar</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.Search
-              value={search}
-              onSearch={(value) => {
-                console.log('search:', value)
-              }}
-            />
-            <Space.Compact>
-              <ToolBar.Button square onClick={() => console.log(1)}>
-                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-              </ToolBar.Button>
-              <ToolBar.Filter border="fill" square>
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Filter>
-            </Space.Compact>
-          </ToolBar>
-        </div>
+        <ToolBar>
+          <ToolBar.Search
+            value={search}
+            onSearch={(value) => {
+              console.log('search:', value)
+            }}
+          />
+          <Space.Compact>
+            <ToolBar.Button square onClick={() => console.log(1)}>
+              <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+            </ToolBar.Button>
+            <ToolBar.Filter border="fill" square>
+              <div style={{ height: '300px' }}>Modal Content</div>
+            </ToolBar.Filter>
+          </Space.Compact>
+        </ToolBar>
 
         <Divider>SearchBar active</Divider>
-        <div className="lyrixi-toolbar-bg">
-          <ToolBar>
-            <ToolBar.Search
+        <ToolBar>
+          <ToolBar.Search
+            value={search}
+            readOnly
+            onClick={() => {
+              setSearchActive(true)
+            }}
+          />
+          <Space.Compact>
+            <ToolBar.Button square onClick={() => console.log(1)}>
+              <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+            </ToolBar.Button>
+            <ToolBar.Filter border="fill" square>
+              <div style={{ height: '300px' }}>Modal Content</div>
+            </ToolBar.Filter>
+          </Space.Compact>
+          {searchActive && (
+            <ToolBar.SearchActive
               value={search}
-              readOnly
-              onClick={() => {
-                setSearchActive(true)
+              onSearch={(keyword) => {
+                setSearch(keyword)
+                console.log('search keyword:' + keyword)
+                setSearchActive(false)
               }}
+              onBlur={() => {
+                setSearchActive(false)
+              }}
+              // onCancel={() => {
+              //   setSearchActive(false)
+              // }}
             />
-            <Space.Compact>
-              <ToolBar.Button square onClick={() => console.log(1)}>
-                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-              </ToolBar.Button>
-              <ToolBar.Filter border="fill" square>
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Filter>
-            </Space.Compact>
-            {searchActive && (
-              <ToolBar.SearchActive
-                value={search}
-                onSearch={(keyword) => {
-                  setSearch(keyword)
-                  console.log('search keyword:' + keyword)
-                  setSearchActive(false)
-                }}
-                onBlur={() => {
-                  setSearchActive(false)
-                }}
-                // onCancel={() => {
-                //   setSearchActive(false)
-                // }}
-              />
-            )}
-          </ToolBar>
-        </div>
+          )}
+        </ToolBar>
 
         <Divider>SearchBar Invert active</Divider>
-        <div className="lyrixi-toolbar-bg lyrixi-invert">
-          <ToolBar invert>
-            <ToolBar.Search
+        <ToolBar variant="filled">
+          <ToolBar.Search
+            value={search}
+            readOnly
+            onClick={() => {
+              setFilledSearchActive(true)
+            }}
+          />
+          {filledSearchActive && (
+            <ToolBar.SearchActive
               value={search}
-              readOnly
-              onClick={() => {
-                setInvertSearchActive(true)
+              onSearch={(keyword) => {
+                setSearch(keyword)
+                console.log('search keyword:' + keyword)
+                setFilledSearchActive(false)
+              }}
+              onBlur={() => {
+                setFilledSearchActive(false)
               }}
             />
-            {invertSearchActive && (
-              <ToolBar.SearchActive
-                value={search}
-                onSearch={(keyword) => {
-                  setSearch(keyword)
-                  console.log('search keyword:' + keyword)
-                  setInvertSearchActive(false)
-                }}
-                onBlur={() => {
-                  setInvertSearchActive(false)
-                }}
-              />
-            )}
-          </ToolBar>
-        </div>
+          )}
+        </ToolBar>
       </Page.Main>
     </Page>
   )

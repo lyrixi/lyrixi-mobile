@@ -30,7 +30,7 @@ ToolBar 内的所有控件 Combo 部分都与 Button 属性一致，可以直接
 
 | 属性      | 说明       | 类型        | 默认值 |
 | --------- | ---------- | ----------- | ------ |
-| invert    | 是否反转   | `boolean`   | -      |
+| variant   | 变体       | `string`    | -      |
 | className | 自定义类名 | `string`    | -      |
 | children  | 子元素     | `ReactNode` | -      |
 
