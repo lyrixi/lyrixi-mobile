@@ -1,7 +1,13 @@
 import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
+
 // 内库使用-start
+import MathUtil from './../../../utils/MathUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
+
+/* 测试使用-start
+import { MathUtil, DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 创建Context, 便于子组件获取上下文
 const Context = React.createContext(null)
@@ -16,6 +22,7 @@ const Compact = forwardRef(
       direction = 'horizontal',
       block = false,
       size = 'm',
+      radius = 'm',
 
       // Elements
       children
@@ -51,7 +58,10 @@ const Compact = forwardRef(
     return (
       <Context.Provider value={contextValue}>
         <div
-          style={style}
+          style={{
+            ...style,
+            '--lyrixi-compact-radius': MathUtil.variableSize(radius, 'radius')
+          }}
           className={DOMUtil.classNames(
             'lyrixi-space-compact',
             `lyrixi-space-compact-${direction}`,

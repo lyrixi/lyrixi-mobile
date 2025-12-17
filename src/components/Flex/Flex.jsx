@@ -38,11 +38,14 @@ const Flex = forwardRef(
     })
 
     function getStyle() {
-      const horizontalGap = MathUtil.getGapSize(gap, 'horizontal')
-      const verticalGap = MathUtil.getGapSize(gap, 'vertical')
       let gapStyle = {}
-      gapStyle.columnGap = horizontalGap
-      gapStyle.rowGap = verticalGap
+      if (gap) {
+        const gapValues = Array.isArray(gap) ? gap : [gap, gap]
+        const horizontalGap = MathUtil.variableSize(gapValues?.[0], 'space')
+        const verticalGap = MathUtil.variableSize(gapValues?.[1], 'space')
+        gapStyle.columnGap = horizontalGap
+        gapStyle.rowGap = verticalGap
+      }
 
       return {
         ...gapStyle,

@@ -151,27 +151,21 @@ function inertia({ cellSize, distance, duration, currentPosition, minPosition, m
 }
 
 /**
- * 获取间距大小
+ * 获取尺寸变量, 与variables.less中的变量一致
  * @param {Array|Number|String} gap
- * @param {String} direction 'horizontal' | 'vertical'
+ * @param {String} type 'space' | 'font-size' | 'radius'
  * @returns {String} 间距大小
  */
-function getGapSize(gap, direction) {
-  const gapValues = Array.isArray(gap) ? gap : [gap, gap]
-  let currentGap = gapValues[0]
-  if (direction === 'vertical') {
-    currentGap = gapValues[1]
-  }
-
+function variableSize(size, type = 'space') {
   // 如果是数字，则直接返回
-  let currentGapNumber = extractNumber(currentGap)
-  if (isNumber(currentGapNumber)) {
-    return isNumber(currentGap) ? `${currentGap}px` : currentGap
+  let sizeNumber = extractNumber(size)
+  if (isNumber(sizeNumber)) {
+    return isNumber(size) ? `${size}px` : size
   }
 
   // 如果是间距变量, 则返回变量
-  if (DOMUtil.variables.sizes.includes(currentGap)) {
-    return `var(--lyrixi-space-${currentGap})`
+  if (DOMUtil.variables.sizes.includes(size)) {
+    return `var(--lyrixi-${type}-${size})`
   }
 
   // 默认返回空字符串
@@ -188,7 +182,7 @@ const MathUtil = {
   thousands,
   antiThousands,
   inertia,
-  getGapSize
+  variableSize
 }
 
 export default MathUtil
