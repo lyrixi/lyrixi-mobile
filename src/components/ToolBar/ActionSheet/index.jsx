@@ -23,7 +23,7 @@ function ToolBarActionSheet(
     backgroundColor,
     sizeEqual,
     border = 'none',
-    radius,
+    radius = 'm',
     size,
     maskStyle,
     maskClassName,

@@ -23,7 +23,7 @@ function Combo(
     backgroundColor,
     sizeEqual,
     border = 'none',
-    radius,
+    radius = 'm',
     size,
 
     // Element

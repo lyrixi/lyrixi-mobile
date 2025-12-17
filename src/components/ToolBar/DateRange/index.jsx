@@ -35,7 +35,7 @@ function DateRangeBar({
   backgroundColor,
   sizeEqual,
   border = 'none',
-  radius,
+  radius = 'm',
   size,
   maskStyle,
   maskClassName,

@@ -18,7 +18,7 @@ const ToolBarButton = forwardRef(
       backgroundColor,
       sizeEqual,
       border = 'none',
-      radius,
+      radius = 'm',
       size,
       className,
       style,

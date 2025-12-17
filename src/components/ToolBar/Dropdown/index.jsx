@@ -27,7 +27,7 @@ const Dropdown = forwardRef(
       backgroundColor,
       sizeEqual,
       border = 'none',
-      radius,
+      radius = 'm',
       size,
 
       // Combo: Element
