@@ -12,8 +12,8 @@ export default () => {
         <Card>
           <Card.Header>Horizontal</Card.Header>
           <Card.Main>
-            <Space.Compact size="s">
-              {/* <Space.Addon>+86</Space.Addon> */}
+            <Space.Compact size="m">
+              <Space.Addon>+86</Space.Addon>
               <Button color="primary" backgroundColor="white">
                 Sent
               </Button>
@@ -21,6 +21,31 @@ export default () => {
             </Space.Compact>
           </Card.Main>
         </Card>
+        <Card>
+          <Card.Header>Block</Card.Header>
+          <Card.Main>
+            <Space.Compact size="m" block>
+              <Space.Addon>+86</Space.Addon>
+              <Button color="primary" backgroundColor="white">
+                Sent
+              </Button>
+              <Button>Retry</Button>
+            </Space.Compact>
+          </Card.Main>
+        </Card>
+        <Card>
+          <Card.Header>Vertical</Card.Header>
+          <Card.Main>
+            <Space.Compact direction="vertical" size="m">
+              <Button>Button1</Button>
+              <Button color="primary" backgroundColor="white">
+                Button2
+              </Button>
+              <Button>Button3</Button>
+            </Space.Compact>
+          </Card.Main>
+        </Card>
+        Space.Compact supports `Space.Addon|Button`
       </Page.Main>
     </Page>
   )

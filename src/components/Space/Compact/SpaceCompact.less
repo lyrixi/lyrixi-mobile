@@ -3,17 +3,14 @@
   width: auto;
 }
 
+// 全宽布局
 .lyrixi-space-compact-block {
   display: flex;
-  width: 100%;
-}
-
-.lyrixi-space-compact-horizontal {
-  flex-direction: row;
-}
-
-.lyrixi-space-compact-vertical {
-  flex-direction: column;
+  flex: 1;
+  .lyrixi-space-compact-item {
+    display: flex;
+    flex: 1;
+  }
 }
 
 // .lyrixi-space-compact-item {
@@ -21,13 +18,10 @@
 //   position: relative;
 // }
 
-.lyrixi-space-compact-block .lyrixi-space-compact-item {
-  flex: 1;
-  min-width: 0;
-}
-
 /* 水平方向 */
 .lyrixi-space-compact-horizontal {
+  flex-direction: row;
+
   .lyrixi-space-compact-item:not(:last-child) {
     margin-right: -1px;
   }
@@ -51,24 +45,26 @@
 }
 
 /* 垂直方向 */
-.lyrixi-space-compact-vertical .lyrixi-space-compact-item {
+.lyrixi-space-compact-vertical {
   flex-direction: column;
 
-  &:not(:last-child) {
+  .lyrixi-space-compact-item:not(:last-child) {
     margin-bottom: -1px;
   }
 
-  > * {
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+  // 中间元素圆角
+  .lyrixi-space-compact-item > * {
+    border-radius: 0;
   }
 
-  &.lyrixi-space-compact-item-first > * {
+  // 第一个元素圆角
+  .lyrixi-space-compact-item-first > * {
     border-top-left-radius: var(--lyrixi-radius-m);
     border-top-right-radius: var(--lyrixi-radius-m);
   }
 
-  &.lyrixi-space-compact-item-last > * {
+  // 最后一个元素圆角
+  .lyrixi-space-compact-item-last > * {
     border-bottom-left-radius: var(--lyrixi-radius-m);
     border-bottom-right-radius: var(--lyrixi-radius-m);
   }

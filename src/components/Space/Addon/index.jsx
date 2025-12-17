@@ -15,7 +15,7 @@ const SpaceAddon = forwardRef(({ className, style, size, children }, ref) => {
       ref={ref}
       className={DOMUtil.classNames(
         'lyrixi-space-addon',
-        mergedSize ? `lyrixi-space-addon-${mergedSize}` : null,
+        mergedSize ? `lyrixi-size-${mergedSize}` : null,
         className
       )}
       style={style}

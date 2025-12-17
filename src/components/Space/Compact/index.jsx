@@ -12,8 +12,6 @@ const Compact = forwardRef(
       // Style
       className,
       style,
-
-      // Layout
       direction = 'horizontal',
       block = false,
       size = 'm',
