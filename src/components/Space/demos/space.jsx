@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { Page, Card, Space, Button, Radio, Input } from 'lyrixi-mobile'
 
 const buttons = Array.from({ length: 6 }).map((_, index) => (
@@ -46,14 +46,14 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>基础间距</Card.Header>
+          <Card.Header>general</Card.Header>
           <Card.Main>
             <Space size={size}>{buttons.slice(0, 3)}</Space>
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>垂直布局</Card.Header>
+          <Card.Header>vertical</Card.Header>
           <Card.Main>
             <Space direction="vertical" size={size}>
               {buttons.slice(0, 2)}
@@ -62,7 +62,7 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>分隔符</Card.Header>
+          <Card.Header>separator</Card.Header>
           <Card.Main>
             <Space size={size} separator="|">
               {buttons.slice(0, 3)}
@@ -71,9 +71,9 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>换行</Card.Header>
+          <Card.Header>wrap</Card.Header>
           <Card.Main>
-            <Space size={[12, 12]} wrap>
+            <Space size={size} wrap>
               {buttons}
             </Space>
           </Card.Main>

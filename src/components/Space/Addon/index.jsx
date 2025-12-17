@@ -9,21 +9,21 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const SpaceAddon = forwardRef(({ className, style, size, children }, ref) => {
+const SpaceAddon = forwardRef(({ className, style, block, size, children }, ref) => {
   const compactContext = Compact.useContext()
   const mergedSize = size || compactContext?.size || 'm'
-  const mergedBlock = compactContext?.block || false
+  const mergedBlock = block || compactContext?.block || false
 
   return (
     <div
       ref={ref}
+      style={style}
       className={DOMUtil.classNames(
         'lyrixi-space-addon',
         mergedSize ? `lyrixi-size-${mergedSize}` : null,
         mergedBlock ? 'lyrixi-space-addon-block' : null,
         className
       )}
-      style={style}
     >
       {children}
     </div>

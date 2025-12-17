@@ -22,15 +22,12 @@ const Space = forwardRef(
       itemClassName,
       separatorStyle,
       separatorClassName,
-
-      // Layout
-      size = 's',
-      direction = 'horizontal',
-      align,
-      separator,
+      size = 's', // Number | 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'
+      direction = 'horizontal', // 'horizontal', 'vertical'
       wrap = false,
 
       // Element
+      separator,
       children
     },
     ref
@@ -61,14 +58,9 @@ const Space = forwardRef(
     function getStyle() {
       const horizontalSize = getNumberSize(size, 'horizontal')
       const verticalSize = getNumberSize(size, 'vertical')
-
       let gapStyle = {}
-      if (wrap) {
-        gapStyle.rowGap = verticalSize
-      } else {
-        gapStyle.columnGap = horizontalSize
-        gapStyle.rowGap = verticalSize
-      }
+      gapStyle.columnGap = horizontalSize
+      gapStyle.rowGap = verticalSize
 
       return {
         ...gapStyle,
@@ -83,8 +75,7 @@ const Space = forwardRef(
           'lyrixi-space',
           `lyrixi-space-${direction}`,
           {
-            [`lyrixi-space-wrap`]: wrap,
-            [`lyrixi-space-align-${align}`]: align
+            [`lyrixi-space-wrap`]: wrap
           },
           className
         )}
