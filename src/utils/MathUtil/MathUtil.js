@@ -1,3 +1,11 @@
+// 内库使用-start
+import DOMUtil from './../DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // 是否为合法数值, validValues为自定义合法值
 function isNumber(str, validValues = []) {
   if (validValues.includes(str)) return true
@@ -162,7 +170,7 @@ function getGapSize(gap, direction) {
   }
 
   // 如果是间距变量, 则返回变量
-  if (['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'].includes(currentGap)) {
+  if (DOMUtil.variables.sizes.includes(currentGap)) {
     return `var(--lyrixi-space-${currentGap})`
   }
 
