@@ -62,7 +62,7 @@ function getStyle({
     iconClassName,
     isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
-    isSizeClass && size && `lyrixi-size-equal lyrixi-size-${size}`,
+    isSizeClass && size && `lyrixi-icon-size-${size}`,
     isRadiusClass && radius && `lyrixi-radius-${radius}`,
     className
   )

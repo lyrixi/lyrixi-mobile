@@ -412,23 +412,24 @@ export default () => {
 
         <br />
 
-        <Divider>Shape</Divider>
+        <Divider>sizeEqual</Divider>
         <div>
           <Button
+            size="l"
+            radius="100%"
             sizeEqual
-            radius="m"
             color="white"
             backgroundColor="primary"
             borderColor="primary"
             style={buttonStyle}
           >
-            Round
+            R
           </Button>
-          <Button sizeEqual radius="100%" size="s" borderColor="default" style={buttonStyle}>
+          <Button sizeEqual radius="100%" size="m" borderColor="default" style={buttonStyle}>
             <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
-          <Button sizeEqual size="s" radius="m" borderColor="default" style={buttonStyle}>
-            <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+          <Button sizeEqual size="l" radius="l" borderColor="default" style={buttonStyle}>
+            <Icon size="xl" className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
           </Button>
           <br />
 
