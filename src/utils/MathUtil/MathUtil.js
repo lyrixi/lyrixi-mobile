@@ -153,10 +153,10 @@ function inertia({ cellSize, distance, duration, currentPosition, minPosition, m
 /**
  * 获取尺寸变量, 与variables.less中的变量一致
  * @param {Array|Number|String} gap
- * @param {String} type 'space' | 'font-size' | 'radius'
+ * @param {String} type 'space' | 'font-size' | 'radius', 不传则不使用变量
  * @returns {String} 间距大小
  */
-function variableSize(size, type = 'space') {
+function variableSize(size, type) {
   // 如果是数字，则直接返回
   let sizeNumber = extractNumber(size)
   if (isNumber(sizeNumber)) {
@@ -164,7 +164,7 @@ function variableSize(size, type = 'space') {
   }
 
   // 如果是间距变量, 则返回变量
-  if (DOMUtil.variables.sizes.includes(size)) {
+  if (type && DOMUtil.variables.sizes.includes(size)) {
     return `var(--lyrixi-${type}-${size})`
   }
 

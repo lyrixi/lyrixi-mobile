@@ -452,16 +452,6 @@ export default () => {
           color="white"
           backgroundColor="primary"
           borderColor="primary"
-          size="xxs"
-          radius="xxs"
-          style={buttonStyle}
-        >
-          xxs
-        </Button>
-        <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="xs"
           radius="xs"
           style={buttonStyle}
@@ -507,6 +497,16 @@ export default () => {
           style={buttonStyle}
         >
           xl
+        </Button>
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="xxl"
+          radius="xl"
+          style={buttonStyle}
+        >
+          xxl
         </Button>
       </Page.Main>
     </Page>

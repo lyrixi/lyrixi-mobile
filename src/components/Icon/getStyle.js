@@ -1,20 +1,11 @@
 // 内库使用-start
+import MathUtil from './../../utils/MathUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-function pxToNumber(value) {
-  // 判断是否为以'px'结尾的字符串，并且前面是数字
-  if (typeof value === 'string' && /^\d+(\.\d+)?px$/.test(value.trim())) {
-    // 提取数值部分并转换为数字
-    return parseFloat(value.trim().replace('px', ''))
-  }
-  // 不是'数值px'格式，则原样返回
-  return value
-}
 
 function getStyle({
   // Style
@@ -29,11 +20,11 @@ function getStyle({
   className
 }) {
   // eslint-disable-next-line
-  size = pxToNumber(size)
+  size = MathUtil.variableSize(size) || size
   // eslint-disable-next-line
-  padding = pxToNumber(padding)
+  padding = MathUtil.variableSize(padding) || padding
   // eslint-disable-next-line
-  radius = pxToNumber(radius)
+  radius = MathUtil.variableSize(radius) || radius
 
   // 判断颜色是否在枚举值中
   const isColorClass = DOMUtil.variables.colors.includes(color)
