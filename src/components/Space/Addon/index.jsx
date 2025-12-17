@@ -9,6 +9,7 @@ import { useSpaceCompactContext } from './../Compact/context'
 const SpaceAddon = forwardRef(({ className, style, size, children }, ref) => {
   const compactContext = useSpaceCompactContext()
   const mergedSize = size || compactContext?.size || 'm'
+  const mergedBlock = compactContext?.block || false
 
   return (
     <div
@@ -16,6 +17,7 @@ const SpaceAddon = forwardRef(({ className, style, size, children }, ref) => {
       className={DOMUtil.classNames(
         'lyrixi-space-addon',
         mergedSize ? `lyrixi-size-${mergedSize}` : null,
+        mergedBlock ? 'lyrixi-space-addon-block' : null,
         className
       )}
       style={style}

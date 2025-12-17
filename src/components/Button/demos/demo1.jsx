@@ -77,7 +77,13 @@ export default () => {
         </div>
 
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button color="white" backgroundColor="primary" radius="m" style={buttonStyle}>
+          <Button
+            color="white"
+            backgroundColor="primary"
+            borderColor="primary"
+            radius="m"
+            style={buttonStyle}
+          >
             color="white" backgroundColor="primary"
           </Button>
           <br />
@@ -139,7 +145,13 @@ export default () => {
         </div>
 
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button color="white" backgroundColor="link" radius="m" style={buttonStyle}>
+          <Button
+            color="white"
+            backgroundColor="link"
+            borderColor="link"
+            radius="m"
+            style={buttonStyle}
+          >
             color="white" backgroundColor="link"
           </Button>
           <br />
@@ -201,7 +213,13 @@ export default () => {
         </div>
 
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button color="white" backgroundColor="warning" radius="m" style={buttonStyle}>
+          <Button
+            color="white"
+            backgroundColor="warning"
+            borderColor="warning"
+            radius="m"
+            style={buttonStyle}
+          >
             color="white" backgroundColor="warning"
           </Button>
           <br />
@@ -263,7 +281,13 @@ export default () => {
         </div>
 
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button color="white" backgroundColor="danger" radius="m" style={buttonStyle}>
+          <Button
+            color="white"
+            backgroundColor="danger"
+            borderColor="danger"
+            radius="m"
+            style={buttonStyle}
+          >
             color="white" backgroundColor="danger"
           </Button>
           <br />
@@ -390,7 +414,14 @@ export default () => {
 
         <Divider>Shape</Divider>
         <div>
-          <Button square radius="m" color="white" backgroundColor="primary" style={buttonStyle}>
+          <Button
+            square
+            radius="m"
+            color="white"
+            backgroundColor="primary"
+            borderColor="primary"
+            style={buttonStyle}
+          >
             Round
           </Button>
           <Button square radius="100%" size="s" borderColor="default" style={buttonStyle}>
@@ -401,37 +432,80 @@ export default () => {
           </Button>
           <br />
 
-          <Divider>Flex</Divider>
+          <Divider>Block</Divider>
           <Button
             color="white"
             backgroundColor="primary"
+            borderColor="primary"
             radius="m"
-            className="lyrixi-flex"
+            block
             style={buttonStyle}
           >
-            primary flex
+            block
           </Button>
         </div>
         <br />
 
         <Divider>Size & radius</Divider>
-        <Button color="white" backgroundColor="primary" size="xxs" radius="xxs" style={buttonStyle}>
-          primary xxs
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="xxs"
+          radius="xxs"
+          style={buttonStyle}
+        >
+          xxs
         </Button>
-        <Button color="white" backgroundColor="primary" size="xs" radius="xs" style={buttonStyle}>
-          primary xs
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="xs"
+          radius="xs"
+          style={buttonStyle}
+        >
+          xs
         </Button>
-        <Button color="white" backgroundColor="primary" size="s" radius="s" style={buttonStyle}>
-          primary s
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="s"
+          radius="s"
+          style={buttonStyle}
+        >
+          s
         </Button>
-        <Button color="white" backgroundColor="primary" size="m" radius="m" style={buttonStyle}>
-          primary m
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="m"
+          radius="m"
+          style={buttonStyle}
+        >
+          m
         </Button>
-        <Button color="white" backgroundColor="primary" size="l" radius="l" style={buttonStyle}>
-          primary l
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="l"
+          radius="l"
+          style={buttonStyle}
+        >
+          l
         </Button>
-        <Button color="white" backgroundColor="primary" size="xl" radius="xl" style={buttonStyle}>
-          primary xl
+        <Button
+          color="white"
+          backgroundColor="primary"
+          borderColor="primary"
+          size="xl"
+          radius="xl"
+          style={buttonStyle}
+        >
+          xl
         </Button>
       </Page.Main>
     </Page>

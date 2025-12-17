@@ -41,7 +41,7 @@ const Compact = forwardRef(
       }
     })
 
-    const contextValue = useMemo(() => ({ size, direction }), [size, direction])
+    const contextValue = useMemo(() => ({ block, size, direction }), [block, size, direction])
 
     if (childNodes.length === 0) {
       return null

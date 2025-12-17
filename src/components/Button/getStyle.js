@@ -24,8 +24,9 @@ function getStyle({
   size,
   fontSize,
   radius,
-  border,
   square,
+  border,
+  block,
   style,
   // ClassName
   className,
@@ -68,6 +69,7 @@ function getStyle({
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
     border !== 'none' && `lyrixi-border-width-default`,
     border && `lyrixi-border-style-${border}`,
+    block && `lyrixi-flex`,
     isSizeClass && size && `lyrixi-size-${size}`,
     isRadiusClass && radius && `lyrixi-radius-${radius}`,
     square && `lyrixi-shape-square`,

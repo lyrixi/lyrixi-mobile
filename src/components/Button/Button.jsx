@@ -22,6 +22,7 @@ const Button = forwardRef(
       radius, // 圆角: xxs, xs, s, m, l, xl
       square, // 是否为正方形
       border = 'solid', // 边框: none, dotted, dashed, solid
+      block, // 是否为块级元素
       style,
       className,
 
@@ -55,8 +56,9 @@ const Button = forwardRef(
       size,
       fontSize,
       radius,
-      border,
       square,
+      border,
+      block,
       style,
       // ClassName
       className,
