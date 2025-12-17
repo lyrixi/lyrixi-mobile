@@ -50,14 +50,6 @@ const Flex = forwardRef(
       }
     }
 
-    // evenly 需要通过 style 实现
-    const justifyContentStyle = align === 'evenly' ? { justifyContent: 'space-evenly' } : {}
-
-    const finalStyle = {
-      ...mergedStyle,
-      ...justifyContentStyle
-    }
-
     function getClassName() {
       const alignClassMap = {
         start: direction === 'horizontal' ? 'lyrixi-flex-left' : 'lyrixi-flex-top',
