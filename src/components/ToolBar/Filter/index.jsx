@@ -4,10 +4,11 @@ import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 import FilterModal from './../../Modal/FilterModal'
 import Button from './../../Button'
+import Icon from './../../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Modal, Button } from 'lyrixi-mobile'
+import { DOMUtil, Modal, Button, Icon } from 'lyrixi-mobile'
 const FilterModal = Modal.FilterModal
 测试使用-end */
 
@@ -21,7 +22,7 @@ const Filter = forwardRef(
       borderColor = 'default',
       backgroundColor,
       sizeEqual,
-      border,
+      border = 'none',
       radius,
       size,
       maskStyle,
@@ -64,9 +65,9 @@ const Filter = forwardRef(
     // 获取图标节点
     function getIconNode() {
       if (typeof iconRender === 'function') {
-        return iconRender({ className: 'lyrixi-toolbar-button-icon' })
+        return iconRender()
       }
-      return <div className="lyrixi-toolbar-button-icon lyrixi-toolbar-button-icon-filter"></div>
+      return <Icon className="lyrixi-iconfont-filter-menu" />
     }
     const IconNode = getIconNode()
 

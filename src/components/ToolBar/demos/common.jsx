@@ -50,7 +50,7 @@ export default () => {
           <Card.Header>Dropdown</Card.Header>
           <Card.Main>
             <ToolBar>
-              <ToolBar.Dropdown left={12} placeholder="Dropdown left" color="primary" border="fill">
+              <ToolBar.Dropdown left={12} placeholder="Dropdown left" color="primary">
                 <div style={{ height: '300px' }}>Modal Content</div>
               </ToolBar.Dropdown>
               <ToolBar.Dropdown placeholder="Dropdown ref" ref={dropdownRef}>
@@ -101,7 +101,6 @@ export default () => {
               />
               <ToolBar.DateRange
                 portal={mainDOM}
-                border="fill"
                 placeholder="DateRange"
                 value={dateRange}
                 // allowClear={true}
@@ -143,7 +142,6 @@ export default () => {
               />
               <ToolBar.List
                 portal={mainDOM}
-                border="fill"
                 placeholder="List"
                 value={item}
                 onChange={setItem}
@@ -174,7 +172,7 @@ export default () => {
               <ToolBar.ActionSheet
                 portal={mainDOM}
                 // color="primary"
-                // border="fill"
+
                 placeholder="List"
                 value={item}
                 onChange={setItem}
@@ -216,7 +214,6 @@ export default () => {
                   portal={mainDOM}
                   arrowRender={null}
                   sizeEqual
-                  border="fill"
                   comboChildren={
                     <Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>
                   }
@@ -239,7 +236,7 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" sizeEqual>
+                <ToolBar.Filter sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>
@@ -262,9 +259,7 @@ export default () => {
               <ToolBar.Filter
                 color="primary"
                 sizeEqual
-                icon={
-                  <Icon className="lyrixi-toolbar-button-icon lyrixi-iconfont lyrixi-iconfont-search" />
-                }
+                icon={<Icon className="lyrixi-iconfont-search" />}
                 onReset={() => {
                   console.log('reset')
                 }}
@@ -276,7 +271,6 @@ export default () => {
               </ToolBar.Filter>
               <ToolBar.Filter
                 ref={filterRef}
-                border="fill"
                 sizeEqual
                 onReset={() => {
                   console.log('reset')
@@ -305,7 +299,7 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" sizeEqual>
+                <ToolBar.Filter sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>
@@ -328,7 +322,7 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" sizeEqual>
+                <ToolBar.Filter sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>
@@ -367,7 +361,7 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter border="fill" sizeEqual>
+                <ToolBar.Filter sizeEqual>
                   <div style={{ height: '300px' }}>Modal Content</div>
                 </ToolBar.Filter>
               </Space.Compact>

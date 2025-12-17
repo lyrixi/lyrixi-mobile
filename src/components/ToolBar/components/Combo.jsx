@@ -22,7 +22,7 @@ function Combo(
     borderColor = 'default',
     backgroundColor,
     sizeEqual,
-    border,
+    border = 'none',
     radius,
     size,
 

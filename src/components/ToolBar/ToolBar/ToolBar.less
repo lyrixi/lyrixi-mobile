@@ -17,10 +17,6 @@
   overflow-x: auto;
   background-color: var(--toolbar-bg);
 
-  &.lyrixi-toolbar-filled {
-    background-color: var(--toolbar-filled-bg);
-  }
-
   // 活动状态, 必须关闭弹窗后才可点击
   &.lyrixi-active {
     * {
@@ -35,7 +31,7 @@
   .lyrixi-toolbar {
     gap: initial;
     // 非最后一项，且不是激活的搜索框
-    & > div:not(:last-child, .lyrixi-toolbar-search-bar) {
+    & > div:not(:last-child, .lyrixi-toolbar-search-bar-active) {
       margin-right: 8px;
     }
   }

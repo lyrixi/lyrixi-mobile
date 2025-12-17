@@ -64,7 +64,7 @@ const SearchBar = (
     <div
       // Style
       style={style}
-      className={DOMUtil.classNames('lyrixi-toolbar-search-bar', className)}
+      className={DOMUtil.classNames('lyrixi-toolbar-search-bar-active', className)}
     >
       {/* Element: Search */}
       <Search

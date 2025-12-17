@@ -26,7 +26,7 @@ const Dropdown = forwardRef(
       borderColor = 'default',
       backgroundColor,
       sizeEqual,
-      border,
+      border = 'none',
       radius,
       size,
 
