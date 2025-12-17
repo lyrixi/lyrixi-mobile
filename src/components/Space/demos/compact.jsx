@@ -24,13 +24,43 @@ export default () => {
         <Card>
           <Card.Header>Block</Card.Header>
           <Card.Main>
-            <Space.Compact size="m" block>
+            <Space.Compact block>
               <Space.Addon>+86</Space.Addon>
               <Button color="primary" backgroundColor="white">
                 Sent
               </Button>
               <Button>Retry</Button>
             </Space.Compact>
+          </Card.Main>
+        </Card>
+        <Card>
+          <Card.Header>Size</Card.Header>
+          <Card.Main>
+            <Space direction="vertical">
+              <Space.Compact size="s">
+                <Space.Addon>+86</Space.Addon>
+                <Button color="primary" backgroundColor="white">
+                  Sent
+                </Button>
+                <Button>Retry</Button>
+              </Space.Compact>
+
+              <Space.Compact size="m">
+                <Space.Addon>+86</Space.Addon>
+                <Button color="primary" backgroundColor="white">
+                  Sent
+                </Button>
+                <Button>Retry</Button>
+              </Space.Compact>
+
+              <Space.Compact size="l">
+                <Space.Addon>+86</Space.Addon>
+                <Button color="primary" backgroundColor="white">
+                  Sent
+                </Button>
+                <Button>Retry</Button>
+              </Space.Compact>
+            </Space>
           </Card.Main>
         </Card>
         <Card>

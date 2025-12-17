@@ -1,13 +1,16 @@
 import React, { forwardRef } from 'react'
+import Compact from './../Compact'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-import { useSpaceCompactContext } from './../Compact/context'
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 const SpaceAddon = forwardRef(({ className, style, size, children }, ref) => {
-  const compactContext = useSpaceCompactContext()
+  const compactContext = Compact.useContext()
   const mergedSize = size || compactContext?.size || 'm'
   const mergedBlock = compactContext?.block || false
 

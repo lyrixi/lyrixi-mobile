@@ -2,11 +2,12 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import getStyle from './getStyle'
 
 // 内库使用-start
+import Space from './../Space'
 import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { Icon } from 'lyrixi-mobile'
+import { Space, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 const Button = forwardRef(
@@ -17,7 +18,7 @@ const Button = forwardRef(
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
       borderColor = 'default', // 边框颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      size, // 尺寸: xxs, xs, s, m, l, xl
       fontSize, // 字体大小: xxs, xs, s, m, l, xl
       radius, // 圆角: xxs, xs, s, m, l, xl
       square, // 是否为正方形
@@ -47,18 +48,20 @@ const Button = forwardRef(
     ref
   ) => {
     const rootRef = useRef(null)
+    // 获取紧凑组件的上下文
+    const compactContext = Space.Compact.useContext()
 
     let { style: newStyle, className: newClassName } = getStyle({
       // Style
       color,
       borderColor,
       backgroundColor,
-      size,
+      size: size || compactContext?.size || 'm',
       fontSize,
       radius,
       square,
       border,
-      block,
+      block: block || compactContext?.block || false,
       style,
       // ClassName
       className,

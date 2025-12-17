@@ -1,11 +1,12 @@
 import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
-
-import { SpaceCompactContext } from './context'
-
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
+// 创建Context, 便于子组件获取上下文
+const Context = React.createContext(null)
+
+// 紧凑组件
 const Compact = forwardRef(
   (
     {
@@ -48,7 +49,7 @@ const Compact = forwardRef(
     }
 
     return (
-      <SpaceCompactContext.Provider value={contextValue}>
+      <Context.Provider value={contextValue}>
         <div
           style={style}
           className={DOMUtil.classNames(
@@ -80,9 +81,12 @@ const Compact = forwardRef(
             )
           })}
         </div>
-      </SpaceCompactContext.Provider>
+      </Context.Provider>
     )
   }
 )
 
+// Context
+Compact.Context = Context
+Compact.useContext = () => React.useContext(Context)
 export default Compact
