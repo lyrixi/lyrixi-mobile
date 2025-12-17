@@ -42,8 +42,6 @@ export default () => {
             sizeEqual
             size="l"
             radius="100%"
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-plus"
             borderColor="default"
             onClick={(e) => {
               console.log(e)
@@ -52,7 +50,8 @@ export default () => {
               marginTop: '16px'
             }}
           >
-            2
+            <Icon className="lyrixi-iconfont-plus" />
+            <Button.Text>2</Button.Text>
           </Button>
           <Button
             sizeEqual
