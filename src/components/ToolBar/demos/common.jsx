@@ -18,6 +18,8 @@ export default () => {
         <div style={{ height: '300px' }}>Modal Content</div>
         <FooterBar>
           <FooterBar.Button
+            block
+            backgroundColor="default"
             onClick={() => {
               typeof close === 'function' ? close() : dropdownRef.current.close()
             }}
@@ -25,7 +27,9 @@ export default () => {
             {LocaleUtil.locale('取消', 'lyrixi.cancel')}
           </FooterBar.Button>
           <FooterBar.Button
-            className="lyrixi-primary"
+            block
+            color="white"
+            backgroundColor="primary"
             onClick={() => {
               console.log('ok')
             }}
@@ -52,28 +56,28 @@ export default () => {
             <ToolBar>
               <ToolBar.Dropdown
                 left={12}
-                placeholder="Dropdown left"
                 color="primary"
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
                 }}
-              />
+              >
+                Dropdown left
+              </ToolBar.Dropdown>
 
-              <ToolBar.Dropdown
-                placeholder="Dropdown ref"
-                modalRender={getDropdownModalNode}
-                ref={dropdownRef}
-              />
+              <ToolBar.Dropdown modalRender={getDropdownModalNode} ref={dropdownRef}>
+                Dropdown ref
+              </ToolBar.Dropdown>
 
-              <ToolBar.Dropdown placeholder="Dropdown modal" modalRender={getDropdownModalNode} />
+              <ToolBar.Dropdown modalRender={getDropdownModalNode}>Dropdown modal</ToolBar.Dropdown>
 
               <ToolBar.Dropdown
                 right={12}
-                placeholder="Dropdown right"
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
                 }}
-              />
+              >
+                Dropdown right
+              </ToolBar.Dropdown>
             </ToolBar>
           </Card.Main>
         </Card>
