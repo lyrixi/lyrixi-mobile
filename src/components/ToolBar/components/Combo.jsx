@@ -41,8 +41,8 @@ function Combo(
   const comboRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      comboDOM: comboRef.current.rootDOM,
-      getComboDOM: comboRef.current?.getComboDOM
+      rootDOM: comboRef.current.rootDOM,
+      getRootDOM: comboRef.current?.getRootDOM
     }
   })
 

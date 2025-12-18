@@ -11,4 +11,10 @@ toc: content
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+### 间距及布局
+
+<code src="./demos/flex.jsx"></code>
+
+### 紧凑子组件
+
+<code src="./demos/compact.jsx"></code>

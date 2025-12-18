@@ -18,45 +18,43 @@ const Edit = forwardRef(
     },
     ref
   ) => {
-  const comboRef = useRef(null)
-  useImperativeHandle(ref, () => {
-    return {
-      comboDOM: comboRef?.current,
-      getComboDOM: () => {
-        return comboRef?.current
+    const comboRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: comboRef?.current,
+        getRootDOM: () => {
+          return comboRef?.current
+        }
       }
-    }
-  })
+    })
 
-  return (
-    <div
-      ref={comboRef}
-      className="lyrixi-signature-edit-container"
-    >
-      {/* Element: Thumbnail */}
-      <Thumbnail
-        // Value & Display Value
-        src={value}
-        // Events
-        onPreview={onPreview}
-      />
-
-      {/* Element: Delete Button */}
-      {typeof onDelete === 'function' && (
-        <div
-          className="lyrixi-signature-edit-image-delete"
+    return (
+      <div ref={comboRef} className="lyrixi-signature-edit-container">
+        {/* Element: Thumbnail */}
+        <Thumbnail
+          // Value & Display Value
+          src={value}
           // Events
-          onClick={(e) => {
-            e.stopPropagation()
+          onPreview={onPreview}
+        />
 
-            onDelete('')
-          }}
-        >
-          <div className="lyrixi-signature-edit-image-delete-icon"></div>
-        </div>
-      )}
-    </div>
-  )
-})
+        {/* Element: Delete Button */}
+        {typeof onDelete === 'function' && (
+          <div
+            className="lyrixi-signature-edit-image-delete"
+            // Events
+            onClick={(e) => {
+              e.stopPropagation()
+
+              onDelete('')
+            }}
+          >
+            <div className="lyrixi-signature-edit-image-delete-icon"></div>
+          </div>
+        )}
+      </div>
+    )
+  }
+)
 
 export default Edit

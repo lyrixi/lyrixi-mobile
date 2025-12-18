@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef, useMemo } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 
 // 内库使用-start
 import MathUtil from './../../utils/MathUtil'

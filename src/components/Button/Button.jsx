@@ -2,11 +2,11 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import getStyle from './getStyle'
 
 // 内库使用-start
-import Space from './../Space'
+import Flex from './../Flex'
 // 内库使用-end
 
 /* 测试使用-start
-import { Space } from 'lyrixi-mobile'
+import { Flex } from 'lyrixi-mobile'
 测试使用-end */
 
 const Button = forwardRef(
@@ -40,7 +40,7 @@ const Button = forwardRef(
   ) => {
     const rootRef = useRef(null)
     // 获取紧凑组件的上下文
-    const compactContext = Space.Compact.useContext()
+    const compactContext = Flex.Compact.useContext()
 
     let { style: newStyle, className: newClassName } = getStyle({
       // Style

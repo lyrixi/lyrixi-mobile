@@ -316,12 +316,10 @@ const Calendar = (
           }
           // 选择日期
           let newValue = date
-          let newDrawDate = date
 
           // Range select
           if (selectionMode === 'range') {
             newValue = sortRangeValue(date, value)
-            newDrawDate = newValue[0]
             onChange && onChange(newValue, { currentDate: date, action: 'select' })
           }
           // Multiple select

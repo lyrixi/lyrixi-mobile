@@ -174,7 +174,7 @@ const Dropdown = forwardRef(
           offset={offset}
           left={left}
           right={right}
-          referenceDOM={comboRef.current?.comboDOM}
+          referenceDOM={comboRef.current?.rootDOM}
           // Events
           onClose={() => setOpen(false)}
         >

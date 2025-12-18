@@ -74,11 +74,11 @@ const Tooltip = forwardRef(
       }
 
       if (!referenceDOM) {
-        let comboDOM = comboRef?.current?.comboDOM
-        if (!comboDOM && typeof comboRef?.current?.getComboDOM === 'function') {
-          comboDOM = comboRef.current.getComboDOM()
+        let rootDOM = comboRef?.current?.rootDOM
+        if (!rootDOM && typeof comboRef?.current?.getRootDOM === 'function') {
+          rootDOM = comboRef.current.getRootDOM()
         }
-        referenceDOM = comboDOM
+        referenceDOM = rootDOM
       }
 
       // 位移元素
@@ -110,7 +110,7 @@ const Tooltip = forwardRef(
 
       // 没有自定义位置时生效
       if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-        updatePosition(comboRef.current?.comboDOM)
+        updatePosition(comboRef.current?.rootDOM)
       }
 
       setOpen(!open)

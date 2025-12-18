@@ -66,28 +66,28 @@ const Compact = forwardRef(
             '--lyrixi-compact-radius': MathUtil.variableSize(radius, 'radius')
           }}
           className={DOMUtil.classNames(
-            'lyrixi-space-compact',
-            `lyrixi-space-compact-${direction}`,
+            'lyrixi-compact',
+            `lyrixi-compact-${direction}`,
             {
-              [`lyrixi-space-compact-block`]: block
+              [`lyrixi-compact-block`]: block
             },
             className
           )}
           ref={rootRef}
         >
           {childNodes.map((child, index) => {
-            const key = child?.key ?? `lyrixi-space-compact-item-${index}`
+            const key = child?.key ?? `lyrixi-compact-item-${index}`
             let isLast = index === childNodes.length - 1
             return (
               <Fragment key={key}>
                 <div
                   key={key}
                   className={DOMUtil.classNames(
-                    `lyrixi-space-compact-item`,
-                    `lyrixi-space-compact-item-${direction}`,
+                    `lyrixi-compact-item`,
+                    `lyrixi-compact-item-${direction}`,
                     {
-                      [`lyrixi-space-compact-item-first`]: index === 0,
-                      [`lyrixi-space-compact-item-last`]: isLast
+                      [`lyrixi-compact-item-first`]: index === 0,
+                      [`lyrixi-compact-item-last`]: isLast
                     }
                   )}
                 >

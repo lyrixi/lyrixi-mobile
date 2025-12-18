@@ -103,6 +103,7 @@ const Modal = forwardRef(
         let goOn = await onOk(currentValue)
         if (goOn === false) return false
         if (goOn instanceof Array || goOn?.id) {
+          // eslint-disable-next-line
           currentValue = goOn
         }
       }

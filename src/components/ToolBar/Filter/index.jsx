@@ -48,14 +48,14 @@ const Filter = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const comboRef = useRef(null)
     const [open, setOpen] = useState(null)
 
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current,
+        rootDOM: comboRef.current,
+        getRootDOM: () => comboRef.current,
         close: () => {
           setOpen(false)
         },
@@ -89,7 +89,7 @@ const Filter = forwardRef(
 
       return (
         <Button
-          ref={rootRef}
+          ref={comboRef}
           // Style
           color={color}
           borderColor={borderColor}

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, Space, FooterBar } from 'lyrixi-mobile'
+import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar } from 'lyrixi-mobile'
 
 export default () => {
   const dropdownRef = useRef(null)
@@ -220,12 +220,12 @@ export default () => {
               <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                 <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
               </ToolBar.Button>
-              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button>1</ToolBar.Button>
                 <ToolBar.Button>2</ToolBar.Button>
                 <ToolBar.Button>3</ToolBar.Button>
-              </Space.Compact>
-              <Space.Compact>
+              </Flex.Compact>
+              <Flex.Compact>
                 <ToolBar.List
                   portal={mainDOM}
                   arrowRender={null}
@@ -258,7 +258,7 @@ export default () => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
                 />
-              </Space.Compact>
+              </Flex.Compact>
             </ToolBar>
           </Card.Main>
         </Card>
@@ -316,7 +316,7 @@ export default () => {
                   console.log('search:', value)
                 }}
               />
-              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
@@ -326,7 +326,7 @@ export default () => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
                 />
-              </Space.Compact>
+              </Flex.Compact>
             </ToolBar>
           </Card.Main>
         </Card>
@@ -342,7 +342,7 @@ export default () => {
                   setSearchActive(true)
                 }}
               />
-              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
@@ -352,7 +352,7 @@ export default () => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
                 />
-              </Space.Compact>
+              </Flex.Compact>
               {searchActive && (
                 <ToolBar.SearchActive
                   value={search}
@@ -384,7 +384,7 @@ export default () => {
                   setFilledSearchActive(true)
                 }}
               />
-              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
@@ -394,7 +394,7 @@ export default () => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
                 />
-              </Space.Compact>
+              </Flex.Compact>
               {filledSearchActive && (
                 <ToolBar.SearchActive
                   value={search}

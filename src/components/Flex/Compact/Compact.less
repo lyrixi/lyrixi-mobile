@@ -1,70 +1,70 @@
-.lyrixi-space-compact {
+.lyrixi-compact {
   display: inline-flex;
   width: auto;
 }
 
 // 全宽布局
-.lyrixi-space-compact-block {
+.lyrixi-compact-block {
   display: flex;
   flex: 1;
-  .lyrixi-space-compact-item {
+  .lyrixi-compact-item {
     display: flex;
     flex: 1;
   }
 }
 
-// .lyrixi-space-compact-item {
+// .lyrixi-compact-item {
 //   display: inline-flex;
 //   position: relative;
 // }
 
 /* 水平方向 */
-.lyrixi-space-compact-horizontal {
+.lyrixi-compact-horizontal {
   flex-direction: row;
 
-  .lyrixi-space-compact-item:not(:last-child) {
+  .lyrixi-compact-item:not(:last-child) {
     margin-right: -1px;
   }
 
   // 中间元素圆角
-  .lyrixi-space-compact-item > * {
+  .lyrixi-compact-item > * {
     border-radius: 0;
   }
 
   // 第一个元素圆角
-  .lyrixi-space-compact-item-first > * {
+  .lyrixi-compact-item-first > * {
     border-top-left-radius: var(--lyrixi-compact-radius);
     border-bottom-left-radius: var(--lyrixi-compact-radius);
   }
 
   // 最后一个元素圆角
-  .lyrixi-space-compact-item-last > * {
+  .lyrixi-compact-item-last > * {
     border-top-right-radius: var(--lyrixi-compact-radius);
     border-bottom-right-radius: var(--lyrixi-compact-radius);
   }
 }
 
 /* 垂直方向 */
-.lyrixi-space-compact-vertical {
+.lyrixi-compact-vertical {
   flex-direction: column;
 
-  .lyrixi-space-compact-item:not(:last-child) {
+  .lyrixi-compact-item:not(:last-child) {
     margin-bottom: -1px;
   }
 
   // 中间元素圆角
-  .lyrixi-space-compact-item > * {
+  .lyrixi-compact-item > * {
     border-radius: 0;
   }
 
   // 第一个元素圆角
-  .lyrixi-space-compact-item-first > * {
+  .lyrixi-compact-item-first > * {
     border-top-left-radius: var(--lyrixi-compact-radius);
     border-top-right-radius: var(--lyrixi-compact-radius);
   }
 
   // 最后一个元素圆角
-  .lyrixi-space-compact-item-last > * {
+  .lyrixi-compact-item-last > * {
     border-bottom-left-radius: var(--lyrixi-compact-radius);
     border-bottom-right-radius: var(--lyrixi-compact-radius);
   }

@@ -38,8 +38,8 @@ const MessageCombo = forwardRef(
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        comboDOM: comboRef.current,
-        getComboDOM: () => comboRef.current,
+        rootDOM: comboRef.current,
+        getRootDOM: () => comboRef.current,
         ...modalRef.current,
         close: () => {
           setOpen(false)
