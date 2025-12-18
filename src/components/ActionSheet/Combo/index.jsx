@@ -28,9 +28,9 @@ const ActionSheetCombo = (
     // Combo: Style
     style,
     className,
-    // Combo: Element
+    // Combo: Elements
     comboRender,
-    comboChildren,
+    children,
     leftIconNode,
     rightIconNode,
     clearRender,
@@ -107,11 +107,11 @@ const ActionSheetCombo = (
       })
     }
 
-    // 如果有 comboChildren，渲染 comboChildren
-    if (comboChildren) {
+    // comboChildren
+    if (children) {
       return (
         <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
-          {comboChildren}
+          {children}
         </Combo>
       )
     }

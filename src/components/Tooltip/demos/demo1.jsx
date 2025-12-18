@@ -11,9 +11,11 @@ export default () => {
         onClose={() => {
           console.log('open:', false)
         }}
-        comboChildren={<div style={{ margin: 100 }}>Combo</div>}
+        modalRender={() => {
+          return <div style={{ margin: 100 }}>Modal Content</div>
+        }}
       >
-        <p>This is Content</p>
+        <div style={{ margin: 100 }}>Combo</div>
       </Tooltip>
     </>
   )

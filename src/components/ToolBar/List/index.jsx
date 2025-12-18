@@ -33,8 +33,8 @@ function ToolBarList({
   list,
 
   // Element
+  children,
   comboRender,
-  comboChildren,
   arrowRender,
   portal,
 
@@ -51,8 +51,6 @@ function ToolBarList({
   return (
     <Dropdown
       ref={dropdownRef}
-      // Value & Display Value
-      placeholder={placeholder}
       // Style
       style={style}
       className={className}
@@ -72,22 +70,26 @@ function ToolBarList({
       modalClassName={modalClassName}
       // Element
       comboRender={comboRender}
-      comboChildren={comboChildren || value?.name || placeholder}
       arrowRender={arrowRender}
       portal={portal}
       offset={offset}
       left={left}
       right={right}
+      modalRender={() => {
+        return (
+          <List
+            // Value & Display Value
+            value={value}
+            // Element
+            list={list}
+            // Events
+            onChange={handleChange}
+          />
+        )
+      }}
     >
-      {/* Element: List */}
-      <List
-        // Value & Display Value
-        value={value}
-        // Element
-        list={list}
-        // Events
-        onChange={handleChange}
-      />
+      {/* comboChildren */}
+      {children || value?.name || placeholder}
     </Dropdown>
   )
 }

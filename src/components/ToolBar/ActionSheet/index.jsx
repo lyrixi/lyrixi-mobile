@@ -36,7 +36,7 @@ function ToolBarActionSheet(
 
     // Element
     comboRender,
-    comboChildren,
+    children,
     arrowRender,
     portal,
     list,
@@ -73,6 +73,7 @@ function ToolBarActionSheet(
         className={className}
         color={color}
         backgroundColor={backgroundColor}
+        borderColor={borderColor}
         sizeEqual={sizeEqual}
         border={border}
         direction={direction}
@@ -84,7 +85,8 @@ function ToolBarActionSheet(
         // Events
         onClick={onClick}
       >
-        {comboChildren || value?.name || placeholder}
+        {/* comboChildren */}
+        {children || value?.name || placeholder}
       </Combo>
     )
   }

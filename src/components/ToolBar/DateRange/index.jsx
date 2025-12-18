@@ -48,7 +48,7 @@ function DateRangeBar({
 
   // Element
   comboRender,
-  comboChildren,
+  children,
   arrowRender,
   portal,
   min,
@@ -135,8 +135,6 @@ function DateRangeBar({
   return (
     <Dropdown
       ref={dropdownRef}
-      // Value & Display Value
-      placeholder={placeholder}
       // Style
       style={style}
       className={className}
@@ -155,41 +153,46 @@ function DateRangeBar({
       modalClassName={modalClassName}
       // Element
       comboRender={comboRender}
-      comboChildren={comboChildren || getDisplayValue({ value, type, rangeId, ranges })}
       arrowRender={arrowRender}
+      modalRender={() => {
+        return (
+          <div className="lyrixi-toolbar-daterange-modal">
+            {/* Element: Body */}
+            <div className="lyrixi-toolbar-daterange-modal-body">
+              <DateRange
+                // Value & Display Value
+                value={value}
+                rangeId={rangeId}
+                // Status
+                allowClear={allowClear}
+                // Element
+                type={type}
+                min={min}
+                max={max}
+                ranges={ranges}
+                // Events
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Element: Footer */}
+            <FooterBar>
+              <FooterBar.Button onClick={handleCancel}>
+                {LocaleUtil.locale('取消', 'lyrixi.cancel')}
+              </FooterBar.Button>
+              <FooterBar.Button className="lyrixi-primary" onClick={handleOk}>
+                {LocaleUtil.locale('确定', 'lyrixi.ok')}
+              </FooterBar.Button>
+            </FooterBar>
+          </div>
+        )
+      }}
       portal={portal}
       // Events
       onClose={handleClose}
     >
-      <div className="lyrixi-toolbar-daterange-modal">
-        {/* Element: Body */}
-        <div className="lyrixi-toolbar-daterange-modal-body">
-          <DateRange
-            // Value & Display Value
-            value={value}
-            rangeId={rangeId}
-            // Status
-            allowClear={allowClear}
-            // Element
-            type={type}
-            min={min}
-            max={max}
-            ranges={ranges}
-            // Events
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Element: Footer */}
-        <FooterBar>
-          <FooterBar.Button onClick={handleCancel}>
-            {LocaleUtil.locale('取消', 'lyrixi.cancel')}
-          </FooterBar.Button>
-          <FooterBar.Button className="lyrixi-primary" onClick={handleOk}>
-            {LocaleUtil.locale('确定', 'lyrixi.ok')}
-          </FooterBar.Button>
-        </FooterBar>
-      </div>
+      {/* comboChildren */}
+      {children || getDisplayValue({ value, type, rangeId, ranges }) || placeholder}
     </Dropdown>
   )
 }

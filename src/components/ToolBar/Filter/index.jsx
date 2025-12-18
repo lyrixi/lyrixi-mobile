@@ -48,7 +48,7 @@ const Filter = forwardRef(
     ref
   ) => {
     const rootRef = useRef(null)
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(null)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -57,14 +57,22 @@ const Filter = forwardRef(
         getRootDOM: () => rootRef.current,
         close: () => {
           setOpen(false)
-          onClose && onClose()
         },
         open: () => {
           setOpen(true)
-          onOpen && onOpen()
         }
       }
     })
+
+    useEffect(() => {
+      if (open === null) return
+      if (open) {
+        onOpen?.()
+      } else {
+        onClose?.()
+      }
+      // eslint-disable-next-line
+    }, [open])
 
     // 获取图标节点
     function getIconNode() {
@@ -96,7 +104,6 @@ const Filter = forwardRef(
           // Events
           onClick={() => {
             setOpen(true)
-            onOpen && onOpen()
           }}
         >
           {/* Element: Icon */}
@@ -119,10 +126,14 @@ const Filter = forwardRef(
           onCancel={onCancel}
           onClose={() => {
             setOpen(false)
-            onClose && onClose()
           }}
         >
-          {children}
+          {modalRender?.({
+            open: open,
+            onClose: () => {
+              setOpen(false)
+            }
+          })}
         </FilterModal>
       </>
     )

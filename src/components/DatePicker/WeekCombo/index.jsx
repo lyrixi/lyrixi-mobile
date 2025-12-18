@@ -4,11 +4,12 @@ import WeekModal from './../WeekModal'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
+import Combo from './../../Combo'
 import Input from './../../Input'
 // 内库使用-end
 
 /* 测试使用-start
-import { DateUtil, Input } from 'lyrixi-mobile'
+import { DateUtil, Combo, Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取周
@@ -31,6 +32,7 @@ const WeekCombo = forwardRef(
       className,
       // Combo: Element
       comboRender,
+      children,
       leftIconNode,
       rightIconNode,
       clearRender,
@@ -97,6 +99,15 @@ const WeekCombo = forwardRef(
           open: open,
           onClick: handleOpen
         })
+      }
+
+      // comboChildren
+      if (children) {
+        return (
+          <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
+            {children}
+          </Combo>
+        )
       }
 
       // 默认使用 Input.Select

@@ -16,9 +16,6 @@ const DropdownModal = Modal.DropdownModal
 const Dropdown = forwardRef(
   (
     {
-      // Combo: Value & Display Value
-      placeholder = '',
-
       // Combo: Style
       direction,
       block,
@@ -34,8 +31,8 @@ const Dropdown = forwardRef(
       className,
 
       // Combo: Element
+      children,
       comboRender,
-      comboChildren,
       arrowRender = () => (
         <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
       ),
@@ -53,7 +50,7 @@ const Dropdown = forwardRef(
 
       // Modal: Element
       portal,
-      children,
+      modalRender,
 
       // Events
       onBeforeOpen,
@@ -62,7 +59,7 @@ const Dropdown = forwardRef(
     },
     ref
   ) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(null)
     const comboRef = useRef(null)
     // 唯一id，用于关闭时排除其他dropdown
     const idRef = useRef(ObjectUtil.randomUUID())
@@ -71,8 +68,8 @@ const Dropdown = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         ...comboRef.current,
-        close: _close,
-        open: _open
+        close: () => setOpen(false),
+        open: () => setOpen(true)
       }
     })
 
@@ -80,8 +77,8 @@ const Dropdown = forwardRef(
     useEffect(() => {
       if (!window.dropdowns) window.dropdowns = {}
       window.dropdowns[idRef.current] = {
-        close: _close,
-        open: _open
+        close: () => setOpen(false),
+        open: () => setOpen(true)
       }
 
       // 组件卸载时移除实例
@@ -97,24 +94,17 @@ const Dropdown = forwardRef(
       // 打开前先关闭其他所有 dropdown
       if (open) {
         closeAllDropdown({ exceptId: idRef.current })
+        onOpen?.()
+      } else {
+        onClose?.()
       }
       // eslint-disable-next-line
     }, [open])
 
-    function _close() {
-      setOpen(false)
-      onClose && onClose()
-    }
-
-    function _open() {
-      setOpen(true)
-      onOpen && onOpen()
-    }
-
     async function handleClick(e) {
       let newOpen = !open
       if (!newOpen) {
-        setOpen(newOpen)
+        setOpen(false)
         return
       }
 
@@ -123,7 +113,7 @@ const Dropdown = forwardRef(
         if (goOn === false) return
       }
 
-      setOpen(newOpen)
+      setOpen(true)
     }
 
     // 获取标题节点
@@ -158,7 +148,7 @@ const Dropdown = forwardRef(
           // Events
           onClick={handleClick}
         >
-          {comboChildren || placeholder}
+          {children}
         </Combo>
       )
     }
@@ -186,11 +176,12 @@ const Dropdown = forwardRef(
           right={right}
           referenceDOM={comboRef.current?.comboDOM}
           // Events
-          onClose={() => {
-            setOpen(false)
-          }}
+          onClose={() => setOpen(false)}
         >
-          {children}
+          {modalRender?.({
+            open: open,
+            onClose: () => setOpen(false)
+          })}
         </DropdownModal>
       </>
     )

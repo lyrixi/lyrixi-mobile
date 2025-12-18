@@ -50,18 +50,30 @@ export default () => {
           <Card.Header>Dropdown</Card.Header>
           <Card.Main>
             <ToolBar>
-              <ToolBar.Dropdown left={12} placeholder="Dropdown left" color="primary">
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Dropdown>
-              <ToolBar.Dropdown placeholder="Dropdown ref" ref={dropdownRef}>
-                {getDropdownModalNode()}
-              </ToolBar.Dropdown>
-              <ToolBar.Dropdown placeholder="Dropdown modal">
-                {getDropdownModalNode()}
-              </ToolBar.Dropdown>
-              <ToolBar.Dropdown right={12} placeholder="Dropdown right">
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Dropdown>
+              <ToolBar.Dropdown
+                left={12}
+                placeholder="Dropdown left"
+                color="primary"
+                modalRender={() => {
+                  return <div style={{ height: '300px' }}>Modal Content</div>
+                }}
+              />
+
+              <ToolBar.Dropdown
+                placeholder="Dropdown ref"
+                modalRender={getDropdownModalNode}
+                ref={dropdownRef}
+              />
+
+              <ToolBar.Dropdown placeholder="Dropdown modal" modalRender={getDropdownModalNode} />
+
+              <ToolBar.Dropdown
+                right={12}
+                placeholder="Dropdown right"
+                modalRender={() => {
+                  return <div style={{ height: '300px' }}>Modal Content</div>
+                }}
+              />
             </ToolBar>
           </Card.Main>
         </Card>
@@ -214,9 +226,6 @@ export default () => {
                   portal={mainDOM}
                   arrowRender={null}
                   sizeEqual
-                  comboChildren={
-                    <Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>
-                  }
                   maskStyle={{
                     zIndex: 99
                   }}
@@ -232,13 +241,19 @@ export default () => {
                       name: 'Asc'
                     }
                   ]}
-                />
+                >
+                  <Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>
+                </ToolBar.List>
+
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter sizeEqual>
-                  <div style={{ height: '300px' }}>Modal Content</div>
-                </ToolBar.Filter>
+                <ToolBar.Filter
+                  sizeEqual
+                  modalRender={() => {
+                    return <div style={{ height: '300px' }}>Modal Content</div>
+                  }}
+                />
               </Space.Compact>
             </ToolBar>
           </Card.Main>
@@ -266,9 +281,10 @@ export default () => {
                 onOk={() => {
                   console.log('submit')
                 }}
-              >
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Filter>
+                modalRender={() => {
+                  return <div style={{ height: '300px' }}>Modal Content</div>
+                }}
+              />
               <ToolBar.Filter
                 ref={filterRef}
                 sizeEqual
@@ -278,9 +294,10 @@ export default () => {
                 onOk={() => {
                   console.log('submit')
                 }}
-              >
-                <div style={{ height: '300px' }}>Modal Content</div>
-              </ToolBar.Filter>
+                modalRender={() => {
+                  return <div style={{ height: '300px' }}>Modal Content</div>
+                }}
+              />
             </ToolBar>
           </Card.Main>
         </Card>
@@ -322,9 +339,12 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter sizeEqual>
-                  <div style={{ height: '300px' }}>Modal Content</div>
-                </ToolBar.Filter>
+                <ToolBar.Filter
+                  sizeEqual
+                  modalRender={() => {
+                    return <div style={{ height: '300px' }}>Modal Content</div>
+                  }}
+                />
               </Space.Compact>
               {searchActive && (
                 <ToolBar.SearchActive

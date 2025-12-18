@@ -26,11 +26,11 @@ const Tooltip = forwardRef(
       maskClassName,
 
       // Element
+      children,
       comboRender,
-      comboChildren,
+      modalRender,
       referenceDOM: externalReferenceDOM,
       portal,
-      children,
 
       // Events
       onOpen,
@@ -117,8 +117,8 @@ const Tooltip = forwardRef(
         })
       }
 
-      // 如果有 comboChildren，渲染 comboChildren
-      if (comboChildren) {
+      // comboChildren
+      if (children) {
         return (
           <Combo
             ref={comboRef}
@@ -128,7 +128,7 @@ const Tooltip = forwardRef(
             // Events
             onClick={handleOpen}
           >
-            {comboChildren}
+            {children}
           </Combo>
         )
       }
@@ -160,7 +160,12 @@ const Tooltip = forwardRef(
             setOpen(false)
           }}
         >
-          {children}
+          {modalRender?.({
+            open: open,
+            onClose: () => {
+              setOpen(false)
+            }
+          })}
         </Popup>
       </>
     )
