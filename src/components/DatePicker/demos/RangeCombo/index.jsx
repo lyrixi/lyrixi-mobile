@@ -132,7 +132,7 @@ export default () => {
           <Card.Main>
             <DatePicker.RangeCombo
               min={new Date()}
-              max={DateUtil.add(new Date(), 30, 'day')}
+              max={DateUtil.add(new Date(), 30)}
               placeholder="Limit"
               ranges={null}
               value={value}
@@ -150,7 +150,7 @@ export default () => {
           <Card.Main>
             <DatePicker.RangeCombo
               min={new Date()}
-              max={DateUtil.add(new Date(), 30, 'day')}
+              max={DateUtil.add(new Date(), 30)}
               placeholder="onOk"
               ranges={null}
               value={value}

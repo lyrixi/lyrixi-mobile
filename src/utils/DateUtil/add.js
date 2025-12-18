@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 // type: 'year|quarter|month|week|date|day|hour|minute|second'
-function add(date, count, type) {
+function add(date, count, type = 'date') {
   if (count === 0 || typeof count !== 'number') return date
 
   if (type === 'date') {

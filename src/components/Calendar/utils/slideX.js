@@ -31,7 +31,7 @@ function slideX(
     if (type === 'month') {
       newDrawDate = DateUtil.add(drawDate, -1, 'month')
     } else {
-      newDrawDate = DateUtil.add(drawDate, -7, 'day')
+      newDrawDate = DateUtil.add(drawDate, -7)
     }
   }
   // 右滑动
@@ -43,7 +43,7 @@ function slideX(
     if (type === 'month') {
       newDrawDate = DateUtil.add(drawDate, 1, 'month')
     } else {
-      newDrawDate = DateUtil.add(drawDate, 7, 'day')
+      newDrawDate = DateUtil.add(drawDate, 7)
     }
   }
 

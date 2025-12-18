@@ -114,8 +114,8 @@ export default () => {
           <Card.Header>min & max</Card.Header>
           <Card.Main>
             <DatePicker.Combo
-              min={new Date()}
-              max={DateUtil.add(new Date(), 30, 'day')}
+              min={DateUtil.add(new Date(), 2)}
+              max={DateUtil.add(new Date(), 30)}
               placeholder="min & max"
               value={value}
               onChange={setValue}
