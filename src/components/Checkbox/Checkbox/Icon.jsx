@@ -8,7 +8,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 function Icon({
   checked,
-  // 变体: 'solid'|'text'
+  // 变体: 'solid'|'text'|'outlined'|'filled'
   variant = 'solid'
 }) {
   return (
