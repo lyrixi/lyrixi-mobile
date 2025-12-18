@@ -1,6 +1,5 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
-import formatValue from './formatValue'
 import Main from './../Main'
 
 // 内库使用-start

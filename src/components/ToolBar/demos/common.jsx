@@ -320,9 +320,12 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter sizeEqual>
-                  <div style={{ height: '300px' }}>Modal Content</div>
-                </ToolBar.Filter>
+                <ToolBar.Filter
+                  sizeEqual
+                  modalRender={() => {
+                    return <div style={{ height: '300px' }}>Modal Content</div>
+                  }}
+                />
               </Space.Compact>
             </ToolBar>
           </Card.Main>
@@ -385,9 +388,12 @@ export default () => {
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
-                <ToolBar.Filter sizeEqual>
-                  <div style={{ height: '300px' }}>Modal Content</div>
-                </ToolBar.Filter>
+                <ToolBar.Filter
+                  sizeEqual
+                  modalRender={() => {
+                    return <div style={{ height: '300px' }}>Modal Content</div>
+                  }}
+                />
               </Space.Compact>
               {filledSearchActive && (
                 <ToolBar.SearchActive
