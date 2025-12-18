@@ -17,12 +17,10 @@ function getStyle({
   fontSize,
   radius,
   border,
+  direction,
   block,
   style,
-  // ClassName
-  className,
-  // Icon: Style
-  iconPosition
+  className
 }) {
   // eslint-disable-next-line
   fontSize = MathUtil.variableSize(fontSize) || fontSize
@@ -54,7 +52,7 @@ function getStyle({
 
   const newClassName = DOMUtil.classNames(
     'lyrixi-button',
-    ['top', 'bottom'].includes(iconPosition) && `lyrixi-flex-vertical`,
+    direction === 'vertical' && `lyrixi-flex-vertical`,
     isColorClass && color && `lyrixi-color-${color}`,
     isBorderColorClass && borderColor && `lyrixi-border-color-${borderColor}`,
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,

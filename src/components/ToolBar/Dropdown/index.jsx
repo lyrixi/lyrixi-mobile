@@ -27,6 +27,7 @@ const Dropdown = forwardRef(
       backgroundColor,
       sizeEqual,
       border = 'none',
+      direction,
       radius = 'm',
       size,
 
@@ -147,6 +148,7 @@ const Dropdown = forwardRef(
           backgroundColor={backgroundColor}
           sizeEqual={sizeEqual}
           border={border}
+          direction={direction}
           radius={radius}
           size={size}
           // Elements

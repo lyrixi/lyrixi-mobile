@@ -22,6 +22,7 @@ const Button = forwardRef(
       fontSize, // 字体大小: xxs, xs, s, m, l, xl
       radius, // 圆角: xxs, xs, s, m, l, xl
       border = 'solid', // 边框: none, dotted, dashed, solid
+      direction = 'horizontal', // 方向: horizontal, vertical
       block, // 是否为块级元素
       style,
       className,
@@ -51,6 +52,7 @@ const Button = forwardRef(
       fontSize,
       radius,
       border,
+      direction,
       block: block || compactContext?.block || false,
       style,
       className

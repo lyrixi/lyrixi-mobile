@@ -35,6 +35,7 @@ function DateRangeBar({
   backgroundColor,
   sizeEqual,
   border = 'none',
+  direction,
   radius = 'm',
   size,
   maskStyle,
@@ -130,6 +131,7 @@ function DateRangeBar({
       backgroundColor={backgroundColor}
       sizeEqual={sizeEqual}
       border={border}
+      direction={direction}
       radius={radius}
       size={size}
       maskStyle={maskStyle}

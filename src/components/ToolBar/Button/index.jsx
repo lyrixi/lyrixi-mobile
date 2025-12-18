@@ -18,6 +18,7 @@ const ToolBarButton = forwardRef(
       backgroundColor,
       sizeEqual,
       border = 'none',
+      direction,
       radius = 'm',
       size,
       className,
@@ -49,6 +50,7 @@ const ToolBarButton = forwardRef(
         borderColor={borderColor}
         backgroundColor={backgroundColor}
         border={border}
+        direction={direction}
         size={size}
         radius={radius}
         sizeEqual={sizeEqual}

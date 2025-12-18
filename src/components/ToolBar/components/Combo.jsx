@@ -23,6 +23,7 @@ function Combo(
     backgroundColor,
     sizeEqual,
     border = 'none',
+    direction,
     radius = 'm',
     size,
 
@@ -58,6 +59,7 @@ function Combo(
       borderColor={borderColor}
       backgroundColor={backgroundColor}
       border={border}
+      direction={direction}
       size={size}
       radius={radius}
       sizeEqual={sizeEqual}

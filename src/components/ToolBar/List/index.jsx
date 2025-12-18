@@ -17,6 +17,7 @@ function ToolBarList({
   backgroundColor,
   sizeEqual,
   border = 'none',
+  direction,
   radius = 'm',
   size,
   maskStyle,
@@ -62,6 +63,7 @@ function ToolBarList({
       backgroundColor={backgroundColor}
       sizeEqual={sizeEqual}
       border={border}
+      direction={direction}
       radius={radius}
       size={size}
       maskStyle={maskStyle}

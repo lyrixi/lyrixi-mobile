@@ -22,10 +22,6 @@ toc: content
 
 ### 基本使用
 
-### FooterBar
-
-<code src="./demos/FooterBar.jsx"></code>
-
 ### FooterBar.Button
 
 <code src="./demos/Button.jsx"></code>

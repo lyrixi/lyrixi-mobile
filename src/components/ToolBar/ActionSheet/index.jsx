@@ -23,6 +23,7 @@ function ToolBarActionSheet(
     backgroundColor,
     sizeEqual,
     border = 'none',
+    direction,
     radius = 'm',
     size,
     maskStyle,
@@ -71,6 +72,7 @@ function ToolBarActionSheet(
         backgroundColor={backgroundColor}
         sizeEqual={sizeEqual}
         border={border}
+        direction={direction}
         radius={radius}
         size={size}
         // Elements

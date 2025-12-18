@@ -20,6 +20,7 @@ const FooterBarButton = forwardRef(
       radius = 'm', // 圆角: xxs, xs, s, m, l, xl
       sizeEqual,
       border = 'none', // 边框: none, dotted, dashed, solid
+      block,
       style,
       className,
 
@@ -28,15 +29,6 @@ const FooterBarButton = forwardRef(
 
       // Button: Elements
       children,
-
-      // Icon: Style
-      iconClassName,
-      iconPosition = 'top',
-      iconColor,
-      iconBackgroundColor,
-      iconSize = 'l',
-      iconPadding,
-      iconRadius,
 
       // Modal: Value & Display Value
       list,
@@ -83,18 +75,11 @@ const FooterBarButton = forwardRef(
           radius={radius}
           sizeEqual={sizeEqual}
           border={border}
+          block={block}
           style={style}
           className={className}
           // Button: Status
           disabled={disabled}
-          // Icon: Style
-          iconClassName={iconClassName}
-          iconPosition={iconPosition}
-          iconColor={iconColor}
-          iconBackgroundColor={iconBackgroundColor}
-          iconSize={iconSize}
-          iconPadding={iconPadding}
-          iconRadius={iconRadius}
           // Events
           onClick={(e) => {
             setOpen(true)

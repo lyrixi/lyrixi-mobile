@@ -21,6 +21,7 @@ const NavBarButton = forwardRef(
       radius,
       sizeEqual,
       border = 'none',
+      direction,
       style,
       className,
 
@@ -46,6 +47,7 @@ const NavBarButton = forwardRef(
         radius={radius}
         sizeEqual={sizeEqual}
         border={border}
+        direction={direction}
         style={style}
         className={DOMUtil.classNames('lyrixi-navbar-button', className)}
         // Button: Status

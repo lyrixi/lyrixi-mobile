@@ -33,7 +33,6 @@ const ButtonText = forwardRef(
     return (
       <div
         ref={rootRef}
-        id={id}
         // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-button-text', className)}

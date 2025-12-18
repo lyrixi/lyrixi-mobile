@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Page, Divider, FooterBar } from 'lyrixi-mobile'
+import { Icon, Page, Divider, FooterBar, Button } from 'lyrixi-mobile'
 
 export default () => {
   return (
@@ -8,9 +8,7 @@ export default () => {
         <Divider>Text Button</Divider>
         <FooterBar>
           <FooterBar.Button
-            className="lyrixi-flex-1"
-            iconClassName="lyrixi-iconfont-three-dots"
-            iconSize="xl"
+            block
             list={[
               {
                 id: 'option1',
@@ -27,18 +25,21 @@ export default () => {
                 }
               }
             ]}
-          />
+          >
+            <Icon className="lyrixi-iconfont-three-dots" size="xl" />
+          </FooterBar.Button>
+
           <FooterBar.Button
-            className="lyrixi-flex-1"
-            iconClassName="lyrixi-iconfont-config"
-            iconSize="xl"
+            block
             onClick={(e) => {
               console.log(e)
             }}
-          />
+          >
+            <Icon className="lyrixi-iconfont-config" size="xl" />
+          </FooterBar.Button>
 
           <FooterBar.Button
-            className="lyrixi-flex-1"
+            block
             color="primary"
             onClick={(e) => {
               console.log(e)
@@ -46,8 +47,9 @@ export default () => {
           >
             Ok
           </FooterBar.Button>
+
           <FooterBar.Button
-            className="lyrixi-flex-1"
+            block
             size="s"
             onClick={(e) => {
               console.log(e)
@@ -61,9 +63,7 @@ export default () => {
         <FooterBar>
           <FooterBar.Button
             disabled
-            className="lyrixi-flex-1"
-            iconSize="xl"
-            iconClassName="lyrixi-iconfont-three-dots"
+            block
             list={[
               {
                 id: 'option1',
@@ -80,19 +80,23 @@ export default () => {
                 }
               }
             ]}
-          />
+          >
+            <Icon className="lyrixi-iconfont-three-dots" size="xl" />
+          </FooterBar.Button>
+
           <FooterBar.Button
             disabled
-            className="lyrixi-flex-1"
-            iconSize="xl"
-            iconClassName="lyrixi-iconfont-config"
+            block
             onClick={(e) => {
               console.log(e)
             }}
-          />
+          >
+            <Icon className="lyrixi-iconfont-config" size="xl" />
+          </FooterBar.Button>
+
           <FooterBar.Button
             disabled
-            className="lyrixi-flex-1"
+            block
             color="primary"
             size="s"
             onClick={(e) => {
@@ -101,9 +105,10 @@ export default () => {
           >
             Ok
           </FooterBar.Button>
+
           <FooterBar.Button
             disabled
-            className="lyrixi-flex-1"
+            block
             size="s"
             onClick={(e) => {
               console.log(e)
@@ -116,8 +121,7 @@ export default () => {
         <Divider>Button</Divider>
         <FooterBar>
           <FooterBar.Button
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-three-dots"
+            direction="vertical"
             fontSize="12px"
             list={[
               {
@@ -137,21 +141,22 @@ export default () => {
             ]}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            More
+            <Button.Icon className="lyrixi-iconfont-three-dots" size="xl" />
+            <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-config"
+            direction="vertical"
             fontSize="12px"
             onClick={(e) => {
               console.log(e)
             }}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            Config
+            <Button.Icon className="lyrixi-iconfont-config" />
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
-            className="lyrixi-flex-1"
+            block
             backgroundColor="default"
             onClick={(e) => {
               console.log(e)
@@ -160,7 +165,7 @@ export default () => {
             Cancel
           </FooterBar.Button>
           <FooterBar.Button
-            className="lyrixi-flex-1"
+            block
             color="white"
             backgroundColor="primary"
             onClick={(e) => {
@@ -175,8 +180,7 @@ export default () => {
         <FooterBar>
           <FooterBar.Button
             disabled
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-three-dots"
+            direction="vertical"
             fontSize="12px"
             list={[
               {
@@ -196,22 +200,23 @@ export default () => {
               }
             ]}
           >
-            More
+            <Button.Icon className="lyrixi-iconfont-three-dots" size="xl" />
+            <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             disabled
-            iconPosition="top"
-            iconClassName="lyrixi-iconfont-config"
+            direction="vertical"
             fontSize="12px"
             onClick={(e) => {
               console.log(e)
             }}
           >
-            Config
+            <Button.Icon className="lyrixi-iconfont-config" />
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             disabled
-            className="lyrixi-flex-1"
+            block
             onClick={(e) => {
               console.log(e)
             }}
@@ -220,7 +225,7 @@ export default () => {
           </FooterBar.Button>
           <FooterBar.Button
             disabled
-            className="lyrixi-flex-1"
+            block
             color="white"
             backgroundColor="primary"
             onClick={(e) => {
