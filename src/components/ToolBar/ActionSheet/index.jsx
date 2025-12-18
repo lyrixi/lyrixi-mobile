@@ -17,15 +17,18 @@ function ToolBarActionSheet(
     placeholder = '',
 
     // Style
-    style,
-    className,
+    direction,
+    block,
     color = 'default',
     backgroundColor,
-    sizeEqual,
+    borderColor,
     border = 'none',
-    direction,
-    radius = 'm',
     size,
+    sizeEqual,
+    radius = 'm',
+    style,
+    className,
+
     maskStyle,
     maskClassName,
     modalStyle,
@@ -73,6 +76,7 @@ function ToolBarActionSheet(
         sizeEqual={sizeEqual}
         border={border}
         direction={direction}
+        block={block}
         radius={radius}
         size={size}
         // Elements

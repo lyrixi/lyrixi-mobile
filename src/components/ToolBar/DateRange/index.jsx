@@ -28,16 +28,19 @@ function DateRangeBar({
   allowClear,
 
   // Style
-  style,
-  className,
+  direction,
+  block,
   color,
   borderColor,
   backgroundColor,
-  sizeEqual,
   border = 'none',
-  direction,
-  radius = 'm',
   size,
+  sizeEqual,
+  fontSize,
+  radius = 'm',
+  style,
+  className,
+
   maskStyle,
   maskClassName,
   modalStyle,
@@ -130,6 +133,7 @@ function DateRangeBar({
       borderColor={borderColor}
       backgroundColor={backgroundColor}
       sizeEqual={sizeEqual}
+      fontSize={fontSize}
       border={border}
       direction={direction}
       radius={radius}

@@ -16,16 +16,18 @@ function Combo(
     open,
 
     // Style
+    direction,
+    block,
+    color = 'default',
+    backgroundColor,
+    borderColor = 'default',
+    border = 'none',
+    size,
+    sizeEqual,
+    fontSize,
+    radius = 'm',
     style,
     className,
-    color = 'default',
-    borderColor = 'default',
-    backgroundColor,
-    sizeEqual,
-    border = 'none',
-    direction,
-    radius = 'm',
-    size,
 
     // Element
     arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>,
@@ -55,14 +57,16 @@ function Combo(
   return (
     <Button
       ref={comboRef}
+      block={block}
       color={color}
       borderColor={borderColor}
       backgroundColor={backgroundColor}
       border={border}
       direction={direction}
       size={size}
-      radius={radius}
       sizeEqual={sizeEqual}
+      fontSize={fontSize}
+      radius={radius}
       className={DOMUtil.classNames(
         'lyrixi-toolbar-dropdown-combo lyrixi-toolbar-button',
         className,

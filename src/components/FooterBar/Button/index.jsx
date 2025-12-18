@@ -13,14 +13,16 @@ const FooterBarButton = forwardRef(
   (
     {
       // Button: Style
+      direction,
+      block,
       color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      borderColor,
+      border = 'none', // 边框: none, dotted, dashed, solid
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      sizeEqual,
       fontSize, // 字体大小: xxs, xs, s, m, l, xl
       radius = 'm', // 圆角: xxs, xs, s, m, l, xl
-      sizeEqual,
-      border = 'none', // 边框: none, dotted, dashed, solid
-      block,
       style,
       className,
 
@@ -69,12 +71,14 @@ const FooterBarButton = forwardRef(
           ref={comboRef}
           // Button: Style
           color={color}
+          borderColor={borderColor}
           backgroundColor={backgroundColor}
           size={size}
           fontSize={fontSize}
           radius={radius}
           sizeEqual={sizeEqual}
           border={border}
+          direction={direction}
           block={block}
           style={style}
           className={className}

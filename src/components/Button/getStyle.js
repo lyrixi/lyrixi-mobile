@@ -9,16 +9,16 @@ import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 
 function getStyle({
   // Style
+  direction,
+  block,
   color,
-  borderColor,
   backgroundColor,
+  borderColor,
+  border,
   size,
   sizeEqual,
   fontSize,
   radius,
-  border,
-  direction,
-  block,
   style,
   className
 }) {

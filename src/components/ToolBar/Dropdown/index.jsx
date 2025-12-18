@@ -20,16 +20,18 @@ const Dropdown = forwardRef(
       placeholder = '',
 
       // Combo: Style
+      direction,
+      block,
+      color = 'default',
+      backgroundColor,
+      borderColor = 'default',
+      border = 'none',
+      size,
+      sizeEqual,
+      radius = 'm',
+      fontSize,
       style,
       className,
-      color = 'default',
-      borderColor = 'default',
-      backgroundColor,
-      sizeEqual,
-      border = 'none',
-      direction,
-      radius = 'm',
-      size,
 
       // Combo: Element
       comboRender,
@@ -149,6 +151,8 @@ const Dropdown = forwardRef(
           sizeEqual={sizeEqual}
           border={border}
           direction={direction}
+          block={block}
+          fontSize={fontSize}
           radius={radius}
           size={size}
           // Elements

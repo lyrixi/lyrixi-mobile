@@ -10,16 +10,19 @@ function ToolBarList({
   placeholder = '',
 
   // Style
+  direction,
+  block,
+  color,
+  backgroundColor,
+  borderColor,
+  border = 'none',
+  size,
+  sizeEqual,
+  fontSize,
+  radius = 'm',
   style,
   className,
-  color,
-  borderColor,
-  backgroundColor,
-  sizeEqual,
-  border = 'none',
-  direction,
-  radius = 'm',
-  size,
+
   maskStyle,
   maskClassName,
   modalStyle,
@@ -64,8 +67,10 @@ function ToolBarList({
       sizeEqual={sizeEqual}
       border={border}
       direction={direction}
+      block={block}
       radius={radius}
       size={size}
+      fontSize={fontSize}
       maskStyle={maskStyle}
       maskClassName={maskClassName}
       modalStyle={modalStyle}

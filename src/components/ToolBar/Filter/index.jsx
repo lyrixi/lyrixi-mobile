@@ -16,16 +16,19 @@ const Filter = forwardRef(
   (
     {
       // Style
+      direction,
+      block,
       style,
       className,
       color = 'default',
-      borderColor = 'default',
       backgroundColor,
-      sizeEqual,
+      borderColor = 'default',
       border = 'none',
-      direction,
-      radius = 'm',
       size,
+      sizeEqual,
+      fontSize,
+      radius = 'm',
+
       maskStyle,
       maskClassName,
       modalStyle,
@@ -83,6 +86,8 @@ const Filter = forwardRef(
           backgroundColor={backgroundColor}
           border={border}
           direction={direction}
+          block={block}
+          fontSize={fontSize}
           size={size}
           sizeEqual={sizeEqual}
           radius={radius}
