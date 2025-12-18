@@ -1,5 +1,6 @@
 .lyrixi-space {
-  display: inline-flex;
+  // 不能使用inline-flex，因为inline-flex会导致内部元素的间距不一致
+  display: flex;
   flex-wrap: nowrap;
   box-sizing: border-box;
   align-items: center;

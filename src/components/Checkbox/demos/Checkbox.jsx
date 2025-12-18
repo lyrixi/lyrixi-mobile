@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Card, Icon, Checkbox } from 'lyrixi-mobile'
+import { Page, Card, Icon, Checkbox, Space } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState(false)
@@ -10,18 +10,34 @@ export default () => {
         <Card>
           <Card.Header>Variants</Card.Header>
           <Card.Main>
-            <Checkbox variant="solid" checked={value} onChange={setValue}>
-              solid
-            </Checkbox>
-            <Checkbox variant="text" checked={value} onChange={setValue}>
-              text
-            </Checkbox>
-            <Checkbox variant="outlined" checked={value} onChange={setValue}>
-              outlined
-            </Checkbox>
-            <Checkbox variant="filled" checked={value} onChange={setValue}>
-              filled
-            </Checkbox>
+            <Space gap="l">
+              <Checkbox variant="solid" checked={value} onChange={setValue}>
+                solid
+              </Checkbox>
+              <Checkbox variant="text" checked={value} onChange={setValue}>
+                text
+              </Checkbox>
+              <Checkbox variant="outlined" checked={value} onChange={setValue}>
+                outlined
+              </Checkbox>
+              <Checkbox variant="filled" checked={value} onChange={setValue}>
+                filled
+              </Checkbox>
+            </Space>
+            <Space gap="l" style={{ marginTop: '10px' }}>
+              <Checkbox disabled variant="solid" checked={value} onChange={setValue}>
+                solid
+              </Checkbox>
+              <Checkbox disabled variant="text" checked={value} onChange={setValue}>
+                text
+              </Checkbox>
+              <Checkbox disabled variant="outlined" checked={value} onChange={setValue}>
+                outlined
+              </Checkbox>
+              <Checkbox disabled variant="filled" checked={value} onChange={setValue}>
+                filled
+              </Checkbox>
+            </Space>
           </Card.Main>
         </Card>
 
@@ -46,15 +62,6 @@ export default () => {
           <Card.Main>
             <Checkbox checked={value} onChange={setValue} iconPosition="right">
               iconPosition=right
-            </Checkbox>
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Disabled</Card.Header>
-          <Card.Main>
-            <Checkbox checked={value} disabled>
-              Disabled
             </Checkbox>
           </Card.Main>
         </Card>
