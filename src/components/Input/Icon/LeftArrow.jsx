@@ -19,7 +19,6 @@ const IconLeftArrow = forwardRef(
       color, // 颜色: default, transparent, primary, link, warning, danger, success
       backgroundColor, // 背景颜色: default, transparent, white, primary, link, warning, danger, success
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
-      padding, // 内边距: 数值
       radius, // 圆角: xxs, xs, s, m, l, xl
       style,
       className,
@@ -41,7 +40,6 @@ const IconLeftArrow = forwardRef(
         color={color}
         backgroundColor={backgroundColor}
         size={size}
-        padding={padding}
         radius={radius}
         style={style}
         className={DOMUtil.classNames(

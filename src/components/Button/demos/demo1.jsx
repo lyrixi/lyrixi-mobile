@@ -415,7 +415,7 @@ export default () => {
         <Divider>sizeEqual</Divider>
         <div>
           <Button
-            size="l"
+            size="32"
             radius="100%"
             sizeEqual
             color="white"

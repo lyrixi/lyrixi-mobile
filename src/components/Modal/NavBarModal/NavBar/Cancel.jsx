@@ -22,13 +22,7 @@ const Cancel = ({ onClick, children }) => {
 
   return (
     <NavBar.Button onClick={handleClick}>
-      <Icon
-        className="lyrixi-iconfont-close"
-        size={20}
-        padding={8}
-        radius="100%"
-        backgroundColor="secondary"
-      />
+      <Icon className="lyrixi-iconfont-close" size={20} radius="100%" backgroundColor="secondary" />
     </NavBar.Button>
   )
 }

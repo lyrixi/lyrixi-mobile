@@ -41,7 +41,6 @@ const IconRightArrow = forwardRef(
         color={color}
         backgroundColor={backgroundColor}
         size={size}
-        padding={padding}
         radius={radius}
         style={style}
         className={DOMUtil.classNames(

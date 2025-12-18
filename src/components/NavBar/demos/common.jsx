@@ -21,8 +21,8 @@ export default () => {
           <NavBar.Button>
             <Icon
               className="lyrixi-iconfont-close"
-              size={20}
-              padding={8}
+              size={12}
+              style={{ padding: 8 }}
               radius="100%"
               backgroundColor="secondary"
             />
@@ -30,8 +30,8 @@ export default () => {
           <NavBar.Button>
             <Icon
               className="lyrixi-iconfont-three-dots"
-              size={20}
-              padding={8}
+              size={12}
+              style={{ padding: 8 }}
               radius="2px"
               backgroundColor="secondary"
             />
@@ -44,8 +44,8 @@ export default () => {
           <NavBar.Button>
             <Icon
               className="lyrixi-iconfont-close"
-              size={20}
-              padding={8}
+              size={12}
+              style={{ padding: 8 }}
               radius="100%"
               backgroundColor="secondary"
             />

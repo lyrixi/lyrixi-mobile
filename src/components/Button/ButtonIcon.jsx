@@ -16,7 +16,6 @@ const ButtonIcon = forwardRef(
       color,
       backgroundColor,
       size = 'm',
-      padding,
       radius,
       style,
       className,
@@ -32,7 +31,6 @@ const ButtonIcon = forwardRef(
         color={color}
         backgroundColor={backgroundColor}
         size={size}
-        padding={padding}
         radius={radius}
         style={style}
         className={DOMUtil.classNames('lyrixi-button-icon', className)}

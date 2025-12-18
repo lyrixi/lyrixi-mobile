@@ -13,14 +13,11 @@ function getStyle({
   backgroundColor,
   size,
   radius,
-  padding,
   style,
   className
 }) {
   // eslint-disable-next-line
   size = MathUtil.variableSize(size) || size
-  // eslint-disable-next-line
-  padding = MathUtil.variableSize(padding) || padding
   // eslint-disable-next-line
   radius = MathUtil.variableSize(radius) || radius
 
@@ -30,17 +27,12 @@ function getStyle({
   const isSizeClass = DOMUtil.variables.sizes.includes(size)
   const isRadiusClass = DOMUtil.variables.sizes.includes(radius)
 
-  // 图标大小需要减掉间距，若无间距则直接使用size
-  let innerSize =
-    typeof size === 'number' && typeof padding === 'number' ? (size || 16) - padding : size
-
   // 构建自定义样式
   const newStyle = {
     ...(!isColorClass && color ? { color } : {}),
     ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!isSizeClass && innerSize ? { fontSize: innerSize } : {}),
-    ...(typeof size === 'number'
-      ? { width: size, height: size, fontSize: innerSize, lineHeight: size }
+    ...(!isSizeClass && size
+      ? { width: size, height: size, fontSize: size, lineHeight: size }
       : {}),
     ...(!isRadiusClass && radius ? { borderRadius: radius } : {}),
     ...style

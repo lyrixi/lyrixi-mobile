@@ -42,9 +42,7 @@ function getStyle({
     ...(!isColorClass && color ? { color } : {}),
     ...(!isBorderColorClass && borderColor ? { borderColor } : {}),
     ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!isSizeClass && typeof size === 'number'
-      ? { height: `${size}px`, width: sizeEqual ? `${size}px` : 'auto' }
-      : {}),
+    ...(!isSizeClass && size ? { height: size, width: sizeEqual ? size : 'auto' } : {}),
     ...(!isRadiusClass && radius ? { borderRadius: radius } : {}),
     ...(!isFontSizeClass && fontSize ? { fontSize: fontSize } : {}),
     ...style
