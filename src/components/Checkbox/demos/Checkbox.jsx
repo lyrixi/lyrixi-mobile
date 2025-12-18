@@ -8,10 +8,19 @@ export default () => {
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>Common</Card.Header>
+          <Card.Header>Variants</Card.Header>
           <Card.Main>
-            <Checkbox checked={value} onChange={setValue}>
-              Common
+            <Checkbox variant="solid" checked={value} onChange={setValue}>
+              solid
+            </Checkbox>
+            <Checkbox variant="text" checked={value} onChange={setValue}>
+              text
+            </Checkbox>
+            <Checkbox variant="outlined" checked={value} onChange={setValue}>
+              outlined
+            </Checkbox>
+            <Checkbox variant="filled" checked={value} onChange={setValue}>
+              filled
             </Checkbox>
           </Card.Main>
         </Card>
@@ -36,32 +45,16 @@ export default () => {
           <Card.Header>iconPosition=right</Card.Header>
           <Card.Main>
             <Checkbox checked={value} onChange={setValue} iconPosition="right">
-              Common iconPosition=right
+              iconPosition=right
             </Checkbox>
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>Checked</Card.Header>
+          <Card.Header>Disabled</Card.Header>
           <Card.Main>
-            <Checkbox checked={true}>Checked</Checkbox>
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Common Disabled</Card.Header>
-          <Card.Main>
-            <Checkbox checked={false} disabled>
-              Common Disabled
-            </Checkbox>
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Checked Disabled</Card.Header>
-          <Card.Main>
-            <Checkbox checked={true} disabled>
-              Checked Disabled
+            <Checkbox checked={value} disabled>
+              Disabled
             </Checkbox>
           </Card.Main>
         </Card>
