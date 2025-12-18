@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { LocaleUtil, Page, NavBar, ToolBar, Card, Icon, Space, FooterBar } from 'lyrixi-mobile'
+import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, Space, FooterBar } from 'lyrixi-mobile'
 
 export default () => {
   const dropdownRef = useRef(null)
@@ -204,7 +204,7 @@ export default () => {
               <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                 <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
               </ToolBar.Button>
-              <Space.Compact>
+              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button>1</ToolBar.Button>
                 <ToolBar.Button>2</ToolBar.Button>
                 <ToolBar.Button>3</ToolBar.Button>
@@ -295,7 +295,7 @@ export default () => {
                   console.log('search:', value)
                 }}
               />
-              <Space.Compact>
+              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
@@ -318,7 +318,7 @@ export default () => {
                   setSearchActive(true)
                 }}
               />
-              <Space.Compact>
+              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>
@@ -357,7 +357,7 @@ export default () => {
                   setFilledSearchActive(true)
                 }}
               />
-              <Space.Compact>
+              <Space.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                   <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
                 </ToolBar.Button>

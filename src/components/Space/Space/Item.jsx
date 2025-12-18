@@ -22,9 +22,9 @@ const Item = ({
         {children}
       </div>
       {separator && !isLast ? (
-        <span className={separatorClassName} style={separatorStyle}>
+        <div className={separatorClassName} style={separatorStyle}>
           {separator}
-        </span>
+        </div>
       ) : null}
     </Fragment>
   )

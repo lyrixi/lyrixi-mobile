@@ -1,4 +1,4 @@
-import React, { Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
+import React, { Fragment, Children, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -23,8 +23,11 @@ const Compact = forwardRef(
       block = false,
       size = 'm',
       radius = 'm',
+      separatorStyle,
+      separatorClassName,
 
       // Elements
+      separator,
       children
     },
     ref
@@ -74,20 +77,34 @@ const Compact = forwardRef(
         >
           {childNodes.map((child, index) => {
             const key = child?.key ?? `lyrixi-space-compact-item-${index}`
+            let isLast = index === childNodes.length - 1
             return (
-              <div
-                key={key}
-                className={DOMUtil.classNames(
-                  `lyrixi-space-compact-item`,
-                  `lyrixi-space-compact-item-${direction}`,
-                  {
-                    [`lyrixi-space-compact-item-first`]: index === 0,
-                    [`lyrixi-space-compact-item-last`]: index === childNodes.length - 1
-                  }
-                )}
-              >
-                {child}
-              </div>
+              <Fragment key={key}>
+                <div
+                  key={key}
+                  className={DOMUtil.classNames(
+                    `lyrixi-space-compact-item`,
+                    `lyrixi-space-compact-item-${direction}`,
+                    {
+                      [`lyrixi-space-compact-item-first`]: index === 0,
+                      [`lyrixi-space-compact-item-last`]: isLast
+                    }
+                  )}
+                >
+                  {child}
+                </div>
+                {separator && !isLast ? (
+                  <div
+                    className={DOMUtil.classNames(
+                      `lyrixi-space-item-separator`,
+                      separatorClassName
+                    )}
+                    style={separatorStyle}
+                  >
+                    {separator}
+                  </div>
+                ) : null}
+              </Fragment>
             )
           })}
         </div>

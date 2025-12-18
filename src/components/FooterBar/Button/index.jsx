@@ -15,14 +15,14 @@ const FooterBarButton = forwardRef(
       // Button: Style
       direction,
       block,
-      color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
-      backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
+      color = 'default',
+      backgroundColor = 'white',
       borderColor,
-      border = 'none', // 边框: none, dotted, dashed, solid
-      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
+      border = 'none',
+      size = 'l',
       sizeEqual,
-      fontSize, // 字体大小: xxs, xs, s, m, l, xl
-      radius = 'm', // 圆角: xxs, xs, s, m, l, xl
+      fontSize,
+      radius = 'l',
       style,
       className,
 
