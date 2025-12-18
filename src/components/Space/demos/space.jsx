@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Card, Space, Button, Radio, Input } from 'lyrixi-mobile'
+import { Page, Card, Space, Button, Checkbox, Input } from 'lyrixi-mobile'
 
 const buttons = Array.from({ length: 6 }).map((_, index) => (
   <Button key={index}>Button {index + 1}</Button>
@@ -15,7 +15,7 @@ export default () => {
         <Card>
           <Card.Header>Size Config</Card.Header>
           <Card.Main>
-            <Radio.Group
+            <Checkbox.Group
               multiple={false}
               value={mode}
               list={[

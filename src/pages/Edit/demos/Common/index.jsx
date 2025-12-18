@@ -13,7 +13,6 @@ import {
   Picker,
   Switch,
   Checkbox,
-  Radio,
   Selector,
   DatePicker,
   Cascader,
@@ -207,7 +206,8 @@ const Edit = () => {
               />
             </Form.Item>
             <Form.Item name="radio" label={locale('Radio')}>
-              <Radio.Group
+              <Checkbox.Group
+                multiple={false}
                 placeholder={locale('Please select')}
                 list={[
                   {

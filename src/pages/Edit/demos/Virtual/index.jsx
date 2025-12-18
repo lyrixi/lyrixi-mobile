@@ -182,7 +182,8 @@ const Edit = () => {
               />
             </Form.Item>
             <Form.Item height={74} name="radio" label={locale('Radio')}>
-              <Radio.Group
+              <Checkbox.Group
+                multiple={false}
                 placeholder={locale('Please select')}
                 list={[
                   {
