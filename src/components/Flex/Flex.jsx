@@ -17,7 +17,7 @@ const Flex = forwardRef(
       className,
 
       direction = 'horizontal', // 'horizontal', 'vertical'
-      wrap = false, // 是否换行
+      wrap = false, // 是否换行, true: 换行, false: 超出压缩, 'scroll': 超出滚动
       align = 'start', // 'start', 'end', 'center', 'between', 'around', 'evenly'
       gap = 's', // Number | 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'
 
@@ -72,7 +72,8 @@ const Flex = forwardRef(
         'lyrixi-flex',
         directionClassMap[direction],
         {
-          'lyrixi-flex-wrap': wrap,
+          'lyrixi-flex-wrap': wrap === true,
+          'lyrixi-flex-scroll': wrap === 'scroll',
           [alignClassMap[align || '']]: alignClassMap[align || '']
         },
         className

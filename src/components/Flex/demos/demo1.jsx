@@ -116,9 +116,18 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>Wrap</Card.Header>
+          <Card.Header>Wrap: true</Card.Header>
           <Card.Main>
             <Flex gap={gap} wrap>
+              {buttons}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Wrap: scroll</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} wrap="scroll">
               {buttons}
             </Flex>
           </Card.Main>
