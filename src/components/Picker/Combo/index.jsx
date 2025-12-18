@@ -36,7 +36,6 @@ const PickerCombo = forwardRef(
       // Modal
       // Modal: Value & Display Value
       list,
-      defaultPickerValue,
       // Modal: Status
       maskClosable,
       // Modal: Style
@@ -115,7 +114,6 @@ const PickerCombo = forwardRef(
           // Modal: Value & Display Value
           value={value}
           list={list}
-          defaultPickerValue={defaultPickerValue}
           // Modal: Status
           open={open}
           maskClosable={maskClosable}

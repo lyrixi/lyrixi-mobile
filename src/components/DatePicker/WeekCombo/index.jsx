@@ -42,7 +42,6 @@ const WeekCombo = forwardRef(
       type,
       min,
       max,
-      defaultPickerValue,
       // Modal: Status
       maskClosable,
       // Modal: Style
@@ -148,7 +147,6 @@ const WeekCombo = forwardRef(
           type={type}
           min={min}
           max={max}
-          defaultPickerValue={defaultPickerValue}
           // Modal: Status
           open={open}
           maskClosable={maskClosable}

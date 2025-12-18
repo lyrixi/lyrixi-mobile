@@ -38,7 +38,6 @@ const MultipleCombo = forwardRef(
       type = 'date',
       min,
       max,
-      defaultPickerValue,
       hourStep,
       minuteStep,
       // Modal: Status
@@ -130,7 +129,6 @@ const MultipleCombo = forwardRef(
           type={type}
           min={min}
           max={max}
-          defaultPickerValue={defaultPickerValue}
           hourStep={hourStep}
           minuteStep={minuteStep}
           // Modal: Status

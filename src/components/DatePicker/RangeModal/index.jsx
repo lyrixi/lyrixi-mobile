@@ -19,7 +19,6 @@ const RangeModal = forwardRef(
     {
       // Value & Display Value
       value,
-      defaultPickerValue,
       autoSwapValue = true,
       type = 'date',
       min,
@@ -80,9 +79,9 @@ const RangeModal = forwardRef(
 
     // 同步外部value到内部currentValue
     useEffect(() => {
-      setCurrentValue(formatValue(value || defaultPickerValue))
+      setCurrentValue(formatValue(value))
       setCurrentRangeId(rangeId)
-    }, [value, defaultPickerValue, rangeId])
+    }, [value, rangeId])
 
     async function handleOk() {
       if (onOk) {

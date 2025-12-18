@@ -19,7 +19,6 @@ const Modal = forwardRef(
     {
       // Value & Display Value
       value,
-      defaultPickerValue,
       type = 'date',
       min,
       max,
@@ -66,8 +65,8 @@ const Modal = forwardRef(
 
     // 同步外部value到内部currentValue
     useEffect(() => {
-      setCurrentValue(formatValue(value || defaultPickerValue))
-    }, [value, defaultPickerValue])
+      setCurrentValue(value)
+    }, [value])
 
     async function handleOk() {
       // 触发 onOk

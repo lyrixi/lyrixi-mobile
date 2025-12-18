@@ -1,6 +1,5 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
-import formatValue from './../MultipleMain/formatValue'
 import MultipleMain from './../MultipleMain'
 
 // 内库使用-start
@@ -22,7 +21,6 @@ const Modal = forwardRef(
       type = 'date',
       min,
       max,
-      defaultPickerValue,
       hourStep,
       minuteStep,
 
@@ -67,8 +65,8 @@ const Modal = forwardRef(
 
     // 同步外部value到内部currentValue
     useEffect(() => {
-      setCurrentValue(formatValue(value || defaultPickerValue))
-    }, [value, defaultPickerValue])
+      setCurrentValue(value)
+    }, [value])
 
     async function handleOk() {
       if (onOk) {

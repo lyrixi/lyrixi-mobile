@@ -25,7 +25,6 @@ export default () => {
     <>
       <DatePicker.MultipleCombo
         placeholder="Please select MultipleCombo"
-        // defaultPickerValue={mulValue}
         value={mulValue}
         // year | quarter | month | date | time | datetime | week
         type="datetime"

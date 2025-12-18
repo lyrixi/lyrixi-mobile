@@ -1,6 +1,5 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
-import formatValue from './formatValue'
 import WeekMain from './../WeekMain'
 
 // 内库使用-start
@@ -21,7 +20,6 @@ const WeekModal = forwardRef(
       value,
       min,
       max,
-      defaultPickerValue,
 
       // Status
       open,
@@ -64,8 +62,8 @@ const WeekModal = forwardRef(
 
     // 同步外部value到内部currentValue
     useEffect(() => {
-      setCurrentValue(formatValue(value || defaultPickerValue))
-    }, [value, defaultPickerValue])
+      setCurrentValue(value)
+    }, [value])
 
     async function handleOk() {
       if (onOk) {

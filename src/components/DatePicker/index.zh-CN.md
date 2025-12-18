@@ -55,7 +55,6 @@ toc: content
 | 属性 | 说明 | 类型 | 默认值 |
 | ---- | ---- | ---- | ------ |
 
-| defaultPickerValue | 默认选择值 | `Date` | - |
 | onOk | 点击确定前校验 | `(error: Error) => boolean` | - |
 | value | 当前值 | `Date` | - |
 | type | 选择类型 | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime' \| 'week'` | `'date'` |

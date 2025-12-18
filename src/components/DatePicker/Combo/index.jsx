@@ -42,7 +42,6 @@ const DatePickerCombo = forwardRef(
       type = 'date', // year | quarter | month | date | time | datetime | week
       min,
       max,
-      defaultPickerValue,
       hourStep,
       minuteStep,
       // Modal: Status
@@ -150,7 +149,6 @@ const DatePickerCombo = forwardRef(
           type={type}
           min={min}
           max={max}
-          defaultPickerValue={defaultPickerValue}
           hourStep={hourStep}
           minuteStep={minuteStep}
           // Modal: Status

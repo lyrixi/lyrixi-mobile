@@ -1,5 +1,4 @@
 import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import formatValue from './formatValue'
 import Main from './../Main'
 
 // 内库使用-start
@@ -18,7 +17,6 @@ const Modal = forwardRef(
     {
       // Value & Display Value
       value,
-      defaultPickerValue,
       list,
 
       // Status
@@ -47,7 +45,7 @@ const Modal = forwardRef(
     },
     ref
   ) => {
-    const [currentValue, setCurrentValue] = useState(value || defaultPickerValue)
+    const [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
@@ -60,8 +58,8 @@ const Modal = forwardRef(
 
     // 同步外部value到内部
     useEffect(() => {
-      setCurrentValue(formatValue(value || defaultPickerValue))
-    }, [value, defaultPickerValue])
+      setCurrentValue(value)
+    }, [value])
 
     async function handleOk() {
       if (onChange) {
