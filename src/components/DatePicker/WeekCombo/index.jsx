@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-
+import getDateDefaultValue from './../utils/getDateDefaultValue'
 import WeekModal from './../WeekModal'
 
 // 内库使用-start
@@ -143,7 +143,7 @@ const WeekCombo = forwardRef(
         <WeekModal
           ref={modalRef}
           // Modal: Value & Display Value
-          value={value}
+          value={value || getDateDefaultValue({ min, max })}
           type={type}
           min={min}
           max={max}

@@ -143,6 +143,33 @@ export default () => {
             />
           </Card.Main>
         </Card>
+
+        <Card>
+          <Card.Header>startDisabled & endDisabled</Card.Header>
+          <Card.Main>
+            <DatePicker.RangeCombo
+              placeholder="startDisabled & endDisabled"
+              value={value}
+              onChange={setValue}
+              startDisabled
+              endDisabled
+              allowClear
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>rangesVisible</Card.Header>
+          <Card.Main>
+            <DatePicker.RangeCombo
+              placeholder="rangesVisible"
+              value={value}
+              onChange={setValue}
+              rangesVisible
+              allowClear
+            />
+          </Card.Main>
+        </Card>
       </Page.Main>
     </Page>
   )
