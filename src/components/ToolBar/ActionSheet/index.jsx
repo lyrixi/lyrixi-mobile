@@ -51,10 +51,7 @@ function ToolBarActionSheet(
 ) {
   // 修改
   async function handleChange(newValue) {
-    if (onChange) {
-      let goOn = await onChange([newValue])
-      if (goOn === false) return
-    }
+    onChange?.(newValue)
   }
 
   // 获取标题节点

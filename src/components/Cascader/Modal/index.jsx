@@ -44,11 +44,12 @@ const CascaderModal = forwardRef(
 
       // Events
       onClose,
+      onOk,
       onChange
     },
     ref
   ) => {
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
@@ -67,11 +68,17 @@ const CascaderModal = forwardRef(
     }, [open, value])
 
     async function handleOk() {
-      if (onChange) {
-        let goOn = await onChange(currentValue)
-        if (goOn === false) return
+      // 触发 onOk
+      if (onOk) {
+        let goOn = await onOk(currentValue)
+        if (goOn === false) return false
+        if (goOn instanceof Date) {
+          currentValue = goOn
+        }
       }
-      onClose && onClose()
+
+      onChange?.(currentValue)
+      onClose?.()
     }
 
     function handleChange(newValue, newArguments) {

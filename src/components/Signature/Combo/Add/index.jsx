@@ -58,11 +58,7 @@ const Combo = (
 
   // 修改签名
   async function handleChange(base64) {
-    // 触发 onChange
-    if (onChange) {
-      let goOn = await onChange(base64)
-      return goOn
-    }
+    onChange?.(base64)
     setOpen(false)
   }
 

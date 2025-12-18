@@ -50,6 +50,7 @@ const DistrictModal = forwardRef(
 
       // Events
       onClose,
+      onOk,
       onChange
     },
     ref
@@ -59,7 +60,7 @@ const DistrictModal = forwardRef(
 
     // 是否显示右上角确认按钮
     let [okVisible, setOkVisible] = useState(null)
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
@@ -114,11 +115,17 @@ const DistrictModal = forwardRef(
     }
 
     async function handleOk() {
-      if (onChange) {
-        let goOn = await onChange(currentValue)
-        if (goOn === false) return
+      // 触发 onOk
+      if (onOk) {
+        let goOn = await onOk(currentValue)
+        if (goOn === false) return false
+        if (goOn instanceof Date) {
+          currentValue = goOn
+        }
       }
-      onClose && onClose()
+
+      onChange?.(currentValue)
+      onClose?.()
     }
 
     function handleChange(newValue, newArguments) {
