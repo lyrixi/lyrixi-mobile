@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Card, Icon, Checkbox, Space } from 'lyrixi-mobile'
+import { Page, Card, Icon, Checkbox, Flex } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState(false)
@@ -10,7 +10,7 @@ export default () => {
         <Card>
           <Card.Header>Variants</Card.Header>
           <Card.Main>
-            <Space gap="l">
+            <Flex gap="l">
               <Checkbox variant="solid" checked={value} onChange={setValue}>
                 solid
               </Checkbox>
@@ -23,8 +23,8 @@ export default () => {
               <Checkbox variant="filled" checked={value} onChange={setValue}>
                 filled
               </Checkbox>
-            </Space>
-            <Space gap="l" style={{ marginTop: '10px' }}>
+            </Flex>
+            <Flex gap="l" style={{ marginTop: '10px' }}>
               <Checkbox disabled variant="solid" checked={value} onChange={setValue}>
                 solid
               </Checkbox>
@@ -37,7 +37,7 @@ export default () => {
               <Checkbox disabled variant="filled" checked={value} onChange={setValue}>
                 filled
               </Checkbox>
-            </Space>
+            </Flex>
           </Card.Main>
         </Card>
 
