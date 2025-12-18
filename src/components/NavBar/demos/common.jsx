@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Page, NavBar, Divider, Icon } from 'lyrixi-mobile'
+import { Page, NavBar, Divider, Button, Icon } from 'lyrixi-mobile'
 
 export default () => {
   return (
@@ -9,8 +9,8 @@ export default () => {
         <Divider>Normal</Divider>
         <NavBar>
           <NavBar.Button>
-            <Icon className="lyrixi-iconfont-arrow-left" />
-            Back
+            <Button.Icon className="lyrixi-iconfont-arrow-left" />
+            <Button.Text>Back</Button.Text>
           </NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>
           <NavBar.Button color="primary">Ok</NavBar.Button>
@@ -22,20 +22,20 @@ export default () => {
             <Icon
               className="lyrixi-iconfont-close"
               size={12}
-              style={{ padding: 8 }}
+              style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"
             />
           </NavBar.Button>
           <NavBar.Button>
-            <Icon
+            <Button.Icon
               className="lyrixi-iconfont-three-dots"
               size={12}
-              style={{ padding: 8 }}
+              style={{ padding: 4 }}
               radius="2px"
               backgroundColor="secondary"
             />
-            More
+            <Button.Text>More</Button.Text>
           </NavBar.Button>
         </NavBar>
 
@@ -45,7 +45,7 @@ export default () => {
             <Icon
               className="lyrixi-iconfont-close"
               size={12}
-              style={{ padding: 8 }}
+              style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"
             />
