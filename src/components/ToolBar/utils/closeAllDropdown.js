@@ -4,7 +4,7 @@ function closeAllDropdown({ exceptId } = {}) {
 
   for (let id in window.dropdowns) {
     if (id === exceptId) continue
-    window.dropdowns[id].close()
+    window.dropdowns?.[id]?.close?.()
   }
 }
 

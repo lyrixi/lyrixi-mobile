@@ -56,6 +56,7 @@ function DateRangeBar({
   ranges,
 
   // Events
+  onOk,
   onChange
 }) {
   if (ranges === undefined) {
@@ -63,8 +64,8 @@ function DateRangeBar({
     ranges = getDefaultRanges()
   }
 
-  const [rangeId, setRangeId] = useState(externalRangeId)
-  const [value, setValue] = useState(externalValue)
+  let [rangeId, setRangeId] = useState(externalRangeId)
+  let [value, setValue] = useState(externalValue)
   const dropdownRef = useRef(null)
 
   useEffect(() => {
@@ -109,16 +110,26 @@ function DateRangeBar({
   }
 
   async function handleOk() {
-    if (onChange) {
-      let goOn = await onChange(value, { rangeId })
-      if (goOn === false) return
+    // 触发 onOk
+    if (onOk) {
+      let goOn = await onOk?.(value, { rangeId })
+      if (goOn === false) return false
+      if (goOn instanceof Array) {
+        // eslint-disable-next-line
+        value = goOn
+      }
     }
+
+    onChange?.(value, { rangeId })
     dropdownRef.current?.close?.()
   }
 
   function handleCancel() {
-    init()
     dropdownRef.current?.close?.()
+  }
+
+  function handleClose() {
+    init()
   }
 
   return (
@@ -148,7 +159,7 @@ function DateRangeBar({
       arrowRender={arrowRender}
       portal={portal}
       // Events
-      onClose={handleCancel}
+      onClose={handleClose}
     >
       <div className="lyrixi-toolbar-daterange-modal">
         {/* Element: Body */}

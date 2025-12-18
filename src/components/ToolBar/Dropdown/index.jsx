@@ -70,9 +70,7 @@ const Dropdown = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        comboDOM: comboRef.current?.rootDOM ? comboRef.current.rootDOM : comboRef.current,
-        getComboDOM: () =>
-          comboRef.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
+        ...comboRef.current,
         close: _close,
         open: _open
       }
@@ -166,6 +164,7 @@ const Dropdown = forwardRef(
     }
 
     const ComboNode = getComboNode()
+
     return (
       <>
         {/* Combo */}
@@ -185,7 +184,7 @@ const Dropdown = forwardRef(
           offset={offset}
           left={left}
           right={right}
-          referenceDOM={comboRef.current?.rootDOM ? comboRef.current.rootDOM : comboRef.current}
+          referenceDOM={comboRef.current?.comboDOM}
           // Events
           onClose={() => {
             setOpen(false)

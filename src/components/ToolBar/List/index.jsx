@@ -44,12 +44,7 @@ function ToolBarList({
   const dropdownRef = useRef(null)
   // 修改
   async function handleChange(newValue) {
-    if (onChange) {
-      let goOn = await onChange(newValue)
-      if (goOn === false) return
-    }
-
-    // 关闭下拉
+    onChange?.(newValue)
     dropdownRef.current?.close?.()
   }
 
