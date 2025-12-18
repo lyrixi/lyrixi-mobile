@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import _ from 'lodash'
 import { Page, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
 
 export default () => {

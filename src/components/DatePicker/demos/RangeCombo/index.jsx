@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import _ from 'lodash'
-import { Page, DatePicker, DateUtil, Message, Card, Toast } from 'lyrixi-mobile'
+import { Page, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState(null)
-  // const [value, setValue] = useState([new Date(), null])
-  // const [value, setValue] = useState([null, null])
   return (
     <Page>
       <Page.Main>
@@ -13,16 +10,10 @@ export default () => {
           <Card.Header>Year</Card.Header>
           <Card.Main>
             <DatePicker.RangeCombo
-              // allowClear
-
               type="year"
               placeholder="Year"
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
             />
           </Card.Main>
         </Card>
@@ -33,12 +24,8 @@ export default () => {
             <DatePicker.RangeCombo
               type="month"
               placeholder="Month"
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
               allowClear
             />
           </Card.Main>
@@ -50,12 +37,8 @@ export default () => {
             <DatePicker.RangeCombo
               type="date"
               placeholder="Date"
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
               allowClear
             />
           </Card.Main>
@@ -67,12 +50,8 @@ export default () => {
             <DatePicker.RangeCombo
               type="time"
               placeholder="Time"
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
               allowClear
             />
           </Card.Main>
@@ -84,12 +63,8 @@ export default () => {
             <DatePicker.RangeCombo
               type="datetime"
               placeholder="Datetime"
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
               allowClear
             />
           </Card.Main>
@@ -101,84 +76,24 @@ export default () => {
             <DatePicker.RangeCombo
               type="week"
               placeholder="Week"
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
               allowClear
             />
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>Quick Select</Card.Header>
+          <Card.Header>Custom Title</Card.Header>
           <Card.Main>
             <DatePicker.RangeCombo
-              placeholder="Quick Select"
+              type="date"
+              placeholder="Custom Title"
+              titleRender={(value) => {
+                return DatePicker.getTitle(value, 'YYYY年MM月DD日 周ddd')
+              }}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
-              allowClear
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Limit</Card.Header>
-          <Card.Main>
-            <DatePicker.RangeCombo
-              min={new Date()}
-              max={DateUtil.add(new Date(), 30)}
-              placeholder="Limit"
-              ranges={null}
-              value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
-              allowClear
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>onOk</Card.Header>
-          <Card.Main>
-            <DatePicker.RangeCombo
-              min={new Date()}
-              max={DateUtil.add(new Date(), 30)}
-              placeholder="onOk"
-              ranges={null}
-              value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
-              onOk={(newValue) => {
-                Toast.show({ content: 'validate failed' })
-                return false
-              }}
-              allowClear
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Custom</Card.Header>
-          <Card.Main>
-            <DatePicker.RangeCombo
-              placeholder="Step"
-              title="Custom Title"
-              ranges={null}
-              value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
-              }}
+              onChange={setValue}
               allowClear
             />
           </Card.Main>
@@ -192,11 +107,37 @@ export default () => {
               type="datetime"
               hourStep={5}
               minuteStep={5}
-              ranges={null}
               value={value}
-              onChange={(newValue) => {
-                console.log(newValue)
-                setValue(newValue)
+              onChange={setValue}
+              allowClear
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>min & max</Card.Header>
+          <Card.Main>
+            <DatePicker.RangeCombo
+              min={DateUtil.add(new Date(), 2)}
+              max={DateUtil.add(new Date(), 30)}
+              placeholder="min & max"
+              value={value}
+              onChange={setValue}
+              allowClear
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>onOk</Card.Header>
+          <Card.Main>
+            <DatePicker.RangeCombo
+              placeholder="onOk"
+              value={value}
+              onChange={setValue}
+              onOk={(newValue) => {
+                Toast.show({ content: 'validate failed' })
+                return false
               }}
               allowClear
             />

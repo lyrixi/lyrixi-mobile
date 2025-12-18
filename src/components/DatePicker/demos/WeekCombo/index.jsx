@@ -6,10 +6,6 @@ export default () => {
   const date2Ref = useRef(null)
   const [value, setValue] = useState(null)
 
-  useEffect(() => {
-    date1Ref.current.open()
-  }, [])
-
   return (
     <>
       <DatePicker.WeekCombo

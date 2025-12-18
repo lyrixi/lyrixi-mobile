@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import { getDefaultRanges } from './../utils'
+import { getRangeDefaultValue, getDefaultRanges } from './../utils'
 import getDisplayValue from './getDisplayValue'
 import formatValue from './../RangeMain/formatValue'
 import RangeModal from './../RangeModal'
@@ -147,7 +147,7 @@ const RangeCombo = forwardRef(
         <RangeModal
           ref={modalRef}
           // Modal: Value & Display Value
-          value={formatValue(value)}
+          value={formatValue(value) || getRangeDefaultValue({ min, max })}
           autoSwapValue={autoSwapValue}
           type={type}
           min={min}
