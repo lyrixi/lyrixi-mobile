@@ -136,7 +136,7 @@ export default () => {
               value={value}
               onChange={setValue}
               onOk={(newValue) => {
-                Toast.show({ content: 'validate failed' })
+                Toast.show({ content: 'Use onOk to stop' })
                 return false
               }}
               allowClear

@@ -44,7 +44,7 @@ export default () => {
         hourStep={5}
         minuteStep={5}
         onOk={(newValue) => {
-          Toast.show({ content: 'validate failed' })
+          Toast.show({ content: 'Use onOk to stop' })
           return false
         }}
       />

@@ -25,6 +25,7 @@ function RangeMain(
 
     // Status
     type = 'date', // year | quarter | month | date | time | datetime
+    rangesVisible,
     min,
     max,
     hourStep,
@@ -61,7 +62,7 @@ function RangeMain(
 
   // 判断有没有快捷选择
   let hasSelector = false
-  if (ranges) {
+  if (rangesVisible && ranges) {
     for (let key in ranges) {
       if (Array.isArray(ranges[key])) {
         hasSelector = true

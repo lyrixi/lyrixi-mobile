@@ -33,6 +33,7 @@ const RangeModal = forwardRef(
 
       // Status
       open,
+      rangesVisible,
       maskClosable,
       allowClear,
 
@@ -143,6 +144,7 @@ const RangeModal = forwardRef(
           ranges={ranges}
           // Status
           type={type}
+          rangesVisible={rangesVisible}
           allowClear={allowClear}
           min={min}
           max={max}
