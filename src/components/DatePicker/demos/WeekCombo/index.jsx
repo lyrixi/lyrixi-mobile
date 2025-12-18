@@ -41,7 +41,7 @@ export default () => {
         onChange={(newValue) => {
           setValue(newValue)
         }}
-        value={value || new Date('2022-08-22 00:00')}
+        value={value}
       />
     </>
   )

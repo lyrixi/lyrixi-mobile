@@ -1,9 +1,10 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-
+import getDateDefaultValue from './../utils/getDateDefaultValue'
 import Modal from './../Modal'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
+
 import Combo from './../../Combo'
 import Input from './../../Input'
 // 内库使用-end
@@ -145,7 +146,7 @@ const DatePickerCombo = forwardRef(
         <Modal
           ref={modalRef}
           // Modal: Value & Display Value
-          value={value}
+          value={value || getDateDefaultValue({ min, max })}
           type={type}
           min={min}
           max={max}
