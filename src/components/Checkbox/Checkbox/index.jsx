@@ -1,7 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import Icon from './Icon'
 
 // 内库使用-start
-import DOMUtil from './../../utils/DOMUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -20,6 +21,7 @@ const Checkbox = forwardRef(
       disabled,
 
       // Style
+      variant,
       style,
       className,
 
@@ -53,9 +55,9 @@ const Checkbox = forwardRef(
     // 获取图标节点
     function getIconNode() {
       if (typeof iconRender === 'function') {
-        return iconRender({ checked, className: 'lyrixi-checkbox-icon' })
+        return iconRender({ checked })
       }
-      return <span className="lyrixi-checkbox-icon lyrixi-default" />
+      return <Icon variant={variant} checked={checked} />
     }
     const IconNode = getIconNode()
 

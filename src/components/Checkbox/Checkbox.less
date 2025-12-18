@@ -1,4 +1,6 @@
 @import 'Group/CheckboxGroup.less';
+@import 'Checkbox/Solid.less';
+@import 'Checkbox/Text.less';
 
 // Checkbox控件
 .lyrixi-checkbox {
@@ -7,14 +9,7 @@
   vertical-align: middle;
   // 禁用状态
   &[disabled] {
-    .lyrixi-checkbox-icon {
-      background-color: #f8f7f7;
-      border-color: #e5e5e5;
-    }
-    .lyrixi-checkbox-content,
-    &.lyrixi-checked {
-      opacity: 0.5;
-    }
+    opacity: 0.5;
   }
 }
 
@@ -27,48 +22,6 @@
   vertical-align: middle;
   width: 20px;
   height: 20px;
-
-  // 默认样式
-  &.lyrixi-default {
-    line-height: 14px;
-    border: 1px solid #ced2d8;
-    border-radius: 100%;
-  }
-  // 勾子样式
-  &.lyrixi-tick {
-  }
-}
-
-// input图标选中状态
-.lyrixi-checkbox.lyrixi-checked {
-  // 默认样式
-  .lyrixi-checkbox-icon.lyrixi-default {
-    border: 0;
-    background-color: var(--lyrixi-primary);
-    color: white;
-    font-family: 'lyrixi-iconfont';
-    &:extend(.lyrixi-iconfont-ok all);
-    &:before {
-      width: 12px;
-      height: 12px;
-      font-size: 12px;
-      line-height: 12px;
-      font-weight: bold;
-    }
-  }
-  // 勾子样式
-  .lyrixi-checkbox-icon.lyrixi-tick {
-    color: var(--lyrixi-primary);
-    font-family: 'lyrixi-iconfont';
-    &:extend(.lyrixi-iconfont-ok all);
-    &:before {
-      width: 18px;
-      height: 18px;
-      font-size: 18px;
-      line-height: 18px;
-      font-weight: bold;
-    }
-  }
 }
 
 // content

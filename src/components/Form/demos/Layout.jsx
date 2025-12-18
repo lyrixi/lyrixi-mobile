@@ -104,9 +104,9 @@ export default () => {
           </Form.Item>
         </Form>
       </Page.Main>
-      <Page.Footer className="listpicker-footer lyrixi-border-t">
+      <Page.Footer>
         <FooterBar>
-          <FooterBar.Button className="lyrixi-primary" onClick={handleSave}>
+          <FooterBar.Button block backgroundColor="primary" color="white" onClick={handleSave}>
             {LocaleUtil.locale('确定')}
           </FooterBar.Button>
         </FooterBar>
