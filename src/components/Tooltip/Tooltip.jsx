@@ -33,6 +33,7 @@ const Tooltip = forwardRef(
       portal,
 
       // Events
+      onBeforeOpen,
       onOpen,
       onClose
     },
@@ -99,11 +100,19 @@ const Tooltip = forwardRef(
     }
 
     // 非受控显隐, 为子元素增加点击事件显隐
-    function handleOpen() {
+    async function handleOpen() {
+      if (!open === true) {
+        if (typeof onBeforeOpen === 'function') {
+          let goOn = await onBeforeOpen()
+          if (goOn === false) return
+        }
+      }
+
       // 没有自定义位置时生效
       if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
         updatePosition(comboRef.current?.comboDOM)
       }
+
       setOpen(!open)
     }
 

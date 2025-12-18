@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -34,11 +34,12 @@ const Filter = forwardRef(
       modalStyle,
       modalClassName,
 
-      // Element
-      iconRender,
+      // Elements
+      children,
+      comboRender,
+      modalRender,
       portal,
       footerRender,
-      children,
 
       // Events
       onCancel,
@@ -74,18 +75,19 @@ const Filter = forwardRef(
       // eslint-disable-next-line
     }, [open])
 
-    // 获取图标节点
-    function getIconNode() {
-      if (typeof iconRender === 'function') {
-        return iconRender()
+    // 获取标题节点
+    function getComboNode() {
+      if (typeof comboRender === 'function') {
+        return comboRender({
+          comboRef,
+          open: open,
+          onClick: () => {
+            setOpen(true)
+          }
+        })
       }
-      return <Icon className="lyrixi-iconfont-filter-menu" />
-    }
-    const IconNode = getIconNode()
 
-    return (
-      <>
-        {/* Combo */}
+      return (
         <Button
           ref={rootRef}
           // Style
@@ -106,9 +108,18 @@ const Filter = forwardRef(
             setOpen(true)
           }}
         >
-          {/* Element: Icon */}
-          {IconNode}
+          {/* comboChildren */}
+          {children || <Icon className="lyrixi-iconfont-filter-menu" />}
         </Button>
+      )
+    }
+
+    const ComboNode = getComboNode()
+
+    return (
+      <>
+        {/* Combo */}
+        {ComboNode}
 
         {/* Modal */}
         <FilterModal

@@ -55,12 +55,14 @@ const ActionSheetCombo = (
 
     // Events
     onBeforeOpen,
+    onOpen,
+    onClose,
     onClick,
     onChange
   },
   ref
 ) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(null)
   const comboRef = useRef(null)
   const modalRef = useRef(null)
 
@@ -72,6 +74,17 @@ const ActionSheetCombo = (
       open: () => setOpen(true)
     }
   })
+
+  useEffect(() => {
+    if (open === null) return
+    if (open) {
+      onOpen?.()
+    } else {
+      onClose?.()
+    }
+    // eslint-disable-next-line
+  }, [open])
+
   async function handleOpen() {
     if (typeof onBeforeOpen === 'function') {
       let goOn = await onBeforeOpen()

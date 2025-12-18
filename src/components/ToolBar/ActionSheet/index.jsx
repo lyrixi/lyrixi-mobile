@@ -42,6 +42,9 @@ function ToolBarActionSheet(
     list,
 
     // Events
+    onBeforeOpen,
+    onOpen,
+    onClose,
     onChange
   },
   ref
@@ -106,6 +109,9 @@ function ToolBarActionSheet(
       portal={portal}
       comboRender={getComboNode}
       // Events
+      onBeforeOpen={onBeforeOpen}
+      onOpen={onOpen}
+      onClose={onClose}
       onChange={handleChange}
     />
   )
