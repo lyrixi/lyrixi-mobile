@@ -1,7 +1,7 @@
 ---
 group:
   title: 布局
-  order: 2
+  order: 3
 order: 1
 title: Row
 toc: content
@@ -9,30 +9,30 @@ toc: content
 
 # Row
 
-行组件，用于栅格布局的行容器。
+行组件，用于创建行布局。
 
 ## 何时使用
 
-- 需要栅格布局时
-- 需要响应式列布局时
-- 需要设置列间距时
+- 需要创建行布局时
+- 需要水平排列元素时
 
-## 示例
+## 代码演示
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Row.jsx"></code>
 
-## Row
+## API
 
 ### 属性
 
-| 属性      | 说明       | 类型               | 默认值 |
-| --------- | ---------- | ------------------ | ------ |
-| gutter    | 列间距     | `number \| object` | -      |
-| className | 自定义类名 | `string`           | -      |
-| children  | 子元素     | `ReactNode`        | -      |
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
+| className | 自定义类名 | `string`    | -      |
+| children  | 行内容     | `ReactNode` | -      |
 
 ### Ref
 
-| 属性    | 说明   | 类型             |
-| ------- | ------ | ---------------- |
-| element | 根元素 | `HtmlDivElement` |
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |

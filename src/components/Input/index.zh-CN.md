@@ -7,51 +7,21 @@ title: Input
 toc: content
 ---
 
+# Input
+
 输入框组件，提供多种类型的输入控件。
 
-## Input.AutoSize
+## 何时使用
 
-基于 Input.Text
-<code src="./demos/AutoSize/index.jsx"></code>
+- 需要用户输入文本、数字、密码等数据时
+- 需要表单输入控件时
+- 需要带验证、格式化等功能的输入框时
 
-## Input.Number
-
-基于 Input.Text
-<code src="./demos/Number/index.jsx"></code>
-
-## Input.NumberBox
-
-<code src="./demos/NumberBox/index.jsx"></code>
-
-## Input.Password
-
-基于 Input.Text
-<code src="./demos/Password/index.jsx"></code>
-
-## Input.PasswordStrength
-
-<code src="./demos/PasswordStrength/index.jsx"></code>
-
-## Input.Range
-
-<code src="./demos/Range/index.jsx"></code>
-
-## Input.Rate
-
-<code src="./demos/Rate/index.jsx"></code>
-
-## Input.Tel
-
-基于 Input.Text
-<code src="./demos/Tel/index.jsx"></code>
-
-## Input.Text
+## 代码演示
 
 <code src="./demos/Text/index.jsx"></code>
 
-### Input.Select
-
-<code src="./demos/Select/index.jsx"></code>
+## API
 
 ### 属性
 
@@ -100,36 +70,67 @@ toc: content
 | getElement      | 获取根元素     | () => `HtmlDivElement`   |
 | getInputElement | 获取输入框元素 | () => `HtmlInputElement` |
 
-## Input.Textarea
+## Input.Text
 
-基于 Input.Text
+文本输入框组件，基于 Input 组件封装。
 
-<code src="./demos/Textarea/index.jsx"></code>
+### 何时使用
 
-## Input.Url
+- 需要单行文本输入时
+- 需要带清除按钮的输入框时
+- 需要格式化显示的输入框时
 
-基于 Input.Text
+### 代码演示
 
-<code src="./demos/Url/index.jsx"></code>
+<code src="./demos/Text/index.jsx"></code>
 
-## Input.Search
+### API
 
-基于 Input.Text
+#### 属性
 
-<code src="./demos/Search/index.jsx"></code>
+| 属性          | 说明         | 类型                                                                                | 默认值   |
+| ------------- | ------------ | ----------------------------------------------------------------------------------- | -------- |
+| id            | 输入框 ID    | `string`                                                                            | -        |
+| name          | 输入框名称   | `string`                                                                            | -        |
+| type          | 输入类型     | `'text' \| 'number' \| 'tel' \| 'password' \| 'search' \| 'textarea' \| 'autoSize'` | `'text'` |
+| value         | 输入值       | `string \| number`                                                                  | `''`     |
+| placeholder   | 占位符       | `string`                                                                            | -        |
+| formatter     | 格式化函数   | `(value: any) => string`                                                            | -        |
+| readOnly      | 是否只读     | `boolean`                                                                           | -        |
+| disabled      | 是否禁用     | `boolean`                                                                           | -        |
+| allowClear    | 允许清除     | `boolean`                                                                           | -        |
+| autoFocus     | 自动获取焦点 | `boolean`                                                                           | -        |
+| autoSelect    | 自动选中     | `boolean`                                                                           | -        |
+| style         | 自定义样式   | `object`                                                                            | -        |
+| className     | 自定义类名   | `string`                                                                            | -        |
+| inputRender   | 自定义输入框 | `(props: object) => ReactNode`                                                      | -        |
+| leftIconNode  | 左侧图标     | `ReactNode`                                                                         | -        |
+| rightIconNode | 右侧图标     | `ReactNode \| (props: {value: any}) => ReactNode`                                   | -        |
+| clearRender   | 清除按钮     | `(props: object) => ReactNode`                                                      | -        |
+| precision     | 小数精度     | `number`                                                                            | -        |
+| trim          | 是否去除空格 | `boolean`                                                                           | -        |
+| max           | 最大值       | `number`                                                                            | -        |
+| min           | 最小值       | `number`                                                                            | -        |
+| maxLength     | 最大长度     | `number`                                                                            | -        |
+| inputMode     | 输入模式     | `string`                                                                            | -        |
+| enterKeyHint  | 回车键提示   | `string`                                                                            | -        |
+| autoComplete  | 自动完成     | `string`                                                                            | -        |
+| autoCorrect   | 自动纠正     | `string`                                                                            | -        |
+| spellCheck    | 拼写检查     | `string`                                                                            | -        |
+| onClick       | 点击事件     | `(e: Event) => void`                                                                | -        |
+| onChange      | 值变化事件   | `(value: any, e: Event) => void`                                                    | -        |
+| onBlur        | 失焦事件     | `(e: Event) => void`                                                                | -        |
+| onFocus       | 聚焦事件     | `(e: Event) => void`                                                                | -        |
+| onKeyDown     | 按键事件     | `(e: Event) => void`                                                                | -        |
+| onPressEnter  | 回车事件     | `(e: Event) => void`                                                                | -        |
 
-## Input.NumberKeyboard
+#### Ref
 
-<code src="./demos/NumberKeyboard/index.jsx"></code>
-
-## Input.OTP
-
-### 功能说明
-
-• 自动跳转到下一个输入框
-• 支持退格键删除和跳转
-• 支持粘贴功能
-• 输入完成时触发 onComplete 回调
-• 支持 disabled 和 readOnly 状态
-
-<code src="./demos/OTP/index.jsx"></code>
+| 属性            | 说明           | 类型                     |
+| --------------- | -------------- | ------------------------ |
+| element         | 根元素         | `HtmlDivElement`         |
+| inputElement    | 输入框元素     | `HtmlInputElement`       |
+| getElement      | 获取根元素     | () => `HtmlDivElement`   |
+| getInputElement | 获取输入框元素 | () => `HtmlInputElement` |
+| correctValue    | 矫正值         | `(value: any) => string` |
+| focus           | 获取焦点       | `() => void`             |

@@ -1,7 +1,7 @@
 ---
 group:
-  title: 反馈
-  order: 2
+  title: 导航
+  order: 6
 order: 1
 title: FooterBar
 toc: content
@@ -9,31 +9,27 @@ toc: content
 
 # FooterBar
 
-底部栏组件，用于页面底部操作区域。
+底部栏组件，用于显示页面底部内容。
 
 ## 何时使用
 
-- 需要页面底部操作按钮时
-- 需要固定的底部操作区域时
-- 需要底部导航时
-- 需要底部表单提交时
+- 需要显示页面底部内容时
+- 需要显示操作按钮时
+- 需要在页面底部显示固定内容时
 
-## 示例
-
-### 基本使用
-
-### FooterBar.Button
+## 代码演示
 
 <code src="./demos/Button.jsx"></code>
 
-## FooterBar
+## API
 
 ### 属性
 
-| 属性     | 说明   | 类型                  | 默认值      |
-| -------- | ------ | --------------------- | ----------- |
-| type     | 类型   | `'default' \| 'text'` | `'default'` |
-| children | 子元素 | `ReactNode`           | -           |
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
+| className | 自定义类名 | `string`    | -      |
+| children  | 底部栏内容 | `ReactNode` | -      |
 
 ### Ref
 

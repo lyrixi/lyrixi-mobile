@@ -1,7 +1,7 @@
 ---
 group:
   title: 布局
-  order: 2
+  order: 3
 order: 1
 title: SafeArea
 toc: content
@@ -9,26 +9,28 @@ toc: content
 
 # SafeArea
 
-安全区域组件，用于适配不同设备的安全区域。
+安全区组件，用于适配安全区域。
 
 ## 何时使用
 
-- 需要适配刘海屏时
-- 需要适配底部安全区域时
-- 需要适配不同设备时
+- 需要适配安全区域时
+- 需要在有刘海屏的设备上显示内容时
 - 需要避免内容被遮挡时
 
-## 示例
+## 代码演示
 
 <code src="./demos/demo1.jsx"></code>
 
-## SafeArea
+## API
 
 ### 属性
 
-| 属性     | 说明         | 类型                | 默认值 |
-| -------- | ------------ | ------------------- | ------ |
-| safeArea | 安全区域类型 | `'auto' \| boolean` | -      |
+| 属性      | 说明       | 类型                                                                   | 默认值     |
+| --------- | ---------- | ---------------------------------------------------------------------- | ---------- |
+| type      | 类型       | `'height' \| 'padding' \| 'margin' \| 'border' \| 'before' \| 'after'` | `'height'` |
+| position  | 位置       | `'top' \| 'bottom'`                                                    | `'bottom'` |
+| style     | 自定义样式 | `object`                                                               | -          |
+| className | 自定义类名 | `string`                                                               | -          |
 
 ### Ref
 

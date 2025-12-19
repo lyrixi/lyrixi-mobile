@@ -7,47 +7,104 @@ title: Transfer
 toc: content
 ---
 
-# Transfer 穿梭框
+# Transfer
 
-穿梭框组件，用于在两个列表之间移动数据。
+穿梭框组件，用于在两栏之间移动元素。
 
 ## 何时使用
 
-- 需要在两个列表间移动数据时
-- 需要批量选择数据时
-- 需要数据排序时
-- 需要数据分配时
+- 需要在两栏之间移动元素时
+- 需要选择多个选项时
+- 需要管理已选和未选项时
 
-## 示例
-
-### Transfer.Combo
-
-<code src="./demos/Combo/index.jsx"></code>
-
-### Transfer.Modal
-
-<code src="./demos/Modal/index.jsx"></code>
-
-### Transfer.Main
+## 代码演示
 
 <code src="./demos/Main/index.jsx"></code>
 
-## Transfer.Main
+## API
 
 ### 属性
 
-| 属性       | 说明         | 类型                     | 默认值 |
-| ---------- | ------------ | ------------------------ | ------ |
-| open       | 是否可见     | `boolean`                | -      |
-| value      | 已选择的值   | `array`                  | -      |
-| allowClear | 是否允许清除 | `boolean`                | -      |
-| onChange   | 变化回调     | `(value: array) => void` | -      |
-| list       | 数据列表     | `array`                  | -      |
-| titles     | 标题配置     | `object`                 | -      |
+| 属性       | 说明       | 类型                                      | 默认值 |
+| ---------- | ---------- | ----------------------------------------- | ------ |
+| value      | 选中的值   | `Array<{id: string, [key: string]: any}>` | -      |
+| list       | 选项列表   | `Array<{id: string, [key: string]: any}>` | -      |
+| titles     | 标题数组   | `[string, string]`                        | -      |
+| open       | 是否展开   | `boolean`                                 | -      |
+| allowClear | 允许清除   | `boolean`                                 | -      |
+| style      | 自定义样式 | `object`                                  | -      |
+| className  | 自定义类名 | `string`                                  | -      |
+| onChange   | 变化事件   | `(value: Array) => void`                  | -      |
 
 ### Ref
 
-| 属性           | 说明           | 类型                   |
-| -------------- | -------------- | ---------------------- |
-| mainElement    | 主容器元素     | `HtmlDivElement`       |
-| getMainElement | 获取主容器元素 | () => `HtmlDivElement` |
+| 属性           | 说明       | 类型                   |
+| -------------- | ---------- | ---------------------- |
+| mainElement    | 主元素     | `HtmlDivElement`       |
+| getMainElement | 获取主元素 | () => `HtmlDivElement` |
+
+## Transfer.Combo
+
+穿梭框组合组件，结合输入框和穿梭框。
+
+### 何时使用
+
+- 需要结合输入框和穿梭框时
+
+### 代码演示
+
+<code src="./demos/Combo/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Transfer 组件属性。
+
+#### Ref
+
+同 Transfer 组件 Ref。
+
+## Transfer.Modal
+
+穿梭框模态框组件。
+
+### 何时使用
+
+- 需要以模态框形式显示穿梭框时
+
+### 代码演示
+
+<code src="./demos/Modal/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Transfer 组件属性。
+
+#### Ref
+
+同 Transfer 组件 Ref。
+
+## Transfer.Main
+
+穿梭框主组件。
+
+### 何时使用
+
+- 需要直接使用穿梭框主组件时
+
+### 代码演示
+
+<code src="./demos/Main/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Transfer 组件属性。
+
+#### Ref
+
+同 Transfer 组件 Ref。

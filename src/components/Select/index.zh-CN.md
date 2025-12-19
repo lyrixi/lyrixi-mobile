@@ -9,39 +9,133 @@ toc: content
 
 # Select
 
-选择器组件，提供多种选择方式。
+选择器组件，用于从多个选项中选择。
 
 ## 何时使用
 
-- 需要用户从多个选项中选择时
-- 需要下拉选择、弹窗选择等不同交互方式时
-- 需要单选或多选功能时
+- 需要从多个选项中选择时
+- 需要单选或多选时
+- 需要带搜索功能的选择时
 
-## 示例
-
-### Select.Combo
+## 代码演示
 
 <code src="./demos/Combo/index.jsx"></code>
 
-## Select.Combo
+## API
 
 ### 属性
 
-| 属性             | 说明           | 类型                   | 默认值 |
-| ---------------- | -------------- | ---------------------- | ------ |
-| open             | 是否可见       | `boolean`              | `true` |
-| value            | 当前选中值     | `any \| any[]`         | -      |
-| multiple         | 是否多选       | `boolean`              | -      |
-| allowClear       | 是否允许清除   | `boolean`              | -      |
-| onChange         | 值变化回调     | `(value: any) => void` | -      |
-| list             | 选项列表       | `array`                | -      |
-| checkable        | 是否可选中     | `boolean`              | `true` |
-| checkbox         | 是否显示复选框 | `boolean`              | -      |
-| checkboxPosition | 复选框位置     | `string`               | -      |
+| 属性           | 说明         | 类型                            | 默认值 |
+| -------------- | ------------ | ------------------------------- | ------ |
+| value          | 选中的值     | `any \| any[]`                  | -      |
+| placeholder    | 占位符       | `string`                        | -      |
+| formatter      | 格式化函数   | `(value: any) => string`        | -      |
+| autoSize       | 自动调整大小 | `boolean`                       | -      |
+| separator      | 分隔符       | `string`                        | -      |
+| mode           | 模式         | `string`                        | -      |
+| readOnly       | 是否只读     | `boolean`                       | -      |
+| disabled       | 是否禁用     | `boolean`                       | -      |
+| allowClear     | 允许清除     | `boolean`                       | -      |
+| multiple       | 是否多选     | `boolean`                       | -      |
+| style          | 自定义样式   | `object`                        | -      |
+| className      | 自定义类名   | `string`                        | -      |
+| leftIconNode   | 左侧图标     | `ReactNode`                     | -      |
+| rightIconNode  | 右侧图标     | `ReactNode`                     | -      |
+| clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
+| list           | 选项列表     | `Array<object>`                 | -      |
+| formatViewList | 格式化列表   | `(list: Array) => Array`        | -      |
+| formatViewItem | 格式化项     | `(item: object) => object`      | -      |
+| maskClosable   | 点击遮罩关闭 | `boolean`                       | -      |
+| safeArea       | 是否安全区   | `boolean`                       | -      |
+| modalStyle     | 模态框样式   | `object`                        | -      |
+| modalClassName | 模态框类名   | `string`                        | -      |
+| maskStyle      | 遮罩样式     | `object`                        | -      |
+| maskClassName  | 遮罩类名     | `string`                        | -      |
+| portal         | 挂载节点     | `HTMLElement \| null \| false`  | -      |
+| title          | 标题         | `ReactNode`                     | -      |
+| cancelNode     | 取消按钮     | `ReactNode`                     | -      |
+| cancelVisible  | 取消按钮可见 | `boolean`                       | -      |
+| headerRender   | 头部渲染     | `(props: object) => ReactNode`  | -      |
+| itemRender     | 项渲染       | `(item: object) => ReactNode`   | -      |
+| layout         | 布局         | `string`                        | -      |
+| checkable      | 是否可选     | `boolean`                       | -      |
+| checkboxRender | 复选框渲染   | `(item: object) => ReactNode`   | -      |
+| onOk           | 确认事件     | `(value: any \| any[]) => void` | -      |
+| onChange       | 变化事件     | `(value: any \| any[]) => void` | -      |
+| onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`        | -      |
 
 ### Ref
 
-| 属性           | 说明           | 类型                   |
-| -------------- | -------------- | ---------------------- |
-| mainElement    | 主容器元素     | `HtmlDivElement`       |
-| getMainElement | 获取主容器元素 | () => `HtmlDivElement` |
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+| close      | 关闭选择器 | `() => void`           |
+| open       | 打开选择器 | `() => void`           |
+
+## Select.Combo
+
+选择器组合组件，结合输入框和选择模态框。
+
+### 何时使用
+
+- 需要结合输入框和选择模态框时
+- 需要带搜索功能的选择时
+
+### 代码演示
+
+<code src="./demos/Combo/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Select 组件属性。
+
+#### Ref
+
+同 Select 组件 Ref。
+
+## Select.Modal
+
+选择器模态框组件。
+
+### 何时使用
+
+- 需要以模态框形式显示选择器时
+
+### 代码演示
+
+<code src="./demos/Combo/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Select 组件属性。
+
+#### Ref
+
+同 Select 组件 Ref。
+
+## Select.Main
+
+选择器主组件。
+
+### 何时使用
+
+- 需要直接使用选择器主组件时
+
+### 代码演示
+
+<code src="./demos/Combo/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Select 组件属性。
+
+#### Ref
+
+同 Select 组件 Ref。

@@ -1,7 +1,6 @@
 ---
-group:
-  title: 反馈
-  order: 2
+group: 数据展示
+order: 5
 order: 1
 title: Accordion
 toc: content
@@ -9,64 +8,44 @@ toc: content
 
 # Accordion
 
-折叠面板组件，用于内容展开和收起。
+手风琴组件，用于折叠和展开内容。
 
 ## 何时使用
 
-- 需要展示可折叠的内容时
+- 需要折叠和展开内容时
+- 需要显示可折叠的面板时
 - 需要节省页面空间时
-- 需要分组展示内容时
-- 需要手风琴效果时
 
-## 示例
+## 代码演示
 
-### 头部展开收起
+<code src="./demos/Accordion.jsx"></code>
 
-<code src="./demos/Header.jsx"></code>
-
-### 底部展开收起（省略号效果）
-
-<code src="./demos/Ellipsis.jsx"></code>
-
-## Accordion.Group
+## API
 
 ### 属性
 
-| 属性     | 说明           | 类型                      | 默认值 |
-| -------- | -------------- | ------------------------- | ------ |
-| value    | 当前激活的索引 | `number`                  | -      |
-| onChange | 变化回调       | `(index: number) => void` | -      |
-| children | 子元素         | `ReactNode`               | -      |
+| 属性           | 说明           | 类型                                         | 默认值                       |
+| -------------- | -------------- | -------------------------------------------- | ---------------------------- |
+| open           | 是否展开       | `boolean`                                    | `false`                      |
+| style          | 自定义样式     | `object`                                     | -                            |
+| className      | 自定义类名     | `string`                                     | -                            |
+| minHeight      | 最小高度       | `number`                                     | -                            |
+| title          | 标题           | `ReactNode`                                  | -                            |
+| headerRender   | 自定义头部渲染 | `() => ReactNode`                            | -                            |
+| ellipsis       | 省略配置       | `{expandText: string, collapseText: string}` | -                            |
+| ellipsisRender | 自定义省略渲染 | `(props: {open: boolean}) => ReactNode`      | -                            |
+| arrowClassName | 箭头类名       | `string`                                     | `'lyrixi-iconfont-arrow-up'` |
+| arrowPosition  | 箭头位置       | `'left' \| 'right'`                          | `'right'`                    |
+| arrowRender    | 自定义箭头渲染 | `(props: {open: boolean}) => ReactNode`      | -                            |
+| children       | 内容           | `ReactNode`                                  | -                            |
+| onOpen         | 展开事件       | `() => void`                                 | -                            |
+| onClose        | 收起事件       | `() => void`                                 | -                            |
 
 ### Ref
 
-| 属性           | 说明         | 类型                      |
-| -------------- | ------------ | ------------------------- |
-| element        | 根元素       | `HtmlDivElement`          |
-| getElement     | 获取根元素   | () => `HtmlDivElement`    |
-| getActiveIndex | 获取激活索引 | `() => number`            |
-| openIndex      | 打开指定索引 | `(index: number) => void` |
-| close          | 关闭所有     | `() => void`              |
-
-## Accordion
-
-### 属性
-
-| 属性           | 说明                       | 类型                 | 默认值                       |
-| -------------- | -------------------------- | -------------------- | ---------------------------- |
-| open           | 是否展开                   | `boolean`            | `true`                       |
-| title          | 标题                       | `ReactNode`          | -                            |
-| minHeight      | 收缩时保留的最小高度（px） | `number`             | -                            |
-| headerRender   | 自定义头部                 | `(ctx) => ReactNode` | -                            |
-| ellipsisRender | 自定义底部                 | `(ctx) => ReactNode` | -                            |
-| arrowClassName | 箭头图标类名               | `string`             | `'lyrixi-iconfont-arrow-up'` |
-| arrowPosition  | 箭头位置                   | `'left' \| 'right'`  | `'right'`                    |
-| arrowRender    | 自定义箭头                 | `(ctx) => ReactNode` | -                            |
-| children       | 内容                       | `ReactNode`          | -                            |
-
-### 事件
-
-| 事件    | 说明       | 类型         |
-| ------- | ---------- | ------------ |
-| onOpen  | 打开时回调 | `() => void` |
-| onClose | 关闭时回调 | `() => void` |
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+| open       | 展开       | `() => void`           |
+| close      | 收起       | `() => void`           |

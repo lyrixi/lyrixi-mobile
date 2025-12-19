@@ -1,7 +1,7 @@
 ---
 group:
   title: 数据展示
-  order: 2
+  order: 5
 order: 1
 title: Skeleton
 toc: content
@@ -9,39 +9,115 @@ toc: content
 
 # Skeleton
 
-骨架屏组件，用于加载状态的占位展示。
+骨架屏组件，用于在内容加载时显示占位效果。
 
 ## 何时使用
 
-- 需要加载状态占位时
+- 需要显示加载占位效果时
+- 需要在内容加载时显示骨架屏时
 - 需要提升用户体验时
-- 需要减少加载等待感时
-- 需要展示页面结构时
 
-## 示例
+## 代码演示
 
-### Skeleton.List
+<code src="./demos/Skeleton.jsx"></code>
 
-<code src="./demos/List/index.jsx"></code>
-
-### Skeleton.Edit
-
-<code src="./demos/Edit/index.jsx"></code>
-
-### Skeleton.Detail
-
-<code src="./demos/Detail/index.jsx"></code>
-
-## Skeleton.Block
+## API
 
 ### 属性
 
-| 属性     | 说明     | 类型      | 默认值 |
-| -------- | -------- | --------- | ------ |
-| animated | 是否动画 | `boolean` | `true` |
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
+| className | 自定义类名 | `string`    | -      |
+| children  | 骨架屏内容 | `ReactNode` | -      |
 
 ### Ref
 
-| 属性    | 说明   | 类型             |
-| ------- | ------ | ---------------- |
-| element | 根元素 | `HtmlDivElement` |
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Skeleton.Block
+
+块级骨架屏组件。
+
+### 何时使用
+
+- 需要显示块级骨架屏时
+
+### 代码演示
+
+<code src="./demos/Skeleton.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Skeleton.Paragraph
+
+段落骨架屏组件。
+
+### 何时使用
+
+- 需要显示段落骨架屏时
+
+### 代码演示
+
+<code src="./demos/Skeleton.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Skeleton.Tabs
+
+标签页骨架屏组件。
+
+### 何时使用
+
+- 需要显示标签页骨架屏时
+
+### 代码演示
+
+<code src="./demos/Skeleton.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |

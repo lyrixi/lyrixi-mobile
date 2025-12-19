@@ -1,7 +1,7 @@
 ---
 group:
-  title: 数据录入
-  order: 2
+  title: 数据展示
+  order: 5
 order: 1
 title: Map
 toc: content
@@ -9,50 +9,470 @@ toc: content
 
 # Map
 
-支持国际化的地图组件。
+地图组件，用于显示和操作地图。
 
 ## 何时使用
 
-- 需要地图展示时
-- 需要位置选择时
-- 需要地图标注时
-- 需要地理信息时
+- 需要显示地图时
+- 需要在地图上标注位置时
+- 需要选择地理位置时
 
-## 示例
+## 代码演示
 
-### 标注一个点
+<code src="./demos/Map.jsx"></code>
 
-<code src="./demos/mapChoose.jsx"></code>
-
-### 多点显示
-
-<code src="./demos/mapMarkers.jsx"></code>
-
-## Map.Choose
+## API
 
 ### 属性
 
-| 属性                 | 说明         | 类型                       | 默认值 |
-| -------------------- | ------------ | -------------------------- | ------ |
-| readOnly             | 是否只读     | `boolean`                  | -      |
-| autoLocation         | 自动定位     | `boolean`                  | `true` |
-| getAddress           | 获取地址函数 | `function`                 | -      |
-| getLocation          | 获取位置函数 | `function`                 | -      |
-| queryNearby          | 查询附近函数 | `function`                 | -      |
-| center               | 中心点       | `object`                   | -      |
-| value                | 当前值       | `object`                   | -      |
-| onLoad               | 加载回调     | `(map: object) => void`    | -      |
-| onChange             | 变化回调     | `(value: object) => void`  | -      |
-| onMarkerClick        | 标记点击回调 | `(marker: object) => void` | -      |
-| SearchControlProps   | 搜索控件属性 | `object`                   | -      |
-| CenterMarkerProps    | 中心标记属性 | `object`                   | -      |
-| MarkersProps         | 标记属性     | `object`                   | -      |
-| ZoomControlProps     | 缩放控件属性 | `object`                   | -      |
-| LocationControlProps | 定位控件属性 | `object`                   | -      |
-| NearbyControlProps   | 附近控件属性 | `object`                   | -      |
+| 属性         | 说明         | 类型                                                  | 默认值 |
+| ------------ | ------------ | ----------------------------------------------------- | ------ |
+| center       | 地图中心点   | `{latitude: number, longitude: number, type: string}` | -      |
+| zoom         | 缩放级别     | `number`                                              | -      |
+| minZoom      | 最小缩放级别 | `number`                                              | -      |
+| maxZoom      | 最大缩放级别 | `number`                                              | -      |
+| getAddress   | 获取地址函数 | `(coord: object) => Promise<string>`                  | -      |
+| getLocation  | 获取位置函数 | `() => Promise<object>`                               | -      |
+| openLocation | 打开位置函数 | `(location: object) => void`                          | -      |
+| queryNearby  | 查询附近函数 | `(location: object) => Promise<Array>`                | -      |
+| style        | 自定义样式   | `object`                                              | -      |
+| className    | 自定义类名   | `string`                                              | -      |
+| children     | 地图内容     | `ReactNode`                                           | -      |
+| onLoad       | 加载完成事件 | `(map: object) => void`                               | -      |
+| onZoomStart  | 缩放开始事件 | `(e: Event) => void`                                  | -      |
+| onZoom       | 缩放事件     | `(e: Event) => void`                                  | -      |
+| onZoomEnd    | 缩放结束事件 | `(e: Event) => void`                                  | -      |
+| onMoveStart  | 移动开始事件 | `(e: Event) => void`                                  | -      |
+| onMove       | 移动事件     | `(e: Event) => void`                                  | -      |
+| onMoveEnd    | 移动结束事件 | `(e: Event) => void`                                  | -      |
+| onDragStart  | 拖动开始事件 | `(e: Event) => void`                                  | -      |
+| onDrag       | 拖动事件     | `(e: Event) => void`                                  | -      |
+| onDragEnd    | 拖动结束事件 | `(e: Event) => void`                                  | -      |
 
 ### Ref
 
-| 属性   | 说明     | 类型     |
-| ------ | -------- | -------- |
-| mapRef | 地图实例 | `object` |
+| 属性         | 说明             | 类型                                   |
+| ------------ | ---------------- | -------------------------------------- | --- |
+| element      | 根元素           | `HtmlDivElement`                       |
+| getElement   | 获取根元素       | () => `HtmlDivElement`                 |
+| type         | 地图类型         | `string`                               |
+| currentMap   | 当前地图实例     | `object`                               |
+| leafletMap   | Leaflet 地图实例 | `object`                               |
+| openLocation | 打开位置         | `(location: object) => void`           | -   |
+| getAddress   | 获取地址         | `(coord: object) => Promise<string>`   | -   |
+| getLocation  | 获取位置         | `() => Promise<object>`                | -   |
+| queryNearby  | 查询附近         | `(location: object) => Promise<Array>` | -   |
+
+## Map.MapContainer
+
+地图容器组件。
+
+### 何时使用
+
+- 需要显示地图容器时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Map 组件属性。
+
+#### Ref
+
+同 Map 组件 Ref。
+
+## Map.APILoader
+
+地图 API 加载器组件。
+
+### 何时使用
+
+- 需要加载地图 API 时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
+| className | 自定义类名 | `string`    | -      |
+| children  | 加载器内容 | `ReactNode` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.ZoomControl
+
+地图缩放控制组件。
+
+### 何时使用
+
+- 需要显示地图缩放控制时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.SearchControl
+
+地图搜索控制组件。
+
+### 何时使用
+
+- 需要显示地图搜索控制时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.CenterMarker
+
+地图中心标记组件。
+
+### 何时使用
+
+- 需要显示地图中心标记时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.Markers
+
+地图标记组件。
+
+### 何时使用
+
+- 需要显示地图标记时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| list      | 标记列表   | `Array<object>` | -      |
+| style     | 自定义样式 | `object`        | -      |
+| className | 自定义类名 | `string`        | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.Circles
+
+地图圆形组件。
+
+### 何时使用
+
+- 需要显示地图圆形时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| list      | 圆形列表   | `Array<object>` | -      |
+| style     | 自定义样式 | `object`        | -      |
+| className | 自定义类名 | `string`        | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.Polyline
+
+地图折线组件。
+
+### 何时使用
+
+- 需要显示地图折线时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| list      | 折线列表   | `Array<object>` | -      |
+| style     | 自定义样式 | `object`        | -      |
+| className | 自定义类名 | `string`        | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.LocationControl
+
+地图定位控制组件。
+
+### 何时使用
+
+- 需要显示地图定位控制时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.NearbyControl
+
+地图附近控制组件。
+
+### 何时使用
+
+- 需要显示地图附近控制时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.MapChoose
+
+地图选择页面组件。
+
+### 何时使用
+
+- 需要显示地图选择页面时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
+| className | 自定义类名 | `string`    | -      |
+| children  | 页面内容   | `ReactNode` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.MapMarkers
+
+地图标记页面组件。
+
+### 何时使用
+
+- 需要显示地图标记页面时
+
+### 代码演示
+
+<code src="./demos/Map.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
+| className | 自定义类名 | `string`    | -      |
+| children  | 页面内容   | `ReactNode` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## Map.coordsToWgs84
+
+坐标转换为 WGS84（工具函数）。
+
+### 参数
+
+| 参数  | 说明 | 类型     | 默认值 |
+| ----- | ---- | -------- | ------ |
+| coord | 坐标 | `object` | -      |
+
+### 返回值
+
+| 类型     | 说明       |
+| -------- | ---------- |
+| `object` | WGS84 坐标 |
+
+## Map.wgs84ToCoords
+
+WGS84 坐标转换为其他坐标系（工具函数）。
+
+### 参数
+
+| 参数  | 说明       | 类型     | 默认值 |
+| ----- | ---------- | -------- | ------ |
+| coord | WGS84 坐标 | `object` | -      |
+
+### 返回值
+
+| 类型     | 说明         |
+| -------- | ------------ |
+| `object` | 转换后的坐标 |
+
+## Map.getAddress
+
+获取地址（工具函数）。
+
+### 参数
+
+| 参数  | 说明 | 类型     | 默认值 |
+| ----- | ---- | -------- | ------ |
+| coord | 坐标 | `object` | -      |
+
+### 返回值
+
+| 类型              | 说明       |
+| ----------------- | ---------- |
+| `Promise<string>` | 地址字符串 |
+
+## Map.getLocation
+
+获取位置（工具函数）。
+
+### 参数
+
+无参数。
+
+### 返回值
+
+| 类型              | 说明     |
+| ----------------- | -------- |
+| `Promise<object>` | 位置对象 |
+
+## Map.queryNearby
+
+查询附近（工具函数）。
+
+### 参数
+
+| 参数     | 说明 | 类型     | 默认值 |
+| -------- | ---- | -------- | ------ |
+| location | 位置 | `object` | -      |
+
+### 返回值
+
+| 类型             | 说明         |
+| ---------------- | ------------ |
+| `Promise<Array>` | 附近位置列表 |

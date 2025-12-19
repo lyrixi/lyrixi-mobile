@@ -9,31 +9,33 @@ toc: content
 
 # Switch
 
-开关组件，用于表示开启/关闭状态。
+开关组件，用于表示两种状态的切换。
 
 ## 何时使用
 
-- 需要表示开启/关闭状态时
-- 需要用户快速切换某个功能时
-- 需要表示布尔值状态时
+- 需要表示开关状态时
+- 需要切换两种状态时
+- 需要表示启用/禁用状态时
 
-## 示例
+## 代码演示
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Switch.jsx"></code>
 
-## Switch
+## API
 
 ### 属性
 
-| 属性     | 说明         | 类型                                         | 默认值 |
-| -------- | ------------ | -------------------------------------------- | ------ |
-| readOnly | 是否只读     | `boolean`                                    | -      |
-| disabled | 是否禁用     | `boolean`                                    | -      |
-| checked  | 是否开启     | `boolean`                                    | -      |
-| on       | 开启状态文本 | `ReactNode`                                  | -      |
-| off      | 关闭状态文本 | `ReactNode`                                  | -      |
-| size     | 开关尺寸     | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'` | `'m'`  |
-| onChange | 状态变化回调 | `(checked: boolean) => void`                 | -      |
+| 属性      | 说明         | 类型                                         | 默认值 |
+| --------- | ------------ | -------------------------------------------- | ------ |
+| checked   | 是否选中     | `boolean`                                    | -      |
+| readOnly  | 是否只读     | `boolean`                                    | -      |
+| disabled  | 是否禁用     | `boolean`                                    | -      |
+| size      | 尺寸         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'` | `'m'`  |
+| style     | 自定义样式   | `object`                                     | -      |
+| className | 自定义类名   | `string`                                     | -      |
+| on        | 开启状态内容 | `ReactNode`                                  | -      |
+| off       | 关闭状态内容 | `ReactNode`                                  | -      |
+| onChange  | 变化事件     | `(checked: boolean) => void`                 | -      |
 
 ### Ref
 

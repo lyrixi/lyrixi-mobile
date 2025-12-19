@@ -1,38 +1,41 @@
 ---
-group: 数据展示
-category: Components
+group:
+  title: 反馈
+  order: 4
+order: 1
 title: Result
+toc: content
 ---
 
 # Result
 
-结果页组件，用于展示操作结果。
+结果页组件，用于显示操作结果。
 
 ## 何时使用
 
-- 需要展示操作结果时
-- 需要展示空状态时
-- 需要展示错误状态时
-- 需要展示成功状态时
+- 需要显示操作结果时
+- 需要显示空状态时
+- 需要显示错误状态时
 
-## 示例
-
-## Empty
+## 代码演示
 
 <code src="./demos/empty.jsx"></code>
 
-## 500
-
-<code src="./demos/500.jsx"></code>
-
-## Result
+## API
 
 ### 属性
 
-| 属性        | 说明     | 类型                                                                           | 默认值 |
-| ----------- | -------- | ------------------------------------------------------------------------------ | ------ |
-| status      | 状态类型 | `'empty' \| '500' \| 'success' \| 'waiting' \| 'info' \| 'warning' \| 'error'` | -      |
-| title       | 标题     | `string`                                                                       | -      |
-| description | 描述     | `string`                                                                       | -      |
-| image       | 图片     | `string \| ReactNode \| function`                                              | -      |
-| children    | 子元素   | `ReactNode`                                                                    | -      |
+| 属性        | 说明           | 类型                                                                           | 默认值 |
+| ----------- | -------------- | ------------------------------------------------------------------------------ | ------ |
+| status      | 状态           | `'empty' \| '500' \| 'success' \| 'waiting' \| 'info' \| 'warning' \| 'error'` | -      |
+| title       | 标题           | `ReactNode`                                                                    | -      |
+| description | 描述           | `ReactNode`                                                                    | -      |
+| style       | 自定义样式     | `object`                                                                       | -      |
+| className   | 自定义类名     | `string`                                                                       | -      |
+| imageRender | 自定义图片渲染 | `() => ReactNode`                                                              | -      |
+| imageUrl    | 图片地址       | `string \| null`                                                               | -      |
+| children    | 结果页内容     | `ReactNode`                                                                    | -      |
+
+### Ref
+
+无 Ref 方法。

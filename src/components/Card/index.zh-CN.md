@@ -1,7 +1,7 @@
 ---
 group:
-  title: 布局
-  order: 2
+  title: 通用
+  order: 1
 order: 1
 title: Card
 toc: content
@@ -9,30 +9,31 @@ toc: content
 
 # Card
 
-卡片容器，用于展示内容块。
+卡片组件，用于展示内容区块。
 
 ## 何时使用
 
-- 需要展示独立的内容块时
-- 需要将内容分组展示时
-- 需要突出显示某些信息时
+- 需要展示相关内容区块时
+- 需要将信息分组展示时
+- 需要带标题和内容的结构化展示时
 
-## 示例
+## 代码演示
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Card.jsx"></code>
 
-## Card
+## API
 
 ### 属性
 
 | 属性      | 说明       | 类型        | 默认值 |
 | --------- | ---------- | ----------- | ------ |
+| style     | 自定义样式 | `object`    | -      |
 | className | 自定义类名 | `string`    | -      |
 | children  | 卡片内容   | `ReactNode` | -      |
 
 ### Ref
 
-| 属性       | 说明               | 类型                   |
-| ---------- | ------------------ | ---------------------- |
-| element    | 原始 card 元素     | `HtmlDivElement`       |
-| getElement | 获取原始 card 元素 | () => `HtmlDivElement` |
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |

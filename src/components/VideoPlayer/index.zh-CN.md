@@ -1,7 +1,7 @@
 ---
 group:
   title: 数据展示
-  order: 2
+  order: 5
 order: 1
 title: VideoPlayer
 toc: content
@@ -9,34 +9,32 @@ toc: content
 
 # VideoPlayer
 
-视频播放器组件，用于视频播放和控制。
+视频播放器组件，用于播放视频。
 
 ## 何时使用
 
-- 需要视频播放功能时
-- 需要直播视频播放时
-- 需要视频控制功能时
-- 需要视频预览时
+- 需要播放视频时
+- 需要显示视频播放器时
+- 需要控制视频播放时
 
-## 示例
+## 代码演示
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/VideoPlayer.jsx"></code>
 
-## VideoPlayer
+## API
 
 ### 属性
 
-| 属性         | 说明           | 类型                      | 默认值 |
-| ------------ | -------------- | ------------------------- | ------ |
-| portal       | 渲染容器       | `HTMLElement`             | -      |
-| poster       | 封面图片       | `string`                  | `''`   |
-| src          | 视频源         | `string`                  | -      |
-| autoPlay     | 自动播放       | `boolean`                 | `true` |
-| isLive       | 是否直播       | `boolean`                 | -      |
-| params       | 播放器参数     | `object`                  | -      |
-| onError      | 错误回调       | `(error: object) => void` | -      |
-| headerRender | 状态栏渲染函数 | `() => ReactNode`         | -      |
-| children     | 子元素         | `ReactNode`               | -      |
+| 属性      | 说明       | 类型                      | 默认值  |
+| --------- | ---------- | ------------------------- | ------- |
+| src       | 视频地址   | `string`                  | -       |
+| autoPlay  | 自动播放   | `boolean`                 | `false` |
+| style     | 自定义样式 | `object`                  | -       |
+| className | 自定义类名 | `string`                  | -       |
+| portal    | 挂载节点   | `HTMLElement`             | -       |
+| poster    | 封面图     | `string`                  | `''`    |
+| children  | 子元素     | `ReactNode`               | -       |
+| onError   | 错误事件   | `(error: object) => void` | -       |
 
 ### Ref
 
