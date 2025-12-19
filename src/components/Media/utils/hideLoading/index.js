@@ -13,17 +13,17 @@ function hideLoading(element, { failIndexes } = {}) {
   // 根节点遮罩
   element.classList.remove('lyrixi-uploading')
   // 新增按钮遮罩
-  let chooseDOM = element.querySelector('[data-type="upload"]')
-  if (chooseDOM) chooseDOM.classList.remove('lyrixi-uploading')
+  let chooseElement = element.querySelector('[data-type="upload"]')
+  if (chooseElement) chooseElement.classList.remove('lyrixi-uploading')
   // 当前项遮罩
-  let itemsDOM = element.querySelectorAll(`[data-index]`)
-  if (itemsDOM) {
-    for (let itemDOM of itemsDOM) {
-      let itemIndex = Number(itemDOM.getAttribute('data-index'))
-      itemDOM.classList.remove('lyrixi-uploading')
+  let itemsElement = element.querySelectorAll(`[data-index]`)
+  if (itemsElement) {
+    for (let itemElement of itemsElement) {
+      let itemIndex = Number(itemElement.getAttribute('data-index'))
+      itemElement.classList.remove('lyrixi-uploading')
       // 更新失败状态
       if (Array.isArray(failIndexes) && failIndexes.includes(itemIndex)) {
-        itemDOM.classList.add('lyrixi-error')
+        itemElement.classList.add('lyrixi-error')
       }
     }
   }

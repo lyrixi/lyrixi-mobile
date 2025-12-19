@@ -1,6 +1,6 @@
 import Tooltip from './Tooltip'
-import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
+import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
-Tooltip.updatePositionByReferenceDOM = updatePositionByReferenceDOM
+Tooltip.updatePositionByReferenceElement = updatePositionByReferenceElement
 
 export default Tooltip

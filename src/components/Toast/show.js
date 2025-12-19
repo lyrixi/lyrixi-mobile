@@ -81,9 +81,9 @@ function show(props) {
     }
 
     // Update content
-    let contentDOM = mask.querySelector('.lyrixi-toast-content')
-    if (contentDOM) {
-      contentDOM.innerHTML = content || ''
+    let contentElement = mask.querySelector('.lyrixi-toast-content')
+    if (contentElement) {
+      contentElement.innerHTML = content || ''
     }
 
     // Open toast

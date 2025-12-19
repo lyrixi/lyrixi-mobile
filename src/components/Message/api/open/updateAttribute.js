@@ -53,63 +53,63 @@ function updateAttribute(
   })
 
   // 更新header
-  let headerDOM = mask.querySelector('.lyrixi-message-header')
+  let headerElement = mask.querySelector('.lyrixi-message-header')
   let hasHeaderContent = false
 
   // 更新图标
-  let iconDOM = mask.querySelector('.lyrixi-message-icon')
+  let iconElement = mask.querySelector('.lyrixi-message-icon')
   if (icon) {
     hasHeaderContent = true
-    iconDOM?.classList?.remove?.('lyrixi-hide')
-    iconDOM.className = DOMUtil.classNames('lyrixi-message-icon', icon)
+    iconElement?.classList?.remove?.('lyrixi-hide')
+    iconElement.className = DOMUtil.classNames('lyrixi-message-icon', icon)
   } else {
-    iconDOM?.classList?.add?.('lyrixi-hide')
-    iconDOM.className = 'lyrixi-message-icon lyrixi-hide'
+    iconElement?.classList?.add?.('lyrixi-hide')
+    iconElement.className = 'lyrixi-message-icon lyrixi-hide'
   }
 
   // 更新标题
-  let titleDOM = mask.querySelector('.lyrixi-message-title')
-  updateStyle(titleDOM, {
+  let titleElement = mask.querySelector('.lyrixi-message-title')
+  updateStyle(titleElement, {
     className: titleClassName,
     style: titleStyle,
     baseClassName: 'lyrixi-message-title'
   })
   if (title) {
     hasHeaderContent = true
-    titleDOM?.classList?.remove?.('lyrixi-hide')
-    titleDOM.innerHTML = title
+    titleElement?.classList?.remove?.('lyrixi-hide')
+    titleElement.innerHTML = title
   } else {
-    titleDOM?.classList?.add?.('lyrixi-hide')
+    titleElement?.classList?.add?.('lyrixi-hide')
   }
 
   // 显示或隐藏header
   if (hasHeaderContent) {
-    headerDOM?.classList?.remove?.('lyrixi-hide')
+    headerElement?.classList?.remove?.('lyrixi-hide')
   } else {
-    headerDOM?.classList?.add?.('lyrixi-hide')
+    headerElement?.classList?.add?.('lyrixi-hide')
   }
 
   // 更新内容
-  let contentDOM = mask.querySelector('.lyrixi-message-main')
-  updateStyle(contentDOM, {
+  let contentElement = mask.querySelector('.lyrixi-message-main')
+  updateStyle(contentElement, {
     className: contentClassName,
     style: contentStyle,
     baseClassName: 'lyrixi-message-main'
   })
   if (content) {
     if (typeof content === 'string') {
-      contentDOM.innerHTML = content
+      contentElement.innerHTML = content
     } else {
       // 如果content是React元素，我们需要特殊处理
-      contentDOM.innerHTML = content
+      contentElement.innerHTML = content
     }
   } else {
-    contentDOM.innerHTML = ''
+    contentElement.innerHTML = ''
   }
 
   // 更新底部
-  let footerDOM = mask.querySelector('.lyrixi-message-footer')
-  updateStyle(footerDOM, {
+  let footerElement = mask.querySelector('.lyrixi-message-footer')
+  updateStyle(footerElement, {
     className: footerClassName,
     style: footerStyle,
     baseClassName: `lyrixi-message-footer ${
@@ -118,11 +118,11 @@ function updateAttribute(
   })
 
   // 设置按钮布局
-  footerDOM.setAttribute('data-layout', buttonsLayout)
+  footerElement.setAttribute('data-layout', buttonsLayout)
 
   // 渲染按钮
   if (Array.isArray(buttons) && buttons.length > 0) {
-    footerDOM?.classList?.remove?.('lyrixi-hide')
+    footerElement?.classList?.remove?.('lyrixi-hide')
     let buttonsHTML = ''
     buttons.forEach((button, index) => {
       const { name, className = '', style = {} } = button
@@ -132,18 +132,18 @@ function updateAttribute(
         .join('; ')
       buttonsHTML += `<div class="lyrixi-message-button ${className}" id="${buttonId}" style="${styleString}">${name}</div>`
     })
-    footerDOM.innerHTML = buttonsHTML
+    footerElement.innerHTML = buttonsHTML
 
     // 绑定按钮点击事件
     buttons.forEach((button, index) => {
-      const buttonDOM = footerDOM.querySelector(`#lyrixi-message-button-${index}`)
-      if (buttonDOM && button.onClick) {
-        buttonDOM.onclick = button.onClick
+      const buttonElement = footerElement.querySelector(`#lyrixi-message-button-${index}`)
+      if (buttonElement && button.onClick) {
+        buttonElement.onclick = button.onClick
       }
     })
   } else {
-    footerDOM?.classList?.add?.('lyrixi-hide')
-    footerDOM.innerHTML = ''
+    footerElement?.classList?.add?.('lyrixi-hide')
+    footerElement.innerHTML = ''
   }
 
   // 更新事件中用到的属性

@@ -50,7 +50,7 @@ toc: content
 
 | 属性            | 说明           | 类型                       |
 | --------------- | -------------- | -------------------------- |
-| maskDOM         | 遮罩元素       | `HtmlDivElement`           |
+| maskElement     | 遮罩元素       | `HtmlDivElement`           |
 | getMaskElement  | 获取遮罩元素   | () => `HtmlDivElement`     |
 | modalElement    | 模态框元素     | `HtmlSectionElement`       |
 | getModalElement | 获取模态框元素 | () => `HtmlSectionElement` |

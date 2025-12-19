@@ -9,10 +9,10 @@ function useForm(form) {
       form ?? {
         ...rcForm,
         scrollToField: (name, options) => {
-          let fieldDOM = document.getElementById(`lyrixi-form-item-${name}`)
+          let fieldElement = document.getElementById(`lyrixi-form-item-${name}`)
 
-          if (fieldDOM) {
-            fieldDOM.scrollIntoView({ behavior: 'smooth', block: 'start', ...options })
+          if (fieldElement) {
+            fieldElement.scrollIntoView({ behavior: 'smooth', block: 'start', ...options })
           }
         }
       },

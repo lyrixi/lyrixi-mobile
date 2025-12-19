@@ -14,13 +14,14 @@ function showLoading(element, { content, index } = {}) {
   // 根节点遮罩
   element.classList.add('lyrixi-uploading')
   // 新增按钮遮罩
-  let chooseDOM = element.querySelector('[data-type="upload"]')
-  if (chooseDOM) chooseDOM.classList.add('lyrixi-uploading')
+  let chooseElement = element.querySelector('[data-type="upload"]')
+  if (chooseElement) chooseElement.classList.add('lyrixi-uploading')
   // 当前项遮罩
-  let itemDOM = typeof index === 'number' ? element.querySelector(`[data-index="${index}"]`) : null
-  if (itemDOM) {
-    itemDOM.classList.remove('lyrixi-error')
-    itemDOM.classList.add('lyrixi-uploading')
+  let itemElement =
+    typeof index === 'number' ? element.querySelector(`[data-index="${index}"]`) : null
+  if (itemElement) {
+    itemElement.classList.remove('lyrixi-error')
+    itemElement.classList.add('lyrixi-uploading')
   }
 
   Loading.show(content ? { content } : { className: 'lyrixi-hide' })

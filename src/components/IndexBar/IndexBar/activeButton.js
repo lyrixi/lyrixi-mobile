@@ -1,16 +1,18 @@
 // 选中button
-function activeAnchor({ anchor, sidebarDOM, tooltipDOM }) {
-  let buttonsDOM = sidebarDOM?.querySelectorAll?.('.lyrixi-indexbar-button')
-  if (buttonsDOM && buttonsDOM.length) {
-    for (let i = 0, buttonDOM; (buttonDOM = buttonsDOM[i++]); ) {
-      buttonDOM.classList.remove('lyrixi-active')
+function activeAnchor({ anchor, sidebarElement, tooltipElement }) {
+  let buttonsElement = sidebarElement?.querySelectorAll?.('.lyrixi-indexbar-button')
+  if (buttonsElement && buttonsElement.length) {
+    for (let i = 0, buttonElement; (buttonElement = buttonsElement[i++]); ) {
+      buttonElement.classList.remove('lyrixi-active')
     }
   }
 
-  let currentButtonDOM = sidebarDOM?.querySelector?.(`[data-indexbar-anchor-button="${anchor}"]`)
-  if (currentButtonDOM) {
-    currentButtonDOM.classList.add('lyrixi-active')
-    tooltipDOM.innerHTML = anchor || ''
+  let currentButtonElement = sidebarElement?.querySelector?.(
+    `[data-indexbar-anchor-button="${anchor}"]`
+  )
+  if (currentButtonElement) {
+    currentButtonElement.classList.add('lyrixi-active')
+    tooltipElement.innerHTML = anchor || ''
   }
 }
 

@@ -42,9 +42,9 @@ const Choose = ({
     // 点击的是input框
     if (onFileChange) {
       // 防止选择重复图片时不触发
-      let inputDOM = target.querySelector('input')
-      inputDOM.value = ''
-      inputDOM.click()
+      let inputElement = target.querySelector('input')
+      inputElement.value = ''
+      inputElement.click()
       return
     }
 

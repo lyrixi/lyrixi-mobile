@@ -26,14 +26,14 @@ toc: content
 
 ### 属性
 
-| 属性         | 说明         | 类型                      | 默认值            |
-| ------------ | ------------ | ------------------------- | ----------------- |
-| animation    | 动画类型     | `string`                  | `'slideDownLeft'` |
-| style        | 自定义样式   | `object`                  | -                 |
-| referenceDOM | 参考元素     | `HTMLElement \| function` | -                 |
-| children     | 触发元素     | `ReactNode`               | -                 |
-| onOpen       | 打开时的回调 | `() => void`              | -                 |
-| onClose      | 关闭时的回调 | `(e: Event) => void`      | -                 |
+| 属性             | 说明         | 类型                      | 默认值            |
+| ---------------- | ------------ | ------------------------- | ----------------- |
+| animation        | 动画类型     | `string`                  | `'slideDownLeft'` |
+| style            | 自定义样式   | `object`                  | -                 |
+| referenceElement | 参考元素     | `HTMLElement \| function` | -                 |
+| children         | 触发元素     | `ReactNode`               | -                 |
+| onOpen           | 打开时的回调 | `() => void`              | -                 |
+| onClose          | 关闭时的回调 | `(e: Event) => void`      | -                 |
 
 ### Ref
 

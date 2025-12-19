@@ -8,7 +8,7 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 用于自定义渲染Combo, 按照要求返回comboDOM
+// 用于自定义渲染Combo, 按照要求返回comboElement
 const Combo = forwardRef(
   (
     {

@@ -1,7 +1,7 @@
 // 滚动到指定位置
-function scrollToAnchor({ scrollerDOM, anchor }) {
-  let currentAnchorDOM = scrollerDOM.querySelector(`[data-indexbar-anchor="${anchor}"]`)
-  if (currentAnchorDOM) scrollerDOM.scrollTop = currentAnchorDOM.offsetTop
+function scrollToAnchor({ scrollerElement, anchor }) {
+  let currentAnchorElement = scrollerElement.querySelector(`[data-indexbar-anchor="${anchor}"]`)
+  if (currentAnchorElement) scrollerElement.scrollTop = currentAnchorElement.offsetTop
 }
 
 export default scrollToAnchor

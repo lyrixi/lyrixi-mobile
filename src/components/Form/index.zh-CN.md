@@ -28,16 +28,16 @@ toc: content
 
 ### 属性
 
-| 属性        | 说明         | 类型                                     | 默认值         |
-| ----------- | ------------ | ---------------------------------------- | -------------- |
-| layout      | 布局方式     | `'horizontal' \| 'vertical' \| 'inline'` | `'horizontal'` |
-| labelCol    | 标签列配置   | `object`                                 | -              |
-| mainCol     | 主内容列配置 | `object`                                 | -              |
-| scrollerDOM | 滚动容器     | `HTMLElement`                            | -              |
-| virtual     | 虚拟滚动     | `boolean`                                | -              |
-| style       | 自定义样式   | `object`                                 | -              |
-| className   | 自定义类名   | `string`                                 | -              |
-| children    | 表单内容     | `ReactNode`                              | -              |
+| 属性            | 说明         | 类型                                     | 默认值         |
+| --------------- | ------------ | ---------------------------------------- | -------------- |
+| layout          | 布局方式     | `'horizontal' \| 'vertical' \| 'inline'` | `'horizontal'` |
+| labelCol        | 标签列配置   | `object`                                 | -              |
+| mainCol         | 主内容列配置 | `object`                                 | -              |
+| scrollerElement | 滚动容器     | `HTMLElement`                            | -              |
+| virtual         | 虚拟滚动     | `boolean`                                | -              |
+| style           | 自定义样式   | `object`                                 | -              |
+| className       | 自定义类名   | `string`                                 | -              |
+| children        | 表单内容     | `ReactNode`                              | -              |
 
 ### Ref
 

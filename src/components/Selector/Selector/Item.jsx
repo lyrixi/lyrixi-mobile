@@ -34,11 +34,11 @@ const Item = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
-        inputDOM: inputRef.current,
+        inputElement: inputRef.current,
         getElement: () => {
           return rootRef.current
         },
-        getInputDOM: () => {
+        getInputElement: () => {
           return inputRef.current
         }
       }

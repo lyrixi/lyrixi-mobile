@@ -1,5 +1,5 @@
-function showToolTip(tooltipDOM) {
-  tooltipDOM.style.visibility = 'visible'
+function showToolTip(tooltipElement) {
+  tooltipElement.style.visibility = 'visible'
 }
 
 export default showToolTip

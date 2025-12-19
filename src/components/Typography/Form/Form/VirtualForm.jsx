@@ -23,7 +23,7 @@ const VirtualForm = forwardRef(
       mainCol,
 
       // Element
-      scrollerDOM,
+      scrollerElement,
       children
     },
     ref
@@ -75,7 +75,7 @@ const VirtualForm = forwardRef(
           layout,
           labelCol,
           mainCol,
-          scrollerDOM: scrollerDOM,
+          scrollerElement: scrollerElement,
           virtual: { observer: observer, observerCallbacks: observerCallbacksRef.current }
         }}
       >

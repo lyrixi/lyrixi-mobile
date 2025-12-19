@@ -1,5 +1,5 @@
 import { LocaleUtil, Toast } from 'lyrixi-mobile'
-import scrollToErrorDOM from './scrollToErrorDOM'
+import scrollToErrorElement from './scrollToErrorElement'
 const locale = LocaleUtil.locale
 
 // 聚集错误文本框
@@ -18,7 +18,7 @@ function validateData({ form }) {
             form.scrollToField(fieldName)
           } else {
             setTimeout(() => {
-              scrollToErrorDOM()
+              scrollToErrorElement()
             }, 100)
           }
 
@@ -30,7 +30,7 @@ function validateData({ form }) {
       return
     }
     setTimeout(() => {
-      let errMsg = scrollToErrorDOM()
+      let errMsg = scrollToErrorElement()
       Toast.show({ content: errMsg })
       resolve(false)
     }, 100)

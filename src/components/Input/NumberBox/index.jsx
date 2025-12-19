@@ -70,11 +70,11 @@ const NumberBox = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
-        inputDOM: inputRef?.current,
+        inputElement: inputRef?.current,
         getElement: () => {
           return rootRef.current
         },
-        getInputDOM: inputRef?.current?.getInputDOM,
+        getInputElement: inputRef?.current?.getInputElement,
         getInputRef: () => {
           return inputRef
         }
@@ -82,15 +82,15 @@ const NumberBox = forwardRef(
     })
 
     useEffect(() => {
-      let inputDOM = _getInputDOM()
-      let val = (inputDOM?.value ? inputDOM.value : value) || ''
+      let inputElement = _getInputElement()
+      let val = (inputElement?.value ? inputElement.value : value) || ''
       updateState(val)
     }, [value]) // eslint-disable-line
 
     // 获取文本框
-    function _getInputDOM() {
-      if (inputRef?.current?.getInputDOM) {
-        return inputRef.current.getInputDOM()
+    function _getInputElement() {
+      if (inputRef?.current?.getInputElement) {
+        return inputRef.current.getInputElement()
       }
       return null
     }
@@ -114,12 +114,12 @@ const NumberBox = forwardRef(
     // 修改值回调
     function handleChange(val) {
       if (disabled) return
-      let inputDOM = _getInputDOM()
-      if (!inputDOM) return
+      let inputElement = _getInputElement()
+      if (!inputElement) return
 
       // 非受控组件需要操作DOM
       if (value === undefined) {
-        inputDOM.value = val
+        inputElement.value = val
         updateState(val)
       }
       if (onChange) onChange(val)
@@ -130,16 +130,16 @@ const NumberBox = forwardRef(
       e.stopPropagation()
       if (disabled) return
 
-      let inputDOM = _getInputDOM()
-      if (!inputDOM) return
+      let inputElement = _getInputElement()
+      if (!inputElement) return
       let val = inputRef?.current?.correctValue(
-        MathUtil.strip(Number(inputDOM.value || 0) - 1),
+        MathUtil.strip(Number(inputElement.value || 0) - 1),
         'blur'
       )
       // Callback
       handleChange(val)
       if (stepFocus) {
-        inputDOM.focus()
+        inputElement.focus()
       }
     }
 
@@ -148,22 +148,22 @@ const NumberBox = forwardRef(
       e.stopPropagation()
       if (disabled) return
 
-      let inputDOM = _getInputDOM()
-      if (!inputDOM) return
-      if (isNaN(inputDOM?.value)) return
+      let inputElement = _getInputElement()
+      if (!inputElement) return
+      if (isNaN(inputElement?.value)) return
       let val = inputRef?.current?.correctValue(
-        MathUtil.strip(Number(inputDOM.value || 0) + 1),
+        MathUtil.strip(Number(inputElement.value || 0) + 1),
         'blur'
       )
       // Callback
       handleChange(val)
       if (stepFocus) {
-        inputDOM.focus()
+        inputElement.focus()
       }
     }
 
     // render
-    function getInputDOM() {
+    function getInputElement() {
       return (
         <InputNumber
           ref={inputRef}
@@ -232,7 +232,7 @@ const NumberBox = forwardRef(
         </div>
 
         {/* Element: Input */}
-        {getInputDOM()}
+        {getInputElement()}
 
         {/* Element: Plus Button */}
         <div

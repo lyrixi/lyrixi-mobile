@@ -59,7 +59,7 @@ const Base = forwardRef(
           return getEllipsisOverflow({
             rows: rows,
             rowHeight: rowHeight,
-            containerDOM: rootRef.current
+            containerElement: rootRef.current
           })
         }
       }
@@ -79,7 +79,7 @@ const Base = forwardRef(
       let newOverflow = getEllipsisOverflow({
         rows: rows,
         rowHeight: rowHeight,
-        containerDOM: rootRef.current
+        containerElement: rootRef.current
       })
       setOverflow(newOverflow)
       if (!newOverflow) return
@@ -89,7 +89,7 @@ const Base = forwardRef(
         content: children,
         rows: rows,
         rowHeight: rowHeight,
-        containerDOM: rootRef.current
+        containerElement: rootRef.current
       })
       setVisibleContent(newContent)
     }

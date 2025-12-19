@@ -1,8 +1,8 @@
-function getAnchors(scrollerDOM) {
+function getAnchors(scrollerElement) {
   let anchors = []
-  let anchorsDOM = scrollerDOM?.querySelectorAll?.('[data-indexbar-anchor]')
-  for (let i = 0, anchorDOM; (anchorDOM = anchorsDOM[i++]); ) {
-    let anchorName = anchorDOM.getAttribute('data-indexbar-anchor')
+  let anchorsElement = scrollerElement?.querySelectorAll?.('[data-indexbar-anchor]')
+  for (let i = 0, anchorElement; (anchorElement = anchorsElement[i++]); ) {
+    let anchorName = anchorElement.getAttribute('data-indexbar-anchor')
     anchors.push(anchorName)
   }
   return anchors

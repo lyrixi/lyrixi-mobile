@@ -23,7 +23,7 @@ const Form = forwardRef(
       mainCol,
 
       // Element
-      scrollerDOM,
+      scrollerElement,
       children
     },
     ref
@@ -39,7 +39,7 @@ const Form = forwardRef(
     })
 
     return (
-      <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM }}>
+      <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerElement: scrollerElement }}>
         <div
           ref={rootRef}
           // Style

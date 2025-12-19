@@ -1,7 +1,7 @@
 // 默认行高
 import { defaultRowHeight } from './defaultConstant'
 
-function getEllipsisStyle({ rows, rowHeight }, containerDOM) {
+function getEllipsisStyle({ rows, rowHeight }, containerElement) {
   let ellipsisStyle = {
     display: '-webkit-box',
     overflow: 'hidden',
@@ -11,9 +11,9 @@ function getEllipsisStyle({ rows, rowHeight }, containerDOM) {
     lineHeight: rowHeight || defaultRowHeight + 'px'
   }
 
-  if (containerDOM) {
+  if (containerElement) {
     for (let key in ellipsisStyle) {
-      containerDOM.style[key] = ellipsisStyle[key]
+      containerElement.style[key] = ellipsisStyle[key]
     }
   }
   return ellipsisStyle

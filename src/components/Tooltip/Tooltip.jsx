@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import Popup from './Popup'
-import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
+import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
 // 内库使用-start
 import Combo from './../Combo'
@@ -29,7 +29,7 @@ const Tooltip = forwardRef(
       children,
       comboRender,
       modalRender,
-      referenceDOM: externalReferenceDOM,
+      referenceElement: externalReferenceElement,
       portal,
 
       // Events
@@ -65,30 +65,32 @@ const Tooltip = forwardRef(
     }, [open]) // eslint-disable-line
 
     // 更新Modal位置
-    function updatePosition(argReferenceDOM) {
+    function updatePosition(targetReferenceElement) {
       // 参考元素
-      let referenceDOM =
-        typeof externalReferenceDOM === 'function' ? externalReferenceDOM() : externalReferenceDOM
-      if (argReferenceDOM) {
-        referenceDOM = argReferenceDOM
+      let referenceElement =
+        typeof externalReferenceElement === 'function'
+          ? externalReferenceElement()
+          : externalReferenceElement
+      if (targetReferenceElement) {
+        referenceElement = targetReferenceElement
       }
 
-      if (!referenceDOM) {
+      if (!referenceElement) {
         let element = comboRef?.current?.element
         if (!element && typeof comboRef?.current?.getElement === 'function') {
           element = comboRef.current.getElement()
         }
-        referenceDOM = element
+        referenceElement = element
       }
 
       // 位移元素
       let modalElement = modalRef?.current?.modalElement ? modalRef?.current?.modalElement : null
 
-      if (referenceDOM && modalElement) {
+      if (referenceElement && modalElement) {
         // 没有自定义位置时生效
         if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-          updatePositionByReferenceDOM(modalElement, {
-            referenceDOM: referenceDOM,
+          updatePositionByReferenceElement(modalElement, {
+            referenceElement: referenceElement,
             animation: animation,
             offset: {
               top: 8,

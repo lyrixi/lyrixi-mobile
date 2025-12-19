@@ -17,7 +17,7 @@ const FormComponent = forwardRef(
       layout = 'horizontal',
       labelCol,
       mainCol,
-      scrollerDOM,
+      scrollerElement,
       // Own properties
       virtual,
       style,
@@ -49,7 +49,7 @@ const FormComponent = forwardRef(
           layout={layout}
           labelCol={labelCol}
           mainCol={mainCol}
-          scrollerDOM={scrollerDOM}
+          scrollerElement={scrollerElement}
           style={style}
           className={className}
         >

@@ -19,7 +19,7 @@ const IndexBar = forwardRef(
       anchors,
 
       // Elements
-      scrollerDOM,
+      scrollerElement,
 
       // Style
       className,
@@ -42,22 +42,22 @@ const IndexBar = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         element: sidebarRef.current,
-        tooltipDOM: tooltipRef.current,
+        tooltipElement: tooltipRef.current,
         getElement: () => sidebarRef.current,
-        getTooltipDOM: () => sidebarRef.current,
+        getTooltipElement: () => tooltipRef.current,
         activeAnchor: (currentAnchor) => {
-          if (!currentAnchor && scrollerDOM) {
+          if (!currentAnchor && scrollerElement) {
             // eslint-disable-next-line
-            currentAnchor = getAnchorByViewport(scrollerDOM)
+            currentAnchor = getAnchorByViewport(scrollerElement)
           }
           if (!currentAnchor) {
-            console.error('IndexBar: no anchor found in scrollerDOM')
+            console.error('IndexBar: no anchor found in scrollerElement')
             return
           }
           activeButton({
             anchor: currentAnchor,
-            sidebarDOM: sidebarRef.current,
-            tooltipDOM: tooltipRef.current
+            sidebarElement: sidebarRef.current,
+            tooltipElement: tooltipRef.current
           })
         },
         scrollToAnchor: goAnchor
@@ -69,9 +69,9 @@ const IndexBar = forwardRef(
       if (!currentAnchor) return
 
       // 滚动到指定位置
-      if (scrollerDOM) {
+      if (scrollerElement) {
         scrollToAnchor({
-          scrollerDOM,
+          scrollerElement,
           anchor: currentAnchor
         })
       }
@@ -83,8 +83,8 @@ const IndexBar = forwardRef(
       // 选中锚点按钮
       activeButton({
         anchor: currentAnchor,
-        sidebarDOM: sidebarRef.current,
-        tooltipDOM: tooltipRef.current
+        sidebarElement: sidebarRef.current,
+        tooltipElement: tooltipRef.current
       })
     }
 

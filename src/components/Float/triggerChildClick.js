@@ -2,14 +2,14 @@ import React from 'react'
 
 // 非拖拽, 则触发子项元素点击
 function triggerChildClick(children, e) {
-  let childDOM = e.target.classList.contains('.lyrixi-float-button')
+  let childElement = e.target.classList.contains('.lyrixi-float-button')
     ? e.target
     : e.target.closest('.lyrixi-float-button')
 
-  if (!childDOM) return
+  if (!childElement) return
 
   // 根据实体DOM获取id
-  const itemId = childDOM?.id
+  const itemId = childElement?.id
   if (!itemId) return
 
   // 根据id, 找到Child节点

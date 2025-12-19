@@ -31,7 +31,7 @@ const DropdownModal = forwardRef(
 
       // Element
       portal,
-      referenceDOM: externalReferenceDOM,
+      referenceElement: externalReferenceElement,
       children,
 
       // Events
@@ -55,23 +55,25 @@ const DropdownModal = forwardRef(
 
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
-      let maskDOM = modalRef?.current?.maskDOM
+      let maskElement = modalRef?.current?.maskElement
 
       // 参考元素
-      let referenceDOM =
-        typeof externalReferenceDOM === 'function' ? externalReferenceDOM() : externalReferenceDOM
+      let referenceElement =
+        typeof externalReferenceElement === 'function'
+          ? externalReferenceElement()
+          : externalReferenceElement
 
-      if (!referenceDOM || !maskDOM) return
+      if (!referenceElement || !maskElement) return
       if (
         open &&
-        referenceDOM &&
-        maskDOM &&
+        referenceElement &&
+        maskElement &&
         [undefined, null].includes(maskStyle?.top) &&
         [undefined, null].includes(maskStyle?.bottom)
       ) {
-        Tooltip.updatePositionByReferenceDOM(maskDOM, {
-          referenceDOM: referenceDOM,
-          parentDOM: portal,
+        Tooltip.updatePositionByReferenceElement(maskElement, {
+          referenceElement: referenceElement,
+          parentElement: portal,
           animation: animation,
           offset: offset,
           left: maskStyle?.left,

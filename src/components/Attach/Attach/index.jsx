@@ -124,8 +124,8 @@ function Attach(
       })
       return false
     }
-    let uploadDOM = rootRef.current?.querySelector?.('.lyrixi-attach-choose')
-    if (!uploadDOM) {
+    let uploadElement = rootRef.current?.querySelector?.('.lyrixi-attach-choose')
+    if (!uploadElement) {
       Toast.show({
         content: LocaleUtil.locale('未找到上传按钮, 调用上传失败', 'lyrixi.no.upload.button')
       })

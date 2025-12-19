@@ -5,7 +5,16 @@ import VirtualForm from './VirtualForm'
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
   (
-    { virtual, layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, className, style },
+    {
+      virtual,
+      layout = 'horizontal',
+      labelCol,
+      mainCol,
+      scrollerElement,
+      children,
+      className,
+      style
+    },
     ref
   ) => {
     // virtual模式下, 使用IntersectionObserver来监听表单项的可见性, 所以无需要传入height
@@ -16,7 +25,7 @@ const Form = forwardRef(
           layout={layout}
           labelCol={labelCol}
           mainCol={mainCol}
-          scrollerDOM={scrollerDOM}
+          scrollerElement={scrollerElement}
           className={className}
           style={style}
         >
@@ -30,7 +39,7 @@ const Form = forwardRef(
         layout={layout}
         labelCol={labelCol}
         mainCol={mainCol}
-        scrollerDOM={scrollerDOM}
+        scrollerElement={scrollerElement}
         className={className}
         style={style}
       >

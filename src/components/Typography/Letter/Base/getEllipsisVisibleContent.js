@@ -3,15 +3,15 @@ import getEllipsisStyle from './getEllipsisStyle'
 import { defaultToggleWordCount } from './defaultConstant'
 
 // 获取显示内容
-function getEllipsisVisibleContent({ content, rows, rowHeight, containerDOM }) {
-  if (!rows || typeof rows !== 'number' || typeof content !== 'string' || !containerDOM) {
+function getEllipsisVisibleContent({ content, rows, rowHeight, containerElement }) {
+  if (!rows || typeof rows !== 'number' || typeof content !== 'string' || !containerElement) {
     return content
   }
 
   // 复制容器，隐藏原容器
-  const containerDuplicate = containerDOM.cloneNode(false)
-  containerDOM.parentNode.insertBefore(containerDuplicate, containerDOM.nextElementSibling)
-  containerDOM.classList.add('lyrixi-hide')
+  const containerDuplicate = containerElement.cloneNode(false)
+  containerElement.parentNode.insertBefore(containerDuplicate, containerElement.nextElementSibling)
+  containerElement.classList.add('lyrixi-hide')
 
   // 设置复制容器，隐藏原容器
   getEllipsisStyle(
@@ -38,7 +38,7 @@ function getEllipsisVisibleContent({ content, rows, rowHeight, containerDOM }) {
 
   // 还原容器
   containerDuplicate.parentNode.removeChild(containerDuplicate)
-  containerDOM.classList.remove(`lyrixi-hide`)
+  containerElement.classList.remove(`lyrixi-hide`)
 
   return visibleContent
 }

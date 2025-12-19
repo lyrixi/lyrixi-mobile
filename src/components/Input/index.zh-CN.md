@@ -93,12 +93,12 @@ toc: content
 
 ### Ref
 
-| 属性        | 说明           | 类型                     |
-| ----------- | -------------- | ------------------------ |
-| element     | 根元素         | `HtmlDivElement`         |
-| inputDOM    | 输入框元素     | `HtmlInputElement`       |
-| getElement  | 获取根元素     | () => `HtmlDivElement`   |
-| getInputDOM | 获取输入框元素 | () => `HtmlInputElement` |
+| 属性            | 说明           | 类型                     |
+| --------------- | -------------- | ------------------------ |
+| element         | 根元素         | `HtmlDivElement`         |
+| inputElement    | 输入框元素     | `HtmlInputElement`       |
+| getElement      | 获取根元素     | () => `HtmlDivElement`   |
+| getInputElement | 获取输入框元素 | () => `HtmlInputElement` |
 
 ## Input.Textarea
 

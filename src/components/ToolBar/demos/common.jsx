@@ -4,7 +4,7 @@ import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar } from 'lyrixi-m
 
 export default () => {
   const dropdownRef = useRef(null)
-  const [mainElement, setMainDOM] = useState(null)
+  const [mainElement, setMainElement] = useState(null)
   const [dateRange, setDateRange] = useState(null)
   const [item, setItem] = useState(null)
   const [search, setSearch] = useState('')
@@ -46,7 +46,7 @@ export default () => {
       <Page.Main
         ref={(current) => {
           if (!current?.element) return
-          setMainDOM(current?.element || null)
+          setMainElement(current?.element || null)
         }}
       >
         {/* Dropdown */}

@@ -138,8 +138,8 @@ const Media = forwardRef(
         })
         return false
       }
-      let chooseDOM = rootRef.current?.querySelector?.('[data-type="upload"]')
-      if (!chooseDOM) {
+      let chooseElement = rootRef.current?.querySelector?.('[data-type="upload"]')
+      if (!chooseElement) {
         Toast.show({
           content: LocaleUtil.locale(
             '未找到拍照按钮, 调用拍照失败',

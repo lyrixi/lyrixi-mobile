@@ -111,10 +111,10 @@ function WechatMiniProgram(
     return {
       ...mediaRef.current,
       chooseMedia: async () => {
-        let uploadDOM = mediaRef.current?.element?.querySelector?.(
+        let uploadElement = mediaRef.current?.element?.querySelector?.(
           '.lyrixi-media-item.image-choose'
         )
-        if (!uploadDOM) {
+        if (!uploadElement) {
           Toast.show({
             content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
           })
@@ -123,7 +123,7 @@ function WechatMiniProgram(
 
         let chooseOk = await handleChoose({
           nativeEvent: {
-            target: uploadDOM
+            target: uploadElement
           }
         })
         return chooseOk

@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 
-// 用于自定义渲染Combo, 按照要求返回comboDOM
+// 用于自定义渲染Combo, 按照要求返回comboElement
 const Combo = forwardRef(
   (
     {

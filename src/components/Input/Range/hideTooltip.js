@@ -1,5 +1,5 @@
-function hideTooltip(tooltipDOM) {
-  tooltipDOM.style.visibility = 'hidden'
+function hideTooltip(tooltipElement) {
+  tooltipElement.style.visibility = 'hidden'
 }
 
 export default hideTooltip

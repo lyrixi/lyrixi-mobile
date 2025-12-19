@@ -47,7 +47,7 @@ let Lists = forwardRef(
     })
 
     const slotRef = useRef({
-      slotDOM: null,
+      slotElement: null,
       slotIndex: null,
       slotHeight: null
     })
@@ -69,19 +69,19 @@ let Lists = forwardRef(
         e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
       }
 
-      slotRef.current.slotDOM = e.target
-      slotRef.current.slotIndex = slotRef.current.slotDOM.getAttribute('slotindex')
+      slotRef.current.slotElement = e.target
+      slotRef.current.slotIndex = slotRef.current.slotElement.getAttribute('slotindex')
       slotRef.current.slotHeight = (lists[slotRef.current.slotIndex].length - 1) * cellHeight
 
       const pos = DOMUtil.getEventPosition(e)
       touchesRef.current.startX = pos.clientX
       touchesRef.current.startY = pos.clientY
       touchesRef.current.posY = Number(
-        getTranslateValue(slotRef.current.slotDOM.style.transform) || 0
+        getTranslateValue(slotRef.current.slotElement.style.transform) || 0
       )
 
       // 清除动画
-      slotRef.current.slotDOM.style.webkitTransitionDuration = 0
+      slotRef.current.slotElement.style.webkitTransitionDuration = 0
 
       // 记录点击时间
       touchesRef.current.startTimeStamp = e.timeStamp
@@ -99,8 +99,8 @@ let Lists = forwardRef(
       touchesRef.current.diffY = touchesRef.current.startY - touchesRef.current.currentY
       touchesRef.current.currentPosY = touchesRef.current.posY - touchesRef.current.diffY
 
-      if (slotRef?.current?.slotDOM) {
-        slotRef.current.slotDOM.style.webkitTransform = `translateY(${touchesRef.current.currentPosY}px)`
+      if (slotRef?.current?.slotElement) {
+        slotRef.current.slotElement.style.webkitTransform = `translateY(${touchesRef.current.currentPosY}px)`
       }
     }
     function handleTouchEnd(e) {
@@ -141,9 +141,9 @@ let Lists = forwardRef(
       let position = -inertia.position
 
       // 滚动到指定位置
-      slotRef.current.slotDOM.style.webkitTransitionDuration = inertia.duration + 'ms'
-      slotRef.current.slotDOM.posY = position
-      slotRef.current.slotDOM.style.webkitTransform = `translateY(${position}px)`
+      slotRef.current.slotElement.style.webkitTransitionDuration = inertia.duration + 'ms'
+      slotRef.current.slotElement.posY = position
+      slotRef.current.slotElement.style.webkitTransform = `translateY(${position}px)`
 
       // 更新值
       onDragEnd &&

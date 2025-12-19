@@ -19,7 +19,7 @@ export default () => {
         <Modal.DropdownModal
           open={open}
           onClose={() => setOpen(false)}
-          referenceDOM={referenceRef.current}
+          referenceElement={referenceRef.current}
           animation="slideDown"
         >
           <div style={{ height: '150px' }}>Content</div>

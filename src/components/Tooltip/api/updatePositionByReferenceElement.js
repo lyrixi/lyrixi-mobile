@@ -1,16 +1,16 @@
-import getPositionByReferenceDOM from './getPositionByReferenceDOM'
+import getPositionByReferenceElement from './getPositionByReferenceElement'
 import getRelativePosition from './getRelativePosition'
 
 // 修改元素位置相对于参考元素的定位
-function updatePositionByReferenceDOM(
+function updatePositionByReferenceElement(
   current,
-  { referenceDOM, parentDOM, animation, bottom, top, left, right, offset } = {}
+  { referenceElement, parentElement, animation, bottom, top, left, right, offset } = {}
 ) {
   // 自动计算位置
   let position =
-    referenceDOM && parentDOM
-      ? getRelativePosition({ targetDOM: referenceDOM, parentDOM, animation })
-      : getPositionByReferenceDOM({ referenceDOM, animation })
+    referenceElement && parentElement
+      ? getRelativePosition({ targetElement: referenceElement, parentElement, animation })
+      : getPositionByReferenceElement({ referenceElement, animation })
 
   // 自定义位置
   if (![undefined, null].includes(bottom)) {
@@ -44,4 +44,4 @@ function updatePositionByReferenceDOM(
   }
 }
 
-export default updatePositionByReferenceDOM
+export default updatePositionByReferenceElement

@@ -79,9 +79,9 @@ function Nearby(
     setList(result)
 
     // 重置滚动条
-    let contentDOM = rootRef.current?.querySelector?.('.lyrixi-map-nearbyControl-main')
-    if (contentDOM) {
-      contentDOM.scrollTop = 0
+    let contentElement = rootRef.current?.querySelector?.('.lyrixi-map-nearbyControl-main')
+    if (contentElement) {
+      contentElement.scrollTop = 0
     }
 
     onLoad && onLoad(result)
