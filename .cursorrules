@@ -108,16 +108,27 @@
 
 ### 3. 导入规范
 
+**重要：必须使用按需导入，避免全量打包！**
+
 #### 组件导入
 ```javascript
-// ✅ 正确：从 lyrixi-mobile 导入
-import { Button, Card, Input, DatePicker, Modal } from 'lyrixi-mobile'
+// ✅ 正确：按需导入组件（避免全量打包）
+import Button from 'lyrixi-mobile/components/Button'
+import Card from 'lyrixi-mobile/components/Card'
+import Input from 'lyrixi-mobile/components/Input'
+import DatePicker from 'lyrixi-mobile/components/DatePicker'
+import Modal from 'lyrixi-mobile/components/Modal'
+import Page from 'lyrixi-mobile/components/Page'
+import Flex from 'lyrixi-mobile/components/Flex'
+import Form from 'lyrixi-mobile/components/Form'
 
 // ✅ 正确：使用子组件
-import { DatePicker } from 'lyrixi-mobile'
 <DatePicker.RangeCombo />
 <Input.Text />
 <Flex.Compact />
+
+// ❌ 错误：不要全量导入（会导致包体积过大）
+// import { Button, Card, Input } from 'lyrixi-mobile'
 
 // ❌ 错误：不要创建新组件
 // const MyButton = () => <button>...</button>
@@ -125,18 +136,44 @@ import { DatePicker } from 'lyrixi-mobile'
 
 #### 工具导入
 ```javascript
-// ✅ 正确：从 lyrixi-mobile 导入
-import { DOMUtil, DateUtil, MathUtil, ArrayUtil } from 'lyrixi-mobile'
+// ✅ 正确：按需导入工具（避免全量打包）
+import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
+import DateUtil from 'lyrixi-mobile/utils/DateUtil'
+import MathUtil from 'lyrixi-mobile/utils/MathUtil'
+import ArrayUtil from 'lyrixi-mobile/utils/ArrayUtil'
+import Storage from 'lyrixi-mobile/utils/Storage'
+import LocaleUtil from 'lyrixi-mobile/utils/LocaleUtil'
 
 // ✅ 正确：使用工具方法
 DOMUtil.classNames('class1', 'class2')
 DateUtil.format(new Date(), 'date')
 MathUtil.variableSize('m', 'space')
 
+// ❌ 错误：不要全量导入（会导致包体积过大）
+// import { DOMUtil, DateUtil, MathUtil } from 'lyrixi-mobile'
+
 // ❌ 错误：不要创建新工具函数
 // const formatDate = (date) => {...}
 // const classNames = (...args) => {...}
 ```
+
+#### 导入路径规范
+
+**组件路径格式：**
+- `lyrixi-mobile/components/Button`
+- `lyrixi-mobile/components/Card`
+- `lyrixi-mobile/components/Input`
+- `lyrixi-mobile/components/DatePicker`
+- `lyrixi-mobile/components/Modal`
+- 等等...
+
+**工具路径格式：**
+- `lyrixi-mobile/utils/DOMUtil`
+- `lyrixi-mobile/utils/DateUtil`
+- `lyrixi-mobile/utils/MathUtil`
+- `lyrixi-mobile/utils/ArrayUtil`
+- `lyrixi-mobile/utils/Storage`
+- 等等...
 
 ### 4. 代码生成要求
 
@@ -172,8 +209,13 @@ MathUtil.variableSize('m', 'space')
 
 ### 示例 1：创建表单页面
 ```javascript
-import { Page, Card, Form, Input, Button, DatePicker } from 'lyrixi-mobile'
-import { DOMUtil, DateUtil } from 'lyrixi-mobile'
+// ✅ 正确：按需导入
+import Page from 'lyrixi-mobile/components/Page'
+import Card from 'lyrixi-mobile/components/Card'
+import Form from 'lyrixi-mobile/components/Form'
+import Input from 'lyrixi-mobile/components/Input'
+import Button from 'lyrixi-mobile/components/Button'
+import DatePicker from 'lyrixi-mobile/components/DatePicker'
 
 export default () => {
   return (
@@ -201,14 +243,20 @@ export default () => {
 
 ### 示例 2：使用工具函数
 ```javascript
-import { DOMUtil, DateUtil, MathUtil } from 'lyrixi-mobile'
+// ✅ 正确：按需导入
+import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
+import DateUtil from 'lyrixi-mobile/utils/DateUtil'
+import MathUtil from 'lyrixi-mobile/utils/MathUtil'
 
-// ✅ 正确
+// ✅ 正确：使用工具方法
 const className = DOMUtil.classNames('base-class', { 'active': isActive })
 const formattedDate = DateUtil.format(new Date(), 'date')
 const size = MathUtil.variableSize('m', 'space')
 
-// ❌ 错误
+// ❌ 错误：不要全量导入
+// import { DOMUtil, DateUtil, MathUtil } from 'lyrixi-mobile'
+
+// ❌ 错误：不要手动实现
 // const className = ['base-class', isActive && 'active'].filter(Boolean).join(' ')
 // const formattedDate = new Date().toLocaleDateString()
 ```
@@ -227,7 +275,7 @@ const size = MathUtil.variableSize('m', 'space')
 
 #### Page 页面容器
 ```javascript
-import { Page } from 'lyrixi-mobile'
+import Page from 'lyrixi-mobile/components/Page'
 
 <Page>
   <Page.Header>标题</Page.Header>
@@ -238,7 +286,7 @@ import { Page } from 'lyrixi-mobile'
 
 #### Card 卡片
 ```javascript
-import { Card } from 'lyrixi-mobile'
+import Card from 'lyrixi-mobile/components/Card'
 
 <Card>
   <Card.Header>标题</Card.Header>
@@ -248,7 +296,7 @@ import { Card } from 'lyrixi-mobile'
 
 #### Button 按钮
 ```javascript
-import { Button } from 'lyrixi-mobile'
+import Button from 'lyrixi-mobile/components/Button'
 
 <Button 
   color="primary"           // 'default' | 'primary' | 'link' | 'warning' | 'danger' | 'success'
@@ -264,7 +312,7 @@ import { Button } from 'lyrixi-mobile'
 
 #### Input 输入框
 ```javascript
-import { Input } from 'lyrixi-mobile'
+import Input from 'lyrixi-mobile/components/Input'
 
 // 文本输入
 <Input.Text 
@@ -298,7 +346,9 @@ import { Input } from 'lyrixi-mobile'
 
 #### Form 表单
 ```javascript
-import { Form, Input, Button } from 'lyrixi-mobile'
+import Form from 'lyrixi-mobile/components/Form'
+import Input from 'lyrixi-mobile/components/Input'
+import Button from 'lyrixi-mobile/components/Button'
 
 <Form>
   <Form.Item name="username" label="用户名">
@@ -313,7 +363,8 @@ import { Form, Input, Button } from 'lyrixi-mobile'
 
 #### DatePicker 日期选择器
 ```javascript
-import { DatePicker } from 'lyrixi-mobile'
+import DatePicker from 'lyrixi-mobile/components/DatePicker'
+import DateUtil from 'lyrixi-mobile/utils/DateUtil'
 
 // 基础用法
 <DatePicker.Combo 
@@ -344,7 +395,7 @@ import { DatePicker } from 'lyrixi-mobile'
 
 #### Select 选择框
 ```javascript
-import { Select } from 'lyrixi-mobile'
+import Select from 'lyrixi-mobile/components/Select'
 
 <Select.Combo 
   list={[
@@ -360,7 +411,7 @@ import { Select } from 'lyrixi-mobile'
 
 #### Modal 模态框
 ```javascript
-import { Modal } from 'lyrixi-mobile'
+import Modal from 'lyrixi-mobile/components/Modal'
 
 <Modal 
   open={open}
@@ -374,7 +425,7 @@ import { Modal } from 'lyrixi-mobile'
 
 #### Toast 轻提示
 ```javascript
-import { Toast } from 'lyrixi-mobile'
+import Toast from 'lyrixi-mobile/components/Toast'
 
 // 显示
 Toast.show('提示信息', { duration: 2000 })
@@ -385,7 +436,7 @@ Toast.hide()
 
 #### Loading 加载中
 ```javascript
-import { Loading } from 'lyrixi-mobile'
+import Loading from 'lyrixi-mobile/components/Loading'
 
 // 显示
 Loading.show('加载中...')
@@ -396,7 +447,8 @@ Loading.hide()
 
 #### Flex 弹性布局
 ```javascript
-import { Flex } from 'lyrixi-mobile'
+import Flex from 'lyrixi-mobile/components/Flex'
+import Button from 'lyrixi-mobile/components/Button'
 
 <Flex 
   direction="horizontal"    // 'horizontal' | 'vertical'
@@ -417,7 +469,7 @@ import { Flex } from 'lyrixi-mobile'
 
 #### List 列表
 ```javascript
-import { List } from 'lyrixi-mobile'
+import List from 'lyrixi-mobile/components/List'
 
 <List 
   list={[
@@ -435,7 +487,7 @@ import { List } from 'lyrixi-mobile'
 
 #### DOMUtil
 ```javascript
-import { DOMUtil } from 'lyrixi-mobile'
+import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 
 // 类名合并
 DOMUtil.classNames('class1', 'class2', { 'active': isActive })
@@ -453,7 +505,7 @@ DOMUtil.variables.sizes    // ['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 
 
 #### DateUtil
 ```javascript
-import { DateUtil } from 'lyrixi-mobile'
+import DateUtil from 'lyrixi-mobile/utils/DateUtil'
 
 // 格式化日期
 DateUtil.format(new Date(), 'date')        // 'YYYY-MM-DD'
@@ -473,7 +525,7 @@ DateUtil.startOrEnd(new Date(), 'week', 'end')
 
 #### MathUtil
 ```javascript
-import { MathUtil } from 'lyrixi-mobile'
+import MathUtil from 'lyrixi-mobile/utils/MathUtil'
 
 // 变量尺寸转换
 MathUtil.variableSize('m', 'space')       // 将 'm' 转换为对应的像素值
@@ -482,7 +534,7 @@ MathUtil.variableSize(16, 'space')        // 数字直接返回
 
 #### ArrayUtil
 ```javascript
-import { ArrayUtil } from 'lyrixi-mobile'
+import ArrayUtil from 'lyrixi-mobile/utils/ArrayUtil'
 
 // 树形结构操作
 ArrayUtil.deepTree(flatArray, { idKey: 'id', parentIdKey: 'parentId' })
@@ -492,7 +544,7 @@ ArrayUtil.searchDeepTree(treeArray, (item) => item.id === targetId)
 
 #### Storage
 ```javascript
-import { Storage } from 'lyrixi-mobile'
+import Storage from 'lyrixi-mobile/utils/Storage'
 
 // 设置
 Storage.setItem('key', 'value')
