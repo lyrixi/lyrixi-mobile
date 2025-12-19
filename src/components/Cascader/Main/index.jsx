@@ -27,21 +27,26 @@ import { LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-m
 const Main = forwardRef(
   (
     {
-      // Modal
+      // Main: Status
       open = true,
 
-      // Main: common
-      searchVisible,
+      // Value & Display Value
       value,
-      allowClear,
-      onChange,
-      onReLoad,
-
       list: externalList,
       loadData: externalLoadData,
-      optionProps = {},
-      tabbar,
-      ...props
+      // Status
+      allowClear,
+      // Style
+      listStyle,
+      listClassName,
+      optionStyle,
+      optionClassName,
+      // Elements
+      searchVisible,
+      tabbarRender,
+      // Events
+      onChange,
+      onReLoad
     },
     ref
   ) => {
@@ -320,8 +325,8 @@ const Main = forwardRef(
     function getTabsNode() {
       if (typeof currentList === 'string') return null
 
-      if (typeof tabbar === 'function') {
-        return tabbar({
+      if (typeof tabbarRender === 'function') {
+        return tabbarRender({
           tabs: tabsRef.current,
           activeTab: activeTab,
           onActiveTabChange: handleClickTab
@@ -381,19 +386,22 @@ const Main = forwardRef(
               <IndexBar className="lyrixi-cascader-indexbar">
                 <ListItem
                   ref={mainRef}
-                  optionProps={optionProps}
-                  // 选中列表
-                  list={currentList}
+                  // Value & Display Value
                   value={value}
+                  list={currentList}
+                  // Style
+                  style={listStyle}
+                  className={listClassName}
+                  optionStyle={optionStyle}
+                  optionClassName={optionClassName}
+                  // Events
                   onReLoad={async () => {
                     if (typeof onReLoad !== 'function') return
                     let newList = await onReLoad(value, { list: externalList, update })
                     if (!newList) return
                     setCurrentList(newList)
                   }}
-                  // 阻止选择
                   onSelect={(item) => handleDrill(item)}
-                  {...props}
                 />
               </IndexBar>
             </>

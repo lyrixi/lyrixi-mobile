@@ -21,17 +21,18 @@ const DistrictModal = forwardRef(
       value,
       startType,
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
-      min = '',
+
       loadCountries,
       loadCountryRegions,
       loadStreets,
-      editableOptions,
 
       // Status
       open,
-      maskClosable,
+      min = '',
       allowClear,
       multiple,
+      editableOptions,
+      maskClosable,
 
       // Style
       safeArea,

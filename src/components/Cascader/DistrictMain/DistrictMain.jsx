@@ -10,18 +10,29 @@ import Tabs from './Tabs'
 const DistrictMain = forwardRef(
   (
     {
-      // Modal
+      // Modal: Status
       open = true,
 
-      // Main
+      // Value & Display Value
       value,
-
       type = 'street', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
       list,
       loadData,
+
+      // Status
       editableOptions,
-      onLoad,
-      ...props
+
+      // Style
+      listStyle,
+      listClassName,
+      optionStyle,
+      optionClassName,
+
+      // Elements
+      searchVisible,
+
+      // Events
+      onLoad
     },
     ref
   ) => {
@@ -64,18 +75,9 @@ const DistrictMain = forwardRef(
     return (
       <Main
         ref={districtMainRef}
-        tabbar={({ tabs, activeTab, onActiveTabChange }) => {
-          return (
-            <Tabs
-              list={tabs}
-              value={activeTab}
-              onChange={onActiveTabChange}
-              // 禁用判断
-              editableOptions={editableOptions}
-            />
-          )
-        }}
+        // Modal: Status
         open={open}
+        // Value & Display Value
         value={value}
         list={list}
         loadData={
@@ -87,7 +89,24 @@ const DistrictMain = forwardRef(
               }
             : null
         }
-        {...props}
+        // Style
+        listStyle={listStyle}
+        listClassName={listClassName}
+        optionStyle={optionStyle}
+        optionClassName={optionClassName}
+        // Elements
+        searchVisible={searchVisible}
+        tabbarRender={({ tabs, activeTab, onActiveTabChange }) => {
+          return (
+            <Tabs
+              list={tabs}
+              value={activeTab}
+              onChange={onActiveTabChange}
+              // 禁用判断
+              editableOptions={editableOptions}
+            />
+          )
+        }}
       />
     )
   }

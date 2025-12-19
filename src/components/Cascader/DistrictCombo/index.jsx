@@ -22,45 +22,54 @@ const DistrictCombo = forwardRef(
   (
     {
       // Combo
-      readOnly,
-
-      // Modal
-      portal,
-      style,
-      className,
-      leftIconNode,
-      rightIconNode,
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
-
-      title,
-      okNode,
-      cancelNode,
-      okVisible,
-      cancelVisible,
-
+      // Combo: Value & Display Value
       value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      // Combo: Status
+      readOnly,
+      disabled,
       allowClear,
       multiple,
-      onChange,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      leftIconNode,
+      rightIconNode,
+      clearRender,
 
-      min = '',
-      searchVisible,
-
-      // Main
+      // Modal
+      // Modal: Value & Display Value
       startType, // 开始于国家country, 省份province
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
       loadCountries,
       loadCountryRegions,
       loadStreets,
+      // Modal: Status
+      min = '',
       editableOptions,
+      maskClosable,
 
-      // Combo props
-      clearRender,
-      onBeforeOpen,
-      ...props
+      // Modal: Style
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      title,
+      okNode,
+      cancelNode,
+      cancelVisible,
+      searchVisible,
+
+      // Events
+      onChange,
+      onBeforeOpen
     },
     ref
   ) => {
@@ -159,15 +168,14 @@ const DistrictCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          {...props}
-          style={style}
-          className={className}
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          // Combo: Value & Display Value
           value={value}
-          onChange={handleChange}
-          multiple={multiple}
-          allowClear={allowClear}
+          placeholder={placeholder}
+          formatter={formatter}
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
+          // Combo: Status
           // 只读项与值一致, 并且已经下钻到最末经, 只读
           readOnly={(() => {
             if (!Array.isArray(readOnlyValue) || !Array.isArray(value)) return readOnly
@@ -175,7 +183,14 @@ const DistrictCombo = forwardRef(
             const leafIndex = findDistrictLeafIndex(value, type)
             return typeof leafIndex === 'number' ? true : readOnly
           })()}
-          onClick={handleOpen}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
           clearRender={(clearParams) => {
             let clearable = clearParams?.clearable
 
@@ -192,33 +207,41 @@ const DistrictCombo = forwardRef(
             // 默认清空按钮显隐
             return clearable === false ? null : undefined
           }}
+          // Events
+          onChange={handleChange}
+          onClick={handleOpen}
         />
         <DistrictModal
           ref={modalRef}
-          open={open}
-          onClose={handleClose}
+          // Modal: Value & Display Value
           value={value}
+          type={type}
+          startType={startType}
+          loadCountries={loadCountries}
+          loadCountryRegions={loadCountryRegions}
+          loadStreets={loadStreets}
+          // Modal: Status
+          open={open}
+          min={min}
           allowClear={allowClear}
           multiple={multiple}
-          onChange={handleChange}
-          portal={portal}
+          editableOptions={editableOptions}
+          maskClosable={maskClosable}
+          // Modal: Style
           maskClassName={maskClassName}
           maskStyle={maskStyle}
           className={modalClassName}
           style={modalStyle}
+          // Modal: Elements
+          portal={portal}
           title={title}
           okNode={okNode}
           cancelNode={cancelNode}
-          okVisible={okVisible}
           cancelVisible={cancelVisible}
-          startType={startType}
-          type={type}
-          min={min}
           searchVisible={searchVisible}
-          loadCountries={loadCountries}
-          loadCountryRegions={loadCountryRegions}
-          loadStreets={loadStreets}
-          editableOptions={editableOptions}
+          // Modal: Events
+          onChange={handleChange}
+          onClose={handleClose}
         />
       </>
     )

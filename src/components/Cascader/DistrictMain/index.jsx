@@ -18,16 +18,31 @@ import { LocaleUtil, Loading, ArrayUtil } from 'lyrixi-mobile'
 const CascaderDistrictMain = forwardRef(
   (
     {
-      open,
+      // Modal: Status
+      open = true,
+
+      // Value & Display Value
       value,
-      // 开始于国家country, 省份province
-      startType,
+      startType, // 开始于国家country, 省份province
       type, // 'country', 'province', 'city', 'district', 'street'
       loadCountries = api.loadCountries,
       loadCountryRegions = api.loadCountryRegions,
       loadStreets = api.loadStreets,
-      onLoad,
-      ...props
+
+      // Status
+      editableOptions,
+
+      // Style
+      listStyle,
+      listClassName,
+      optionStyle,
+      optionClassName,
+
+      // Elements
+      searchVisible,
+
+      // Events
+      onLoad
     },
     ref
   ) => {
@@ -117,12 +132,24 @@ const CascaderDistrictMain = forwardRef(
 
     return (
       <DistrictMain
+        ref={districtMainRef}
+        // Modal: Status
         open={open}
+        // Value & Display Value
         value={value}
         type={type}
         list={list}
-        {...props}
         loadData={loadData}
+        // Status
+        editableOptions={editableOptions}
+        // Style
+        listStyle={listStyle}
+        listClassName={listClassName}
+        optionStyle={optionStyle}
+        optionClassName={optionClassName}
+        // Elements
+        searchVisible={searchVisible}
+        // Events
         onLoad={onLoad}
         onReLoad={async (tabs, { update }) => {
           // 列表为空, 则初始化列表
@@ -149,7 +176,6 @@ const CascaderDistrictMain = forwardRef(
           // 更新当前列表
           update(tabs, { list: list, action: 'load' })
         }}
-        ref={districtMainRef}
       />
     )
   }

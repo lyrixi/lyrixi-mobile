@@ -42,8 +42,7 @@ toc: content
 | onReLoad      | 重新加载回调 | `() => void`             | -      |
 | list          | 数据列表     | `array`                  | -      |
 | loadData      | 加载数据函数 | `function`               | -      |
-| optionProps   | 选项属性     | `object`                 | `{}`   |
-| tabbar        | 标签栏配置   | `object`                 | -      |
+| tabbarRender  | 标签栏配置   | `object`                 | -      |
 
 ### Ref
 

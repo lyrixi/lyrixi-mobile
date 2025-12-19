@@ -34,6 +34,7 @@ export default {
   Text: Text,
   Node: Node,
   Search: Search,
+  // (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
   Select: Select,
   Textarea: Textarea,
   Url: Url,

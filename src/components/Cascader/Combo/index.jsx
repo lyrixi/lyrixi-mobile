@@ -97,7 +97,6 @@ const CascaderCombo = forwardRef(
           autoSize={autoSize}
           separator={separator}
           mode={mode}
-          multiple={multiple}
           // Combo: Status
           readOnly={readOnly}
           disabled={disabled}

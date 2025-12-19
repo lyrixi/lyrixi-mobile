@@ -15,15 +15,17 @@ import { DOMUtil, LocaleUtil, Result, Button, IndexBar } from 'lyrixi-mobile'
 const ListItem = forwardRef(
   (
     {
-      className,
-      optionProps,
-      // 选中列表
+      // Value & Display Value
       list,
       value,
+      // Style
+      style,
+      className,
+      optionStyle,
+      optionClassName,
+      // Events
       onReLoad,
-      // 修改
-      onSelect,
-      style
+      onSelect
     },
     ref
   ) => {
@@ -71,10 +73,10 @@ const ListItem = forwardRef(
               <Fragment key={item.id || index}>
                 {anchorBar}
                 <div
-                  {...optionProps}
+                  style={optionStyle}
                   className={DOMUtil.classNames(
                     `lyrixi-cascader-option`,
-                    optionProps.className,
+                    optionClassName,
                     value?.some?.((selected) => {
                       return selected.id === item.id
                     })

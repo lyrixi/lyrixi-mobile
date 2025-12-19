@@ -15,7 +15,7 @@ import ObjectUtil from './../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 基础Combo: 仅渲染Input
+// (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
 const Combo = forwardRef(
   (
     {
