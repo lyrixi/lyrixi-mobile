@@ -25,7 +25,7 @@ function valuesToText(values, variables) {
  * @param {String} remark '共有{0}个商品, 共查到{1}页'
  * @param {String} key resources中的key
  * @param {Array} variables {0: <div><div>}
- * @return {Node} 返回reactDOM
+ * @return {Node} 返回react node
  */
 function locale(remark, key, variables) {
   // Get key's value
