@@ -30,6 +30,7 @@ export default () => {
           // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
+          rangesVisible={true}
           rangeId={rangeId}
           value={value}
           onChange={(newValue, { rangeId }) => {
