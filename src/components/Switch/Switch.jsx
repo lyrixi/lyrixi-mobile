@@ -38,8 +38,8 @@ const Switch = forwardRef(
     // 节点
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
+        element: rootRef.current,
+        getElement: () => rootRef.current
       }
     })
 

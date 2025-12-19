@@ -30,8 +30,8 @@ const Main = (
   // 外部调用
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
+      element: rootRef.current,
+      getElement: () => rootRef.current,
       getBase64: signatureRef?.current?.getBase64,
       clear: signatureRef?.current?.clear
     }
@@ -50,7 +50,7 @@ const Main = (
         color={color} // 绘画配置: 画笔颜色
         backgroundColor={backgroundColor} // 绘画配置: 背景颜色
       />
-      
+
       {/* Element: Buttons */}
       <div className="lyrixi-signature-main-buttons">
         {/* Element: Cancel Button */}
@@ -61,9 +61,9 @@ const Main = (
         >
           <p>{LocaleUtil.locale('取消', 'lyrixi.cancel')}</p>
         </div>
-        
+
         <div className="lyrixi-flex-1"></div>
-        
+
         {/* Element: Clear Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-clear"
@@ -74,7 +74,7 @@ const Main = (
         >
           <p>{LocaleUtil.locale('清除', 'lyrixi.clear')}</p>
         </div>
-        
+
         {/* Element: OK Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-ok"

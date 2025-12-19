@@ -39,5 +39,5 @@ toc: content
 
 | 属性       | 说明       | 类型                      |
 | ---------- | ---------- | ------------------------- |
-| rootDOM    | 根元素     | `HtmlFooterElement`       |
-| getRootDOM | 获取根元素 | () => `HtmlFooterElement` |
+| element    | 根元素     | `HtmlFooterElement`       |
+| getElement | 获取根元素 | () => `HtmlFooterElement` |

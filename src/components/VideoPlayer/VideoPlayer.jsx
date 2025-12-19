@@ -42,8 +42,8 @@ const VideoPlayer = forwardRef(
     // Expose methods via ref
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current,
+        element: rootRef.current,
+        getElement: () => rootRef.current,
         pause: () => {
           setPlaying(false)
         },
@@ -59,7 +59,7 @@ const VideoPlayer = forwardRef(
       onError?.({ status: 'error', message: errorMsg, error: err })
     }
 
-    const DOM = (
+    const Node = (
       <div
         className={DOMUtil.classNames('lyrixi-videoplayer-page', className)}
         style={style}
@@ -86,9 +86,9 @@ const VideoPlayer = forwardRef(
     )
 
     if (portal) {
-      return createPortal(DOM, portal)
+      return createPortal(Node, portal)
     }
-    return DOM
+    return Node
   }
 )
 

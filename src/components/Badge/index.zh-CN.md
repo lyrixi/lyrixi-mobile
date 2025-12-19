@@ -35,5 +35,5 @@ toc: content
 
 | 属性       | 说明       | 类型                    |
 | ---------- | ---------- | ----------------------- |
-| rootDOM    | 根元素     | `HtmlSpanElement`       |
-| getRootDOM | 获取根元素 | () => `HtmlSpanElement` |
+| element    | 根元素     | `HtmlSpanElement`       |
+| getElement | 获取根元素 | () => `HtmlSpanElement` |

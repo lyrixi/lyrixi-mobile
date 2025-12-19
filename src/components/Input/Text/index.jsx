@@ -71,7 +71,7 @@ const InputText = (
   // 输入框展示值
   const displayValue = typeof formatter === 'function' ? formatter(value) : null
 
-  // DOM
+  // Elements
   const rootRef = useRef(null)
   const inputRef = useRef(null)
 
@@ -80,9 +80,9 @@ const InputText = (
 
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
+      element: rootRef.current,
       inputDOM: inputRef.current,
-      getRootDOM: () => {
+      getElement: () => {
         return rootRef.current
       },
       getInputDOM: () => {

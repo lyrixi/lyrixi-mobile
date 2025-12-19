@@ -55,7 +55,7 @@ toc: content
 
 | 属性         | 说明       | 类型                   |
 | ------------ | ---------- | ---------------------- |
-| rootDOM      | 根元素     | `HtmlDivElement`       |
-| getRootDOM   | 获取根元素 | () => `HtmlDivElement` |
+| element      | 根元素     | `HtmlDivElement`       |
+| getElement   | 获取根元素 | () => `HtmlDivElement` |
 | updateStatus | 更新状态   | `() => void`           |
 | chooseFile   | 选择文件   | `() => void`           |

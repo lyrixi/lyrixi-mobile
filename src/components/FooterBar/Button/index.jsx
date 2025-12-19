@@ -58,8 +58,8 @@ const FooterBarButton = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: comboRef.current.rootDOM,
-        getRootDOM: comboRef.current?.getRootDOM,
+        element: comboRef.current.element,
+        getElement: comboRef.current?.getElement,
         ...modalRef.current
       }
     })

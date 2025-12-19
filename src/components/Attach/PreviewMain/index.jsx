@@ -37,8 +37,8 @@ function AttachPreviewMain(
   // 节点
   useImperativeHandle(ref, () => {
     return {
-      mainDOM: mainRef.current,
-      getMainDOM: () => mainRef.current
+      mainElement: mainRef.current,
+      getMainElement: () => mainRef.current
     }
   })
 

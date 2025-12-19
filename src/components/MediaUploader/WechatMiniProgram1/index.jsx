@@ -111,7 +111,7 @@ function WechatMiniProgram(
     return {
       ...mediaRef.current,
       chooseMedia: async () => {
-        let uploadDOM = mediaRef.current?.rootDOM?.querySelector?.(
+        let uploadDOM = mediaRef.current?.element?.querySelector?.(
           '.lyrixi-media-item.image-choose'
         )
         if (!uploadDOM) {

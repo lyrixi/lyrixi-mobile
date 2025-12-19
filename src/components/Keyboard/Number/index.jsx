@@ -74,8 +74,8 @@ const KeyboardNumber = forwardRef(
         // 忽略打开后 1秒 内的事件
         if (Date.now() - openTime < 100) return
 
-        if (!rootRef.current?.rootDOM) return
-        if (rootRef.current.rootDOM.contains(event.target)) return
+        if (!rootRef.current?.element) return
+        if (rootRef.current.element.contains(event.target)) return
         if (onClose) {
           onClose()
         }

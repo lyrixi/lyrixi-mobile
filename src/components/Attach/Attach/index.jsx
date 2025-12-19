@@ -94,8 +94,8 @@ function Attach(
 
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
+      element: rootRef.current,
+      getElement: () => rootRef.current,
       updateStatus: () => {
         setUpdateStatus(updateStatus + 1)
       },

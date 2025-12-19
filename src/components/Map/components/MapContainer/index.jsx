@@ -85,8 +85,8 @@ const MapContainer = forwardRef(
 
     // Define export Api
     const APIRef = useRef({
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
+      element: rootRef.current,
+      getElement: () => rootRef.current,
       type: getMapType(),
       // Dynamic props
       currentMap: null,
@@ -216,7 +216,7 @@ const MapContainer = forwardRef(
 
     // Init leafletMap and currentMap
     useEffect(() => {
-      APIRef.current.rootDOM = rootRef.current
+      APIRef.current.element = rootRef.current
       loadData()
       // eslint-disable-next-line
     }, [])

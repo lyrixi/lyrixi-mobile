@@ -98,7 +98,7 @@ const VirtualList = (
         for (let item of items) {
           if (item.anchor === anchor) {
             if (typeof item?.virtualData.top === 'number') {
-              rootRef.current.rootDOM.scrollTop = item?.virtualData.top
+              rootRef.current.element.scrollTop = item?.virtualData.top
               return
             }
           }
@@ -113,11 +113,11 @@ const VirtualList = (
       // 列表更新, 底部自定义区域超过一屏高度, 即使列表高度增加, 也会一直保持在底部, 需要滚动到列表可视区域, 避免一直底部刷新
       if (_.isEmpty(visibleItems) && totalHeight > constant.startBuffer) {
         let appendHeight =
-          rootRef.current.rootDOM.scrollHeight -
+          rootRef.current.element.scrollHeight -
           (listRef.current.offsetTop + listRef.current.offsetHeight)
-        if (appendHeight > rootRef.current?.rootDOM.clientHeight) {
-          rootRef.current.rootDOM.scrollTop =
-            rootRef.current.rootDOM.scrollTop - appendHeight - constant.startBuffer
+        if (appendHeight > rootRef.current?.element.clientHeight) {
+          rootRef.current.element.scrollTop =
+            rootRef.current.element.scrollTop - appendHeight - constant.startBuffer
         }
       }
 
@@ -131,15 +131,15 @@ const VirtualList = (
 
   // 更新显示容器
   function updateVisibleItems() {
-    if (!rootRef.current?.rootDOM) return
+    if (!rootRef.current?.element) return
     let prependHeight = listRef.current?.offsetTop
     requestAnimationFrame(() => {
       let newVisibleItems = getVisibleItems({
         prependHeight: prependHeight || 0,
         items,
         itemHeights,
-        scrollTop: rootRef.current?.rootDOM?.scrollTop,
-        containerHeight: rootRef.current?.rootDOM?.clientHeight || 0
+        scrollTop: rootRef.current?.element?.scrollTop,
+        containerHeight: rootRef.current?.element?.clientHeight || 0
       })
       setVisibleItems(newVisibleItems)
     })

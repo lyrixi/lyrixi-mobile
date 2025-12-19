@@ -38,4 +38,4 @@ ToolBar 内的所有控件 Combo 部分都与 Button 属性一致，可以直接
 
 | 属性    | 说明   | 类型             |
 | ------- | ------ | ---------------- |
-| rootDOM | 根元素 | `HtmlDivElement` |
+| element | 根元素 | `HtmlDivElement` |

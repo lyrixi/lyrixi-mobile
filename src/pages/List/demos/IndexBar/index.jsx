@@ -52,7 +52,7 @@ const IndexBarList = () => {
         }}
       />
 
-      <IndexBar anchors={anchors} ref={indexBarRef} scrollerDOM={mainRef?.current?.rootDOM} />
+      <IndexBar anchors={anchors} ref={indexBarRef} scrollerDOM={mainRef?.current?.element} />
     </Page>
   )
 }

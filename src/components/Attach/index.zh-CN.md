@@ -50,8 +50,8 @@ toc: content
 
 | 属性        | 说明       | 类型                        |
 | ----------- | ---------- | --------------------------- |
-| rootDOM     | 根元素     | `HtmlDivElement`            |
-| getRootDOM  | 获取根元素 | () => `HtmlDivElement`      |
+| element     | 根元素     | `HtmlDivElement`            |
+| getElement  | 获取根元素 | () => `HtmlDivElement`      |
 | chooseFile  | 选择文件   | `() => Promise<boolean>`    |
 | choose      | 选择文件   | `() => Promise<boolean>`    |
 | uploadList  | 上传列表   | `() => void`                |

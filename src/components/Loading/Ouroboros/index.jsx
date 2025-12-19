@@ -17,8 +17,8 @@ const Ouroboros = (
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => {
+      element: rootRef.current,
+      getElement: () => {
         return rootRef.current
       }
     }

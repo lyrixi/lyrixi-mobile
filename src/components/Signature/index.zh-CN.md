@@ -48,7 +48,7 @@ toc: content
 
 | 属性       | 说明             | 类型                    |
 | ---------- | ---------------- | ----------------------- |
-| rootDOM    | 根元素           | `HtmlDivElement`        |
-| getRootDOM | 获取根元素       | () => `HtmlDivElement`  |
+| element    | 根元素           | `HtmlDivElement`        |
+| getElement | 获取根元素       | () => `HtmlDivElement`  |
 | getBase64  | 获取 Base64 图片 | `() => Promise<string>` |
 | clear      | 清除画布         | `() => void`            |

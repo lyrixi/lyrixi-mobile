@@ -54,8 +54,8 @@ let Main = forwardRef(
 
     useImperativeHandle(ref, () => {
       return {
-        mainDOM: mainRef.current,
-        getMainDOM: () => mainRef.current,
+        mainElement: mainRef.current,
+        getMainElement: () => mainRef.current,
         // 延迟解决Modal的useEffect open 后执行的问题
         getValue: () => {
           return valueRef.current

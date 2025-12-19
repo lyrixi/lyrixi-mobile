@@ -25,14 +25,14 @@ toc: content
 
 ### 属性
 
-| 属性     | 说明     | 类型      | 默认值  |
-| -------- | -------- | --------- | ------- |
-| className | 自定义类名 | `string` | - |
-| children | 卡片内容 | `ReactNode` | - |
+| 属性      | 说明       | 类型        | 默认值 |
+| --------- | ---------- | ----------- | ------ |
+| className | 自定义类名 | `string`    | -      |
+| children  | 卡片内容   | `ReactNode` | -      |
 
 ### Ref
 
-| 属性       | 说明                 | 类型                   |
-| ---------- | -------------------- | ---------------------- |
-| rootDOM    | 原始 card 元素       | `HtmlDivElement`       |
-| getRootDOM | 获取原始 card 元素   | () => `HtmlDivElement` |
+| 属性       | 说明               | 类型                   |
+| ---------- | ------------------ | ---------------------- |
+| element    | 原始 card 元素     | `HtmlDivElement`       |
+| getElement | 获取原始 card 元素 | () => `HtmlDivElement` |

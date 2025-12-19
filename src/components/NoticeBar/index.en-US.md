@@ -37,7 +37,7 @@ Notice bar for displaying important notification messages.
 
 | Property   | Description      | Type                   |
 | ---------- | ---------------- | ---------------------- |
-| rootDOM    | Root element     | `HTMLDivElement`       |
-| getRootDOM | Get root element | `() => HTMLDivElement` |
+| element    | Root element     | `HTMLDivElement`       |
+| getElement | Get root element | `() => HTMLDivElement` |
 | close      | Close notice bar | `() => void`           |
 | open       | Open notice bar  | `() => void`           |

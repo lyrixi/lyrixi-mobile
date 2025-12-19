@@ -36,10 +36,14 @@ function WeekMain(
   // Expose tools
   const weekMainRef = useRef(null)
   useImperativeHandle(ref, () => {
-    const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = weekMainRef?.current || {}
+    const {
+      element: mainElement,
+      getElement: getMainElement,
+      ...otherMainRef
+    } = weekMainRef?.current || {}
     return {
-      mainDOM: mainDOM,
-      getMainDOM: getMainDOM,
+      mainElement: mainElement,
+      getMainElement: getMainElement,
       ...otherMainRef,
       getValue: () => {
         return value instanceof Date ? value : null

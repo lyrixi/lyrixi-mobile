@@ -54,8 +54,8 @@ const Filter = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: comboRef.current,
-        getRootDOM: () => comboRef.current,
+        element: comboRef.current,
+        getElement: () => comboRef.current,
         close: () => {
           setOpen(false)
         },

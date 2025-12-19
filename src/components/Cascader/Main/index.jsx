@@ -63,8 +63,8 @@ const Main = forwardRef(
     const mainRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        mainDOM: mainRef.current,
-        getMainDOM: () => mainRef.current,
+        mainElement: mainRef.current,
+        getMainElement: () => mainRef.current,
         // 更新数据
         update: update,
         // 设置叶子节点标识, id: 叶子节点id, tabs: tabs列表

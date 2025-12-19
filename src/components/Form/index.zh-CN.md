@@ -43,4 +43,4 @@ toc: content
 
 | 属性    | 说明   | 类型              |
 | ------- | ------ | ----------------- |
-| rootDOM | 根元素 | `HtmlFormElement` |
+| element | 根元素 | `HtmlFormElement` |

@@ -9,15 +9,15 @@ import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // 显隐Loading
-function showLoading(rootDOM, { content, index } = {}) {
-  if (!rootDOM) return
+function showLoading(element, { content, index } = {}) {
+  if (!element) return
   // 根节点遮罩
-  rootDOM.classList.add('lyrixi-uploading')
+  element.classList.add('lyrixi-uploading')
   // 新增按钮遮罩
-  let chooseDOM = rootDOM.querySelector('[data-type="upload"]')
+  let chooseDOM = element.querySelector('[data-type="upload"]')
   if (chooseDOM) chooseDOM.classList.add('lyrixi-uploading')
   // 当前项遮罩
-  let itemDOM = typeof index === 'number' ? rootDOM.querySelector(`[data-index="${index}"]`) : null
+  let itemDOM = typeof index === 'number' ? element.querySelector(`[data-index="${index}"]`) : null
   if (itemDOM) {
     itemDOM.classList.remove('lyrixi-error')
     itemDOM.classList.add('lyrixi-uploading')

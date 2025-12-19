@@ -21,8 +21,8 @@ const Edit = forwardRef(
     const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: comboRef?.current,
-        getRootDOM: () => {
+        element: comboRef?.current,
+        getElement: () => {
           return comboRef?.current
         }
       }

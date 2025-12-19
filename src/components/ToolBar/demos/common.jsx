@@ -4,7 +4,7 @@ import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar } from 'lyrixi-m
 
 export default () => {
   const dropdownRef = useRef(null)
-  const [mainDOM, setMainDOM] = useState(null)
+  const [mainElement, setMainDOM] = useState(null)
   const [dateRange, setDateRange] = useState(null)
   const [item, setItem] = useState(null)
   const [search, setSearch] = useState('')
@@ -45,8 +45,8 @@ export default () => {
     <Page>
       <Page.Main
         ref={(current) => {
-          if (!current?.rootDOM) return
-          setMainDOM(current?.rootDOM || null)
+          if (!current?.element) return
+          setMainDOM(current?.element || null)
         }}
       >
         {/* Dropdown */}
@@ -93,7 +93,7 @@ export default () => {
                   }
                   return '>'
                 }}
-                portal={mainDOM}
+                portal={mainElement}
                 placeholder={'DateRange'}
                 value={dateRange}
                 // allowClear={true}
@@ -104,7 +104,7 @@ export default () => {
                 }}
               />
               <ToolBar.DateRange
-                portal={mainDOM}
+                portal={mainElement}
                 placeholder="DateRange"
                 format="MM-DD"
                 value={dateRange}
@@ -116,7 +116,7 @@ export default () => {
                 }}
               />
               <ToolBar.DateRange
-                portal={mainDOM}
+                portal={mainElement}
                 placeholder="DateRange"
                 value={dateRange}
                 // allowClear={true}
@@ -136,7 +136,7 @@ export default () => {
             <ToolBar>
               <ToolBar.List
                 left={12}
-                portal={mainDOM}
+                portal={mainElement}
                 placeholder="List"
                 value={item}
                 onChange={setItem}
@@ -157,7 +157,7 @@ export default () => {
                 ]}
               />
               <ToolBar.List
-                portal={mainDOM}
+                portal={mainElement}
                 placeholder="List"
                 value={item}
                 onChange={setItem}
@@ -186,7 +186,7 @@ export default () => {
           <Card.Main>
             <ToolBar>
               <ToolBar.ActionSheet
-                portal={mainDOM}
+                portal={mainElement}
                 // color="primary"
 
                 placeholder="List"
@@ -227,7 +227,7 @@ export default () => {
               </Flex.Compact>
               <Flex.Compact>
                 <ToolBar.List
-                  portal={mainDOM}
+                  portal={mainElement}
                   arrowRender={null}
                   sizeEqual
                   maskStyle={{

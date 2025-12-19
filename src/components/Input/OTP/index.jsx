@@ -43,8 +43,8 @@ const InputOTP = forwardRef(
 
     // Expose
     useImperativeHandle(ref, () => ({
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
+      element: rootRef.current,
+      getElement: () => rootRef.current,
       focus: focus,
       blur: blur
     }))

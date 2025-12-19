@@ -49,7 +49,7 @@ const FormItem = forwardRef(
     })
 
     useEffect(() => {
-      const currentElement = rootRef.current.rootDOM
+      const currentElement = rootRef.current.element
 
       // 检查全局observer是否存在
       if (virtual.observer && currentElement) {

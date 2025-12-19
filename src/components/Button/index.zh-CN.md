@@ -38,5 +38,5 @@ toc: content
 
 | 属性       | 说明                 | 类型                   |
 | ---------- | -------------------- | ---------------------- |
-| rootDOM    | 原始 button 元素     | `HtmlDivElement`       |
-| getRootDOM | 获取原始 button 元素 | () => `HtmlDivElement` |
+| element    | 原始 button 元素     | `HtmlDivElement`       |
+| getElement | 获取原始 button 元素 | () => `HtmlDivElement` |

@@ -40,11 +40,11 @@ const Modal = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         maskDOM: maskRef.current,
-        getMaskDOM: () => {
+        getMaskElement: () => {
           return maskRef.current
         },
-        modalDOM: modalRef.current,
-        getModalDOM: () => {
+        modalElement: modalRef.current,
+        getModalElement: () => {
           return modalRef.current
         }
       }

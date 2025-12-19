@@ -33,9 +33,9 @@ const Item = forwardRef(
     const inputRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
+        element: rootRef.current,
         inputDOM: inputRef.current,
-        getRootDOM: () => {
+        getElement: () => {
           return rootRef.current
         },
         getInputDOM: () => {

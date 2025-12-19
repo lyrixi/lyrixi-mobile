@@ -56,16 +56,16 @@ const InputNode = (
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
 
-  // DOM
+  // Elements
   const rootRef = useRef(null)
   const inputRef = useRef(null)
 
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
+      element: rootRef.current,
       inputDOM: inputRef.current,
-      getRootDOM: () => {
+      getElement: () => {
         return rootRef.current
       },
       getInputDOM: () => {

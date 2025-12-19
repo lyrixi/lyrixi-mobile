@@ -89,8 +89,8 @@ const Main = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: mainRef?.current?.rootDOM,
-        getRootDOM: mainRef?.current?.getRootDOM,
+        element: mainRef?.current?.element,
+        getElement: mainRef?.current?.getElement,
         // IndexBar
         getAnchors: mainRef?.current?.getAnchors,
         scrollToAnchor: mainRef?.current?.scrollToAnchor,
@@ -153,7 +153,7 @@ const Main = forwardRef(
 
       // 初次加载/重新加载/重试/触顶刷新/点击重试, 滚动到顶部
       if (['load', 'reload', 'topRefresh', 'retry'].includes(action)) {
-        scrollToTop(mainRef.current?.rootDOM)
+        scrollToTop(mainRef.current?.element)
       }
 
       // 请求数据

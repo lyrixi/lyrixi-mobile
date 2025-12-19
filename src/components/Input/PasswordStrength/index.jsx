@@ -27,8 +27,8 @@ const PasswordStrength = (
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => {
+      element: rootRef.current,
+      getElement: () => {
         return rootRef.current
       },
       getStrength: (newValue) => {

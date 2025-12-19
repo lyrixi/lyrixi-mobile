@@ -26,23 +26,23 @@ toc: content
 
 ### 属性
 
-| 属性     | 说明       | 类型                      | 默认值 |
-| -------- | ---------- | ------------------------- | ------ |
-| portal   | 渲染容器   | `HTMLElement`             | -      |
-| poster   | 封面图片   | `string`                  | `''`   |
-| src      | 视频源     | `string`                  | -      |
-| autoPlay | 自动播放   | `boolean`                 | `true` |
-| isLive   | 是否直播   | `boolean`                 | -      |
-| params   | 播放器参数 | `object`                  | -      |
-| onError  | 错误回调   | `(error: object) => void` | -      |
+| 属性         | 说明           | 类型                      | 默认值 |
+| ------------ | -------------- | ------------------------- | ------ |
+| portal       | 渲染容器       | `HTMLElement`             | -      |
+| poster       | 封面图片       | `string`                  | `''`   |
+| src          | 视频源         | `string`                  | -      |
+| autoPlay     | 自动播放       | `boolean`                 | `true` |
+| isLive       | 是否直播       | `boolean`                 | -      |
+| params       | 播放器参数     | `object`                  | -      |
+| onError      | 错误回调       | `(error: object) => void` | -      |
 | headerRender | 状态栏渲染函数 | `() => ReactNode`         | -      |
-| children | 子元素     | `ReactNode`               | -      |
+| children     | 子元素         | `ReactNode`               | -      |
 
 ### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| rootDOM    | 根元素     | `HtmlDivElement`       |
-| getRootDOM | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
 | pause      | 暂停播放   | `() => void`           |
 | play       | 开始播放   | `() => void`           |

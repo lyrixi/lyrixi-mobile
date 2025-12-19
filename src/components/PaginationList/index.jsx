@@ -72,7 +72,7 @@ const PaginationList = forwardRef(
           // 报错不存数据
           if (lastResult?.status === 'error') return
           // 存滚动条位置
-          let scrollTop = mainRef.current?.rootDOM?.scrollTop
+          let scrollTop = mainRef.current?.element?.scrollTop
           lastResult.scrollTop = scrollTop
           // 存查询参数
           for (let key in extraCache) {
@@ -165,7 +165,7 @@ const PaginationList = forwardRef(
           if (action === 'load' && cacheName) {
             let cacheResult = Storage.getCache(cacheName)
             console.log(mainRef)
-            mainRef.current.rootDOM.scrollTop = cacheResult?.scrollTop || 0
+            mainRef.current.element.scrollTop = cacheResult?.scrollTop || 0
           }
 
           onLoad && onLoad({ result: result, action: action })

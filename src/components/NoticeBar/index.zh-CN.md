@@ -39,7 +39,7 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| rootDOM    | 根元素     | `HTMLDivElement`       |
-| getRootDOM | 获取根元素 | `() => HTMLDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | `() => HTMLDivElement` |
 | close      | 关闭通知栏 | `() => void`           |
 | open       | 打开通知栏 | `() => void`           |

@@ -41,8 +41,8 @@ const Signature = (
 
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
+      element: rootRef.current,
+      getElement: () => rootRef.current,
       getBase64: async () => {
         if (CanvasUtil.isBlank(canvasRef.current)) {
           return null

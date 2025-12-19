@@ -29,8 +29,8 @@ const Badge = forwardRef(
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
+        element: rootRef.current,
+        getElement: () => rootRef.current
       }
     })
 

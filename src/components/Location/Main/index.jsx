@@ -39,8 +39,8 @@ const Main = forwardRef(
 
     useImperativeHandle(ref, () => {
       return {
-        mainDOM: mainRef.current,
-        getMainDOM: () => mainRef.current,
+        mainElement: mainRef.current,
+        getMainElement: () => mainRef.current,
         ...mapRef.current
       }
     })
@@ -66,7 +66,7 @@ const Main = forwardRef(
               config={config}
             />
           )}
-          
+
           {/* Element: Choose */}
           {open === 'choose' && (
             <Choose

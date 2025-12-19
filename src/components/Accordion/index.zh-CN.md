@@ -42,8 +42,8 @@ toc: content
 
 | 属性           | 说明         | 类型                      |
 | -------------- | ------------ | ------------------------- |
-| rootDOM        | 根元素       | `HtmlDivElement`          |
-| getRootDOM     | 获取根元素   | () => `HtmlDivElement`    |
+| element        | 根元素       | `HtmlDivElement`          |
+| getElement     | 获取根元素   | () => `HtmlDivElement`    |
 | getActiveIndex | 获取激活索引 | `() => number`            |
 | openIndex      | 打开指定索引 | `(index: number) => void` |
 | close          | 关闭所有     | `() => void`              |

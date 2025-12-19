@@ -27,9 +27,9 @@ const QRCode = forwardRef(
     const instance = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
+        element: rootRef.current,
         instance: instance.current,
-        getRootDOM: () => rootRef.current,
+        getElement: () => rootRef.current,
         getInstance: () => instance.current
       }
     })

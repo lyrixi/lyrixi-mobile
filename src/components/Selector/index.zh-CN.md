@@ -42,7 +42,7 @@ toc: content
 
 | 属性        | 说明           | 类型                   |
 | ----------- | -------------- | ---------------------- |
-| rootDOM     | 根元素         | `HtmlDivElement`       |
+| element     | 根元素         | `HtmlDivElement`       |
 | instance    | 选择器实例     | `object`               |
-| getRootDOM  | 获取根元素     | () => `HtmlDivElement` |
+| getElement  | 获取根元素     | () => `HtmlDivElement` |
 | getInstance | 获取选择器实例 | () => `object`         |

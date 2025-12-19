@@ -46,9 +46,9 @@ const Range = forwardRef(
 
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
+        element: rootRef.current,
         inputDOM: inputRef.current,
-        getRootDOM: () => rootRef.current,
+        getElement: () => rootRef.current,
         getInputDOM: () => inputRef.current
       }
     })

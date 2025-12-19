@@ -51,8 +51,8 @@ function Float(
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
+      element: rootRef.current,
+      getElement: () => rootRef.current
     }
   })
 
@@ -125,7 +125,7 @@ function Float(
     })
   }
 
-  // DOM
+  // Node
   let Node = (
     <div
       ref={rootRef}

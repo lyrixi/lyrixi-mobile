@@ -41,9 +41,9 @@ const IndexBar = forwardRef(
 
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: sidebarRef.current,
+        element: sidebarRef.current,
         tooltipDOM: tooltipRef.current,
-        getRootDOM: () => sidebarRef.current,
+        getElement: () => sidebarRef.current,
         getTooltipDOM: () => sidebarRef.current,
         activeAnchor: (currentAnchor) => {
           if (!currentAnchor && scrollerDOM) {
@@ -125,7 +125,7 @@ const IndexBar = forwardRef(
       sidebarRef.current.classList.remove('lyrixi-active')
     }
 
-    const DOM = (
+    const Node = (
       <Fragment>
         <div
           style={style}
@@ -150,7 +150,7 @@ const IndexBar = forwardRef(
         <div ref={tooltipRef} className="lyrixi-indexbar-tooltip"></div>
       </Fragment>
     )
-    return DOM
+    return Node
   }
 )
 

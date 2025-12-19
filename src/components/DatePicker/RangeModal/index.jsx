@@ -154,7 +154,7 @@ const RangeModal = forwardRef(
           endDisabled={endDisabled}
           // Elements
           titles={titles}
-          portal={modalRef?.current?.rootDOM}
+          portal={modalRef?.current?.element}
           // Events
           onChange={handleChange}
         />

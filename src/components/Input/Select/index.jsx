@@ -63,15 +63,15 @@ const Combo = forwardRef(
         getDisplayValue: (newValue) => {
           return displayValue
         },
-        rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
-        getRootDOM: () => {
+        element: comboRef?.current?.getElement ? comboRef.current.getElement() : comboRef.current,
+        getElement: () => {
           // div
-          let rootDOM = comboRef?.current
+          let element = comboRef?.current
           // Input.Text
-          if (comboRef?.current?.getRootDOM) {
-            rootDOM = comboRef.current.getRootDOM()
+          if (comboRef?.current?.getElement) {
+            element = comboRef.current.getElement()
           }
-          return rootDOM
+          return element
         }
       }
     })

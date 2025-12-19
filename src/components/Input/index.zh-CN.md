@@ -95,9 +95,9 @@ toc: content
 
 | 属性        | 说明           | 类型                     |
 | ----------- | -------------- | ------------------------ |
-| rootDOM     | 根元素         | `HtmlDivElement`         |
+| element     | 根元素         | `HtmlDivElement`         |
 | inputDOM    | 输入框元素     | `HtmlInputElement`       |
-| getRootDOM  | 获取根元素     | () => `HtmlDivElement`   |
+| getElement  | 获取根元素     | () => `HtmlDivElement`   |
 | getInputDOM | 获取输入框元素 | () => `HtmlInputElement` |
 
 ## Input.Textarea

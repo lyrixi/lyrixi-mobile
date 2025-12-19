@@ -86,8 +86,8 @@ const PreviewMain = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        mainDOM: swiperRef.current,
-        getMainDOM: () => swiperRef.current
+        mainElement: swiperRef.current,
+        getMainElement: () => swiperRef.current
       }
     })
     useEffect(() => {

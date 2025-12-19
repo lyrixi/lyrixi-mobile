@@ -60,10 +60,10 @@ title: Modal
 
 ### Ref
 
-| 属性        | 说明                | 类型                   |
-| ----------- | ------------------- | ---------------------- |
-| modalDOM    | 模态框 DOM 元素     | `HtmlDivElement`       |
-| getModalDOM | 获取模态框 DOM 元素 | () => `HtmlDivElement` |
+| 属性            | 说明                | 类型                   |
+| --------------- | ------------------- | ---------------------- |
+| modalElement    | 模态框 DOM 元素     | `HtmlDivElement`       |
+| getModalElement | 获取模态框 DOM 元素 | () => `HtmlDivElement` |
 
 ## Modal.DropdownModal
 

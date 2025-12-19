@@ -33,8 +33,8 @@ function Main(
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      mainDOM: mainRef.current,
-      getMainDOM: () => mainRef.current,
+      mainElement: mainRef.current,
+      getMainElement: () => mainRef.current,
       support: (externalShareTo) => {
         return support(externalShareTo || shareTo)
       }

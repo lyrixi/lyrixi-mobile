@@ -34,8 +34,8 @@ const Transfer = (
   // 暴露方法
   useImperativeHandle(ref, () => {
     return {
-      mainDOM: mainRef.current,
-      getMainDOM: () => mainRef.current
+      mainElement: mainRef.current,
+      getMainElement: () => mainRef.current
     }
   })
 
@@ -84,7 +84,7 @@ const Transfer = (
             </div>
             {`${value.length}/${list?.length || 0}`}
           </div>
-          
+
           {/* Element: Sortable List */}
           <ReactSortable
             className="lyrixi-card lyrixi-transfer-card"
@@ -130,7 +130,7 @@ const Transfer = (
             </div>
             {`${unSelectedList.length}/${list?.length || 0}`}
           </div>
-          
+
           {/* Element: Card */}
           <Card className="lyrixi-transfer-card">
             {unSelectedList.map((item, index) => {

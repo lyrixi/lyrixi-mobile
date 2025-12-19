@@ -44,8 +44,8 @@ toc: content
 
 ### Ref
 
-| 属性       | 说明             | 类型                           |
-| ---------- | ---------------- | ------------------------------ |
-| mainDOM    | 主容器元素       | `HtmlDivElement`               |
-| getMainDOM | 获取主容器元素   | () => `HtmlDivElement`         |
-| support    | 检查是否支持分享 | `(shareTo: object) => boolean` |
+| 属性           | 说明             | 类型                           |
+| -------------- | ---------------- | ------------------------------ |
+| mainElement    | 主容器元素       | `HtmlDivElement`               |
+| getMainElement | 获取主容器元素   | () => `HtmlDivElement`         |
+| support        | 检查是否支持分享 | `(shareTo: object) => boolean` |

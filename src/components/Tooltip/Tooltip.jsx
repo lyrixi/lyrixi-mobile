@@ -74,20 +74,20 @@ const Tooltip = forwardRef(
       }
 
       if (!referenceDOM) {
-        let rootDOM = comboRef?.current?.rootDOM
-        if (!rootDOM && typeof comboRef?.current?.getRootDOM === 'function') {
-          rootDOM = comboRef.current.getRootDOM()
+        let element = comboRef?.current?.element
+        if (!element && typeof comboRef?.current?.getElement === 'function') {
+          element = comboRef.current.getElement()
         }
-        referenceDOM = rootDOM
+        referenceDOM = element
       }
 
       // 位移元素
-      let modalDOM = modalRef?.current?.modalDOM ? modalRef?.current?.modalDOM : null
+      let modalElement = modalRef?.current?.modalElement ? modalRef?.current?.modalElement : null
 
-      if (referenceDOM && modalDOM) {
+      if (referenceDOM && modalElement) {
         // 没有自定义位置时生效
         if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-          updatePositionByReferenceDOM(modalDOM, {
+          updatePositionByReferenceDOM(modalElement, {
             referenceDOM: referenceDOM,
             animation: animation,
             offset: {
@@ -110,7 +110,7 @@ const Tooltip = forwardRef(
 
       // 没有自定义位置时生效
       if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-        updatePosition(comboRef.current?.rootDOM)
+        updatePosition(comboRef.current?.element)
       }
 
       setOpen(!open)

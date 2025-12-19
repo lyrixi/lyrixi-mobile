@@ -42,9 +42,9 @@ const Modal = forwardRef(
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        modalDOM: modalRef?.current?.rootDOM || modalRef?.current,
-        getModalDOM: modalRef?.current?.getRootDOM
-          ? modalRef?.current?.getRootDOM
+        modalElement: modalRef?.current?.element || modalRef?.current,
+        getModalElement: modalRef?.current?.getElement
+          ? modalRef?.current?.getElement
           : () => modalRef.current
       }
     })

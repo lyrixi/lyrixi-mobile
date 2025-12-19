@@ -42,5 +42,5 @@ toc: content
 
 | 属性       | 说明       | 类型                       |
 | ---------- | ---------- | -------------------------- |
-| rootDOM    | 根元素     | `HtmlSectionElement`       |
-| getRootDOM | 获取根元素 | () => `HtmlSectionElement` |
+| element    | 根元素     | `HtmlSectionElement`       |
+| getElement | 获取根元素 | () => `HtmlSectionElement` |
