@@ -34,16 +34,17 @@ const Main = forwardRef(
       value,
       list: externalList,
       loadData: externalLoadData,
-      // Status
-      allowClear,
+
       // Style
       listStyle,
       listClassName,
       optionStyle,
       optionClassName,
+
       // Elements
       searchVisible,
       tabbarRender,
+
       // Events
       onChange,
       onReLoad

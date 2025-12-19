@@ -29,13 +29,15 @@ const DistrictModal = forwardRef(
       // Status
       open,
       min = '',
-      allowClear,
-      multiple,
       editableOptions,
       maskClosable,
 
       // Style
       safeArea,
+      listStyle,
+      listClassName,
+      optionStyle,
+      optionClassName,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -169,18 +171,26 @@ const DistrictModal = forwardRef(
       >
         <DistrictMain
           ref={mainRef}
+          // Modal: Status
           open={open}
+          // Main: Value & Display Value
           value={currentValue}
-          allowClear={allowClear}
-          multiple={multiple}
-          onChange={handleChange}
-          searchVisible={searchVisible}
           startType={startType}
           type={type}
           loadCountries={loadCountries}
           loadCountryRegions={loadCountryRegions}
           loadStreets={loadStreets}
+          // Main: Status
           editableOptions={editableOptions}
+          // Main: Style
+          listStyle={listStyle}
+          listClassName={listClassName}
+          optionStyle={optionStyle}
+          optionClassName={optionClassName}
+          // Main: Elements
+          searchVisible={searchVisible}
+          // Main: Events
+          onChange={handleChange}
           onLoad={handleLoad}
         />
       </NavBarModal>

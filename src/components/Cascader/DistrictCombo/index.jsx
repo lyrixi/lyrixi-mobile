@@ -55,6 +55,10 @@ const DistrictCombo = forwardRef(
       maskClosable,
 
       // Modal: Style
+      listStyle,
+      listClassName,
+      optionStyle,
+      optionClassName,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -223,15 +227,17 @@ const DistrictCombo = forwardRef(
           // Modal: Status
           open={open}
           min={min}
-          allowClear={allowClear}
-          multiple={multiple}
           editableOptions={editableOptions}
           maskClosable={maskClosable}
           // Modal: Style
-          maskClassName={maskClassName}
-          maskStyle={maskStyle}
+          listStyle={listStyle}
+          listClassName={listClassName}
+          optionStyle={optionStyle}
+          optionClassName={optionClassName}
           className={modalClassName}
           style={modalStyle}
+          maskClassName={maskClassName}
+          maskStyle={maskStyle}
           // Modal: Elements
           portal={portal}
           title={title}

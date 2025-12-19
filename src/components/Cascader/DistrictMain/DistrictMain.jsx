@@ -32,7 +32,9 @@ const DistrictMain = forwardRef(
       searchVisible,
 
       // Events
-      onLoad
+      onChange,
+      onLoad,
+      onReLoad
     },
     ref
   ) => {
@@ -107,6 +109,9 @@ const DistrictMain = forwardRef(
             />
           )
         }}
+        // Events
+        onChange={onChange}
+        onReLoad={onReLoad}
       />
     )
   }

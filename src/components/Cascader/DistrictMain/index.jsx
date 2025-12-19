@@ -42,6 +42,7 @@ const CascaderDistrictMain = forwardRef(
       searchVisible,
 
       // Events
+      onChange,
       onLoad
     },
     ref
@@ -150,6 +151,7 @@ const CascaderDistrictMain = forwardRef(
         // Elements
         searchVisible={searchVisible}
         // Events
+        onChange={onChange}
         onLoad={onLoad}
         onReLoad={async (tabs, { update }) => {
           // 列表为空, 则初始化列表
