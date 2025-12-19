@@ -27,17 +27,12 @@ const Modal = forwardRef(
       modalClassName,
       maskStyle,
       maskClassName,
-      animation = 'zoom', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
 
       // Element
       portal,
-      mainProps,
-      children,
 
       // Events
-      onClose,
-      onError,
-      onSuccess
+      onClose
     },
     ref
   ) => {
@@ -81,11 +76,6 @@ const Modal = forwardRef(
             ref={mainRef}
             // Value & Display Value
             shareTo={shareTo}
-            // Element
-            {...(mainProps || {})}
-            // Events
-            onError={onError}
-            onSuccess={onSuccess}
           />
         </div>
 

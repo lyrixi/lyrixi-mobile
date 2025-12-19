@@ -8,9 +8,7 @@ import { LocaleUtil, Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
 // 分享至
-function share(params) {
-  let { title, description, url, imageUrl, onSuccess, onError } = params || {}
-
+function share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
   if (Bridge.platform === 'lark') {
     window.top.tt.share({
       channelType: ['wx', 'wx_timeline', 'system'],

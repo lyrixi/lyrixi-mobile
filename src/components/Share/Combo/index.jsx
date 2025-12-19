@@ -6,6 +6,7 @@ import share from './../utils/share'
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
 import DOMUtil from './../../../utils/DOMUtil'
+import Combo from './../../Combo'
 // 内库使用-end
 
 /* 测试使用-start
@@ -13,24 +14,26 @@ import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
 // Combo
-const Combo = (
+const ShareCombo = (
   {
     // Value & Display Value
     shareTo, // {wechat|moments|miniprogram|wecom|dingtalk|lark: {title = '', description = '', imageUrl = '', url = ''}}
 
     // Style
+    style,
     className,
     modalClassName,
     modalStyle,
+    maskStyle,
+    maskClassName,
 
     // Element
     portal,
+    comboRender,
     children,
 
     // Events
-    onBeforeOpen,
-    onError,
-    onSuccess
+    onBeforeOpen
   },
   ref
 ) => {
@@ -69,25 +72,37 @@ const Combo = (
   }
 
   // 显示项
-  function getChildren() {
-    if (support(shareTo)) {
-      return children ? children : 'Share to'
+  function getComboNode() {
+    if (!support(shareTo)) {
+      return null
     }
-    return null
+
+    if (typeof comboRender === 'function') {
+      return comboRender({
+        comboRef,
+        open: open,
+        onClick: () => setOpen(true)
+      })
+    }
+
+    return (
+      <Combo
+        ref={comboRef}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-share-button', className)}
+        // Events
+        onClick={handleClick}
+      >
+        {children ? children : 'Share to'}
+      </Combo>
+    )
   }
 
   return (
     <>
       {/* Element: Combo Button */}
-      <div
-        ref={comboRef}
-        // Style
-        className={DOMUtil.classNames('lyrixi-share-button', className)}
-        // Events
-        onClick={handleClick}
-      >
-        {getChildren()}
-      </div>
+      {getComboNode()}
 
       {/* Element: Modal */}
       <Modal
@@ -97,18 +112,17 @@ const Combo = (
         // Style
         modalClassName={modalClassName}
         modalStyle={modalStyle}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
         // Element
         portal={portal}
         // Value & Display Value
         shareTo={shareTo}
         // Events
-        onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
-        onError={onError}
-        onSuccess={onSuccess}
       />
     </>
   )
 }
 
-export default forwardRef(Combo)
+export default forwardRef(ShareCombo)

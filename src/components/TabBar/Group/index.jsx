@@ -61,7 +61,7 @@ const Group = forwardRef(
 
       // 遍历
       return list.map((item, index) => {
-        const { name, description, placeholder, props: tabProps = {} } = item
+        const { name, description, placeholder } = item
         let checked = getIsChecked(item)
         return (
           <Fragment key={index}>
@@ -78,7 +78,6 @@ const Group = forwardRef(
               )}
               data-index={index}
               key={index}
-              {...tabProps}
               onClick={(e) => {
                 e.stopPropagation()
                 onChange && onChange(item)

@@ -27,13 +27,11 @@ const Modal = forwardRef(
 
       // Element
       portal,
-      mainProps,
       color, // 绘画配置: 画笔颜色
       backgroundColor, // 绘画配置: 背景颜色
 
       // Events
       onChange,
-      onOpen,
       onClose
     },
     ref
@@ -65,8 +63,7 @@ const Modal = forwardRef(
           <Main
             // Value & Display Value
             value={value}
-            // Element
-            {...(mainProps || {})}
+            // Style
             color={color} // 绘画配置: 画笔颜色
             backgroundColor={backgroundColor} // 绘画配置: 背景颜色
             // Events
