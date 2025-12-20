@@ -292,6 +292,8 @@ let Bridge = {
   },
   /**
    * 消息分享
+   * @param {Object} params - 分享参数
+   * @param {Array<String>} params.platforms - 分享平台, 微信、企微、飞书、钉钉都不支持, 默认分享到当前平台
    * @param {String} params.title - 分享标题(必填)
    * @param {String} params.description - 分享副标题
    * @param {Number} params.url - 分享连接
