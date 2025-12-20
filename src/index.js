@@ -55,7 +55,6 @@ export { default as QRCode } from './components/QRCode' // 不常用
 export { default as Select } from './components/Select'
 export { default as SafeArea } from './components/SafeArea'
 export { default as Selector } from './components/Selector'
-export { default as Share } from './components/Share' // 不常用
 export { default as Switch } from './components/Switch'
 export { default as TabBar } from './components/TabBar'
 export { default as Toast } from './components/Toast'

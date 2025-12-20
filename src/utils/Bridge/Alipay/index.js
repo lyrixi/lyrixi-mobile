@@ -181,6 +181,9 @@ let Bridge = {
   },
   previewMedia: function (params) {
     console.log('调用支付宝预览文件暂未实现', params)
+  },
+  share: function (params) {
+    console.log('调用支付宝分享暂未实现', params)
   }
 }
 

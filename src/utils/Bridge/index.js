@@ -291,6 +291,23 @@ let Bridge = {
     return undefined
   },
   /**
+   * 消息分享
+   * @param {String} params.title - 分享标题(必填)
+   * @param {String} params.description - 分享副标题
+   * @param {Number} params.url - 分享连接
+   * @param {String} params.imageUrl - 分享连接的图片
+   * @param {Function} params.onSuccess - 分享成功回调
+   * @param {Function} params.onError - 分享失败回调
+   * @returns {void}
+   */
+  share(params) {
+    const bridge = this._getCurrentBridge()
+    if (bridge.share) {
+      return bridge.share(params)
+    }
+    return undefined
+  },
+  /**
    * 获取 platform 属性
    * @returns {String} 当前平台名称
    */

@@ -442,70 +442,22 @@ export default () => {
         </Card>
 
         <Card>
-          <Divider>分享: 支持勤策(ios、android)、微信、企微、小程序、飞书、钉钉</Divider>
-          <Share.Combo
-            onBeforeOpen={() => {
-              Loading.show({
-                content: '获取小程序分享链接'
-              })
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  Loading.hide()
-                  setShareTo({
-                    wechat: {
-                      title: '标题',
-                      description: '描述',
-                      imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      url: 'https://www.baidu.com'
-                    },
-                    miniprogram: {
-                      title: '标题',
-                      description: '描述',
-                      imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      url: 'https://servicewechat.com/wxascheme/jump_wxa?url=weixin://dl/business/?t=IUGVzjsue7u',
-                      miniProgramId: 'gh_00011085b545',
-                      miniProgramPath:
-                        '/pages/Login/index?sharePath=%2Fpages%2FBlog%2FShareDetail%2Findex%3Finfoid%3D5083717378142702100&tenantid=6019160693176440421'
-                    },
-                    moments: {
-                      title: '标题',
-                      description: '描述',
-                      imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      url: 'https://www.baidu.com'
-                    },
-                    wecom: {
-                      title: '标题',
-                      description: '描述',
-                      imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      url: 'https://www.baidu.com'
-                    },
-                    dingtalk: {
-                      title: '标题',
-                      description: '描述',
-                      imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      url: 'https://www.baidu.com'
-                    },
-                    lark: {
-                      title: '标题',
-                      description: '描述',
-                      imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      url: 'https://www.baidu.com'
-                    }
-                  })
-                  resolve(true)
-                }, 2000)
+          <Divider>分享: 微信、企微、小程序、飞书、钉钉</Divider>
+          <Button
+            className="lyrixi-primary lyrixi-flex"
+            style={{ margin: '12px 10px' }}
+            radius="m"
+            onClick={() => {
+              Bridge.share({
+                title: '标题',
+                description: '描述',
+                imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                url: 'https://lyrixi.github.io/lyrixi-mobile/'
               })
             }}
-            shareTo={shareTo}
           >
-            <Button
-              className="lyrixi-primary lyrixi-flex"
-              style={{ margin: '12px 10px' }}
-              radius="m"
-            >
-              分享
-            </Button>
-          </Share.Combo>
+            Share
+          </Button>
         </Card>
       </Page.Main>
     </Page>

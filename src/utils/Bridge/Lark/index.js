@@ -191,6 +191,27 @@ let Bridge = {
       },
       onCancel: onCancel
     })
+  },
+  share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
+    window.top.tt.share({
+      channelType: ['wx', 'wx_timeline', 'system'],
+      contentType: 'url',
+      title: title,
+      content: description,
+      url: url,
+      image: imageUrl,
+      success() {
+        onSuccess && onSuccess()
+      },
+      fail(err) {
+        console.log('Lark Share onError:', err)
+
+        onError &&
+          onError({
+            message: err?.message || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
+          })
+      }
+    })
   }
 }
 

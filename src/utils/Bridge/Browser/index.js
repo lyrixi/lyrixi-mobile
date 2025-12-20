@@ -2,14 +2,15 @@ import uploadFile from './uploadFile'
 import back from './../utils/back'
 
 // 内库使用-start
-import GeoUtil from './../../GeoUtil'
 import LocaleUtil from './../../LocaleUtil'
+import Clipboard from './../../Clipboard'
+import GeoUtil from './../../GeoUtil'
 import Device from './../../Device'
 import Toast from './../../../components/Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { GeoUtil, Device, Toast, LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil, Clipboard, GeoUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Browser = {
@@ -313,6 +314,13 @@ let Browser = {
       content: message
     })
     onError && onError({ status: 'error', message: message })
+  },
+  share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
+    Clipboard.copyText(url)
+    onSuccess &&
+      onSuccess({
+        status: 'success'
+      })
   }
 }
 export default Browser

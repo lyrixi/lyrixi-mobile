@@ -404,6 +404,63 @@ let Bridge = {
 
     const wrappedParams = wrapCallback({ url: fileUrl, onSuccess: onSuccess, onError: onError })
     window.top.wx.previewFile(wrappedParams)
+  },
+  share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
+    // 微信服务号中分享
+    if (Device.platform === 'wechat') {
+      window.top.wx.updateAppMessageShareData({
+        title: title || '',
+        desc: description || '',
+        link: url || '',
+        imgUrl: imageUrl || '',
+        onSuccess: function (res) {
+          setOpen(true)
+          onSuccess && onSuccess()
+        },
+        onError: function (err) {
+          console.log('WeChat Share onError:', err)
+          Toast.show({
+            content: err?.errMsg || LocaleUtil.locale('分享失败')
+          })
+          onError &&
+            onError({
+              message: err?.errMsg || LocaleUtil.locale('分享失败')
+            })
+        }
+      })
+    }
+    // 企业微信中分享
+    else if (Device.platform === 'wecom') {
+      window.top.wx.invoke(
+        'shareAppMessage',
+        {
+          title: title || '',
+          desc: description || '',
+          link: url || '',
+          imgUrl: imageUrl || ''
+        },
+        function (res) {
+          console.log('WeCom Share result:', res)
+
+          if (res.err_msg === 'shareAppMessage:ok') {
+            onSuccess && onSuccess()
+          } else {
+            onError &&
+              onError({
+                message: res?.errMsg || LocaleUtil.locale('分享失败')
+              })
+          }
+        }
+      )
+    }
+    // 小程序中不支持h5分享，所以需要复制链接
+    else {
+      Clipboard.copyText(url)
+      onSuccess &&
+        onSuccess({
+          status: 'success'
+        })
+    }
   }
 }
 

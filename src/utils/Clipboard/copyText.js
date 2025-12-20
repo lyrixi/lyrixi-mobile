@@ -10,32 +10,37 @@ import Message from './../../components/Message'
 import { LocaleUtil, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
 
-function copyText(url, { successMessage, errorMessage } = {}) {
+// 复制连接
+function copyText(url, { onSuccess, onError } = {}) {
   Clipboard.copy(url, {
     onSuccess: () => {
-      Toast.show({
-        content:
-          successMessage || LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi.link.copy.success')
-      })
+      onSuccess
+        ? onSuccess()
+        : Toast.show({
+            content: LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi.link.copy.success')
+          })
     },
     onError: () => {
-      Message.open({
-        maskStyle: {
-          zIndex: 100
-        },
-        title: LocaleUtil.locale('提示', 'lyrixi.alert.title'),
-        content:
-          (errorMessage ||
-            LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'lyrixi.link.copy.error')) +
-          `<br/>${url}`,
-        buttons: [
-          {
-            name: '确定',
-            className: 'lyrixi-primary',
-            onClick: () => true
-          }
-        ]
-      })
+      onError
+        ? onError()
+        : Message.open({
+            maskStyle: {
+              zIndex: 100
+            },
+            title: LocaleUtil.locale('提示', 'lyrixi.alert.title'),
+            content: `${LocaleUtil.locale(
+              '链接复制到剪贴板失败, 请长按复制',
+              'lyrixi.link.copy.error'
+            )}
+          <br/>${url}`,
+            buttons: [
+              {
+                name: '确定',
+                className: 'lyrixi-primary',
+                onClick: () => true
+              }
+            ]
+          })
     }
   })
 }
