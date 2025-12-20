@@ -421,7 +421,7 @@ let Bridge = {
           message: error?.errMsg || LocaleUtil.locale('预览失败')
         })
       },
-      onCancel: onCancel
+      cancel: onCancel
     })
   },
   previewFile: function ({ fileUrl, onSuccess, onError }) {
