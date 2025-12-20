@@ -69,13 +69,15 @@ export default () => {
               style={{ margin: '12px 10px' }}
               radius="m"
               onClick={() => {
-                Bridge.onHistoryBack(() => {
-                  console.log('返回监听')
-                  alert('返回监听')
+                Bridge.onBack({
+                  success: () => {
+                    console.log('阻止返回')
+                    alert('阻止返回')
+                  }
                 })
               }}
             >
-              onHistoryBack
+              onBack
             </Button>
           </Card.Main>
         </Card>

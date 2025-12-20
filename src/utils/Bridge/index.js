@@ -99,14 +99,15 @@ let Bridge = {
     return bridge.closeWindow(params)
   },
   /**
-   * 监听物理返回键
-   * @param {Object} params - 监听参数（可选）
-   * @param {Function} params.onBack - 返回键回调函数
+   * 监听物理返回键或手势返回
+   * @param {Object} params - 监听返回参数
+   * @param {Function} params.onSuccess - 阻止返回成功回调
+   * @param {Function} params.onError - 阻止返回失败回调
    * @returns {void}
    */
-  onHistoryBack(params) {
+  onBack(params) {
     const bridge = this._getCurrentBridge()
-    return bridge.onHistoryBack(params)
+    return bridge.onBack(params)
   },
   /**
    * 修改原生标题

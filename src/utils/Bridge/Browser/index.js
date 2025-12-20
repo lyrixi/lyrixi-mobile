@@ -28,12 +28,9 @@ let Browser = {
     window.history.go(-1)
     onSuccess?.({ status: 'success' })
   },
-  onHistoryBack: function () {
+  onBack: function () {
     Toast.show({
-      content: LocaleUtil.locale(
-        'onHistoryBack仅可在企业微信或APP中使用',
-        'lyrixi.onHistoryBack.prompt'
-      )
+      content: LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', ['onBack'])
     })
   },
   setTitle: function ({ title, onSuccess, onError } = {}) {

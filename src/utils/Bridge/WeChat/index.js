@@ -74,10 +74,11 @@ let Bridge = {
     }
     onSuccess?.({ status: 'success' })
   },
-  onHistoryBack: function (params) {
-    if (typeof window.top.wx.onHistoryBack === 'function') {
-      window.top.wx.onHistoryBack(params)
-    }
+  onBack: function (params) {
+    window.top.wx.onHistoryBack?.(() => {
+      params.onSuccess?.({ status: 'success' })
+      return false
+    })
   },
   openLocation: function ({
     latitude,

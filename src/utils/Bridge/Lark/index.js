@@ -69,7 +69,7 @@ let Bridge = {
       }
     })
   },
-  onHistoryBack: function () {
+  onBack: function () {
     console.log('飞书不支持监听物理返回')
   },
   openLocation: function ({

@@ -79,7 +79,7 @@ let Bridge = {
     window.top.ap?.popWindow()
     onSuccess?.({ status: 'success' })
   },
-  onHistoryBack: function () {
+  onBack: function () {
     console.log('支付宝不支持监听物理返回')
   },
   openLocation: function ({

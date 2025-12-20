@@ -101,28 +101,20 @@ Bridge.back()
 Bridge.closeWindow()
 ```
 
-### onHistoryBack(params)
+### onBack(params)
 
-监听物理返回键（仅客户端与企微支持）。
+监听物理返回键或手势返回（仅客户端与企微支持）。
 
 **参数：**
 
-- `params` (Object|Function, 可选) - 监听参数或回调函数
-  - 当传入 Function 时，直接作为返回键回调函数
-  - 当传入 Object 时：
-    - `onBack` (Function) - 返回键回调函数
+- `onSuccess` (Function) - 阻止返回成功回调
+- `onError` (Function) - 阻止返回失败回调
 
 **示例：**
 
 ```javascript
-// 方式一：直接传入回调函数
-Bridge.onHistoryBack(() => {
-  console.log('用户点击了返回键')
-})
-
-// 方式二：传入配置对象
-Bridge.onHistoryBack({
-  onBack: () => {
+Bridge.onBack({
+  onSuccess() => {
     console.log('用户点击了返回键')
   }
 })
@@ -475,7 +467,7 @@ Bridge 还提供了一些工具方法：
 | -------------------- | ------ | ---- | -------- | ------ | ---- | ---- | ------ |
 | `back`               | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `closeWindow`        | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `onHistoryBack`      | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
+| `onBack`             | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
 | `setTitle`           | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `openWindow`         | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `goHome`             | ❌     | ❌   | ❌       | ❌     | ❌   | ❌   | ❌     |
