@@ -6,4 +6,4 @@ title: Bridge
 
 # Bridge
 
-<code src="./demos/all.jsx"></code>
+<code src="./demos/bridge.jsx"></code>
