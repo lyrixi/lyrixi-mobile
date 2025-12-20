@@ -115,7 +115,7 @@ let Bridge = {
   /**
    * 修改原生标题
    * @param {Object} params - 标题参数
-   * @param {String|Function} params.title - 标题文本或返回标题的函数
+   * @param {String} params.title - 标题文本或返回标题的函数
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
    * @returns {void}
