@@ -1,6 +1,5 @@
 // 官方文档: https://open.dingtalk.com/document/development/jsapi-overview
 
-import _ from 'lodash'
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import compressImage from './compressImage'
