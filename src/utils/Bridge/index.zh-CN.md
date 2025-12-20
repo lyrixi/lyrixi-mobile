@@ -133,22 +133,15 @@ Bridge.onHistoryBack({
 **参数：**
 
 - `params` (Object) - 标题参数
-  - `title` (String|Function) - 标题文本或返回标题的函数
-  - `onSuccess` (Function, 可选) - 成功回调
-  - `onError` (Function, 可选) - 失败回调
+- `title` (String|Function) - 标题文本或返回标题的函数
+- `onSuccess` (Function, 可选) - 成功回调
+- `onError` (Function, 可选) - 失败回调
 
 **示例：**
 
 ```javascript
 Bridge.setTitle({
   title: '自定义标题'
-})
-
-// 使用函数动态设置标题
-Bridge.setTitle({
-  title: () => {
-    return '动态标题'
-  }
 })
 ```
 

@@ -36,12 +36,8 @@ let Browser = {
     })
   },
   setTitle: function (params) {
-    if (params && params.title) {
-      if (typeof params.title === 'string') {
-        window.top.document.title = params.title
-      } else if (typeof params.title === 'function') {
-        params.title()
-      }
+    if (typeof params?.title === 'string') {
+      window.top.document.title = params.title
     }
   },
   openWindow: function (params = {}) {
