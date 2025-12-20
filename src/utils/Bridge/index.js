@@ -75,7 +75,12 @@ let Bridge = {
     return bridge.load(callback)
   },
   /**
-   * 返回上一页或关闭窗口
+   * 返回上一页或关闭窗口, 根据url参数isFromApp决定返回方式
+   * @description isFromApp=1时, 调用Bridge.closeWindow()
+   * @description isFromApp=home时, 调用Bridge.goHome()
+   * @description isFromApp包含confirm-close时, 提示用户是否关闭窗口, 如果用户确认关闭, 调用Bridge.closeWindow()
+   * @description isFromApp包含confirm时, 提示用户是否返回上一页, 如果用户确认返回, 调用window.history.go(delta)
+   * @description 其他情况调用window.history.go(delta)
    * @param {Number} delta - 返回的页面数，默认为 1
    * @returns {void}
    */
