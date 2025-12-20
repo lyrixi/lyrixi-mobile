@@ -2,9 +2,8 @@
 
 import _ from 'lodash'
 import back from './../utils/back'
-import formatOpenLocationParams from './../utils/formatOpenLocationParams'
+import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import compressImage from './compressImage'
-import wrapCallback, { wrapDingTalkCallback } from './../utils/wrapCallback'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -18,15 +17,19 @@ import { LocaleUtil, Clipboard, GeoUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   // 特有方法
-  setTitle: function (params) {
-    if (typeof params?.title === 'string') {
-      const wrappedParams = wrapCallback({
-        title: params?.title,
-        onSuccess: params?.onSuccess,
-        onError: params?.onError
-      })
-      window.top.dd.setNavigationTitle(wrappedParams)
-    }
+  setTitle: function ({ title, onSuccess, onError } = {}) {
+    window.top.dd.setNavigationTitle({
+      title: title,
+      success: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      fail: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errorMessage || LocaleUtil.locale('设置标题失败')
+        })
+      }
+    })
   },
   // 通用方法
   load: function (callback, options) {
@@ -71,36 +74,69 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params) {
-    const wrappedParams = wrapCallback(params)
+  closeWindow: function ({ onSuccess, onError } = {}) {
     if (window.top.dd?.env?.platform === 'pc') {
-      window?.top?.dd?.quitPage(wrappedParams)
+      window?.top?.dd?.quitPage({
+        success: () => {
+          onSuccess?.({ status: 'success' })
+        },
+        fail: (error) => {
+          onError?.({
+            status: 'error',
+            message: error?.errorMessage || LocaleUtil.locale('关闭窗口失败')
+          })
+        }
+      })
       return
     }
 
-    window.top.dd.closePage(wrappedParams)
+    window.top.dd.closePage({
+      success: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      fail: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errorMessage || LocaleUtil.locale('关闭窗口失败')
+        })
+      }
+    })
   },
-  onHistoryBack: function (params) {
+  onHistoryBack: function () {
     console.log('钉钉不支持监听物理返回')
   },
-  openLocation: function (params) {
-    if (_.isEmpty(params)) return
-    let newParams = formatOpenLocationParams(params)
-    console.log('调用钉钉地图...', newParams)
+  openLocation: function ({
+    latitude,
+    longitude,
+    type,
+    name,
+    address,
+    scale,
+    onSuccess,
+    onError
+  } = {}) {
+    if (!latitude || !longitude || !type) return
+    let coord = formatOpenLocationCoord({ latitude, longitude, type })
+    console.log('调用钉钉地图...', { latitude, longitude, type, name, address, scale })
 
-    const wrappedParams = wrapCallback({
-      title: newParams.name || '',
-      address: newParams.address || '',
-      latitude: newParams.latitude,
-      longitude: newParams.longitude,
-      onSuccess: newParams.onSuccess,
-      onError: newParams.onError
+    window.top.dd.openLocation({
+      title: name || '',
+      address: address || '',
+      latitude: coord.latitude,
+      longitude: coord.longitude,
+      onSuccess: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      onError: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errorMessage || LocaleUtil.locale('打开地图失败')
+        })
+      }
     })
-
-    window.top.dd.openLocation(wrappedParams)
   },
   getLocation: function ({ type, onSuccess, onError } = {}) {
-    console.log('调用钉钉定位...', params)
+    console.log('调用钉钉定位...', type)
 
     window.top.dd.getLocation({
       type: 0,
@@ -137,8 +173,7 @@ let Bridge = {
       },
       onError: (error) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
-      },
-      onCancel: onCancel
+      }
     })
   },
   scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {

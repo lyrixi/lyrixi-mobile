@@ -202,7 +202,7 @@ Bridge.tel('10086')
 
 **参数：**
 
-- `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'gcj02'`
+- `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
 - `onSuccess` (Function) - 成功回调，返回 `{status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}`
 - `onError` (Function) - 失败回调，返回 `{status: 'error', code: String, message: String}`
 
@@ -463,7 +463,7 @@ Bridge 还提供了一些工具方法：
 
 返回上一页的工具方法。
 
-### Bridge.utils.formatOpenLocationParams(params)
+### Bridge.utils.formatOpenLocationCoord(params)
 
 格式化打开地图的参数。
 

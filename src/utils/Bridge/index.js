@@ -1,5 +1,5 @@
 import back from './utils/back'
-import formatOpenLocationParams from './utils/formatOpenLocationParams'
+import formatOpenLocationCoord from './utils/formatOpenLocationCoord'
 import Browser from './Browser'
 import WeChat from './WeChat'
 import Alipay from './Alipay'
@@ -90,14 +90,13 @@ let Bridge = {
   /**
    * 关闭窗口
    * @param {Object} params - 关闭窗口参数（可选）
+   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
   closeWindow(params) {
     const bridge = this._getCurrentBridge()
-    if (params !== undefined) {
-      return bridge.closeWindow(params)
-    }
-    return bridge.closeWindow()
+    return bridge.closeWindow(params)
   },
   /**
    * 监听物理返回键
@@ -107,10 +106,7 @@ let Bridge = {
    */
   onHistoryBack(params) {
     const bridge = this._getCurrentBridge()
-    if (params !== undefined) {
-      return bridge.onHistoryBack(params)
-    }
-    return bridge.onHistoryBack()
+    return bridge.onHistoryBack(params)
   },
   /**
    * 修改原生标题
@@ -170,6 +166,7 @@ let Bridge = {
    * @param {Object} params - 地图参数
    * @param {Number} params.latitude - 纬度
    * @param {Number} params.longitude - 经度
+   * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
    * @param {String} params.name - 位置名称
    * @param {String} params.address - 位置地址
    * @param {Number} params.scale - 地图缩放级别
@@ -177,19 +174,37 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  openLocation(params) {
-    return this._getCurrentBridge().openLocation(params)
+  openLocation({
+    latitude,
+    longitude,
+    type = 'wgs84',
+    name,
+    address,
+    scale,
+    onSuccess,
+    onError
+  } = {}) {
+    return this._getCurrentBridge().openLocation({
+      latitude,
+      longitude,
+      type,
+      name,
+      address,
+      scale,
+      onSuccess,
+      onError
+    })
   },
   /**
    * 获取当前地理位置
    * @param {Object} params - 定位参数
-   * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'gcj02'
+   * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getLocation(params) {
-    return this._getCurrentBridge().getLocation(params)
+  getLocation({ type = 'wgs84', onSuccess, onError } = {}) {
+    return this._getCurrentBridge().getLocation({ type, onSuccess, onError })
   },
   /**
    * 获取浏览器地理位置（所有平台都可以调用）
@@ -323,7 +338,7 @@ let Bridge = {
 // Expose 工具类（静态属性）
 Bridge.utils = {
   back: back,
-  formatOpenLocationParams: formatOpenLocationParams
+  formatOpenLocationCoord: formatOpenLocationCoord
 }
 
 export default Bridge

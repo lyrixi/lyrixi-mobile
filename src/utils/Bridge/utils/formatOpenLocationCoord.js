@@ -7,7 +7,7 @@ import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 格式化openLocation参数, 坐标自动转换: 国内转gcj02, 国外转wgs84
-function formatOpenLocationParams(coord) {
+function formatOpenLocationCoord(coord) {
   // 参数不合法
   if (!coord?.longitude || !coord?.latitude || !coord?.type) {
     return coord
@@ -48,4 +48,4 @@ function formatOpenLocationParams(coord) {
   }
 }
 
-export default formatOpenLocationParams
+export default formatOpenLocationCoord

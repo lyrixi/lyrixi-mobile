@@ -1,9 +1,7 @@
 // 官方文档: https://opendocs.alipay.com/open/020oit?scene=SC00001851?pathHash=0f29c54b
 
-import _ from 'lodash'
 import back from './../utils/back'
-import formatOpenLocationParams from './../utils/formatOpenLocationParams'
-import wrapCallback from './../utils/wrapCallback'
+import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -77,46 +75,52 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function () {
+  closeWindow: function ({ onSuccess, onError } = {}) {
     window.top.ap?.popWindow()
+    onSuccess?.({ status: 'success' })
   },
-  onHistoryBack: function (params) {
+  onHistoryBack: function () {
     console.log('支付宝不支持监听物理返回')
   },
-  openLocation: function (params) {
-    if (_.isEmpty(params)) return
-    let newParams = formatOpenLocationParams(params)
-    console.log('调用支付宝地图...', newParams)
+  openLocation: function ({
+    latitude,
+    longitude,
+    type,
+    name,
+    address,
+    scale,
+    onSuccess,
+    onError
+  } = {}) {
+    if (!latitude || !longitude || !type) return
+    let coord = formatOpenLocationCoord({ latitude, longitude, type })
+    console.log('调用支付宝地图...', { latitude, longitude, type, name, address, scale })
 
-    const wrappedParams = wrapCallback({
-      latitude: newParams.latitude,
-      longitude: newParams.longitude,
-      name: newParams.name || '',
-      address: newParams.address || '',
-      ...newParams
+    window.top.ap.openLocation({
+      title: name || '',
+      address: address || '',
+      latitude: coord.latitude,
+      longitude: coord.longitude,
+      onSuccess: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      onError: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errorMessage || LocaleUtil.locale('打开地图失败')
+        })
+      }
     })
-
-    window.top.ap.openLocation(wrappedParams)
   },
   getLocation: function ({ type, onSuccess, onError } = {}) {
-    console.log('调用支付宝定位...', params)
+    console.log('调用支付宝定位...', type)
 
     window.top.ap.getLocation({
       type: '2',
       onSuccess: (res) => {
+        console.error('支付宝定位成功', res)
         let latitude = res.latitude
         let longitude = res.longitude
-
-        if (!longitude || !latitude) {
-          console.error('支付宝定位失败', res)
-          if (onError) {
-            onError({
-              status: 'error',
-              message: LocaleUtil.locale('定位成功, 但没有经纬度')
-            })
-          }
-          return
-        }
 
         if (type === 'wgs84') {
           const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
@@ -133,6 +137,7 @@ let Bridge = {
         })
       },
       onError: (error) => {
+        console.error('支付宝定位失败', error)
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       }
     })
@@ -161,17 +166,17 @@ let Bridge = {
       cancel: onCancel
     })
   },
-  chooseMedia: function (params) {
-    console.log('调用支付宝选择媒体暂未实现', params)
+  chooseMedia: function () {
+    console.log('调用支付宝选择媒体暂未实现')
   },
-  uploadFile: function (params) {
-    console.log('调用支付宝上传文件暂未实现', params)
+  uploadFile: function () {
+    console.log('调用支付宝上传文件暂未实现')
   },
-  previewMedia: function (params) {
-    console.log('调用支付宝预览文件暂未实现', params)
+  previewMedia: function () {
+    console.log('调用支付宝预览文件暂未实现')
   },
-  share: function (params) {
-    console.log('调用支付宝分享暂未实现', params)
+  share: function () {
+    console.log('调用支付宝分享暂未实现')
   }
 }
 

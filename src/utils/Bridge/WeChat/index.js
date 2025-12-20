@@ -1,9 +1,7 @@
 // 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 
-import _ from 'lodash'
 import back from './../utils/back'
-import formatOpenLocationParams from './../utils/formatOpenLocationParams'
-import wrapCallback from './../utils/wrapCallback'
+import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 
@@ -68,18 +66,30 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function () {
+  closeWindow: function ({ onSuccess, onError } = {}) {
     if (['wechatMiniProgram', 'wecomMiniProgram'].includes(Device.platform || '')) {
       window.top.wx.miniProgram.navigateBack({})
+    } else {
+      window.top.wx.closeWindow()
     }
-    window.top.wx.closeWindow()
+    onSuccess?.({ status: 'success' })
   },
   onHistoryBack: function (params) {
     if (typeof window.top.wx.onHistoryBack === 'function') {
       window.top.wx.onHistoryBack(params)
     }
   },
-  openLocation: function (params) {
+  openLocation: function ({
+    latitude,
+    longitude,
+    type,
+    name,
+    address,
+    scale,
+    onSuccess,
+    onError
+  } = {}) {
+    if (!latitude || !longitude || !type) return
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
@@ -89,30 +99,41 @@ let Bridge = {
       Toast.show({
         content: message
       })
-      params?.onError && params.onError({ status: 'error', message: message })
+      onError?.({ status: 'error', message: message })
       return
     }
 
-    if (_.isEmpty(params)) return
-    let newParams = formatOpenLocationParams(params)
-    console.log('调用企业微信地图...', newParams)
+    let coord = formatOpenLocationCoord({ latitude, longitude, type })
+    console.log('调用企业微信地图...', { latitude, longitude, type, name, address, scale })
 
-    const wrappedParams = wrapCallback(newParams)
-    window.top.wx.openLocation(wrappedParams)
+    window.top.wx.openLocation({
+      latitude: coord.latitude, // 纬度，浮点数，范围为90 ~ -90
+      longitude: coord.longitude, // 经度，浮点数，范围为180 ~ -180。
+      name: name, // 位置名
+      address: address, // 地址详情说明
+      scale: scale || 12, // 地图缩放级别,整型值,范围从1~28。默认为最大
+      success: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      fail: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errMsg || LocaleUtil.locale('打开地图失败')
+        })
+      }
+    })
   },
   getLocation: function ({ type, onSuccess, onError } = {}) {
-    if (!params?.type) {
-      params.type = 'gcj02'
-    }
     if (Device.device === 'pc') {
-      console.log('PC端微信不支持定位...', params)
+      console.log('PC端微信不支持定位...', type)
       return
     }
 
-    console.log('调用微信定位...', params)
+    console.log('调用微信定位...', type)
     window.top.wx.getLocation({
       type: type,
       success: (res) => {
+        console.error('微信定位成功', res)
         onSuccess?.({
           status: 'success',
           longitude: res.longitude,
@@ -122,6 +143,7 @@ let Bridge = {
         })
       },
       fail: (error) => {
+        console.error('微信定位失败', error)
         onError?.({ status: 'error', message: error?.errMsg || '' })
       }
     })
@@ -137,10 +159,18 @@ let Bridge = {
       return
     }
 
+    let desc = []
+    if (scanType.includes('qrCode')) {
+      desc.push(LocaleUtil.locale('二维码'))
+    }
+    if (scanType.includes('barCode')) {
+      desc.push(LocaleUtil.locale('条码'))
+    }
+
     window.top.wx.scanQRCode({
       needResult: 1,
       scanType: scanType || ['qrCode', 'barCode'],
-      desc: desc || LocaleUtil.locale('二维码／条码'),
+      desc: desc.join('/'),
       success: (res) => {
         let resultStr = res.resultStr
         if (res.resultStr.indexOf('QR,') >= 0) {
@@ -408,8 +438,15 @@ let Bridge = {
       return
     }
 
-    const wrappedParams = wrapCallback({ url: fileUrl, onSuccess: onSuccess, onError: onError })
-    window.top.wx.previewFile(wrappedParams)
+    window.top.wx.previewFile({
+      url: fileUrl,
+      onSuccess: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      fail: (error) => {
+        onError?.({ status: 'error', message: error?.errMsg || LocaleUtil.locale('预览失败') })
+      }
+    })
   },
   share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
     // 微信服务号中分享
@@ -420,8 +457,7 @@ let Bridge = {
         link: url || '',
         imgUrl: imageUrl || '',
         onSuccess: function (res) {
-          setOpen(true)
-          onSuccess && onSuccess()
+          onSuccess?.({ status: 'success' })
         },
         onError: function (err) {
           console.log('WeChat Share onError:', err)

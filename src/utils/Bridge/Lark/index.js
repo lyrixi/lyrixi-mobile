@@ -1,10 +1,8 @@
 // 官方文档: https://open.feishu.cn/document/client-docs/h5/
 // 鉴权: https://open.feishu.cn/document/uYjL24iN/uQjMuQjMuQjM/authentication/h5sdkconfig
 
-import _ from 'lodash'
 import back from './../utils/back'
-import formatOpenLocationParams from './../utils/formatOpenLocationParams'
-import wrapCallback from './../utils/wrapCallback'
+import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -58,97 +56,106 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params) {
-    const wrappedParams = wrapCallback(params)
-    window.top.tt.closeWindow(wrappedParams)
+  closeWindow: function ({ onSuccess, onError } = {}) {
+    window.top.tt.closeWindow({
+      success: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      fail: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errMsg || LocaleUtil.locale('关闭窗口失败')
+        })
+      }
+    })
   },
-  onHistoryBack: function (params) {
+  onHistoryBack: function () {
     console.log('飞书不支持监听物理返回')
   },
-  openLocation: function (params) {
-    if (_.isEmpty(params)) return
-    let newParams = formatOpenLocationParams(params)
-    console.log('调用飞书地图...', newParams)
+  openLocation: function ({
+    latitude,
+    longitude,
+    type,
+    name,
+    address,
+    scale,
+    onSuccess,
+    onError
+  } = {}) {
+    if (!latitude || !longitude || !type) return
+    let coord = formatOpenLocationCoord({ latitude, longitude, type })
+    console.log('调用飞书地图...', { latitude, longitude, type, name, address, scale })
 
-    let scale = params?.scale
     if (!scale) {
+      // eslint-disable-next-line
       scale = 12
     } else if (scale < 5) {
+      // eslint-disable-next-line
       scale = 5
     } else if (scale > 18) {
+      // eslint-disable-next-line
       scale = 18
     }
 
-    const wrappedParams = wrapCallback({
-      latitude: newParams.latitude,
-      longitude: newParams.longitude,
+    window.top.tt.openLocation({
+      latitude: coord.latitude,
+      longitude: coord.longitude,
       scale: scale,
-      name: newParams.name,
-      address: newParams.address,
-      onSuccess: newParams.onSuccess,
-      onError: newParams.onError
+      name: name,
+      address: address,
+      success: () => {
+        onSuccess?.({ status: 'success' })
+      },
+      fail: (error) => {
+        onError?.({
+          status: 'error',
+          message: error?.errMsg || LocaleUtil.locale('打开地图失败')
+        })
+      }
     })
-
-    window.top.tt.openLocation(wrappedParams)
   },
   getLocation: function ({ type, onSuccess, onError } = {}) {
     let targetType = type || 'gcj02'
-    console.log('调用飞书定位...', params)
+    console.log('调用飞书定位...', type)
 
-    const handleSuccess = onSuccess
-      ? function (res) {
-          if (!res.longitude || !res.latitude) {
-            console.error('飞书定位失败', res)
-            if (onError) {
-              onError({
-                status: 'error',
-                message: LocaleUtil.locale('定位成功, 但没有经纬度')
-              })
-            }
-            return
-          }
+    window.top.tt.getLocation({
+      type: targetType,
+      success: (res) => {
+        console.error('飞书定位成功', res)
 
-          let result = {
+        let result = {
+          status: 'success',
+          longitude: res.longitude,
+          latitude: res.latitude,
+          type: res.type,
+          accuracy: res.accuracy
+        }
+
+        if (res.type && res.type !== targetType) {
+          const points = GeoUtil.coordtransform([res.longitude, res.latitude], res.type, targetType)
+
+          result = {
             status: 'success',
-            longitude: res.longitude,
-            latitude: res.latitude,
-            type: res.type,
+            longitude: points[0],
+            latitude: points[1],
+            type: targetType,
             accuracy: res.accuracy
           }
-
-          if (res.type && res.type !== targetType) {
-            const points = GeoUtil.coordtransform(
-              [res.longitude, res.latitude],
-              res.type,
-              targetType
-            )
-
-            result = {
-              status: 'success',
-              longitude: points[0],
-              latitude: points[1],
-              type: targetType,
-              accuracy: res.accuracy
-            }
-          }
-
-          onSuccess(result)
         }
-      : undefined
 
-    const wrappedParams = wrapCallback({
-      type: targetType,
-      onSuccess: handleSuccess,
-      onError: onError
+        onSuccess?.(result)
+      },
+      fail: (error) => {
+        console.error('飞书定位失败', error)
+        onError?.({ status: 'error', message: error?.errMsg || LocaleUtil.locale('定位失败') })
+      }
     })
-
-    window.top.tt.getLocation(wrappedParams)
   },
   scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     window.top.tt.scanCode({
       scanType: scanType,
       barCodeInput: true,
-      success: () => {
+      success: (res) => {
         onSuccess?.({
           status: 'success',
           resultStr: res.resultStr
@@ -160,11 +167,11 @@ let Bridge = {
       cancel: onCancel
     })
   },
-  chooseMedia: function (params) {
-    console.log('调用飞书选择媒体暂未实现', params)
+  chooseMedia: function () {
+    console.log('调用飞书选择媒体暂未实现')
   },
-  uploadFile: function (params) {
-    console.log('调用飞书上传文件暂未实现', params)
+  uploadFile: function () {
+    console.log('调用飞书上传文件暂未实现')
   },
   previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
     let urls = sources.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)

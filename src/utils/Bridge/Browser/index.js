@@ -24,8 +24,9 @@ let Browser = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function () {
+  closeWindow: function ({ onSuccess, onError } = {}) {
     window.history.go(-1)
+    onSuccess?.({ status: 'success' })
   },
   onHistoryBack: function () {
     Toast.show({
@@ -35,10 +36,9 @@ let Browser = {
       )
     })
   },
-  setTitle: function (params) {
-    if (typeof params?.title === 'string') {
-      window.top.document.title = params.title
-    }
+  setTitle: function ({ title, onSuccess, onError } = {}) {
+    window.top.document.title = title
+    onSuccess?.({ status: 'success' })
   },
   openWindow: function (params = {}) {
     let url = params.url
@@ -65,7 +65,17 @@ let Browser = {
     if (isNaN(number)) return
     window.location.href = 'tel:' + number
   },
-  openLocation: function (params) {
+  openLocation: function ({
+    latitude,
+    longitude,
+    type,
+    name,
+    address,
+    scale,
+    onSuccess,
+    onError
+  } = {}) {
+    if (!latitude || !longitude || !type) return
     let message = LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
       'lyrixi.open.location.prompt',
@@ -74,14 +84,14 @@ let Browser = {
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ status: 'error', message: message })
+    onError?.({ status: 'error', message: message })
   },
   getLocation: function (params = {}) {
     this.getBrowserLocation(params)
   },
   getBrowserLocation: function ({ type, onSuccess, onError } = {}) {
     if (this.debug) {
-      console.log('模拟浏览器定位...', params)
+      console.log('模拟浏览器定位...', type)
       setTimeout(() => {
         let res = {
           status: 'success',
@@ -103,7 +113,7 @@ let Browser = {
     }
 
     if (navigator.geolocation) {
-      console.log('调用浏览器定位...', params)
+      console.log('调用浏览器定位...', type)
       navigator.geolocation.getCurrentPosition(
         (position) => {
           let longitude = position.coords.longitude
@@ -116,7 +126,7 @@ let Browser = {
             })
           }
 
-          console.log('调用浏览器定位成功', longitude, latitude)
+          console.log('调用浏览器定位成功', { type, longitude, latitude })
           if (type === 'gcj02') {
             const points = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'gcj02')
             longitude = points[0]
@@ -199,11 +209,12 @@ let Browser = {
         }
       )
     } else {
-      console.log(`${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi.location.not.supported')}`)
       let res = {
         status: 'error',
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
-        message: `${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi.location.not.supported')}`
+        message: LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', [
+          'getLocation'
+        ])
       }
       onError?.(res)
     }
@@ -228,16 +239,13 @@ let Browser = {
       if (onSuccess) onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
     }, 500)
   },
-  chooseMedia: function (params) {
-    let message = LocaleUtil.locale(
-      'chooseMedia仅可在移动端微信或APP中使用',
-      'lyrixi.chooseMedia.prompt',
-      ['chooseMedia']
-    )
+  chooseMedia: function () {
+    let message = LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', [
+      'chooseMedia'
+    ])
     Toast.show({
       content: message
     })
-    params?.onError && params.onError({ status: 'error', message: message })
   },
   uploadFile: async function ({
     localFile,
