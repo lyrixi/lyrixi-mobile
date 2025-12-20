@@ -107,7 +107,7 @@ Bridge.closeWindow()
 
 **参数：**
 
-- `onSuccess` (Function) - 阻止返回成功回调
+- `onSuccess` (Function) - 阻止返回成功回调, 返回 true 表示允许返回, false 表示不允许返回
 - `onError` (Function) - 阻止返回失败回调
 
 **示例：**
@@ -116,6 +116,7 @@ Bridge.closeWindow()
 Bridge.onBack({
   onSuccess() => {
     console.log('用户点击了返回键')
+    return true
   }
 })
 ```

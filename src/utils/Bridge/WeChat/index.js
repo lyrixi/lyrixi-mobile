@@ -74,9 +74,17 @@ let Bridge = {
     }
     onSuccess?.({ status: 'success' })
   },
-  onBack: function (params) {
-    window.top.wx.onHistoryBack?.(() => {
-      params.onSuccess?.({ status: 'success' })
+  onBack: function ({ onError, onSuccess } = {}) {
+    window.top.wx.onHistoryBack?.(async () => {
+      let isBack = await onSuccess?.({ status: 'success' })
+      // 允许返回
+      if (isBack) {
+        this.back()
+      }
+      // 不允许返回, 则需要再次监听返回
+      else {
+        this.onBack({ onError, onSuccess })
+      }
       return false
     })
   },

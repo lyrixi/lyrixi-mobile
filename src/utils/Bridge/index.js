@@ -101,7 +101,7 @@ let Bridge = {
   /**
    * 监听物理返回键或手势返回
    * @param {Object} params - 监听返回参数
-   * @param {Function} params.onSuccess - 阻止返回成功回调
+   * @param {Function} params.onSuccess - 阻止返回成功回调, 返回true表示允许返回, false表示不允许返回
    * @param {Function} params.onError - 阻止返回失败回调
    * @returns {void}
    */
