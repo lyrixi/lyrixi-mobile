@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "پیش نظارہ امیج صرف موبائل وی چیٹ یا اے پی پی پر استعمال کیا جا سکتا ہے",
   "lyrixi.previewFile.prompt": "پیش نظارہ فائل صرف وی کام یا اے پی پی میں استعمال کیا جا سکتا ہے",
   "lyrixi.onHistoryBack.prompt": "آن ہسٹری بیک صرف وی کام یا اے پی پی میں استعمال کیا جا سکتا ہے",
-  "lyrixi.only.app.wechat": "یہ فیچر صرف وی چیٹ یا اے پی پی پر دستیاب ہے۔",
+  "lyrixi.bridge.not.supported": "یہ فیچر صرف وی چیٹ یا اے پی پی پر دستیاب ہے۔",
   "lyrixi.scanCode.failed": "کوڈ اسکین کرنے میں ناکام",
   "lyrixi.try.again.later": "براہ مہربانی بعد میں دوبارہ کوشش کریں",
   "lyrixi.uploadFile.prompt": "اپ لوڈ فائل صرف ایپ میں استعمال کیا جا سکتا ہے",

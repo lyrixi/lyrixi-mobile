@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia'i saab kasutada ainult mobiilses WeChatis või APP-is",
   "lyrixi.previewFile.prompt": "previewFile'i saab kasutada ainult WeComis või APP-is",
   "lyrixi.onHistoryBack.prompt": "onHistoryBacki saab kasutada ainult WeComis või APP-is",
-  "lyrixi.only.app.wechat": "See funktsioon on saadaval ainult WeChatis või APP-is",
+  "lyrixi.bridge.not.supported": "See funktsioon on saadaval ainult WeChatis või APP-is",
   "lyrixi.scanCode.failed": "Koodi skannimine nurjus",
   "lyrixi.try.again.later": "Proovige hiljem uuesti",
   "lyrixi.uploadFile.prompt": "uploadFile'i saab kasutada ainult rakenduses",

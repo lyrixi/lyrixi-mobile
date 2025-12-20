@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ പ്രിവ്യൂ ഇമേജ് ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi.previewFile.prompt": "പ്രിവ്യൂഫൈൽ WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
   "lyrixi.onHistoryBack.prompt": "OnHistoryBack WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
-  "lyrixi.only.app.wechat": "ഈ സവിശേഷത WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ലഭ്യമാകൂ",
+  "lyrixi.bridge.not.supported": "ഈ സവിശേഷത WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ലഭ്യമാകൂ",
   "lyrixi.scanCode.failed": "കോഡ് സ്കാൻ ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു",
   "lyrixi.try.again.later": "ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക",
   "lyrixi.uploadFile.prompt": "അപ് ലോഡ് ഫൈൽ അപ്ലിക്കേഷനിൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",

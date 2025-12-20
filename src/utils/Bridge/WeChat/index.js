@@ -100,90 +100,96 @@ let Bridge = {
     const wrappedParams = wrapCallback(newParams)
     window.top.wx.openLocation(wrappedParams)
   },
-  getLocation: function (params = {}) {
+  getLocation: function ({ type, onSuccess, onError } = {}) {
     if (!params?.type) {
       params.type = 'gcj02'
     }
     if (Device.device === 'pc') {
-      console.log('PC端微信定位...', params)
+      console.log('PC端微信不支持定位...', params)
       return
     }
 
     console.log('调用微信定位...', params)
-    const wrappedParams = wrapCallback(params)
-    window.top.wx.getLocation(wrappedParams)
+    window.top.wx.getLocation({
+      type: type,
+      success: (res) => {
+        onSuccess?.({
+          status: 'success',
+          longitude: res.longitude,
+          latitude: res.latitude,
+          type: type || 'gcj02',
+          accuracy: res.accuracy
+        })
+      },
+      fail: (error) => {
+        onError?.({ status: 'error', message: error?.errMsg || '' })
+      }
+    })
   },
-  scanQRCode: function (params = {}) {
+  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
-          'lyrixi.scanQRCode.prompt'
+          'lyrixi.scanCode.prompt'
         )
       })
       return
     }
 
-    const { needResult, scanType, desc, onSuccess, ...othersParams } = params || {}
-
-    const handleSuccess = onSuccess
-      ? function (res) {
-          let wxRes = res
-          if (!params.prefix) {
-            if (res.resultStr.indexOf('QR,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('QR,'.length)
-            } else if (res.resultStr.indexOf('EAN_13,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('EAN_13,'.length)
-            } else if (res.resultStr.indexOf('EAN_8,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('EAN_8,'.length)
-            } else if (res.resultStr.indexOf('AZTEC,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('AZTEC,'.length)
-            } else if (res.resultStr.indexOf('DATAMATRIX,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('DATAMATRIX,'.length)
-            } else if (res.resultStr.indexOf('UPCA,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('UPCA,'.length)
-            } else if (res.resultStr.indexOf('UPC_A,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('UPC_A,'.length)
-            } else if (res.resultStr.indexOf('UPCE,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('UPCE,'.length)
-            } else if (res.resultStr.indexOf('UPC_E,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('UPC_E,'.length)
-            } else if (res.resultStr.indexOf('CODABAR,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('CODABAR,'.length)
-            } else if (res.resultStr.indexOf('CODE_39,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('CODE_39,'.length)
-            } else if (res.resultStr.indexOf('CODE_93,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('CODE_93,'.length)
-            } else if (res.resultStr.indexOf('CODE_128,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('CODE_128,'.length)
-            } else if (res.resultStr.indexOf('ITF,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('ITF,'.length)
-            } else if (res.resultStr.indexOf('MAXICODE,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('MAXICODE,'.length)
-            } else if (res.resultStr.indexOf('PDF_417,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('PDF_417,'.length)
-            } else if (res.resultStr.indexOf('RSS_14,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('RSS_14,'.length)
-            } else if (res.resultStr.indexOf('RSSEXPANDED,') >= 0) {
-              wxRes.resultStr = res.resultStr.substring('RSSEXPANDED,'.length)
-            }
-          }
-          onSuccess({
-            status: 'success',
-            ...wxRes
-          })
-        }
-      : undefined
-
-    const wrappedParams = wrapCallback({
-      needResult: needResult || 1,
+    window.top.wx.scanQRCode({
+      needResult: 1,
       scanType: scanType || ['qrCode', 'barCode'],
-      desc: desc || '二维码／条码',
-      onSuccess: handleSuccess,
-      ...othersParams
+      desc: desc || LocaleUtil.locale('二维码／条码'),
+      success: (res) => {
+        let resultStr = res.resultStr
+        if (res.resultStr.indexOf('QR,') >= 0) {
+          resultStr = res.resultStr.substring('QR,'.length)
+        } else if (res.resultStr.indexOf('EAN_13,') >= 0) {
+          resultStr = res.resultStr.substring('EAN_13,'.length)
+        } else if (res.resultStr.indexOf('EAN_8,') >= 0) {
+          resultStr = res.resultStr.substring('EAN_8,'.length)
+        } else if (res.resultStr.indexOf('AZTEC,') >= 0) {
+          resultStr = res.resultStr.substring('AZTEC,'.length)
+        } else if (res.resultStr.indexOf('DATAMATRIX,') >= 0) {
+          resultStr = res.resultStr.substring('DATAMATRIX,'.length)
+        } else if (res.resultStr.indexOf('UPCA,') >= 0) {
+          resultStr = res.resultStr.substring('UPCA,'.length)
+        } else if (res.resultStr.indexOf('UPC_A,') >= 0) {
+          resultStr = res.resultStr.substring('UPC_A,'.length)
+        } else if (res.resultStr.indexOf('UPCE,') >= 0) {
+          resultStr = res.resultStr.substring('UPCE,'.length)
+        } else if (res.resultStr.indexOf('UPC_E,') >= 0) {
+          resultStr = res.resultStr.substring('UPC_E,'.length)
+        } else if (res.resultStr.indexOf('CODABAR,') >= 0) {
+          resultStr = res.resultStr.substring('CODABAR,'.length)
+        } else if (res.resultStr.indexOf('CODE_39,') >= 0) {
+          resultStr = res.resultStr.substring('CODE_39,'.length)
+        } else if (res.resultStr.indexOf('CODE_93,') >= 0) {
+          resultStr = res.resultStr.substring('CODE_93,'.length)
+        } else if (res.resultStr.indexOf('CODE_128,') >= 0) {
+          resultStr = res.resultStr.substring('CODE_128,'.length)
+        } else if (res.resultStr.indexOf('ITF,') >= 0) {
+          resultStr = res.resultStr.substring('ITF,'.length)
+        } else if (res.resultStr.indexOf('MAXICODE,') >= 0) {
+          resultStr = res.resultStr.substring('MAXICODE,'.length)
+        } else if (res.resultStr.indexOf('PDF_417,') >= 0) {
+          resultStr = res.resultStr.substring('PDF_417,'.length)
+        } else if (res.resultStr.indexOf('RSS_14,') >= 0) {
+          resultStr = res.resultStr.substring('RSS_14,'.length)
+        } else if (res.resultStr.indexOf('RSSEXPANDED,') >= 0) {
+          resultStr = res.resultStr.substring('RSSEXPANDED,'.length)
+        }
+        onSuccess({
+          status: 'success',
+          resultStr: resultStr
+        })
+      },
+      fail: (error) => {
+        onError?.({ status: 'error', message: error?.errMsg || '' })
+      },
+      cancel: onCancel
     })
-
-    window.top.wx.scanQRCode(wrappedParams)
   },
   chooseMedia: function ({
     count,

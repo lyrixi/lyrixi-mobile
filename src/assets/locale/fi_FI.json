@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewImagea voi käyttää vain WeChat- tai APP-mobiilisovelluksessa",
   "lyrixi.previewFile.prompt": "previewFileä voi käyttää vain WeComissa tai APP:ssä",
   "lyrixi.onHistoryBack.prompt": "onHistoryBackia voidaan käyttää vain WeComissa tai APP: ssä",
-  "lyrixi.only.app.wechat": "Tämä ominaisuus on käytettävissä vain WeChatissa tai APP: ssä",
+  "lyrixi.bridge.not.supported": "Tämä ominaisuus on käytettävissä vain WeChatissa tai APP: ssä",
   "lyrixi.scanCode.failed": "Koodin skannaus epäonnistui",
   "lyrixi.try.again.later": "Yritä myöhemmin uudelleen",
   "lyrixi.uploadFile.prompt": "uploadFile voidaan käyttää vain sovelluksessa",

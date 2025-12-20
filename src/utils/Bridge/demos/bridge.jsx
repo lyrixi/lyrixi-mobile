@@ -139,7 +139,7 @@ export default () => {
               style={{ margin: '12px 10px' }}
               radius="m"
               onClick={() => {
-                Bridge.scanQRCode({
+                Bridge.scanCode({
                   scanType: ['barCode'],
                   onSuccess: (res) => {
                     console.log(res)
@@ -152,7 +152,7 @@ export default () => {
                 })
               }}
             >
-              scanQRCode
+              scanCode
             </Button>
           </Card.Main>
         </Card>

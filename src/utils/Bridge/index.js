@@ -209,19 +209,16 @@ let Bridge = {
   /**
    * 扫描二维码并返回结果
    * @param {Object} params - 扫码参数
-   * @param {Number} params.needResult - 是否需要返回扫描结果，0 为不需要，1 为需要，默认为 1
    * @param {Array<String>} params.scanType - 扫码类型，['qrCode', 'barCode']，默认为 ['qrCode', 'barCode']
-   * @param {String} params.desc - 扫码说明文字
-   * @param {Boolean} params.prefix - 是否保留前缀，默认为 false
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', resultStr: String}
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  scanQRCode(params) {
+  scanCode(params) {
     const bridge = this._getCurrentBridge()
-    if (bridge.scanQRCode) {
-      return bridge.scanQRCode(params)
+    if (bridge.scanCode) {
+      return bridge.scanCode(params)
     }
     return undefined
   },

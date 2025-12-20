@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewImage僅可在移動端微信或APP中使用",
   "lyrixi.previewFile.prompt": "previewFile僅可在企業微信或APP中使用",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack僅可在企業微信或APP中使用",
-  "lyrixi.only.app.wechat": "此功能僅可在微信或APP中使用",
+  "lyrixi.bridge.not.supported": "此功能僅可在微信或APP中使用",
   "lyrixi.scanCode.failed": "掃碼失敗",
   "lyrixi.try.again.later": "請稍後重試",
   "lyrixi.uploadFile.prompt": "uploadFile僅可在APP中使用",

@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia kan kun bruges på mobil WeChat eller APP",
   "lyrixi.previewFile.prompt": "previewFile kan kun bruges i WeCom eller APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack kan kun bruges i WeCom eller APP",
-  "lyrixi.only.app.wechat": "Denne funktion er kun tilgængelig på WeChat eller APP",
+  "lyrixi.bridge.not.supported": "Denne funktion er kun tilgængelig på WeChat eller APP",
   "lyrixi.scanCode.failed": "Koden kunne ikke scannes",
   "lyrixi.try.again.later": "Prøv igen senere",
   "lyrixi.uploadFile.prompt": "uploadFile kan kun bruges i appen",

@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia galima naudoti tik mobiliajame \"WeChat\" arba APP",
   "lyrixi.previewFile.prompt": "previewFile galima naudoti tik WeCom arba APP",
   "lyrixi.onHistoryBack.prompt": "\"onHistoryBack\" galima naudoti tik \"WeCom\" arba \"APP\"",
-  "lyrixi.only.app.wechat": "Ši funkcija pasiekiama tik \"WeChat\" arba APP",
+  "lyrixi.bridge.not.supported": "Ši funkcija pasiekiama tik \"WeChat\" arba APP",
   "lyrixi.scanCode.failed": "Nepavyko nuskaityti kodo",
   "lyrixi.try.again.later": "Bandykite dar kartą vėliau",
   "lyrixi.uploadFile.prompt": "uploadFile galima naudoti tik programoje",

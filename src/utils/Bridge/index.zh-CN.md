@@ -108,7 +108,9 @@ Bridge.closeWindow()
 **参数：**
 
 - `params` (Object|Function, 可选) - 监听参数或回调函数
-  - `onBack` (Function) - 返回键回调函数
+  - 当传入 Function 时，直接作为返回键回调函数
+  - 当传入 Object 时：
+    - `onBack` (Function) - 返回键回调函数
 
 **示例：**
 
@@ -132,7 +134,6 @@ Bridge.onHistoryBack({
 
 **参数：**
 
-- `params` (Object) - 标题参数
 - `title` (String|Function) - 标题文本或返回标题的函数
 - `onSuccess` (Function, 可选) - 成功回调
 - `onError` (Function, 可选) - 失败回调
@@ -151,10 +152,9 @@ Bridge.setTitle({
 
 **参数：**
 
-- `params` (Object) - 窗口参数
-  - `url` (String) - 要打开的 URL
-  - `title` (String) - 窗口标题
-  - `target` (String, 可选) - 打开方式，`'_self'` 表示当前窗口
+- `url` (String) - 要打开的 URL
+- `title` (String) - 窗口标题
+- `target` (String, 可选) - 打开方式，`'_self'` 表示当前窗口
 
 **示例：**
 
@@ -202,10 +202,9 @@ Bridge.tel('10086')
 
 **参数：**
 
-- `params` (Object) - 定位参数
-  - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'gcj02'`
-  - `onSuccess` (Function) - 成功回调，返回 `{status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}`
-  - `onError` (Function) - 失败回调，返回 `{status: 'error', code: String, message: String}`
+- `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'gcj02'`
+- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}`
+- `onError` (Function) - 失败回调，返回 `{status: 'error', code: String, message: String}`
 
 **示例：**
 
@@ -227,10 +226,9 @@ Bridge.getLocation({
 
 **参数：**
 
-- `params` (Object) - 定位参数
-  - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'gcj02'`
-  - `onSuccess` (Function) - 成功回调
-  - `onError` (Function) - 失败回调
+- `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'gcj02'`
+- `onSuccess` (Function) - 成功回调
+- `onError` (Function) - 失败回调
 
 **示例：**
 
@@ -252,17 +250,16 @@ Bridge.getBrowserLocation({
 
 **参数：**
 
-- `params` (Object) - 地图参数
-  - `latitude` (Number) - 纬度
-  - `longitude` (Number) - 经度
-  - `name` (String) - 位置名称
-  - `address` (String) - 位置地址
-  - `scale` (Number, 可选) - 地图缩放级别，范围从 1~28，默认为 16
-  - `slatitude` (Number, 可选) - 起点纬度
-  - `slongitude` (Number, 可选) - 起点经度
-  - `sname` (String, 可选) - 起点名
-  - `onSuccess` (Function, 可选) - 成功回调
-  - `onError` (Function, 可选) - 失败回调
+- `latitude` (Number) - 纬度
+- `longitude` (Number) - 经度
+- `name` (String) - 位置名称
+- `address` (String) - 位置地址
+- `scale` (Number, 可选) - 地图缩放级别，范围从 1~28，默认为 16
+- `slatitude` (Number, 可选) - 起点纬度
+- `slongitude` (Number, 可选) - 起点经度
+- `sname` (String, 可选) - 起点名
+- `onSuccess` (Function, 可选) - 成功回调
+- `onError` (Function, 可选) - 失败回调
 
 **示例：**
 
@@ -276,25 +273,21 @@ Bridge.openLocation({
 })
 ```
 
-### scanQRCode(params)
+### scanCode(params)
 
 扫描二维码并返回结果。
 
 **参数：**
 
-- `params` (Object) - 扫码参数
-  - `needResult` (Number, 可选) - 是否需要返回扫描结果，`0` 为不需要，`1` 为需要，默认为 `1`
-  - `scanType` (Array<String>, 可选) - 扫码类型，`['qrCode', 'barCode']`，默认为 `['qrCode', 'barCode']`
-  - `desc` (String, 可选) - 扫码说明文字
-  - `prefix` (Boolean, 可选) - 是否保留前缀，默认为 `false`
-  - `onSuccess` (Function) - 成功回调，返回 `{status: 'success', resultStr: String}`
-  - `onError` (Function, 可选) - 失败回调
-  - `onCancel` (Function, 可选) - 取消回调
+- `scanType` (Array<String>, 可选) - 扫码类型，`['qrCode', 'barCode']`，默认为 `['qrCode', 'barCode']`
+- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', resultStr: String}`
+- `onError` (Function, 可选) - 失败回调
+- `onCancel` (Function, 可选) - 取消回调
 
 **示例：**
 
 ```javascript
-Bridge.scanQRCode({
+Bridge.scanCode({
   scanType: ['barCode'],
   onSuccess: (res) => {
     console.log('扫码成功', res.resultStr)
@@ -311,15 +304,14 @@ Bridge.scanQRCode({
 
 **参数：**
 
-- `params` (Object) - 选择媒体参数
-  - `count` (Number, 可选) - 最多可以选择的图片张数，默认为 9
-  - `sizeType` (Array<String>, 可选) - 图片大小，`['original', 'compressed']`，默认为 `['original', 'compressed']`
-  - `sourceType` (Array<String>, 可选) - 图片来源，`['camera', 'album']`，默认为 `['camera', 'album']`
-  - `mediaType` (Array<String>, 可选) - 媒体类型，`['image', 'video', 'mix']`，默认为 `['image']`
-  - `maxDuration` (Number, 可选) - 视频最大时长，单位秒，默认为 10
-  - `onSuccess` (Function) - 成功回调，返回 `{status: 'success', localFiles: Array<{fileUrl: String, filePath: String, fileType: String}>}`
-  - `onError` (Function, 可选) - 失败回调
-  - `onCancel` (Function, 可选) - 取消回调
+- `count` (Number, 可选) - 最多可以选择的图片张数，默认为 9
+- `sizeType` (Array<String>, 可选) - 图片大小，`['original', 'compressed']`，默认为 `['original', 'compressed']`
+- `sourceType` (Array<String>, 可选) - 图片来源，`['camera', 'album']`，默认为 `['camera', 'album']`
+- `mediaType` (Array<String>, 可选) - 媒体类型，`['image', 'video', 'mix']`，默认为 `['image']`
+- `maxDuration` (Number, 可选) - 视频最大时长，单位秒，默认为 10
+- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', localFiles: Array<{fileUrl: String, filePath: String, fileType: String}>}`
+- `onError` (Function, 可选) - 失败回调
+- `onCancel` (Function, 可选) - 取消回调
 
 **示例：**
 
@@ -344,15 +336,14 @@ Bridge.chooseMedia({
 
 **参数：**
 
-- `params` (Object) - 上传文件参数
-  - `localFile` (Object, 必填) - 需要上传的文件的本地文件对象，`{ path: String, type: String }`
-  - `getUploadUrl` (Function, 必填) - 获取上传地址的函数，`function({ platform: String }) => String`
-  - `formatHeader` (Function, 可选) - 格式化请求头，`function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object`
-  - `formatPayload` (Function, 可选) - 格式化表单数据，`function(payload, { platform: String }) => Object`
-  - `formatResponse` (Function, 可选) - 格式化上传结果，`function(payload, { platform: String }) => {status: 'success|error', result: Object}`
-  - `onSuccess` (Function) - 成功回调，返回 `{status: 'success', result: Object}`
-  - `onError` (Function, 可选) - 失败回调
-  - `onCancel` (Function, 可选) - 取消回调
+- `localFile` (Object, 必填) - 需要上传的文件的本地文件对象，`{ path: String, type: String }`
+- `getUploadUrl` (Function, 必填) - 获取上传地址的函数，`function({ platform: String }) => String`
+- `formatHeader` (Function, 可选) - 格式化请求头，`function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object`
+- `formatPayload` (Function, 可选) - 格式化表单数据，`function(payload, { platform: String }) => Object`
+- `formatResponse` (Function, 可选) - 格式化上传结果，`function(payload, { platform: String }) => {status: 'success|error', result: Object}`
+- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', result: Object}`
+- `onError` (Function, 可选) - 失败回调
+- `onCancel` (Function, 可选) - 取消回调
 
 **示例：**
 
@@ -386,12 +377,11 @@ Bridge.uploadFile({
 
 **参数：**
 
-- `params` (Object) - 预览媒体参数
-  - `index` (Number, 可选) - 当前显示图片索引，默认 0
-  - `sources` (Array<Object>, 必填) - 需要预览的媒体 http 链接列表，`[{fileUrl: String, fileType: String, poster: String}]`
-  - `onSuccess` (Function, 可选) - 成功回调
-  - `onError` (Function, 可选) - 失败回调
-  - `onCancel` (Function, 可选) - 取消回调
+- `index` (Number, 可选) - 当前显示图片索引，默认 0
+- `sources` (Array<Object>, 必填) - 需要预览的媒体 http 链接列表，`[{fileUrl: String, fileType: String, poster: String}]`
+- `onSuccess` (Function, 可选) - 成功回调
+- `onError` (Function, 可选) - 失败回调
+- `onCancel` (Function, 可选) - 取消回调
 
 **示例：**
 
@@ -418,12 +408,11 @@ Bridge.previewMedia({
 
 **参数：**
 
-- `params` (Object) - 预览文件参数
-  - `fileUrl` (String, 必填) - 需要预览文件的地址
-  - `fileName` (String, 可选) - 需要预览文件的文件名（不填的话取 url 的最后部分）
-  - `fileSize` (Number, 可选) - 需要预览文件的字节大小
-  - `onSuccess` (Function, 可选) - 成功回调
-  - `onError` (Function, 可选) - 失败回调
+- `fileUrl` (String, 必填) - 需要预览文件的地址
+- `fileName` (String, 可选) - 需要预览文件的文件名（不填的话取 url 的最后部分）
+- `fileSize` (Number, 可选) - 需要预览文件的字节大小
+- `onSuccess` (Function, 可选) - 成功回调
+- `onError` (Function, 可选) - 失败回调
 
 **示例：**
 
@@ -441,14 +430,13 @@ Bridge.previewFile({
 
 **参数：**
 
-- `params` (Object) - 分享参数
-  - `platforms` (Array<String>, 可选) - 分享平台，微信、企微、飞书、钉钉都不支持，默认分享到当前平台
-  - `title` (String, 必填) - 分享标题
-  - `description` (String, 可选) - 分享副标题
-  - `url` (String, 可选) - 分享链接
-  - `imageUrl` (String, 可选) - 分享链接的图片
-  - `onSuccess` (Function, 可选) - 分享成功回调
-  - `onError` (Function, 可选) - 分享失败回调
+- `platforms` (Array<String>, 可选) - 分享平台，微信、企微、飞书、钉钉都不支持，默认分享到当前平台
+- `title` (String, 必填) - 分享标题
+- `description` (String, 可选) - 分享副标题
+- `url` (String, 可选) - 分享链接
+- `imageUrl` (String, 可选) - 分享链接的图片
+- `onSuccess` (Function, 可选) - 分享成功回调
+- `onError` (Function, 可选) - 分享失败回调
 
 **示例：**
 
@@ -463,39 +451,6 @@ Bridge.share({
   },
   onError: (error) => {
     console.log('分享失败', error)
-  }
-})
-```
-
-### platform
-
-获取当前平台名称（只读属性）。
-
-**示例：**
-
-```javascript
-const currentPlatform = Bridge.platform
-console.log('当前平台:', currentPlatform) // 'wechat', 'wecom', 'alipay', 'dingtalk', 'lark', 'browser' 等
-```
-
-### addBridge(platform, customBridge)
-
-添加自定义 Bridge。
-
-**参数：**
-
-- `platform` (String) - 平台名称
-- `customBridge` (Object) - 自定义 Bridge 对象
-
-**示例：**
-
-```javascript
-Bridge.addBridge('custom', {
-  scanQRCode: (params) => {
-    // 自定义扫码实现
-  },
-  chooseMedia: (params) => {
-    // 自定义选择媒体实现
   }
 })
 ```
@@ -528,7 +483,7 @@ Bridge 还提供了一些工具方法：
 | `getLocation`        | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `getBrowserLocation` | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `openLocation`       | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `scanQRCode`         | ❌     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
+| `scanCode`           | ❌     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `chooseMedia`        | ❌     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `uploadFile`         | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `previewMedia`       | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |

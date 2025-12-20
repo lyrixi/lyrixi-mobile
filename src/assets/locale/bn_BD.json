@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "পূর্বরূপচিত্র শুধুমাত্র মোবাইল WeChat বা APP এ ব্যবহার করা যাবে",
   "lyrixi.previewFile.prompt": "পূর্বরূপফাইল কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
-  "lyrixi.only.app.wechat": "এই বৈশিষ্ট্যটি কেবল WeChat বা অ্যাপে সুলভ",
+  "lyrixi.bridge.not.supported": "এই বৈশিষ্ট্যটি কেবল WeChat বা অ্যাপে সুলভ",
   "lyrixi.scanCode.failed": "কোডটি স্ক্যান করতে ব্যর্থ হয়েছে",
   "lyrixi.try.again.later": "অনুগ্রহ করে পরে আবার চেষ্টা করুন",
   "lyrixi.uploadFile.prompt": "আপলোডফাইল শুধুমাত্র অ্যাপে ব্যবহার করা যাবে",

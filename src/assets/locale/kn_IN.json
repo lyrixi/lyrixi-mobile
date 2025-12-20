@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "ಪೂರ್ವವೀಕ್ಷಣೆ ಇಮೇಜ್ ಅನ್ನು ಮೊಬೈಲ್ ವೀಚಾಟ್ ಅಥವಾ ಎಪಿಪಿಯಲ್ಲಿ ಮಾತ್ರ ಬಳಸಬಹುದು",
   "lyrixi.previewFile.prompt": "ಪೂರ್ವವೀಕ್ಷಣೆಫೈಲ್ ಅನ್ನು WeCom ಅಥವಾ APP ನಲ್ಲಿ ಮಾತ್ರ ಬಳಸಬಹುದು",
   "lyrixi.onHistoryBack.prompt": "ಆನ್ ಹಿಸ್ಟರಿಬ್ಯಾಕ್ ಅನ್ನು WeCom ಅಥವಾ APP ನಲ್ಲಿ ಮಾತ್ರ ಬಳಸಬಹುದು",
-  "lyrixi.only.app.wechat": "ಈ ವೈಶಿಷ್ಟ್ಯವು ವೀಚಾಟ್ ಅಥವಾ ಎಪಿಪಿಯಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿದೆ",
+  "lyrixi.bridge.not.supported": "ಈ ವೈಶಿಷ್ಟ್ಯವು ವೀಚಾಟ್ ಅಥವಾ ಎಪಿಪಿಯಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿದೆ",
   "lyrixi.scanCode.failed": "ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ",
   "lyrixi.try.again.later": "ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
   "lyrixi.uploadFile.prompt": "ಅಪ್ ಲೋಡ್ ಫೈಲ್ ಅನ್ನು ಅಪ್ಲಿಕೇಶನ್ ನಲ್ಲಿ ಮಾತ್ರ ಬಳಸಬಹುದು",

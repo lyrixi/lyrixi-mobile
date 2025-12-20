@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia var izmantot tikai mobilajā ierīcē WeChat vai APP",
   "lyrixi.previewFile.prompt": "previewFile var izmantot tikai WeCom vai APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack var izmantot tikai WeCom vai APP",
-  "lyrixi.only.app.wechat": "Šī funkcija ir pieejama tikai WeChat vai APP",
+  "lyrixi.bridge.not.supported": "Šī funkcija ir pieejama tikai WeChat vai APP",
   "lyrixi.scanCode.failed": "Neizdevās noskenēt kodu",
   "lyrixi.try.again.later": "Lūdzu, vēlāk mēģiniet vēlreiz",
   "lyrixi.uploadFile.prompt": "uploadFile var izmantot tikai lietojumprogrammā",

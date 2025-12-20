@@ -99,66 +99,49 @@ let Bridge = {
 
     window.top.dd.openLocation(wrappedParams)
   },
-  getLocation: function (params = {}) {
-    const { type, onSuccess, onError } = params || {}
-    let targetType = type || 'gcj02'
+  getLocation: function ({ type, onSuccess, onError } = {}) {
     console.log('调用钉钉定位...', params)
 
-    const handleSuccess = onSuccess
-      ? function (res) {
-          console.log('钉钉定位完成', res)
-          let latitude = res.latitude
-          let longitude = res.longitude
-          if (!longitude || !latitude) {
-            console.error('钉钉定位失败', res)
-            if (onError) {
-              onError({
-                status: 'error',
-                message: res.errorMessage || LocaleUtil.locale('定位失败', 'lyrixi.location.failed')
-              })
-            }
-            return
-          }
-          let currentType = 'gcj02'
-          let isInChina = GeoUtil.isInChina([longitude, latitude])
-          if (isInChina) {
-            currentType = 'gcj02'
-          } else {
-            currentType = 'wgs84'
-          }
-
-          const points = GeoUtil.coordtransform([longitude, latitude], currentType, targetType)
-          longitude = points[0]
-          latitude = points[1]
-
-          let result = {
-            status: 'success',
-            type: targetType,
-            latitude: latitude,
-            longitude: longitude,
-            accuracy: res.accuracy
-          }
-          console.log('转换后坐标', result)
-          onSuccess(result)
-        }
-      : undefined
-
-    const wrappedParams = wrapCallback({
+    window.top.dd.getLocation({
       type: 0,
       useCache: false,
       coordinate: '1',
       cacheTimeout: 20,
       withReGeocode: false,
       targetAccuracy: '200',
-      onSuccess: handleSuccess,
-      onError: onError
+      onSuccess: (res) => {
+        console.log('钉钉定位完成', res)
+        let latitude = res.latitude
+        let longitude = res.longitude
+        let currentType = 'gcj02'
+        let isInChina = GeoUtil.isInChina([longitude, latitude])
+        if (isInChina) {
+          currentType = 'gcj02'
+        } else {
+          currentType = 'wgs84'
+        }
+
+        const points = GeoUtil.coordtransform([longitude, latitude], currentType, type)
+        longitude = points[0]
+        latitude = points[1]
+
+        let result = {
+          status: 'success',
+          type: type,
+          latitude: latitude,
+          longitude: longitude,
+          accuracy: res.accuracy
+        }
+        console.log('转换后坐标', result)
+        onSuccess?.(result)
+      },
+      onError: (error) => {
+        onError?.({ status: 'error', message: error?.errorMessage || '' })
+      },
+      onCancel: onCancel
     })
-
-    window.top.dd.getLocation(wrappedParams)
   },
-  scanQRCode: function (params = {}) {
-    const { scanType, onSuccess, onError } = params || {}
-
+  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     let type = 'all'
     if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
@@ -168,22 +151,19 @@ let Bridge = {
       }
     }
 
-    const handleSuccess = onSuccess
-      ? function (res) {
-          onSuccess({
-            status: 'success',
-            resultStr: res.text
-          })
-        }
-      : undefined
-
-    const wrappedParams = wrapDingTalkCallback({
+    window.top.dd.biz.util.scan({
       type: type,
-      onSuccess: handleSuccess,
-      onError: onError
+      onSuccess: (res) => {
+        onSuccess?.({
+          status: 'success',
+          resultStr: res.text
+        })
+      },
+      onError: (error) => {
+        onError?.({ status: 'error', message: error?.errorMessage || '' })
+      },
+      onCancel: onCancel
     })
-
-    window.top.dd.biz.util.scan(wrappedParams)
   },
   chooseMedia: function ({
     count,

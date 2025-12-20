@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "Το previewMedia μπορεί να χρησιμοποιηθεί μόνο σε κινητά, WeChat ή APP",
   "lyrixi.previewFile.prompt": "Το previewFile μπορεί να χρησιμοποιηθεί μόνο σε WeCom ή APP",
   "lyrixi.onHistoryBack.prompt": "Το onHistoryBack μπορεί να χρησιμοποιηθεί μόνο σε WeCom ή APP",
-  "lyrixi.only.app.wechat": "Αυτή η λειτουργία είναι διαθέσιμη μόνο σε WeChat ή APP",
+  "lyrixi.bridge.not.supported": "Αυτή η λειτουργία είναι διαθέσιμη μόνο σε WeChat ή APP",
   "lyrixi.scanCode.failed": "Αποτυχία σάρωσης του κωδικού",
   "lyrixi.try.again.later": "Προσπαθήστε ξανά αργότερα",
   "lyrixi.uploadFile.prompt": "uploadΤο αρχείο μπορεί να χρησιμοποιηθεί μόνο στην εφαρμογή",

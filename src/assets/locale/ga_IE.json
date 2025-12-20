@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
   "lyrixi.previewFile.prompt": "ní féidir previewFile a úsáid ach amháin i WeCom nó APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack is féidir é a úsáid ach amháin i WeCom nó APP",
-  "lyrixi.only.app.wechat": "Níl an ghné seo ar fáil ach ar WeChat nó APP",
+  "lyrixi.bridge.not.supported": "Níl an ghné seo ar fáil ach ar WeChat nó APP",
   "lyrixi.scanCode.failed": "Theip ar scanadh an chóid",
   "lyrixi.try.again.later": "Bain triail eile as níos déanaí",
   "lyrixi.uploadFile.prompt": "uploadFile is féidir a úsáid ach amháin san fheidhmchlár",

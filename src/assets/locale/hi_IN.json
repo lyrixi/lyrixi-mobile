@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "पूर्वावलोकनछवि का उपयोग केवल मोबाइल वीचैट या एपीपी पर किया जा सकता है",
   "lyrixi.previewFile.prompt": "पूर्वावलोकनफ़ाइल का उपयोग केवल WeCom या APP में किया जा सकता है",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack का उपयोग केवल WeCom या APP में किया जा सकता है",
-  "lyrixi.only.app.wechat": "यह सुविधा केवल WeChat या APP पर उपलब्ध है",
+  "lyrixi.bridge.not.supported": "यह सुविधा केवल WeChat या APP पर उपलब्ध है",
   "lyrixi.scanCode.failed": "कोड को स्कैन करने में विफल",
   "lyrixi.try.again.later": "कृपया बाद में पुन: प्रयास करें",
   "lyrixi.uploadFile.prompt": "uploadFile का उपयोग केवल ऐप में किया जा सकता है",

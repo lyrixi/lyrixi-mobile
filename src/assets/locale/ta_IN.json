@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia ஐ மொபைல் WeChat அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
   "lyrixi.previewFile.prompt": "previewFile WeCom அல்லது APP இல் மட்டுமே பயன்படுத்தப்பட முடியும்",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack ஐ WeCom அல்லது APP இல் மட்டுமே பயன்படுத்த முடியும்",
-  "lyrixi.only.app.wechat": "இந்த அம்சம் WeChat அல்லது APP இல் மட்டுமே கிடைக்கும்",
+  "lyrixi.bridge.not.supported": "இந்த அம்சம் WeChat அல்லது APP இல் மட்டுமே கிடைக்கும்",
   "lyrixi.scanCode.failed": "குறியீட்டை ஸ்கேன் செய்வதில் தோல்வி",
   "lyrixi.try.again.later": "பின்னர் மீண்டும் முயற்சிக்கவும்",
   "lyrixi.uploadFile.prompt": "uploadFile பயன்பாட்டில் மட்டுமே பயன்படுத்த முடியும்",

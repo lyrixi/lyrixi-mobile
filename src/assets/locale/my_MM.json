@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "ကြိုတင်မြင်ကွင်းကို မိုဘိုင်း WeChat သို့မဟုတ် APP တွင်သာ အသုံးပြုနိုင်ပါသည်",
   "lyrixi.previewFile.prompt": "ကြိုတင်မြင်ကွင်းဖိုင်ကို WeCom (သို့) APP မှာပဲ အသုံးပြုနိုင်ပါတယ်",
   "lyrixi.onHistoryBack.prompt": "InhistoryBack ကို WeCom (သို့) APP မှာပဲ အသုံးပြုနိုင်ပါတယ်",
-  "lyrixi.only.app.wechat": "ဒီအသွင်အပြင်ကို WeChat ဒါမှမဟုတ် APP မှာပဲ ရနိုင်ပါတယ်",
+  "lyrixi.bridge.not.supported": "ဒီအသွင်အပြင်ကို WeChat ဒါမှမဟုတ် APP မှာပဲ ရနိုင်ပါတယ်",
   "lyrixi.scanCode.failed": "ဥပဒေကို စကဲန်ရိုက်ရန် ပျက်ကွက်ခဲ့",
   "lyrixi.try.again.later": "ကျေးဇူးပြု၍ နောက်ပိုင်း ပြန်ကြိုးစားပါ",
   "lyrixi.uploadFile.prompt": "ပရိုဂရက်ထဲမှာပဲ တင်နိုင်ပါတယ်",

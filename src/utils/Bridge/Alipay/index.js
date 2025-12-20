@@ -98,55 +98,46 @@ let Bridge = {
 
     window.top.ap.openLocation(wrappedParams)
   },
-  getLocation: function (params = {}) {
-    const { type, onSuccess, onError, ...otherParams } = params || {}
-
+  getLocation: function ({ type, onSuccess, onError } = {}) {
     console.log('调用支付宝定位...', params)
 
-    const handleSuccess = onSuccess
-      ? function (res) {
-          let latitude = res.latitude
-          let longitude = res.longitude
-
-          if (!longitude || !latitude) {
-            console.error('支付宝定位失败', res)
-            if (onError) {
-              onError({
-                status: 'error',
-                message: LocaleUtil.locale('定位成功, 但没有经纬度')
-              })
-            }
-            return
-          }
-
-          if (type === 'wgs84') {
-            const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
-            longitude = points[0]
-            latitude = points[1]
-          }
-
-          onSuccess({
-            status: 'success',
-            longitude: longitude,
-            latitude: latitude,
-            type: type || 'gcj02',
-            accuracy: res.accuracy
-          })
-        }
-      : undefined
-
-    const wrappedParams = wrapCallback({
-      ...otherParams,
+    window.top.ap.getLocation({
       type: '2',
-      onSuccess: handleSuccess,
-      onError: onError
+      onSuccess: (res) => {
+        let latitude = res.latitude
+        let longitude = res.longitude
+
+        if (!longitude || !latitude) {
+          console.error('支付宝定位失败', res)
+          if (onError) {
+            onError({
+              status: 'error',
+              message: LocaleUtil.locale('定位成功, 但没有经纬度')
+            })
+          }
+          return
+        }
+
+        if (type === 'wgs84') {
+          const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+          longitude = points[0]
+          latitude = points[1]
+        }
+
+        onSuccess({
+          status: 'success',
+          longitude: longitude,
+          latitude: latitude,
+          type: type || 'gcj02',
+          accuracy: res.accuracy
+        })
+      },
+      onError: (error) => {
+        onError?.({ status: 'error', message: error?.errorMessage || '' })
+      }
     })
-
-    window.top.ap.getLocation(wrappedParams)
   },
-  scanQRCode: function (params = {}) {
-    const { scanType, onSuccess, onError } = params || {}
-
+  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     let type = ''
     if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
@@ -156,22 +147,19 @@ let Bridge = {
       }
     }
 
-    const handleSuccess = onSuccess
-      ? function (res) {
-          onSuccess({
-            status: 'success',
-            resultStr: res.code
-          })
-        }
-      : undefined
-
-    const wrappedParams = wrapCallback({
+    window.top.ap.scan({
       type: type,
-      onSuccess: handleSuccess,
-      onError: onError
+      success: (res) => {
+        onSuccess?.({
+          status: 'success',
+          resultStr: res.code
+        })
+      },
+      fail: (error) => {
+        onError?.({ status: 'error', message: error?.errorMessage || '' })
+      },
+      cancel: onCancel
     })
-
-    window.top.ap.scan(wrappedParams)
   },
   chooseMedia: function (params) {
     console.log('调用支付宝选择媒体暂未实现', params)

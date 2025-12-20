@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "A previewMedia csak mobil WeChat vagy APP rendszeren használható",
   "lyrixi.previewFile.prompt": "A previewFile csak WeComban vagy APP-ben használható",
   "lyrixi.onHistoryBack.prompt": "Az onHistoryBack csak a WeComban vagy az APP-ben használható",
-  "lyrixi.only.app.wechat": "Ez a funkció csak a WeChat vagy az APP alkalmazásban érhető el",
+  "lyrixi.bridge.not.supported": "Ez a funkció csak a WeChat vagy az APP alkalmazásban érhető el",
   "lyrixi.scanCode.failed": "Nem sikerült beolvasni a kódot",
   "lyrixi.try.again.later": "Kérjük, próbálja újra később",
   "lyrixi.uploadFile.prompt": "uploadFile csak az alkalmazásban használható",

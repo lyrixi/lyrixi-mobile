@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "алдын ала қарауДы тек мобильді WeChat немесе APP бағдарламасында пайдалануға болады",
   "lyrixi.previewFile.prompt": "алдын ала қарауFile тек WeCom немесе APP бағдарламасында пайдалануға болады",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack тек WeCom немесе APP бағдарламасында пайдалануға болады",
-  "lyrixi.only.app.wechat": "Бұл мүмкіндік тек WeChat немесе APP бағдарламасында қолжетімді",
+  "lyrixi.bridge.not.supported": "Бұл мүмкіндік тек WeChat немесе APP бағдарламасында қолжетімді",
   "lyrixi.scanCode.failed": "Кодты сканерлеу жаңылысы",
   "lyrixi.try.again.later": "Кейінірек қайталап көріңіз",
   "lyrixi.uploadFile.prompt": "uploadFile тек бағдарламада ғана пайдаланылуы мүмкін",

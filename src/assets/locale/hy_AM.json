@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia-ը կարող է օգտագործվել միայն բջջային WeChat-ում կամ APP-ում",
   "lyrixi.previewFile.prompt": "previewFile-ը կարող է օգտագործվել միայն WeCom-ում կամ APP-ում",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack-ը կարող է օգտագործվել միայն WeCom-ում կամ APP-ում",
-  "lyrixi.only.app.wechat": "Այս առանձնահատկությունը հասանելի է միայն WeChat-ում կամ APP-ում",
+  "lyrixi.bridge.not.supported": "Այս առանձնահատկությունը հասանելի է միայն WeChat-ում կամ APP-ում",
   "lyrixi.scanCode.failed": "Ձախողվել է կոդը սկան անել",
   "lyrixi.try.again.later": "Խնդրում ենք կրկին փորձել ավելի ուշ",
   "lyrixi.uploadFile.prompt": "uploadFile-ը կարող է օգտագործվել միայն հավելվածում",

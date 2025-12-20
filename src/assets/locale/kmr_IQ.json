@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "Pêşdîtin Image tenê dikare li ser WeChat an APP-ê ya mobîl were bikar anîn",
   "lyrixi.previewFile.prompt": "PêşdîtinFile tenê dikare di WeCom an APP de were bikar anîn",
   "lyrixi.onHistoryBack.prompt": "OnHistoryBack tenê dikare di WeCom an APP de were bikar anîn",
-  "lyrixi.only.app.wechat": "Ev taybetmendî tenê di WeChat an jî APP da heye.",
+  "lyrixi.bridge.not.supported": "Ev taybetmendî tenê di WeChat an jî APP da heye.",
   "lyrixi.scanCode.failed": "Venihêrandina kodê biserneket",
   "lyrixi.try.again.later": "Ji kerema xwe paşê dîsa biceribînin",
   "lyrixi.uploadFile.prompt": "uploadFile tenê di sepanê de dikare were bikaranîn",

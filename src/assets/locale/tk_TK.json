@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia diňe mobil WeChat ýa-da APP-de ulanylyp bilner",
   "lyrixi.previewFile.prompt": "previewFile diňe WeCom ýa-da APP-de ulanylyp bilner",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack diňe WeCom ýa-da APP-de ulanyp bolýar",
-  "lyrixi.only.app.wechat": "Bu aýratynlyk diňe WeChat ýa-da APP-de elýeterlidir",
+  "lyrixi.bridge.not.supported": "Bu aýratynlyk diňe WeChat ýa-da APP-de elýeterlidir",
   "lyrixi.scanCode.failed": "Renk Saýlawy",
   "lyrixi.try.again.later": "Ýene-de synap görmegiňizi haýyş edýäris",
   "lyrixi.uploadFile.prompt": "faýly diňe programmada ulanyp bolýar",

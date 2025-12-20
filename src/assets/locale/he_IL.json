@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "ניתן להשתמש בתצוגה מקדימהImage רק בנייד, WeChat או APP",
   "lyrixi.previewFile.prompt": "ניתן להשתמש בקובץ תצוגה מקדימה רק ב- WeCom או ב- APP",
   "lyrixi.onHistoryBack.prompt": "ניתן להשתמש ב- onHistoryBack רק ב- WeCom או ב- APP",
-  "lyrixi.only.app.wechat": "תכונה זו זמינה רק ב- WeChat או באפליקציה",
+  "lyrixi.bridge.not.supported": "תכונה זו זמינה רק ב- WeChat או באפליקציה",
   "lyrixi.scanCode.failed": "סריקת הקוד נכשלה",
   "lyrixi.try.again.later": "נסה שוב מאוחר יותר",
   "lyrixi.uploadFile.prompt": "ניתן להשתמש ב- uploadFile רק באפליקציה",

@@ -91,8 +91,7 @@ let Bridge = {
 
     window.top.tt.openLocation(wrappedParams)
   },
-  getLocation: function (params = {}) {
-    const { type, onSuccess, onError } = params || {}
+  getLocation: function ({ type, onSuccess, onError } = {}) {
     let targetType = type || 'gcj02'
     console.log('调用飞书定位...', params)
 
@@ -145,17 +144,21 @@ let Bridge = {
 
     window.top.tt.getLocation(wrappedParams)
   },
-  scanQRCode: function (params = {}) {
-    const { scanType, onSuccess, onError } = params || {}
-
-    const wrappedParams = wrapCallback({
+  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
+    window.top.tt.scanCode({
       scanType: scanType,
       barCodeInput: true,
-      onSuccess: onSuccess,
-      onError: onError
+      success: () => {
+        onSuccess?.({
+          status: 'success',
+          resultStr: res.resultStr
+        })
+      },
+      fail: (error) => {
+        onError?.({ status: 'error', message: error?.errMsg || '' })
+      },
+      cancel: onCancel
     })
-
-    window.top.tt.scanCode(wrappedParams)
   },
   chooseMedia: function (params) {
     console.log('调用飞书选择媒体暂未实现', params)

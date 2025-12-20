@@ -79,11 +79,7 @@ let Browser = {
   getLocation: function (params = {}) {
     this.getBrowserLocation(params)
   },
-  getBrowserLocation: function (params) {
-    if (!params.type) {
-      params.type = 'gcj02'
-    }
-
+  getBrowserLocation: function ({ type, onSuccess, onError } = {}) {
     if (this.debug) {
       console.log('模拟浏览器定位...', params)
       setTimeout(() => {
@@ -92,16 +88,16 @@ let Browser = {
           message: '',
           speed: '0.0',
           accuracy: '3.0.0',
-          type: params.type || 'wgs84'
+          type: type || 'wgs84'
         }
-        if (params?.type === 'gcj02') {
+        if (type === 'gcj02') {
           res.latitude = 39.909187
           res.longitude = 116.397451
         } else {
           res.latitude = 39.907783490367706
           res.longitude = 116.39120737493609
         }
-        if (params.onSuccess) params.onSuccess(res)
+        onSuccess?.(res)
       }, 2000)
       return
     }
@@ -113,16 +109,15 @@ let Browser = {
           let longitude = position.coords.longitude
           let latitude = position.coords.latitude
           if (!longitude || !latitude) {
-            if (params.onError)
-              params.onError({
-                status: 'error',
-                code: 'LATLNG_ERROR',
-                message: `${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`
-              })
+            onError?.({
+              status: 'error',
+              code: 'LATLNG_ERROR',
+              message: `${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`
+            })
           }
 
           console.log('调用浏览器定位成功', longitude, latitude)
-          if (params.type === 'gcj02') {
+          if (type === 'gcj02') {
             const points = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'gcj02')
             longitude = points[0]
             latitude = points[1]
@@ -134,9 +129,9 @@ let Browser = {
             accuracy: position.coords.accuracy,
             longitude: longitude,
             latitude: latitude,
-            type: params.type || 'wgs84'
+            type: type || 'wgs84'
           }
-          if (params.onSuccess) params.onSuccess(res)
+          onSuccess?.(res)
         },
         (error) => {
           let code = ''
@@ -195,7 +190,7 @@ let Browser = {
           }
           let res = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
-          if (params.onError) params.onError(res)
+          onError?.(res)
         },
         {
           enableHighAccuracy: true,
@@ -210,21 +205,19 @@ let Browser = {
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
         message: `${LocaleUtil.locale('当前浏览器不支持定位', 'lyrixi.location.not.supported')}`
       }
-      if (params.onError) params.onError(res)
+      onError?.(res)
     }
     return
   },
-  scanQRCode: function (params = {}) {
+  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     if (!this.debug) {
       Toast.show({
-        content: LocaleUtil.locale('此功能仅可在微信或APP中使用', 'lyrixi.only.app.wechat', [
-          'scanQRCode'
-        ])
+        content: LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', ['scanCode'])
       })
-      if (params.onError)
-        params.onError({
+      if (onError)
+        onError({
           status: 'error',
-          message: `scanQRCode:${LocaleUtil.locale(
+          message: `scanCode:${LocaleUtil.locale(
             '扫码失败',
             'lyrixi.scanCode.failed'
           )}, ${LocaleUtil.locale('请稍后重试', 'lyrixi.try.again.later')}`
@@ -232,8 +225,7 @@ let Browser = {
       return
     }
     setTimeout(function () {
-      if (params.onSuccess)
-        params.onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
+      if (onSuccess) onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
     }, 500)
   },
   chooseMedia: function (params) {

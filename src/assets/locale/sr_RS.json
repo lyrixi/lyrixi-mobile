@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previevImage se može koristiti samo na mobilnom VeChat-u ili APP-u",
   "lyrixi.previewFile.prompt": "previevFile se može koristiti samo u VeCom ili APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack se može koristiti samo u WeCom ili APP",
-  "lyrixi.only.app.wechat": "Ova funkcija je dostupna samo na VeChat ili APP",
+  "lyrixi.bridge.not.supported": "Ova funkcija je dostupna samo na VeChat ili APP",
   "lyrixi.scanCode.failed": "Failed to skeniranje koda",
   "lyrixi.try.again.later": "Molimo Vas da pokušate ponovo kasnije",
   "lyrixi.uploadFile.prompt": "uploadFile se može koristiti samo u aplikaciji",

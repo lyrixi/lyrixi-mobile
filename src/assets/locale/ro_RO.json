@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previzualizareImaginea poate fi utilizată numai pe mobil, WeChat sau APP",
   "lyrixi.previewFile.prompt": "previzualizareFișierul poate fi utilizat numai în WeCom sau APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack poate fi utilizat numai în WeCom sau APP",
-  "lyrixi.only.app.wechat": "Această funcție este disponibilă numai pe WeChat sau APP",
+  "lyrixi.bridge.not.supported": "Această funcție este disponibilă numai pe WeChat sau APP",
   "lyrixi.scanCode.failed": "Scanarea codului nu a reușit",
   "lyrixi.try.again.later": "Vă rugăm să încercați din nou mai târziu",
   "lyrixi.uploadFile.prompt": "uploadFile poate fi folosit numai în aplicație",

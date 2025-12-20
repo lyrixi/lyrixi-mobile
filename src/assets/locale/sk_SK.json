@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia je možné použiť iba na mobilnom WeChat alebo APP",
   "lyrixi.previewFile.prompt": "previewFile je možné použiť iba vo WeCom alebo APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack je možné použiť iba vo WeCom alebo APP",
-  "lyrixi.only.app.wechat": "Táto funkcia je dostupná iba na WeChat alebo APP",
+  "lyrixi.bridge.not.supported": "Táto funkcia je dostupná iba na WeChat alebo APP",
   "lyrixi.scanCode.failed": "Skenovanie kódu sa nepodarilo",
   "lyrixi.try.again.later": "Skúste to znova neskôr",
   "lyrixi.uploadFile.prompt": "uploadFile je možné použiť iba v aplikácii",

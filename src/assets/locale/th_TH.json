@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia สามารถใช้ได้บนมือถือ WeChat หรือ APP เท่านั้น",
   "lyrixi.previewFile.prompt": "previewFile สามารถใช้ได้ใน WeCom หรือ APP เท่านั้น",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack สามารถใช้ได้ใน WeCom หรือ APP เท่านั้น",
-  "lyrixi.only.app.wechat": "คุณลักษณะนี้มีเฉพาะใน WeChat หรือ APP เท่านั้น",
+  "lyrixi.bridge.not.supported": "คุณลักษณะนี้มีเฉพาะใน WeChat หรือ APP เท่านั้น",
   "lyrixi.scanCode.failed": "สแกนรหัสไม่สําเร็จ",
   "lyrixi.try.again.later": "โปรดลองอีกครั้งในภายหลัง",
   "lyrixi.uploadFile.prompt": "uploadFile สามารถใช้ได้ในแอปเท่านั้น",

@@ -150,7 +150,7 @@
   "lyrixi.previewMedia.prompt": "previewMedia er aðeins hægt að nota á farsíma WeChat eða APP",
   "lyrixi.previewFile.prompt": "previewFile er aðeins hægt að nota í WeCom eða APP",
   "lyrixi.onHistoryBack.prompt": "onHistoryBack er aðeins hægt að nota í WeCom eða APP",
-  "lyrixi.only.app.wechat": "Þessi eiginleiki er aðeins fáanlegur á WeChat eða APP",
+  "lyrixi.bridge.not.supported": "Þessi eiginleiki er aðeins fáanlegur á WeChat eða APP",
   "lyrixi.scanCode.failed": "Mistókst að skanna kóðann",
   "lyrixi.try.again.later": "Vinsamlegast reyndu aftur síðar",
   "lyrixi.uploadFile.prompt": "uploadFile er aðeins hægt að nota í appinu",
