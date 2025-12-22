@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Loading.jsx"></code>
+<code src="./demos/Loading/index.jsx"></code>
 
 ## API
 
@@ -84,7 +84,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading.jsx"></code>
+<code src="./demos/Loading/index.jsx"></code>
 
 ### API
 
@@ -105,7 +105,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading.jsx"></code>
+<code src="./demos/Loading/index.jsx"></code>
 
 ### API
 
@@ -126,7 +126,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading.jsx"></code>
+<code src="./demos/Loading/index.jsx"></code>
 
 ### API
 

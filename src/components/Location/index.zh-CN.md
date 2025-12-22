@@ -98,8 +98,6 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Modal/index.jsx"></code>
-
 ### API
 
 #### 属性

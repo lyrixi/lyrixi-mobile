@@ -13,9 +13,11 @@ toc: content
 
 ## 何时使用
 
-- 需要用户输入文本、数字、密码等数据时
-- 需要表单输入控件时
-- 需要带验证、格式化等功能的输入框时
+- 需要文本输入时
+- 需要数字输入时
+- 需要密码输入时
+- 需要搜索输入时
+- 需要其他类型输入时
 
 ## 代码演示
 
@@ -25,50 +27,11 @@ toc: content
 
 ### 属性
 
-| 属性         | 说明         | 类型                                                                  | 默认值   |
-| ------------ | ------------ | --------------------------------------------------------------------- | -------- |
-| id           | 输入框 ID    | `string`                                                              | -        |
-| type         | 输入类型     | `'text' \| 'number' \| 'tel' \| 'password' \| 'search' \| 'autoSize'` | `'text'` |
-| style        | 自定义样式   | `object`                                                              | -        |
-| className    | 自定义类名   | `string`                                                              | -        |
-| readOnly     | 是否只读     | `boolean`                                                             | -        |
-| disabled     | 是否禁用     | `boolean`                                                             | -        |
-| name         | 输入框名称   | `string`                                                              | -        |
-| value        | 输入值       | `string \| number`                                                    | `''`     |
-| inputMode    | 输入模式     | `string`                                                              | -        |
-| enterKeyHint | 回车键提示   | `string`                                                              | -        |
-| autoComplete | 自动完成     | `string`                                                              | -        |
-| autoCorrect  | 自动纠正     | `string`                                                              | -        |
-| spellCheck   | 拼写检查     | `string`                                                              | -        |
-| formatter    | 格式化函数   | `(value: any) => string`                                              | -        |
-| precision    | 小数精度     | `number`                                                              | -        |
-| trim         | 是否去除空格 | `boolean`                                                             | -        |
-| max          | 最大值       | `number`                                                              | -        |
-| min          | 最小值       | `number`                                                              | -        |
-| placeholder  | 占位符       | `string`                                                              | -        |
-| maxLength    | 最大长度     | `number`                                                              | -        |
-| autoFocus    | 自动获取焦点 | `boolean`                                                             | -        |
-| autoSelect   | 自动选中     | `boolean`                                                             | -        |
-| input        | 自定义输入框 | `ReactNode`                                                           | -        |
-| leftIcon     | 左侧图标     | `ReactNode`                                                           | -        |
-| rightIcon    | 右侧图标     | `ReactNode`                                                           | -        |
-| clear        | 清除按钮     | `boolean \| ReactNode`                                                | -        |
-| allowClear   | 允许清除     | `boolean`                                                             | -        |
-| onClick      | 点击事件     | `(e: Event) => void`                                                  | -        |
-| onChange     | 值变化事件   | `(value: any, e: Event) => void`                                      | -        |
-| onBlur       | 失焦事件     | `(e: Event) => void`                                                  | -        |
-| onFocus      | 聚焦事件     | `(e: Event) => void`                                                  | -        |
-| onKeyDown    | 按键事件     | `(e: Event) => void`                                                  | -        |
-| onPressEnter | 回车事件     | `(e: Event) => void`                                                  | -        |
+Input 组件本身不直接使用，请使用子组件。
 
 ### Ref
 
-| 属性            | 说明           | 类型                     |
-| --------------- | -------------- | ------------------------ |
-| element         | 根元素         | `HtmlDivElement`         |
-| inputElement    | 输入框元素     | `HtmlInputElement`       |
-| getElement      | 获取根元素     | () => `HtmlDivElement`   |
-| getInputElement | 获取输入框元素 | () => `HtmlInputElement` |
+Input 组件本身不直接使用，请使用子组件。
 
 ## Input.Text
 
@@ -134,3 +97,307 @@ toc: content
 | getInputElement | 获取输入框元素 | () => `HtmlInputElement` |
 | correctValue    | 矫正值         | `(value: any) => string` |
 | focus           | 获取焦点       | `() => void`             |
+
+## Input.Number
+
+数字输入框组件。
+
+### 何时使用
+
+- 需要数字输入时
+- 需要限制数字范围时
+- 需要小数精度控制时
+
+### 代码演示
+
+<code src="./demos/Number/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.NumberBox
+
+数字输入框组件，带增减按钮。
+
+### 何时使用
+
+- 需要数字输入且带增减按钮时
+- 需要快速调整数值时
+
+### 代码演示
+
+<code src="./demos/NumberBox/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.NumberKeyboard
+
+数字键盘输入框组件。
+
+### 何时使用
+
+- 需要数字键盘输入时
+- 需要移动端数字输入优化时
+
+### 代码演示
+
+<code src="./demos/NumberKeyboard/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Password
+
+密码输入框组件。
+
+### 何时使用
+
+- 需要密码输入时
+- 需要隐藏输入内容时
+
+### 代码演示
+
+<code src="./demos/Password/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.PasswordStrength
+
+密码强度输入框组件。
+
+### 何时使用
+
+- 需要密码输入且显示强度时
+- 需要密码强度验证时
+
+### 代码演示
+
+<code src="./demos/PasswordStrength/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Search
+
+搜索输入框组件。
+
+### 何时使用
+
+- 需要搜索输入时
+- 需要搜索功能时
+
+### 代码演示
+
+<code src="./demos/Search/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性，以及：
+
+| 属性     | 说明     | 类型                      | 默认值 |
+| -------- | -------- | ------------------------- | ------ |
+| onSearch | 搜索事件 | `(value: string) => void` | -      |
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Tel
+
+电话输入框组件。
+
+### 何时使用
+
+- 需要电话输入时
+- 需要电话号码格式化时
+
+### 代码演示
+
+<code src="./demos/Tel/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Url
+
+URL 输入框组件。
+
+### 何时使用
+
+- 需要 URL 输入时
+- 需要网址输入时
+
+### 代码演示
+
+<code src="./demos/Url/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Textarea
+
+多行文本输入框组件。
+
+### 何时使用
+
+- 需要多行文本输入时
+- 需要长文本输入时
+
+### 代码演示
+
+<code src="./demos/Textarea/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.AutoSize
+
+自适应高度输入框组件。
+
+### 何时使用
+
+- 需要自适应高度的输入框时
+- 需要根据内容自动调整高度时
+
+### 代码演示
+
+<code src="./demos/AutoSize/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.OTP
+
+一次性密码输入框组件。
+
+### 何时使用
+
+- 需要一次性密码输入时
+- 需要验证码输入时
+
+### 代码演示
+
+<code src="./demos/OTP/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Range
+
+范围输入框组件。
+
+### 何时使用
+
+- 需要范围输入时
+- 需要滑块输入时
+
+### 代码演示
+
+<code src="./demos/Range/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。
+
+## Input.Rate
+
+评分输入框组件。
+
+### 何时使用
+
+- 需要评分输入时
+- 需要星级评分时
+
+### 代码演示
+
+<code src="./demos/Rate/index.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Input.Text 组件属性。
+
+#### Ref
+
+同 Input.Text 组件 Ref。

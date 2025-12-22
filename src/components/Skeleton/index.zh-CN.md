@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Skeleton.jsx"></code>
+<code src="./demos/List/index.jsx"></code>
 
 ## API
 
@@ -48,7 +48,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Skeleton.jsx"></code>
+<code src="./demos/List/index.jsx"></code>
 
 ### API
 
@@ -76,7 +76,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Skeleton.jsx"></code>
+<code src="./demos/List/index.jsx"></code>
 
 ### API
 
@@ -104,7 +104,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Skeleton.jsx"></code>
+<code src="./demos/List/index.jsx"></code>
 
 ### API
 

@@ -101,8 +101,6 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Modal/index.jsx"></code>
-
 ### API
 
 #### 属性
@@ -122,8 +120,6 @@ toc: content
 - 需要直接使用级联选择器主组件时
 
 ### 代码演示
-
-<code src="./demos/Main/index.jsx"></code>
 
 ### API
 

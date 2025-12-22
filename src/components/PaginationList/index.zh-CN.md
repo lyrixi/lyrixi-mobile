@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/PaginationList.jsx"></code>
+<code src="./demos/PaginationList/index.jsx"></code>
 
 ## API
 

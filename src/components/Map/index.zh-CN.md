@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ## API
 
@@ -73,7 +73,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -95,7 +95,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -124,7 +124,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -152,7 +152,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -180,7 +180,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -208,7 +208,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -237,7 +237,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -266,7 +266,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -295,7 +295,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -323,7 +323,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -351,7 +351,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 
@@ -380,7 +380,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### API
 

@@ -10,7 +10,7 @@ Bridge 是一个跨平台桥接工具，用于在不同平台（微信、企业�
 
 它还支持扩展平台桥接，但必须按照统一的 API 接口进入适配，扩展平台方法：
 
-```jsx
+```js
 import BridgeCustom from './BridgeCustom'
 
 // 自有平台桥接

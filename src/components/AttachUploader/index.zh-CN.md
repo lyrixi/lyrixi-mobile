@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/AttachUploader.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
 ## API
 

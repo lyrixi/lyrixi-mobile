@@ -17,9 +17,6 @@ toc: content
 - 需要显示外部内容时
 - 需要隔离内容时
 
-## 代码演示
-
-<code src="./demos/IFrame.jsx"></code>
 
 ## API
 

@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Button.jsx"></code>
+<code src="./demos/demo1.jsx"></code>
 
 ## API
 
@@ -61,7 +61,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Button.jsx"></code>
+<code src="./demos/demo1.jsx"></code>
 
 ### API
 
@@ -90,7 +90,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Button.jsx"></code>
+<code src="./demos/demo1.jsx"></code>
 
 ### API
 

@@ -17,9 +17,6 @@ toc: content
 - 需要配置全局设置时
 - 需要启用日志、调试等功能时
 
-## 代码演示
-
-<code src="./demos/App.jsx"></code>
 
 ## API
 

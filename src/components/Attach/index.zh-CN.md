@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Attach.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
 ## API
 
@@ -75,7 +75,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Attach.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
 ### API
 
@@ -105,7 +105,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Attach.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
 ### API
 
@@ -135,7 +135,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Attach.jsx"></code>
+<code src="./demos/index.jsx"></code>
 
 ### API
 
