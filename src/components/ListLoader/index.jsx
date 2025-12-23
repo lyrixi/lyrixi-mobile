@@ -16,7 +16,7 @@ import queryData from './api/queryData'
 import mainLoadingRender from './mainLoadingRender'
 
 // 简便的列表组件, 只需要传入url和params即可
-const PaginationList = forwardRef(
+const ListLoader = forwardRef(
   (
     {
       cacheName,
@@ -175,4 +175,4 @@ const PaginationList = forwardRef(
   }
 )
 
-export default PaginationList
+export default ListLoader
