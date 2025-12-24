@@ -11,6 +11,7 @@ import { Toast, Request, LocaleUtil } from 'lyrixi-mobile'
 // Save photos at delete
 function clearPhotos(id, { url }) {
   return new Promise((resolve) => {
+    console.log('清除照片:', url, id)
     Request.post(url, {
       fileCheckKey: id,
       imageParamList: []

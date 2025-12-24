@@ -33,21 +33,22 @@ Bridge 已支持以下平台：
 
 ## API
 
-### load(callback, options)
+### load(params)
 
 加载平台 SDK。
 
 **参数：**
 
-- `callback` (Function) - 加载完成回调函数
-- `options` (Object, 可选, 默认加载各平台稳定版 JS SDK) - 配置选项
-  - `wechat?.src` (String) - 微信 JS SDK 地址
-  - `wechatMiniProgram?.src` (String) - 微信小程序 JS SDK 地址
-  - `wecom?.src` (String) - 企业微信 JS SDK 地址
-  - `alipay?.src` (String) - 支付宝 JS SDK 地址
-  - `alipayMiniProgram?.src` (String) - 支付宝小程序 JS SDK 地址
-  - `dingtalk?.src` (String) - 钉钉 JS SDK 地址
-  - `lark?.src` (String) - 飞书 JS SDK 地址
+- `wechat?.src` (String) - 微信 JS SDK 地址
+- `wechatMiniProgram?.src` (String) - 微信小程序 JS SDK 地址
+- `wecom?.src` (String) - 企业微信 JS SDK 地址
+- `alipay?.src` (String) - 支付宝 JS SDK 地址
+- `alipayMiniProgram?.src` (String) - 支付宝小程序 JS SDK 地址
+- `dingtalk?.src` (String) - 钉钉 JS SDK 地址
+- `lark?.src` (String) - 飞书 JS SDK 地址
+- `[Device.platform]?.src` - 自定义平台 JS SDK 地址
+- `onSuccess` (Function) - 加载成功
+- `onError` (Function) - 加载失败
 
 **示例：**
 
@@ -452,7 +453,7 @@ Bridge.share({
 
 Bridge 还提供了一些工具方法：
 
-### Bridge.utils.back(delta, options)
+### Bridge.utils.back(delta)
 
 返回上一页的工具方法。
 

@@ -6,7 +6,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'browser-mobile'
+import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 单张照片上传

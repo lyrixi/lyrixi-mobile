@@ -92,7 +92,7 @@ function WechatMiniProgram(
   const saveMediaUrl = uploadUrl.saveMediaUrl || ''
   const getMediaUrl = uploadUrl.getMediaUrl || ''
 
-  // Auto generate id, used to get photos form server
+  // Auto generate id, used to get item form server
   const idRef = useRef(Object.generateGUID())
 
   // Photo and Album select actionsheet open
@@ -136,38 +136,45 @@ function WechatMiniProgram(
     }
   })
 
-  // Get photos by polling interval
+  // Get item by polling interval
   async function updatePhotos() {
-    let photos = await getPhotos(idRef.current, {
+    let item = await getPhotos(idRef.current, {
       url: getMediaUrl,
       formatResponse
     })
-    console.log('服务器获取照片:', photos)
-    // Get photos failed, stop interval
-    if (typeof photos === 'string') {
+    console.log('结果:', item)
+    // Get item failed, stop interval
+    if (typeof item === 'string') {
+      console.log('获取结果异常, 停止轮询')
       stopAllPolls()
-      Toast.show({ content: photos })
+      Toast.show({ content: item })
+      Loading.hide()
       return
     }
-    // Get photos success
-    if (Array.isArray(photos) && photos.length > 0) {
+    // Get item success
+    if (item) {
       stopAllPolls()
       console.log('当前照片', listRef.current)
-      listRef.current = listRef.current.concat(photos)
+      listRef.current = [...listRef.current, item]
       console.log('照片拍完, 清空redis', listRef.current)
-      onChangeRef.current && onChangeRef.current(listRef.current)
       await clearPhotos(idRef.current, { url: saveMediaUrl })
+      onChangeRef.current && onChangeRef.current(listRef.current)
+      Loading.hide()
       return
     }
-    // Null Get photos by polling interval 3s
+    // Null Get item by polling interval 3s
     window[idRef.current] = setTimeout(() => {
       updatePhotos()
     }, 3000)
   }
-  // Get photos
+  // 组件移除时, 停止轮询
   useEffect(() => {
     return () => {
+      console.log('组件移除, 停止轮询, 并清除照片')
+      Loading.hide()
       stopAllPolls()
+      // eslint-disable-next-line
+      clearPhotos(idRef.current, { url: saveMediaUrl })
     }
     // eslint-disable-next-line
   }, [])

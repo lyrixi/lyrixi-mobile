@@ -26,8 +26,8 @@ let Bridge = {
     this._customBridges[platform] = customBridge
   },
   // 内部方法：获取当前 Bridge
-  _getCurrentBridge() {
-    const platform = Device.platform
+  _getCurrentBridge(currentPlatform) {
+    const platform = currentPlatform || Device.platform
 
     // 1. 先检查自定义 Bridge
     if (this._customBridges?.[platform]) {
@@ -56,23 +56,22 @@ let Bridge = {
   // 方法转发
   /**
    * 加载平台 SDK
-   * @param {Function} callback - 加载完成回调函数
-   * @param {Object} options - 配置选项（可选）
-   * @param {String} options.wechat?.src - 微信 JS SDK 地址
-   * @param {String} options.wechatMiniProgram?.src - 微信 JS SDK 地址
-   * @param {String} options.wecom?.src - 企业微信 JS SDK 地址
-   * @param {String} options.alipay?.src - 支付宝 JS SDK 地址
-   * @param {String} options.alipayMiniProgram?.src - 支付宝小程序 JS SDK 地址
-   * @param {String} options.dingtalk?.src - 钉钉 JS SDK 地址
-   * @param {String} options.lark?.src - 飞书 JS SDK 地址
+   * @param {Object} params - 配置选项（可选）
+   * @param {String} params.wechat?.src - 微信 JS SDK 地址
+   * @param {String} params.wechatMiniProgram?.src - 微信 JS SDK 地址
+   * @param {String} params.wecom?.src - 企业微信 JS SDK 地址
+   * @param {String} params.alipay?.src - 支付宝 JS SDK 地址
+   * @param {String} params.alipayMiniProgram?.src - 支付宝小程序 JS SDK 地址
+   * @param {String} params.dingtalk?.src - 钉钉 JS SDK 地址
+   * @param {String} params.lark?.src - 飞书 JS SDK 地址
+   * @param {String} params.[Device.platform]?.src - 自定义平台 JS SDK 地址
+   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  load(callback, options) {
-    const bridge = this._getCurrentBridge()
-    if (options !== undefined) {
-      return bridge.load(callback, options)
-    }
-    return bridge.load(callback)
+  load(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
+    return bridge.load(params)
   },
   /**
    * 返回上一页或关闭窗口, 根据url参数isFromApp决定返回方式
@@ -84,8 +83,8 @@ let Bridge = {
    * @param {Number} delta - 返回的页面数，默认为 1
    * @returns {void}
    */
-  back(delta) {
-    return this._getCurrentBridge().back(delta)
+  back(delta, platform) {
+    return this._getCurrentBridge(platform).back(delta)
   },
   /**
    * 关闭窗口
@@ -94,8 +93,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  closeWindow(params) {
-    const bridge = this._getCurrentBridge()
+  closeWindow(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     return bridge.closeWindow(params)
   },
   /**
@@ -105,8 +104,8 @@ let Bridge = {
    * @param {Function} params.onError - 阻止返回失败回调
    * @returns {void}
    */
-  onBack(params) {
-    const bridge = this._getCurrentBridge()
+  onBack(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     return bridge.onBack(params)
   },
   /**
@@ -117,8 +116,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  setTitle(params) {
-    const bridge = this._getCurrentBridge()
+  setTitle(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.setTitle) {
       return bridge.setTitle(params)
     }
@@ -132,8 +131,8 @@ let Bridge = {
    * @param {String} params.target - 打开方式，'_self' 表示当前窗口
    * @returns {void}
    */
-  openWindow(params) {
-    const bridge = this._getCurrentBridge()
+  openWindow(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.openWindow) {
       return bridge.openWindow(params)
     }
@@ -141,12 +140,15 @@ let Bridge = {
   },
   /**
    * 返回首页
+   * @param {Object} params - 返回首页参数
+   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  goHome() {
-    const bridge = this._getCurrentBridge()
+  goHome(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.goHome) {
-      return bridge.goHome()
+      return bridge.goHome(params)
     }
     return undefined
   },
@@ -155,8 +157,8 @@ let Bridge = {
    * @param {String|Number} number - 电话号码
    * @returns {void}
    */
-  tel(number) {
-    const bridge = this._getCurrentBridge()
+  tel(number, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.tel) {
       return bridge.tel(number)
     }
@@ -175,17 +177,11 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  openLocation({
-    latitude,
-    longitude,
-    type = 'wgs84',
-    name,
-    address,
-    scale,
-    onSuccess,
-    onError
-  } = {}) {
-    return this._getCurrentBridge().openLocation({
+  openLocation(
+    { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = {},
+    platform
+  ) {
+    return this._getCurrentBridge(platform).openLocation({
       latitude,
       longitude,
       type,
@@ -204,8 +200,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getLocation({ type = 'wgs84', onSuccess, onError } = {}) {
-    return this._getCurrentBridge().getLocation({ type, onSuccess, onError })
+  getLocation({ type = 'wgs84', onSuccess, onError } = {}, platform) {
+    return this._getCurrentBridge(platform).getLocation({ type, onSuccess, onError })
   },
   /**
    * 获取浏览器地理位置（所有平台都可以调用）
@@ -215,8 +211,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getBrowserLocation(params) {
-    const bridge = this._getCurrentBridge()
+  getBrowserLocation(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.getBrowserLocation) {
       return bridge.getBrowserLocation(params)
     }
@@ -231,8 +227,8 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  scanCode(params) {
-    const bridge = this._getCurrentBridge()
+  scanCode(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.scanCode) {
       return bridge.scanCode(params)
     }
@@ -251,8 +247,8 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  chooseMedia(params) {
-    const bridge = this._getCurrentBridge()
+  chooseMedia(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.chooseMedia) {
       return bridge.chooseMedia(params)
     }
@@ -271,8 +267,8 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  uploadFile(params) {
-    const bridge = this._getCurrentBridge()
+  uploadFile(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.uploadFile) {
       return bridge.uploadFile(params)
     }
@@ -288,8 +284,8 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  previewMedia(params) {
-    return this._getCurrentBridge().previewMedia(params)
+  previewMedia(params, platform) {
+    return this._getCurrentBridge(platform).previewMedia(params)
   },
   /**
    * 文件操作: 预览文件
@@ -301,8 +297,8 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  previewFile(params) {
-    const bridge = this._getCurrentBridge()
+  previewFile(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.previewFile) {
       return bridge.previewFile(params)
     }
@@ -320,19 +316,12 @@ let Bridge = {
    * @param {Function} params.onError - 分享失败回调
    * @returns {void}
    */
-  share(params) {
-    const bridge = this._getCurrentBridge()
+  share(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
     if (bridge.share) {
       return bridge.share(params)
     }
     return undefined
-  },
-  /**
-   * 获取 platform 属性
-   * @returns {String} 当前平台名称
-   */
-  get platform() {
-    return this._getCurrentBridge().platform
   }
 }
 

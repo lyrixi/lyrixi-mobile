@@ -14,12 +14,10 @@ import { LocaleUtil, Clipboard, GeoUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Browser = {
-  platform: Device.platform,
-  load: function (callback) {
-    if (callback)
-      callback({
-        status: 'success'
-      })
+  load: function ({ onSuccess } = {}) {
+    onSuccess?.({
+      status: 'success'
+    })
   },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
@@ -37,11 +35,8 @@ let Browser = {
     window.top.document.title = title
     onSuccess?.({ status: 'success' })
   },
-  openWindow: function (params = {}) {
-    let url = params.url
-    if (url && url.indexOf('h5:') === 0) url = url.replace(/^h5:/, '')
-    else if (url && url.indexOf('webview:') === 0) url = url.replace(/^webview:/, '')
-    if (params.target === '_self') {
+  openWindow: function ({ url, target } = {}) {
+    if (target === '_self') {
       window.location.replace(url)
       return
     }
@@ -83,8 +78,8 @@ let Browser = {
     })
     onError?.({ status: 'error', message: message })
   },
-  getLocation: function (params = {}) {
-    this.getBrowserLocation(params)
+  getLocation: function ({ type, onSuccess, onError } = {}) {
+    this.getBrowserLocation({ type, onSuccess, onError })
   },
   getBrowserLocation: function ({ type, onSuccess, onError } = {}) {
     if (this.debug) {
@@ -297,7 +292,7 @@ let Browser = {
       )
     })
   },
-  previewFile: function ({ fileUrl, onSuccess, onError }) {
+  previewFile: function ({ fileUrl, onSuccess, onError } = {}) {
     let message = LocaleUtil.locale(
       'previewFile仅可在企业微信或APP中使用',
       'lyrixi.previewFile.prompt',

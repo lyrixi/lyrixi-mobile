@@ -31,40 +31,33 @@ let Bridge = {
     })
   },
   // 通用方法
-  load: function (callback, options) {
+  load: function ({ dingtalk, onSuccess, onError } = {}) {
     if (window.top.dd) {
-      if (callback) {
-        callback({
-          status: 'success'
-        })
-      }
+      onSuccess?.({
+        status: 'success'
+      })
       return
     }
 
     let script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = 'defer'
-    script.src =
-      options.dingtalk?.src || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
+    script.src = dingtalk?.src || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
 
     script.onload = function () {
       if (window.dd) {
         window.top.dd = window.dd
       }
 
-      if (callback) {
-        callback({
-          status: 'success'
-        })
-      }
+      onSuccess?.({
+        status: 'success'
+      })
     }
     script.onerror = function () {
-      if (callback) {
-        callback({
-          status: 'error',
-          message: LocaleUtil.locale('钉钉js加载失败')
-        })
-      }
+      onError?.({
+        status: 'error',
+        message: LocaleUtil.locale('钉钉js加载失败')
+      })
     }
 
     document.body.appendChild(script)

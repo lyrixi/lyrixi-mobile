@@ -12,6 +12,7 @@ function getPhotos(id, { url, formatResponse }) {
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
+        console.log('服务器返回照片结果:', result)
         let response = {
           status: 'success',
           result: result
@@ -25,7 +26,7 @@ function getPhotos(id, { url, formatResponse }) {
           )
         }
 
-        console.log('有结果了:', response)
+        console.log('照片格式化完成:', response)
         // 成功, response.result为新格式化后的新item: {fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
         if (response.status === 'success') {
           resolve(response.result)

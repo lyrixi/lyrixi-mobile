@@ -15,13 +15,11 @@ import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (callback, options) {
+  load: function ({ alipay, alipayMiniProgram, onSuccess, onError } = {}) {
     if (window.top.ap) {
-      if (callback) {
-        callback({
-          status: 'success'
-        })
-      }
+      onSuccess?.({
+        status: 'success'
+      })
       return
     }
 
@@ -29,23 +27,20 @@ let Bridge = {
     script.type = 'text/javascript'
     script.defer = 'defer'
     script.src =
-      options.alipay?.src ||
-      '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
+      alipay?.src || '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
 
     script.onload = async function () {
       if (Device.platform === 'alipayMiniProgram') {
-        await AssetUtil.loadJs(options.alipayMiniProgram?.src || 'https://appx/web-view.min.js')
+        await AssetUtil.loadJs(alipayMiniProgram?.src || 'https://appx/web-view.min.js')
         if (!window.my) {
           console.error('支付小程序js加载失败')
-          if (callback) {
-            callback({
-              status: 'error',
-              message: LocaleUtil.locale(
-                '支付小程序js加载失败',
-                'lyrixi.alipayMiniProgram.js.load.failed'
-              )
-            })
-          }
+          onError?.({
+            status: 'error',
+            message: LocaleUtil.locale(
+              '支付小程序js加载失败',
+              'lyrixi.alipayMiniProgram.js.load.failed'
+            )
+          })
           return
         }
         window.top.my = window.my
@@ -55,19 +50,15 @@ let Bridge = {
         window.top.ap = window.ap
       }
 
-      if (callback) {
-        callback({
-          status: 'success'
-        })
-      }
+      onSuccess?.({
+        status: 'success'
+      })
     }
     script.onerror = function () {
-      if (callback) {
-        callback({
-          status: 'error',
-          message: LocaleUtil.locale('支付宝js加载失败')
-        })
-      }
+      onError?.({
+        status: 'error',
+        message: LocaleUtil.locale('支付宝js加载失败')
+      })
     }
 
     if (script.src) document.body.appendChild(script)

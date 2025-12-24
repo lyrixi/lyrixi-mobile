@@ -17,14 +17,12 @@ import { LocaleUtil, Clipboard, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (callback, options) {
+  load: function ({ wechat, wecom, wechatMiniProgram, wecomMiniProgram, onSuccess, onError } = {}) {
     const platform = Device.platform
     if (window.top.wx) {
-      if (callback) {
-        callback({
-          status: 'success'
-        })
-      }
+      onSuccess?.({
+        status: 'success'
+      })
       return
     }
 
@@ -33,13 +31,13 @@ let Bridge = {
     script.defer = 'defer'
 
     if (platform === 'wechat') {
-      script.src = options.wechat?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = wechat?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wechatMiniProgram') {
-      script.src = options.wechatMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = wechatMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wecom') {
-      script.src = options.wecom?.src || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
+      script.src = wecom?.src || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
     } else if (platform === 'wecomMiniProgram') {
-      script.src = options.wecomMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = wecomMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     }
 
     script.onload = function () {
@@ -47,18 +45,15 @@ let Bridge = {
         window.top.wx = window.wx
       }
 
-      if (callback)
-        callback({
-          status: 'success'
-        })
+      onSuccess?.({
+        status: 'success'
+      })
     }
     script.onerror = function () {
-      if (callback) {
-        callback({
-          status: 'error',
-          message: LocaleUtil.locale('微信js加载失败', 'lyrixi.weChat.js.load.failed')
-        })
-      }
+      onError?.({
+        status: 'error',
+        message: LocaleUtil.locale('微信js加载失败', 'lyrixi.weChat.js.load.failed')
+      })
     }
 
     if (script.src) document.body.appendChild(script)
@@ -437,7 +432,7 @@ let Bridge = {
       cancel: onCancel
     })
   },
-  previewFile: function ({ fileUrl, onSuccess, onError }) {
+  previewFile: function ({ fileUrl, onSuccess, onError } = {}) {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
