@@ -11,19 +11,22 @@ toc: content
 
 选择器组件，用于从多个选项中选择。
 
-## 何时使用
+## Select.Combo
 
-- 需要从多个选项中选择时
-- 需要单选或多选时
+选择器组合组件，结合输入框和选择模态框。
+
+### 何时使用
+
+- 需要结合输入框和选择模态框时
 - 需要带搜索功能的选择时
 
-## 代码演示
+### 代码演示
 
-<code src="./demos/Combo/index.jsx"></code>
+<code src="./demos/SelectCombo.jsx"></code>
 
-## API
+### API
 
-### 属性
+#### 属性
 
 | 属性           | 说明         | 类型                            | 默认值 |
 | -------------- | ------------ | ------------------------------- | ------ |
@@ -43,7 +46,7 @@ toc: content
 | rightIconNode  | 右侧图标     | `ReactNode`                     | -      |
 | clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
 | list           | 选项列表     | `Array<object>`                 | -      |
-| formatViewList | 格式化列表   | `(list: Array) => Array`        | -      |
+| formatViewList | 格式化列表   | `(list: Array) => Array`         | -      |
 | formatViewItem | 格式化项     | `(item: object) => object`      | -      |
 | maskClosable   | 点击遮罩关闭 | `boolean`                       | -      |
 | safeArea       | 是否安全区   | `boolean`                       | -      |
@@ -64,7 +67,7 @@ toc: content
 | onChange       | 变化事件     | `(value: any \| any[]) => void` | -      |
 | onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`        | -      |
 
-### Ref
+#### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
@@ -73,29 +76,6 @@ toc: content
 | close      | 关闭选择器 | `() => void`           |
 | open       | 打开选择器 | `() => void`           |
 
-## Select.Combo
-
-选择器组合组件，结合输入框和选择模态框。
-
-### 何时使用
-
-- 需要结合输入框和选择模态框时
-- 需要带搜索功能的选择时
-
-### 代码演示
-
-<code src="./demos/Combo/index.jsx"></code>
-
-### API
-
-#### 属性
-
-同 Select 组件属性。
-
-#### Ref
-
-同 Select 组件 Ref。
-
 ## Select.Modal
 
 选择器模态框组件。
@@ -103,20 +83,49 @@ toc: content
 ### 何时使用
 
 - 需要以模态框形式显示选择器时
+- 需要全屏显示选择列表时
 
 ### 代码演示
-
-<code src="./demos/Combo/index.jsx"></code>
 
 ### API
 
 #### 属性
 
-同 Select 组件属性。
+| 属性           | 说明         | 类型                            | 默认值 |
+| -------------- | ------------ | ------------------------------- | ------ |
+| value          | 选中的值     | `any \| any[]`                  | -      |
+| list           | 选项列表     | `Array<object>`                 | -      |
+| formatViewList | 格式化列表   | `(list: Array) => Array`         | -      |
+| formatViewItem | 格式化项     | `(item: object) => object`      | -      |
+| open           | 是否显示     | `boolean`                       | -      |
+| maskClosable   | 点击遮罩关闭 | `boolean`                       | -      |
+| safeArea       | 是否安全区   | `boolean`                       | -      |
+| multiple       | 是否多选     | `boolean`                       | -      |
+| modalStyle     | 模态框样式   | `object`                        | -      |
+| modalClassName | 模态框类名   | `string`                        | -      |
+| maskStyle      | 遮罩样式     | `object`                        | -      |
+| maskClassName  | 遮罩类名     | `string`                        | -      |
+| portal         | 挂载节点     | `HTMLElement \| null \| false`  | -      |
+| title          | 标题         | `ReactNode`                     | -      |
+| cancelNode     | 取消按钮     | `ReactNode`                     | -      |
+| cancelVisible  | 取消按钮可见 | `boolean`                       | -      |
+| headerRender   | 头部渲染     | `(props: object) => ReactNode`  | -      |
+| itemRender     | 项渲染       | `(item: object) => ReactNode`   | -      |
+| layout         | 布局         | `string`                        | -      |
+| checkable      | 是否可选     | `boolean`                       | -      |
+| checkboxRender | 复选框渲染   | `(item: object) => ReactNode`   | -      |
+| onOk           | 确认事件     | `(value: any \| any[]) => void` | -      |
+| onChange       | 变化事件     | `(value: any \| any[]) => void` | -      |
+| onClose        | 关闭事件     | `() => void`                    | -      |
 
 #### Ref
 
-同 Select 组件 Ref。
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+| close      | 关闭选择器 | `() => void`           |
+| open       | 打开选择器 | `() => void`           |
 
 ## Select.Main
 
@@ -125,17 +134,33 @@ toc: content
 ### 何时使用
 
 - 需要直接使用选择器主组件时
+- 需要自定义选择界面时
 
 ### 代码演示
-
-<code src="./demos/Combo/index.jsx"></code>
 
 ### API
 
 #### 属性
 
-同 Select 组件属性。
+| 属性           | 说明         | 类型                            | 默认值 |
+| -------------- | ------------ | ------------------------------- | ------ |
+| value          | 选中的值     | `any \| any[]`                  | -      |
+| list           | 选项列表     | `Array<object>`                 | -      |
+| formatViewList | 格式化列表   | `(list: Array) => Array`         | -      |
+| formatViewItem | 格式化项     | `(item: object) => object`      | -      |
+| open           | 是否显示     | `boolean`                       | `true` |
+| multiple       | 是否多选     | `boolean`                       | -      |
+| style          | 自定义样式   | `object`                        | -      |
+| className      | 自定义类名   | `string`                        | -      |
+| layout         | 布局         | `string`                        | -      |
+| checkable      | 是否可选     | `boolean`                       | `true` |
+| itemRender     | 项渲染       | `(item: object) => ReactNode`    | -      |
+| checkboxRender | 复选框渲染   | `(item: object) => ReactNode`   | -      |
+| onChange       | 变化事件     | `(value: any \| any[]) => void` | -      |
 
 #### Ref
 
-同 Select 组件 Ref。
+| 属性           | 说明       | 类型                   |
+| -------------- | ---------- | ---------------------- |
+| mainElement    | 主元素     | `HtmlDivElement`       |
+| getMainElement | 获取主元素 | () => `HtmlDivElement` |

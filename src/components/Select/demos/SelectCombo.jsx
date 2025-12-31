@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import _ from 'lodash'
-import { Page, Select, List, Checkbox, Message, Card, ToolBar } from 'lyrixi-mobile'
+import { Page, Select, Checkbox, Card, ToolBar } from 'lyrixi-mobile'
 import flatList from './flatList'
 import groupList from './groupList'
 

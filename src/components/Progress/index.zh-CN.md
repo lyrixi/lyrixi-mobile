@@ -11,33 +11,6 @@ toc: content
 
 进度条组件，用于显示进度。
 
-## 何时使用
-
-- 需要显示操作进度时
-- 需要显示加载进度时
-- 需要显示完成度时
-
-## 代码演示
-
-<code src="./demos/barBasic.jsx"></code>
-
-## API
-
-### 属性
-
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| percent   | 进度百分比 | `number` | `0`    |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
-
-### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
-
 ## Progress.Bar
 
 条形进度条组件。
@@ -45,10 +18,11 @@ toc: content
 ### 何时使用
 
 - 需要显示条形进度时
+- 需要显示水平进度条时
 
 ### 代码演示
 
-<code src="./demos/barBasic.jsx"></code>
+<code src="./demos/ProgressBar.jsx"></code>
 
 ### API
 
@@ -74,10 +48,11 @@ toc: content
 ### 何时使用
 
 - 需要显示圆形进度时
+- 需要显示环形进度条时
 
 ### 代码演示
 
-<code src="./demos/circleBasic.jsx"></code>
+<code src="./demos/ProgressCircle.jsx"></code>
 
 ### API
 
