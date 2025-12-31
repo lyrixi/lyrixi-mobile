@@ -11,19 +11,21 @@ toc: content
 
 级联选择器组件，用于从级联数据中选择。
 
-## 何时使用
+## Cascader.Combo
 
-- 需要从级联数据中选择时
-- 需要多级选择时
-- 需要选择地区、分类等层级数据时
+级联选择器组合组件，结合输入框和级联选择器。
 
-## 代码演示
+### 何时使用
 
-<code src="./demos/Combo/index.jsx"></code>
+- 需要结合输入框和级联选择器时
 
-## API
+### 代码演示
 
-### 属性
+<code src="./demos/CascaderCombo.jsx"></code>
+
+### API
+
+#### 属性
 
 | 属性           | 说明         | 类型                                                  | 默认值 |
 | -------------- | ------------ | ----------------------------------------------------- | ------ |
@@ -59,7 +61,7 @@ toc: content
 | onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`                              | -      |
 | onChange       | 变化事件     | `(value: any \| any[]) => void`                       | -      |
 
-### Ref
+#### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
@@ -67,28 +69,6 @@ toc: content
 | getElement | 获取根元素 | () => `HtmlDivElement` |
 | close      | 关闭选择器 | `() => void`           |
 | open       | 打开选择器 | `() => void`           |
-
-## Cascader.Combo
-
-级联选择器组合组件，结合输入框和级联选择器。
-
-### 何时使用
-
-- 需要结合输入框和级联选择器时
-
-### 代码演示
-
-<code src="./demos/Combo/index.jsx"></code>
-
-### API
-
-#### 属性
-
-同 Cascader 组件属性。
-
-#### Ref
-
-同 Cascader 组件 Ref。
 
 ## Cascader.Modal
 
@@ -100,15 +80,17 @@ toc: content
 
 ### 代码演示
 
+<code src="./demos/CascaderModal.jsx"></code>
+
 ### API
 
 #### 属性
 
-同 Cascader 组件属性。
+同 Cascader.Combo 组件属性。
 
 #### Ref
 
-同 Cascader 组件 Ref。
+同 Cascader.Combo 组件 Ref。
 
 ## Cascader.Main
 
@@ -120,34 +102,81 @@ toc: content
 
 ### 代码演示
 
+<code src="./demos/CascaderMain.jsx"></code>
+
 ### API
 
 #### 属性
 
-同 Cascader 组件属性。
+同 Cascader.Combo 组件属性。
 
 #### Ref
 
-同 Cascader 组件 Ref。
+同 Cascader.Combo 组件 Ref。
 
-## Cascader.District
+## Cascader.DistrictCombo
 
-地区级联选择器组件。
+地区级联选择器组合组件。
 
 ### 何时使用
 
 - 需要选择地区时
+- 需要结合输入框和地区选择器时
 
 ### 代码演示
 
-<code src="./demos/DistrictCombo/index.jsx"></code>
+<code src="./demos/CascaderDistrictCombo.jsx"></code>
 
 ### API
 
 #### 属性
 
-同 Cascader 组件属性。
+同 Cascader.Combo 组件属性。
 
 #### Ref
 
-同 Cascader 组件 Ref。
+同 Cascader.Combo 组件 Ref。
+
+## Cascader.DistrictModal
+
+地区级联选择器模态框组件。
+
+### 何时使用
+
+- 需要以模态框形式显示地区级联选择器时
+
+### 代码演示
+
+<code src="./demos/CascaderDistrictModal.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Cascader.Combo 组件属性。
+
+#### Ref
+
+同 Cascader.Combo 组件 Ref。
+
+## Cascader.DistrictMain
+
+地区级联选择器主组件。
+
+### 何时使用
+
+- 需要直接使用地区级联选择器主组件时
+
+### 代码演示
+
+<code src="./demos/CascaderDistrictMain.jsx"></code>
+
+### API
+
+#### 属性
+
+同 Cascader.Combo 组件属性。
+
+#### Ref
+
+同 Cascader.Combo 组件 Ref。
