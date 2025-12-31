@@ -1,6 +1,6 @@
 ---
 category: Components
-group: Data Entry
+group: Data Display
 title: Typography
 ---
 

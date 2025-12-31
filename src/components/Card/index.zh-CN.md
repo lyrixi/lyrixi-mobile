@@ -1,7 +1,7 @@
 ---
 group:
-  title: 通用
-  order: 1
+  title: 布局
+  order: 3
 order: 1
 title: Card
 toc: content

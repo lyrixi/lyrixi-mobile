@@ -1,7 +1,7 @@
 ---
 group:
-  title: 通用
-  order: 1
+  title: 数据展示
+  order: 5
 order: 1
 title: Typography
 toc: content
