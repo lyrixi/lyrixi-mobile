@@ -1,6 +1,7 @@
 ---
-group: 数据展示
-order: 5
+group:
+  title: 数据展示
+  order: 5
 order: 1
 title: Accordion
 toc: content

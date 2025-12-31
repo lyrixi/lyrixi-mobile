@@ -11,35 +11,6 @@ toc: content
 
 标签栏组件，用于显示标签页。
 
-## 何时使用
-
-- 需要显示标签页时
-- 需要切换不同内容时
-- 需要显示导航标签时
-
-## 代码演示
-
-<code src="./demos/Tabs.jsx"></code>
-
-## API
-
-### 属性
-
-| 属性      | 说明       | 类型                      | 默认值 |
-| --------- | ---------- | ------------------------- | ------ |
-| value     | 选中的值   | `object`                  | -      |
-| list      | 标签列表   | `Array<object>`           | -      |
-| style     | 自定义样式 | `object`                  | -      |
-| className | 自定义类名 | `string`                  | -      |
-| onChange  | 变化事件   | `(value: object) => void` | -      |
-
-### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
-
 ## TabBar.Tabs
 
 标签页组件。
@@ -50,7 +21,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Tabs.jsx"></code>
+<code src="./demos/TabBarTabs.jsx"></code>
 
 ### API
 
@@ -85,7 +56,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Slide.jsx"></code>
+<code src="./demos/TabBarSlide.jsx"></code>
 
 ### API
 
@@ -107,7 +78,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Menus.jsx"></code>
+<code src="./demos/TabBarMenus.jsx"></code>
 
 ### API
 
@@ -129,7 +100,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Group.jsx"></code>
+<code src="./demos/TabBarGroup.jsx"></code>
 
 ### API
 

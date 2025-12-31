@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import { Page, Divider, TabBar } from 'lyrixi-mobile'
 
 export default () => {
+  const list = [
+    {
+      id: 'Fruit',
+      name: 'Fruit'
+    },
+    { id: 'Vegetable', name: 'Vegetable' },
+    { id: 'Animal', name: 'Animal' }
+  ]
   const [value, setValue] = useState({ name: 'Vegetable', id: 'Vegetable' })
 
   function handleChange(value) {
@@ -10,8 +18,46 @@ export default () => {
   return (
     <Page>
       <Page.Main>
+        <Divider>Common</Divider>
+        <TabBar.Tabs
+          list={[
+            {
+              id: 'Fruit',
+              name: 'Fruit'
+            },
+            {
+              id: 'Vegetable',
+              name: 'Vegetable'
+            },
+            { id: 'Animal', name: 'Animal' }
+          ]}
+          value={value}
+          onChange={(newValue) => {
+            console.log(newValue)
+            handleChange(newValue)
+          }}
+        />
+        <TabBar.Tabs
+          gap={12}
+          list={[
+            {
+              id: 'Fruit',
+              name: 'Fruit'
+            },
+            {
+              id: 'Vegetable',
+              name: 'Vegetable'
+            }
+          ]}
+          value={value}
+          onChange={(newValue) => {
+            console.log(newValue)
+            handleChange(newValue)
+          }}
+        />
+
         <Divider>OverFlow</Divider>
-        <TabBar.Menus
+        <TabBar.Tabs
           list={[
             {
               id: 'Fruit',
@@ -31,7 +77,7 @@ export default () => {
         />
 
         <Divider>Disabled</Divider>
-        <TabBar.Menus
+        <TabBar.Tabs
           list={[
             {
               id: 'Fruit',
@@ -52,29 +98,19 @@ export default () => {
         />
 
         <Divider>Icon</Divider>
-        <TabBar.Menus
+        <TabBar.Tabs
           list={[
             {
-              iconRender: () => (
-                <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-file-text"></i>
-              ),
-              id: 'Fruit'
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              id: 'Fruit',
+              name: 'Fruit'
             },
             {
-              iconRender: () => (
-                <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-file-text"></i>
-              ),
-              id: 'Vegetable'
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              id: 'Vegetable',
+              name: 'Vegetable'
             },
-            {
-              iconRender: ({ checked }) =>
-                checked ? (
-                  <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-close"></i>
-                ) : (
-                  <i className="lyrixi-tabbar-menus-tab-icon lyrixi-iconfont-plus"></i>
-                ),
-              id: 'Animal'
-            }
+            { icon: <i className="lyrixi-iconfont-file-text"></i>, id: 'Animal', name: 'Animal' }
           ]}
           value={value}
           onChange={(newValue) => {
@@ -84,7 +120,7 @@ export default () => {
         />
 
         <Divider>Children</Divider>
-        <TabBar.Menus
+        <TabBar.Tabs
           list={[
             {
               iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
