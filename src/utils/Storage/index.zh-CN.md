@@ -10,16 +10,16 @@ title: Storage
 
 ### useCacheState 示例
 
-<code src="./demos/Storage.jsx">></code>
+<code src="./demos/Storage1.jsx">></code>
 
 ### LocalStorage 示例
 
-<code src="./demos/Storage.jsx">></code>
+<code src="./demos/localStorage.jsx">></code>
 
 ### SessionStorage 示例
 
-<code src="./demos/Storage.jsx">></code>
+<code src="./demos/sessionStorage.jsx">></code>
 
 ### Storage (LocalForage) 示例
 
-<code src="./demos/Storage.jsx">></code>
+<code src="./demos/useCacheState.jsx">></code>
