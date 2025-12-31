@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Button.jsx"></code>
+<code src="./demos/FooterBarButton.jsx"></code>
 
 ## API
 

@@ -57,7 +57,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Group.jsx"></code>
+<code src="./demos/CheckboxGroup.jsx"></code>
 
 ### API
 
