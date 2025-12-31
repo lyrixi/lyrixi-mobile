@@ -1,6 +1,14 @@
 import _ from 'lodash'
 import formatList from './../../utils/formatList'
 
+// 内库使用-start
+import LocaleUtil from './../../../../utils/LocaleUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { LocaleUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 // 获取国家省市区
 async function getList(currentValue, { startType, loadCountries, loadCountryRegions }) {
   if (startType === 'country') {
@@ -17,7 +25,7 @@ async function getList(currentValue, { startType, loadCountries, loadCountryRegi
 async function getCountryStartList(currentValue, { loadCountries, loadCountryRegions }) {
   let countries = await loadCountries()
   if (typeof countries === 'string') return countries
-  if (_.isEmpty(countries)) return '国家数据为空'
+  if (_.isEmpty(countries)) return LocaleUtil.locale('国家数据为空')
 
   // 若无选中国家, 则直接返回
   const currentCountryId = currentValue?.[0]?.id
@@ -26,7 +34,7 @@ async function getCountryStartList(currentValue, { loadCountries, loadCountryReg
   // 若选中国家, 则补齐其省市区
   const country = countries.find((item) => item.id === currentCountryId)
   if (!country) {
-    return 'value参数错误, value开始应当为国家'
+    return LocaleUtil.locale('value参数错误, value开始应当为国家')
   }
   if (Array.isArray(country.children) && country.children.length) {
     return countries
@@ -44,7 +52,7 @@ async function getProvinceStartList(currentValue, { countryId = '86', loadCountr
   // 省作为起点：有列表直接用；没有则加载国家(86)下的省
   const provinces = await loadCountryRegions(countryId)
   if (typeof provinces === 'string') return formatList(provinces)
-  if (_.isEmpty(provinces)) return '省市区数据为空'
+  if (_.isEmpty(provinces)) return LocaleUtil.locale('省市区数据为空')
 
   // 若无选中省, 则直接返回
   const currentProvinceId = currentValue?.[0]?.id
@@ -53,7 +61,7 @@ async function getProvinceStartList(currentValue, { countryId = '86', loadCountr
   // 若选中国家, 则补齐其省市区
   const province = provinces.find((item) => item.id === currentProvinceId)
   if (!province) {
-    return 'value参数错误, value开始应当为省'
+    return LocaleUtil.locale('value参数错误, value开始应当为省')
   }
 
   return formatList(provinces)

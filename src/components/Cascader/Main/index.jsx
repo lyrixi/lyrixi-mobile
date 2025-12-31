@@ -9,6 +9,7 @@ import ListItem from './ListItem'
 import SearchHeader from './SearchPage/Header'
 import SearchPage from './SearchPage'
 import updateIsLeaf from './updateIsLeaf'
+import getAnchors from './getAnchors'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -384,27 +385,30 @@ const Main = forwardRef(
               {getTabsNode()}
 
               {/* 主体 */}
-              <IndexBar className="lyrixi-cascader-indexbar">
-                <ListItem
-                  ref={mainRef}
-                  // Value & Display Value
-                  value={value}
-                  list={currentList}
-                  // Style
-                  style={listStyle}
-                  className={listClassName}
-                  optionStyle={optionStyle}
-                  optionClassName={optionClassName}
-                  // Events
-                  onReLoad={async () => {
-                    if (typeof onReLoad !== 'function') return
-                    let newList = await onReLoad(value, { list: externalList, update })
-                    if (!newList) return
-                    setCurrentList(newList)
-                  }}
-                  onSelect={(item) => handleDrill(item)}
-                />
-              </IndexBar>
+              <ListItem
+                ref={mainRef}
+                // Value & Display Value
+                value={value}
+                list={currentList}
+                // Style
+                style={listStyle}
+                className={listClassName}
+                optionStyle={optionStyle}
+                optionClassName={optionClassName}
+                // Events
+                onReLoad={async () => {
+                  if (typeof onReLoad !== 'function') return
+                  let newList = await onReLoad(value, { list: externalList, update })
+                  if (!newList) return
+                  setCurrentList(newList)
+                }}
+                onSelect={(item) => handleDrill(item)}
+              />
+              <IndexBar
+                className="lyrixi-cascader-indexbar"
+                anchors={getAnchors(currentList)}
+                scrollerElement={mainRef.current}
+              />
             </>
           )}
         </Page>

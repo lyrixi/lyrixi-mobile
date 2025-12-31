@@ -13,9 +13,8 @@ import { Storage, List } from 'lyrixi-mobile'
 // 项目内部模块导入
 
 import queryData from './api/queryData'
-import mainLoadingRender from './mainLoadingRender'
 
-// 简便的列表组件, 只需要传入url和params即可
+// 简便的列表组件, 只需要传入url和formatPayload即可
 const ListLoader = forwardRef(
   (
     {
@@ -23,7 +22,8 @@ const ListLoader = forwardRef(
       // Value & Display Value
       url,
       headers,
-      params, // 查询参数: { rows: 20(必传) }
+      payload,
+      formatPayload, // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
       formatResult,
       formatViewList,
       formatViewItem,
@@ -102,7 +102,7 @@ const ListLoader = forwardRef(
       }
       mainRef.current?.reload()
       // eslint-disable-next-line
-    }, [url, JSON.stringify(params)])
+    }, [url, JSON.stringify(payload)])
 
     return (
       <List.Main
@@ -120,9 +120,10 @@ const ListLoader = forwardRef(
           }
 
           // 在线查询数据
-          const result = await queryData(url, headers, params, {
+          const result = await queryData(url, headers, payload, {
             previousResult,
             action,
+            formatPayload,
             formatResult
           })
           let newList = null
@@ -132,8 +133,7 @@ const ListLoader = forwardRef(
           }
 
           return {
-            status: result.status,
-            message: result.message,
+            ...result,
             list: newList
           }
         }}
@@ -153,7 +153,7 @@ const ListLoader = forwardRef(
         // Elements
         itemRender={itemRender}
         itemLayout={itemLayout}
-        loadingRender={loadingRender || mainLoadingRender}
+        loadingRender={loadingRender}
         prependRender={prependRender}
         appendRender={appendRender}
         // Events

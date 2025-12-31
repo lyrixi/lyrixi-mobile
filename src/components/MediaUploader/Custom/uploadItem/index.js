@@ -12,7 +12,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item,
-  { getUploadUrl, formatHeader, formatPayload, formatResponse, verifyImage }
+  { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
@@ -27,7 +27,7 @@ function uploadItem(
     let newItem = await uploadLocalFile({
       localFile: item?.localFile,
       getUploadUrl,
-      formatHeader,
+      formatHeaders,
       formatPayload: (payload, payloadExtra) =>
         formatPayload?.({ ...payload, ...item }, payloadExtra),
       formatResponse,

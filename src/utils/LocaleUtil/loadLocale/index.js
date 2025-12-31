@@ -1,19 +1,43 @@
-import getLanguage from './../getLanguage'
+import loadDayjsLanguage from './loadDayjsLanguage'
+import loadLyrixiLanguage from './loadLyrixiLanguage'
+import loadLocalJsFiles from './loadLocalJsFiles'
+import loadLocalJsonFiles from './loadLocalJsonFiles'
+import loadRemoteJsFiles from './loadRemoteJsFiles'
+import loadRemoteJsonFiles from './loadRemoteJsonFiles'
 
-// 内库使用-start
-import AssetUtil from './../../../utils/AssetUtil'
-// 内库使用-end
-
-/* 测试使用-start
-import { AssetUtil } from 'lyrixi-mobile'
-测试使用-end */
-
-// 加载国际化文件, localeFileMap: {zh_CN: 'url', en_US: 'url'}
-async function loadLocale(localeFileMap) {
-  const language = getLanguage()
-  let localeFileUrl = localeFileMap[language]
-  let result = await AssetUtil.loadJs(localeFileUrl)
-  return result
+// 加载国际化文件
+async function loadLocale(
+  language,
+  { dayjs = true, lyrixi = true, localJsFiles, localJsonFiles, remoteJsFiles, remoteJsonFiles } = {}
+) {
+  if (!language) {
+    return {
+      status: 'error',
+      message: 'language is null'
+    }
+  }
+  if (dayjs) {
+    await loadDayjsLanguage(language)
+  }
+  if (lyrixi) {
+    await loadLyrixiLanguage(language)
+  }
+  if (localJsFiles?.length) {
+    await loadLocalJsFiles(localJsFiles)
+  }
+  if (localJsonFiles?.length) {
+    await loadLocalJsonFiles(localJsonFiles)
+  }
+  if (remoteJsFiles?.length) {
+    await loadRemoteJsFiles(remoteJsFiles)
+  }
+  if (remoteJsonFiles?.length) {
+    await loadRemoteJsonFiles(remoteJsonFiles)
+  }
+  return {
+    status: 'success',
+    message: 'locale loaded'
+  }
 }
 
 export default loadLocale

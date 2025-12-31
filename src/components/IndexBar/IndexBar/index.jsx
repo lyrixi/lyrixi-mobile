@@ -1,7 +1,7 @@
-import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { Fragment, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import getAnchorByPoint from './getAnchorByPoint'
-import getAnchorByViewport from './getAnchorByViewport'
-import activeButton from './activeButton'
+import getAnchorByScroller from './getAnchorByScroller'
+import activeAnchor from './activeAnchor'
 import scrollToAnchor from './scrollToAnchor'
 
 // 内库使用-start
@@ -30,6 +30,8 @@ const IndexBar = forwardRef(
     },
     ref
   ) => {
+    // 滚动节流定时器
+    const scrollThrottleRef = useRef(null)
     // Nodes
     const sidebarRef = useRef(null)
     const tooltipRef = useRef(null)
@@ -45,44 +47,51 @@ const IndexBar = forwardRef(
         tooltipElement: tooltipRef.current,
         getElement: () => sidebarRef.current,
         getTooltipElement: () => tooltipRef.current,
-        activeAnchor: (currentAnchor) => {
-          if (!currentAnchor && scrollerElement) {
-            // eslint-disable-next-line
-            currentAnchor = getAnchorByViewport(scrollerElement)
-          }
-          if (!currentAnchor) {
-            console.error('IndexBar: no anchor found in scrollerElement')
-            return
-          }
-          activeButton({
-            anchor: currentAnchor,
-            sidebarElement: sidebarRef.current,
-            tooltipElement: tooltipRef.current
-          })
-        },
         scrollToAnchor: goAnchor
       }
     })
+
+    // 监听滚动事件(有滚动容器scrollerElement时才监听)
+    useEffect(() => {
+      scrollerElement && scrollerElement.addEventListener('scroll', handleScroll, false)
+      return () => {
+        scrollerElement && scrollerElement.removeEventListener('scroll', handleScroll, false)
+      }
+      // eslint-disable-next-line
+    }, [scrollerElement])
+
+    // 滚动事件(有滚动容器scrollerElement时才监听)
+    function handleScroll() {
+      if (scrollThrottleRef.current) return
+      scrollThrottleRef.current = setTimeout(() => {
+        let currentAnchor = getAnchorByScroller(scrollerElement)
+        currentAnchor &&
+          activeAnchor(currentAnchor, {
+            sidebarElement: sidebarRef.current
+          })
+        scrollThrottleRef.current = null
+      }, 300)
+    }
 
     // 触摸时滚动至anchor
     function goAnchor(currentAnchor) {
       if (!currentAnchor) return
 
-      // 滚动到指定位置
-      if (scrollerElement) {
-        scrollToAnchor({
-          scrollerElement,
-          anchor: currentAnchor
+      // 自定义滚动到指定位置
+      if (externalScrollToAnchor) {
+        externalScrollToAnchor(currentAnchor, {
+          scrollerElement
         })
       }
-      // 自定义滚动到指定位置
-      else {
-        externalScrollToAnchor && externalScrollToAnchor(currentAnchor)
+      // 滚动到指定位置
+      else if (scrollerElement) {
+        scrollToAnchor(currentAnchor, {
+          scrollerElement
+        })
       }
 
       // 选中锚点按钮
-      activeButton({
-        anchor: currentAnchor,
+      activeAnchor(currentAnchor, {
         sidebarElement: sidebarRef.current,
         tooltipElement: tooltipRef.current
       })

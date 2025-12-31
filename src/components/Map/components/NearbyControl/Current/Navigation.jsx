@@ -38,7 +38,7 @@ function Navigation({
     >
       {/* Element: Icon */}
       <i className="lyrixi-map-navigation-button-icon"></i>
-      
+
       {/* Element: Text */}
       <span className="lyrixi-map-navigation-button-text">
         {LocaleUtil.locale('导航', 'lyrixi.navigation')}

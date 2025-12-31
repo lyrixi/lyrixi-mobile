@@ -1,0 +1,103 @@
+// 内库使用-start
+import Request from './../../../utils/Request'
+import LocaleUtil from './../../../utils/LocaleUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { Request, LocaleUtil } from 'lyrixi-mobile'
+测试使用-end */
+
+// 企业微信自建应用和SASS应用鉴权
+function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, onError } = {}) {
+  if (!url || !payload?.appId) {
+    onError?.({
+      status: 'error',
+      message: LocaleUtil.locale('url或appId为空，无法鉴权。')
+    })
+    return
+  }
+
+  Request.post(url, payload, {
+    headers: headers
+  })
+    .then(async (response) => {
+      if (response.code === '1') {
+        // 这里的result需要返回{corpid: appId, ...}
+        let result = await formatResponse(response, { platform: 'wecom' })
+        if (result.status === 'error') {
+          onError?.({
+            status: 'error',
+            message: result.message
+          })
+          return
+        }
+
+        // eslint-disable-next-line
+        window.top.wx.agentConfig({
+          ...result,
+          jsApiList: [
+            'openLocation',
+            'getLocation',
+            'chooseImage',
+            'uploadImage',
+            'previewImage',
+            'getLocalImgData',
+            'scanQRCode',
+            'onHistoryBack',
+            'closeWindow',
+            'hideOptionMenu',
+            'showMenuItems',
+            'hideMenuItems',
+            'hideAllNonBaseMenuItem',
+            'selectExternalContact',
+            'getCurExternalContact',
+            'getCurExternalChat',
+            'openUserProfile',
+            'sendChatMessage',
+            'startRecord',
+            'stopRecord',
+            'uploadVoice',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'pauseVoice',
+            'stopVoice',
+            'onVoicePlayEnd',
+            'updateAppMessageShareData',
+            'updateTimelineShareData',
+            'openDefaultBrowser',
+            'shareToExternalMoments',
+            'shareAppMessage'
+          ],
+
+          //必填
+          debug: false,
+          beta: true,
+          success: function (res) {
+            onSuccess?.({
+              status: 'success'
+            })
+          },
+          fail: function (res) {
+            console.error('鉴权失败:', res)
+            onError?.({
+              status: 'error',
+              messsage: res.errMsg || LocaleUtil.locale('企业微信鉴权失败，请稍后重试！')
+            })
+          }
+        })
+      } else {
+        onError?.({
+          status: 'error',
+          messsage: response.message || LocaleUtil.locale('企业微信鉴权接口失败，请稍后重试！')
+        })
+      }
+    })
+    .catch((e) => {
+      onError?.({
+        status: 'error',
+        messsage: LocaleUtil.locale('企业微信鉴权接口异常，请稍后重试！')
+      })
+    })
+}
+
+export default wecomAgentConfig

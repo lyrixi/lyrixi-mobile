@@ -25,7 +25,6 @@ const CascaderCombo = forwardRef(
       readOnly,
       disabled,
       allowClear,
-      multiple,
       // Combo: Style
       style,
       className,
@@ -122,7 +121,6 @@ const CascaderCombo = forwardRef(
           open={open}
           maskClosable={maskClosable}
           allowClear={allowClear}
-          multiple={multiple}
           // Modal: Elements
           portal={portal}
           title={title}

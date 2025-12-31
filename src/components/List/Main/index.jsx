@@ -181,8 +181,16 @@ const Main = forwardRef(
         // Value & Display Value
         value={value}
         list={result?.list}
-        formatViewList={formatViewList}
-        formatViewItem={formatViewItem}
+        formatViewList={
+          typeof formatViewList === 'function'
+            ? (rawList) => formatViewList(rawList, { result })
+            : undefined
+        }
+        formatViewItem={
+          typeof formatViewItem === 'function'
+            ? (rawItem, index) => formatViewItem(rawItem, index, { result })
+            : undefined
+        }
         // Status
         virtual={virtual}
         multiple={multiple}

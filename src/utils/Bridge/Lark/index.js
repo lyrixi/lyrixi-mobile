@@ -3,6 +3,8 @@
 
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
+import getConfigPayload from './../utils/getConfigPayload'
+import config from './config'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -15,7 +17,7 @@ import { GeoUtil, Clipboard, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function ({ lark, onSuccess, onError } = {}) {
+  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
     if (window.top.tt && window.top.h5sdk) {
       onSuccess?.({
         status: 'success'
@@ -26,7 +28,9 @@ let Bridge = {
     let script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = 'defer'
-    script.src = lark?.src || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
+    script.src =
+      getScriptSrc?.({ platform: 'lark' }) ||
+      '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
 
     script.onload = function () {
       if (window.tt && window.h5sdk) {
@@ -46,6 +50,32 @@ let Bridge = {
     }
 
     if (script.src) document.body.appendChild(script)
+  },
+  config: async function ({
+    getConfigUrl,
+    formatHeaders,
+    formatPayload,
+    formatResponse,
+    onSuccess,
+    onError
+  } = {}) {
+    // 获取配置url
+    let url = ''
+    if (typeof getConfigUrl === 'function') {
+      url = await getConfigUrl({ platform: 'lark' })
+    }
+    // 构建payload
+    let payload = getConfigPayload()
+    if (typeof formatPayload === 'function') {
+      payload = await formatPayload(payload, { platform: 'lark' })
+    }
+    // 构建header
+    let headers = { 'Content-Type': 'application/json' }
+    if (typeof formatHeaders === 'function') {
+      headers = await formatHeaders(headers, { platform: 'lark' })
+    }
+
+    config({ url, headers, payload, formatResponse, onSuccess, onError })
   },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })

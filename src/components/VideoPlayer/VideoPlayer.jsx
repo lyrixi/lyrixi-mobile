@@ -1,9 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
 import { createPortal } from 'react-dom'
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 
 // 内库使用-start
-import LocaleUtil from './../../utils/LocaleUtil'
+// import LocaleUtil from './../../utils/LocaleUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
@@ -34,7 +34,8 @@ const VideoPlayer = forwardRef(
     ref
   ) => {
     const rootRef = useRef(null)
-    const playerRef = useRef(null)
+    // 等安卓升级到8.0.0版本后, 再使用ReactPlayer
+    // const playerRef = useRef(null)
 
     // Playing status: true: playing, false: paused
     const [playing, setPlaying] = useState(autoPlay)
@@ -54,10 +55,10 @@ const VideoPlayer = forwardRef(
     })
 
     // Handle player error
-    const handleError = (err) => {
-      const errorMsg = LocaleUtil.locale('视频加载失败, 请稍后再试', 'lyrixi.video.load.failed')
-      onError?.({ status: 'error', message: errorMsg, error: err })
-    }
+    // const handleError = (err) => {
+    //   const errorMsg = LocaleUtil.locale('视频加载失败, 请稍后再试', 'lyrixi.video.load.failed')
+    //   onError?.({ status: 'error', message: errorMsg, error: err })
+    // }
 
     const Node = (
       <div
@@ -68,7 +69,7 @@ const VideoPlayer = forwardRef(
           setPlaying(!playing)
         }}
       >
-        <ReactPlayer
+        {/* <ReactPlayer
           ref={playerRef}
           src={src}
           controls={true}
@@ -80,7 +81,8 @@ const VideoPlayer = forwardRef(
             }
           }}
           onError={handleError}
-        />
+        /> */}
+        not support react-player
         {children}
       </div>
     )

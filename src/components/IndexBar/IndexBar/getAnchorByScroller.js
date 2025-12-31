@@ -1,4 +1,4 @@
-function getAnchorByViewport(scrollerElement) {
+function getAnchorByScroller(scrollerElement) {
   let anchorsElement = scrollerElement?.querySelectorAll?.('[data-indexbar-anchor]')
   for (let i = 0, anchorElement; (anchorElement = anchorsElement[i++]); ) {
     const rect = anchorElement.getBoundingClientRect()
@@ -9,4 +9,4 @@ function getAnchorByViewport(scrollerElement) {
   return ''
 }
 
-export default getAnchorByViewport
+export default getAnchorByScroller

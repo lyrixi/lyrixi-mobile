@@ -17,8 +17,10 @@ const Flex = forwardRef(
       className,
 
       direction = 'horizontal', // 'horizontal', 'vertical'
+      justify = 'start', // 'start', 'end', 'center', 'between', 'around', 'evenly'
+      align, // 'start', 'end', 'center'
+
       wrap = false, // 是否换行, true: 换行, false: 超出压缩, 'scroll': 超出滚动
-      align = 'start', // 'start', 'end', 'center', 'between', 'around', 'evenly'
       gap = 's', // Number | 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'
 
       // Element
@@ -53,14 +55,21 @@ const Flex = forwardRef(
       }
     }
 
+    // alignType: 'justify', 'align'
     function getClassName() {
+      const justifyClassMap = {
+        start: `lyrixi-flex-justify-flex-start`,
+        end: `lyrixi-flex-justify-flex-end`,
+        center: `lyrixi-flex-justify-center`,
+        between: `lyrixi-flex-justify-space-between`,
+        around: `lyrixi-flex-justify-space-around`,
+        evenly: 'lyrixi-flex-justify-space-evenly'
+      }
+
       const alignClassMap = {
-        start: direction === 'horizontal' ? 'lyrixi-flex-left' : 'lyrixi-flex-top',
-        end: direction === 'horizontal' ? 'lyrixi-flex-right' : 'lyrixi-flex-bottom',
-        center: direction === 'horizontal' ? 'lyrixi-flex-center' : 'lyrixi-flex-middle',
-        between: 'lyrixi-flex-between',
-        around: 'lyrixi-flex-around',
-        evenly: 'lyrixi-flex-evenly'
+        start: `lyrixi-flex-align-flex-start`,
+        end: `lyrixi-flex-align-flex-end`,
+        center: `lyrixi-flex-align-center`
       }
 
       const directionClassMap = {
@@ -74,7 +83,8 @@ const Flex = forwardRef(
         {
           'lyrixi-flex-wrap': wrap === true,
           'lyrixi-flex-scroll': wrap === 'scroll',
-          [alignClassMap[align || '']]: alignClassMap[align || '']
+          [alignClassMap[align || '']]: alignClassMap[align || ''],
+          [justifyClassMap[justify || '']]: justifyClassMap[justify || '']
         },
         className
       )

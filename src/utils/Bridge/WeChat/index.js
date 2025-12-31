@@ -2,8 +2,11 @@
 
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
+import getConfigPayload from './../utils/getConfigPayload'
 import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
+import wechatConfig from './wechatConfig'
+import wecomAgentConfig from './wecomAgentConfig'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -17,7 +20,7 @@ import { LocaleUtil, Clipboard, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function ({ wechat, wecom, wechatMiniProgram, wecomMiniProgram, onSuccess, onError } = {}) {
+  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
     const platform = Device.platform
     if (window.top.wx) {
       onSuccess?.({
@@ -31,13 +34,14 @@ let Bridge = {
     script.defer = 'defer'
 
     if (platform === 'wechat') {
-      script.src = wechat?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = getScriptSrc?.({ platform }) || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wechatMiniProgram') {
-      script.src = wechatMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = getScriptSrc?.({ platform }) || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     } else if (platform === 'wecom') {
-      script.src = wecom?.src || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
+      script.src =
+        getScriptSrc?.({ platform }) || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
     } else if (platform === 'wecomMiniProgram') {
-      script.src = wecomMiniProgram?.src || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      script.src = getScriptSrc?.({ platform }) || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
     }
 
     script.onload = function () {
@@ -57,6 +61,38 @@ let Bridge = {
     }
 
     if (script.src) document.body.appendChild(script)
+  },
+  config: async function ({
+    getConfigUrl,
+    formatHeaders,
+    formatPayload,
+    formatResponse,
+    onSuccess,
+    onError
+  } = {}) {
+    let platform = Device.platform
+
+    // 获取配置url
+    let url = ''
+    if (typeof getConfigUrl === 'function') {
+      url = await getConfigUrl({ platform })
+    }
+    // 构建payload
+    let payload = getConfigPayload()
+    if (typeof formatPayload === 'function') {
+      payload = await formatPayload(payload, { platform })
+    }
+    // 构建header
+    let headers = { 'Content-Type': 'application/json' }
+    if (typeof formatHeaders === 'function') {
+      headers = await formatHeaders(headers, { platform })
+    }
+
+    if (platform === 'wecom') {
+      wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, onError })
+    } else {
+      wechatConfig({ url, headers, payload, formatResponse, onSuccess, onError })
+    }
   },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
@@ -307,7 +343,7 @@ let Bridge = {
   uploadFile: async function ({
     localFile,
     getUploadUrl,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
     onSuccess,
@@ -353,8 +389,8 @@ let Bridge = {
           payload = await formatPayload(payload, { platform: 'wechat' })
         }
         let header = { 'Content-Type': 'multipart/form-data' }
-        if (typeof formatHeader === 'function') {
-          header = await formatHeader(header, { platform: 'wechat' })
+        if (typeof formatHeaders === 'function') {
+          header = await formatHeaders(header, { platform: 'wechat' })
         }
 
         console.log('调用微信uploadServerId:', {

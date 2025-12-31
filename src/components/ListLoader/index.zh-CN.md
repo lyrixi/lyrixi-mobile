@@ -30,7 +30,8 @@ toc: content
 | cacheName            | 缓存名称     | `string`                                     | -      |
 | url                  | 数据接口地址 | `string`                                     | -      |
 | headers              | 请求头       | `object`                                     | -      |
-| params               | 查询参数     | `{rows: number, [key: string]: any}`         | -      |
+| payload              | 查询参数     | `{rows: number, [key: string]: any}`         | -      |
+| formatPayload        | 格式化入参   | `(result: object) => object`                 | -      |
 | formatResult         | 格式化结果   | `(result: object) => object`                 | -      |
 | formatViewList       | 格式化列表   | `(list: Array) => Array`                     | -      |
 | formatViewItem       | 格式化项     | `(item: object) => object`                   | -      |

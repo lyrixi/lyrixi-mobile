@@ -1,13 +1,19 @@
 import getFileExtension from './getFileExtension'
-import loadJs from './loadJs'
+import loadRemoteJs from './loadRemoteJs'
+import loadRemoteJson from './loadRemoteJson'
+import loadLocalJs from './loadLocalJs'
+import loadLocalJson from './loadLocalJson'
 import loadImage from './loadImage'
 import accessImage from './accessImage'
 
 const AssetUtil = {
-  getFileExtension: getFileExtension,
-  loadJs: loadJs,
-  loadImage: loadImage,
-  accessImage: accessImage
+  getFileExtension,
+  loadRemoteJs,
+  loadRemoteJson,
+  loadLocalJs,
+  loadLocalJson,
+  loadImage,
+  accessImage
 }
 
 export default AssetUtil

@@ -22,7 +22,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
         backgroundColor="primary"
         onClick={onClick}
       >
-        {LocaleUtil.locale('重试', 'SeedsUI_retry')}
+        {LocaleUtil.locale('重试', 'lyrixi.retry')}
       </Button>
     )
   }
@@ -37,7 +37,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
         backgroundColor="primary"
         onClick={onClick}
       >
-        {LocaleUtil.locale('刷新', 'SeedsUI_refresh')}
+        {LocaleUtil.locale('刷新', 'lyrixi.refresh')}
       </Button>
     )
   }

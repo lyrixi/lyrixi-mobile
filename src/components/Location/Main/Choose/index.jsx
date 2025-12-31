@@ -25,7 +25,8 @@ const LocationChoose = forwardRef(
       config,
       getLocation,
       getAddress,
-      loading,
+      loadingNode,
+      loadingRender,
 
       // Events
       onChange,
@@ -44,7 +45,8 @@ const LocationChoose = forwardRef(
       <APILoader
         // Element
         config={{ ...window.APILoaderConfig, ...config }}
-        loading={loading}
+        loadingNode={loadingNode}
+        loadingRender={loadingRender}
         // Events
         onSuccess={onSuccess}
         onError={onError}

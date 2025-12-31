@@ -39,7 +39,7 @@ export default () => {
           console.log('修改:', newValue)
           setValue(newValue)
         }}
-        contentClassName="lyrixi-flex lyrixi-flex-left"
+        contentClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
         // pickerRender={(tab, { onChange }) => {
         //   if (tab.type === 'week') {
         //     return <div onClick={() => onChange && onChange(new Date('2022-12-12'))}>点我</div>

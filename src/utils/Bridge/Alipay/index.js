@@ -15,7 +15,7 @@ import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function ({ alipay, alipayMiniProgram, onSuccess, onError } = {}) {
+  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
     if (window.top.ap) {
       onSuccess?.({
         status: 'success'
@@ -27,11 +27,14 @@ let Bridge = {
     script.type = 'text/javascript'
     script.defer = 'defer'
     script.src =
-      alipay?.src || '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
+      getScriptSrc?.({ platform: 'alipay' }) ||
+      '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
 
     script.onload = async function () {
       if (Device.platform === 'alipayMiniProgram') {
-        await AssetUtil.loadJs(alipayMiniProgram?.src || 'https://appx/web-view.min.js')
+        await AssetUtil.loadRemoteJs(
+          getScriptSrc?.({ platform: 'alipayMiniProgram' }) || 'https://appx/web-view.min.js'
+        )
         if (!window.my) {
           console.error('支付小程序js加载失败')
           onError?.({

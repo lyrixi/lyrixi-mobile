@@ -6,11 +6,11 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'browser-mobile'
+import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 单张照片上传
-function uploadItem(item, { getUploadUrl, formatHeader, formatPayload, formatResponse }) {
+function uploadItem(item, { getUploadUrl, formatHeaders, formatPayload, formatResponse }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -24,7 +24,7 @@ function uploadItem(item, { getUploadUrl, formatHeader, formatPayload, formatRes
     let newItem = await uploadLocalFile({
       localFile: item?.localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
       getUploadUrl,
-      formatHeader,
+      formatHeaders,
       formatPayload,
       formatResponse,
       // 用于构建新Item的入参

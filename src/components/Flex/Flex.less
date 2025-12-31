@@ -20,8 +20,8 @@
   flex: 1;
 }
 
+// flex方向
 .lyrixi-flex-vertical {
-  // flex方向
   flex-direction: column;
 }
 .lyrixi-flex-horizontal {
@@ -33,52 +33,45 @@
 .lyrixi-flex-horizontal-reverse {
   flex-direction: row-reverse;
 }
-.lyrixi-flex-left {
-  // flex内部水平对齐
+
+// flex内部水平对齐
+.lyrixi-flex-justify-flex-start {
   justify-content: flex-start;
 }
-.lyrixi-flex-center {
+.lyrixi-flex-justify-center {
   justify-content: center;
 }
-.lyrixi-flex-right {
+.lyrixi-flex-justify-flex-end {
   justify-content: flex-end;
 }
-.lyrixi-flex-between {
+.lyrixi-flex-justify-space-between {
   justify-content: space-between;
 }
-.lyrixi-flex-around {
+.lyrixi-flex-justify-space-around {
   justify-content: space-around;
 }
-.lyrixi-flex-evenly {
+.lyrixi-flex-justify-space-evenly {
   justify-content: space-evenly;
 }
-.lyrixi-flex-top {
-  // flex内部垂直对齐
+
+// flex内部垂直对齐
+.lyrixi-flex-align-flex-start {
   align-items: flex-start;
 }
-.lyrixi-flex-middle {
+.lyrixi-flex-align-center {
   align-items: center;
 }
-.lyrixi-flex-bottom {
+.lyrixi-flex-align-flex-end {
   align-items: flex-end;
 }
-.lyrixi-flex-stretch {
-  align-items: stretch;
-}
-.lyrixi-flex-middlecenter {
-  align-items: center;
-  // flex对齐方式
-  justify-content: center;
-}
-.lyrixi-flex-baseline {
-  // 垂直居中对齐
-  align-items: baseline;
-}
 
+// flex允许换行
 // wrap={true}
 .lyrixi-flex-wrap {
   flex-wrap: wrap;
 }
+
+// 带滚动功能的flex布局
 // wrap="scroll"(horizontal)
 .lyrixi-flex-scroll {
   flex-wrap: nowrap;
@@ -98,24 +91,4 @@
 .lyrixi-flex-scroll.lyrixi-flex-vertical > * {
   // 纵向滚动时，子项不要被压缩导致高度异常
   flex-shrink: 0;
-}
-
-.lyrixi-flex-shrink > div {
-  flex-shrink: 0;
-  width: 100%;
-  transform-style: preserve-3d;
-}
-
-.lyrixi-flex-self-stretch {
-  // flex自身对齐:设置后则覆盖父容器
-  align-self: stretch;
-}
-.lyrixi-flex-self-top {
-  align-self: flex-start;
-}
-.lyrixi-flex-self-middle {
-  align-self: center;
-}
-.lyrixi-flex-self-bottom {
-  align-self: flex-end;
 }

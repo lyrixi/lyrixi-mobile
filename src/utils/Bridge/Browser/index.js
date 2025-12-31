@@ -19,6 +19,11 @@ let Browser = {
       status: 'success'
     })
   },
+  config: async function ({ onSuccess } = {}) {
+    onSuccess?.({
+      status: 'success'
+    })
+  },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
@@ -49,13 +54,17 @@ let Browser = {
   goHome: function () {
     window.history.go(-1)
   },
-  tel: function (number) {
+  tel: function ({ number, onSuccess, onError } = {}) {
     if (Device.device === 'pc') {
       Toast.show({ content: LocaleUtil.locale('此功能仅可在手机中使用', 'lyrixi.only.mobile') })
       return
     }
-    if (isNaN(number)) return
+    if (isNaN(number)) {
+      onError?.({ status: 'error', message: LocaleUtil.locale('电话号码格式错误') })
+      return
+    }
     window.location.href = 'tel:' + number
+    onSuccess?.({ status: 'success' })
   },
   openLocation: function ({
     latitude,
@@ -242,7 +251,7 @@ let Browser = {
   uploadFile: async function ({
     localFile,
     getUploadUrl,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
     onSuccess,
@@ -262,8 +271,8 @@ let Browser = {
       payload = await formatPayload(payload, { platform: 'browser' })
     }
     let header = { 'Content-Type': 'multipart/form-data' }
-    if (typeof formatHeader === 'function') {
-      header = await formatHeader(header, { platform: 'browser' })
+    if (typeof formatHeaders === 'function') {
+      header = await formatHeaders(header, { platform: 'browser' })
     }
 
     let response = await uploadFile({

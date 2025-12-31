@@ -21,7 +21,7 @@ export default () => {
           <Accordion.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
             <Accordion ellipsis={{ expandText: 'Expand One', collapseText: 'Collapse One' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -29,7 +29,7 @@ export default () => {
             </Accordion>
             <Accordion ellipsis={{ expandText: 'Expand Two', collapseText: 'Collapse Two' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
@@ -37,7 +37,7 @@ export default () => {
             </Accordion>
             <Accordion ellipsis={{ expandText: 'Expand Three', collapseText: 'Collapse Three' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
@@ -45,7 +45,7 @@ export default () => {
             </Accordion>
             <Accordion ellipsis={{ expandText: 'Expand Four', collapseText: 'Collapse Four' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
@@ -60,7 +60,7 @@ export default () => {
           <Accordion.Group style={{ margin: '0 12px' }}>
             <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -68,7 +68,7 @@ export default () => {
             </Accordion>
             <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
@@ -76,7 +76,7 @@ export default () => {
             </Accordion>
             <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
@@ -84,7 +84,7 @@ export default () => {
             </Accordion>
             <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
@@ -102,7 +102,7 @@ export default () => {
               ellipsis={{ expandText: 'Expand', collapseText: 'Collapse' }}
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 160 }}
               >
                 Content keeps 60px visible when collapsed.
@@ -121,7 +121,7 @@ export default () => {
               ellipsis={{ expandText: 'Open', collapseText: 'Close' }}
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -138,7 +138,7 @@ export default () => {
               ellipsisRender={({ open, onClick }) => {
                 return (
                   <div
-                    className="lyrixi-flex lyrixi-flex-center"
+                    className="lyrixi-flex lyrixi-flex-justify-center"
                     style={{
                       padding: '8px 0',
                       color: '#f90',
@@ -157,7 +157,7 @@ export default () => {
               }}
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Custom Ellipsis Render

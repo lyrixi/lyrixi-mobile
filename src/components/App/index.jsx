@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
-// 系统字体大小
-import updateVariables from './updateVariables'
-// 桥接
-import connectBridge from './connectBridge'
 
 // 内库使用-start
+import Theme from './../../utils/Theme'
 import LocaleUtil from './../../utils/LocaleUtil'
 import Logger from './../../utils/Logger'
 import Debugger from './../../utils/Debugger'
@@ -15,7 +12,7 @@ import Message from './../Message'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Logger, Debugger, Result, Button, Map, Message } from 'lyrixi-mobile'
+import { Theme, LocaleUtil, Logger, Debugger, Result, Button, Map, Message } from 'lyrixi-mobile'
 测试使用-end */
 
 // System font size
@@ -32,30 +29,33 @@ window.addEventListener(
 
 // 顶层容器
 function App({
-  enableLogger = true,
-  bridgeConfig = null,
-  backdoor = null,
-  preload = null,
-  loadingRender,
-  map = {},
+  enableLogDB = true, // 启用日志数据库
+  mapConfig = null, // 地图配置 {type: 'bmap' | 'amap' | 'google', key: 'xxx'}
+  bridgeConfig = null, // { getScriptSrc, getConfigUrl, formatHeaders, formatPayload, formatResponse}
+  languageConfig = null, // 语言配置 {language: 'zh_CN' | 'en_US' | 'ja_JP', dayjs: true | false, lyrixi: true | false, localJsFiles: string[], localJsonFiles: string[], remoteJsFiles: string[], remoteJsonFiles: string[]}
+  debugElement = null, // 传入debugger元素, 用于点击10次后门, 唤醒vconsole调试面板
+  preload = null, // 预加载函数, 返回 {status: 'success'|'error', message: string}
+  themeConfig = null, // 主题配置 {fontSize: 'm' | 'l' | 'xl'}
   children
 }) {
-  // Map配置
-  const { onSuccess: onMapSuccess, onError: onMapError, ...mapConfig } = map
-
   // result: {status: 'empty'|'error'|'noMore'|'loading', message: string}
   let [result, setResult] = useState(null)
 
   // Execute only once
   useEffect(() => {
+    // 更新主题
+    if (themeConfig?.fontSize) {
+      Theme.setFontSize(themeConfig.fontSize)
+    }
+
     // 启用日志功能
-    if (enableLogger) {
+    if (enableLogDB) {
       Logger.config()
     }
 
     // 启用后门(点击10次后门, 唤醒vconsole调试面板)
-    if (backdoor && backdoor instanceof Element) {
-      Debugger.addTrigger(backdoor)
+    if (debugElement && debugElement instanceof Element) {
+      Debugger.addTrigger(debugElement)
     }
 
     load()
@@ -63,26 +63,29 @@ function App({
   }, [])
 
   async function load() {
+    // 加载语言文件
+    if (languageConfig?.language) {
+      let result = await LocaleUtil.loadLocale(languageConfig?.language, languageConfig)
+      if (result.status === 'error') {
+        setResult(result)
+        return
+      }
+    }
+
     // 加载必要的库
     if (preload) {
-      let isOk = await preload?.()
-      if (typeof isOk === 'string') {
-        setResult({
-          status: 'error',
-          message: isOk
-        })
+      let result = await preload?.()
+      if (typeof result.status === 'error') {
+        setResult(result)
         return
       }
     }
 
     // 启用桥接功能
     if (bridgeConfig && typeof bridgeConfig === 'object') {
-      let isOk = await connectBridge(bridgeConfig)
-      if (typeof isOk === 'string') {
-        setResult({
-          status: 'error',
-          message: isOk
-        })
+      let result = await initBridge(bridgeConfig)
+      if (result.status === 'error') {
+        setResult(result)
         return
       }
     }
@@ -90,7 +93,7 @@ function App({
     // 全部加载完成
     setResult({
       status: 'success',
-      message: '全部加载完成'
+      message: 'success'
     })
   }
 
@@ -113,14 +116,18 @@ function App({
   }
 
   // Map
-  if (mapConfig && typeof mapConfig === 'object') {
+  if (mapConfig?.type && mapConfig?.key) {
     return (
       <Map.APILoader
-        config={mapConfig}
-        loading={loadingRender}
-        onSuccess={onMapSuccess}
-        onError={onMapError}
+        config={{
+          type: mapConfig.type,
+          key: mapConfig.key
+        }}
+        onError={(error) => {
+          setResult(error)
+        }}
       >
+        {/* 地图加载完成后才会渲染children */}
         {children}
       </Map.APILoader>
     )

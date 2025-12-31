@@ -12,7 +12,7 @@ import { AssetUtil, Bridge, LocaleUtil } from 'lyrixi-mobile'
 function uploadLocalFile({
   localFile,
   getUploadUrl,
-  formatHeader,
+  formatHeaders,
   formatPayload,
   formatResponse,
   verifyImage,
@@ -23,7 +23,7 @@ function uploadLocalFile({
     Bridge.uploadFile({
       getUploadUrl,
       localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
-      formatHeader,
+      formatHeaders,
       formatPayload,
       formatResponse,
       onSuccess: async function (response) {

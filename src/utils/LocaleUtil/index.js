@@ -1,15 +1,20 @@
 import languageMap from './languageMap'
+import loadLocale from './loadLocale'
 import locale from './locale'
 import setLocale from './setLocale'
 import getLanguage from './getLanguage'
-import loadLocale from './loadLocale'
 
 const LocaleUtil = {
-  languageMap: languageMap,
   locale: locale,
+  loadLocale: loadLocale,
   setLocale: setLocale,
   getLanguage: getLanguage,
-  loadLocale: loadLocale
+  getLanguageMap: (language) => {
+    if (language) {
+      return languageMap?.[language] || null
+    }
+    return languageMap
+  }
 }
 
 export default LocaleUtil

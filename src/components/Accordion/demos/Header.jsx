@@ -21,7 +21,7 @@ export default () => {
           <Accordion.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
             <Accordion title="One">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -29,7 +29,7 @@ export default () => {
             </Accordion>
             <Accordion title="Two">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
@@ -37,7 +37,7 @@ export default () => {
             </Accordion>
             <Accordion title="Three">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
@@ -45,7 +45,7 @@ export default () => {
             </Accordion>
             <Accordion title="Four">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
@@ -60,7 +60,7 @@ export default () => {
           <Accordion.Group style={{ margin: '0 12px' }}>
             <Accordion title="One">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -68,7 +68,7 @@ export default () => {
             </Accordion>
             <Accordion title="Two">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
@@ -76,7 +76,7 @@ export default () => {
             </Accordion>
             <Accordion title="Three">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
@@ -84,7 +84,7 @@ export default () => {
             </Accordion>
             <Accordion title="Four">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
@@ -98,7 +98,7 @@ export default () => {
           <div style={{ margin: '0 12px' }}>
             <Accordion title="Partial Collapse" open={false} minHeight={60}>
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 160 }}
               >
                 Content keeps 60px visible when collapsed.
@@ -117,7 +117,7 @@ export default () => {
               onClose={() => setValue(null)}
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -131,7 +131,7 @@ export default () => {
           <div style={{ margin: '0 12px' }}>
             <Accordion title="One" arrowPosition="left">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text
@@ -139,7 +139,7 @@ export default () => {
             </Accordion>
             <Accordion open={false} title="Two" arrowPosition="left">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Second Text
@@ -147,7 +147,7 @@ export default () => {
             </Accordion>
             <Accordion open={false} title="Three" arrowPosition="left">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Third Text
@@ -155,7 +155,7 @@ export default () => {
             </Accordion>
             <Accordion open={false} title="Four" arrowPosition="left">
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Fourth Text
@@ -172,7 +172,7 @@ export default () => {
               title="Arrow ClassName"
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Arrow ClassName
@@ -194,7 +194,7 @@ export default () => {
               title="Arrow Node"
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 Arrow Node
@@ -211,7 +211,7 @@ export default () => {
               headerRender={({ open, onClick }) => {
                 return (
                   <div
-                    className="lyrixi-flex lyrixi-flex-middle"
+                    className="lyrixi-flex lyrixi-flex-align-center"
                     style={{ height: 40, borderBottom: open ? '1px solid #e8e8e8' : 'none' }}
                     onClick={onClick}
                   >
@@ -222,7 +222,7 @@ export default () => {
               }}
             >
               <div
-                className="lyrixi-flex lyrixi-flex-center lyrixi-flex-middle lyrixi-border-b"
+                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
                 style={{ height: 100 }}
               >
                 First Text

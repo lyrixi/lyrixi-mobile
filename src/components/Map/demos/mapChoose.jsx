@@ -45,7 +45,7 @@ export default () => {
     <Page>
       <Page.Main>
         <APILoader
-          loading={<Loading content="Loading..." />}
+          loadingNode={<Loading content="Loading..." />}
           config={{
             key: '7b6e260fc45a67b31a265e22575f1c5e',
             type: 'bmap',

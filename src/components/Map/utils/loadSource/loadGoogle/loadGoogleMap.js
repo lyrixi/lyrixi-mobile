@@ -21,7 +21,7 @@ function loadGoogleMap(key) {
     }
 
     // Load js
-    AssetUtil.loadJs(`https://maps.googleapis.com/maps/api/js?key=${key}`, {
+    AssetUtil.loadRemoteJs(`https://maps.googleapis.com/maps/api/js?key=${key}`, {
       id: 'lyrixi-google-map-js',
       onSuccess: (result) => {
         resolve({

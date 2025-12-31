@@ -25,7 +25,7 @@ function loadBaiduMap(key) {
     }
 
     // Load js
-    AssetUtil.loadJs(
+    AssetUtil.loadRemoteJs(
       `https://api.map.baidu.com/api?v=3.0&ak=${key}&callback=&callback=onBMapLoad`,
       {
         id: 'lyrixi-bmap-map-js',

@@ -14,7 +14,7 @@ export default () => {
     })
   }
   async function handleLoadJsByAsync() {
-    let result = await AssetUtil.loadJs(
+    let result = await AssetUtil.loadRemoteJs(
       'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
       {
         id: 'leaflet-js'

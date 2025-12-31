@@ -9,12 +9,12 @@ import * as districtUtils from './DistrictMain/utils'
 
 // eslint-disable-next-line
 export default {
-  Combo: Combo,
-  Modal: Modal,
-  Main: Main,
-  DistrictCombo: DistrictCombo,
-  DistrictModal: DistrictModal,
-  DistrictMain: DistrictMain,
+  Combo,
+  Modal,
+  Main,
+  DistrictCombo,
+  DistrictModal,
+  DistrictMain,
   // 导出工具
   districtUtils
 }

@@ -64,7 +64,7 @@ toc: content
 | getItemExtra           | 获取项额外数据 | `(options: object) => object`                                                                                                | -                     |
 | getUploadUrl           | 获取上传地址   | `(options: object) => string`                                                                                                | -                     |
 | formatChoose           | 格式化选择     | `(result: object) => object`                                                                                                 | -                     |
-| formatHeader           | 格式化请求头   | `(options: object) => object`                                                                                                | -                     |
+| formatHeaders          | 格式化请求头   | `(options: object) => object`                                                                                                | -                     |
 | formatPayload          | 格式化请求体   | `(options: object) => object`                                                                                                | -                     |
 | formatResponse         | 格式化响应     | `(result: object) => object`                                                                                                 | -                     |
 | onBeforeChoose         | 选择前事件     | `(e: Event) => Promise<boolean>`                                                                                             | -                     |

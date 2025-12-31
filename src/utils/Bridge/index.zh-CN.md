@@ -39,14 +39,7 @@ Bridge 已支持以下平台：
 
 **参数：**
 
-- `wechat?.src` (String) - 微信 JS SDK 地址
-- `wechatMiniProgram?.src` (String) - 微信小程序 JS SDK 地址
-- `wecom?.src` (String) - 企业微信 JS SDK 地址
-- `alipay?.src` (String) - 支付宝 JS SDK 地址
-- `alipayMiniProgram?.src` (String) - 支付宝小程序 JS SDK 地址
-- `dingtalk?.src` (String) - 钉钉 JS SDK 地址
-- `lark?.src` (String) - 飞书 JS SDK 地址
-- `[Device.platform]?.src` - 自定义平台 JS SDK 地址
+- `getScriptSrc` (Function) - 平台脚本地址, function({ platform: String }) => String
 - `onSuccess` (Function) - 加载成功
 - `onError` (Function) - 加载失败
 
@@ -332,7 +325,7 @@ Bridge.chooseMedia({
 
 - `localFile` (Object, 必填) - 需要上传的文件的本地文件对象，`{ path: String, type: String }`
 - `getUploadUrl` (Function, 必填) - 获取上传地址的函数，`function({ platform: String }) => String`
-- `formatHeader` (Function, 可选) - 格式化请求头，`function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object`
+- `formatHeaders` (Function, 可选) - 格式化请求头，`function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object`
 - `formatPayload` (Function, 可选) - 格式化表单数据，`function(payload, { platform: String }) => Object`
 - `formatResponse` (Function, 可选) - 格式化上传结果，`function(payload, { platform: String }) => {status: 'success|error', result: Object}`
 - `onSuccess` (Function) - 成功回调，返回 `{status: 'success', result: Object}`
@@ -350,7 +343,7 @@ Bridge.uploadFile({
   getUploadUrl: ({ platform }) => {
     return 'https://api.example.com/upload'
   },
-  formatHeader: (header, { platform }) => {
+  formatHeaders: (header, { platform }) => {
     return {
       ...header,
       Authorization: 'Bearer token'

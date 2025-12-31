@@ -40,7 +40,7 @@ function loadLeaflet({ css, js } = {}) {
 
     // Load js
     // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-    AssetUtil.loadJs(
+    AssetUtil.loadRemoteJs(
       js || 'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
       {
         id: 'leaflet-js',

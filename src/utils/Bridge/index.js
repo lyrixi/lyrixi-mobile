@@ -57,14 +57,7 @@ let Bridge = {
   /**
    * 加载平台 SDK
    * @param {Object} params - 配置选项（可选）
-   * @param {String} params.wechat?.src - 微信 JS SDK 地址
-   * @param {String} params.wechatMiniProgram?.src - 微信 JS SDK 地址
-   * @param {String} params.wecom?.src - 企业微信 JS SDK 地址
-   * @param {String} params.alipay?.src - 支付宝 JS SDK 地址
-   * @param {String} params.alipayMiniProgram?.src - 支付宝小程序 JS SDK 地址
-   * @param {String} params.dingtalk?.src - 钉钉 JS SDK 地址
-   * @param {String} params.lark?.src - 飞书 JS SDK 地址
-   * @param {String} params.[Device.platform]?.src - 自定义平台 JS SDK 地址
+   * @param {String} params.getScriptSrc - 平台脚本地址, function({ platform: String }) => String
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
    * @returns {void}
@@ -72,6 +65,21 @@ let Bridge = {
   load(params, platform) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.load(params)
+  },
+  /**
+   * 配置鉴权
+   * @param {Object} params - 配置鉴权参数
+   * @param {String} params.getConfigUrl - 获取signature请求地址
+   * @param {Object} params.formatHeaders - 格式化请求头, function({ 'Content-Type': 'application/json' }, { platform: String }) => Object
+   * @param {Object} params.formatPayload - 微信鉴权参数, function(payload, { platform: String }), 返回 {appId: String, url: String, suiteType: String, lowerAppId: String}
+   * @param {Object} params.formatResponse - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', appId: String, timestamp: Number, nonceStr: String, signature: String}
+   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onError - 失败回调
+   * @returns {void}
+   */
+  config(params, platform) {
+    const bridge = this._getCurrentBridge(platform)
+    return bridge.config(params)
   },
   /**
    * 返回上一页或关闭窗口, 根据url参数isFromApp决定返回方式
@@ -154,13 +162,16 @@ let Bridge = {
   },
   /**
    * 拨打电话
-   * @param {String|Number} number - 电话号码
+   * @param {Object} params - 拨打电话参数
+   * @param {String|Number} params.number - 电话号码
+   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  tel(number, platform) {
+  tel(params, platform) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.tel) {
-      return bridge.tel(number)
+      return bridge.tel(params)
     }
     return undefined
   },
@@ -259,7 +270,7 @@ let Bridge = {
    * @param {Object} params - 上传图片参数
    * @param {Object} params.localFile - 需要上传的图片的本地文件, { path: String, type: String } (必填)
    * @param {String} params.getUploadUrl - 上传地址 (必填), function({ platform: String }) => String
-   * @param {Object} params.formatHeader - 格式化请求头, function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object
+   * @param {Object} params.formatHeaders - 格式化请求头, function({ 'Content-Type': 'multipart/form-data' }, { platform: String }) => Object
    * @param {Object} params.formatPayload - 格式化表单数据 function(payload, { platform: String }), 返回 {Object}
    * @param {Object} params.formatResponse - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', result: Object}
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}

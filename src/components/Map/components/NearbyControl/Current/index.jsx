@@ -56,7 +56,7 @@ function Current(
             address={value?.address}
           />
         </div>
-        
+
         {/* Element: Description */}
         <div className="lyrixi-map-nearbyControl-item-content-description">
           <div className="lyrixi-flex-1">{value?.address || ''}</div>

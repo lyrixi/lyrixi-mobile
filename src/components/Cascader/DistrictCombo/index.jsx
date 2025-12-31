@@ -33,7 +33,6 @@ const DistrictCombo = forwardRef(
       readOnly,
       disabled,
       allowClear,
-      multiple,
       // Combo: Style
       style,
       className,

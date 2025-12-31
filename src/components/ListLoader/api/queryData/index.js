@@ -10,30 +10,30 @@ import { LocaleUtil, Request } from 'lyrixi-mobile'
 // 获取列表
 let page = 1
 // 兼容新 List.Main 要求：外部仍返回数组，调用处已包装为新对象
-function queryData(url, headers = {}, params, { previousResult, action, formatResult } = {}) {
-  return new Promise((resolve) => {
+function queryData(
+  url,
+  headers = {},
+  payload,
+  { previousResult, action, formatPayload, formatResult } = {}
+) {
+  // eslint-disable-next-line
+  return new Promise(async (resolve) => {
     if (action === 'bottomRefresh') {
       page++
     } else {
       page = 1
     }
-    params.page = page
-    params.rows = params.rows || 20
-    Request.post(
-      url,
-      {
-        page: page,
-        ...params
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          ...(headers || {})
-        }
+    let queryParams = (await formatPayload?.({ ...(payload || {}), page })) || {}
+    if (!queryParams?.rows) queryParams.rows = 20
+
+    Request.post(url, queryParams, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(headers || {})
       }
-    )
+    })
       .then(async (result) => {
-        let newResult = await formatResult(result)
+        let newResult = await formatResult(result, { payload: queryParams })
         // 当前列表
         let currentList = page === 1 ? [] : previousResult?.list
 
@@ -43,17 +43,33 @@ function queryData(url, headers = {}, params, { previousResult, action, formatRe
           if (!currentList?.length && !newResult?.list?.length) {
             newResult.status = 'empty'
           }
-          // 判断是否有下一页
-          else if (newResult?.totalPage >= page || newResult?.list?.length < params.rows) {
+          // 有总页数, 优先使用总页数判断
+          else if (newResult?.totalPage) {
+            if (page >= newResult?.totalPage) {
+              newResult.status = 'noMore'
+            } else {
+              newResult.status = 'loading'
+            }
+          }
+          // 有总行数, 优先使用总页数判断
+          else if (newResult?.totalRows) {
+            if (
+              (currentList?.length || 0) + (newResult?.list?.length || 0) >=
+              newResult?.totalRows
+            ) {
+              newResult.status = 'noMore'
+            } else {
+              newResult.status = 'loading'
+            }
+          }
+          // 无总页数无总行数, 根据rows判断是否为最后一页
+          else if (newResult?.list?.length < queryParams?.rows) {
             newResult.status = 'noMore'
           }
           // 有更多数据
           else {
             newResult.status = 'loading'
           }
-
-          // 合并列表
-          newResult.list = currentList.concat(newResult?.list || [])
         }
 
         resolve(newResult)

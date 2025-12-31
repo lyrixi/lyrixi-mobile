@@ -15,7 +15,8 @@ const Preview = forwardRef(
       config,
       getLocation,
       getAddress,
-      loading,
+      loadingNode,
+      loadingRender,
 
       // Events
       onChange,
@@ -36,7 +37,8 @@ const Preview = forwardRef(
         config={config}
         getLocation={getLocation}
         getAddress={getAddress}
-        loading={loading}
+        loadingNode={loadingNode}
+        loadingRender={loadingRender}
         // Events
         onChange={onChange}
         onSuccess={onSuccess}

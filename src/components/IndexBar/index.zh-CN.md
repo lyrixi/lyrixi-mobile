@@ -35,14 +35,13 @@ toc: content
 
 ### Ref
 
-| 属性              | 说明         | 类型                              |
-| ----------------- | ------------ | --------------------------------- | --- |
-| element           | 根元素       | `HtmlDivElement`                  |
-| tooltipElement    | 提示元素     | `HtmlDivElement`                  |
-| getElement        | 获取根元素   | () => `HtmlDivElement`            |
-| getTooltipElement | 获取提示元素 | () => `HtmlDivElement`            |
-| activeAnchor      | 激活锚点     | `(currentAnchor: string) => void` | -   |
-| scrollToAnchor    | 滚动到锚点   | `(anchor: string) => void`        | -   |
+| 属性              | 说明         | 类型                       |
+| ----------------- | ------------ | -------------------------- | --- |
+| element           | 根元素       | `HtmlDivElement`           |
+| tooltipElement    | 提示元素     | `HtmlDivElement`           |
+| getElement        | 获取根元素   | () => `HtmlDivElement`     |
+| getTooltipElement | 获取提示元素 | () => `HtmlDivElement`     |
+| scrollToAnchor    | 滚动到锚点   | `(anchor: string) => void` | -   |
 
 ## IndexBar.Anchor
 

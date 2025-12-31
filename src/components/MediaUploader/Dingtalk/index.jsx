@@ -67,7 +67,7 @@ function MediaUploader(
     getItemExtra,
     getUploadUrl,
     formatChoose,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
 
@@ -98,7 +98,7 @@ function MediaUploader(
     // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
     let newItem = await _uploadItem(item, {
       getUploadUrl,
-      formatHeader,
+      formatHeaders,
       formatPayload,
       formatResponse,
       verifyImage

@@ -80,7 +80,7 @@ function MediaUploader(
     getItemExtra,
     getUploadUrl,
     formatChoose,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
 
@@ -168,7 +168,7 @@ function MediaUploader(
     getItemExtra,
     getUploadUrl,
     formatChoose,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
     // Events

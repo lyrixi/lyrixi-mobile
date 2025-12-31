@@ -1,5 +1,5 @@
 // 动态加载script的方法
-function loadJs(
+function loadRemoteJs(
   src,
   {
     async,
@@ -34,15 +34,15 @@ function loadJs(
       onError: (result) => {
         resolve(result)
         // 支持新的 onError
-        if (typeof onError === 'function') onError(result)
+        onError?.(result)
       },
       onSuccess: (result) => {
         resolve(result)
         // 支持新的 onSuccess
-        if (typeof onSuccess === 'function') onSuccess(result)
+        onSuccess?.(result)
       }
     })
   })
 }
 
-export default loadJs
+export default loadRemoteJs

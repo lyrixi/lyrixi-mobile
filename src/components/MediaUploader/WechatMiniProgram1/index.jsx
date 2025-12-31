@@ -72,7 +72,7 @@ function WechatMiniProgram(
     getItemExtra,
     getUploadUrl,
     formatChoose,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
 

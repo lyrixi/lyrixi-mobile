@@ -3,14 +3,14 @@ import Bridge from './../../../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge } from 'browser-mobile'
+import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传localFile
 function uploadLocalFile({
   localFile,
   getUploadUrl,
-  formatHeader,
+  formatHeaders,
   formatPayload,
   formatResponse,
   // 用于构建新Item的入参
@@ -20,7 +20,7 @@ function uploadLocalFile({
     Bridge.uploadFile({
       getUploadUrl,
       localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
-      formatHeader,
+      formatHeaders,
       formatPayload,
       formatResponse,
       onSuccess: async function (response) {

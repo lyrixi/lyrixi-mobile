@@ -2,7 +2,9 @@
 
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
+import getConfigPayload from './../utils/getConfigPayload'
 import compressImage from './compressImage'
+import config from './config'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -31,7 +33,7 @@ let Bridge = {
     })
   },
   // 通用方法
-  load: function ({ dingtalk, onSuccess, onError } = {}) {
+  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
     if (window.top.dd) {
       onSuccess?.({
         status: 'success'
@@ -42,7 +44,9 @@ let Bridge = {
     let script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = 'defer'
-    script.src = dingtalk?.src || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
+    script.src =
+      getScriptSrc?.({ platform: 'dingtalk' }) ||
+      '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
 
     script.onload = function () {
       if (window.dd) {
@@ -62,7 +66,32 @@ let Bridge = {
 
     document.body.appendChild(script)
   },
+  config: async function ({
+    getConfigUrl,
+    formatHeaders,
+    formatPayload,
+    formatResponse,
+    onSuccess,
+    onError
+  } = {}) {
+    // 获取配置url
+    let url = ''
+    if (typeof getConfigUrl === 'function') {
+      url = await getConfigUrl({ platform: 'dingtalk' })
+    }
+    // 构建payload
+    let payload = getConfigPayload()
+    if (typeof formatPayload === 'function') {
+      payload = await formatPayload(payload, { platform: 'dingtalk' })
+    }
+    // 构建header
+    let headers = { 'Content-Type': 'application/json' }
+    if (typeof formatHeaders === 'function') {
+      headers = await formatHeaders(headers, { platform: 'dingtalk' })
+    }
 
+    config({ url, headers, payload, formatResponse, onSuccess, onError })
+  },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
@@ -271,7 +300,7 @@ let Bridge = {
   uploadFile: async function ({
     localFile,
     getUploadUrl,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
     onSuccess,
@@ -301,8 +330,8 @@ let Bridge = {
       payload = await formatPayload(payload, { platform: 'dingtalk' })
     }
     let header = { 'Content-Type': 'multipart/form-data' }
-    if (typeof formatHeader === 'function') {
-      header = await formatHeader(header, { platform: 'dingtalk' })
+    if (typeof formatHeaders === 'function') {
+      header = await formatHeaders(header, { platform: 'dingtalk' })
     }
 
     const handleSuccess = async function (res) {

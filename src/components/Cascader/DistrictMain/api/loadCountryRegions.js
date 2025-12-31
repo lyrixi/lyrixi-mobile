@@ -9,7 +9,7 @@ import { LocaleUtil, Request } from 'lyrixi-mobile'
 
 function loadCountryRegions(countryId = '86') {
   return new Promise((resolve) => {
-    const language = window.lyrixiLocaleLanguage || 'zh_CN'
+    const language = LocaleUtil.getLanguage()
 
     // 优先读取缓存
     window.countryProvinces =

@@ -1,5 +1,5 @@
-// 选中button
-function activeAnchor({ anchor, sidebarElement, tooltipElement }) {
+// 选中sidebar的anchor
+function activeAnchor(anchor, { sidebarElement, tooltipElement }) {
   let buttonsElement = sidebarElement?.querySelectorAll?.('.lyrixi-indexbar-button')
   if (buttonsElement && buttonsElement.length) {
     for (let i = 0, buttonElement; (buttonElement = buttonsElement[i++]); ) {
@@ -12,7 +12,7 @@ function activeAnchor({ anchor, sidebarElement, tooltipElement }) {
   )
   if (currentButtonElement) {
     currentButtonElement.classList.add('lyrixi-active')
-    tooltipElement.innerHTML = anchor || ''
+    tooltipElement && (tooltipElement.innerHTML = anchor || '')
   }
 }
 

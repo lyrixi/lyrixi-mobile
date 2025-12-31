@@ -36,7 +36,6 @@ toc: content
 | readOnly       | 是否只读     | `boolean`                                             | -      |
 | disabled       | 是否禁用     | `boolean`                                             | -      |
 | allowClear     | 允许清除     | `boolean`                                             | -      |
-| multiple       | 是否多选     | `boolean`                                             | -      |
 | style          | 自定义样式   | `object`                                              | -      |
 | className      | 自定义类名   | `string`                                              | -      |
 | leftIconNode   | 左侧图标     | `ReactNode`                                           | -      |

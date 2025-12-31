@@ -24,7 +24,6 @@ const CascaderModal = forwardRef(
       open,
       maskClosable,
       allowClear,
-      multiple,
 
       // Style
       safeArea,
@@ -123,7 +122,6 @@ const CascaderModal = forwardRef(
           open={open}
           value={currentValue}
           allowClear={allowClear}
-          multiple={multiple}
           onChange={handleChange}
           searchVisible={searchVisible}
           list={list}

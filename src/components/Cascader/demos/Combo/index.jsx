@@ -56,7 +56,6 @@ export default () => {
       <Page.Main>
         <Cascader.Combo
           allowClear
-          // multiple={false}
           list={[
             {
               id: '1',

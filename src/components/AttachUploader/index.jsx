@@ -49,7 +49,7 @@ function AttachUploader(
       },
     */
     getUploadUrl,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
 
@@ -88,7 +88,7 @@ function AttachUploader(
     previewServerUrl,
     previewServerSourceType,
     getUploadUrl,
-    formatHeader,
+    formatHeaders,
     formatPayload,
     formatResponse,
     // Events

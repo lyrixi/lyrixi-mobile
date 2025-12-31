@@ -20,7 +20,8 @@ const APILoader = forwardRef(
       config,
 
       // Element
-      loading,
+      loadingRender,
+      loadingNode,
       children,
 
       // Events
@@ -87,11 +88,11 @@ const APILoader = forwardRef(
 
     // 未加载完成显示空
     if (result === null) {
-      if (React.isValidElement(loading)) {
-        return loading
+      if (loadingNode) {
+        return loadingNode
       }
-      if (typeof loading === 'function') {
-        return loading()
+      if (loadingRender) {
+        return loadingRender()
       }
       return null
     }

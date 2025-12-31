@@ -1,10 +1,10 @@
-// 从userAgent中获取语言
+// 获取当前语言
 function getLanguage() {
-  let language =
+  return (
     window.lyrixiLocaleLanguage ||
     navigator.userAgent.match(/lyrixiLanguage\/([\w.]*)/)?.[1] ||
     'zh_CN'
-  return language
+  )
 }
 
 export default getLanguage
