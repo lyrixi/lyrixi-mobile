@@ -11,28 +11,6 @@ toc: content
 
 输入框组件，提供多种类型的输入控件。
 
-## 何时使用
-
-- 需要文本输入时
-- 需要数字输入时
-- 需要密码输入时
-- 需要搜索输入时
-- 需要其他类型输入时
-
-## 代码演示
-
-<code src="./demos/Text/index.jsx"></code>
-
-## API
-
-### 属性
-
-Input 组件本身不直接使用，请使用子组件。
-
-### Ref
-
-Input 组件本身不直接使用，请使用子组件。
-
 ## Input.Text
 
 文本输入框组件，基于 Input 组件封装。
@@ -45,7 +23,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/Text/index.jsx"></code>
+<code src="./demos/InputText.jsx"></code>
 
 ### API
 
@@ -110,7 +88,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/Number/index.jsx"></code>
+<code src="./demos/InputNumber.jsx"></code>
 
 ### API
 
@@ -133,7 +111,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/NumberBox/index.jsx"></code>
+<code src="./demos/InputNumberBox.jsx"></code>
 
 ### API
 
@@ -156,7 +134,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/NumberKeyboard/index.jsx"></code>
+<code src="./demos/InputNumberKeyboard.jsx"></code>
 
 ### API
 
@@ -179,7 +157,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/Password/index.jsx"></code>
+<code src="./demos/InputPassword.jsx"></code>
 
 ### API
 
@@ -202,7 +180,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/PasswordStrength/index.jsx"></code>
+<code src="./demos/InputPasswordStrength.jsx"></code>
 
 ### API
 
@@ -225,7 +203,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/Search/index.jsx"></code>
+<code src="./demos/InputSearch.jsx"></code>
 
 ### API
 
@@ -252,7 +230,7 @@ Input 组件本身不直接使用，请使用子组件。
 
 ### 代码演示
 
-<code src="./demos/Tel/index.jsx"></code>
+<code src="./demos/InputTel.jsx"></code>
 
 ### API
 
@@ -275,7 +253,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/Url/index.jsx"></code>
+<code src="./demos/InputUrl.jsx"></code>
 
 ### API
 
@@ -298,7 +276,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/Textarea/index.jsx"></code>
+<code src="./demos/InputTextarea.jsx"></code>
 
 ### API
 
@@ -321,7 +299,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/AutoSize/index.jsx"></code>
+<code src="./demos/InputAutoSize.jsx"></code>
 
 ### API
 
@@ -344,7 +322,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/OTP/index.jsx"></code>
+<code src="./demos/InputOTP.jsx"></code>
 
 ### API
 
@@ -367,7 +345,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/Range/index.jsx"></code>
+<code src="./demos/InputRange.jsx"></code>
 
 ### API
 
@@ -390,7 +368,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/Rate/index.jsx"></code>
+<code src="./demos/InputRate.jsx"></code>
 
 ### API
 
