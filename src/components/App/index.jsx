@@ -15,9 +15,6 @@ import Message from './../Message'
 import { Theme, LocaleUtil, Logger, Debugger, Result, Button, Map, Message } from 'lyrixi-mobile'
 测试使用-end */
 
-// System font size
-updateVariables()
-
 // Route change to destroy Modal
 window.addEventListener(
   'popstate',
