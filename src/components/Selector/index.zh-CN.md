@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Selector.jsx"></code>
 
 ## API
 
