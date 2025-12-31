@@ -8,4 +8,4 @@ title: Clipboard
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Clipboard.jsx">></code>

@@ -10,4 +10,4 @@ title: Logger
 
 ### Logger 示例
 
-<code src="./demos/logger.jsx"></code>
+<code src="./demos/Logger.jsx">></code>

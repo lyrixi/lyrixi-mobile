@@ -8,8 +8,8 @@ title: Request
 
 ## 普通请求
 
-<code src="./demos/common.jsx"></code>
+<code src="./demos/Request.jsx">></code>
 
 ## 缓存请求 cacheKey
 
-<code src="./demos/cache.jsx"></code>
+<code src="./demos/Request.jsx">></code>

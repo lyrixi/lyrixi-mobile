@@ -8,4 +8,4 @@ title: FullScreen
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/FullScreen.jsx">></code>
