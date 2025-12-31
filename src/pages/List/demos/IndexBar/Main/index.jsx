@@ -4,7 +4,7 @@ import { ListLoader } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 // 内部组件函数导入
-import serverParams from './serverParams'
+import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewList from './formatViewList'
 
@@ -16,7 +16,13 @@ const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => 
       cacheName={cacheName}
       virtual={virtual}
       url="/"
-      params={serverParams(queryParams)}
+      payload={queryParams}
+      formatPayload={({ page, ...payload }) => {
+        return formatPayload({
+          ...payload,
+          page
+        })
+      }}
       formatResult={formatResult}
       formatViewList={formatViewList}
       onLoad={onLoad}
