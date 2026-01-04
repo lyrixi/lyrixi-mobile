@@ -68,9 +68,7 @@ function FilterModal(
         </Page.Header>
         <Page.Main>{children}</Page.Main>
         {/* 底部 */}
-        {typeof footerRender === 'function'
-          ? footerRender({ close: () => onClose && onClose() })
-          : null}
+        {typeof footerRender === 'function' ? footerRender({ onClose }) : null}
       </Page>
     </Modal>
   )

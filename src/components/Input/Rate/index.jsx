@@ -89,8 +89,8 @@ const Rate = forwardRef(
         <div
           className={
             isActive
-              ? 'lyrixi-input-rate-item-icon-active default'
-              : 'lyrixi-input-rate-item-icon default'
+              ? 'lyrixi-input-rate-item-icon-active lyrixi-default'
+              : 'lyrixi-input-rate-item-icon lyrixi-default'
           }
           style={isActive ? { width: getItemActiveWidth(index + 1) } : undefined}
         ></div>
