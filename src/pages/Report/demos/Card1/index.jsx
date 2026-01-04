@@ -7,7 +7,7 @@ import { Device, Bridge, Result, LocaleUtil } from 'lyrixi-mobile'
 // 内部组件导入
 import { queryTabs, querySlides, queryData } from './api'
 import Content from './Content'
-import Head from './Head'
+import Header from './Header'
 
 // 样式图片等资源文件导入
 const locale = LocaleUtil.locale
@@ -94,7 +94,7 @@ const DailyCard = () => {
   return (
     <div>
       {/* 头部 */}
-      <Head
+      <Header
         title={title}
         tabs={tabs}
         tab={tab}
