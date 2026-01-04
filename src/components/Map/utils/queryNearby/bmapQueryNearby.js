@@ -51,9 +51,22 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {
               type: type
             })
           }
-          resolve(list)
+          if (list.length) {
+            resolve({
+              status: 'success',
+              list: list
+            })
+          } else {
+            resolve({
+              status: 'empty',
+              message: LocaleUtil.locale('暂无数据')
+            })
+          }
         } else {
-          resolve(LocaleUtil.locale('查询失败', 'lyrixi.query.failed'))
+          resolve({
+            status: 'error',
+            message: LocaleUtil.locale('查询失败')
+          })
         }
       }
     })

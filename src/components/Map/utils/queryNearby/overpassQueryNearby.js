@@ -40,13 +40,22 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
               type: 'wgs84'
             })
           }
-          resolve(list)
+          resolve({
+            status: 'success',
+            list: list
+          })
         } else {
-          resolve([])
+          resolve({
+            status: 'empty',
+            message: LocaleUtil.locale('暂无数据')
+          })
         }
       })
       .catch((error) => {
-        resolve(LocaleUtil.locale('查询失败', 'lyrixi.query.failed'))
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('查询失败')
+        })
       })
   })
 }

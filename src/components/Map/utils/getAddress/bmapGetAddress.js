@@ -25,12 +25,16 @@ function bmapGetAddress(params) {
     let geocoder = new window.BMap.Geocoder()
     geocoder.getLocation(bdPoint, (res) => {
       if (!res?.address) {
-        resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed'))
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed')
+        })
         return
       }
 
       resolve({
         ...params,
+        status: 'success',
         address: res.address
       })
     })

@@ -18,7 +18,10 @@ async function queryNearby({ map, keyword, longitude, latitude, type, radius }) 
     // Search error protect: google and bmap error no callback
     let errorTimeout = window.setTimeout(() => {
       isTimeout = true
-      resolve(LocaleUtil.locale('查询超时', 'lyrixi.query.time.out'))
+      resolve({
+        status: 'error',
+        message: LocaleUtil.locale('查询超时', 'lyrixi.query.time.out')
+      })
     }, 5000)
 
     let result = null

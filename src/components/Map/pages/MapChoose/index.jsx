@@ -296,7 +296,8 @@ function MapChoose(
         radius={1000}
         // Events
         onChange={handleChange}
-        onLoad={(list) => {
+        onLoad={(result) => {
+          let { list } = result || {}
           // 间距调整, 附件面板的高度在展开后会很高会出问题
           // let bottom = nearbyRef.current.element.clientHeight
           // if (bottom) {
@@ -304,7 +305,11 @@ function MapChoose(
           //   if (locationRef.current?.element) locationRef.current.element.style.bottom = bottom
           //   if (zoomRef.current?.element) zoomRef.current.element.style.bottom = bottom
           // }
-          setPoints(list)
+          if (list.length) {
+            setPoints(list)
+          } else {
+            setPoints(null)
+          }
         }}
         // Style
         className={nearbyControlClassName}

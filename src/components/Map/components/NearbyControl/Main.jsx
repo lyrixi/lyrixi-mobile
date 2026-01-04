@@ -12,24 +12,22 @@ import { Result, LocaleUtil } from 'lyrixi-mobile'
 // 附近结果
 function Main({
   // Value & Display Value
-  list,
+  result,
+  // {status: 'empty' | 'error' | 'success', list, message}
 
   // Events
   onChange
 }) {
-  // 错误信息
-  let status = '500'
-  let message = typeof list === 'string' ? list : null
-  if (Array.isArray(list) && list.length === 0) {
-    status = 'empty'
-    message = LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
+  if (!result) {
+    return null
   }
   return (
     <div className="lyrixi-map-nearbyControl-main">
-      {message && <Result className="lyrixi-map-main-result" status={status} title={message} />}
-      {Array.isArray(list) &&
-        list.length &&
-        list.map((item, index) => {
+      {result.status !== 'success' && (
+        <Result className="lyrixi-map-main-result" status={result.status} title={result.message} />
+      )}
+      {result?.status === 'success' &&
+        result?.list?.map((item, index) => {
           return (
             <div
               className="lyrixi-map-nearbyControl-item"

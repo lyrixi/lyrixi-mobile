@@ -14,7 +14,7 @@ function Toggle() {
     <div
       className="lyrixi-map-nearbyControl-toggle"
       onClick={(e) => {
-        e.currentTarget?.closest('.map-nearbyControl')?.classList?.toggle('active')
+        e.currentTarget?.closest('.lyrixi-map-nearbyControl')?.classList?.toggle('lyrixi-active')
       }}
     >
       <span className="lyrixi-map-nearbyControl-toggle-label">

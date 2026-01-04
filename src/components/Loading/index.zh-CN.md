@@ -7,25 +7,17 @@ title: Loading
 toc: content
 ---
 
-# Loading
+## Loading.show
 
-加载中组件，用于显示加载状态。
+### 何时使用
 
-## 何时使用
+显示 loading
 
-- 需要显示加载状态时
-- 需要显示数据加载中时
-- 需要显示操作进行中时
+### 代码演示
 
-## 代码演示
+<code src="./demos/LoadingShow.jsx"></code>
 
-<code src="./demos/Loading/index.jsx"></code>
-
-## API
-
-### Loading.show
-
-显示 Loading。
+### API
 
 #### 参数
 
@@ -40,13 +32,21 @@ toc: content
 | content       | 提示内容   | `string`      | -      |
 | onOpen        | 打开事件   | `() => void`  | -      |
 
-#### 返回值
+##### 返回值
 
 无返回值。
 
-### Loading.hide
+## Loading.hide
+
+### 何时使用
 
 隐藏 Loading。
+
+### 代码演示
+
+<code src="./demos/LoadingHide.jsx"></code>
+
+### API
 
 #### 参数
 
@@ -58,9 +58,13 @@ toc: content
 
 无返回值。
 
-### Loading.exists
+## Loading.exists
+
+### 何时使用
 
 检查 Loading 是否存在。
+
+### API
 
 #### 参数
 
@@ -74,6 +78,32 @@ toc: content
 | --------- | ---------------- |
 | `boolean` | 是否存在 Loading |
 
+## Loading
+
+### 何时使用
+
+默认 Loading 组件
+
+### 代码演示
+
+<code src="./demos/Loading.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HtmlDivElement`       |
+| getElement | 获取根元素 | () => `HtmlDivElement` |
+
 ## Loading.SpinFade
 
 旋转淡入淡出加载动画组件。
@@ -84,16 +114,11 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading/index.jsx"></code>
+<code src="./demos/LoadingSpinFade.jsx"></code>
 
 ### API
 
-#### 属性
-
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+同 Loading
 
 ## Loading.Ouroboros
 
@@ -105,16 +130,11 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading/index.jsx"></code>
+<code src="./demos/LoadingOuroboros.jsx"></code>
 
 ### API
 
-#### 属性
-
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+同 Loading
 
 ## Loading.BallWave
 
@@ -126,7 +146,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading/index.jsx"></code>
+<code src="./demos/LoadingBallWave.jsx"></code>
 
 ### API
 

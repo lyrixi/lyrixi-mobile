@@ -20,11 +20,15 @@ function osmGetAddress(params) {
       .then((data) => {
         resolve({
           ...params,
+          status: 'success',
           address: data.display_name
         })
       })
       .catch((error) => {
-        resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed'))
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed')
+        })
       })
   })
 }

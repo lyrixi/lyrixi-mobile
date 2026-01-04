@@ -25,13 +25,13 @@ function SearchPage({
   onClose,
   onChange
 }) {
-  let [searchList, setSearchList] = useState(null)
+  let [result, setResult] = useState(null)
   const [keyword, setKeyword] = useState('')
 
   // 返回
   function handleBack() {
     // Reset list
-    setSearchList(null)
+    setResult(null)
 
     // Go back
     onClose && onClose()
@@ -46,7 +46,7 @@ function SearchPage({
     Loading.show({
       content: LocaleUtil.locale('搜索中', 'lyrixi.searching')
     })
-    let list = await map.queryNearby({
+    let newResult = await map.queryNearby({
       map: map,
       keyword: keyword,
       latitude: center.latitude,
@@ -55,7 +55,7 @@ function SearchPage({
     })
     Loading.hide()
 
-    setSearchList(list)
+    setResult(newResult)
   }
 
   // 选中一项
@@ -90,8 +90,8 @@ function SearchPage({
 
       {/* Element: Body */}
       <div className="lyrixi-map-searchControl-body">
-        {Array.isArray(searchList) && searchList.length
-          ? searchList.map((item, index) => {
+        {Array.isArray(result?.list) && result?.list.length
+          ? result?.list.map((item, index) => {
               return (
                 <div
                   className="lyrixi-map-searchControl-item"
@@ -111,14 +111,14 @@ function SearchPage({
             })
           : null}
 
-        {/* Query error */}
-        {typeof searchList === 'string' && (
-          <Result className="lyrixi-map-main-result" status="500" title={searchList} />
+        {/* Query error or empty */}
+        {typeof result?.message === 'string' && (
+          <Result
+            className="lyrixi-map-main-result"
+            status={result?.status}
+            title={result?.message}
+          />
         )}
-        {/* List is empty */}
-        {Array.isArray(searchList) && searchList.length === 0 ? (
-          <Result className="lyrixi-map-main-result" status="empty" />
-        ) : null}
       </div>
     </Page>
   )

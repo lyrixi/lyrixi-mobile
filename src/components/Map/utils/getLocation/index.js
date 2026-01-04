@@ -1,10 +1,9 @@
 // 内库使用-start
-import LocaleUtil from './../../../../utils/LocaleUtil'
 import Bridge from './../../../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Bridge } from 'lyrixi-mobile'
+import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
 // 定位
@@ -32,7 +31,7 @@ function getLocation(options) {
       onError: (error) => {
         console.error('lyrixi location fail:', error)
         // 赋值
-        resolve(LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi.location.failed'))
+        resolve(error)
       }
     })
   })

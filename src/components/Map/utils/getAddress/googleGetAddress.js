@@ -28,14 +28,21 @@ function googleGetAddress(params) {
         if (results[0]) {
           let result = {
             ...params,
+            status: 'success',
             address: results[0].formatted_address
           }
           resolve(result)
         } else {
-          resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed'))
+          resolve({
+            status: 'error',
+            message: LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed')
+          })
         }
       } else {
-        resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed'))
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed')
+        })
       }
     })
   })

@@ -39,7 +39,7 @@ function Nearby(
   // 容器
   const rootRef = useRef(null)
 
-  const [list, setList] = useState(null)
+  const [result, setResult] = useState(null)
   const [tab, setTab] = useState(getTabs()[0])
 
   // 节点
@@ -65,7 +65,7 @@ function Nearby(
     Loading.show({
       content: LocaleUtil.locale('搜索中', 'lyrixi.searching')
     })
-    let result = await map.queryNearby({
+    let newResult = await map.queryNearby({
       map: map,
       keyword: tab.id || tab.name,
       longitude: value?.longitude,
@@ -76,7 +76,7 @@ function Nearby(
     Loading.hide()
 
     // 刷新列表
-    setList(result)
+    setResult(newResult)
 
     // 重置滚动条
     let contentElement = rootRef.current?.querySelector?.('.lyrixi-map-nearbyControl-main')
@@ -84,7 +84,7 @@ function Nearby(
       contentElement.scrollTop = 0
     }
 
-    onLoad && onLoad(result)
+    onLoad && onLoad(newResult)
   }
 
   return (
@@ -120,7 +120,7 @@ function Nearby(
             {/* Element: Main */}
             <Main
               // Value & Display Value
-              list={list}
+              result={result}
               value={value}
               // Events
               onChange={(item) => {

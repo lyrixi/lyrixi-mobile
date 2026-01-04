@@ -11,7 +11,11 @@ import { LocaleUtil } from 'lyrixi-mobile'
 // 搜索附近
 async function nearbySearch({ map, keyword, longitude, latitude, type, radius }) {
   if (!map?.currentMap || !longitude || !latitude || !type) {
-    return null
+    console.error('缺少参数', { currentMap: map?.currentMap, longitude, latitude, type })
+    return {
+      status: 'error',
+      message: LocaleUtil.locale('缺少参数')
+    }
   }
 
   const { Place, SearchNearbyRankPreference } = await window.google.maps.importLibrary('places')
@@ -74,10 +78,23 @@ async function nearbySearch({ map, keyword, longitude, latitude, type, radius })
         })
       }
     }
-    return list
+    if (list.length) {
+      return {
+        status: 'success',
+        list: list
+      }
+    } else {
+      return {
+        status: 'empty',
+        message: LocaleUtil.locale('暂无数据')
+      }
+    }
   }
 
-  return LocaleUtil.locale('查询失败', 'lyrixi.query.failed')
+  return {
+    status: 'error',
+    message: LocaleUtil.locale('查询失败')
+  }
 }
 
 export default nearbySearch
