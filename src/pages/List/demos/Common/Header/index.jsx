@@ -12,6 +12,8 @@ const locale = LocaleUtil.locale
 // 筛选栏
 const Header = ({ queryParams, onSearch }) => {
   const [searchActive, setSearchActive] = useState(false)
+  const [searchValue, setSearchValue] = useState(queryParams?.keyword || '')
+
   return (
     <Page.Header>
       <ToolBar>
@@ -28,9 +30,15 @@ const Header = ({ queryParams, onSearch }) => {
           <ToolBar.SearchActive
             placeholder={locale('按名称/拼音/拼音首字母查询')}
             allowClear
-            value={queryParams?.keyword || ''}
+            value={searchValue}
+            onChange={(value) => {
+              setSearchValue(value)
+            }}
             onSearch={(keyword) => {
               onSearch && onSearch({ ...queryParams, keyword: keyword })
+              setSearchActive(false)
+            }}
+            onCancel={() => {
               setSearchActive(false)
             }}
             onBlur={() => {

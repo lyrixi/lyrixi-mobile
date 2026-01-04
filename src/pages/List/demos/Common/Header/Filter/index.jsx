@@ -27,8 +27,9 @@ function Filter({ queryParams, onSearch }) {
 
   return (
     <ToolBar.Filter
+      sizeEqual
       color={active ? 'primary' : 'default'}
-      backgroundColor="default"
+      // backgroundColor="default"
       onOpen={() => {
         setVisible(true)
       }}
@@ -52,20 +53,23 @@ function Filter({ queryParams, onSearch }) {
         onSearch && onSearch({ ...queryParams, ...form.getFieldsValue() })
         close()
       }}
-    >
-      <Form
-        layout="vertical"
-        form={form}
-        onValuesChange={() => {
-          modifiedRef.current = true
-        }}
-        style={{ marginLeft: '12px' }}
-      >
-        <Form.Item name="input" label={locale('单行文本框')}>
-          <Input.Text allowClear placeholder={locale('请输入')} maxLength={50} />
-        </Form.Item>
-      </Form>
-    </ToolBar.Filter>
+      modalRender={() => {
+        return (
+          <Form
+            layout="vertical"
+            form={form}
+            onValuesChange={() => {
+              modifiedRef.current = true
+            }}
+            style={{ marginLeft: '12px' }}
+          >
+            <Form.Item name="input" label={locale('单行文本框')}>
+              <Input.Text allowClear placeholder={locale('请输入')} maxLength={50} />
+            </Form.Item>
+          </Form>
+        )
+      }}
+    />
   )
 }
 
