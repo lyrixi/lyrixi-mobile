@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef } from 'react'
 
 // 内库使用-start
 import Map from './../../../Map'
@@ -35,12 +35,6 @@ const LocationChoose = forwardRef(
     },
     ref
   ) => {
-    // 根节点
-    const mapRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return mapRef.current
-    })
-
     return (
       <APILoader
         // Element
@@ -53,7 +47,7 @@ const LocationChoose = forwardRef(
       >
         {/* Element: Map Choose */}
         <MapChoose
-          ref={mapRef}
+          ref={ref}
           // Value & Display Value
           value={value}
           // Status
