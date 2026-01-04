@@ -33,7 +33,7 @@ const LocationCombo = forwardRef(
     {
       // Value & Display Value
       value, // {latitude: '纬度', longitude: '经度', value: '地址'}
-      failText = LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi.location.failed'),
+      errorText = LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'lyrixi.location.failed'),
       loadingText = LocaleUtil.locale('定位中...', 'lyrixi.positioning'),
 
       // Status
@@ -81,7 +81,7 @@ const LocationCombo = forwardRef(
     if (typeof getLocation !== 'function') getLocation = defaultGetLocation
 
     // 错误信息
-    const errMsgRef = useRef(failText)
+    const errMsgRef = useRef(errorText)
 
     // 定位状态, -1.定位中; 0.定位失败时隐藏text框, 显示定位中或者定位失败的div; 1定位成功显示文本框
     let [locationStatus, setLocationStatus] = useState('1')
@@ -243,7 +243,7 @@ const LocationCombo = forwardRef(
 
       // 定位失败
       if (!newValue?.longitude || !newValue?.latitude || typeof newValue === 'string') {
-        errMsgRef.current = typeof newValue === 'string' ? newValue : failText
+        errMsgRef.current = typeof newValue === 'string' ? newValue : errorText
         if (onErrorRef?.current) {
           onErrorRef.current({
             status: 'error',

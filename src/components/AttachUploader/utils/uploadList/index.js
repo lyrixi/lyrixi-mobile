@@ -18,7 +18,7 @@ let uploadItem = uploadFile
  * 上传图片
  * @param {Array|Object} pendingList AttachUploader控件返回的待传列表
  * @param {Object} uploadConfig {platform: 'browser强制上传方式', getUploadUrl: function({platform}), formatHeaders: function(header, {platform}), formatPayload: function(payload, {platform}), formatResponse: function(response, {platform})}
- * @returns {Array} [{原item属性, filePath: '', fileUrl: '', status: 'choose|uploading|fail|success'}]
+ * @returns {Array} [{原item属性, filePath: '', fileUrl: '', status: 'choose|uploading|error|success'}]
  */
 
 async function uploadList(pendingList, uploadConfig) {
