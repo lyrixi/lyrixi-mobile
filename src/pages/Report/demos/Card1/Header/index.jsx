@@ -1,6 +1,6 @@
 // 第三方库导入
 import React from 'react'
-import { Page, ToolBar, TabBar } from 'lyrixi-mobile'
+import { Flex, ToolBar, TabBar } from 'lyrixi-mobile'
 
 // 公共组件导入
 
@@ -21,18 +21,19 @@ const Header = ({
   onSlideChange
 }) => {
   return (
-    <Page.Header>
-      <ToolBar className="lyrixi-border-b">
-        <ToolBar.List left={12} placeholder="List" value={tab} onChange={onTabChange} list={tabs} />
-      </ToolBar>
+    <Flex align="center" justify="between" className="lyrixi-border-b">
+      <ToolBar.List
+        style={{ paddingLeft: 0, height: 48 }}
+        left={0}
+        placeholder="List"
+        value={tab}
+        onChange={onTabChange}
+        list={tabs}
+      />
 
       {/* Slides */}
-      {slides && (
-        <div style={{ margin: 'var(--lyrixi-space-m) var(--lyrixi-space-xl)' }}>
-          <TabBar.Slide value={slide} list={slides} onChange={onSlideChange} />
-        </div>
-      )}
-    </Page.Header>
+      {slides && <TabBar.Slide value={slide} list={slides} onChange={onSlideChange} />}
+    </Flex>
   )
 }
 
