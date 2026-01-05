@@ -166,7 +166,7 @@ const ListLoader = forwardRef(
             mainRef.current.element.scrollTop = cacheResult?.scrollTop || 0
           }
 
-          onLoad && onLoad({ result: result, action: action })
+          onLoad?.({ ...result, action: action })
         }}
       />
     )
