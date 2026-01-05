@@ -1,11 +1,7 @@
 // Create leaflet map
-function createMap(container, { center, minZoom, maxZoom, zoom }) {
-  if (!window.L) {
-    return '请在Map组件需要使用APILoader包裹'
-  }
-
-  if (!window.L?.tileLayer?.currentTileLayer) {
-    return '缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期'
+function createLeafletMap(container, { center, minZoom, maxZoom, zoom }) {
+  if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
+    return null
   }
 
   let centerPoint = []
@@ -45,4 +41,4 @@ function createMap(container, { center, minZoom, maxZoom, zoom }) {
   })
 }
 
-export default createMap
+export default createLeafletMap

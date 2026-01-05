@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 
 import getMapType from './../../utils/getMapType'
-import createMap from './createMap'
+import createLeafletMap from './createLeafletMap'
 import createCurrentMap from './createCurrentMap'
 import injectChildrenProps from './injectChildrenProps'
 import coordsToFit from './../../utils/coordsToFit'
@@ -81,6 +81,7 @@ const MapContainer = forwardRef(
     }
 
     const rootRef = useRef(null)
+    // null: 加载中; string: 加载失败; object: 加载成功
     let [leafletMap, setLeafletMap] = useState(null)
 
     // Define export Api
@@ -96,7 +97,10 @@ const MapContainer = forwardRef(
       // 指定获取定位和地址的方法
       getAddress: async (coord) => {
         if (typeof coord !== 'object' || !coord?.longitude || !coord?.latitude || !coord?.type) {
-          return 'getAddress must pass longitude, latitude and type'
+          return {
+            status: 'error',
+            message: 'getAddress must pass longitude, latitude and type'
+          }
         }
 
         let result = await getAddress(coord)
@@ -229,12 +233,15 @@ const MapContainer = forwardRef(
       }
 
       // Create leaflet leafletMap
-      leafletMap = await createMap(rootRef.current?.querySelector?.('.lyrixi-map-container'), {
-        center,
-        zoom,
-        minZoom,
-        maxZoom
-      })
+      leafletMap = await createLeafletMap(
+        rootRef.current?.querySelector?.('.lyrixi-map-container'),
+        {
+          center,
+          zoom,
+          minZoom,
+          maxZoom
+        }
+      )
       APIRef.current.leafletMap = leafletMap
 
       let currentMapContainer = rootRef?.current?.querySelector?.('.lyrixi-map-api-container')
@@ -250,9 +257,15 @@ const MapContainer = forwardRef(
       APIRef.current.currentMap = currentMap
 
       // Load leafletMap failed
-      if (typeof leafletMap === 'string') {
+      if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
+        let errorMessage = !window.L
+          ? LocaleUtil.locale('请在Map组件需要使用APILoader包裹')
+          : LocaleUtil.locale('缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期')
         setLeafletMap(leafletMap)
-        onLoad && onLoad(leafletMap)
+        onLoad?.({
+          status: 'error',
+          message: errorMessage
+        })
         return
       }
 

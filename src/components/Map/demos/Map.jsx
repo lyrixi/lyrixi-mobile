@@ -121,10 +121,13 @@ export default () => {
           onSuccess={() => {
             console.log('地图加载成功')
           }}
-          // onError={(error) => {
-          //   console.log('地图加载失败:', error.message)
-          //   return '错误地址'
-          // }}
+          onError={(error) => {
+            console.log('地图加载失败:', error.message)
+            return {
+              status: 'error',
+              message: 'Custom error message'
+            }
+          }}
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapMarkers

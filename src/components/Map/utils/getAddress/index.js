@@ -28,7 +28,10 @@ async function getAddress(params) {
 
   // 参数不全
   if (!params?.longitude || !params?.latitude || !params?.type) {
-    return 'getAddress must pass longitude, latitude and type'
+    return {
+      status: 'error',
+      message: 'getAddress must pass longitude, latitude and type'
+    }
   }
 
   if (window.google) {
