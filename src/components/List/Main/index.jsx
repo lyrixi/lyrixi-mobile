@@ -188,7 +188,7 @@ const Main = forwardRef(
         }
         formatViewItem={
           typeof formatViewItem === 'function'
-            ? (rawItem, index) => formatViewItem(rawItem, index, { result })
+            ? (rawItem, index) => formatViewItem(rawItem, { result, index })
             : undefined
         }
         // Status

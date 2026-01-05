@@ -11,7 +11,7 @@ function viewFormatter(list, { formatViewItem, formatViewList }) {
   // 格式化Item显示数据, 但仍然需要保留原始数据item
   if (typeof formatViewItem === 'function') {
     return list?.map((item, index) => {
-      return { ...formatViewItem(item, index), _raw: item }
+      return { ...formatViewItem(item, { index }), _raw: item }
     })
   }
 
