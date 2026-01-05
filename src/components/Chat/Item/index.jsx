@@ -22,10 +22,15 @@ const Chat = (
 
     // Style
     position,
-    avatar,
-    author,
-    content,
-    style
+    style,
+
+    // Elements
+    avatarUrl,
+    avatarRender,
+    avatarNode,
+    authorRender,
+    authorNode,
+    content
   },
   ref
 ) => {
@@ -40,42 +45,46 @@ const Chat = (
 
   // 渲染头像
   function getAvatarNode() {
-    if (!avatar) return null
-
-    if (typeof avatar === 'function') {
-      return avatar({ ...(item || {}), checked })
+    if (typeof avatarRender === 'function') {
+      return (
+        <div className="lyrixi-chat-item-avatar">
+          {avatarRender({ id, ...(_raw || {}), checked })}
+        </div>
+      )
     }
-    if (typeof avatar === 'string') {
+    if (avatarUrl && typeof avatarUrl === 'string') {
       return (
         <div className="lyrixi-chat-item-avatar">
           <img
             alt=""
-            src={avatar}
+            src={avatarUrl}
             onError={(e) => {
-              e.target.classList.add('lyrixi-error')
+              e.target.parentNode.classList.add('lyrixi-error')
             }}
             onLoad={(e) => {
-              e.target.classList.add('lyrixi-success')
+              e.target.parentNode.classList.add('lyrixi-success')
             }}
             className="lyrixi-avatar"
           />
         </div>
       )
     }
-    return avatar
+    return avatarNode
   }
 
   // 渲染作者
   function getAuthorNode() {
-    if (!author) return null
-
-    if (typeof author === 'function') {
-      return author({ ...(item || {}), checked })
+    if (typeof authorRender === 'function') {
+      return (
+        <div className="lyrixi-chat-item-content-author">
+          {authorRender({ ...(item || {}), checked })}
+        </div>
+      )
     }
-    if (typeof author === 'string') {
-      return <div className="lyrixi-chat-item-content-author">{author}</div>
+    if (authorNode) {
+      return <div className="lyrixi-chat-item-content-author">{authorNode}</div>
     }
-    return author
+    return null
   }
 
   // 获取checkbox
