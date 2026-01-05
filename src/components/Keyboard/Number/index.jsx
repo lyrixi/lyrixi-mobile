@@ -156,7 +156,7 @@ const KeyboardNumber = forwardRef(
       if (!okVisible && !dot && !minus) {
         return (
           <>
-            <ButtonNumber className="empty">{/* 空位 */}</ButtonNumber>
+            <ButtonNumber className="lyrixi-keyboard-empty">{/* 空位 */}</ButtonNumber>
             <ButtonNumber onClick={handleNumber}>0</ButtonNumber>
             <ButtonNumber onClick={handleDelete}>
               <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
@@ -185,13 +185,13 @@ const KeyboardNumber = forwardRef(
           {dot ? (
             <ButtonNumber onClick={handleDot}>.</ButtonNumber>
           ) : (
-            <ButtonNumber className="empty"></ButtonNumber>
+            <ButtonNumber className="lyrixi-keyboard-empty"></ButtonNumber>
           )}
           <ButtonNumber onClick={handleNumber}>0</ButtonNumber>
           {minus ? (
             <ButtonNumber onClick={handleMinus}>-</ButtonNumber>
           ) : (
-            <ButtonNumber className="empty"></ButtonNumber>
+            <ButtonNumber className="lyrixi-keyboard-empty"></ButtonNumber>
           )}
         </>
       )

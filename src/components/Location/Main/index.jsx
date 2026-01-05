@@ -1,11 +1,11 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import Footer from './Choose/Footer'
+import Preview from './Preview'
+import Choose from './Choose'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
-import Preview from './Preview'
-import Choose from './Choose'
 
 // 地图标注
 const Main = forwardRef(
@@ -16,7 +16,6 @@ const Main = forwardRef(
 
       // Status
       open, // 显示类型: preview、choose
-      allowClear,
       autoLocation = true,
 
       // Style
@@ -30,7 +29,9 @@ const Main = forwardRef(
       getAddress,
 
       // Events
-      onChange
+      onChange,
+      onOk,
+      onClear
     },
     ref
   ) => {
@@ -46,16 +47,16 @@ const Main = forwardRef(
     })
 
     return (
-      <div
-        ref={mainRef}
-        // Element
-        id={id}
-        // Style
-        style={style}
-        className={DOMUtil.classNames('lyrixi-map-main', className)}
-      >
+      <>
         {/* Element: Map Container */}
-        <div className="lyrixi-map-main-map">
+        <div
+          ref={mainRef}
+          // Element
+          id={id}
+          // Style
+          style={style}
+          className={DOMUtil.classNames('lyrixi-map-main', className)}
+        >
           {/* Element: Preview */}
           {open === 'preview' && (
             <Preview
@@ -86,7 +87,27 @@ const Main = forwardRef(
             />
           )}
         </div>
-      </div>
+        {onOk || onClear ? (
+          <Footer
+            onOk={
+              onOk
+                ? () => {
+                    console.log('选择标注:')
+                    onOk?.(value)
+                  }
+                : null
+            }
+            onClear={
+              onClear
+                ? () => {
+                    console.log('清空标注:')
+                    onOk?.(null)
+                  }
+                : null
+            }
+          />
+        ) : null}
+      </>
     )
   }
 )

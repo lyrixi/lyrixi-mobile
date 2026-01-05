@@ -353,7 +353,7 @@ const MapContainer = forwardRef(
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames('map', className)}
+        className={DOMUtil.classNames('lyrixi-map', className)}
       >
         {/* Element: Leaflet Map Container */}
         <div className="lyrixi-map-container"></div>

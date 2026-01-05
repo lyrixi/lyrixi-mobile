@@ -91,7 +91,7 @@ const Slide = forwardRef(
                 ) : null}
                 {name && <div className="lyrixi-tabbar-slide-tab-name">{name}</div>}
                 {!name && placeholder ? (
-                  <div className="tabbar-tabs-tab-placeholder">{placeholder}</div>
+                  <div className="lyrixi-tabbar-tabs-tab-placeholder">{placeholder}</div>
                 ) : null}
                 {description && descriptionPosition !== 'top' ? (
                   <div className="lyrixi-tabbar-slide-tab-description">{description}</div>

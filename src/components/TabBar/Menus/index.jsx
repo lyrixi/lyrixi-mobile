@@ -92,7 +92,7 @@ const Menus = forwardRef(
                 ) : null}
                 {name && <div className="lyrixi-tabbar-menus-tab-name">{name}</div>}
                 {!name && placeholder ? (
-                  <div className="tabbar-tabs-tab-placeholder">{placeholder}</div>
+                  <div className="lyrixi-tabbar-tabs-tab-placeholder">{placeholder}</div>
                 ) : null}
                 {description && descriptionPosition !== 'top' ? (
                   <div className="lyrixi-tabbar-menus-tab-description">{description}</div>

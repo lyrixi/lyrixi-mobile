@@ -37,6 +37,7 @@ const LocationCombo = forwardRef(
       loadingText = LocaleUtil.locale('定位中...', 'lyrixi.positioning'),
 
       // Status
+      allowClear,
       disabled = false,
       editable = false,
       autoLocation = false,
@@ -376,6 +377,7 @@ const LocationCombo = forwardRef(
           // Value & Display Value
           value={value?.value || value?.address || ''}
           // Status
+          allowClear={allowClear}
           readOnly={!editable}
           disabled={disabled}
           // Style
@@ -406,6 +408,7 @@ const LocationCombo = forwardRef(
         <Modal
           // Status
           open={modalOpen}
+          allowClear={allowClear}
           // Style
           modalClassName={modalClassName}
           modalStyle={modalStyle}

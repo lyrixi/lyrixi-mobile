@@ -93,7 +93,7 @@ const WeekModal = forwardRef(
         // Style
         safeArea={safeArea}
         modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('picker-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-picker-modal', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
         // Element

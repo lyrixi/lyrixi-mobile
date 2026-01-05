@@ -6,7 +6,7 @@ function getContextNode(content, params) {
     return content(params)
   }
   if (typeof content === 'string') {
-    return <div className="tabbar-group-tab-content">{content}</div>
+    return <div className="lyrixi-tabbar-group-tab-content">{content}</div>
   }
   return content
 }

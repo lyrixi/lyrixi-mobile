@@ -99,7 +99,7 @@ function SearchPage({
                   onClick={() => handleClick(item)}
                 >
                   <div className="lyrixi-map-searchControl-item-content">
-                    <div className="map-searchControl-item-title">
+                    <div className="lyrixi-map-searchControl-item-title">
                       <Typography.Text highlight={keyword || ''}>{item.name}</Typography.Text>
                     </div>
                     <div className="lyrixi-map-searchControl-item-content-description">

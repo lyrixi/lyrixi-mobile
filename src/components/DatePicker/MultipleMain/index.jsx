@@ -58,7 +58,7 @@ function MultipleMain(
   }, [value])
 
   return (
-    <div ref={mainRef} className="picker-multiple-main">
+    <div ref={mainRef} className="lyrixi-picker-multiple-main">
       {Array.isArray(tabsRef.current) && tabsRef.current.length ? (
         <>
           <TabBar.Tabs

@@ -77,6 +77,11 @@ const LocationModal = forwardRef(
       onClose?.()
     }
 
+    async function handleClear() {
+      currentValue = null
+      handleOk()
+    }
+
     function handleChange(newValue) {
       setCurrentValue(newValue)
       // 单选时立即关闭
@@ -107,7 +112,8 @@ const LocationModal = forwardRef(
             ? LocaleUtil.locale('选择地址', 'lyrixi.choose.address')
             : LocaleUtil.locale('查看地址', 'lyrixi.view.address')
         }
-        okVisible={open === 'choose' ? '' : null}
+        // 选择模式下, 不允许清空显示右上角确定, 允许清空底部显示清空和确定
+        okVisible={open === 'choose' && !allowClear ? true : false}
         // Events
         onClose={onClose}
         onOk={handleOk}
@@ -117,7 +123,6 @@ const LocationModal = forwardRef(
           ref={mainRef}
           // Status
           open={open}
-          allowClear={allowClear}
           multiple={multiple}
           // Value & Display Value
           value={currentValue}
@@ -127,6 +132,8 @@ const LocationModal = forwardRef(
           getAddress={getAddress}
           // Events
           onChange={handleChange}
+          onOk={allowClear ? handleOk : null}
+          onClear={allowClear ? handleClear : null}
         />
       </NavBarModal>
     )

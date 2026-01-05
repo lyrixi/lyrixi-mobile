@@ -60,7 +60,7 @@ function Current(
         {/* Element: Description */}
         <div className="lyrixi-map-nearbyControl-item-content-description">
           <div className="lyrixi-flex-1">{value?.address || ''}</div>
-          {/* <div className="map-nearbyControl-item-checkbox">
+          {/* <div className="lyrixi-map-nearbyControl-item-checkbox">
             {!readOnly && (
               <Checkbox
                 checked={
