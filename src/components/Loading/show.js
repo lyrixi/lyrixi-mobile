@@ -23,22 +23,22 @@ export default function (props) {
     // 如果没生成成功, 则强制生成
     if (!mask) {
       mask = document.createElement('div')
-      mask.innerHTML = `<div class="loading">
-          <div class="loading-icon loading-spinfade">
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
-            <div class="loading-spinfade-item"></div>
+      mask.innerHTML = `<div class="lyrixi-loading">
+          <div class="lyrixi-loading-icon lyrixi-loading-spinfade">
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
+            <div class="lyrixi-loading-spinfade-item"></div>
           </div>
-          <div class="loading-content"></div>
+          <div class="lyrixi-loading-content"></div>
         </div>`
 
       // 添加到dom上
@@ -47,7 +47,10 @@ export default function (props) {
     }
 
     // 更新mask
-    mask.setAttribute('class', DOMUtil.classNames('loading-mask mask active', maskClassName))
+    mask.setAttribute(
+      'class',
+      DOMUtil.classNames('lyrixi-loading-mask lyrixi-mask lyrixi-active', maskClassName)
+    )
     mask.setAttribute('id', loadingId)
     mask.setAttribute('style', '')
     for (let key in maskStyle || {}) {
@@ -57,7 +60,7 @@ export default function (props) {
     // 更新container
     let container = mask.querySelector('.lyrixi-loading')
     if (container) {
-      container?.setAttribute('class', DOMUtil.classNames('loading', className))
+      container?.setAttribute('class', DOMUtil.classNames('lyrixi-loading', className))
       container?.setAttribute('style', '')
       for (let key in style || {}) {
         container.style[key] = style[key]
@@ -69,7 +72,7 @@ export default function (props) {
       typeof caption === 'string'
         ? caption
         : `${LocaleUtil.locale('加载中', 'lyrixi.refreshing')}...`
-    mask.querySelector('.loading-content').innerHTML = caption
+    mask.querySelector('.lyrixi-loading-content').innerHTML = caption
 
     // 显示
     mask.classList.add('lyrixi-active')

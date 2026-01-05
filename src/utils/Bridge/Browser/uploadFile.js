@@ -11,9 +11,7 @@ function uploadFile({ url, header, payload }) {
   return new Promise((resolve) => {
     const newPayload = new FormData()
     for (const key in payload) {
-      if (payload.hasOwnProperty(key)) {
-        newPayload.append(key, payload[key])
-      }
+      newPayload.append(key, payload[key])
     }
 
     console.log('调用浏览器uploadFile:', { url, header, newPayload })

@@ -76,9 +76,7 @@ const ListLoader = forwardRef(
           lastResult.scrollTop = scrollTop
           // 存查询参数
           for (let key in extraCache) {
-            if (Object.prototype.hasOwnProperty.call(extraCache, key)) {
-              lastResult[key] = extraCache[key]
-            }
+            lastResult[key] = extraCache[key]
           }
 
           // 设置缓存
