@@ -64,6 +64,10 @@ toc: content
 
 检查 Loading 是否存在。
 
+### 代码演示
+
+<code src="./demos/LoadingExists.jsx"></code>
+
 ### API
 
 #### 参数
