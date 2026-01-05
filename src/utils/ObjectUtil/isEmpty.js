@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _isEmpty from 'lodash/isEmpty'
 
 function isEmpty(value) {
   // 处理 Date 类型：检查是否为无效日期
@@ -6,7 +6,7 @@ function isEmpty(value) {
     return isNaN(value.getTime())
   }
   // 其他类型使用 Lodash 的默认逻辑
-  return _.isEmpty(value)
+  return _isEmpty(value)
 }
 
 export default isEmpty

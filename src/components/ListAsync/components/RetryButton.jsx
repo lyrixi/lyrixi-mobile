@@ -1,8 +1,8 @@
 import React from 'react'
 
 // 内库使用-start
-import LocaleUtil from './../../../../utils/LocaleUtil'
-import Button from './../../../Button'
+import LocaleUtil from './../../../utils/LocaleUtil'
+import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start

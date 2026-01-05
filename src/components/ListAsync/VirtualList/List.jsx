@@ -1,5 +1,12 @@
 import React, { forwardRef } from 'react'
+
+// 内库使用-start
 import List from './../../List'
+// 内库使用-end
+
+/* 测试使用-start
+import { List } from 'lyrixi-mobile'
+测试使用-end */
 
 // 虚拟滚动条需要用绝对定位
 const itemAbsoluteStyle = {

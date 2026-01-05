@@ -15,7 +15,7 @@ import { Storage, List } from 'lyrixi-mobile'
 import queryData from './api/queryData'
 
 // 简便的列表组件, 只需要传入url和formatPayload即可
-const ListLoader = forwardRef(
+const ListPagination = forwardRef(
   (
     {
       cacheName,
@@ -173,4 +173,4 @@ const ListLoader = forwardRef(
   }
 )
 
-export default ListLoader
+export default ListPagination

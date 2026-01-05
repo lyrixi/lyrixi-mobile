@@ -1,18 +1,18 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
-import InfiniteScroll from './../InfiniteScroll'
 import Loading from './components/Loading'
-import List from './List'
+import EntityList from './List'
 import VirtualList from './VirtualList'
 import RetryButton from './components/RetryButton'
 
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
-import Result from './../../Result'
+import DOMUtil from './../../utils/DOMUtil'
+import Result from './../Result'
+import List from './../List'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Result } from 'lyrixi-mobile'
+import { DOMUtil, Result, List } from 'lyrixi-mobile'
 测试使用-end */
 
 const Main = forwardRef(
@@ -173,7 +173,7 @@ const Main = forwardRef(
       return true
     }
 
-    const ListNode = virtual?.getItemHeight ? VirtualList : List
+    const ListNode = virtual?.getItemHeight ? VirtualList : EntityList
 
     return (
       <ListNode
@@ -216,7 +216,7 @@ const Main = forwardRef(
       >
         {/* 底部错误提示 */}
         {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (
-          <InfiniteScroll status={resultStatus} content={result?.message} />
+          <List.InfiniteScroll status={resultStatus} content={result?.message} />
         ) : null}
         {/* 页面级错误提示 */}
         {['empty', 'error'].includes(resultStatus) && (

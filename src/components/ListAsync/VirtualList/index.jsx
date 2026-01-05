@@ -6,7 +6,7 @@ import getVisibleItems from './getVisibleItems'
 import List from './List'
 
 // 内库使用-start
-import Page from './../../../Page'
+import Page from './../../Page'
 // 内库使用-end
 
 /* 测试使用-start

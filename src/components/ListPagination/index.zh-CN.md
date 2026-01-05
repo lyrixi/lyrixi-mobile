@@ -3,11 +3,11 @@ group:
   title: 数据展示
   order: 5
 order: 1
-title: ListLoader
+title: ListPagination
 toc: content
 ---
 
-# ListLoader
+# ListPagination
 
 分页列表组件，用于显示分页数据列表。
 
@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/ListLoader/index.jsx"></code>
+<code src="./demos/ListPagination/index.jsx"></code>
 
 ## API
 

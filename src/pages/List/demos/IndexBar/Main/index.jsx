@@ -1,6 +1,6 @@
 // 第三方库导入
 import React, { forwardRef } from 'react'
-import { ListLoader } from 'lyrixi-mobile'
+import { ListPagination } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 // 内部组件函数导入
@@ -11,7 +11,7 @@ import formatViewList from './formatViewList'
 // 简便的列表组件, 只需要传入url和params即可
 const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => {
   return (
-    <ListLoader
+    <ListPagination
       ref={ref}
       cacheName={cacheName}
       virtual={virtual}
