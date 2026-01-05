@@ -87,7 +87,7 @@ const Main = forwardRef(
             />
           )}
         </div>
-        {onOk || onClear ? (
+        {(onOk || onClear) && open === 'choose' ? (
           <Footer
             onOk={
               onOk
