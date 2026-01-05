@@ -11,16 +11,17 @@ import { DOMUtil, Checkbox } from 'lyrixi-mobile'
 
 const Chat = (
   {
-    className,
-    // Item Data
-    item,
+    // Value & Display Value
+    id,
+    _raw,
 
-    // Checked
+    // Status
     checked,
     checkable,
     checkboxRender,
 
     // Style
+    className,
     position,
     style,
 
@@ -47,9 +48,7 @@ const Chat = (
   function getAvatarNode() {
     if (typeof avatarRender === 'function') {
       return (
-        <div className="lyrixi-chat-item-avatar">
-          {avatarRender({ id, ...(_raw || {}), checked })}
-        </div>
+        <div className="lyrixi-chat-item-avatar">{avatarRender({ ...(_raw || {}), checked })}</div>
       )
     }
     if (avatarUrl && typeof avatarUrl === 'string') {
@@ -69,7 +68,7 @@ const Chat = (
         </div>
       )
     }
-    return avatarNode
+    return <div className="lyrixi-chat-item-avatar">{avatarNode}</div>
   }
 
   // 渲染作者
@@ -77,7 +76,7 @@ const Chat = (
     if (typeof authorRender === 'function') {
       return (
         <div className="lyrixi-chat-item-content-author">
-          {authorRender({ ...(item || {}), checked })}
+          {authorRender({ ...(_raw || {}), checked })}
         </div>
       )
     }
@@ -92,7 +91,7 @@ const Chat = (
     if (!checkable) return null
 
     if (typeof checkboxRender === 'function') {
-      let newCheckBox = checkboxRender({ ...(item || {}), checked })
+      let newCheckBox = checkboxRender({ ...(_raw || {}), checked })
       if (newCheckBox !== undefined) return newCheckBox
     }
 

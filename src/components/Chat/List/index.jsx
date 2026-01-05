@@ -1,4 +1,5 @@
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
+import viewFormatter from './viewFormatter'
 import getSpaceDates from './getSpaceDates'
 import Item from './../Item'
 
@@ -13,27 +14,36 @@ import { DateUtil } from 'lyrixi-mobile'
 // List
 const List = (
   {
-    // 时间间隔, 单位 ms, 默认1分钟
-    timeSpace = 60000,
+    // Value & Display Value
     value,
     list,
     /*
     {
       position: 'left',
-      avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
+      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
       id: '选项1',
-      name: '选项1',
+      authorNode: '选项1',
       content: '自定义内容',
       time: new Date()
     }
     */
-    // Item 配置项
+    formatViewList,
+    formatViewItem,
+
+    // Status
     checkable,
+    // Elements
     checkboxRender,
+    timeSpace = 60000, // 时间间隔, 单位 ms, 默认1分钟
+
+    // Events
     onChange
   },
   ref
 ) => {
+  // 格式化为渲染list, 原list记录到_raw中
+  let displayList = viewFormatter(list, { formatViewList, formatViewItem })
+
   // Expose
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
@@ -49,15 +59,23 @@ const List = (
   function getItemNode(item, index) {
     return (
       <Item
-        key={item.id ?? index}
-        itemData={item}
+        key={item.id ?? item._raw?.id ?? index}
+        // Value & Display Value
+        _raw={item._raw ?? { id: item.id ?? index }}
+        // Status
         checkable={checkable}
         checkboxRender={checkboxRender}
-        position={item.position}
-        avatar={item.avatar}
-        author={item.name}
-        content={item.content}
         checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
+        // Style
+        position={item.position}
+        // Elements
+        avatarUrl={item.avatarUrl}
+        avatarRender={item.avatarRender}
+        avatarNode={item.avatarNode}
+        authorRender={item.authorRender}
+        authorNode={item.authorNode || item.name}
+        content={item.content}
+        // Events
         onChange={(checked) => {
           let newValue = null
           if (!checked) {
@@ -76,7 +94,7 @@ const List = (
 
   return (
     <div className="lyrixi-chat-list" ref={rootRef}>
-      {list.map((item, index) => {
+      {displayList?.map?.((item, index) => {
         let bar = null
         if (item.time) {
           let spaceDates = getSpaceDates(item.time, dates, timeSpace)

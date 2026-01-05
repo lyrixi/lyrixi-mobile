@@ -28,14 +28,14 @@ toc: content
 
 #### 属性
 
-| 属性           | 说明       | 类型                                                                                                             | 默认值  |
-| -------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| timeSpace      | 时间间隔   | `number`                                                                                                         | `60000` |
-| value          | 选中的值   | `Array<object>`                                                                                                  | -       |
-| list           | 消息列表   | `Array<{id: string, position: 'left' \| 'right', avatar: string, name: string, content: ReactNode, time: Date}>` | -       |
-| checkable      | 是否可选   | `boolean`                                                                                                        | -       |
-| checkboxRender | 复选框渲染 | `(item: object) => ReactNode`                                                                                    | -       |
-| onChange       | 变化事件   | `(value: Array<object>) => void`                                                                                 | -       |
+| 属性           | 说明       | 类型                                                                                                                                                                                                                                                           | 默认值  |
+| -------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| timeSpace      | 时间间隔   | `number`                                                                                                                                                                                                                                                       | `60000` |
+| value          | 选中的值   | `Array<object>`                                                                                                                                                                                                                                                | -       |
+| list           | 消息列表   | `Array<{id: string, position: 'left' \| 'right', avatarUrl?: string, name: string, avatarRender?: (props: object) => ReactNode, avatarNode?: ReactNode, authorRender?: (props: object) => ReactNode, authorNode?: ReactNode, content: ReactNode, time: Date}>` | -       |
+| checkable      | 是否可选   | `boolean`                                                                                                                                                                                                                                                      | -       |
+| checkboxRender | 复选框渲染 | `(item: object) => ReactNode`                                                                                                                                                                                                                                  | -       |
+| onChange       | 变化事件   | `(value: Array<object>) => void`                                                                                                                                                                                                                               | -       |
 
 #### Ref
 
@@ -61,18 +61,21 @@ toc: content
 
 #### 属性
 
-| 属性           | 说明       | 类型                                                  | 默认值 |
-| -------------- | ---------- | ----------------------------------------------------- | ------ |
-| className      | 自定义类名 | `string`                                              | -      |
-| item           | 项数据     | `object`                                              | -      |
-| checked        | 是否选中   | `boolean`                                             | -      |
-| checkable      | 是否可选   | `boolean`                                             | -      |
-| checkboxRender | 复选框渲染 | `(item: object) => ReactNode`                         | -      |
-| position       | 位置       | `'left' \| 'right'`                                   | -      |
-| avatar         | 头像       | `string \| ReactNode \| (props: object) => ReactNode` | -      |
-| author         | 作者       | `string \| ReactNode \| (props: object) => ReactNode` | -      |
-| content        | 内容       | `ReactNode`                                           | -      |
-| style          | 自定义样式 | `object`                                              | -      |
+| 属性           | 说明       | 类型                           | 默认值 |
+| -------------- | ---------- | ------------------------------ | ------ |
+| className      | 自定义类名 | `string`                       | -      |
+| item           | 项数据     | `object`                       | -      |
+| checked        | 是否选中   | `boolean`                      | -      |
+| checkable      | 是否可选   | `boolean`                      | -      |
+| checkboxRender | 复选框渲染 | `(item: object) => ReactNode`  | -      |
+| position       | 位置       | `'left' \| 'right'`            | -      |
+| avatarUrl      | 头像地址   | `string`                       | -      |
+| avatarRender   | 头像渲染   | `(props: object) => ReactNode` | -      |
+| avatarNode     | 头像节点   | `ReactNode`                    | -      |
+| authorRender   | 作者渲染   | `(props: object) => ReactNode` | -      |
+| authorNode     | 作者节点   | `ReactNode`                    | -      |
+| content        | 内容       | `ReactNode`                    | -      |
+| style          | 自定义样式 | `object`                       | -      |
 
 #### Ref
 

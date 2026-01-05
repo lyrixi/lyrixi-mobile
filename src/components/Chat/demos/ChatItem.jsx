@@ -6,12 +6,10 @@ export default () => {
     <Page>
       <Page.Main>
         <Chat.Item
-          avatar={'https://api.dicebear.com/7.x/miniavs/svg'}
-          id="1"
-          name="1"
-          content="content"
+          avatarUrl="https://api.dicebear.com/7.x/miniavs/svg"
+          authorNode="用户名"
+          content="这是一条聊天消息内容"
           position="left"
-          time={new Date()}
         />
       </Page.Main>
     </Page>

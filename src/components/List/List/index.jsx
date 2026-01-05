@@ -108,10 +108,9 @@ const List = (
 
     return (
       <Item
-        key={item.id ?? index}
+        key={item.id ?? item._raw?.id ?? index}
         // Value & Display Value
-        id={item.id ?? index}
-        _raw={item._raw}
+        _raw={item._raw ?? { id: item.id ?? index }}
         checked={checked}
         // Status
         disabled={item.disabled}

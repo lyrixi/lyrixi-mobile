@@ -11,7 +11,6 @@ import { DOMUtil,Checkbox } from 'lyrixi-mobile'
 
 const Item = ({
   // Value & Display Value
-  id,
   _raw,
   checked,
 
@@ -45,7 +44,7 @@ const Item = ({
     if (!checkable) return null
 
     if (typeof checkboxRender === 'function') {
-      let newCheckbox = checkboxRender({ id, ...(_raw || {}), checked })
+      let newCheckbox = checkboxRender({ ...(_raw || {}), checked })
       if (newCheckbox !== undefined) return newCheckbox
     }
 
@@ -62,7 +61,7 @@ const Item = ({
     if (typeof imageRender === 'function') {
       return (
         <div className="lyrixi-list-item-meta-image">
-          {imageRender({ id, ...(_raw || {}), checked })}
+          {imageRender({ ...(_raw || {}), checked })}
         </div>
       )
     }
@@ -91,7 +90,7 @@ const Item = ({
     if (typeof avatarRender === 'function') {
       return (
         <div className="lyrixi-list-item-meta-avatar">
-          {avatarRender({ id, ...(_raw || {}), checked })}
+          {avatarRender({ ...(_raw || {}), checked })}
         </div>
       )
     }
@@ -118,7 +117,7 @@ const Item = ({
   // 获取action
   function getActionNode() {
     if (typeof actionRender === 'function') {
-      return actionRender({ id, ...(_raw || {}), checked })
+      return actionRender({ ...(_raw || {}), checked })
     }
 
     return null
@@ -139,7 +138,7 @@ const Item = ({
         onClick={(e) => {
           e.stopPropagation()
           onClick && onClick(e)
-          onSelect && onSelect({ id, ...(_raw || {}), checked: !checked })
+          onSelect && onSelect({ ...(_raw || {}), checked: !checked })
         }}
       >
         {/* Left Checkbox */}
