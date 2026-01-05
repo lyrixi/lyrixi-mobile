@@ -281,7 +281,10 @@ const MapContainer = forwardRef(
       // }
 
       // onLoad event
-      onLoad && onLoad(APIRef.current)
+      onLoad?.({
+        status: 'success',
+        map: APIRef.current
+      })
     }
 
     // Bind events

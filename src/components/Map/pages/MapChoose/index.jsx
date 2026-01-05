@@ -151,16 +151,16 @@ function MapChoose(
   }
 
   const handleLoadRef = useRef(null)
-  handleLoadRef.current = function (map) {
-    // value没值时，开启自动定位，则先定位
-    if (typeof map === 'string') return
+  handleLoadRef.current = function (result) {
+    // 地图加载失败
+    if (result?.status === 'error') return
 
     // 加载完成后更新视图
     if (value?.longitude && value?.latitude && value?.type) {
       mapRef.current?.panTo?.(value)
     }
 
-    onLoad && onLoad(map)
+    onLoad && onLoad(result)
 
     // 当前位置
     if (readOnly || !autoLocation) return

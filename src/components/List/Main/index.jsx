@@ -81,7 +81,7 @@ const Main = forwardRef(
     }
     */
     const [result, setResult] = useState(null)
-    // 结果状态: empty | error | moreError | noMore | loading
+    // 结果状态, 滚动至底部时, 不更新result, 但需要更新底部状态: empty | error | moreError | noMore | loading
     const [resultStatus, setResultStatus] = useState('')
     // 加载显示: load | reload | topRefresh | bottomRefresh
     const [loadAction, setLoadAction] = useState('')

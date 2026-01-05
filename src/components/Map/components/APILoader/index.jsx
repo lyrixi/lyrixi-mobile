@@ -75,13 +75,13 @@ const APILoader = forwardRef(
       if (result?.status === 'error') {
         // 自定义处理错误
         if (onError) {
-          let newResult = await onError({ ...{}, ...result, ...APIRef.current })
+          let newResult = await onError({ ...result, ...APIRef.current })
           if (newResult !== undefined) {
             result = newResult
           }
         }
       } else {
-        onSuccess && onSuccess(APIRef.current)
+        onSuccess && onSuccess({ status: 'success', map: APIRef.current })
       }
       setResult(result)
     }
