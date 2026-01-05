@@ -18,7 +18,7 @@ function formatViewList(list) {
         })
       }
       groupMap.get(anchor).children.push({
-        // 原始数据(必传, List.Main会自动增加_raw字段存储list入参的item的原始数据)
+        // 原始数据(必传, ListAsync会自动增加_raw字段存储list入参的item的原始数据)
         _raw: item._raw,
         // 唯一标识(必传)
         id: item.id,

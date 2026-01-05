@@ -9,7 +9,7 @@ import { LocaleUtil, Request } from 'lyrixi-mobile'
 
 // 获取列表
 let page = 1
-// 兼容新 List.Main 要求：外部仍返回数组，调用处已包装为新对象
+// 兼容新 ListAsync 要求：外部仍返回数组，调用处已包装为新对象
 function queryData(
   url,
   headers = {},

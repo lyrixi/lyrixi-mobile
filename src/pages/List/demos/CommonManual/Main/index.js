@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 // 第三方库导入
-import { List } from 'lyrixi-mobile'
+import { ListAsync } from 'lyrixi-mobile'
 
 // 公共组件导入
 
@@ -20,7 +20,7 @@ const Main = (
   ref
 ) => {
   return (
-    <List.Main
+    <ListAsync
       ref={ref}
       className="lyrixi-list-pageName"
       virtual={virtual}

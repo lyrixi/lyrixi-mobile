@@ -3,11 +3,11 @@ import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react
 
 // 内库使用-start
 import Storage from './../../utils/Storage'
-import List from './../List'
+import ListAsync from './../ListAsync'
 // 内库使用-end
 
 /* 测试使用-start
-import { Storage, List } from 'lyrixi-mobile'
+import { Storage, ListAsync } from 'lyrixi-mobile'
 测试使用-end */
 
 // 项目内部模块导入
@@ -103,7 +103,7 @@ const ListPagination = forwardRef(
     }, [url, JSON.stringify(payload)])
 
     return (
-      <List.Main
+      <ListAsync
         ref={mainRef}
         // Value & Display Value
         formatViewList={formatViewList}
