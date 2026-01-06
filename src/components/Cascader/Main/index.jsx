@@ -105,7 +105,7 @@ const CascaderPage = forwardRef(
         setActiveTab(null)
         setResult({
           status: 'success',
-          list: newExternalList
+          list: externalList
         })
         return
       }
