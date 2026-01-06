@@ -30,8 +30,8 @@ const ActionSheetModal = forwardRef(
       maskStyle,
       maskClassName,
 
-      optionStyle,
-      optionClassName,
+      itemStyle,
+      itemClassName,
       groupStyle,
       groupClassName,
 
@@ -121,8 +121,8 @@ const ActionSheetModal = forwardRef(
                   key={item?.id || index}
                   checked={item?.id === value?.id}
                   disabled={item?.disabled}
-                  style={optionStyle}
-                  className={optionClassName}
+                  style={itemStyle}
+                  className={itemClassName}
                   onClick={(e) => {
                     item?.onClick && item?.onClick(e)
                     handleChange(item)

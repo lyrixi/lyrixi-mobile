@@ -90,30 +90,30 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明         | 类型                           | 默认值  |
-| --------------- | ------------ | ------------------------------ | ------- |
-| value           | 选中的值     | `any`                          | -       |
-| list            | 选项列表     | `Array<object>`                | -       |
-| open            | 是否显示     | `boolean`                      | `false` |
-| maskClosable    | 点击遮罩关闭 | `boolean`                      | `true`  |
-| allowClear      | 允许清除     | `boolean`                      | -       |
-| safeArea        | 是否安全区   | `boolean`                      | -       |
-| modalStyle      | 模态框样式   | `object`                       | -       |
-| modalClassName  | 模态框类名   | `string`                       | -       |
-| maskStyle       | 遮罩样式     | `object`                       | -       |
-| maskClassName   | 遮罩类名     | `string`                       | -       |
-| optionStyle     | 选项样式     | `object`                       | -       |
-| optionClassName | 选项类名     | `string`                       | -       |
-| groupStyle      | 组样式       | `object`                       | -       |
-| groupClassName  | 组类名       | `string`                       | -       |
-| portal          | 挂载节点     | `HTMLElement \| null \| false` | -       |
-| title           | 标题         | `ReactNode`                    | -       |
-| cancelNode      | 取消按钮     | `ReactNode`                    | -       |
-| cancelVisible   | 取消按钮可见 | `boolean`                      | -       |
-| itemRender      | 项渲染       | `(item: object) => ReactNode`  | -       |
-| onChange        | 变化事件     | `(value: any) => void`         | -       |
-| onCancel        | 取消事件     | `() => void`                   | -       |
-| onClose         | 关闭事件     | `() => void`                   | -       |
+| 属性           | 说明         | 类型                           | 默认值  |
+| -------------- | ------------ | ------------------------------ | ------- |
+| value          | 选中的值     | `any`                          | -       |
+| list           | 选项列表     | `Array<object>`                | -       |
+| open           | 是否显示     | `boolean`                      | `false` |
+| maskClosable   | 点击遮罩关闭 | `boolean`                      | `true`  |
+| allowClear     | 允许清除     | `boolean`                      | -       |
+| safeArea       | 是否安全区   | `boolean`                      | -       |
+| modalStyle     | 模态框样式   | `object`                       | -       |
+| modalClassName | 模态框类名   | `string`                       | -       |
+| maskStyle      | 遮罩样式     | `object`                       | -       |
+| maskClassName  | 遮罩类名     | `string`                       | -       |
+| itemStyle      | 选项样式     | `object`                       | -       |
+| itemClassName  | 选项类名     | `string`                       | -       |
+| groupStyle     | 组样式       | `object`                       | -       |
+| groupClassName | 组类名       | `string`                       | -       |
+| portal         | 挂载节点     | `HTMLElement \| null \| false` | -       |
+| title          | 标题         | `ReactNode`                    | -       |
+| cancelNode     | 取消按钮     | `ReactNode`                    | -       |
+| cancelVisible  | 取消按钮可见 | `boolean`                      | -       |
+| itemRender     | 项渲染       | `(item: object) => ReactNode`  | -       |
+| onChange       | 变化事件     | `(value: any) => void`         | -       |
+| onCancel       | 取消事件     | `() => void`                   | -       |
+| onClose        | 关闭事件     | `() => void`                   | -       |
 
 #### Ref
 

@@ -13,7 +13,7 @@ const Item = ({ checked, disabled, style, className, onClick, children }) => {
     <div
       style={style}
       className={DOMUtil.classNames(
-        'lyrixi-actionsheet-option',
+        'lyrixi-actionsheet-item',
         className,
         disabled ? 'lyrixi-disabled' : '',
         checked ? 'lyrixi-checked' : ''
