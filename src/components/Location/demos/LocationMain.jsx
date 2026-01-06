@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Bridge, Location } from 'lyrixi-mobile'
+import { Page, Location } from 'lyrixi-mobile'
 
 export default () => {
-  Bridge.debug = true
-  const comboRef = useRef(null)
+  const mainRef = useRef(null)
   const [value, setValue] = useState(null)
 
   useEffect(() => {
@@ -13,25 +12,29 @@ export default () => {
         address: '江苏省南京市雨花台区玉兰路98号',
         value: '江苏省南京市雨花台区玉兰路98号',
         longitude: 118.7979252979065,
-        latitude: 31.968667296242337
+        latitude: 31.968667296242337,
+        type: 'gcj02'
       })
     }, 5000)
   }, [])
+
   return (
-    <>
-      <div>1</div>
+    <Page>
       <Location.Main
-        ref={comboRef}
-        ak={''}
+        ref={mainRef}
+        open="choose"
         style={{ height: '400px' }}
-        type="choose"
         autoLocation={false}
+        config={{
+          key: '7b6e260fc45a67b31a265e22575f1c5e',
+          type: 'bmap'
+        }}
         value={value}
         onChange={(val) => {
           console.log('修改:', val)
           setValue(val)
         }}
       />
-    </>
+    </Page>
   )
 }
