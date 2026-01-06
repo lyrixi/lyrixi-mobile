@@ -34,7 +34,7 @@ const Main = forwardRef(
 
       // Elements
       itemRender,
-      checkboxRender,
+      checkboxVariant,
       prependRender,
       appendRender,
       children,
@@ -81,7 +81,7 @@ const Main = forwardRef(
             itemLayout={itemLayout}
             // Elements
             itemRender={itemRender}
-            checkboxRender={checkboxRender}
+            checkboxVariant={checkboxVariant}
             // Events
             onChange={onChange}
           />

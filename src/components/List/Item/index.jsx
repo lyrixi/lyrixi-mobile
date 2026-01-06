@@ -33,7 +33,7 @@ const Item = ({
   note,
   content,
   actionRender,
-  checkboxRender,
+  checkboxVariant,
 
   // Events
   onSelect,
@@ -43,12 +43,7 @@ const Item = ({
   function getCheckboxNode() {
     if (!checkable) return null
 
-    if (typeof checkboxRender === 'function') {
-      let newCheckbox = checkboxRender({ ...(_raw || {}), checked })
-      if (newCheckbox !== undefined) return newCheckbox
-    }
-
-    return <Checkbox checked={checked} />
+    return <Checkbox variant={checkboxVariant} checked={checked} />
   }
 
   // 获取note

@@ -24,16 +24,8 @@ export default () => {
   // 加载街道
   function loadData(tabs) {
     return new Promise((resolve) => {
-      if (!Array.isArray(tabs) || !tabs.length) {
-        resolve(null)
-        return
-      }
-      let lastTab = tabs[tabs.length - 1]
-      if (lastTab.id !== '1-1') {
-        resolve(null)
-        return
-      }
       Loading.show()
+      let lastTab = tabs?.[tabs?.length - 1]
       let streets = [
         {
           parentid: lastTab.id,
@@ -44,10 +36,10 @@ export default () => {
       setTimeout(() => {
         Loading.hide()
       }, 100)
-      if (typeof streets === 'string') {
-        Toast.show({ content: streets })
-      }
-      resolve(streets)
+      resolve({
+        status: 'success',
+        list: streets
+      })
     })
   }
 

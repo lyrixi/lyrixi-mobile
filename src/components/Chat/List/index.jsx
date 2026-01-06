@@ -33,7 +33,7 @@ const List = (
     // Status
     checkable,
     // Elements
-    checkboxRender,
+    checkboxVariant,
     timeSpace = 60000, // 时间间隔, 单位 ms, 默认1分钟
 
     // Events
@@ -64,7 +64,7 @@ const List = (
         _raw={item._raw ?? { id: item.id ?? index }}
         // Status
         checkable={checkable}
-        checkboxRender={checkboxRender}
+        checkboxVariant={checkboxVariant}
         checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
         // Style
         position={item.position}

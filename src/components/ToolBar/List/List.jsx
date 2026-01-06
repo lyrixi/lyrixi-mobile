@@ -10,13 +10,7 @@ import { List } from 'lyrixi-mobile'
 
 function ListBar({ value, list, onChange }) {
   return (
-    <List
-      value={value}
-      list={list}
-      checkable="right"
-      checkboxRender={() => <i className="lyrixi-toolbar-dropdown-item-checkbox"></i>}
-      onChange={onChange}
-    />
+    <List value={value} list={list} checkable="right" checkboxVariant="text" onChange={onChange} />
   )
 }
 export default ListBar

@@ -56,7 +56,7 @@ const SelectCombo = forwardRef(
       itemRender,
       layout,
       checkable,
-      checkboxRender,
+      checkboxVariant,
 
       // Events
       onOk,
@@ -148,7 +148,7 @@ const SelectCombo = forwardRef(
           cancelVisible={cancelVisible}
           headerRender={headerRender}
           itemRender={itemRender}
-          checkboxRender={checkboxRender}
+          checkboxVariant={checkboxVariant}
           // Events
           onOk={onOk}
           onChange={handleChange}

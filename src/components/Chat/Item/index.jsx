@@ -18,7 +18,7 @@ const Chat = (
     // Status
     checked,
     checkable,
-    checkboxRender,
+    checkboxVariant,
 
     // Style
     className,
@@ -90,12 +90,7 @@ const Chat = (
   function getCheckboxNode() {
     if (!checkable) return null
 
-    if (typeof checkboxRender === 'function') {
-      let newCheckBox = checkboxRender({ ...(_raw || {}), checked })
-      if (newCheckBox !== undefined) return newCheckBox
-    }
-
-    return <Checkbox checked={checked} />
+    return <Checkbox variant={checkboxVariant} checked={checked} />
   }
 
   return (

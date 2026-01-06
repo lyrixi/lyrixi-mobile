@@ -33,7 +33,7 @@ const Main = forwardRef(
 
       // Element
       itemRender,
-      checkboxRender,
+      checkboxVariant,
 
       // Events
       onChange

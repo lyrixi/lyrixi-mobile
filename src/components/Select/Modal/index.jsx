@@ -43,7 +43,7 @@ const Modal = forwardRef(
       cancelVisible,
       headerRender,
       itemRender,
-      checkboxRender,
+      checkboxVariant,
 
       // Events
       onOk,
@@ -160,7 +160,7 @@ const Modal = forwardRef(
           formatViewItem={formatViewItem}
           // Element
           itemRender={itemRender}
-          checkboxRender={checkboxRender}
+          checkboxVariant={checkboxVariant}
           // Style
           layout={layout}
           checkable={checkable}

@@ -54,7 +54,7 @@ const VirtualList = (
 
     // Elements
     itemRender,
-    checkboxRender,
+    checkboxVariant,
 
     // Events
     onChange
@@ -91,7 +91,7 @@ const VirtualList = (
       itemLayout={itemLayout}
       // Elements
       itemRender={itemRender}
-      checkboxRender={checkboxRender}
+      checkboxVariant={checkboxVariant}
       // Events
       onChange={onChange}
     />

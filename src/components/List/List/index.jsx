@@ -53,7 +53,7 @@ const List = (
 
     // Elements
     itemRender,
-    checkboxRender,
+    checkboxVariant,
 
     // Events
     onChange
@@ -129,7 +129,7 @@ const List = (
         note={item.note}
         content={item.content}
         actionRender={item.actionRender}
-        checkboxRender={checkboxRender}
+        checkboxVariant={checkboxVariant}
         // Events
         onSelect={handleChange}
       />

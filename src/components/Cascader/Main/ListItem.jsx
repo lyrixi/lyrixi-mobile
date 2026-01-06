@@ -4,12 +4,13 @@ import React, { Fragment, forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Result from './../../Result'
+import List from './../../List'
 import Button from './../../Button'
 import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, LocaleUtil, Result, Button, IndexBar } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil, List, Result, Button, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
 const ListItem = forwardRef(
@@ -72,25 +73,19 @@ const ListItem = forwardRef(
             return (
               <Fragment key={item.id || index}>
                 {anchorBar}
-                <div
+                <List.Item
                   style={optionStyle}
-                  className={DOMUtil.classNames(
-                    `lyrixi-cascader-option`,
-                    optionClassName,
-                    value?.some?.((selected) => {
-                      return selected.id === item.id
-                    })
-                      ? ' lyrixi-active'
-                      : ''
-                  )}
+                  className={DOMUtil.classNames(`lyrixi-cascader-option`, optionClassName)}
+                  checked={value?.some?.((selected) => {
+                    return selected.id === item.id
+                  })}
                   onClick={(e) => {
                     e.stopPropagation()
                     onSelect(item)
                   }}
-                >
-                  <p className="lyrixi-cascader-option-title">{item.name}</p>
-                  <i className="lyrixi-cascader-option-icon"></i>
-                </div>
+                  title={item.name}
+                  checkboxVariant="text"
+                />
               </Fragment>
             )
           })}

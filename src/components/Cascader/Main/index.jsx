@@ -1,13 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
 import _ from 'lodash'
-import loadData from './loadData'
 import sliceArray from './sliceArray'
-import getTreeChildren from './getTreeChildren'
+import loadChildren from './loadChildren'
 import formatValue from './../utils/formatValue'
 import formatList from './../utils/formatList'
 import ListItem from './ListItem'
-import SearchHeader from './SearchPage/Header'
-import SearchPage from './SearchPage'
+import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
 
@@ -73,11 +71,7 @@ const Main = forwardRef(
         mainElement: mainRef.current,
         getMainElement: () => mainRef.current,
         // 更新数据
-        update: update,
-        // 设置叶子节点标识, id: 叶子节点id, tabs: tabs列表
-        updateIsLeaf: (tabs, id) => {
-          updateIsLeaf(tabs, id, { value, tabsRef })
-        }
+        update: update
       }
     })
 
@@ -92,19 +86,10 @@ const Main = forwardRef(
         return
       }
 
-      update(value, { action: 'load', list: externalList })
+      tabsRef.current = tabsRef.current.filter((tab) => !tab.isChoose)
+      update(value, { action: 'load' })
       // eslint-disable-next-line
-    }, [open, JSON.stringify(value), JSON.stringify(externalList)])
-
-    // 更新错误信息
-    useEffect(() => {
-      if (!open || typeof externalList !== 'string') {
-        return
-      }
-
-      setCurrentList(externalList)
-      // eslint-disable-next-line
-    }, [open, JSON.stringify(externalList)])
+    }, [value])
 
     // 隐藏还原搜索状态
     useEffect(() => {
@@ -114,18 +99,10 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [open])
 
-    // 初始化tabs、选中tab、列表
-    async function update(nextValue, { list: newExternalList, action } = {}) {
-      // 更新externalList
-      if (Array.isArray(newExternalList) && newExternalList.length) {
-        // eslint-disable-next-line
-        externalList = newExternalList
-      }
-
+    // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
+    async function update(newValue, { action } = {}) {
       // 更新tabs
-      tabsRef.current = _.cloneDeep(formatValue(nextValue))
-      let lastTab =
-        Array.isArray(nextValue) && nextValue.length ? nextValue[nextValue.length - 1] : null
+      tabsRef.current = _.cloneDeep(formatValue(newValue))
 
       // 滚动条还原
       if (mainRef.current) {
@@ -133,52 +110,44 @@ const Main = forwardRef(
       }
 
       // 无值显示根列表
-      if (!lastTab) {
+      if (!newValue || _.isEmpty(newValue)) {
         setActiveTab(null)
         setCurrentList(newExternalList)
-        tabsRef.current = _.cloneDeep(formatValue(value))
         return
       }
 
       // 获取当前列表(按行为策略)
-      let newList = await getActionList(nextValue, { action })
+      let result = await getActionData(newValue, { action })
 
-      // 接口报错或无数据
-      if (typeof newList === 'string' || _.isEmpty(newList)) {
-        setActiveTab(lastTab)
-        setCurrentList(newList)
-        tabsRef.current = _.cloneDeep(formatValue(value))
+      // 接口报错, 或暂无数据
+      if (result.status !== 'success') {
+        setActiveTab(newValue[newValue.length - 1])
+        setCurrentList(result.message)
         return
       }
 
-      // 点击项, 触发onChange, 只有getActionList后才会更新isLeaf, 所以onChange需要放在getActionList后
+      // 点击项, 触发onChange, 只有getActionData后才会更新isLeaf, 所以onChange需要放在getActionData后
       if (action === 'clickItem') {
-        onChange && onChange(nextValue, { list: newExternalList })
+        onChange && onChange(newValue)
       }
 
-      // 如果没有子级
-      if (lastTab?.isLeaf) {
-      }
-      // 如果有子级, 增加请选择tab
-      else {
-        // 请选择
-        lastTab = {
-          isChoose: true,
-          parentid: lastTab.id,
-          id: '',
-          name: LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')
-        }
-        tabsRef.current.push(lastTab)
-      }
+      // 有子级, 则增加一个tab
+      tabsRef.current.push({
+        isChoose: true,
+        parentid: newValue[newValue.length - 1].id,
+        id: '',
+        name: LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')
+      })
 
-      setActiveTab(lastTab)
-      setCurrentList(newList)
+      // 选中最后一个tab, 并且更新列表
+      setActiveTab(tabsRef.current[tabsRef.current.length - 1])
+      setCurrentList(result.list)
     }
 
     // 统一根据操作行为获取列表:
     // - clickItem/load: 优先查子级, 无子级则显示同级
     // - clickTab: 显示同级
-    async function getActionList(tabs, { action } = {}) {
+    async function getActionData(tabs, { action } = {}) {
       if (!Array.isArray(tabs) || !tabs.length) {
         return externalList
       }
@@ -188,87 +157,69 @@ const Main = forwardRef(
       // clickItem/load查子级列表
       if (['clickItem', 'load'].includes(action)) {
         // 末级节点, 查询同级列表
-        const childrenList = await getChildrenList(
+        const childrenData = await getChildrenData(
           tabs.filter((tab) => !tab.isChoose && !tab.isLeaf)
         )
-        if (typeof childrenList === 'string') return childrenList
-        if (Array.isArray(childrenList)) return childrenList
+        if (childrenData?.status !== 'empty') {
+          return childrenData
+        }
 
-        // 无子级返回同级列表
-        return await getSiblingList(tabs)
+        // 无子级返回同级列表, 其中clickItem需要关闭选择弹窗
+        return await getSiblingData(tabs)
       }
-
       // clickTab
       if (action === 'clickTab') {
+        debugger
         // 点击请选择, 查询子级列表
         if (lastTab?.isChoose) {
-          return await getChildrenList(tabs.filter((tab) => !tab.isChoose))
+          return await getChildrenData(tabs.filter((tab) => !tab.isChoose))
         }
 
         // 点击非请选择查同级列表
-        return await getSiblingList(tabs)
+        return await getSiblingData(tabs)
       }
     }
 
     // 获取同级列表
-    async function getSiblingList(tabs) {
-      let newList = await getChildrenList(tabs.slice(0, tabs.length - 1))
-      return newList
+    async function getSiblingData(tabs) {
+      return await getChildrenData(tabs.slice(0, tabs.length - 1))
     }
 
     // 获取下级列表, 没有返回null
-    async function getChildrenList(tabs) {
+    async function getChildrenData(tabs) {
       let lastTab = tabs?.[tabs?.length - 1]
-
-      // 下级列表
-      let newList = null
 
       // externalList为空, 或者不合法, 需要重新获取
       if (!Array.isArray(externalList) || !externalList.length) {
-        return LocaleUtil.locale('未获取到列表数据')
-      }
-
-      // 无值渲染根节点
-      if (!lastTab?.id) {
-        return externalList
-      }
-
-      // 渲染子级
-      newList = getTreeChildren(externalList, lastTab.id)
-
-      // 无children, 动态获取子级
-      if (!Array.isArray(newList)) {
-        newList = await loadData(tabs, { externalLoadData, externalList })
-
-        // 接口报错
-        if (typeof newList === 'string') {
-          return newList
-        }
-
-        // 无值则为叶子节点
-        if (!Array.isArray(newList)) {
-          // 更新value的叶子节点
-          updateIsLeaf(tabs, lastTab.id, { value, tabsRef })
-
-          // 更新externalList的叶子节点
-          ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-            node.children = newList
-            node.isLeaf = true
-          })
-
-          return null
-        }
-        // 有值更新列表的children, 并返回
-        else {
-          ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-            node.children = newList
-          })
-
-          return newList
+        return {
+          status: 'error',
+          message: LocaleUtil.locale('未获取到列表数据')
         }
       }
 
-      return newList
+      // 渲染子级, 返回{status: 'success|error|empty', message: '', list:[]}
+      let result = await loadChildren(tabs, { externalLoadData, externalList })
+
+      // 异步获取的数据, 无值则为叶子节点
+      if (result.async && result.status === 'empty') {
+        // 更新value的叶子节点
+        updateIsLeaf(lastTab.id, { currentValue: tabs, value, tabsRef })
+
+        // 更新externalList的叶子节点
+        ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
+          node.children = newList
+          node.isLeaf = true
+        })
+      }
+      // 异步获取的数据, 有值更新列表的children, 并返回
+      else if (result.async && result.status === 'success') {
+        ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
+          node.children = newList
+        })
+      }
+
+      // 返回result
+      return result
     }
 
     // 点击选项, value不包含children
@@ -301,7 +252,7 @@ const Main = forwardRef(
       }
 
       // 触发tab与列表更新(由上层value变更驱动); 若值未变化, 强制刷新子级
-      update(newValue, { action: 'clickItem', list: externalList })
+      update(newValue, { action: 'clickItem' })
 
       // 防止用户快速点击多次触发
       setTimeout(() => {
@@ -318,10 +269,10 @@ const Main = forwardRef(
 
       // 点击tab时, 展示该tab同级(其父级的children)
       let activeTabs = sliceArray(tabsRef.current, tab?.id)
-      let newList = await getActionList(activeTabs, { action: 'clickTab' })
+      let result = await getActionData(activeTabs, { action: 'clickTab' })
 
       setActiveTab(tab)
-      setCurrentList(newList)
+      setCurrentList(result.list)
     }
 
     function getTabsNode() {
@@ -353,20 +304,7 @@ const Main = forwardRef(
         <Page full={false} className="lyrixi-cascader-main">
           {/* 搜索框 */}
           {searchVisible && Array.isArray(externalList) && externalList.length > 0 && (
-            <SearchHeader
-              searchActive={searchActive}
-              setSearchActive={setSearchActive}
-              value={keyword}
-              onChange={setKeyword}
-              onClick={() => setSearchPageVisible(true)}
-              onCancel={resetSearch}
-            />
-          )}
-
-          {searchPageVisible ? (
-            // 搜索结果页面
-            <SearchPage
-              keyword={keyword}
+            <SearchControl
               list={externalList}
               onChange={(newValue) => {
                 let lastItem = newValue[newValue.length - 1]
@@ -379,38 +317,36 @@ const Main = forwardRef(
                 handleDrill(lastItem)
               }}
             />
-          ) : (
-            <>
-              {/* Tab */}
-              {getTabsNode()}
-
-              {/* 主体 */}
-              <ListItem
-                ref={mainRef}
-                // Value & Display Value
-                value={value}
-                list={currentList}
-                // Style
-                style={listStyle}
-                className={listClassName}
-                optionStyle={optionStyle}
-                optionClassName={optionClassName}
-                // Events
-                onReLoad={async () => {
-                  if (typeof onReLoad !== 'function') return
-                  let newList = await onReLoad(value, { list: externalList, update })
-                  if (!newList) return
-                  setCurrentList(newList)
-                }}
-                onSelect={(item) => handleDrill(item)}
-              />
-              <IndexBar
-                className="lyrixi-cascader-indexbar"
-                anchors={getAnchors(currentList)}
-                scrollerElement={mainRef.current}
-              />
-            </>
           )}
+
+          {/* Tab */}
+          {getTabsNode()}
+
+          {/* 主体 */}
+          <ListItem
+            ref={mainRef}
+            // Value & Display Value
+            value={value}
+            list={currentList}
+            // Style
+            style={listStyle}
+            className={listClassName}
+            optionStyle={optionStyle}
+            optionClassName={optionClassName}
+            // Events
+            onReLoad={async () => {
+              if (typeof onReLoad !== 'function') return
+              let newList = await onReLoad(value, { list: externalList, update })
+              if (!newList) return
+              setCurrentList(newList)
+            }}
+            onSelect={(item) => handleDrill(item)}
+          />
+          <IndexBar
+            className="lyrixi-cascader-indexbar"
+            anchors={getAnchors(currentList)}
+            scrollerElement={mainRef.current}
+          />
         </Page>
       </>
     )

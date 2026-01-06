@@ -1,7 +1,7 @@
 // 设置叶子节点
-function updateIsLeaf(tabs, id, { value, tabsRef }) {
+function updateIsLeaf(id, { currentValue, value, tabsRef }) {
   // 更新当前列表叶子节点
-  for (let tab of tabs || []) {
+  for (let tab of currentValue || []) {
     if (tab && tab.id === id) {
       tab.isLeaf = true
       break

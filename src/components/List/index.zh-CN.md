@@ -25,23 +25,23 @@ toc: content
 
 ### 属性
 
-| 属性           | 说明             | 类型                                             | 默认值 |
-| -------------- | ---------------- | ------------------------------------------------ | ------ |
-| value          | 选中的值         | `any \| any[]`                                   | -      |
-| multiple       | 是否多选         | `boolean`                                        | -      |
-| allowClear     | 允许清除         | `boolean`                                        | -      |
-| list           | 列表数据         | `Array<object>`                                  | -      |
-| formatViewList | 格式化列表       | `(list: Array) => Array`                         | -      |
-| formatViewItem | 格式化项         | `(item: object) => object`                       | -      |
-| checkable      | 是否可选         | `boolean`                                        | -      |
-| style          | 自定义样式       | `object`                                         | -      |
-| className      | 自定义类名       | `string`                                         | -      |
-| itemStyle      | 项样式           | `object`                                         | -      |
-| itemClassName  | 项类名           | `string`                                         | -      |
-| itemLayout     | 项布局           | `string`                                         | -      |
-| itemRender     | 自定义项渲染     | `(item: object) => ReactNode`                    | -      |
-| checkboxRender | 自定义复选框渲染 | `(item: object) => ReactNode`                    | -      |
-| onChange       | 变化事件         | `(value: any \| any[], options: object) => void` | -      |
+| 属性            | 说明             | 类型                                             | 默认值 |
+| --------------- | ---------------- | ------------------------------------------------ | ------ |
+| value           | 选中的值         | `any \| any[]`                                   | -      |
+| multiple        | 是否多选         | `boolean`                                        | -      |
+| allowClear      | 允许清除         | `boolean`                                        | -      |
+| list            | 列表数据         | `Array<object>`                                  | -      |
+| formatViewList  | 格式化列表       | `(list: Array) => Array`                         | -      |
+| formatViewItem  | 格式化项         | `(item: object) => object`                       | -      |
+| checkable       | 是否可选         | `boolean`                                        | -      |
+| style           | 自定义样式       | `object`                                         | -      |
+| className       | 自定义类名       | `string`                                         | -      |
+| itemStyle       | 项样式           | `object`                                         | -      |
+| itemClassName   | 项类名           | `string`                                         | -      |
+| itemLayout      | 项布局           | `string`                                         | -      |
+| itemRender      | 自定义项渲染     | `(item: object) => ReactNode`                    | -      |
+| checkboxVariant | 自定义复选框渲染 | `(item: object) => ReactNode`                    | -      |
+| onChange        | 变化事件         | `(value: any \| any[], options: object) => void` | -      |
 
 ### Ref
 
