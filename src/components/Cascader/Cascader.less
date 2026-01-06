@@ -13,7 +13,7 @@
 }
 
 // Main List
-.lyrixi-cascader-option {
+.lyrixi-cascader-item {
 }
 
 // Main Tabs
@@ -26,7 +26,7 @@
   overflow-x: auto;
   // tab禁用又选中的情况下，不允许点击列表
   &:has(.lyrixi-active.lyrixi-disabled) {
-    & + .lyrixi-cascader-main .lyrixi-cascader-option {
+    & + .lyrixi-cascader-main .lyrixi-cascader-item {
       pointer-events: none;
       opacity: 0.5;
     }

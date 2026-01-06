@@ -35,8 +35,8 @@ const CascaderDistrictMain = forwardRef(
       // Style
       listStyle,
       listClassName,
-      optionStyle,
-      optionClassName,
+      itemStyle,
+      itemClassName,
 
       // Elements
       searchVisible,
@@ -146,8 +146,8 @@ const CascaderDistrictMain = forwardRef(
         // Style
         listStyle={listStyle}
         listClassName={listClassName}
-        optionStyle={optionStyle}
-        optionClassName={optionClassName}
+        itemStyle={itemStyle}
+        itemClassName={itemClassName}
         // Elements
         searchVisible={searchVisible}
         // Events

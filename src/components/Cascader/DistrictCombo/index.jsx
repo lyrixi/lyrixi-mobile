@@ -56,8 +56,8 @@ const DistrictCombo = forwardRef(
       // Modal: Style
       listStyle,
       listClassName,
-      optionStyle,
-      optionClassName,
+      itemStyle,
+      itemClassName,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -231,8 +231,8 @@ const DistrictCombo = forwardRef(
           // Modal: Style
           listStyle={listStyle}
           listClassName={listClassName}
-          optionStyle={optionStyle}
-          optionClassName={optionClassName}
+          itemStyle={itemStyle}
+          itemClassName={itemClassName}
           className={modalClassName}
           style={modalStyle}
           maskClassName={maskClassName}

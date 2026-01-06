@@ -37,8 +37,8 @@ const CascaderPage = forwardRef(
       // Style
       listStyle,
       listClassName,
-      optionStyle,
-      optionClassName,
+      itemStyle,
+      itemClassName,
 
       // Elements
       searchVisible,
@@ -319,8 +319,8 @@ const CascaderPage = forwardRef(
             // Style
             style={listStyle}
             className={listClassName}
-            optionStyle={optionStyle}
-            optionClassName={optionClassName}
+            itemStyle={itemStyle}
+            itemClassName={itemClassName}
             // Events
             onReLoad={async () => {
               update(value, { action: 'load' })

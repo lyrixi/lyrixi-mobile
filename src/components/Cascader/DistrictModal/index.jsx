@@ -36,8 +36,8 @@ const DistrictModal = forwardRef(
       safeArea,
       listStyle,
       listClassName,
-      optionStyle,
-      optionClassName,
+      itemStyle,
+      itemClassName,
       modalStyle,
       modalClassName,
       maskStyle,
@@ -185,8 +185,8 @@ const DistrictModal = forwardRef(
           // Main: Style
           listStyle={listStyle}
           listClassName={listClassName}
-          optionStyle={optionStyle}
-          optionClassName={optionClassName}
+          itemStyle={itemStyle}
+          itemClassName={itemClassName}
           // Main: Elements
           searchVisible={searchVisible}
           // Main: Events

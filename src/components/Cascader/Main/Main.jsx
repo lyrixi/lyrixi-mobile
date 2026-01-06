@@ -22,8 +22,8 @@ const Main = forwardRef(
       // Style
       style,
       className,
-      optionStyle,
-      optionClassName,
+      itemStyle,
+      itemClassName,
       // Events
       onReLoad,
       onSelect
@@ -70,8 +70,8 @@ const Main = forwardRef(
                     return selected.id === item.id
                   })}
                   // Style
-                  style={optionStyle}
-                  className={DOMUtil.classNames(`lyrixi-cascader-option`, optionClassName)}
+                  style={itemStyle}
+                  className={DOMUtil.classNames(`lyrixi-cascader-item`, itemClassName)}
                   checkboxVariant="text"
                   checkboxPosition="right"
                   // Status
