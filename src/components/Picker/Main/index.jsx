@@ -16,7 +16,7 @@ let Main = forwardRef(
   (
     {
       // Modal: Status
-      open,
+      open, // 用于初始化鼠标拖动标识
 
       // Value & Display Value
       value,

@@ -26,9 +26,6 @@ import { LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-m
 const CascaderPage = forwardRef(
   (
     {
-      // Main: Status
-      open = true,
-
       // Value & Display Value
       value,
       list: externalList,
@@ -77,7 +74,6 @@ const CascaderPage = forwardRef(
     // 初始化tabs、选中tab、列表
     useEffect(() => {
       if (
-        !open ||
         !Array.isArray(externalList) ||
         !externalList.length ||
         ArrayUtil.isEqual(tabsRef.current, value, ['id', 'name'])
