@@ -305,7 +305,7 @@ function MapChoose(
           //   if (locationRef.current?.element) locationRef.current.element.style.bottom = bottom
           //   if (zoomRef.current?.element) zoomRef.current.element.style.bottom = bottom
           // }
-          if (list.length) {
+          if (list?.length) {
             setPoints(list)
           } else {
             setPoints(null)

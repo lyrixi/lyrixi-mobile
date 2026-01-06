@@ -4,13 +4,14 @@ import React, { useState } from 'react'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 import ToolBar from './../../../ToolBar'
-import Page from './../../../../components/Page'
+import List from './../../../List'
+import Page from './../../../Page'
 import Result from './../../../Result'
 import Typography from './../../../Typography'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Loading, ToolBar, Page, Result, Typography } from 'lyrixi-mobile'
+import { LocaleUtil, Loading, ToolBar, List, Page, Result, Typography } from 'lyrixi-mobile'
 测试使用-end */
 
 // 搜索
@@ -77,6 +78,8 @@ function SearchPage({
         <ToolBar.SearchActive
           // Value & Display Value
           value={keyword}
+          // Status
+          allowClear
           // Events
           onSearch={(keyword) => {
             setKeyword(keyword)
@@ -89,27 +92,20 @@ function SearchPage({
       </Page.Header>
 
       {/* Element: Body */}
-      <div className="lyrixi-map-searchControl-body">
-        {Array.isArray(result?.list) && result?.list.length
-          ? result?.list.map((item, index) => {
-              return (
-                <div
-                  className="lyrixi-map-searchControl-item"
-                  key={index}
-                  onClick={() => handleClick(item)}
-                >
-                  <div className="lyrixi-map-searchControl-item-content">
-                    <div className="lyrixi-map-searchControl-item-title">
-                      <Typography.Text highlight={keyword || ''}>{item.name}</Typography.Text>
-                    </div>
-                    <div className="lyrixi-map-searchControl-item-content-description">
-                      {item.address}
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-          : null}
+      <div className="lyrixi-map-searchControl-main">
+        {Array.isArray(result?.list) && result?.list.length ? (
+          <List
+            list={result?.list}
+            onChange={handleClick}
+            formatViewItem={(item) => {
+              return {
+                ...item,
+                title: <Typography.Text highlight={keyword || ''}>{item.name}</Typography.Text>,
+                description: item.address
+              }
+            }}
+          />
+        ) : null}
 
         {/* Query error or empty */}
         {typeof result?.message === 'string' && (

@@ -335,24 +335,50 @@ export default () => {
           <Card.Header>SearchBar active</Card.Header>
           <Card.Main>
             <ToolBar>
-              <ToolBar.Search
+              <ToolBar.SearchActive
                 value={search}
-                readOnly
-                onClick={() => {
-                  setSearchActive(true)
+                onSearch={(keyword) => {
+                  setSearch(keyword)
+                  console.log('search keyword:' + keyword)
+                  setSearchActive(false)
                 }}
+                onBlur={() => {
+                  setSearchActive(false)
+                }}
+                // onCancel={() => {
+                //   setSearchActive(false)
+                // }}
               />
-              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
-                <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-                </ToolBar.Button>
-                <ToolBar.Filter
-                  sizeEqual
-                  modalRender={() => {
-                    return <div style={{ height: '300px' }}>Modal Content</div>
-                  }}
-                />
-              </Flex.Compact>
+            </ToolBar>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>SearchBar active</Card.Header>
+          <Card.Main>
+            <ToolBar>
+              {!searchActive && (
+                <>
+                  <ToolBar.Search
+                    value={search}
+                    readOnly
+                    onClick={() => {
+                      setSearchActive(true)
+                    }}
+                  />
+                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                    <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                    </ToolBar.Button>
+                    <ToolBar.Filter
+                      sizeEqual
+                      modalRender={() => {
+                        return <div style={{ height: '300px' }}>Modal Content</div>
+                      }}
+                    />
+                  </Flex.Compact>
+                </>
+              )}
               {searchActive && (
                 <ToolBar.SearchActive
                   value={search}
@@ -377,24 +403,29 @@ export default () => {
           <Card.Header>SearchBar variant active</Card.Header>
           <Card.Main>
             <ToolBar variant="filled">
-              <ToolBar.Search
-                value={search}
-                readOnly
-                onClick={() => {
-                  setFilledSearchActive(true)
-                }}
-              />
-              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
-                <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-                </ToolBar.Button>
-                <ToolBar.Filter
-                  sizeEqual
-                  modalRender={() => {
-                    return <div style={{ height: '300px' }}>Modal Content</div>
-                  }}
-                />
-              </Flex.Compact>
+              {!filledSearchActive && (
+                <>
+                  <ToolBar.Search
+                    value={search}
+                    readOnly
+                    onClick={() => {
+                      setFilledSearchActive(true)
+                    }}
+                  />
+                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                    <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                    </ToolBar.Button>
+                    <ToolBar.Filter
+                      sizeEqual
+                      modalRender={() => {
+                        return <div style={{ height: '300px' }}>Modal Content</div>
+                      }}
+                    />
+                  </Flex.Compact>
+                </>
+              )}
+
               {filledSearchActive && (
                 <ToolBar.SearchActive
                   value={search}
