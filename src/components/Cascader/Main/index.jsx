@@ -237,9 +237,6 @@ const CascaderPage = forwardRef(
       }
       // 不在tabs上, 为第一项
       else {
-        if (value?.length) {
-          console.log(`lyrixi Cascader.Main: 下钻项未匹配到上级, 请检查数据是否正确`, item, value)
-        }
         newValue = [{ ...item }]
       }
 

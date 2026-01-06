@@ -117,16 +117,18 @@ const CascaderModal = forwardRef(
         onClose={onClose}
         onOk={handleOk}
       >
-        <Main
-          ref={mainRef}
-          open={open}
-          value={currentValue}
-          allowClear={allowClear}
-          onChange={handleChange}
-          searchVisible={searchVisible}
-          list={list}
-          loadData={loadData}
-        />
+        {/* 弹窗打开时, 再渲染主页面, 避免用户未点击就加载的问题 */}
+        {open && (
+          <Main
+            ref={mainRef}
+            value={currentValue}
+            allowClear={allowClear}
+            onChange={handleChange}
+            searchVisible={searchVisible}
+            list={list}
+            loadData={loadData}
+          />
+        )}
       </NavBarModal>
     )
   }
