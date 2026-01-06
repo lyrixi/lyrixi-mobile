@@ -4,7 +4,7 @@ import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'
 import formatValue from './../utils/formatValue'
 import formatList from './../utils/formatList'
-import ListItem from './ListItem'
+import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
@@ -23,7 +23,7 @@ import { LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-m
 测试使用-end */
 
 // 主体
-const Main = forwardRef(
+const CascaderPage = forwardRef(
   (
     {
       // Main: Status
@@ -45,8 +45,7 @@ const Main = forwardRef(
       tabbarRender,
 
       // Events
-      onChange,
-      onReLoad
+      onChange
     },
     ref
   ) => {
@@ -57,14 +56,14 @@ const Main = forwardRef(
     let [activeTab, setActiveTab] = useState(null)
 
     // 选中列表, 文本则为错误
-    let [currentList, setCurrentList] = useState(formatList(externalList))
+    let currentList = formatList(externalList)
+    let [result, setResult] = useState(
+      currentList
+        ? { status: 'success', list: currentList }
+        : { status: 'empty', message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data') }
+    )
 
-    // 搜索页面显示状态
-    const [keyword, setKeyword] = useState('')
-    let [searchPageVisible, setSearchPageVisible] = useState(false)
-    const [searchActive, setSearchActive] = useState(false)
-
-    // 节点
+    // Expose
     const mainRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
@@ -91,14 +90,6 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [value])
 
-    // 隐藏还原搜索状态
-    useEffect(() => {
-      if (!open) {
-        resetSearch()
-      }
-      // eslint-disable-next-line
-    }, [open])
-
     // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
     async function update(newValue, { action } = {}) {
       // 更新tabs
@@ -112,21 +103,24 @@ const Main = forwardRef(
       // 无值显示根列表
       if (!newValue || _.isEmpty(newValue)) {
         setActiveTab(null)
-        setCurrentList(newExternalList)
+        setResult({
+          status: 'success',
+          list: newExternalList
+        })
         return
       }
 
       // 获取当前列表(按行为策略)
-      let result = await getActionData(newValue, { action })
+      let newResult = await getActionData(newValue, { action })
 
       // 接口报错, 或暂无数据
-      if (result.status !== 'success') {
+      if (newResult.status !== 'success') {
         setActiveTab(newValue[newValue.length - 1])
-        setCurrentList(result.message)
+        setResult(newResult)
         return
       }
 
-      // 点击项, 触发onChange, 只有getActionData后才会更新isLeaf, 所以onChange需要放在getActionData后
+      // 点击项, 触发onChange
       if (action === 'clickItem') {
         onChange && onChange(newValue)
       }
@@ -141,7 +135,7 @@ const Main = forwardRef(
 
       // 选中最后一个tab, 并且更新列表
       setActiveTab(tabsRef.current[tabsRef.current.length - 1])
-      setCurrentList(result.list)
+      setResult(newResult)
     }
 
     // 统一根据操作行为获取列表:
@@ -198,28 +192,29 @@ const Main = forwardRef(
       }
 
       // 渲染子级, 返回{status: 'success|error|empty', message: '', list:[]}
-      let result = await loadChildren(tabs, { externalLoadData, externalList })
+      let newResult = await loadChildren(tabs, { externalLoadData, externalList })
 
+      debugger
       // 异步获取的数据, 无值则为叶子节点
-      if (result.async && result.status === 'empty') {
+      if (newResult.async && newResult.status === 'empty') {
         // 更新value的叶子节点
         updateIsLeaf(lastTab.id, { currentValue: tabs, value, tabsRef })
 
         // 更新externalList的叶子节点
         ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-          node.children = newList
+          node.children = newResult?.list || []
           node.isLeaf = true
         })
       }
       // 异步获取的数据, 有值更新列表的children, 并返回
-      else if (result.async && result.status === 'success') {
+      else if (newResult.async && newResult.status === 'success') {
         ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-          node.children = newList
+          node.children = newResult?.list || []
         })
       }
 
       // 返回result
-      return result
+      return newResult
     }
 
     // 点击选项, value不包含children
@@ -269,14 +264,14 @@ const Main = forwardRef(
 
       // 点击tab时, 展示该tab同级(其父级的children)
       let activeTabs = sliceArray(tabsRef.current, tab?.id)
-      let result = await getActionData(activeTabs, { action: 'clickTab' })
+      let newResult = await getActionData(activeTabs, { action: 'clickTab' })
 
       setActiveTab(tab)
-      setCurrentList(result.list)
+      setResult(newResult)
     }
 
     function getTabsNode() {
-      if (typeof currentList === 'string') return null
+      if (result?.status !== 'success') return null
 
       if (typeof tabbarRender === 'function') {
         return tabbarRender({
@@ -291,17 +286,10 @@ const Main = forwardRef(
       )
     }
 
-    // 重置搜索状态
-    function resetSearch() {
-      setKeyword('')
-      setSearchPageVisible(false)
-      setSearchActive(false)
-    }
-
     return (
       <>
         {/* 主页面 */}
-        <Page full={false} className="lyrixi-cascader-main">
+        <Page full={false} className="lyrixi-cascader-page">
           {/* 搜索框 */}
           {searchVisible && Array.isArray(externalList) && externalList.length > 0 && (
             <SearchControl
@@ -312,7 +300,6 @@ const Main = forwardRef(
                 // eslint-disable-next-line
                 value = newValue
                 tabsRef.current = newValue
-                resetSearch()
 
                 handleDrill(lastItem)
               }}
@@ -323,11 +310,11 @@ const Main = forwardRef(
           {getTabsNode()}
 
           {/* 主体 */}
-          <ListItem
+          <Main
             ref={mainRef}
             // Value & Display Value
             value={value}
-            list={currentList}
+            result={result}
             // Style
             style={listStyle}
             className={listClassName}
@@ -335,16 +322,17 @@ const Main = forwardRef(
             optionClassName={optionClassName}
             // Events
             onReLoad={async () => {
-              if (typeof onReLoad !== 'function') return
-              let newList = await onReLoad(value, { list: externalList, update })
-              if (!newList) return
-              setCurrentList(newList)
+              update(value, { action: 'load' })
+              // if (typeof onReLoad !== 'function') return
+              // let newList = await onReLoad(value, { list: externalList, update })
+              // if (!newList) return
+              // setResult(newList)
             }}
             onSelect={(item) => handleDrill(item)}
           />
           <IndexBar
             className="lyrixi-cascader-indexbar"
-            anchors={getAnchors(currentList)}
+            anchors={getAnchors(result?.list)}
             scrollerElement={mainRef.current}
           />
         </Page>
@@ -353,4 +341,4 @@ const Main = forwardRef(
   }
 )
 
-export default Main
+export default CascaderPage

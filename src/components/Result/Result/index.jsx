@@ -13,6 +13,7 @@ function Result({
   description,
 
   // Style
+  full = true,
   style,
   className,
 
@@ -49,7 +50,7 @@ function Result({
     <div
       // Style
       style={style}
-      className={DOMUtil.classNames('lyrixi-result', className)}
+      className={DOMUtil.classNames('lyrixi-result', full ? 'lyrixi-full' : '', className)}
     >
       {/* Element: Image */}
       {getImageNode()}

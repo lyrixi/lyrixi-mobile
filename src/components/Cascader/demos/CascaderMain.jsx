@@ -24,6 +24,7 @@ export default () => {
   // 加载街道
   function loadData(tabs) {
     return new Promise((resolve) => {
+      console.log('loadData:', tabs)
       Loading.show()
       let lastTab = tabs?.[tabs?.length - 1]
       let streets = [

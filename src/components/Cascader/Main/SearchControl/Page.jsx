@@ -67,7 +67,7 @@ const SearchPage = ({ list: externalList, onChange, onClose }) => {
         <Result
           title={LocaleUtil.locale('暂无数据', 'lyrixi.no.data')}
           status={'empty'}
-          className="lyrixi-cascader-body-result"
+          className="lyrixi-cascader-main-result"
         />
       )
     }

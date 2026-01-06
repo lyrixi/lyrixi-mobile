@@ -13,11 +13,11 @@ import IndexBar from './../../IndexBar'
 import { DOMUtil, LocaleUtil, List, Result, Button, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
-const ListItem = forwardRef(
+const Main = forwardRef(
   (
     {
       // Value & Display Value
-      list,
+      result,
       value,
       // Style
       style,
@@ -30,35 +30,26 @@ const ListItem = forwardRef(
     },
     ref
   ) => {
-    // 错误信息
-    let status = '500'
-
     // 显示分栏
     const indexes = {}
-
-    if (Array.isArray(list) && !list.length) {
-      // eslint-disable-next-line
-      list = LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
-      status = 'empty'
-    }
 
     return (
       <div
         style={style}
-        className={DOMUtil.classNames('lyrixi-cascader-body', className)}
+        className={DOMUtil.classNames('lyrixi-cascader-main', className)}
         ref={ref}
       >
-        {typeof list === 'string' && (
-          <Result title={list} status={status} className="lyrixi-cascader-body-result">
-            {status === '500' && onReLoad && (
+        {result?.status !== 'success' && (
+          <Result title={result?.message} status={result?.status} full>
+            {result?.status === 'error' && onReLoad ? (
               <Button className="lyrixi-result-button" color="primary" onClick={onReLoad}>
                 {LocaleUtil.locale('重新加载', 'lyrixi.reload')}
               </Button>
-            )}
+            ) : null}
           </Result>
         )}
-        {Array.isArray(list) &&
-          list.map((item, index) => {
+        {Array.isArray(result?.list) &&
+          result?.list.map((item, index) => {
             // 字母分栏
             let anchorBar = null
             if (item.anchor && !indexes[item.anchor]) {
@@ -94,4 +85,4 @@ const ListItem = forwardRef(
   }
 )
 
-export default ListItem
+export default Main
