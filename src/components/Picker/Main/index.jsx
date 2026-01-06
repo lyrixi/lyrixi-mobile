@@ -15,9 +15,6 @@ import { DOMUtil } from 'lyrixi-mobile'
 let Main = forwardRef(
   (
     {
-      // Modal: Status
-      open, // 用于初始化鼠标拖动标识
-
       // Value & Display Value
       value,
       list,
@@ -94,8 +91,6 @@ let Main = forwardRef(
         {/* Element: Slots */}
         <Slots
           ref={slotsRef}
-          // Modal: Status
-          open={open}
           // Value & Display Value
           lists={lists}
           // Events

@@ -103,14 +103,16 @@ const Modal = forwardRef(
         onClose={onClose}
         onOk={handleOk}
       >
-        <Main
-          ref={mainRef}
-          open={open}
-          value={currentValue}
-          allowClear={allowClear}
-          onChange={handleChange}
-          list={list}
-        />
+        {/* 弹窗打开时, 再渲染主页面, 主要为了重置鼠标拖动标识 */}
+        {open && (
+          <Main
+            ref={mainRef}
+            value={currentValue}
+            allowClear={allowClear}
+            onChange={handleChange}
+            list={list}
+          />
+        )}
       </NavBarModal>
     )
   }

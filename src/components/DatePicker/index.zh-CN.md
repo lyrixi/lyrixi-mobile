@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Combo/index.jsx"></code>
+<code src="./demos/DatePickerCombo.jsx"></code>
 
 ## API
 
@@ -82,7 +82,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Combo/index.jsx"></code>
+<code src="./demos/DatePickerCombo.jsx"></code>
 
 ### API
 
@@ -144,7 +144,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/RangeCombo/index.jsx"></code>
+<code src="./demos/DatePickerRangeCombo.jsx"></code>
 
 ### API
 
@@ -166,7 +166,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MultipleCombo/index.jsx"></code>
+<code src="./demos/DatePickerMultipleCombo.jsx"></code>
 
 ### API
 
@@ -188,7 +188,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/WeekCombo/index.jsx"></code>
+<code src="./demos/DatePickerWeekCombo.jsx"></code>
 
 ### API
 
@@ -210,7 +210,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Types/index.jsx"></code>
+<code src="./demos/DatePickerTypes.jsx"></code>
 
 ### API
 
@@ -228,3 +228,47 @@ toc: content
 | ---------- | ---------- | ---------------------- |
 | element    | 根元素     | `HtmlDivElement`       |
 | getElement | 获取根元素 | () => `HtmlDivElement` |
+
+## DatePicker.RangeSelector
+
+日期范围快捷选择器组件。
+
+### 何时使用
+
+- 需要快捷选择日期范围时
+- 需要提供预设日期范围选项时
+
+### 代码演示
+
+<code src="./demos/DatePickerRangeSelector.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性          | 说明           | 类型                                                               | 默认值   |
+| ------------- | -------------- | ------------------------------------------------------------------ | -------- |
+| value         | 选中的值       | `Date[]`                                                           | -        |
+| autoSwapValue | 自动交换值     | `boolean`                                                          | `true`   |
+| type          | 日期类型       | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime'` | `'date'` |
+| rangeId       | 当前选中的范围 | `string`                                                           | -        |
+| ranges        | 范围配置       | `object`                                                           | -        |
+| min           | 最小日期       | `Date`                                                             | -        |
+| max           | 最大日期       | `Date`                                                             | -        |
+| hourStep      | 小时步长       | `number`                                                           | -        |
+| minuteStep    | 分钟步长       | `number`                                                           | -        |
+| startDisabled | 禁用开始日期   | `boolean`                                                          | -        |
+| endDisabled   | 禁用结束日期   | `boolean`                                                          | -        |
+| allowClear    | 允许清除       | `boolean`                                                          | -        |
+| style         | 自定义样式     | `object`                                                           | -        |
+| className     | 自定义类名     | `string`                                                           | -        |
+| portal        | 挂载节点       | `HTMLElement`                                                      | -        |
+| onChange      | 变化事件       | `(value: Date[], { rangeId, ranges, displayValue }) => void`       | -        |
+| onOk          | 确认事件       | `(value: Date[], { rangeId, ranges, displayValue }) => void`       | -        |
+
+#### Ref
+
+| 属性           | 说明       | 类型                   |
+| -------------- | ---------- | ---------------------- |
+| mainElement    | 主元素     | `HtmlDivElement`       |
+| getMainElement | 获取主元素 | () => `HtmlDivElement` |

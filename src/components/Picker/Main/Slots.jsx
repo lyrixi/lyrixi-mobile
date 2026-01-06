@@ -13,9 +13,6 @@ import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 let Lists = forwardRef(
   (
     {
-      // Modal: Status
-      open = true,
-
       // Value & Display Value
       lists,
 
@@ -55,7 +52,7 @@ let Lists = forwardRef(
     useEffect(() => {
       isDrawingRef.current = false
       // eslint-disable-next-line
-    }, [open])
+    }, [])
 
     // 触摸事件
     function handleTouchStart(e) {
