@@ -34,6 +34,7 @@ const Item = ({
   content,
   actionRender,
   checkboxVariant,
+  checkboxPosition,
 
   // Events
   onSelect,
@@ -137,7 +138,7 @@ const Item = ({
         }}
       >
         {/* Left Checkbox */}
-        {checkable !== 'right' && getCheckboxNode(checked)}
+        {checkboxPosition !== 'right' && getCheckboxNode(checked)}
 
         {/* Main */}
         <div className="lyrixi-list-item-main">
@@ -165,7 +166,7 @@ const Item = ({
         </div>
 
         {/* Right Checkbox */}
-        {checkable === 'right' && getCheckboxNode(checked)}
+        {checkboxPosition === 'right' && getCheckboxNode(checked)}
       </div>
     )
   }

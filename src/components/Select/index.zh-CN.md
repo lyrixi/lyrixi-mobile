@@ -28,44 +28,45 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明         | 类型                            | 默认值 |
-| --------------- | ------------ | ------------------------------- | ------ |
-| value           | 选中的值     | `any \| any[]`                  | -      |
-| placeholder     | 占位符       | `string`                        | -      |
-| formatter       | 格式化函数   | `(value: any) => string`        | -      |
-| autoSize        | 自动调整大小 | `boolean`                       | -      |
-| separator       | 分隔符       | `string`                        | -      |
-| mode            | 模式         | `string`                        | -      |
-| readOnly        | 是否只读     | `boolean`                       | -      |
-| disabled        | 是否禁用     | `boolean`                       | -      |
-| allowClear      | 允许清除     | `boolean`                       | -      |
-| multiple        | 是否多选     | `boolean`                       | -      |
-| style           | 自定义样式   | `object`                        | -      |
-| className       | 自定义类名   | `string`                        | -      |
-| leftIconNode    | 左侧图标     | `ReactNode`                     | -      |
-| rightIconNode   | 右侧图标     | `ReactNode`                     | -      |
-| clearRender     | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
-| list            | 选项列表     | `Array<object>`                 | -      |
-| formatViewList  | 格式化列表   | `(list: Array) => Array`        | -      |
-| formatViewItem  | 格式化项     | `(item: object) => object`      | -      |
-| maskClosable    | 点击遮罩关闭 | `boolean`                       | -      |
-| safeArea        | 是否安全区   | `boolean`                       | -      |
-| modalStyle      | 模态框样式   | `object`                        | -      |
-| modalClassName  | 模态框类名   | `string`                        | -      |
-| maskStyle       | 遮罩样式     | `object`                        | -      |
-| maskClassName   | 遮罩类名     | `string`                        | -      |
-| portal          | 挂载节点     | `HTMLElement \| null \| false`  | -      |
-| title           | 标题         | `ReactNode`                     | -      |
-| cancelNode      | 取消按钮     | `ReactNode`                     | -      |
-| cancelVisible   | 取消按钮可见 | `boolean`                       | -      |
-| headerRender    | 头部渲染     | `(props: object) => ReactNode`  | -      |
-| itemRender      | 项渲染       | `(item: object) => ReactNode`   | -      |
-| layout          | 布局         | `string`                        | -      |
-| checkable       | 是否可选     | `boolean`                       | -      |
-| checkboxVariant | 复选框渲染   | `(item: object) => ReactNode`   | -      |
-| onOk            | 确认事件     | `(value: any \| any[]) => void` | -      |
-| onChange        | 变化事件     | `(value: any \| any[]) => void` | -      |
-| onBeforeOpen    | 打开前事件   | `() => Promise<boolean>`        | -      |
+| 属性             | 说明         | 类型                            | 默认值 |
+| ---------------- | ------------ | ------------------------------- | ------ |
+| value            | 选中的值     | `any \| any[]`                  | -      |
+| placeholder      | 占位符       | `string`                        | -      |
+| formatter        | 格式化函数   | `(value: any) => string`        | -      |
+| autoSize         | 自动调整大小 | `boolean`                       | -      |
+| separator        | 分隔符       | `string`                        | -      |
+| mode             | 模式         | `string`                        | -      |
+| readOnly         | 是否只读     | `boolean`                       | -      |
+| disabled         | 是否禁用     | `boolean`                       | -      |
+| allowClear       | 允许清除     | `boolean`                       | -      |
+| multiple         | 是否多选     | `boolean`                       | -      |
+| style            | 自定义样式   | `object`                        | -      |
+| className        | 自定义类名   | `string`                        | -      |
+| leftIconNode     | 左侧图标     | `ReactNode`                     | -      |
+| rightIconNode    | 右侧图标     | `ReactNode`                     | -      |
+| clearRender      | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
+| list             | 选项列表     | `Array<object>`                 | -      |
+| formatViewList   | 格式化列表   | `(list: Array) => Array`        | -      |
+| formatViewItem   | 格式化项     | `(item: object) => object`      | -      |
+| maskClosable     | 点击遮罩关闭 | `boolean`                       | -      |
+| safeArea         | 是否安全区   | `boolean`                       | -      |
+| modalStyle       | 模态框样式   | `object`                        | -      |
+| modalClassName   | 模态框类名   | `string`                        | -      |
+| maskStyle        | 遮罩样式     | `object`                        | -      |
+| maskClassName    | 遮罩类名     | `string`                        | -      |
+| portal           | 挂载节点     | `HTMLElement \| null \| false`  | -      |
+| title            | 标题         | `ReactNode`                     | -      |
+| cancelNode       | 取消按钮     | `ReactNode`                     | -      |
+| cancelVisible    | 取消按钮可见 | `boolean`                       | -      |
+| headerRender     | 头部渲染     | `(props: object) => ReactNode`  | -      |
+| itemRender       | 项渲染       | `(item: object) => ReactNode`   | -      |
+| layout           | 布局         | `string`                        | -      |
+| checkable        | 是否可选     | `boolean`                       | -      |
+| checkboxVariant  | 复选框渲染   | `(item: object) => ReactNode`   | -      |
+| checkboxPosition | 复选框渲染   | `left/right`                    | -      |
+| onOk             | 确认事件     | `(value: any \| any[]) => void` | -      |
+| onChange         | 变化事件     | `(value: any \| any[]) => void` | -      |
+| onBeforeOpen     | 打开前事件   | `() => Promise<boolean>`        | -      |
 
 #### Ref
 
@@ -91,32 +92,33 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明         | 类型                            | 默认值 |
-| --------------- | ------------ | ------------------------------- | ------ |
-| value           | 选中的值     | `any \| any[]`                  | -      |
-| list            | 选项列表     | `Array<object>`                 | -      |
-| formatViewList  | 格式化列表   | `(list: Array) => Array`        | -      |
-| formatViewItem  | 格式化项     | `(item: object) => object`      | -      |
-| open            | 是否显示     | `boolean`                       | -      |
-| maskClosable    | 点击遮罩关闭 | `boolean`                       | -      |
-| safeArea        | 是否安全区   | `boolean`                       | -      |
-| multiple        | 是否多选     | `boolean`                       | -      |
-| modalStyle      | 模态框样式   | `object`                        | -      |
-| modalClassName  | 模态框类名   | `string`                        | -      |
-| maskStyle       | 遮罩样式     | `object`                        | -      |
-| maskClassName   | 遮罩类名     | `string`                        | -      |
-| portal          | 挂载节点     | `HTMLElement \| null \| false`  | -      |
-| title           | 标题         | `ReactNode`                     | -      |
-| cancelNode      | 取消按钮     | `ReactNode`                     | -      |
-| cancelVisible   | 取消按钮可见 | `boolean`                       | -      |
-| headerRender    | 头部渲染     | `(props: object) => ReactNode`  | -      |
-| itemRender      | 项渲染       | `(item: object) => ReactNode`   | -      |
-| layout          | 布局         | `string`                        | -      |
-| checkable       | 是否可选     | `boolean`                       | -      |
-| checkboxVariant | 复选框渲染   | `(item: object) => ReactNode`   | -      |
-| onOk            | 确认事件     | `(value: any \| any[]) => void` | -      |
-| onChange        | 变化事件     | `(value: any \| any[]) => void` | -      |
-| onClose         | 关闭事件     | `() => void`                    | -      |
+| 属性             | 说明         | 类型                            | 默认值 |
+| ---------------- | ------------ | ------------------------------- | ------ |
+| value            | 选中的值     | `any \| any[]`                  | -      |
+| list             | 选项列表     | `Array<object>`                 | -      |
+| formatViewList   | 格式化列表   | `(list: Array) => Array`        | -      |
+| formatViewItem   | 格式化项     | `(item: object) => object`      | -      |
+| open             | 是否显示     | `boolean`                       | -      |
+| maskClosable     | 点击遮罩关闭 | `boolean`                       | -      |
+| safeArea         | 是否安全区   | `boolean`                       | -      |
+| multiple         | 是否多选     | `boolean`                       | -      |
+| modalStyle       | 模态框样式   | `object`                        | -      |
+| modalClassName   | 模态框类名   | `string`                        | -      |
+| maskStyle        | 遮罩样式     | `object`                        | -      |
+| maskClassName    | 遮罩类名     | `string`                        | -      |
+| portal           | 挂载节点     | `HTMLElement \| null \| false`  | -      |
+| title            | 标题         | `ReactNode`                     | -      |
+| cancelNode       | 取消按钮     | `ReactNode`                     | -      |
+| cancelVisible    | 取消按钮可见 | `boolean`                       | -      |
+| headerRender     | 头部渲染     | `(props: object) => ReactNode`  | -      |
+| itemRender       | 项渲染       | `(item: object) => ReactNode`   | -      |
+| layout           | 布局         | `string`                        | -      |
+| checkable        | 是否可选     | `boolean`                       | -      |
+| checkboxVariant  | 复选框渲染   | `(item: object) => ReactNode`   | -      |
+| checkboxPosition | 复选框渲染   | `left/right`                    | -      |
+| onOk             | 确认事件     | `(value: any \| any[]) => void` | -      |
+| onChange         | 变化事件     | `(value: any \| any[]) => void` | -      |
+| onClose          | 关闭事件     | `() => void`                    | -      |
 
 #### Ref
 
@@ -142,21 +144,22 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明       | 类型                            | 默认值 |
-| --------------- | ---------- | ------------------------------- | ------ |
-| value           | 选中的值   | `any \| any[]`                  | -      |
-| list            | 选项列表   | `Array<object>`                 | -      |
-| formatViewList  | 格式化列表 | `(list: Array) => Array`        | -      |
-| formatViewItem  | 格式化项   | `(item: object) => object`      | -      |
-| open            | 是否显示   | `boolean`                       | `true` |
-| multiple        | 是否多选   | `boolean`                       | -      |
-| style           | 自定义样式 | `object`                        | -      |
-| className       | 自定义类名 | `string`                        | -      |
-| layout          | 布局       | `string`                        | -      |
-| checkable       | 是否可选   | `boolean`                       | `true` |
-| itemRender      | 项渲染     | `(item: object) => ReactNode`   | -      |
-| checkboxVariant | 复选框渲染 | `(item: object) => ReactNode`   | -      |
-| onChange        | 变化事件   | `(value: any \| any[]) => void` | -      |
+| 属性             | 说明       | 类型                            | 默认值 |
+| ---------------- | ---------- | ------------------------------- | ------ |
+| value            | 选中的值   | `any \| any[]`                  | -      |
+| list             | 选项列表   | `Array<object>`                 | -      |
+| formatViewList   | 格式化列表 | `(list: Array) => Array`        | -      |
+| formatViewItem   | 格式化项   | `(item: object) => object`      | -      |
+| open             | 是否显示   | `boolean`                       | `true` |
+| multiple         | 是否多选   | `boolean`                       | -      |
+| style            | 自定义样式 | `object`                        | -      |
+| className        | 自定义类名 | `string`                        | -      |
+| layout           | 布局       | `string`                        | -      |
+| checkable        | 是否可选   | `boolean`                       | `true` |
+| itemRender       | 项渲染     | `(item: object) => ReactNode`   | -      |
+| checkboxVariant  | 复选框渲染 | `(item: object) => ReactNode`   | -      |
+| checkboxPosition | 复选框渲染 | `left/right`                    | -      |
+| onChange         | 变化事件   | `(value: any \| any[]) => void` | -      |
 
 #### Ref
 

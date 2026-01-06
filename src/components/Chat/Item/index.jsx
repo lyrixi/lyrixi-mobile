@@ -18,12 +18,13 @@ const Chat = (
     // Status
     checked,
     checkable,
-    checkboxVariant,
 
     // Style
     className,
     position,
     style,
+    checkboxVariant,
+    checkboxPosition,
 
     // Elements
     avatarUrl,
@@ -100,7 +101,7 @@ const Chat = (
       ref={rootRef}
     >
       {/* Left Checkbox */}
-      {checkable !== 'right' && getCheckboxNode(checked)}
+      {checkboxPosition !== 'right' && getCheckboxNode(checked)}
 
       <div className="lyrixi-chat-item-main">
         {/* Avatar */}
@@ -114,7 +115,7 @@ const Chat = (
       </div>
 
       {/* Right Checkbox */}
-      {checkable === 'right' && getCheckboxNode(checked)}
+      {checkboxPosition === 'right' && getCheckboxNode(checked)}
     </div>
   )
 }

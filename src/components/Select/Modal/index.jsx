@@ -27,14 +27,18 @@ const Modal = forwardRef(
       maskClosable,
       safeArea,
       multiple,
+      checkable,
 
       // Style
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
-      layout,
-      checkable,
+      itemStyle,
+      itemClassName,
+      itemLayout,
+      checkboxVariant,
+      checkboxPosition,
 
       // Elements
       portal,
@@ -43,7 +47,6 @@ const Modal = forwardRef(
       cancelVisible,
       headerRender,
       itemRender,
-      checkboxVariant,
 
       // Events
       onOk,
@@ -151,6 +154,7 @@ const Modal = forwardRef(
           // Status
           open={open}
           multiple={multiple}
+          checkable={checkable}
           // Value & Display Value
           value={currentValue}
           list={
@@ -160,10 +164,12 @@ const Modal = forwardRef(
           formatViewItem={formatViewItem}
           // Element
           itemRender={itemRender}
-          checkboxVariant={checkboxVariant}
           // Style
-          layout={layout}
-          checkable={checkable}
+          itemStyle={itemStyle}
+          itemClassName={itemClassName}
+          itemLayout={itemLayout}
+          checkboxVariant={checkboxVariant}
+          checkboxPosition={checkboxPosition}
           // Events
           onChange={handleChange}
         />

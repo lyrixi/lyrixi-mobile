@@ -24,16 +24,19 @@ const Main = forwardRef(
       // Status
       open = true,
       multiple,
+      checkable = true,
 
       // Style
       className,
       style,
-      layout,
-      checkable = true,
+      itemStyle,
+      itemClassName,
+      itemLayout,
+      checkboxVariant,
+      checkboxPosition,
 
       // Element
       itemRender,
-      checkboxVariant,
 
       // Events
       onChange
@@ -69,8 +72,13 @@ const Main = forwardRef(
           // Status
           allowClear={multiple ? true : false}
           multiple={multiple}
-          // Style
           checkable={checkable}
+          // Style
+          itemStyle={itemStyle}
+          itemClassName={itemClassName}
+          itemLayout={itemLayout}
+          checkboxVariant={checkboxVariant}
+          checkboxPosition={checkboxPosition}
           // Element
           itemRender={itemRender}
           // Events

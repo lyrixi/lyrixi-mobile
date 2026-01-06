@@ -50,10 +50,11 @@ const List = (
     itemStyle,
     itemClassName,
     itemLayout,
+    checkboxVariant,
+    checkboxPosition,
 
     // Elements
     itemRender,
-    checkboxVariant,
 
     // Events
     onChange
@@ -119,6 +120,8 @@ const List = (
         style={{ ...itemStyle, ...item.style }}
         className={{ ...itemClassName, ...item.className }}
         layout={itemLayout}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
         // Elements
         imageUrl={item.imageUrl}
         imageRender={item.imageRender}
@@ -129,7 +132,6 @@ const List = (
         note={item.note}
         content={item.content}
         actionRender={item.actionRender}
-        checkboxVariant={checkboxVariant}
         // Events
         onSelect={handleChange}
       />

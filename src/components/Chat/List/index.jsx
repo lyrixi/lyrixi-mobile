@@ -32,8 +32,12 @@ const List = (
 
     // Status
     checkable,
-    // Elements
+
+    // Style
     checkboxVariant,
+    checkboxPosition,
+
+    // Elements
     timeSpace = 60000, // 时间间隔, 单位 ms, 默认1分钟
 
     // Events
@@ -64,10 +68,11 @@ const List = (
         _raw={item._raw ?? { id: item.id ?? index }}
         // Status
         checkable={checkable}
-        checkboxVariant={checkboxVariant}
         checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
         // Style
         position={item.position}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
         // Elements
         avatarUrl={item.avatarUrl}
         avatarRender={item.avatarRender}

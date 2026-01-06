@@ -14,21 +14,6 @@
 
 // Main List
 .lyrixi-cascader-option {
-  .lyrixi-flex;
-  .lyrixi-flex-align-center;
-  padding: 0 12px;
-  height: 40px;
-  line-height: 40px;
-  * {
-    pointer-events: none;
-  }
-  &.lyrixi-checked {
-    background-color: #f8f9f9;
-    .lyrixi-list-item-meta-title {
-      color: var(--lyrixi-primary);
-      // font-weight: 600;
-    }
-  }
 }
 
 // Main Tabs
@@ -41,7 +26,7 @@
   overflow-x: auto;
   // tab禁用又选中的情况下，不允许点击列表
   &:has(.lyrixi-active.lyrixi-disabled) {
-    & + .lyrixi-cascader-body .lyrixi-cascader-option {
+    & + .lyrixi-cascader-main .lyrixi-cascader-option {
       pointer-events: none;
       opacity: 0.5;
     }

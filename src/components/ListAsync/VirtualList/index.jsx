@@ -38,10 +38,11 @@ const VirtualList = (
     itemStyle,
     itemClassName,
     itemLayout,
+    checkboxVariant,
+    checkboxPosition,
 
     // Elements
     itemRender,
-    checkboxVariant,
     prependRender,
     appendRender,
     children,
@@ -184,13 +185,14 @@ const VirtualList = (
         itemStyle={itemStyle}
         itemClassName={itemClassName}
         itemLayout={itemLayout}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
         // Status
         multiple={multiple}
         allowClear={allowClear}
         checkable={checkable}
         // Elements
         itemRender={itemRender}
-        checkboxVariant={checkboxVariant}
         // Events
         onChange={onChange}
       />

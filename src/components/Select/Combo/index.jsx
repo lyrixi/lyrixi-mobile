@@ -41,12 +41,18 @@ const SelectCombo = forwardRef(
       formatViewItem,
       // Modal: Status
       maskClosable,
+      checkable,
       // Modal: Style
       safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+      checkboxVariant,
+      checkboxPosition,
+      itemStyle,
+      itemClassName,
+      itemLayout,
       // Modal: Elements
       portal,
       title,
@@ -54,9 +60,6 @@ const SelectCombo = forwardRef(
       cancelVisible,
       headerRender,
       itemRender,
-      layout,
-      checkable,
-      checkboxVariant,
 
       // Events
       onOk,
@@ -134,13 +137,17 @@ const SelectCombo = forwardRef(
           maskClosable={maskClosable}
           safeArea={safeArea}
           multiple={multiple}
+          checkable={checkable}
           // Style
           modalStyle={modalStyle}
           modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
           maskStyle={maskStyle}
           maskClassName={maskClassName}
-          layout={layout}
-          checkable={checkable}
+          itemStyle={itemStyle}
+          itemClassName={itemClassName}
+          itemLayout={itemLayout}
+          checkboxVariant={checkboxVariant}
+          checkboxPosition={checkboxPosition}
           // Elements
           portal={portal}
           title={title}
@@ -148,7 +155,6 @@ const SelectCombo = forwardRef(
           cancelVisible={cancelVisible}
           headerRender={headerRender}
           itemRender={itemRender}
-          checkboxVariant={checkboxVariant}
           // Events
           onOk={onOk}
           onChange={handleChange}

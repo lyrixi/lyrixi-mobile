@@ -126,12 +126,15 @@ const CascaderPage = forwardRef(
       }
 
       // 有子级, 则增加一个tab
-      tabsRef.current.push({
-        isChoose: true,
-        parentid: newValue[newValue.length - 1].id,
-        id: '',
-        name: LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')
-      })
+      let lastTab = newValue[newValue.length - 1]
+      if (!lastTab?.isLeaf) {
+        tabsRef.current.push({
+          isChoose: true,
+          parentid: newValue[newValue.length - 1].id,
+          id: '',
+          name: LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')
+        })
+      }
 
       // 选中最后一个tab, 并且更新列表
       setActiveTab(tabsRef.current[tabsRef.current.length - 1])
@@ -163,7 +166,6 @@ const CascaderPage = forwardRef(
       }
       // clickTab
       if (action === 'clickTab') {
-        debugger
         // 点击请选择, 查询子级列表
         if (lastTab?.isChoose) {
           return await getChildrenData(tabs.filter((tab) => !tab.isChoose))
@@ -194,7 +196,6 @@ const CascaderPage = forwardRef(
       // 渲染子级, 返回{status: 'success|error|empty', message: '', list:[]}
       let newResult = await loadChildren(tabs, { externalLoadData, externalList })
 
-      debugger
       // 异步获取的数据, 无值则为叶子节点
       if (newResult.async && newResult.status === 'empty') {
         // 更新value的叶子节点

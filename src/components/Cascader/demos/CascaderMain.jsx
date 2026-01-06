@@ -27,11 +27,18 @@ export default () => {
       console.log('loadData:', tabs)
       Loading.show()
       let lastTab = tabs?.[tabs?.length - 1]
-      let streets = [
+      let leaves = [
         {
           parentid: lastTab.id,
-          name: '孙子节点',
-          id: '1-1-1'
+          name: '孙子节点1',
+          id: '1-1-1',
+          isLeaf: true
+        },
+        {
+          parentid: lastTab.id,
+          name: '孙子节点2',
+          id: '1-1-2',
+          isLeaf: true
         }
       ]
       setTimeout(() => {
@@ -39,7 +46,7 @@ export default () => {
       }, 100)
       resolve({
         status: 'success',
-        list: streets
+        list: leaves
       })
     })
   }

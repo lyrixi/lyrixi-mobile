@@ -53,10 +53,11 @@ const Main = forwardRef(
       itemStyle,
       itemClassName,
       itemLayout,
+      checkboxVariant,
+      checkboxPosition,
 
       // Elements
       itemRender,
-      checkboxVariant,
       loadingRender,
       prependRender,
       appendRender,
@@ -202,9 +203,10 @@ const Main = forwardRef(
         itemStyle={itemStyle}
         itemClassName={itemClassName}
         itemLayout={itemLayout}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
         // Elements
         itemRender={itemRender}
-        checkboxVariant={checkboxVariant}
         prependRender={prependRender}
         appendRender={appendRender}
         // Events

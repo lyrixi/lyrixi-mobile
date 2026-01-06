@@ -65,17 +65,24 @@ const Main = forwardRef(
               <Fragment key={item.id || index}>
                 {anchorBar}
                 <List.Item
-                  style={optionStyle}
-                  className={DOMUtil.classNames(`lyrixi-cascader-option`, optionClassName)}
+                  // Value & Display Value
                   checked={value?.some?.((selected) => {
                     return selected.id === item.id
                   })}
+                  // Style
+                  style={optionStyle}
+                  className={DOMUtil.classNames(`lyrixi-cascader-option`, optionClassName)}
+                  checkboxVariant="text"
+                  checkboxPosition="right"
+                  // Status
+                  checkable
+                  // Elements
+                  title={item.name}
+                  // Events
                   onClick={(e) => {
                     e.stopPropagation()
                     onSelect(item)
                   }}
-                  title={item.name}
-                  checkboxVariant="text"
                 />
               </Fragment>
             )
