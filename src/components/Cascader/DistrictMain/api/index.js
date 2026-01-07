@@ -7,9 +7,9 @@ import formatStreets from './formatStreets'
 
 const api = {
   // 获取国家
-  loadCountries: async function (type) {
+  loadCountries: async function () {
     let result = await loadCountries()
-    return formatCountries(result, type)
+    return formatCountries(result)
   },
   /**
    * @description: 获取省市区

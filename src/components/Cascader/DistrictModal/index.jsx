@@ -131,14 +131,14 @@ const DistrictModal = forwardRef(
       onClose?.()
     }
 
-    function handleChange(newValue, newArguments) {
+    function handleChange(newValue) {
       setCurrentValue(newValue)
       handleDrillDown(newValue)
 
       // 如果到达叶子节点，立即关闭
       if (!Array.isArray(newValue) || !newValue.length) return
       const leafIndex = findDistrictLeafIndex(newValue, type)
-      if (typeof leafIndex === 'number') {
+      if (leafIndex >= 0) {
         if (onChange) {
           onChange(newValue)
         }

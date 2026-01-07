@@ -269,9 +269,9 @@ const CascaderPage = forwardRef(
 
       if (typeof tabbarRender === 'function') {
         return tabbarRender({
-          tabs: tabsRef.current,
-          activeTab: activeTab,
-          onActiveTabChange: handleClickTab
+          list: tabsRef.current,
+          value: activeTab,
+          onChange: handleClickTab
         })
       }
 

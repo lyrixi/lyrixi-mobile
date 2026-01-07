@@ -129,21 +129,15 @@ export default () => {
           />
         </Card>
         <Card>
-          <Divider>editableOptions</Divider>
+          <Divider>disabled</Divider>
           <Cascader.DistrictCombo
-            editableOptions={{
-              country: { editable: false },
-              province: { editable: false },
-              city: { editable: true },
-              district: { editable: true },
-              street: { editable: true }
-            }}
+            disabled={['country', 'province', 'city', 'district', 'street']}
             value={value}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
               setValue(newValue)
             }}
-            placeholder={'editableOptions'}
+            placeholder={'disabled'}
             allowClear
           />
         </Card>

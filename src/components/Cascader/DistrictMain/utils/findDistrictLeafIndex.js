@@ -1,4 +1,4 @@
-// 判断value中是否有某一项为末级，返回该项的索引（0开始），没有则返回null
+// 判断value中是否有某一项为末级，返回该项的索引（0开始），没有则返回-1
 function findDistrictLeafIndex(value, type) {
   // 对象
   if (Array.isArray(value?.type) && value.type.includes(type)) {
@@ -6,7 +6,7 @@ function findDistrictLeafIndex(value, type) {
   }
 
   // 数组
-  if (!Array.isArray(value) || value.length === 0) return null
+  if (!Array.isArray(value) || value.length === 0) return -1
 
   for (let i = 0; i < value.length; i++) {
     const item = value[i]
@@ -25,7 +25,7 @@ function findDistrictLeafIndex(value, type) {
       }
     }
   }
-  return null
+  return -1
 }
 
 export default findDistrictLeafIndex

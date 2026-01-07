@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
-import {
-  formatType,
-  formatDistrictValue,
-  findDistrictLeafIndex,
-  testEditableOptions
-} from './../DistrictMain/utils'
+import { formatType, formatDistrictValue, findDistrictLeafIndex } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用-start
@@ -50,7 +45,6 @@ const DistrictCombo = forwardRef(
       loadStreets,
       // Modal: Status
       min = '',
-      editableOptions,
       maskClosable,
 
       // Modal: Style
@@ -80,66 +74,20 @@ const DistrictCombo = forwardRef(
     type = formatType(type)
 
     const [open, setOpen] = useState(false)
-    // editableOptions需要根据list计算value的type, getList后才能计算value的type
+    // editableOptions需要根据list计算value的type, loadList后才能计算value的type
     const listRef = useRef(null)
-    let [readOnlyValue, setReadOnlyValue] = useState(null)
     const comboRef = useRef(null)
     const modalRef = useRef(null)
 
     // Expose api
     useImperativeHandle(ref, () => {
       return {
-        getReadOnlyValue: () => {
-          return readOnlyValue
-        },
         ...comboRef.current,
         ...modalRef.current,
         close: () => setOpen(false),
         open: () => setOpen(true)
       }
     })
-
-    // 获取readOnlyValue
-    useEffect(() => {
-      if (_.isEmpty(value) || _.isEmpty(editableOptions)) return
-      if (!comboRef.current?.getList) return
-
-      // 查询列表后再更新readOnlyValue
-      queryList()
-      // eslint-disable-next-line
-    }, [JSON.stringify(value)])
-
-    async function queryList() {
-      listRef.current = await comboRef.current?.getList(value)
-      updateReadOnlyValue()
-    }
-
-    // 清空操作，保留只读项，清空非只读项
-    async function updateReadOnlyValue() {
-      if (_.isEmpty(value) || _.isEmpty(editableOptions) || !Array.isArray(listRef.current)) {
-        return null
-      }
-
-      // 更新value的type属性
-      // eslint-disable-next-line
-      value = formatDistrictValue(value, listRef.current, type)
-
-      // 清空只能清空非只读项
-      let newValue = []
-      for (let item of value) {
-        let isEditable = testEditableOptions(item, {
-          editableOptions
-        })
-        if (isEditable === false) {
-          newValue.push(item)
-        }
-      }
-
-      // 设置只读的值
-      setReadOnlyValue(newValue)
-
-      return newValue
-    }
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
@@ -151,20 +99,6 @@ const DistrictCombo = forwardRef(
 
     function handleClose() {
       setOpen(false)
-    }
-
-    function handleChange(newValue, ...other) {
-      // 清空操作，公能清空非只读项
-      if (editableOptions && !newValue && Array.isArray(value) && value.length) {
-        // 清空完成
-        if (readOnlyValue?.length) {
-          // eslint-disable-next-line
-          newValue = readOnlyValue
-        }
-      }
-      if (onChange) {
-        onChange(newValue, ...other)
-      }
     }
 
     return (
@@ -211,7 +145,7 @@ const DistrictCombo = forwardRef(
             return clearable === false ? null : undefined
           }}
           // Events
-          onChange={handleChange}
+          onChange={onChange}
           onClick={handleOpen}
         />
         <DistrictModal
@@ -245,7 +179,7 @@ const DistrictCombo = forwardRef(
           cancelVisible={cancelVisible}
           searchVisible={searchVisible}
           // Modal: Events
-          onChange={handleChange}
+          onChange={onChange}
           onClose={handleClose}
         />
       </>

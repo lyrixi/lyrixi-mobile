@@ -55,7 +55,7 @@ function formatDistrictValue(originValue, list, type) {
   // 从叶子节点后，舍弃掉后面的item
   if (type) {
     const leafIndex = findDistrictLeafIndex(value, type)
-    if (leafIndex !== null && leafIndex >= 0 && leafIndex < value.length) {
+    if (leafIndex >= 0 && leafIndex < value.length) {
       value.length = leafIndex + 1
       // 标记为isLeaf方便Cascader.Main解析
       value[value.length - 1].isLeaf = true

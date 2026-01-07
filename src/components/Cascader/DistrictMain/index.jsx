@@ -1,17 +1,18 @@
-import React, { useRef, useImperativeHandle, forwardRef, useEffect, useState } from 'react'
+import React, { useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 
-import { getList as _getList, validateList, formatType } from './utils/index.js'
-import DistrictMain from './DistrictMain'
+import { loadBaseData, loadData as _loadData, isValueInList, formatType } from './utils/index.js'
 import api from './api'
+import Main from './../Main'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
-import Loading from './../../Loading'
-import ArrayUtil from './../../../utils/ArrayUtil'
+import ArrayUtil from '../../../utils/ArrayUtil'
+import Button from './../Button'
+import Result from './../Result'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Loading, ArrayUtil } from 'lyrixi-mobile'
+import { LocaleUtil, ArrayUtil, Button, Result } from 'lyrixi-mobile'
 测试使用-end */
 
 // 地址选择
@@ -29,9 +30,6 @@ const CascaderDistrictMain = forwardRef(
       loadCountryRegions = api.loadCountryRegions,
       loadStreets = api.loadStreets,
 
-      // Status
-      editableOptions,
-
       // Style
       listStyle,
       listClassName,
@@ -47,138 +45,120 @@ const CascaderDistrictMain = forwardRef(
     },
     ref
   ) => {
-    // Cascader.Main并不记录与修改外部传入的list, 所以只能在外部格式化好再传入
-    let [list, setList] = useState(null)
+    // 记录完整数据列表, 国家->省市区->街道, { status: 'success' | 'error', message: string, list: [] }
+    let [result, setResult] = useState(null)
 
     // eslint-disable-next-line
     type = formatType(type)
 
     // Expose api
-    const districtMainRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        ...districtMainRef.current,
-        getList: getList,
-        list: list
+        loadList: initList,
+        list: result?.list
       }
     })
 
     useEffect(() => {
-      if (!open) {
-        return
-      }
-
       // 没有合法的基础列表, 则更新列表
       initList()
       // eslint-disable-next-line
-    }, [open])
+    }, [])
 
-    // 初始列表
+    // 初始化时, 加载国家省市区数据
     async function initList() {
-      // 没有国家省市区, 则加载国家省市区
-      list = await getList()
-      setList(list)
-      return list
-    }
-
-    // 获取国家省市区
-    async function getList(customValue) {
-      let currentValue = customValue || value
-      return _getList(currentValue, {
+      // 加载国家省市区数据
+      let baseData = await loadBaseData({
+        countryId: value?.[0]?.id,
         startType,
         loadCountries,
         loadCountryRegions
       })
+
+      // 1.无选中项, 说明国家省市区已经覆盖选中项的层级
+      // 2.国家省市区已经覆盖选中项的层级
+      // 3.基础列表错误, 显示错误
+      let lastTabId = value?.[value.length - 1]?.id
+      if (
+        !value?.length ||
+        isValueInList(lastTabId, baseData?.list) ||
+        baseData?.status === 'error'
+      ) {
+        setResult(baseData)
+        onLoad?.(baseData)
+        return
+      }
+
+      // 有选中项, 且选国家省市区没有此层级的子列表, 说明是街道
+      let streetsData = await loadStreets(lastTabId, { value: value })
+      if (streetsData?.status === 'error') {
+        setResult(streetsData)
+        onLoad?.(streetsData)
+        return
+      }
+
+      // 当前区已经是叶子节点
+      if (streetsData?.status === 'empty') {
+        ArrayUtil.setDeepTreeNode(baseData.list, lastTabId, (node) => {
+          node.children = []
+          node.isLeaf = true
+        })
+      }
+      // 街道数据加载成功, 合并到国家省市区
+      else if (streetsData?.status === 'success') {
+        ArrayUtil.setDeepTreeNode(baseData.list, lastTabId, (node) => {
+          node.children = streetsData?.list || []
+        })
+      }
+
+      setResult(baseData)
+      onLoad?.(baseData)
     }
 
-    // 加载街道, 在此之前需要加载好省市区, 以及格式化value的type
+    // 加载国家子级列表, 或街道列表, Casacader.Main会自动将结果列表设置到result.list中
     async function loadData(tabs) {
-      // 获取下钻的子级
-      let lastTab = tabs[tabs.length - 1]
-
-      // 若点击国家, 则加载省市区, 调用getList, 会直接修改原数组增加children
-      if (lastTab?.type?.includes('country')) {
-        Loading.show()
-        let provinces = await getList(tabs)
-        Loading.hide()
-        if (typeof provinces === 'string') {
-          return provinces
-        }
-      }
-
-      // 没有国家省市区, 则报错
-      if (validateList(tabs, { list, startType, type }) === false) {
-        return LocaleUtil.locale('未获取到国家省市区数据')
-      }
-
-      // 获取列表的下钻的子级
-      let currentNode = ArrayUtil.getDeepTreeNode(list, lastTab.id)
-      if (currentNode && currentNode.children !== undefined) {
-        return currentNode.children
-      }
-
-      // 列表中没有下级, 则请求下级
-      Loading.show()
-      let streets = await loadStreets(lastTab.id, { parent: lastTab })
-
-      // 接口报错
-      if (typeof streets === 'string') {
-        Loading.hide()
-        return streets
-      }
-      Loading.hide()
-
-      return streets
+      let childrenData = await _loadData(tabs, {
+        list: result.list,
+        loadCountryRegions,
+        loadStreets
+      })
+      return childrenData
     }
 
     return (
-      <DistrictMain
-        ref={districtMainRef}
-        // Modal: Status
-        open={open}
-        // Value & Display Value
-        value={value}
-        type={type}
-        list={list}
-        loadData={loadData}
-        // Status
-        editableOptions={editableOptions}
-        // Style
-        listStyle={listStyle}
-        listClassName={listClassName}
-        itemStyle={itemStyle}
-        itemClassName={itemClassName}
-        // Elements
-        searchVisible={searchVisible}
-        // Events
-        onChange={onChange}
-        onLoad={onLoad}
-        onReLoad={async (tabs, { update }) => {
-          // 列表为空, 则初始化列表
-          if (!Array.isArray(list) || !list.length) {
-            Loading.show()
-            let newList = await initList()
-            Loading.hide()
-            if (typeof newList === 'string') {
-              return newList
-            }
-          }
-
-          let lastTab = Array.isArray(tabs) && tabs.length ? tabs[tabs.length - 1] : null
-          // 若重新加载国家下级, 则加载省市区, 调用getList, 会直接修改原数组增加children
-          if (lastTab?.type?.includes('country')) {
-            Loading.show()
-            let provinces = await getList(tabs)
-            Loading.hide()
-            if (typeof provinces === 'string') {
-              return provinces
-            }
-          }
-
-          // 更新当前列表
-          update(tabs, { list: list, action: 'load' })
-        }}
-      />
+      <>
+        {/* 基础列表加载中或加载失败, 显示结果页 */}
+        {result?.status !== 'success' && (
+          <Result title={result?.message} status={result?.status} full>
+            {result?.status === 'error' ? (
+              <Button className="lyrixi-result-button" color="primary" onClick={initList}>
+                {LocaleUtil.locale('重新加载', 'lyrixi.reload')}
+              </Button>
+            ) : null}
+          </Result>
+        )}
+        {/* 必须等基础列表加载成功后, 再渲染主组件 */}
+        {result?.status === 'success' && (
+          <Main
+            // Modal: Status
+            open={open}
+            // Value & Display Value
+            value={value}
+            list={result?.list}
+            loadData={loadData}
+            // Style
+            listStyle={listStyle}
+            listClassName={listClassName}
+            itemStyle={itemStyle}
+            itemClassName={itemClassName}
+            // Elements
+            searchVisible={searchVisible}
+            // Events
+            onChange={onChange}
+            onReLoad={onReLoad}
+          />
+        )}
+      </>
     )
   }
 )
