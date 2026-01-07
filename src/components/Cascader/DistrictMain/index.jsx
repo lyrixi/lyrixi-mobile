@@ -3,12 +3,10 @@ import React, { useImperativeHandle, forwardRef, useEffect, useState } from 'rea
 import { loadBaseData, loadData as _loadData, isValueInList, formatType } from './utils/index.js'
 import api from './api'
 import Main from './../Main'
+import DistrictMainResult from './Result'
 
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
 import ArrayUtil from '../../../utils/ArrayUtil'
-import Button from './../Button'
-import Result from './../Result'
 // 内库使用-end
 
 /* 测试使用-start
@@ -129,13 +127,12 @@ const CascaderDistrictMain = forwardRef(
       <>
         {/* 基础列表加载中或加载失败, 显示结果页 */}
         {result?.status !== 'success' && (
-          <Result title={result?.message} status={result?.status} full>
-            {result?.status === 'error' ? (
-              <Button className="lyrixi-result-button" color="primary" onClick={initList}>
-                {LocaleUtil.locale('重新加载', 'lyrixi.reload')}
-              </Button>
-            ) : null}
-          </Result>
+          <DistrictMainResult
+            result={result}
+            onReload={initList}
+            style={listStyle}
+            className={listClassName}
+          />
         )}
         {/* 必须等基础列表加载成功后, 再渲染主组件 */}
         {result?.status === 'success' && (
