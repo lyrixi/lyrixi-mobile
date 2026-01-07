@@ -29,7 +29,6 @@ const DistrictModal = forwardRef(
       // Status
       open,
       min = '',
-      editableOptions,
       maskClosable,
 
       // Style
@@ -181,7 +180,6 @@ const DistrictModal = forwardRef(
           loadCountryRegions={loadCountryRegions}
           loadStreets={loadStreets}
           // Main: Status
-          editableOptions={editableOptions}
           // Main: Style
           listStyle={listStyle}
           listClassName={listClassName}

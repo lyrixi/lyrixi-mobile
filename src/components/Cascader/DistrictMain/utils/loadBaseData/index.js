@@ -14,9 +14,8 @@ import { LocaleUtil } from 'lyrixi-mobile'
 async function loadBaseData({ countryId, startType, loadCountries, loadCountryRegions }) {
   // 返回国家数据
   if (startType === 'country') {
-    let countriesData = await loadCountriesData(currentValue, {
-      loadCountries,
-      loadCountryRegions
+    let countriesData = await loadCountriesData({
+      loadCountries
     })
 
     // 未指定国家, 则直接返回国家数据

@@ -152,7 +152,6 @@ const CascaderDistrictMain = forwardRef(
             searchVisible={searchVisible}
             // Events
             onChange={onChange}
-            onReLoad={onReLoad}
           />
         )}
       </>

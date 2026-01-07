@@ -2,6 +2,7 @@ import React from 'react'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 import Button from './../../Button'
 import Result from './../../Result'
 import Page from './../../Page'
@@ -14,11 +15,7 @@ import { LocaleUtil, Button, Result, Page } from 'lyrixi-mobile'
 const DistrictMainResult = ({ result, onReload, style, className }) => {
   return (
     <Page full={false} className="lyrixi-cascader-page">
-      <div
-        style={style}
-        className={DOMUtil.classNames('lyrixi-cascader-main', className)}
-        ref={ref}
-      >
+      <div style={style} className={DOMUtil.classNames('lyrixi-cascader-main', className)}>
         <Result title={result?.message} status={result?.status} full>
           {result?.status === 'error' ? (
             <Button className="lyrixi-result-button" color="primary" onClick={onReload}>

@@ -34,7 +34,6 @@ const DistrictCombo = forwardRef(
       // Combo: Element
       leftIconNode,
       rightIconNode,
-      clearRender,
 
       // Modal
       // Modal: Value & Display Value
@@ -113,13 +112,7 @@ const DistrictCombo = forwardRef(
           separator={separator}
           mode={mode}
           // Combo: Status
-          // 只读项与值一致, 并且已经下钻到最末经, 只读
-          readOnly={(() => {
-            if (!Array.isArray(readOnlyValue) || !Array.isArray(value)) return readOnly
-            if (!ArrayUtil.isEqual(readOnlyValue, value)) return readOnly
-            const leafIndex = findDistrictLeafIndex(value, type)
-            return typeof leafIndex === 'number' ? true : readOnly
-          })()}
+          readOnly={readOnly}
           disabled={disabled}
           allowClear={allowClear}
           // Combo: Style
@@ -128,22 +121,6 @@ const DistrictCombo = forwardRef(
           // Combo: Element
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
-          clearRender={(clearParams) => {
-            let clearable = clearParams?.clearable
-
-            // 只读项与值一致, 不允许清空
-            if (Array.isArray(readOnlyValue) && ArrayUtil.isEqual(readOnlyValue, value)) {
-              clearable = false
-            }
-
-            // 自定义显隐清空按钮
-            if (typeof clearRender === 'function') {
-              return clearRender({ ...clearParams, clearable: clearable })
-            }
-
-            // 默认清空按钮显隐
-            return clearable === false ? null : undefined
-          }}
           // Events
           onChange={onChange}
           onClick={handleOpen}
@@ -160,7 +137,6 @@ const DistrictCombo = forwardRef(
           // Modal: Status
           open={open}
           min={min}
-          editableOptions={editableOptions}
           maskClosable={maskClosable}
           // Modal: Style
           listStyle={listStyle}
