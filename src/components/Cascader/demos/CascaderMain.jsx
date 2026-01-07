@@ -53,38 +53,36 @@ export default () => {
 
   return (
     <Page>
-      <Page.Main>
-        <Cascader.Combo
-          allowClear
-          list={[
-            {
-              id: '1',
-              name: '根节点',
-              children: [
-                {
-                  id: '1-1',
-                  name: '子节点'
-                }
-              ]
-            }
-          ]}
-          loadData={loadData}
-          value={value}
-          placeholder={`Select`}
-          onChange={(newValue) => {
-            console.log('修改:', newValue)
-            setValue(newValue)
-          }}
-          safeArea={true}
-          title="级联选择"
-          onClose={() => {
-            console.log('onClose')
-          }}
-          clearRender={({ clearable, onClear }) => {
-            return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
-          }}
-        />
-      </Page.Main>
+      <Cascader.Main
+        allowClear
+        list={[
+          {
+            id: '1',
+            name: '根节点',
+            children: [
+              {
+                id: '1-1',
+                name: '子节点'
+              }
+            ]
+          }
+        ]}
+        loadData={loadData}
+        value={value}
+        placeholder={`Select`}
+        onChange={(newValue) => {
+          console.log('修改:', newValue)
+          setValue(newValue)
+        }}
+        safeArea={true}
+        title="级联选择"
+        onClose={() => {
+          console.log('onClose')
+        }}
+        clearRender={({ clearable, onClear }) => {
+          return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
+        }}
+      />
     </Page>
   )
 }

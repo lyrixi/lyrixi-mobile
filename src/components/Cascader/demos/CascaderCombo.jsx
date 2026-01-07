@@ -24,30 +24,30 @@ export default () => {
   // 加载街道
   function loadData(tabs) {
     return new Promise((resolve) => {
-      if (!Array.isArray(tabs) || !tabs.length) {
-        resolve(null)
-        return
-      }
-      let lastTab = tabs[tabs.length - 1]
-      if (lastTab.id !== '1-1') {
-        resolve(null)
-        return
-      }
+      console.log('loadData:', tabs)
       Loading.show()
-      let streets = [
+      let lastTab = tabs?.[tabs?.length - 1]
+      let leaves = [
         {
           parentid: lastTab.id,
-          name: '孙子节点',
-          id: '1-1-1'
+          name: '孙子节点1',
+          id: '1-1-1',
+          isLeaf: true
+        },
+        {
+          parentid: lastTab.id,
+          name: '孙子节点2',
+          id: '1-1-2',
+          isLeaf: true
         }
       ]
       setTimeout(() => {
         Loading.hide()
       }, 100)
-      if (typeof streets === 'string') {
-        Toast.show({ content: streets })
-      }
-      resolve(streets)
+      resolve({
+        status: 'success',
+        list: leaves
+      })
     })
   }
 

@@ -24,67 +24,66 @@ export default () => {
   // 加载街道
   function loadData(tabs) {
     return new Promise((resolve) => {
-      if (!Array.isArray(tabs) || !tabs.length) {
-        resolve(null)
-        return
-      }
-      let lastTab = tabs[tabs.length - 1]
-      if (lastTab.id !== '1-1') {
-        resolve(null)
-        return
-      }
+      console.log('loadData:', tabs)
       Loading.show()
-      let streets = [
+      let lastTab = tabs?.[tabs?.length - 1]
+      let leaves = [
         {
           parentid: lastTab.id,
-          name: '孙子节点',
-          id: '1-1-1'
+          name: '孙子节点1',
+          id: '1-1-1',
+          isLeaf: true
+        },
+        {
+          parentid: lastTab.id,
+          name: '孙子节点2',
+          id: '1-1-2',
+          isLeaf: true
         }
       ]
       setTimeout(() => {
         Loading.hide()
       }, 100)
-      if (typeof streets === 'string') {
-        Toast.show({ content: streets })
-      }
-      resolve(streets)
+      resolve({
+        status: 'success',
+        list: leaves
+      })
     })
   }
 
   return (
     <Page>
-      <Page.Main>
-        <Cascader.Combo
-          allowClear
-          list={[
-            {
-              id: '1',
-              name: '根节点',
-              children: [
-                {
-                  id: '1-1',
-                  name: '子节点'
-                }
-              ]
-            }
-          ]}
-          loadData={loadData}
-          value={value}
-          placeholder={`Select`}
-          onChange={(newValue) => {
-            console.log('修改:', newValue)
-            setValue(newValue)
-          }}
-          safeArea={true}
-          title="级联选择"
-          onClose={() => {
-            console.log('onClose')
-          }}
-          clearRender={({ clearable, onClear }) => {
-            return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
-          }}
-        />
-      </Page.Main>
+      <Cascader.Modal
+        open
+        allowClear
+        list={[
+          {
+            id: '1',
+            name: '根节点',
+            children: [
+              {
+                id: '1-1',
+                name: '子节点'
+              }
+            ]
+          }
+        ]}
+        loadData={loadData}
+        value={value}
+        placeholder={`Select`}
+        onChange={(newValue) => {
+          console.log('修改:', newValue)
+          setValue(newValue)
+        }}
+        safeArea={true}
+        title="级联选择"
+        onClose={() => {
+          console.log('onClose')
+        }}
+        clearRender={({ clearable, onClear }) => {
+          return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
+        }}
+      />
     </Page>
   )
 }
