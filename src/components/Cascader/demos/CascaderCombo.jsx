@@ -77,12 +77,6 @@ export default () => {
           }}
           safeArea={true}
           title="级联选择"
-          onClose={() => {
-            console.log('onClose')
-          }}
-          clearRender={({ clearable, onClear }) => {
-            return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
-          }}
         />
       </Page.Main>
     </Page>
