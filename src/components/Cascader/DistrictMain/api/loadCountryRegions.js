@@ -12,11 +12,13 @@ function loadCountryRegions(countryId = '86') {
     const language = LocaleUtil.getLanguage()
 
     // 优先读取缓存
-    window.countryProvinces =
-      window.countryProvinces ||
-      JSON.parse(window.sessionStorage.getItem('countryProvinces') || '{}')
-    if (window.countryProvinces?.[countryId]) {
-      resolve(window.countryProvinces[countryId])
+    window.countryRegions =
+      window.countryRegions || JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}')
+    if (window.countryRegions?.[countryId]) {
+      resolve({
+        status: 'success',
+        list: window.countryRegions[countryId]
+      })
       return
     }
 
@@ -26,15 +28,19 @@ function loadCountryRegions(countryId = '86') {
     )
       .then(function (list) {
         // 存到缓存中
-        window.countryProvinces = JSON.parse(
-          window.sessionStorage.getItem('countryProvinces') || '{}'
-        )
-        window.countryProvinces[countryId] = list || []
-        window.sessionStorage.setItem('countryProvinces', JSON.stringify(window.countryProvinces))
-        resolve(window.countryProvinces[countryId])
+        window.countryRegions = JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}')
+        window.countryRegions[countryId] = list || []
+        window.sessionStorage.setItem('countryRegions', JSON.stringify(window.countryRegions))
+        resolve({
+          status: 'success',
+          list: window.countryRegions[countryId]
+        })
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取省市区数据失败', 'lyrixi.cascader.countryRegions.error'))
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('获取省市区数据失败', 'lyrixi.cascader.countryRegions.error')
+        })
       })
   })
 }

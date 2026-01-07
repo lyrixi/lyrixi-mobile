@@ -14,22 +14,31 @@ function loadCountries() {
     const language = LocaleUtil.getLanguage()
 
     // 优先读取缓存
-    window.countryData =
-      window.countryData || JSON.parse(window.sessionStorage.getItem('countryData') || '[]')
-    if (!_.isEmpty(window.countryData)) {
-      resolve(window.countryData)
+    window.countries =
+      window.countries || JSON.parse(window.sessionStorage.getItem('countries') || '[]')
+    if (!_.isEmpty(window.countries)) {
+      resolve({
+        status: 'success',
+        list: window.countries
+      })
       return
     }
 
     // 加载语言对应的文件
     Request.get(`https://lyrixi.github.io/lyrixi-mobile/assets/district/${language}/country.json`)
       .then(function (json) {
-        window.countryData = json || []
-        window.sessionStorage.setItem('countryData', JSON.stringify(window.countryData))
-        resolve(window.countryData)
+        window.countries = json || []
+        window.sessionStorage.setItem('countries', JSON.stringify(window.countries))
+        resolve({
+          status: 'success',
+          list: window.countries
+        })
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取国家数据失败', 'lyrixi.cascader.countries.error'))
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('获取国家数据失败', 'lyrixi.cascader.countries.error')
+        })
       })
   })
 }

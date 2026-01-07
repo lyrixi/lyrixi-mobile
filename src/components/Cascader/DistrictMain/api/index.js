@@ -1,15 +1,19 @@
 import loadCountries from './loadCountries'
-import formatCountries from './formatCountries'
 import loadCountryRegions from './loadCountryRegions'
-import formatCountryRegions from './formatCountryRegions'
 import loadStreets from './loadStreets'
-import formatStreets from './formatStreets'
+import formatCountryRegions from './formatCountryRegions'
 
 const api = {
   // 获取国家
   loadCountries: async function () {
     let result = await loadCountries()
-    return formatCountries(result)
+    if (result?.status === 'success') {
+      result.list = result.list.map((node) => {
+        node.type = ['country']
+        return node
+      })
+    }
+    return result
   },
   /**
    * @description: 获取省市区
@@ -18,7 +22,11 @@ const api = {
    */
   loadCountryRegions: async function (countryId) {
     let result = await loadCountryRegions(countryId)
-    return formatCountryRegions(result, countryId)
+    if (result?.status === 'success') {
+      result.list = formatCountryRegions(result.list, countryId)
+      return result
+    }
+    return result
   },
   /**
    * @description: 获取街道
@@ -31,7 +39,18 @@ const api = {
       return null
     }
     let result = await loadStreets(districtId)
-    return formatStreets(result, districtId)
+    if (result.status === 'success') {
+      result.list = result.list.map((item) => {
+        return {
+          parentid: districtId,
+          name: item.text,
+          id: item.id,
+          type: ['street'],
+          isLeaf: true
+        }
+      })
+    }
+    return result
   }
 }
 

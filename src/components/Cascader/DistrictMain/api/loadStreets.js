@@ -1,18 +1,21 @@
 // 内库使用-start
+import LocaleUtil from '../../../../utils/LocaleUtil'
 import Request from './../../../../utils/Request'
 // 内库使用-end
 
 /* 测试使用-start
-import { Request } from 'lyrixi-mobile'
+import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
 function loadStreets(districtId) {
   return new Promise((resolve) => {
     // 优先读取缓存
-    window.districtStreets =
-      window.districtStreets || JSON.parse(window.sessionStorage.getItem('districtStreets') || '{}')
-    if (window.districtStreets?.[districtId]) {
-      resolve(window.districtStreets[districtId])
+    window.streets = window.streets || JSON.parse(window.sessionStorage.getItem('streets') || '{}')
+    if (window.streets?.[districtId]) {
+      resolve({
+        status: 'success',
+        list: window.streets[districtId]
+      })
       return
     }
 
@@ -30,15 +33,19 @@ function loadStreets(districtId) {
     )
       .then(function (list) {
         // 存到缓存中
-        window.districtStreets = JSON.parse(
-          window.sessionStorage.getItem('districtStreets') || '{}'
-        )
-        window.districtStreets[districtId] = list || []
-        window.sessionStorage.setItem('districtStreets', JSON.stringify(window.districtStreets))
-        resolve(window.districtStreets[districtId])
+        window.streets = JSON.parse(window.sessionStorage.getItem('streets') || '{}')
+        window.streets[districtId] = list || []
+        window.sessionStorage.setItem('streets', JSON.stringify(window.streets))
+        resolve({
+          status: 'success',
+          list: window.streets[districtId]
+        })
       })
       .catch(() => {
-        resolve('获取街道异常')
+        resolve({
+          status: 'error',
+          message: LocaleUtil.locale('获取街道异常')
+        })
       })
   })
 }

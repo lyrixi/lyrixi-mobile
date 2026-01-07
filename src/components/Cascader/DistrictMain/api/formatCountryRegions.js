@@ -7,13 +7,10 @@
  * - 直筒子市：type = ['city', 'prefecture'] → nature = 25
  * - 直辖市：type = ['province', 'city', 'municipality'] → nature = 13
  * -（可选）街道/乡镇：type = ['street'] → nature ∈ {41,42,43,44,45,46,47}
- * @param {Array|String} tree
+ * @param {Array} tree
  * @returns {Array|null|String}
  */
 function formatCountryRegions(tree, countryId) {
-  if (typeof tree === 'string') return tree
-  if (!Array.isArray(tree) || tree.length === 0) return null
-
   // 补充parentId
   for (let item of tree) {
     item.parentid = countryId
