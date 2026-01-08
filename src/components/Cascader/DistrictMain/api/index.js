@@ -38,9 +38,9 @@ const api = {
     if (result.status === 'success') {
       result.list = result.list.map((item) => {
         return {
-          parentid: districtId,
-          name: item.text,
           id: item.id,
+          name: item.name,
+          parentid: districtId,
           type: ['street'],
           isLeaf: true
         }
