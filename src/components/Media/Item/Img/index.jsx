@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
 // 内库使用-start
-import AssetUtil from './../../../../utils/AssetUtil'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { AssetUtil } from 'lyrixi-mobile'
+import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 图片显示
@@ -14,29 +13,34 @@ const Img = ({
   // Value & Display Value
   fileUrl
 }) => {
-  const [backgroundImage, setBackGroundImage] = useState('')
+  const [loadStatus, setLoadStatus] = useState('loading') // 'loading' | 'success' | 'error'
 
   useEffect(() => {
-    setBackGroundImage('')
-    AssetUtil.loadImage(fileUrl, {
-      onSuccess: () => {
-        setBackGroundImage(fileUrl)
-      },
-      onError: () => {
-        setBackGroundImage('error')
-      }
-    })
+    // 当 fileUrl 改变时，重置加载状态
+    setLoadStatus('loading')
   }, [fileUrl])
 
+  const handleLoad = () => {
+    setLoadStatus('success')
+  }
+
+  const handleError = () => {
+    setLoadStatus('error')
+  }
+
   return (
-    <div
+    <img
+      src={fileUrl}
+      alt=""
       // Style
       className={DOMUtil.classNames(
         'lyrixi-media-item-img',
-        backgroundImage === 'lyrixi-error' ? 'lyrixi-error' : null
+        loadStatus === 'error' ? 'lyrixi-error' : null
       )}
-      style={{ backgroundImage: backgroundImage === 'error' ? '' : `url(${backgroundImage})` }}
-    ></div>
+      // Events
+      onLoad={handleLoad}
+      onError={handleError}
+    />
   )
 }
 
