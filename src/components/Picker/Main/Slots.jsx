@@ -25,7 +25,7 @@ let Lists = forwardRef(
     ref
   ) => {
     // 标识是否正在拖动，用于解决鼠标移动时，没有开始拖动，则不处理
-    const isDrawingRef = useRef(false)
+    const isDragRef = useRef(false)
 
     let touchesRef = useRef({
       startX: 0,
@@ -50,7 +50,7 @@ let Lists = forwardRef(
     })
 
     useEffect(() => {
-      isDrawingRef.current = false
+      isDragRef.current = false
       // eslint-disable-next-line
     }, [])
 
@@ -59,7 +59,7 @@ let Lists = forwardRef(
       e.stopPropagation()
 
       // 鼠标开始拖动
-      isDrawingRef.current = true
+      isDragRef.current = true
 
       // 解决拖动时影响document弹性
       if (e.type === 'touchstart') {
@@ -87,7 +87,7 @@ let Lists = forwardRef(
       e.stopPropagation()
 
       // 鼠标移动时，如果没有开始拖动，则不处理
-      if (!isDrawingRef.current) {
+      if (!isDragRef.current) {
         return
       }
 
@@ -104,7 +104,7 @@ let Lists = forwardRef(
       e.stopPropagation()
 
       // 鼠标结束拖动
-      isDrawingRef.current = false
+      isDragRef.current = false
 
       // 解除对move时的弹性对当前div的锁定
       if (e.type === 'touchend') {

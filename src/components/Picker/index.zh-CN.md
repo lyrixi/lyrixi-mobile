@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Picker.jsx">></code>
+<code src="./demos/PickerCombo.jsx"></code>
 
 ## API
 
@@ -76,7 +76,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Picker.jsx">></code>
+<code src="./demos/PickerCombo.jsx"></code>
 
 ### API
 
@@ -98,7 +98,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Picker.jsx">></code>
+<code src="./demos/PickerModal.jsx"></code>
 
 ### API
 
@@ -120,7 +120,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Picker.jsx">></code>
+<code src="./demos/PickerMain.jsx"></code>
 
 ### API
 

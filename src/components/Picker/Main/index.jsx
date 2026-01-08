@@ -15,6 +15,9 @@ import { DOMUtil } from 'lyrixi-mobile'
 let Main = forwardRef(
   (
     {
+      // Modal: Status
+      open = true,
+
       // Value & Display Value
       value,
       list,
