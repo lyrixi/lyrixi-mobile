@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Picker } from 'lyrixi-mobile'
+import { Picker, Page } from 'lyrixi-mobile'
 
 export default () => {
   const list = [
@@ -8,15 +8,17 @@ export default () => {
   ]
   const [value, setValue] = useState(null)
   return (
-    <>
-      <Picker.Main
-        value={value}
-        list={list}
-        onChange={(newValue) => {
-          console.log('onChange:', newValue)
-          setValue(newValue)
-        }}
-      />
-    </>
+    <Page>
+      <Page.Main>
+        <Picker.Main
+          value={value}
+          list={list}
+          onChange={(newValue) => {
+            console.log('onChange:', newValue)
+            setValue(newValue)
+          }}
+        />
+      </Page.Main>
+    </Page>
   )
 }

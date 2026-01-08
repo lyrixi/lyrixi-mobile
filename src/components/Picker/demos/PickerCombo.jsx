@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Picker } from 'lyrixi-mobile'
+import { Picker, Page } from 'lyrixi-mobile'
 
 export default () => {
   const pickerRef = useRef(null)
@@ -37,28 +37,30 @@ export default () => {
     }, 2000)
   }, [])
   return (
-    <>
-      <Picker.Combo
-        ref={pickerRef}
-        allowClear
-        safeArea={true}
-        title="标题"
-        cancel={null}
-        ok=""
-        placeholder="Please select"
-        value={value}
-        list={list}
-        onChange={(newValue) => {
-          console.log('onChange:', newValue)
-          setValue(newValue)
-        }}
-        onClose={() => {
-          console.log('onClose')
-        }}
-        onOpen={() => {
-          console.log('onOpen')
-        }}
-      />
-    </>
+    <Page>
+      <Page.Main>
+        <Picker.Combo
+          ref={pickerRef}
+          allowClear
+          safeArea={true}
+          title="标题"
+          cancel={null}
+          ok=""
+          placeholder="Please select"
+          value={value}
+          list={list}
+          onChange={(newValue) => {
+            console.log('onChange:', newValue)
+            setValue(newValue)
+          }}
+          onClose={() => {
+            console.log('onClose')
+          }}
+          onOpen={() => {
+            console.log('onOpen')
+          }}
+        />
+      </Page.Main>
+    </Page>
   )
 }
