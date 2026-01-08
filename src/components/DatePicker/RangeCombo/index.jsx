@@ -42,7 +42,6 @@ const RangeCombo = forwardRef(
       type = 'date',
       min,
       max,
-      rangeId,
       ranges,
       titles,
       hourStep,
@@ -77,7 +76,6 @@ const RangeCombo = forwardRef(
       // eslint-disable-next-line
       ranges = getDefaultRanges()
     }
-    const rangeIdRef = useRef(rangeId)
     const [open, setOpen] = useState(false)
     const comboRef = useRef(null)
     const modalRef = useRef(null)
@@ -103,10 +101,9 @@ const RangeCombo = forwardRef(
       setOpen(false)
     }
 
-    const handleChange = (newValue, { rangeId: newRangeId, ranges } = {}) => {
+    const handleChange = (newValue, { rangeId, ranges } = {}) => {
       // 清空时需要记录空选中项
-      rangeIdRef.current = newRangeId
-      onChange && onChange(newValue, { rangeId: newRangeId, ranges })
+      onChange && onChange(newValue, { rangeId, ranges })
     }
 
     return (
@@ -122,7 +119,6 @@ const RangeCombo = forwardRef(
               return getDisplayValue({
                 value: formatValue(value),
                 type: type,
-                rangeId: rangeIdRef.current,
                 ranges,
                 separator
               })
@@ -153,7 +149,6 @@ const RangeCombo = forwardRef(
           type={type}
           min={min}
           max={max}
-          rangeId={rangeIdRef.current}
           ranges={ranges}
           titles={titles}
           hourStep={hourStep}
