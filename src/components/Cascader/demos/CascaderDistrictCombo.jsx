@@ -4,11 +4,19 @@ import { Card, Divider, Page, Cascader } from 'lyrixi-mobile'
 
 export default () => {
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
-  const [value, setValue] = useState([])
+  const [value1, setValue1] = useState([])
+  const [value2, setValue2] = useState([])
+  const [value3, setValue3] = useState([])
+  const [value4, setValue4] = useState([])
+  const [value5, setValue5] = useState([])
+  const [value6, setValue6] = useState([])
+  const [value7, setValue7] = useState([])
+  const [value8, setValue8] = useState([])
+  const [value9, setValue9] = useState([])
 
   useEffect(() => {
     setTimeout(() => {
-      setValue([
+      setValue1([
         {
           name: '中国',
           id: '86'
@@ -43,10 +51,10 @@ export default () => {
                 .map((item) => item.name)
                 .join('-')
             }}
-            value={value}
+            value={value1}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue1(newValue)
             }}
             placeholder={'country'}
             allowClear
@@ -57,10 +65,10 @@ export default () => {
           <Divider>province</Divider>
           <Cascader.DistrictCombo
             type={'province'}
-            value={value}
+            value={value2}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue2(newValue)
             }}
             placeholder={'province'}
             allowClear
@@ -71,10 +79,10 @@ export default () => {
           <Divider>city</Divider>
           <Cascader.DistrictCombo
             type={'city'}
-            value={value}
+            value={value3}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue3(newValue)
             }}
             placeholder={'city'}
             allowClear
@@ -85,10 +93,10 @@ export default () => {
           <Divider>district</Divider>
           <Cascader.DistrictCombo
             type={'district'}
-            value={value}
+            value={value4}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue4(newValue)
             }}
             placeholder={'district'}
             allowClear
@@ -99,10 +107,10 @@ export default () => {
           <Divider>street</Divider>
           <Cascader.DistrictCombo
             type={'street'}
-            value={value}
+            value={value5}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue5(newValue)
             }}
             placeholder={'street'}
             allowClear
@@ -113,10 +121,10 @@ export default () => {
           <Divider>searchVisible</Divider>
           <Cascader.DistrictCombo
             searchVisible
-            value={value}
+            value={value6}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue6(newValue)
             }}
             placeholder={'searchVisible'}
             allowClear
@@ -126,23 +134,23 @@ export default () => {
           <Divider>disabled</Divider>
           <Cascader.DistrictCombo
             disabled={['country', 'province', 'city', 'district', 'street']}
-            value={value}
+            value={value7}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue7(newValue)
             }}
             placeholder={'disabled'}
             allowClear
           />
         </Card>
         <Card>
-          <Divider>min="city"</Divider>
+          <Divider>min=&quot;city&quot;</Divider>
           <Cascader.DistrictCombo
             min="city"
-            value={value}
+            value={value8}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue8(newValue)
             }}
             placeholder={'min'}
             allowClear
@@ -151,10 +159,10 @@ export default () => {
         <Card>
           <Divider>zIndex</Divider>
           <Cascader.DistrictCombo
-            value={value}
+            value={value9}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue(newValue)
+              setValue9(newValue)
             }}
             placeholder={'zIndex'}
             allowClear

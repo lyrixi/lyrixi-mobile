@@ -27,39 +27,39 @@ toc: content
 
 #### 属性
 
-| 属性           | 说明         | 类型                                                  | 默认值 |
-| -------------- | ------------ | ----------------------------------------------------- | ------ |
-| value          | 选中的值     | `any \| any[]`                                        | -      |
-| placeholder    | 占位符       | `string`                                              | -      |
-| formatter      | 格式化函数   | `(value: any \| any[]) => string`                     | -      |
-| autoSize       | 自动调整大小 | `boolean`                                             | -      |
-| separator      | 分隔符       | `string`                                              | -      |
-| mode           | 模式         | `string`                                              | -      |
-| readOnly       | 是否只读     | `boolean`                                             | -      |
-| disabled       | 是否禁用     | `boolean`                                             | -      |
-| allowClear     | 允许清除     | `boolean`                                             | -      |
-| style          | 自定义样式   | `object`                                              | -      |
-| className      | 自定义类名   | `string`                                              | -      |
-| leftIconNode   | 左侧图标     | `ReactNode`                                           | -      |
-| rightIconNode  | 右侧图标     | `ReactNode`                                           | -      |
-| clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`                        | -      |
-| list           | 级联数据     | `Array<{id: string, name: string, children?: Array}>` | -      |
-| loadData       | 加载数据函数 | `(tabs: Array) => Promise<Array \| null>`             | -      |
-| maskClosable   | 点击遮罩关闭 | `boolean`                                             | -      |
-| safeArea       | 是否安全区   | `boolean`                                             | -      |
-| modalStyle     | 模态框样式   | `object`                                              | -      |
-| modalClassName | 模态框类名   | `string`                                              | -      |
-| maskStyle      | 遮罩样式     | `object`                                              | -      |
-| maskClassName  | 遮罩类名     | `string`                                              | -      |
-| portal         | 挂载节点     | `HTMLElement \| null \| false`                        | -      |
-| title          | 标题         | `ReactNode`                                           | -      |
-| okNode         | 确认按钮     | `ReactNode`                                           | -      |
-| cancelNode     | 取消按钮     | `ReactNode`                                           | -      |
-| okVisible      | 确认按钮可见 | `boolean`                                             | -      |
-| cancelVisible  | 取消按钮可见 | `boolean`                                             | -      |
-| searchVisible  | 搜索可见     | `boolean`                                             | -      |
-| onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`                              | -      |
-| onChange       | 变化事件     | `(value: any \| any[]) => void`                       | -      |
+| 属性           | 说明         | 类型                                                                | 默认值 |
+| -------------- | ------------ | ------------------------------------------------------------------- | ------ |
+| value          | 选中的值     | `any \| any[]`                                                      | -      |
+| placeholder    | 占位符       | `string`                                                            | -      |
+| formatter      | 格式化函数   | `(value: any \| any[]) => string`                                   | -      |
+| autoSize       | 自动调整大小 | `boolean`                                                           | -      |
+| separator      | 分隔符       | `string`                                                            | -      |
+| mode           | 模式         | `string`                                                            | -      |
+| readOnly       | 是否只读     | `boolean`                                                           | -      |
+| disabled       | 是否禁用     | `booleana或者['country', 'province', 'city', 'district', 'street']` | -      |
+| allowClear     | 允许清除     | `boolean`                                                           | -      |
+| style          | 自定义样式   | `object`                                                            | -      |
+| className      | 自定义类名   | `string`                                                            | -      |
+| leftIconNode   | 左侧图标     | `ReactNode`                                                         | -      |
+| rightIconNode  | 右侧图标     | `ReactNode`                                                         | -      |
+| clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`                                      | -      |
+| list           | 级联数据     | `Array<{id: string, name: string, children?: Array}>`               | -      |
+| loadData       | 加载数据函数 | `(tabs: Array) => Promise<Array \| null>`                           | -      |
+| maskClosable   | 点击遮罩关闭 | `boolean`                                                           | -      |
+| safeArea       | 是否安全区   | `boolean`                                                           | -      |
+| modalStyle     | 模态框样式   | `object`                                                            | -      |
+| modalClassName | 模态框类名   | `string`                                                            | -      |
+| maskStyle      | 遮罩样式     | `object`                                                            | -      |
+| maskClassName  | 遮罩类名     | `string`                                                            | -      |
+| portal         | 挂载节点     | `HTMLElement \| null \| false`                                      | -      |
+| title          | 标题         | `ReactNode`                                                         | -      |
+| okNode         | 确认按钮     | `ReactNode`                                                         | -      |
+| cancelNode     | 取消按钮     | `ReactNode`                                                         | -      |
+| okVisible      | 确认按钮可见 | `boolean`                                                           | -      |
+| cancelVisible  | 取消按钮可见 | `boolean`                                                           | -      |
+| searchVisible  | 搜索可见     | `boolean`                                                           | -      |
+| onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`                                            | -      |
+| onChange       | 变化事件     | `(value: any \| any[]) => void`                                     | -      |
 
 #### Ref
 

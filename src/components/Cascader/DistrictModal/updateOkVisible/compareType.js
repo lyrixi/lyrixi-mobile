@@ -1,4 +1,4 @@
-// 比较类型
+// 比较类型, 大于等于返回1, 小于返回-1, 等于返回0
 function compareType(type1, type2) {
   const sorts = ['country', 'province', 'city', 'district', 'street']
   let type1Index = sorts.indexOf(type1)

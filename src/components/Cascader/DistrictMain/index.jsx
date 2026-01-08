@@ -43,11 +43,14 @@ const CascaderDistrictMain = forwardRef(
       searchVisible,
 
       // Events
-      onChange,
-      onLoad
+      onChange
     },
     ref
   ) => {
+    // 记录上次的value, 用于判断是否需要重新加载
+    let previousValueRef = useRef(null)
+    previousValueRef.current = value
+
     // 记录完整数据列表, 国家->省市区->街道, { status: 'success' | 'error', message: string, list: [] }
     let [result, setResult] = useState(null)
 
@@ -63,6 +66,9 @@ const CascaderDistrictMain = forwardRef(
     })
 
     useEffect(() => {
+      if (ArrayUtil.isEqual(previousValueRef.current, value, ['id', 'name'])) {
+        return
+      }
       // 没有合法的基础列表, 则更新列表
       initList()
       // eslint-disable-next-line
@@ -77,30 +83,29 @@ const CascaderDistrictMain = forwardRef(
         loadCountryRegions
       })
 
-      // 更新value的类型
+      // 大多传入的value数据是不完整的, 没有类型, 需要更新value的类型(type)与状态(disabled)
+      let newValue = value
       if (value?.length) {
-        formatDistrictValue(value, { list: baseData?.list, maxType: type })
+        newValue = formatDistrictValue(_.cloneDeep(value), { list: baseData?.list, maxType: type })
       }
 
       // 1.无选中项, 说明国家省市区已经覆盖选中项的层级
       // 2.国家省市区已经覆盖选中项的层级
       // 3.基础列表错误, 显示错误
-      let lastTabId = value?.[value.length - 1]?.id
+      let lastTabId = newValue?.[newValue.length - 1]?.id
       if (
-        !value?.length ||
+        !newValue?.length ||
         isValueInList(lastTabId, baseData?.list) ||
         baseData?.status === 'error'
       ) {
         setResult(baseData)
-        onLoad?.(baseData)
         return
       }
 
       // 有选中项, 且选国家省市区没有此层级的子列表, 说明是街道
-      let streetsData = await loadStreets(lastTabId, { value: value })
+      let streetsData = await loadStreets(lastTabId, { value: newValue })
       if (streetsData?.status === 'error') {
         setResult(streetsData)
-        onLoad?.(streetsData)
         return
       }
 
@@ -119,7 +124,11 @@ const CascaderDistrictMain = forwardRef(
       }
 
       setResult(baseData)
-      onLoad?.(baseData)
+
+      // 如果value有变化, 则触发onChange
+      if (!ArrayUtil.isEqual(value, newValue)) {
+        onChange?.(newValue)
+      }
     }
 
     // 加载国家子级列表, 或街道列表, Casacader.Main会自动将结果列表设置到result.list中

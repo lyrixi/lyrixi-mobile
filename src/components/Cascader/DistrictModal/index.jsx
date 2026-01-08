@@ -1,5 +1,6 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import { formatType, compareType } from './../DistrictMain/utils'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import { formatType } from './../DistrictMain/utils'
+import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用-start
@@ -72,44 +73,20 @@ const DistrictModal = forwardRef(
     })
 
     // 同步外部value到内部currentValue
-    React.useEffect(() => {
+    useEffect(() => {
       setCurrentValue(value)
-      updateOkVisible(value)
       // eslint-disable-next-line
     }, [value])
 
-    // 根据min判断是否显示确定按钮
-    function updateOkVisible(tabs) {
-      // 没有值或者没有最小值限制, 则需要一直选到叶子节点, 不显示确定按钮
-      if (!Array.isArray(tabs) || !tabs.length || !min) {
-        setOkVisible(false)
-        return
-      }
-
-      let newOkVisible = false
-
-      // 比较类型, 判断是否显示确定按钮
-      let currentTypes = tabs[tabs.length - 1]?.type
-      if (currentTypes) {
-        for (let currentType of currentTypes) {
-          if (compareType(currentType, min) >= 0) {
-            newOkVisible = true
-            break
-          }
-        }
-      }
-
-      setOkVisible(newOkVisible)
-    }
-
-    // 加载完成后, 会更新value的值, 再更新Ok按钮显示状态
-    function handleLoad() {
-      updateOkVisible(currentValue)
-    }
+    // 根据currentValue更新Ok按钮显示状态
+    useEffect(() => {
+      setOkVisible(updateOkVisible(currentValue))
+      // eslint-disable-next-line
+    }, [currentValue])
 
     // 下钻根据min更新Ok按钮显示状态
     function handleDrillDown(tabs) {
-      updateOkVisible(tabs)
+      setOkVisible(updateOkVisible(tabs))
     }
 
     async function handleOk() {
@@ -183,7 +160,6 @@ const DistrictModal = forwardRef(
           searchVisible={searchVisible}
           // Main: Events
           onChange={handleChange}
-          onLoad={handleLoad}
         />
       </NavBarModal>
     )
