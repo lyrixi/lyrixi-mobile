@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import initBridge from './initBridge'
 
 // 内库使用-start
 import Theme from './../../utils/Theme'
@@ -72,7 +73,7 @@ function App({
     // 加载必要的库
     if (preload) {
       let result = await preload?.()
-      if (typeof result.status === 'error') {
+      if (result.status === 'error') {
         setResult(result)
         return
       }

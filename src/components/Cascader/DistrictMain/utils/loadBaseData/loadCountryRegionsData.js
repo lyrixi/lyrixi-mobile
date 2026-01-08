@@ -1,5 +1,10 @@
-import _ from 'lodash'
-import formatList from './../../../utils/formatList'
+// 内库使用-start
+import ArrayUtil from './../../../../../utils/ArrayUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ArrayUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 加载省市区
 async function loadCountryRegionsData({ countryId, loadCountryRegions }) {
@@ -9,7 +14,7 @@ async function loadCountryRegionsData({ countryId, loadCountryRegions }) {
 
   return {
     ...countryRegionsData,
-    list: formatList(countryRegionsData?.list)
+    list: ArrayUtil.updateDeepTreeParentId(countryRegionsData?.list)
   }
 }
 

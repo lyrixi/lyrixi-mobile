@@ -1,12 +1,11 @@
 import React from 'react'
 
 // 内库使用-start
-import LocaleUtil from './../../../../utils/LocaleUtil'
 import Result from './../../../Result'
 // 内库使用-end
 
 /* 测试使用-start
-import { Result, LocaleUtil } from 'lyrixi-mobile'
+import { Result } from 'lyrixi-mobile'
 测试使用-end */
 
 // 附近结果

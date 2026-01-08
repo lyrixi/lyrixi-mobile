@@ -3,7 +3,6 @@ import _ from 'lodash'
 import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'
 import formatValue from './../utils/formatValue'
-import formatList from './../utils/formatList'
 import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
@@ -53,7 +52,7 @@ const CascaderMain = forwardRef(
     let [activeTab, setActiveTab] = useState(null)
 
     // 选中列表, 文本则为错误
-    let currentList = formatList(externalList)
+    let currentList = ArrayUtil.updateDeepTreeParentId(externalList)
     let [result, setResult] = useState(
       currentList
         ? { status: 'success', list: currentList }

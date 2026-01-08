@@ -1,21 +1,16 @@
-import formatList from './../../../utils/formatList'
-import loadCountriesData from './loadCountriesData'
-import loadCountryRegionsData from './loadCountryRegionsData'
-
 // 内库使用-start
+import ArrayUtil from './../../../../../utils/ArrayUtil'
 import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { ArrayUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取国家省市区, 返回数据格式为{ status: 'success' | 'error', message: string, list: [] }
 async function loadBaseData({ countryId, loadCountries, loadCountryRegions }) {
   // 返回国家数据
-  let countriesData = await loadCountriesData({
-    loadCountries
-  })
+  let countriesData = await loadCountries()
 
   // 未指定国家, 则直接返回国家数据
   if (!countryId) {
@@ -41,7 +36,7 @@ async function loadBaseData({ countryId, loadCountries, loadCountryRegions }) {
 
   return {
     ...countriesData,
-    list: formatList(countriesData?.list)
+    list: ArrayUtil.updateDeepTreeParentId(countriesData?.list)
   }
 }
 

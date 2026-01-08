@@ -1,5 +1,7 @@
 // 补充parentid
 function updateDeepTreeParentId(tree, parentid = null) {
+  if (!Array.isArray(tree) || !tree.length) return tree
+
   for (const node of tree) {
     // 为当前节点补充 parentid
     node.parentid = parentid

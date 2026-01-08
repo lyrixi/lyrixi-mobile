@@ -1,15 +1,13 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用-start
-import ArrayUtil from './../../../utils/ArrayUtil'
 import Input from './../../Input'
 // 内库使用-end
 
 /* 测试使用-start
-import { ArrayUtil, Input } from 'lyrixi-mobile'
+import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // 级联选择
