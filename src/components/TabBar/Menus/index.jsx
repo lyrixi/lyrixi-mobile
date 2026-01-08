@@ -55,7 +55,6 @@ const Menus = forwardRef(
     // 内容DOM
     function getMenus() {
       if (!Array.isArray(list)) {
-        console.log('lyrixi TabBar: Parameter list is wrong', list)
         return null
       }
 

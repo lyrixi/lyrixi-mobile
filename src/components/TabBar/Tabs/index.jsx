@@ -61,7 +61,6 @@ const Tabs = forwardRef(
     // 内容DOM
     function getTabs() {
       if (!Array.isArray(list)) {
-        console.log('lyrixi TabBar: Parameter list is wrong', list)
         return null
       }
 
