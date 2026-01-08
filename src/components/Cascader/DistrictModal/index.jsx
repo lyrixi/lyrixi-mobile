@@ -110,9 +110,7 @@ const DistrictModal = forwardRef(
       // 如果到达叶子节点，立即关闭
       if (!Array.isArray(newValue) || !newValue.length) return
       if (newValue?.[newValue.length - 1]?.isLeaf) {
-        if (onChange) {
-          onChange(newValue)
-        }
+        onChange?.(newValue)
         onClose && onClose()
       }
     }

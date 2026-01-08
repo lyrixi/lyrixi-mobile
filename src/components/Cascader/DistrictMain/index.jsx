@@ -3,13 +3,13 @@ import React, { useRef, useImperativeHandle, forwardRef, useEffect, useState } f
 import {
   loadBaseData,
   loadData as _loadData,
-  isValueInList,
   formatType,
   formatDistrictValue
 } from './utils/index.js'
 import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
+import DistrictMainLoading from './Loading'
 
 // 内库使用-start
 import ArrayUtil from '../../../utils/ArrayUtil'
@@ -47,12 +47,11 @@ const CascaderDistrictMain = forwardRef(
     },
     ref
   ) => {
-    // 记录上次的value, 用于判断是否需要重新加载
-    let previousValueRef = useRef(null)
-    previousValueRef.current = value
-
     // 记录完整数据列表, 国家->省市区->街道, { status: 'success' | 'error', message: string, list: [] }
     let [result, setResult] = useState(null)
+
+    // 完整的值, 大多传入的value数据是不完整的, 没有type、parentid、disabled, 补充完整后才可使用
+    let [fullValue, setFullValue] = useState(null)
 
     // eslint-disable-next-line
     type = formatType(type)
@@ -66,9 +65,6 @@ const CascaderDistrictMain = forwardRef(
     })
 
     useEffect(() => {
-      if (ArrayUtil.isEqual(previousValueRef.current, value, ['id', 'name'])) {
-        return
-      }
       // 没有合法的基础列表, 则更新列表
       initList()
       // eslint-disable-next-line
@@ -76,6 +72,8 @@ const CascaderDistrictMain = forwardRef(
 
     // 初始化时, 加载国家省市区数据
     async function initList() {
+      setResult(null)
+
       // 加载国家省市区数据
       let baseData = await loadBaseData({
         countryId: value?.[0]?.id,
@@ -83,7 +81,7 @@ const CascaderDistrictMain = forwardRef(
         loadCountryRegions
       })
 
-      // 大多传入的value数据是不完整的, 没有类型, 需要更新value的类型(type)与状态(disabled)
+      // 大多传入的value数据是不完整的, 没有type、parentid、disabled
       let newValue = value
       if (value?.length) {
         newValue = formatDistrictValue(_.cloneDeep(value), { list: baseData?.list, maxType: type })
@@ -92,47 +90,47 @@ const CascaderDistrictMain = forwardRef(
       // 1.无选中项, 说明国家省市区已经覆盖选中项的层级
       // 2.国家省市区已经覆盖选中项的层级
       // 3.基础列表错误, 显示错误
-      let lastTabId = newValue?.[newValue.length - 1]?.id
+      let lastTab = newValue?.[newValue.length - 1]
       if (
         !newValue?.length ||
-        isValueInList(lastTabId, baseData?.list) ||
+        !ArrayUtil.getDeepTreeNode(lastTab.id, baseData?.list) ||
         baseData?.status === 'error'
       ) {
         setResult(baseData)
+
+        // 如果value有变化, 则更新fullValue
+        if (!ArrayUtil.isEqual(value, newValue)) {
+          setFullValue(newValue)
+        }
         return
       }
 
       // 有选中项, 且选国家省市区没有此层级的子列表, 说明是街道
-      let streetsData = await loadStreets(lastTabId, { value: newValue })
+      let districtId = value?.[value.length - 2]?.id
+      let streetsData = await loadStreets(districtId, { value: newValue })
+      debugger
       if (streetsData?.status === 'error') {
         setResult(streetsData)
         return
       }
-
-      // 当前区已经是叶子节点
-      if (streetsData?.status === 'empty') {
-        ArrayUtil.setDeepTreeNode(baseData.list, lastTabId, (node) => {
-          node.children = []
-          node.isLeaf = true
-        })
-      }
       // 街道数据加载成功, 合并到国家省市区
-      else if (streetsData?.status === 'success') {
-        ArrayUtil.setDeepTreeNode(baseData.list, lastTabId, (node) => {
+      if (streetsData?.status === 'success') {
+        ArrayUtil.setDeepTreeNode(baseData.list, districtId, (node) => {
           node.children = streetsData?.list || []
         })
       }
 
       setResult(baseData)
 
-      // 如果value有变化, 则触发onChange
+      // 如果value有变化, 则更新fullValue
       if (!ArrayUtil.isEqual(value, newValue)) {
-        onChange?.(newValue)
+        setFullValue(newValue)
       }
     }
 
     // 加载国家子级列表, 或街道列表, Casacader.Main会自动将结果列表设置到result.list中
     async function loadData(tabs) {
+      debugger
       let childrenData = await _loadData(tabs, {
         list: result.list,
         loadCountryRegions,
@@ -143,8 +141,9 @@ const CascaderDistrictMain = forwardRef(
 
     return (
       <>
+        {!result?.status && <DistrictMainLoading />}
         {/* 基础列表加载中或加载失败, 显示结果页 */}
-        {result?.status !== 'success' && (
+        {result?.status === 'error' && (
           <DistrictMainResult
             result={result}
             onReload={initList}
@@ -158,7 +157,7 @@ const CascaderDistrictMain = forwardRef(
             // Modal: Status
             open={open}
             // Value & Display Value
-            value={value}
+            value={fullValue}
             list={result?.list}
             loadData={loadData}
             // Style

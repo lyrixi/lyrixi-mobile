@@ -28,11 +28,11 @@ export default () => {
         {
           name: '东城区',
           id: '110101'
-        },
-        {
-          name: '东华门街道',
-          id: '110101001'
         }
+        // {
+        //   name: '东华门街道',
+        //   id: '110101001'
+        // }
       ])
     }, 2000)
   }, [])
@@ -42,7 +42,7 @@ export default () => {
         <Card>
           <Divider>formatter</Divider>
           <Cascader.DistrictCombo
-            type={'country'}
+            // type={'country'}
             formatter={(value) => {
               if (!value?.length) return ''
               console.log('formatter value: ', value)

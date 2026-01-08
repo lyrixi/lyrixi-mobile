@@ -81,7 +81,10 @@ const CascaderMain = forwardRef(
         return
       }
 
-      tabsRef.current = tabsRef.current.filter((tab) => !tab.isChoose)
+      // 重置tabs
+      if (tabsRef.current?.length) {
+        tabsRef.current = tabsRef.current.filter((tab) => !tab.isChoose)
+      }
       update(value, { action: 'load' })
       // eslint-disable-next-line
     }, [value])

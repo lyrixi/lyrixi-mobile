@@ -73,7 +73,6 @@ const DistrictCombo = forwardRef(
 
     const [open, setOpen] = useState(false)
     // editableOptions需要根据list计算value的type, loadList后才能计算value的type
-    const listRef = useRef(null)
     const comboRef = useRef(null)
     const modalRef = useRef(null)
 
