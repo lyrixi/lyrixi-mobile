@@ -1,25 +1,23 @@
-import React, { forwardRef, useState } from 'react'
-import Page from './Page'
+import React, { useState } from 'react'
+import SearchPage from './SearchPage'
 
 // 内库使用-start
+import Page from './../../../Page'
 import ToolBar from './../../../ToolBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { ToolBar } from 'lyrixi-mobile'
+import { Page, ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 搜索
-function SearchControl(
-  {
-    // Value & Display Value
-    list,
+function SearchControl({
+  // Value & Display Value
+  list,
 
-    // Events
-    onChange
-  },
-  ref
-) {
+  // Events
+  onChange
+}) {
   // 搜索结果页面显隐
   const [open, setOpen] = useState(false)
 
@@ -28,7 +26,6 @@ function SearchControl(
       {/* Element: Search Bar */}
       <Page.Header className="lyrixi-cascader-search-header">
         <ToolBar.Search
-          ref={ref}
           // Status
           readOnly
           // Events
@@ -39,7 +36,7 @@ function SearchControl(
       </Page.Header>
 
       {/* Element: Search Page */}
-      <Page
+      <SearchPage
         // Status
         open={open}
         // Element
@@ -51,4 +48,4 @@ function SearchControl(
     </>
   )
 }
-export default forwardRef(SearchControl)
+export default SearchControl
