@@ -55,7 +55,7 @@ const Group = forwardRef(
     // 内容DOM
     function getGroup() {
       if (!Array.isArray(list)) {
-        console.log('lyrixi TabBar: Parameter list is wrong')
+        console.log('lyrixi TabBar: Parameter list is wrong', list)
         return null
       }
 

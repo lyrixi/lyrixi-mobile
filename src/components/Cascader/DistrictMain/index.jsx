@@ -108,7 +108,6 @@ const CascaderDistrictMain = forwardRef(
       // 有选中项, 且选国家省市区没有此层级的子列表, 说明是街道
       let districtId = value?.[value.length - 2]?.id
       let streetsData = await loadStreets(districtId, { value: newValue })
-      debugger
       if (streetsData?.status === 'error') {
         setResult(streetsData)
         return
@@ -130,7 +129,6 @@ const CascaderDistrictMain = forwardRef(
 
     // 加载国家子级列表, 或街道列表, Casacader.Main会自动将结果列表设置到result.list中
     async function loadData(tabs) {
-      debugger
       let childrenData = await _loadData(tabs, {
         list: result.list,
         loadCountryRegions,
@@ -168,7 +166,10 @@ const CascaderDistrictMain = forwardRef(
             // Elements
             searchVisible={searchVisible}
             // Events
-            onChange={onChange}
+            onChange={(newValue) => {
+              setFullValue(newValue)
+              onChange?.(newValue)
+            }}
           />
         )}
       </>
