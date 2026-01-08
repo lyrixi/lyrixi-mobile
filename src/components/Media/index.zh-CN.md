@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Media/index.jsx"></code>
+<code src="./demos/Media.jsx"></code>
 
 ## API
 
@@ -80,7 +80,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Media/index.jsx"></code>
+<code src="./demos/MediaList.jsx"></code>
 
 ### API
 
@@ -115,7 +115,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Media/index.jsx"></code>
+<code src="./demos/MediaPreviewModal.jsx"></code>
 
 ### API
 
@@ -162,7 +162,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Media/index.jsx"></code>
+<code src="./demos/MediaPreviewMain.jsx"></code>
 
 ### API
 
@@ -193,7 +193,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Media/index.jsx"></code>
+<code src="./demos/MediaMark.jsx"></code>
 
 ### API
 
