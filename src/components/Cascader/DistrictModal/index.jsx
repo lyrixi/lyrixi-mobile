@@ -80,13 +80,13 @@ const DistrictModal = forwardRef(
 
     // 根据currentValue更新Ok按钮显示状态
     useEffect(() => {
-      setOkVisible(updateOkVisible(currentValue))
+      setOkVisible(updateOkVisible(currentValue, min))
       // eslint-disable-next-line
     }, [currentValue])
 
     // 下钻根据min更新Ok按钮显示状态
     function handleDrillDown(tabs) {
-      setOkVisible(updateOkVisible(tabs))
+      setOkVisible(updateOkVisible(tabs, min))
     }
 
     async function handleOk() {
