@@ -33,11 +33,7 @@ const api = {
    * @param {Number} id 区ID
    * @return {{id: '100200300', name: '沙洲街道', parentid: '100200', type: ['street'], isLeaf: true}}
    */
-  loadStreets: async function (districtId, { parent } = {}) {
-    // 非市或区没有街道
-    if (!parent?.type?.includes('city') && !parent?.type?.includes('district')) {
-      return null
-    }
+  loadStreets: async function (districtId) {
     let result = await loadStreets(districtId)
     if (result.status === 'success') {
       result.list = result.list.map((item) => {

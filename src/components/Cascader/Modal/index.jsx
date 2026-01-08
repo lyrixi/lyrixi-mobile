@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
 // 内库使用-start
@@ -60,11 +60,9 @@ const CascaderModal = forwardRef(
     })
 
     // 同步外部value到内部currentValue
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(value)
-      }
-    }, [open, value])
+    useEffect(() => {
+      setCurrentValue(value)
+    }, [value])
 
     async function handleOk() {
       // 触发 onOk

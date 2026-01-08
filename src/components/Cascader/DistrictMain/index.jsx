@@ -1,6 +1,12 @@
 import React, { useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 
-import { loadBaseData, loadData as _loadData, isValueInList, formatType } from './utils/index.js'
+import {
+  loadBaseData,
+  loadData as _loadData,
+  isValueInList,
+  formatType,
+  formatDistrictValue
+} from './utils/index.js'
 import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
@@ -22,7 +28,6 @@ const CascaderDistrictMain = forwardRef(
 
       // Value & Display Value
       value,
-      startType, // 开始于国家country, 省份province
       type, // 'country', 'province', 'city', 'district', 'street'
       loadCountries = api.loadCountries,
       loadCountryRegions = api.loadCountryRegions,
@@ -61,17 +66,21 @@ const CascaderDistrictMain = forwardRef(
       // 没有合法的基础列表, 则更新列表
       initList()
       // eslint-disable-next-line
-    }, [])
+    }, [value])
 
     // 初始化时, 加载国家省市区数据
     async function initList() {
       // 加载国家省市区数据
       let baseData = await loadBaseData({
         countryId: value?.[0]?.id,
-        startType,
         loadCountries,
         loadCountryRegions
       })
+
+      // 更新value的类型
+      if (value?.length) {
+        formatDistrictValue(value, { list: baseData?.list, maxType: type })
+      }
 
       // 1.无选中项, 说明国家省市区已经覆盖选中项的层级
       // 2.国家省市区已经覆盖选中项的层级

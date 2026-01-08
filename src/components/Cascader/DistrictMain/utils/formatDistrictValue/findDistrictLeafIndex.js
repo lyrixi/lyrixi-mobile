@@ -1,7 +1,7 @@
 // 判断value中是否有某一项为末级，返回该项的索引（0开始），没有则返回-1
-function findDistrictLeafIndex(value, type) {
+function findDistrictLeafIndex(value, maxType) {
   // 对象
-  if (Array.isArray(value?.type) && value.type.includes(type)) {
+  if (Array.isArray(value?.type) && value.type.includes(maxType)) {
     return 0
   }
 
@@ -16,11 +16,11 @@ function findDistrictLeafIndex(value, type) {
 
     if (!item || !item.type) continue
     if (Array.isArray(item.type)) {
-      if (item.type.includes(type)) {
+      if (item.type.includes(maxType)) {
         return i
       }
     } else {
-      if (item.type === type) {
+      if (item.type === maxType) {
         return i
       }
     }

@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import sortValue from './sortValue'
+import findDistrictLeafIndex from './findDistrictLeafIndex'
 
 // 内库使用-start
 import ArrayUtil from '../../../../../utils/ArrayUtil'
@@ -9,11 +10,8 @@ import ArrayUtil from '../../../../../utils/ArrayUtil'
 import { ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import findDistrictLeafIndex from '../findDistrictLeafIndex'
-
 // 更新value的type
-function formatDistrictValue(originValue, list, type) {
-  let value = _.cloneDeep(originValue)
+function formatDistrictValue(value, { list, maxType }) {
   if (!Array.isArray(value) || !value.length || !Array.isArray(list) || !list.length) return null
 
   for (let item of value) {
@@ -53,8 +51,8 @@ function formatDistrictValue(originValue, list, type) {
   }
 
   // 从叶子节点后，舍弃掉后面的item
-  if (type) {
-    const leafIndex = findDistrictLeafIndex(value, type)
+  if (maxType) {
+    const leafIndex = findDistrictLeafIndex(value, maxType)
     if (leafIndex >= 0 && leafIndex < value.length) {
       value.length = leafIndex + 1
       // 标记为isLeaf方便Cascader.Main解析

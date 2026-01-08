@@ -9,10 +9,10 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setValue([
-        // {
-        //   name: '中国',
-        //   id: '86'
-        // },
+        {
+          name: '中国',
+          id: '86'
+        },
         {
           name: '北京市',
           id: '110000'
@@ -32,10 +32,17 @@ export default () => {
     <Page>
       <Page.Main>
         <Card>
-          <Divider>country</Divider>
+          <Divider>formatter</Divider>
           <Cascader.DistrictCombo
             type={'country'}
-            startType={'country'}
+            formatter={(value) => {
+              if (!value?.length) return ''
+              console.log('formatter value: ', value)
+              return value
+                .filter((item) => !item?.type?.includes('country'))
+                .map((item) => item.name)
+                .join('-')
+            }}
             value={value}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
@@ -102,19 +109,6 @@ export default () => {
           />
         </Card>
 
-        <Card>
-          <Divider>startType</Divider>
-          <Cascader.DistrictCombo
-            startType={'country'}
-            value={value}
-            onChange={(newValue) => {
-              console.log('修改: ', newValue)
-              setValue(newValue)
-            }}
-            placeholder={'startType'}
-            allowClear
-          />
-        </Card>
         <Card>
           <Divider>searchVisible</Divider>
           <Cascader.DistrictCombo

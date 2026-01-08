@@ -23,7 +23,7 @@ import { LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-m
 测试使用-end */
 
 // 主体
-const CascaderPage = forwardRef(
+const CascaderMain = forwardRef(
   (
     {
       // Value & Display Value
@@ -335,4 +335,4 @@ const CascaderPage = forwardRef(
   }
 )
 
-export default CascaderPage
+export default CascaderMain

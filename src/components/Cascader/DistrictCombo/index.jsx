@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
-import { formatType, formatDistrictValue, findDistrictLeafIndex } from './../DistrictMain/utils'
+import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用-start
@@ -37,7 +37,6 @@ const DistrictCombo = forwardRef(
 
       // Modal
       // Modal: Value & Display Value
-      startType, // 开始于国家country, 省份province
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
       loadCountries,
       loadCountryRegions,
@@ -130,7 +129,6 @@ const DistrictCombo = forwardRef(
           // Modal: Value & Display Value
           value={value}
           type={type}
-          startType={startType}
           loadCountries={loadCountries}
           loadCountryRegions={loadCountryRegions}
           loadStreets={loadStreets}

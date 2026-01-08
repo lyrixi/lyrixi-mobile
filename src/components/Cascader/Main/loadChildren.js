@@ -40,7 +40,6 @@ async function loadChildren(tabs, { externalLoadData, externalList }) {
 
   // 异步获取子列表数据
   let result = await externalLoadData(tabs, { list: externalList })
-  debugger
   result.async = true
   return result
 }

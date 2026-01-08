@@ -23,7 +23,6 @@ function updateIsLeaf(id, { currentValue, value, tabsRef }) {
       break
     }
   }
-  return tabs
 }
 
 export default updateIsLeaf

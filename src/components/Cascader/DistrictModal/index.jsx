@@ -1,6 +1,5 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType, compareType } from './../DistrictMain/utils'
-import findDistrictLeafIndex from './../DistrictMain/utils/findDistrictLeafIndex'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用-start
@@ -19,7 +18,6 @@ const DistrictModal = forwardRef(
     {
       // Value & Display Value
       value,
-      startType,
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
 
       loadCountries,
@@ -75,12 +73,10 @@ const DistrictModal = forwardRef(
 
     // 同步外部value到内部currentValue
     React.useEffect(() => {
-      if (open) {
-        setCurrentValue(value)
-        updateOkVisible(value)
-      }
+      setCurrentValue(value)
+      updateOkVisible(value)
       // eslint-disable-next-line
-    }, [open, value])
+    }, [value])
 
     // 根据min判断是否显示确定按钮
     function updateOkVisible(tabs) {
@@ -136,8 +132,7 @@ const DistrictModal = forwardRef(
 
       // 如果到达叶子节点，立即关闭
       if (!Array.isArray(newValue) || !newValue.length) return
-      const leafIndex = findDistrictLeafIndex(newValue, type)
-      if (leafIndex >= 0) {
+      if (newValue?.[newValue.length - 1]?.isLeaf) {
         if (onChange) {
           onChange(newValue)
         }
@@ -174,7 +169,6 @@ const DistrictModal = forwardRef(
           open={open}
           // Main: Value & Display Value
           value={currentValue}
-          startType={startType}
           type={type}
           loadCountries={loadCountries}
           loadCountryRegions={loadCountryRegions}

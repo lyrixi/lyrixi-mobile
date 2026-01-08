@@ -21,7 +21,7 @@ function loadStreets(districtId) {
 
     // 加载语言对应的文件
     Request.post(
-      '街道接口地址',
+      'loadStreets.test',
       {
         districtId: districtId
       },
