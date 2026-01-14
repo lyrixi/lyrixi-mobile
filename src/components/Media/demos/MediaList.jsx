@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Media.List>
-          {/* Media.List 示例内容 */}
-        </Media.List>
+        <Media.List>{/* Media.List 示例内容 */}</Media.List>
       </Page.Main>
     </Page>
   )

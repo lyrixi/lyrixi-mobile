@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Media.Mark>
-          {/* Media.Mark 示例内容 */}
-        </Media.Mark>
+        <Media.Mark>{/* Media.Mark 示例内容 */}</Media.Mark>
       </Page.Main>
     </Page>
   )

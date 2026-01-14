@@ -11,7 +11,9 @@ import { DOMUtil } from 'lyrixi-mobile'
 // 图片显示
 const Img = ({
   // Value & Display Value
-  fileUrl
+  fileUrl,
+  // 重新加载的key
+  reloadKey
 }) => {
   const [loadStatus, setLoadStatus] = useState('loading') // 'loading' | 'success' | 'error'
 
@@ -28,9 +30,11 @@ const Img = ({
     setLoadStatus('error')
   }
 
+  const separator = fileUrl?.includes('?') ? '&' : '?'
+
   return (
     <img
-      src={fileUrl}
+      src={`${fileUrl}${reloadKey ? `${separator}_reloadKey=${reloadKey}` : ''}`}
       alt=""
       // Style
       className={DOMUtil.classNames(
