@@ -52,8 +52,8 @@ const Types = forwardRef(
       // Style
       style,
       className,
-      contentStyle = {},
-      contentClassName = '',
+      pickerComboStyle = {},
+      pickerComboClassName = '',
       tabbarStyle = {},
       tabbarClassName = '',
       // Status
@@ -61,7 +61,7 @@ const Types = forwardRef(
       max,
 
       // Elements
-      pickerRender,
+      pickerComboRender,
 
       // Events
       onChange
@@ -106,10 +106,10 @@ const Types = forwardRef(
     }
 
     // 获取选择控件的node
-    function getPickerNode() {
+    function getPickerComboNode() {
       let pickerNode = undefined
-      if (typeof pickerRender === 'function') {
-        pickerNode = pickerRender(value, { onChange: handleDate })
+      if (typeof pickerComboRender === 'function') {
+        pickerNode = pickerComboRender(value, { onChange: handleDate })
       }
       if (pickerNode === undefined) {
         pickerNode =
@@ -144,10 +144,10 @@ const Types = forwardRef(
           />
         )}
         <div
-          style={contentStyle}
-          className={DOMUtil.classNames('lyrixi-datepicker-types-content', contentClassName)}
+          style={pickerComboStyle}
+          className={DOMUtil.classNames('lyrixi-datepicker-types-combo', pickerComboClassName)}
         >
-          {value?.value instanceof Date ? getPickerNode() : null}
+          {value?.value instanceof Date ? getPickerComboNode() : null}
         </div>
       </div>
     )
