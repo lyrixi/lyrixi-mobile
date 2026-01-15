@@ -183,7 +183,7 @@ function MediaUploader(
     return (
       <div style={style} className={DOMUtil.classNames('lyrixi-media-compatible', className)}>
         {/* 小程序拍照兼容方式切换, 小程序经常呼不起来 */}
-        {platform === 'wechatMiniProgram' ? (
+        {platform === 'wechatMiniProgram' && allowChoose ? (
           <CompatibleToggle
             compatible={compatible}
             compatiblePlatform={compatiblePlatform || 'browser'}
@@ -200,11 +200,13 @@ function MediaUploader(
     console.log('渲染微信小程序Meida组件')
     return (
       <div style={style} className={DOMUtil.classNames('lyrixi-media-compatible', className)}>
-        <CompatibleToggle
-          compatible={compatible}
-          compatiblePlatform={compatiblePlatform || 'wechatMiniProgram'}
-          onCompatiblePlatformChange={setCompatiblePlatform}
-        />
+        {allowChoose ? (
+          <CompatibleToggle
+            compatible={compatible}
+            compatiblePlatform={compatiblePlatform || 'wechatMiniProgram'}
+            onCompatiblePlatformChange={setCompatiblePlatform}
+          />
+        ) : null}
         <WechatMiniProgram ref={ref} onNavigateTo={handleWechatMiniProgramMedia} {...commonProps} />
       </div>
     )
