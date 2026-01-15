@@ -76,7 +76,10 @@ const DateCombo = forwardRef(
 
     return (
       <>
-        <Input.IconLeftArrow className="lyrixi-datepicker-types-previous" onClick={handlePrev} />
+        <Input.IconLeftArrow
+          className="lyrixi-datepicker-types-combo-previous"
+          onClick={handlePrev}
+        />
         <DatePickerCombo
           value={value}
           type={type}
@@ -87,7 +90,7 @@ const DateCombo = forwardRef(
             return (
               <Combo
                 ref={comboRef}
-                className={DOMUtil.classNames('lyrixi-datepicker-types-date', className)}
+                className={DOMUtil.classNames('lyrixi-datepicker-types-combo-date', className)}
                 style={style}
                 onClick={onClick}
                 type={type}
@@ -97,7 +100,7 @@ const DateCombo = forwardRef(
           }}
           ref={ref}
         />
-        <Input.IconRightArrow className="lyrixi-datepicker-types-next" onClick={handleNext} />
+        <Input.IconRightArrow className="lyrixi-datepicker-types-combo-next" onClick={handleNext} />
       </>
     )
   }
