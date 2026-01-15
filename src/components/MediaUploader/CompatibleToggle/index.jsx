@@ -30,7 +30,7 @@ function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatform
   }
 
   return (
-    <span style={{ marginBottom: '4px', position: 'relative', overflow: 'visible' }}>
+    <span className="lyrixi-media-compatible-toggle">
       {typeof compatible === 'string'
         ? compatible
         : LocaleUtil.locale('如果无法拍照，请切换拍照方式')}

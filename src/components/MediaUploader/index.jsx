@@ -13,13 +13,14 @@ import Dingtalk from './Dingtalk'
 import Custom from './Custom'
 
 // 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
 import Device from './../../utils/Device'
 import Toast from './../Toast'
 import LocaleUtil from './../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Device, Toast } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 照片上传
@@ -149,8 +150,6 @@ function MediaUploader(
     previewAllowChoose,
     previewAllowClear,
     // Style
-    style,
-    className,
     uploadPosition,
     previewSafeArea,
     previewNavBarStyle,
@@ -182,7 +181,7 @@ function MediaUploader(
   if (compatiblePlatform === 'browser' || Device.device === 'pc') {
     console.log('渲染浏览器Meida组件')
     return (
-      <div className="lyrixi-media-compatible">
+      <div style={style} className={DOMUtil.classNames('lyrixi-media-compatible', className)}>
         {/* 小程序拍照兼容方式切换, 小程序经常呼不起来 */}
         {platform === 'wechatMiniProgram' ? (
           <CompatibleToggle
@@ -200,7 +199,7 @@ function MediaUploader(
   if (platform === 'wechatMiniProgram' && !async) {
     console.log('渲染微信小程序Meida组件')
     return (
-      <div className="lyrixi-media-compatible">
+      <div style={style} className={DOMUtil.classNames('lyrixi-media-compatible', className)}>
         <CompatibleToggle
           compatible={compatible}
           compatiblePlatform={compatiblePlatform || 'wechatMiniProgram'}
@@ -216,10 +215,10 @@ function MediaUploader(
     // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
     if (Device?.os === 'harmony') {
       console.log('渲染浏览器Meida组件')
-      return <Browser ref={ref} {...commonProps} />
+      return <Browser ref={ref} {...commonProps} style={style} className={className} />
     }
     console.log('渲染钉钉Meida组件')
-    return <Dingtalk ref={ref} {...commonProps} />
+    return <Dingtalk ref={ref} {...commonProps} style={style} className={className} />
   }
 
   // 微信上传
@@ -230,17 +229,17 @@ function MediaUploader(
     platform === 'wecomMiniProgram'
   ) {
     console.log('渲染微信Meida组件')
-    return <Wechat ref={ref} {...commonProps} />
+    return <Wechat ref={ref} {...commonProps} style={style} className={className} />
   }
 
   // 自定义上传
   if (platform === Device.platform) {
     console.log('渲染自定义Meida组件', platform)
-    return <Custom ref={ref} {...commonProps} />
+    return <Custom ref={ref} {...commonProps} style={style} className={className} />
   }
 
   console.log('渲染浏览器Meida组件')
-  return <Browser ref={ref} {...commonProps} />
+  return <Browser ref={ref} {...commonProps} style={style} className={className} />
 }
 
 const MediaUploaderComponent = forwardRef(MediaUploader)
