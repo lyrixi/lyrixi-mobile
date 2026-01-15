@@ -292,7 +292,7 @@ const Media = forwardRef(
 
     // 上传node
     function getChooseNode() {
-      if (!chooseVisible || typeof onChange !== 'function') {
+      if (!chooseVisible) {
         return null
       }
 

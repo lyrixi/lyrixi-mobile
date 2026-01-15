@@ -38,7 +38,7 @@ const List = ({
             if (maxCountVisible && index + 1 > maxCountVisible) return null
 
             // 判断当前项是否允许删除
-            const canClear = typeof onChange === 'function' && isAllowClear(allowClear, item)
+            const canClear = isAllowClear(allowClear, item)
 
             return (
               <Item

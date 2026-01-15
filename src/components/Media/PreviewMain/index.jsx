@@ -81,7 +81,7 @@ const PreviewMain = forwardRef(
     }
 
     // 判断当前项是否允许删除
-    const canClear = typeof onChange === 'function' && isAllowClear(allowClear, list?.[activeIndex])
+    const canClear = isAllowClear(allowClear, list?.[activeIndex])
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -272,8 +272,8 @@ const PreviewMain = forwardRef(
           'lyrixi-media-preview-main',
           className,
           closable ? 'lyrixi-closable' : '',
-          chooseVisible && typeof onChange === 'function' ? 'lyrixi-choosable' : '',
-          allowClear && typeof onChange === 'function' ? 'lyrixi-clearable' : '',
+          chooseVisible ? 'lyrixi-choosable' : '',
+          allowClear ? 'lyrixi-clearable' : '',
           open ? '' : 'lyrixi-hide'
         )}
         style={{
@@ -327,7 +327,7 @@ const PreviewMain = forwardRef(
         {/* Delete */}
         {canClear ? <PreviewDelete onDelete={handleDelete} /> : null}
         {/* Choose */}
-        {chooseVisible && typeof onChange === 'function' ? (
+        {chooseVisible ? (
           <PreviewChoose
             // Value & Display Value
             sourceType={sourceType}

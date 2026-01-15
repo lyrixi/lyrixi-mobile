@@ -42,8 +42,8 @@ function MediaUploader(
     async = false, // 是否异步上传(目前只有app支持)
     verifyImage = true, // 校验上传完成的图片是否可访问
     reUpload = true, // 支持重新上传
-    allowClear = true,
-    allowChoose = true,
+    allowClear = false,
+    allowChoose = false,
     previewAllowChoose,
     previewAllowClear,
     compatible = true, // 兼容模式, 允许模式切换（小程序/浏览器）
