@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import getStyle from './getStyle'
 import Base from './Base'
 
 // 内库使用-start
@@ -26,6 +27,15 @@ const Text = forwardRef(
     },
     ref
   ) => {
+    let { style: newStyle, className: newClassName } = getStyle({
+      // Style
+      color,
+      fontSize,
+      fontWeight,
+      style,
+      className
+    })
+
     return (
       <Base
         ref={ref}
@@ -33,8 +43,8 @@ const Text = forwardRef(
         highlight={highlight}
         ellipsis={ellipsis}
         // Style
-        style={style}
-        className={DOMUtil.classNames('lyrixi-text', className)}
+        style={newStyle}
+        className={newClassName}
       >
         {children}
       </Base>

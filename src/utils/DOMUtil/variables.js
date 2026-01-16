@@ -9,12 +9,22 @@ const colors = [
   'tertiary',
   'quaternary',
   'primary',
-  'link',
+  'primary-lighten',
+  'info',
+  'info-lighten',
   'warning',
+  'warning-lighten',
   'danger',
-  'success'
+  'danger-lighten',
+  'success',
+  'success-lighten'
 ]
 
+// 文字颜色枚举值(color.less)
+const fontColors = ['default', 'secondary', 'tertiary', 'quaternary', 'disabled']
+
+// 背景色枚举值(color.less)
+const bgColors = ['transparent', 'white', 'default', 'secondary', 'tertiary', 'quaternary']
 // 尺寸枚举值(业务自行控制)
 const sizes = ['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
 

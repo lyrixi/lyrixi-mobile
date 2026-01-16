@@ -16,9 +16,9 @@ const Button = forwardRef(
       // Button: Style
       direction = 'horizontal', // 方向: horizontal, vertical
       block, // 是否为块级元素
-      color = 'default', // 颜色: default, transparent, primary, link, warning, danger, success
-      backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, link, warning, danger, success
-      borderColor = 'default', // 边框颜色: default, transparent, primary, link, warning, danger, success
+      color = 'default', // 颜色: default, transparent, primary, info, warning, danger, success
+      backgroundColor = 'white', // 背景颜色: default, transparent, white, primary, info, warning, danger, success
+      borderColor = 'default', // 边框颜色: default, transparent, primary, info, warning, danger, success
       border = 'solid', // 边框: none, dotted, dashed, solid
       size, // 高度尺寸: xxs, xs, s, m, l, xl, 传数组则为[高度,宽度]
       sizeEqual, // 是否为等宽高

@@ -152,8 +152,8 @@ function inertia({ cellSize, distance, duration, currentPosition, minPosition, m
 
 /**
  * 获取尺寸变量, 与variables.less中的变量一致
- * @param {Array|Number|String} gap
- * @param {String} type 'space' | 'font-size' | 'radius', 不传则不使用变量
+ * @param {Number|String} size
+ * @param {String} type 'space' | 'font-size' | 'font-weight' | 'radius', 不传则不使用变量
  * @returns {String} 间距大小
  */
 function variableSize(size, type) {

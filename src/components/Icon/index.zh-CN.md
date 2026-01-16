@@ -28,8 +28,8 @@ toc: content
 | 属性            | 说明         | 类型                                                                                                 | 默认值 |
 | --------------- | ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
 | disabled        | 是否禁用     | `boolean`                                                                                            | -      |
-| color           | 颜色         | `'default' \| 'transparent' \| 'primary' \| 'link' \| 'warning' \| 'danger' \| 'success'`            | -      |
-| backgroundColor | 背景颜色     | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'link' \| 'warning' \| 'danger' \| 'success'` | -      |
+| color           | 颜色         | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | -      |
+| backgroundColor | 背景颜色     | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | -      |
 | size            | 尺寸         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | `'m'`  |
 | radius          | 圆角         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | -      |
 | style           | 自定义样式   | `object`                                                                                             | -      |

@@ -147,68 +147,68 @@ export default () => {
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
           <Button
             color="white"
-            backgroundColor="link"
-            borderColor="link"
+            backgroundColor="info"
+            borderColor="info"
             radius="m"
             style={buttonStyle}
           >
-            color="white" backgroundColor="link"
+            color="white" backgroundColor="info"
           </Button>
           <br />
           <Button
-            color="link"
-            backgroundColor="link-lighten"
+            color="info"
+            backgroundColor="info-lighten"
             border="none"
             radius="m"
             style={buttonStyle}
           >
-            color="link" backgroundColor="link-lighten"
+            color="info" backgroundColor="info-lighten"
           </Button>
           <Button
-            color="link"
-            backgroundColor="link-lighten"
+            color="info"
+            backgroundColor="info-lighten"
             border="solid"
             radius="m"
             style={buttonStyle}
           >
-            color="link" backgroundColor="link-lighten" border="solid"
+            color="info" backgroundColor="info-lighten" border="solid"
           </Button>
           <Button
-            color="link"
-            backgroundColor="link-lighten"
+            color="info"
+            backgroundColor="info-lighten"
             border="dashed"
             radius="m"
             style={buttonStyle}
           >
-            color="link" backgroundColor="link-lighten" border="dashed"
+            color="info" backgroundColor="info-lighten" border="dashed"
           </Button>
           <br />
           <Button
-            color="link"
+            color="info"
             backgroundColor="transparent"
             border="none"
             radius="m"
             style={buttonStyle}
           >
-            color="link" backgroundColor="transparent" border="none"
+            color="info" backgroundColor="transparent" border="none"
           </Button>
           <Button
-            color="link"
+            color="info"
             backgroundColor="transparent"
             border="solid"
             radius="m"
             style={buttonStyle}
           >
-            color="link" backgroundColor="transparent" border="solid"
+            color="info" backgroundColor="transparent" border="solid"
           </Button>
           <Button
-            color="link"
+            color="info"
             backgroundColor="transparent"
             border="dashed"
             radius="m"
             style={buttonStyle}
           >
-            color="link" backgroundColor="transparent" border="dashed"
+            color="info" backgroundColor="transparent" border="dashed"
           </Button>
         </div>
 

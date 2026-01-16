@@ -30,9 +30,9 @@ toc: content
 | id              | 按钮 ID        | `string`                                                                                             | -              |
 | direction       | 方向           | `'horizontal' \| 'vertical'`                                                                         | `'horizontal'` |
 | block           | 是否为块级元素 | `boolean`                                                                                            | -              |
-| color           | 颜色           | `'default' \| 'transparent' \| 'primary' \| 'link' \| 'warning' \| 'danger' \| 'success'`            | `'default'`    |
-| backgroundColor | 背景颜色       | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'link' \| 'warning' \| 'danger' \| 'success'` | `'white'`      |
-| borderColor     | 边框颜色       | `'default' \| 'transparent' \| 'primary' \| 'link' \| 'warning' \| 'danger' \| 'success'`            | `'default'`    |
+| color           | 颜色           | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | `'default'`    |
+| backgroundColor | 背景颜色       | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | `'white'`      |
+| borderColor     | 边框颜色       | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | `'default'`    |
 | border          | 边框样式       | `'none' \| 'dotted' \| 'dashed' \| 'solid'`                                                          | `'solid'`      |
 | size            | 高度尺寸       | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| [number, number]`                                     | -              |
 | sizeEqual       | 是否为等宽高   | `boolean`                                                                                            | -              |
