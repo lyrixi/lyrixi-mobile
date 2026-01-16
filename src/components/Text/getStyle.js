@@ -15,11 +15,6 @@ function getStyle({
   style,
   className
 }) {
-  // eslint-disable-next-line
-  fontSize = MathUtil.variableSize(fontSize) || fontSize
-  // eslint-disable-next-line
-  fontWeight = MathUtil.variableSize(fontWeight) || fontWeight
-
   // 判断颜色是否在枚举值中
   const isColorClass = DOMUtil.variables.colors.includes(color)
   const isFontSizeClass = DOMUtil.variables.sizes.includes(fontSize)
@@ -36,7 +31,7 @@ function getStyle({
   const newClassName = DOMUtil.classNames(
     'lyrixi-text',
     isColorClass && color && `lyrixi-color-${color}`,
-    isFontSizeClass && fontSize && `lyrixi-font-size-${borderColor}`,
+    isFontSizeClass && fontSize && `lyrixi-font-size-${fontSize}`,
     isFontWeightClass && fontWeight && `lyrixi-font-weight-${fontWeight}`,
     className
   )
