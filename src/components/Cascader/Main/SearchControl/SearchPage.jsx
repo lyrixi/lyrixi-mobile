@@ -7,11 +7,11 @@ import Page from './../../../Page'
 import ToolBar from './../../../ToolBar'
 import Result from './../../../Result'
 import List from './../../../List'
-import Typography from './../../../Typography'
+import Text from './../../../Text'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, ArrayUtil, Page, ToolBar, Result, List, Typography } from 'lyrixi-mobile'
+import { LocaleUtil, ArrayUtil, Page, ToolBar, Result, List, Text } from 'lyrixi-mobile'
 测试使用-end */
 
 // 搜索页面
@@ -54,7 +54,7 @@ const SearchPage = ({ list: externalList, onChange, onClose }) => {
               const { children, ...restItem } = item
               return {
                 ...restItem,
-                title: <Typography.Text highlight={keyword}>{pathName}</Typography.Text>
+                title: <Text highlight={keyword}>{pathName}</Text>
               }
             })}
           onChange={onChange}

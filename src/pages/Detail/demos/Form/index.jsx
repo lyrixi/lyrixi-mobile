@@ -1,7 +1,7 @@
 // 第三方库导入
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
-import { LocaleUtil, Toast, Divider, Page, Result, Typography, Card } from 'lyrixi-mobile'
+import { LocaleUtil, Toast, Divider, Page, Result, Form, Card, Text } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
@@ -11,7 +11,6 @@ import Footer from './Footer'
 // 样式图片等资源文件导入
 
 const locale = LocaleUtil.locale
-const { Item, Label, Main } = Typography.Form
 
 // 表单编辑页面
 const FormDetail = () => {
@@ -74,39 +73,37 @@ const FormDetail = () => {
         <Page.Main>
           <Card>
             <Divider>Horizontal Layout</Divider>
-            <Typography.Form style={{ marginLeft: '12px' }}>
-              <Item>
-                <Label help="Help info" ellipsis={{ rows: 1, expandable: true }}>
-                  {locale(
-                    'Input Overflow Label, It is very very very long,  It is really very very very long'
-                  )}
-                </Label>
-                <Main ellipsis={{ rows: 2, expandable: true }}>
+            <Form style={{ marginLeft: '12px' }}>
+              <Form.Item
+                help="Help info"
+                label={locale(
+                  'Input Overflow Label, It is very very very long,  It is really very very very long'
+                )}
+                ellipsis={{ rows: 1, expandable: true }}
+              >
+                <Text ellipsis={{ rows: 2, expandable: true }}>
                   {locale(
                     'Value Overflow Main, It is very very very long,  It is really very very very long'
                   )}
-                </Main>
-              </Item>
+                </Text>
+              </Form.Item>
 
-              <Item>
-                <Label ellipsis={{ rows: 1, expandable: true }}>{locale('Select')}</Label>
-                <Main>{Typography.getDisplayValue(data?.select)}</Main>
-              </Item>
-            </Typography.Form>
+              <Form.Item label={locale('Select')} ellipsis={{ rows: 1, expandable: true }}>
+                <Text>{Text.getDisplayValue(data?.select)}</Text>
+              </Form.Item>
+            </Form>
           </Card>
           <Card>
             <Divider>Vertical Layout</Divider>
-            <Typography.Form layout="vertical" style={{ marginLeft: '12px' }}>
-              <Item>
-                <Label>{locale('Input')}</Label>
-                <Main>{Typography.getDisplayValue(data?.input)}</Main>
-              </Item>
+            <Form layout="vertical" style={{ marginLeft: '12px' }}>
+              <Form.Item label={locale('Input')}>
+                <Text>{Text.getDisplayValue(data?.input)}</Text>
+              </Form.Item>
 
-              <Item>
-                <Label>{locale('Select')}</Label>
-                <Main>{Typography.getDisplayValue(data?.select)}</Main>
-              </Item>
-            </Typography.Form>
+              <Form.Item label={locale('Select')}>
+                <Text>{Text.getDisplayValue(data?.select)}</Text>
+              </Form.Item>
+            </Form>
           </Card>
         </Page.Main>
       )}

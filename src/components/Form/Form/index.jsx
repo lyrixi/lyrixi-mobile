@@ -1,13 +1,6 @@
 import React, { forwardRef } from 'react'
 import Form from 'rc-field-form'
-
-// 内库使用-start
-import Typography from '../../Typography'
-// 内库使用-end
-
-/* 测试使用-start
-import { Typography } from 'lyrixi-mobile'
-测试使用-end */
+import Items from './../components/Items'
 
 // layout: horizontal | vertical | inline
 const FormComponent = forwardRef(
@@ -43,7 +36,7 @@ const FormComponent = forwardRef(
         onFieldsChange={onFieldsChange}
         onValuesChange={onValuesChange}
       >
-        <Typography.Form
+        <Items
           ref={ref}
           virtual={virtual}
           layout={layout}
@@ -54,7 +47,7 @@ const FormComponent = forwardRef(
           className={className}
         >
           {children}
-        </Typography.Form>
+        </Items>
       </Form>
     )
   }

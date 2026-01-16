@@ -8378,7 +8378,7 @@
     "zh_TW": "未添加"
   },
   "收起": {
-    "key": "lyrixi.typography.ellipsis.toggle.collapse",
+    "key": "lyrixi.lyrixi.text.ellipsis.ellipsis.toggle.collapse",
     "ar_EG": "تقوض",
     "az_AZ": "Dağılın",
     "bg_BG": "Срив",
@@ -8449,7 +8449,7 @@
     "zh_TW": "收起"
   },
   "展开": {
-    "key": "lyrixi.typography.ellipsis.toggle.expand",
+    "key": "lyrixi.lyrixi.text.ellipsis.ellipsis.toggle.expand",
     "ar_EG": "تتكشف",
     "az_AZ": "aç",
     "bg_BG": "Развивам",

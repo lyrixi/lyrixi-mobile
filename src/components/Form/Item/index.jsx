@@ -1,15 +1,8 @@
 import React, { forwardRef } from 'react'
 import { Field } from 'rc-field-form'
-
-// 内库使用-start
-import Typography from '../../Typography'
-// 内库使用-end
-
-/* 测试使用-start
-import { Typography } from 'lyrixi-mobile'
-测试使用-end */
-
-const { Item, Label, Main } = Typography.Form
+import Item from './../components/Item'
+import Label from './../components/ItemLabel'
+import Main from './../components/ItemMain'
 
 const FormItem = forwardRef(
   (

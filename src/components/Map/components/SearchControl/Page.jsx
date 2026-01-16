@@ -7,11 +7,11 @@ import ToolBar from './../../../ToolBar'
 import List from './../../../List'
 import Page from './../../../Page'
 import Result from './../../../Result'
-import Typography from './../../../Typography'
+import Text from './../../../Text'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Loading, ToolBar, List, Page, Result, Typography } from 'lyrixi-mobile'
+import { LocaleUtil, Loading, ToolBar, List, Page, Result, Text } from 'lyrixi-mobile'
 测试使用-end */
 
 // 搜索
@@ -100,7 +100,7 @@ function SearchPage({
             formatViewItem={(item) => {
               return {
                 ...item,
-                title: <Typography.Text highlight={keyword || ''}>{item.name}</Typography.Text>,
+                title: <Text highlight={keyword || ''}>{item.name}</Text>,
                 description: item.address
               }
             }}
