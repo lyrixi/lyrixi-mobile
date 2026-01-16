@@ -9,7 +9,7 @@ import getHighlightNode from './getHighlightNode'
 import getEllipsisStyle from './getEllipsisStyle'
 
 // 内库使用-start
-import LocaleUtil from './../../../../utils/LocaleUtil'
+import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start

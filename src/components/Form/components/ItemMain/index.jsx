@@ -1,14 +1,14 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
-import Div from './../../Letter/Base'
 import ItemsContext from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 import Row from '../../../Row'
+import Text from '../../../Text'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Row } from 'lyrixi-mobile'
+import { DOMUtil, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormMain = forwardRef(
@@ -53,7 +53,7 @@ const FormMain = forwardRef(
         <div className="lyrixi-form-item-main-input">
           {/* Element: Children */}
           {ellipsis?.rows && typeof children === 'string' ? (
-            <Div ellipsis={ellipsis || globalEllipsis}>{children}</Div>
+            <Text ellipsis={ellipsis || globalEllipsis}>{children}</Text>
           ) : (
             children
           )}

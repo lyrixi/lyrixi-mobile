@@ -1,8 +1,8 @@
 import React from 'react'
 
 // 内库使用-start
-import MathUtil from './../../../../utils/MathUtil'
-import DOMUtil from './../../../../utils/DOMUtil'
+import MathUtil from './../../utils/MathUtil'
+import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start

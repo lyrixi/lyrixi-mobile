@@ -1,15 +1,15 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 import ItemsContext from './../ItemsContext'
-import Div from './../../Letter/Base'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 import Toast from './../../../Toast'
 import Row from '../../../Row'
+import Text from '../../../Text'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Toast, Row } from 'lyrixi-mobile'
+import { DOMUtil, Toast, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
 const FormLabel = forwardRef(
@@ -60,9 +60,9 @@ const FormLabel = forwardRef(
       >
         {/* Element: Children */}
         {children && (
-          <Div className="lyrixi-form-item-label-text" ellipsis={ellipsis || globalEllipsis}>
+          <Text className="lyrixi-form-item-label-text" ellipsis={ellipsis || globalEllipsis}>
             {children}
-          </Div>
+          </Text>
         )}
 
         {/* Value & Display Value: Help */}
