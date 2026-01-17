@@ -25,7 +25,6 @@ const Form = forwardRef(
       mainEllipsis,
 
       // Element
-      scrollerElement,
       children
     },
     ref
@@ -42,7 +41,7 @@ const Form = forwardRef(
 
     return (
       <ItemsContext.Provider
-        value={{ layout, labelSpan, labelEllipsis, mainSpan, mainEllipsis, scrollerElement: scrollerElement }}
+        value={{ layout, labelSpan, labelEllipsis, mainSpan, mainEllipsis }}
       >
         <div
           ref={rootRef}

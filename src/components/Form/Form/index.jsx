@@ -6,13 +6,12 @@ import Items from './../components/Items'
 const FormComponent = forwardRef(
   (
     {
-      // Transparent to children properties
+      // Global properties
       layout = 'horizontal',
       labelSpan,
       labelEllipsis,
       mainSpan,
       mainEllipsis,
-      scrollerElement,
       // Own properties
       virtual,
       style,
@@ -46,7 +45,6 @@ const FormComponent = forwardRef(
           labelEllipsis={labelEllipsis}
           mainSpan={mainSpan}
           mainEllipsis={mainEllipsis}
-          scrollerElement={scrollerElement}
           style={style}
           className={className}
         >

@@ -33,7 +33,7 @@ export default () => {
           <Form.Item
             name="input"
             label={LocaleUtil.locale('单行文本框')}
-            help="Help info"
+            labelHelp="Help info"
             extraRender={() => <div>Main Extra Info</div>}
             inputExtraRender={() => <div>Input Extra Info</div>}
             rules={[
@@ -70,7 +70,7 @@ export default () => {
           <Form.Item
             name="input2"
             label={LocaleUtil.locale('单行文本框')}
-            help="提示信息"
+            labelHelp="提示信息"
             rules={[
               {
                 required: true,

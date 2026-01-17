@@ -35,9 +35,9 @@ const FormItem = forwardRef(
 
       // Elements
       label,
+      labelHelp,
       inputExtraRender,
       extraRender,
-      help,
       children
     },
     ref
@@ -74,7 +74,7 @@ const FormItem = forwardRef(
                 // Validate
                 required={(rules || []).some((rule) => rule.required)}
                 // Element
-                help={help}
+                help={labelHelp}
               >
                 {label}
               </Label>

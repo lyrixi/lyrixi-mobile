@@ -75,20 +75,15 @@ const FormDetail = () => {
             <Divider>Horizontal Layout</Divider>
             <Form style={{ marginLeft: '12px' }}>
               <Form.Item
-                help="Help info"
+                labelHelp="Help info"
                 label={locale(
                   'Input Overflow Label, It is very very very long,  It is really very very very long'
                 )}
-                ellipsis={{ rows: 1, expandable: true }}
-              >
-                <Text ellipsis={{ rows: 2, expandable: true }}>
-                  {locale(
-                    'Value Overflow Main, It is very very very long,  It is really very very very long'
-                  )}
-                </Text>
-              </Form.Item>
+                labelEllipsis={{ rows: 1, expandable: true }}
+                mainEllipsis={{ rows: 2, expandable: true }}
+              >Value Overflow Main, It is very very very long,  It is really very very very long</Form.Item>
 
-              <Form.Item label={locale('Select')} ellipsis={{ rows: 1, expandable: true }}>
+              <Form.Item label={locale('Select')} labelEllipsis={{ rows: 1, expandable: true }}>
                 <Text>{Text.getDisplayValue(result?.select)}</Text>
               </Form.Item>
             </Form>

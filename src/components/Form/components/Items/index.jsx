@@ -12,7 +12,6 @@ const Form = forwardRef(
       labelEllipsis,
       mainSpan,
       mainEllipsis,
-      scrollerElement,
       children,
       className,
       style
@@ -29,7 +28,6 @@ const Form = forwardRef(
           labelEllipsis={labelEllipsis}
           mainSpan={mainSpan}
           mainEllipsis={mainEllipsis}
-          scrollerElement={scrollerElement}
           className={className}
           style={style}
         >
@@ -45,7 +43,6 @@ const Form = forwardRef(
         labelEllipsis={labelEllipsis}
         mainSpan={mainSpan}
         mainEllipsis={mainEllipsis}
-        scrollerElement={scrollerElement}
         className={className}
         style={style}
       >

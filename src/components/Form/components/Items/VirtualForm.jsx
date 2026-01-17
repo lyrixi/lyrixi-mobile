@@ -25,7 +25,6 @@ const VirtualForm = forwardRef(
       mainEllipsis,
 
       // Element
-      scrollerElement,
       children
     },
     ref
@@ -79,7 +78,6 @@ const VirtualForm = forwardRef(
           labelEllipsis,
           mainSpan,
           mainEllipsis,
-          scrollerElement: scrollerElement,
           virtual: { observer: observer, observerCallbacks: observerCallbacksRef.current }
         }}
       >
