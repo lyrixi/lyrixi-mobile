@@ -51,7 +51,7 @@ export default () => {
             />
           </NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Button className="lyrixi-primary">Ok</NavBar.Button>
+          <NavBar.Button color="primary">Ok</NavBar.Button>
         </NavBar>
       </Page.Main>
     </Page>

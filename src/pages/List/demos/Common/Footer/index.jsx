@@ -7,12 +7,7 @@ const locale = LocaleUtil.locale
 // 底部
 function Footer({ okText, cancelText, onOk, onCancel }) {
   const buttons = []
-  if (onCancel) {
-    buttons.push({
-      name: cancelText || locale('Cancel'),
-      onClick: onCancel
-    })
-  }
+
   if (onOk) {
     buttons.push({
       name: okText || locale('Save'),
@@ -23,7 +18,18 @@ function Footer({ okText, cancelText, onOk, onCancel }) {
 
   return (
     <Page.Footer>
-      <FooterBar list={buttons} />
+      <FooterBar>
+        {onCancel &&
+          <FooterBar.Button block backgroundColor="default" onClick={onCancel}>
+            {cancelText || locale('Cancel')}
+          </FooterBar.Button>
+        }
+        {onOk &&
+          <FooterBar.Button block backgroundColor="primary" color="white" onClick={onOk}>
+            {okText || locale('Ok')}
+          </FooterBar.Button>
+        }
+      </FooterBar>
     </Page.Footer>
   )
 }

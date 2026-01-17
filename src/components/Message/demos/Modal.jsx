@@ -20,8 +20,8 @@ export default () => {
         </Message.Header>
         <Message.Main>Content</Message.Main>
         <Message.Footer>
-          <Message.Button onClick={() => setOpen(false)}>Button1</Message.Button>
-          <Message.Button className="lyrixi-primary" onClick={() => setOpen(false)}>
+          <Message.Button block backgroundColor="default" onClick={() => setOpen(false)}>Button1</Message.Button>
+          <Message.Button block backgroundColor="primary" color="white" onClick={() => setOpen(false)}>
             Button2
           </Message.Button>
         </Message.Footer>
