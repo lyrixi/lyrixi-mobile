@@ -8,7 +8,7 @@ function getEllipsisStyle({ rows, rowHeight }, containerElement) {
     WebkitBoxOrient: 'vertical',
     WebkitLineClamp: rows,
     maxHeight: rows * (rowHeight || defaultRowHeight) + 'px',
-    lineHeight: rowHeight || defaultRowHeight + 'px'
+    lineHeight: (rowHeight || defaultRowHeight) + 'px'
   }
 
   if (containerElement) {
