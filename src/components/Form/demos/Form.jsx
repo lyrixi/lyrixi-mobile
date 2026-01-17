@@ -27,8 +27,8 @@ export default () => {
           initialValues={{
             input: '123'
           }}
-          labelCol={{ span: 10 }}
-          mainCol={{ span: 14 }}
+          labelSpan={10}
+          mainSpan={14}
         >
           <Form.Item
             name="input"

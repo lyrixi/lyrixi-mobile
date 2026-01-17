@@ -8,8 +8,10 @@ const FormComponent = forwardRef(
     {
       // Transparent to children properties
       layout = 'horizontal',
-      labelCol,
-      mainCol,
+      labelSpan,
+      labelEllipsis,
+      mainSpan,
+      mainEllipsis,
       scrollerElement,
       // Own properties
       virtual,
@@ -40,8 +42,10 @@ const FormComponent = forwardRef(
           ref={ref}
           virtual={virtual}
           layout={layout}
-          labelCol={labelCol}
-          mainCol={mainCol}
+          labelSpan={labelSpan}
+          labelEllipsis={labelEllipsis}
+          mainSpan={mainSpan}
+          mainEllipsis={mainEllipsis}
           scrollerElement={scrollerElement}
           style={style}
           className={className}

@@ -18,12 +18,20 @@ const FormItem = forwardRef(
       // Value & Display Value
       id,
 
+      // Status
+      labelEllipsis,
+      labelSpan,
+      mainSpan,
+      mainEllipsis,
+
       // Style
       style,
       className,
       layout,
-      labelCol,
-      mainCol,
+      labelStyle,
+      labelClassName,
+      mainStyle,
+      mainClassName,
 
       // Elements
       label,
@@ -58,11 +66,11 @@ const FormItem = forwardRef(
             >
               <Label
                 // Value & Display Value
-                ellipsis={labelCol?.ellipsis}
+                ellipsis={labelEllipsis}
                 // Style
-                style={labelCol?.style}
-                className={labelCol?.className}
-                span={labelCol?.span}
+                style={labelStyle}
+                className={labelClassName}
+                span={labelSpan}
                 // Validate
                 required={(rules || []).some((rule) => rule.required)}
                 // Element
@@ -71,12 +79,12 @@ const FormItem = forwardRef(
                 {label}
               </Label>
               <Main
-                // Value & Display Value
-                ellipsis={mainCol?.ellipsis}
+                // Status
+                ellipsis={mainEllipsis}
+                span={mainSpan}
                 // Style
-                style={mainCol?.style}
-                className={mainCol?.className}
-                span={mainCol?.span}
+                style={mainStyle}
+                className={mainClassName}
                 // Element
                 errorMessage={renderMeta?.errors?.[0] || ''}
                 inputExtraNode={inputExtraRender?.({ errors: renderMeta?.errors })}

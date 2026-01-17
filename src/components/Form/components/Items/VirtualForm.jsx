@@ -19,8 +19,10 @@ const VirtualForm = forwardRef(
       style,
       className,
       layout = 'horizontal',
-      labelCol,
-      mainCol,
+      labelSpan,
+      labelEllipsis,
+      mainSpan,
+      mainEllipsis,
 
       // Element
       scrollerElement,
@@ -73,8 +75,10 @@ const VirtualForm = forwardRef(
       <ItemsContext.Provider
         value={{
           layout,
-          labelCol,
-          mainCol,
+          labelSpan,
+          labelEllipsis,
+          mainSpan,
+          mainEllipsis,
           scrollerElement: scrollerElement,
           virtual: { observer: observer, observerCallbacks: observerCallbacksRef.current }
         }}

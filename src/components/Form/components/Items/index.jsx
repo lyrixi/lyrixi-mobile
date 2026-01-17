@@ -8,8 +8,10 @@ const Form = forwardRef(
     {
       virtual,
       layout = 'horizontal',
-      labelCol,
-      mainCol,
+      labelSpan,
+      labelEllipsis,
+      mainSpan,
+      mainEllipsis,
       scrollerElement,
       children,
       className,
@@ -23,8 +25,10 @@ const Form = forwardRef(
         <VirtualForm
           ref={ref}
           layout={layout}
-          labelCol={labelCol}
-          mainCol={mainCol}
+          labelSpan={labelSpan}
+          labelEllipsis={labelEllipsis}
+          mainSpan={mainSpan}
+          mainEllipsis={mainEllipsis}
           scrollerElement={scrollerElement}
           className={className}
           style={style}
@@ -37,8 +41,10 @@ const Form = forwardRef(
       <CommonForm
         ref={ref}
         layout={layout}
-        labelCol={labelCol}
-        mainCol={mainCol}
+        labelSpan={labelSpan}
+        labelEllipsis={labelEllipsis}
+        mainSpan={mainSpan}
+        mainEllipsis={mainEllipsis}
         scrollerElement={scrollerElement}
         className={className}
         style={style}

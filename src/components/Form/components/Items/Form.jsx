@@ -19,8 +19,10 @@ const Form = forwardRef(
       style,
       className,
       layout = 'horizontal',
-      labelCol,
-      mainCol,
+      labelSpan,
+      labelEllipsis,
+      mainSpan,
+      mainEllipsis,
 
       // Element
       scrollerElement,
@@ -40,7 +42,7 @@ const Form = forwardRef(
 
     return (
       <ItemsContext.Provider
-        value={{ layout, labelCol, mainCol, scrollerElement: scrollerElement }}
+        value={{ layout, labelSpan, labelEllipsis, mainSpan, mainEllipsis, scrollerElement: scrollerElement }}
       >
         <div
           ref={rootRef}

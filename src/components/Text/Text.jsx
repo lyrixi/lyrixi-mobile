@@ -7,6 +7,7 @@ const Text = forwardRef(
     {
       // Value & Display Value
       highlight,
+      // Status
       ellipsis,
       // Style
       color,

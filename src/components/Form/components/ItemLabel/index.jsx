@@ -15,13 +15,13 @@ import { DOMUtil, Toast, Row, Text } from 'lyrixi-mobile'
 const FormLabel = forwardRef(
   (
     {
-      // Value & Display Value
+      // Status
       ellipsis,
+      span,
 
       // Style
       style,
       className,
-      span,
 
       // Validate
       required,
@@ -33,7 +33,7 @@ const FormLabel = forwardRef(
     ref
   ) => {
     // 获取全局配置
-    const { layout, labelCol } = useContext(ItemsContext)
+    const { layout, labelSpan, labelEllipsis } = useContext(ItemsContext)
 
     const rootRef = useRef(null)
 
@@ -41,8 +41,6 @@ const FormLabel = forwardRef(
     useImperativeHandle(ref, () => {
       return rootRef.current
     })
-
-    const { span: globalSpan, ellipsis: globalEllipsis } = labelCol || {}
 
     const isEmpty = !children && !help
 
@@ -56,11 +54,11 @@ const FormLabel = forwardRef(
           className,
           isEmpty ? 'lyrixi-hide' : ''
         )}
-        span={layout === 'horizontal' ? span || globalSpan || 8 : 24}
+        span={layout === 'horizontal' ? span || labelSpan || 8 : 24}
       >
         {/* Element: Children */}
         {children && (
-          <Text className="lyrixi-form-item-label-text" ellipsis={ellipsis || globalEllipsis}>
+          <Text className="lyrixi-form-item-label-text" ellipsis={ellipsis || labelEllipsis}>
             {children}
           </Text>
         )}

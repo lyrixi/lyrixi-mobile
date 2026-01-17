@@ -1,5 +1,5 @@
 // 第三方库导入
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import _ from 'lodash'
 import { LocaleUtil, Toast, Divider, Page, Result, Form, Card, Text } from 'lyrixi-mobile'
 // 公共组件导入
@@ -89,7 +89,7 @@ const FormDetail = () => {
               </Form.Item>
 
               <Form.Item label={locale('Select')} ellipsis={{ rows: 1, expandable: true }}>
-                <Text>{Text.getDisplayValue(data?.select)}</Text>
+                <Text>{Text.getDisplayValue(result?.select)}</Text>
               </Form.Item>
             </Form>
           </Card>
@@ -97,11 +97,11 @@ const FormDetail = () => {
             <Divider>Vertical Layout</Divider>
             <Form layout="vertical" style={{ marginLeft: '12px' }}>
               <Form.Item label={locale('Input')}>
-                <Text>{Text.getDisplayValue(data?.input)}</Text>
+                <Text>{Text.getDisplayValue(result?.input)}</Text>
               </Form.Item>
 
               <Form.Item label={locale('Select')}>
-                <Text>{Text.getDisplayValue(data?.select)}</Text>
+                <Text>{Text.getDisplayValue(result?.select)}</Text>
               </Form.Item>
             </Form>
           </Card>

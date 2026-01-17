@@ -14,13 +14,13 @@ import { DOMUtil, Row, Text } from 'lyrixi-mobile'
 const FormMain = forwardRef(
   (
     {
-      // Value & Display Value
+      // Status
       ellipsis,
+      span,
 
       // Style
       style,
       className,
-      span,
 
       // Element
       errorMessage,
@@ -31,7 +31,7 @@ const FormMain = forwardRef(
     ref
   ) => {
     // 获取全局配置
-    const { layout, mainCol } = useContext(ItemsContext)
+    const { layout, mainSpan, mainEllipsis } = useContext(ItemsContext)
 
     const rootRef = useRef(null)
 
@@ -40,20 +40,18 @@ const FormMain = forwardRef(
       return rootRef.current
     })
 
-    const { span: globalSpan, ellipsis: globalEllipsis } = mainCol || {}
-
     return (
       <Row.Col
         ref={rootRef}
         // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-form-item-main', className)}
-        span={layout === 'horizontal' ? span || globalSpan || 16 : 24}
+        span={layout === 'horizontal' ? span || mainSpan || 16 : 24}
       >
         <div className="lyrixi-form-item-main-input">
           {/* Element: Children */}
           {ellipsis?.rows && typeof children === 'string' ? (
-            <Text ellipsis={ellipsis || globalEllipsis}>{children}</Text>
+            <Text ellipsis={ellipsis || mainEllipsis}>{children}</Text>
           ) : (
             children
           )}
