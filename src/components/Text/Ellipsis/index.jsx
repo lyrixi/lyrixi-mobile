@@ -47,7 +47,11 @@ const Ellipsis =
     return (
       <div
         ref={rootRef}
-        className={DOMUtil.classNames('lyrixi-text-ellipsis', expanded ? 'lyrixi-expanded' : '')}
+        className={DOMUtil.classNames(
+          'lyrixi-text-ellipsis',
+          ellipsis?.expandable && 'lyrixi-text-ellipsis-toggle-expandable',
+          expanded ? 'lyrixi-expanded' : ''
+        )}
         style={style}
       >
         {/* Element: 展开和收缩按钮 */}
