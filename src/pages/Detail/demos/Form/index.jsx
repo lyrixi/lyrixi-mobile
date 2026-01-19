@@ -79,7 +79,7 @@ const FormDetail = () => {
                 label={locale(
                   'Input Overflow Label, It is very very very long,  It is really very very very long'
                 )}
-                // labelEllipsis={{ rows: 1, expandable: true }}
+                labelEllipsis={{ rows: 2, expandable: true }}
                 mainEllipsis={{ rows: 2, expandable: true }}
               >Value Overflow Main, It is very very very long,  It is really very very very long</Form.Item>
 
