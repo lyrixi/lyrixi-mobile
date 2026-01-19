@@ -1,6 +1,7 @@
 import React, { useState, useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'
+import getHighlightNode from './getHighlightNode'
 
 // 内库使用-start
 import LocaleUtil from './../../utils/LocaleUtil'
@@ -51,6 +52,9 @@ const Text = forwardRef(
     })
 
 
+    // 处理高亮
+    const content = highlight ? getHighlightNode(children, highlight) : children
+
     return (
       <div
         ref={rootRef}
@@ -58,7 +62,7 @@ const Text = forwardRef(
         className={DOMUtil.classNames('lyrixi-text', newClassName)}
         style={newStyle}
       >
-        {ellipsis?.rows ? <Ellipsis ellipsis={ellipsis}>{children}</Ellipsis> : children}
+        {ellipsis?.rows ? <Ellipsis ellipsis={ellipsis}>{content}</Ellipsis> : content}
       </div>
     )
   }
