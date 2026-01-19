@@ -84,7 +84,7 @@ export default () => {
         <Card>
           <Card.Header>省略 (ellipsis) - 可展开收起</Card.Header>
           <Card.Main>
-            <Text ellipsis={{ rows: 2, expandable: true }}>{longText}</Text>
+            <Text style={{ lineHeight: '32px' }} ellipsis={{ rows: 2, expandable: true }}>{longText}</Text>
           </Card.Main>
         </Card>
 
