@@ -105,7 +105,7 @@ const Edit = () => {
           <Form
             form={form}
             style={{ margin: '0 12px' }}
-            labelCol={{ ellipsis: { rows: 2, expandable: true } }}
+            labelEllipsis={{ rows: 2, expandable: true }}
           >
             <Form.Item
               name="input"

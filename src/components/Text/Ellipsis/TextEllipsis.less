@@ -8,14 +8,14 @@
 }
 
 /* 将按“展开收缩按钮”挤到最下面 */
-.lyrixi-text-ellipsis.lyrixi-text-ellipsis-toggle-expandable::before {
+.lyrixi-text-ellipsis.lyrixi-text-ellipsis-toggle-show::before {
   content: '';
   height: var(--ellipsis-before-height);
   float: right;
 }
 
 /* 文字行右下处放个白色块，遮住“展开收缩按钮”, 若文字行数超过行数限制，此小块会被挤到下一行，不会遮住“展开收缩按钮” */
-.lyrixi-text-ellipsis.lyrixi-text-ellipsis-toggle-expandable::after {
+.lyrixi-text-ellipsis.lyrixi-text-ellipsis-toggle-show::after {
   content: '';
   width: 48px;
   height: 24px;
@@ -24,7 +24,7 @@
   background-color: white;
 }
 
-.lyrixi-text-ellipsis.lyrixi-text-ellipsis-toggle-expandable.lyrixi-expanded::after {
+.lyrixi-text-ellipsis.lyrixi-text-ellipsis-toggle-show.lyrixi-expanded::after {
   visibility: hidden;
 }
 

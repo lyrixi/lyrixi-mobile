@@ -49,7 +49,7 @@ const Ellipsis =
         ref={rootRef}
         className={DOMUtil.classNames(
           'lyrixi-text-ellipsis',
-          ellipsis?.expandable && 'lyrixi-text-ellipsis-toggle-expandable',
+          ellipsis?.expandable && 'lyrixi-text-ellipsis-toggle-show',
           expanded ? 'lyrixi-expanded' : ''
         )}
         style={style}
