@@ -3,6 +3,7 @@ import React, { useState, forwardRef, useRef, useEffect, useImperativeHandle } f
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
+import checkOverflow from './checkOverflow'
 // 内库使用-end
 
 /* 测试使用-start
@@ -23,10 +24,20 @@ const Ellipsis =
     const [expanded, setExpanded] = useState(ellipsis?.defaultExpanded || false)
     // 展开和收缩按钮的高度
     const [toggleHeight, setToggleHeight] = useState('16px')
+    // 是否真的超出了行数限制
+    const [isOverflow, setIsOverflow] = useState(false)
+
+    useEffect(() => {
+      if (!ellipsis?.expandable) return
+
+      let isOverflow = checkOverflow(rootRef.current)
+      setIsOverflow(isOverflow)
+      // eslint-disable-next-line
+    }, [])
 
     // 获取按钮高度, 用于计算::before的高度
     useEffect(() => {
-      if (!ellipsis?.expandable) return
+      if (!isOverflow) return
 
       // 获取展开/收起按钮的高度
       const toggle = rootRef.current?.querySelector('.lyrixi-text-ellipsis-toggle')
@@ -35,7 +46,7 @@ const Ellipsis =
         setToggleHeight(`${toggleHeight}px`)
         return
       }
-    }, [])
+    }, [isOverflow])
 
     const style = {
       // 行数限制
@@ -49,13 +60,13 @@ const Ellipsis =
         ref={rootRef}
         className={DOMUtil.classNames(
           'lyrixi-text-ellipsis',
-          ellipsis?.expandable && 'lyrixi-text-ellipsis-toggle-show',
+          isOverflow && 'lyrixi-text-ellipsis-toggle-show',
           expanded ? 'lyrixi-expanded' : ''
         )}
         style={style}
       >
         {/* Element: 展开和收缩按钮 */}
-        {ellipsis?.expandable && (
+        {isOverflow && (
           <div
             className="lyrixi-text-ellipsis-toggle"
             onClick={(e) => {
