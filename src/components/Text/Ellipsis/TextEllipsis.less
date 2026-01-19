@@ -1,0 +1,45 @@
+// 只有flex布局, 才能让lyrixi-text-ellipsis::before高度撑满lyrixi-text-content
+.lyrixi-text {
+  display: flex;
+}
+
+/* Ellipsis: 省略 */
+.lyrixi-text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  position: relative;
+}
+
+/* 将按“展开收缩按钮”挤到最下面 */
+.lyrixi-text-ellipsis::before {
+  content: '';
+  height: calc(100% - 16px);
+  float: right;
+}
+
+/* 文字行右下处放个白色块，遮住“展开收缩按钮”, 若文字行数超过行数限制，此小块会被挤到下一行，不会遮住“展开收缩按钮” */
+.lyrixi-text-ellipsis::after {
+  content: '';
+  width: 48px;
+  height: 24px;
+  position: absolute;
+  right: 0;
+  background-color: white;
+}
+
+.lyrixi-text-ellipsis.lyrixi-expanded::after {
+  visibility: hidden;
+}
+
+.lyrixi-text-ellipsis-toggle {
+  display: inline-block;
+  color: var(--lyrixi-info);
+  margin-left: 2px;
+  font-size: var(--lyrixi-font-size-s);
+  // 按钮放到右边
+  float: right;
+  clear: both;
+  margin-left: 10px;
+}

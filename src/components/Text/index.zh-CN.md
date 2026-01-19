@@ -26,7 +26,7 @@ toc: content
 | 属性      | 说明       | 类型                                                                               | 默认值 |
 | --------- | ---------- | ---------------------------------------------------------------------------------- | ------ |
 | highlight | 高亮文本   | `string \| Array<string>`                                                          | -      |
-| ellipsis  | 省略配置   | `{rows: number, rowHeight: number, expandable: boolean, defaultExpanded: boolean}` | -      |
+| ellipsis  | 省略配置   | `{rows: number, expandable: boolean, defaultExpanded: boolean}` | -      |
 | style     | 自定义样式 | `object`                                                                           | -      |
 | className | 自定义类名 | `string`                                                                           | -      |
 | children  | 文本内容   | `ReactNode`                                                                        | -      |

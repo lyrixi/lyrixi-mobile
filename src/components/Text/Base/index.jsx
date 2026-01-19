@@ -66,8 +66,12 @@ const Base = forwardRef(
     })
 
     useEffect(() => {
+      let isChildrenString = typeof children === 'string'
+      if (Array.isArray(children) && children?.length === 1 && typeof children[0] === 'string') {
+        isChildrenString = true
+      }
       // 如果没有展开收起按钮, 不需要计算溢出, 用样式控制即可
-      if (rows && expandable && typeof children === 'string') {
+      if (rows && expandable && isChildrenString) {
         updateEllipsis()
       }
       // eslint-disable-next-line

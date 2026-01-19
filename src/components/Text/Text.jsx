@@ -1,6 +1,16 @@
-import React, { forwardRef } from 'react'
+import React, { useState, useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 import getStyle from './getStyle'
-import Base from './Base'
+import Ellipsis from './Ellipsis'
+
+// 内库使用-start
+import LocaleUtil from './../../utils/LocaleUtil'
+import DOMUtil from './../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
 
 const Text = forwardRef(
   (
@@ -8,7 +18,7 @@ const Text = forwardRef(
       // Value & Display Value
       highlight,
       // Status
-      ellipsis,
+      ellipsis, // { rows: Number, expandable: Boolean, defaultExpanded: Boolean }
       // Style
       color,
       fontSize,
@@ -20,6 +30,9 @@ const Text = forwardRef(
     },
     ref
   ) => {
+    const rootRef = useRef(null)
+
+    // color,fontSize,fontWeight转为className或者指定style
     let { style: newStyle, className: newClassName } = getStyle({
       // Style
       color,
@@ -29,18 +42,24 @@ const Text = forwardRef(
       className
     })
 
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
+    })
+
+
     return (
-      <Base
-        ref={ref}
-        // Value & Display Value
-        highlight={highlight}
-        ellipsis={ellipsis}
+      <div
+        ref={rootRef}
         // Style
+        className={DOMUtil.classNames('lyrixi-text', newClassName)}
         style={newStyle}
-        className={newClassName}
       >
-        {children}
-      </Base>
+        {ellipsis?.rows ? <Ellipsis ellipsis={ellipsis}>{children}</Ellipsis> : children}
+      </div>
     )
   }
 )

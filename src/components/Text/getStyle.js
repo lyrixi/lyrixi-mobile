@@ -1,10 +1,9 @@
 // 内库使用-start
-import MathUtil from './../../utils/MathUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { MathUtil, DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 function getStyle({
@@ -29,7 +28,6 @@ function getStyle({
   }
 
   const newClassName = DOMUtil.classNames(
-    'lyrixi-text',
     isColorClass && color && `lyrixi-color-${color}`,
     isFontSizeClass && fontSize && `lyrixi-font-size-${fontSize}`,
     isFontWeightClass && fontWeight && `lyrixi-font-weight-${fontWeight}`,

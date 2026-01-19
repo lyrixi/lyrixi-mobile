@@ -1,4 +1,8 @@
+@import 'Ellipsis/TextEllipsis.less';
+
+// 只有flex布局, 才能让lyrixi-text-content::before高度撑满lyrixi-text-content
 .lyrixi-text {
+  display: flex;
 }
 
 // 高亮
@@ -7,12 +11,4 @@
   color: var(--lyrixi-primary);
   line-height: 24px;
   user-select: none;
-}
-
-// 省略
-.lyrixi-text-ellipsis-toggle {
-  display: inline-block;
-  color: var(--lyrixi-info);
-  margin-left: 2px;
-  font-size: var(--lyrixi-font-size-s);
 }

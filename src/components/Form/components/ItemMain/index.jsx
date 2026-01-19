@@ -50,7 +50,7 @@ const FormMain = forwardRef(
       >
         <div className="lyrixi-form-item-main-input">
           {/* Element: Children */}
-          {ellipsis?.rows ? (
+          {ellipsis?.rows || mainEllipsis?.rows ? (
             <Text ellipsis={ellipsis || mainEllipsis}>{children}</Text>
           ) : (
             children

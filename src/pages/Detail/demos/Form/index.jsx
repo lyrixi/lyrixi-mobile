@@ -30,8 +30,8 @@ const FormDetail = () => {
   // 加载数据
   async function loadData() {
     // 加载详情数据
-    let data = await queryData()
-    setResult(data)
+    let newResult = await queryData()
+    setResult(newResult)
   }
 
   // 保存
@@ -79,12 +79,12 @@ const FormDetail = () => {
                 label={locale(
                   'Input Overflow Label, It is very very very long,  It is really very very very long'
                 )}
-                labelEllipsis={{ rows: 1, expandable: true }}
+                // labelEllipsis={{ rows: 1, expandable: true }}
                 mainEllipsis={{ rows: 2, expandable: true }}
               >Value Overflow Main, It is very very very long,  It is really very very very long</Form.Item>
 
-              <Form.Item label={locale('Select')} labelEllipsis={{ rows: 1, expandable: true }}>
-                <Text>{Text.getDisplayValue(result?.select)}</Text>
+              <Form.Item label={locale('Select')}>
+                <Text>{Text.getDisplayValue(result?.data?.select)}</Text>
               </Form.Item>
             </Form>
           </Card>
@@ -92,11 +92,11 @@ const FormDetail = () => {
             <Divider>Vertical Layout</Divider>
             <Form layout="vertical" style={{ marginLeft: '12px' }}>
               <Form.Item label={locale('Input')}>
-                <Text>{Text.getDisplayValue(result?.input)}</Text>
+                <Text>{Text.getDisplayValue(result?.data?.input)}</Text>
               </Form.Item>
 
               <Form.Item label={locale('Select')}>
-                <Text>{Text.getDisplayValue(result?.select)}</Text>
+                <Text>{Text.getDisplayValue(result?.data?.select)}</Text>
               </Form.Item>
             </Form>
           </Card>
