@@ -1,15 +1,14 @@
-import React, { useState, useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'
 import getHighlightNode from './getHighlightNode'
 
 // 内库使用-start
-import LocaleUtil from './../../utils/LocaleUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 
