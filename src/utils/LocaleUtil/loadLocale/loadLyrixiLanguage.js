@@ -10,7 +10,7 @@ import { AssetUtil } from 'lyrixi-mobile'
 async function loadLyrixiLanguage(language) {
   // 设置dayjs语言
   if (language) {
-    let result = await AssetUtil.loadLocalFile(`lyrixi/locale/${language}.json`)
+    let result = await AssetUtil.loadLocalFile(`lyrixi-mobile/locale/${language}.json`)
     return result
   }
   return {
