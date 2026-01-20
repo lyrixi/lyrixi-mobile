@@ -1,3 +1,5 @@
+import setLocale from './../setLocale'
+
 // 内库使用-start
 import AssetUtil from './../../../utils/AssetUtil'
 // 内库使用-end
@@ -11,6 +13,9 @@ async function loadLyrixiLanguage(language) {
   // 设置dayjs语言
   if (language) {
     let result = await AssetUtil.loadLocalFile(`lyrixi-mobile/locale/${language}.json`)
+    if (result.status === 'success') {
+      setLocale(language, result.data)
+    }
     return result
   }
   return {

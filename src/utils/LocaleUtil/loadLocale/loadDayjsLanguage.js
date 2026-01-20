@@ -14,6 +14,9 @@ async function loadDayjsLanguage(language) {
   // 设置dayjs语言
   if (lang?.dayjs) {
     let result = await AssetUtil.loadLocalFile(`dayjs/locale/${lang.dayjs}.json`)
+    if (result.status === 'success') {
+      dayjs.locale(lang?.dayjs)
+    }
     return result
   }
   return {
