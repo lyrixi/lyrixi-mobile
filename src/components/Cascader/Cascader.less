@@ -13,8 +13,7 @@
 }
 
 // Main List
-.lyrixi-cascader-item {
-}
+.lyrixi-cascader-item {}
 
 // Main Tabs
 .lyrixi-cascader-tabs {
@@ -24,9 +23,10 @@
   // text-wrap: nowrap;
   white-space: nowrap;
   overflow-x: auto;
+
   // tab禁用又选中的情况下，不允许点击列表
   &:has(.lyrixi-active.lyrixi-disabled) {
-    & + .lyrixi-cascader-main .lyrixi-cascader-item {
+    &+.lyrixi-cascader-main .lyrixi-cascader-item {
       pointer-events: none;
       opacity: 0.5;
     }
@@ -37,10 +37,12 @@
   height: 32px;
   margin-right: 20px;
   line-height: 32px;
+
   &.lyrixi-active {
     font-weight: 600;
     border-bottom: 2px solid var(--lyrixi-primary);
   }
+
   &.lyrixi-disabled {
     opacity: 0.5;
     pointer-events: none;

@@ -29,7 +29,7 @@ function valuesToText(values, variables) {
  */
 function locale(remark, key, variables) {
   // Get key's value
-  let localeData = window.lyrixiLocaleData || {}
+  let localeData = window.lyrixiLocales?.[window.lyrixiLocaleLanguage]?.language || {}
   let value = key && typeof key === 'string' ? localeData[key || ''] : ''
   if (!value && typeof remark === 'string') {
     value = remark

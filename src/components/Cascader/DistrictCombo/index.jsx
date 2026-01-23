@@ -18,9 +18,7 @@ const DistrictCombo = forwardRef(
       // Combo: Value & Display Value
       value,
       placeholder,
-      formatter,
       autoSize,
-      separator,
       mode,
       // Combo: Status
       readOnly,
@@ -30,8 +28,11 @@ const DistrictCombo = forwardRef(
       style,
       className,
       // Combo: Element
+      formatter,
+      separator,
       leftIconNode,
       rightIconNode,
+      clearRender,
 
       // Modal
       // Modal: Value & Display Value
@@ -61,6 +62,7 @@ const DistrictCombo = forwardRef(
       searchVisible,
 
       // Events
+      onSearch,
       onChange,
       onBeforeOpen
     },
@@ -103,9 +105,7 @@ const DistrictCombo = forwardRef(
           // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
-          formatter={formatter}
           autoSize={autoSize}
-          separator={separator}
           mode={mode}
           // Combo: Status
           readOnly={readOnly}
@@ -115,8 +115,11 @@ const DistrictCombo = forwardRef(
           style={style}
           className={className}
           // Combo: Element
+          formatter={formatter}
+          separator={separator}
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
+          clearRender={clearRender}
           // Events
           onChange={onChange}
           onClick={handleOpen}
@@ -150,6 +153,7 @@ const DistrictCombo = forwardRef(
           cancelVisible={cancelVisible}
           searchVisible={searchVisible}
           // Modal: Events
+          onSearch={onSearch}
           onChange={onChange}
           onClose={handleClose}
         />

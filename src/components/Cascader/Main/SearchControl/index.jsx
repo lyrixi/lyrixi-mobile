@@ -16,6 +16,7 @@ function SearchControl({
   list,
 
   // Events
+  onSearch,
   onChange
 }) {
   // 搜索结果页面显隐
@@ -25,26 +26,30 @@ function SearchControl({
     <>
       {/* Element: Search Bar */}
       <Page.Header className="lyrixi-cascader-search-header">
-        <ToolBar.Search
-          // Status
-          readOnly
-          // Events
-          onClick={() => {
-            setOpen(!open)
-          }}
-        />
+        <ToolBar variant="filled">
+          <ToolBar.Search
+            // Status
+            readOnly
+            // Events
+            onClick={() => {
+              setOpen(!open)
+            }}
+          />
+        </ToolBar>
       </Page.Header>
 
       {/* Element: Search Page */}
-      <SearchPage
-        // Status
-        open={open}
+      {open && <SearchPage
         // Element
         list={list}
         // Events
+        onSearch={onSearch}
         onClose={() => setOpen(false)}
-        onChange={onChange}
-      />
+        onChange={(newValue) => {
+          onChange?.(newValue)
+          setOpen(false)
+        }}
+      />}
     </>
   )
 }

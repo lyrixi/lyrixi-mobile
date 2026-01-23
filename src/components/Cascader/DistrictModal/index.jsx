@@ -52,6 +52,7 @@ const DistrictModal = forwardRef(
       // Events
       onClose,
       onOk,
+      onSearch,
       onChange
     },
     ref
@@ -138,7 +139,8 @@ const DistrictModal = forwardRef(
         onClose={onClose}
         onOk={handleOk}
       >
-        <DistrictMain
+        {/* 弹窗打开时, 再渲染主页面, 避免用户未点击就加载的问题 */}
+        {open && <DistrictMain
           ref={mainRef}
           // Modal: Status
           open={open}
@@ -157,8 +159,9 @@ const DistrictModal = forwardRef(
           // Main: Elements
           searchVisible={searchVisible}
           // Main: Events
+          onSearch={onSearch}
           onChange={handleChange}
-        />
+        />}
       </NavBarModal>
     )
   }

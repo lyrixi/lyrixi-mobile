@@ -44,6 +44,7 @@ const CascaderModal = forwardRef(
       // Events
       onClose,
       onOk,
+      onSearch,
       onChange
     },
     ref
@@ -121,10 +122,11 @@ const CascaderModal = forwardRef(
             ref={mainRef}
             value={currentValue}
             allowClear={allowClear}
-            onChange={handleChange}
             searchVisible={searchVisible}
             list={list}
             loadData={loadData}
+            onSearch={onSearch}
+            onChange={handleChange}
           />
         )}
       </NavBarModal>

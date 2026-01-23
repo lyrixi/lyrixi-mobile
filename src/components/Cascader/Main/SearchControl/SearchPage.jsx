@@ -15,18 +15,31 @@ import { LocaleUtil, ArrayUtil, Page, ToolBar, Result, List, Text } from 'lyrixi
 测试使用-end */
 
 // 搜索页面
-const SearchPage = ({ list: externalList, onChange, onClose }) => {
-  const [list, setList] = useState([])
+const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
+  const [result, setResult] = useState([])
   const [keyword, setKeyword] = useState('')
 
-  function handleSearch() {
-    if (!keyword || !keyword.trim()) {
-      setList([])
+  async function handleSearch() {
+    if (typeof onSearch === 'function') {
+      let newResult = await onSearch?.(keyword, { list: externalList })
+      setResult(newResult)
       return
     }
 
-    const results = ArrayUtil.searchDeepTree(externalList, keyword)
-    setList(results)
+    const currentList = keyword && keyword.trim() ? ArrayUtil.searchDeepTree(externalList, keyword) : []
+    if (currentList.length > 0) {
+      setResult({
+        status: 'success',
+        message: '',
+        list: currentList
+      })
+    } else {
+      setResult({
+        status: 'empty',
+        message: LocaleUtil.locale('暂无数据'),
+        list: []
+      })
+    }
   }
 
   // 如果list不存在，则不显示搜索页面
@@ -35,16 +48,16 @@ const SearchPage = ({ list: externalList, onChange, onClose }) => {
   }
 
   function getListNode() {
-    if (Array.isArray(list) && list.length > 0) {
+    if (Array.isArray(result?.list) && result?.list.length > 0) {
       return (
         <List
-          list={list
+          list={result?.list
             // 过滤掉没有搜索结果的项
-            .filter((item) => Array.isArray(item.value) && item.value.length)
+            .filter((item) => Array.isArray(item.path) && item.path.length)
             // searchDeepTree过滤掉children, 否则list会当作子项把children也展示出来
             .map((item) => {
               // 构建路径名称
-              let pathName = item.value
+              let pathName = item.path
                 .map((option) => {
                   return option.name
                 })
@@ -57,16 +70,18 @@ const SearchPage = ({ list: externalList, onChange, onClose }) => {
                 title: <Text highlight={keyword}>{pathName}</Text>
               }
             })}
-          onChange={onChange}
+          onChange={(item) => {
+            onChange?.(item?.path)
+          }}
         />
       )
     }
 
-    if (keyword) {
+    if (result && result?.status !== 'success') {
       return (
         <Result
-          title={LocaleUtil.locale('暂无数据', 'lyrixi.no.data')}
-          status={'empty'}
+          title={result?.message || LocaleUtil.locale('暂无数据', 'lyrixi.no.data')}
+          status={result?.status || 'empty'}
           className="lyrixi-cascader-main-result"
         />
       )

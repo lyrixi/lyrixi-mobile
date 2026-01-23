@@ -41,6 +41,7 @@ const CascaderMain = forwardRef(
       tabbarRender,
 
       // Events
+      onSearch,
       onChange
     },
     ref
@@ -290,6 +291,7 @@ const CascaderMain = forwardRef(
           {searchVisible && Array.isArray(externalList) && externalList.length > 0 && (
             <SearchControl
               list={externalList}
+              onSearch={onSearch}
               onChange={(newValue) => {
                 let lastItem = newValue[newValue.length - 1]
                 newValue.length = newValue.length - 1

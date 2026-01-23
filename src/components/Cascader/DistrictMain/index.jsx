@@ -40,9 +40,10 @@ const CascaderDistrictMain = forwardRef(
       itemClassName,
 
       // Elements
-      searchVisible,
+      searchVisible = true,
 
       // Events
+      onSearch,
       onChange
     },
     ref
@@ -99,7 +100,7 @@ const CascaderDistrictMain = forwardRef(
         setResult(baseData)
 
         // 如果value有变化, 则更新fullValue
-        if (!ArrayUtil.isEqual(value, newValue)) {
+        if (!ArrayUtil.isEqual(fullValue, newValue)) {
           setFullValue(newValue)
         }
         return
@@ -166,6 +167,7 @@ const CascaderDistrictMain = forwardRef(
             // Elements
             searchVisible={searchVisible}
             // Events
+            onSearch={onSearch}
             onChange={(newValue) => {
               setFullValue(newValue)
               onChange?.(newValue)

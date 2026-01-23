@@ -19,15 +19,10 @@ function loadStreets(districtId) {
     }
 
     // 加载语言对应的文件
-    Request.post(
-      'loadStreets.test',
+    Request.get(
+      `https://lyrixi.github.io/lyrixi-mobile/assets/district/streets.json`,
       {
         districtId: districtId
-      },
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
       }
     )
       .then(function (list) {
@@ -48,22 +43,9 @@ function loadStreets(districtId) {
         }
       })
       .catch(() => {
-        // resolve({
-        //   status: 'error',
-        //   message: LocaleUtil.locale('获取街道异常')
-        // })
         resolve({
-          status: 'success',
-          list: [
-            {
-              id: '1',
-              name: 'Street1'
-            },
-            {
-              id: '2',
-              name: 'Street2'
-            }
-          ]
+          status: 'error',
+          message: LocaleUtil.locale('获取街道异常')
         })
       })
   })

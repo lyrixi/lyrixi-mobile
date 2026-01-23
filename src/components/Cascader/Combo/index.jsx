@@ -55,6 +55,7 @@ const CascaderCombo = forwardRef(
       searchVisible,
 
       // Events
+      onSearch,
       onChange,
       onBeforeOpen
     },
@@ -136,6 +137,7 @@ const CascaderCombo = forwardRef(
           maskStyle={maskStyle}
           maskClassName={maskClassName}
           // Events
+          onSearch={onSearch}
           onClose={handleClose}
           onChange={onChange}
         />
