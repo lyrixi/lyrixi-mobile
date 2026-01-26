@@ -20,10 +20,10 @@ export default () => {
             type: 'bmap',
             markerIcons: {
               centerMarkerIcon: {
-                iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-custom-shop.png`,
-                iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-custom-shop.png`,
-                shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-shadow.png`,
-                shadowRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-shadow.png`
+                iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-custom-shop.png`,
+                iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-custom-shop.png`,
+                shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`,
+                shadowRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`
               }
             }
           }}

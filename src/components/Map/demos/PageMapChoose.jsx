@@ -51,16 +51,16 @@ export default () => {
             type: 'bmap',
             markerIcons: {
               centerMarkerIcon: {
-                iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-custom-shop.png`,
-                iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-custom-shop.png`,
-                shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-shadow.png`,
-                shadowRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-shadow.png`
+                iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-custom-shop.png`,
+                iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-custom-shop.png`,
+                shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`,
+                shadowRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`
               },
               markerIcon: {
-                iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-icon.png`,
-                iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-icon-2x.png`,
-                shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-shadow.png`,
-                shadowRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/images/plugin/leaflet/images/marker-shadow.png`
+                iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-icon.png`,
+                iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-icon-2x.png`,
+                shadowUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`,
+                shadowRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-shadow.png`
               }
             }
           }}
@@ -71,10 +71,10 @@ export default () => {
           onSuccess={() => {
             console.log('地图加载成功')
           }}
-          // onError={(error) => {
-          //   console.log('地图加载失败', error)
-          //   return <div>{error.message}</div>
-          // }}
+        // onError={(error) => {
+        //   console.log('地图加载失败', error)
+        //   return <div>{error.message}</div>
+        // }}
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapChoose
@@ -103,41 +103,41 @@ export default () => {
                 })
                 e.setIcon(newMarkerIcon, { multiple: false })
               }}
-              // getLocation={(data) => {
-              //   console.log(data)
-              //   return { latitude: 35.689487, longitude: 139.691706 }
-              // }}
-              // getAddress={(data) => {
-              //   return new Promise((resolve) => {
-              //     setTimeout(() => {
-              //       resolve({
-              //         ...data,
-              //         province: '江苏省',
-              //         provinceNumber: 100010,
-              //         address: '江苏省11'
-              //       })
-              //     }, 1000)
-              //   })
-              // }}
-              // queryNearby={({ map, keyword, longitude, latitude, radius }) => {
-              //   console.log('搜索附近:', map, keyword, longitude, latitude, radius)
-              //   return [
-              //     {
-              //       address: '上海市南京东路831号',
-              //       latitude: 31.237415229632834,
-              //       longitude: 121.47015544295395,
-              //       name: '市百一店'
-              //     },
-              //     {
-              //       address: '上海市南京东路832号',
-              //       latitude: 31.237415229632834,
-              //       longitude: 121.47015544295395,
-              //       name: '市百二店'
-              //     }
-              //   ]
-              // }}
-              // 生成随机点
-              // queryNearby={() => points}
+            // getLocation={(data) => {
+            //   console.log(data)
+            //   return { latitude: 35.689487, longitude: 139.691706 }
+            // }}
+            // getAddress={(data) => {
+            //   return new Promise((resolve) => {
+            //     setTimeout(() => {
+            //       resolve({
+            //         ...data,
+            //         province: '江苏省',
+            //         provinceNumber: 100010,
+            //         address: '江苏省11'
+            //       })
+            //     }, 1000)
+            //   })
+            // }}
+            // queryNearby={({ map, keyword, longitude, latitude, radius }) => {
+            //   console.log('搜索附近:', map, keyword, longitude, latitude, radius)
+            //   return [
+            //     {
+            //       address: '上海市南京东路831号',
+            //       latitude: 31.237415229632834,
+            //       longitude: 121.47015544295395,
+            //       name: '市百一店'
+            //     },
+            //     {
+            //       address: '上海市南京东路832号',
+            //       latitude: 31.237415229632834,
+            //       longitude: 121.47015544295395,
+            //       name: '市百二店'
+            //     }
+            //   ]
+            // }}
+            // 生成随机点
+            // queryNearby={() => points}
             />
           </div>
         </APILoader>
