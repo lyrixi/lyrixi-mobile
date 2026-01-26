@@ -275,11 +275,6 @@ const MapContainer = forwardRef(
       // Render children
       setLeafletMap(leafletMap)
 
-      // onLoad success panTo center
-      // if (center) {
-      //   APIRef?.current?.panTo?.(center)
-      // }
-
       // onLoad event
       onLoad?.({
         status: 'success',

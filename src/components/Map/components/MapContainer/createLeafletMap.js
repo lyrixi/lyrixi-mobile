@@ -1,3 +1,5 @@
+import coordsToFit from './../../utils/coordsToFit'
+
 // Create leaflet map
 function createLeafletMap(container, { center, minZoom, maxZoom, zoom }) {
   if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
@@ -6,7 +8,9 @@ function createLeafletMap(container, { center, minZoom, maxZoom, zoom }) {
 
   let centerPoint = []
   if (center?.latitude && center?.longitude) {
-    centerPoint = [center?.latitude, center?.longitude]
+    // 百度转bd09, 高德转gcj02, 国外转wgs84
+    let coords = coordsToFit([center])
+    centerPoint = [coords[0].latitude, coords[0].longitude]
   }
   // Init leaflet map config
   let config = {

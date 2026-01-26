@@ -6,6 +6,11 @@ const { APILoader, MapContainer, Markers, coordsToWgs84 } = Map
 export default () => {
   const points = coordsToWgs84([
     {
+      latitude: 31.982686517043174,
+      longitude: 118.73538657912759,
+      type: "gcj02"
+    },
+    {
       icon: {
         iconUrl: `https://cdn-icons-png.flaticon.com/128/13484/13484859.png`,
         iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/13484/13484859.png`
