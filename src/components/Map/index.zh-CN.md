@@ -7,23 +7,23 @@ title: Map
 toc: content
 ---
 
-# Map
+## MapContainer
 
 地图组件，用于显示和操作地图。
 
-## 何时使用
+### 何时使用
 
 - 需要显示地图时
 - 需要在地图上标注位置时
 - 需要选择地理位置时
 
-## 代码演示
+### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapMapContainer.jsx">></code>
 
-## API
+### API
 
-### 属性
+#### 属性
 
 | 属性         | 说明         | 类型                                                  | 默认值 |
 | ------------ | ------------ | ----------------------------------------------------- | ------ |
@@ -49,7 +49,7 @@ toc: content
 | onDrag       | 拖动事件     | `(e: Event) => void`                                  | -      |
 | onDragEnd    | 拖动结束事件 | `(e: Event) => void`                                  | -      |
 
-### Ref
+#### Ref
 
 | 属性         | 说明             | 类型                                   |
 | ------------ | ---------------- | -------------------------------------- | --- |
@@ -63,57 +63,6 @@ toc: content
 | getLocation  | 获取位置         | `() => Promise<object>`                | -   |
 | queryNearby  | 查询附近         | `(location: object) => Promise<Array>` | -   |
 
-## Map.MapContainer
-
-地图容器组件。
-
-### 何时使用
-
-- 需要显示地图容器时
-
-### 代码演示
-
-<code src="./demos/Map.jsx">></code>
-
-### API
-
-#### 属性
-
-同 Map 组件属性。
-
-#### Ref
-
-同 Map 组件 Ref。
-
-## Map.APILoader
-
-地图 API 加载器组件。
-
-### 何时使用
-
-- 需要加载地图 API 时
-
-### 代码演示
-
-<code src="./demos/Map.jsx">></code>
-
-### API
-
-#### 属性
-
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 加载器内容 | `ReactNode` | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
-
 ## Map.ZoomControl
 
 地图缩放控制组件。
@@ -124,7 +73,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapZoomControl.jsx">></code>
 
 ### API
 
@@ -152,7 +101,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapSearchControl.jsx">></code>
 
 ### API
 
@@ -180,7 +129,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapCenterMarker.jsx">></code>
 
 ### API
 
@@ -208,7 +157,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapMarkers.jsx">></code>
 
 ### API
 
@@ -237,7 +186,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapCircles.jsx">></code>
 
 ### API
 
@@ -266,7 +215,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapPolyline.jsx">></code>
 
 ### API
 
@@ -295,7 +244,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapLocationControl.jsx">></code>
 
 ### API
 
@@ -323,7 +272,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/MapNearbyControl.jsx">></code>
 
 ### API
 
@@ -351,7 +300,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/PageMapChoose.jsx">></code>
 
 ### API
 
@@ -380,7 +329,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Map.jsx">></code>
+<code src="./demos/PageMapMarkers.jsx">></code>
 
 ### API
 
