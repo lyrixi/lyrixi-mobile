@@ -223,19 +223,19 @@ function MapChoose(
           readOnly
             ? null
             : async (map) => {
-                let center = map.getCenter()
-                let result = {
-                  ...center
-                }
-
-                Loading.show({
-                  content: LocaleUtil.locale('获取地址中...', 'lyrixi.getting.address')
-                })
-                result = await map.getAddress(result)
-                Loading.hide()
-
-                handleChange(result)
+              let center = map.getCenter()
+              let result = {
+                ...center
               }
+
+              Loading.show({
+                content: LocaleUtil.locale('获取地址中...', 'lyrixi.getting.address')
+              })
+              result = await map.getAddress(result)
+              Loading.hide()
+
+              handleChange(result)
+            }
         }
         // Style
         className={centerMarkerClassName}
@@ -296,7 +296,7 @@ function MapChoose(
         radius={1000}
         // Events
         onChange={handleChange}
-        onLoad={(result) => {
+        onSuccess={(result) => {
           let { list } = result || {}
           // 间距调整, 附件面板的高度在展开后会很高会出问题
           // let bottom = nearbyRef.current.element.clientHeight
@@ -310,6 +310,10 @@ function MapChoose(
           } else {
             setPoints(null)
           }
+        }}
+        onError={(result) => {
+          console.log('附近推荐加载失败:', result)
+          setPoints(null)
         }}
         // Style
         className={nearbyControlClassName}

@@ -32,7 +32,8 @@ function Nearby(
 
     // Events
     onChange,
-    onLoad
+    onSuccess,
+    onError
   },
   ref
 ) {
@@ -84,7 +85,11 @@ function Nearby(
       contentElement.scrollTop = 0
     }
 
-    onLoad && onLoad(newResult)
+    if (newResult.status === 'success') {
+      onSuccess && onSuccess(newResult)
+    } else {
+      onError && onError(newResult)
+    }
   }
 
   return (
