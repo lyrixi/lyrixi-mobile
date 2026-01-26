@@ -2,7 +2,7 @@
 async function loadLocalJs(localFile, { onError, onSuccess } = {}) {
   return new Promise((resolve) => {
     // 这是有意的运行时动态导入,不要尝试在构建时处理这个导入,忽略该警告
-    import(/* webpackIgnore: true */ localFile)
+    import(localFile)
       .then(() => {
         let result = {
           status: 'success',
