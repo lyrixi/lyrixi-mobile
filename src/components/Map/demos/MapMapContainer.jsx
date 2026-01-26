@@ -7,10 +7,13 @@ export default () => {
   const mapRef = useRef(null)
 
   const center = coordsToWgs84({
-    latitude: 39.909187,
-    longitude: 116.397451,
-    type: 'gcj02',
-    address: '天安门'
+    latitude: 31.982664,
+    longitude: 118.735069,
+    type: "wgs84"
+    // latitude: 39.909187,
+    // longitude: 116.397451,
+    // type: 'gcj02',
+    // address: '天安门'
   })
 
   return (
