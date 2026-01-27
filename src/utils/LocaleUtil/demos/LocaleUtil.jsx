@@ -57,14 +57,14 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>Remark Node</Card.Header>
+          <Card.Header>No key and value use mark(Node)</Card.Header>
           <Card.Main>
             {LocaleUtil.locale(<div>Node</div>)}
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>Remark Number</Card.Header>
+          <Card.Header>No key and value use mark(Number)</Card.Header>
           <Card.Main>
             {LocaleUtil.locale(7)}
           </Card.Main>
