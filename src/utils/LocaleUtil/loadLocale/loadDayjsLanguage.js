@@ -1,35 +1,33 @@
+import dayjs from 'dayjs'
 import languageMap from '../languageMap'
 
 // 加载dayjs本地文件
 async function loadDayjsLanguage(language) {
-  let lang = languageMap?.[language]
-  // 设置dayjs语言
-  if (lang?.dayjs) {
-    let result = {
-      status: 'error',
-      message: 'Local file loaded failed'
+  return new Promise((resolve) => {
+    let lang = languageMap?.[language]
+    // 设置dayjs语言
+    if (!lang?.dayjs) {
+      resolve({
+        status: 'error',
+        message: 'Dayjs language not found'
+      })
+      return
     }
-
-    try {
-      let isOk = await import(`dayjs/locale/${lang.dayjs}.js`)
-      debugger
-      result = {
+    import(`dayjs/locale/${lang.dayjs}.js`).then(jsFile => {
+      let result = {
         status: 'success',
-        message: 'Local file loaded successfully'
+        message: 'Local js file loaded successfully'
       }
-    } catch (error) {
-
-    }
-
-    if (result.status === 'success') {
       dayjs.locale(lang?.dayjs)
-    }
-    return result
-  }
-  return {
-    status: 'error',
-    message: 'Dayjs language not found'
-  }
+      resolve(result)
+    }).catch(() => {
+      let error = {
+        status: 'error',
+        message: 'Local js file loaded failed'
+      }
+      resolve(error)
+    })
+  })
 }
 
 export default loadDayjsLanguage

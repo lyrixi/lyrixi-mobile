@@ -1,51 +1,76 @@
-import React from 'react'
-
-import { Page, LocaleUtil, Divider, Card, DateUtil } from 'lyrixi-mobile'
+import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
-
-// 中文
-// import 'dayjs/locale/zh-cn'
-// import zhCN from 'lyrixi-mobile/locale/zh_CN.json'
-// dayjs.locale('zh-cn')
-// LocaleUtil.setLocale('zh_CN', zhCN)
-
-// 英文
-import 'dayjs/locale/zh-cn'
-import enUS from 'lyrixi-mobile/locale/en_US.json'
-dayjs.locale('en')
-LocaleUtil.setLocale('en_US', enUS)
+import { Page, LocaleUtil, Divider, Card } from 'lyrixi-mobile'
 
 export default () => {
+  const [result, setResult] = useState(null)
+  useEffect(() => {
+    initLocale()
+  }, [])
+
+  // 初始化国际化
+  async function initLocale() {
+    let newResult = await LocaleUtil.loadLocale('en_US')
+    if (newResult.status === 'success') {
+      console.log('加载成功')
+    } else {
+      console.log('加载失败')
+    }
+    setResult(newResult)
+  }
+
+  if (result?.status !== 'success') {
+    return null
+  }
   return (
     <Page>
       <Page.Main>
-        <Divider>Node</Divider>
-        <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
-          {LocaleUtil.locale('近7日', 'lyrixi.last.days', [
-            <span key={'0'} style={{ color: 'red' }}>
-              7
-            </span>
-          ])}
+        <Card>
+          <Card.Header>Node with variables</Card.Header>
+          <Card.Main>
+            {LocaleUtil.locale('近{0}日', 'noKey_7243810e4577ec95db8f7315c52ebe66', [
+              <span key={'0'} style={{ color: 'red' }}>
+                7
+              </span>
+            ])}
+          </Card.Main>
         </Card>
 
-        <Divider>String</Divider>
-        <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
-          <div>variable:</div>
-          {LocaleUtil.locale('近x日', 'lyrixi.last.days', ['7'])}
+        <Card>
+          <Card.Header>String with variables</Card.Header>
+          <Card.Main>
+            {LocaleUtil.locale('近{0}日', 'noKey_7243810e4577ec95db8f7315c52ebe66', ['7'])}
+          </Card.Main>
         </Card>
 
-        <Divider>No locale data</Divider>
-        <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
-          {LocaleUtil.locale('近{0}日', '', ['7'])}
+        <Card>
+          <Card.Header>No key use static value</Card.Header>
+          <Card.Main>
+            {LocaleUtil.locale('近{0}日', '', ['7'])}
+          </Card.Main>
         </Card>
 
-        <Divider>Remark Node</Divider>
-        <Card style={{ padding: 'var(--lyrixi-space-l)' }}>
-          {LocaleUtil.locale(<div>Node</div>)}
+        <Card>
+          <Card.Header>Remark Node</Card.Header>
+          <Card.Main>
+            {LocaleUtil.locale(<div>Node</div>)}
+          </Card.Main>
         </Card>
 
-        <Divider>Remark Number</Divider>
-        <Card style={{ padding: 'var(--lyrixi-space-l)' }}>{LocaleUtil.locale(7)}</Card>
+        <Card>
+          <Card.Header>Remark Number</Card.Header>
+          <Card.Main>
+            {LocaleUtil.locale(7)}
+          </Card.Main>
+        </Card>
+
+
+        <Card>
+          <Card.Header>Dayjs locale</Card.Header>
+          <Card.Main>
+            {dayjs().format('YYYY-wo')}
+          </Card.Main>
+        </Card>
       </Page.Main>
     </Page>
   )
