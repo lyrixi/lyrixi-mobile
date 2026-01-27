@@ -46,7 +46,10 @@ let Debugger = {
         })
         .catch((error) => {
           Toast.show({
-            content: LocaleUtil.locale('打开调试面板失败', 'lyrixi.open.debugger.failed'),
+            content: LocaleUtil.locale(
+              '打开调试面板失败',
+              'noKey_577dd0de7cc745dc0fcce18b2d9d909a'
+            ),
             maskClickable: true
           })
           resolve(false)

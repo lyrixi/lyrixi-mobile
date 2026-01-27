@@ -8,27 +8,27 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 function getTitleByType(type) {
   if (type === 'year') {
-    return LocaleUtil.locale('选择年', 'lyrixi.dateModal.title.year')
+    return LocaleUtil.locale('选择年', 'noKey_49dc0093879a6d5222f2341270419a8b')
   }
   if (type === 'quarter') {
-    return LocaleUtil.locale('选择季', 'lyrixi.dateModal.title.quarter')
+    return LocaleUtil.locale('选择季', 'noKey_fe46739c9d298e63f1525b4f7eca5074')
   }
   if (type === 'month') {
-    return LocaleUtil.locale('选择年月', 'lyrixi.dateModal.title.month')
+    return LocaleUtil.locale('选择年月', 'noKey_984f9c33be96ad723a221676f04980f7')
   }
   if (type === 'date') {
-    return LocaleUtil.locale('选择日期', 'lyrixi.dateModal.title.date')
+    return LocaleUtil.locale('选择日期', 'noKey_2bebddb468efabd029c860a9c6825a55')
   }
   if (type === 'time') {
-    return LocaleUtil.locale('选择时间', 'lyrixi.dateModal.title.time')
+    return LocaleUtil.locale('选择时间', 'noKey_2c825a9900473f5ef0955636820170c5')
   }
   if (type === 'datetime') {
-    return LocaleUtil.locale('选择日期时间', 'lyrixi.dateModal.title.datetime')
+    return LocaleUtil.locale('选择日期时间', 'noKey_a42ae40b58169349e34744e85b7aa71a')
   }
   if (type === 'week') {
-    return LocaleUtil.locale('选择周', 'lyrixi.dateModal.title.week')
+    return LocaleUtil.locale('选择周', 'noKey_cf7c084a8741442e4108a1db0264f40c')
   }
-  return LocaleUtil.locale('选择日期', 'lyrixi.dateModal.title.date')
+  return LocaleUtil.locale('选择日期', 'noKey_2bebddb468efabd029c860a9c6825a55')
 }
 
 export default getTitleByType

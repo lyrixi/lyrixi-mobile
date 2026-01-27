@@ -43,7 +43,7 @@ function Current(
         {/* Element: Title */}
         <div className="lyrixi-map-nearbyControl-item-content-title">
           <div className="lyrixi-flex-1">
-            {value?.name || LocaleUtil.locale('当前位置', 'lyrixi.current.location')}
+            {value?.name || LocaleUtil.locale('当前位置', 'noKey_5eac11b4b636ca69e08fa158ca2cc13d')}
           </div>
           {/* Element: Navigation */}
           <Navigation
@@ -61,16 +61,16 @@ function Current(
         <div className="lyrixi-map-nearbyControl-item-content-description">
           <div className="lyrixi-flex-1">{value?.address || ''}</div>
           {/* <div className="lyrixi-map-nearbyControl-item-checkbox">
-            {!readOnly && (
-              <Checkbox
-                checked={
-                  active?.latitude &&
-                  active?.latitude === value?.latitude &&
-                  active?.longitude === value?.longitude
-                }
-              />
-            )}
-          </div> */}
+             {!readOnly && (
+               <Checkbox
+                 checked={
+                   active?.latitude &&
+                   active?.latitude === value?.latitude &&
+                   active?.longitude === value?.longitude
+                 }
+               />
+             )}
+            </div> */}
         </div>
       </div>
     </div>

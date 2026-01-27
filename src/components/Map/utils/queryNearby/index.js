@@ -20,7 +20,7 @@ async function queryNearby({ map, keyword, longitude, latitude, type, radius }) 
       isTimeout = true
       resolve({
         status: 'error',
-        message: LocaleUtil.locale('查询超时', 'lyrixi.query.time.out')
+        message: LocaleUtil.locale('查询超时', 'noKey_82105ffb651ae5b2c2a08fa1b1b506ef')
       })
     }, 5000)
 

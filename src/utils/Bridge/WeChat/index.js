@@ -56,7 +56,10 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: `WeChat js ${LocaleUtil.locale('加载失败')}`
+        message: `WeChat js ${LocaleUtil.locale(
+          '加载失败',
+          'noKey_866b795eae73791792b09d33d6595fe5'
+        )}`
       })
     }
 
@@ -137,7 +140,8 @@ let Bridge = {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
-        'lyrixi.open.location.prompt',
+        'noKey_0e963a39eb4b363f9465618162b7d7d5',
+
         ['openLocation']
       )}`
       Toast.show({
@@ -164,7 +168,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `WeChat ${LocaleUtil.locale('打开地图失败')}`
+            `WeChat ${LocaleUtil.locale('打开地图失败', 'noKey_3dd680a6b28a8b59516034e54bc595b7')}`
         })
       }
     })
@@ -199,7 +203,7 @@ let Bridge = {
       Toast.show({
         content: `WeChat ${LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
-          'lyrixi.scanQRCode.prompt'
+          'noKey_035ccd9e16f7b411f76b8369ce82e0a7'
         )}`
       })
       return
@@ -207,10 +211,10 @@ let Bridge = {
 
     let desc = []
     if (scanType.includes('qrCode')) {
-      desc.push(`WeChat ${LocaleUtil.locale('二维码')}`)
+      desc.push(`WeChat ${LocaleUtil.locale('二维码', 'noKey_22b03c024d815ad327e8b95d684ced38')}`)
     }
     if (scanType.includes('barCode')) {
-      desc.push(`WeChat ${LocaleUtil.locale('条码')}`)
+      desc.push(`WeChat ${LocaleUtil.locale('条码', 'noKey_39f76a9bd32adf43a7200f93ff35a2f5')}`)
     }
 
     window.top.wx.scanQRCode({
@@ -280,7 +284,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
-        'lyrixi.chooseMedia.prompt'
+        'noKey_0d4b28b9305da17cfaae5c59beeb647f'
       )}`
       Toast.show({
         content: message
@@ -354,7 +358,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
-        'lyrixi.uploadMedia.prompt'
+        'noKey_ae91b536a324063be22015b86480e967'
       )}`
       Toast.show({
         content: message
@@ -465,7 +469,8 @@ let Bridge = {
         onError?.({
           status: 'error',
           message:
-            error?.errMsg || `WeChat ${LocaleUtil.locale('预览失败')}`
+            error?.errMsg ||
+            `WeChat ${LocaleUtil.locale('预览失败', 'noKey_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
       cancel: onCancel
@@ -475,7 +480,8 @@ let Bridge = {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
-        'lyrixi.previewFile.prompt',
+        'noKey_ad0af8df508f1f949dcdc1144711b986',
+
         ['previewFile']
       )}`
       Toast.show({
@@ -494,7 +500,8 @@ let Bridge = {
         onError?.({
           status: 'error',
           message:
-            error?.errMsg || `WeChat ${LocaleUtil.locale('预览失败')}`
+            error?.errMsg ||
+            `WeChat ${LocaleUtil.locale('预览失败', 'noKey_6a3a5ef00db03994963efebe08432ce1')}`
         })
       }
     })
@@ -513,11 +520,15 @@ let Bridge = {
         onError: function (err) {
           console.log('WeChat Share onError:', err)
           Toast.show({
-            content: err?.errMsg || `WeChat ${LocaleUtil.locale('分享失败')}`
+            content:
+              err?.errMsg ||
+              `WeChat ${LocaleUtil.locale('分享失败', 'noKey_e8e25af006ef2ebbdb317e1d7c035a0f')}`
           })
           onError &&
             onError({
-              message: err?.errMsg || `WeChat ${LocaleUtil.locale('分享失败')}`
+              message:
+                err?.errMsg ||
+                `WeChat ${LocaleUtil.locale('分享失败', 'noKey_e8e25af006ef2ebbdb317e1d7c035a0f')}`
             })
         }
       })
@@ -540,7 +551,12 @@ let Bridge = {
           } else {
             onError &&
               onError({
-                message: res?.errMsg || `WeChat ${LocaleUtil.locale('分享失败')}`
+                message:
+                  res?.errMsg ||
+                  `WeChat ${LocaleUtil.locale(
+                    '分享失败',
+                    'noKey_e8e25af006ef2ebbdb317e1d7c035a0f'
+                  )}`
               })
           }
         }

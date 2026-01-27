@@ -26,15 +26,15 @@ const Media = forwardRef(
       // Value & Display Value
       list = [],
       /*
-      [
-        {
-          fileThumbnail: "全路径(必传)",
-          fileUrl: "全路径(必传)",
-          filePath: "目录/年月/照片名.jpg(必传)",
-          status: "choose|uploading|error|success",
-        },
-      ]
-      */
+    [
+      {
+        fileThumbnail: "全路径(必传)",
+        fileUrl: "全路径(必传)",
+        filePath: "目录/年月/照片名.jpg(必传)",
+        status: "choose|uploading|error|success",
+      },
+    ]
+    */
       maxCount,
       mediaType = ['image'], // video.录相 | 其它.为拍照
       ellipsis,
@@ -133,7 +133,7 @@ const Media = forwardRef(
         Toast.show({
           content: LocaleUtil.locale(
             '此照片控件无拍照功能, 请勿调用拍照',
-            'lyrixi.image.choose.no.feature'
+            'noKey_35a3ca0b2cebe63e346eb2ef97193284'
           )
         })
         return false
@@ -143,7 +143,7 @@ const Media = forwardRef(
         Toast.show({
           content: LocaleUtil.locale(
             '未找到拍照按钮, 调用拍照失败',
-            'lyrixi.image.choose.no.upload.button'
+            'noKey_76637d130a70149d956bf9acc14e2108'
           )
         })
         return false
@@ -162,7 +162,9 @@ const Media = forwardRef(
 
       let hasUploaded = false
       // 开始上传
-      _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi.uploading') })
+      _showLoading({
+        content: LocaleUtil.locale('上传中', 'noKey_fc09a73e52b76f697cff129b4dddecd1')
+      })
       for (let [index, item] of newList.entries()) {
         // 只上传未上传或上传失败的照片
         if (item.status === 'choose' || item.status === 'error') {
@@ -193,7 +195,8 @@ const Media = forwardRef(
             Toast.show({
               content: `${LocaleUtil.locale(
                 `网络异常，上传失败${failCount}张`,
-                'lyrixi.upload.error.count',
+                'noKey_a096455f5d98e5ead856c948379040a6',
+
                 [failCount]
               )}`
             })
@@ -254,7 +257,7 @@ const Media = forwardRef(
       let newList = [...list]
       // 开始上传
       _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi.uploading'),
+        content: LocaleUtil.locale('上传中', 'noKey_fc09a73e52b76f697cff129b4dddecd1'),
         index: index
       })
       newList[index] = await uploadItem(item, { onUpload })

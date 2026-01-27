@@ -48,8 +48,8 @@ function RangeMain(
   if (titles === undefined) {
     // eslint-disable-next-line
     titles = {
-      selector: LocaleUtil.locale('快捷选择', 'lyrixi.dateRange.selector.title'),
-      custom: LocaleUtil.locale('自定义', 'lyrixi.custom')
+      selector: LocaleUtil.locale('快捷选择', 'noKey_0537a64d8786690887268a38e2adcee7'),
+      custom: LocaleUtil.locale('自定义', 'noKey_f1d4ff50f3828f9b73412e7d94e6dd6e')
     }
   }
 

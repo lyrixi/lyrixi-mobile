@@ -57,7 +57,10 @@ const CascaderMain = forwardRef(
     let [result, setResult] = useState(
       currentList
         ? { status: 'success', list: currentList }
-        : { status: 'empty', message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data') }
+        : {
+            status: 'empty',
+            message: LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60')
+          }
     )
 
     // Expose
@@ -131,7 +134,7 @@ const CascaderMain = forwardRef(
           isChoose: true,
           parentid: newValue[newValue.length - 1].id,
           id: '',
-          name: LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')
+          name: LocaleUtil.locale('请选择', 'noKey_708c9d6d2ad108ab2c560530810deae9')
         })
       }
 

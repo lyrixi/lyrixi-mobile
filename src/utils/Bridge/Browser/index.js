@@ -33,7 +33,10 @@ let Browser = {
   },
   onBack: function () {
     Toast.show({
-      content: `Browser ${LocaleUtil.locale('此平台不支持')} onBack`
+      content: `Browser ${LocaleUtil.locale(
+        '此平台不支持',
+        'noKey_60a7978c99ee3bd2f538096ee46727ca'
+      )} onBack`
     })
   },
   setTitle: function ({ title, onSuccess, onError } = {}) {
@@ -56,13 +59,21 @@ let Browser = {
   },
   tel: function ({ number, onSuccess, onError } = {}) {
     if (Device.device === 'pc') {
-      Toast.show({ content: `Browser ${LocaleUtil.locale('此平台不支持')} tel` })
+      Toast.show({
+        content: `Browser ${LocaleUtil.locale(
+          '此平台不支持',
+          'noKey_60a7978c99ee3bd2f538096ee46727ca'
+        )} tel`
+      })
       return
     }
     if (isNaN(number)) {
       onError?.({
         status: 'error',
-        message: `Browser ${LocaleUtil.locale('电话号码格式错误')}`
+        message: `Browser ${LocaleUtil.locale(
+          '电话号码格式错误',
+          'noKey_219a4aae2d70f722737a324656fe4f13'
+        )}`
       })
       return
     }
@@ -82,7 +93,8 @@ let Browser = {
     if (!latitude || !longitude || !type) return
     let message = `Browser ${LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
-      'lyrixi.open.location.prompt',
+      'noKey_0e963a39eb4b363f9465618162b7d7d5',
+
       ['openLocation']
     )}`
     Toast.show({
@@ -126,7 +138,10 @@ let Browser = {
             onError?.({
               status: 'error',
               code: 'LATLNG_ERROR',
-              message: `Browser ${LocaleUtil.locale('定位失败')}`
+              message: `Browser ${LocaleUtil.locale(
+                '定位失败',
+                'noKey_9831baf6b76c1da7b69b463033b924cc'
+              )}`
             })
           }
 
@@ -155,7 +170,7 @@ let Browser = {
               code = 'PERMISSION_DENIED'
               message = `Browser ${LocaleUtil.locale(
                 '定位失败,用户拒绝请求地理定位',
-                'lyrixi.location.permission.denied.error'
+                'noKey_f8cfa8427bee70b3f5759bcbce99b4b3'
               )}`
               break
             case error.POSITION_UNAVAILABLE:
@@ -163,12 +178,12 @@ let Browser = {
               console.log(
                 `Browser ${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
-                  'lyrixi.location.unavailable.error'
+                  'noKey_c9eb59bd4d16540b9f2295104060284f'
                 )}`
               )
               message = `Browser ${LocaleUtil.locale(
                 '定位失败,位置信息是不可用',
-                'lyrixi.location.unavailable.error'
+                'noKey_c9eb59bd4d16540b9f2295104060284f'
               )}`
               break
             case error.TIMEOUT:
@@ -176,12 +191,12 @@ let Browser = {
               console.log(
                 `Browser ${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
-                  'lyrixi.location.unavailable.error'
+                  'noKey_c9eb59bd4d16540b9f2295104060284f'
                 )}`
               )
               message = `Browser ${LocaleUtil.locale(
                 '定位失败,请求获取用户位置超时',
-                'lyrixi.location.timeout.error'
+                'noKey_8a95092c3c8f57da8b4a619eeead5795'
               )}`
               break
             case error.UNKNOWN_ERROR:
@@ -189,18 +204,23 @@ let Browser = {
               console.log(
                 `Browser ${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
-                  'lyrixi.location.unavailable.error'
+                  'noKey_c9eb59bd4d16540b9f2295104060284f'
                 )}`
               )
               message = `Browser ${LocaleUtil.locale(
                 '定位失败,定位系统失效',
-                'lyrixi.location.unknown.error'
+                'noKey_b7ad4da2f97870b26920561f33ab14ab'
               )}`
               break
             default:
               code = 'LOCATION_ERROR'
-              console.log(`Browser ${LocaleUtil.locale('定位失败')}`)
-              message = `Browser ${LocaleUtil.locale('定位失败')}`
+              console.log(
+                `Browser ${LocaleUtil.locale('定位失败', 'noKey_9831baf6b76c1da7b69b463033b924cc')}`
+              )
+              message = `Browser ${LocaleUtil.locale(
+                '定位失败',
+                'noKey_9831baf6b76c1da7b69b463033b924cc'
+              )}`
           }
           let res = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
@@ -216,7 +236,10 @@ let Browser = {
       let res = {
         status: 'error',
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
-        message: `Browser ${LocaleUtil.locale('此平台不支持')}`
+        message: `Browser ${LocaleUtil.locale(
+          '此平台不支持',
+          'noKey_60a7978c99ee3bd2f538096ee46727ca'
+        )}`
       }
       onError?.(res)
     }
@@ -224,7 +247,10 @@ let Browser = {
   },
   scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     if (!this.debug) {
-      let message = `Browser ${LocaleUtil.locale('此平台不支持')} scanCode`
+      let message = `Browser ${LocaleUtil.locale(
+        '此平台不支持',
+        'noKey_60a7978c99ee3bd2f538096ee46727ca'
+      )} scanCode`
       Toast.show({
         content: message
       })
@@ -240,7 +266,10 @@ let Browser = {
     }, 500)
   },
   chooseMedia: function () {
-    let message = `Browser ${LocaleUtil.locale('此平台不支持')} chooseMedia`
+    let message = `Browser ${LocaleUtil.locale(
+      '此平台不支持',
+      'noKey_60a7978c99ee3bd2f538096ee46727ca'
+    )} chooseMedia`
     Toast.show({
       content: message
     })
@@ -291,11 +320,17 @@ let Browser = {
   previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
     onError?.({
       status: 'error',
-      message: `Browser ${LocaleUtil.locale('此平台不支持')} previewMedia`
+      message: `Browser ${LocaleUtil.locale(
+        '此平台不支持',
+        'noKey_60a7978c99ee3bd2f538096ee46727ca'
+      )} previewMedia`
     })
   },
   previewFile: function ({ fileUrl, onSuccess, onError } = {}) {
-    let message = `Browser ${LocaleUtil.locale('此平台不支持')} previewFile`
+    let message = `Browser ${LocaleUtil.locale(
+      '此平台不支持',
+      'noKey_60a7978c99ee3bd2f538096ee46727ca'
+    )} previewFile`
     Toast.show({
       content: message
     })

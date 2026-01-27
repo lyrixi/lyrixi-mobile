@@ -17,7 +17,7 @@ function Foot({ onOk, onClear }) {
       <FooterBar>
         {onOk && (
           <FooterBar.Button block size="l" backgroundColor="primary" color="white" onClick={onOk}>
-            {LocaleUtil.locale('确定', 'lyrixi.ok')}
+            {LocaleUtil.locale('确定', 'noKey_38cf16f2204ffab8a6e0187070558721')}
           </FooterBar.Button>
         )}
         {onClear && (

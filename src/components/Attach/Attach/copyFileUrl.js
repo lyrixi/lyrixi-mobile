@@ -15,7 +15,7 @@ function copyFileUrl(fileUrl) {
       Toast.show({
         content: LocaleUtil.locale(
           '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
-          'lyrixi.clipboard.success'
+          'noKey_6326307026a1ebefc8b307e7ef1c58b5'
         )
       })
     },
@@ -23,7 +23,8 @@ function copyFileUrl(fileUrl) {
       Message.open({
         content: LocaleUtil.locale(
           `文件链接复制到剪贴板失败, 请长按复制<br/>${fileUrl}`,
-          'lyrixi.clipboard.fail.confirm',
+          'noKey_a7da286a734546b215b7633f1c49ed98',
+
           [fileUrl]
         ),
         buttons: [

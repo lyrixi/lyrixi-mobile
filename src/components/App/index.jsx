@@ -106,7 +106,7 @@ function App({
       <Result status={result?.status === 'error' ? '500' : 'empty'} title={result?.message}>
         {result?.status !== 'empty' ? (
           <Button className="lyrixi-result-button" color="primary" onClick={() => load('retry')}>
-            {LocaleUtil.locale('重试', 'lyrixi.retry')}
+            {LocaleUtil.locale('重试', 'noKey_132c5cdcceb0f1f17c8c088a42959aa4')}
           </Button>
         ) : null}
       </Result>

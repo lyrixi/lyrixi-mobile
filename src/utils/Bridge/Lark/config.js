@@ -59,7 +59,10 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
             console.log(`config failed: `, err)
             onError?.({
               status: 'error',
-              message: `Lark ${LocaleUtil.locale('config failed')}`
+              message: `Lark ${LocaleUtil.locale(
+                'config failed',
+                'noKey_8482a17aad47dfd3f333e7a79c369e8c'
+              )}`
             })
           }
         })
@@ -68,14 +71,20 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
           status: 'error',
           message:
             response.message ||
-            `Lark ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
+            `Lark ${LocaleUtil.locale(
+              '鉴权接口失败，请稍后重试！',
+              'noKey_7334cbbe6fd40b00e470b91c73f16d2f'
+            )}`
         })
       }
     })
     .catch((err) => {
       onError?.({
         status: 'error',
-        message: `Lark ${LocaleUtil.locale('鉴权接口异常，请稍后重试！')}`
+        message: `Lark ${LocaleUtil.locale(
+          '鉴权接口异常，请稍后重试！',
+          'noKey_d015103b9b8864df89ed3c7edb96eca0'
+        )}`
       })
     })
 }

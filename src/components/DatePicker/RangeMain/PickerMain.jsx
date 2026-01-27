@@ -54,12 +54,12 @@ const PickerMain = function (
     setMultipleDate([
       {
         id: 'start',
-        description: LocaleUtil.locale('开始时间', 'lyrixi.start.time'),
+        description: LocaleUtil.locale('开始时间', 'noKey_592c59589144ddc68d05d528da17dcdc'),
         value: startDate
       },
       {
         id: 'end',
-        description: LocaleUtil.locale('结束时间', 'lyrixi.end.time'),
+        description: LocaleUtil.locale('结束时间', 'noKey_f782779e8b5d709462c8e71e0d9019f2'),
         value: endDate
       }
     ])

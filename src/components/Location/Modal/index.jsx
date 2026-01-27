@@ -109,8 +109,8 @@ const LocationModal = forwardRef(
         portal={portal}
         title={
           open === 'choose'
-            ? LocaleUtil.locale('选择地址', 'lyrixi.choose.address')
-            : LocaleUtil.locale('查看地址', 'lyrixi.view.address')
+            ? LocaleUtil.locale('选择地址', 'noKey_09365b9f2bfaf322a81c4e8c4e24f8fa')
+            : LocaleUtil.locale('查看地址', 'noKey_f3b2bedbe2cae85daf7e3ad3a9d999ec')
         }
         // 选择模式下, 不允许清空显示右上角确定, 允许清空底部显示清空和确定
         okVisible={open === 'choose' && !allowClear ? true : false}

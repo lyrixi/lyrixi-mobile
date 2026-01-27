@@ -39,7 +39,7 @@ export default function CustomDates({
       <RangeCombo
         // Value & Display Value
         value={value}
-        placeholder={LocaleUtil.locale('请选择', 'lyrixi.placeholder.select')}
+        placeholder={LocaleUtil.locale('请选择', 'noKey_708c9d6d2ad108ab2c560530810deae9')}
         ranges={null}
         // Status
         type={type}

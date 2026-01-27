@@ -65,7 +65,8 @@ function AttachPreviewMain(
           status="error"
           title={fileName}
           description={LocaleUtil.locale(
-            '暂不支持此类型'
+            '暂不支持此类型',
+            'noKey_82a46f8d675c89e11eb7dc7797df91c3'
           )}
         >
           <Button

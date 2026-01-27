@@ -45,7 +45,10 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: `Lark js ${LocaleUtil.locale('加载失败')}`
+        message: `Lark js ${LocaleUtil.locale(
+          '加载失败',
+          'noKey_866b795eae73791792b09d33d6595fe5'
+        )}`
       })
     }
 
@@ -90,7 +93,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `Lark ${LocaleUtil.locale('关闭窗口失败')}`
+            `Lark ${LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')}`
         })
       }
     })
@@ -137,7 +140,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `Lark ${LocaleUtil.locale('打开地图失败')}`
+            `Lark ${LocaleUtil.locale('打开地图失败', 'noKey_3dd680a6b28a8b59516034e54bc595b7')}`
         })
       }
     })
@@ -177,7 +180,9 @@ let Bridge = {
         console.error('飞书定位失败', error)
         onError?.({
           status: 'error',
-          message: error?.errMsg || `Lark ${LocaleUtil.locale('定位失败')}`
+          message:
+            error?.errMsg ||
+            `Lark ${LocaleUtil.locale('定位失败', 'noKey_9831baf6b76c1da7b69b463033b924cc')}`
         })
       }
     })
@@ -228,7 +233,8 @@ let Bridge = {
         onError?.({
           status: 'error',
           message:
-            error?.errMsg || `Lark ${LocaleUtil.locale('预览失败')}`
+            error?.errMsg ||
+            `Lark ${LocaleUtil.locale('预览失败', 'noKey_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
       onCancel: onCancel
@@ -250,7 +256,9 @@ let Bridge = {
 
         onError &&
           onError({
-            message: err?.message || `Lark ${LocaleUtil.locale('分享失败')}`
+            message:
+              err?.message ||
+              `Lark ${LocaleUtil.locale('分享失败', 'noKey_e8e25af006ef2ebbdb317e1d7c035a0f')}`
           })
       }
     })

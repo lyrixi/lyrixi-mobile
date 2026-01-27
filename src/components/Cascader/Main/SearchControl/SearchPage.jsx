@@ -37,7 +37,7 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     } else {
       setResult({
         status: 'empty',
-        message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data'),
+        message: LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60'),
         list: []
       })
     }
@@ -81,7 +81,10 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     if (result && result?.status !== 'success') {
       return (
         <Result
-          title={result?.message || LocaleUtil.locale('暂无数据', 'lyrixi.no.data')}
+          title={
+            result?.message ||
+            LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60')
+          }
           status={result?.status || 'empty'}
           className="lyrixi-cascader-main-result"
         />

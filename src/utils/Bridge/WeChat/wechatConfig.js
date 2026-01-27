@@ -13,7 +13,7 @@ function wechatConfig({ url, headers, payload, formatResponse, onSuccess, onErro
       status: 'error',
       message: `WeChat ${LocaleUtil.locale(
         '缺少参数',
-        'lyrixi.lack.parameter'
+        'noKey_f06ec979541f5f1283216579ac421380'
       )}: url or appId`
     })
     return
@@ -92,19 +92,28 @@ function wechatConfig({ url, headers, payload, formatResponse, onSuccess, onErro
           status: 'error',
           messsage:
             response.message ||
-            `WeChat ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
+            `WeChat ${LocaleUtil.locale(
+              '鉴权接口失败，请稍后重试！',
+              'noKey_7334cbbe6fd40b00e470b91c73f16d2f'
+            )}`
         })
 
         console.log(
           response.message ||
-          `WeChat ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
+            `WeChat ${LocaleUtil.locale(
+              '鉴权接口失败，请稍后重试！',
+              'noKey_7334cbbe6fd40b00e470b91c73f16d2f'
+            )}`
         )
       }
     })
     .catch((err) => {
       onError?.({
         status: 'error',
-        messsage: `WeChat ${LocaleUtil.locale('鉴权接口异常，请稍后重试！')}`
+        messsage: `WeChat ${LocaleUtil.locale(
+          '鉴权接口异常，请稍后重试！',
+          'noKey_d015103b9b8864df89ed3c7edb96eca0'
+        )}`
       })
     })
 }

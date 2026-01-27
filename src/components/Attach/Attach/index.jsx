@@ -26,16 +26,16 @@ function Attach(
     // Value & Display Value
     list = [],
     /*
-    [
-      {
-        fileUrl: "全路径(必传)",
-        filePath: "入库路径(必传)",
-        fileName: "文件名(必传)",
-        fileSize: "文件大小(字节)",
-        status: "choose|uploading|error|success",
-      },
-    ]
-    */
+  [
+    {
+      fileUrl: "全路径(必传)",
+      filePath: "入库路径(必传)",
+      fileName: "文件名(必传)",
+      fileSize: "文件大小(字节)",
+      status: "choose|uploading|error|success",
+    },
+  ]
+  */
     maxCount,
     sourceType,
 
@@ -120,14 +120,20 @@ function Attach(
   async function _choose(e) {
     if (!chooseVisible) {
       Toast.show({
-        content: LocaleUtil.locale('此控件无上传功能, 请勿调用拍照', 'lyrixi.no.upload.feature')
+        content: LocaleUtil.locale(
+          '此控件无上传功能, 请勿调用拍照',
+          'noKey_c4b36524143372bf6821ce50ab843844'
+        )
       })
       return false
     }
     let uploadElement = rootRef.current?.querySelector?.('.lyrixi-attach-choose')
     if (!uploadElement) {
       Toast.show({
-        content: LocaleUtil.locale('未找到上传按钮, 调用上传失败', 'lyrixi.no.upload.button')
+        content: LocaleUtil.locale(
+          '未找到上传按钮, 调用上传失败',
+          'noKey_9e65d8453742238201afa78f9f37ff8c'
+        )
       })
       return false
     }
@@ -147,7 +153,7 @@ function Attach(
 
     let hasUploaded = false
     // 开始上传
-    _showLoading({ content: LocaleUtil.locale('上传中', 'lyrixi.uploading') })
+    _showLoading({ content: LocaleUtil.locale('上传中', 'noKey_fc09a73e52b76f697cff129b4dddecd1') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的文件
       if (item.status === 'choose') {
@@ -178,7 +184,7 @@ function Attach(
           Toast.show({
             content: `${LocaleUtil.locale(
               '网络异常，上传失败',
-              'lyrixi.upload.network.error'
+              'noKey_18904cde640c2efd37bc6ed3e9dedc77'
             )}${failCount}`
           })
         }

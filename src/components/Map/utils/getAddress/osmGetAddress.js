@@ -27,7 +27,10 @@ function osmGetAddress(params) {
       .catch((error) => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('获取地址失败, 请稍后重试', 'lyrixi.get.address.failed')
+          message: LocaleUtil.locale(
+            '获取地址失败, 请稍后重试',
+            'noKey_f1f199dd46c73946aa4b3140e98752a4'
+          )
         })
       })
   })

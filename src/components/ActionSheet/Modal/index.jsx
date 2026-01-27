@@ -81,7 +81,7 @@ const ActionSheetModal = forwardRef(
             if (onClose) onClose()
           }}
         >
-          {cancelNode || LocaleUtil.locale('取消', 'lyrixi.cancel')}
+          {cancelNode || LocaleUtil.locale('取消', 'noKey_625fb26b4b3340f7872b411f401e754c')}
         </div>
       )
     }

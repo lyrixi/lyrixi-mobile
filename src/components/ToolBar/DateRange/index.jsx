@@ -178,10 +178,10 @@ function DateRangeBar({
             {/* Element: Footer */}
             <FooterBar>
               <FooterBar.Button block backgroundColor="default" onClick={handleCancel}>
-                {LocaleUtil.locale('取消', 'lyrixi.cancel')}
+                {LocaleUtil.locale('取消', 'noKey_625fb26b4b3340f7872b411f401e754c')}
               </FooterBar.Button>
               <FooterBar.Button block color="white" backgroundColor="primary" onClick={handleOk}>
-                {LocaleUtil.locale('确定', 'lyrixi.ok')}
+                {LocaleUtil.locale('确定', 'noKey_38cf16f2204ffab8a6e0187070558721')}
               </FooterBar.Button>
             </FooterBar>
           </div>

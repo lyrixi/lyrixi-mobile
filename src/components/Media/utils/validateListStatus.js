@@ -12,7 +12,7 @@ function validateListStatus(list) {
     if (item.status === 'error' || item.status === 'choose' || item.status === 'uploading') {
       return LocaleUtil.locale(
         '当前页面存在尚未上传成功的文件，请等待上传成功或删除后再提交',
-        'lyrixi.file.need.uploaded'
+        'noKey_7ab7af85f0459b62fc2bf9e57af939f0'
       )
     }
   }

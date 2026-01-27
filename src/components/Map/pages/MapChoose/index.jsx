@@ -111,7 +111,9 @@ function MapChoose(
 
     // 默认选中当前位置
     if (!newValue?.longitude || !newValue?.latitude) {
-      Loading.show({ content: LocaleUtil.locale('定位中...', 'lyrixi.positioning') })
+      Loading.show({
+        content: LocaleUtil.locale('定位中...', 'noKey_2c4006447f62bffd57686aabbdc3f5dd')
+      })
       let result = await mapRef.current?.getLocation?.({ type: 'wgs84' })
       Loading.hide()
       if (result.status === 'error') {
@@ -128,7 +130,9 @@ function MapChoose(
 
     // 获取地址
     if (!newValue?.address) {
-      Loading.show({ content: LocaleUtil.locale('获取地址中...', 'lyrixi.getting.address') })
+      Loading.show({
+        content: LocaleUtil.locale('获取地址中...', 'noKey_727c51b4575192c9cc0ca17b67375392')
+      })
       let result = await mapRef.current?.getAddress?.(newValue)
       Loading.hide()
       if (result.status === 'error') {
@@ -223,19 +227,22 @@ function MapChoose(
           readOnly
             ? null
             : async (map) => {
-              let center = map.getCenter()
-              let result = {
-                ...center
+                let center = map.getCenter()
+                let result = {
+                  ...center
+                }
+
+                Loading.show({
+                  content: LocaleUtil.locale(
+                    '获取地址中...',
+                    'noKey_727c51b4575192c9cc0ca17b67375392'
+                  )
+                })
+                result = await map.getAddress(result)
+                Loading.hide()
+
+                handleChange(result)
               }
-
-              Loading.show({
-                content: LocaleUtil.locale('获取地址中...', 'lyrixi.getting.address')
-              })
-              result = await map.getAddress(result)
-              Loading.hide()
-
-              handleChange(result)
-            }
         }
         // Style
         className={centerMarkerClassName}

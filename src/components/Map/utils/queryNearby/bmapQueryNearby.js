@@ -59,13 +59,13 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {
           } else {
             resolve({
               status: 'empty',
-              message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
+              message: LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60')
             })
           }
         } else {
           resolve({
             status: 'error',
-            message: LocaleUtil.locale('查询失败', 'lyrixi.query.failed')
+            message: LocaleUtil.locale('查询失败', 'noKey_0d66ed02d74d0bd89431d6d59533ffb3')
           })
         }
       }

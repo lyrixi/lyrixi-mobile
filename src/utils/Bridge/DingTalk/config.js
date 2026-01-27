@@ -34,6 +34,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
             status: 'error',
             message: `DingTalk ${LocaleUtil.locale(
               '超时',
+              'noKey_e944c7c9017a815650ce6b78f81685e7'
             )}`
           })
         }, 10000)
@@ -66,8 +67,10 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
           console.error('鉴权失败:', err)
           onError?.({
             status: 'error',
-            message: `DingTalk ${LocaleUtil.locale('鉴权失败')} ${err?.errorMessage || ''
-              }`
+            message: `DingTalk ${LocaleUtil.locale(
+              '鉴权失败',
+              'noKey_c0a3c7a55fe9e9647c0957dfa2beeeb6'
+            )} ${err?.errorMessage || ''}`
           })
         })
         window.top.dd.ready(function () {
@@ -82,7 +85,10 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
           status: 'error',
           message:
             response.message ||
-            `DingTalk ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
+            `DingTalk ${LocaleUtil.locale(
+              '鉴权接口失败，请稍后重试！',
+              'noKey_7334cbbe6fd40b00e470b91c73f16d2f'
+            )}`
         })
       }
     })
@@ -90,7 +96,10 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
       console.log('钉钉鉴权接口异常，请稍后重试！', err)
       onError?.({
         status: 'error',
-        message: `DingTalk ${LocaleUtil.locale('鉴权接口异常，请稍后重试！')}`
+        message: `DingTalk ${LocaleUtil.locale(
+          '鉴权接口异常，请稍后重试！',
+          'noKey_d015103b9b8864df89ed3c7edb96eca0'
+        )}`
       })
     })
 }

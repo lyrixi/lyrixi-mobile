@@ -64,9 +64,9 @@ function WechatMiniProgram(
   {platform: 'browser', uploadItem: item, result: result}
   返回格式:
   {
-    fileThumbnail: 缩略图,
-    fileUrl: 高清图,
-    filePath: 入库路径
+  fileThumbnail: 缩略图,
+  fileUrl: 高清图,
+  filePath: 入库路径
   }
   */
     getItemExtra,
@@ -118,7 +118,7 @@ function WechatMiniProgram(
           Toast.show({
             content: LocaleUtil.locale(
               '未找到拍照按钮, 调用拍照失败',
-              'lyrixi.image.choose.no.upload.button'
+              'noKey_76637d130a70149d956bf9acc14e2108'
             )
           })
           return false

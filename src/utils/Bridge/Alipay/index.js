@@ -40,7 +40,8 @@ let Bridge = {
           onError?.({
             status: 'error',
             message: `AlipayMiniProgram js ${LocaleUtil.locale(
-              '加载失败'
+              '加载失败',
+              'noKey_866b795eae73791792b09d33d6595fe5'
             )}`
           })
           return
@@ -59,7 +60,10 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: `Alipay js ${LocaleUtil.locale('加载失败')}`
+        message: `Alipay js ${LocaleUtil.locale(
+          '加载失败',
+          'noKey_866b795eae73791792b09d33d6595fe5'
+        )}`
       })
     }
 
@@ -102,7 +106,10 @@ let Bridge = {
           status: 'error',
           message:
             error?.errorMessage ||
-            `Alipay ${LocaleUtil.locale('此平台不支持')} openLocation`
+            `Alipay ${LocaleUtil.locale(
+              '此平台不支持',
+              'noKey_60a7978c99ee3bd2f538096ee46727ca'
+            )} openLocation`
         })
       }
     })

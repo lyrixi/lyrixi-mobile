@@ -97,11 +97,18 @@ const Main = forwardRef(
       let topText = topContainerRef.current?.querySelector?.('.lyrixi-page-main-pull-push-text')
       if (touchesRef.current.diffY >= threshold) {
         if (topIcon) topIcon.classList.add('lyrixi-page-main-pull-push-icon-down')
-        if (topText) topText.innerHTML = LocaleUtil.locale('释放立即刷新', 'lyrixi.release.refresh')
+        if (topText)
+          topText.innerHTML = LocaleUtil.locale(
+            '释放立即刷新',
+            'noKey_bb045b7b0ce191f0568fb4d0a9858b8d'
+          )
       } else {
         if (topIcon) topIcon.classList.remove('lyrixi-page-main-pull-push-icon-down')
         if (topText)
-          topText.innerHTML = LocaleUtil.locale('下拉可以刷新', 'lyrixi.pull.down.refresh')
+          topText.innerHTML = LocaleUtil.locale(
+            '下拉可以刷新',
+            'noKey_76985db7270fb8bc2add09291b637964'
+          )
       }
     }
     async function handleTouchEnd(e) {
@@ -122,7 +129,11 @@ const Main = forwardRef(
         topContainerRef.current.style.height = threshold + 'px'
         if (topIcon) topIcon.classList.remove('lyrixi-page-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.add('lyrixi-page-main-pull-push-icon-loading')
-        if (topText) topText.innerHTML = `${LocaleUtil.locale('加载中', 'lyrixi.refreshing')}...`
+        if (topText)
+          topText.innerHTML = `${LocaleUtil.locale(
+            '加载中',
+            'noKey_f013ea9dcba3f5ca1278aa850931fec8'
+          )}...`
 
         // Trigger Events
         if (onTopRefresh) {

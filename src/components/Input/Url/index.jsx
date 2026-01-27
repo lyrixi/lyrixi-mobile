@@ -71,7 +71,10 @@ const Url = forwardRef(
       Clipboard.copy(url, {
         onSuccess: () => {
           Toast.show({
-            content: LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi.link.copy.success')
+            content: LocaleUtil.locale(
+              '链接已复制到剪贴板',
+              'noKey_deb26c26fbaafab1dfa6c902a0ffad75'
+            )
           })
         },
         onError: () => {
@@ -79,10 +82,12 @@ const Url = forwardRef(
             maskStyle: {
               zIndex: 100
             },
-            title: LocaleUtil.locale('提示', 'lyrixi.alert.title'),
+            title: LocaleUtil.locale('提示', 'noKey_02d9819ddaaaeb1b7b22b12608c7e5ca'),
             content:
-              LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'lyrixi.link.copy.error') +
-              `<br/>${url}`,
+              LocaleUtil.locale(
+                '链接复制到剪贴板失败, 请长按复制',
+                'noKey_8c1958b63a87bd3e1fa1e550c058ffe1'
+              ) + `<br/>${url}`,
             buttons: [
               {
                 name: '确定',
