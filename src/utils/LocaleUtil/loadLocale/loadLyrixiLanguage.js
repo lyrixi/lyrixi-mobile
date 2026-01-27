@@ -14,6 +14,7 @@ async function loadLyrixiLanguage(language) {
     }
 
     import(`lyrixi-mobile/locale/${language}.js`).then(jsFile => {
+      // 写死的国际化数据变量window.lyrixiLocaleData和window.lyrixiLocaleLanguage
       if (window.lyrixiLocaleData) {
         result = {
           status: 'success',
@@ -23,7 +24,7 @@ async function loadLyrixiLanguage(language) {
       }
       resolve(result)
     }).catch(() => {
-      resolve(error)
+      resolve(result)
     })
   })
 }
