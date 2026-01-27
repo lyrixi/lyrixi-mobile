@@ -1,5 +1,3 @@
-import setLocale from './../setLocale'
-
 // 设置lyrixi语言
 async function loadLyrixiLanguage(language) {
   return new Promise((resolve) => {
@@ -21,7 +19,7 @@ async function loadLyrixiLanguage(language) {
           status: 'success',
           message: 'Local js file loaded successfully'
         }
-        setLocale(language)
+        window.lyrixiLocaleLanguage = language
       }
       resolve(result)
     }).catch(() => {

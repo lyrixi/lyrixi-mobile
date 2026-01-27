@@ -10,13 +10,9 @@ title: LocaleUtil
 
 支持的语言列表
 
-## LocaleUtil.setLocale
-
-LocaleUtil.setLocale(language, data)设置语言, 设置后, 两个变量将有值: window.lyrixiLocaleLanguage 标识语言, window.lyrixiLocaleData 记录国际化数据
-
 ## LocaleUtil.locale
 
-LocaleUtil.setLocale 后, LocaleUtil.locale 默认读取 window.lyrixiLocaleData 对象
+LocaleUtil.locale 默认读取 window.lyrixiLocaleData 对象
 
 ```javascript
 import React from 'react'
