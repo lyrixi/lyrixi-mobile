@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "අවලංගු කරන්න",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "නැවත උද්සාහ කරන්න",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "ගොනුව සබැඳිය ක්ලිප්බෝඩ් වෙත පිටපත් කර ඇත, බාගත කිරීම සඳහා ඔබේ පද්ධති බ්රවුසරයේ එය ඇලවන්න කරුණාකර",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "දෝෂ නිරාකරණ පුවරුව විවෘත කිරීම අසාර්ථක විය",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "ලඝු-සටහන වාර්තාකරණය සම්පූර්ණ: {0} සාර්ථකත්වයන්, {1} අසාර්ථකත්වයන්"
 }
+export default lyrixiLocaleData

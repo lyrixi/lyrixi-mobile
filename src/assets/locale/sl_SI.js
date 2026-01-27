@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Prekliči",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Poskusi znova",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Povezava do datoteke je bila kopirana v odložišče, prosimo, prilepite jo v brskalnik sistema za prenos",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Ni uspelo odpreti debug panela",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Poročanje o dnevniku zaključeno: {0} uspehi, {1} neuspehi"
 }
+export default lyrixiLocaleData

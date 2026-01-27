@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Откажи",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Обиди се повторно",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Линкот на датотеката е копиран во клипбордот, ве молиме залепете го во вашиот системски прелистувач за да го преземете",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Не успеав да го отворам дебаг панелот",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Комплетно пријавување на лог: {0} успеси, {1} неуспеси"
 }
+export default lyrixiLocaleData

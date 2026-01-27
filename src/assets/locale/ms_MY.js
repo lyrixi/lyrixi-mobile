@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Batal",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Cuba lagi",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Pautan fail telah disalin ke papan keratan, sila tampalkannya pada penyemak imbas sistem anda untuk memuat turun",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Gagal membuka panel nyahpepijat",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Pelaporan log selesai: {0} kejayaan, {1} kegagalan"
 }
+export default lyrixiLocaleData

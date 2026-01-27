@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "বাতিল",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "আবার চেষ্টা করো",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "ফাইল লিঙ্কটি ক্লিপবোর্ডে অনুলিপি করা হয়েছে, ডাউনলোড করতে দয়া করে এটি আপনার সিস্টেম ব্রাউজারে পেস্ট করুন",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "ডিবাগ প্যানেলটি খুলতে ব্যর্থ হয়েছে",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "লগ রিপোর্টিং সম্পূর্ণ: {0} সাফল্য, {1} ব্যর্থতা"
 }
+export default lyrixiLocaleData

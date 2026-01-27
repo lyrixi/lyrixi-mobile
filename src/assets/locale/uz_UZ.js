@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Bekor qilish",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Yana urinib ko'ring",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Fayl havolasi clipboardga ko'chirilgan, iltimos, uni tizim brauzeringizga joylashtiring va yuklab oling",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Xatoliklarni aniqlash panelini ochish muvaffaqiyatsiz bo'ldi",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Log hisobotlari yakunlandi: {0} muvaffaqiyatlar, {1} muvaffaqiyatsizliklar"
 }
+export default lyrixiLocaleData

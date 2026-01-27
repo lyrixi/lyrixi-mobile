@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Annuller",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Prøv igen",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Fillinket er blevet kopieret til udklipsholderen, indsæt det venligst i din systembrowser for at downloade det",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Fejlede i at åbne debug-panelet",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Lograpportering fuldført: {0} succeser, {1} fejl"
 }
+export default lyrixiLocaleData

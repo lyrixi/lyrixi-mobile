@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Cancel·lar",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Prova una altra vegada",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "L'enllaç del fitxer s'ha copiat a la carpeta, si us plau, enganxeu-lo al vostre navegador del sistema per descarregar-lo",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "No s'ha pogut obrir el panell de depuració",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Informes de registre complets: {0} èxits {1} fracassos"
 }
+export default lyrixiLocaleData

@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "취소",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "다시 한 번 시도해 보세요",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "파일 링크가 클립보드에 복사되었으니, 시스템 브라우저에 붙여넣어 다운로드해 주세요",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "디버그 패널을 열지 못했습니다",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "로그 보고 완료: 성공 {0}, 실패 {1}"
 }
+export default lyrixiLocaleData

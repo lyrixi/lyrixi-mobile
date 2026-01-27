@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Afturkalla",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Reyndu aftur",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Skráarhlekkurinn hefur verið afritaður á klippiborðið, vinsamlegast límdu hann inn í kerfisvafrann þinn til að hlaða niður",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Tókst ekki að opna villuleitarpanelinn",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Skýrslugerð lokið: {0} árangur, {1} mistök"
 }
+export default lyrixiLocaleData

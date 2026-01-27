@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "ပယ်ဖျက်ပါ",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "ထပ်ကြိုးစားပါ",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "ဖိုင်လင့်ခ်ကို ကလစ်ဘုတ်သို့ ကူးယူပြီးပြီ၊ ကျေးဇူးပြု၍ သင့်စနစ် ဘရာဇာပေါ်တွင် ကူးယူပါ",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "အမှားချေမှုဘောင်ကွက်ကို ဖွင့်ဖို့ မအောင်မြင်ဘူး",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "မှတ်တမ်း အစီရင်ခံ မှု ပြီးစီး မှု - အောင်မြင် မှု {0} ၊ {1} မှု များ"
 }
+export default lyrixiLocaleData

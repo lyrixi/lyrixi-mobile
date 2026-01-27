@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Cancelar",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Vuelve a intentarlo",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "El enlace del archivo ha sido copiado al portapapeles, por favor pégalo en tu navegador del sistema para descargarlo",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "No se ha conseguido abrir el panel de depuración",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Reporte de registro completado: {0} éxitos {1} fallos"
 }
+export default lyrixiLocaleData

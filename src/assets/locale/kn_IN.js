@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "ರದ್ದುಮಾಡಿ",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "ಫೈಲ್ ಲಿಂಕ್ ಅನ್ನು ಕ್ಲಿಪ್ ಬೋರ್ಡ್ ಗೆ ನಕಲಿಸಲಾಗಿದೆ, ಡೌನ್ ಲೋಡ್ ಮಾಡಲು ದಯವಿಟ್ಟು ಅದನ್ನು ನಿಮ್ಮ ಸಿಸ್ಟಮ್ ಬ್ರೌಸರ್ ನಲ್ಲಿ ಅಂಟಿಸಿ",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "ಡೀಬಗ್ ಫಲಕವನ್ನು ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "ಲಾಗ್ ವರದಿ ಪೂರ್ಣಗೊಂಡಿದೆ: {0} ಯಶಸ್ಸುಗಳು, {1} ವೈಫಲ್ಯಗಳು"
 }
+export default lyrixiLocaleData

@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Avbryt",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Försök igen",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Fillänken har kopierats till urklippet, vänligen klistra in den i din systemwebbläsare för att ladda ner den",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Misslyckades med att öppna felsökningspanelen",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Loggrapportering klar: {0} framgångar, {1} misslyckanden"
 }
+export default lyrixiLocaleData

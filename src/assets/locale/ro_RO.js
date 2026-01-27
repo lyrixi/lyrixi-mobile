@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Anulează",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Încearcă din nou",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Linkul fișierului a fost copiat în clipboard, vă rugăm să îl lipiți în browserul de sistem pentru a o descărca",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Nu am reușit să deschid panoul de depanare",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Raportarea jurnalului completă: {0} succese {1} eșecuri"
 }
+export default lyrixiLocaleData

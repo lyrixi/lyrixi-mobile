@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "منسوخ کریں",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "دوبارہ کوشش کرو",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "فائل لنک کلپ بورڈ پر کاپی کر دیا گیا ہے، براہ کرم اسے اپنے سسٹم براؤزر پر پیسٹ کریں تاکہ ڈاؤن لوڈ ہو سکے",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "ڈیبگ پینل کھولنے میں ناکام رہا",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "لاگ رپورٹنگ مکمل: {0} کامیابیاں، {1} ناکامیاں"
 }
+export default lyrixiLocaleData

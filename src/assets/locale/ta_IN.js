@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "ரத்து",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "மீண்டும் முயற்சி செய்",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "கோப்பு இணைப்பு கிளிப்போர்டில் நகலெடுக்கப்பட்டுள்ளது, பதிவிறக்க அதை உங்கள் கணினி உலாவியில் ஒட்டவும்",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "பிழைத்திருத்தப் பலகத்தைத் திறப்பதில் தோல்வியுற்றது",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "பதிவு அறிக்கை முடிந்தது: {0} வெற்றிகள், {1} தோல்விகள்"
 }
+export default lyrixiLocaleData

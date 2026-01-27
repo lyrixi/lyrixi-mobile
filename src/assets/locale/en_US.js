@@ -179,5 +179,4 @@ const lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Failed to open the debug panel",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Log reporting complete: {0} successes, {1} failures"
 }
-
 export default lyrixiLocaleData

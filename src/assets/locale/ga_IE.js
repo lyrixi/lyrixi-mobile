@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Cuir ar ceal",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Bain triail as arís",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Cóipeáladh nasc an chomhaid chuig an ngearrthaisce le do thoil agus greamaigh é ar do bhrabhsálaí córais le híoslódáil",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Theip ar an bpainéal dífhabhtaithe a oscailt",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Log reporting complete: {0} successes, {1} failures"
 }
+export default lyrixiLocaleData

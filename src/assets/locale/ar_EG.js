@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "إلغاء الأمر",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "حاول مرة أخرى",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "تم نسخ رابط الملف إلى الحافظة، يرجى لصقه في متصفح النظام الخاص بك للتحميل",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "فشل في فتح لوحة التصحيح",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "اكتمل الإبلاغ عن السجل: {0} النجاحات، {1} الفشل"
 }
+export default lyrixiLocaleData

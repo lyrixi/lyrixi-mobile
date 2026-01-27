@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "លប់ចោល",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "ព្យាយាម​ម្តង​ទៀត",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "តំណភ្ជាប់ឯកសារត្រូវបានចម្លងទៅក្ដារតម្បៀតខ្ទាស់, សូមបិទភ្ជាប់វានៅលើកម្មវិធីរុករកប្រព័ន្ធរបស់អ្នកដើម្បីទាញយក",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "បានបរាជ័យក្នុងការបើកបន្ទះបំបាត់កំហុស",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "របាយការណ៍កំណត់ហេតុបានបញ្ចប់៖ ជោគជ័យ {0} {1}"
 }
+export default lyrixiLocaleData

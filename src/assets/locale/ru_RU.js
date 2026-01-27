@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Отмена",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Повторить",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Ссылка на файл скопирована в буфер обмена, пожалуйста, вставьте её в ваш системный браузер для скачивания",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Не удалось открыть панель отладки",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Отчетность журнала завершена: {0} успехов {1} неудач"
 }
+export default lyrixiLocaleData

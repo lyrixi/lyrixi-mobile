@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "Betal kirin",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "Dubare biceribîne",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "Girêdana pelê li panoyê hate kopî kirin, ji kerema xwe ji bo daxistinê wê li geroka pergala xwe zeliqînin",
@@ -179,3 +179,4 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "Nekarî panela xeletîyê veke.",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "Raporkirina têketinê temam bû: {0} serkeftin, {1} têkçûn"
 }
+export default lyrixiLocaleData
