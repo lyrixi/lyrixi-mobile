@@ -48,7 +48,10 @@ function uploadLocalFile({
               resolve({
                 ...item,
                 status: 'error',
-                message: LocaleUtil.locale('图片加载失败，请重试')
+                message: LocaleUtil.locale(
+                  '图片加载失败，请重试',
+                  'noKey_419ade42d1243fe183355b7930c4f830'
+                )
               })
               return
             }

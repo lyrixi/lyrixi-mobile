@@ -23,7 +23,9 @@ function uploadServerId({ url, header, payload }) {
       .catch((error) => {
         resolve({
           status: 'error',
-          message: error?.response?.data?.message || LocaleUtil.locale('上传serverId异常')
+          message:
+            error?.response?.data?.message ||
+            LocaleUtil.locale('上传serverId异常', 'noKey_f630459aa61d3a30b13b806a8935e6d6')
         })
       })
   })

@@ -39,10 +39,9 @@ let Bridge = {
           console.error('支付小程序js加载失败')
           onError?.({
             status: 'error',
-            message: LocaleUtil.locale(
-              '支付小程序js加载失败',
-              'lyrixi.alipayMiniProgram.js.load.failed'
-            )
+            message: `AlipayMiniProgram ${LocaleUtil.locale(
+              'js加载失败'
+            )}`
           })
           return
         }
@@ -60,7 +59,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('支付宝js加载失败')
+        message: `Alipay ${LocaleUtil.locale('js加载失败')}`
       })
     }
 
@@ -101,7 +100,9 @@ let Bridge = {
       onError: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errorMessage || LocaleUtil.locale('打开地图失败')
+          message:
+            error?.errorMessage ||
+            `Alipay ${LocaleUtil.locale('此平台不支持')} openLocation`
         })
       }
     })

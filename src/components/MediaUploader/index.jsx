@@ -68,16 +68,16 @@ function MediaUploader(
     previewPortal,
     previewCancelPosition,
     /*
-    格式化上传结果
-    入参:
-    {platform: 'browser', uploadItem: item, result: result}
-    返回格式:
-    {
-      fileThumbnail: 缩略图,
-      fileUrl: 高清图,
-      filePath: 入库路径
-    }
-    */
+  格式化上传结果
+  入参:
+  {platform: 'browser', uploadItem: item, result: result}
+  返回格式:
+  {
+    fileThumbnail: 缩略图,
+    fileUrl: 高清图,
+    filePath: 入库路径
+  }
+  */
     getItemExtra,
     getUploadUrl,
     formatChoose,
@@ -118,7 +118,10 @@ function MediaUploader(
     if (isTimeout === false) {
       Toast.show({
         duration: 1000,
-        content: LocaleUtil.locale('检测到您的机型不支持小程序拍照，已强制为您切换成浏览器拍照'),
+        content: LocaleUtil.locale(
+          '检测到您的机型不支持小程序拍照，已强制为您切换成浏览器拍照',
+          'noKey_9e6eedcd7097658099a215f77cada387'
+        ),
         onClose: () => {
           setCompatiblePlatform('browser')
         }

@@ -188,7 +188,7 @@ const CascaderMain = forwardRef(
       if (!Array.isArray(externalList) || !externalList.length) {
         return {
           status: 'error',
-          message: LocaleUtil.locale('未获取到列表数据')
+          message: LocaleUtil.locale('未获取到列表数据', 'noKey_933eceb19c1936ad8450a94e0b2500e6')
         }
       }
 
@@ -328,6 +328,7 @@ const CascaderMain = forwardRef(
             }}
             onSelect={(item) => handleDrill(item)}
           />
+
           <IndexBar
             className="lyrixi-cascader-indexbar"
             anchors={getAnchors(result?.list)}

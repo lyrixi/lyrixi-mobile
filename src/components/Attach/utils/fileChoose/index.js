@@ -39,7 +39,7 @@ async function fileChoose({
   // 大于总数禁止选择
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`总数不能大于${maxCount}`, 'lyrixi.maxCount.cannot.greater.than', [
+      content: LocaleUtil.locale(`总数不能大于${maxCount}`, 'lyrixi.count.cannot.greater.than', [
         maxCount
       ]),
       maskClickable: true

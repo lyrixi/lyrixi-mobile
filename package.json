@@ -21,7 +21,7 @@
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev",
-    "translate": "node src/scripts/translate-src.js"
+    "translate": "node scripts/translate-src.js"
   },
   "commitlint": {
     "extends": [

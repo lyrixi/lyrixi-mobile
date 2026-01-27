@@ -26,7 +26,8 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
       return
     }
 
-    const currentList = keyword && keyword.trim() ? ArrayUtil.searchDeepTree(externalList, keyword) : []
+    const currentList =
+      keyword && keyword.trim() ? ArrayUtil.searchDeepTree(externalList, keyword) : []
     if (currentList.length > 0) {
       setResult({
         status: 'success',
@@ -36,7 +37,7 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     } else {
       setResult({
         status: 'empty',
-        message: LocaleUtil.locale('暂无数据'),
+        message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data'),
         list: []
       })
     }

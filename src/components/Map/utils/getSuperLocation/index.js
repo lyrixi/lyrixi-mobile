@@ -73,7 +73,7 @@ async function getLocation({
         onError({
           status: 'error',
           code: errorCodes.LOCATION_TIMEOUT,
-          message: LocaleUtil.locale('定位超时')
+          message: LocaleUtil.locale('定位超时', 'noKey_af14815f5e9938584f52751cbb3c5dc2')
         })
     }, timeout)
   }
@@ -123,7 +123,10 @@ async function getLocation({
         onError &&
           onError({
             code: errorCodes.PERMISSION_DENIED,
-            message: LocaleUtil.locale('未开启定位服务或权限，定位失败')
+            message: LocaleUtil.locale(
+              '未开启定位服务或权限，定位失败',
+              'noKey_95491614e045ef613a2a90b6f0a162f1'
+            )
           })
         return
       }
@@ -141,7 +144,10 @@ async function getLocation({
         onError &&
           onError({
             code: errorCodes.NETWORK_ERROR,
-            message: LocaleUtil.locale('网络异常，定位失败')
+            message: LocaleUtil.locale(
+              '网络异常，定位失败',
+              'noKey_31208a8ed1bbb2f00cea08335add57e3'
+            )
           })
         return
       }
@@ -149,7 +155,7 @@ async function getLocation({
       onError &&
         onError({
           code: errorCodes.UNKNOWN_ERROR,
-          message: LocaleUtil.locale('网络异常，定位失败')
+          message: LocaleUtil.locale('网络异常，定位失败', 'noKey_31208a8ed1bbb2f00cea08335add57e3')
         })
     }
   }

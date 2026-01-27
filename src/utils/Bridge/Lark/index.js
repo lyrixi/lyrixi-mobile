@@ -45,7 +45,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('飞书js加载失败')
+        message: LocaleUtil.locale('飞书js加载失败', 'noKey_a0b965a930e517736d3111261714241b')
       })
     }
 
@@ -88,7 +88,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errMsg || LocaleUtil.locale('关闭窗口失败')
+          message:
+            error?.errMsg ||
+            LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')
         })
       }
     })
@@ -133,7 +135,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errMsg || LocaleUtil.locale('打开地图失败')
+          message:
+            error?.errMsg ||
+            LocaleUtil.locale('打开地图失败', 'lyrixi.bridge.openLocation.error')
         })
       }
     })
@@ -171,7 +175,10 @@ let Bridge = {
       },
       fail: (error) => {
         console.error('飞书定位失败', error)
-        onError?.({ status: 'error', message: error?.errMsg || LocaleUtil.locale('定位失败') })
+        onError?.({
+          status: 'error',
+          message: error?.errMsg || LocaleUtil.locale('定位失败', 'lyrixi.location.failed')
+        })
       }
     })
   },
@@ -220,7 +227,8 @@ let Bridge = {
         console.log('飞书previewImage失败:', error)
         onError?.({
           status: 'error',
-          message: error?.errMsg || LocaleUtil.locale('预览失败')
+          message:
+            error?.errMsg || LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
         })
       },
       onCancel: onCancel

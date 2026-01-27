@@ -53,16 +53,16 @@ function Browser(
     previewPortal,
     previewCancelPosition,
     /*
-    格式化上传结果
-    入参:
-    {platform: 'browser', uploadItem: item, result: result}
-    返回格式:
-    {
-      fileThumbnail: 缩略图,
-      fileUrl: 高清图,
-      filePath: 入库路径
-    }
-    */
+  格式化上传结果
+  入参:
+  {platform: 'browser', uploadItem: item, result: result}
+  返回格式:
+  {
+    fileThumbnail: 缩略图,
+    fileUrl: 高清图,
+    filePath: 入库路径
+  }
+  */
     getItemExtra,
     getUploadUrl,
     formatChoose,
@@ -85,7 +85,10 @@ function Browser(
       ...mediaRef.current,
       chooseMedia: () => {
         Toast.show({
-          content: LocaleUtil.locale('浏览器上传模式, 不支持编程式调用拍照')
+          content: LocaleUtil.locale(
+            '浏览器上传模式, 不支持编程式调用拍照',
+            'noKey_18a8c44715538c3079cf8bf9fd46fe82'
+          )
         })
         return false
       }

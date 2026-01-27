@@ -27,7 +27,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errorMessage || LocaleUtil.locale('设置标题失败')
+          message:
+            error?.errorMessage ||
+            LocaleUtil.locale('设置标题失败', 'noKey_6dd527e00e48b7580176120795b07b46')
         })
       }
     })
@@ -60,7 +62,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('钉钉js加载失败')
+        message: LocaleUtil.locale('钉钉js加载失败', 'noKey_22c823fce72f7d3b89f69531f0e2f0d3')
       })
     }
 
@@ -104,7 +106,9 @@ let Bridge = {
         fail: (error) => {
           onError?.({
             status: 'error',
-            message: error?.errorMessage || LocaleUtil.locale('关闭窗口失败')
+            message:
+              error?.errorMessage ||
+              LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')
           })
         }
       })
@@ -118,7 +122,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errorMessage || LocaleUtil.locale('关闭窗口失败')
+          message:
+            error?.errorMessage ||
+            LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')
         })
       }
     })
@@ -151,7 +157,9 @@ let Bridge = {
       onError: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errorMessage || LocaleUtil.locale('打开地图失败')
+          message:
+            error?.errorMessage ||
+            LocaleUtil.locale('打开地图失败', 'lyrixi.bridge.openLocation.error')
         })
       }
     })
@@ -353,7 +361,7 @@ let Bridge = {
       if (typeof data === 'string') {
         try {
           response.result = JSON.parse(data)
-        } catch (e) {}
+        } catch (e) { }
       }
 
       if (typeof formatResponse === 'function') {
@@ -417,7 +425,9 @@ let Bridge = {
         console.log('钉钉previewImage失败:', error)
         onError?.({
           status: 'error',
-          message: error?.errorMessage || LocaleUtil.locale('预览失败')
+          message:
+            error?.errorMessage ||
+            LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
         })
       },
       cancel: onCancel

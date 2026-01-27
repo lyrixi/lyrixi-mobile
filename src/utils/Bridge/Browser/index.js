@@ -33,7 +33,7 @@ let Browser = {
   },
   onBack: function () {
     Toast.show({
-      content: LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', ['onBack'])
+      content: `Browser ${LocaleUtil.locale('此平台不支持')} onBack`
     })
   },
   setTitle: function ({ title, onSuccess, onError } = {}) {
@@ -56,11 +56,14 @@ let Browser = {
   },
   tel: function ({ number, onSuccess, onError } = {}) {
     if (Device.device === 'pc') {
-      Toast.show({ content: LocaleUtil.locale('此功能仅可在手机中使用', 'lyrixi.only.mobile') })
+      Toast.show({ content: `Browser ${LocaleUtil.locale('此平台不支持')} tel` })
       return
     }
     if (isNaN(number)) {
-      onError?.({ status: 'error', message: LocaleUtil.locale('电话号码格式错误') })
+      onError?.({
+        status: 'error',
+        message: LocaleUtil.locale('电话号码格式错误')
+      })
       return
     }
     window.location.href = 'tel:' + number
@@ -223,16 +226,14 @@ let Browser = {
   },
   scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     if (!this.debug) {
+      let message = `Browser ${LocaleUtil.locale('此平台不支持')} scanCode`
       Toast.show({
-        content: LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', ['scanCode'])
+        content: message
       })
       if (onError)
         onError({
           status: 'error',
-          message: `scanCode:${LocaleUtil.locale(
-            '扫码失败',
-            'lyrixi.scanCode.failed'
-          )}, ${LocaleUtil.locale('请稍后重试', 'lyrixi.try.again.later')}`
+          message: message
         })
       return
     }
@@ -241,9 +242,7 @@ let Browser = {
     }, 500)
   },
   chooseMedia: function () {
-    let message = LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', [
-      'chooseMedia'
-    ])
+    let message = `Browser ${LocaleUtil.locale('此平台不支持')} chooseMedia`
     Toast.show({
       content: message
     })
@@ -294,19 +293,11 @@ let Browser = {
   previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
     onError?.({
       status: 'error',
-      message: LocaleUtil.locale(
-        'previewMedia仅可在移动端微信或APP中使用',
-        'lyrixi.previewMedia.prompt',
-        ['previewMedia']
-      )
+      message: `Browser ${LocaleUtil.locale('此平台不支持')} previewMedia`
     })
   },
   previewFile: function ({ fileUrl, onSuccess, onError } = {}) {
-    let message = LocaleUtil.locale(
-      'previewFile仅可在企业微信或APP中使用',
-      'lyrixi.previewFile.prompt',
-      ['previewFile']
-    )
+    let message = `Browser ${LocaleUtil.locale('此平台不支持')} previewFile`
     Toast.show({
       content: message
     })

@@ -18,7 +18,10 @@ function uploadItem(
   return new Promise(async (resolve) => {
     let errMsg = ''
     if (_.isEmpty(item?.localFile)) {
-      errMsg = LocaleUtil.locale('没有localFile，无法上传！')
+      errMsg = LocaleUtil.locale(
+        '没有localFile，无法上传！',
+        'noKey_8ac73a3ce4e53db295057aaab0e6b1cf'
+      )
       resolve(errMsg)
       return
     }

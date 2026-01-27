@@ -41,7 +41,7 @@ function getPhotos(id, { url, formatResponse }) {
         }
       })
       .catch((error) => {
-        resolve(LocaleUtil.locale('获取照片异常'))
+        resolve(LocaleUtil.locale('获取照片异常', 'noKey_a189fb8a40ac4d851d6888b886c0022f'))
       })
   })
 }

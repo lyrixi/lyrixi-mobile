@@ -15,7 +15,14 @@ async function uploadItem(item, { onUpload }) {
     Toast.show({
       content: `没有onUpload入参, 无法上传`
     })
-    return { ...item, status: 'error', message: LocaleUtil.locale('没有onUpload入参, 无法上传') }
+    return {
+      ...item,
+      status: 'error',
+      message: LocaleUtil.locale(
+        '没有onUpload入参, 无法上传',
+        'noKey_114065b26f3ec38db673063aa5cd36c8'
+      )
+    }
   }
 
   // 已经上传成功, 无需要再次上传(钉钉本地照片开头为https://resource/)

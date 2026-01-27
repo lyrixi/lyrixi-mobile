@@ -63,8 +63,10 @@ function AttachPreviewMain(
       {supportTypes(fileUrl, previewServerSourceType) === false ? (
         <Result
           status="error"
-          title={LocaleUtil.locale(`${fileName}`)}
-          description={LocaleUtil.locale('暂不支持此类型线上预览')}
+          title={fileName}
+          description={LocaleUtil.locale(
+            '暂不支持此类型'
+          )}
         >
           <Button
             color="primary"
@@ -72,7 +74,7 @@ function AttachPreviewMain(
               Bridge.previewFile({ fileUrl: fileUrl })
             }}
           >
-            {LocaleUtil.locale('点击预览')}
+            {LocaleUtil.locale('点击预览', 'noKey_52ad09ab6864e032eb8c416cb74dcb72')}
           </Button>
         </Result>
       ) : (

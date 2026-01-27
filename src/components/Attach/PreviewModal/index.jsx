@@ -41,15 +41,20 @@ const AttachPreviewModal = forwardRef(
       Clipboard.copy(fileUrl, {
         onSuccess: () => {
           Toast.show({
-            content: LocaleUtil.locale('文件链接已复制到剪贴板，请粘贴到系统浏览器上预览'),
+            content: LocaleUtil.locale(
+              '文件链接已复制到剪贴板，请粘贴到系统浏览器上预览',
+              'noKey_b2959ce13d3b25ad624930351ab84e3e'
+            ),
 
             maskClickable: true
           })
         },
         onError: () => {
           Message.open({
-            title: LocaleUtil.locale('提示'),
-            content: LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制') + `<br/>${fileUrl}`
+            title: LocaleUtil.locale('提示', 'lyrixi.alert.title'),
+            content:
+              LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'lyrixi.link.copy.error') +
+              `<br/>${fileUrl}`
           })
         }
       })
@@ -59,8 +64,8 @@ const AttachPreviewModal = forwardRef(
       <NavBarModal
         ref={ref}
         portal={portal}
-        title={LocaleUtil.locale('附件预览')}
-        okNode={LocaleUtil.locale('复制链接')}
+        title={LocaleUtil.locale('附件预览', 'noKey_cce640e22bea3f02bd4a8c8c67500f57')}
+        okNode={LocaleUtil.locale('复制链接', 'noKey_879058ce06da016f3e2f79bdedc3e6b8')}
         okVisible={true}
         onOk={handleOk}
         open={open}

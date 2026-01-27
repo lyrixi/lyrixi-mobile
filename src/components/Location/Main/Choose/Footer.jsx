@@ -28,7 +28,7 @@ function Foot({ onOk, onClear }) {
             color="default"
             onClick={onClear}
           >
-            {LocaleUtil.locale('清空标注')}
+            {LocaleUtil.locale('清空标注', 'noKey_ac562906083401454f9b6ab34cd113b8')}
           </FooterBar.Button>
         )}
       </FooterBar>

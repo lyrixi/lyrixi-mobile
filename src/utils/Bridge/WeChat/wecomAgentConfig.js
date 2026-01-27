@@ -12,7 +12,10 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
   if (!url || !payload?.appId) {
     onError?.({
       status: 'error',
-      message: LocaleUtil.locale('url或appId为空，无法鉴权。')
+      message: `${LocaleUtil.locale(
+        '缺少参数',
+        'lyrixi.lack.parameter'
+      )}: url or appId`
     })
     return
   }
@@ -81,21 +84,34 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
             console.error('鉴权失败:', res)
             onError?.({
               status: 'error',
-              messsage: res.errMsg || LocaleUtil.locale('企业微信鉴权失败，请稍后重试！')
+              messsage:
+                res.errMsg ||
+                LocaleUtil.locale(
+                  '企业微信鉴权失败，请稍后重试！',
+                  'lyrixi.wecom.agent.config.error'
+                )
             })
           }
         })
       } else {
         onError?.({
           status: 'error',
-          messsage: response.message || LocaleUtil.locale('企业微信鉴权接口失败，请稍后重试！')
+          messsage:
+            response.message ||
+            LocaleUtil.locale(
+              '企业微信鉴权接口失败，请稍后重试！',
+              'lyrixi.wecom.agent.config.interface.error'
+            )
         })
       }
     })
     .catch((e) => {
       onError?.({
         status: 'error',
-        messsage: LocaleUtil.locale('企业微信鉴权接口异常，请稍后重试！')
+        messsage: LocaleUtil.locale(
+          '企业微信鉴权接口异常，请稍后重试！',
+          'lyrixi.wecom.agent.config.interface.exception'
+        )
       })
     })
 }

@@ -57,7 +57,11 @@ async function uploadLogs(upload) {
   const failCount = results.length - successCount
 
   return {
-    errMsg: LocaleUtil.locale(`日志上报完成: 成功 ${successCount} 份, 失败 ${failCount} 份`),
+    errMsg: LocaleUtil.locale(
+      `日志上报完成: 成功 ${successCount} 份, 失败 ${failCount} 份`,
+      'noKey_64737bc007cea801c7dd7af8fbefc98e',
+      [successCount, failCount]
+    ),
     successCount: successCount,
     failCount: failCount
   }

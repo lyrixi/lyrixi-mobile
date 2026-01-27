@@ -14,7 +14,7 @@ async function nearbySearch({ map, keyword, longitude, latitude, type, radius })
     console.error('缺少参数', { currentMap: map?.currentMap, longitude, latitude, type })
     return {
       status: 'error',
-      message: LocaleUtil.locale('缺少参数')
+      message: LocaleUtil.locale('缺少参数', 'lyrixi.lack.parameter')
     }
   }
 
@@ -86,14 +86,14 @@ async function nearbySearch({ map, keyword, longitude, latitude, type, radius })
     } else {
       return {
         status: 'empty',
-        message: LocaleUtil.locale('暂无数据')
+        message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
       }
     }
   }
 
   return {
     status: 'error',
-    message: LocaleUtil.locale('查询失败')
+    message: LocaleUtil.locale('查询失败', 'lyrixi.query.failed')
   }
 }
 

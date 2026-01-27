@@ -17,16 +17,16 @@ function Browser(
     // Value & Display Value
     list = [],
     /*
-    [
-      {
-        fileUrl: "全路径(必传)",
-        filePath: "入库路径(必传)",
-        fileName: "文件名(必传)",
-        fileSize: "文件大小(字节)",
-        status: "choose|uploading|error|success",
-      },
-    ]
-    */
+  [
+    {
+      fileUrl: "全路径(必传)",
+      filePath: "入库路径(必传)",
+      fileName: "文件名(必传)",
+      fileSize: "文件大小(字节)",
+      status: "choose|uploading|error|success",
+    },
+  ]
+  */
     maxCount = 5,
     maxChooseCount = 1,
     sourceType = ['album', 'camera'],
@@ -52,17 +52,17 @@ function Browser(
     previewServerUrl,
     previewServerSourceType,
     /*
-    格式化上传结果
-    入参:
-    {platform: 'browser', uploadItem: item, result: result}
-    返回格式:
-    {
-      fileUrl: 高清图,
-      filePath: 入库路径,
-      fileName: 文件名,
-      fileSize: 文件大小(字节),
-    }
-    */
+  格式化上传结果
+  入参:
+  {platform: 'browser', uploadItem: item, result: result}
+  返回格式:
+  {
+    fileUrl: 高清图,
+    filePath: 入库路径,
+    fileName: 文件名,
+    fileSize: 文件大小(字节),
+  }
+  */
     getUploadUrl,
     formatHeaders,
     formatPayload,
@@ -83,7 +83,10 @@ function Browser(
       ...attachRef.current,
       chooseFile: () => {
         Toast.show({
-          content: LocaleUtil.locale('浏览器上传模式, 不支持编程式调用拍照')
+          content: LocaleUtil.locale(
+            '浏览器上传模式, 不支持编程式调用拍照',
+            'noKey_18a8c44715538c3079cf8bf9fd46fe82'
+          )
         })
         return false
       }

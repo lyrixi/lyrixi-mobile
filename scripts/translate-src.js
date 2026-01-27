@@ -181,8 +181,8 @@ async function translateSrc() {
 
   // 生成files
   for (let fileName in files) {
-    let localeFilePath = path.resolve(localesPath, `${fileName}.json`)
-    writeFileSync(localeFilePath, JSON.stringify(files[fileName], null, 2))
+    let localeFilePath = path.resolve(localesPath, `${fileName}.js`)
+    writeFileSync(localeFilePath, `window.lyrixiLocaleData = ${JSON.stringify(files[fileName], null, 2)}`)
   }
 }
 translateSrc()

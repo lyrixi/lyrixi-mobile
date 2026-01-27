@@ -259,8 +259,14 @@ const MapContainer = forwardRef(
       // Load leafletMap failed
       if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
         let errorMessage = !window.L
-          ? LocaleUtil.locale('请在Map组件需要使用APILoader包裹')
-          : LocaleUtil.locale('缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期')
+          ? LocaleUtil.locale(
+              '请在Map组件需要使用APILoader包裹',
+              'noKey_5075eec6f717dd4179774e90bedc721b'
+            )
+          : LocaleUtil.locale(
+              '缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期',
+              'noKey_f7e421b903f7d2a65ded4b70e5927574'
+            )
         setLeafletMap(leafletMap)
         onLoad?.({
           status: 'error',

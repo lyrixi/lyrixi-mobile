@@ -162,7 +162,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({
           status: 'error',
-          message: error?.errMsg || LocaleUtil.locale('打开地图失败')
+          message:
+            error?.errMsg ||
+            LocaleUtil.locale('打开地图失败', 'lyrixi.bridge.openLocation.error')
         })
       }
     })
@@ -197,7 +199,7 @@ let Bridge = {
       Toast.show({
         content: LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
-          'lyrixi.scanCode.prompt'
+          'lyrixi.scanQRCode.prompt'
         )
       })
       return
@@ -205,10 +207,10 @@ let Bridge = {
 
     let desc = []
     if (scanType.includes('qrCode')) {
-      desc.push(LocaleUtil.locale('二维码'))
+      desc.push(LocaleUtil.locale('二维码', 'noKey_22b03c024d815ad327e8b95d684ced38'))
     }
     if (scanType.includes('barCode')) {
-      desc.push(LocaleUtil.locale('条码'))
+      desc.push(LocaleUtil.locale('条码', 'noKey_39f76a9bd32adf43a7200f93ff35a2f5'))
     }
 
     window.top.wx.scanQRCode({
@@ -427,7 +429,7 @@ let Bridge = {
       Toast.show({
         content: LocaleUtil.locale(
           'previewMedia仅可在移动端微信或APP中使用',
-          'lyrixi.previewMedia.prompt'
+          'noKey_ef5f764cfc033f4bc441c4de232b2954'
         )
       })
       return
@@ -462,7 +464,8 @@ let Bridge = {
         console.log('微信previewImage失败:', error)
         onError?.({
           status: 'error',
-          message: error?.errMsg || LocaleUtil.locale('预览失败')
+          message:
+            error?.errMsg || LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
         })
       },
       cancel: onCancel
@@ -488,7 +491,11 @@ let Bridge = {
         onSuccess?.({ status: 'success' })
       },
       fail: (error) => {
-        onError?.({ status: 'error', message: error?.errMsg || LocaleUtil.locale('预览失败') })
+        onError?.({
+          status: 'error',
+          message:
+            error?.errMsg || LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
+        })
       }
     })
   },
@@ -506,11 +513,11 @@ let Bridge = {
         onError: function (err) {
           console.log('WeChat Share onError:', err)
           Toast.show({
-            content: err?.errMsg || LocaleUtil.locale('分享失败')
+            content: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
           })
           onError &&
             onError({
-              message: err?.errMsg || LocaleUtil.locale('分享失败')
+              message: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
             })
         }
       })
@@ -533,7 +540,7 @@ let Bridge = {
           } else {
             onError &&
               onError({
-                message: res?.errMsg || LocaleUtil.locale('分享失败')
+                message: res?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
               })
           }
         }

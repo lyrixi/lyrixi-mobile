@@ -30,7 +30,9 @@ function uploadFile({ url, header, payload }) {
       .catch((error) => {
         resolve({
           status: 'error',
-          message: error?.response?.data?.message || LocaleUtil.locale('浏览器上传异常')
+          message:
+            error?.response?.data?.message ||
+            `Browser ${LocaleUtil.locale('上传异常', 'noKey_de8c5464935171db3107179c90d7a561')}`
         })
       })
   })

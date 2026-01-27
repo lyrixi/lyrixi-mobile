@@ -22,7 +22,10 @@ async function loadBaseData({ countryId, loadCountries, loadCountryRegions }) {
   if (!country) {
     return {
       status: 'error',
-      message: LocaleUtil.locale('value参数错误, value开始应当为国家')
+      message: LocaleUtil.locale(
+        'value参数错误, value开始应当为国家',
+        'noKey_9a2f6cb8fea853e91225b72d770768e6'
+      )
     }
   }
   // 此国家已有省市区， 则直接返回

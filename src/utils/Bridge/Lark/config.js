@@ -59,21 +59,29 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
             console.log(`config failed: `, err)
             onError?.({
               status: 'error',
-              message: LocaleUtil.locale('config failed')
+              message: LocaleUtil.locale('config failed', 'lyrixi.lark.config.error')
             })
           }
         })
       } else {
         onError?.({
           status: 'error',
-          message: response.message || LocaleUtil.locale('飞书鉴权接口失败，请稍后重试！')
+          message:
+            response.message ||
+            LocaleUtil.locale(
+              '飞书鉴权接口失败，请稍后重试！',
+              'lyrixi.lark.config.interface.error'
+            )
         })
       }
     })
     .catch((err) => {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('飞书鉴权接口异常，请稍后重试！')
+        message: LocaleUtil.locale(
+          '飞书鉴权接口异常，请稍后重试！',
+          'lyrixi.lark.config.interface.exception'
+        )
       })
     })
 }

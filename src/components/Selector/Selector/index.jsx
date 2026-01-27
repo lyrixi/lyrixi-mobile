@@ -152,7 +152,9 @@ const Selector = forwardRef(
             onClick={handleToggleExpand}
           >
             <div className="lyrixi-selector-item-name">
-              {expanded ? LocaleUtil.locale('收起') : LocaleUtil.locale('更多')}
+              {expanded
+                ? LocaleUtil.locale('收起', 'lyrixi.lyrixi.text.ellipsis.ellipsis.toggle.collapse')
+                : LocaleUtil.locale('更多', 'noKey_0ec9eaf9c3525eb110db58aae5912210')}
             </div>
             <i
               className={DOMUtil.classNames(

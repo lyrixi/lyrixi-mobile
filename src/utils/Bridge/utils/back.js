@@ -49,7 +49,7 @@ async function back(delta = -1, { closeWindow, goHome }) {
           }
         },
         {
-          name: LocaleUtil.locale('确定', 'lyrixi.confirm'),
+          name: LocaleUtil.locale('确定', 'lyrixi.ok'),
           className: 'lyrixi-primary',
           onClick: () => {
             // 提示后关闭当前页面

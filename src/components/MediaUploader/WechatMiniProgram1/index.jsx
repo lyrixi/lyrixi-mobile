@@ -59,16 +59,16 @@ function WechatMiniProgram(
     previewPortal,
     previewCancelPosition,
     /*
-    格式化上传结果
-    入参:
-    {platform: 'browser', uploadItem: item, result: result}
-    返回格式:
-    {
-      fileThumbnail: 缩略图,
-      fileUrl: 高清图,
-      filePath: 入库路径
-    }
-    */
+  格式化上传结果
+  入参:
+  {platform: 'browser', uploadItem: item, result: result}
+  返回格式:
+  {
+    fileThumbnail: 缩略图,
+    fileUrl: 高清图,
+    filePath: 入库路径
+  }
+  */
     getItemExtra,
     getUploadUrl,
     formatChoose,
@@ -116,7 +116,10 @@ function WechatMiniProgram(
         )
         if (!uploadElement) {
           Toast.show({
-            content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
+            content: LocaleUtil.locale(
+              '未找到拍照按钮, 调用拍照失败',
+              'lyrixi.image.choose.no.upload.button'
+            )
           })
           return false
         }
@@ -130,7 +133,10 @@ function WechatMiniProgram(
       },
       uploadList: () => {
         Toast.show({
-          content: LocaleUtil.locale('小程序不支持异步上传')
+          content: LocaleUtil.locale(
+            '小程序不支持异步上传',
+            'noKey_34b5161adb0dd53091258a0558e9c2f1'
+          )
         })
       }
     }
@@ -205,7 +211,7 @@ function WechatMiniProgram(
 
       // Protect click
       Loading.show({
-        content: LocaleUtil.locale('打开小程序拍照')
+        content: LocaleUtil.locale('打开小程序拍照', 'noKey_e55618c26ebea1724e7f5d8a0489995c')
       })
       setTimeout(() => {
         Loading.hide()
@@ -332,11 +338,11 @@ function WechatMiniProgram(
         list={[
           {
             id: 'camera',
-            name: LocaleUtil.locale('拍照')
+            name: LocaleUtil.locale('拍照', 'noKey_bed9ec1e84486baa0422c80414edd31a')
           },
           {
             id: 'album',
-            name: LocaleUtil.locale('从相册选择')
+            name: LocaleUtil.locale('从相册选择', 'noKey_83c39abd16cd6a770fc1c3c326aabbdd')
           }
         ]}
         onChange={async (item) => {

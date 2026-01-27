@@ -37,7 +37,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
         backgroundColor="primary"
         onClick={onClick}
       >
-        {LocaleUtil.locale('刷新', 'lyrixi.refresh')}
+        {LocaleUtil.locale('刷新', 'noKey_694fc5efa9e1d1c2c5eb6525e1c7fb29')}
       </Button>
     )
   }

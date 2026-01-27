@@ -77,7 +77,9 @@ function queryData(
       .catch((err) => {
         resolve({
           status: 'error',
-          message: err?.data?.message || LocaleUtil.locale('获取数据异常！'),
+          message:
+            err?.data?.message ||
+            LocaleUtil.locale('获取数据异常！', 'noKey_a085fb7c5cb81143dcec0f299fff709a'),
           list: null
         })
       })

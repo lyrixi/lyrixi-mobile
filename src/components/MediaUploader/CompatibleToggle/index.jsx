@@ -33,7 +33,10 @@ function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatform
     <span className="lyrixi-media-compatible-toggle">
       {typeof compatible === 'string'
         ? compatible
-        : LocaleUtil.locale('如果无法拍照，请切换拍照方式')}
+        : LocaleUtil.locale(
+            '如果无法拍照，请切换拍照方式',
+            'noKey_58ec7924f08282da3bf37ac0ad7f857c'
+          )}
       <span
         style={{ textDecoration: 'none' }}
         onClick={(e) => {

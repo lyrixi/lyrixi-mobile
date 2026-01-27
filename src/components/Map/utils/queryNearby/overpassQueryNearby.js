@@ -47,14 +47,14 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
         } else {
           resolve({
             status: 'empty',
-            message: LocaleUtil.locale('暂无数据')
+            message: LocaleUtil.locale('暂无数据', 'lyrixi.no.data')
           })
         }
       })
       .catch((error) => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('查询失败')
+          message: LocaleUtil.locale('查询失败', 'lyrixi.query.failed')
         })
       })
   })
