@@ -1,19 +1,26 @@
 import languageMap from '../languageMap'
 
-// 内库使用-start
-import AssetUtil from './../../../utils/AssetUtil'
-// 内库使用-end
-
-/* 测试使用-start
-import { AssetUtil } from 'lyrixi-mobile'
-测试使用-end */
-
 // 加载dayjs本地文件
 async function loadDayjsLanguage(language) {
   let lang = languageMap?.[language]
   // 设置dayjs语言
   if (lang?.dayjs) {
-    let result = await AssetUtil.loadLocalFile(`dayjs/locale/${lang.dayjs}.json`)
+    let result = {
+      status: 'error',
+      message: 'Local file loaded failed'
+    }
+
+    try {
+      let isOk = await import(`dayjs/locale/${lang.dayjs}.js`)
+      debugger
+      result = {
+        status: 'success',
+        message: 'Local file loaded successfully'
+      }
+    } catch (error) {
+
+    }
+
     if (result.status === 'success') {
       dayjs.locale(lang?.dayjs)
     }

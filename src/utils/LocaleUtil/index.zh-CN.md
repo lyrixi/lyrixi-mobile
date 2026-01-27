@@ -12,11 +12,11 @@ title: LocaleUtil
 
 ## LocaleUtil.setLocale
 
-LocaleUtil.setLocale(language, data)设置语言, 设置后, 两个变量将有值: window.lyrixiLocaleLanguage 标识语言, window.lyrixiLocales 记录国际化数据
+LocaleUtil.setLocale(language, data)设置语言, 设置后, 两个变量将有值: window.lyrixiLocaleLanguage 标识语言, window.lyrixiLocaleData 记录国际化数据
 
 ## LocaleUtil.locale
 
-LocaleUtil.setLocale 后, LocaleUtil.locale 默认读取 window.lyrixiLocales 对象
+LocaleUtil.setLocale 后, LocaleUtil.locale 默认读取 window.lyrixiLocaleData 对象
 
 ```javascript
 import React from 'react'
@@ -26,7 +26,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 LocaleUtil.locale('半径1000米', 'key', [1000]) // => 半径1000米
 ```
 
-`也可以通过直接修改window.lyrixiLocales修改国际化数据`
+`也可以通过直接修改window.lyrixiLocaleData修改国际化数据`
 
 ## lyrixi 内部国际化文件
 

@@ -12,7 +12,22 @@ import { AssetUtil } from 'lyrixi-mobile'
 async function loadLyrixiLanguage(language) {
   // 设置dayjs语言
   if (language) {
-    let result = await AssetUtil.loadLocalFile(`lyrixi-mobile/locale/${language}.json`)
+    let result = {
+      status: 'error',
+      message: 'Local file loaded failed'
+    }
+    try {
+      let js = await import(`lyrixi-mobile/locale/${language}.js`)
+      debugger
+      if (js) {
+        result = {
+          status: 'success',
+          message: 'Local file loaded successfully'
+        }
+      }
+    } catch (error) {
+
+    }
     if (result.status === 'success') {
       setLocale(language, result.data)
     }
