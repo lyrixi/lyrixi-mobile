@@ -1,4 +1,4 @@
-window.lyrixiLocaleData = {
+const lyrixiLocaleData = {
   "noKey_625fb26b4b3340f7872b411f401e754c": "取消",
   "noKey_132c5cdcceb0f1f17c8c088a42959aa4": "重试",
   "noKey_6326307026a1ebefc8b307e7ef1c58b5": "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载",
@@ -179,3 +179,5 @@ window.lyrixiLocaleData = {
   "noKey_577dd0de7cc745dc0fcce18b2d9d909a": "打开调试面板失败",
   "noKey_64737bc007cea801c7dd7af8fbefc98e": "日志上报完成: 成功 {0} 份, 失败 {1} 份"
 }
+
+export default lyrixiLocaleData
