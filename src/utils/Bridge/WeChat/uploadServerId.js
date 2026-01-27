@@ -25,7 +25,7 @@ function uploadServerId({ url, header, payload }) {
           status: 'error',
           message:
             error?.response?.data?.message ||
-            LocaleUtil.locale('上传serverId异常', 'noKey_f630459aa61d3a30b13b806a8935e6d6')
+            `WeChat ${LocaleUtil.locale('上传serverId异常')}`
         })
       })
   })

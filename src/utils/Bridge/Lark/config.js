@@ -59,7 +59,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
             console.log(`config failed: `, err)
             onError?.({
               status: 'error',
-              message: LocaleUtil.locale('config failed', 'lyrixi.lark.config.error')
+              message: `Lark ${LocaleUtil.locale('config failed')}`
             })
           }
         })
@@ -68,20 +68,14 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
           status: 'error',
           message:
             response.message ||
-            LocaleUtil.locale(
-              '飞书鉴权接口失败，请稍后重试！',
-              'lyrixi.lark.config.interface.error'
-            )
+            `Lark ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
         })
       }
     })
     .catch((err) => {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale(
-          '飞书鉴权接口异常，请稍后重试！',
-          'lyrixi.lark.config.interface.exception'
-        )
+        message: `Lark ${LocaleUtil.locale('鉴权接口异常，请稍后重试！')}`
       })
     })
 }

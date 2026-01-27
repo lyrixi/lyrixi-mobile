@@ -32,7 +32,7 @@ function uploadFile({ url, header, payload }) {
           status: 'error',
           message:
             error?.response?.data?.message ||
-            `Browser ${LocaleUtil.locale('上传异常', 'noKey_de8c5464935171db3107179c90d7a561')}`
+            `Browser ${LocaleUtil.locale('上传异常')}`
         })
       })
   })

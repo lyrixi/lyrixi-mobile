@@ -39,8 +39,8 @@ let Bridge = {
           console.error('支付小程序js加载失败')
           onError?.({
             status: 'error',
-            message: `AlipayMiniProgram ${LocaleUtil.locale(
-              'js加载失败'
+            message: `AlipayMiniProgram js ${LocaleUtil.locale(
+              '加载失败'
             )}`
           })
           return
@@ -59,7 +59,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: `Alipay ${LocaleUtil.locale('js加载失败')}`
+        message: `Alipay js ${LocaleUtil.locale('加载失败')}`
       })
     }
 

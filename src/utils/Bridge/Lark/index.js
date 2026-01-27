@@ -45,7 +45,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('飞书js加载失败', 'noKey_a0b965a930e517736d3111261714241b')
+        message: `Lark js ${LocaleUtil.locale('加载失败')}`
       })
     }
 
@@ -90,7 +90,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')
+            `Lark ${LocaleUtil.locale('关闭窗口失败')}`
         })
       }
     })
@@ -137,7 +137,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            LocaleUtil.locale('打开地图失败', 'lyrixi.bridge.openLocation.error')
+            `Lark ${LocaleUtil.locale('打开地图失败')}`
         })
       }
     })
@@ -177,7 +177,7 @@ let Bridge = {
         console.error('飞书定位失败', error)
         onError?.({
           status: 'error',
-          message: error?.errMsg || LocaleUtil.locale('定位失败', 'lyrixi.location.failed')
+          message: error?.errMsg || `Lark ${LocaleUtil.locale('定位失败')}`
         })
       }
     })
@@ -228,7 +228,7 @@ let Bridge = {
         onError?.({
           status: 'error',
           message:
-            error?.errMsg || LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
+            error?.errMsg || `Lark ${LocaleUtil.locale('预览失败')}`
         })
       },
       onCancel: onCancel
@@ -250,7 +250,7 @@ let Bridge = {
 
         onError &&
           onError({
-            message: err?.message || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
+            message: err?.message || `Lark ${LocaleUtil.locale('分享失败')}`
           })
       }
     })

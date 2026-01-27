@@ -29,7 +29,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errorMessage ||
-            LocaleUtil.locale('设置标题失败', 'noKey_6dd527e00e48b7580176120795b07b46')
+            `DingTalk ${LocaleUtil.locale('设置标题失败')}`
         })
       }
     })
@@ -62,7 +62,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('钉钉js加载失败', 'noKey_22c823fce72f7d3b89f69531f0e2f0d3')
+        message: `DingTalk js ${LocaleUtil.locale('加载失败')}`
       })
     }
 
@@ -108,7 +108,7 @@ let Bridge = {
             status: 'error',
             message:
               error?.errorMessage ||
-              LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')
+              `DingTalk ${LocaleUtil.locale('关闭窗口失败')}`
           })
         }
       })
@@ -124,7 +124,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errorMessage ||
-            LocaleUtil.locale('关闭窗口失败', 'noKey_665ecd23e32150fd197a316177a3973f')
+            `DingTalk ${LocaleUtil.locale('关闭窗口失败')}`
         })
       }
     })
@@ -159,7 +159,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errorMessage ||
-            LocaleUtil.locale('打开地图失败', 'lyrixi.bridge.openLocation.error')
+            `DingTalk ${LocaleUtil.locale('打开地图失败')}`
         })
       }
     })
@@ -349,7 +349,7 @@ let Bridge = {
         onError &&
           onError({
             status: 'error',
-            message: `${LocaleUtil.locale('网络异常，上传失败', 'lyrixi.upload.network.error')}`
+            message: `DingTalk ${LocaleUtil.locale('网络异常，上传失败')}`
           })
         return
       }
@@ -427,7 +427,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errorMessage ||
-            LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
+            `DingTalk ${LocaleUtil.locale('预览失败')}`
         })
       },
       cancel: onCancel
@@ -447,7 +447,7 @@ let Bridge = {
         console.log('DingTalk Share onError:', err)
         onError &&
           onError({
-            message: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
+            message: err?.errMsg || `DingTalk ${LocaleUtil.locale('分享失败')}`
           })
       }
     })

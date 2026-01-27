@@ -12,7 +12,7 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
   if (!url || !payload?.appId) {
     onError?.({
       status: 'error',
-      message: `${LocaleUtil.locale(
+      message: `WeChat ${LocaleUtil.locale(
         '缺少参数',
         'lyrixi.lack.parameter'
       )}: url or appId`
@@ -86,10 +86,7 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
               status: 'error',
               messsage:
                 res.errMsg ||
-                LocaleUtil.locale(
-                  '企业微信鉴权失败，请稍后重试！',
-                  'lyrixi.wecom.agent.config.error'
-                )
+                `WeChat ${LocaleUtil.locale('鉴权失败，请稍后重试！')}`
             })
           }
         })
@@ -98,20 +95,14 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
           status: 'error',
           messsage:
             response.message ||
-            LocaleUtil.locale(
-              '企业微信鉴权接口失败，请稍后重试！',
-              'lyrixi.wecom.agent.config.interface.error'
-            )
+            `WeChat ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
         })
       }
     })
     .catch((e) => {
       onError?.({
         status: 'error',
-        messsage: LocaleUtil.locale(
-          '企业微信鉴权接口异常，请稍后重试！',
-          'lyrixi.wecom.agent.config.interface.exception'
-        )
+        messsage: `WeChat ${LocaleUtil.locale('鉴权接口异常，请稍后重试！')}`
       })
     })
 }

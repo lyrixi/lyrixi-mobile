@@ -11,7 +11,7 @@ function wechatConfig({ url, headers, payload, formatResponse, onSuccess, onErro
   if (!url || !payload?.appId) {
     onError?.({
       status: 'error',
-      message: `${LocaleUtil.locale(
+      message: `WeChat ${LocaleUtil.locale(
         '缺少参数',
         'lyrixi.lack.parameter'
       )}: url or appId`
@@ -92,28 +92,19 @@ function wechatConfig({ url, headers, payload, formatResponse, onSuccess, onErro
           status: 'error',
           messsage:
             response.message ||
-            LocaleUtil.locale(
-              '微信鉴权接口失败，请稍后重试！',
-              'lyrixi.wechat.config.interface.error'
-            )
+            `WeChat ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
         })
 
         console.log(
           response.message ||
-          LocaleUtil.locale(
-            '微信鉴权接口失败，请稍后重试！',
-            'lyrixi.wechat.config.interface.error'
-          )
+          `WeChat ${LocaleUtil.locale('鉴权接口失败，请稍后重试！')}`
         )
       }
     })
     .catch((err) => {
       onError?.({
         status: 'error',
-        messsage: LocaleUtil.locale(
-          '微信鉴权接口异常，请稍后重试！',
-          'lyrixi.wechat.config.interface.exception'
-        )
+        messsage: `WeChat ${LocaleUtil.locale('鉴权接口异常，请稍后重试！')}`
       })
     })
 }

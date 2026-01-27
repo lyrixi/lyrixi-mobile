@@ -62,7 +62,7 @@ let Browser = {
     if (isNaN(number)) {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('电话号码格式错误')
+        message: `Browser ${LocaleUtil.locale('电话号码格式错误')}`
       })
       return
     }
@@ -80,11 +80,11 @@ let Browser = {
     onError
   } = {}) {
     if (!latitude || !longitude || !type) return
-    let message = LocaleUtil.locale(
+    let message = `Browser ${LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
       'lyrixi.open.location.prompt',
       ['openLocation']
-    )
+    )}`
     Toast.show({
       content: message
     })
@@ -126,7 +126,7 @@ let Browser = {
             onError?.({
               status: 'error',
               code: 'LATLNG_ERROR',
-              message: `${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`
+              message: `Browser ${LocaleUtil.locale('定位失败')}`
             })
           }
 
@@ -153,7 +153,7 @@ let Browser = {
           switch (error.code) {
             case error.PERMISSION_DENIED:
               code = 'PERMISSION_DENIED'
-              message = `${LocaleUtil.locale(
+              message = `Browser ${LocaleUtil.locale(
                 '定位失败,用户拒绝请求地理定位',
                 'lyrixi.location.permission.denied.error'
               )}`
@@ -161,12 +161,12 @@ let Browser = {
             case error.POSITION_UNAVAILABLE:
               code = 'POSITION_UNAVAILABLE'
               console.log(
-                `${LocaleUtil.locale(
+                `Browser ${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
                   'lyrixi.location.unavailable.error'
                 )}`
               )
-              message = `${LocaleUtil.locale(
+              message = `Browser ${LocaleUtil.locale(
                 '定位失败,位置信息是不可用',
                 'lyrixi.location.unavailable.error'
               )}`
@@ -174,12 +174,12 @@ let Browser = {
             case error.TIMEOUT:
               code = 'TIMEOUT'
               console.log(
-                `${LocaleUtil.locale(
+                `Browser ${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
                   'lyrixi.location.unavailable.error'
                 )}`
               )
-              message = `${LocaleUtil.locale(
+              message = `Browser ${LocaleUtil.locale(
                 '定位失败,请求获取用户位置超时',
                 'lyrixi.location.timeout.error'
               )}`
@@ -187,20 +187,20 @@ let Browser = {
             case error.UNKNOWN_ERROR:
               code = 'UNKNOWN_ERROR'
               console.log(
-                `${LocaleUtil.locale(
+                `Browser ${LocaleUtil.locale(
                   '定位失败,位置信息是不可用',
                   'lyrixi.location.unavailable.error'
                 )}`
               )
-              message = `${LocaleUtil.locale(
+              message = `Browser ${LocaleUtil.locale(
                 '定位失败,定位系统失效',
                 'lyrixi.location.unknown.error'
               )}`
               break
             default:
               code = 'LOCATION_ERROR'
-              console.log(`${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`)
-              message = `${LocaleUtil.locale('定位失败', 'lyrixi.location.failed')}`
+              console.log(`Browser ${LocaleUtil.locale('定位失败')}`)
+              message = `Browser ${LocaleUtil.locale('定位失败')}`
           }
           let res = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
@@ -216,9 +216,7 @@ let Browser = {
       let res = {
         status: 'error',
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
-        message: LocaleUtil.locale('此平台不支持{0}', 'lyrixi.bridge.not.supported', [
-          'getLocation'
-        ])
+        message: `Browser ${LocaleUtil.locale('此平台不支持')}`
       }
       onError?.(res)
     }

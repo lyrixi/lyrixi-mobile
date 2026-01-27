@@ -56,7 +56,7 @@ let Bridge = {
     script.onerror = function () {
       onError?.({
         status: 'error',
-        message: LocaleUtil.locale('微信js加载失败', 'lyrixi.weChat.js.load.failed')
+        message: `WeChat js ${LocaleUtil.locale('加载失败')}`
       })
     }
 
@@ -135,11 +135,11 @@ let Bridge = {
   } = {}) {
     if (!latitude || !longitude || !type) return
     if (Device.device === 'pc' || Device.platform === 'wechat') {
-      let message = LocaleUtil.locale(
+      let message = `WeChat ${LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
         'lyrixi.open.location.prompt',
         ['openLocation']
-      )
+      )}`
       Toast.show({
         content: message
       })
@@ -164,7 +164,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            LocaleUtil.locale('打开地图失败', 'lyrixi.bridge.openLocation.error')
+            `WeChat ${LocaleUtil.locale('打开地图失败')}`
         })
       }
     })
@@ -197,20 +197,20 @@ let Bridge = {
   scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
     if (Device.device === 'pc') {
       Toast.show({
-        content: LocaleUtil.locale(
+        content: `WeChat ${LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
           'lyrixi.scanQRCode.prompt'
-        )
+        )}`
       })
       return
     }
 
     let desc = []
     if (scanType.includes('qrCode')) {
-      desc.push(LocaleUtil.locale('二维码', 'noKey_22b03c024d815ad327e8b95d684ced38'))
+      desc.push(`WeChat ${LocaleUtil.locale('二维码')}`)
     }
     if (scanType.includes('barCode')) {
-      desc.push(LocaleUtil.locale('条码', 'noKey_39f76a9bd32adf43a7200f93ff35a2f5'))
+      desc.push(`WeChat ${LocaleUtil.locale('条码')}`)
     }
 
     window.top.wx.scanQRCode({
@@ -278,10 +278,10 @@ let Bridge = {
     onCancel
   } = {}) {
     if (Device.device === 'pc') {
-      let message = LocaleUtil.locale(
+      let message = `WeChat ${LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
         'lyrixi.chooseMedia.prompt'
-      )
+      )}`
       Toast.show({
         content: message
       })
@@ -352,10 +352,10 @@ let Bridge = {
     onError
   } = {}) {
     if (Device.device === 'pc') {
-      let message = LocaleUtil.locale(
+      let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
         'lyrixi.uploadMedia.prompt'
-      )
+      )}`
       Toast.show({
         content: message
       })
@@ -427,10 +427,10 @@ let Bridge = {
   previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
     if (Device.device === 'pc') {
       Toast.show({
-        content: LocaleUtil.locale(
+        content: `WeChat ${LocaleUtil.locale(
           'previewMedia仅可在移动端微信或APP中使用',
           'noKey_ef5f764cfc033f4bc441c4de232b2954'
-        )
+        )}`
       })
       return
     }
@@ -465,7 +465,7 @@ let Bridge = {
         onError?.({
           status: 'error',
           message:
-            error?.errMsg || LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
+            error?.errMsg || `WeChat ${LocaleUtil.locale('预览失败')}`
         })
       },
       cancel: onCancel
@@ -473,11 +473,11 @@ let Bridge = {
   },
   previewFile: function ({ fileUrl, onSuccess, onError } = {}) {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
-      let message = LocaleUtil.locale(
+      let message = `WeChat ${LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
         'lyrixi.previewFile.prompt',
         ['previewFile']
-      )
+      )}`
       Toast.show({
         content: message
       })
@@ -494,7 +494,7 @@ let Bridge = {
         onError?.({
           status: 'error',
           message:
-            error?.errMsg || LocaleUtil.locale('预览失败', 'lyrixi.bridge.previewImage.error')
+            error?.errMsg || `WeChat ${LocaleUtil.locale('预览失败')}`
         })
       }
     })
@@ -513,11 +513,11 @@ let Bridge = {
         onError: function (err) {
           console.log('WeChat Share onError:', err)
           Toast.show({
-            content: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
+            content: err?.errMsg || `WeChat ${LocaleUtil.locale('分享失败')}`
           })
           onError &&
             onError({
-              message: err?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
+              message: err?.errMsg || `WeChat ${LocaleUtil.locale('分享失败')}`
             })
         }
       })
@@ -540,7 +540,7 @@ let Bridge = {
           } else {
             onError &&
               onError({
-                message: res?.errMsg || LocaleUtil.locale('分享失败', 'lyrixi.share.failed')
+                message: res?.errMsg || `WeChat ${LocaleUtil.locale('分享失败')}`
               })
           }
         }
