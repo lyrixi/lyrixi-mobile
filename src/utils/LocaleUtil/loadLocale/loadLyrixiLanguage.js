@@ -28,7 +28,6 @@ async function loadLyrixiLanguage(language) {
       resolve(error)
     })
   })
-
 }
 
 export default loadLyrixiLanguage

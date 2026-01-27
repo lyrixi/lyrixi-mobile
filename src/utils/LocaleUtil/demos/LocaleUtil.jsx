@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
-import { Page, LocaleUtil, Divider, Card } from 'lyrixi-mobile'
+import { Page, LocaleUtil, Card, Button } from 'lyrixi-mobile'
 
 export default () => {
-  const [result, setResult] = useState(null)
+  const [currentLanguage, setCurrentLanguage] = useState(null)
+
   useEffect(() => {
     initLocale()
   }, [])
 
   // 初始化国际化
-  async function initLocale() {
-    let newResult = await LocaleUtil.loadLocale('en_US')
+  async function initLocale(language = 'en_US') {
+    let newResult = await LocaleUtil.loadLocale(language)
     if (newResult.status === 'success') {
       console.log('加载成功')
+      setCurrentLanguage(language)
     } else {
       console.log('加载失败')
     }
-    setResult(newResult)
   }
 
-  if (result?.status !== 'success') {
+  // 切换语言
+  async function switchLanguage(language) {
+    await initLocale(language)
+  }
+
+  if (!currentLanguage) {
     return null
   }
   return (
@@ -72,6 +78,10 @@ export default () => {
           </Card.Main>
         </Card>
       </Page.Main>
+      <Page.Footer>
+        <Button onClick={() => switchLanguage('zh_CN')}>中文</Button>
+        <Button onClick={() => switchLanguage('en_US')}>English</Button>
+      </Page.Footer>
     </Page>
   )
 }
