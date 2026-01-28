@@ -42,7 +42,7 @@ function loadStreets(districtId) {
       .catch(() => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('获取街道异常', 'noKey_04a95d24fd2fec048b9caa91f496ceca')
+          message: LocaleUtil.locale('获取街道异常', 'lyrixi_04a95d24fd2fec048b9caa91f496ceca')
         })
       })
   })

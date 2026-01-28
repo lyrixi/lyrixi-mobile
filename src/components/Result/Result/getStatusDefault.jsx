@@ -11,7 +11,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 function getStatusDefault(status) {
   if (status === 'empty') {
     return {
-      title: LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60'),
+      title: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),
       image: <div className="lyrixi-result-image lyrixi-result-image-empty"></div>
     }
   }
@@ -19,7 +19,7 @@ function getStatusDefault(status) {
     return {
       title: LocaleUtil.locale(
         '获取数据失败，请稍后再试！',
-        'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
+        'lyrixi_f4ae45effbbfb4b71e6690bd1ce12904'
       ),
       image: <div className="lyrixi-result-image lyrixi-result-image-500"></div>
     }

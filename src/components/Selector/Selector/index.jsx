@@ -153,8 +153,8 @@ const Selector = forwardRef(
           >
             <div className="lyrixi-selector-item-name">
               {expanded
-                ? LocaleUtil.locale('收起', 'noKey_def9e98b60e3bfc493bcd7693e702096')
-                : LocaleUtil.locale('更多', 'noKey_0ec9eaf9c3525eb110db58aae5912210')}
+                ? LocaleUtil.locale('收起', 'lyrixi_def9e98b60e3bfc493bcd7693e702096')
+                : LocaleUtil.locale('更多', 'lyrixi_0ec9eaf9c3525eb110db58aae5912210')}
             </div>
             <i
               className={DOMUtil.classNames(

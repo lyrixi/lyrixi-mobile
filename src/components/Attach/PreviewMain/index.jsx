@@ -66,7 +66,7 @@ function AttachPreviewMain(
           title={fileName}
           description={LocaleUtil.locale(
             '暂不支持此类型',
-            'noKey_82a46f8d675c89e11eb7dc7797df91c3'
+            'lyrixi_82a46f8d675c89e11eb7dc7797df91c3'
           )}
         >
           <Button
@@ -75,7 +75,7 @@ function AttachPreviewMain(
               Bridge.previewFile({ fileUrl: fileUrl })
             }}
           >
-            {LocaleUtil.locale('点击预览', 'noKey_52ad09ab6864e032eb8c416cb74dcb72')}
+            {LocaleUtil.locale('点击预览', 'lyrixi_52ad09ab6864e032eb8c416cb74dcb72')}
           </Button>
         </Result>
       ) : (

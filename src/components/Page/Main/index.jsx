@@ -100,14 +100,14 @@ const Main = forwardRef(
         if (topText)
           topText.innerHTML = LocaleUtil.locale(
             '释放立即刷新',
-            'noKey_bb045b7b0ce191f0568fb4d0a9858b8d'
+            'lyrixi_bb045b7b0ce191f0568fb4d0a9858b8d'
           )
       } else {
         if (topIcon) topIcon.classList.remove('lyrixi-page-main-pull-push-icon-down')
         if (topText)
           topText.innerHTML = LocaleUtil.locale(
             '下拉可以刷新',
-            'noKey_76985db7270fb8bc2add09291b637964'
+            'lyrixi_76985db7270fb8bc2add09291b637964'
           )
       }
     }
@@ -132,7 +132,7 @@ const Main = forwardRef(
         if (topText)
           topText.innerHTML = `${LocaleUtil.locale(
             '加载中',
-            'noKey_f013ea9dcba3f5ca1278aa850931fec8'
+            'lyrixi_f013ea9dcba3f5ca1278aa850931fec8'
           )}...`
 
         // Trigger Events

@@ -79,7 +79,7 @@ function queryData(
           status: 'error',
           message:
             err?.data?.message ||
-            LocaleUtil.locale('获取数据异常！', 'noKey_a085fb7c5cb81143dcec0f299fff709a'),
+            LocaleUtil.locale('获取数据异常！', 'lyrixi_a085fb7c5cb81143dcec0f299fff709a'),
           list: null
         })
       })

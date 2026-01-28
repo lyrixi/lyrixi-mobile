@@ -22,7 +22,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
         backgroundColor="primary"
         onClick={onClick}
       >
-        {LocaleUtil.locale('重试', 'noKey_132c5cdcceb0f1f17c8c088a42959aa4')}
+        {LocaleUtil.locale('重试', 'lyrixi_132c5cdcceb0f1f17c8c088a42959aa4')}
       </Button>
     )
   }
@@ -37,7 +37,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
         backgroundColor="primary"
         onClick={onClick}
       >
-        {LocaleUtil.locale('刷新', 'noKey_694fc5efa9e1d1c2c5eb6525e1c7fb29')}
+        {LocaleUtil.locale('刷新', 'lyrixi_694fc5efa9e1d1c2c5eb6525e1c7fb29')}
       </Button>
     )
   }

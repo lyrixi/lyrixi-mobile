@@ -24,7 +24,7 @@ async function loadBaseData({ countryId, loadCountries, loadCountryRegions }) {
       status: 'error',
       message: LocaleUtil.locale(
         'value参数错误, value开始应当为国家',
-        'noKey_9a2f6cb8fea853e91225b72d770768e6'
+        'lyrixi_9a2f6cb8fea853e91225b72d770768e6'
       )
     }
   }

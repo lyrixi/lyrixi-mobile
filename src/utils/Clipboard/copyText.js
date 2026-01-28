@@ -19,7 +19,7 @@ function copyText(url, { onSuccess, onError } = {}) {
         : Toast.show({
             content: LocaleUtil.locale(
               '链接已复制到剪贴板',
-              'noKey_deb26c26fbaafab1dfa6c902a0ffad75'
+              'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
             )
           })
     },
@@ -30,10 +30,10 @@ function copyText(url, { onSuccess, onError } = {}) {
             maskStyle: {
               zIndex: 100
             },
-            title: LocaleUtil.locale('提示', 'noKey_02d9819ddaaaeb1b7b22b12608c7e5ca'),
+            title: LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca'),
             content: `${LocaleUtil.locale(
               '链接复制到剪贴板失败, 请长按复制',
-              'noKey_8c1958b63a87bd3e1fa1e550c058ffe1'
+              'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1'
             )}
           <br/>${url}`,
             buttons: [

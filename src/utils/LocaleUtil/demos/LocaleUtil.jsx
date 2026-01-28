@@ -34,7 +34,7 @@ export default () => {
         <Card>
           <Card.Header>Node with variables</Card.Header>
           <Card.Main>
-            {LocaleUtil.locale('近{0}日', 'noKey_7243810e4577ec95db8f7315c52ebe66', [
+            {LocaleUtil.locale('近{0}日', 'lyrixi_7243810e4577ec95db8f7315c52ebe66', [
               <span key={'0'} style={{ color: 'red' }}>
                 7
               </span>
@@ -45,7 +45,7 @@ export default () => {
         <Card>
           <Card.Header>String with variables</Card.Header>
           <Card.Main>
-            {LocaleUtil.locale('近{0}日', 'noKey_7243810e4577ec95db8f7315c52ebe66', ['7'])}
+            {LocaleUtil.locale('近{0}日', 'lyrixi_7243810e4577ec95db8f7315c52ebe66', ['7'])}
           </Card.Main>
         </Card>
 

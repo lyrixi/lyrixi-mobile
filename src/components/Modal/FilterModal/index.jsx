@@ -56,8 +56,8 @@ function FilterModal(
       <Page className="lyrixi-full lyrixi-bg-white">
         <Page.Header className="lyrixi-bg-default">
           <NavBar
-            title={LocaleUtil.locale('筛选', 'noKey_c2fe6253c4ca802cf2230b0b5e15eb25')}
-            cancelNode={LocaleUtil.locale('取消', 'noKey_625fb26b4b3340f7872b411f401e754c')}
+            title={LocaleUtil.locale('筛选', 'lyrixi_c2fe6253c4ca802cf2230b0b5e15eb25')}
+            cancelNode={LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c')}
             onCancel={(e) => {
               e.stopPropagation()
 

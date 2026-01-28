@@ -58,7 +58,7 @@ let Bridge = {
         status: 'error',
         message: `WeChat js ${LocaleUtil.locale(
           '加载失败',
-          'noKey_866b795eae73791792b09d33d6595fe5'
+          'lyrixi_866b795eae73791792b09d33d6595fe5'
         )}`
       })
     }
@@ -140,7 +140,7 @@ let Bridge = {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
-        'noKey_0e963a39eb4b363f9465618162b7d7d5',
+        'lyrixi_0e963a39eb4b363f9465618162b7d7d5',
 
         ['openLocation']
       )}`
@@ -168,7 +168,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `WeChat ${LocaleUtil.locale('打开地图失败', 'noKey_3dd680a6b28a8b59516034e54bc595b7')}`
+            `WeChat ${LocaleUtil.locale('打开地图失败', 'lyrixi_3dd680a6b28a8b59516034e54bc595b7')}`
         })
       }
     })
@@ -203,7 +203,7 @@ let Bridge = {
       Toast.show({
         content: `WeChat ${LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
-          'noKey_035ccd9e16f7b411f76b8369ce82e0a7'
+          'lyrixi_035ccd9e16f7b411f76b8369ce82e0a7'
         )}`
       })
       return
@@ -211,10 +211,10 @@ let Bridge = {
 
     let desc = []
     if (scanType.includes('qrCode')) {
-      desc.push(`WeChat ${LocaleUtil.locale('二维码', 'noKey_22b03c024d815ad327e8b95d684ced38')}`)
+      desc.push(`WeChat ${LocaleUtil.locale('二维码', 'lyrixi_22b03c024d815ad327e8b95d684ced38')}`)
     }
     if (scanType.includes('barCode')) {
-      desc.push(`WeChat ${LocaleUtil.locale('条码', 'noKey_39f76a9bd32adf43a7200f93ff35a2f5')}`)
+      desc.push(`WeChat ${LocaleUtil.locale('条码', 'lyrixi_39f76a9bd32adf43a7200f93ff35a2f5')}`)
     }
 
     window.top.wx.scanQRCode({
@@ -284,7 +284,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
-        'noKey_0d4b28b9305da17cfaae5c59beeb647f'
+        'lyrixi_0d4b28b9305da17cfaae5c59beeb647f'
       )}`
       Toast.show({
         content: message
@@ -358,7 +358,7 @@ let Bridge = {
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
-        'noKey_ae91b536a324063be22015b86480e967'
+        'lyrixi_ae91b536a324063be22015b86480e967'
       )}`
       Toast.show({
         content: message
@@ -433,7 +433,7 @@ let Bridge = {
       Toast.show({
         content: `WeChat ${LocaleUtil.locale(
           'previewMedia仅可在移动端微信或APP中使用',
-          'noKey_ef5f764cfc033f4bc441c4de232b2954'
+          'lyrixi_ef5f764cfc033f4bc441c4de232b2954'
         )}`
       })
       return
@@ -470,7 +470,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `WeChat ${LocaleUtil.locale('预览失败', 'noKey_6a3a5ef00db03994963efebe08432ce1')}`
+            `WeChat ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
       cancel: onCancel
@@ -480,7 +480,7 @@ let Bridge = {
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
-        'noKey_ad0af8df508f1f949dcdc1144711b986',
+        'lyrixi_ad0af8df508f1f949dcdc1144711b986',
 
         ['previewFile']
       )}`
@@ -501,7 +501,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `WeChat ${LocaleUtil.locale('预览失败', 'noKey_6a3a5ef00db03994963efebe08432ce1')}`
+            `WeChat ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       }
     })
@@ -522,13 +522,13 @@ let Bridge = {
           Toast.show({
             content:
               err?.errMsg ||
-              `WeChat ${LocaleUtil.locale('分享失败', 'noKey_e8e25af006ef2ebbdb317e1d7c035a0f')}`
+              `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
           })
           onError &&
             onError({
               message:
                 err?.errMsg ||
-                `WeChat ${LocaleUtil.locale('分享失败', 'noKey_e8e25af006ef2ebbdb317e1d7c035a0f')}`
+                `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
             })
         }
       })
@@ -555,7 +555,7 @@ let Bridge = {
                   res?.errMsg ||
                   `WeChat ${LocaleUtil.locale(
                     '分享失败',
-                    'noKey_e8e25af006ef2ebbdb317e1d7c035a0f'
+                    'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f'
                   )}`
               })
           }

@@ -48,7 +48,7 @@ let Debugger = {
           Toast.show({
             content: LocaleUtil.locale(
               '打开调试面板失败',
-              'noKey_577dd0de7cc745dc0fcce18b2d9d909a'
+              'lyrixi_577dd0de7cc745dc0fcce18b2d9d909a'
             ),
             maskClickable: true
           })

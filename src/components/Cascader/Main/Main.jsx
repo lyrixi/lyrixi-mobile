@@ -43,7 +43,7 @@ const Main = forwardRef(
           <Result title={result?.message} status={result?.status} full>
             {result?.status === 'error' && onReLoad ? (
               <Button className="lyrixi-result-button" color="primary" onClick={onReLoad}>
-                {LocaleUtil.locale('重新加载', 'noKey_64ca9bab920a2983bcf270320d850d00')}
+                {LocaleUtil.locale('重新加载', 'lyrixi_64ca9bab920a2983bcf270320d850d00')}
               </Button>
             ) : null}
           </Result>

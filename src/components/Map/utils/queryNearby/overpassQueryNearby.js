@@ -47,14 +47,14 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
         } else {
           resolve({
             status: 'empty',
-            message: LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60')
+            message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
           })
         }
       })
       .catch((error) => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('查询失败', 'noKey_0d66ed02d74d0bd89431d6d59533ffb3')
+          message: LocaleUtil.locale('查询失败', 'lyrixi_0d66ed02d74d0bd89431d6d59533ffb3')
         })
       })
   })

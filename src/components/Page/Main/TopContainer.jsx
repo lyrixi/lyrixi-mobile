@@ -11,7 +11,7 @@ const TopContainer = forwardRef((props, ref) => {
       <div className="lyrixi-page-main-pull-push-wrapper">
         <div className="lyrixi-page-main-pull-push-icon"></div>
         <div className="lyrixi-page-main-pull-push-text">
-          {LocaleUtil.locale('下拉可以刷新', 'noKey_76985db7270fb8bc2add09291b637964')}
+          {LocaleUtil.locale('下拉可以刷新', 'lyrixi_76985db7270fb8bc2add09291b637964')}
         </div>
       </div>
     </div>

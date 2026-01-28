@@ -228,7 +228,7 @@ const MapContainer = forwardRef(
     // Load data
     async function loadData() {
       if (!rootRef.current?.querySelector) {
-        setLeafletMap(LocaleUtil.locale('No Container', 'noKey_6a9144880f91a917d142206c4ecf2103'))
+        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi_6a9144880f91a917d142206c4ecf2103'))
         return
       }
 
@@ -246,7 +246,7 @@ const MapContainer = forwardRef(
 
       let currentMapContainer = rootRef?.current?.querySelector?.('.lyrixi-map-api-container')
       if (!currentMapContainer) {
-        setLeafletMap(LocaleUtil.locale('No Container', 'noKey_6a9144880f91a917d142206c4ecf2103'))
+        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi_6a9144880f91a917d142206c4ecf2103'))
         return
       }
 
@@ -261,11 +261,11 @@ const MapContainer = forwardRef(
         let errorMessage = !window.L
           ? LocaleUtil.locale(
               '请在Map组件需要使用APILoader包裹',
-              'noKey_5075eec6f717dd4179774e90bedc721b'
+              'lyrixi_5075eec6f717dd4179774e90bedc721b'
             )
           : LocaleUtil.locale(
               '缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期',
-              'noKey_f7e421b903f7d2a65ded4b70e5927574'
+              'lyrixi_f7e421b903f7d2a65ded4b70e5927574'
             )
         setLeafletMap(leafletMap)
         onLoad?.({

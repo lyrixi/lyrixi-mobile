@@ -59,7 +59,7 @@ const CascaderMain = forwardRef(
         ? { status: 'success', list: currentList }
         : {
             status: 'empty',
-            message: LocaleUtil.locale('暂无数据', 'noKey_21efd88b67a39834582ad99aabb9dc60')
+            message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
           }
     )
 
@@ -134,7 +134,7 @@ const CascaderMain = forwardRef(
           isChoose: true,
           parentid: newValue[newValue.length - 1].id,
           id: '',
-          name: LocaleUtil.locale('请选择', 'noKey_708c9d6d2ad108ab2c560530810deae9')
+          name: LocaleUtil.locale('请选择', 'lyrixi_708c9d6d2ad108ab2c560530810deae9')
         })
       }
 
@@ -191,7 +191,7 @@ const CascaderMain = forwardRef(
       if (!Array.isArray(externalList) || !externalList.length) {
         return {
           status: 'error',
-          message: LocaleUtil.locale('未获取到列表数据', 'noKey_933eceb19c1936ad8450a94e0b2500e6')
+          message: LocaleUtil.locale('未获取到列表数据', 'lyrixi_933eceb19c1936ad8450a94e0b2500e6')
         }
       }
 

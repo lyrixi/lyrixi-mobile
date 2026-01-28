@@ -120,7 +120,7 @@ function MediaUploader(
         duration: 1000,
         content: LocaleUtil.locale(
           '检测到您的机型不支持小程序拍照，已强制为您切换成浏览器拍照',
-          'noKey_9e6eedcd7097658099a215f77cada387'
+          'lyrixi_9e6eedcd7097658099a215f77cada387'
         ),
         onClose: () => {
           setCompatiblePlatform('browser')

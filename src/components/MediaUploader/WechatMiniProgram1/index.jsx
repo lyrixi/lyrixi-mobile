@@ -118,7 +118,7 @@ function WechatMiniProgram(
           Toast.show({
             content: LocaleUtil.locale(
               '未找到拍照按钮, 调用拍照失败',
-              'noKey_76637d130a70149d956bf9acc14e2108'
+              'lyrixi_76637d130a70149d956bf9acc14e2108'
             )
           })
           return false
@@ -135,7 +135,7 @@ function WechatMiniProgram(
         Toast.show({
           content: LocaleUtil.locale(
             '小程序不支持异步上传',
-            'noKey_34b5161adb0dd53091258a0558e9c2f1'
+            'lyrixi_34b5161adb0dd53091258a0558e9c2f1'
           )
         })
       }
@@ -211,7 +211,7 @@ function WechatMiniProgram(
 
       // Protect click
       Loading.show({
-        content: LocaleUtil.locale('打开小程序拍照', 'noKey_e55618c26ebea1724e7f5d8a0489995c')
+        content: LocaleUtil.locale('打开小程序拍照', 'lyrixi_e55618c26ebea1724e7f5d8a0489995c')
       })
       setTimeout(() => {
         Loading.hide()
@@ -338,11 +338,11 @@ function WechatMiniProgram(
         list={[
           {
             id: 'camera',
-            name: LocaleUtil.locale('拍照', 'noKey_bed9ec1e84486baa0422c80414edd31a')
+            name: LocaleUtil.locale('拍照', 'lyrixi_bed9ec1e84486baa0422c80414edd31a')
           },
           {
             id: 'album',
-            name: LocaleUtil.locale('从相册选择', 'noKey_83c39abd16cd6a770fc1c3c326aabbdd')
+            name: LocaleUtil.locale('从相册选择', 'lyrixi_83c39abd16cd6a770fc1c3c326aabbdd')
           }
         ]}
         onChange={async (item) => {

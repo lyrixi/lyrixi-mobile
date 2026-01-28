@@ -61,7 +61,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
               status: 'error',
               message: `Lark ${LocaleUtil.locale(
                 'config failed',
-                'noKey_8482a17aad47dfd3f333e7a79c369e8c'
+                'lyrixi_8482a17aad47dfd3f333e7a79c369e8c'
               )}`
             })
           }
@@ -73,7 +73,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
             response.message ||
             `Lark ${LocaleUtil.locale(
               '鉴权接口失败，请稍后重试！',
-              'noKey_7334cbbe6fd40b00e470b91c73f16d2f'
+              'lyrixi_7334cbbe6fd40b00e470b91c73f16d2f'
             )}`
         })
       }
@@ -83,7 +83,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
         status: 'error',
         message: `Lark ${LocaleUtil.locale(
           '鉴权接口异常，请稍后重试！',
-          'noKey_d015103b9b8864df89ed3c7edb96eca0'
+          'lyrixi_d015103b9b8864df89ed3c7edb96eca0'
         )}`
       })
     })

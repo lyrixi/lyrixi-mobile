@@ -47,7 +47,7 @@ const Item = ({
       Toast.show({
         content: LocaleUtil.locale(
           '图片未上传成功, 无法预览',
-          'noKey_48ec308c5a5abf2b6dc08111a4aa08bb'
+          'lyrixi_48ec308c5a5abf2b6dc08111a4aa08bb'
         )
       })
       return
@@ -57,7 +57,7 @@ const Item = ({
     let previewUrl = decodeURIComponent(decodeURIComponent(item.fileUrl))
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
-        content: LocaleUtil.locale('预览地址不合法', 'noKey_abbd8dd2fbc71bf8315e71e5e80d041a')
+        content: LocaleUtil.locale('预览地址不合法', 'lyrixi_abbd8dd2fbc71bf8315e71e5e80d041a')
       })
       return
     }
@@ -73,7 +73,7 @@ const Item = ({
           Toast.show({
             content: LocaleUtil.locale(
               '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
-              'noKey_6326307026a1ebefc8b307e7ef1c58b5'
+              'lyrixi_6326307026a1ebefc8b307e7ef1c58b5'
             )
           })
         },
@@ -81,7 +81,7 @@ const Item = ({
           Message.open({
             content: LocaleUtil.locale(
               `文件链接复制到剪贴板失败, 请长按复制<br/>${previewUrl}`,
-              'noKey_a7da286a734546b215b7633f1c49ed98',
+              'lyrixi_a7da286a734546b215b7633f1c49ed98',
 
               [previewUrl]
             ),

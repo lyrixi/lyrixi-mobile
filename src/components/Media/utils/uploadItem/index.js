@@ -20,7 +20,7 @@ async function uploadItem(item, { onUpload }) {
       status: 'error',
       message: LocaleUtil.locale(
         '没有onUpload入参, 无法上传',
-        'noKey_114065b26f3ec38db673063aa5cd36c8'
+        'lyrixi_114065b26f3ec38db673063aa5cd36c8'
       )
     }
   }

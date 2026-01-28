@@ -71,7 +71,7 @@ const Loading = forwardRef(
             {/* Value & Display Value: Content */}
             <div className="lyrixi-loading-content">
               {content ||
-                `${LocaleUtil.locale('加载中', 'noKey_f013ea9dcba3f5ca1278aa850931fec8')}...`}
+                `${LocaleUtil.locale('加载中', 'lyrixi_f013ea9dcba3f5ca1278aa850931fec8')}...`}
             </div>
           </div>
         )}

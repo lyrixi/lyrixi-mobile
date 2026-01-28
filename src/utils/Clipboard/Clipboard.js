@@ -63,7 +63,7 @@ const Clipboard = {
       if (params?.onSuccess)
         params.onSuccess({
           status: 'success',
-          message: LocaleUtil.locale('复制到剪贴板成功', 'noKey_4972304451f2ae7687888100446cbb99')
+          message: LocaleUtil.locale('复制到剪贴板成功', 'lyrixi_4972304451f2ae7687888100446cbb99')
         })
     } else {
       if (params?.onError)
@@ -71,7 +71,7 @@ const Clipboard = {
           status: 'error',
           message:
             params.errorMsg ||
-            LocaleUtil.locale('当前设备不允许访问剪贴板', 'noKey_4a3bc2967c96d7a27a8d217a151b7734')
+            LocaleUtil.locale('当前设备不允许访问剪贴板', 'lyrixi_4a3bc2967c96d7a27a8d217a151b7734')
         })
     }
   }

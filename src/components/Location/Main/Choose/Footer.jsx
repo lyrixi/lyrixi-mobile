@@ -17,7 +17,7 @@ function Foot({ onOk, onClear }) {
       <FooterBar>
         {onOk && (
           <FooterBar.Button block size="l" backgroundColor="primary" color="white" onClick={onOk}>
-            {LocaleUtil.locale('确定', 'noKey_38cf16f2204ffab8a6e0187070558721')}
+            {LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721')}
           </FooterBar.Button>
         )}
         {onClear && (
@@ -28,7 +28,7 @@ function Foot({ onOk, onClear }) {
             color="default"
             onClick={onClear}
           >
-            {LocaleUtil.locale('清空标注', 'noKey_ac562906083401454f9b6ab34cd113b8')}
+            {LocaleUtil.locale('清空标注', 'lyrixi_ac562906083401454f9b6ab34cd113b8')}
           </FooterBar.Button>
         )}
       </FooterBar>

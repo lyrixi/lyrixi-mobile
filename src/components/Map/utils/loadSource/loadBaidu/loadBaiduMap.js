@@ -42,7 +42,7 @@ function loadBaiduMap(key) {
                 code: 'BMAP_MAP_LOAD_ERROR',
                 message: LocaleUtil.locale(
                   `地图库加载失败, 请稍后再试`,
-                  'noKey_a4e7c736f59a78f9e58bfe8af5283e3e'
+                  'lyrixi_a4e7c736f59a78f9e58bfe8af5283e3e'
                 )
               })
             }
@@ -54,7 +54,7 @@ function loadBaiduMap(key) {
             code: 'BMAP_JS_LOAD_ERROR',
             message: LocaleUtil.locale(
               `地图库加载失败, 请稍后再试`,
-              'noKey_a4e7c736f59a78f9e58bfe8af5283e3e'
+              'lyrixi_a4e7c736f59a78f9e58bfe8af5283e3e'
             )
           })
         }

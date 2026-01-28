@@ -27,7 +27,7 @@ function clearPhotos(id, { url }) {
       })
       .catch((error) => {
         Toast.show({
-          content: LocaleUtil.locale('照片删除异常', 'noKey_c6def5fa7c7e41ced1921c9e09ce97bb')
+          content: LocaleUtil.locale('照片删除异常', 'lyrixi_c6def5fa7c7e41ced1921c9e09ce97bb')
         })
         resolve(false)
       })

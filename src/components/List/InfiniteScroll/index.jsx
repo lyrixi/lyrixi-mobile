@@ -24,7 +24,7 @@ const InfiniteScroll = ({
       return (
         <div className="lyrixi-list-infinitescroll-wrapper">
           <div className="lyrixi-list-infinitescroll-text">
-            {content || LocaleUtil.locale('加载中', 'noKey_f013ea9dcba3f5ca1278aa850931fec8')}
+            {content || LocaleUtil.locale('加载中', 'lyrixi_f013ea9dcba3f5ca1278aa850931fec8')}
           </div>
           <div className="lyrixi-list-infinitescroll-icon">
             <Loading.BallWave />
@@ -36,7 +36,7 @@ const InfiniteScroll = ({
       return (
         <div className="lyrixi-list-infinitescroll-wrapper">
           <div className="lyrixi-list-infinitescroll-text">
-            {content || LocaleUtil.locale('没有更多了', 'noKey_1fe9009c96c23be837d9d52feda9c23e')}
+            {content || LocaleUtil.locale('没有更多了', 'lyrixi_1fe9009c96c23be837d9d52feda9c23e')}
           </div>
         </div>
       )
@@ -48,7 +48,7 @@ const InfiniteScroll = ({
           {content ||
             LocaleUtil.locale(
               '获取数据失败，请稍后再试！',
-              'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
+              'lyrixi_f4ae45effbbfb4b71e6690bd1ce12904'
             )}
         </div>
       </div>

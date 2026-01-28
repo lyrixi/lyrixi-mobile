@@ -112,7 +112,7 @@ function MapChoose(
     // 默认选中当前位置
     if (!newValue?.longitude || !newValue?.latitude) {
       Loading.show({
-        content: LocaleUtil.locale('定位中...', 'noKey_2c4006447f62bffd57686aabbdc3f5dd')
+        content: LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd')
       })
       let result = await mapRef.current?.getLocation?.({ type: 'wgs84' })
       Loading.hide()
@@ -131,7 +131,7 @@ function MapChoose(
     // 获取地址
     if (!newValue?.address) {
       Loading.show({
-        content: LocaleUtil.locale('获取地址中...', 'noKey_727c51b4575192c9cc0ca17b67375392')
+        content: LocaleUtil.locale('获取地址中...', 'lyrixi_727c51b4575192c9cc0ca17b67375392')
       })
       let result = await mapRef.current?.getAddress?.(newValue)
       Loading.hide()
@@ -235,7 +235,7 @@ function MapChoose(
                 Loading.show({
                   content: LocaleUtil.locale(
                     '获取地址中...',
-                    'noKey_727c51b4575192c9cc0ca17b67375392'
+                    'lyrixi_727c51b4575192c9cc0ca17b67375392'
                   )
                 })
                 result = await map.getAddress(result)

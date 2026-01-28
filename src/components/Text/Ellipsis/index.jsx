@@ -72,8 +72,8 @@ const Ellipsis = ({
           }}
         >
           {expanded
-            ? LocaleUtil.locale('收起', 'noKey_def9e98b60e3bfc493bcd7693e702096')
-            : LocaleUtil.locale('展开', 'noKey_e2edde5adbdf33f6dce59a299cbf5fad')}
+            ? LocaleUtil.locale('收起', 'lyrixi_def9e98b60e3bfc493bcd7693e702096')
+            : LocaleUtil.locale('展开', 'lyrixi_e2edde5adbdf33f6dce59a299cbf5fad')}
         </div>
       )}
       {/* Element: 内容 */}

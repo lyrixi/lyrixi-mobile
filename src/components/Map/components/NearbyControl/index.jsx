@@ -64,7 +64,7 @@ function Nearby(
   // 获取附近的点
   async function loadData() {
     Loading.show({
-      content: LocaleUtil.locale('搜索中', 'noKey_9bc4c05af0d6d8e8fcad313f7614006b')
+      content: LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
     })
     let newResult = await map.queryNearby({
       map: map,

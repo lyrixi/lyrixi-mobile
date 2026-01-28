@@ -29,24 +29,24 @@ const Types = forwardRef(
       list = [
         {
           type: 'date',
-          name: LocaleUtil.locale('日', 'noKey_3edddd85ac2c5e612fb71dbb89e7d1c5')
+          name: LocaleUtil.locale('日', 'lyrixi_3edddd85ac2c5e612fb71dbb89e7d1c5')
         },
         {
           type: 'week',
           id: 'week',
-          name: LocaleUtil.locale('周', 'noKey_a657f46f5bb00961adfae80d12e41b3d')
+          name: LocaleUtil.locale('周', 'lyrixi_a657f46f5bb00961adfae80d12e41b3d')
         },
         {
           type: 'month',
-          name: LocaleUtil.locale('月', 'noKey_e42b99d59954ce6437e66f416850425a')
+          name: LocaleUtil.locale('月', 'lyrixi_e42b99d59954ce6437e66f416850425a')
         },
         {
           type: 'quarter',
-          name: LocaleUtil.locale('季', 'noKey_afcd9a4cb1fd7f84c1e5a275768795d0')
+          name: LocaleUtil.locale('季', 'lyrixi_afcd9a4cb1fd7f84c1e5a275768795d0')
         },
         {
           type: 'year',
-          name: LocaleUtil.locale('年', 'noKey_465260fe80b0c3338d06194bb7a94446')
+          name: LocaleUtil.locale('年', 'lyrixi_465260fe80b0c3338d06194bb7a94446')
         }
       ],
 

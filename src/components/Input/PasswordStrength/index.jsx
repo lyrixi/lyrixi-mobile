@@ -51,19 +51,19 @@ const PasswordStrength = (
       <li className="lyrixi-input-password-strength-item lyrixi-level1">
         <div className="lyrixi-input-password-strength-progress"></div>
         <span className="lyrixi-input-password-strength-text">
-          {LocaleUtil.locale('弱', 'noKey_5490777b9cec0e60f5ffecda1e31c0a5')}
+          {LocaleUtil.locale('弱', 'lyrixi_5490777b9cec0e60f5ffecda1e31c0a5')}
         </span>
       </li>
       <li className="lyrixi-input-password-strength-item lyrixi-level2">
         <div className="lyrixi-input-password-strength-progress lyrixi-level2"></div>
         <span className="lyrixi-input-password-strength-text">
-          {LocaleUtil.locale('中', 'noKey_aed1dfbc31703955e64806b799b67645')}
+          {LocaleUtil.locale('中', 'lyrixi_aed1dfbc31703955e64806b799b67645')}
         </span>
       </li>
       <li className="lyrixi-input-password-strength-item lyrixi-level3">
         <div className="lyrixi-input-password-strength-progress lyrixi-level3"></div>
         <span className="lyrixi-input-password-strength-text">
-          {LocaleUtil.locale('强', 'noKey_7d00964b53a9c14ef100ad33fd71c743')}
+          {LocaleUtil.locale('强', 'lyrixi_7d00964b53a9c14ef100ad33fd71c743')}
         </span>
       </li>
     </ul>

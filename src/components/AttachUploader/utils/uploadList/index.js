@@ -48,7 +48,7 @@ async function uploadList(pendingList, uploadConfig) {
   })
   if (_.isEmpty(list)) {
     Toast.show({
-      content: LocaleUtil.locale('uploadList参数列表错误', 'noKey_02e1574baeddc79ed7bfa5931dde85f0')
+      content: LocaleUtil.locale('uploadList参数列表错误', 'lyrixi_02e1574baeddc79ed7bfa5931dde85f0')
     })
     return null
   }
@@ -56,7 +56,7 @@ async function uploadList(pendingList, uploadConfig) {
   // 不支持的平台
   if (!uploadItem) {
     Toast.show({
-      content: LocaleUtil.locale('不支持此平台上传', 'noKey_84281205c0ab7c4983124a98006c7014')
+      content: LocaleUtil.locale('不支持此平台上传', 'lyrixi_84281205c0ab7c4983124a98006c7014')
     })
     return list?.map?.((item) => {
       if (!item.fileUrl?.startsWith?.('http')) {

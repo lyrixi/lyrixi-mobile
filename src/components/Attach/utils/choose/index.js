@@ -30,7 +30,7 @@ async function choose({
     Toast.show({
       content: LocaleUtil.locale(
         `总数不能大于${maxCount}`,
-        'noKey_2d5162e5511eccd2b3d50796122c6e6e',
+        'lyrixi_2d5162e5511eccd2b3d50796122c6e6e',
         [maxCount]
       ),
       maskClickable: true
@@ -53,7 +53,7 @@ async function choose({
       Toast.show({
         content: LocaleUtil.locale(
           `未返回fileName, 无法上传`,
-          'noKey_45e987cc2779b005b900456f27379057'
+          'lyrixi_45e987cc2779b005b900456f27379057'
         ),
         maskClickable: true
       })
@@ -63,7 +63,7 @@ async function choose({
       Toast.show({
         content: LocaleUtil.locale(
           `未返回fileSize, 无法上传`,
-          'noKey_e5b09f4014f2ebe2a1e0825b0595666d'
+          'lyrixi_e5b09f4014f2ebe2a1e0825b0595666d'
         ),
         maskClickable: true
       })
@@ -73,7 +73,7 @@ async function choose({
       Toast.show({
         content: LocaleUtil.locale(
           `只支持选择${sourceType.join(',')}格式的文件`,
-          'noKey_457455da3092979a928191f95101f15e',
+          'lyrixi_457455da3092979a928191f95101f15e',
 
           [sourceType.join(',')]
         ),
@@ -86,7 +86,7 @@ async function choose({
       Toast.show({
         content: LocaleUtil.locale(
           `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
-          'noKey_e547fe1eb4fcf8bef4514d7519ee6eb9',
+          'lyrixi_e547fe1eb4fcf8bef4514d7519ee6eb9',
 
           [Math.abs(convertBytes(maxSize))]
         )

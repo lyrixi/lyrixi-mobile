@@ -168,7 +168,7 @@ async function translateSrc() {
     ],
     onGenerateKey: ({ folders, value, oldKey, newKey }) => {
       if (oldKey) return oldKey
-      return `noKey_${newKey}`
+      return `lyrixi_${newKey}`
     }
   })
 

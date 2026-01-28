@@ -19,7 +19,7 @@ const DistrictMainResult = ({ result, onReload, style, className }) => {
         <Result title={result?.message} status={result?.status} full>
           {result?.status === 'error' ? (
             <Button className="lyrixi-result-button" color="primary" onClick={onReload}>
-              {LocaleUtil.locale('重新加载', 'noKey_64ca9bab920a2983bcf270320d850d00')}
+              {LocaleUtil.locale('重新加载', 'lyrixi_64ca9bab920a2983bcf270320d850d00')}
             </Button>
           ) : null}
         </Result>

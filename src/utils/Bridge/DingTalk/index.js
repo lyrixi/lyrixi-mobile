@@ -31,7 +31,7 @@ let Bridge = {
             error?.errorMessage ||
             `DingTalk ${LocaleUtil.locale(
               '设置标题失败',
-              'noKey_6dd527e00e48b7580176120795b07b46'
+              'lyrixi_6dd527e00e48b7580176120795b07b46'
             )}`
         })
       }
@@ -67,7 +67,7 @@ let Bridge = {
         status: 'error',
         message: `DingTalk js ${LocaleUtil.locale(
           '加载失败',
-          'noKey_866b795eae73791792b09d33d6595fe5'
+          'lyrixi_866b795eae73791792b09d33d6595fe5'
         )}`
       })
     }
@@ -116,7 +116,7 @@ let Bridge = {
               error?.errorMessage ||
               `DingTalk ${LocaleUtil.locale(
                 '关闭窗口失败',
-                'noKey_665ecd23e32150fd197a316177a3973f'
+                'lyrixi_665ecd23e32150fd197a316177a3973f'
               )}`
           })
         }
@@ -135,7 +135,7 @@ let Bridge = {
             error?.errorMessage ||
             `DingTalk ${LocaleUtil.locale(
               '关闭窗口失败',
-              'noKey_665ecd23e32150fd197a316177a3973f'
+              'lyrixi_665ecd23e32150fd197a316177a3973f'
             )}`
         })
       }
@@ -173,7 +173,7 @@ let Bridge = {
             error?.errorMessage ||
             `DingTalk ${LocaleUtil.locale(
               '打开地图失败',
-              'noKey_3dd680a6b28a8b59516034e54bc595b7'
+              'lyrixi_3dd680a6b28a8b59516034e54bc595b7'
             )}`
         })
       }
@@ -366,7 +366,7 @@ let Bridge = {
             status: 'error',
             message: `DingTalk ${LocaleUtil.locale(
               '网络异常，上传失败',
-              'noKey_18904cde640c2efd37bc6ed3e9dedc77'
+              'lyrixi_18904cde640c2efd37bc6ed3e9dedc77'
             )}`
           })
         return
@@ -445,7 +445,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errorMessage ||
-            `DingTalk ${LocaleUtil.locale('预览失败', 'noKey_6a3a5ef00db03994963efebe08432ce1')}`
+            `DingTalk ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
       cancel: onCancel
@@ -467,7 +467,7 @@ let Bridge = {
           onError({
             message:
               err?.errMsg ||
-              `DingTalk ${LocaleUtil.locale('分享失败', 'noKey_e8e25af006ef2ebbdb317e1d7c035a0f')}`
+              `DingTalk ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
           })
       }
     })

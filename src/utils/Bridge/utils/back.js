@@ -27,7 +27,7 @@ async function back(delta = -1, { closeWindow, goHome }) {
     // 默认提示信息
     let confirmContent = LocaleUtil.locale(
       '您确定要离开此页面吗?',
-      'noKey_2fae075cbe7ea265de0b853a3d85c46d'
+      'lyrixi_2fae075cbe7ea265de0b853a3d85c46d'
     )
     // 地址栏动态提示信息
     if (isFromApp.indexOf('confirm-close:') !== -1) {
@@ -46,13 +46,13 @@ async function back(delta = -1, { closeWindow, goHome }) {
       content: confirmContent,
       buttons: [
         {
-          name: LocaleUtil.locale('取消', 'noKey_625fb26b4b3340f7872b411f401e754c'),
+          name: LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c'),
           onClick: () => {
             return true
           }
         },
         {
-          name: LocaleUtil.locale('确定', 'noKey_38cf16f2204ffab8a6e0187070558721'),
+          name: LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721'),
           className: 'lyrixi-primary',
           onClick: () => {
             // 提示后关闭当前页面

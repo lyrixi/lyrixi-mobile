@@ -43,7 +43,7 @@ function Current(
         {/* Element: Title */}
         <div className="lyrixi-map-nearbyControl-item-content-title">
           <div className="lyrixi-flex-1">
-            {value?.name || LocaleUtil.locale('当前位置', 'noKey_5eac11b4b636ca69e08fa158ca2cc13d')}
+            {value?.name || LocaleUtil.locale('当前位置', 'lyrixi_5eac11b4b636ca69e08fa158ca2cc13d')}
           </div>
           {/* Element: Navigation */}
           <Navigation

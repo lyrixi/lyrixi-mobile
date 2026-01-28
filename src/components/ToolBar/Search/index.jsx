@@ -66,7 +66,7 @@ const Search = (
       // Value & Display Value
       value={value}
       placeholder={
-        placeholder || LocaleUtil.locale('搜索', 'noKey_e5f71fc31e7246dd6ccc5539570471b0')
+        placeholder || LocaleUtil.locale('搜索', 'lyrixi_e5f71fc31e7246dd6ccc5539570471b0')
       }
       formatter={formatter}
       // Status

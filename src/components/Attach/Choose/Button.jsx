@@ -39,7 +39,7 @@ const UploadButton = ({ uploadingRender, style, className }, ref) => {
 
       {/* 文字 */}
       <div className="lyrixi-attach-choose-button-label">
-        {LocaleUtil.locale('附件', 'noKey_c9a6ee90f5d43732e3f6cf4dcaa8493c')}
+        {LocaleUtil.locale('附件', 'lyrixi_c9a6ee90f5d43732e3f6cf4dcaa8493c')}
       </div>
     </div>
   )

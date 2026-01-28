@@ -17,7 +17,7 @@ async function choose({ async, maxCount, list, uploadPosition, uploadList, onCho
     Toast.show({
       content: LocaleUtil.locale(
         `照片总数不能大于${maxCount}张`,
-        'noKey_8e14ef24f80db899d02760b9b54c1662',
+        'lyrixi_8e14ef24f80db899d02760b9b54c1662',
 
         [maxCount]
       ),

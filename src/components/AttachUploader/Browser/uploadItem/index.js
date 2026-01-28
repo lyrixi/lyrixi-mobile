@@ -17,7 +17,7 @@ function uploadItem(item, { getUploadUrl, formatHeaders, formatPayload, formatRe
     if (_.isEmpty(item?.localFile)) {
       errMsg = LocaleUtil.locale(
         '没有localFile，无法上传！',
-        'noKey_8ac73a3ce4e53db295057aaab0e6b1cf'
+        'lyrixi_8ac73a3ce4e53db295057aaab0e6b1cf'
       )
       resolve(errMsg)
       return
