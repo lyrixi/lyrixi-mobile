@@ -129,7 +129,7 @@ export default () => {
               }}
               type="wgs84"
               config={{
-                key: '7b6e260fc45a67b31a265e22575f1c5e',
+                key: 'bmap key',
                 type: 'bmap'
               }}
               onChange={(val) => {
@@ -147,7 +147,7 @@ export default () => {
               value={value1}
               type="gcj02"
               config={{
-                key: '7b6e260fc45a67b31a265e22575f1c5e',
+                key: 'bmap key',
                 type: 'bmap'
               }}
               onChange={setValue1}
@@ -245,7 +245,7 @@ export default () => {
               clickAction="choose"
               type="gcj02"
               config={{
-                key: '7b6e260fc45a67b31a265e22575f1c5e',
+                key: 'bmap key',
                 type: 'bmap'
               }}
               errorText="定位失败"

@@ -47,7 +47,7 @@ export default () => {
         <APILoader
           loadingNode={<Loading content="Loading..." />}
           config={{
-            key: '7b6e260fc45a67b31a265e22575f1c5e',
+            key: 'bmap key',
             type: 'bmap',
             markerIcons: {
               centerMarkerIcon: {
