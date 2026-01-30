@@ -5,19 +5,19 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "types": "./esm/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./esm/index.js"
     },
-    "./components/*": "./dist/components/*",
-    "./utils/*": "./dist/utils/*",
-    "./locale/*": "./dist/assets/locale/*"
+    "./components/*": "./esm/components/*",
+    "./utils/*": "./esm/utils/*",
+    "./locale/*": "./esm/assets/locale/*"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "esm/index.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
   "files": [
-    "dist"
+    "esm"
   ],
   "scripts": {
     "build": "father build && node scripts/build-after.js",
