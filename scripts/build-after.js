@@ -44,19 +44,12 @@ function deleteCode(filePath, code) {
   })
 }
 
-// 复制代码: src/dist到src/lib
-const currentSourceFolder = `./dist`
-const targetSourceFolder = `./lib`
-deleteFolder(targetSourceFolder)
-createFolder(targetSourceFolder)
-copyFolder(currentSourceFolder, targetSourceFolder, () => {
-  // 删除src/index中加载less的代码
-  deleteCode(`${targetSourceFolder}/index.js`, `import "./assets/index.less";\n`)
-})
+// 删除src/dist/index.js中加载less的代码
+deleteCode(`./dist/index.js`, `import "./assets/index.less";\n`)
 
-// 复制国际化文件: assets/locale目录到src/locale
-const currentLocaleFolder = `./src/assets/locale`
-const targetLocaleFolder = `./locale`
-deleteFolder(targetLocaleFolder)
-createFolder(targetLocaleFolder)
-copyFolder(currentLocaleFolder, targetLocaleFolder)
+// 复制国际化文件: assets/locale目录到src/locale(改为直接用dist/assets/locale)
+// const currentLocaleFolder = `./src/assets/locale`
+// const targetLocaleFolder = `./dist/locale`
+// deleteFolder(targetLocaleFolder)
+// createFolder(targetLocaleFolder)
+// copyFolder(currentLocaleFolder, targetLocaleFolder)
