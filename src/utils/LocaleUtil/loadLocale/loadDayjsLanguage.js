@@ -14,27 +14,21 @@ async function loadDayjsLanguage(language) {
       return
     }
 
-    // npm后删除这段代码
-    resolve({
-      status: 'error',
-      message: 'Dayjs language not found'
+    // 动态引入国际化文件
+    import(`dayjs/locale/${lang.dayjs}.js`).then(jsFile => {
+      let result = {
+        status: 'success',
+        message: 'Local js file loaded successfully'
+      }
+      dayjs.locale(lang?.dayjs)
+      resolve(result)
+    }).catch(() => {
+      let error = {
+        status: 'error',
+        message: 'Local js file loaded failed'
+      }
+      resolve(error)
     })
-
-    // npm后放开这段代码
-    // import(`dayjs/locale/${lang.dayjs}.js`).then(jsFile => {
-    //   let result = {
-    //     status: 'success',
-    //     message: 'Local js file loaded successfully'
-    //   }
-    //   dayjs.locale(lang?.dayjs)
-    //   resolve(result)
-    // }).catch(() => {
-    //   let error = {
-    //     status: 'error',
-    //     message: 'Local js file loaded failed'
-    //   }
-    //   resolve(error)
-    // })
   })
 }
 
