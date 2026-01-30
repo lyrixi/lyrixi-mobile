@@ -17,7 +17,8 @@
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "files": [
-    "esm"
+    "esm",
+    "umd"
   ],
   "scripts": {
     "build": "father build && node scripts/build-after.js",
@@ -57,6 +58,7 @@
     ]
   },
   "dependencies": {
+    "@babel/runtime": "^7.26.0",
     "axios": "^1.11.0",
     "compressorjs": "^1.2.1",
     "dayjs": "^1.11.13",
@@ -88,6 +90,9 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "stylelint": "^14.9.1"
+  },
+  "optionalDependencies": {
+    "@testing-library/jest-dom": "^6.6.3"
   },
   "peerDependencies": {
     "react": ">=16.9.0",

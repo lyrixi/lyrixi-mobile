@@ -2,6 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -12,5 +13,5 @@
       "lyrixi-mobile/*": ["src/*", "*"]
     }
   },
-  "include": [".dumirc.ts", "src/**/*"]
+  "include": [".dumirc.ts", ".fatherrc.ts", "src"]
 }
