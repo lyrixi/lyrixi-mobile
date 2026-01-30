@@ -31,6 +31,21 @@ function copyFolder(current, target, cb) {
     cb && cb()
   })
 }
+// 复制文件
+function copyFile(current, target, cb) {
+  if (!fs.existsSync(current)) {
+    cb && cb()
+    return
+  }
+  fs.cp(current, target, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    cb && cb()
+  })
+}
 // 删除文件中的指定代码
 function deleteCode(filePath, code) {
   fs.readFile(filePath, 'utf8', function (err, data) {
@@ -44,8 +59,11 @@ function deleteCode(filePath, code) {
   })
 }
 
-// 删除src/dist/index.js中加载less的代码
+// 删除 dist/index.js 中加载 less 的代码
 deleteCode(`./dist/index.js`, `import "./assets/index.less";\n`)
+
+// 复制css到dist目录
+copyFile('./umd/lyrixi-mobile.min.css', './dist/index.css')
 
 // 复制国际化文件: assets/locale目录到src/locale(改为直接用dist/assets/locale)
 // const currentLocaleFolder = `./src/assets/locale`
