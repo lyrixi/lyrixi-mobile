@@ -84,7 +84,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ActionSheetItem.jsx"></code>
+<code src="./demos/ActionSheetItem.jsx" id="actionsheet-modal"></code>
 
 ### API
 
@@ -135,7 +135,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ActionSheetItem.jsx"></code>
+<code src="./demos/ActionSheetItem.jsx" id="actionsheet-item"></code>
 
 ### API
 

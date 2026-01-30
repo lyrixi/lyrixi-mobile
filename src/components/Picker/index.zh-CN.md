@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/PickerCombo.jsx"></code>
+<code src="./demos/PickerCombo.jsx" id="picker-combo"></code>
 
 ## API
 
@@ -76,7 +76,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/PickerCombo.jsx"></code>
+<code src="./demos/PickerCombo.jsx" id="picker-combo-usage"></code>
 
 ### API
 

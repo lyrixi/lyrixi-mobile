@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/common.jsx"></code>
+<code src="./demos/NavBar.jsx"></code>
 
 ## API
 
@@ -48,7 +48,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/common.jsx"></code>
+<code src="./demos/NavBarTitle.jsx"></code>
 
 ### API
 
@@ -77,7 +77,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/common.jsx"></code>
+<code src="./demos/NavBarButton.jsx"></code>
 
 ### API
 
