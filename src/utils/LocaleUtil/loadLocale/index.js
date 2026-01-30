@@ -1,35 +1,28 @@
 import loadDayjsLanguage from './loadDayjsLanguage'
 import loadLyrixiLanguage from './loadLyrixiLanguage'
-import loadRemoteJsFiles from './loadRemoteJsFiles'
-import loadRemoteJsonFiles from './loadRemoteJsonFiles'
 
 // 加载国际化文件
 async function loadLocale(
   language,
-  { dayjs = true, lyrixi = true, remoteJsFiles, remoteJsonFiles } = {}
+  { dayjs = true, lyrixi = true } = {}
 ) {
+  let result = {
+    status: 'error',
+    message: 'language is null'
+  }
   if (!language) {
-    return {
-      status: 'error',
-      message: 'language is null'
-    }
+    return result
   }
   if (dayjs) {
-    await loadDayjsLanguage(language)
+    result = await loadDayjsLanguage(language)
+    if (result.status === 'error') {
+      return result
+    }
   }
   if (lyrixi) {
-    await loadLyrixiLanguage(language)
+    result = await loadLyrixiLanguage(language)
   }
-  if (remoteJsFiles?.length) {
-    await loadRemoteJsFiles(remoteJsFiles)
-  }
-  if (remoteJsonFiles?.length) {
-    await loadRemoteJsonFiles(remoteJsonFiles)
-  }
-  return {
-    status: 'success',
-    message: 'locale loaded'
-  }
+  return result
 }
 
 export default loadLocale

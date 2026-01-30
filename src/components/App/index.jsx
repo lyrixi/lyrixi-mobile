@@ -4,7 +4,6 @@ import initBridge from './initBridge'
 // 内库使用-start
 import Theme from './../../utils/Theme'
 import LocaleUtil from './../../utils/LocaleUtil'
-import Logger from './../../utils/Logger'
 import Debugger from './../../utils/Debugger'
 import Result from './../Result'
 import Button from './../Button'
@@ -27,10 +26,9 @@ window.addEventListener(
 
 // 顶层容器
 function App({
-  enableLogDB = true, // 启用日志数据库
   mapConfig = null, // 地图配置 {type: 'bmap' | 'amap' | 'google', key: 'xxx'}
   bridgeConfig = null, // { getScriptSrc, getConfigUrl, formatHeaders, formatPayload, formatResponse}
-  languageConfig = null, // 语言配置 {language: 'zh_CN' | 'en_US' | 'ja_JP', dayjs: true | false, lyrixi: true | false, localJsFiles: string[], localJsonFiles: string[], remoteJsFiles: string[], remoteJsonFiles: string[]}
+  language = null, // 语言配置 'zh_CN|en_US|ja_JP...'
   debugElement = null, // 传入debugger元素, 用于点击10次后门, 唤醒vconsole调试面板
   preload = null, // 预加载函数, 返回 {status: 'success'|'error', message: string}
   themeConfig = null, // 主题配置 {fontSize: 'm' | 'l' | 'xl'}
@@ -46,11 +44,6 @@ function App({
       Theme.setFontSize(themeConfig.fontSize)
     }
 
-    // 启用日志功能
-    if (enableLogDB) {
-      Logger.config()
-    }
-
     // 启用后门(点击10次后门, 唤醒vconsole调试面板)
     if (debugElement && debugElement instanceof Element) {
       Debugger.addTrigger(debugElement)
@@ -62,8 +55,8 @@ function App({
 
   async function load() {
     // 加载语言文件
-    if (languageConfig?.language) {
-      let result = await LocaleUtil.loadLocale(languageConfig?.language, languageConfig)
+    if (language) {
+      let result = await LocaleUtil.loadLocale(language)
       if (result.status === 'error') {
         setResult(result)
         return
