@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Main/index.jsx" id="transfer-main"></code>
+<code src="./demos/Transfer.jsx"></code>
 
 ## API
 
@@ -97,7 +97,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Main/index.jsx" id="transfer-main-usage"></code>
+<code src="./demos/Main/index.jsx"></code>
 
 ### API
 

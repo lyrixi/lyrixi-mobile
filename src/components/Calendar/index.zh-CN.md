@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/props.jsx" id="calendar-demo"></code>
+<code src="./demos/props.jsx"></code>
 
 ## API
 
@@ -66,7 +66,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/props.jsx" id="calendar-header"></code>
+<code src="./demos/CalendarHeader.jsx"></code>
 
 ### API
 

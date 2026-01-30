@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Keyboard.jsx" id="keyboard-demo"></code>
+<code src="./demos/Keyboard.jsx"></code>
 
 ## API
 
@@ -48,7 +48,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Keyboard.jsx" id="keyboard-number"></code>
+<code src="./demos/Number/index.jsx"></code>
 
 ### API
 

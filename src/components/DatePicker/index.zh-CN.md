@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/DatePickerCombo.jsx" id="datepicker-combo"></code>
+<code src="./demos/DatePickerCombo.jsx"></code>
 
 ## API
 
@@ -82,7 +82,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerCombo.jsx" id="datepicker-combo-usage"></code>
+<code src="./demos/DatePickerComboInput.jsx"></code>
 
 ### API
 
