@@ -16,13 +16,13 @@ Minimalist Token, Unified API, Simple and easy to use</div>
 ### Less
 
 ```bash
-@import 'lyrixi-mobile/src/assets/index.less';
+@import 'lyrixi-mobile/index.less';
 ```
 
 ### CSS import
 
 ```bash
-@import 'lyrixi-mobile/lyrixi-mobile.min.css';
+@import 'lyrixi-mobile/index.css';
 ```
 
 ## 📦 Install
