@@ -58,7 +58,7 @@ const Modal = forwardRef(
     const searchVisibleRef = useRef(false)
     // 没有设置headerRender的情况下, 大于15项显示搜索
     const [keyword, setKeyword] = useState('')
-    const [currentValue, setCurrentValue] = useState(value)
+    let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
 
