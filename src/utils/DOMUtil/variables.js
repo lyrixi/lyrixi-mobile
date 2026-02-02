@@ -17,7 +17,9 @@ const colors = [
   'danger',
   'danger-lighten',
   'success',
-  'success-lighten'
+  'success-lighten',
+  'disabled',
+  'disabled-lighten'
 ]
 
 // 尺寸枚举值(业务自行控制)
