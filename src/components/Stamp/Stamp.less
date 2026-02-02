@@ -1,11 +1,9 @@
 @import '../../assets/variables.less';
 
 .lyrixi-stamp {
-  display: inline-block;
-  --color-rgb: var(--seed-primary-rgb);
-  --bg-opacity: 0.5;
-  color: rgb(var(--color-rgb));
-  border: 6px solid rgba(var(--color-rgb), var(--bg-opacity));
+  display: inline-flex;
+  color: var(--lyrixi-primary);
+  border: 6px solid tint(@lyrixi-primary, 60%);
 
   transform: rotate(-15deg);
   background-color: rgba(255, 255, 255, 0.8);
@@ -14,7 +12,7 @@
     font-size: 14px;
     letter-spacing: 0;
     font-weight: 600;
-    border: 1px solid rgba(var(--color-rgb), var(--bg-opacity));
+    border: 1px solid currentColor;
   }
 
   // 形状: 方形
@@ -50,61 +48,61 @@
   &.lyrixi-primary {
     color: var(--lyrixi-primary);
     background-color: var(--lyrixi-primary-lighten);
-    border-color: lighten(@lyrixi-primary, 90%);
+    border-color: tint(@lyrixi-primary, 60%);
 
 
     .lyrixi-stamp-inner {
-      border-color: inherit;
+      border-color: tint(@lyrixi-primary, 60%);
     }
   }
 
   &.lyrixi-info {
     color: var(--lyrixi-info);
     background-color: var(--lyrixi-info-lighten);
-    border-color: lighten(@lyrixi-info, 90%);
+    border-color: tint(@lyrixi-info, 60%);
 
     .lyrixi-stamp-inner {
-      border-color: inherit;
+      border-color: tint(@lyrixi-info, 60%);
     }
   }
 
   &.lyrixi-warning {
     color: var(--lyrixi-warning);
     background-color: var(--lyrixi-warning-lighten);
-    border-color: lighten(@lyrixi-warning, 90%);
+    border-color: tint(@lyrixi-warning, 60%);
 
     .lyrixi-stamp-inner {
-      border-color: inherit;
+      border-color: tint(@lyrixi-warning, 60%);
     }
   }
 
   &.lyrixi-danger {
     color: var(--lyrixi-danger);
     background-color: var(--lyrixi-danger-lighten);
-    border-color: lighten(@lyrixi-danger, 90%);
+    border-color: tint(@lyrixi-danger, 60%);
 
     .lyrixi-stamp-inner {
-      border-color: inherit;
+      border-color: tint(@lyrixi-danger, 60%);
     }
   }
 
   &.lyrixi-success {
     color: var(--lyrixi-success);
     background-color: var(--lyrixi-success-lighten);
-    border-color: lighten(@lyrixi-success, 90%);
+    border-color: tint(@lyrixi-success, 60%);
 
     .lyrixi-stamp-inner {
-      border-color: inherit;
+      border-color: tint(@lyrixi-success, 60%);
     }
   }
 
   &.lyrixi-disabled {
     color: var(--lyrixi-disabled);
     background-color: var(--lyrixi-disabled-lighten);
-    border-color: lighten(@lyrixi-disabled, 90%);
+    border-color: tint(@lyrixi-disabled, 60%);
 
     .lyrixi-stamp-inner {
-      border-color: inherit;
+      border-color: tint(@lyrixi-disabled, 60%);
     }
   }
 }

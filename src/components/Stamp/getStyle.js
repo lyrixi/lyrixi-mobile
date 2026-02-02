@@ -19,7 +19,12 @@ function getStyle({
 
   // 构建自定义样式
   const newStyle = {
-    ...(!isColorClass ? { color: color, borderColor: `rgba(${colorRgb}, 0.5)`, backgroundColor: `rgba(${colorRgb}, 0.5)` } : {}),
+    ...(!isColorClass ? {
+      color: color,
+      // 如果不考虑兼容性问题, 可以使用: color-mix(in srgb, color, white 50%);
+      borderColor: `rgba(${colorRgb}, 0.5)`,
+      backgroundColor: `rgba(${colorRgb}, 0.5)`
+    } : {}),
     ...style
   }
 
