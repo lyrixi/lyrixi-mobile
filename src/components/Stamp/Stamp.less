@@ -1,18 +1,20 @@
 @import '../../assets/variables.less';
 
 .lyrixi-stamp {
-  display: inline-flex;
-  color: var(--lyrixi-primary);
-  border: 6px solid tint(@lyrixi-primary, 60%);
+  --lyrixi-stamp-color: var(--lyrixi-primary);
 
+  display: inline-flex;
   transform: rotate(-15deg);
-  background-color: rgba(255, 255, 255, 0.8);
+
+  color: var(--lyrixi-stamp-color);
+  background-color: color-mix(in srgb, currentColor, white 90%);
+  border: 6px solid color-mix(in srgb, currentColor, white 60%);
 
   .lyrixi-stamp-inner {
     font-size: 14px;
     letter-spacing: 0;
     font-weight: 600;
-    border: 1px solid currentColor;
+    border: 1px solid color-mix(in srgb, currentColor, white 60%);
   }
 
   // 形状: 方形

@@ -14,6 +14,7 @@ export default () => {
             <Stamp color="danger">Danger</Stamp>
             <Stamp color="success">Success</Stamp>
             <Stamp color="disabled">Disabled</Stamp>
+            <Stamp color="#ff8800">ff8800</Stamp>
           </Card.Main>
         </Card>
         <Card>

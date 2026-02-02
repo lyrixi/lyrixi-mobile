@@ -15,15 +15,12 @@ function getStyle({
   // 判断颜色是否在枚举值中
   const isColorClass = DOMUtil.variables.colors.includes(color)
 
-  let colorRgb = isColorClass ? undefined : Theme.hexToRgb(color)
-
   // 构建自定义样式
   const newStyle = {
     ...(!isColorClass ? {
       color: color,
-      // 如果不考虑兼容性问题, 可以使用: color-mix(in srgb, color, white 50%);
-      borderColor: `rgba(${colorRgb}, 0.5)`,
-      backgroundColor: `rgba(${colorRgb}, 0.5)`
+      // 如果不考虑兼容性问题, 可以使用自定义样式:
+      '--lyrixi-stamp-color': color,
     } : {}),
     ...style
   }
