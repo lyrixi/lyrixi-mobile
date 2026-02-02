@@ -118,7 +118,7 @@ export default () => {
             onChange={setValue}
           />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
-            当前值: "{value || '空'}"
+            当前值: {value || '空'}
           </div>
         </Card>
 
