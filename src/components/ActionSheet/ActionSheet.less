@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
 }
+
 .lyrixi-actionsheet-header-title {
   flex: 1;
   text-align: center;
@@ -31,22 +32,26 @@
   padding: 12px;
   font-size: 16px;
   text-align: center;
+
   &:checked {
     background-color: var(--lyrixi-border-color);
   }
 }
+
 .lyrixi-actionsheet-item {
   position: relative;
   padding: 14px 4px;
   margin: 0 12px;
   text-align: center;
   .lyrixi-border-b;
+
   &.lyrixi-checked {
     color: var(--lyrixi-primary);
   }
+
   &.lyrixi-disabled {
     pointer-events: none;
-    color: var(--lyrixi-font-color-disabled);
+    color: var(--lyrixi-disabled);
   }
 }
 

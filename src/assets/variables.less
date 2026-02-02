@@ -2,6 +2,13 @@
 定义变量-----------------------------------------------------------------------------------------
 */
 
+@lyrixi-primary: #ff9008;
+@lyrixi-info: #0076ff;
+@lyrixi-warning: #f4984e;
+@lyrixi-danger: #fc484a;
+@lyrixi-success: #00a870;
+@lyrixi-disabled: #a9b1b9;
+
 // 基础颜色(控件多基于如下几种颜色)
 :root {
   // 动画时长(例如遮等)
@@ -22,22 +29,23 @@
   --lyrixi-font-color-secondary: #5c646c;
   --lyrixi-font-color-tertiary: #85909c;
   --lyrixi-font-color-quaternary: #a9b1b9;
-  --lyrixi-font-color-disabled: #a9b1b9;
 
   // 边框色
   --lyrixi-border-color: #e6e8eb;
 
   // 颜色
-  --lyrixi-primary: #ff9008;
-  --lyrixi-primary-lighten: #fff7e6;
-  --lyrixi-info: #0076ff;
-  --lyrixi-info-lighten: #e6f4ff;
-  --lyrixi-warning: #f4984e;
-  --lyrixi-warning-lighten: #fffbe6;
-  --lyrixi-danger: #fc484a;
-  --lyrixi-danger-lighten: #fff1f0;
-  --lyrixi-success: #00a870;
-  --lyrixi-success-lighten: #f6ffed;
+  --lyrixi-primary: @lyrixi-primary;
+  --lyrixi-primary-lighten: lighten(@lyrixi-primary, 43%); // #fff7e6
+  --lyrixi-info: @lyrixi-info;
+  --lyrixi-info-lighten: lighten(@lyrixi-info, 43%); // #e6f4ff
+  --lyrixi-warning: @lyrixi-warning;
+  --lyrixi-warning-lighten: lighten(@lyrixi-warning, 43%); // #fffbe6
+  --lyrixi-danger: @lyrixi-danger;
+  --lyrixi-danger-lighten: lighten(@lyrixi-danger, 43%); // #fff1f0
+  --lyrixi-success: @lyrixi-success;
+  --lyrixi-success-lighten: lighten(@lyrixi-success, 43%); // #f6ffed
+  --lyrixi-disabled: @lyrixi-disabled;
+  --lyrixi-disabled-lighten: lighten(@lyrixi-disabled, 43%); // #f1f2f5
 
   // 高度大小
   --lyrixi-height-xxl: 56px;

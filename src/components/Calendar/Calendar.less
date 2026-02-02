@@ -26,6 +26,7 @@
     }
   }
 }
+
 // 日历上的点
 .lyrixi-calendar-date-dot {
   position: absolute;
@@ -37,6 +38,7 @@
   bottom: 3px;
   background-color: var(--lyrixi-primary);
 }
+
 // 区间选择模式
 .lyrixi-calendar-mode-range {
   .lyrixi-selected {
@@ -45,12 +47,14 @@
       width: 100%;
     }
   }
+
   .lyrixi-selected-start {
     .lyrixi-calendar-date-num {
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
     }
   }
+
   .lyrixi-selected-end {
     .lyrixi-calendar-date-num {
       border-top-right-radius: 8px;
@@ -67,6 +71,7 @@
   padding: 6px 0;
   margin: 0 2px;
 }
+
 // 标题
 .lyrixi-calendar-title {
   .lyrixi-flex-1;
@@ -74,6 +79,7 @@
   padding: 6px 0;
   text-align: center;
 }
+
 // 左右箭头
 .lyrixi-calendar-previous-month,
 .lyrixi-calendar-next-month,
@@ -144,9 +150,11 @@
   width: 300%;
   transition-property: transform;
 }
+
 .lyrixi-calendar-page {
   flex: 1;
 }
+
 .lyrixi-calendar-row::after {
   display: table;
   clear: both;
@@ -157,9 +165,11 @@
 .lyrixi-calendar-date-current-month {
   color: var(--lyrixi-font-color-default);
 }
+
 .lyrixi-calendar-date-out-month {
   color: var(--lyrixi-font-color-secondary);
 }
+
 .lyrixi-calendar-date-today {
   .lyrixi-calendar-date-num {
     border-style: solid;
@@ -179,13 +189,15 @@
   align-items: center;
   justify-content: center;
 }
+
 .lyrixi-calendar-date-disabled {
-  color: var(--lyrixi-font-color-disabled);
+  color: var(--lyrixi-disabled);
   font-weight: normal;
   background-color: transparent;
   border-color: transparent;
   pointer-events: none;
 }
+
 // Calendar slide
 .lyrixi-calendar-footer {
   display: flex;
