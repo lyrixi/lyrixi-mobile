@@ -60,10 +60,10 @@ function deleteCode(filePath, code) {
 }
 
 // 删除 esm/index.js 中加载 less 的代码
-deleteCode(`./esm/index.js`, `import "./assets/index.less";\n`)
+// deleteCode(`./esm/index.js`, `import "./assets/index.less";\n`)
 
 // 复制css到dist目录
-copyFile('./umd/lyrixi-mobile.min.css', './esm/index.css')
+copyFile('./umd/lyrixi-mobile.min.css', './esm/lyrixi-mobile.min.css')
 
 // 复制国际化文件: assets/locale目录到src/locale(改为直接用dist/assets/locale)
 // const currentLocaleFolder = `./src/assets/locale`
