@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "A react library developed with dumi",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": ["**/*.less", "**/*.css"],
   "exports": {
     ".": {
       "types": "./esm/index.d.ts",
