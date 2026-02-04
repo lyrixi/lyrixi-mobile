@@ -4,6 +4,7 @@ import setLocale from './setLocale'
 import locale from './locale'
 import defaultGetLanguage from './getLanguage'
 
+// 记录语言: window.lyrixiLocaleLanguage, window.lyrixiLocaleData
 const LocaleUtil = {
   // 存储自定义 getLanguage 函数
   _getCustomGetLanguages: [],

@@ -1,13 +1,3 @@
-import './assets/index.less'
-
-// 记录版本号
-const packageJson = require('./../package.json')
-if (packageJson?.version) {
-  window.lyrixiVersion = packageJson.version
-}
-
-// 记录语言: window.lyrixiLocaleLanguage, window.lyrixiLocaleData
-
 // Modal必须先加载, 否则编译后其它依赖它的组件会找不到Modal
 export { default as Modal } from './components/Modal'
 export { default as ActionSheet } from './components/ActionSheet'

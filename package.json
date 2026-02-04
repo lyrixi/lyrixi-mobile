@@ -3,15 +3,24 @@
   "version": "0.0.2",
   "description": "A react library developed with dumi",
   "license": "MIT",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./esm/index.d.ts",
       "import": "./esm/index.js",
       "require": "./esm/index.js"
     },
-    "./components/*": "./esm/components/*",
-    "./utils/*": "./esm/utils/*",
-    "./locale/*": "./esm/assets/locale/*"
+    "./assets/*": "./esm/assets/*",
+    "./components/*": {
+      "import": "./esm/components/*/index.js",
+      "require": "./esm/components/*/index.js",
+      "default": "./esm/components/*/index.js"
+    },
+    "./utils/*": {
+      "import": "./esm/utils/*/index.js",
+      "require": "./esm/utils/*/index.js",
+      "default": "./esm/utils/*/index.js"
+    }
   },
   "main": "esm/index.js",
   "module": "esm/index.js",
