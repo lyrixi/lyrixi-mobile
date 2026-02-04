@@ -13,11 +13,47 @@ import { LocaleUtil, Result, Button } from 'lyrixi-mobile'
 测试使用-end */
 
 // Load map js and css source
-const APILoader = forwardRef(
+const MapLoader = forwardRef(
   (
     {
-      // Value & Display Value(key: '地图的key', type: 'bmap' | 'amap' | 'google')
+      // Value & Display Value
+      /*
+      {
+        key: '地图的key',
+        type: 'bmap' | 'amap' | 'google',
+        markerIcons: {
+          centerMarkerIcon: {
+            iconUrl: `中心点图标`,
+            iconRetinaUrl: `中心点图标2x`,
+            shadowUrl: `阴影图标`,
+            shadowRetinaUrl: `阴影图标2x`,
+            shadowSize: [39, 39],
+            iconSize: [30, 49],
+            iconAnchor: [15, 25]
+          },
+          markerIcon: {
+            iconUrl: `点位图标`,
+            iconRetinaUrl: `点位图标2x`,
+            shadowUrl: `阴影图标`,
+            shadowRetinaUrl: `阴影图标2x`,
+            shadowSize: [33, 33],
+            iconSize: [20, 33],
+            iconAnchor: [10, 16]
+          }
+        },
+        leaflet: {
+          css: `leaflet.css网络地址`,
+          js: `leaflet.js网络地址`
+        }
+      }
+      */
       config,
+
+      // Utils
+      getAddress,
+      getLocation,
+      openLocation,
+      queryNearby,
 
       // Element
       loadingRender,
@@ -49,20 +85,26 @@ const APILoader = forwardRef(
 
     // 加载
     async function loadData() {
-      // 保持单例
+      // Utils
+      if (typeof getAddress === 'function') window.defaultGetAddress = getAddress
+      if (typeof getLocation === 'function') window.defaultGetLocation = getLocation
+      if (typeof openLocation === 'function') window.defaultOpenLocation = openLocation
+      if (typeof queryNearby === 'function') window.defaultQueryNearby = queryNearby
+
+      // 地图Key/Type/MarkerIcons/Leaflet配置
       if (config?.key && config?.type) {
-        window.APILoaderConfig = {
-          ...window.APILoaderConfig,
+        window.MapLoaderConfig = {
+          ...window.MapLoaderConfig,
           ...config
         }
       }
       // 没有设置config，则读取默认配置
-      else if (window.APILoaderConfig) {
+      else if (window.MapLoaderConfig) {
         // eslint-disable-next-line
-        config = window.APILoaderConfig
+        config = window.MapLoaderConfig
       }
 
-      if (!window.APILoaderConfig?.key || !window.APILoaderConfig?.type) {
+      if (!window.MapLoaderConfig?.key || !window.MapLoaderConfig?.type) {
         setResult({
           status: 'error',
           message: LocaleUtil.locale(
@@ -74,7 +116,7 @@ const APILoader = forwardRef(
       }
 
       // Load map resource
-      result = await loadSource(window.APILoaderConfig)
+      result = await loadSource(window.MapLoaderConfig)
       if (result?.status === 'error') {
         // 自定义处理错误
         if (onError) {
@@ -133,4 +175,4 @@ const APILoader = forwardRef(
   }
 )
 
-export default APILoader
+export default MapLoader

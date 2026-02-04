@@ -51,10 +51,10 @@ export default () => {
             formatter={(num) => {
               return '$' + MathUtil.thousands(Number(num).toFixed(2))
             }}
-            // onChange={(val) => {
-            //   console.log('得到的值:', val)
-            //   setValue(val)
-            // }}
+          // onChange={(val) => {
+          //   console.log('得到的值:', val)
+          //   setValue(val)
+          // }}
           />
         </Card>
 

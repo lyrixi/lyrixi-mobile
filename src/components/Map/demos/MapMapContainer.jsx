@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
-const { APILoader, MapContainer, coordsToWgs84 } = Map
+const { MapLoader, MapContainer, coordsToWgs84 } = Map
 
 export default () => {
   const mapRef = useRef(null)
@@ -19,7 +19,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <APILoader
+        <MapLoader
           config={{
             key: 'bmap key',
             type: 'bmap'
@@ -69,7 +69,7 @@ export default () => {
               {/* MapContainer 会自动将 map 注入到子组件中 */}
             </MapContainer>
           </div>
-        </APILoader>
+        </MapLoader>
         <div style={{ padding: '10px' }}>
           <Button
             onClick={() => {

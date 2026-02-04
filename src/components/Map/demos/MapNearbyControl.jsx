@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
-const { APILoader, MapContainer, NearbyControl, coordsToWgs84 } = Map
+const { MapLoader, MapContainer, NearbyControl, coordsToWgs84 } = Map
 
 export default () => {
   const [value, setValue] = useState({
@@ -15,7 +15,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <APILoader
+        <MapLoader
           config={{
             key: 'bmap key',
             type: 'bmap'
@@ -42,7 +42,7 @@ export default () => {
               />
             </MapContainer>
           </div>
-        </APILoader>
+        </MapLoader>
       </Page.Main>
     </Page>
   )

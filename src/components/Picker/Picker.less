@@ -4,6 +4,7 @@
   height: 215px;
   overflow: hidden;
   flex: none;
+
   // 禁用
   &.lyrixi-disabled {
     .lyrixi-picker-layer {
@@ -20,6 +21,7 @@
   height: 100%;
   table-layout: fixed;
 }
+
 // 一槽
 .lyrixi-picker-slot {
   display: table-cell;
@@ -27,6 +29,7 @@
   padding-bottom: 86px;
   overflow: hidden;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+
   li {
     height: 44px;
     padding: 0 8px;
@@ -38,14 +41,17 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     pointer-events: none;
+
     &.lyrixi-active {
       color: var(--lyrixi-font-color-default);
     }
   }
+
   &.lyrixi-lock li.lyrixi-active {
     color: #b6b6b6;
   }
 }
+
 // 遮皮
 .lyrixi-picker-layer {
   position: absolute;
@@ -56,16 +62,13 @@
   pointer-events: none;
 
   // 渐变
-  --picker-view-mask-top-background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.7) 65%
-  );
-  --picker-view-mask-bottom-background: linear-gradient(
-    to top,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.7) 65%
-  );
+  --picker-view-mask-top-background: linear-gradient(to bottom,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.7) 65%);
+  --picker-view-mask-bottom-background: linear-gradient(to top,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.7) 65%);
+
   &:before,
   &:after {
     position: absolute;
@@ -75,6 +78,7 @@
     height: 82px;
     content: '';
   }
+
   &:before {
     top: 0;
     // background: fade(#white, 70%);
@@ -86,6 +90,7 @@
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.7) 65%);
     background: var(--picker-view-mask-top-background);
   }
+
   &:after {
     bottom: 0;
     // background: fade(#white, 70%);
@@ -98,6 +103,7 @@
     background: var(--picker-view-mask-bottom-background);
   }
 }
+
 // 遮皮选中
 .lyrixi-picker-layer-frame {
   position: absolute;
@@ -114,6 +120,7 @@
 .lyrixi-picker-tabs {
   .lyrixi-border-b;
 }
-.lyrixi-picker-tabs + .lyrixi-picker-main {
+
+.lyrixi-picker-tabs+.lyrixi-picker-main {
   margin: 10px 0;
 }

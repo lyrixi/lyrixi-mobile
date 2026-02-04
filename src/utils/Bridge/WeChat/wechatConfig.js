@@ -100,10 +100,10 @@ function wechatConfig({ url, headers, payload, formatResponse, onSuccess, onErro
 
         console.log(
           response.message ||
-            `WeChat ${LocaleUtil.locale(
-              '鉴权接口失败，请稍后重试！',
-              'lyrixi_7334cbbe6fd40b00e470b91c73f16d2f'
-            )}`
+          `WeChat ${LocaleUtil.locale(
+            '鉴权接口失败，请稍后重试！',
+            'lyrixi_7334cbbe6fd40b00e470b91c73f16d2f'
+          )}`
         )
       }
     })

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Icon, Button, Float, Page, Divider, Storage } from 'lyrixi-mobile'
 
 export default () => {
-  useEffect(() => {}, [])
+  useEffect(() => { }, [])
 
   return (
     <Page>

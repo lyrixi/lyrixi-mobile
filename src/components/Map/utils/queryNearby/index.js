@@ -11,40 +11,35 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 搜索附近
-async function queryNearby({ map, keyword, longitude, latitude, type, radius }) {
+function queryNearby({ map, keyword, longitude, latitude, type, radius }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let isTimeout = false
+    let queryNearbyTimeout = false
     // Search error protect: google and bmap error no callback
-    let errorTimeout = window.setTimeout(() => {
-      isTimeout = true
-      resolve({
+    let queryNearbyTimer = window.setTimeout(() => {
+      queryNearbyTimeout = true
+      let error = {
         status: 'error',
         message: LocaleUtil.locale('查询超时', 'lyrixi_82105ffb651ae5b2c2a08fa1b1b506ef')
-      })
+      }
+      resolve(error)
     }, 5000)
 
     let result = null
 
     // 默认优先使用系统级定位
-    let defaultQueryNearby = window?.queryNearbyDefault || window?.APILoaderConfig?.queryNearby
+    let defaultQueryNearby = window?.defaultQueryNearby
     if (typeof defaultQueryNearby === 'function') {
       result = await defaultQueryNearby({ map, keyword, longitude, latitude, type, radius })
-      if (isTimeout) return
-      window.clearTimeout(errorTimeout)
-      resolve(result)
-      return
-    }
-
-    if (window.google) {
+    } else if (window.google) {
       result = await googleQueryNearby({ map, keyword, longitude, latitude, type, radius })
     } else if (window.BMap) {
       result = await bmapQueryNearby({ map, keyword, longitude, latitude, type, radius })
     } else {
       result = await overpassQueryNearby({ map, keyword, longitude, latitude, type, radius })
     }
-    if (isTimeout) return
-    window.clearTimeout(errorTimeout)
+    if (queryNearbyTimeout) return
+    window.clearTimeout(queryNearbyTimer)
     resolve(result)
   })
 }

@@ -18,6 +18,7 @@ const LocationModal = forwardRef(
     {
       // Value & Display Value
       value,
+      cacheExpires,
 
       // Status
       open,
@@ -25,6 +26,7 @@ const LocationModal = forwardRef(
       safeArea,
       allowClear,
       multiple,
+      nearbyVisible,
 
       // Style
       modalClassName,
@@ -34,7 +36,7 @@ const LocationModal = forwardRef(
 
       // Element
       portal,
-      config,
+      mapConfig,
       getLocation,
       getAddress,
 
@@ -121,13 +123,15 @@ const LocationModal = forwardRef(
         {/* Element: Main */}
         <Main
           ref={mainRef}
+          // Value & Display Value
+          value={currentValue}
+          cacheExpires={cacheExpires}
           // Status
           open={open}
           multiple={multiple}
-          // Value & Display Value
-          value={currentValue}
+          nearbyVisible={nearbyVisible}
           // Element
-          config={config}
+          mapConfig={mapConfig}
           getLocation={getLocation}
           getAddress={getAddress}
           // Events

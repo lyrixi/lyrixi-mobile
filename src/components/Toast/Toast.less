@@ -3,14 +3,17 @@
 .lyrixi-toast-propagation {
   pointer-events: none;
 }
+
 // toast遮罩, 透明
 .lyrixi-toast-mask {
   background-color: transparent;
+
   &.lyrixi-active {
     z-index: 999;
     background-color: transparent;
   }
 }
+
 // toast框
 .lyrixi-toast {
   position: absolute;
@@ -26,29 +29,35 @@
   // 底部类型
   &.lyrixi-bottom {
     bottom: -100px;
+
     &.lyrixi-active {
       transform: translate3d(0, -150px, 0);
       opacity: 1;
     }
   }
+
   // 头部类型
   &.lyrixi-top {
     top: 44px;
+
     &.lyrixi-active {
       visibility: visible;
       opacity: 1;
     }
   }
+
   &.lyrixi-top,
   &.lyrixi-bottom {
     .lyrixi-toast-wrapper {
       .lyrixi-flex-align-center;
     }
+
     .lyrixi-toast-icon {
       width: 16px;
       height: 16px;
       font-size: 16px;
     }
+
     .lyrixi-toast-content {
       .lyrixi-flex-1;
       // .lyrixi-nowrap;
@@ -56,10 +65,12 @@
       // height: 16px; // 上下类型的左图标为16px,所以文字也设置成16px与之匹配
       // line-height: 16px;
     }
-    .lyrixi-toast-icon + .lyrixi-toast-content {
+
+    .lyrixi-toast-icon+.lyrixi-toast-content {
       margin-left: 2px;
     }
   }
+
   // 中间类型
   &.lyrixi-middle {
     top: 50%;
@@ -69,23 +80,28 @@
       visibility: visible;
       opacity: 1;
     }
+
     .lyrixi-toast-wrapper {
       .lyrixi-flex-vertical;
       .lyrixi-flex-align-center;
     }
+
     .lyrixi-toast-icon {
       width: 36px;
       height: 36px;
       font-size: 36px;
     }
+
     .lyrixi-toast-content {
       text-align: center;
     }
-    .lyrixi-toast-icon + .lyrixi-toast-content {
+
+    .lyrixi-toast-icon+.lyrixi-toast-content {
       margin-top: 8px;
     }
   }
 }
+
 // toast框画布
 .lyrixi-toast-wrapper {
   .lyrixi-inline-flex;
@@ -97,11 +113,13 @@
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 6px;
 }
+
 // toast图标
 .lyrixi-toast-icon {
   display: block;
   background-size: cover;
 }
+
 .lyrixi-toast-content {
   display: block;
   font-size: var(--lyrixi-font-size-m);

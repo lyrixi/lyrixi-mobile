@@ -21,13 +21,16 @@
   0% {
     transform: rotate(0deg);
   }
+
   50% {
     transform: rotate(180deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
+
 // 下拉刷新-pull类型(头部和底部刷新同一个样式)
 .lyrixi-page-main-pull-push {
   display: flex;
@@ -40,6 +43,7 @@
   overflow: hidden;
   color: var(--lyrixi-font-color-tertiary);
 }
+
 .lyrixi-page-main-pull-push-wrapper {
   .lyrixi-flex;
   .lyrixi-flex-align-center;
@@ -48,11 +52,13 @@
   height: 40px;
   font-size: 13px;
 }
+
 .lyrixi-page-main-pull-push-text {
   display: block;
   height: 20px;
   line-height: 20px;
 }
+
 // 按照ue要求改为不显示图标的样式(隐藏图标)
 .lyrixi-page-main-pull-push-icon {
   // UI要求去掉图标，此处隐藏起来
@@ -72,12 +78,15 @@
   &.lyrixi-page-main-pull-push-icon-up {
     transform: rotate(0deg);
   }
+
   &.lyrixi-page-main-pull-push-icon-down {
     transform: rotate(180deg);
   }
+
   &.lyrixi-page-main-pull-push-icon-none {
     display: none;
   }
+
   &.lyrixi-page-main-pull-push-icon-loading {
     background-position: left bottom;
     transition-duration: 0ms;

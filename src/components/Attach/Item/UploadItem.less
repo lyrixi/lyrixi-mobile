@@ -21,12 +21,14 @@
 
   .lyrixi-flex;
   .lyrixi-flex-align-center;
+
   .lyrixi-attach-uploading-icon-loading {
     color: #d9d9d9;
   }
 
   &.lyrixi-error {
     color: var(--lyrixi-danger);
+
     .lyrixi-attach-reload {
       display: flex;
     }
@@ -38,6 +40,7 @@
     }
   }
 }
+
 .lyrixi-attach-item-type {
   .lyrixi-flex;
   .lyrixi-flex-align-center;
@@ -48,55 +51,69 @@
   width: 20px;
   height: 20px;
   font-size: 20px;
+
   // 正方形的图标要略小一些
   &.lyrixi-word,
   &.lyrixi-excel,
   &.lyrixi-ppt {
     font-size: 18px;
   }
+
   &.lyrixi-video {
     &:extend(.lyrixi-iconfont-file-video all);
   }
+
   &.lyrixi-text {
     &:extend(.lyrixi-iconfont-file-text all);
   }
+
   &.lyrixi-word {
     color: #83a4eb;
     &:extend(.lyrixi-iconfont-file-word all);
   }
+
   &.lyrixi-unknown {
     &:extend(.lyrixi-iconfont-file-unknow all);
   }
+
   &.lyrixi-audio {
     &:extend(.lyrixi-iconfont-file-audio all);
   }
+
   &.lyrixi-excel {
     color: #8ad4aa;
     &:extend(.lyrixi-iconfont-file-excel all);
   }
+
   &.lyrixi-pack {
     &:extend(.lyrixi-iconfont-file-pack all);
   }
+
   &.lyrixi-image {
     &:extend(.lyrixi-iconfont-file-image all);
   }
+
   &.lyrixi-pdf {
     &:extend(.lyrixi-iconfont-file-pdf all);
   }
+
   &.lyrixi-ppt {
     color: #e7896d;
     &:extend(.lyrixi-iconfont-file-ppt all);
   }
 }
+
 .lyrixi-attach-item-title {
   pointer-events: none;
   .lyrixi-flex-1;
   .lyrixi-nowrap;
   .lyrixi-ellipsis;
 }
+
 .lyrixi-attach-item-right-icon {
   margin-left: 12px;
 }
+
 .lyrixi-attach-delete,
 .lyrixi-attach-reload {
   display: flex;
@@ -109,9 +126,11 @@
   height: 16px;
   overflow: hidden;
 }
+
 .lyrixi-attach-delete {
   &:extend(.lyrixi-iconfont-close all);
 }
+
 .lyrixi-attach-reload {
   display: none;
   &:extend(.lyrixi-iconfont-update all);

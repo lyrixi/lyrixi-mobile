@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
   &::before {
     font-size: 100px;
     content: '签名';
@@ -26,6 +27,7 @@
     text-align: center;
     transform: rotate(90deg);
   }
+
   canvas {
     position: absolute;
   }
@@ -38,6 +40,7 @@
   height: 100%;
   margin-left: 14px;
 }
+
 .lyrixi-signature-main-button {
   display: inline-flex;
   justify-content: center;
@@ -47,20 +50,25 @@
   border-radius: var(--lyrixi-radius-s);
   font-size: var(--lyrixi-font-size-l);
   box-sizing: border-box;
+
   p {
     transform: rotate(90deg);
   }
 }
-.lyrixi-signature-main-button + .lyrixi-signature-main-button {
+
+.lyrixi-signature-main-button+.lyrixi-signature-main-button {
   margin-top: 10px;
 }
+
 .lyrixi-signature-main-button-clear {
   color: var(--lyrixi-danger);
   border: 1px solid var(--lyrixi-danger);
 }
+
 .lyrixi-signature-main-button-cancel {
   border: 1px solid var(--lyrixi-border-color);
 }
+
 .lyrixi-signature-main-button-ok {
   color: white;
   background-color: var(--lyrixi-primary);

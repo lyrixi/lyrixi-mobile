@@ -109,7 +109,7 @@ function App({
   // Map
   if (mapConfig?.type && mapConfig?.key) {
     return (
-      <Map.APILoader
+      <Map.MapLoader
         config={{
           type: mapConfig.type,
           key: mapConfig.key
@@ -120,7 +120,7 @@ function App({
       >
         {/* 地图加载完成后才会渲染children */}
         {children}
-      </Map.APILoader>
+      </Map.MapLoader>
     )
   }
 

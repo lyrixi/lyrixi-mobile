@@ -299,11 +299,11 @@ function Attach(
         onBeforeChoose={
           typeof onBeforeChoose === 'function'
             ? async (e) => {
-                _showLoading()
-                let isOk = await onBeforeChoose(e)
-                _hideLoading()
-                return isOk
-              }
+              _showLoading()
+              let isOk = await onBeforeChoose(e)
+              _hideLoading()
+              return isOk
+            }
             : null
         }
       />

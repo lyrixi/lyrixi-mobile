@@ -12,7 +12,7 @@ const Preview = forwardRef(
       autoLocation,
 
       // Element
-      config,
+      mapConfig,
       getLocation,
       getAddress,
       loadingNode,
@@ -34,7 +34,7 @@ const Preview = forwardRef(
         readOnly={true}
         autoLocation={autoLocation}
         // Element
-        config={config}
+        mapConfig={mapConfig}
         getLocation={getLocation}
         getAddress={getAddress}
         loadingNode={loadingNode}

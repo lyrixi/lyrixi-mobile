@@ -3,6 +3,7 @@ import _ from 'lodash'
 import uploadWechat from './../../Wechat/uploadItem'
 import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
+import uploadCustom from './../../Custom/uploadItem'
 
 // 内库使用-start
 import Toast from './../../../Toast'
@@ -14,41 +15,34 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 导出给外部使用的工具类: 异步上传
-let uploadItem = null
-if (Device.platform === 'dingtalk') {
-  // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
-  if (Device?.os === 'harmony') {
-    uploadItem = uploadFile
-  } else {
-    uploadItem = uploadDingtalk
-  }
-} else if (Device.device === 'pc' || Device.platform === 'lark') {
-  uploadItem = uploadFile
-} else if (
-  Device.platform === 'wechat' ||
-  Device.platform === 'wecom' ||
-  Device.platform === 'wechatMiniProgram' ||
-  Device.platform === 'wecomMiniProgram'
-) {
-  uploadItem = uploadWechat
-}
-
 /**
- * 上传图片
+ * 导出给外部使用的工具类: 异步上传图片
  * @param {Array|Object} pendingList ImageUploader控件返回的待传列表
  * @param {Object} uploadConfig {platform: 'browser强制上传方式', getUploadUrl: function({platform}), formatHeaders: function(header, {platform}), formatPayload: function(payload, {platform}), formatResponse: function(response, {platform})}
  * @returns {Array} [{原item属性, filePath: '', fileUrl: '', fileThumbnail: '', status: 'error|success'}]
  */
 
 async function uploadList(pendingList, uploadConfig) {
-  if (_.isEmpty(pendingList)) {
-    return null
+  // 根据平台选择上传方法
+  let currentPlatform = uploadConfig?.platform || Device.platform
+  let uploadItem = null
+  if (Device.device === 'pc' || ['browser', 'lark'].includes(currentPlatform)) {
+    uploadItem = uploadFile
+  } else if (currentPlatform === 'dingtalk') {
+    // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
+    if (Device?.os === 'harmony') {
+      uploadItem = uploadFile
+    } else {
+      uploadItem = uploadDingtalk
+    }
+  } else if (['wechat', 'wecom', 'wechatMiniProgram', 'wecomMiniProgram'].includes(currentPlatform)) {
+    uploadItem = uploadWechat
+  } else {
+    uploadItem = uploadCustom
   }
 
-  // 强制上传方式
-  if (uploadConfig?.platform === 'browser') {
-    uploadItem = uploadFile
+  if (_.isEmpty(pendingList)) {
+    return null
   }
 
   let list = null

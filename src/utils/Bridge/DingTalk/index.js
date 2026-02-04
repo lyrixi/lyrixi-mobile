@@ -379,7 +379,7 @@ let Bridge = {
       if (typeof data === 'string') {
         try {
           response.result = JSON.parse(data)
-        } catch (e) {}
+        } catch (e) { }
       }
 
       if (typeof formatResponse === 'function') {

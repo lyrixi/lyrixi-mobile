@@ -29,10 +29,10 @@ export default () => {
           // }}
           // true: 默认Card包裹Item
           wrapper={true}
-          // wrapper={Wrapper}
-          // wrapper={function ({ children }) {
-          //   return <div className="list-wrapper-custom">{children}</div>
-          // }}
+        // wrapper={Wrapper}
+        // wrapper={function ({ children }) {
+        //   return <div className="list-wrapper-custom">{children}</div>
+        // }}
         />
       </Page.Main>
     </Page>

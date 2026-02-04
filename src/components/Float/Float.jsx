@@ -119,8 +119,8 @@ function Float(
       onChange:
         typeof onDragEnd === 'function'
           ? (pos) => {
-              onDragEnd({ position: pos })
-            }
+            onDragEnd({ position: pos })
+          }
           : undefined
     })
   }

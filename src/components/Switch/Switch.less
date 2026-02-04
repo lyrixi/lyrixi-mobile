@@ -6,6 +6,7 @@
   transition-duration: 200ms;
   transition-property: background-color, border;
 }
+
 .lyrixi-switch.lyrixi-readOnly,
 .lyrixi-switch.lyrixi-disabled {
   pointer-events: none;
@@ -37,6 +38,7 @@
       visibility: hidden;
     }
   }
+
   &.lyrixi-active {
     background-color: var(--lyrixi-primary);
 
@@ -76,21 +78,26 @@
 
   // 激活和非激活的位移与间距
   &:not(.lyrixi-active) {
+
     // 小球
     .lyrixi-switch-handle {
       left: 1px;
     }
+
     // 主体内容
     .lyrixi-switch-inner {
       padding-left: calc(18px + 2px);
       padding-right: 6px;
     }
   }
+
   &.lyrixi-active {
+
     // 小球
     .lyrixi-switch-handle {
       left: calc(100% - 18px);
     }
+
     // 主体内容
     .lyrixi-switch-inner {
       padding-left: 6px;
@@ -110,6 +117,7 @@
   .lyrixi-switch-off {
     margin-top: -var(--lyrixi-input-height-m);
   }
+
   .lyrixi-switch-handle {
     height: calc(var(--lyrixi-input-height-m) - 2px);
     width: calc(var(--lyrixi-input-height-m) - 2px);
@@ -117,21 +125,26 @@
 
   // 激活和非激活的位移与间距
   &:not(.lyrixi-active) {
+
     // 小球
     .lyrixi-switch-handle {
       left: 1px;
     }
+
     // 主体内容
     .lyrixi-switch-inner {
       padding-left: calc(var(--lyrixi-input-height-m) + 2px);
       padding-right: 8px;
     }
   }
+
   &.lyrixi-active {
+
     // 小球
     .lyrixi-switch-handle {
       left: calc(100% - var(--lyrixi-input-height-m));
     }
+
     // 主体内容
     .lyrixi-switch-inner {
       padding-left: 8px;

@@ -3,12 +3,14 @@
   position: relative;
   display: inline-flex;
   gap: 8px;
+
   &.lyrixi-input-disabled,
   &.lyrixi-input-readOnly {
     .lyrixi-input-rate-input {
       pointer-events: none;
     }
   }
+
   &.lyrixi-input-disabled {
     opacity: 0.5;
   }
@@ -44,9 +46,11 @@
     &:extend(.lyrixi-iconfont-star-fill all);
   }
 }
+
 .lyrixi-input-rate-item-icon {
   color: var(--lyrixi-bg-default);
 }
+
 .lyrixi-input-rate-item-icon-active {
   position: absolute;
   left: 0;

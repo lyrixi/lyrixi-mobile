@@ -11,6 +11,7 @@
     border-radius: 12px;
     margin: 12px;
   }
+
   &.lyrixi-line {
     &::after {
       content: '';
@@ -23,6 +24,7 @@
     }
   }
 }
+
 .lyrixi-skeleton-paragraph-content {
   .lyrixi-flex-1;
 }
@@ -45,17 +47,17 @@
   display: block;
   border-radius: 4px;
   overflow: hidden;
+
   &.lyrixi-animated {
-    background: linear-gradient(
-      90deg,
-      rgba(190, 190, 190, 0.2) 25%,
-      rgba(129, 129, 129, 0.24) 37%,
-      rgba(190, 190, 190, 0.2) 63%
-    );
+    background: linear-gradient(90deg,
+        rgba(190, 190, 190, 0.2) 25%,
+        rgba(129, 129, 129, 0.24) 37%,
+        rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;
     animation: animate-skeleton-loading 1.4s ease infinite;
   }
 }
+
 .lyrixi-skeleton-block-darken {
   &::after {
     content: '';
@@ -72,19 +74,22 @@
   height: 14px;
   margin: 10px 0;
 }
+
 .lyrixi-skeleton-item:first-child {
   margin-top: 0;
 }
+
 .lyrixi-skeleton-item:last-child {
   margin-bottom: 0;
 }
+
 .lyrixi-skeleton-title {
   height: 20px;
   width: 132px;
   border-radius: 6px;
 }
 
-.lyrixi-skeleton-title + .lyrixi-skeleton-item {
+.lyrixi-skeleton-title+.lyrixi-skeleton-item {
   margin-top: 16px;
 }
 
@@ -101,12 +106,14 @@
   overflow: hidden;
   margin-left: 12px;
 }
+
 .lyrixi-skeleton-tab {
   display: inline-block;
   width: 90px;
   height: 20px;
   margin-right: 16px;
 }
+
 .lyrixi-skeleton-tab:last-child {
   margin-right: 0;
 }

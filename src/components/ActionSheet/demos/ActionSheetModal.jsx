@@ -22,7 +22,7 @@ export default () => {
   ]
   const [value, setValue] = useState(null)
 
-  useEffect(() => {}, [])
+  useEffect(() => { }, [])
 
   return (
     <Page>

@@ -126,7 +126,11 @@ function MediaUploader(
       // 添加额外的item信息, 方便传递, 例如水印等
       let itemExtra = null
       if (typeof getItemExtra === 'function') {
-        itemExtra = await getItemExtra({ platform: 'browser' })
+        itemExtra = await getItemExtra({ platform: 'wechat' })
+        if (itemExtra === false) {
+          resolve(false)
+          return
+        }
       }
 
       let chooseMediaParams = {

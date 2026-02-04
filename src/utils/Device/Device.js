@@ -54,7 +54,7 @@ let Device = {
     return navigator.userAgent
   },
   get language() {
-    return (window.navigator.browserLanguage || window.navigator.language).toLowerCase()
+    return window.navigator.browserLanguage || window.navigator.language
   },
   get isOnLine() {
     return window.navigator.onLine || true

@@ -364,9 +364,9 @@ export default () => {
                   onBlur={() => {
                     setSearchActive(false)
                   }}
-                  // onCancel={() => {
-                  //   setSearchActive(false)
-                  // }}
+                // onCancel={() => {
+                //   setSearchActive(false)
+                // }}
                 />
               )}
             </ToolBar>

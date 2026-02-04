@@ -22,12 +22,12 @@ function Mark(
     >
       {Array.isArray(labels) && labels.length
         ? labels.map((label, index) => {
-            return (
-              <div className="lyrixi-media-item-mark-label" key={index}>
-                {label}
-              </div>
-            )
-          })
+          return (
+            <div className="lyrixi-media-item-mark-label" key={index}>
+              {label}
+            </div>
+          )
+        })
         : null}
     </div>
   )

@@ -26,6 +26,7 @@ function Nearby(
 
     // Status
     readOnly,
+    nearbyVisible = true,
 
     // Element
     map,
@@ -55,7 +56,7 @@ function Nearby(
   // 初始化、切换tab更新附近的点
   useEffect(() => {
     // 只读、参数不全、加载中则不加载数据
-    if (readOnly || !tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
+    if (!nearbyVisible || readOnly || !tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
 
     loadData()
     // eslint-disable-next-line
@@ -108,7 +109,7 @@ function Nearby(
         }}
       />
 
-      {readOnly ? null : (
+      {!nearbyVisible || readOnly ? null : (
         <>
           {/* Element: Toggle */}
           <Toggle />

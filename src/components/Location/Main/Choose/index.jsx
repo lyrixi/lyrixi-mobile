@@ -8,7 +8,7 @@ import Map from './../../../Map'
 import { Map } from 'lyrixi-mobile'
 测试使用-end */
 
-const { APILoader, MapChoose } = Map
+const { MapLoader, MapChoose } = Map
 
 // 地图位置选择
 const LocationChoose = forwardRef(
@@ -16,13 +16,15 @@ const LocationChoose = forwardRef(
     {
       // Value & Display Value
       value,
+      cacheExpires,
 
       // Status
       readOnly,
       autoLocation,
+      nearbyVisible,
 
       // Element
-      config,
+      mapConfig,
       getLocation,
       getAddress,
       loadingNode,
@@ -36,9 +38,9 @@ const LocationChoose = forwardRef(
     ref
   ) => {
     return (
-      <APILoader
+      <MapLoader
         // Element
-        config={{ ...window.APILoaderConfig, ...config }}
+        mapConfig={{ ...window.MapLoaderConfig, ...mapConfig }}
         loadingNode={loadingNode}
         loadingRender={loadingRender}
         // Events
@@ -50,9 +52,11 @@ const LocationChoose = forwardRef(
           ref={ref}
           // Value & Display Value
           value={value}
+          cacheExpires={cacheExpires}
           // Status
           readOnly={readOnly}
           autoLocation={autoLocation}
+          nearbyVisible={nearbyVisible}
           // Element
           getLocation={getLocation}
           getAddress={getAddress}
@@ -62,7 +66,7 @@ const LocationChoose = forwardRef(
             onChange && onChange(newValue)
           }}
         />
-      </APILoader>
+      </MapLoader>
     )
   }
 )

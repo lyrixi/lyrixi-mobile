@@ -58,9 +58,9 @@ const CascaderMain = forwardRef(
       currentList
         ? { status: 'success', list: currentList }
         : {
-            status: 'empty',
-            message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
-          }
+          status: 'empty',
+          message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
+        }
     )
 
     // Expose

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Page, Map, Loading } from 'lyrixi-mobile'
 
-const { APILoader, MapChoose, coordsToWgs84 } = Map
+const { MapLoader, MapChoose, coordsToWgs84 } = Map
 
 // 生成随机点
 // import getPoints from './getPoints'
@@ -44,7 +44,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <APILoader
+        <MapLoader
           loadingNode={<Loading content="Loading..." />}
           config={{
             key: 'bmap key',
@@ -140,7 +140,7 @@ export default () => {
             // queryNearby={() => points}
             />
           </div>
-        </APILoader>
+        </MapLoader>
       </Page.Main>
     </Page>
   )

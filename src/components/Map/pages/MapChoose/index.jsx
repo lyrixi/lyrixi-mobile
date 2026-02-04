@@ -28,10 +28,12 @@ function MapChoose(
     center,
     minZoom,
     maxZoom,
+    cacheExpires,
 
     // Status
     readOnly,
     autoLocation = true,
+    nearbyVisible,
 
     // Utils
     getAddress,
@@ -177,6 +179,7 @@ function MapChoose(
     onChange && onChange(fmtNewValue)
   }
 
+  console.log('nearbyVisible:', nearbyVisible)
   return (
     <MapContainer
       ref={mapRef}
@@ -185,6 +188,7 @@ function MapChoose(
       zoom={14}
       minZoom={minZoom}
       maxZoom={maxZoom}
+      cacheExpires={cacheExpires}
       // Utils
       getAddress={getAddress}
       getLocation={getLocation}
@@ -227,22 +231,22 @@ function MapChoose(
           readOnly
             ? null
             : async (map) => {
-                let center = map.getCenter()
-                let result = {
-                  ...center
-                }
-
-                Loading.show({
-                  content: LocaleUtil.locale(
-                    '获取地址中...',
-                    'lyrixi_727c51b4575192c9cc0ca17b67375392'
-                  )
-                })
-                result = await map.getAddress(result)
-                Loading.hide()
-
-                handleChange(result)
+              let center = map.getCenter()
+              let result = {
+                ...center
               }
+
+              Loading.show({
+                content: LocaleUtil.locale(
+                  '获取地址中...',
+                  'lyrixi_727c51b4575192c9cc0ca17b67375392'
+                )
+              })
+              result = await map.getAddress(result)
+              Loading.hide()
+
+              handleChange(result)
+            }
         }
         // Style
         className={centerMarkerClassName}
@@ -298,6 +302,7 @@ function MapChoose(
         ref={nearbyRef}
         // Status
         readOnly={readOnly}
+        nearbyVisible={nearbyVisible}
         // Value & Display Value
         value={value}
         radius={1000}

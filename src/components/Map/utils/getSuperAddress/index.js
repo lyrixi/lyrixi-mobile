@@ -1,6 +1,6 @@
-import defaultGetAddress from './../getAddress'
 import setAddressCache from './setAddressCache'
 import getAddressCache from './getAddressCache'
+import defaultGetAddress from './../getAddress'
 
 /**
  * @description: 获取地址
@@ -11,14 +11,11 @@ import getAddressCache from './getAddressCache'
  * }
  */
 async function getSuperAddress({
-  cacheExpiresContinue,
+  cacheExpiresContinue = true,
   cacheExpires,
   type,
   latitude,
-  longitude,
-  getAddress = defaultGetAddress,
-  onSuccess,
-  onError
+  longitude
 }) {
   // 先查缓存
   const cacheData = await getAddressCache(
@@ -26,11 +23,11 @@ async function getSuperAddress({
     cacheExpiresContinue ? cacheExpires : null
   )
   if (cacheData) {
-    onSuccess && onSuccess(cacheData)
+    console.log('地址读取缓存:', cacheData)
     return cacheData
   }
   // 没有缓存则查接口
-  const result = await getAddress({
+  const result = await defaultGetAddress({
     latitude,
     longitude,
     type
@@ -38,10 +35,8 @@ async function getSuperAddress({
 
   // 查询成功则缓存结果
   if (result.status === 'success') {
+    console.log(`地址查询成功, 设置缓存${cacheExpires}秒:`, result)
     await setAddressCache({ longitude, latitude, cacheExpires }, result)
-    onSuccess && onSuccess(result)
-  } else {
-    onError && onError(result)
   }
 
   return result

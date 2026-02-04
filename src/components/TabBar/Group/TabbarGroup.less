@@ -20,7 +20,7 @@
 // Separator align to name
 .lyrixi-tabbar-group-tab-description {
   &.lyrixi-top {
-    + .lyrixi-tabbar-group-separator {
+    +.lyrixi-tabbar-group-separator {
       align-items: end;
       padding-bottom: 10px;
     }
@@ -66,6 +66,7 @@
   border-end-start-radius: var(--lyrixi-radius-m);
   border-left-width: 1px;
 }
+
 .lyrixi-tabbar-group-tab-wrapper:last-child {
   border-start-end-radius: var(--lyrixi-radius-m);
   border-end-end-radius: var(--lyrixi-radius-m);
@@ -75,22 +76,26 @@
 .lyrixi-tabbar-group-tab-name {
   font-size: var(--lyrixi-font-size-m);
 }
+
 .lyrixi-tabbar-group-tab-description {
   color: var(--lyrixi-font-color-secondary);
   font-size: var(--lyrixi-font-size-s);
 }
-.lyrixi-tabbar-group-tab-name + .lyrixi-tabbar-group-tab-description,
-.lyrixi-tabbar-group-tab-description + .lyrixi-tabbar-group-tab-name {
+
+.lyrixi-tabbar-group-tab-name+.lyrixi-tabbar-group-tab-description,
+.lyrixi-tabbar-group-tab-description+.lyrixi-tabbar-group-tab-name {
   margin-top: var(--lyrixi-space-s);
 }
 
 // 尺寸
 .lyrixi-tabbar-group.lyrixi-s {
+
   // 圆角
   .lyrixi-tabbar-group-tab-wrapper:first-child {
     border-start-start-radius: var(--lyrixi-radius-xs);
     border-end-start-radius: var(--lyrixi-radius-xs);
   }
+
   .lyrixi-tabbar-group-tab-wrapper:last-child {
     border-start-end-radius: var(--lyrixi-radius-xs);
     border-end-end-radius: var(--lyrixi-radius-xs);
@@ -100,6 +105,7 @@
   .lyrixi-tabbar-group-tab-wrapper {
     padding: 0 var(--lyrixi-space-s);
   }
+
   // 高度
   .lyrixi-tabbar-group-tab {
     padding: var(--lyrixi-space-xxs) 0;

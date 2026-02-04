@@ -415,14 +415,14 @@ const InputText = (
       {disabled || !allowClear
         ? null
         : getClearNode({
-            clearRender,
-            allowClear,
-            value,
-            onClear: handleClear,
-            onTouchStart: (e) => {
-              inputRef.current.preventBlur = true
-            }
-          })}
+          clearRender,
+          allowClear,
+          value,
+          onClear: handleClear,
+          onTouchStart: (e) => {
+            inputRef.current.preventBlur = true
+          }
+        })}
 
       {/* Right */}
       {rightIconNode}

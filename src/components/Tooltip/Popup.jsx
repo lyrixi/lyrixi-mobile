@@ -70,26 +70,26 @@ const Popup = forwardRef(
     if (position.indexOf('bottom') === 0) {
       arrowStyle = backgroundColor
         ? {
-            borderTopColor: backgroundColor
-          }
+          borderTopColor: backgroundColor
+        }
         : null
       arrowOuterStyle = borderColor
         ? {
-            borderTopColor: borderColor
-          }
+          borderTopColor: borderColor
+        }
         : null
     }
     // 从上往下弹
     else {
       arrowStyle = backgroundColor
         ? {
-            borderBottomColor: backgroundColor
-          }
+          borderBottomColor: backgroundColor
+        }
         : null
       arrowOuterStyle = borderColor
         ? {
-            borderBottomColor: borderColor
-          }
+          borderBottomColor: borderColor
+        }
         : null
     }
 

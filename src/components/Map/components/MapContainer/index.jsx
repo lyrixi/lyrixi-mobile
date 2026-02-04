@@ -6,7 +6,9 @@ import createCurrentMap from './createCurrentMap'
 import injectChildrenProps from './injectChildrenProps'
 import coordsToFit from './../../utils/coordsToFit'
 import defaultGetAddress from './../../utils/getAddress'
+import defaultGetSuperAddress from './../../utils/getSuperAddress'
 import defaultGetLocation from './../../utils/getLocation'
+import defaultGetSuperLocation from './../../utils/getSuperLocation'
 import defaultQueryNearby from './../../utils/queryNearby'
 
 // 内库使用-start
@@ -28,6 +30,8 @@ const MapContainer = forwardRef(
       zoom,
       minZoom,
       maxZoom,
+      // 定位与获取位置缓存时长: 秒
+      cacheExpires,
 
       // Utils
       getAddress,
@@ -58,12 +62,12 @@ const MapContainer = forwardRef(
   ) => {
     // 指定获取定位和地址的方法
     // eslint-disable-next-line
-    if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+    if (typeof getAddress !== 'function') getAddress = cacheExpires ? defaultGetSuperAddress : defaultGetAddress
     // eslint-disable-next-line
-    if (typeof getLocation !== 'function') getLocation = defaultGetLocation
+    if (typeof getLocation !== 'function') getLocation = cacheExpires ? defaultGetSuperLocation : defaultGetLocation
     if (typeof openLocation !== 'function') {
       // eslint-disable-next-line
-      openLocation = window?.openLocationDefault || window?.APILoaderConfig?.openLocation
+      openLocation = window?.defaultOpenLocation
     }
     // eslint-disable-next-line
     if (typeof queryNearby !== 'function') queryNearby = defaultQueryNearby
@@ -71,7 +75,7 @@ const MapContainer = forwardRef(
     if (typeof center !== 'object' || !center?.longitude || !center?.latitude || !center?.type) {
       // eslint-disable-next-line
       center = coordsToFit(
-        window?.APILoaderConfig?.center || {
+        window?.MapLoaderConfig?.center || {
           latitude: 39.909187,
           longitude: 116.397451,
           type: 'gcj02'
@@ -103,7 +107,7 @@ const MapContainer = forwardRef(
           }
         }
 
-        let result = await getAddress(coord)
+        let result = await getAddress({ ...coord, cacheExpires })
 
         // Get address success
         if (result?.address) {
@@ -117,10 +121,7 @@ const MapContainer = forwardRef(
       },
       // Get location
       getLocation: async (params) => {
-        let result = await getLocation(params)
-        if (result && typeof result === 'object' && !result.type && params.type) {
-          result.type = params.type
-        }
+        let result = await getLocation({ ...params, cacheExpires })
         return result
       },
       // 搜索附近与搜索
@@ -260,13 +261,13 @@ const MapContainer = forwardRef(
       if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
         let errorMessage = !window.L
           ? LocaleUtil.locale(
-              '请在Map组件需要使用APILoader包裹',
-              'lyrixi_5075eec6f717dd4179774e90bedc721b'
-            )
+            '请在Map组件需要使用MapLoader包裹',
+            'lyrixi_5075eec6f717dd4179774e90bedc721b'
+          )
           : LocaleUtil.locale(
-              '缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期',
-              'lyrixi_f7e421b903f7d2a65ded4b70e5927574'
-            )
+            '缺少必要地图资源, 请检查MapLoader参数是否正确, 或者key是否过期',
+            'lyrixi_f7e421b903f7d2a65ded4b70e5927574'
+          )
         setLeafletMap(leafletMap)
         onLoad?.({
           status: 'error',

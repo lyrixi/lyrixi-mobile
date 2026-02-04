@@ -112,9 +112,8 @@ function updateAttribute(
   updateStyle(footerElement, {
     className: footerClassName,
     style: footerStyle,
-    baseClassName: `lyrixi-message-footer ${
-      buttonsLayout === 'vertical' ? 'lyrixi-vertical' : 'lyrixi-horizontal'
-    }`
+    baseClassName: `lyrixi-message-footer ${buttonsLayout === 'vertical' ? 'lyrixi-vertical' : 'lyrixi-horizontal'
+      }`
   })
 
   // 设置按钮布局
@@ -156,7 +155,7 @@ function updateAttribute(
   if (toString.call(portal).indexOf('HTML') !== -1) {
     portal.appendChild(mask)
   } else {
-    ;(document.getElementById('root') || document.body).appendChild(mask)
+    ; (document.getElementById('root') || document.body).appendChild(mask)
   }
 }
 

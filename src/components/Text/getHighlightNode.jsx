@@ -14,7 +14,7 @@ function getHighlightNode(children, highlight) {
 
   const text = children
   const keyword = String(highlight)
-  
+
   // 如果关键词为空，直接返回原文本
   if (!keyword) {
     return text
@@ -22,7 +22,7 @@ function getHighlightNode(children, highlight) {
 
   // 转义正则表达式特殊字符
   const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  
+
   // 使用正则表达式匹配所有出现的关键词（大小写敏感）
   const regex = new RegExp(`(${escapedKeyword})`, 'g')
   const parts = text.split(regex)

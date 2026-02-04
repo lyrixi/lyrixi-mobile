@@ -2,6 +2,7 @@
   padding: var(--lyrixi-space-l) 0;
   position: relative;
   .lyrixi-border-b;
+
   // 表单内文本框高度减小
   .lyrixi-input {
     padding: 0;
@@ -12,15 +13,17 @@
   .lyrixi-form-item-label {
     padding-right: var(--lyrixi-space-m);
   }
+
   .lyrixi-form-item-main {
     padding-right: var(--lyrixi-space-m);
   }
 }
 
 .lyrixi-form-item-layout-vertical {
-  .lyrixi-form-item-label:not(.lyrixi-hide) + .lyrixi-form-item-main {
+  .lyrixi-form-item-label:not(.lyrixi-hide)+.lyrixi-form-item-main {
     margin-top: var(--lyrixi-space-s);
   }
+
   .lyrixi-form-item-main {
     padding-right: var(--lyrixi-space-m);
   }

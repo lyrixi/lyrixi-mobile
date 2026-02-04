@@ -5,21 +5,25 @@
       flex: initial;
     }
   }
+
   &.lyrixi-disabled {
     opacity: 0.5;
   }
+
   &.lyrixi-expand {
     .lyrixi-toolbar-dropdown-combo-arrow {
       transform: rotate(0deg);
     }
   }
 }
+
 .lyrixi-toolbar-dropdown-combo-title {
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .lyrixi-toolbar-dropdown-combo-arrow {
   width: 8px;
   height: 8px;
@@ -35,15 +39,18 @@
   color: var(--lyrixi-font-color-secondary);
 }
 
-.lyrixi-toolbar-dropdown-mask {
-}
+.lyrixi-toolbar-dropdown-mask {}
+
 .lyrixi-toolbar-dropdown-modal {
+
   // 列表
   .lyrixi-list {
     margin: 0 8px;
   }
+
   .lyrixi-list-item.lyrixi-active {
     color: var(--lyrixi-primary);
+
     .lyrixi-toolbar-dropdown-item-checkbox {
       font-family: 'lyrixi-iconfont';
       &:extend(.lyrixi-iconfont-ok all);

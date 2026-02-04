@@ -127,6 +127,10 @@ function MediaUploader(
       let itemExtra = null
       if (typeof getItemExtra === 'function') {
         itemExtra = await getItemExtra({ platform: Device.platform })
+        if (itemExtra === false) {
+          resolve(false)
+          return
+        }
       }
 
       let chooseMediaParams = {

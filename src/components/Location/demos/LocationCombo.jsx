@@ -128,7 +128,8 @@ export default () => {
                 address: '南京烽火科技'
               }}
               type="wgs84"
-              config={{
+              // 可以用全局设置window.MapLoaderConfig代替
+              mapConfig={{
                 key: 'bmap key',
                 type: 'bmap'
               }}
@@ -146,7 +147,8 @@ export default () => {
             <Location.Combo
               value={value1}
               type="gcj02"
-              config={{
+              // 可以用全局设置window.MapLoaderConfig代替
+              mapConfig={{
                 key: 'bmap key',
                 type: 'bmap'
               }}
@@ -244,7 +246,7 @@ export default () => {
               previewVisible
               clickAction="choose"
               type="gcj02"
-              config={{
+              mapConfig={{
                 key: 'bmap key',
                 type: 'bmap'
               }}

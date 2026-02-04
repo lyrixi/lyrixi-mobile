@@ -21,7 +21,8 @@ async function loadLyrixiLanguage(language) {
         window.lyrixiLocaleData = jsFile.default
         result = {
           status: 'success',
-          message: 'Local js file loaded successfully'
+          message: 'Local js file loaded successfully',
+          data: window.lyrixiLocaleData
         }
       }
       resolve(result)

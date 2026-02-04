@@ -214,11 +214,11 @@ const InputNode = (
       {disabled || !allowClear
         ? null
         : getClearNode({
-            clearRender,
-            allowClear,
-            value,
-            onClear: handleClear
-          })}
+          clearRender,
+          allowClear,
+          value,
+          onClear: handleClear
+        })}
 
       {/* Element: Right Icon */}
       {rightIconNode}

@@ -40,11 +40,11 @@ export default () => {
           setValue(newValue)
         }}
         pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
-        // pickerComboRender={(tab, { onChange }) => {
-        //   if (tab.type === 'week') {
-        //     return <div onClick={() => onChange && onChange(new Date('2022-12-12'))}>点我</div>
-        //   }
-        // }}
+      // pickerComboRender={(tab, { onChange }) => {
+      //   if (tab.type === 'week') {
+      //     return <div onClick={() => onChange && onChange(new Date('2022-12-12'))}>点我</div>
+      //   }
+      // }}
       />
     </>
   )

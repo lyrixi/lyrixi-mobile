@@ -13,10 +13,12 @@ const Main = forwardRef(
     {
       // Value & Display Value
       value, // {latitude: '纬度', longitude: '经度', value: '地址'}
+      cacheExpires,
 
       // Status
       open, // 显示类型: preview、choose
       autoLocation = true,
+      nearbyVisible,
 
       // Style
       className,
@@ -24,7 +26,7 @@ const Main = forwardRef(
 
       // Element
       id,
-      config,
+      mapConfig,
       getLocation,
       getAddress,
 
@@ -64,7 +66,7 @@ const Main = forwardRef(
               // Value & Display Value
               value={value}
               // Element
-              config={config}
+              mapConfig={mapConfig}
             />
           )}
 
@@ -74,10 +76,12 @@ const Main = forwardRef(
               ref={mapRef}
               // Value & Display Value
               value={value}
+              cacheExpires={cacheExpires}
               // Status
               autoLocation={autoLocation}
+              nearbyVisible={nearbyVisible}
               // Element
-              config={config}
+              mapConfig={mapConfig}
               getLocation={getLocation}
               getAddress={getAddress}
               // Events
@@ -92,17 +96,17 @@ const Main = forwardRef(
             onOk={
               onOk
                 ? () => {
-                    console.log('选择标注:')
-                    onOk?.(value)
-                  }
+                  console.log('选择标注:')
+                  onOk?.(value)
+                }
                 : null
             }
             onClear={
               onClear
                 ? () => {
-                    console.log('清空标注:')
-                    onOk?.(null)
-                  }
+                  console.log('清空标注:')
+                  onOk?.(null)
+                }
                 : null
             }
           />

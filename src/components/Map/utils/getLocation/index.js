@@ -12,7 +12,7 @@ function getLocation(options) {
 
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let defaultGetLocation = window?.getLocationDefault || window?.APILoaderConfig?.getLocation
+    let defaultGetLocation = window?.defaultGetLocation
     if (typeof defaultGetLocation === 'function') {
       let result = await defaultGetLocation({
         type: type
@@ -24,13 +24,12 @@ function getLocation(options) {
     // 开始定位
     Bridge.getLocation({
       type: type,
-      onSuccess: async (res) => {
-        console.log('lyrixi location success:', res)
-        resolve(res)
+      onSuccess: (result) => {
+        console.log('lyrixi location success:', result)
+        resolve(result)
       },
       onError: (error) => {
         console.error('lyrixi location fail:', error)
-        // 赋值
         resolve(error)
       }
     })

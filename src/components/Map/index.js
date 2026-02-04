@@ -6,12 +6,14 @@
 // Utils
 import coordsToWgs84 from './utils/coordsToWgs84'
 import wgs84ToCoords from './utils/wgs84ToCoords'
+import getSuperAddress from './utils/getSuperAddress'
+import getSuperLocation from './utils/getSuperLocation'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
 
 // Components
-import APILoader from './components/APILoader'
+import MapLoader from './components/MapLoader'
 import MapContainer from './components/MapContainer'
 import ZoomControl from './components/ZoomControl'
 import SearchControl from './components/SearchControl'
@@ -30,11 +32,13 @@ const Map = {
   // utils
   coordsToWgs84,
   wgs84ToCoords,
+  getSuperAddress,
+  getSuperLocation,
   getAddress,
   getLocation,
   queryNearby,
   // components
-  APILoader,
+  MapLoader,
   MapContainer,
   ZoomControl,
   SearchControl,

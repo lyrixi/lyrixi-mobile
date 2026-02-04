@@ -61,16 +61,16 @@ export default () => {
           maxUploadCount={4}
           onChange={handlePhotoChange}
           upload={<div style={{ width: '100%', height: '100%', backgroundColor: 'ref' }}>1</div>}
-          // allowChoose={list?.length ? false : true}
-          // allowClear={false}
-          // visibleCount={1}
-          // style={{
-          //   '--cell-width': '32px',
-          //   '--cell-height': '32px',
-          //   '--cell-radius': '6px',
-          //   '--count-font-size': '12px',
-          //   '--choose-icon-size': '12px'
-          // }}
+        // allowChoose={list?.length ? false : true}
+        // allowClear={false}
+        // visibleCount={1}
+        // style={{
+        //   '--cell-width': '32px',
+        //   '--cell-height': '32px',
+        //   '--cell-radius': '6px',
+        //   '--count-font-size': '12px',
+        //   '--choose-icon-size': '12px'
+        // }}
         />
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleAsyncUploadList}>
           imageUploaderRef.current.uploadList

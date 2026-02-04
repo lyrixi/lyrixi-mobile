@@ -1,13 +1,13 @@
 import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
-const { APILoader, MapContainer, LocationControl } = Map
+const { MapLoader, MapContainer, LocationControl } = Map
 
 export default () => {
   return (
     <Page>
       <Page.Main>
-        <APILoader
+        <MapLoader
           config={{
             key: 'bmap key',
             type: 'bmap'
@@ -30,7 +30,7 @@ export default () => {
               />
             </MapContainer>
           </div>
-        </APILoader>
+        </MapLoader>
       </Page.Main>
     </Page>
   )

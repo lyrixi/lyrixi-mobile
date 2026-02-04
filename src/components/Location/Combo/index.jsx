@@ -23,6 +23,8 @@ import { DOMUtil, LocaleUtil, Input, Map } from 'lyrixi-mobile'
 const {
   getAddress: defaultGetAddress,
   getLocation: defaultGetLocation,
+  getSuperAddress: defaultGetSuperAddress,
+  getSuperLocation: defaultGetSuperLocation,
   coordsToWgs84,
   wgs84ToCoords
 } = Map
@@ -33,13 +35,16 @@ const LocationCombo = forwardRef(
     {
       // Value & Display Value
       value, // {latitude: '纬度', longitude: '经度', value: '地址'}
-      errorText = LocaleUtil.locale(
-        '定位失败, 请检查定位权限是否开启',
-        'lyrixi_a96a3989d602067144139bf31bf27121'
-      ),
-      loadingText = LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd'),
+      placeholder,
+      type = 'gcj02', // 坐标类型
+      getAddress, // 获取定位和地址工具类
+      getLocation, // 获取定位和地址工具类
+      // 定位与获取位置缓存时长: 秒
+      cacheExpires,
+      mapConfig, // 地图加载修改
 
       // Status
+      autoSize,
       allowClear,
       disabled = false,
       editable = false,
@@ -55,12 +60,12 @@ const LocationCombo = forwardRef(
       modalStyle,
 
       // Element
-      type = 'gcj02', // 坐标类型
-      autoSize,
-      config, // 地图加载修改
-      getAddress, // 获取定位和地址工具类
-      getLocation, // 获取定位和地址工具类
       portal = document.getElementById('root') || document.body,
+      errorText = LocaleUtil.locale(
+        '定位失败, 请检查定位权限是否开启',
+        'lyrixi_a96a3989d602067144139bf31bf27121'
+      ),
+      loadingText = LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd'),
 
       // Events
       onChange,
@@ -80,9 +85,9 @@ const LocationCombo = forwardRef(
 
     // 获取定位和地址工具类
     // eslint-disable-next-line
-    if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+    if (typeof getAddress !== 'function') getAddress = cacheExpires ? defaultGetSuperAddress : defaultGetAddress
     // eslint-disable-next-line
-    if (typeof getLocation !== 'function') getLocation = defaultGetLocation
+    if (typeof getLocation !== 'function') getLocation = cacheExpires ? defaultGetSuperLocation : defaultGetLocation
 
     // 错误信息
     const errMsgRef = useRef(errorText)
@@ -162,6 +167,7 @@ const LocationCombo = forwardRef(
       let newValue = value
       if (typeof newValue === 'object' && newValue?.longitude && newValue?.latitude) {
         let addrRes = await getAddress({
+          cacheExpires,
           type: type,
           ...newValue
         })
@@ -283,6 +289,7 @@ const LocationCombo = forwardRef(
 
       // 开始定位
       let newValue = await getLocation({
+        cacheExpires,
         action: action,
         type: type
       })
@@ -370,14 +377,15 @@ const LocationCombo = forwardRef(
         {/* Element: Input Text */}
         <Input.Text
           ref={comboRef}
+          placeholder={placeholder}
           // Element
           type={autoSize ? 'autoSize' : 'text'}
           rightIconNode={<>{getRightIconNode()}</>}
           inputRender={
             statusNode
               ? () => {
-                  return statusNode
-                }
+                return statusNode
+              }
               : null
           }
           // Value & Display Value
@@ -412,21 +420,24 @@ const LocationCombo = forwardRef(
 
         {/* Element: Modal */}
         <Modal
+          // Value & Display Value
+          cacheExpires={cacheExpires}
+          mapConfig={mapConfig}
+          getAddress={getAddress}
+          getLocation={getLocation}
           // Status
           open={modalOpen}
           allowClear={allowClear}
+          nearbyVisible={chooseVisible?.nearbyVisible}
           // Style
           modalClassName={modalClassName}
           modalStyle={modalStyle}
           // Element
-          config={config}
           portal={portal}
-          getAddress={getAddress}
-          getLocation={getLocation}
           // Value & Display Value
           value={coordsToWgs84(value, type)}
           // Events
-          onOpen={() => {}}
+          onOpen={() => { }}
           onClose={() => setModalOpen('')}
           onChange={(_newValue) => {
             // 转坐标

@@ -42,8 +42,8 @@ function show(props) {
           <div class="lyrixi-toast-content"></div>
         </div>
       </div>`
-      // 添加到dom上
-      ;(portal || document.getElementById('root') || document.body).appendChild(mask)
+        // 添加到dom上
+        ; (portal || document.getElementById('root') || document.body).appendChild(mask)
     }
 
     // Update mask

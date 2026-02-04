@@ -17,33 +17,33 @@ function copyText(url, { onSuccess, onError } = {}) {
       onSuccess
         ? onSuccess()
         : Toast.show({
-            content: LocaleUtil.locale(
-              '链接已复制到剪贴板',
-              'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
-            )
-          })
+          content: LocaleUtil.locale(
+            '链接已复制到剪贴板',
+            'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
+          )
+        })
     },
     onError: () => {
       onError
         ? onError()
         : Message.open({
-            maskStyle: {
-              zIndex: 100
-            },
-            title: LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca'),
-            content: `${LocaleUtil.locale(
-              '链接复制到剪贴板失败, 请长按复制',
-              'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1'
-            )}
+          maskStyle: {
+            zIndex: 100
+          },
+          title: LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca'),
+          content: `${LocaleUtil.locale(
+            '链接复制到剪贴板失败, 请长按复制',
+            'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1'
+          )}
           <br/>${url}`,
-            buttons: [
-              {
-                name: '确定',
-                className: 'lyrixi-primary',
-                onClick: () => true
-              }
-            ]
-          })
+          buttons: [
+            {
+              name: '确定',
+              className: 'lyrixi-primary',
+              onClick: () => true
+            }
+          ]
+        })
     }
   })
 }

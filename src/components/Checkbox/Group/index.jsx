@@ -64,46 +64,46 @@ const CheckboxGroup = forwardRef(
         {/* Element: Checkboxes */}
         {Array.isArray(list) && list.length
           ? list.map((item) => {
-              if (!item?.id) return null
+            if (!item?.id) return null
 
-              const isChecked = multiple
-                ? formattedValue.some((valueItem) => valueItem?.id === item.id)
-                : formattedValue?.id === item.id
+            const isChecked = multiple
+              ? formattedValue.some((valueItem) => valueItem?.id === item.id)
+              : formattedValue?.id === item.id
 
-              return (
-                <Checkbox
-                  key={item.id}
-                  // Value & Display Value
-                  checked={isChecked}
-                  // Element
-                  iconRender={iconRender}
-                  iconPosition={iconPosition}
-                  // Events
-                  onChange={(checked) => {
-                    let newValue = null
-                    // 多选
-                    if (multiple) {
-                      if (!checked) {
-                        newValue = formattedValue.filter((valueItem) => valueItem?.id !== item.id)
-                      } else {
-                        newValue = [...(formattedValue || []), item]
-                      }
+            return (
+              <Checkbox
+                key={item.id}
+                // Value & Display Value
+                checked={isChecked}
+                // Element
+                iconRender={iconRender}
+                iconPosition={iconPosition}
+                // Events
+                onChange={(checked) => {
+                  let newValue = null
+                  // 多选
+                  if (multiple) {
+                    if (!checked) {
+                      newValue = formattedValue.filter((valueItem) => valueItem?.id !== item.id)
+                    } else {
+                      newValue = [...(formattedValue || []), item]
                     }
-                    // 单选
-                    else {
-                      if (!checked) {
-                        newValue = allowClear ? null : item
-                      } else {
-                        newValue = item
-                      }
+                  }
+                  // 单选
+                  else {
+                    if (!checked) {
+                      newValue = allowClear ? null : item
+                    } else {
+                      newValue = item
                     }
-                    onChange && onChange(newValue)
-                  }}
-                >
-                  {item.name || ''}
-                </Checkbox>
-              )
-            })
+                  }
+                  onChange && onChange(newValue)
+                }}
+              >
+                {item.name || ''}
+              </Checkbox>
+            )
+          })
           : null}
       </div>
     )

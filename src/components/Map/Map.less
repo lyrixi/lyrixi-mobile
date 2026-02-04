@@ -11,14 +11,17 @@
   left: 0;
   bottom: 0;
   right: 0;
+
   // 插件: Leaflet, 降低地图瓦片图层级别
   .leaflet-pane {
     z-index: 1;
   }
+
   // 完全隐藏logo, 会违反Google的使用条款, 请自行修改
   .leaflet-bottom.leaflet-left {
     display: none;
   }
+
   .leaflet-bottom.leaflet-right {
     display: none;
   }
@@ -34,6 +37,7 @@
   right: 0;
   z-index: 1;
 }
+
 .lyrixi-map-container-result {
   background-color: var(--lyrixi-bg-default);
 }
@@ -74,6 +78,7 @@
   z-index: 0;
   pointer-events: none;
   visibility: hidden;
+
   * {
     pointer-events: none;
   }

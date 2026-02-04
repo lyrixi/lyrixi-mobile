@@ -45,7 +45,7 @@ toc: content
 | modalStyle             | 模态框样式   | `object`                                               | -         |
 | type                   | 坐标类型     | `string`                                               | `'gcj02'` |
 | autoSize               | 自动调整大小 | `boolean`                                              | -         |
-| config                 | 地图配置     | `object`                                               | -         |
+| mapConfig              | 地图配置     | `object`                                               | -         |
 | getAddress             | 获取地址函数 | `(location: object) => Promise<string>`                | -         |
 | getLocation            | 获取位置函数 | `() => Promise<object>`                                | -         |
 | portal                 | 挂载节点     | `HTMLElement`                                          | -         |
@@ -81,7 +81,7 @@ toc: content
 | -------------- | ------------ | ------------------------------------------------------ | ------ |
 | value          | 位置值       | `{latitude: number, longitude: number, value: string}` | -      |
 | open           | 是否显示     | `boolean`                                              | -      |
-| config         | 地图配置     | `object`                                               | -      |
+| mapConfig      | 地图配置     | `object`                                               | -      |
 | getAddress     | 获取地址函数 | `(location: object) => Promise<string>`                | -      |
 | getLocation    | 获取位置函数 | `() => Promise<object>`                                | -      |
 | portal         | 挂载节点     | `HTMLElement`                                          | -      |
@@ -122,7 +122,7 @@ toc: content
 | allowClear   | 允许清除      | `boolean`                                              | -      |
 | autoLocation | 自动定位      | `boolean`                                              | `true` |
 | id           | 位置选择器 ID | `string`                                               | -      |
-| config       | 地图配置      | `object`                                               | -      |
+| mapConfig    | 地图配置      | `object`                                               | -      |
 | getLocation  | 获取位置函数  | `() => Promise<object>`                                | -      |
 | getAddress   | 获取地址函数  | `(location: object) => Promise<string>`                | -      |
 | style        | 自定义样式    | `object`                                               | -      |

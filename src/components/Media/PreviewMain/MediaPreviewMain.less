@@ -6,10 +6,12 @@
 
 .lyrixi-media-preview-main {
   display: flex;
+
   .swiper-wrapper {
     height: auto;
     flex: 1;
   }
+
   .swiper-slide {
     overflow: hidden;
   }
@@ -30,6 +32,7 @@
   }
 
   position: relative;
+
   // pagination
   .swiper-pagination {
     pointer-events: none;
@@ -39,19 +42,22 @@
     bottom: auto;
     width: auto;
     color: var(--lyrixi-font-color-quaternary);
-    > span {
+
+    >span {
       vertical-align: baseline;
     }
   }
 
   // 上传中
   &.lyrixi-uploading {
+
     // 显示转圈
     .lyrixi-media-preview-main-choose {
       .lyrixi-media-uploading {
         display: block;
       }
     }
+
     // 上传中不允许删除与关闭
     .lyrixi-media-preview-main-delete,
     .lyrixi-media-preview-main-close,

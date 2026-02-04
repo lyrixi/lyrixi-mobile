@@ -128,6 +128,10 @@ function Browser(
       let itemExtra = null
       if (typeof getItemExtra === 'function') {
         itemExtra = await getItemExtra({ platform: 'browser' })
+        if (itemExtra === false) {
+          resolve(false)
+          return
+        }
       }
 
       resolve([

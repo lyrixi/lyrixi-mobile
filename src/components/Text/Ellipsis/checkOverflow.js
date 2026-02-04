@@ -1,5 +1,5 @@
 // 检测内容是否超出行数限制
-function checkOverflow (element) {
+function checkOverflow(element) {
   let elementHeight = element.clientHeight
 
   // 创建一个临时元素来测量实际内容高度

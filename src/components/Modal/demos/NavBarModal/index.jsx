@@ -33,7 +33,7 @@ export default () => {
           ok="Ok"
           // cancel="Cancel"
           onOk={handleOk}
-          // onCancel={handleCancel}
+        // onCancel={handleCancel}
         >
           <div style={{ height: '300px', width: '300px' }}>Content</div>
         </Modal.NavBarModal>

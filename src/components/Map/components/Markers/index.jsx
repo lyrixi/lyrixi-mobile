@@ -30,7 +30,7 @@ const Markers = forwardRef(
     const focusedPointRef = useRef(null)
 
     // Default Icon
-    const markerIcons = window?.APILoaderConfig?.markerIcons || defaultMarkerIcons
+    const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
 
     // 过滤错误的点位
     // eslint-disable-next-line

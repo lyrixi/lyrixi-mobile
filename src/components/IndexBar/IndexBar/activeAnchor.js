@@ -2,7 +2,7 @@
 function activeAnchor(anchor, { sidebarElement, tooltipElement }) {
   let buttonsElement = sidebarElement?.querySelectorAll?.('.lyrixi-indexbar-button')
   if (buttonsElement && buttonsElement.length) {
-    for (let i = 0, buttonElement; (buttonElement = buttonsElement[i++]); ) {
+    for (let i = 0, buttonElement; (buttonElement = buttonsElement[i++]);) {
       buttonElement.classList.remove('lyrixi-active')
     }
   }

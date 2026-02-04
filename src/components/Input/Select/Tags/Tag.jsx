@@ -18,9 +18,9 @@ const Tag = ({ style, className, name, readOnly, disabled, allowClear, onEdit, o
         readOnly || disabled
           ? undefined
           : (e) => {
-              onEdit && onEdit()
-              e.stopPropagation()
-            }
+            onEdit && onEdit()
+            e.stopPropagation()
+          }
       }
     >
       {name}

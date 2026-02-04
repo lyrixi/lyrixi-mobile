@@ -21,8 +21,8 @@ function showMask({ portal, onMaskClick }) {
       </div>
     `
 
-    // 添加到dom上
-    ;(portal || document.getElementById('root') || document.body).appendChild(mask)
+      // 添加到dom上
+      ; (portal || document.getElementById('root') || document.body).appendChild(mask)
 
     // 绑定事件
     mask.removeEventListener('click', onMaskClick, false)

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
 // 生成随机点
-const { APILoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map
+const { MapLoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map
 import getPoints from './getPoints'
 
 // 随机生成点, 用于测试性能
@@ -99,7 +99,7 @@ export default () => {
         <Button onClick={handleBlurPoint}>Blur point</Button>
       </Page.Header>
       <Page.Main>
-        <APILoader
+        <MapLoader
           config={{
             key: 'bmap key',
             type: 'bmap',
@@ -206,7 +206,7 @@ export default () => {
               />
             </MapMarkers>
           </div>
-        </APILoader>
+        </MapLoader>
       </Page.Main>
     </Page>
   )

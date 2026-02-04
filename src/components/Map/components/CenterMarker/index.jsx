@@ -33,7 +33,7 @@ const CenterMarker = forwardRef(
     const rootRef = useRef(null)
 
     // Default Icon
-    const markerIcons = window?.APILoaderConfig?.markerIcons || defaultMarkerIcons
+    const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
 
     // Center Marker layer
     const centerMarkerLayerRef = useRef(null)

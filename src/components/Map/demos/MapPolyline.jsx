@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
-const { APILoader, MapContainer, Polyline, coordsToWgs84 } = Map
+const { MapLoader, MapContainer, Polyline, coordsToWgs84 } = Map
 
 export default () => {
   const points = coordsToWgs84([
@@ -30,7 +30,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <APILoader
+        <MapLoader
           config={{
             key: 'bmap key',
             type: 'bmap'
@@ -48,7 +48,7 @@ export default () => {
               <Polyline points={points} color="#ff8800" />
             </MapContainer>
           </div>
-        </APILoader>
+        </MapLoader>
       </Page.Main>
     </Page>
   )

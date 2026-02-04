@@ -20,7 +20,7 @@ async function getAddress(params) {
   let result = null
 
   // 默认优先使用系统级定位
-  let defaultGetAddress = window?.getAddressDefault || window?.APILoaderConfig?.getAddress
+  let defaultGetAddress = window?.defaultGetAddress
   if (typeof defaultGetAddress === 'function') {
     result = await defaultGetAddress(params)
     return result

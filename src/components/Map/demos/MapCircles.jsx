@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
-const { APILoader, MapContainer, Circles, coordsToWgs84 } = Map
+const { MapLoader, MapContainer, Circles, coordsToWgs84 } = Map
 
 export default () => {
   const points = coordsToWgs84([
@@ -28,7 +28,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <APILoader
+        <MapLoader
           config={{
             key: 'bmap key',
             type: 'bmap'
@@ -46,7 +46,7 @@ export default () => {
               <Circles points={points} color="#ff8800" radius={500} />
             </MapContainer>
           </div>
-        </APILoader>
+        </MapLoader>
       </Page.Main>
     </Page>
   )

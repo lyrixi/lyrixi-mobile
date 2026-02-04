@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { SafeArea } from 'lyrixi-mobile'
 
 export default () => {
-  useEffect(() => {}, [])
+  useEffect(() => { }, [])
 
   return (
     <div

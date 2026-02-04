@@ -345,9 +345,9 @@ export default () => {
                 onBlur={() => {
                   setSearchActive(false)
                 }}
-                // onCancel={() => {
-                //   setSearchActive(false)
-                // }}
+              // onCancel={() => {
+              //   setSearchActive(false)
+              // }}
               />
             </ToolBar>
           </Card.Main>
@@ -390,9 +390,9 @@ export default () => {
                   onBlur={() => {
                     setSearchActive(false)
                   }}
-                  // onCancel={() => {
-                  //   setSearchActive(false)
-                  // }}
+                // onCancel={() => {
+                //   setSearchActive(false)
+                // }}
                 />
               )}
             </ToolBar>

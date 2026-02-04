@@ -36,17 +36,17 @@ export default () => {
           list={list}
           onChange={handlePhotoChange}
           onDelete={handlePhotoChange}
-          // 缩略图显示
-          // visibleCount={1}
-          // ModalProps={{
-          //   captionProps: {
-          //     caption: '附件列表'
-          //   },
-          //   listExtraHeaderRender: () => {
-          //     return <div>修改前</div>
-          //   }
-          // }}
-          // style={{ border: '1px solid red' }}
+        // 缩略图显示
+        // visibleCount={1}
+        // ModalProps={{
+        //   captionProps: {
+        //     caption: '附件列表'
+        //   },
+        //   listExtraHeaderRender: () => {
+        //     return <div>修改前</div>
+        //   }
+        // }}
+        // style={{ border: '1px solid red' }}
         />
       </Page.Main>
     </Page>

@@ -25,7 +25,8 @@ export default () => {
         open="choose"
         style={{ height: '400px' }}
         autoLocation={false}
-        config={{
+        // 可以用全局设置window.MapLoaderConfig代替
+        mapConfig={{
           key: 'bmap key',
           type: 'bmap'
         }}
