@@ -1,6 +1,6 @@
 {
   "name": "lyrixi-mobile",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react library developed with dumi",
   "license": "MIT",
   "exports": {
@@ -91,12 +91,12 @@
     "react-dom": "^19.1.1",
     "stylelint": "^14.9.1"
   },
-  "optionalDependencies": {
-    "@testing-library/jest-dom": "^6.6.3"
-  },
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
+  },
+  "optionalDependencies": {
+    "@testing-library/jest-dom": "^6.6.3"
   },
   "publishConfig": {
     "access": "public"
