@@ -6,83 +6,77 @@ const { MapLoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map
 import getPoints from './getPoints'
 
 // 随机生成点, 用于测试性能
-// const currentPoints = coordsToWgs84(
-//   getPoints({
-//     center: {
-//       latitude: 39.907783490367706,
-//       longitude: 116.39120737493609
-//     },
-//     // 半径5000000米
-//     radius: 1000,
-//     // 生成点数
-//     count: 101
-//   })
-// )
+const points = coordsToWgs84(
+  getPoints({
+    center: {
+      latitude: 39.907783490367706,
+      longitude: 116.39120737493609
+    },
+    // 半径5000000米
+    radius: 1000,
+    // 生成点数
+    count: 101
+  })
+)
 
 // This coordsToWgs84 just example, no practical use
-const points = coordsToWgs84([
-  {
-    icon: {
-      iconUrl: `https://cdn-icons-png.flaticon.com/128/13484/13484859.png`,
-      iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/13484/13484859.png`
-      // html: '<div style="background-color:red;color:white;">1</div>'
-    },
-    type: 'gcj02',
-    latitude: '31.982723',
-    longitude: '118.735298',
-    inChinaTo: 'bd09',
-    outChinaTo: 'wgs84',
-    isInChina: true
-  },
-  {
-    icon: {
-      iconUrl: `https://cdn-icons-png.flaticon.com/128/10096/10096738.png`,
-      iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/10096/10096738.png`
-      // html: '<div style="background-color:yellow;color:white;">2</div>'
-    },
-    type: 'gcj02',
-    latitude: '31.982594',
-    longitude: '118.735184',
-    inChinaTo: 'bd09',
-    outChinaTo: 'wgs84',
-    isInChina: true
-  },
-  {
-    icon: {
-      iconUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`,
-      iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`
-      // html: '<div style="background-color:green;color:white;">3</div>'
-    },
-    type: 'gcj02',
-    latitude: '31.98266',
-    longitude: '118.735237',
-    inChinaTo: 'bd09',
-    outChinaTo: 'wgs84',
-    isInChina: true
-  },
-  {
-    icon: {
-      iconUrl: `https://cdn-icons-png.flaticon.com/128/15047/15047495.png`,
-      iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/15047/15047495.png`
-      // html: '<div style="background-color:black;color:white;">4</div>'
-    },
-    type: 'gcj02',
-    latitude: '31.982693',
-    longitude: '118.73526',
-    inChinaTo: 'bd09',
-    outChinaTo: 'wgs84',
-    isInChina: true
-  }
-])
+// const points = coordsToWgs84([
+//   {
+//     icon: {
+//       iconUrl: `https://cdn-icons-png.flaticon.com/128/13484/13484859.png`,
+//       iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/13484/13484859.png`
+//       // html: '<div style="background-color:red;color:white;">1</div>'
+//     },
+//     type: 'gcj02',
+//     latitude: '31.982723',
+//     longitude: '118.735298',
+//     inChinaTo: 'bd09',
+//     outChinaTo: 'wgs84',
+//     isInChina: true
+//   },
+//   {
+//     icon: {
+//       iconUrl: `https://cdn-icons-png.flaticon.com/128/10096/10096738.png`,
+//       iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/10096/10096738.png`
+//       // html: '<div style="background-color:yellow;color:white;">2</div>'
+//     },
+//     type: 'gcj02',
+//     latitude: '31.982594',
+//     longitude: '118.735184',
+//     inChinaTo: 'bd09',
+//     outChinaTo: 'wgs84',
+//     isInChina: true
+//   },
+//   {
+//     icon: {
+//       iconUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`,
+//       iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`
+//       // html: '<div style="background-color:green;color:white;">3</div>'
+//     },
+//     type: 'gcj02',
+//     latitude: '31.98266',
+//     longitude: '118.735237',
+//     inChinaTo: 'bd09',
+//     outChinaTo: 'wgs84',
+//     isInChina: true
+//   },
+//   {
+//     icon: {
+//       iconUrl: `https://cdn-icons-png.flaticon.com/128/15047/15047495.png`,
+//       iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/15047/15047495.png`
+//       // html: '<div style="background-color:black;color:white;">4</div>'
+//     },
+//     type: 'gcj02',
+//     latitude: '31.982693',
+//     longitude: '118.73526',
+//     inChinaTo: 'bd09',
+//     outChinaTo: 'wgs84',
+//     isInChina: true
+//   }
+// ])
 
 export default () => {
   const mapRef = useRef(mapRef)
-  // const [points, setPoints] = useState(null)
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setPoints(currentPoints)
-  //   }, 5000)
-  // }, [])
 
   function handleFocusPoint() {
     mapRef.current.markersRef.current.focus(points[0])
@@ -193,9 +187,12 @@ export default () => {
               //     .setContent('I am a standalone popup.')
               //     .openOn(mapRef.current.leafletMap)
               // }}
-              onLoad={(map) => {
-                let currentZoom = map.getZoom()
-                map.setZoom(currentZoom - 1)
+              onLoad={(result) => {
+                // 地图加载失败
+                if (result?.status === 'error') return
+
+                let currentZoom = result?.map?.getZoom()
+                result?.map?.setZoom(currentZoom - 1)
               }}
             >
               <LocationControl

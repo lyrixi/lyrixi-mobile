@@ -1,4 +1,8 @@
-import rbush from './rbush.js'
+let rbush = require('./rbush.js')
+if (rbush.default) {
+  rbush = rbush.default
+}
+
 // 需要引入rbush
 function layerFactory(L) {
   var CanvasIconLayer = (L.Layer ? L.Layer : L.Class).extend({

@@ -156,23 +156,6 @@ function MapChoose(
     handleChange(newValue)
   }
 
-  const handleLoadRef = useRef(null)
-  handleLoadRef.current = function (result) {
-    // 地图加载失败
-    if (result?.status === 'error') return
-
-    // 加载完成后更新视图
-    if (value?.longitude && value?.latitude && value?.type) {
-      mapRef.current?.panTo?.(value)
-    }
-
-    onLoad && onLoad(result)
-
-    // 当前位置
-    if (readOnly || !autoLocation) return
-    handleAutoLocation()
-  }
-
   // Format coord to wgs84 before change
   function handleChange(newValue) {
     let fmtNewValue = coordsToWgs84(newValue)
@@ -198,8 +181,20 @@ function MapChoose(
       className={className}
       style={style}
       // Events
-      onLoad={(map) => {
-        handleLoadRef.current(map)
+      onLoad={(result) => {
+        // 地图加载失败
+        if (result?.status === 'error') return
+
+        // 加载完成后更新视图
+        if (value?.longitude && value?.latitude && value?.type) {
+          result?.map?.panTo?.(value)
+        }
+
+        onLoad && onLoad(result)
+
+        // 当前位置
+        if (readOnly || !autoLocation) return
+        handleAutoLocation()
       }}
       onZoomStart={onZoomStart}
       onZoom={onZoom}

@@ -35,8 +35,8 @@ export default () => {
               zoom={16}
               minZoom={10}
               maxZoom={18}
-              onLoad={(map) => {
-                console.log('地图加载完成:', map)
+              onLoad={(result) => {
+                console.log('地图加载完成:', result)
               }}
               onZoomStart={(map) => {
                 console.log('开始缩放:', map.getZoom())

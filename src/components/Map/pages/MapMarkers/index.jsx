@@ -91,14 +91,14 @@ function MapMarkers(
       className={className}
       style={style}
       // Events
-      onLoad={(map) => {
-        // value没值时，开启自动定位，则先定位
-        if (typeof map === 'string') return
+      onLoad={(result) => {
+        // 地图加载失败
+        if (result?.status === 'error') return
 
         // 加载完成后更新视图
-        mapRef.current?.panTo?.(markers)
+        result?.map?.panTo?.(markers)
 
-        onLoad && onLoad(map)
+        onLoad && onLoad(result)
       }}
       onZoomStart={onZoomStart}
       onZoom={onZoom}
