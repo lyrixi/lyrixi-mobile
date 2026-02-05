@@ -50,7 +50,7 @@ const Switch = forwardRef(
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-switch',
-          size,
+          `lyrixi-${size}`,
           className,
           checked ? 'lyrixi-active' : '',
           readOnly ? 'lyrixi-readOnly' : '',
