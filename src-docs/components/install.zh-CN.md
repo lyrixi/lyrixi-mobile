@@ -33,7 +33,7 @@ Minimalist Token, Unified API, Simple and easy to use</div>
 ### CSS import
 
 ```bash
-@import 'lyrixi-mobile/assets/lyrixi-mobile.min.css';
+@import 'lyrixi-mobile/assets/index.css';
 ```
 
 ## 📦 Install
