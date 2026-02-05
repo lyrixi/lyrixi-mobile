@@ -83,12 +83,13 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
       )
     }
 
-    if (result && result?.status !== 'success') {
+    // 没有关键字
+    if (!keyword?.trim?.()) {
       return (
         <Result
           title={
             result?.message ||
-            LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
+            LocaleUtil.locale('请输入关键字')
           }
           status={result?.status || 'empty'}
           className="lyrixi-cascader-main-result"
