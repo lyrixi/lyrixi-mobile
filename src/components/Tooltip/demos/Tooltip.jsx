@@ -1,4 +1,3 @@
-import 'lyrixi-mobile/assets/index.less'
 import React from 'react'
 import { Tooltip } from 'lyrixi-mobile'
 
