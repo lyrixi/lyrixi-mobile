@@ -1,3 +1,4 @@
+import './Keyboard.less'
 import Number from './Number'
 
 const Keyboard = {

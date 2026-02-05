@@ -1,3 +1,4 @@
+import './Checkbox.less'
 import Checkbox from './Checkbox'
 import Group from './Group'
 

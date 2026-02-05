@@ -1,3 +1,4 @@
+import './Progress.less'
 import Circle from './Circle'
 import Bar from './Bar'
 

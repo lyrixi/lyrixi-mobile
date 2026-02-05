@@ -1,3 +1,4 @@
+import './Tooltip.less'
 import Tooltip from './Tooltip'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 

@@ -1,3 +1,4 @@
+import './Page.less'
 import Page from './Page'
 
 import Header from './Header'

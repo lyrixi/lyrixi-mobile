@@ -1,3 +1,4 @@
+import './List.less'
 import InfiniteScroll from './InfiniteScroll'
 import Item from './Item'
 import List from './List'

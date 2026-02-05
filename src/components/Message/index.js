@@ -1,3 +1,4 @@
+import './Message.less'
 import Combo from './Combo'
 import Modal from './Modal'
 

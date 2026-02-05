@@ -1,3 +1,4 @@
+import './Attach.less'
 import Attach from './Attach'
 
 import validateListStatus from './../Media/utils/validateListStatus'

@@ -1,3 +1,4 @@
+import './Modal.less'
 import Modal from './Modal'
 import NavBarModal from './NavBarModal'
 import DropdownModal from './DropdownModal'

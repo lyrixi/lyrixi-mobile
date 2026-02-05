@@ -1,3 +1,4 @@
+import './Text.less'
 import Text from './Text'
 import getDisplayValue from './getDisplayValue'
 

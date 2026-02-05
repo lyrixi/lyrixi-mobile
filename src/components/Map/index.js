@@ -1,3 +1,4 @@
+import './Map.less'
 /*
  * 说明: Map使用leaflet绘制, 一律使用wgs84坐标, 只有在绘制瓦片和搜索时需要纠偏转坐标
  * Leaflet 1.9.4, a JS library for interactive maps. https://leafletjs.com

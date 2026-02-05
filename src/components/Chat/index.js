@@ -1,3 +1,4 @@
+import './Chat.less'
 import List from './List'
 import Item from './Item'
 
