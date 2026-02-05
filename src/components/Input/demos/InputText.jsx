@@ -94,14 +94,8 @@ export default () => {
           <Input.Text
             placeholder="带左右图标"
             value={value5}
-            leftIconNode={<span style={{ color: '#999' }}>🔍</span>}
-            rightIconNode={({ value }) => {
-              return value ? (
-                <Input.IconClear onClick={() => setValue5('')} />
-              ) : (
-                <Input.IconRightArrow />
-              )
-            }}
+            leftIconNode={<span style={{ color: '#999' }}>&lt;</span>}
+            rightIconNode={<Input.IconRightArrow />}
             onChange={setValue5}
           />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
