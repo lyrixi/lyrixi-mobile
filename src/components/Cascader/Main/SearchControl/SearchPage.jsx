@@ -27,12 +27,21 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     }
 
     const currentList =
-      keyword && keyword.trim() ? ArrayUtil.searchDeepTree(externalList, keyword) : []
+      keyword && keyword.trim() ? ArrayUtil.getDeepTreeNodes(externalList, (node) => {
+        return String(node.name).includes(keyword)
+      }) : []
+
     if (currentList.length > 0) {
       setResult({
         status: 'success',
         message: '',
-        list: currentList
+        // list过滤掉children, 否则List组件会将children当作子项也展示出来
+        list: currentList.map((node) => {
+          const { children, ...restNode } = node
+          return {
+            ...restNode
+          }
+        })
       })
     } else {
       setResult({
@@ -52,25 +61,7 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     if (Array.isArray(result?.list) && result?.list.length > 0) {
       return (
         <List
-          list={result?.list
-            // 过滤掉没有搜索结果的项
-            .filter((item) => Array.isArray(item.path) && item.path.length)
-            // searchDeepTree过滤掉children, 否则list会当作子项把children也展示出来
-            .map((item) => {
-              // 构建路径名称
-              let pathName = item.path
-                .map((option) => {
-                  return option.name
-                })
-                .join('/')
-
-              // 移除children属性，避免被List组件当作子项展示
-              const { children, ...restItem } = item
-              return {
-                ...restItem,
-                title: <Text highlight={keyword}>{pathName}</Text>
-              }
-            })}
+          list={result?.list}
           onChange={(item) => {
             onChange?.(item?.path)
           }}
