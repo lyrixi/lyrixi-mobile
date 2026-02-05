@@ -15,10 +15,34 @@ export default () => {
   const [value5, setValue5] = useState('')
   const [open6, setOpen6] = useState(false)
   const [value6, setValue6] = useState('')
+  const [openFull, setOpenFull] = useState(false)
+  const [valueFull, setValueFull] = useState('')
 
   return (
     <Page>
       <Page.Main>
+        <Card>
+          <Divider>所有按键（小数点、负号、删除、确认、取消）</Divider>
+          <Input.Node
+            value={valueFull}
+            placeholder="点击输入，展示完整键盘"
+            onClick={() => setOpenFull(true)}
+            onChange={setValueFull}
+          />
+          <Keyboard.Number
+            open={openFull}
+            value={valueFull}
+            onChange={setValueFull}
+            dot="."
+            minus="-"
+            okVisible
+            cancelVisible
+            onOk={(val) => setValueFull(val)}
+            onCancel={() => setOpenFull(false)}
+            onClose={() => setOpenFull(false)}
+          />
+        </Card>
+
         <Card>
           <Divider>value / onChange / open / onClose</Divider>
           <Input.Node
