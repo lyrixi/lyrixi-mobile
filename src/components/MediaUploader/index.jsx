@@ -6,7 +6,7 @@ import uploadList from './utils/uploadList'
 // 内部组件
 import Interval from './utils/Interval'
 import CompatibleToggle from './CompatibleToggle'
-import WechatMiniProgram from './WechatMiniProgram1'
+import WechatMiniProgram from './WechatMiniProgram'
 import Browser from './Browser'
 import Wechat from './Wechat'
 import Dingtalk from './Dingtalk'

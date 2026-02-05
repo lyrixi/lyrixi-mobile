@@ -8,4 +8,4 @@ title: 卡片
 
 ## 卡片 1
 
-<code src="./demos/Card1/index.jsx"></code>
+<code src="./demos/Card/index.jsx"></code>

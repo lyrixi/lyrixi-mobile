@@ -1,3 +1,4 @@
+import './TabBar.less'
 import Tabs from './Tabs'
 import Group from './Group'
 import Slide from './Slide'

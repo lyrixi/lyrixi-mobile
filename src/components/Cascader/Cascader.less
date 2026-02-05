@@ -6,10 +6,8 @@
 // Modal
 .lyrixi-cascader-modal {
   height: 504px;
-}
 
-// Main Indexbar
-.lyrixi-cascader-modal {
+  // Main Indexbar
   .lyrixi-cascader-indexbar {
     top: 48px;
   }
@@ -18,38 +16,5 @@
 // Main List
 .lyrixi-cascader-item {}
 
-// Main Tabs
-.lyrixi-cascader-tabs {
-  display: flex;
-  margin: 0 12px;
-  overflow-x: auto;
-  // text-wrap: nowrap;
-  white-space: nowrap;
-  overflow-x: auto;
-
-  // tab禁用又选中的情况下，不允许点击列表
-  &:has(.lyrixi-active.lyrixi-disabled) {
-    &+.lyrixi-cascader-main .lyrixi-cascader-item {
-      pointer-events: none;
-      opacity: 0.5;
-    }
-  }
-}
-
-.lyrixi-cascader-tab {
-  height: 32px;
-  margin-right: 20px;
-  line-height: 32px;
-
-  &.lyrixi-active {
-    font-weight: 600;
-    border-bottom: 2px solid var(--lyrixi-primary);
-  }
-
-  &.lyrixi-disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-}
 // 2.引入后置样式
 @import '../../assets/global/global-after.less';
