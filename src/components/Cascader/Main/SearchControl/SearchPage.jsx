@@ -38,8 +38,10 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
         // list过滤掉children, 否则List组件会将children当作子项也展示出来
         list: currentList.map((node) => {
           const { children, ...restNode } = node
+          const path = ArrayUtil.getDeepTreePredecessorNodes(externalList, node.id)
           return {
-            ...restNode
+            ...restNode,
+            path: path.concat(node)
           }
         })
       })
@@ -58,12 +60,24 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
   }
 
   function getListNode() {
+    console.log('result', result)
     if (Array.isArray(result?.list) && result?.list.length > 0) {
       return (
         <List
-          list={result?.list}
+          list={result?.list.map((node) => {
+            // 构建路径名称
+            let pathName = node.path
+              .map((option) => {
+                return option.name
+              })
+              .join('/')
+            return {
+              path: node.path,
+              title: <Text highlight={keyword}>{pathName}</Text>
+            }
+          })}
           onChange={(item) => {
-            onChange?.(item?.path)
+            onChange?.(item.path)
           }}
         />
       )
