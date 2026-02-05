@@ -43,7 +43,7 @@ toc: content
 
 | 属性        | 说明         | 类型                   |
 | ----------- | ------------ | ---------------------- |
-| element     | 根元素       | `HtmlDivElement`       |
+| element     | 根元素       | `HTMLDivElement`       |
 | instance    | 实例对象     | `object`               |
-| getElement  | 获取根元素   | () => `HtmlDivElement` |
+| getElement  | 获取根元素   | () => `HTMLDivElement` |
 | getInstance | 获取实例对象 | () => `object`         |

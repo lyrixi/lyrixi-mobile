@@ -37,10 +37,10 @@ toc: content
 
 | 属性              | 说明         | 类型                       |
 | ----------------- | ------------ | -------------------------- | --- |
-| element           | 根元素       | `HtmlDivElement`           |
-| tooltipElement    | 提示元素     | `HtmlDivElement`           |
-| getElement        | 获取根元素   | () => `HtmlDivElement`     |
-| getTooltipElement | 获取提示元素 | () => `HtmlDivElement`     |
+| element           | 根元素       | `HTMLDivElement`           |
+| tooltipElement    | 提示元素     | `HTMLDivElement`           |
+| getElement        | 获取根元素   | () => `HTMLDivElement`     |
+| getTooltipElement | 获取提示元素 | () => `HTMLDivElement`     |
 | scrollToAnchor    | 滚动到锚点   | `(anchor: string) => void` | -   |
 
 ## IndexBar.Anchor
@@ -70,5 +70,5 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

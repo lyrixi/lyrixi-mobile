@@ -48,8 +48,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Signature.Modal
 
@@ -84,8 +84,8 @@ toc: content
 
 | 属性            | 说明           | 类型                   |
 | --------------- | -------------- | ---------------------- |
-| modalElement    | 模态框元素     | `HtmlDivElement`       |
-| getModalElement | 获取模态框元素 | () => `HtmlDivElement` |
+| modalElement    | 模态框元素     | `HTMLDivElement`       |
+| getModalElement | 获取模态框元素 | () => `HTMLDivElement` |
 
 ## Signature.Main
 
@@ -116,7 +116,7 @@ toc: content
 
 | 属性       | 说明        | 类型                            |
 | ---------- | ----------- | ------------------------------- |
-| element    | 根元素      | `HtmlDivElement`                |
-| getElement | 获取根元素  | () => `HtmlDivElement`          |
+| element    | 根元素      | `HTMLDivElement`                |
+| getElement | 获取根元素  | () => `HTMLDivElement`          |
 | getBase64  | 获取 Base64 | `() => Promise<string \| null>` |
 | clear      | 清除签名    | `() => void`                    |

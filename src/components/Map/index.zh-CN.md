@@ -53,8 +53,8 @@ toc: content
 
 | 属性         | 说明             | 类型                                   |
 | ------------ | ---------------- | -------------------------------------- | --- |
-| element      | 根元素           | `HtmlDivElement`                       |
-| getElement   | 获取根元素       | () => `HtmlDivElement`                 |
+| element      | 根元素           | `HTMLDivElement`                       |
+| getElement   | 获取根元素       | () => `HTMLDivElement`                 |
 | type         | 地图类型         | `string`                               |
 | currentMap   | 当前地图实例     | `object`                               |
 | leafletMap   | Leaflet 地图实例 | `object`                               |
@@ -88,8 +88,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.SearchControl
 
@@ -116,8 +116,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.CenterMarker
 
@@ -144,8 +144,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.Markers
 
@@ -173,8 +173,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.Circles
 
@@ -202,8 +202,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.Polyline
 
@@ -231,8 +231,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.LocationControl
 
@@ -259,8 +259,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.NearbyControl
 
@@ -287,8 +287,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.MapChoose
 
@@ -316,8 +316,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.MapMarkers
 
@@ -345,8 +345,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Map.coordsToWgs84
 

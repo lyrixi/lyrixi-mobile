@@ -36,8 +36,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## ToolBar.Button
 
@@ -76,8 +76,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## ToolBar.Dropdown
 
@@ -129,8 +129,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 | close      | 关闭下拉   | `() => void`           |
 | open       | 打开下拉   | `() => void`           |
 
@@ -186,8 +186,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## ToolBar.SearchActive
 
@@ -263,8 +263,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 | close      | 关闭选择器 | `() => void`           |
 | open       | 打开选择器 | `() => void`           |
 
@@ -294,8 +294,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## ToolBar.ActionSheet
 
@@ -345,5 +345,5 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

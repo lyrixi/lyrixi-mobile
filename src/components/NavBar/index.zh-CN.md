@@ -35,8 +35,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## NavBar.Title
 
@@ -64,8 +64,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## NavBar.Button
 
@@ -94,5 +94,5 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

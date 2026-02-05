@@ -59,8 +59,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Location.Modal
 
@@ -95,8 +95,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Location.Main
 
@@ -133,5 +133,5 @@ toc: content
 
 | 属性           | 说明       | 类型                   |
 | -------------- | ---------- | ---------------------- |
-| mainElement    | 主元素     | `HtmlDivElement`       |
-| getMainElement | 获取主元素 | () => `HtmlDivElement` |
+| mainElement    | 主元素     | `HTMLDivElement`       |
+| getMainElement | 获取主元素 | () => `HTMLDivElement` |

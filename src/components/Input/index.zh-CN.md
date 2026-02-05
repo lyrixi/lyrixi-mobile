@@ -69,10 +69,10 @@ toc: content
 
 | 属性            | 说明           | 类型                     |
 | --------------- | -------------- | ------------------------ |
-| element         | 根元素         | `HtmlDivElement`         |
-| inputElement    | 输入框元素     | `HtmlInputElement`       |
-| getElement      | 获取根元素     | () => `HtmlDivElement`   |
-| getInputElement | 获取输入框元素 | () => `HtmlInputElement` |
+| element         | 根元素         | `HTMLDivElement`         |
+| inputElement    | 输入框元素     | `HTMLInputElement`       |
+| getElement      | 获取根元素     | () => `HTMLDivElement`   |
+| getInputElement | 获取输入框元素 | () => `HTMLInputElement` |
 | correctValue    | 矫正值         | `(value: any) => string` |
 | focus           | 获取焦点       | `() => void`             |
 

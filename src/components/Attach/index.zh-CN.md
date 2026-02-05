@@ -56,8 +56,8 @@ toc: content
 
 | 属性         | 说明       | 类型                              |
 | ------------ | ---------- | --------------------------------- | --- |
-| element      | 根元素     | `HtmlDivElement`                  |
-| getElement   | 获取根元素 | () => `HtmlDivElement`            |
+| element      | 根元素     | `HTMLDivElement`                  |
+| getElement   | 获取根元素 | () => `HTMLDivElement`            |
 | updateStatus | 更新状态   | `() => void`                      |
 | chooseFile   | 选择文件   | `() => Promise<object>`           |
 | choose       | 选择       | `() => Promise<object>`           |
@@ -92,8 +92,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Attach.Button
 
@@ -122,8 +122,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Attach.Uploading
 
@@ -151,5 +151,5 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

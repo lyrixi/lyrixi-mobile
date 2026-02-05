@@ -42,10 +42,10 @@ toc: content
 
 | 属性            | 说明           | 类型                   |
 | --------------- | -------------- | ---------------------- |
-| maskElement     | 遮罩元素       | `HtmlDivElement`       |
-| getMaskElement  | 获取遮罩元素   | () => `HtmlDivElement` |
-| modalElement    | 模态框元素     | `HtmlDivElement`       |
-| getModalElement | 获取模态框元素 | () => `HtmlDivElement` |
+| maskElement     | 遮罩元素       | `HTMLDivElement`       |
+| getMaskElement  | 获取遮罩元素   | () => `HTMLDivElement` |
+| modalElement    | 模态框元素     | `HTMLDivElement`       |
+| getModalElement | 获取模态框元素 | () => `HTMLDivElement` |
 
 ## Message.open
 
@@ -159,8 +159,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Message.Main
 
@@ -188,8 +188,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Message.Footer
 
@@ -217,8 +217,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Message.Icon
 
@@ -246,8 +246,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Message.Title
 
@@ -275,8 +275,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## Message.Button
 
@@ -305,5 +305,5 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

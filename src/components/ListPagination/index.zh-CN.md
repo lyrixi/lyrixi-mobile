@@ -59,8 +59,8 @@ toc: content
 
 | 属性        | 说明       | 类型                           |
 | ----------- | ---------- | ------------------------------ | --- |
-| element     | 根元素     | `HtmlDivElement`               |
-| getElement  | 获取根元素 | () => `HtmlDivElement`         |
+| element     | 根元素     | `HTMLDivElement`               |
+| getElement  | 获取根元素 | () => `HTMLDivElement`         |
 | updateCache | 更新缓存   | `(extraCache: object) => void` | -   |
 | clearCache  | 清除缓存   | `() => void`                   |
 | getCache    | 获取缓存   | `() => object`                 |

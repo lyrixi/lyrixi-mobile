@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Modal/demo1.jsx"></code>
+<code src="./demos/Modal/index.jsx"></code>
 
 ## API
 
@@ -43,7 +43,7 @@ toc: content
 
 | 属性            | 说明           | 类型                   |
 | --------------- | -------------- | ---------------------- |
-| maskElement     | 遮罩元素       | `HtmlDivElement`       |
-| getMaskElement  | 获取遮罩元素   | () => `HtmlDivElement` |
-| modalElement    | 模态框元素     | `HtmlDivElement`       |
-| getModalElement | 获取模态框元素 | () => `HtmlDivElement` |
+| maskElement     | 遮罩元素       | `HTMLDivElement`       |
+| getMaskElement  | 获取遮罩元素   | () => `HTMLDivElement` |
+| modalElement    | 模态框元素     | `HTMLDivElement`       |
+| getModalElement | 获取模态框元素 | () => `HTMLDivElement` |

@@ -49,8 +49,8 @@ toc: content
 
 | 属性          | 说明       | 类型                   |
 | ------------- | ---------- | ---------------------- |
-| element       | 根元素     | `HtmlDivElement`       |
-| getElement    | 获取根元素 | () => `HtmlDivElement` |
+| element       | 根元素     | `HTMLDivElement`       |
+| getElement    | 获取根元素 | () => `HTMLDivElement` |
 | slideCollapse | 收起       | `() => Promise<void>`  |
 | slideExpand   | 展开       | `() => Promise<void>`  |
 | slidePrevious | 上一页     | `() => Promise<void>`  |
@@ -82,5 +82,5 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

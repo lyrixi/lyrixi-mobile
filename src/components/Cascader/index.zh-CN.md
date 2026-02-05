@@ -36,7 +36,7 @@ toc: content
 | separator      | 分隔符       | `string`                                                            | -      |
 | mode           | 模式         | `string`                                                            | -      |
 | readOnly       | 是否只读     | `boolean`                                                           | -      |
-| disabled       | 是否禁用     | `booleana或者['country', 'province', 'city', 'district', 'street']` | -      |
+| disabled       | 是否禁用     | `boolean \| string[]`（Cascader.DistrictCombo 可传如 `['country','province','city','district','street']` 禁用层级） | -      |
 | allowClear     | 允许清除     | `boolean`                                                           | -      |
 | style          | 自定义样式   | `object`                                                            | -      |
 | className      | 自定义类名   | `string`                                                            | -      |
@@ -65,8 +65,8 @@ toc: content
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HtmlDivElement`       |
-| getElement | 获取根元素 | () => `HtmlDivElement` |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 | close      | 关闭选择器 | `() => void`           |
 | open       | 打开选择器 | `() => void`           |
 
