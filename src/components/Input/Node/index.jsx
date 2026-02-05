@@ -203,7 +203,7 @@ const InputNode = (
             cursor ? 'lyrixi-input-focus' : ''
           )}
         >
-          {typeof value === 'object' || !value || cursor ? placeholder : value}
+          {typeof value === 'object' || !value ? placeholder : value}
         </div>
 
         {/* Value & Display Value: Formatter Display */}
