@@ -1,4 +1,3 @@
-import './Input.less'
 import AutoSize from './AutoSize'
 import Number from './Number'
 import NumberBox from './NumberBox'

@@ -1,4 +1,3 @@
-import './NavBar.less'
 import NavBar from './NavBar'
 import Title from './Title'
 import Button from './Button'

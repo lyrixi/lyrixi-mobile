@@ -1,4 +1,3 @@
-import './FooterBar.less'
 import FooterBar from './FooterBar'
 import Button from './Button'
 

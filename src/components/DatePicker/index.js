@@ -1,4 +1,3 @@
-import './DatePicker.less'
 import { getTitle, getDefaultRanges, getRangeId } from './utils'
 
 import Combo from './Combo'

@@ -1,4 +1,3 @@
-import './Flex.less'
 import Flex from './Flex'
 import Compact from './Compact'
 

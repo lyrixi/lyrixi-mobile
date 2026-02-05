@@ -1,4 +1,3 @@
-import './Location.less'
 import Combo from './Combo'
 import Modal from './Modal'
 import Main from './Main'

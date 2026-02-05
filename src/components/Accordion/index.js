@@ -1,4 +1,3 @@
-import './Accordion.less'
 import AccordionGroup from './AccordionGroup'
 import Accordion from './Accordion'
 

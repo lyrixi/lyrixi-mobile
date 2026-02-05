@@ -1,4 +1,3 @@
-import './SafeArea.less'
 import SafeArea from './SafeArea'
 
 SafeArea.debug = () => {

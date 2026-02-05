@@ -1,4 +1,3 @@
-import 'lyrixi-mobile/assets/index.less'
 import React, { useState } from 'react'
 import { Page, Card, Divider, Input, Keyboard } from 'lyrixi-mobile'
 

@@ -1,4 +1,3 @@
-import './ActionSheet.less'
 import Combo from './Combo'
 import Modal from './Modal'
 import Item from './Item'

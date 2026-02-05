@@ -1,4 +1,3 @@
-import './Media.less'
 import validateListStatus from './utils/validateListStatus'
 import isAllowClear from './utils/isAllowClear'
 import Media from './Media'

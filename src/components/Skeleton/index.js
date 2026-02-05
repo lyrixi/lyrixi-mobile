@@ -1,4 +1,3 @@
-import './Skeleton.less'
 import Block from './components/Block'
 import Paragraph from './components/Paragraph'
 import Tabs from './components/Tabs'

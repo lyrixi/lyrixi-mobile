@@ -1,4 +1,3 @@
-import './IndexBar.less'
 import IndexBar from './IndexBar'
 import Anchor from './Anchor'
 
