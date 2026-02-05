@@ -290,6 +290,13 @@ const CascaderMain = forwardRef(
       <>
         {/* 主页面 */}
         <Page full={false} className="lyrixi-cascader-page">
+          {/* 索引栏: 为了防止遮住搜索页面, 需要放在搜索框上面 */}
+          <IndexBar
+            className="lyrixi-cascader-indexbar"
+            anchors={getAnchors(result?.list)}
+            scrollerElement={mainRef.current}
+          />
+
           {/* 搜索框 */}
           {searchVisible && Array.isArray(externalList) && externalList.length > 0 && (
             <SearchControl
@@ -332,11 +339,7 @@ const CascaderMain = forwardRef(
             onSelect={(item) => handleDrill(item)}
           />
 
-          <IndexBar
-            className="lyrixi-cascader-indexbar"
-            anchors={getAnchors(result?.list)}
-            scrollerElement={mainRef.current}
-          />
+
         </Page>
       </>
     )

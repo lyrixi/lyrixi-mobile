@@ -48,7 +48,7 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     } else {
       setResult({
         status: 'empty',
-        message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),
+        message: !keyword?.trim?.() ? LocaleUtil.locale('请输入关键字') : LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),
         list: []
       })
     }
@@ -83,8 +83,8 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
       )
     }
 
-    // 没有关键字
-    if (!keyword?.trim?.()) {
+    // 没有关键字或报错
+    if (result?.status !== 'success') {
       return (
         <Result
           title={
