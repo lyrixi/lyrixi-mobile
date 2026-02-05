@@ -37,7 +37,4 @@ function deleteCode(filePath, code) {
 const currentSourceFolder = `./scripts/docs-after/assets`
 const targetSourceFolder = `./docs/assets`
 createFolder(targetSourceFolder)
-copyFolder(currentSourceFolder, targetSourceFolder, () => {
-  // 删除src/index中加载less的代码
-  deleteCode(`${targetSourceFolder}/index.js`, `import "./assets/index.less";\n`)
-})
+copyFolder(currentSourceFolder, targetSourceFolder)
