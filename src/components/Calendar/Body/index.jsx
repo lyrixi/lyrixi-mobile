@@ -336,6 +336,7 @@ const Body = forwardRef(
             onMouseMove={handleTouchMove}
             onMouseUp={handleTouchEnd}
           >
+            {/* 箭头转向：slideY 在日历根节点 .lyrixi-calendar 上增删 class lyrixi-expand，Calendar.less 里 .lyrixi-calendar.lyrixi-expand .lyrixi-calendar-toggle-svg 通过覆盖 path 的 d（下箭头↔上箭头）实现展开时箭头朝上、收缩时朝下，path 上的 transition 做过渡 */}
             <Toggle onClick={onToggle} />
           </div>
         )}

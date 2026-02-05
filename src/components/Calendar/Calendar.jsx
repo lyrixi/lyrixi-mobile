@@ -250,7 +250,8 @@ const Calendar = (
       className={DOMUtil.classNames(
         'lyrixi-calendar',
         className,
-        selectionMode ? `lyrixi-calendar-mode-${selectionMode}` : ''
+        selectionMode ? `lyrixi-calendar-mode-${selectionMode}` : '',
+        currentType === 'month' ? 'lyrixi-expand' : 'lyrixi-collapse'
       )}
     >
       {typeof headerRender === 'function' ? (

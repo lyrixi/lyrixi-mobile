@@ -9,12 +9,12 @@ function slideY(op, { duration, currentPage, drawDate, cellHeight, bodyHeight, b
   let translateY = 0
   let drawDateRowIndex = Months.getDateRowIndex(drawDate, currentPage)
 
-  // 样式标记展开和收缩, 暂时无意义
-  if (op) {
-    body.parentNode.classList.remove('lyrixi-expand')
-    body.parentNode.classList.remove('lyrixi-collapse')
-    body.parentNode.classList.add('lyrixi-' + op)
-  }
+  // 样式标记展开和收缩, 用currentType代替
+  // if (op) {
+  //   body.parentNode.classList.remove('lyrixi-expand')
+  //   body.parentNode.classList.remove('lyrixi-collapse')
+  //   body.parentNode.classList.add('lyrixi-' + op)
+  // }
 
   // 展开
   if (op === 'expand') {
