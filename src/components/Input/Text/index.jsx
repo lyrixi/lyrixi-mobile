@@ -89,7 +89,10 @@ const InputText = (
         return inputRef.current
       },
       correctValue: correctValue,
-      focus: focus
+      focus: focus,
+      blur: () => {
+        inputRef.current?.blur?.()
+      }
     }
   })
 
