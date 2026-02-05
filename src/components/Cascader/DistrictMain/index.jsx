@@ -82,6 +82,12 @@ const CascaderDistrictMain = forwardRef(
         loadCountryRegions
       })
 
+      // 获取国家省市区数据失败, 显示错误
+      if (baseData?.status === 'error') {
+        setResult(baseData)
+        return
+      }
+
       // 大多传入的value数据是不完整的, 没有type、parentid、disabled
       let newValue = value
       if (value?.length) {
@@ -90,12 +96,10 @@ const CascaderDistrictMain = forwardRef(
 
       // 1.无选中项, 说明国家省市区已经覆盖选中项的层级
       // 2.国家省市区已经覆盖选中项的层级
-      // 3.基础列表错误, 显示错误
       let lastTab = newValue?.[newValue.length - 1]
       if (
         !newValue?.length ||
-        !ArrayUtil.getDeepTreeNode(lastTab.id, baseData?.list) ||
-        baseData?.status === 'error'
+        ArrayUtil.getDeepTreeNode(baseData?.list, lastTab?.id)
       ) {
         setResult(baseData)
 

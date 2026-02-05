@@ -12,8 +12,8 @@ async function loadBaseData({ countryId, loadCountries, loadCountryRegions }) {
   // 返回国家数据
   let countriesData = await loadCountries()
 
-  // 未指定国家, 则直接返回国家数据
-  if (!countryId) {
+  // 未指定国家, 则直接返回国家数据, 或者获取国家报错
+  if (!countryId || countriesData.status === 'error') {
     return countriesData
   }
 
