@@ -201,6 +201,7 @@ const KeyboardNumber = forwardRef(
     const KeyboardNode = (
       <Page
         ref={rootRef}
+        full={false}
         animation="slideUp"
         className={DOMUtil.classNames(
           'lyrixi-modal-animation lyrixi-bottom-center lyrixi-keyboardNumberModal',
