@@ -8,6 +8,7 @@ export default () => {
     <Page>
       <Page.Main>
         <Cascader.DistrictModal
+          open
           value={value}
           onChange={(newValue) => {
             console.log('修改: ', newValue)
