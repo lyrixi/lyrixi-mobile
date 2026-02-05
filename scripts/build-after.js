@@ -63,7 +63,7 @@ function deleteCode(filePath, code) {
 // deleteCode(`./esm/index.js`, `import "./assets/index.less";\n`)
 
 // 复制css到dist目录
-copyFile('./umd/lyrixi-mobile.min.css', './esm/lyrixi-mobile.min.css')
+copyFile('./umd/lyrixi-mobile.min.css', './esm/index.css')
 
 // 复制国际化文件: assets/locale目录到src/locale(改为直接用dist/assets/locale)
 // const currentLocaleFolder = `./src/assets/locale`
