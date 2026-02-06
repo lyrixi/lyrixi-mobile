@@ -21,6 +21,14 @@ toc: content
 
 <code src="./demos/List.jsx"></code>
 
+### List.Item 单独使用
+
+<code src="./demos/ListItem.jsx"></code>
+
+### List.InfiniteScroll
+
+<code src="./demos/ListInfiniteScroll.jsx"></code>
+
 ## API
 
 ### 属性

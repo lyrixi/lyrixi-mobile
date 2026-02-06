@@ -1,7 +1,7 @@
 ---
 group:
-  title: 数据展示
-  order: 5
+  title: 导航
+  order: 6
 order: 1
 title: Steps
 toc: content
