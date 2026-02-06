@@ -1,19 +1,21 @@
 import React, { useRef, useState } from 'react'
-import { Page, Calendar, DateUtil, Card, Button } from 'lyrixi-mobile'
+import { Page, Calendar, DateUtil, Card, Divider, Button } from 'lyrixi-mobile'
 
 export default () => {
   const [singleValue, setSingleValue] = useState(null)
   const [multipleValue, setMultipleValue] = useState([])
   const [rangeValue, setRangeValue] = useState(null)
-  const [customValue, setCustomValue] = useState(null)
 
+  // 区间选中
   function formatRangeValue(value) {
     let weekDates = DateUtil.getWeekDates(value, 'Monday')
     return Array.isArray(weekDates) && weekDates.length ? [weekDates[0], weekDates[6]] : null
   }
+
   return (
     <Page>
       <Page.Main>
+        <Divider>Select</Divider>
         <Card>
           <Card.Header>Calendar default (selectionMode 默认 single)</Card.Header>
           <Card.Main>
@@ -41,28 +43,44 @@ export default () => {
               value={formatRangeValue(rangeValue)}
               onChange={(rangeValue, { currentDate, action }) => {
                 console.log('rangeValue:', rangeValue, { currentDate, action })
-                setRangeValue(currentDate)
+                if (action === 'clear') {
+                  setRangeValue(null)
+                } else {
+                  setRangeValue(currentDate)
+                }
               }}
             />
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>Custom Title Formatter (自定义标题格式化)</Card.Header>
+          <Card.Header>allowClear false</Card.Header>
+          <Card.Main>
+            <Calendar allowClear={false} value={singleValue} onChange={setSingleValue} />
+          </Card.Main>
+        </Card>
+
+        <Divider>view</Divider>
+        <Card>
+          <Card.Header>type: week</Card.Header>
+          <Card.Main>
+            <Calendar type="week" value={singleValue} onChange={setSingleValue} />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>weekStart: Monday</Card.Header>
           <Card.Main>
             <Calendar
-              titleRender={(date, { type } = {}) => {
-                if (type === 'month') {
-                  return DateUtil.format(date, 'YYYY年MM月')
-                }
-                return DateUtil.format(date, 'YYYY年MM月DD日 d 第W周')
-              }}
+              selectionMode="range"
+              weekStart="Monday"
               value={singleValue}
               onChange={setSingleValue}
             />
           </Card.Main>
         </Card>
 
+        <Divider>draggable</Divider>
         <Card>
           <Card.Header>Draggable: horizontal only (仅水平拖动)</Card.Header>
           <Card.Main>
@@ -77,6 +95,8 @@ export default () => {
           </Card.Main>
         </Card>
 
+
+        <Divider>Custom render</Divider>
         <Card>
           <Card.Header>Custom Header Render (自定义头部渲染)</Card.Header>
           <Card.Main>
@@ -99,6 +119,22 @@ export default () => {
                     <Button onClick={onNextYear}>Next Year</Button>
                   </div>
                 )
+              }}
+              value={singleValue}
+              onChange={setSingleValue}
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Custom Title Formatter (自定义标题格式化)</Card.Header>
+          <Card.Main>
+            <Calendar
+              titleRender={(date, { type } = {}) => {
+                if (type === 'month') {
+                  return DateUtil.format(date, 'YYYY年MM月')
+                }
+                return DateUtil.format(date, 'YYYY年MM月DD日 d 第W周')
               }}
               value={singleValue}
               onChange={setSingleValue}
@@ -130,18 +166,13 @@ export default () => {
                   </div>
                 )
               }}
-              value={customValue}
-              onChange={setCustomValue}
+              value={singleValue}
+              onChange={setSingleValue}
             />
           </Card.Main>
         </Card>
 
-        <Card>
-          <Card.Header>allowClear false</Card.Header>
-          <Card.Main>
-            <Calendar allowClear={false} value={singleValue} onChange={setSingleValue} />
-          </Card.Main>
-        </Card>
+
       </Page.Main>
     </Page>
   )

@@ -76,6 +76,7 @@ const Calendar = (
     return {
       element: rootRef.current,
       getElement: () => rootRef.current,
+      getCurrentType: () => currentType,
       slideCollapse: async () => {
         handleSlideY('collapse')
       },
