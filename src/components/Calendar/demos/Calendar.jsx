@@ -3,15 +3,47 @@ import { Page, Calendar, DateUtil, Card, Button } from 'lyrixi-mobile'
 
 export default () => {
   const [singleValue, setSingleValue] = useState(null)
+  const [multipleValue, setMultipleValue] = useState([])
+  const [rangeValue, setRangeValue] = useState(null)
   const [customValue, setCustomValue] = useState(null)
 
+  function formatRangeValue(value) {
+    let weekDates = DateUtil.getWeekDates(value, 'Monday')
+    return Array.isArray(weekDates) && weekDates.length ? [weekDates[0], weekDates[6]] : null
+  }
   return (
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>Calendar default</Card.Header>
+          <Card.Header>Calendar default (selectionMode 默认 single)</Card.Header>
           <Card.Main>
             <Calendar value={singleValue} onChange={setSingleValue} />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>selectionMode: multiple（多选，value 为 Date[]）</Card.Header>
+          <Card.Main>
+            <Calendar
+              selectionMode="multiple"
+              value={multipleValue}
+              onChange={setMultipleValue}
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>selectionMode: range（范围选，value 为 [Date, Date]，用法参考 DatePicker.WeekMain）</Card.Header>
+          <Card.Main>
+            <Calendar
+              selectionMode="range"
+              weekStart="Monday"
+              value={formatRangeValue(rangeValue)}
+              onChange={(rangeValue, { currentDate, action }) => {
+                console.log('rangeValue:', rangeValue, { currentDate, action })
+                setRangeValue(currentDate)
+              }}
+            />
           </Card.Main>
         </Card>
 
