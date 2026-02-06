@@ -69,7 +69,7 @@ const Calendar = (
   // 根据当前日期，构建的三页日期数据
   let [pages, setPages] = useState(null)
   // 当前视图类型
-  let [currentType, setCurrentType] = useState(type)
+  let [currentType, setCurrentType] = useState(null)
 
   // Expose Methods
   useImperativeHandle(ref, () => {
@@ -91,12 +91,6 @@ const Calendar = (
       }
     }
   })
-
-  // 视图
-  useEffect(() => {
-    setCurrentType(type)
-    // eslint-disable-next-line
-  }, [type])
 
   // 根据value重绘日历
   useEffect(() => {
@@ -130,6 +124,12 @@ const Calendar = (
       type: currentType,
       pages: pages
     })
+
+    // 初始化时, 设置当前视图类型
+    if (!currentType) {
+      setCurrentType(type)
+      handleSlideY(type === 'week' ? 'collapse' : 'expand')
+    }
     // eslint-disable-next-line
   }, [pages])
 
