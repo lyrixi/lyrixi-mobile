@@ -96,7 +96,7 @@ export default () => {
               allowClear
               formatViewItem={(item, { index }) => ({
                 ...item,
-                title: <div key={index}>
+                title: <div>
                   <span style={{ color: '#999' }}>{index}: </span>
                   <span>{item.name}</span>
                 </div>
@@ -114,15 +114,16 @@ export default () => {
               onChange={setSingleValue}
               checkable
               allowClear
-              itemRender={(item, { checked, onChange: onSelect }) => (
+              itemRender={(item, { checked, onChange: onSelect, index }) => (
                 <List.Item
                   _raw={item._raw}
+                  key={item._raw?.id || item?.id || index}
                   checked={checked}
                   checkable
                   onSelect={onSelect}
-                  title={item.title}
+                  title={item.name}
                   description={item.description}
-                  note={item.letter}
+                  note={'note'}
                   actionRender={() => <Button size="s">操作</Button>}
                 />
               )}
