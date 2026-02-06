@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 import listAllData from './listAllData'
 import listData from './listData'
-import listChildrenData from './listChildrenData'
 
 export default () => {
   const [singleValue, setSingleValue] = useState(null)
@@ -133,10 +132,11 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>List 分组（group：一级为标题，children 为子级列表）</Card.Header>
+          <Card.Header>List 分组</Card.Header>
           <Card.Main>
+            <List.GroupTitle title="Group Title" description="Group Description" />
             <List
-              list={listChildrenData}
+              list={listData}
               value={singleValue}
               onChange={setSingleValue}
               checkable

@@ -1,6 +1,5 @@
-import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import viewFormatter from './viewFormatter'
-import GroupTitle from './../GroupTitle'
 import Item from './../Item'
 
 // 内库使用-start
@@ -22,12 +21,6 @@ const List = (
     formatViewList,
     formatViewItem,
     /*
-    // Group
-    {
-      title: '',
-      children: ...
-    },
-    // No Group
     {
       _raw: 原始数据, 必传,
       avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
@@ -142,27 +135,6 @@ const List = (
     <div className={DOMUtil.classNames('lyrixi-list', className)} ref={rootRef} style={style}>
       {Array.isArray(displayList) &&
         displayList.map((item, index) => {
-          // 渲染分组列表
-          if (Array.isArray(item.children)) {
-            return (
-              <Fragment key={item.id ?? index}>
-                <GroupTitle
-                  title={item.title || item.name}
-                  anchor={item.anchor}
-                  description={item.description}
-                  style={item.style}
-                  className={item.className}
-                />
-
-                {/* list-items: 原本想包一层, 但VirtualList无法分组包裹 */}
-                {item.children.map((option, optionIndex) => {
-                  return getItemNode(option, optionIndex)
-                })}
-              </Fragment>
-            )
-          }
-
-          // 渲染列表
           return getItemNode(item, index)
         })}
     </div>
