@@ -104,7 +104,7 @@ const List = (
       : value?.id === item?._raw?.id
 
     if (typeof itemRender === 'function') {
-      return itemRender(item, { checked, onChange: handleChange, index })
+      return itemRender(item, { index, checked, onChange: handleChange })
     }
 
     return (
