@@ -19,7 +19,13 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/ListAsync.jsx"></code>
+### 普通列表（ListAsyncList）
+
+<code src="./demos/ListAsyncList.jsx"></code>
+
+### 虚拟滚动列表（ListAsyncVirtualList）
+
+<code src="./demos/ListAsyncVirtualList.jsx"></code>
 
 ## API
 
