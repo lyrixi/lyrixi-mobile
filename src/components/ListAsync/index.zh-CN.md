@@ -27,6 +27,10 @@ toc: content
 
 <code src="./demos/ListAsyncVirtualList.jsx"></code>
 
+### 分组列表（ListAsyncGroup）
+
+<code src="./demos/ListAsyncGroup.jsx"></code>
+
 ## API
 
 ### 属性
