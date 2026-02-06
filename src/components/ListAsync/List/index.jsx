@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react'
+import List from './List'
 
 // 内库使用-start
 import Page from './../../Page'
-import List from './../../List'
 // 内库使用-end
 
 /* 测试使用-start
-import { Page, List } from 'lyrixi-mobile'
+import { Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // 列表
