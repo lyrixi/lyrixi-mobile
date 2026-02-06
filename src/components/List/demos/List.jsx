@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 import listData from './data'
 
-// 示例用短列表
-const shortList = listData.slice(0, 8)
-
 export default () => {
   const [singleValue, setSingleValue] = useState(null)
   const [multipleValue, setMultipleValue] = useState([])
@@ -16,7 +13,7 @@ export default () => {
           <Card.Header>List 基础（单选、list / value / onChange / checkable）</Card.Header>
           <Card.Main>
             <List
-              list={shortList}
+              list={listData}
               value={singleValue}
               onChange={setSingleValue}
               checkable
@@ -29,7 +26,7 @@ export default () => {
           <Card.Header>List 多选（multiple、allowClear）</Card.Header>
           <Card.Main>
             <List
-              list={shortList}
+              list={listData}
               value={multipleValue}
               onChange={setMultipleValue}
               checkable
@@ -43,7 +40,7 @@ export default () => {
           <Card.Header>List 项布局（itemLayout=vertical）、复选框在右（checkboxPosition=right）</Card.Header>
           <Card.Main>
             <List
-              list={shortList.slice(0, 3)}
+              list={listData.slice(0, 3)}
               value={singleValue}
               onChange={setSingleValue}
               checkable
@@ -58,7 +55,7 @@ export default () => {
           <Card.Header>List formatViewItem（格式化单项显示）</Card.Header>
           <Card.Main>
             <List
-              list={shortList.slice(0, 4)}
+              list={listData.slice(0, 4)}
               value={singleValue}
               onChange={setSingleValue}
               checkable
@@ -76,7 +73,7 @@ export default () => {
           <Card.Header>List itemRender（自定义项渲染）</Card.Header>
           <Card.Main>
             <List
-              list={shortList.slice(0, 3)}
+              list={listData.slice(0, 3)}
               value={singleValue}
               onChange={setSingleValue}
               checkable
@@ -122,7 +119,7 @@ export default () => {
               _raw={{ id: '4' }}
               checkable
               checked={false}
-              onSelect={() => {}}
+              onSelect={() => { }}
               title="可选项（checkable）"
               description="content 区域"
               content="自定义 content 区块"
