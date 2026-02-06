@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
-import listData from './data'
+import listAllData from './listAllData'
+import listData from './listData'
 
 export default () => {
   const [singleValue, setSingleValue] = useState(null)
@@ -10,12 +11,42 @@ export default () => {
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>List 基础（单选、list / value / onChange / checkable）</Card.Header>
+          <Card.Header>List 基础（全样式展示）</Card.Header>
+          <Card.Header>itemLayout horizontal</Card.Header>
           <Card.Main>
             <List
-              list={listData}
+              list={listAllData}
+              formatViewItem={(item) => ({
+                ...item,
+                actionRender: () => {
+                  return <Button size="s">actionRender</Button>
+                }
+              })}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(newSingleValue) => {
+                console.log('newSingleValue:', newSingleValue)
+                setSingleValue(newSingleValue)
+              }}
+              checkable
+              allowClear
+            />
+          </Card.Main>
+          <Card.Header>itemLayout vertical</Card.Header>
+          <Card.Main>
+            <List
+              list={listAllData}
+              itemLayout="vertical"
+              formatViewItem={(item) => ({
+                ...item,
+                actionRender: () => {
+                  return <Button size="s">actionRender</Button>
+                }
+              })}
+              value={singleValue}
+              onChange={(newSingleValue) => {
+                console.log('newSingleValue:', newSingleValue)
+                setSingleValue(newSingleValue)
+              }}
               checkable
               allowClear
             />
@@ -28,7 +59,10 @@ export default () => {
             <List
               list={listData}
               value={multipleValue}
-              onChange={setMultipleValue}
+              onChange={(newMultipleValue) => {
+                console.log('newMultipleValue:', newMultipleValue)
+                setMultipleValue(newMultipleValue)
+              }}
               checkable
               multiple
               allowClear
@@ -60,10 +94,12 @@ export default () => {
               onChange={setSingleValue}
               checkable
               allowClear
-              formatViewItem={(item) => ({
+              formatViewItem={(item, { index }) => ({
                 ...item,
-                title: `${item.title}（${item.letter}）`,
-                description: `id: ${item.id}`
+                title: <div key={index}>
+                  <span style={{ color: '#999' }}>{index}: </span>
+                  <span>{item.name}</span>
+                </div>
               })}
             />
           </Card.Main>
@@ -91,63 +127,6 @@ export default () => {
                 />
               )}
             />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>List.Item 单独使用（title / description / avatarUrl / note / content / actionRender / checkable）</Card.Header>
-          <Card.Main>
-            <List.Item
-              _raw={{ id: '1' }}
-              title="仅标题"
-              description="描述文字"
-            />
-            <List.Item
-              _raw={{ id: '2' }}
-              avatarUrl="https://api.dicebear.com/7.x/miniavs/svg?seed=2"
-              title="带头像"
-              description="avatarUrl 示例"
-            />
-            <List.Item
-              _raw={{ id: '3' }}
-              title="带右侧说明与操作"
-              description="description"
-              note="备注"
-              actionRender={() => <Button size="s">按钮</Button>}
-            />
-            <List.Item
-              _raw={{ id: '4' }}
-              checkable
-              checked={false}
-              onSelect={() => { }}
-              title="可选项（checkable）"
-              description="content 区域"
-              content="自定义 content 区块"
-            />
-            <List.Item
-              _raw={{ id: '5' }}
-              disabled
-              title="禁用项"
-              description="disabled"
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>List.InfiniteScroll（status: loading / noMore / 自定义 content）</Card.Header>
-          <Card.Main>
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ marginBottom: 4, fontSize: 12, color: '#666' }}>status=&quot;loading&quot;</div>
-              <List.InfiniteScroll status="loading" />
-            </div>
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ marginBottom: 4, fontSize: 12, color: '#666' }}>status=&quot;noMore&quot;</div>
-              <List.InfiniteScroll status="noMore" />
-            </div>
-            <div>
-              <div style={{ marginBottom: 4, fontSize: 12, color: '#666' }}>status=&quot;error&quot; 或自定义 content</div>
-              <List.InfiniteScroll status="error" content="加载失败，点击重试" />
-            </div>
           </Card.Main>
         </Card>
       </Page.Main>
