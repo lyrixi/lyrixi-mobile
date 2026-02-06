@@ -19,7 +19,7 @@ toc: content
 
 ## 使用方法
 
-```jsx
+```bash
 const iframeRef = useRef(null)
 
 <IFrame
@@ -40,7 +40,7 @@ const iframeRef = useRef(null)
 
 目标页面
 
-```jsx
+```bash
 // 对接客户控件的新增客户场景
 if (typeof window.frameElement?.data?.onOk === 'function') {
   window.frameElement.data.onOk('', { historyCount: 2 })
