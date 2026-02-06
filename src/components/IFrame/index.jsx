@@ -26,8 +26,7 @@ function IFrame({ src, data, style, className }, ref) {
       title="iframe"
       width="100%"
       height="100%"
-      frameBorder="0"
-      style={{ position: 'absolute', top: '0', left: '0', bottom: '0', right: '0', ...style }}
+      style={{ position: 'absolute', top: '0', left: '0', bottom: '0', right: '0', border: 'none', ...style }}
       className={className}
     />
   )
