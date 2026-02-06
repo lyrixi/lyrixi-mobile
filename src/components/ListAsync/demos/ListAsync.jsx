@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Page, ListAsync } from 'lyrixi-mobile'
-import listData from './../listData'
+import listData from './listData'
 import VConsole from 'vconsole'
 
 new VConsole()
@@ -11,7 +11,6 @@ export default () => {
   console.log(mainRef.current)
   return (
     <Page>
-      <Page.Header className="lyrixi-text-center">Layout vertical</Page.Header>
       <ListAsync
         ref={mainRef}
         itemLayout="vertical"
