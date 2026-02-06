@@ -11,6 +11,12 @@ export default () => {
           content="这是一条聊天消息内容"
           position="left"
         />
+        <Chat.Item
+          avatarUrl="https://api.dicebear.com/7.x/miniavs/svg"
+          authorNode="用户名"
+          content="这是一条聊天消息内容"
+          position="right"
+        />
       </Page.Main>
     </Page>
   )
