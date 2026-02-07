@@ -148,7 +148,10 @@ export default () => {
                 }
               ]}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(value) => {
+                console.log('List children:', value)
+                setSingleValue(value)
+              }}
               checkable
               allowClear
             />
