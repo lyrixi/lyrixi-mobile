@@ -130,6 +130,30 @@ export default () => {
             />
           </Card.Main>
         </Card>
+
+        <Card>
+          <Card.Header>List children（分组渲染）</Card.Header>
+          <Card.Main>
+            <List
+              list={[
+                {
+                  name: '分组 A',
+                  description: 'Group A',
+                  children: listData
+                },
+                {
+                  name: '分组 B',
+                  description: 'Group B',
+                  children: listData
+                }
+              ]}
+              value={singleValue}
+              onChange={setSingleValue}
+              checkable
+              allowClear
+            />
+          </Card.Main>
+        </Card>
       </Page.Main>
     </Page>
   )
