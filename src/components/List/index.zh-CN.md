@@ -29,6 +29,10 @@ toc: content
 
 <code src="./demos/ListInfiniteScroll.jsx"></code>
 
+### List.HeaderItem
+
+<code src="./demos/ListHeaderItem.jsx"></code>
+
 ## API
 
 ### 属性

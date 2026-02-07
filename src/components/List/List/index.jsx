@@ -99,9 +99,12 @@ const List = (
 
   // 获取单项
   function getItemNode(item, index) {
-    let checked = multiple
-      ? value?.findIndex?.((valueItem) => valueItem?.id === item?._raw?.id) >= 0
-      : value?.id === item?._raw?.id
+    let checked = false
+    if (value) {
+      checked = multiple
+        ? value?.findIndex?.((valueItem) => valueItem?.id === item?._raw?.id) >= 0
+        : value?.id === item?._raw?.id
+    }
 
     if (typeof itemRender === 'function') {
       return itemRender(item, { index, checked, onChange: handleChange })

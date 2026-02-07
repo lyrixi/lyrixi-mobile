@@ -130,20 +130,6 @@ export default () => {
             />
           </Card.Main>
         </Card>
-
-        <Card>
-          <Card.Header>List 分组</Card.Header>
-          <Card.Main>
-            <List.HeaderItem title="Group Title" description="Group Description" />
-            <List
-              list={listData}
-              value={singleValue}
-              onChange={setSingleValue}
-              checkable
-              allowClear
-            />
-          </Card.Main>
-        </Card>
       </Page.Main>
     </Page>
   )
