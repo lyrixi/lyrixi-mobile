@@ -134,7 +134,7 @@ export default () => {
         <Card>
           <Card.Header>List 分组</Card.Header>
           <Card.Main>
-            <List.GroupTitle title="Group Title" description="Group Description" />
+            <List.HeaderItem title="Group Title" description="Group Description" />
             <List
               list={listData}
               value={singleValue}

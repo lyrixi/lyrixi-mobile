@@ -1,9 +1,9 @@
 import InfiniteScroll from './InfiniteScroll'
-import GroupTitle from './GroupTitle'
+import HeaderItem from './HeaderItem'
 import Item from './Item'
 import List from './List'
 
-List.GroupTitle = GroupTitle
+List.HeaderItem = HeaderItem
 List.InfiniteScroll = InfiniteScroll
 List.Item = Item
 

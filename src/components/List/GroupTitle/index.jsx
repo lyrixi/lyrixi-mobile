@@ -10,7 +10,7 @@ import { DOMUtil, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取分组标题
-function GroupTitle({
+function HeaderItem({
   // Style
   style,
   className,
@@ -42,4 +42,4 @@ function GroupTitle({
   )
 }
 
-export default GroupTitle
+export default HeaderItem
