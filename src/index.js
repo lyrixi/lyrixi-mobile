@@ -1,5 +1,3 @@
-import './assets/index.less'
-
 // Modal必须先加载, 否则编译后其它依赖它的组件会找不到Modal
 export { default as Modal } from './components/Modal'
 export { default as ActionSheet } from './components/ActionSheet'
