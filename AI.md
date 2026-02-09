@@ -47,25 +47,30 @@ import 'lyrixi-mobile/assets/index.css'
 
 ## Components (use these, do not invent new UI primitives)
 
+Source: `src/components/` (one folder = one export, e.g. `lyrixi-mobile/components/Button`).
+
 - **Layout:** Page, Card, Flex, Row, Modal, ActionSheet, Float, SafeArea
 - **Nav:** NavBar, TabBar, IndexBar, Steps, FooterBar
 - **Form:** Form, Input (Text, Number, Password, Search, etc.), Button, Checkbox, Switch, Picker, Select, Cascader, DatePicker, Selector, Transfer, Signature
-- **Display:** Typography, Icon, Badge, Divider, Result, Empty, Skeleton, Loading, Progress, Toast, Message, Tooltip, NoticeBar, Accordion, List, PaginationList
-- **Data:** Calendar, Table, Timeline
-- **Other:** App, Combo, Chat, Attach, AttachUploader, Media, MediaUploader, Location, Map, Keyboard, IFrame, VideoPlayer, QRCode, Share, ToolBar
+- **Display:** Text, Icon, Badge, Divider, Result, Skeleton, Loading, Progress, Toast, Message, Tooltip, NoticeBar, Accordion, List, ListAsync, ListPagination, Stamp
+- **Data:** Calendar
+- **Other:** App, Combo, Chat, Attach, AttachUploader, Media, MediaUploader, Location, Map, Keyboard, IFrame, VideoPlayer, QRCode, ToolBar, Amount
 
 Subcomponents are used as `Component.Sub` (e.g. `Input.Text`, `DatePicker.Combo`, `Page.Main`). Check docs when unsure.
 
 ## Utils (use these instead of ad-hoc helpers)
 
-- **DOMUtil** — classNames, preventDefault, getEventPosition
-- **DateUtil** — format, add, compare, diff
+Source: `src/utils/` (one folder = one export, e.g. `lyrixi-mobile/utils/DOMUtil`).
+
+- **DOMUtil** — classNames, preventDefault, getEventPosition, variables
+- **DateUtil** — format, add, compare, diff, startOrEnd
 - **MathUtil** — variableSize
-- **ArrayUtil** — deepTree, flattenTree, searchDeepTree
+- **ArrayUtil** — deepTree, flattenTree, searchDeepTree, getDeepTreeNode, setDeepTreeNode, etc.
 - **ObjectUtil** — isEmpty, randomUUID
 - **Storage** — getItem, setItem, removeItem, useCacheState
 - **Request** — get, post, formatResponse, formatError
-- **LocaleUtil**, **Logger**, **Device**, **Clipboard**, **AssetUtil**, **EventUtil**, **GeoUtil**, **HistoryUtil**, **Debugger**, **FullScreen**, **Bridge**
+- **AssetUtil** — loadImage, loadJs, getFileExtension
+- **LocaleUtil**, **Logger**, **Device**, **Clipboard**, **EventUtil**, **GeoUtil**, **HistoryUtil**, **Debugger**, **FullScreen**, **Bridge**, **Theme**
 
 Import path pattern: `lyrixi-mobile/utils/UtilName`.
 
