@@ -93,7 +93,7 @@ export default () => {
                   }
                   return '>'
                 }}
-                portal={mainElement}
+
                 placeholder={'DateRange'}
                 value={dateRange}
                 // allowClear={true}
@@ -104,7 +104,7 @@ export default () => {
                 }}
               />
               <ToolBar.DateRange
-                portal={mainElement}
+
                 placeholder="DateRange"
                 format="MM-DD"
                 value={dateRange}
@@ -116,7 +116,7 @@ export default () => {
                 }}
               />
               <ToolBar.DateRange
-                portal={mainElement}
+
                 placeholder="DateRange"
                 value={dateRange}
                 // allowClear={true}
@@ -136,7 +136,7 @@ export default () => {
             <ToolBar>
               <ToolBar.List
                 left={12}
-                portal={mainElement}
+
                 placeholder="List"
                 value={item}
                 onChange={setItem}
@@ -157,7 +157,7 @@ export default () => {
                 ]}
               />
               <ToolBar.List
-                portal={mainElement}
+
                 placeholder="List"
                 value={item}
                 onChange={setItem}
@@ -186,7 +186,6 @@ export default () => {
           <Card.Main>
             <ToolBar>
               <ToolBar.ActionSheet
-                portal={mainElement}
                 // color="primary"
 
                 placeholder="List"
@@ -227,7 +226,7 @@ export default () => {
               </Flex.Compact>
               <Flex.Compact>
                 <ToolBar.List
-                  portal={mainElement}
+
                   arrowRender={null}
                   sizeEqual
                   maskStyle={{
