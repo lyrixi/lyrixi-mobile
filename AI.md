@@ -7,6 +7,7 @@ This file helps AI (Cursor, Copilot, etc.) generate correct code when users use 
 - **lyrixi-mobile** is a React 19 mobile UI library: components + utils.
 - **Docs (full API & demos):** https://lyrixi.github.io/lyrixi-mobile  
   When unsure about a component's props or subcomponents, prefer checking the online docs.
+- **Generating a full page (列表/详情/编辑)?** Prefer the library’s **Page templates (典型页面)** structure and code style; see that section below and the reference repo: https://github.com/lyrixi/lyrixi-mobile/tree/main/src/pages
 
 ## Import rules (required)
 
@@ -101,11 +102,45 @@ Prefer the library’s utility classes and variables so UI stays consistent. Use
 
 Full list: see docs “全局样式” / global-styles.
 
-## Page structure (when building full pages)
+## Page templates (典型页面) — use when user asks to generate a page
 
-- Prefer folder structure: `api/` (queryData, saveData, etc. with localData / validateData / serverData), `utils/`, and presentational components; entry `index.jsx` composes them.
-- Keep components high cohesion, low coupling; lift shared state to parent and pass handlers like `onXX={handleXX}`.
-- Reference templates: List page → `src/pages/List/demos/Common`; Edit → `src/pages/Edit/demos/Cache`; Detail → `src/pages/Detail/demos/Form` (or their docs).
+When the user says **「基于 lyrixi-mobile 生成一个页面」** or **「用 lyrixi-mobile 写一个列表页/详情页/编辑页」**, **prioritize** the library’s reference page structure and code style below. The library provides standard templates for **列表页 (List)**、**详情页 (Detail)**、**新增/编辑页 (Edit)**; match their folder layout, API pattern, and style.
+
+**Reference code (full source):**  
+https://github.com/lyrixi/lyrixi-mobile/tree/main/src/pages  
+
+**Doc (模板):**  
+https://lyrixi.github.io/lyrixi-mobile (see 模板 → 列表/详情/编辑)
+
+### 1. List page (列表页)
+
+- **Folder:** `Header/` (search/filter), `Main/` (list), optional `Footer/`; entry `index.jsx` composes them. Optional `api/` (queryData), `utils/`.
+- **Layout:** `<Page>` → `<Page.Header>` (e.g. ToolBar.Search + Filter) + `<Page.Main>` (e.g. ListPagination). State in `index.jsx` (e.g. `queryParams`), pass `queryParams` / `onSearch` to Header and Main.
+- **Import order:** 第三方库 → 项目内部 → 内部组件 → 样式/资源. Use `LocaleUtil.locale` for all visible text.
+- **Reference:** `src/pages/List/demos/Common` (Header + Main + formatPayload/formatResult/formatViewItem in Main).
+
+### 2. Detail page (详情页)
+
+- **Folder:** `api/` (e.g. queryData, approveData), `Footer/` (e.g. approve button); entry `index.jsx` loads data and renders Form/Card + Footer.
+- **Layout:** `<Page>` → `<Page.Main>` (Card + Form read-only or Text) + `<Page.Footer>`. Use `const [result, setResult] = useState(null)`; after `queryData()` set `setResult({ data })` or `setResult({ status, message })` for error; render `<Result status={result.status} title={result.message} />` when error/empty.
+- **Reference:** `src/pages/Detail/demos/Form` (queryData, approveData, Footer, Result).
+
+### 3. Edit / Add page (新增编辑页)
+
+- **Folder:** `api/` (queryData, validateData, saveData, optional cacheConfig), `Footer/` (save/cancel); entry `index.jsx` with Form.
+- **Layout:** `<Page>` → `<Page.Main>` (Form with Form.Item + various Input/Select/DatePicker etc.) + `<Page.Footer>` (FooterBar with onOk). Use `Form.useForm()`, `validateData({ form })`, `saveData({ baseData, data, token })`; handle code `'1'` success, `'2'` duplicate, else error; show Toast and optional Result. Use `tokenRef` to prevent duplicate submit.
+- **API pattern:** `api/queryData` (return `{ baseData, formData }`), `api/validateData` (return validated data or false), `api/saveData` (return `{ code, message }`). Optional `api/localData`, `api/serverData` for transform.
+- **Reference:** `src/pages/Edit/demos/Cache` (queryData, validateData, saveData, cacheConfig, Footer, Form, Result).
+
+### Shared conventions for all page types
+
+- **Import order:** 第三方库 (React, lyrixi-mobile) → 内部组件 (./Header, ./Main, ./api) → 样式/资源. Use `const locale = LocaleUtil.locale` and `locale('文案')` for every user-facing string.
+- **Page shell:** Always wrap in `<Page>`; use `<Page.Header>`, `<Page.Main>`, `<Page.Footer>` as needed. Use library components only (no ad-hoc layout components).
+- **Data/error:** Use `result` state with `{ data }` or `{ status, message }`; render full-screen `<Result status={result.status} title={result.message} />` when status is error/empty/500.
+- **High cohesion:** Keep each block (Header, Main, Footer) in its own folder; parent `index.jsx` holds state and passes `onXX` handlers.
+
+**Suggested user prompt when asking AI to generate a page:**  
+「基于 lyrixi-mobile 生成一个 [列表页/详情页/编辑页]，结构和代码风格参考 lyrixi-mobile 的典型页面（见 node_modules/lyrixi-mobile/AI.md 的 Page templates 小节，或 https://github.com/lyrixi/lyrixi-mobile/tree/main/src/pages）。」
 
 ## Do not
 
