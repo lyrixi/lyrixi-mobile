@@ -1,10 +1,6 @@
 // 第三方库导入
 import React, { useState } from 'react'
 import { LocaleUtil, Page, ToolBar } from 'lyrixi-mobile'
-// 公共组件导入
-
-// 内部组件导入
-import Filter from './Filter'
 // 样式图片等资源文件导入
 
 const locale = LocaleUtil.locale
@@ -16,15 +12,7 @@ const Header = ({ queryParams, onSearch }) => {
     <Page.Header>
       <ToolBar>
         {/* 搜索 */}
-        <ToolBar.Search
-          placeholder={locale('按名称/拼音/拼音首字母查询')}
-          value={queryParams?.keyword || ''}
-          readOnly
-          onClick={() => {
-            setSearchActive(true)
-          }}
-        />
-        {searchActive && (
+        {searchActive ? (
           <ToolBar.SearchActive
             placeholder={locale('按名称/拼音/拼音首字母查询')}
             allowClear
@@ -37,9 +25,14 @@ const Header = ({ queryParams, onSearch }) => {
               setSearchActive(false)
             }}
           />
-        )}
-        {/* 筛选弹窗 */}
-        <Filter queryParams={queryParams} onSearch={onSearch} />
+        ) : <ToolBar.Search
+          placeholder={locale('按名称/拼音/拼音首字母查询')}
+          value={queryParams?.keyword || ''}
+          readOnly
+          onClick={() => {
+            setSearchActive(true)
+          }}
+        />}
       </ToolBar>
     </Page.Header>
   )

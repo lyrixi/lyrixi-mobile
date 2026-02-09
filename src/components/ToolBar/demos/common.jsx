@@ -357,29 +357,7 @@ export default () => {
           <Card.Header>SearchBar active</Card.Header>
           <Card.Main>
             <ToolBar>
-              {!searchActive && (
-                <>
-                  <ToolBar.Search
-                    value={search}
-                    readOnly
-                    onClick={() => {
-                      setSearchActive(true)
-                    }}
-                  />
-                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
-                    <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-                    </ToolBar.Button>
-                    <ToolBar.Filter
-                      sizeEqual
-                      modalRender={() => {
-                        return <div style={{ height: '300px' }}>Modal Content</div>
-                      }}
-                    />
-                  </Flex.Compact>
-                </>
-              )}
-              {searchActive && (
+              {searchActive ? (
                 <ToolBar.SearchActive
                   value={search}
                   onSearch={(keyword) => {
@@ -394,7 +372,26 @@ export default () => {
                 //   setSearchActive(false)
                 // }}
                 />
-              )}
+              ) : <>
+                <ToolBar.Search
+                  value={search}
+                  readOnly
+                  onClick={() => {
+                    setSearchActive(true)
+                  }}
+                />
+                <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                  <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                    <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                  </ToolBar.Button>
+                  <ToolBar.Filter
+                    sizeEqual
+                    modalRender={() => {
+                      return <div style={{ height: '300px' }}>Modal Content</div>
+                    }}
+                  />
+                </Flex.Compact>
+              </>}
             </ToolBar>
           </Card.Main>
         </Card>
@@ -403,30 +400,7 @@ export default () => {
           <Card.Header>SearchBar variant active</Card.Header>
           <Card.Main>
             <ToolBar variant="filled">
-              {!filledSearchActive && (
-                <>
-                  <ToolBar.Search
-                    value={search}
-                    readOnly
-                    onClick={() => {
-                      setFilledSearchActive(true)
-                    }}
-                  />
-                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
-                    <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-                    </ToolBar.Button>
-                    <ToolBar.Filter
-                      sizeEqual
-                      modalRender={() => {
-                        return <div style={{ height: '300px' }}>Modal Content</div>
-                      }}
-                    />
-                  </Flex.Compact>
-                </>
-              )}
-
-              {filledSearchActive && (
+              {filledSearchActive ? (
                 <ToolBar.SearchActive
                   value={search}
                   onSearch={(keyword) => {
@@ -438,7 +412,26 @@ export default () => {
                     setFilledSearchActive(false)
                   }}
                 />
-              )}
+              ) : <>
+                <ToolBar.Search
+                  value={search}
+                  readOnly
+                  onClick={() => {
+                    setFilledSearchActive(true)
+                  }}
+                />
+                <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                  <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                    <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                  </ToolBar.Button>
+                  <ToolBar.Filter
+                    sizeEqual
+                    modalRender={() => {
+                      return <div style={{ height: '300px' }}>Modal Content</div>
+                    }}
+                  />
+                </Flex.Compact>
+              </>}
             </ToolBar>
           </Card.Main>
         </Card>
