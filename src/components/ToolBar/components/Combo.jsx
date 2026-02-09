@@ -51,8 +51,10 @@ function Combo(
     if (typeof arrowRender === 'function') {
       return arrowRender({ open: open })
     }
-    return <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
+    return null
   }
+
+  let ArrowNode = getArrowNode()
 
   return (
     <Button
@@ -75,7 +77,8 @@ function Combo(
       style={style}
       onClick={onClick}
     >
-      <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span>
+      {/* 有箭头左右对齐, 没有箭头居中对齐 */}
+      {ArrowNode ? <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span> : children}
       {getArrowNode()}
     </Button>
   )
