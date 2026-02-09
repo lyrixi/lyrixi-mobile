@@ -11,6 +11,8 @@ Minimalist Token, Unified API, Simple and easy to use</div>
 
 </div>
 
+> **For AI assistants (Cursor, Copilot, etc.):** When generating code that uses this library, read the **[AI.md](./AI.md)** in the package root. It defines import paths (tree-shakeable `lyrixi-mobile/components/X` and `lyrixi-mobile/utils/X`), required style import, and component/util lists. Full API: [lyrixi.github.io/lyrixi-mobile](https://lyrixi.github.io/lyrixi-mobile).
+
 ## 📦 CSS
 
 ### Less
