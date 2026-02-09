@@ -9,115 +9,160 @@ toc: content
 
 # Skeleton
 
-骨架屏组件，用于在内容加载时显示占位效果。
+骨架屏组件，用于在内容加载时显示占位效果。包含基础块/段落/标签、以及列表/详情/编辑等整页骨架。
 
 ## 何时使用
 
 - 需要显示加载占位效果时
 - 需要在内容加载时显示骨架屏时
-- 需要提升用户体验时
+- 需要提升列表、详情、编辑等页面的加载体验时
 
 ## 代码演示
 
-<code src="./demos/Skeleton.jsx"></code>
+### Pages（整页骨架）
 
-## API
+### Skeleton.List
 
-### 属性
+列表页骨架，由多段 `Skeleton.Paragraph` 组成，适用于列表加载占位。
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 骨架屏内容 | `ReactNode` | -      |
+<code src="./demos/SkeletonList.jsx"></code>
 
-### Ref
+#### API
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性             | 说明           | 类型      | 默认值  |
+| ---------------- | -------------- | --------- | ------- |
+| listLength       | 列表项数量     | `number`  | `8`     |
+| paragraphLength  | 每项段落行数   | `number`  | `2`     |
+| animated         | 是否开启动画   | `boolean` | -       |
+| safeArea         | 是否安全区     | `boolean` | -       |
+| full             | 是否全屏       | `boolean` | `true`  |
+| divider          | 段落分割样式   | `string`  | -       |
+| layout           | 页面布局       | `string`  | -       |
+| animation        | 页面动画       | `string`  | -       |
+| style            | 自定义样式     | `object`  | -       |
+| className        | 自定义类名     | `string`  | -       |
 
-## Skeleton.Block
+---
 
-块级骨架屏组件。
+### Skeleton.Detail
 
-### 何时使用
+详情页骨架，包含段落、Tabs、多段正文，适用于详情页加载占位。
 
-- 需要显示块级骨架屏时
+<code src="./demos/SkeletonDetail.jsx"></code>
 
-### 代码演示
+#### API
+
+| 属性             | 说明           | 类型      | 默认值  |
+| ---------------- | -------------- | --------- | ------- |
+| listLength       | 下方段落组数量 | `number`  | `2`     |
+| paragraphLength  | 每段正文行数   | `number`  | `10`    |
+| animated         | 是否开启动画   | `boolean` | -       |
+| safeArea         | 是否安全区     | `boolean` | -       |
+| full             | 是否全屏       | `boolean` | `true`  |
+| divider          | 段落分割样式   | `string`  | -       |
+| layout           | 页面布局       | `string`  | -       |
+| animation        | 页面动画       | `string`  | -       |
+| style            | 自定义样式     | `object`  | -       |
+| className        | 自定义类名     | `string`  | -       |
+
+---
+
+### Skeleton.Edit
+
+编辑页骨架，由多段带标题的段落组成，适用于表单/编辑页加载占位。
+
+<code src="./demos/SkeletonEdit.jsx"></code>
+
+#### API
+
+| 属性             | 说明           | 类型      | 默认值  |
+| ---------------- | -------------- | --------- | ------- |
+| listLength       | 段落组数量     | `number`  | `8`     |
+| paragraphLength  | 每段正文行数   | `number`  | `6`     |
+| animated         | 是否开启动画   | `boolean` | -       |
+| safeArea         | 是否安全区     | `boolean` | -       |
+| full             | 是否全屏       | `boolean` | `true`  |
+| divider          | 段落分割样式   | `string`  | -       |
+| layout           | 页面布局       | `string`  | -       |
+| animation        | 页面动画       | `string`  | -       |
+| style            | 自定义样式     | `object`  | -       |
+| className        | 自定义类名     | `string`  | -       |
+
+---
+
+### Components（基础组件）
+
+### Skeleton.Block
+
+块级骨架，可配合 `animated` 控制动画。
 
 <code src="./demos/SkeletonBlock.jsx"></code>
 
-### API
+#### API
 
-#### 属性
-
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+| 属性      | 说明       | 类型      | 默认值  |
+| --------- | ---------- | --------- | ------- |
+| animated  | 是否开启动画 | `boolean` | `true`  |
+| style     | 自定义样式 | `object`  | -       |
+| className | 自定义类名 | `string`  | -       |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                     |
+| ---------- | ---------- | ------------------------ |
+| element    | 根元素     | `HTMLDivElement`         |
+| getElement | 获取根元素 | () => `HTMLDivElement`   |
 
-## Skeleton.Paragraph
+---
 
-段落骨架屏组件。
+### Skeleton.Paragraph
 
-### 何时使用
-
-- 需要显示段落骨架屏时
-
-### 代码演示
+段落骨架，包含头像、标题、多行正文占位，常用于列表项或卡片。
 
 <code src="./demos/SkeletonParagraph.jsx"></code>
 
-### API
+#### API
 
-#### 属性
+| 属性           | 说明           | 类型      | 默认值  |
+| -------------- | -------------- | --------- | ------- |
+| length         | 正文行数       | `number`  | `2`     |
+| divider        | 分割样式       | `'card' \| 'line'` | `'card'` |
+| animated       | 是否开启动画   | `boolean` | `true`  |
+| style          | 自定义样式     | `object`  | -       |
+| className      | 自定义类名     | `string`  | -       |
+| avatarClassName | 头像块类名    | `string`  | -       |
+| avatarStyle    | 头像块样式     | `object`  | -       |
+| titleClassName | 标题块类名     | `string`  | -       |
+| titleStyle     | 标题块样式     | `object`  | -       |
+| itemClassName  | 正文行类名     | `string`  | -       |
+| itemStyle      | 正文行样式     | `object`  | -       |
+| oddClassName   | 奇数行类名     | `string`  | -       |
+| oddStyle       | 奇数行样式     | `object`  | -       |
+| evenClassName  | 偶数行类名     | `string`  | -       |
+| evenStyle      | 偶数行样式     | `object`  | -       |
 
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+---
 
-#### Ref
+### Skeleton.Tabs
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-
-## Skeleton.Tabs
-
-标签页骨架屏组件。
-
-### 何时使用
-
-- 需要显示标签页骨架屏时
-
-### 代码演示
+标签栏骨架，多块横向排列，常用于顶部 Tab 占位。
 
 <code src="./demos/SkeletonTabs.jsx"></code>
 
-### API
+#### API
 
-#### 属性
-
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+| 属性        | 说明         | 类型      | 默认值  |
+| ----------- | ------------ | --------- | ------- |
+| length      | 标签数量     | `number`  | `4`     |
+| animated    | 是否开启动画 | `boolean` | `true`  |
+| style       | 自定义样式   | `object`  | -       |
+| className   | 自定义类名   | `string`  | -       |
+| tabClassName| 单个标签类名 | `string`  | -       |
+| tabStyle    | 单个标签样式 | `object`  | -       |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                     |
+| ---------- | ---------- | ------------------------ |
+| element    | 根元素     | `HTMLDivElement`         |
+| getElement | 获取根元素 | () => `HTMLDivElement`   |
