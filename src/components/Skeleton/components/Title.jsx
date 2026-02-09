@@ -1,28 +1,26 @@
 import React, { forwardRef } from 'react'
+import Block from './Block'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const Block = (
+const Title = (
   {
-    // Status
     animated = true,
-
-    // Style
     className,
     style
   },
   ref
 ) => {
   return (
-    <div
+    <Block
       ref={ref}
-      // Style
+      animated={animated}
       style={style}
-      className={DOMUtil.classNames('lyrixi-skeleton-block', animated ? 'lyrixi-animated' : '', className)}
-    ></div>
+      className={DOMUtil.classNames('lyrixi-skeleton-block-title', className)}
+    />
   )
 }
 
-export default forwardRef(Block)
+export default forwardRef(Title)

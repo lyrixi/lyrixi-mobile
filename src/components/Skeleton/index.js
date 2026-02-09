@@ -1,4 +1,6 @@
-import Block from './components/Block'
+import Avatar from './components/Avatar'
+import Title from './components/Title'
+import Item from './components/Item'
 import Paragraph from './components/Paragraph'
 import Tabs from './components/Tabs'
 import List from './List'
@@ -7,7 +9,9 @@ import Edit from './Edit'
 
 const Skeleton = {
   // Components
-  Block,
+  Avatar,
+  Title,
+  Item,
   Paragraph,
   Tabs,
   // Pages

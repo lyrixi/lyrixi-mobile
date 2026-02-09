@@ -92,19 +92,65 @@ toc: content
 
 ### Components（基础组件）
 
-### Skeleton.Block
+### Skeleton.Avatar
 
-块级骨架，可配合 `animated` 控制动画。
+头像占位骨架，用于列表项左侧头像区域。
 
-<code src="./demos/SkeletonBlock.jsx"></code>
+<code src="./demos/SkeletonAvatar.jsx"></code>
 
 #### API
 
-| 属性      | 说明       | 类型      | 默认值  |
-| --------- | ---------- | --------- | ------- |
+| 属性      | 说明         | 类型      | 默认值  |
+| --------- | ------------ | --------- | ------- |
 | animated  | 是否开启动画 | `boolean` | `true`  |
-| style     | 自定义样式 | `object`  | -       |
-| className | 自定义类名 | `string`  | -       |
+| style     | 自定义样式   | `object`  | -       |
+| className | 自定义类名   | `string`  | -       |
+
+#### Ref
+
+| 属性       | 说明       | 类型                     |
+| ---------- | ---------- | ------------------------ |
+| element    | 根元素     | `HTMLDivElement`         |
+| getElement | 获取根元素 | () => `HTMLDivElement`   |
+
+---
+
+### Skeleton.Title
+
+标题占位骨架，用于段落或卡片的标题行。
+
+<code src="./demos/SkeletonTitle.jsx"></code>
+
+#### API
+
+| 属性      | 说明         | 类型      | 默认值  |
+| --------- | ------------ | --------- | ------- |
+| animated  | 是否开启动画 | `boolean` | `true`  |
+| style     | 自定义样式   | `object`  | -       |
+| className | 自定义类名   | `string`  | -       |
+
+#### Ref
+
+| 属性       | 说明       | 类型                     |
+| ---------- | ---------- | ------------------------ |
+| element    | 根元素     | `HTMLDivElement`         |
+| getElement | 获取根元素 | () => `HTMLDivElement`   |
+
+---
+
+### Skeleton.Item
+
+正文行占位骨架，用于段落中的单行正文。
+
+<code src="./demos/SkeletonItem.jsx"></code>
+
+#### API
+
+| 属性      | 说明         | 类型      | 默认值  |
+| --------- | ------------ | --------- | ------- |
+| animated  | 是否开启动画 | `boolean` | `true`  |
+| style     | 自定义样式   | `object`  | -       |
+| className | 自定义类名   | `string`  | -       |
 
 #### Ref
 

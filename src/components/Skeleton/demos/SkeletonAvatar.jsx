@@ -5,8 +5,8 @@ import Skeleton from 'lyrixi-mobile/components/Skeleton'
 export default () => {
   return (
     <Page>
-      <Page.Main>
-        <Skeleton.Paragraph length={3} />
+      <Page.Main style={{ backgroundColor: 'white' }}>
+        <Skeleton.Avatar animated />
       </Page.Main>
     </Page>
   )

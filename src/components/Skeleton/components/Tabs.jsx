@@ -40,7 +40,7 @@ const Tabs = (
           // Style
           style={tabStyle}
           className={DOMUtil.classNames(
-            'lyrixi-skeleton-tab',
+            'lyrixi-skeleton-block-tab',
             'lyrixi-skeleton-block-darken',
             tabClassName
           )}

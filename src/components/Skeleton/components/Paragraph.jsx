@@ -1,5 +1,7 @@
 import React from 'react'
-import Block from './Block'
+import Avatar from './Avatar'
+import Title from './Title'
+import Item from './Item'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -20,8 +22,10 @@ const Paragraph = ({
   // Style
   className,
   style,
+  avatarVisible,
   avatarClassName,
   avatarStyle,
+  titleVisible,
   titleClassName,
   titleStyle,
   itemClassName,
@@ -38,26 +42,22 @@ const Paragraph = ({
       className={DOMUtil.classNames('lyrixi-skeleton-paragraph', divider, className)}
     >
       {/* Element: Avatar */}
-      {(avatarClassName || avatarStyle) && (
-        <Block
-          // Status
+      {(avatarVisible || avatarClassName || avatarStyle) && (
+        <Avatar
           animated={animated}
-          // Style
           style={avatarStyle}
-          className={DOMUtil.classNames('lyrixi-skeleton-avatar', avatarClassName)}
+          className={avatarClassName}
         />
       )}
 
       {/* Element: Content */}
       <div className="lyrixi-skeleton-paragraph-content">
         {/* Element: Title */}
-        {(titleClassName || titleStyle) && (
-          <Block
-            // Status
+        {(titleVisible || titleClassName || titleStyle) && (
+          <Title
             animated={animated}
-            // Style
             style={titleStyle}
-            className={DOMUtil.classNames('lyrixi-skeleton-title', titleClassName)}
+            className={titleClassName}
           />
         )}
 
@@ -70,13 +70,11 @@ const Paragraph = ({
           const currentItemStyle = { ...itemStyle, ...(isEven ? evenStyle : oddStyle) }
 
           return (
-            <Block
+            <Item
               key={index}
-              // Status
               animated={animated}
-              // Style
               style={currentItemStyle}
-              className={DOMUtil.classNames('lyrixi-skeleton-item', currentItemClassName)}
+              className={currentItemClassName}
             />
           )
         })}
