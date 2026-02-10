@@ -1,4 +1,4 @@
-const glob = require('glob')
+const { glob } = require('glob')
 const fs = require('fs')
 const parser = require('@babel/parser')
 const traverse = require('@babel/traverse').default
@@ -24,41 +24,42 @@ module.exports = async function getBaseData({
     return null
   }
 
-  return new Promise((resolve) => {
-    // 用于存储所有提取的国际化{中文: {key: '', value: ''}}
-    const baseData = {}
+  // 支持单个字符串或字符串数组，如 'LocaleUtil.locale' 或 ['LocaleUtil.locale', 'locale']
+  const localeNames = Array.isArray(localeFunctionName) ? localeFunctionName : [localeFunctionName]
 
-    // 递归遍历指定目录下的所有 JavaScript 文件
-    glob(
-      '**/*.{js,ts,jsx,tsx}',
-      {
-        cwd: folderPath,
-        ignore: ignore,
-        dot: true // 包括以 . 开头的文件
-      },
-      (err, files) => {
-        if (err) {
-          console.error('Error:', err)
-          return
-        }
-        files.forEach((file) => {
-          const filePath = `${folderPath}/${file}`
+  // 用于存储所有提取的国际化{中文: {key: '', value: ''}}
+  const baseData = {}
 
-          // 读取文件内容
-          let content = fs.readFileSync(filePath, 'utf8')
+  let files = []
+  try {
+    files = await glob('**/*.{js,ts,jsx,tsx}', {
+      cwd: folderPath,
+      ignore: ignore,
+      dot: true // 包括以 . 开头的文件
+    })
+  } catch (err) {
+    console.error('Error:', err)
+    return null
+  }
 
-          // 解析文件内容为AST
-          const ast = parser.parse(content, {
-            sourceType: 'module',
-            plugins: ['jsx', 'typescript'] // 如果你的代码中包含JSX
-          })
+  for (const file of files) {
+    const filePath = `${folderPath}/${file}`
 
-          let modified = false
+    // 读取文件内容
+    let content = fs.readFileSync(filePath, 'utf8')
 
-          // 遍历AST，寻找所有locale调用
-          traverse(ast, {
-            TaggedTemplateExpression(path) {
-              console.log('模板字符串:', path)
+    // 解析文件内容为AST
+    const ast = parser.parse(content, {
+      sourceType: 'module',
+      plugins: ['jsx', 'typescript'] // 如果你的代码中包含JSX
+    })
+
+    let modified = false
+
+    // 遍历AST，寻找所有locale调用
+    traverse(ast, {
+      TaggedTemplateExpression(path) {
+        console.log('模板字符串:', path)
 
               // if (path.node.tag.name === localeFunctionName) {
               //   let text = path.node.quasi.quasis[0].value.cooked
@@ -82,8 +83,8 @@ module.exports = async function getBaseData({
               //   )
               //   modified = true
               // }
-            },
-            CallExpression(path) {
+      },
+      CallExpression(path) {
               let nodeName = ''
               let subNodeName = ''
               // 带.组件
@@ -97,19 +98,19 @@ module.exports = async function getBaseData({
               }
 
               let isMatch = false
-              // 匹配带.组件
-              if (localeFunctionName.indexOf('.') !== -1) {
-                if (
-                  nodeName === localeFunctionName.split('.')[0] &&
-                  subNodeName === localeFunctionName.split('.')[1]
-                ) {
-                  isMatch = true
+              for (const name of localeNames) {
+                // 匹配带.的调用，如 LocaleUtil.locale
+                if (name.indexOf('.') !== -1) {
+                  const [obj, prop] = name.split('.')
+                  if (nodeName === obj && subNodeName === prop) {
+                    isMatch = true
+                    break
+                  }
                 }
-              }
-              // 匹配不带.组件
-              else {
-                if (nodeName === localeFunctionName) {
+                // 匹配不带.的调用，如 locale
+                else if (nodeName === name) {
                   isMatch = true
+                  break
                 }
               }
 
@@ -167,23 +168,15 @@ module.exports = async function getBaseData({
                   }
                 }
               }
-            }
-          })
-
-          // 保存替换后的文件内容(等测试通过后再放开)
-          if (modified) {
-            const { code } = generate(ast, { retainLines: true, comments: true }, content)
-            formatFileSync(filePath, code)
-            /*
-            .then(() => {
-              // ${filePath}文件替换完成
-            })
-            */
-          }
-        })
-
-        resolve(baseData)
       }
-    )
-  })
+    })
+
+    // 保存替换后的文件内容(等测试通过后再放开)
+    if (modified) {
+      const { code } = generate(ast, { retainLines: true, comments: true }, content)
+      formatFileSync(filePath, code)
+    }
+  }
+
+  return baseData
 }

@@ -27,9 +27,11 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     }
 
     const currentList =
-      keyword && keyword.trim() ? ArrayUtil.getDeepTreeNodes(externalList, (node) => {
-        return String(node.name).includes(keyword)
-      }) : []
+      keyword && keyword.trim()
+        ? ArrayUtil.getDeepTreeNodes(externalList, (node) => {
+            return String(node.name).includes(keyword)
+          })
+        : []
 
     if (currentList.length > 0) {
       setResult({
@@ -48,7 +50,9 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     } else {
       setResult({
         status: 'empty',
-        message: !keyword?.trim?.() ? LocaleUtil.locale('请输入关键字') : LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),
+        message: !keyword?.trim?.()
+          ? LocaleUtil.locale('请输入关键字', 'lyrixi_db91cb073ee4c9b76289e93ae2b4aa04')
+          : LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),
         list: []
       })
     }
@@ -89,7 +93,7 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
         <Result
           title={
             result?.message ||
-            LocaleUtil.locale('请输入关键字')
+            LocaleUtil.locale('请输入关键字', 'lyrixi_db91cb073ee4c9b76289e93ae2b4aa04')
           }
           status={result?.status || 'empty'}
           className="lyrixi-cascader-main-result"

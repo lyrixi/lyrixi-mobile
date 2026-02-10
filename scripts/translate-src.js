@@ -24,7 +24,7 @@ async function translateSrc() {
       '**/*.d.ts'
     ],
     folderPath: folderPath,
-    localeFunctionName: 'LocaleUtil.locale',
+    localeFunctionName: ['LocaleUtil.locale', 'locale'],
     oldBaseData: oldBaseData,
     translateOptions: [
       // 阿拉伯语

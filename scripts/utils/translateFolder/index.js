@@ -9,8 +9,8 @@ async function translateFolder({
   ignore,
   // 需要翻译的文件夹, LocaleUtil.locale()和locale()
   folderPath,
-  // 国际化的方法名
-  localeFunctionName = 'LocaleUtil.locale',
+  // 国际化的方法名，支持多个：字符串或数组，如 'LocaleUtil.locale' 或 ['LocaleUtil.locale', 'locale']
+  localeFunctionName = ['LocaleUtil.locale', 'locale'],
   // 读取上次数据用于做合并与统计差量, {'remark': {key: '', value: ''}}
   oldBaseData,
   // 翻译配置, [{from: '', to: ''}, {from: '', to: ''}]
@@ -36,7 +36,9 @@ async function translateFolder({
   })
   if (_.isEmpty(newBaseData)) {
     console.log(
-      chalk.red(`Not found function ${localeFunctionName}(..) in directory: ${folderPath} \n`)
+      chalk.red(
+      `Not found function ${Array.isArray(localeFunctionName) ? localeFunctionName.join(', ') : localeFunctionName}(..) in directory: ${folderPath} \n`
+    )
     )
     return null
   }
