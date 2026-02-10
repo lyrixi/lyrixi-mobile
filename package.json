@@ -28,16 +28,8 @@
       "require": "./esm/index.js"
     },
     "./assets/*": "./esm/assets/*",
-    "./components/*": {
-      "import": "./esm/components/*/index.js",
-      "require": "./esm/components/*/index.js",
-      "default": "./esm/components/*/index.js"
-    },
-    "./utils/*": {
-      "import": "./esm/utils/*/index.js",
-      "require": "./esm/utils/*/index.js",
-      "default": "./esm/utils/*/index.js"
-    }
+    "./components/*": "./esm/components/*",
+    "./utils/*": "./esm/utils/*"
   },
   "main": "esm/index.js",
   "module": "esm/index.js",
