@@ -1,7 +1,21 @@
 {
   "name": "lyrixi-mobile",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React 19 mobile UI library. Components + utils, tree-shakeable imports (lyrixi-mobile/components/X, lyrixi-mobile/utils/X). See AI.md for AI-friendly usage.",
+  "keywords": [
+    "react",
+    "react19",
+    "mobile",
+    "ui",
+    "components",
+    "lyrixi",
+    "tree-shakeable"
+  ],
+  "homepage": "https://lyrixi.github.io/lyrixi-mobile",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lyrixi/lyrixi-mobile"
+  },
   "license": "MIT",
   "sideEffects": [
     "**/*.less",
@@ -34,20 +48,6 @@
     "AI.md",
     "README.md"
   ],
-  "keywords": [
-    "react",
-    "react19",
-    "mobile",
-    "ui",
-    "components",
-    "lyrixi",
-    "tree-shakeable"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lyrixi/lyrixi-mobile"
-  },
-  "homepage": "https://lyrixi.github.io/lyrixi-mobile",
   "scripts": {
     "build": "father build && node scripts/build-after.js",
     "build:watch": "father dev",
