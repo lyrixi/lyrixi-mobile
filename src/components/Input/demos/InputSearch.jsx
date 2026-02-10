@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import _ from 'lodash'
-import { Page, Input } from 'lyrixi-mobile'
+import { Page, Input, ObjectUtil } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState('keyword')

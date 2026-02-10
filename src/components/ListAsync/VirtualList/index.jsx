@@ -1,16 +1,16 @@
 import React, { useRef, useMemo, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 import constant from './constant'
 import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
 import List from './List'
 
 // 内库使用-start
+import ObjectUtil from './../../../utils/ObjectUtil'
 import Page from './../../Page'
 // 内库使用-end
 
 /* 测试使用-start
-import { Page } from 'lyrixi-mobile'
+import { ObjectUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // 列表

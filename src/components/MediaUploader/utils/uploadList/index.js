@@ -1,18 +1,17 @@
-import _ from 'lodash'
-
 import uploadWechat from './../../Wechat/uploadItem'
 import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
 import uploadCustom from './../../Custom/uploadItem'
 
 // 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import Device from './../../../../utils/Device'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Device, LocaleUtil } from 'lyrixi-mobile'
+import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 /**

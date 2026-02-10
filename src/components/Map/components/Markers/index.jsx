@@ -1,11 +1,18 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 import createMarkerIcon from './createMarkerIcon'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import filterCoords from './../../utils/filterCoords'
 import isSamePoint from './../../utils/isSamePoint'
 import addMarkers from './addMarkers'
 import clearMarkers from './clearMarkers'
+
+// 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ObjectUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 批量标注
 const Markers = forwardRef(

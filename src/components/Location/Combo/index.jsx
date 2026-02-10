@@ -6,10 +6,10 @@ import React, {
   useEffect,
   Fragment
 } from 'react'
-import _ from 'lodash'
 import Modal from './../Modal'
 
 // 内库使用-start
+import ObjectUtil from './../../../utils/ObjectUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import Map from './../../Map'
 import Input from './../../Input'
@@ -17,7 +17,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, LocaleUtil, Input, Map } from 'lyrixi-mobile'
+import { ObjectUtil, DOMUtil, LocaleUtil, Input, Map } from 'lyrixi-mobile'
 测试使用-end */
 
 const {

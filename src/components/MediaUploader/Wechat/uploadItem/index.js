@@ -1,12 +1,12 @@
-import _ from 'lodash'
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { ObjectUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 单张照片上传

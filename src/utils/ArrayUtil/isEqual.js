@@ -1,5 +1,12 @@
-import _ from 'lodash'
 import isEqualFields from './isEqualFields'
+
+// 内库使用-start
+import ObjectUtil from '../ObjectUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ObjectUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 function isEqual(array1, array2, fieldNames) {
   if (!Array.isArray(array1) || !Array.isArray(array2)) return false

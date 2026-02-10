@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
-import _ from 'lodash'
 import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'
 import formatValue from './../utils/formatValue'
@@ -9,6 +8,7 @@ import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
 
 // 内库使用-start
+import ObjectUtil from './../../../utils/ObjectUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import ArrayUtil from './../../../utils/ArrayUtil'
 import IndexBar from './../../IndexBar'
@@ -18,7 +18,7 @@ import TabBar from './../../TabBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-mobile'
+import { ObjectUtil, LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 主体

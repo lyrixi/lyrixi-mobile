@@ -1,13 +1,13 @@
-import _ from 'lodash'
 import getRemainCount from './../../utils/getRemainCount'
 
 // 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Toast } from 'lyrixi-mobile'
+import { ObjectUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 选择文件

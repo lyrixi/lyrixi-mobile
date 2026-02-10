@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import _ from 'lodash'
-import { Page, Divider, Input, Card, Button } from 'lyrixi-mobile'
+import { Page, Divider, Input, Card, Button, ObjectUtil } from 'lyrixi-mobile'
 
 export default () => {
   const inputTextRef = useRef(null)

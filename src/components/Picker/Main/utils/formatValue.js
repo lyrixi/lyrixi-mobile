@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import ObjectUtil from './../../../../utils/ObjectUtil'
 
 // 格式化值
 function formatValue(value, { lists, listCount }) {

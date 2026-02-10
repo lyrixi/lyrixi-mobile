@@ -1,5 +1,12 @@
-import _ from 'lodash'
 import defaultMarkerIcons from './../../../utils/markerIcons'
+
+// 内库使用-start
+import ObjectUtil from './../../../../../utils/ObjectUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ObjectUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 创建图标
 function createCenterMarkerIcon(icon) {

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import ObjectUtil from './../../../utils/ObjectUtil'
 // 在现有时间集合中，增加超过timeSpace的时间
 function getSpaceDates(date, dates, timeSpace) {
   if (date instanceof Date === false) {

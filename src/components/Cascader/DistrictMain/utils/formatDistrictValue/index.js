@@ -1,13 +1,13 @@
-import _ from 'lodash'
 import sortValue from './sortValue'
 import findDistrictLeafIndex from './findDistrictLeafIndex'
 
 // 内库使用-start
+import ObjectUtil from '../../../../../utils/ObjectUtil'
 import ArrayUtil from '../../../../../utils/ArrayUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { ArrayUtil } from 'lyrixi-mobile'
+import { ObjectUtil, ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 更新value的type

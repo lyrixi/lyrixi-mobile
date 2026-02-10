@@ -1,8 +1,15 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 import filterCoords from './../../utils/filterCoords'
 import addPolyline from './addPolyline'
 import clearPolyline from './clearPolyline'
+
+// 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ObjectUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 批量折线
 const Polyline = forwardRef(

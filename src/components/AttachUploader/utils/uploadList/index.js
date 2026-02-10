@@ -1,14 +1,13 @@
-import _ from 'lodash'
-
 import uploadFile from './../../Browser/uploadItem'
 
 // 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, LocaleUtil } from 'lyrixi-mobile'
+import { ObjectUtil, Toast, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 导出给外部使用的工具类: 异步上传

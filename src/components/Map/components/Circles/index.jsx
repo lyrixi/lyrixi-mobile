@@ -1,8 +1,15 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 import filterCoords from './../../utils/filterCoords'
 import addCircles from './addCircles'
 import clearCircles from './clearCircles'
+
+// 内库使用-start
+import ObjectUtil from './../../../../utils/ObjectUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ObjectUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // 批量圈
 const Circles = forwardRef(
