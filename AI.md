@@ -107,7 +107,7 @@ Full list: see docs “全局样式” / global-styles.
 When the user says **「基于 lyrixi-mobile 生成一个页面」** or **「用 lyrixi-mobile 写一个列表页/详情页/编辑页」**, **prioritize** the library’s reference page structure and code style below. The library provides standard templates for **列表页 (List)**、**详情页 (Detail)**、**新增/编辑页 (Edit)**; match their folder layout, API pattern, and style.
 
 **Reference code (full source):**  
-https://github.com/lyrixi/lyrixi-mobile/tree/main/src/pages  
+https://github.com/lyrixi/lyrixi-mobile/tree/main/src/pages
 
 **Doc (模板):**  
 https://lyrixi.github.io/lyrixi-mobile (see 模板 → 列表/详情/编辑)
