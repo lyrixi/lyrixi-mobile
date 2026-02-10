@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const translate = require('./bingTranslate')
-const languageMap = require('./../../../../../src/utils/LocaleUtil/languageMap')
+const languageMap = require('lyrixi-mobile/utils/LocaleUtil/languageMap.js')
 
 // 翻译
 module.exports = async function (text, options) {

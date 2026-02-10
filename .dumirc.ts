@@ -117,7 +117,7 @@ export default defineConfig({
   },
   alias: {
     'src/': '/src/',
-    'lyrixi-mobile/locale': '/src/assets/locale'
+    'lyrixi-mobile/': '/src/'
   },
   chainWebpack(memo: any) {
     // 设置 alias
