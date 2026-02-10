@@ -90,7 +90,7 @@ async function fileChoose({
     })
   }
 
-  if (!Array.isArray(currentList) || _.isEmpty(currentList)) {
+  if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     console.error('onFileChange返回的数据不正确, 请返回数组', currentList)
     onChange && onChange(null, { action: 'choose' })
     return null

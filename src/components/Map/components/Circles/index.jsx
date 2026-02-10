@@ -47,7 +47,7 @@ const Circles = forwardRef(
     }, [])
 
     useEffect(() => {
-      if (_.isEmpty(points)) {
+      if (ObjectUtil.isEmpty(points)) {
         clearCircles(circlesLayerRef.current)
         return
       }
@@ -57,7 +57,7 @@ const Circles = forwardRef(
     }, [JSON.stringify(points)])
 
     function draw() {
-      if (_.isEmpty(points)) {
+      if (ObjectUtil.isEmpty(points)) {
         return
       }
       clearCircles(circlesLayerRef.current)

@@ -18,7 +18,7 @@ function isEqual(array1, array2, fieldNames) {
   }
 
   // 深度比较
-  return _.isEqual(array1, array2)
+  return ObjectUtil.isEqual(array1, array2)
 }
 
 export default isEqual

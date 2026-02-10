@@ -329,7 +329,7 @@ const LocationCombo = forwardRef(
             className={DOMUtil.classNames(
               'lyrixi-location-combo-icon',
               'lyrixi-location-combo-icon-preview',
-              _.isEmpty(value) ? 'lyrixi-disabled' : '',
+              ObjectUtil.isEmpty(value) ? 'lyrixi-disabled' : '',
               modalOpen === 'preview' ? 'lyrixi-active' : ''
             )}
             onClick={(e) => {
@@ -408,7 +408,7 @@ const LocationCombo = forwardRef(
               if (onChange) onChange(null)
               return
             }
-            let newValue = _.cloneDeep(value)
+            let newValue = ObjectUtil.cloneDeep(value)
             if (!newValue) {
               newValue = {}
             }

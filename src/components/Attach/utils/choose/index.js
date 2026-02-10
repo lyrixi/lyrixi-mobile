@@ -43,7 +43,7 @@ async function choose({
     currentList = await onChoose()
   }
 
-  if (!Array.isArray(currentList) || _.isEmpty(currentList)) {
+  if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     return null
   }
 

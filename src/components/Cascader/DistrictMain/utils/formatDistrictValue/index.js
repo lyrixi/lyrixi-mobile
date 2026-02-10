@@ -42,7 +42,7 @@ function formatDistrictValue(value, { list, maxType }) {
 
     // 如果上级是市或者区, 则type为street
     if (
-      _.isEmpty(value[index].type) &&
+      ObjectUtil.isEmpty(value[index].type) &&
       index === value.length - 1 &&
       (value[index - 1]?.type?.includes('city') || value[index - 1]?.type?.includes('district'))
     ) {

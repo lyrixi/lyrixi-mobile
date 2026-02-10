@@ -61,7 +61,7 @@ const Markers = forwardRef(
     }, [])
 
     useEffect(() => {
-      if (_.isEmpty(points)) {
+      if (ObjectUtil.isEmpty(points)) {
         clearMarkers(layersRef.current)
         return
       }
@@ -82,7 +82,7 @@ const Markers = forwardRef(
     }
 
     function draw() {
-      if (_.isEmpty(points)) {
+      if (ObjectUtil.isEmpty(points)) {
         return
       }
       clearMarkers(layersRef.current)

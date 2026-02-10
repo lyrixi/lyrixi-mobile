@@ -95,7 +95,7 @@ const CascaderMain = forwardRef(
     // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
     async function update(newValue, { action } = {}) {
       // 更新tabs
-      tabsRef.current = _.cloneDeep(formatValue(newValue))
+      tabsRef.current = ObjectUtil.cloneDeep(formatValue(newValue))
 
       // 滚动条还原
       if (mainRef.current) {
@@ -103,7 +103,7 @@ const CascaderMain = forwardRef(
       }
 
       // 无值显示根列表
-      if (!newValue || _.isEmpty(newValue)) {
+      if (!newValue || ObjectUtil.isEmpty(newValue)) {
         setActiveTab(null)
         setResult({
           status: 'success',
@@ -231,7 +231,7 @@ const CascaderMain = forwardRef(
         }
       })
 
-      let newValue = _.cloneDeep(value)
+      let newValue = ObjectUtil.cloneDeep(value)
 
       // 点击项的父级为选中项
       let parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)

@@ -60,7 +60,7 @@ const Main = forwardRef(
         className={DOMUtil.classNames('lyrixi-select-main', className)}
       >
         {/* Element: Empty Result */}
-        {_.isEmpty(list) && <Result className="lyrixi-select-main-result" status="empty" />}
+        {ObjectUtil.isEmpty(list) && <Result className="lyrixi-select-main-result" status="empty" />}
 
         {/* Element: List */}
         <List

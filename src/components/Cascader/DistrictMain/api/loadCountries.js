@@ -16,7 +16,7 @@ function loadCountries() {
     // 优先读取缓存
     window.countries =
       window.countries || JSON.parse(window.sessionStorage.getItem('countries') || '[]')
-    if (!_.isEmpty(window.countries)) {
+    if (!ObjectUtil.isEmpty(window.countries)) {
       resolve({
         status: 'success',
         list: window.countries

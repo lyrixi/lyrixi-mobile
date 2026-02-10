@@ -47,7 +47,7 @@ const Polyline = forwardRef(
 
     useEffect(() => {
       if (!polylineLayerRef.current) return
-      if (_.isEmpty(points)) {
+      if (ObjectUtil.isEmpty(points)) {
         clearPolyline(polylineLayerRef.current)
         return
       }
@@ -57,7 +57,7 @@ const Polyline = forwardRef(
     }, [JSON.stringify(points)])
 
     function draw() {
-      if (_.isEmpty(points)) {
+      if (ObjectUtil.isEmpty(points)) {
         return
       }
       clearPolyline(polylineLayerRef.current)

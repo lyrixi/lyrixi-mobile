@@ -28,7 +28,7 @@ function createCenterMarkerIcon(icon) {
 
   if (html) {
     return window.L.divIcon(
-      _.pickBy(
+      ObjectUtil.pickBy(
         {
           html: html,
           className,
@@ -48,7 +48,7 @@ function createCenterMarkerIcon(icon) {
   }
 
   return window.L.icon(
-    _.pickBy(
+    ObjectUtil.pickBy(
       {
         className: className || defaultMarkerIcons.centerMarkerIcon?.className,
         iconUrl: iconUrl || defaultMarkerIcons.centerMarkerIcon?.iconUrl,

@@ -30,7 +30,7 @@ async function choose({ async, maxCount, list, uploadPosition, uploadList, onCho
   if (typeof onChoose === 'function') {
     currentList = await onChoose()
   }
-  if (!Array.isArray(currentList) || _.isEmpty(currentList)) {
+  if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     return null
   }
 

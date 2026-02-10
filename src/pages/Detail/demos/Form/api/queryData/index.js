@@ -35,7 +35,7 @@ function queryData() {
         Loading.hide()
         if (result.code === '1') {
           // Empty
-          if (_.isEmpty(result.data)) {
+          if (ObjectUtil.isEmpty(result.data)) {
             resolve({
               status: 'empty',
               message: locale('暂无数据')

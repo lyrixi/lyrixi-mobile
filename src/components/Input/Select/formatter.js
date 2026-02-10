@@ -5,7 +5,7 @@ function getDisplayValue(value, { separator } = {}) {
     return value
   }
   // 纯对象
-  if (_.isPlainObject(value)) {
+  if (ObjectUtil.isPlainObject(value)) {
     return value?.name || ''
   }
   // 数组

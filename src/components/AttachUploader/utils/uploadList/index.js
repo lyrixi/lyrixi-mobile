@@ -22,7 +22,7 @@ let uploadItem = uploadFile
  */
 
 async function uploadList(pendingList, uploadConfig) {
-  if (_.isEmpty(pendingList)) {
+  if (ObjectUtil.isEmpty(pendingList)) {
     return null
   }
 
@@ -44,9 +44,9 @@ async function uploadList(pendingList, uploadConfig) {
 
   // 过滤非法的list
   list = list.filter((item) => {
-    return !_.isEmpty(item) && _.isPlainObject(item)
+    return !ObjectUtil.isEmpty(item) && ObjectUtil.isPlainObject(item)
   })
-  if (_.isEmpty(list)) {
+  if (ObjectUtil.isEmpty(list)) {
     Toast.show({
       content: LocaleUtil.locale('uploadList参数列表错误', 'lyrixi_02e1574baeddc79ed7bfa5931dde85f0')
     })

@@ -112,7 +112,7 @@ const VirtualList = (
   useEffect(() => {
     if (Array.isArray(list) && list.length) {
       // 列表更新, 底部自定义区域超过一屏高度, 即使列表高度增加, 也会一直保持在底部, 需要滚动到列表可视区域, 避免一直底部刷新
-      if (_.isEmpty(visibleItems) && totalHeight > constant.startBuffer) {
+      if (ObjectUtil.isEmpty(visibleItems) && totalHeight > constant.startBuffer) {
         let appendHeight =
           rootRef.current.element.scrollHeight -
           (listRef.current.offsetTop + listRef.current.offsetHeight)

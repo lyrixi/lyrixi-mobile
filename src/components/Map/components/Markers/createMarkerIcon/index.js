@@ -28,7 +28,7 @@ function createMarkerIcon(icon) {
 
   if (html) {
     return window.L.divIcon(
-      _.pickBy(
+      ObjectUtil.pickBy(
         {
           html: html,
           className,
@@ -48,7 +48,7 @@ function createMarkerIcon(icon) {
   }
 
   return window.L.icon(
-    _.pickBy(
+    ObjectUtil.pickBy(
       {
         className: className || defaultMarkerIcons.markerIcon?.className,
         iconUrl: iconUrl || defaultMarkerIcons.markerIcon?.iconUrl,

@@ -28,7 +28,7 @@ function Buttons({
         value={[{ id: rangeId }]}
         list={getSelectorOptions(ranges)}
         onChange={(newRange) => {
-          if (_.isEmpty(newRange)) {
+          if (ObjectUtil.isEmpty(newRange)) {
             onChange &&
               onChange(null, {
                 rangeId: null

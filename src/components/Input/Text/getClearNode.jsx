@@ -4,7 +4,7 @@ import IconClear from './../Icon/Clear'
 
 // 渲染清除按钮
 function getClearNode({ clearRender, allowClear, value, onClear, onTouchStart }) {
-  let clearable = !_.isEmpty(value) || typeof value === 'number' ? true : false
+  let clearable = !ObjectUtil.isEmpty(value) || typeof value === 'number' ? true : false
 
   // 自定义渲染清空按钮
   if (typeof clearRender === 'function') {

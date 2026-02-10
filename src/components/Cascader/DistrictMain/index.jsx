@@ -91,7 +91,7 @@ const CascaderDistrictMain = forwardRef(
       // 大多传入的value数据是不完整的, 没有type、parentid、disabled
       let newValue = value
       if (value?.length) {
-        newValue = formatDistrictValue(_.cloneDeep(value), { list: baseData?.list, maxType: type })
+        newValue = formatDistrictValue(ObjectUtil.cloneDeep(value), { list: baseData?.list, maxType: type })
       }
 
       // 1.无选中项, 说明国家省市区已经覆盖选中项的层级

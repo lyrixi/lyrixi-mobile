@@ -14,8 +14,8 @@ import { GeoUtil, Storage } from 'lyrixi-mobile'
 async function setLocationCache(type, cacheExpires, data) {
   if (!cacheExpires) return
   // 记录两种缓存: 'wgs84'|'gcj02'
-  let wgs84Data = _.cloneDeep(data)
-  let gcj02Data = _.cloneDeep(data)
+  let wgs84Data = ObjectUtil.cloneDeep(data)
+  let gcj02Data = ObjectUtil.cloneDeep(data)
   // wgs84的坐标转换为gcj02的坐标
   if (type === 'wgs84') {
     let gcj02Point = GeoUtil.coordtransform([data.longitude, data.latitude], 'wgs84', 'gcj02')

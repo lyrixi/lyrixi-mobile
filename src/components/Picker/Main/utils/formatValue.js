@@ -11,7 +11,7 @@ function formatValue(value, { lists, listCount }) {
     })
     return newValue
   } else {
-    newValue = _.cloneDeep(value)
+    newValue = ObjectUtil.cloneDeep(value)
   }
 
   // 如果项数少，填充数组

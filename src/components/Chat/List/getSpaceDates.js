@@ -8,7 +8,7 @@ function getSpaceDates(date, dates, timeSpace) {
     }
   }
 
-  if (_.isEmpty(dates)) {
+  if (ObjectUtil.isEmpty(dates)) {
     return {
       isOverTime: true,
       dates: [date]
