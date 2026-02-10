@@ -8,4 +8,4 @@ title: Device
 
 ## 示例
 
-<code src="./demos/Device.jsx">></code>
+<code src="./demos/Device.jsx"></code>

@@ -8,4 +8,4 @@ title: ArrayUtil
 
 ## 示例
 
-<code src="./demos/ArrayUtil.jsx">></code>
+<code src="./demos/ArrayUtil.jsx"></code>

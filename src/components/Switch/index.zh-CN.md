@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Switch.jsx">></code>
+<code src="./demos/Switch.jsx"></code>
 
 ## API
 

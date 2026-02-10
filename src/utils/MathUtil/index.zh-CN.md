@@ -8,4 +8,4 @@ title: MathUtil
 
 ## 示例
 
-<code src="./demos/MathUtil.jsx">></code>
+<code src="./demos/MathUtil.jsx"></code>

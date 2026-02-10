@@ -8,4 +8,4 @@ title: Debugger
 
 ## 示例
 
-<code src="./demos/Debugger.jsx">></code>
+<code src="./demos/Debugger.jsx"></code>

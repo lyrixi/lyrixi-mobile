@@ -484,4 +484,4 @@ Bridge 还提供了一些工具方法：
 
 ## 使用示例
 
-<code src="./demos/Bridge.jsx">></code>
+<code src="./demos/Bridge.jsx"></code>

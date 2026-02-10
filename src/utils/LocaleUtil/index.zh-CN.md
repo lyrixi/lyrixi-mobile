@@ -38,4 +38,4 @@ LocaleUtil.locale('半径1000米', 'key', [1000]) // => 半径1000米
 
 ### LocaleUtil.locale
 
-<code src="./demos/LocaleUtil.jsx">></code>
+<code src="./demos/LocaleUtil.jsx"></code>

@@ -8,4 +8,4 @@ title: DOMUtil
 
 ## 示例
 
-<code src="./demos/DOMUtil.jsx">></code>
+<code src="./demos/DOMUtil.jsx"></code>
