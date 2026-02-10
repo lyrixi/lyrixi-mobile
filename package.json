@@ -37,6 +37,7 @@
   "files": [
     "esm",
     "umd",
+    "scripts",
     "AI.md",
     "README.md"
   ],
