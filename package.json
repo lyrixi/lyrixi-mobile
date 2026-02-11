@@ -1,6 +1,6 @@
 {
   "name": "lyrixi-mobile",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "React 19 mobile UI library. Components + utils, tree-shakeable imports (lyrixi-mobile/components/X, lyrixi-mobile/utils/X). See AI.md for AI-friendly usage.",
   "keywords": [
     "react",
