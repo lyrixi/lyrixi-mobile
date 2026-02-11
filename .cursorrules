@@ -6,6 +6,7 @@
 **绝对禁止创建新的组件！** 必须从以下列表中选择并使用现有组件：
 
 #### 布局组件
+- `App` - 应用容器
 - `Page` - 页面容器
 - `Card` - 卡片容器
 - `Flex` - 弹性布局（支持 gap、align、wrap 等）
@@ -21,6 +22,7 @@
 - `IndexBar` - 索引栏
 - `Steps` - 步骤条
 - `FooterBar` - 底部栏
+- `ToolBar` - 工具栏（筛选、搜索、操作栏等）
 
 #### 表单组件
 - `Form` - 表单容器
@@ -31,18 +33,23 @@
 - `Picker` - 选择器
 - `Select` - 选择框
 - `Cascader` - 级联选择器
-- `DatePicker` - 日期选择器（包含 RangePicker, WeekPicker 等）
+- `DatePicker` - 日期选择器（包含 RangeCombo, RangeMain, WeekCombo 等）
 - `Selector` - 选择器
 - `Transfer` - 穿梭框
 - `Signature` - 签名
+- `Attach` - 附件选择/展示
+- `AttachUploader` - 附件上传
+- `Media` - 媒体选择/展示
+- `MediaUploader` - 媒体上传
+- `Location` - 位置选择
+- `Keyboard` - 键盘（数字键盘等）
 
 #### 展示组件
-- `Typography` -  typography 组件
+- `Text` - 文本（含 Ellipsis 等）
 - `Icon` - 图标
 - `Badge` - 徽章
 - `Divider` - 分割线
 - `Result` - 结果页
-- `Empty` - 空状态
 - `Skeleton` - 骨架屏
 - `Loading` - 加载中
 - `Progress` - 进度条
@@ -52,12 +59,19 @@
 - `NoticeBar` - 通知栏
 - `Accordion` - 手风琴
 - `List` - 列表
-- `PaginationList` - 分页列表
+- `ListAsync` - 异步/虚拟列表
+- `ListPagination` - 分页列表
+- `Stamp` - 印章
+- `Amount` - 金额展示
+- `Combo` - 组合组件（多控件组合）
+- `QRCode` - 二维码
+- `IFrame` - 内嵌框架
+- `VideoPlayer` - 视频播放器
 
 #### 数据展示
 - `Calendar` - 日历
-- `Table` - 表格（如果有）
-- `Timeline` - 时间轴
+- `Map` - 地图
+- `Chat` - 聊天（对话列表等）
 
 #### 反馈组件
 - `Modal` - 对话框
@@ -65,23 +79,6 @@
 - `Toast` - 轻提示
 - `Message` - 消息提示
 - `Loading` - 加载中
-
-#### 其他组件
-- `App` - 应用容器
-- `Combo` - 组合组件
-- `Chat` - 聊天组件
-- `Attach` - 附件
-- `AttachUploader` - 附件上传
-- `Media` - 媒体
-- `MediaUploader` - 媒体上传
-- `Location` - 位置选择
-- `Map` - 地图
-- `Keyboard` - 键盘
-- `IFrame` - 内嵌框架
-- `VideoPlayer` - 视频播放器
-- `QRCode` - 二维码
-- `Share` - 分享
-- `ToolBar` - 工具栏
 
 ### 2. 必须使用项目现有工具
 **绝对禁止创建新的工具函数！** 必须从以下列表中选择并使用现有工具：
@@ -561,17 +558,17 @@ Storage.clear()
 
 ### 查看实际示例
 
-如果对组件的使用有疑问，请查看以下示例文件：
+如果对组件的使用有疑问，请查看以下示例文件（路径以项目为准）：
 
-- Button: `src/components/Button/demos/demo1.jsx`
-- Card: `src/components/Card/demos/demo1.jsx`
-- Input: `src/components/Input/demos/Text/index.jsx`
+- Button: `src/components/Button/demos/Button.jsx`
+- Card: `src/components/Card/demos/Card.jsx`
+- Input: `src/components/Input/demos/InputText.jsx`
 - Form: `src/components/Form/demos/Layout.jsx`
-- DatePicker: `src/components/DatePicker/demos/Combo/index.jsx`
-- Select: `src/components/Select/demos/Combo/index.jsx`
-- Modal: `src/components/Modal/demos/Modal/demo1.jsx`
+- DatePicker: `src/components/DatePicker/demos/DatePickerCombo.jsx`
+- Select: `src/components/Select/demos/SelectCombo.jsx`
+- Modal: `src/components/Modal/demos/Modal.jsx` 或 `Modal/demos/Modal/index.jsx`
 - Flex: `src/components/Flex/demos/flex.jsx`
-- List: `src/components/List/demos/List/index.jsx`
+- List: `src/components/List/demos/List.jsx`
 
 ### 避免幻觉的规则
 

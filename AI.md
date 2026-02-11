@@ -50,12 +50,11 @@ import 'lyrixi-mobile/assets/index.css'
 
 Source: `src/components/` (one folder = one export, e.g. `lyrixi-mobile/components/Button`).
 
-- **Layout:** Page, Card, Flex, Row, Modal, ActionSheet, Float, SafeArea
-- **Nav:** NavBar, TabBar, IndexBar, Steps, FooterBar
-- **Form:** Form, Input (Text, Number, Password, Search, etc.), Button, Checkbox, Switch, Picker, Select, Cascader, DatePicker, Selector, Transfer, Signature
-- **Display:** Text, Icon, Badge, Divider, Result, Skeleton, Loading, Progress, Toast, Message, Tooltip, NoticeBar, Accordion, List, ListAsync, ListPagination, Stamp
-- **Data:** Calendar
-- **Other:** App, Combo, Chat, Attach, AttachUploader, Media, MediaUploader, Location, Map, Keyboard, IFrame, VideoPlayer, QRCode, ToolBar, Amount
+- **Layout:** App, Page, Card, Flex, Row, Modal, ActionSheet, Float, SafeArea
+- **Nav:** NavBar, TabBar, IndexBar, Steps, FooterBar, ToolBar
+- **Form:** Form, Input (Text, Number, Password, Search, etc.), Button, Checkbox, Switch, Picker, Select, Cascader, DatePicker, Selector, Transfer, Signature, Attach, AttachUploader, Media, MediaUploader, Location, Keyboard
+- **Display:** Text, Icon, Badge, Divider, Result, Skeleton, Loading, Progress, Toast, Message, Tooltip, NoticeBar, Accordion, List, ListAsync, ListPagination, Stamp, Amount, Combo, QRCode, IFrame, VideoPlayer
+- **Data:** Calendar, Map, Chat
 
 Subcomponents are used as `Component.Sub` (e.g. `Input.Text`, `DatePicker.Combo`, `Page.Main`). Check docs when unsure.
 
