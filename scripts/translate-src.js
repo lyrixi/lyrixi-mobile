@@ -4,8 +4,10 @@ const translateFolder = require('./utils/translateFolder')
 const writeFileSync = require('./utils/writeFileSync')
 
 async function translateSrc() {
-  // 始终使用当前工作目录下的 src（业务项目或库仓库执行时 cwd 均为项目根）
-  const folderPath = path.resolve(process.cwd(), 'src')
+  // 支持可选入参：无参数时扫描 cwd/src，有参数时扫描 cwd/<入参路径>
+  // 例: node translate-src.js  或  node translate-src.js src  或  node translate-src.js packages/app/src
+  const customPath = process.argv[2]
+  const folderPath = path.resolve(process.cwd(), customPath || 'src')
 
   // 生成文件的目录
   let localesPath = path.resolve(folderPath, `assets/locale`)
