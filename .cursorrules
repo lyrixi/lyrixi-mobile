@@ -17,20 +17,26 @@
 
 常用场景对应：类名 → `DOMUtil.classNames`；日期 → `DateUtil`；尺寸变量 → `MathUtil.variableSize`；国际化 → `LocaleUtil.locale`。
 
-## 3. 导入规范（按需导入，避免全量打包）
+## 3. 导入规范
+
+**库内代码**（`src/components/`、`src/utils/` 内互相引用）：用**相对路径**内部引入，示例:
 
 ```javascript
-// 组件：lyrixi-mobile/components/组件名
-import Page from 'lyrixi-mobile/components/Page'
-import Input from 'lyrixi-mobile/components/Input'
-import Button from 'lyrixi-mobile/components/Button'
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+import Icon from './../Icon'
+// 内库使用-end
 
-// 工具：lyrixi-mobile/utils/工具名
-import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
-import DateUtil from 'lyrixi-mobile/utils/DateUtil'
+/* 测试使用-start
+import { DOMUtil, Icon } from 'lyrixi-mobile'
+测试使用-end */
 ```
 
-禁止：`import { Button, Card } from 'lyrixi-mobile'` 式全量导入（除非业务明确用 barrel）。禁止新建组件/工具文件、使用第三方 UI 库、手写类名合并/日期格式化。
+**示例 / 业务代码**（demos、业务项目）：用 barrel 方式从包名引入，示例:
+
+```javascript
+import { Button, Card, Page, Input, DOMUtil, DateUtil } from 'lyrixi-mobile'
+```
 
 ## 4. 生成前必读（减少幻觉）
 
