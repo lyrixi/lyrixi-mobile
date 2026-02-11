@@ -4,7 +4,9 @@ const translateFolder = require('./utils/translateFolder')
 const writeFileSync = require('./utils/writeFileSync')
 
 async function translateSrc() {
-  const folderPath = path.resolve(__dirname, './../src')
+  // 始终使用当前工作目录下的 src（业务项目或库仓库执行时 cwd 均为项目根）
+  const folderPath = path.resolve(process.cwd(), 'src')
+
   // 生成文件的目录
   let localesPath = path.resolve(folderPath, `assets/locale`)
   // 读取上次数据用于做合并与统计差量
