@@ -112,7 +112,7 @@ const InputText = (
 
     // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
     if (val && value && String(val) !== String(value)) {
-      onChange(val)
+      onChange(val, { action: 'load' })
     }
   }, []) // eslint-disable-line
 
