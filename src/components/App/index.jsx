@@ -19,7 +19,7 @@ import { Theme, LocaleUtil, Logger, Debugger, Result, Button, Map, Message } fro
 window.addEventListener(
   'popstate',
   () => {
-    Message.destroy()
+    Message.close()
   },
   false
 )
