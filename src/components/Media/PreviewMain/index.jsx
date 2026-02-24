@@ -15,17 +15,19 @@ import PreviewDelete from './PreviewDelete'
 import PreviewClose from './PreviewClose'
 import PreviewChoose from './PreviewChoose'
 import PreviewReload from './PreviewReload'
+import PreviewToolbar from './PreviewToolbar'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
+import Device from './../../../utils/Device'
 import SafeArea from './../../SafeArea'
 import Toast from './../../Toast'
 import VideoPlayer from './../../VideoPlayer'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, SafeArea, LocaleUtil, Toast, VideoPlayer } from 'lyrixi-mobile'
+import { LocaleUtil, DOMUtil, Device, SafeArea, Toast, VideoPlayer } from 'lyrixi-mobile'
 测试使用-end */
 
 const PreviewMain = forwardRef(
@@ -66,6 +68,8 @@ const PreviewMain = forwardRef(
     const swiperRef = useRef(null)
     // 显示项, 用于判断是否允许删除
     const [activeIndex, setActiveIndex] = useState(0)
+    // 每张图片的旋转角度 (度): { [slideIndex]: 0 | 90 | 180 | 270 }
+    const [rotations, setRotations] = useState({})
 
     // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
     const onFileChangeRef = useRef()
@@ -256,6 +260,36 @@ const PreviewMain = forwardRef(
       e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
     }
 
+    // 顺时针旋转 90 度
+    function handleRotateClockwise(e) {
+      e.stopPropagation()
+      setRotations((prev) => ({
+        ...prev,
+        [activeIndex]: ((prev[activeIndex] ?? 0) + 90) % 360
+      }))
+    }
+
+    // 逆时针旋转 90 度
+    function handleRotateAnticlockwise(e) {
+      e.stopPropagation()
+      setRotations((prev) => ({
+        ...prev,
+        [activeIndex]: ((prev[activeIndex] ?? 0) - 90 + 360) % 360
+      }))
+    }
+
+    // 放大
+    function handleZoomIn(e) {
+      e.stopPropagation()
+      swiperRef.current?.swiper?.zoom?.in()
+    }
+
+    // 缩小
+    function handleZoomOut(e) {
+      e.stopPropagation()
+      swiperRef.current?.swiper?.zoom?.out()
+    }
+
     return (
       <Swiper
         ref={swiperRef}
@@ -305,13 +339,13 @@ const PreviewMain = forwardRef(
                   className={DOMUtil.classNames('lyrixi-media-preview-main-item', item.status)}
                 >
                   <div className="swiper-zoom-container">
-                    {list?.[index]?.fileType !== 'video' && (
+                    {list?.[index]?.fileType !== 'video' && (<div className="lyrixi-media-preview-main-image-container" style={{ transform: `rotate(${rotations[index] ?? 0}deg)` }}>
                       <img
                         alt=""
                         className="swiper-zoom-target"
                         src={item?.localFile?.tempFileUrl || item?.fileUrl}
                       />
-                    )}
+                    </div>)}
                     {list?.[index]?.fileType === 'video' && (
                       <VideoPlayer
                         poster={item?.localFile?.tempFileThumbnail || item?.fileThumbnail}
@@ -325,6 +359,15 @@ const PreviewMain = forwardRef(
                 </SwiperSlide>
               )
             })}
+        {/* 图片操作：旋转、放大缩小（仅当前为图片时显示） */}
+        {list?.[activeIndex]?.fileType !== 'video' && Device.device === 'pc' && (
+          <PreviewToolbar
+            onRotateAnticlockwise={handleRotateAnticlockwise}
+            onRotateClockwise={handleRotateClockwise}
+            onZoomOut={handleZoomOut}
+            onZoomIn={handleZoomIn}
+          />
+        )}
         {/* Close */}
         {closable && <PreviewClose onClose={onClose} />}
         {/* Delete */}
