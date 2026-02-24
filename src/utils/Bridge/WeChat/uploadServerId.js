@@ -7,10 +7,10 @@ import LocaleUtil from './../../LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadServerId({ url, header, payload }) {
+function uploadServerId({ url, headers, payload }) {
   return new Promise((resolve) => {
     Request.post(url, payload, {
-      headers: header || {
+      headers: headers || {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     })

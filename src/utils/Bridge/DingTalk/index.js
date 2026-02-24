@@ -352,9 +352,9 @@ let Bridge = {
     if (typeof formatPayload === 'function') {
       payload = await formatPayload(payload, { platform: 'dingtalk' })
     }
-    let header = { 'Content-Type': 'multipart/form-data' }
+    let headers = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeaders === 'function') {
-      header = await formatHeaders(header, { platform: 'dingtalk' })
+      headers = await formatHeaders(headers, { platform: 'dingtalk' })
     }
 
     const handleSuccess = async function (res) {
@@ -395,7 +395,7 @@ let Bridge = {
 
     console.log('调用钉钉uploadFile:', {
       url: url.startsWith('http') ? url : window.origin + url,
-      header: header,
+      headers: headers,
       formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.filePath,
@@ -404,7 +404,7 @@ let Bridge = {
 
     window.top.dd.uploadFile({
       url: url.startsWith('http') ? url : window.origin + url,
-      header: header,
+      header: headers,
       formData: payload,
       fileName: 'file', // 文件名必传，但其实没什么用, 因为在formData也可以传
       filePath: localFile.filePath,

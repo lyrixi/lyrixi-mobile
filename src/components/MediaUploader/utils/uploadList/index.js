@@ -17,7 +17,7 @@ import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 /**
  * 导出给外部使用的工具类: 异步上传图片
  * @param {Array|Object} pendingList ImageUploader控件返回的待传列表
- * @param {Object} uploadConfig {platform: 'browser强制上传方式', getUploadUrl: function({platform}), formatHeaders: function(header, {platform}), formatPayload: function(payload, {platform}), formatResponse: function(response, {platform})}
+ * @param {Object} uploadConfig {platform: 'browser强制上传方式', getUploadUrl: function({platform}), formatHeaders: function(headers, {platform}), formatPayload: function(payload, {platform}), formatResponse: function(response, {platform})}
  * @returns {Array} [{原item属性, filePath: '', fileUrl: '', fileThumbnail: '', status: 'error|success'}]
  */
 

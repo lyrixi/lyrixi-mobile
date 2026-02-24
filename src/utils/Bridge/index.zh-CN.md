@@ -343,9 +343,9 @@ Bridge.uploadFile({
   getUploadUrl: ({ platform }) => {
     return 'https://api.example.com/upload'
   },
-  formatHeaders: (header, { platform }) => {
+  formatHeaders: (headers, { platform }) => {
     return {
-      ...header,
+      ...headers,
       Authorization: 'Bearer token'
     }
   },

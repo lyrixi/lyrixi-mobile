@@ -296,14 +296,14 @@ let Browser = {
     if (typeof formatPayload === 'function') {
       payload = await formatPayload(payload, { platform: 'browser' })
     }
-    let header = { 'Content-Type': 'multipart/form-data' }
+    let headers = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeaders === 'function') {
-      header = await formatHeaders(header, { platform: 'browser' })
+      headers = await formatHeaders(headers, { platform: 'browser' })
     }
 
     let response = await uploadFile({
       url: url,
-      header: header,
+      headers: headers,
       payload: payload
     })
 

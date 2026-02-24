@@ -209,7 +209,7 @@ export default () => {
                 })
                 Bridge.uploadFile({
                   url: '',
-                  header: {
+                  headers: {
                     'Content-Type': 'multipart/form-data',
                     Cookie: document.cookie
                   },

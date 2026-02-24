@@ -394,20 +394,20 @@ let Bridge = {
         if (typeof formatPayload === 'function') {
           payload = await formatPayload(payload, { platform: 'wechat' })
         }
-        let header = { 'Content-Type': 'multipart/form-data' }
+        let headers = { 'Content-Type': 'multipart/form-data' }
         if (typeof formatHeaders === 'function') {
-          header = await formatHeaders(header, { platform: 'wechat' })
+          headers = await formatHeaders(headers, { platform: 'wechat' })
         }
 
         console.log('调用微信uploadServerId:', {
           url: url,
-          header: header,
+          headers: headers,
           payload: payload
         })
 
         let response = await uploadServerId({
           url: url,
-          header: header,
+          headers: headers,
           payload: payload
         })
 

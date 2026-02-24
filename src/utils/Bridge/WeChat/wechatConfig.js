@@ -21,7 +21,7 @@ function wechatConfig({ url, headers, payload, formatResponse, onSuccess, onErro
 
   // 微信鉴权
   Request.post(url, payload, {
-    header: headers
+    headers: headers
   })
     .then(async (response) => {
       if (response.code === '1') {

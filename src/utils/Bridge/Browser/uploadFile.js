@@ -7,17 +7,17 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadFile({ url, header, payload }) {
+function uploadFile({ url, headers, payload }) {
   return new Promise((resolve) => {
     const newPayload = new FormData()
     for (const key in payload) {
       newPayload.append(key, payload[key])
     }
 
-    console.log('调用浏览器uploadFile:', { url, header, newPayload })
+    console.log('调用浏览器uploadFile:', { url, headers, newPayload })
 
     Request.post(url, newPayload, {
-      headers: header || {
+      headers: headers || {
         'Content-Type': 'multipart/form-data'
       }
     })
