@@ -27,6 +27,7 @@ const SearchBar = (
     allowClear,
     autoFocus,
     autoSelect,
+    enableCompositionEnd,
 
     // Style
     style,
@@ -84,6 +85,7 @@ const SearchBar = (
         allowClear={allowClear}
         autoFocus={true}
         autoSelect={autoSelect}
+        enableCompositionEnd={enableCompositionEnd}
         // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-active', className)}

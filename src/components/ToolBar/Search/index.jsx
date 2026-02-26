@@ -26,6 +26,7 @@ const Search = (
     allowClear,
     autoFocus,
     autoSelect,
+    enableCompositionEnd,
 
     // Style
     style,
@@ -75,6 +76,7 @@ const Search = (
       allowClear={allowClear}
       autoFocus={autoFocus}
       autoSelect={autoSelect}
+      enableCompositionEnd={enableCompositionEnd}
       // Style
       style={style}
       className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}

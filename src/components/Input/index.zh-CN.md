@@ -42,6 +42,7 @@ toc: content
 | allowClear    | 允许清除     | `boolean`                                                                           | -        |
 | autoFocus     | 自动获取焦点 | `boolean`                                                                           | -        |
 | autoSelect    | 自动选中     | `boolean`                                                                           | -        |
+| enableCompositionEnd | 仅输入法落字后触发 onChange | `boolean` | `false` |
 | style         | 自定义样式   | `object`                                                                            | -        |
 | className     | 自定义类名   | `string`                                                                            | -        |
 | inputRender   | 自定义输入框 | `(props: object) => ReactNode`                                                      | -        |
