@@ -18,6 +18,7 @@ const Search = forwardRef(
       allowClear,
       autoFocus,
       autoSelect,
+      enableCompositionEnd = false,
 
       // Style
       style,
@@ -74,6 +75,7 @@ const Search = forwardRef(
         allowClear={allowClear}
         autoFocus={autoFocus}
         autoSelect={autoSelect}
+        enableCompositionEnd={enableCompositionEnd}
         // Style
         style={style}
         className={className}

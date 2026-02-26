@@ -8,6 +8,7 @@ export default () => {
   const [value3, setValue3] = useState('')
   const [value4, setValue4] = useState('')
   const [value5, setValue5] = useState('')
+  const [valueComposition, setValueComposition] = useState('')
 
   useEffect(() => {
     console.log('Input.Text ref:', inputTextRef.current)
@@ -103,6 +104,25 @@ export default () => {
         </Card>
 
         <Card style={{ marginTop: '20px' }}>
+          <Divider>enableCompositionEnd（输入法落字后触发 onChange）</Divider>
+          <div style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+            开启后，中文输入法下打拼音时不会每次按键都触发 onChange，只有选字/回车落字后才触发。
+          </div>
+          <Input.Text
+            placeholder="可输入中文测试，如输入 wang 选「王」"
+            value={valueComposition}
+            enableCompositionEnd
+            onChange={(val) => {
+              console.log('enableCompositionEnd 触发:', val)
+              setValueComposition(val)
+            }}
+          />
+          <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+            当前值: {valueComposition || '空'}
+          </div>
+        </Card>
+
+        <Card style={{ marginTop: '20px' }}>
           <Divider>自动去除空格</Divider>
           <Input.Text
             placeholder="自动去除首尾空格"
@@ -133,6 +153,7 @@ export default () => {
             <p>• 支持格式化显示</p>
             <p>• 支持最大长度限制</p>
             <p>• 支持左右图标</p>
+            <p>• 支持 enableCompositionEnd（输入法落字后再触发 onChange）</p>
             <p>• 支持自动去除首尾空格</p>
             <p>• 支持disabled和readOnly状态</p>
             <p>• 支持ref操作（focus、blur等）</p>

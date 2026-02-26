@@ -33,6 +33,7 @@ const InputText = (
     allowClear,
     autoFocus,
     autoSelect,
+    enableCompositionEnd = false, // true：仅输入法落字（compositionend）后触发 onChange，用 e.target.composing 控制
 
     // Style
     style: externalStyle,
@@ -116,6 +117,16 @@ const InputText = (
     }
   }, []) // eslint-disable-line
 
+  // enableCompositionEnd 时为非受控，父组件 value 变化（如表单重置）时需同步到 input
+  useEffect(() => {
+    if (!enableCompositionEnd || !inputRef.current) return
+    if (inputRef.current.composing) return
+    if (inputRef.current.value !== value) {
+      inputRef.current.value = value
+    }
+    // eslint-disable-next-line
+  }, [value, enableCompositionEnd])
+
   // 矫正最大长度和小数位截取
   function correctValue(val) {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
@@ -152,6 +163,14 @@ const InputText = (
   // 修改值
   async function handleChange(e) {
     let target = e.target
+    // enableCompositionEnd 时，组合中不触发 onChange（由 handleCompositionEnd 落字后触发）
+    if (enableCompositionEnd && target?.composing) {
+      return
+    }
+    if (target.value === value) {
+      return
+    }
+
     let val = target.value
     // 此处不宜用target?.validity?.badInput矫正数值, 因为ios上.也返回空
 
@@ -168,6 +187,17 @@ const InputText = (
 
     // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
     if (onChange) onChange(val, { action: 'change' })
+  }
+
+  // enableCompositionEnd输入完成触发onChange: 输入法开始组合（如拼音未选字）
+  function handleCompositionStart(e) {
+    e.target.composing = true
+  }
+
+  // enableCompositionEnd输入完成触发onChange: 输入法结束组合（选字/回车落字后）, 再触发 onChange
+  function handleCompositionEnd(e) {
+    e.target.composing = false
+    handleChange(e)
   }
 
   // 数值框失去焦点, 校验最大值和最小值
@@ -251,7 +281,7 @@ const InputText = (
         autoCorrect,
         spellCheck,
         autoFocus,
-        value,
+        ...(enableCompositionEnd ? { defaultValue: value } : { value }),
         maxLength,
         readOnly,
         disabled,
@@ -259,7 +289,9 @@ const InputText = (
         onChange: handleChange,
         onBlur: handleBlur,
         onFocus: handleFocus,
-        onKeyDown: handleKeyDown
+        onKeyDown: handleKeyDown,
+        onCompositionStart: enableCompositionEnd ? handleCompositionStart : undefined,
+        onCompositionEnd: enableCompositionEnd ? handleCompositionEnd : undefined
       })
     }
 
@@ -271,7 +303,7 @@ const InputText = (
             ref={inputRef}
             name={name}
             // Value & Display Value
-            value={value}
+            {...(enableCompositionEnd ? { defaultValue: value } : { value })}
             placeholder={placeholder}
             // Status
             readOnly={readOnly}
@@ -293,6 +325,8 @@ const InputText = (
             onBlur={handleBlur}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
+            onCompositionStart={enableCompositionEnd ? handleCompositionStart : undefined}
+            onCompositionEnd={enableCompositionEnd ? handleCompositionEnd : undefined}
           ></textarea>
           <pre className="lyrixi-input-autoSize-pre" style={inputStyle}>
             <span>{value}</span>
@@ -308,7 +342,7 @@ const InputText = (
           ref={inputRef}
           name={name}
           // Value & Display Value
-          value={value}
+          {...(enableCompositionEnd ? { defaultValue: value } : { value })}
           placeholder={placeholder}
           // Status
           readOnly={readOnly}
@@ -330,6 +364,8 @@ const InputText = (
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
+          onCompositionStart={enableCompositionEnd ? handleCompositionStart : undefined}
+          onCompositionEnd={enableCompositionEnd ? handleCompositionEnd : undefined}
         ></textarea>
       )
     }
@@ -341,7 +377,7 @@ const InputText = (
         name={name}
         type={type} // number类型需要text，否则focus无法设置光标到末尾
         // Value & Display Value
-        value={value}
+        {...(enableCompositionEnd ? { defaultValue: value } : { value })}
         placeholder={placeholder}
         // Status
         readOnly={readOnly}
@@ -365,6 +401,8 @@ const InputText = (
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
+        onCompositionStart={enableCompositionEnd ? handleCompositionStart : undefined}
+        onCompositionEnd={enableCompositionEnd ? handleCompositionEnd : undefined}
       />
     )
   }
