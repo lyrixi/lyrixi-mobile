@@ -1,4 +1,5 @@
 import isEmpty from './isEmpty'
+import debounce from './debounce'
 import isPlainObject from './isPlainObject'
 import pickBy from './pickBy'
 import cloneDeep from './cloneDeep'
@@ -7,6 +8,7 @@ import randomUUID from './randomUUID'
 
 const ObjectUtil = {
   isEmpty,
+  debounce,
   isPlainObject,
   pickBy,
   cloneDeep,
