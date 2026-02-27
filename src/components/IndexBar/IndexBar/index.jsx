@@ -19,7 +19,7 @@ const IndexBar = forwardRef(
       anchors,
 
       // Elements
-      scrollerElement,
+      getScrollerElement,
 
       // Style
       className,
@@ -51,20 +51,24 @@ const IndexBar = forwardRef(
       }
     })
 
-    // 监听滚动事件(有滚动容器scrollerElement时才监听)
+    // 监听滚动事件(有滚动容器时才监听，用 getElement 以便初始化后 ref 挂载也能拿到)
     useEffect(() => {
-      scrollerElement && scrollerElement.addEventListener('scroll', handleScroll, false)
+      const scrollerElement = getScrollerElement()
+      if (!scrollerElement) return
+      scrollerElement.removeEventListener('scroll', handleScroll, false)
+      scrollerElement.addEventListener('scroll', handleScroll, false)
       return () => {
         scrollerElement && scrollerElement.removeEventListener('scroll', handleScroll, false)
       }
       // eslint-disable-next-line
-    }, [scrollerElement])
+    }, [])
 
-    // 滚动事件(有滚动容器scrollerElement时才监听)
-    function handleScroll() {
+    // 滚动事件(有滚动容器时才监听)
+    function handleScroll(e) {
       if (scrollThrottleRef.current) return
       scrollThrottleRef.current = setTimeout(() => {
-        let currentAnchor = getAnchorByScroller(scrollerElement)
+        // 定时器里e.currentTarget为null
+        let currentAnchor = getAnchorByScroller(e.target)
         currentAnchor &&
           activeAnchor(currentAnchor, {
             sidebarElement: sidebarRef.current
@@ -77,6 +81,7 @@ const IndexBar = forwardRef(
     function goAnchor(currentAnchor) {
       if (!currentAnchor) return
 
+      const scrollerElement = getScrollerElement()
       // 自定义滚动到指定位置
       if (externalScrollToAnchor) {
         externalScrollToAnchor(currentAnchor, {

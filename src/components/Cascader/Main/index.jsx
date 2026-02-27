@@ -294,7 +294,7 @@ const CascaderMain = forwardRef(
           <IndexBar
             className="lyrixi-cascader-indexbar"
             anchors={getAnchors(result?.list)}
-            scrollerElement={mainRef.current}
+            getScrollerElement={() => mainRef.current}
           />
 
           {/* 搜索框 */}
