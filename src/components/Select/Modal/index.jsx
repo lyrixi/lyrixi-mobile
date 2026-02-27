@@ -1,14 +1,13 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import ToolBar from './../../../components/ToolBar'
 import NavBarModal from './../../../components/Modal/NavBarModal'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, ToolBar, Modal } from 'lyrixi-mobile'
+import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
@@ -55,9 +54,6 @@ const Modal = forwardRef(
     },
     ref
   ) => {
-    const searchVisibleRef = useRef(false)
-    // 没有设置headerRender的情况下, 大于15项显示搜索
-    const [keyword, setKeyword] = useState('')
     let [currentValue, setCurrentValue] = useState(value)
     const modalRef = useRef(null)
     const mainRef = useRef(null)
@@ -70,33 +66,19 @@ const Modal = forwardRef(
     })
 
     // 同步外部value到内部
-    React.useEffect(() => {
+    useEffect(() => {
       if (open) {
         setCurrentValue(value)
       }
     }, [open, value])
 
     function getHeaderNode() {
-      searchVisibleRef.current = false
       if (typeof headerRender === 'function') {
         return headerRender({
           open: open,
           value: value,
           list: list
         })
-      }
-      if (Array.isArray(list) && list.length > 15) {
-        searchVisibleRef.current = true
-        return (
-          <ToolBar variant="filled">
-            <ToolBar.Search
-              value={keyword}
-              onSearch={(newKeyword) => {
-                setKeyword(newKeyword)
-              }}
-            />
-          </ToolBar>
-        )
       }
       return null
     }
@@ -157,9 +139,7 @@ const Modal = forwardRef(
           checkable={checkable}
           // Value & Display Value
           value={currentValue}
-          list={
-            searchVisibleRef.current ? list.filter((item) => item.name.includes(keyword)) : list
-          }
+          list={list}
           formatViewList={formatViewList}
           formatViewItem={formatViewItem}
           // Element

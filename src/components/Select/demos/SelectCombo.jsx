@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Page, Select, Checkbox, Card, ToolBar, ObjectUtil } from 'lyrixi-mobile'
+import { Page, Select, Checkbox, Card, ToolBar, Text, ObjectUtil } from 'lyrixi-mobile'
 import flatList from './flatList'
 import groupList from './groupList'
 
@@ -146,11 +146,11 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>Checkbox</Card.Header>
+          <Card.Header>Custom Checkbox</Card.Header>
           <Card.Main>
             <Select.Combo
               title="Select"
-              placeholder="Single Select"
+              placeholder="Custom Checkbox"
               allowClear
               multiple={false}
               list={flatList}
@@ -165,60 +165,59 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>Layout</Card.Header>
+          <Card.Header>Group</Card.Header>
           <Card.Main>
             <Select.Combo
-              placeholder="Layout"
+              placeholder="Group"
               multiple={false}
-              title="Select"
+              title="Group Select"
               allowClear
               value={singleValue}
-              list={flatList}
+              list={groupList}
               onChange={setSingleValue}
             />
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>List count more than 15, show Search</Card.Header>
+          <Card.Header>Custom Header: Search</Card.Header>
           <Card.Main>
             <Select.Combo
-              title="Select"
               placeholder="Search"
-              multiple={false}
               allowClear
-              value={multipleValue}
-              list={groupList}
-              onChange={(newValue) => {
-                console.log('onChange:', newValue)
-                setSingleValue(newValue)
-              }}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Custom Header</Card.Header>
-          <Card.Main>
-            <Select.Combo
-              placeholder="Search"
               multiple={false}
               title="Select"
+              modalStyle={{
+                height: '500px'
+              }}
               headerRender={() => {
                 return (
                   <ToolBar variant="filled">
                     <ToolBar.Search
-                      multipleValue={keyword}
-                      onSearch={(newKeyword) => {
-                        setKeyword(newKeyword)
+                      allowClear
+                      value={keyword}
+                      // onSearch={(newKeyword) => {
+                      //   setKeyword(newKeyword)
+                      // }}
+                      enableCompositionEnd={true}
+                      onChange={(newKeyword) => {
+                        ObjectUtil.debounce(() => {
+                          setKeyword(newKeyword)
+                        }, 1000, 'searchDebounce')
                       }}
                     />
                   </ToolBar>
                 )
               }}
-              allowClear
               value={singleValue}
+              // List filter by keyword
               list={flatList?.filter?.((item) => item.name.includes(keyword)) || []}
+              // Keyword hightlight 
+              formatViewItem={(item) => {
+                return {
+                  title: <Text highlight={keyword}>{item.name}</Text>
+                }
+              }}
               onChange={(newValue) => {
                 console.log('onChange:', newValue)
                 setSingleValue(newValue)
