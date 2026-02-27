@@ -30,8 +30,8 @@ const IndexBar = forwardRef(
     },
     ref
   ) => {
-    // 滚动节流定时器
-    const scrollThrottleRef = useRef(null)
+    // 滚动防抖定时器
+    const scrollDebounceRef = useRef(null)
     // Nodes
     const sidebarRef = useRef(null)
     const tooltipRef = useRef(null)
@@ -65,15 +65,15 @@ const IndexBar = forwardRef(
 
     // 滚动事件(有滚动容器时才监听)
     function handleScroll(e) {
-      if (scrollThrottleRef.current) return
-      scrollThrottleRef.current = setTimeout(() => {
+      if (scrollDebounceRef.current) return
+      scrollDebounceRef.current = setTimeout(() => {
         // 定时器里e.currentTarget为null
         let currentAnchor = getAnchorByScroller(e.target)
         currentAnchor &&
           activeAnchor(currentAnchor, {
             sidebarElement: sidebarRef.current
           })
-        scrollThrottleRef.current = null
+        scrollDebounceRef.current = null
       }, 300)
     }
 
