@@ -215,7 +215,7 @@ export default () => {
               // Keyword hightlight 
               formatViewItem={(item) => {
                 return {
-                  title: <Text highlight={keyword}>{item.name}</Text>
+                  title: <Text style={item.style} highlight={keyword}>{item.name}</Text>
                 }
               }}
               onChange={(newValue) => {
