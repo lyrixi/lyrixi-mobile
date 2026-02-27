@@ -138,7 +138,7 @@ const IndexBar = forwardRef(
       <Fragment>
         <div
           style={style}
-          className={DOMUtil.classNames('lyrixi-indexbar', className)}
+          className={DOMUtil.classNames('lyrixi-indexbar', className, !anchors?.length ? 'lyrixi-hide' : '')}
           ref={sidebarRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
