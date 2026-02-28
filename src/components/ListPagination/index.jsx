@@ -60,6 +60,8 @@ const ListPagination = forwardRef(
   ) => {
     const isFirstLoad = useRef(true)
     const mainRef = useRef(null)
+    // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
+    const pageRef = useRef(1)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -119,6 +121,8 @@ const ListPagination = forwardRef(
 
           // 在线查询数据
           const result = await queryData(url, headers, payload, {
+            // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
+            pageRef,
             previousResult,
             action,
             formatPayload,

@@ -8,23 +8,30 @@ import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取列表
-let page = 1
+const rows = 20
 // 兼容新 ListAsync 要求：外部仍返回数组，调用处已包装为新对象
 function queryData(
   url,
   headers = {},
   payload,
-  { previousResult, action, formatPayload, formatResult } = {}
+  {
+    // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
+    pageRef,
+    previousResult,
+    action,
+    formatPayload,
+    formatResult
+  } = {}
 ) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     if (action === 'bottomRefresh') {
-      page++
+      pageRef.current++
     } else {
-      page = 1
+      pageRef.current = 1
     }
-    let queryParams = (await formatPayload?.({ ...(payload || {}), page })) || {}
-    if (!queryParams?.rows) queryParams.rows = 20
+    let queryParams = (await formatPayload?.({ rows, ...(payload || {}), page: pageRef.current })) || {}
+    if (!queryParams?.rows) queryParams.rows = rows
 
     Request.post(url, queryParams, {
       headers: {
@@ -35,7 +42,7 @@ function queryData(
       .then(async (result) => {
         let newResult = await formatResult(result, { payload: queryParams })
         // 当前列表
-        let currentList = page === 1 ? [] : previousResult?.list
+        let currentList = pageRef.current === 1 ? [] : previousResult?.list
 
         // 加载成功
         if (newResult.status !== 'error') {
@@ -45,7 +52,7 @@ function queryData(
           }
           // 有总页数, 优先使用总页数判断
           else if (newResult?.totalPage) {
-            if (page >= newResult?.totalPage) {
+            if (pageRef.current >= newResult?.totalPage) {
               newResult.status = 'noMore'
             } else {
               newResult.status = 'loading'
