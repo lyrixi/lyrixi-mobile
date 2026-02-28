@@ -47,7 +47,7 @@ const Combo = forwardRef(
       errorRetry,
       emptyRetry,
       multiple,
-      checkable,
+      checkable = true,
       disableTopRefresh,
       disableBottomRefresh,
       virtual,
