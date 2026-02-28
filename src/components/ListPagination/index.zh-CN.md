@@ -9,21 +9,32 @@ toc: content
 
 # ListPagination
 
-分页列表组件，用于显示分页数据列表。
+分页列表组件，提供分页数据列表的三种用法：内嵌列表（Main）、触发器+弹窗选择（Combo）、受控弹窗选择（Modal）。
 
 ## 何时使用
 
 - 需要显示分页数据列表时
-- 需要自动加载数据时
-- 需要支持下拉刷新和上拉加载时
+- 需要自动加载数据、下拉刷新和上拉加载时
+- 需要从分页列表中单选/多选并展示在输入框或弹窗时
 
 ## 代码演示
 
-<code src="./demos/ListPagination/index.jsx"></code>
+## ListPagination.Main
 
-## API
+内嵌分页列表，直接渲染在页面中。
 
-### 属性
+### 何时使用
+
+- 列表作为页面主体内容时
+- 需要下拉刷新、上拉加载、缓存与重试时
+
+### 代码演示
+
+<code src="./demos/ListPaginationMain/index.jsx"></code>
+
+### API
+
+#### 属性
 
 | 属性                 | 说明         | 类型                                                                                                 | 默认值 |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
@@ -55,14 +66,149 @@ toc: content
 | onScrollEnd          | 滚动结束事件 | `(e: Event) => void`                                                                                 | -      |
 | onLoad               | 加载事件     | `({result: object, action: string}) => void`                                                         | -      |
 
-### Ref
+#### Ref
 
 | 属性        | 说明       | 类型                           |
-| ----------- | ---------- | ------------------------------ | --- |
+| ----------- | ---------- | ------------------------------ |
 | element     | 根元素     | `HTMLDivElement`               |
 | getElement  | 获取根元素 | () => `HTMLDivElement`         |
-| updateCache | 更新缓存   | `(extraCache: object) => void` | -   |
+| updateCache | 更新缓存   | `(extraCache: object) => void` |
 | clearCache  | 清除缓存   | `() => void`                   |
 | getCache    | 获取缓存   | `() => object`                 |
-| reload      | 重新加载   | `(action?: string) => void`    | -   |
+| reload      | 重新加载   | `(action?: string) => void`    |
 | getResult   | 获取结果   | `() => object`                 |
+
+## ListPagination.Combo
+
+组合组件：输入框触发器 + 弹窗内分页列表选择。
+
+### 何时使用
+
+- 需要从分页接口中选择一项或多项，并展示在输入框时
+- 与表单搭配、占位少、点击再加载列表时
+
+### 代码演示
+
+<code src="./demos/ListPaginationCombo/index.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性                 | 说明         | 类型                            | 默认值 |
+| -------------------- | ------------ | ------------------------------- | ------ |
+| value                | 选中的值     | `any \| any[]`                  | -      |
+| placeholder          | 占位符       | `string`                        | -      |
+| formatter            | 展示格式化   | `(value: any) => string`        | -      |
+| autoSize             | 自动调整大小 | `boolean`                       | -      |
+| separator            | 多选时分隔符 | `string`                        | -      |
+| mode                 | 展示模式     | `string`                        | -      |
+| readOnly             | 只读         | `boolean`                       | -      |
+| disabled             | 禁用         | `boolean`                       | -      |
+| allowClear           | 允许清除     | `boolean`                       | -      |
+| style / className    | 样式/类名    | `object` / `string`             | -      |
+| leftIconNode         | 左侧图标     | `ReactNode`                     | -      |
+| rightIconNode        | 右侧图标     | `ReactNode`                     | -      |
+| clearRender          | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
+| url                  | 数据接口地址 | `string`                        | -      |
+| headers              | 请求头       | `object`                        | -      |
+| payload              | 查询参数     | `object`                        | -      |
+| formatPayload        | 格式化入参   | `(result: object) => object`    | -      |
+| formatResult         | 格式化结果   | `(result: object) => object`    | -      |
+| formatViewList       | 格式化列表   | `(list: Array) => Array`        | -      |
+| formatViewItem       | 格式化项     | `(item: object) => object`      | -      |
+| maskClosable         | 点击遮罩关闭 | `boolean`                       | -      |
+| errorRetry           | 错误重试     | `boolean`                       | -      |
+| emptyRetry           | 空状态重试   | `boolean`                       | -      |
+| multiple             | 是否多选     | `boolean`                       | -      |
+| checkable            | 是否可选     | `boolean`                       | -      |
+| disableTopRefresh    | 禁用顶部刷新 | `boolean`                       | -      |
+| disableBottomRefresh | 禁用底部刷新 | `boolean`                       | -      |
+| virtual              | 是否虚拟滚动 | `boolean`                       | -      |
+| safeArea             | 是否安全区   | `boolean`                       | -      |
+| modalStyle           | 弹窗样式     | `object`                        | -      |
+| modalClassName       | 弹窗类名     | `string`                        | -      |
+| maskStyle            | 遮罩样式     | `object`                        | -      |
+| maskClassName        | 遮罩类名     | `string`                        | -      |
+| portal               | 挂载节点     | `HTMLElement \| null \| false`  | -      |
+| title                | 弹窗标题     | `ReactNode`                     | -      |
+| cancelNode           | 取消按钮     | `ReactNode`                     | -      |
+| cancelVisible        | 取消按钮可见 | `boolean`                       | -      |
+| headerRender         | 头部渲染     | `(props: object) => ReactNode`  | -      |
+| itemRender           | 项渲染       | `(item: object) => ReactNode`   | -      |
+| loadingRender        | 加载中渲染   | `() => ReactNode`               | -      |
+| prependRender        | 前置渲染     | `() => ReactNode`               | -      |
+| appendRender         | 后置渲染     | `() => ReactNode`               | -      |
+| onOk                 | 确认事件     | `(value: any \| any[]) => void` | -      |
+| onChange             | 变化事件     | `(value: any \| any[]) => void` | -      |
+| onBeforeOpen         | 打开前事件   | `() => Promise<boolean>`        | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
+| close      | 关闭弹窗   | `() => void`           |
+| open       | 打开弹窗   | `() => void`           |
+
+## ListPagination.Modal
+
+受控弹窗内的分页列表选择。
+
+### 何时使用
+
+- 需要由外部控制弹窗显隐时
+- 与自定义触发器、按钮等组合使用时
+
+### 代码演示
+
+<code src="./demos/ListPaginationModal/index.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性           | 说明         | 类型                            | 默认值 |
+| -------------- | ------------ | ------------------------------- | ------ |
+| value          | 选中的值     | `any \| any[]`                  | -      |
+| list           | 静态列表     | `Array<object>`                 | -      |
+| url            | 数据接口地址 | `string`                        | -      |
+| headers        | 请求头       | `object`                        | -      |
+| payload        | 查询参数     | `object`                        | -      |
+| formatPayload  | 格式化入参   | `(result: object) => object`    | -      |
+| formatResult   | 格式化结果   | `(result: object) => object`    | -      |
+| formatViewList | 格式化列表   | `(list: Array) => Array`        | -      |
+| formatViewItem | 格式化项     | `(item: object) => object`      | -      |
+| open           | 是否显示     | `boolean`                       | -      |
+| maskClosable   | 点击遮罩关闭 | `boolean`                       | -      |
+| safeArea       | 是否安全区   | `boolean`                       | -      |
+| multiple       | 是否多选     | `boolean`                       | -      |
+| checkable      | 是否可选     | `boolean`                       | -      |
+| modalStyle     | 弹窗样式     | `object`                        | -      |
+| modalClassName | 弹窗类名     | `string`                        | -      |
+| maskStyle      | 遮罩样式     | `object`                        | -      |
+| maskClassName  | 遮罩类名     | `string`                        | -      |
+| portal         | 挂载节点     | `HTMLElement \| null \| false`  | -      |
+| title          | 弹窗标题     | `ReactNode`                     | -      |
+| cancelNode     | 取消按钮     | `ReactNode`                     | -      |
+| cancelVisible  | 取消按钮可见 | `boolean`                       | -      |
+| headerRender   | 头部渲染     | `(props: object) => ReactNode`  | -      |
+| itemRender     | 项渲染       | `(item: object) => ReactNode`   | -      |
+| loadingRender  | 加载中渲染   | `() => ReactNode`               | -      |
+| prependRender  | 前置渲染     | `() => ReactNode`               | -      |
+| appendRender   | 后置渲染     | `() => ReactNode`               | -      |
+| onOk           | 确认事件     | `(value: any \| any[]) => void` | -      |
+| onChange       | 变化事件     | `(value: any \| any[]) => void` | -      |
+| onClose        | 关闭事件     | `() => void`                    | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLDivElement`            |
+| getElement | 获取根元素 | () => `HTMLDivElement`      |
+| close      | 关闭弹窗   | `() => void`                |
+| open       | 打开弹窗   | `() => void`                |
+| reload     | 重新加载   | `(action?: string) => void` |
+| getResult  | 获取结果   | `() => object`              |

@@ -12,7 +12,7 @@ import { Storage, ListAsync } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 
-import queryData from './api/queryData'
+import queryData from './queryData'
 
 // 简便的列表组件, 只需要传入url和formatPayload即可
 const ListPagination = forwardRef(

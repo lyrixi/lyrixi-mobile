@@ -30,8 +30,14 @@ const Modal = forwardRef(
       open,
       maskClosable,
       safeArea,
+      errorRetry,
+      emptyRetry,
+      allowClear,
       multiple,
       checkable,
+      disableTopRefresh,
+      disableBottomRefresh,
+      virtual,
 
       // Style
       modalStyle,
