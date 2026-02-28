@@ -2,8 +2,8 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 
 // 内库使用-start
-import Storage from './../../utils/Storage'
-import ListAsync from './../ListAsync'
+import Storage from './../../../utils/Storage'
+import ListAsync from './../../ListAsync'
 // 内库使用-end
 
 /* 测试使用-start
@@ -40,12 +40,16 @@ const ListPagination = forwardRef(
       virtual,
 
       // Style
-      className,
       style,
+      className,
+      itemStyle,
+      itemClassName,
+      itemLayout,
+      checkboxVariant,
+      checkboxPosition,
 
       // Elements
       itemRender,
-      itemLayout,
       loadingRender,
       prependRender,
       appendRender,
@@ -150,11 +154,15 @@ const ListPagination = forwardRef(
         disableBottomRefresh={disableBottomRefresh}
         virtual={virtual}
         // Style
+        itemStyle={itemStyle}
+        itemClassName={itemClassName}
+        itemLayout={itemLayout}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
         style={style}
         className={className}
         // Elements
         itemRender={itemRender}
-        itemLayout={itemLayout}
         loadingRender={loadingRender}
         prependRender={prependRender}
         appendRender={appendRender}

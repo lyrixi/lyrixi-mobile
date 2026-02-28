@@ -48,8 +48,8 @@ const Main = forwardRef(
       */
 
       // Style
-      className,
       style,
+      className,
       itemStyle,
       itemClassName,
       itemLayout,
