@@ -146,7 +146,7 @@ const Modal = forwardRef(
 
 
         {/* Element: Main */}
-        <Main
+        {open && <Main
           ref={mainRef}
           // Value & Display Value
           value={currentValue}
@@ -180,7 +180,7 @@ const Modal = forwardRef(
           checkboxPosition={checkboxPosition}
           // Events
           onChange={handleChange}
-        />
+        />}
       </NavBarModal>
     )
   }

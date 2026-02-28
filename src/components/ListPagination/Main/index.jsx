@@ -20,6 +20,7 @@ const ListPagination = forwardRef(
     {
       cacheName,
       // Value & Display Value
+      value,
       url,
       headers,
       payload,
@@ -112,6 +113,7 @@ const ListPagination = forwardRef(
       <ListAsync
         ref={mainRef}
         // Value & Display Value
+        value={value}
         formatViewList={formatViewList}
         formatViewItem={formatViewItem}
         loadData={async ({ previousResult, action }) => {
