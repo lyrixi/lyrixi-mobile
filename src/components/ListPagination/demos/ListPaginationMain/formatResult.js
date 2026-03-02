@@ -1,7 +1,7 @@
 import mockResult from './mockResult'
 
 // 转换 API 返回数据为页面所需格式
-function localData(result) {
+function formatResult(result) {
   // 测试数据
   // eslint-disable-next-line
   result = mockResult
@@ -20,4 +20,4 @@ function localData(result) {
   }
 }
 
-export default localData
+export default formatResult
