@@ -106,8 +106,8 @@ const DropdownModal = forwardRef(
         modalClassName={DOMUtil.classNames(
           modalClassName,
           ![undefined, null].includes(left) || ![undefined, null].includes(right)
-            ? 'lyrixi-dropdownModal-side'
-            : 'lyrixi-dropdownModal-center'
+            ? 'lyrixi-modal-dropdown-side'
+            : 'lyrixi-modal-dropdown-center'
         )}
         // Events
         onClose={onClose}
