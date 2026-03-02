@@ -2,12 +2,11 @@ import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
 import Input from './../../Input'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Input } from 'lyrixi-mobile'
+import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
 const SelectCombo = forwardRef(
