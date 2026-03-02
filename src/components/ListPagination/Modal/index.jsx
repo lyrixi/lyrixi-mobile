@@ -183,12 +183,10 @@ const Modal = forwardRef(
           itemLayout={itemLayout}
           checkboxVariant={checkboxVariant}
           checkboxPosition={checkboxPosition}
-          loadingModalStyle={loadingModalStyle || {
-            top: '70%'
-          }}
+          loadingModalStyle={loadingModalStyle}
           loadingModalClassName={loadingModalClassName}
           loadingMaskStyle={loadingMaskStyle}
-          loadingMaskClassName={loadingMaskClassName}
+          loadingMaskClassName={loadingMaskClassName || 'lyrixi-mask-listpagination-loading'}
           loadingPortal={loadingPortal}
           // Events
           onChange={handleChange}
