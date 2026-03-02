@@ -9,7 +9,7 @@ function destroy(mask) {
   if (mask) {
     // 动画移除
     mask.classList.remove('lyrixi-active')
-    mask.querySelector('.lyrixi-message-modal').classList.remove('lyrixi-active')
+    mask.querySelector('.lyrixi-modal-message').classList.remove('lyrixi-active')
 
     // DOM移除
     if (mask.timeout) window.clearTimeout(mask.timeout)

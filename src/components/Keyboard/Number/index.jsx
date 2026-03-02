@@ -204,7 +204,7 @@ const KeyboardNumber = forwardRef(
         full={false}
         animation="slideUp"
         className={DOMUtil.classNames(
-          'lyrixi-modal-animation lyrixi-bottom-center lyrixi-keyboardNumberModal',
+          'lyrixi-modal-animation lyrixi-bottom-center lyrixi-modal-keyboard-number',
           modalClassName,
           open ? 'lyrixi-active' : '',
           okVisible ? 'lyrixi-keyboard-has-ok' : ''

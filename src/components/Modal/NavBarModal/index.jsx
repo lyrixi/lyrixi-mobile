@@ -71,9 +71,9 @@ const NavBarModal = forwardRef(
         animation={'slideUp'}
         // Style
         maskClosable={maskClosable}
-        maskClassName={DOMUtil.classNames('lyrixi-navbarModal-mask', maskClassName)}
+        maskClassName={DOMUtil.classNames('lyrixi-mask-navbar', maskClassName)}
         maskStyle={maskStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-navbarModal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-navbar', modalClassName)}
         modalStyle={modalStyle}
         // Events
         onClose={onClose}

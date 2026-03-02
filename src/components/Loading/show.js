@@ -49,7 +49,7 @@ export default function (props) {
     // 更新mask
     mask.setAttribute(
       'class',
-      DOMUtil.classNames('lyrixi-loading-mask lyrixi-mask lyrixi-active', maskClassName)
+      DOMUtil.classNames('lyrixi-mask-loading lyrixi-mask lyrixi-active', maskClassName)
     )
     mask.setAttribute('id', loadingId)
     mask.setAttribute('style', '')

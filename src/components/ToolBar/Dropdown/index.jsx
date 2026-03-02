@@ -166,9 +166,9 @@ const Dropdown = forwardRef(
           open={open}
           // Style
           maskStyle={maskStyle}
-          maskClassName={DOMUtil.classNames('lyrixi-toolbar-dropdown-mask', maskClassName)}
+          maskClassName={DOMUtil.classNames('lyrixi-mask-toolbar-dropdown', maskClassName)}
           modalStyle={modalStyle}
-          modalClassName={DOMUtil.classNames('lyrixi-toolbar-dropdown-modal', modalClassName)}
+          modalClassName={DOMUtil.classNames('lyrixi-modal-toolbar-dropdown', modalClassName)}
           // Element
           portal={portal}
           offset={offset}

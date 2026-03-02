@@ -93,7 +93,7 @@ const Modal = forwardRef(
         // Style
         safeArea={safeArea}
         modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-transfer-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-transfer', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
         // Elements

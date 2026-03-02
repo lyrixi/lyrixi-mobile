@@ -156,9 +156,9 @@ function DateRangeBar({
       arrowRender={arrowRender}
       modalRender={() => {
         return (
-          <div className="lyrixi-toolbar-daterange-modal">
+          <div className="lyrixi-modal-toolbar-daterange">
             {/* Element: Body */}
-            <div className="lyrixi-toolbar-daterange-modal-body">
+            <div className="lyrixi-modal-toolbar-daterange-body">
               <DateRange
                 // Value & Display Value
                 value={value}

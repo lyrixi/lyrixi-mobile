@@ -46,9 +46,9 @@ function FilterModal(
       animation="slideLeft"
       // Style
       maskClosable={maskClosable}
-      maskClassName={DOMUtil.classNames('lyrixi-filterModal-mask', maskClassName)}
+      maskClassName={DOMUtil.classNames('lyrixi-mask-filter', maskClassName)}
       maskStyle={maskStyle}
-      modalClassName={DOMUtil.classNames('lyrixi-filterModal', modalClassName)}
+      modalClassName={DOMUtil.classNames('lyrixi-modal-filter', modalClassName)}
       modalStyle={modalStyle}
       // Events
       onClose={onClose}

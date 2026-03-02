@@ -50,7 +50,7 @@ function show(props) {
     mask.setAttribute(
       'class',
       DOMUtil.classNames(
-        'lyrixi-mask lyrixi-toast-mask',
+        'lyrixi-mask lyrixi-mask-toast',
         maskClassName,
         maskClickable !== false ? 'lyrixi-toast-propagation' : ''
       )

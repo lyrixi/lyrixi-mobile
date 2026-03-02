@@ -56,7 +56,7 @@ const Loading = forwardRef(
         ref={rootRef}
         // Style
         className={DOMUtil.classNames(
-          'lyrixi-loading-mask lyrixi-mask lyrixi-active',
+          'lyrixi-mask-loading lyrixi-mask lyrixi-active',
           maskClassName
         )}
         style={maskStyle}

@@ -118,7 +118,7 @@ const RangeModal = forwardRef(
         // Style
         safeArea={safeArea}
         modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-picker-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
         // Element

@@ -125,7 +125,7 @@ const DistrictModal = forwardRef(
         // Style
         safeArea={safeArea}
         modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-cascader-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-cascader', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
         // Element

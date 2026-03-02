@@ -53,7 +53,7 @@ const Modal = forwardRef(
         // Style
         style={modalStyle}
         className={DOMUtil.classNames(
-          'lyrixi-signature-modal',
+          'lyrixi-modal-signature',
           modalClassName,
           open === true ? '' : 'lyrixi-hide'
         )}

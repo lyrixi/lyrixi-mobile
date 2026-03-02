@@ -74,12 +74,12 @@ export default function open({
       if (result !== false) {
         const onClose = mask?.onClose
         if (onClose) onClose()
-        destroy(e.currentTarget.closest('.lyrixi-message-mask'))
+        destroy(e.currentTarget.closest('.lyrixi-mask-message'))
       }
     } else {
       const onClose = mask?.onClose
       if (onClose) onClose()
-      destroy(e.currentTarget.closest('.lyrixi-message-mask'))
+      destroy(e.currentTarget.closest('.lyrixi-mask-message'))
     }
     e.stopPropagation()
   }

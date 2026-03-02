@@ -49,7 +49,7 @@ function updateAttribute(
   updateStyle(mask, {
     className: maskClassName,
     style: maskStyle,
-    baseClassName: 'lyrixi-mask lyrixi-message-mask'
+    baseClassName: 'lyrixi-mask lyrixi-mask-message'
   })
 
   // 更新header

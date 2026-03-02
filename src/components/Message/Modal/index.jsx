@@ -51,9 +51,9 @@ const Message = forwardRef(
         safeArea={safeArea}
         animation="zoom"
         modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-message-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-message', modalClassName)}
         maskStyle={maskStyle}
-        maskClassName={DOMUtil.classNames('lyrixi-message-mask', maskClassName)}
+        maskClassName={DOMUtil.classNames('lyrixi-mask-message', maskClassName)}
         onClose={onClose}
       >
         {children}
