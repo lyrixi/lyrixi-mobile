@@ -48,6 +48,11 @@ const ListPagination = forwardRef(
       itemLayout,
       checkboxVariant,
       checkboxPosition,
+      loadingModalStyle,
+      loadingModalClassName,
+      loadingMaskStyle,
+      loadingMaskClassName,
+      loadingPortal,
 
       // Elements
       itemRender,
@@ -163,6 +168,11 @@ const ListPagination = forwardRef(
         checkboxPosition={checkboxPosition}
         style={style}
         className={className}
+        loadingModalStyle={loadingModalStyle}
+        loadingModalClassName={loadingModalClassName}
+        loadingMaskStyle={loadingMaskStyle}
+        loadingMaskClassName={loadingMaskClassName}
+        loadingPortal={loadingPortal}
         // Elements
         itemRender={itemRender}
         loadingRender={loadingRender}

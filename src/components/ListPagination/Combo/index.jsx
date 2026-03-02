@@ -61,6 +61,11 @@ const Combo = forwardRef(
       itemStyle,
       itemClassName,
       itemLayout,
+      loadingModalStyle,
+      loadingModalClassName,
+      loadingMaskStyle,
+      loadingMaskClassName,
+      loadingPortal,
       // Modal: Elements
       portal,
       title,
@@ -169,6 +174,11 @@ const Combo = forwardRef(
           itemLayout={itemLayout}
           checkboxVariant={checkboxVariant}
           checkboxPosition={checkboxPosition}
+          loadingModalStyle={loadingModalStyle}
+          loadingModalClassName={loadingModalClassName}
+          loadingMaskStyle={loadingMaskStyle}
+          loadingMaskClassName={loadingMaskClassName}
+          loadingPortal={loadingPortal}
           // Modal: Elements
           portal={portal}
           title={title}

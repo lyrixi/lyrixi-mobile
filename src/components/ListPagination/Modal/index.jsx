@@ -49,6 +49,11 @@ const Modal = forwardRef(
       itemLayout,
       checkboxVariant,
       checkboxPosition,
+      loadingModalStyle,
+      loadingModalClassName,
+      loadingMaskStyle,
+      loadingMaskClassName,
+      loadingPortal,
 
       // Elements
       portal,
@@ -178,6 +183,13 @@ const Modal = forwardRef(
           itemLayout={itemLayout}
           checkboxVariant={checkboxVariant}
           checkboxPosition={checkboxPosition}
+          loadingModalStyle={loadingModalStyle || {
+            top: '70%'
+          }}
+          loadingModalClassName={loadingModalClassName}
+          loadingMaskStyle={loadingMaskStyle}
+          loadingMaskClassName={loadingMaskClassName}
+          loadingPortal={loadingPortal}
           // Events
           onChange={handleChange}
         />}

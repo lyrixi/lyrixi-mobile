@@ -10,15 +10,35 @@ import { Skeleton, Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // 暂无数据或者错误
-const MainLoading = ({ type, loadingRender }) => {
+const MainLoading = ({
+  type,
+  loadingRender,
+  loadingModalStyle,
+  loadingModalClassName,
+  loadingMaskStyle,
+  loadingMaskClassName,
+  loadingPortal
+}) => {
   if (typeof loadingRender === 'function') {
     return loadingRender({ action: type })
   }
+
+  const LoadingNode = <Loading
+    portal={loadingPortal || document.getElementById('root') || document.body}
+    modalStyle={loadingModalStyle}
+    modalClassName={loadingModalClassName}
+    maskStyle={loadingMaskStyle}
+    maskClassName={loadingMaskClassName}
+  />
+
   if (type === 'load' || type === 'retry') {
-    return <Skeleton.List animated={false} />
+    return <>
+      {LoadingNode}
+      <Skeleton.List animated={false} />
+    </>
   }
   if (type === 'reload') {
-    return <Loading portal={document.getElementById('root') || document.body} />
+    return LoadingNode
   }
   return null
 }

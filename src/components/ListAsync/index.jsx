@@ -55,6 +55,11 @@ const Main = forwardRef(
       itemLayout,
       checkboxVariant,
       checkboxPosition,
+      loadingModalStyle,
+      loadingModalClassName,
+      loadingMaskStyle,
+      loadingMaskClassName,
+      loadingPortal,
 
       // Elements
       itemRender,
@@ -236,7 +241,15 @@ const Main = forwardRef(
           </Result>
         )}
         {/* 页面加载遮罩 */}
-        <Loading type={loadAction} loadingRender={loadingRender} />
+        <Loading
+          type={loadAction}
+          loadingRender={loadingRender}
+          loadingModalStyle={loadingModalStyle}
+          loadingModalClassName={loadingModalClassName}
+          loadingMaskStyle={loadingMaskStyle}
+          loadingMaskClassName={loadingMaskClassName}
+          loadingPortal={loadingPortal}
+        />
       </ListNode>
     )
   }
