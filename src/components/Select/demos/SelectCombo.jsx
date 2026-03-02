@@ -180,6 +180,23 @@ export default () => {
         </Card>
 
         <Card>
+          <Card.Header>Modal Style: modalStyle & modalClassName</Card.Header>
+          <Card.Main>
+            <Select.Combo
+              title="Select"
+              placeholder="Single Select"
+              allowClear
+              multiple={false}
+              list={flatList}
+              value={singleValue}
+              onChange={setSingleValue}
+              modalStyle={{ height: '300px' }}
+              modalClassName="custom"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
           <Card.Header>Custom Header: Search</Card.Header>
           <Card.Main>
             <Select.Combo
@@ -187,9 +204,6 @@ export default () => {
               allowClear
               multiple={false}
               title="Select"
-              modalStyle={{
-                height: '500px'
-              }}
               headerRender={() => {
                 return (
                   <ToolBar variant="filled">
