@@ -140,7 +140,7 @@ const SelectCombo = forwardRef(
           checkable={checkable}
           // Style
           modalStyle={modalStyle}
-          modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
+          modalClassName={modalClassName}
           maskStyle={maskStyle}
           maskClassName={maskClassName}
           itemStyle={itemStyle}

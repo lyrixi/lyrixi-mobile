@@ -128,7 +128,7 @@ const Modal = forwardRef(
         safeArea={safeArea}
         // Style
         modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-select-modal', modalClassName)}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-listpagination', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
         // Elements
