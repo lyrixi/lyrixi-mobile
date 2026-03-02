@@ -139,7 +139,7 @@ const Modal = forwardRef(
         // Elements
         portal={portal}
         title={title}
-        okVisible={multiple !== false}
+        okVisible={multiple}
         cancelNode={cancelNode}
         cancelVisible={cancelVisible}
         // Events

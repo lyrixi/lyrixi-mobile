@@ -40,21 +40,6 @@ export default () => {
               portal={document.body}
               placeholder="Single Select"
               allowClear
-              multiple={false}
-              list={flatList}
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Single Select, allow modal clear</Card.Header>
-          <Card.Main>
-            <Select.Combo
-              title="Select"
-              placeholder="Single Select"
-              allowClear
               list={flatList}
               value={singleValue}
               onChange={setSingleValue}
@@ -100,7 +85,6 @@ export default () => {
               title="Select"
               placeholder="Single tags Select"
               mode={'tags'}
-              multiple={false}
               // disabled
               allowClear
               list={flatList}
@@ -152,7 +136,6 @@ export default () => {
               title="Select"
               placeholder="Custom Checkbox"
               allowClear
-              multiple={false}
               list={flatList}
               value={singleValue}
               onChange={setSingleValue}
@@ -169,7 +152,6 @@ export default () => {
           <Card.Main>
             <Select.Combo
               placeholder="Group"
-              multiple={false}
               title="Group Select"
               allowClear
               value={singleValue}
@@ -186,7 +168,6 @@ export default () => {
               title="Select"
               placeholder="Single Select"
               allowClear
-              multiple={false}
               list={flatList}
               value={singleValue}
               onChange={setSingleValue}
@@ -202,7 +183,6 @@ export default () => {
             <Select.Combo
               placeholder="Search"
               allowClear
-              multiple={false}
               title="Select"
               headerRender={() => {
                 return (

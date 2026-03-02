@@ -21,26 +21,6 @@ export default () => {
           <Card.Main>
             <ListPagination.Combo
               placeholder="Single Select"
-              multiple={false}
-              allowClear
-              title="Single Select"
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              value={singleValue}
-              onChange={(v) => {
-                console.log('onChange:', v)
-                setSingleValue(v)
-              }}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>Single Select, allow modal clear</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="Single Select"
               allowClear
               title="Single Select"
               url="/"
