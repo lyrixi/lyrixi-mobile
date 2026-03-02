@@ -83,7 +83,14 @@ export default () => {
               allowClear
               title="Select"
               url="/"
-              payload={{ keyword }}
+              payload={{ keyword: keyword }}
+              formatPayload={({ page, ...payload }) => {
+                return {
+                  ...payload,
+                  page,
+                  keyword
+                }
+              }}
               formatResult={formatResult}
               formatViewItem={formatViewItem}
               value={singleValue}
