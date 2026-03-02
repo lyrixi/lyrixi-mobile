@@ -17,12 +17,13 @@ export default () => {
     <Page>
       <Page.Main>
         <Card>
-          <Card.Header>单选</Card.Header>
+          <Card.Header>Single Select</Card.Header>
           <Card.Main>
             <ListPagination.Combo
-              placeholder="请选择"
+              placeholder="Single Select"
+              multiple={false}
               allowClear
-              title="选择一项"
+              title="Single Select"
               url="/"
               formatResult={formatResult}
               formatViewItem={formatViewItem}
@@ -36,13 +37,32 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>多选</Card.Header>
+          <Card.Header>Single Select, allow modal clear</Card.Header>
           <Card.Main>
             <ListPagination.Combo
-              placeholder="请选择（可多选）"
+              placeholder="Single Select"
+              allowClear
+              title="Single Select"
+              url="/"
+              formatResult={formatResult}
+              formatViewItem={formatViewItem}
+              value={singleValue}
+              onChange={(v) => {
+                console.log('onChange:', v)
+                setSingleValue(v)
+              }}
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Multiple Select</Card.Header>
+          <Card.Main>
+            <ListPagination.Combo
+              placeholder="Multiple Select"
               allowClear
               multiple
-              title="选择多项"
+              title="Multiple Select"
               url="/"
               formatResult={formatResult}
               formatViewItem={formatViewItem}
@@ -55,107 +75,7 @@ export default () => {
           </Card.Main>
         </Card>
 
-        <Card>
-          <Card.Header>多选自定义分隔符</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="请选择"
-              allowClear
-              multiple
-              separator=" | "
-              title="选择多项"
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              value={multipleValue}
-              onChange={(v) => setMultipleValue(v || [])}
-            />
-          </Card.Main>
-        </Card>
 
-        <Card>
-          <Card.Header>自定义 formatter 展示</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="请选择"
-              allowClear
-              title="选择一项"
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              formatter={(val) => (val ? `已选: ${val.name}` : '')}
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>只读</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="请选择"
-              readOnly
-              title="选择一项"
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>禁用</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="请选择"
-              disabled
-              title="选择一项"
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>portal 挂载到 body</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="请选择"
-              allowClear
-              title="选择一项"
-              portal={typeof document !== 'undefined' ? document.body : undefined}
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
-
-        <Card>
-          <Card.Header>安全区 + 点击遮罩关闭</Card.Header>
-          <Card.Main>
-            <ListPagination.Combo
-              placeholder="请选择"
-              allowClear
-              title="选择一项"
-              safeArea
-              maskClosable
-              url="/"
-              formatResult={formatResult}
-              formatViewItem={formatViewItem}
-              value={singleValue}
-              onChange={setSingleValue}
-            />
-          </Card.Main>
-        </Card>
       </Page.Main>
     </Page>
   )
