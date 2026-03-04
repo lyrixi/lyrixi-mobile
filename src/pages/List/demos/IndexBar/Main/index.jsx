@@ -11,7 +11,7 @@ import formatViewList from './formatViewList'
 // 简便的列表组件, 只需要传入url和params即可
 const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => {
   return (
-    <ListPagination
+    <ListPagination.Main
       ref={ref}
       cacheName={cacheName}
       virtual={virtual}
