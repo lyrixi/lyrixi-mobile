@@ -37,6 +37,7 @@ const Combo = forwardRef(
       url,
       headers,
       payload,
+      pagination,
       formatPayload, // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
       formatResult,
       formatViewList,
@@ -148,6 +149,7 @@ const Combo = forwardRef(
           url={url}
           headers={headers}
           payload={payload}
+          pagination={pagination}
           formatPayload={formatPayload} // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
           formatResult={formatResult}
           formatViewList={formatViewList}

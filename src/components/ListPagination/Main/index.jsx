@@ -24,6 +24,7 @@ const ListPagination = forwardRef(
       url,
       headers,
       payload,
+      pagination = { rows: 20 },
       formatPayload, // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
       formatResult,
       formatViewList,
@@ -132,6 +133,8 @@ const ListPagination = forwardRef(
 
           // 在线查询数据
           const result = await queryData(url, headers, payload, {
+            // 每页行数, 为空则不分页
+            rows: typeof pagination?.rows === 'number' ? pagination?.rows : undefined,
             // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
             pageRef,
             previousResult,

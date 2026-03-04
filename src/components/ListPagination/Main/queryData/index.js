@@ -7,14 +7,14 @@ import Request from './../../../../utils/Request'
 import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
-// 获取列表
-const rows = 20
 // 兼容新 ListAsync 要求：外部仍返回数组，调用处已包装为新对象
 function queryData(
   url,
   headers = {},
   payload,
   {
+    // 每页行数, 为空则不分页
+    rows,
     // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
     pageRef,
     previousResult,
@@ -30,8 +30,8 @@ function queryData(
     } else {
       pageRef.current = 1
     }
-    let queryParams = (await formatPayload?.({ rows, ...(payload || {}), page: pageRef.current })) || {}
-    if (!queryParams?.rows) queryParams.rows = rows
+
+    let queryParams = (await formatPayload?.({ rows: rows, ...(payload || {}), page: rows ? pageRef.current : undefined })) || {}
 
     Request.post(url, queryParams, {
       headers: {
@@ -49,6 +49,10 @@ function queryData(
           // 判断是否暂无数据
           if (!currentList?.length && !newResult?.list?.length) {
             newResult.status = 'empty'
+          }
+          // 不分页
+          else if (!rows) {
+            newResult.status = 'noMore'
           }
           // 有总页数, 优先使用总页数判断
           else if (newResult?.totalPage) {
@@ -70,7 +74,7 @@ function queryData(
             }
           }
           // 无总页数无总行数, 根据rows判断是否为最后一页
-          else if (newResult?.list?.length < queryParams?.rows) {
+          else if (newResult?.list?.length < rows) {
             newResult.status = 'noMore'
           }
           // 有更多数据

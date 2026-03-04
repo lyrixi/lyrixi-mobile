@@ -12,7 +12,6 @@ export default () => {
       <ListAsync
         ref={mainRef}
         itemLayout="vertical"
-        // pagination
         value={value}
         loadData={({ previousResult, action }) => {
           console.log({ previousResult, action })
