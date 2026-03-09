@@ -31,7 +31,7 @@ function queryData(
       pageRef.current = 1
     }
 
-    let queryParams = (await formatPayload?.({ rows: rows, ...(payload || {}), page: rows ? pageRef.current : undefined })) || {}
+    let queryParams = (await formatPayload?.({ rows: rows, ...(payload || {}), page: rows ? pageRef.current : undefined })) || { rows: rows, page: rows ? pageRef.current : undefined }
 
     Request.post(url, queryParams, {
       headers: {
