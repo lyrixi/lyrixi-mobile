@@ -62,6 +62,60 @@ export default () => {
         </Card>
 
         <Card>
+          <Card.Header>Justify: start</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} justify="start">
+              {buttons.slice(0, 3)}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Justify: center</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} justify="center">
+              {buttons.slice(0, 3)}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Justify: end</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} justify="end">
+              {buttons.slice(0, 3)}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Justify: between</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} justify="between">
+              {buttons.slice(0, 3)}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Justify: around</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} justify="around">
+              {buttons.slice(0, 3)}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>Justify: evenly</Card.Header>
+          <Card.Main>
+            <Flex gap={gap} justify="evenly">
+              {buttons.slice(0, 3)}
+            </Flex>
+          </Card.Main>
+        </Card>
+
+        <Card>
           <Card.Header>Align: start</Card.Header>
           <Card.Main>
             <Flex gap={gap} align="start">
