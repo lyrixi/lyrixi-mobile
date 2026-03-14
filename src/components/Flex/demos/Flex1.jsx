@@ -143,28 +143,28 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>Align: between</Card.Header>
+          <Card.Header>Align 分布: between（竖向主轴示意，固定高度可见两端贴边、中间等分）</Card.Header>
           <Card.Main>
-            <Flex gap={gap} align="between">
-              {buttons.slice(0, 3)}
+            <Flex gap={gap} direction="vertical" justify="between" style={{ height: 140 }}>
+              {buttons.slice(0, 2)}
             </Flex>
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>Align: around</Card.Header>
+          <Card.Header>Align 分布: around（竖向主轴示意，固定高度可见两侧留白、中间等分）</Card.Header>
           <Card.Main>
-            <Flex gap={gap} align="around">
-              {buttons.slice(0, 3)}
+            <Flex gap={gap} direction="vertical" justify="around" style={{ height: 140 }}>
+              {buttons.slice(0, 2)}
             </Flex>
           </Card.Main>
         </Card>
 
         <Card>
-          <Card.Header>Align: evenly</Card.Header>
+          <Card.Header>Align 分布: evenly（竖向主轴示意，固定高度可见均匀分布）</Card.Header>
           <Card.Main>
-            <Flex gap={gap} align="evenly">
-              {buttons.slice(0, 3)}
+            <Flex gap={gap} direction="vertical" justify="evenly" style={{ height: 140 }}>
+              {buttons.slice(0, 2)}
             </Flex>
           </Card.Main>
         </Card>
