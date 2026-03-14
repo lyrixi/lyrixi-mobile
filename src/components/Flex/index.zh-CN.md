@@ -19,22 +19,22 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/flex.jsx"></code>
+<code src="./demos/Flex1.jsx"></code>
 
 ## API
 
 ### 属性
 
-| 属性      | 说明                                                                 | 类型                                                                                                                                 | 默认值         |
-| --------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------- |
-| direction | 主轴方向                                                             | `'horizontal' \| 'vertical'`                                                                                                         | `'horizontal'` |
-| justify   | 主轴对齐方式（水平方向上的分布）                                     | `'start' \| 'end' \| 'center' \| 'between' \| 'around' \| 'evenly'`                                                                  | `'start'`      |
-| align     | 交叉轴对齐方式（垂直于主轴的对齐）                                   | `'start' \| 'end' \| 'center'`                                                                                                       | -              |
-| wrap      | 是否换行；`true` 换行，`false` 不换行（子项被压缩），`'scroll'` 超出滚动 | `boolean \| 'scroll'`                                                                                                                 | `false`        |
-| gap       | 子项间距；可为变量名或数字，或 `[水平间距, 垂直间距]`                 | `number \| 'xxxs' \| 'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| 'xxl' \| [number \| string, number \| string]`                    | `'s'`          |
-| style     | 自定义样式                                                           | `object`                                                                                                                              | -              |
-| className | 自定义类名                                                           | `string`                                                                                                                              | -              |
-| children  | 子元素                                                               | `ReactNode`                                                                                                                           | -              |
+| 属性      | 说明                                                                     | 类型                                                                                                              | 默认值         |
+| --------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- | -------------- |
+| direction | 主轴方向                                                                 | `'horizontal' \| 'vertical'`                                                                                      | `'horizontal'` |
+| justify   | 主轴对齐方式（水平方向上的分布）                                         | `'start' \| 'end' \| 'center' \| 'between' \| 'around' \| 'evenly'`                                               | `'start'`      |
+| align     | 交叉轴对齐方式（垂直于主轴的对齐）                                       | `'start' \| 'end' \| 'center'`                                                                                    | -              |
+| wrap      | 是否换行；`true` 换行，`false` 不换行（子项被压缩），`'scroll'` 超出滚动 | `boolean \| 'scroll'`                                                                                             | `false`        |
+| gap       | 子项间距；可为变量名或数字，或 `[水平间距, 垂直间距]`                    | `number \| 'xxxs' \| 'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| 'xxl' \| [number \| string, number \| string]` | `'s'`          |
+| style     | 自定义样式                                                               | `object`                                                                                                          | -              |
+| className | 自定义类名                                                               | `string`                                                                                                          | -              |
+| children  | 子元素                                                                   | `ReactNode`                                                                                                       | -              |
 
 ### Ref
 
