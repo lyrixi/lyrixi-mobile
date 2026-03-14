@@ -118,7 +118,7 @@ export default () => {
         <Card>
           <Card.Header>Align: start</Card.Header>
           <Card.Main>
-            <Flex gap={gap} align="start">
+            <Flex gap={gap} align="start" style={{ height: 100 }}>
               {buttons.slice(0, 3)}
             </Flex>
           </Card.Main>
@@ -127,7 +127,7 @@ export default () => {
         <Card>
           <Card.Header>Align: center</Card.Header>
           <Card.Main>
-            <Flex gap={gap} align="center">
+            <Flex gap={gap} align="center" style={{ height: 100 }}>
               {buttons.slice(0, 3)}
             </Flex>
           </Card.Main>
@@ -136,7 +136,7 @@ export default () => {
         <Card>
           <Card.Header>Align: end</Card.Header>
           <Card.Main>
-            <Flex gap={gap} align="end">
+            <Flex gap={gap} align="end" style={{ height: 100 }}>
               {buttons.slice(0, 3)}
             </Flex>
           </Card.Main>
