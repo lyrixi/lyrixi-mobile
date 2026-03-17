@@ -16,7 +16,10 @@ const Card = forwardRef(
       className,
 
       // Element
-      children
+      children,
+
+      // Events
+      onClick
     },
     ref
   ) => {
@@ -36,6 +39,8 @@ const Card = forwardRef(
         // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-card', className)}
+        // Events
+        onClick={onClick}
       >
         {/* Element: Children */}
         {children}

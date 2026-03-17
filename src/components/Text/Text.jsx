@@ -17,16 +17,22 @@ const Text = forwardRef(
     {
       // Value & Display Value
       highlight,
+
       // Status
       ellipsis, // { rows: Number, expandable: Boolean, defaultExpanded: Boolean }
+
       // Style
       color,
       fontSize,
       fontWeight,
       style,
       className,
+
       // Element
-      children
+      children,
+
+      // Events
+      onClick
     },
     ref
   ) => {
@@ -60,6 +66,8 @@ const Text = forwardRef(
         // Style
         className={DOMUtil.classNames('lyrixi-text', newClassName)}
         style={newStyle}
+        // Events
+        onClick={onClick}
       >
         {ellipsis?.rows ? <Ellipsis ellipsis={ellipsis}>{content}</Ellipsis> : content}
       </div>
