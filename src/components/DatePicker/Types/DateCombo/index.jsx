@@ -63,12 +63,8 @@ const DateCombo = forwardRef(
         type = 'day'
       }
 
-      if (go === -1) {
-        return DateUtil.add(newValue, -1, type)
-      }
-
-      if (go === 1) {
-        return DateUtil.add(newValue, -1, type)
+      if (typeof go === 'number') {
+        return DateUtil.add(newValue, go, type)
       }
 
       return newValue
