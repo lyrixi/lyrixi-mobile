@@ -24,7 +24,8 @@ function format(date, type) {
   } else if (type === 'time') {
     return dayjs(date).format('HH:mm')
   } else if (type === 'week') {
-    return dayjs(date).format('YYYY-wo')
+    // GGGG-wo(1st, 2nd)、GGGG-[W]WW
+    return dayjs(date).format('GGGG-wo')
   }
 
   return dayjs(date).format(type)
