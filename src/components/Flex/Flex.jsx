@@ -24,7 +24,10 @@ const Flex = forwardRef(
       gap = 's', // Number | 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'
 
       // Element
-      children
+      children,
+
+      // Events
+      onClick
     },
     ref
   ) => {
@@ -96,6 +99,8 @@ const Flex = forwardRef(
         // Style
         style={getStyle()}
         className={getClassName()}
+        // Events
+        onClick={onClick}
       >
         {/* Element: Children */}
         {children}
