@@ -234,6 +234,39 @@ toc: content
 | element    | 根元素     | `HTMLDivElement`       |
 | getElement | 获取根元素 | () => `HTMLDivElement` |
 
+## Map.Polygon
+
+地图多边形组件。
+
+### 何时使用
+
+- 需要在地图上绘制封闭区域时（如行政区、围栏、范围框）
+- 需要显示带填充的折线闭合图形时
+
+### 代码演示
+
+<code src="./demos/MapPolygon.jsx"></code>
+
+### API
+
+#### 属性
+
+| 属性         | 说明           | 类型                                                                 | 默认值   |
+| ------------ | -------------- | -------------------------------------------------------------------- | -------- |
+| points       | 顶点坐标列表   | `Array<{latitude: number, longitude: number, type: string}>`         | -        |
+| color        | 描边颜色       | `string`                                                             | `'#3388ff'` |
+| fillColor    | 填充颜色       | `string`                                                             | 同 color |
+| fillOpacity  | 填充透明度     | `number`                                                             | `0.2`    |
+| weight       | 描边宽度       | `number`                                                             | `2`      |
+
+说明：`points` 至少 3 个点，首尾会自动闭合形成多边形。坐标需包含 `latitude`、`longitude`、`type`，建议使用 `Map.coordsToWgs84` 转换后传入。
+
+#### Ref
+
+| 属性       | 说明         | 类型                     |
+| ---------- | ------------ | ------------------------ |
+| redraw     | 重新绘制多边形 | `() => void`             |
+
 ## Map.LocationControl
 
 地图定位控制组件。

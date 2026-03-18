@@ -21,6 +21,7 @@ import CenterMarker from './components/CenterMarker'
 import Markers from './components/Markers'
 import Circles from './components/Circles'
 import Polyline from './components/Polyline'
+import Polygon from './components/Polygon'
 import LocationControl from './components/LocationControl'
 import NearbyControl from './components/NearbyControl'
 
@@ -46,6 +47,7 @@ const Map = {
   Markers,
   Circles,
   Polyline,
+  Polygon,
   LocationControl,
   NearbyControl,
   // Pages
