@@ -1,9 +1,11 @@
-import React from 'react'
-import { Page, Map } from 'lyrixi-mobile'
+import React, { useRef } from 'react'
+import { Page, Map, Button } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, Markers, coordsToWgs84 } = Map
 
 export default () => {
+  const markersRef = useRef(null)
+
   const points = coordsToWgs84([
     {
       latitude: 31.982686517043174,
@@ -17,10 +19,7 @@ export default () => {
       },
       type: 'gcj02',
       latitude: '31.982723',
-      longitude: '118.735298',
-      inChinaTo: 'bd09',
-      outChinaTo: 'wgs84',
-      isInChina: true
+      longitude: '118.735298'
     },
     {
       icon: {
@@ -29,10 +28,7 @@ export default () => {
       },
       type: 'gcj02',
       latitude: '31.982594',
-      longitude: '118.735184',
-      inChinaTo: 'bd09',
-      outChinaTo: 'wgs84',
-      isInChina: true
+      longitude: '118.735184'
     },
     {
       icon: {
@@ -42,15 +38,24 @@ export default () => {
       },
       type: 'gcj02',
       latitude: '31.98766',
-      longitude: '118.732237',
-      inChinaTo: 'bd09',
-      outChinaTo: 'wgs84',
-      isInChina: true
+      longitude: '118.732237'
     }
   ])
 
+  function handleFocusPoint() {
+    markersRef.current?.focus(points[0])
+  }
+
+  function handleBlurPoint() {
+    markersRef.current?.blur()
+  }
+
   return (
     <Page>
+      <Page.Header>
+        <Button onClick={handleFocusPoint}>Focus point</Button>
+        <Button onClick={handleBlurPoint}>Blur point</Button>
+      </Page.Header>
       <Page.Main>
         <MapLoader
           config={{
@@ -77,6 +82,7 @@ export default () => {
               zoom={16}
             >
               <Markers
+                ref={markersRef}
                 points={points}
                 onClick={(e) => {
                   console.log('点击标记:', e)
