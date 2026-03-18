@@ -28,6 +28,7 @@ export default () => {
         // 可以用全局设置window.MapLoaderConfig代替
         mapConfig={{
           key: 'bmap key',
+          key: '4KFq5IGKQM1c6vkVhgIpAYFu',
           type: 'bmap'
         }}
         value={value}

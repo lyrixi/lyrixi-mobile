@@ -131,6 +131,7 @@ export default () => {
               // 可以用全局设置window.MapLoaderConfig代替
               mapConfig={{
                 key: 'bmap key',
+                key: '4KFq5IGKQM1c6vkVhgIpAYFu',
                 type: 'bmap'
               }}
               onChange={(val) => {
@@ -150,6 +151,7 @@ export default () => {
               // 可以用全局设置window.MapLoaderConfig代替
               mapConfig={{
                 key: 'bmap key',
+                key: '4KFq5IGKQM1c6vkVhgIpAYFu',
                 type: 'bmap'
               }}
               onChange={setValue1}
@@ -248,6 +250,7 @@ export default () => {
               type="gcj02"
               mapConfig={{
                 key: 'bmap key',
+                key: '4KFq5IGKQM1c6vkVhgIpAYFu',
                 type: 'bmap'
               }}
               errorText="定位失败"
