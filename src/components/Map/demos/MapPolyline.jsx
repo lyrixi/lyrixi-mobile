@@ -4,27 +4,13 @@ import { Page, Map } from 'lyrixi-mobile'
 const { MapLoader, MapContainer, Polyline, coordsToWgs84 } = Map
 
 export default () => {
+  // 折线示例：多段拐折的路径，避免共线看起来像直线
   const points = coordsToWgs84([
-    {
-      latitude: 39.909187,
-      longitude: 116.397451,
-      type: 'gcj02'
-    },
-    {
-      latitude: 39.910187,
-      longitude: 116.398451,
-      type: 'gcj02'
-    },
-    {
-      latitude: 39.911187,
-      longitude: 116.399451,
-      type: 'gcj02'
-    },
-    {
-      latitude: 39.912187,
-      longitude: 116.400451,
-      type: 'gcj02'
-    }
+    { latitude: 39.909187, longitude: 116.397451, type: 'gcj02' },
+    { latitude: 39.9105, longitude: 116.3995, type: 'gcj02' },
+    { latitude: 39.9095, longitude: 116.4015, type: 'gcj02' },
+    { latitude: 39.911, longitude: 116.403, type: 'gcj02' },
+    { latitude: 39.910187, longitude: 116.404451, type: 'gcj02' }
   ])
 
   return (

@@ -36,12 +36,13 @@ export default () => {
     },
     {
       icon: {
-        iconUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`,
-        iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`
+        html: '<div style="background-color:green;color:white;width:100px;height:100px;">This is a html</div>',
+        // iconUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`,
+        // iconRetinaUrl: `https://cdn-icons-png.flaticon.com/128/14463/14463613.png`
       },
       type: 'gcj02',
-      latitude: '31.98266',
-      longitude: '118.735237',
+      latitude: '31.98766',
+      longitude: '118.732237',
       inChinaTo: 'bd09',
       outChinaTo: 'wgs84',
       isInChina: true
