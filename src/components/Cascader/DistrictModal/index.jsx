@@ -108,9 +108,9 @@ const DistrictModal = forwardRef(
       setCurrentValue(newValue)
       handleDrillDown(newValue)
 
-      // 如果到达叶子节点，立即关闭
       if (!Array.isArray(newValue) || !newValue.length) return
-      if (newValue?.[newValue.length - 1]?.isLeaf) {
+      // 如果到达叶子节点，或已选到指定类型，立即关闭
+      if (newValue?.[newValue.length - 1]?.isLeaf || newValue?.[newValue.length - 1]?.type?.includes(type)) {
         onChange?.(newValue)
         onClose && onClose()
       }
