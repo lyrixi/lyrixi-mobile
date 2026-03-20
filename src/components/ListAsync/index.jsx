@@ -119,7 +119,7 @@ const Main = forwardRef(
     useEffect(() => {
       if (!result) return
 
-      onLoad?.({ ...result, action: loadAction })
+      onLoad?.({ result, action: loadAction })
 
       setLoadAction('')
       // eslint-disable-next-line

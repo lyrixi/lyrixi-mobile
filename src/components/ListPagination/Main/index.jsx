@@ -149,7 +149,7 @@ const ListPagination = forwardRef(
           }
 
           return {
-            ...result,
+            result,
             list: newList
           }
         }}
@@ -193,7 +193,7 @@ const ListPagination = forwardRef(
             mainRef.current.element.scrollTop = cacheResult?.scrollTop || 0
           }
 
-          onLoad?.({ ...result, action: action })
+          onLoad?.({ result, action: action })
         }}
       />
     )
