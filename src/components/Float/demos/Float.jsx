@@ -97,6 +97,9 @@ export default () => {
                 <Icon className="lyrixi-iconfont-three-dots" />
               </Button>
             }}
+            onChange={(newValue) => {
+              console.log('onChange', newValue)
+            }}
           />
         </Float>
       </Page.Main>
