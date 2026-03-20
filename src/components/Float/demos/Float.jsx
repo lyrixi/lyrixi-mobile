@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import { Icon, Button, Float, Page, Divider, Storage, ActionSheet } from 'lyrixi-mobile'
+import vconsole from 'vconsole'
+
+new vconsole()
 
 export default () => {
   useEffect(() => { }, [])
@@ -71,14 +74,14 @@ export default () => {
         </Float>
 
         <Float
-          draggable={false}
+          draggable={true}
           gap={{ top: 8, right: 8, bottom: 88, left: 8 }}
           style={{
             left: 8
           }}
           portal={typeof document !== 'undefined' ? document.body : undefined}
         >
-          <ActionSheet.Combo list={[{ id: '1', name: 'Sort by 1' }, { id: '1', name: 'Sort by 2' }]}
+          <ActionSheet.Combo list={[{ id: '1', name: 'Sort by 1' }, { id: '2', name: 'Sort by 2' }]}
             comboRender={({ comboRef, onClick }) => {
               return <Button
                 ref={comboRef}
@@ -91,7 +94,7 @@ export default () => {
                 borderColor="primary"
                 onClick={onClick}
               >
-                <Icon className="icon-sort-desc" />
+                <Icon className="lyrixi-iconfont-three-dots" />
               </Button>
             }}
           />

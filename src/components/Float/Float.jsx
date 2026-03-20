@@ -1,7 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
-import injectChildrenProps from './injectChildrenProps'
-import triggerChildClick from './triggerChildClick'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
 
@@ -36,8 +34,6 @@ function Float(
   ref
 ) {
   const rootRef = useRef(null)
-
-  const newChildren = injectChildrenProps(children, { draggable })
 
   // 拖动信息
   let touchesRef = useRef({
@@ -77,7 +73,6 @@ function Float(
   function handleTouchMove(e) {
     e.stopPropagation()
 
-    if (!touchesRef.current.isDragging) return
     // e.preventDefault()
     const touch = e.touches[0]
     const deltaX = touch.clientX - touchesRef.current.startX
@@ -94,11 +89,7 @@ function Float(
     // 解除对move时的弹性对当前div的锁定
     e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
 
-    // 点击直接触发子项元素点击
-    if (!touchesRef.current.isDragging) {
-      triggerChildClick(newChildren, e)
-      return
-    }
+
 
     // 拖拽结束
     touchesRef.current.isDragging = false
@@ -108,8 +99,9 @@ function Float(
     let endY = e?.clientY || e?.changedTouches?.[0]?.clientY
     let diffX = touchesRef.current.startX - endX
     let diffY = touchesRef.current.startY - endY
+
+    // 判断是否是点击
     if (Math.abs(diffX) < 5 && Math.abs(diffY) < 5) {
-      triggerChildClick(newChildren, e)
       return
     }
 
@@ -134,8 +126,17 @@ function Float(
       onTouchStart={draggable ? handleTouchStart : null}
       onTouchMove={draggable ? handleTouchMove : null}
       onTouchEnd={draggable ? handleTouchEnd : null}
+    // onTouchMove里已经阻止的点击事件, 所以这里就不需要加了
+    // onClickCapture={(e) => {
+    //   console.log('click', touchesRef.current.isDragging)
+    //   if (touchesRef.current.isDragging) {
+    //     console.log('click')
+    //     e.stopPropagation()
+    //     e.preventDefault()
+    //   }
+    // }}
     >
-      {newChildren}
+      {children}
       {safeArea === true && <SafeArea />}
     </div>
   )
