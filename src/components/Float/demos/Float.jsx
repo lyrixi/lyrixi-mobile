@@ -27,6 +27,7 @@ export default () => {
         >
           <Button
             sizeEqual
+            direction="vertical"
             size="l"
             radius="100%"
             color="white"
