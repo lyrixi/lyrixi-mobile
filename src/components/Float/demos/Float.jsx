@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Icon, Button, Float, Page, Divider, Storage } from 'lyrixi-mobile'
+import { Icon, Button, Float, Page, Divider, Storage, ActionSheet } from 'lyrixi-mobile'
 
 export default () => {
   useEffect(() => { }, [])
@@ -68,6 +68,33 @@ export default () => {
           >
             3
           </Button>
+        </Float>
+
+        <Float
+          draggable={false}
+          gap={{ top: 8, right: 8, bottom: 88, left: 8 }}
+          style={{
+            left: 8
+          }}
+          portal={typeof document !== 'undefined' ? document.body : undefined}
+        >
+          <ActionSheet.Combo list={[{ id: '1', name: 'Sort by 1' }, { id: '1', name: 'Sort by 2' }]}
+            comboRender={({ comboRef, onClick }) => {
+              return <Button
+                ref={comboRef}
+                sizeEqual
+                direction="vertical"
+                size="xl"
+                radius="100%"
+                color="white"
+                backgroundColor="primary"
+                borderColor="primary"
+                onClick={onClick}
+              >
+                <Icon className="icon-sort-desc" />
+              </Button>
+            }}
+          />
         </Float>
       </Page.Main>
       <Page.Footer style={{ height: '100px' }}></Page.Footer>
