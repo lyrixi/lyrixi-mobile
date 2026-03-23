@@ -17,15 +17,16 @@ export default () => {
     {
       id: '2',
       fileThumbnail: 'https://macqj.oss-cn-beijing.aliyuncs.com/2024/12/248300cfc75e100.jpg',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=2',
+      fileUrl: 'https://macqj.oss-cn-beijing.aliyuncs.com/2024/12/248300cfc75e100.jpg',
       fileType: 'image'
       // status: 'uploading'
     },
     {
       id: '3',
-      fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=3',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=3',
+      fileThumbnail: 'https://thumbs.dreamstime.com/z/mobile-phone-wallpaper-serene-forest-path-sunlight-vibrant-greenery-354017056.jpg?ct=jpeg',
+      fileUrl: 'https://thumbs.dreamstime.com/z/mobile-phone-wallpaper-serene-forest-path-sunlight-vibrant-greenery-354017056.jpg?ct=jpeg',
       fileType: 'image'
+      // status: 'uploading'
     },
     {
       id: '4',
