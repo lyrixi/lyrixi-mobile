@@ -19,12 +19,6 @@ function getPosition(target) {
     top = window.innerHeight - parseFloat(style.bottom) - rect.height
   }
 
-  // 清除冲突定位
-  target.style.left = `${left}px`
-  target.style.top = `${top}px`
-  target.style.right = 'auto'
-  target.style.bottom = 'auto'
-
   return { left, top }
 }
 

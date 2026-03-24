@@ -73,6 +73,15 @@ function Float(
   function handleTouchMove(e) {
     e.stopPropagation()
 
+    // 拖动前, 清除冲突定位
+    if (!e.currentTarget.initialPosition) {
+      e.currentTarget.initialPosition = true
+      e.currentTarget.style.left = `${touchesRef.current.currentLeft}px`
+      e.currentTarget.style.top = `${touchesRef.current.currentTop}px`
+      e.currentTarget.style.right = 'auto'
+      e.currentTarget.style.bottom = 'auto'
+    }
+
     // e.preventDefault()
     const touch = e.touches[0]
     const deltaX = touch.clientX - touchesRef.current.startX
@@ -86,10 +95,11 @@ function Float(
   function handleTouchEnd(e) {
     e.stopPropagation()
 
+    // 拖动前, 清除冲突定位
+    e.currentTarget.initialPosition = false
+
     // 解除对move时的弹性对当前div的锁定
     e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
-
-
 
     // 拖拽结束
     touchesRef.current.isDragging = false
