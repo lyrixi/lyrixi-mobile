@@ -173,7 +173,7 @@ let Bridge = {
       }
     })
   },
-  getLocation: function ({ type, onSuccess, onError } = {}) {
+  getLocation: function ({ type, onSuccess, onError, onCancel } = {}) {
     if (Device.device === 'pc') {
       console.log('PC端微信不支持定位...', type)
       return
@@ -195,7 +195,11 @@ let Bridge = {
       fail: (error) => {
         console.error('微信定位失败', error)
         onError?.({ status: 'error', message: error?.errMsg || '' })
-      }
+      },
+      cancel: (error) => {
+        console.error('拒绝微信定位', error)
+        onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
+      },
     })
   },
   scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
@@ -268,7 +272,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: onCancel
+      cancel: (error) => {
+        onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
+      }
     })
   },
   chooseMedia: function ({
@@ -322,7 +328,9 @@ let Bridge = {
       sizeType,
       success: handleSuccess,
       fail: handleError,
-      cancel: onCancel
+      cancel: (error) => {
+        onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
+      }
     }
     console.log('调用微信chooseImage:', chooseImageParams)
     window.top.wx.chooseImage(chooseImageParams)
@@ -473,7 +481,9 @@ let Bridge = {
             `WeChat ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: onCancel
+      cancel: (error) => {
+        onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
+      }
     })
   },
   previewFile: function ({ fileUrl, onSuccess, onError } = {}) {

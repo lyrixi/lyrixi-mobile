@@ -209,10 +209,11 @@ let Bridge = {
    * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
    * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
+   * @param {Function} params.onCancel - 取消回调，返回 {status: 'cancel', code: String, message: String}
    * @returns {void}
    */
-  getLocation({ type = 'wgs84', onSuccess, onError } = {}, platform) {
-    return this._getCurrentBridge(platform).getLocation({ type, onSuccess, onError })
+  getLocation({ type = 'wgs84', onSuccess, onError, onCancel } = {}, platform) {
+    return this._getCurrentBridge(platform).getLocation({ type, onSuccess, onError, onCancel })
   },
   /**
    * 获取浏览器地理位置（所有平台都可以调用）

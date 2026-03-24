@@ -417,7 +417,13 @@ let Bridge = {
           message: error?.errorMessage || ''
         })
       },
-      cancel: onCancel
+      cancel: (error) => {
+        onCancel?.({
+          status: 'cancel',
+          code: error?.errorCode || '',
+          message: error?.errorMessage || ''
+        })
+      }
     })
   },
   previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
@@ -443,12 +449,19 @@ let Bridge = {
         console.log('钉钉previewImage失败:', error)
         onError?.({
           status: 'error',
+          code: error?.errorCode || '',
           message:
             error?.errorMessage ||
             `DingTalk ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: onCancel
+      cancel: (error) => {
+        onCancel?.({
+          status: 'cancel',
+          code: error?.errorCode || '',
+          message: error?.errorMessage || ''
+        })
+      }
     })
   },
   share({ title, description, url, imageUrl, onSuccess, onError } = {}) {

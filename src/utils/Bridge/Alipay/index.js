@@ -165,7 +165,9 @@ let Bridge = {
       fail: (error) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       },
-      cancel: onCancel
+      cancel: (error) => {
+        onCancel?.({ status: 'cancel', message: error?.errorMessage || '' })
+      }
     })
   },
   chooseMedia: function () {
