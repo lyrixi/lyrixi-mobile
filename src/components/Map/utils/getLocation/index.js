@@ -31,6 +31,10 @@ function getLocation(options) {
       onError: (error) => {
         console.error('lyrixi location fail:', error)
         resolve(error)
+      },
+      onCancel: (error) => {
+        console.error('lyrixi location cancel:', error)
+        resolve(error)
       }
     })
   })
