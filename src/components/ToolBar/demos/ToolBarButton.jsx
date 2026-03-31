@@ -6,7 +6,7 @@ export default () => {
     <Page>
       <Page.Main>
         <ToolBar.Button>
-          {/* ToolBar.Button 示例内容 */}
+          ToolBar.Button
         </ToolBar.Button>
       </Page.Main>
     </Page>
