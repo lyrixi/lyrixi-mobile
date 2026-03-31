@@ -21,6 +21,10 @@ toc: content
 
 <code src="./demos/ToolBar.jsx"></code>
 
+### ToolBar.Dropdown
+
+<code src="./demos/ToolBarDropdown.jsx"></code>
+
 ## API
 
 ### 属性
@@ -87,9 +91,7 @@ toc: content
 
 - 需要在工具栏中显示下拉菜单时
 
-### 代码演示
-
-<code src="./demos/ToolBarDropdown.jsx"></code>
+代码示例见文档顶部 **代码演示** 中的「ToolBar.Dropdown」小节。
 
 ### API
 
