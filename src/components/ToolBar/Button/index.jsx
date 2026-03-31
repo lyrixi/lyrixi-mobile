@@ -23,8 +23,8 @@ const ToolBarButton = forwardRef(
       sizeEqual,
       fontSize,
       radius = 'm',
-      className,
       style,
+      className,
 
       // Element
       children,
