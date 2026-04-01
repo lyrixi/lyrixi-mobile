@@ -52,7 +52,6 @@ const DistrictModal = forwardRef(
       // Events
       onClose,
       onOk,
-      onSearch,
       onChange
     },
     ref
@@ -159,7 +158,6 @@ const DistrictModal = forwardRef(
           // Main: Elements
           searchVisible={searchVisible}
           // Main: Events
-          onSearch={onSearch}
           onChange={handleChange}
         />}
       </NavBarModal>

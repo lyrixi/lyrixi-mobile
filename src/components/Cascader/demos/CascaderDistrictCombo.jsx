@@ -120,6 +120,7 @@ export default () => {
           <Divider>searchVisible</Divider>
           <Cascader.DistrictCombo
             searchVisible
+            type="province"
             value={value6}
             onChange={(newValue) => {
               console.log('修改: ', newValue)

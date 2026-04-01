@@ -62,7 +62,6 @@ const DistrictCombo = forwardRef(
       searchVisible,
 
       // Events
-      onSearch,
       onChange,
       onBeforeOpen
     },
@@ -153,7 +152,6 @@ const DistrictCombo = forwardRef(
           cancelVisible={cancelVisible}
           searchVisible={searchVisible}
           // Modal: Events
-          onSearch={onSearch}
           onChange={onChange}
           onClose={handleClose}
         />

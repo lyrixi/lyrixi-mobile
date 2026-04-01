@@ -19,18 +19,19 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
   const [result, setResult] = useState([])
   const [keyword, setKeyword] = useState('')
 
-  async function handleSearch() {
+  async function handleSearch(newKeyword) {
+    setKeyword(newKeyword)
     if (typeof onSearch === 'function') {
-      let newResult = await onSearch?.(keyword, { list: externalList })
+      let newResult = await onSearch?.(newKeyword, { list: externalList })
       setResult(newResult)
       return
     }
 
     const currentList =
-      keyword && keyword.trim()
+      newKeyword && newKeyword.trim()
         ? ArrayUtil.getDeepTreeNodes(externalList, (node) => {
-            return String(node.name).includes(keyword)
-          })
+          return String(node.name).includes(newKeyword)
+        })
         : []
 
     if (currentList.length > 0) {
@@ -50,7 +51,7 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     } else {
       setResult({
         status: 'empty',
-        message: !keyword?.trim?.()
+        message: !newKeyword?.trim?.()
           ? LocaleUtil.locale('请输入关键字', 'lyrixi_db91cb073ee4c9b76289e93ae2b4aa04')
           : LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),
         list: []
@@ -109,9 +110,9 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
         <ToolBar variant="filled">
           <ToolBar.SearchActive
             value={keyword}
+            enableCompositionEnd
             allowClear
-            onChange={setKeyword}
-            onSearch={handleSearch}
+            onChange={handleSearch}
             onCancel={() => {
               onClose?.()
             }}

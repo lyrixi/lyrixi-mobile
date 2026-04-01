@@ -3,7 +3,8 @@ import {
   loadBaseData,
   loadData as _loadData,
   formatType,
-  formatDistrictValue
+  formatDistrictValue,
+  searchByKeyword
 } from './utils/index.js'
 import api from './api'
 import Main from './../Main'
@@ -43,7 +44,6 @@ const CascaderDistrictMain = forwardRef(
       searchVisible = true,
 
       // Events
-      onSearch,
       onChange
     },
     ref
@@ -171,7 +171,7 @@ const CascaderDistrictMain = forwardRef(
             // Elements
             searchVisible={searchVisible}
             // Events
-            onSearch={onSearch}
+            onSearch={(keyword, { list }) => searchByKeyword(keyword, { list, type })}
             onChange={(newValue) => {
               setFullValue(newValue)
               onChange?.(newValue)
