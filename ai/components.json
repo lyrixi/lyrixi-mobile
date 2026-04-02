@@ -1,0 +1,874 @@
+{
+  "library": "lyrixi-mobile",
+  "strategy": "replace-native-and-compose-library-components",
+  "entry": "ai/README.md",
+  "components": [
+    {
+      "name": "Modal",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "custom popup",
+        "dialog"
+      ],
+      "scenes": [
+        "confirm dialog",
+        "content popup",
+        "overlay panel"
+      ],
+      "anti": [
+        "avoid writing custom popup logic when Modal fits"
+      ],
+      "usage": "<Modal open={open}>...</Modal>"
+    },
+    {
+      "name": "ActionSheet",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "mobile action menu",
+        "bottom actions popup"
+      ],
+      "scenes": [
+        "picker-like actions",
+        "mobile action list"
+      ],
+      "anti": [
+        "avoid custom mobile bottom sheet when ActionSheet fits"
+      ],
+      "usage": "<ActionSheet.Combo list={list} />"
+    },
+    {
+      "name": "Amount",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "App",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "NavBar",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "NoticeBar",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Attach",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "AttachUploader",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Badge",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Button",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "button",
+        "div clickable"
+      ],
+      "scenes": [
+        "submit",
+        "confirm",
+        "action"
+      ],
+      "anti": [
+        "never use <button>",
+        "never use <div onClick> as button"
+      ],
+      "usage": "<Button color=\"primary\">Submit</Button>"
+    },
+    {
+      "name": "Calendar",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Card",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "panel",
+        "section container"
+      ],
+      "scenes": [
+        "content section",
+        "demo block",
+        "detail section"
+      ],
+      "anti": [
+        "avoid ad-hoc bordered containers"
+      ],
+      "usage": "<Card><Card.Header>标题</Card.Header><Card.Main>内容</Card.Main></Card>"
+    },
+    {
+      "name": "Cascader",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Chat",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Checkbox",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Accordion",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Combo",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Message",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "DatePicker",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "date input",
+        "date popup"
+      ],
+      "scenes": [
+        "single date",
+        "date range",
+        "time selection"
+      ],
+      "anti": [
+        "avoid native date input when library date picker is required"
+      ],
+      "usage": "<DatePicker.Combo type=\"date\" />"
+    },
+    {
+      "name": "Divider",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Flex",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Float",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "FooterBar",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "bottom action area",
+        "fixed footer buttons"
+      ],
+      "scenes": [
+        "page footer actions",
+        "modal footer actions"
+      ],
+      "anti": [
+        "avoid manual fixed button bars"
+      ],
+      "usage": "<FooterBar><FooterBar.Button>取消</FooterBar.Button></FooterBar>"
+    },
+    {
+      "name": "Signature",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Skeleton",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Stamp",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Steps",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Form",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "custom form wrapper",
+        "manual field layout"
+      ],
+      "scenes": [
+        "edit page",
+        "detail form",
+        "data entry"
+      ],
+      "anti": [
+        "do not build complex forms with loose inputs only"
+      ],
+      "usage": "<Form><Form.Item label=\"标题\"><Input.Text /></Form.Item></Form>"
+    },
+    {
+      "name": "Icon",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "IFrame",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "IndexBar",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Input",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "input",
+        "textarea",
+        "search input"
+      ],
+      "scenes": [
+        "text input",
+        "search",
+        "password",
+        "number"
+      ],
+      "anti": [
+        "avoid native inputs when library input exists"
+      ],
+      "usage": "<Input.Text placeholder=\"请输入\" />"
+    },
+    {
+      "name": "Keyboard",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Page",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "page wrapper",
+        "screen container",
+        "layout root"
+      ],
+      "scenes": [
+        "list page",
+        "detail page",
+        "edit page",
+        "full page"
+      ],
+      "anti": [
+        "do not build a page without Page"
+      ],
+      "usage": "<Page><Page.Main>...</Page.Main></Page>"
+    },
+    {
+      "name": "List",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "ul",
+        "list container",
+        "row list"
+      ],
+      "scenes": [
+        "list display",
+        "items display",
+        "simple list"
+      ],
+      "anti": [
+        "do not rebuild list layout with repeated div rows"
+      ],
+      "usage": "<List.Item title=\"标题\" description=\"描述\" />"
+    },
+    {
+      "name": "ListAsync",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "ListPagination",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "manual list with pager",
+        "paged data table on mobile"
+      ],
+      "scenes": [
+        "paginated list",
+        "query result list"
+      ],
+      "anti": [
+        "avoid manual pagination scaffolding when ListPagination fits"
+      ],
+      "usage": "<ListPagination />"
+    },
+    {
+      "name": "Loading",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Location",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "VideoPlayer",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Result",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "empty state",
+        "error page",
+        "status screen"
+      ],
+      "scenes": [
+        "error",
+        "empty",
+        "success summary"
+      ],
+      "anti": [
+        "avoid custom empty/error blocks when Result fits"
+      ],
+      "usage": "<Result status=\"empty\" title=\"暂无数据\" />"
+    },
+    {
+      "name": "Media",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "MediaUploader",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Picker",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Progress",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "QRCode",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Select",
+      "kind": "component",
+      "priority": 2,
+      "replace": [
+        "select",
+        "dropdown select"
+      ],
+      "scenes": [
+        "single select",
+        "enum choice",
+        "status choice"
+      ],
+      "anti": [
+        "avoid raw select if Select.Combo already solves it"
+      ],
+      "usage": "<Select.Combo list={list} />"
+    },
+    {
+      "name": "SafeArea",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Selector",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Switch",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "TabBar",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Toast",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "ToolBar",
+      "kind": "component",
+      "priority": 1,
+      "replace": [
+        "filter header",
+        "search toolbar",
+        "actions row"
+      ],
+      "scenes": [
+        "list header",
+        "search + filter",
+        "toolbar controls"
+      ],
+      "anti": [
+        "avoid custom filter rows when ToolBar fits"
+      ],
+      "usage": "<ToolBar><ToolBar.Search /><ToolBar.Filter /></ToolBar>"
+    },
+    {
+      "name": "Tooltip",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Text",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Transfer",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Row",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Map",
+      "kind": "component",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "ArrayUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "AssetUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Bridge",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Clipboard",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "DateUtil",
+      "kind": "util",
+      "priority": 1,
+      "replace": [
+        "manual date format",
+        "manual date math"
+      ],
+      "scenes": [
+        "format date",
+        "compare dates",
+        "date range logic"
+      ],
+      "anti": [
+        "avoid custom date helpers when DateUtil exists"
+      ],
+      "usage": "DateUtil.format(new Date(), 'YYYY-MM-DD')"
+    },
+    {
+      "name": "Debugger",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Device",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "EventUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "FullScreen",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "GeoUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "HistoryUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "LocaleUtil",
+      "kind": "util",
+      "priority": 2,
+      "replace": [
+        "hard-coded copy",
+        "manual locale helper"
+      ],
+      "scenes": [
+        "user-facing text",
+        "button text",
+        "messages"
+      ],
+      "anti": [
+        "avoid leaving visible text outside locale flow"
+      ],
+      "usage": "LocaleUtil.locale('确定', 'lyrixi.ok')"
+    },
+    {
+      "name": "Logger",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "MathUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "ObjectUtil",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "Request",
+      "kind": "util",
+      "priority": 1,
+      "replace": [
+        "custom fetch wrapper",
+        "ad-hoc request helper"
+      ],
+      "scenes": [
+        "get data",
+        "post data",
+        "page query"
+      ],
+      "anti": [
+        "avoid inventing another request abstraction"
+      ],
+      "usage": "Request.get('/api/list', payload)"
+    },
+    {
+      "name": "Storage",
+      "kind": "util",
+      "priority": 2,
+      "replace": [
+        "localStorage wrapper",
+        "manual cache helper"
+      ],
+      "scenes": [
+        "cache state",
+        "remember search params"
+      ],
+      "anti": [
+        "avoid direct scattered localStorage usage"
+      ],
+      "usage": "Storage.setLocalStorage('key', value)"
+    },
+    {
+      "name": "Theme",
+      "kind": "util",
+      "priority": 3,
+      "replace": [],
+      "scenes": [],
+      "anti": [],
+      "usage": ""
+    },
+    {
+      "name": "DOMUtil",
+      "kind": "util",
+      "priority": 1,
+      "replace": [
+        "classnames helper",
+        "manual dom utility"
+      ],
+      "scenes": [
+        "merge class names",
+        "event helpers"
+      ],
+      "anti": [
+        "avoid hand-written class name concatenation"
+      ],
+      "usage": "DOMUtil.classNames('foo', bar && 'bar')"
+    }
+  ]
+}

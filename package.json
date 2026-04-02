@@ -31,10 +31,15 @@
     "./components/*": "./esm/components/*",
     "./utils/*": "./esm/utils/*"
   },
+  "bin": {
+    "lyrixi-init-ai": "./cli/init-ai.js"
+  },
   "main": "esm/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "files": [
+    "ai",
+    "cli",
     "esm",
     "umd",
     "scripts",
@@ -42,6 +47,7 @@
     "README.md"
   ],
   "scripts": {
+    "build:ai": "node scripts/build-ai.js",
     "build": "father build && node scripts/build-after.js",
     "build:watch": "father dev",
     "dev": "dumi dev",

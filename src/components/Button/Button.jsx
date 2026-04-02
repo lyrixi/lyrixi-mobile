@@ -9,6 +9,21 @@ import Flex from './../Flex'
 import { Flex } from 'lyrixi-mobile'
 测试使用-end */
 
+/**
+ * Button 组件
+ *
+ * 适用场景：
+ * - 提交
+ * - 确认
+ * - 页面或工具栏中的常规操作
+ *
+ * 不要这样用：
+ * - 业务页面里直接写原生 <button>
+ * - 用 <div onClick> 充当按钮
+ *
+ * 推荐示例：
+ * <Button color="primary">提交</Button>
+ */
 const Button = forwardRef(
   (
     {
