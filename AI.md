@@ -13,10 +13,16 @@ This file helps AI (Cursor, Copilot, etc.) generate correct code when users use 
 
 ### 1. Import style
 
-Both styles work; the library **recommends subpath imports** for consistency and explicit dependencies.
+Both styles work; the library **recommends barrel imports by default** for simplicity and consistency in app/demo code.
 
 ```js
-// ✅ Recommended — subpath (component / util)
+// ✅ Recommended — barrel import
+import { Button, Page, Input, Form, Modal, DatePicker, Card, Flex } from 'lyrixi-mobile'
+import { DOMUtil, DateUtil, Storage } from 'lyrixi-mobile'
+```
+
+```js
+// ✅ Also valid — subpath import
 import Button from 'lyrixi-mobile/components/Button'
 import Page from 'lyrixi-mobile/components/Page'
 import Input from 'lyrixi-mobile/components/Input'
@@ -29,11 +35,6 @@ import Flex from 'lyrixi-mobile/components/Flex'
 import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 import DateUtil from 'lyrixi-mobile/utils/DateUtil'
 import Storage from 'lyrixi-mobile/utils/Storage'
-```
-
-```js
-// ✅ Also valid — barrel import (tree-shaking works)
-import { Button, Page, DOMUtil, DateUtil } from 'lyrixi-mobile'
 ```
 
 ### 2. Styles — user must import once (e.g. in app entry)
@@ -145,7 +146,7 @@ https://lyrixi.github.io/lyrixi-mobile (see 模板 → 列表/详情/编辑)
 
 - Create new React components for UI that the library already provides (use the list above).
 - Use other UI libraries (antd, MUI, etc.) when the user chose lyrixi-mobile.
-- Prefer subpath imports (`lyrixi-mobile/components/X`, `lyrixi-mobile/utils/X`); barrel `from 'lyrixi-mobile'` is also valid.
+- Prefer barrel imports from `lyrixi-mobile`; use subpath imports only when the user explicitly requests them or the file already follows that style.
 - Implement class names / date formatting / storage by hand when DOMUtil / DateUtil / Storage exist.
 - Use `...props` in component signatures; destructure named props instead.
 - Use inline styles or custom CSS for spacing/color/layout when a `.lyrixi-*` class exists.
@@ -154,8 +155,7 @@ https://lyrixi.github.io/lyrixi-mobile (see 模板 → 列表/详情/编辑)
 
 ```jsx
 import 'lyrixi-mobile/assets/index.less'
-import Page from 'lyrixi-mobile/components/Page'
-import Button from 'lyrixi-mobile/components/Button'
+import { Page, Button } from 'lyrixi-mobile'
 
 export default function App() {
   return (

@@ -3,7 +3,10 @@
 ## 强约束
 
 - 优先使用 `lyrixi-mobile` 已有组件与工具，不要重复造轮子。
-- 优先使用子路径导入：
+- 优先使用 barrel import：
+  - `import { Button, Page } from 'lyrixi-mobile'`
+  - `import { DOMUtil, DateUtil } from 'lyrixi-mobile'`
+- 只有在用户明确要求，或当前文件已经统一使用子路径导入时，才使用：
   - `lyrixi-mobile/components/X`
   - `lyrixi-mobile/utils/X`
 - 在用户明确要求使用 `lyrixi-mobile` 时，不要引入其它 UI 库。
@@ -33,15 +36,15 @@
 推荐：
 
 ```jsx
-import Page from 'lyrixi-mobile/components/Page'
-import Button from 'lyrixi-mobile/components/Button'
-import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
+import { Page, Button, DOMUtil } from 'lyrixi-mobile'
 ```
 
 也允许：
 
 ```jsx
-import { Page, Button, DOMUtil } from 'lyrixi-mobile'
+import Page from 'lyrixi-mobile/components/Page'
+import Button from 'lyrixi-mobile/components/Button'
+import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 ```
 
 ## 值结构约定

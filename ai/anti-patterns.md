@@ -18,10 +18,13 @@
 
 ## 3. 不要违反导入约定
 
-- 不要默认优先使用 barrel import；推荐优先使用子路径导入：
+- 不要默认优先使用子路径导入。
+- 推荐优先使用 barrel import：
+  - `import { Button, Page } from 'lyrixi-mobile'`
+  - `import { DOMUtil, DateUtil } from 'lyrixi-mobile'`
+- 只有在用户明确要求，或当前文件已经统一使用子路径导入时，才使用：
   - `lyrixi-mobile/components/X`
   - `lyrixi-mobile/utils/X`
-- `import { Button, Page } from 'lyrixi-mobile'` 是允许的，但在生成代码时，默认优先推荐子路径导入。
 
 ## 4. 不要违反代码风格约定
 
@@ -73,9 +76,7 @@ export default function Demo(props) {
 ## 正例
 
 ```jsx
-import Page from 'lyrixi-mobile/components/Page'
-import Button from 'lyrixi-mobile/components/Button'
-import LocaleUtil from 'lyrixi-mobile/utils/LocaleUtil'
+import { Page, Button, LocaleUtil } from 'lyrixi-mobile'
 
 export default function Demo({ onClick }) {
   return (
