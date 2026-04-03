@@ -28,7 +28,7 @@ Do **not** use this skill for unrelated layout or non-ToolBar navigation.
 1. **Imports**
    - In demos and business code, prefer barrel import:
      - `import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar } from 'lyrixi-mobile'`
-   - Follow project-wide rules in `AI.md`:
+   - Follow project-wide rules in `ai/README.md` and related AI files:
      - Use only existing components (do not invent new primitives).
      - Use `LocaleUtil.locale` for user-facing text where appropriate.
 

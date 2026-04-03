@@ -65,7 +65,7 @@ This skill is **project-specific** and must only be used in this repo.
      - How data is transformed in helpers (payload/result/view item).
 
 6. **Project coding rules**
-   - Respect `AI.md` and `.cursorrules`:
+   - Respect `ai/README.md` and `.cursorrules`:
      - Use only whitelisted components (`Page`, `List`, `Form`, `ToolBar`, etc.).
      - Use existing utilities (`Request`, `DateUtil`, `DOMUtil`, etc.) instead of inventing new helpers.
      - Follow import style guidelines (barrel imports from `lyrixi-mobile` in demos).

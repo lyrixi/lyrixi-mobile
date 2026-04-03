@@ -60,7 +60,7 @@ This skill is **project-specific** and must only be used in this repo.
      - Follow the same way of organizing helpers and main components.
 
 6. **Project coding rules**
-   - Respect the rules from `AI.md` and `.cursorrules`:
+   - Respect the rules from `ai/README.md` and `.cursorrules`:
      - Use only allowed UI components and utilities.
      - Use barrel imports from `lyrixi-mobile` for demos/business code.
      - Avoid inventing new tools/components when an existing one is available.

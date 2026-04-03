@@ -52,12 +52,12 @@ This skill is **project-specific** and must only be used in this repo.
 5. **Follow existing patterns**
 
    - Before generating anything, inspect existing files in `src/pages/Detail` and:
-     - Reuse the same **imports from `lyrixi-mobile`** (e.g. `Page`, `Form`, `List`) and project utils (e.g. `Request`, `DateUtil`), according to AI.md and project rules.
+     - Reuse the same **imports from `lyrixi-mobile`** (e.g. `Page`, `Form`, `List`) and project utils (e.g. `Request`, `DateUtil`), according to `ai/README.md` and project rules.
      - Mirror the **folder structure** and **file naming** (e.g. if current Detail demos live in `src/pages/Detail/demos/Form`, follow that).
    - Do not introduce new architectural patterns; extend the established ones.
 
 6. **Project coding rules**
-   - Respect the rules from `AI.md` and `.cursorrules`:
+   - Respect the rules from `ai/README.md` and `.cursorrules`:
      - Use only the allowed components (e.g. `Page`, `Card`, `Form`, `List`, etc.).
      - Use existing utils like `Request`, `DOMUtil`, `DateUtil` instead of inventing new helpers.
      - Follow the import rules (relative imports for `src/components` / `src/utils`, package imports for demos/business code if applicable).

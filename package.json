@@ -1,7 +1,7 @@
 {
   "name": "lyrixi-mobile",
   "version": "0.0.8",
-  "description": "React 19 mobile UI library. Components + utils, tree-shakeable imports (lyrixi-mobile/components/X, lyrixi-mobile/utils/X). See AI.md for AI-friendly usage.",
+  "description": "React 19 mobile UI library. Components + utils. See ai/README.md for AI-friendly usage.",
   "keywords": [
     "react",
     "react19",
@@ -44,7 +44,6 @@
     "src/examples",
     "umd",
     "scripts",
-    "AI.md",
     "README.md"
   ],
   "scripts": {
