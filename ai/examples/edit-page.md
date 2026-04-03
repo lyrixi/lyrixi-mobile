@@ -1,16 +1,19 @@
 # Edit Page Example
 
-来源参考：
+## 模板类型
 
-- `src/examples/Edit/demos/Cache`
-- `src/examples/Edit/demos/Common`
+编辑页模板，适合新增、编辑、表单校验与提交类页面。
 
-其中目录结构优先参考 `Cache`，字段组织与表单写法可参考 `Common`。
+## 适用场景
 
-## 推荐目录结构
+- 新增页
+- 编辑页
+- 带表单校验与提交的页面
+
+## 推荐业务目录结构
 
 ```text
-src/examples/Edit/demos/Cache/
+EditPage/
 ├── index.jsx
 ├── api/
 │   ├── index.js
@@ -26,6 +29,15 @@ src/examples/Edit/demos/Cache/
 └── Footer/
     └── index.jsx
 ```
+
+## 库内参考实现
+
+仅用于帮助 AI 理解该模板来源，不代表业务项目必须使用相同目录：
+
+- `lyrixi-mobile/src/examples/Edit/demos/Cache`
+- `lyrixi-mobile/src/examples/Edit/demos/Common`
+
+其中目录结构优先参考 `Cache`，字段组织与表单写法可参考 `Common`。
 
 ## 结构职责
 

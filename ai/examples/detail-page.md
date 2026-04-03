@@ -1,11 +1,19 @@
 # Detail Page Example
 
-来源参考：`src/examples/Detail/demos/Form`
+## 模板类型
 
-## 推荐目录结构
+详情页模板，适合表单展示、审批确认、只读详情展示。
+
+## 适用场景
+
+- 详情页
+- 审批页
+- 只读表单详情页
+
+## 推荐业务目录结构
 
 ```text
-src/examples/Detail/demos/Form/
+DetailPage/
 ├── index.jsx
 ├── api/
 │   ├── index.js
@@ -16,6 +24,12 @@ src/examples/Detail/demos/Form/
 └── Footer/
     └── index.jsx
 ```
+
+## 库内参考实现
+
+仅用于帮助 AI 理解该模板来源，不代表业务项目必须使用相同目录：
+
+`lyrixi-mobile/src/examples/Detail/demos/Form`
 
 ## 结构职责
 

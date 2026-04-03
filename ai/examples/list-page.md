@@ -1,11 +1,19 @@
 # List Page Example
 
-来源参考：`src/examples/List/demos/Common`
+## 模板类型
 
-## 推荐目录结构
+列表页模板，适合带搜索、筛选、分页的移动端页面。
+
+## 适用场景
+
+- 列表页
+- 查询页
+- 带搜索 / 筛选 / 分页的移动端页面
+
+## 推荐业务目录结构
 
 ```text
-src/examples/List/demos/Common/
+ListPage/
 ├── index.jsx
 ├── Header/
 │   ├── index.jsx
@@ -19,6 +27,12 @@ src/examples/List/demos/Common/
 └── Footer/
     └── index.jsx
 ```
+
+## 库内参考实现
+
+仅用于帮助 AI 理解该模板来源，不代表业务项目必须使用相同目录：
+
+`lyrixi-mobile/src/examples/List/demos/Common`
 
 ## 结构职责
 
