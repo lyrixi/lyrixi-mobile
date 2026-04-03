@@ -1,11 +1,11 @@
 # List Page Example
 
-来源参考：`src/pages/List/demos/Common`
+来源参考：`src/examples/List/demos/Common`
 
 ## 推荐目录结构
 
 ```text
-src/pages/List/demos/Common/
+src/examples/List/demos/Common/
 ├── index.jsx
 ├── Header/
 │   ├── index.jsx

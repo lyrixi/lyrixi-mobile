@@ -1,11 +1,11 @@
 # Detail Page Example
 
-来源参考：`src/pages/Detail/demos/Form`
+来源参考：`src/examples/Detail/demos/Form`
 
 ## 推荐目录结构
 
 ```text
-src/pages/Detail/demos/Form/
+src/examples/Detail/demos/Form/
 ├── index.jsx
 ├── api/
 │   ├── index.js

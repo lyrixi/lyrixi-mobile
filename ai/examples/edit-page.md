@@ -2,15 +2,15 @@
 
 来源参考：
 
-- `src/pages/Edit/demos/Cache`
-- `src/pages/Edit/demos/Common`
+- `src/examples/Edit/demos/Cache`
+- `src/examples/Edit/demos/Common`
 
 其中目录结构优先参考 `Cache`，字段组织与表单写法可参考 `Common`。
 
 ## 推荐目录结构
 
 ```text
-src/pages/Edit/demos/Cache/
+src/examples/Edit/demos/Cache/
 ├── index.jsx
 ├── api/
 │   ├── index.js

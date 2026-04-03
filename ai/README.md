@@ -11,7 +11,7 @@
 补充参考：
 
 - `./components.json`：结构化组件/工具描述，适合做规则匹配与自动化分析
-- `./examples/`：基于 `src/pages` 真实 demos 提炼出的页面级模板示例，包含目录结构与规范写法
+- `./examples/`：基于 `src/examples` 真实 demos 提炼出的页面级模板示例，包含目录结构与规范写法
 
 使用建议：
 
