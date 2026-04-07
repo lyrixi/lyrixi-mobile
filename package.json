@@ -1,6 +1,6 @@
 {
   "name": "lyrixi-mobile",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "React 19 mobile UI library. Components + utils. See ai/README.md for AI-friendly usage.",
   "keywords": [
     "react",
