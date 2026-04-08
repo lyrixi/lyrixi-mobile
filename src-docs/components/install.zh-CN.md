@@ -32,13 +32,11 @@ npm install lyrixi-mobile
 
 ## 🤖 AI CLI
 
-在业务项目根目录（已安装 `lyrixi-mobile`）执行：
+安装完成后, 执行以下命令会在当前项目生成 AI 生成规则，帮助 AI 更精准地构建生产级的代码
 
 ```bash
 npx lyrixi-init-ai
 ```
-
-会在当前项目生成 AI 生成规则，帮助 AI 更精准地构建生产级的代码
 
 ## 📦 CSS
 
