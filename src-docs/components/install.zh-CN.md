@@ -35,7 +35,7 @@ npm install lyrixi-mobile
 安装完成后, 执行以下命令会在当前项目生成 AI 生成规则，帮助 AI 更精准地构建生产级的代码
 
 ```bash
-npx lyrixi-init-ai
+npx lyrixi-mobile-ai
 ```
 
 ## 📦 CSS

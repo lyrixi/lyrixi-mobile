@@ -35,7 +35,7 @@
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "bin": {
-    "lyrixi-init-ai": "./cli/init-ai.js"
+    "lyrixi-mobile-ai": "./cli/init-ai.js"
   },
   "files": [
     "ai",
