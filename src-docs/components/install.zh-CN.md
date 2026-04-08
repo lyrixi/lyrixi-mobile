@@ -22,6 +22,24 @@ Minimalist Token, Unified API, Simple and easy to use</div>
 
 </div>
 
+## 📦 Install
+
+### NPM
+
+```bash
+npm install lyrixi-mobile
+```
+
+## 🤖 AI CLI
+
+在业务项目根目录（已安装 `lyrixi-mobile`）执行：
+
+```bash
+npx lyrixi-init-ai
+```
+
+会在当前项目生成 AI 生成规则，帮助 AI 更精准地构建生产级的代码
+
 ## 📦 CSS
 
 ### Less
@@ -34,14 +52,6 @@ Minimalist Token, Unified API, Simple and easy to use</div>
 
 ```bash
 @import 'lyrixi-mobile/assets/index.css';
-```
-
-## 📦 Install
-
-### NPM
-
-```bash
-npm install lyrixi-mobile
 ```
 
 ## 🔨 Usage
