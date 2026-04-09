@@ -1,5 +1,5 @@
 ---
-description: 业务项目开发规范（值结构、事件、import、命名与目录）
+description: 业务项目开发规范（模板、import/书写顺序、页面结构与命名、值与事件）
 globs:
   - '**/*.{js,jsx,ts,tsx}'
 alwaysApply: false
@@ -7,7 +7,7 @@ alwaysApply: false
 
 # 开发规范
 
-与 `usage.mdc`（lyrixi-mobile 库使用守则）互补：本文件约束**业务代码**的值结构、事件、import 顺序、书写顺序、页面结构、className 命名、目录规范。
+与 **`usage.mdc`**（lyrixi-mobile **库**怎么用）互补, 本文件约定**业务项目**里怎么组织代码——典型页面模板与 `examples` 对照、**import 顺序**、**代码书写顺序**（hooks → 工具函数 → effects → 事件）、**页面命名**、**页面结构**（`api` / `utils` / `Header` / `Main` / `Footer` / 入口 `index`）、**className**、**Ref 与 DOM 变量名**、**值结构**、**事件与 Props 命名**。
 
 ## 不同类型页面开发模板
 
