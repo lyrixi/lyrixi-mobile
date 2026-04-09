@@ -9,6 +9,15 @@ alwaysApply: false
 
 与 `usage.mdc`（lyrixi-mobile 库使用守则）互补：本文件约束**业务代码**的值结构、事件、import 顺序、书写顺序、页面结构、className 命名、目录规范。
 
+## 不同类型页面开发模板
+
+- 详情页面: `lyrixi-mobile/src/examples/Detail/demos/Form`
+- 新增编辑页面(不带缓存): `lyrixi-mobile/src/examples/Edit/demos/Common`
+- 新增编辑页面(带缓存): `lyrixi-mobile/src/examples/Edit/demos/Cache`
+- 列表页面: `lyrixi-mobile/src/examples/List/demos/Common`
+
+详细描述如下：
+
 ## import 顺序
 
 同一文件内建议按下列分组, **组与组之间空一行**, 同组内可按**包名字母序**排序:
