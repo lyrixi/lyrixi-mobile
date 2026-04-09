@@ -1,3 +1,10 @@
+---
+description: Lyrixi — 列表页模板（目录结构、Header/Main、ListPagination）
+globs:
+  - "**/*.{js,jsx,ts,tsx}"
+alwaysApply: false
+---
+
 # 列表页示例
 
 ## 模板类型

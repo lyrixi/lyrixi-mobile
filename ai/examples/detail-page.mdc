@@ -1,3 +1,10 @@
+---
+description: Lyrixi — 详情页模板（Result、FooterBar、审批）
+globs:
+  - "**/*.{js,jsx,ts,tsx}"
+alwaysApply: false
+---
+
 # 详情页示例
 
 ## 模板类型

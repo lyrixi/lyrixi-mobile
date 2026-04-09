@@ -1,3 +1,10 @@
+---
+description: Lyrixi — 编辑页模板（Form.useForm、validateData、saveData）
+globs:
+  - "**/*.{js,jsx,ts,tsx}"
+alwaysApply: false
+---
+
 # 编辑页示例
 
 ## 模板类型

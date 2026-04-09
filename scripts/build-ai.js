@@ -185,7 +185,7 @@ function main() {
   const data = {
     library: 'lyrixi-mobile',
     strategy: 'replace-native-and-compose-library-components',
-    entry: 'ai/README.md',
+    entry: 'ai/README.mdc',
     components: readExports()
   }
 

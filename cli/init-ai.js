@@ -3,44 +3,28 @@
 const fs = require('fs')
 const path = require('path')
 
-function writeIfMissing(targetPath, content) {
-  if (fs.existsSync(targetPath)) return
-  fs.mkdirSync(path.dirname(targetPath), { recursive: true })
-  fs.writeFileSync(targetPath, content)
+function copyRecursive(src, dest) {
+  const stat = fs.statSync(src)
+  if (stat.isDirectory()) {
+    fs.mkdirSync(dest, { recursive: true })
+    for (const name of fs.readdirSync(src)) {
+      copyRecursive(path.join(src, name), path.join(dest, name))
+    }
+    return
+  }
+  fs.mkdirSync(path.dirname(dest), { recursive: true })
+  fs.copyFileSync(src, dest)
 }
 
 const projectRoot = process.cwd()
+const packageRoot = path.join(__dirname, '..')
+const sourceDir = path.join(packageRoot, 'ai')
+const destDir = path.join(projectRoot, '.cursor', 'rules', 'lyrixi-mobile')
 
-writeIfMissing(
-  path.join(projectRoot, '.cursor', 'rules', 'lyrixi.mdc'),
-  `---
-description: Lyrixi AI rules
-globs: ["**/*.{js,jsx,ts,tsx}"]
-alwaysApply: false
----
+if (!fs.existsSync(sourceDir)) {
+  console.error('❌ Missing ai/ in lyrixi-mobile package:', sourceDir)
+  process.exit(1)
+}
 
-- Always prefer lyrixi-mobile components and utils when the library already covers the scenario.
-- Prefer subpath imports like lyrixi-mobile/components/X and lyrixi-mobile/utils/X.
-- Wrap full pages with Page / Page.Header / Page.Main / Page.Footer.
-- Prefer ToolBar for search/filter/action rows in list pages.
-- Prefer Form + Form.Item for data entry pages.
-- Prefer Result for empty/error status pages.
-- Avoid native button/div-based UI when a library component exists.
-`
-)
-
-writeIfMissing(
-  path.join(projectRoot, '.ai', 'context.md'),
-  `Use lyrixi-mobile as the primary UI library for this project.
-
-Read these files first:
-
-@node_modules/lyrixi-mobile/ai/README.md
-@node_modules/lyrixi-mobile/ai/guidelines.md
-@node_modules/lyrixi-mobile/ai/patterns.md
-@node_modules/lyrixi-mobile/ai/anti-patterns.md
-@node_modules/lyrixi-mobile/ai/components.json
-`
-)
-
-console.log('✅ Lyrixi AI ready')
+copyRecursive(sourceDir, destDir)
+console.log(`✅ Lyrixi AI rules copied to ${path.relative(projectRoot, destDir)}`)

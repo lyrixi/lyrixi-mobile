@@ -1,3 +1,10 @@
+---
+description: Lyrixi — 界面模式（登录/列表/表单/详情/工具栏/浮层）
+globs:
+  - "**/*.{js,jsx,ts,tsx}"
+alwaysApply: false
+---
+
 # Lyrixi 界面模式
 
 ## 登录页

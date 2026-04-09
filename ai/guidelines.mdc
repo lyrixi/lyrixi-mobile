@@ -1,3 +1,10 @@
+---
+description: Lyrixi — 编写规范（聚合导入、Page 壳、组件与工具选择）
+globs:
+  - "**/*.{js,jsx,ts,tsx}"
+alwaysApply: false
+---
+
 # Lyrixi AI 编写规范
 
 ## 强约束

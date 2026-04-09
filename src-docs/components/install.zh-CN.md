@@ -32,7 +32,7 @@ npm install lyrixi-mobile
 
 ## 🤖 AI CLI
 
-安装完成后, 执行以下命令会在当前项目生成 AI 生成规则，帮助 AI 更精准地构建生产级的代码
+安装完成后，执行以下命令会把包内 `ai/` 目录（`.mdc` 规则与 `components.json`）**原样复制**到当前项目的 `.cursor/rules/lyrixi-mobile/`，便于 Cursor 按项目规则加载。
 
 ```bash
 npx lyrixi-mobile-ai
