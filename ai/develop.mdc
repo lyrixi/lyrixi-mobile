@@ -7,7 +7,83 @@ alwaysApply: false
 
 # 开发规范
 
-与 `usage.mdc`（lyrixi-mobile 库使用守则）互补：本文件约束**业务代码**的值结构、事件、import 顺序、命名与目录习惯；不包含组件库 API 细则。
+与 `usage.mdc`（lyrixi-mobile 库使用守则）互补：本文件约束**业务代码**的值结构、事件、import 顺序、书写顺序、页面结构、className 命名、目录规范。
+
+## import 顺序
+
+同一文件内建议按下列分组, **组与组之间空一行**, 同组内可按**包名字母序**排序:
+
+1. **React 库依赖**, 例如:`react`、`react-dom` 等 react 库的依赖;
+2. **外部依赖**, 例如:`react-router`、`lyrixi-mobile`、`dayjs` 等第三库;
+3. **当前模块引入其它模块**, 例如:`@/`、`utils/`、`components/`等;
+4. **相对路径**：父级 `../` 先于同级 `./`, 先工具与常量，再组件。
+
+## 代码书写顺序
+
+1. hooks（state / ref）
+
+2. 内部工具函数
+
+3. effects
+
+4. 事件处理
+
+## 页面名称
+
+总则: **参考主流前端习惯**, 使用**意义贴切、可读性好的英文**, 避免拼音与无意义缩写。
+
+- 列表后缀：`List`
+- 明细列表后缀(List 下钻仍然是列表时使用此命名)：`Record`
+- 编辑后缀：`Edit`
+- 详情后缀（只读展示）：`Detail`
+
+## 页面结构
+
+### api 文件夹
+
+所有的数据封装与转换、数据请求、数据响应都在 api 里完成
+
+1. 数据请求方法名:
+
+- 增/改提交: `saveXxx`
+- 删除: `deleteXxx`
+- 查询: `queryXxx`
+
+2. 数据封装与转换：
+
+- 前端数据转成服务端所需数据: `serverXxx`，如 `serverData`、`serverPhoto`
+- 服务端数据转成前端数据: `localXxx`，如 `localData`、`localPhoto`
+
+### utils 工具文件夹
+
+页面级的工具方法
+
+### Header 组件文件夹
+
+渲染头部内容(包含 Filter 筛选组件等), 暴露操作的方法, 例如: onSearch 等
+
+### Footer 组件文件夹
+
+渲染底部内容, 暴露操作的方法, 例如: onSave 等
+
+### Main 组件文件夹
+
+渲染中间主区域, 暴露操作的方法, 例如: onChange 等
+
+### index 页面入口文件
+
+- 查询参数: `[queryParams, setQueryParams] = useState(null)`
+- 加载数据: 引入`api`, 定义`loadData`调用 api 的 queryData
+- 渲染页面: 引入`Header`、`Main`、`Footer`
+
+## className 类名
+
+`项目前缀(可以防冲突)-功能名`, 多个样式, 使用`DOMUtil.classNames`包裹
+
+## Ref 和实体 DOM 命名
+
+- React ref 命名：`xxRef`，如 `rootRef`、`listRef`
+- 保存真实 DOM 节点变量：`xxElement`，如 `rootElement`、`inputElement`
 
 ## 值结构约定
 
@@ -23,85 +99,7 @@ alwaysApply: false
 - **组件内处理函数命名**：与 props 对应，`handle` + 与 `on` 后相同的一段。
   - 示例：`onChange` → `handleChange`；`onVisibleChange` → `handleVisibleChange`；`onButtonClick` → `handleButtonClick`
 
-## import 顺序
-
-同一文件内建议按下列分组，**组与组之间空一行**：
-
-1. **外部依赖**：`react`、`react-dom` 等框架与第三方包（含 `lyrixi-mobile`）。
-2. **（可选）类型**：`import type` / `typeof` 仅类型的导入可与上一组合并或紧随其后。
-3. **项目别名 / 绝对路径**：如 `@/`、`src/` 等业务配置路径。
-4. **相对路径**：父级 `../` 先于同级 `./`；先工具与常量，再组件。
-
-同组内可按**包名字母序**或团队习惯排序，保持文件内一致即可。
-
-## 命名规范
-
-总则：**参考主流前端习惯**；使用**意义贴切、可读的英文**，避免拼音与无意义缩写。
-
-### 页面 / 路由命名
-
-- 列表：`List`
-- 明细（业务单据一条）：`Record`
-- 编辑：`Edit`
-- 详情（只读展示）：`Detail`
-
-### className（全局样式类名）
-
-- **组件库自带**：使用库提供的全局 class（如 lyrixi 的 token 类名）。
-- **业务自定义**：需带**业务前缀**，避免与库、其它业务冲突。
-  - 示例：`merp-`、`dms-` 等 + 模块或组件语义。
-
-### 布局区块命名（文件夹或组件语义）
-
-- 头部：`Header`
-- 底部：`Footer`
-- 中间主区域：`Main`
-- 侧边筛选：`Filter` 或查询区：`Query`
-
-### 数据初始化
-
-- 页面或模块内拉取首屏数据的方法名：**`loadData`**
-
-### 查询参数 `queryParams`
-
-- 若需将 `dayjs`、`Date`、数组、对象等转为服务端要求的字符串/query 串，在业务项目已提供的前提下，可使用：  
-  **`...QueryUtil.convertQueryParams(queryParams)`**（具体以项目内 `QueryUtil` 实现为准）。
-
-### API 层（`api` 文件夹或独立 `api` 文件）
-
-- **请求与接口封装**集中放在 `api` 目录或 `*.js`/`*.ts` 中。
-- 与后端交互的命名建议：
-  - **增/改提交**：`saveXxx`
-  - **删除**：`deleteXxx`
-  - **查询**：`queryXxx`
-- **服务端结构与前端结构互转**（仅 query/save 等接口层使用）：
-  - 服务端形态：`serverXxx`，如 `serverData`、`serverPhoto`
-  - 本地形态：`localXxx`，如 `localData`、`localPhoto`
-  - 上述转换函数**与接口同层**，放在 **api** 目录/文件中，而非散落页面。
-
-### 工具函数
-
-- 非组件的纯函数、格式化、校验等：放在 **`utils`** 文件夹或 `utils` 相关文件中。
-
-### ref 与 DOM 引用
-
-- React ref：`xxRef`，如 `rootRef`、`listRef`
-- 保存真实 DOM 节点变量：`xxEl`，如 `rootEl`、`inputEl`
-
-### 布尔属性（启停、显隐）
+### Props 属性命名
 
 - **启用/禁用**：动词在前 — `enableXxx`、`disableXxx`
 - **显隐**：优先 `visible`；若语义上 `visible` 不能准确表达，则用 **`xxVisible`**
-
-### 非公用组件目录
-
-- **非复用、仅本页使用的组件**不要单独建 `components` 包裹一层；可直接放在页面目录下（如 `Header`、`Main` 与 `index` 同级），与 `examples` 中列表/详情模板一致。
-
-### tableId（若业务需要稳定表格标识）
-
-- 建议：`${menuId}-模块名-功能名`（按项目 menuId 与模块划分调整）。
-
-## 命名的规则（再强调）
-
-1. 参考**主流**（React / 社区常见）写法。
-2. 英文**语义准确**，见名知意。
