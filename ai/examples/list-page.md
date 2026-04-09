@@ -1,4 +1,4 @@
-# List Page Example
+# 列表页示例
 
 ## 模板类型
 
@@ -166,7 +166,7 @@ const Main = ({ cacheName, virtual, queryParams }, ref) => {
 export default forwardRef(Main)
 ```
 
-## formatXxx 规范
+## format 系列文件说明（formatPayload / formatResult / formatViewItem）
 
 `formatPayload.js`
 

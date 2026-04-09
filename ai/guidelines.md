@@ -1,9 +1,9 @@
-# Lyrixi AI Guidelines
+# Lyrixi AI 编写规范
 
 ## 强约束
 
 - 优先使用 `lyrixi-mobile` 已有组件与工具，不要重复造轮子。
-- 优先使用 barrel import：
+- 优先使用从包入口聚合导入（barrel import：从 `lyrixi-mobile` 根路径一次导入多个导出）：
   - `import { Button, Page } from 'lyrixi-mobile'`
   - `import { DOMUtil, DateUtil } from 'lyrixi-mobile'`
 - 只有在用户明确要求，或当前文件已经统一使用子路径导入时，才使用：
@@ -33,13 +33,13 @@
 
 ## 导入规范
 
-推荐：
+**推荐（聚合导入）：**
 
 ```jsx
 import { Page, Button, DOMUtil } from 'lyrixi-mobile'
 ```
 
-也允许：
+**也允许（子路径按需导入）：**
 
 ```jsx
 import Page from 'lyrixi-mobile/components/Page'

@@ -1,4 +1,4 @@
-# Anti Patterns (STRICTLY FORBIDDEN)
+# 反模式（严禁）
 
 ## 1. 不要绕开库内已有组件
 
@@ -19,7 +19,7 @@
 ## 3. 不要违反导入约定
 
 - 不要默认优先使用子路径导入。
-- 推荐优先使用 barrel import：
+- 推荐优先使用从包入口聚合导入（barrel import）：
   - `import { Button, Page } from 'lyrixi-mobile'`
   - `import { DOMUtil, DateUtil } from 'lyrixi-mobile'`
 - 只有在用户明确要求，或当前文件已经统一使用子路径导入时，才使用：
@@ -30,12 +30,12 @@
 
 - 不要在组件签名中使用 `...props`；优先显式解构命名 props。
 - 不要随意发明不符合库约定的 props 分组方式；应按以下语义组织：
-  - Value & display
-  - Status
-  - Style
-  - Elements
-  - Validate
-  - Events
+  - 值与展示（Value & display）
+  - 状态（Status）
+  - 样式（Style）
+  - 子元素/插槽（Elements）
+  - 校验（Validate）
+  - 事件（Events）
 - 不要忽略受控值结构约定：
   - 单选值通常为 `{ id, name }`
   - 多选值通常为 `Array<{ id, name }>`

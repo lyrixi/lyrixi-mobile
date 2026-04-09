@@ -1,6 +1,6 @@
-# Lyrixi UI Patterns
+# Lyrixi 界面模式
 
-## 登录页 / Login Page
+## 登录页
 
 - 使用 `Page` 作为页面容器
 - 使用 `Form` + `Input.Text` / `Input.Password`
@@ -25,7 +25,7 @@
 </Page>
 ```
 
-## 列表页 / List Page
+## 列表页
 
 - 使用 `Page.Header` 放搜索/筛选
 - 使用 `ToolBar` 组合搜索、筛选、日期、下拉
@@ -48,7 +48,7 @@
 </Page>
 ```
 
-## 表单页 / Form Page
+## 表单页
 
 - 使用 `Page.Main` 放 `Form`
 - 使用 `Form.Item` 管理字段
@@ -60,13 +60,13 @@
   - `Switch`
 - `Page.Footer` 放保存/取消操作
 
-## 详情页 / Detail Page
+## 详情页
 
 - 使用 `Page.Main` 放展示内容
 - 有数据错误或空态时使用 `Result`
 - 如有审批、确认操作，使用 `Page.Footer` + `FooterBar`
 
-## 工具栏 / ToolBar
+## 工具栏（ToolBar）
 
 - 顶部工具区优先使用 `ToolBar`
 - 常见组合：
@@ -74,7 +74,7 @@
   - `ToolBar.List` + `ToolBar.ActionSheet`
   - `ToolBar.Dropdown` + `FooterBar`
 
-## 浮层 / Overlay
+## 浮层与弹层
 
 - 简单动作选择：`ActionSheet`
 - 复杂筛选面板：`ToolBar.Dropdown` 或 `ToolBar.Filter`

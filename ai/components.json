@@ -1,6 +1,6 @@
 {
   "library": "lyrixi-mobile",
-  "strategy": "replace-native-and-compose-library-components",
+  "strategy": "以库内组件替代原生实现并组合使用",
   "entry": "ai/README.md",
   "components": [
     {
@@ -8,16 +8,16 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "custom popup",
-        "dialog"
+        "自定义弹层",
+        "对话框"
       ],
       "scenes": [
-        "confirm dialog",
-        "content popup",
-        "overlay panel"
+        "确认对话框",
+        "内容弹层",
+        "遮罩面板"
       ],
       "anti": [
-        "avoid writing custom popup logic when Modal fits"
+        "能用 Modal 时不要手写弹层逻辑"
       ],
       "usage": "<Modal open={open}>...</Modal>"
     },
@@ -26,15 +26,15 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "mobile action menu",
-        "bottom actions popup"
+        "移动端操作菜单",
+        "底部操作弹层"
       ],
       "scenes": [
-        "picker-like actions",
-        "mobile action list"
+        "类选择器的操作列表",
+        "移动端操作列表"
       ],
       "anti": [
-        "avoid custom mobile bottom sheet when ActionSheet fits"
+        "能用 ActionSheet 时不要手写底部抽屉"
       ],
       "usage": "<ActionSheet.Combo list={list} />"
     },
@@ -106,19 +106,19 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "button",
-        "div clickable"
+        "按钮",
+        "可点击的 div 冒充按钮"
       ],
       "scenes": [
-        "submit",
-        "confirm",
-        "action"
+        "提交",
+        "确认",
+        "操作"
       ],
       "anti": [
-        "never use <button>",
-        "never use <div onClick> as button"
+        "禁止原生 <button>",
+        "禁止用 <div onClick> 充当按钮"
       ],
-      "usage": "<Button color=\"primary\">Submit</Button>"
+      "usage": "<Button color=\"primary\">提交</Button>"
     },
     {
       "name": "Calendar",
@@ -134,16 +134,16 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "panel",
-        "section container"
+        "面板",
+        "区块容器"
       ],
       "scenes": [
-        "content section",
-        "demo block",
-        "detail section"
+        "内容分区",
+        "示例块",
+        "详情区块"
       ],
       "anti": [
-        "avoid ad-hoc bordered containers"
+        "避免随意手写带边框容器"
       ],
       "usage": "<Card><Card.Header>标题</Card.Header><Card.Main>内容</Card.Main></Card>"
     },
@@ -206,16 +206,16 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "date input",
-        "date popup"
+        "日期输入",
+        "日期弹层"
       ],
       "scenes": [
-        "single date",
-        "date range",
-        "time selection"
+        "单日选择",
+        "日期范围",
+        "时间选择"
       ],
       "anti": [
-        "avoid native date input when library date picker is required"
+        "需要库内日期能力时不要用手写原生日期输入"
       ],
       "usage": "<DatePicker.Combo type=\"date\" />"
     },
@@ -251,15 +251,15 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "bottom action area",
-        "fixed footer buttons"
+        "底部操作区",
+        "固定底部按钮"
       ],
       "scenes": [
-        "page footer actions",
-        "modal footer actions"
+        "页面底部操作",
+        "弹层底部操作"
       ],
       "anti": [
-        "avoid manual fixed button bars"
+        "避免手写固定底栏按钮条"
       ],
       "usage": "<FooterBar><FooterBar.Button>取消</FooterBar.Button></FooterBar>"
     },
@@ -304,16 +304,16 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "custom form wrapper",
-        "manual field layout"
+        "自定义表单外壳",
+        "手写字段排版"
       ],
       "scenes": [
-        "edit page",
-        "detail form",
-        "data entry"
+        "编辑页",
+        "详情表单",
+        "数据录入"
       ],
       "anti": [
-        "do not build complex forms with loose inputs only"
+        "不要只用零散 Input 拼复杂表单"
       ],
       "usage": "<Form><Form.Item label=\"标题\"><Input.Text /></Form.Item></Form>"
     },
@@ -349,18 +349,18 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "input",
-        "textarea",
-        "search input"
+        "输入框",
+        "多行文本",
+        "搜索框"
       ],
       "scenes": [
-        "text input",
-        "search",
-        "password",
-        "number"
+        "文本输入",
+        "搜索",
+        "密码",
+        "数字"
       ],
       "anti": [
-        "avoid native inputs when library input exists"
+        "库内已有 Input 时不要用手写原生 input"
       ],
       "usage": "<Input.Text placeholder=\"请输入\" />"
     },
@@ -378,18 +378,18 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "page wrapper",
-        "screen container",
-        "layout root"
+        "页面外壳",
+        "整屏容器",
+        "布局根节点"
       ],
       "scenes": [
-        "list page",
-        "detail page",
-        "edit page",
-        "full page"
+        "列表页",
+        "详情页",
+        "编辑页",
+        "全屏页"
       ],
       "anti": [
-        "do not build a page without Page"
+        "页面不要不用 Page 组件"
       ],
       "usage": "<Page><Page.Main>...</Page.Main></Page>"
     },
@@ -398,17 +398,17 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "ul",
-        "list container",
-        "row list"
+        "ul 列表",
+        "列表容器",
+        "行列表"
       ],
       "scenes": [
-        "list display",
-        "items display",
-        "simple list"
+        "列表展示",
+        "条目展示",
+        "简单列表"
       ],
       "anti": [
-        "do not rebuild list layout with repeated div rows"
+        "不要用重复 div 行重造列表布局"
       ],
       "usage": "<List.Item title=\"标题\" description=\"描述\" />"
     },
@@ -426,15 +426,15 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "manual list with pager",
-        "paged data table on mobile"
+        "手写分页列表",
+        "移动端分页数据表"
       ],
       "scenes": [
-        "paginated list",
-        "query result list"
+        "分页列表",
+        "查询结果列表"
       ],
       "anti": [
-        "avoid manual pagination scaffolding when ListPagination fits"
+        "能用 ListPagination 时不要手写分页脚手架"
       ],
       "usage": "<ListPagination />"
     },
@@ -470,17 +470,17 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "empty state",
-        "error page",
-        "status screen"
+        "空状态",
+        "错误页",
+        "状态屏"
       ],
       "scenes": [
-        "error",
-        "empty",
-        "success summary"
+        "错误",
+        "空数据",
+        "成功摘要"
       ],
       "anti": [
-        "avoid custom empty/error blocks when Result fits"
+        "能用 Result 时不要手写空态/错误块"
       ],
       "usage": "<Result status=\"empty\" title=\"暂无数据\" />"
     },
@@ -534,16 +534,16 @@
       "kind": "component",
       "priority": 2,
       "replace": [
-        "select",
-        "dropdown select"
+        "下拉选择",
+        "枚举选择"
       ],
       "scenes": [
-        "single select",
-        "enum choice",
-        "status choice"
+        "单选",
+        "枚举项",
+        "状态选择"
       ],
       "anti": [
-        "avoid raw select if Select.Combo already solves it"
+        "Select.Combo 已能覆盖时不要手写原生 select"
       ],
       "usage": "<Select.Combo list={list} />"
     },
@@ -597,17 +597,17 @@
       "kind": "component",
       "priority": 1,
       "replace": [
-        "filter header",
-        "search toolbar",
-        "actions row"
+        "筛选顶栏",
+        "搜索工具条",
+        "操作行"
       ],
       "scenes": [
-        "list header",
-        "search + filter",
-        "toolbar controls"
+        "列表顶栏",
+        "搜索与筛选",
+        "工具栏控件"
       ],
       "anti": [
-        "avoid custom filter rows when ToolBar fits"
+        "能用 ToolBar 时不要手写筛选行"
       ],
       "usage": "<ToolBar><ToolBar.Search /><ToolBar.Filter /></ToolBar>"
     },
@@ -697,16 +697,16 @@
       "kind": "util",
       "priority": 1,
       "replace": [
-        "manual date format",
-        "manual date math"
+        "手写日期格式化",
+        "手写日期运算"
       ],
       "scenes": [
-        "format date",
-        "compare dates",
-        "date range logic"
+        "格式化日期",
+        "日期比较",
+        "日期区间逻辑"
       ],
       "anti": [
-        "avoid custom date helpers when DateUtil exists"
+        "已有 DateUtil 时不要另写日期工具函数"
       ],
       "usage": "DateUtil.format(new Date(), 'YYYY-MM-DD')"
     },
@@ -769,16 +769,16 @@
       "kind": "util",
       "priority": 2,
       "replace": [
-        "hard-coded copy",
-        "manual locale helper"
+        "硬编码文案",
+        "手写多语言辅助"
       ],
       "scenes": [
-        "user-facing text",
-        "button text",
-        "messages"
+        "用户可见文案",
+        "按钮文字",
+        "提示信息"
       ],
       "anti": [
-        "avoid leaving visible text outside locale flow"
+        "可见文案不要脱离国际化流程"
       ],
       "usage": "LocaleUtil.locale('确定', 'lyrixi.ok')"
     },
@@ -814,16 +814,16 @@
       "kind": "util",
       "priority": 1,
       "replace": [
-        "custom fetch wrapper",
-        "ad-hoc request helper"
+        "自定义 fetch 封装",
+        "临时请求辅助"
       ],
       "scenes": [
-        "get data",
-        "post data",
-        "page query"
+        "GET 数据",
+        "POST 数据",
+        "分页查询"
       ],
       "anti": [
-        "avoid inventing another request abstraction"
+        "不要另造一套请求抽象"
       ],
       "usage": "Request.get('/api/list', payload)"
     },
@@ -832,15 +832,15 @@
       "kind": "util",
       "priority": 2,
       "replace": [
-        "localStorage wrapper",
-        "manual cache helper"
+        "localStorage 封装",
+        "手写缓存辅助"
       ],
       "scenes": [
-        "cache state",
-        "remember search params"
+        "缓存状态",
+        "记住查询条件"
       ],
       "anti": [
-        "avoid direct scattered localStorage usage"
+        "避免到处直接读写 localStorage"
       ],
       "usage": "Storage.setLocalStorage('key', value)"
     },
@@ -858,15 +858,15 @@
       "kind": "util",
       "priority": 1,
       "replace": [
-        "classnames helper",
-        "manual dom utility"
+        "className 合并工具",
+        "手写 DOM 工具"
       ],
       "scenes": [
-        "merge class names",
-        "event helpers"
+        "合并类名",
+        "事件辅助"
       ],
       "anti": [
-        "avoid hand-written class name concatenation"
+        "避免手写字符串拼接类名"
       ],
       "usage": "DOMUtil.classNames('foo', bar && 'bar')"
     }

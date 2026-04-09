@@ -1,4 +1,4 @@
-# Detail Page Example
+# 详情页示例
 
 ## 模板类型
 
@@ -93,7 +93,7 @@ const FormDetail = () => {
       {result?.data && (
         <Page.Main>
           <Card>
-            <Divider>Horizontal Layout</Divider>
+            <Divider>横向布局</Divider>
             <Form style={{ marginLeft: '12px' }}>
               <Form.Item label={locale('Select')}>
                 <Text>{Text.getDisplayValue(result?.data?.select)}</Text>

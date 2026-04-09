@@ -1,4 +1,4 @@
-# Edit Page Example
+# 编辑页示例
 
 ## 模板类型
 
