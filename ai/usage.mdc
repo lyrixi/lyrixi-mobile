@@ -1,22 +1,20 @@
 ---
-description: Lyrixi — 编写规范（聚合导入、Page 壳、组件与工具选择）
+description: Lyrixi-mobile 库使用守则（导入、组件与工具选择）
 globs:
-  - "**/*.{js,jsx,ts,tsx}"
+  - '**/*.{js,jsx,ts,tsx}'
 alwaysApply: false
 ---
 
-# Lyrixi AI 编写规范
+# Lyrixi-mobile 使用守则
+
+与同目录 **`usage.json`** 配合使用：该文件由 `scripts/build-ai.js` 根据 `src/index.js` 导出**自动生成**，按组件/工具列出 `scenes`、`anti`、`usage` 等结构化说明；**工具（`kind: util`）**另含 **`description`**（中文概要，说明职责与典型场景）。**本文件**写**原则与约定**（导入、Page 壳、选型方向），二者互补，查 API 细节仍以官方文档为准。
 
 ## 强约束
 
-- 优先使用 `lyrixi-mobile` 已有组件与工具，不要重复造轮子。
-- 优先使用从包入口聚合导入（barrel import：从 `lyrixi-mobile` 根路径一次导入多个导出）：
-  - `import { Button, Page } from 'lyrixi-mobile'`
-  - `import { DOMUtil, DateUtil } from 'lyrixi-mobile'`
-- 只有在用户明确要求，或当前文件已经统一使用子路径导入时，才使用：
-  - `lyrixi-mobile/components/X`
-  - `lyrixi-mobile/utils/X`
-- 在用户明确要求使用 `lyrixi-mobile` 时，不要引入其它 UI 库。
+- 仅允许使用`lyrixi-mobile` UI 库，不要引入其它 UI 库。
+
+## 页面构建原则
+
 - 页面必须以 `<Page>` 为壳，根据场景使用：
   - `<Page.Header>`
   - `<Page.Main>`
@@ -40,13 +38,13 @@ alwaysApply: false
 
 ## 导入规范
 
-**推荐（聚合导入）：**
+**聚合导入：**
 
 ```jsx
 import { Page, Button, DOMUtil } from 'lyrixi-mobile'
 ```
 
-**也允许（子路径按需导入）：**
+**只有在用户明确要求，或当前文件已经统一使用子路径导入时,才使用：**
 
 ```jsx
 import Page from 'lyrixi-mobile/components/Page'
@@ -60,9 +58,3 @@ import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 - 多选值通常为：`Array<{ id, name }>`
 - 列表数据通常为：`[{ id, name, ... }]`
 - 通过 `onChange` / `onSelect` 更新值
-
-## 页面模板约定
-
-- 列表页：`Page.Header` 放搜索/筛选，`Page.Main` 放 `ListPagination`
-- 详情页：`Page.Main` 放 `Card/Form` 或 `Result`，`Page.Footer` 放操作
-- 编辑页：`Page.Main` 放 `Form`，`Page.Footer` 放保存/取消
