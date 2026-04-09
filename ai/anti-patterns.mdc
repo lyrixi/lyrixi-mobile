@@ -43,7 +43,7 @@ alwaysApply: false
   - 子元素/插槽（Elements）
   - 校验（Validate）
   - 事件（Events）
-- 不要忽略受控值结构约定：
+- 不要忽略受控值结构约定（细则见 `develop.mdc`）：
   - 单选值通常为 `{ id, name }`
   - 多选值通常为 `Array<{ id, name }>`
   - 列表数据通常为 `[{ id, name, ... }]`

@@ -327,7 +327,7 @@ function main() {
   const data = {
     library: 'lyrixi-mobile',
     strategy: 'replace-native-and-compose-library-components',
-    entry: 'ai/README.mdc',
+    entry: 'ai/README.md',
     // 与 usage.mdc 互补：本 JSON 为结构化清单，原则性守则见 usage.mdc
     usageMdc: 'ai/usage.mdc',
     components: readExports()

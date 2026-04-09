@@ -52,9 +52,4 @@ import Button from 'lyrixi-mobile/components/Button'
 import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 ```
 
-## 值结构约定
-
-- 单选值通常为：`{ id, name }`
-- 多选值通常为：`Array<{ id, name }>`
-- 列表数据通常为：`[{ id, name, ... }]`
-- 通过 `onChange` / `onSelect` 更新值
+业务侧**值结构、事件、import 顺序、命名与目录**等约定见 **`develop.mdc`**。

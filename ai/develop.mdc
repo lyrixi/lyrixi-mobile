@@ -1,0 +1,107 @@
+---
+description: 业务项目开发规范（值结构、事件、import、命名与目录）
+globs:
+  - '**/*.{js,jsx,ts,tsx}'
+alwaysApply: false
+---
+
+# 开发规范
+
+与 `usage.mdc`（lyrixi-mobile 库使用守则）互补：本文件约束**业务代码**的值结构、事件、import 顺序、命名与目录习惯；不包含组件库 API 细则。
+
+## 值结构约定
+
+- 单选值通常为：`{ id, name }`
+- 多选值通常为：`Array<{ id, name }>`
+- 列表数据通常为：`[{ id, name, ... }]`
+- 通过 `onChange` / `onSelect` 更新受控值
+
+## 事件约定
+
+- **Props 回调命名**：`on` + 大写首字母的事件语义，即 `onXxx` 形式；若中间含名词，名词放在 `on` 之后、事件语义之前。
+  - 示例：`onVisibleChange`、`onButtonClick`、`onSearch`、`onSelect`
+- **组件内处理函数命名**：与 props 对应，`handle` + 与 `on` 后相同的一段。
+  - 示例：`onChange` → `handleChange`；`onVisibleChange` → `handleVisibleChange`；`onButtonClick` → `handleButtonClick`
+
+## import 顺序
+
+同一文件内建议按下列分组，**组与组之间空一行**：
+
+1. **外部依赖**：`react`、`react-dom` 等框架与第三方包（含 `lyrixi-mobile`）。
+2. **（可选）类型**：`import type` / `typeof` 仅类型的导入可与上一组合并或紧随其后。
+3. **项目别名 / 绝对路径**：如 `@/`、`src/` 等业务配置路径。
+4. **相对路径**：父级 `../` 先于同级 `./`；先工具与常量，再组件。
+
+同组内可按**包名字母序**或团队习惯排序，保持文件内一致即可。
+
+## 命名规范
+
+总则：**参考主流前端习惯**；使用**意义贴切、可读的英文**，避免拼音与无意义缩写。
+
+### 页面 / 路由命名
+
+- 列表：`List`
+- 明细（业务单据一条）：`Record`
+- 编辑：`Edit`
+- 详情（只读展示）：`Detail`
+
+### className（全局样式类名）
+
+- **组件库自带**：使用库提供的全局 class（如 lyrixi 的 token 类名）。
+- **业务自定义**：需带**业务前缀**，避免与库、其它业务冲突。
+  - 示例：`merp-`、`dms-` 等 + 模块或组件语义。
+
+### 布局区块命名（文件夹或组件语义）
+
+- 头部：`Header`
+- 底部：`Footer`
+- 中间主区域：`Main`
+- 侧边筛选：`Filter` 或查询区：`Query`
+
+### 数据初始化
+
+- 页面或模块内拉取首屏数据的方法名：**`loadData`**
+
+### 查询参数 `queryParams`
+
+- 若需将 `dayjs`、`Date`、数组、对象等转为服务端要求的字符串/query 串，在业务项目已提供的前提下，可使用：  
+  **`...QueryUtil.convertQueryParams(queryParams)`**（具体以项目内 `QueryUtil` 实现为准）。
+
+### API 层（`api` 文件夹或独立 `api` 文件）
+
+- **请求与接口封装**集中放在 `api` 目录或 `*.js`/`*.ts` 中。
+- 与后端交互的命名建议：
+  - **增/改提交**：`saveXxx`
+  - **删除**：`deleteXxx`
+  - **查询**：`queryXxx`
+- **服务端结构与前端结构互转**（仅 query/save 等接口层使用）：
+  - 服务端形态：`serverXxx`，如 `serverData`、`serverPhoto`
+  - 本地形态：`localXxx`，如 `localData`、`localPhoto`
+  - 上述转换函数**与接口同层**，放在 **api** 目录/文件中，而非散落页面。
+
+### 工具函数
+
+- 非组件的纯函数、格式化、校验等：放在 **`utils`** 文件夹或 `utils` 相关文件中。
+
+### ref 与 DOM 引用
+
+- React ref：`xxRef`，如 `rootRef`、`listRef`
+- 保存真实 DOM 节点变量：`xxEl`，如 `rootEl`、`inputEl`
+
+### 布尔属性（启停、显隐）
+
+- **启用/禁用**：动词在前 — `enableXxx`、`disableXxx`
+- **显隐**：优先 `visible`；若语义上 `visible` 不能准确表达，则用 **`xxVisible`**
+
+### 非公用组件目录
+
+- **非复用、仅本页使用的组件**不要单独建 `components` 包裹一层；可直接放在页面目录下（如 `Header`、`Main` 与 `index` 同级），与 `examples` 中列表/详情模板一致。
+
+### tableId（若业务需要稳定表格标识）
+
+- 建议：`${menuId}-模块名-功能名`（按项目 menuId 与模块划分调整）。
+
+## 命名的规则（再强调）
+
+1. 参考**主流**（React / 社区常见）写法。
+2. 英文**语义准确**，见名知意。
