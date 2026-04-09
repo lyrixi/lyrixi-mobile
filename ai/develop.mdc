@@ -76,6 +76,34 @@ alwaysApply: false
 - 加载数据: 引入`api`, 定义`loadData`调用 api 的 queryData
 - 渲染页面: 引入`Header`、`Main`、`Footer`
 
+示例:
+
+```jsx
+const Common = () => {
+  // 查询参数
+  let [queryParams, setQueryParams] = useState({})
+
+  return (
+    <Page>
+      {/* 头部 */}
+      <Header
+        queryParams={queryParams}
+        onSearch={(newQueryParams) => {
+          queryParams = newQueryParams
+          setQueryParams(newQueryParams)
+        }}
+      />
+
+      {/* 主体 */}
+      <Main queryParams={queryParams} />
+
+      {/* 底部 */}
+      <Footer onSave={handleSave} />
+    </Page>
+  )
+}
+```
+
 ## className 类名
 
 `项目前缀(可以防冲突)-功能名`, 多个样式, 使用`DOMUtil.classNames`包裹
