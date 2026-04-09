@@ -7,44 +7,19 @@ alwaysApply: false
 
 # Lyrixi-mobile 使用守则
 
-与同目录 **`usage.json`** 配合使用：该文件由 `scripts/build-ai.js` 根据 `src/index.js` 导出**自动生成**，按组件/工具列出 `scenes`、`anti`、`usage` 等结构化说明；**工具（`kind: util`）**另含 **`description`**（中文概要，说明职责与典型场景）。**本文件**写**原则与约定**（导入、Page 壳、选型方向），二者互补，查 API 细节仍以官方文档为准。
-
 ## 强约束
 
 - 仅允许使用`lyrixi-mobile` UI 库，不要引入其它 UI 库。
 
-## 页面构建原则
-
-- 页面必须以 `<Page>` 为壳，根据场景使用：
-  - `<Page.Header>`
-  - `<Page.Main>`
-  - `<Page.Footer>`
-
-## 组件选择原则
-
-- 布局：`Page`、`Card`、`Flex`、`Row`、`SafeArea`
-- 导航：`NavBar`、`TabBar`、`FooterBar`、`ToolBar`
-- 表单：`Form`、`Input.*`、`Select`、`DatePicker`、`Checkbox`、`Switch`
-- 展示：`List`、`ListPagination`、`Result`、`Skeleton`、`Loading`
-- 反馈：`Modal`、`ActionSheet`、`Toast`、`Message`
-
-## 工具选择原则
-
-- className 合并：`DOMUtil.classNames`
-- 日期处理：`DateUtil`
-- 存储：`Storage`
-- 网络请求：`Request`
-- 国际化：`LocaleUtil.locale`
-
 ## 导入规范
 
-**聚合导入：**
+- 强制使用聚合导入
 
 ```jsx
 import { Page, Button, DOMUtil } from 'lyrixi-mobile'
 ```
 
-**只有在用户明确要求，或当前文件已经统一使用子路径导入时,才使用：**
+- 只有在用户明确要求, 或当前文件已经统一使用子路径导入时, 才允许使用子路径导入
 
 ```jsx
 import Page from 'lyrixi-mobile/components/Page'
@@ -52,4 +27,22 @@ import Button from 'lyrixi-mobile/components/Button'
 import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 ```
 
-业务侧**值结构、事件、import 顺序、命名与目录**等约定见 **`develop.mdc`**。
+## 组件与工具的选择
+
+在同目录的`usage.json`文件中, 有对每个组件和 utils 的详情描述
+
+### 组件选择原则
+
+- 布局：`Page`、`Card`、`Flex`、`Row`、`SafeArea`
+- 导航：`NavBar`、`TabBar`、`FooterBar`、`ToolBar`
+- 表单：`Form`、`Input.*`、`Select`、`DatePicker`、`Checkbox`、`Switch`
+- 展示：`List`、`ListPagination`、`Result`、`Skeleton`、`Loading`
+- 反馈：`Modal`、`ActionSheet`、`Toast`、`Message`
+
+### 工具选择原则
+
+- className 合并：`DOMUtil.classNames`
+- 日期处理：`DateUtil`
+- 存储：`Storage`
+- 网络请求：`Request`
+- 国际化：`LocaleUtil.locale`

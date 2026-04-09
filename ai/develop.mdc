@@ -11,10 +11,13 @@ alwaysApply: false
 
 ## 不同类型页面开发模板
 
-- 详情页面: `lyrixi-mobile/src/examples/Detail/demos/Form`
-- 新增编辑页面(不带缓存): `lyrixi-mobile/src/examples/Edit/demos/Common`
-- 新增编辑页面(带缓存): `lyrixi-mobile/src/examples/Edit/demos/Cache`
-- 列表页面: `lyrixi-mobile/src/examples/List/demos/Common`
+- 详情页面: `lyrixi-mobile/src/examples/Detail/demos/Form`, 详细描述见:`examples/detail-page.mdc`
+
+- 新增编辑页面(不带缓存): `lyrixi-mobile/src/examples/Edit/demos/Common`, 详细描述见:`examples/edit-page.mdc`
+- 新增编辑页面(带缓存): `lyrixi-mobile/src/examples/Edit/demos/Cache`, 详细描述见:`examples/edit-page.mdc`
+
+- 列表页面(不带缓存): `lyrixi-mobile/src/examples/List/demos/Common`, 详细描述见:`examples/list-page.mdc`
+- 列表页面(带缓存): `lyrixi-mobile/src/examples/List/demos/Cache`, 详细描述见:`examples/list-page.mdc`
 
 详细描述如下：
 
