@@ -19,7 +19,7 @@ function copyRecursive(src, dest) {
 const projectRoot = process.cwd()
 const packageRoot = path.join(__dirname, '..')
 const sourceDir = path.join(packageRoot, 'ai')
-const destDir = path.join(projectRoot, '.cursor', 'rules', 'lyrixi-mobile')
+const destDir = path.join(projectRoot, '.cursor', 'rules')
 
 if (!fs.existsSync(sourceDir)) {
   console.error('❌ Missing ai/ in lyrixi-mobile package:', sourceDir)

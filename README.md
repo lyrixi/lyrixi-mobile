@@ -11,7 +11,7 @@ Minimalist Token, Unified API, Simple and easy to use</div>
 
 </div>
 
-> **For AI assistants (Cursor, Copilot, etc.):** When generating code that uses this library, read **[ai/README.md](./ai/README.md)** in the package. It summarizes the AI rules, development conventions (**[ai/develop.mdc](./ai/develop.mdc)**), patterns, anti-patterns, structured per-export usage (**[ai/usage.json](./ai/usage.json)**), and page-level examples. After `npm install`, run `npx lyrixi-mobile-ai` to copy these into `.cursor/rules/lyrixi-mobile/`. Full API: [lyrixi.github.io/lyrixi-mobile](https://lyrixi.github.io/lyrixi-mobile).
+> **For AI assistants (Cursor, Copilot, etc.):** When generating code that uses this library, read **[ai/README.md](./ai/README.md)** in the package. It summarizes the AI rules, development conventions (**[ai/develop.mdc](./ai/develop.mdc)**), patterns, anti-patterns, structured per-export usage (**[ai/usage.json](./ai/usage.json)**), and page-level examples. After `npm install`, run `npx lyrixi-mobile-ai` to copy these into `.cursor/rules/`. Full API: [lyrixi.github.io/lyrixi-mobile](https://lyrixi.github.io/lyrixi-mobile).
 
 ## 📦 CSS
 
