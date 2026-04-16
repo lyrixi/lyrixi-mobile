@@ -7,17 +7,16 @@ new vconsole()
 export default () => {
   const [list, setList] = useState([
     {
-      name: '1.jpg',
-      src: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg'
+      fileName: '1.jpg',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg'
     },
     {
-      name: '2.doc',
-      src: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.docx'
+      fileName: '2.doc',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.docx'
     },
     {
-      name: '2022_PDF.pdf',
-      size: 1024 * 1024 * 21,
-      src: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.pdf'
+      fileName: '2022_PDF.pdf',
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.pdf'
     }
   ])
   function handlePhotoChange(newList) {
