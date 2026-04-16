@@ -1,0 +1,4 @@
+- 必须通过 title 或 headerRender 定义头部
+- 内容必须作为 children 传入
+- 不允许用 div 模拟折叠效果
+- 只用于可折叠内容，不用于普通布局

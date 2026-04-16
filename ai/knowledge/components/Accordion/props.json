@@ -1,0 +1,7 @@
+{
+  "open": "boolean",
+  "title": "ReactNode",
+  "children": "ReactNode",
+  "onOpen": "() => void",
+  "onClose": "() => void"
+}
