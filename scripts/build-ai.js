@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 const rootDir = path.resolve(__dirname, '..')
-const srcIndexPath = path.join(rootDir, 'src', 'index.js')
+const srcIndexPath = path.join(rootDir, 'src', 'index.ts')
 const outputPath = path.join(rootDir, 'ai', 'usage.json')
 
 const metadata = {
