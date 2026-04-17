@@ -1,0 +1,16 @@
+{
+  "Accordion.Group": {
+    "value": "number | null | undefined — 受控时当前展开子项索引；与 onChange 同时存在时由外部同步（useEffect 在二者都存在时用 value 更新内部状态）",
+    "style": "CSSProperties | undefined — 根节点样式",
+    "className": "string | undefined — 根节点类名，基础类 lyrixi-accordion-group",
+    "children": "ReactElement（通常为多个 Accordion）— 通过 React.Children.map + cloneElement 注入 open/onOpen/onClose",
+    "onChange": "(index: number | null) => void | undefined — 子项展开时传该项 index，收起时传 null；受控时需在此更新 value"
+  },
+  "Accordion.Group.ref": {
+    "element": "HTMLDivElement | null — 根 DOM",
+    "getElement": "() => HTMLDivElement | null",
+    "getActiveIndex": "() => number | null — 当前展开项索引",
+    "openIndex": "(index: number) => void — 有 onChange 时调用 onChange(index)，否则 setActiveIndex(index)",
+    "close": "() => void — 有 onChange 时 onChange(null)，否则 setActiveIndex(null)"
+  }
+}

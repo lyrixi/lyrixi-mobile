@@ -1,0 +1,24 @@
+{
+  "Accordion": {
+    "open": "boolean | undefined — 是否展开，默认 false；受控时由外部同步",
+    "style": "CSSProperties | undefined — 根节点样式",
+    "className": "string | undefined — 根节点类名；展开时根节点会额外带 lyrixi-active",
+    "minHeight": "number | undefined — 折叠时内容区最小可见高度，传给 AccordionTransition，默认 0",
+    "title": "ReactNode | undefined — 与 headerRender 二选一；有 title 时渲染默认头部（含箭头与点击展开）",
+    "headerRender": "(props: { open: boolean; onClick: () => void }) => ReactNode | undefined — 自定义整个头部；提供时不再使用 title 默认头",
+    "ellipsis": "{ expandText: string; collapseText: string } | undefined — 底部「展开/收起」文案；两者都存在时才渲染默认省略条",
+    "ellipsisRender": "(props: { open: boolean; onClick: () => void }) => ReactNode | undefined — 自定义底部区域，优先级高于 ellipsis",
+    "arrowClassName": "string — 箭头 Icon 的 className，默认 'lyrixi-iconfont-arrow-up'（无 arrowRender 时生效）",
+    "arrowPosition": "'left' | 'right' — 箭头在标题/省略条中的位置，默认 'right'",
+    "arrowRender": "(props: { open: boolean }) => ReactNode | undefined — 自定义箭头；提供时包裹在 lyrixi-accordion-arrow 内",
+    "children": "ReactNode — 折叠主体内容，包在 lyrixi-accordion-main 中",
+    "onOpen": "() => void | undefined — 展开时回调；若提供，点击展开与 ref.open() 均走此回调，不再内部 setOpen（需配合受控 open 或 Group 注入）",
+    "onClose": "() => void | undefined — 收起时回调；若提供，点击收起与 ref.close() 均走此回调"
+  },
+  "Accordion.ref": {
+    "element": "HTMLDivElement | null — 根 DOM",
+    "getElement": "() => HTMLDivElement | null",
+    "open": "() => void — 无 onOpen 时内部 setOpen(true)；有 onOpen 时调用 onOpen()",
+    "close": "() => void — 无 onClose 时内部 setOpen(false)；有 onClose 时调用 onClose()"
+  }
+}
