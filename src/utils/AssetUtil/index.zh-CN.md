@@ -8,8 +8,8 @@ title: AssetUtil
 
 ## 示例
 
-<code src="./demos/AssetUtil.jsx"></code>
+<code src="./demos/AssetUtil.tsx"></code>
 
 ## loadJs
 
-<code src="./demos/loadJs.jsx"></code>
+<code src="./demos/loadJs.tsx"></code>

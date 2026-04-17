@@ -1,6 +1,6 @@
 const axios = require('axios')
 const chalk = require('chalk')
-const languageMap = require('lyrixi-mobile/utils/LocaleUtil/languageMap.js')
+const languageMap = require('lyrixi-mobile/utils/LocaleUtil/languageMap')
 
 module.exports = async function bingTranslate(text, config) {
   const from = languageMap[config.from].translate.bing
