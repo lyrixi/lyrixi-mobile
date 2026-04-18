@@ -1,0 +1,44 @@
+// @ts-nocheck
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-start */
+
+const ConfirmIcon = forwardRef(
+  (
+    {
+      children,
+      // 其它属性
+      className,
+      style
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
+
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
+    })
+
+    return (
+      <div
+        style={style}
+        className={DOMUtil.classNames('lyrixi-message-icon', className)}
+        ref={rootRef}
+      >
+        {children}
+      </div>
+    )
+  }
+)
+
+export default ConfirmIcon

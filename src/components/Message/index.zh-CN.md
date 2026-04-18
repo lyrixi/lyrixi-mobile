@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Message.jsx"></code>
+<code src="./demos/Message.tsx"></code>
 
 ## API
 
@@ -99,7 +99,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Modal.jsx"></code>
+<code src="./demos/Modal.tsx"></code>
 
 ### API
 
@@ -121,7 +121,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Combo.jsx"></code>
+<code src="./demos/Combo.tsx"></code>
 
 ### API
 
@@ -143,7 +143,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MessageHeader.jsx"></code>
+<code src="./demos/MessageHeader.tsx"></code>
 
 ### API
 
@@ -172,7 +172,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MessageMain.jsx"></code>
+<code src="./demos/MessageMain.tsx"></code>
 
 ### API
 
@@ -201,7 +201,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MessageFooter.jsx"></code>
+<code src="./demos/MessageFooter.tsx"></code>
 
 ### API
 
@@ -230,7 +230,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MessageIcon.jsx"></code>
+<code src="./demos/MessageIcon.tsx"></code>
 
 ### API
 
@@ -259,7 +259,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MessageTitle.jsx"></code>
+<code src="./demos/MessageTitle.tsx"></code>
 
 ### API
 
@@ -288,7 +288,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MessageButton.jsx"></code>
+<code src="./demos/MessageButton.tsx"></code>
 
 ### API
 

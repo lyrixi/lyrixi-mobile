@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Calendar.jsx"></code>
+<code src="./demos/Calendar.tsx"></code>
 
 ## API
 
@@ -66,7 +66,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CalendarHeader.jsx"></code>
+<code src="./demos/CalendarHeader.tsx"></code>
 
 ### API
 

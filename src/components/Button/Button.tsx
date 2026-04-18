@@ -86,7 +86,6 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
       style={newStyle}
       className={newClassName}
       onClick={onClick}
-      // 非标准：div 上保留 disabled 以兼容旧用法与样式
       {...({ disabled } as { disabled?: boolean })}
     >
       {children}

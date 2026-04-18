@@ -21,7 +21,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/TabBarTabs.jsx"></code>
+<code src="./demos/TabBarTabs.tsx"></code>
 
 ### API
 
@@ -56,7 +56,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/TabBarSlide.jsx"></code>
+<code src="./demos/TabBarSlide.tsx"></code>
 
 ### API
 
@@ -78,7 +78,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/TabBarMenus.jsx"></code>
+<code src="./demos/TabBarMenus.tsx"></code>
 
 ### API
 
@@ -100,7 +100,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/TabBarGroup.jsx"></code>
+<code src="./demos/TabBarGroup.tsx"></code>
 
 ### API
 
