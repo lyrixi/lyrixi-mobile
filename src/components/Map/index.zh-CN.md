@@ -19,7 +19,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapMapContainer.jsx"></code>
+<code src="./demos/MapMapContainer.tsx"></code>
 
 ### API
 
@@ -73,7 +73,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapZoomControl.jsx"></code>
+<code src="./demos/MapZoomControl.tsx"></code>
 
 ### API
 
@@ -101,7 +101,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapSearchControl.jsx"></code>
+<code src="./demos/MapSearchControl.tsx"></code>
 
 ### API
 
@@ -129,7 +129,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapCenterMarker.jsx"></code>
+<code src="./demos/MapCenterMarker.tsx"></code>
 
 ### API
 
@@ -157,7 +157,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapMarkers.jsx"></code>
+<code src="./demos/MapMarkers.tsx"></code>
 
 ### API
 
@@ -186,7 +186,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapCircles.jsx"></code>
+<code src="./demos/MapCircles.tsx"></code>
 
 ### API
 
@@ -215,7 +215,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapPolyline.jsx"></code>
+<code src="./demos/MapPolyline.tsx"></code>
 
 ### API
 
@@ -245,7 +245,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapPolygon.jsx"></code>
+<code src="./demos/MapPolygon.tsx"></code>
 
 ### API
 
@@ -277,7 +277,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapLocationControl.jsx"></code>
+<code src="./demos/MapLocationControl.tsx"></code>
 
 ### API
 
@@ -305,7 +305,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/MapNearbyControl.jsx"></code>
+<code src="./demos/MapNearbyControl.tsx"></code>
 
 ### API
 
@@ -333,7 +333,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/PageMapChoose.jsx"></code>
+<code src="./demos/PageMapChoose.tsx"></code>
 
 ### API
 
@@ -362,7 +362,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/PageMapMarkers.jsx"></code>
+<code src="./demos/PageMapMarkers.tsx"></code>
 
 ### API
 

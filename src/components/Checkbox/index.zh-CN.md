@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Checkbox.jsx"></code>
+<code src="./demos/Checkbox.tsx"></code>
 
 ## API
 
@@ -57,7 +57,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CheckboxGroup.jsx"></code>
+<code src="./demos/CheckboxGroup.tsx"></code>
 
 ### API
 
