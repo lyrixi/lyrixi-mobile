@@ -1,3 +1,4 @@
+// @ts-nocheck
 const path = require('path')
 const fs = require('fs')
 const translateFolder = require('./utils/translateFolder')

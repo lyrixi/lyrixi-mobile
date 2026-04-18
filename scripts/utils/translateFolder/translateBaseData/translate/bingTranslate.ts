@@ -1,3 +1,4 @@
+// @ts-nocheck
 const axios = require('axios')
 const chalk = require('chalk')
 const languageMap = require('lyrixi-mobile/utils/LocaleUtil/languageMap')

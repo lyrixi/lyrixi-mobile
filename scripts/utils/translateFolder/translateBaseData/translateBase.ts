@@ -1,3 +1,4 @@
+// @ts-nocheck
 const _ = require('lodash')
 const translate = require('./translate/index')
 const chalk = require('chalk')

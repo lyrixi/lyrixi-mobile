@@ -1,3 +1,4 @@
+// @ts-nocheck
 const chalk = require('chalk')
 
 // 提取到locale中需要国际化的文字到根基文件

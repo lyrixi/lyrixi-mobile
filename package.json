@@ -47,11 +47,11 @@
     "README.md"
   ],
   "scripts": {
-    "build": "father build && node scripts/build-after.js",
-    "build:ai": "node scripts/build-ai.js",
+    "build": "father build && tsx scripts/build-after.ts",
+    "build:ai": "tsx scripts/build-ai.ts",
     "build:watch": "father dev",
     "dev": "dumi dev",
-    "docs:build": "dumi build && node scripts/docs-after/index.js",
+    "docs:build": "dumi build && tsx scripts/docs-after/index.ts",
     "docs:preview": "dumi preview",
     "doctor": "father doctor",
     "lint": "npm run lint:es && npm run lint:css",
@@ -60,7 +60,7 @@
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev",
-    "translate": "node scripts/translate-src.js"
+    "translate": "tsx scripts/translate-src.ts"
   },
   "commitlint": {
     "extends": [
@@ -118,6 +118,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "stylelint": "^14.9.1",
+    "tsx": "^4.19.2",
     "typescript": "~5.6.0"
   },
   "peerDependencies": {

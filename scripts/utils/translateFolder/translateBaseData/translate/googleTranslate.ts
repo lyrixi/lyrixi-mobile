@@ -1,3 +1,4 @@
+// @ts-nocheck
 const google = require('@vitalets/google-translate-api')
 const HttpProxyAgent = require('http-proxy-agent')
 const languageMap = require('lyrixi-mobile/utils/LocaleUtil/languageMap')

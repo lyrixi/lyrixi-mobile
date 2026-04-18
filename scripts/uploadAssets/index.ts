@@ -1,3 +1,4 @@
+// @ts-nocheck
 const path = require('path')
 const assets = path.resolve(__dirname, './assets')
 const serverPathPrefix = 'serverPath/'

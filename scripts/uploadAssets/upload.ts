@@ -1,3 +1,4 @@
+// @ts-nocheck
 const OSS = require('ali-oss')
 const path = require('path')
 const fs = require('fs')
