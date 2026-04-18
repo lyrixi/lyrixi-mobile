@@ -3,7 +3,7 @@ export {}
 
 declare global {
   interface Window {
-    lyrixiLocaleData?: Record<string, unknown>
+    lyrixiLocaleData?: Record<string, string>
     lyrixiLocaleLanguage?: string
     dayjsPlugin?: unknown
     _debug_?: unknown
