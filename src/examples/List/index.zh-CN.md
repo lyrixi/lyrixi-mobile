@@ -8,16 +8,16 @@ title: 列表
 
 ## 普通列表
 
-<code src="./demos/Common/index.jsx"></code>
+<code src="./demos/Common/index.tsx"></code>
 
 ## 缓存列表
 
-<code src="./demos/Cache/index.jsx"></code>
+<code src="./demos/Cache/index.tsx"></code>
 
 ## IndexBar 列表
 
-<code src="./demos/IndexBar/index.jsx"></code>
+<code src="./demos/IndexBar/index.tsx"></code>
 
 ## 虚拟滚动列表
 
-<code src="./demos/Virtual/index.jsx"></code>
+<code src="./demos/Virtual/index.tsx"></code>

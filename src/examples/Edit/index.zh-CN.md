@@ -8,12 +8,12 @@ title: 编辑
 
 ## 布局
 
-<code src="./demos/Common/index.jsx"></code>
+<code src="./demos/Common/index.tsx"></code>
 
 ## 虚拟滚动
 
-<code src="./demos/Virtual/index.jsx"></code>
+<code src="./demos/Virtual/index.tsx"></code>
 
 ## 缓存
 
-<code src="./demos/Cache/index.jsx"></code>
+<code src="./demos/Cache/index.tsx"></code>

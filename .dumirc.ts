@@ -82,12 +82,12 @@ export default defineConfig({
       'zh-CN': [
         { title: '组件', link: '/components/install' },
         { title: '工具', link: '/utils' },
-        { title: '模板', link: '/pages' }
+        { title: '模板', link: '/examples' }
       ],
       'en-US': [
         { title: 'Components', link: '/en-US/components/install' },
         { title: 'Utils', link: '/en-US/utils' },
-        { title: 'Template', link: '/en-US/pages' }
+        { title: 'Template', link: '/en-US/examples' }
       ]
     },
     // 底部
@@ -101,7 +101,7 @@ export default defineConfig({
     compact: false
   },
   conventionRoutes: {
-    // to avoid generate routes for .dumi/pages/index/components/xx
+    // to avoid generate routes for .dumi/examples/index/components/xx
     exclude: [new RegExp('index/components/')]
   },
   resolve: {
@@ -110,7 +110,7 @@ export default defineConfig({
     // 原子资产
     atomDirs: [
       { type: 'components', dir: 'src/components' },
-      { type: 'pages', dir: 'src/pages' },
+      { type: 'examples', dir: 'src/examples' },
       { type: 'utils', dir: 'src/utils' }
     ]
     // codeBlockMode: 'passive',

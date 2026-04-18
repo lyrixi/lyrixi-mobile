@@ -8,4 +8,4 @@ title: 详情
 
 ## 表单
 
-<code src="./demos/Form/index.jsx"></code>
+<code src="./demos/Form/index.tsx"></code>
