@@ -1,0 +1,35 @@
+import React, { forwardRef } from 'react'
+
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+import Icon from './../Icon'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil, Icon } from 'lyrixi-mobile'
+测试使用-end */
+
+import type { IconProps, IconRef } from './../Icon'
+
+export type ButtonIconProps = IconProps
+
+const ButtonIcon = forwardRef<IconRef, ButtonIconProps>(function ButtonIcon(
+  { color, backgroundColor, size = 'm', radius, style, className, children },
+  ref
+) {
+  return (
+    <Icon
+      ref={ref}
+      color={color}
+      backgroundColor={backgroundColor}
+      size={size}
+      radius={radius}
+      style={style}
+      className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-button-icon', className)}
+    >
+      {children}
+    </Icon>
+  )
+})
+
+export default ButtonIcon

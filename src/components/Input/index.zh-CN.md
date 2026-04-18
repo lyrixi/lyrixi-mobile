@@ -23,7 +23,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputText.jsx"></code>
+<code src="./demos/InputText.tsx"></code>
 
 ### API
 
@@ -89,7 +89,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputNumber.jsx"></code>
+<code src="./demos/InputNumber.tsx"></code>
 
 ### API
 
@@ -112,7 +112,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputNumberBox.jsx"></code>
+<code src="./demos/InputNumberBox.tsx"></code>
 
 ### API
 
@@ -135,7 +135,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputNumberKeyboard.jsx"></code>
+<code src="./demos/InputNumberKeyboard.tsx"></code>
 
 ### API
 
@@ -158,7 +158,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputPassword.jsx"></code>
+<code src="./demos/InputPassword.tsx"></code>
 
 ### API
 
@@ -181,7 +181,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputPasswordStrength.jsx"></code>
+<code src="./demos/InputPasswordStrength.tsx"></code>
 
 ### API
 
@@ -204,7 +204,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputSearch.jsx"></code>
+<code src="./demos/InputSearch.tsx"></code>
 
 ### API
 
@@ -231,7 +231,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/InputTel.jsx"></code>
+<code src="./demos/InputTel.tsx"></code>
 
 ### API
 
@@ -254,7 +254,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/InputUrl.jsx"></code>
+<code src="./demos/InputUrl.tsx"></code>
 
 ### API
 
@@ -277,7 +277,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/InputTextarea.jsx"></code>
+<code src="./demos/InputTextarea.tsx"></code>
 
 ### API
 
@@ -300,7 +300,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/InputAutoSize.jsx"></code>
+<code src="./demos/InputAutoSize.tsx"></code>
 
 ### API
 
@@ -323,7 +323,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/InputOTP.jsx"></code>
+<code src="./demos/InputOTP.tsx"></code>
 
 ### API
 
@@ -346,7 +346,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/InputRange.jsx"></code>
+<code src="./demos/InputRange.tsx"></code>
 
 ### API
 
@@ -369,7 +369,7 @@ URL 输入框组件。
 
 ### 代码演示
 
-<code src="./demos/InputRate.jsx"></code>
+<code src="./demos/InputRate.tsx"></code>
 
 ### API
 
