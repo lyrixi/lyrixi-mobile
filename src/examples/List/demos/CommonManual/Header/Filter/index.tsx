@@ -1,7 +1,6 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { ToolBar, LocaleUtil, Input } from 'lyrixi-mobile'
-import { useExampleForm, ExampleForm as ExampleFormRoot } from '@examples-compat'
+import { ToolBar, LocaleUtil, Input, Form } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
@@ -16,7 +15,7 @@ function Filter({
   queryParams?: Record<string, unknown>
   onSearch?: (p: Record<string, unknown>) => void
 }) {
-  const [form] = useExampleForm()
+  const [form] = Form.useForm()
   const modifiedRef = useRef(false)
 
   const [active, setActive] = useState(false)
@@ -61,7 +60,7 @@ function Filter({
       }}
       modalRender={() => {
         return (
-          <ExampleFormRoot
+          <Form
             layout="vertical"
             form={form}
             onValuesChange={() => {
@@ -69,10 +68,10 @@ function Filter({
             }}
             style={{ marginLeft: '12px' }}
           >
-            <ExampleFormRoot.Item name="input" label={locale('单行文本框')}>
+            <Form.Item name="input" label={locale('单行文本框')}>
               <Input.Text allowClear placeholder={locale('请输入')} maxLength={50} />
-            </ExampleFormRoot.Item>
-          </ExampleFormRoot>
+            </Form.Item>
+          </Form>
         )
       }}
     />

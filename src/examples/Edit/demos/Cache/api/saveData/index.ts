@@ -1,5 +1,4 @@
-import { LocaleUtil, Device } from 'lyrixi-mobile'
-import { ExampleLoading, ExampleRequest } from '@examples-compat'
+import { LocaleUtil, Device, Loading, Request } from 'lyrixi-mobile'
 import serverData from './serverData'
 
 const locale = LocaleUtil.locale
@@ -7,7 +6,7 @@ const locale = LocaleUtil.locale
 // 提交数据
 async function saveData(opts: { baseData?: unknown; data?: unknown; token?: string }) {
   const { baseData, data, token } = opts
-  ExampleLoading.show()
+  Loading.show()
 
   // 构建服务器参数
   let params = (await serverData({ baseData, data })) as Record<string, unknown>
@@ -23,18 +22,18 @@ async function saveData(opts: { baseData?: unknown; data?: unknown; token?: stri
   }
 
   return new Promise((resolve) => {
-    ExampleRequest.post(url, params, {
+    Request.post(url, params, {
       headers: {
         tokenDup: token,
         'content-type': 'application/json'
       }
     })
       .then((result) => {
-        ExampleLoading.hide()
+        Loading.hide()
         resolve(result)
       })
       .catch((err: unknown) => {
-        ExampleLoading.hide()
+        Loading.hide()
         const e = err as { data?: { message?: string } }
         resolve({
           code: '0',

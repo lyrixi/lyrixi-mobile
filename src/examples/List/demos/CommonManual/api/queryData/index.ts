@@ -1,5 +1,4 @@
-import { LocaleUtil } from 'lyrixi-mobile'
-import { ExampleRequest } from '@examples-compat'
+import { LocaleUtil, Request } from 'lyrixi-mobile'
 import serverData from './serverData'
 import localData from './localData'
 
@@ -18,7 +17,7 @@ function queryData(
       page = 1
     }
     params.page = page
-    ExampleRequest.post(
+    Request.post(
       'url',
       { ...serverData(params) },
       {

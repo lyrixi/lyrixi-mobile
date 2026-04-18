@@ -1,6 +1,5 @@
 // 第三方库导入
-import { LocaleUtil } from 'lyrixi-mobile'
-import { ExampleRequest } from '@examples-compat'
+import { LocaleUtil, Request } from 'lyrixi-mobile'
 
 // 公共组件导入
 
@@ -13,7 +12,7 @@ const locale = LocaleUtil.locale
 // 获取报表数据
 function queryData(params: unknown) {
   return new Promise((resolve) => {
-    ExampleRequest.post('xxx', params, {
+    Request.post('xxx', params, {
       // headers: {
       //   'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
       //   'content-type': 'application/json'

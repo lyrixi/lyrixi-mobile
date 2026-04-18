@@ -1,7 +1,6 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { LocaleUtil, Divider, Page, Result, Card, Text as LyrixiText } from 'lyrixi-mobile'
-import { ExampleForm, ExampleToast } from '@examples-compat'
+import { LocaleUtil, Divider, Page, Result, Card, Text as LyrixiText, Form, Toast } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
@@ -44,7 +43,7 @@ const FormDetail = () => {
       message?: string
     }
     if (res.code === '1') {
-      ExampleToast.show({
+      Toast.show({
         content: locale('审批通过!'),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -53,7 +52,7 @@ const FormDetail = () => {
     }
     // 重复请求
     else if (res.code === '2') {
-      ExampleToast.show({
+      Toast.show({
         content: res.message || locale('请勿重复提交!'),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -65,7 +64,7 @@ const FormDetail = () => {
       // 请求出错需要重新生成token
       tokenRef.current = '' + Date.now()
 
-      ExampleToast.show({
+      Toast.show({
         content: res.message || locale('审批失败!')
       })
     }
@@ -80,8 +79,8 @@ const FormDetail = () => {
         <Page.Main>
           <Card>
             <Divider>Horizontal Layout</Divider>
-            <ExampleForm style={{ marginLeft: '12px' }}>
-              <ExampleForm.Item
+            <Form style={{ marginLeft: '12px' }}>
+              <Form.Item
                 labelHelp="Help info"
                 label={locale(
                   'Input Overflow Label, It is very very very long,  It is really very very very long'
@@ -90,24 +89,24 @@ const FormDetail = () => {
                 mainEllipsis={{ rows: 2, expandable: true }}
               >
                 Value Overflow Main, It is very very very long, It is really very very very long
-              </ExampleForm.Item>
+              </Form.Item>
 
-              <ExampleForm.Item label={locale('Select')}>
+              <Form.Item label={locale('Select')}>
                 <Text>{LyrixiText.getDisplayValue(resData?.data?.select)}</Text>
-              </ExampleForm.Item>
-            </ExampleForm>
+              </Form.Item>
+            </Form>
           </Card>
           <Card>
             <Divider>Vertical Layout</Divider>
-            <ExampleForm layout="vertical" style={{ marginLeft: '12px' }}>
-              <ExampleForm.Item label={locale('Input')}>
+            <Form layout="vertical" style={{ marginLeft: '12px' }}>
+              <Form.Item label={locale('Input')}>
                 <Text>{LyrixiText.getDisplayValue(resData?.data?.input)}</Text>
-              </ExampleForm.Item>
+              </Form.Item>
 
-              <ExampleForm.Item label={locale('Select')}>
+              <Form.Item label={locale('Select')}>
                 <Text>{LyrixiText.getDisplayValue(resData?.data?.select)}</Text>
-              </ExampleForm.Item>
-            </ExampleForm>
+              </Form.Item>
+            </Form>
           </Card>
         </Page.Main>
       )}

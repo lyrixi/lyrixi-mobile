@@ -1,5 +1,4 @@
-import { LocaleUtil, Storage, Device } from 'lyrixi-mobile'
-import { ExampleLoading, ExampleRequest } from '@examples-compat'
+import { LocaleUtil, Storage, Device, Loading, Request } from 'lyrixi-mobile'
 import cacheConfig from './../cacheConfig'
 
 const locale = LocaleUtil.locale
@@ -20,12 +19,12 @@ function queryData() {
     }
 
     // 修改或者复制
-    ExampleLoading.show()
-    ExampleRequest.post('获取数据接口地址', {
+    Loading.show()
+    Request.post('获取数据接口地址', {
       id: id
     })
       .then((result: unknown) => {
-        ExampleLoading.hide()
+        Loading.hide()
         const r = result as { code?: string }
         if (r.code === '1') {
           resolve({
@@ -46,7 +45,7 @@ function queryData() {
         }
       })
       .catch(() => {
-        ExampleLoading.hide()
+        Loading.hide()
         resolve({
           status: '500',
           message: locale('获取数据异常！')

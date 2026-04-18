@@ -1,5 +1,4 @@
-import { LocaleUtil } from 'lyrixi-mobile'
-import { ExampleToast } from '@examples-compat'
+import { LocaleUtil, Toast } from 'lyrixi-mobile'
 import scrollToErrorElement from './scrollToErrorElement'
 
 const locale = LocaleUtil.locale
@@ -34,14 +33,14 @@ function validateData(opts: { form?: unknown }) {
 
           // 错误消息
           let errMsg = e.errorFields?.[0]?.errors?.[0] || locale('此项错误')
-          ExampleToast.show({ content: errMsg })
+          Toast.show({ content: errMsg })
           resolve(false)
         })
       return
     }
     setTimeout(() => {
       let errMsg = scrollToErrorElement()
-      ExampleToast.show({ content: errMsg })
+      Toast.show({ content: errMsg })
       resolve(false)
     }, 100)
   })

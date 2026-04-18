@@ -1,7 +1,6 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { LocaleUtil, Input } from 'lyrixi-mobile'
-import { useExampleForm, ExampleForm as Form, ExampleToolBar, ExampleFooterBar } from '@examples-compat'
+import { LocaleUtil, Input, Form, ToolBar, FooterBar } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
@@ -16,7 +15,7 @@ function Filter({
   queryParams?: Record<string, unknown>
   onSearch?: (p: Record<string, unknown>) => void
 }) {
-  const [form] = useExampleForm()
+  const [form] = Form.useForm()
   const modifiedRef = useRef(false)
 
   const [active, setActive] = useState(false)
@@ -33,7 +32,7 @@ function Filter({
   }, [visible])
 
   return (
-    <ExampleToolBar.Filter
+    <ToolBar.Filter
       sizeEqual
       color={active ? 'primary' : 'default'}
       // backgroundColor="default"
@@ -61,14 +60,14 @@ function Filter({
       }}
       footerRender={({ onClose }: { onClose: () => void }) => {
         return (
-          <ExampleFooterBar>
-            <ExampleFooterBar.Button block color="default" backgroundColor="default" onClick={onClose}>
+          <FooterBar>
+            <FooterBar.Button block color="default" backgroundColor="default" onClick={onClose}>
               {locale('取消')}
-            </ExampleFooterBar.Button>
-            <ExampleFooterBar.Button block color="white" backgroundColor="primary" onClick={onClose}>
+            </FooterBar.Button>
+            <FooterBar.Button block color="white" backgroundColor="primary" onClick={onClose}>
               {locale('确定')}
-            </ExampleFooterBar.Button>
-          </ExampleFooterBar>
+            </FooterBar.Button>
+          </FooterBar>
         )
       }}
     />

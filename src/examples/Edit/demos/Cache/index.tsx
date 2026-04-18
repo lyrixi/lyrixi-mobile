@@ -14,9 +14,10 @@ import {
   DatePicker,
   Cascader,
   Location,
-  Signature
+  Signature,
+  Form,
+  Toast
 } from 'lyrixi-mobile'
-import { useExampleForm, ExampleForm as Form, ExampleToast } from '@examples-compat'
 
 // 公共组件导入
 
@@ -30,7 +31,7 @@ const locale = LocaleUtil.locale
 // 表单编辑页面
 const Edit = () => {
   // 表单
-  const [form] = useExampleForm()
+  const [form] = Form.useForm()
 
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
@@ -79,7 +80,7 @@ const Edit = () => {
       token: tokenRef.current
     })) as { code?: string; message?: string }
     if (saveResult.code === '1') {
-      ExampleToast.show({
+      Toast.show({
         content: locale('提交成功!'),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -88,7 +89,7 @@ const Edit = () => {
     }
     // 重复请求
     else if (saveResult.code === '2') {
-      ExampleToast.show({
+      Toast.show({
         content: saveResult.message || locale('请勿重复提交!'),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -100,7 +101,7 @@ const Edit = () => {
       // 请求出错需要重新生成token
       tokenRef.current = '' + Date.now()
 
-      ExampleToast.show({
+      Toast.show({
         content: saveResult.message || locale('提交失败!')
       })
     }
