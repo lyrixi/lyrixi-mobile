@@ -14,7 +14,9 @@ const Header = ({ onSearch }) => {
         allowClear
         onChange={setSearchText}
         onSearch={() => {
-          onSearch && onSearch(searchText)
+          if (onSearch) {
+            onSearch(searchText)
+          }
         }}
       />
     </ToolBar>
