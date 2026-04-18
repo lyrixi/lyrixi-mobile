@@ -1,0 +1,62 @@
+{
+  "_comment": "列表页 DSL 模板：复制本文件后修改各字段；供 skill+生成器产出与 src/examples/List/demos/Common 同构代码。字段语义见 ../list-page.schema.md",
+  "meta": {
+    "pageId": "MyList",
+    "title": "列表示例"
+  },
+  "http": {
+    "url": "/api/list/query",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "contentType": "json"
+  },
+  "request": {
+    "defaults": {
+      "rows": 20
+    },
+    "payloadMap": {
+      "keyword": "keyword",
+      "input": "input"
+    }
+  },
+  "response": {
+    "successCode": "1",
+    "listPath": "data.list",
+    "totalPath": "data.totalPage",
+    "messagePath": "message"
+  },
+  "listItem": {
+    "idField": "id",
+    "view": {
+      "title": "name",
+      "description": "introduce",
+      "note": "note",
+      "avatarUrl": "avatarUrl",
+      "imageUrl": "imageUrl",
+      "content": "content"
+    }
+  },
+  "header": {
+    "search": {
+      "enabled": true,
+      "placeholderKey": "按名称/拼音/拼音首字母查询",
+      "queryField": "keyword"
+    },
+    "filter": {
+      "enabled": true,
+      "fields": [
+        {
+          "name": "input",
+          "labelKey": "单行文本框",
+          "component": "Input.Text",
+          "props": {
+            "allowClear": true,
+            "maxLength": 50
+          }
+        }
+      ]
+    }
+  }
+}

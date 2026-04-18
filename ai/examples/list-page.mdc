@@ -41,6 +41,8 @@ ListPage/
 
 `lyrixi-mobile/src/examples/List/demos/Common`
 
+**结构化知识（Skill + DSL）**：见仓库 `ai/knowledge/examples/List-demos-Common/`、`ai/knowledge/dsl/`、`ai/knowledge/mappings/list-page-dsl-to-files.md`、`ai/knowledge/skills/list-page-from-dsl.workflow.md`。
+
 ## 结构职责
 
 - `index.jsx`

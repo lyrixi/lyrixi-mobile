@@ -9,9 +9,10 @@
 
 - **`components`**：定义了组件的使用方法
 - **`utils`**：定义了工具的使用方法
-- **`mappings`**：决定用什么组件, 服务于 dsl
-- **`skills`**：定义了执行流程（prompt 模板）
-- **`dsl`**：描述意图, 定义页面结构（中间语言）
+- **`examples`**：典型页面源码级说明（如 `examples/List-demos-Common` 列表模板）
+- **`mappings`**：决定用什么组件、DSL 字段落哪个文件（如 `mappings/list-page-dsl-to-files.md`）
+- **`skills`**：定义了执行流程（如 `skills/list-page-from-dsl.workflow.md`）
+- **`dsl`**：描述意图与可变配置（`dsl/list-page.schema.md`、`dsl/templates/list-page.template.json`）
 
 ## 业务加载知识库
 
