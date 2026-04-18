@@ -22,7 +22,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/SignatureCombo.jsx"></code>
+<code src="./demos/SignatureCombo.tsx"></code>
 
 ### API
 
@@ -62,7 +62,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/SignatureModal.jsx"></code>
+<code src="./demos/SignatureModal.tsx"></code>
 
 ### API
 
@@ -98,7 +98,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/SignatureMain.jsx"></code>
+<code src="./demos/SignatureMain.tsx"></code>
 
 ### API
 

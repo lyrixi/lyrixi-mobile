@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Accordion.jsx"></code>
+<code src="./demos/Accordion.tsx"></code>
 
 ## API
 

@@ -21,7 +21,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/SelectCombo.jsx"></code>
+<code src="./demos/SelectCombo.tsx"></code>
 
 ### API
 

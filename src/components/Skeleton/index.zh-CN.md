@@ -25,7 +25,7 @@ toc: content
 
 列表页骨架，由多段 `Skeleton.Paragraph` 组成，适用于列表加载占位。
 
-<code src="./demos/SkeletonList.jsx"></code>
+<code src="./demos/SkeletonList.tsx"></code>
 
 #### API
 
@@ -48,7 +48,7 @@ toc: content
 
 详情页骨架，包含段落、Tabs、多段正文，适用于详情页加载占位。
 
-<code src="./demos/SkeletonDetail.jsx"></code>
+<code src="./demos/SkeletonDetail.tsx"></code>
 
 #### API
 
@@ -71,7 +71,7 @@ toc: content
 
 编辑页骨架，由多段带标题的段落组成，适用于表单/编辑页加载占位。
 
-<code src="./demos/SkeletonEdit.jsx"></code>
+<code src="./demos/SkeletonEdit.tsx"></code>
 
 #### API
 
@@ -96,7 +96,7 @@ toc: content
 
 头像占位骨架，用于列表项左侧头像区域。
 
-<code src="./demos/SkeletonAvatar.jsx"></code>
+<code src="./demos/SkeletonAvatar.tsx"></code>
 
 #### API
 
@@ -119,7 +119,7 @@ toc: content
 
 标题占位骨架，用于段落或卡片的标题行。
 
-<code src="./demos/SkeletonTitle.jsx"></code>
+<code src="./demos/SkeletonTitle.tsx"></code>
 
 #### API
 
@@ -142,7 +142,7 @@ toc: content
 
 正文行占位骨架，用于段落中的单行正文。
 
-<code src="./demos/SkeletonItem.jsx"></code>
+<code src="./demos/SkeletonItem.tsx"></code>
 
 #### API
 
@@ -165,7 +165,7 @@ toc: content
 
 段落骨架，包含头像、标题、多行正文占位，常用于列表项或卡片。
 
-<code src="./demos/SkeletonParagraph.jsx"></code>
+<code src="./demos/SkeletonParagraph.tsx"></code>
 
 #### API
 
@@ -193,7 +193,7 @@ toc: content
 
 标签栏骨架，多块横向排列，常用于顶部 Tab 占位。
 
-<code src="./demos/SkeletonTabs.jsx"></code>
+<code src="./demos/SkeletonTabs.tsx"></code>
 
 #### API
 

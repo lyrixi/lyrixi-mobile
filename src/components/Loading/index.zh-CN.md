@@ -15,7 +15,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingShow.jsx"></code>
+<code src="./demos/LoadingShow.tsx"></code>
 
 ### API
 
@@ -44,7 +44,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingHide.jsx"></code>
+<code src="./demos/LoadingHide.tsx"></code>
 
 ### API
 
@@ -66,7 +66,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingExists.jsx"></code>
+<code src="./demos/LoadingExists.tsx"></code>
 
 ### API
 
@@ -90,7 +90,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Loading.jsx"></code>
+<code src="./demos/Loading.tsx"></code>
 
 ### API
 
@@ -118,7 +118,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingSpinFade.jsx"></code>
+<code src="./demos/LoadingSpinFade.tsx"></code>
 
 ### API
 
@@ -134,7 +134,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingOuroboros.jsx"></code>
+<code src="./demos/LoadingOuroboros.tsx"></code>
 
 ### API
 
@@ -150,7 +150,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingBallWave.jsx"></code>
+<code src="./demos/LoadingBallWave.tsx"></code>
 
 ### API
 
