@@ -16,25 +16,27 @@ async function loadLyrixiLanguage(language: string) {
     }
     let result: LoadLyrixiResult = {
       status: 'error',
-      message: 'Local js file loaded failed'
+      message: 'Local ts file loaded failed'
     }
 
-    // 动态引入国际化文件
-    import(`./../../../assets/locale/${language}.js`).then((jsFile: { default?: Record<string, unknown> }) => {
-      // 写死的国际化数据变量window.lyrixiLocaleData和window.lyrixiLocaleLanguage
-      if (jsFile.default) {
-        window.lyrixiLocaleLanguage = language
-        window.lyrixiLocaleData = jsFile.default
-        result = {
-          status: 'success',
-          message: 'Local js file loaded successfully',
-          data: window.lyrixiLocaleData
+    // 动态引入各语言文案（.ts 与 src 内其它模块一样由 father/webpack 参与打包）
+    import(`./../../../assets/locale/${language}.ts`)
+      .then((tsFile: { default?: Record<string, unknown> }) => {
+        const data = tsFile.default
+        if (data) {
+          window.lyrixiLocaleLanguage = language
+          window.lyrixiLocaleData = data
+          result = {
+            status: 'success',
+            message: 'Local locale loaded',
+            data: window.lyrixiLocaleData
+          }
         }
-      }
-      resolve(result)
-    }).catch(() => {
-      resolve(result)
-    })
+        resolve(result)
+      })
+      .catch(() => {
+        resolve(result)
+      })
   })
 }
 
