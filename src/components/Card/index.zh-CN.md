@@ -19,9 +19,9 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Card.jsx"></code>
-<code src="./demos/CardHeader.jsx"></code>
-<code src="./demos/CardMain.jsx"></code>
+<code src="./demos/Card.tsx"></code>
+<code src="./demos/CardHeader.tsx"></code>
+<code src="./demos/CardMain.tsx"></code>
 
 ## API
 

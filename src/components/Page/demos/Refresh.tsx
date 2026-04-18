@@ -13,7 +13,7 @@ for (let i = 0; i < 100; i++) {
 export default () => {
   function handleTopRefresh() {
     console.log('onTopRefresh')
-    return new Promise((resolve) => {
+    return new Promise<string>((resolve) => {
       setTimeout(() => {
         resolve('自定义提示')
       }, 1000)
@@ -21,14 +21,13 @@ export default () => {
   }
   function handleBottomRefresh() {
     console.log('底部加载')
-    return new Promise((resolve) => {
+    return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         resolve(true)
       }, 1000)
     })
   }
   return (
-    // <div id="root" style={{ height: '300px', position: 'relative' }}>
     <Page safeArea>
       <Page.Header style={{ height: 50, backgroundColor: 'white' }}>Header</Page.Header>
       <Page.Main
@@ -69,6 +68,5 @@ export default () => {
         ]}
       />
     </Page>
-    // </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { SafeArea, Page } from 'lyrixi-mobile'
+import { Page } from 'lyrixi-mobile'
 
 const list = []
 for (let i = 0; i < 100; i++) {
@@ -13,12 +13,13 @@ for (let i = 0; i < 100; i++) {
 export default () => {
   const { Header, Footer, Aside, Main } = Page
   useEffect(() => {
-    document.getElementById('root').parentElement.removeChild(document.getElementById('root'))
+    const root = document.getElementById('root')
+    root?.parentElement?.removeChild(root)
   }, [])
 
   function handleBottomRefresh() {
     console.log('底部加载')
-    return new Promise((resolve) => {
+    return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         resolve(true)
       }, 5000)
@@ -26,10 +27,8 @@ export default () => {
   }
 
   return createPortal(
-    // <div id="root" style={{ height: '300px', position: 'relative' }}>
     <Page>
       <Header style={{ height: '44px', backgroundColor: '#7dbcea' }}>Header</Header>
-      {/* <Main style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}>Main</Main> */}
       <Page full={false} layout="horizontal">
         <Aside style={{ width: '80px', backgroundColor: '#3ba0e9' }}>Aside</Aside>
         <Main
@@ -46,7 +45,6 @@ export default () => {
         Footer
       </Footer>
     </Page>,
-    // </div>
     document.body
   )
 }

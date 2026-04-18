@@ -1,13 +1,11 @@
 import React from 'react'
-import { Page, Row } from 'lyrixi-mobile'
+import Page from 'lyrixi-mobile/components/Page'
 
 export default () => {
   return (
     <Page>
       <Page.Main>
-        <Row.Col>
-          {/* Row.Col 示例内容 */}
-        </Row.Col>
+        <Page.Main>{/* Page.Main 示例内容 */}</Page.Main>
       </Page.Main>
     </Page>
   )

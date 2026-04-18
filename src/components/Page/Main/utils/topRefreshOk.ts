@@ -4,32 +4,28 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
 
 // 刷新完成
-function topRefreshOk(topContainer, isOk) {
+function topRefreshOk(
+  topContainer: HTMLDivElement | null,
+  isOk: boolean | string | undefined
+): Promise<boolean> {
   return new Promise((resolve) => {
-    let topText = topContainer?.querySelector?.('.lyrixi-page-main-pull-push-text')
+    const topText = topContainer?.querySelector?.('.lyrixi-page-main-pull-push-text')
 
-    // 完成提示信息
     let finishMsg = ''
-    // 失败
     if (isOk === false) {
-      finishMsg = LocaleUtil.locale('刷新失败', 'lyrixi_245c7a0541c033776b61a33bda10bd99')
-    }
-    // 自定义提示信息
-    else if (typeof isOk === 'string') {
+      finishMsg = LocaleUtil.locale('刷新失败', 'lyrixi_245c7a0541c033776b61a33bda10bd99', undefined)
+    } else if (typeof isOk === 'string') {
       finishMsg = isOk
-    }
-    // 成功
-    else {
-      finishMsg = LocaleUtil.locale('刷新成功', 'lyrixi_efa2ebd79d14fa135072faa401a3154d')
+    } else {
+      finishMsg = LocaleUtil.locale('刷新成功', 'lyrixi_efa2ebd79d14fa135072faa401a3154d', undefined)
     }
     if (topText) topText.innerHTML = finishMsg
 
     setTimeout(() => {
-      // 重置样式
-      let topIcon = topContainer?.querySelector?.('.lyrixi-page-main-pull-push-icon')
+      const topIcon = topContainer?.querySelector?.('.lyrixi-page-main-pull-push-icon')
       if (topIcon) {
         topIcon.classList.remove('lyrixi-page-main-pull-push-icon-down')
         topIcon.classList.remove('lyrixi-page-main-pull-push-icon-loading')

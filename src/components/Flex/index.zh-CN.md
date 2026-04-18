@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Flex1.jsx"></code>
+<code src="./demos/Flex1.tsx"></code>
 
 ## API
 
@@ -54,7 +54,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/FlexCompact.jsx"></code>
+<code src="./demos/FlexCompact.tsx"></code>
 
 ### API
 

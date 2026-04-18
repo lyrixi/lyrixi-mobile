@@ -18,7 +18,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Row.jsx"></code>
+<code src="./demos/Row.tsx"></code>
 
 ## API
 
@@ -41,4 +41,4 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/RowCol.jsx"></code>
+<code src="./demos/RowCol.tsx"></code>

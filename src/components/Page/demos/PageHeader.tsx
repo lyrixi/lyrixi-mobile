@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Page.Footer>
-          {/* Page.Footer 示例内容 */}
-        </Page.Footer>
+        <Page.Header>{/* Page.Header 示例内容 */}</Page.Header>
       </Page.Main>
     </Page>
   )

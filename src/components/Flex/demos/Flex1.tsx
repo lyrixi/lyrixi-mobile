@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { Page, Card, Flex, Button, Checkbox, Input } from 'lyrixi-mobile'
 
-const buttons = Array.from({ length: 6 }).map((_, index) => (
-  <Button key={index}>Button {index + 1}</Button>
-))
+const buttons = Array.from({ length: 6 }).map((_, index) => <Button key={index}>Button {index + 1}</Button>)
 
 export default () => {
-  const [gap, setGap] = useState('s')
+  const [gap, setGap] = useState<string | number>('s')
   const [mode, setMode] = useState('l')
 
   return (
@@ -30,8 +28,8 @@ export default () => {
                 { id: 'custom', name: 'Custom' }
               ]}
               onChange={(value) => {
-                setMode(value?.id)
-                setGap(value?.id !== 'custom' ? value?.id : 2)
+                setMode(value?.id as string)
+                setGap(value?.id !== 'custom' ? (value?.id as string) : 2)
               }}
             />
             <Input.Range

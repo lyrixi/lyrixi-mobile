@@ -1,0 +1,43 @@
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
+
+export interface CardMainProps {
+  style?: CSSProperties
+  className?: string
+  children?: ReactNode
+}
+
+export interface CardMainRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+const Main = forwardRef<CardMainRef, CardMainProps>(function Main({ style, className, children }, ref) {
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current
+    }
+  })
+
+  return (
+    <div
+      ref={rootRef}
+      style={style}
+      className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-card-main', className)}
+    >
+      {children}
+    </div>
+  )
+})
+
+export default Main
