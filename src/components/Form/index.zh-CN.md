@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Layout.jsx"></code>
+<code src="./demos/Layout.tsx"></code>
 
 ## API
 
@@ -61,7 +61,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/FormItem.jsx"></code>
+<code src="./demos/FormItem.tsx"></code>
 
 ### API
 

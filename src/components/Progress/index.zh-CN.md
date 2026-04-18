@@ -22,7 +22,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ProgressBar.jsx"></code>
+<code src="./demos/ProgressBar.tsx"></code>
 
 ### API
 
@@ -52,7 +52,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ProgressCircle.jsx"></code>
+<code src="./demos/ProgressCircle.tsx"></code>
 
 ### API
 

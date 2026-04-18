@@ -23,7 +23,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/KeyboardNumber.jsx"></code>
+<code src="./demos/KeyboardNumber.tsx"></code>
 
 ### API
 

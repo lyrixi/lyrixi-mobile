@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Active.jsx"></code>
+<code src="./demos/Active.tsx"></code>
 
 ## API
 

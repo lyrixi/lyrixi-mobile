@@ -21,15 +21,15 @@ toc: content
 
 ### 普通列表（ListAsyncList）
 
-<code src="./demos/ListAsyncList.jsx"></code>
+<code src="./demos/ListAsyncList.tsx"></code>
 
 ### 虚拟滚动列表（ListAsyncVirtualList）
 
-<code src="./demos/ListAsyncVirtualList.jsx"></code>
+<code src="./demos/ListAsyncVirtualList.tsx"></code>
 
 ### 分组列表（ListAsyncGroup）
 
-<code src="./demos/ListAsyncGroup.jsx"></code>
+<code src="./demos/ListAsyncGroup.tsx"></code>
 
 ## API
 

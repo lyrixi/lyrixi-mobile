@@ -19,19 +19,19 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/List.jsx"></code>
+<code src="./demos/List.tsx"></code>
 
 ### List.Item 单独使用
 
-<code src="./demos/ListItem.jsx"></code>
+<code src="./demos/ListItem.tsx"></code>
 
 ### List.InfiniteScroll
 
-<code src="./demos/ListInfiniteScroll.jsx"></code>
+<code src="./demos/ListInfiniteScroll.tsx"></code>
 
 ### List.HeaderItem
 
-<code src="./demos/ListHeaderItem.jsx"></code>
+<code src="./demos/ListHeaderItem.tsx"></code>
 
 ## API
 

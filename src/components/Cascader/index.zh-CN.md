@@ -21,7 +21,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CascaderCombo.jsx"></code>
+<code src="./demos/CascaderCombo.tsx"></code>
 
 ### API
 
@@ -80,7 +80,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CascaderModal.jsx"></code>
+<code src="./demos/CascaderModal.tsx"></code>
 
 ### API
 
@@ -102,7 +102,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CascaderMain.jsx"></code>
+<code src="./demos/CascaderMain.tsx"></code>
 
 ### API
 
@@ -125,7 +125,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CascaderDistrictCombo.jsx"></code>
+<code src="./demos/CascaderDistrictCombo.tsx"></code>
 
 ### API
 
@@ -147,7 +147,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CascaderDistrictModal.jsx"></code>
+<code src="./demos/CascaderDistrictModal.tsx"></code>
 
 ### API
 
@@ -169,7 +169,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/CascaderDistrictMain.jsx"></code>
+<code src="./demos/CascaderDistrictMain.tsx"></code>
 
 ### API
 

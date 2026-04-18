@@ -1,0 +1,178 @@
+// @ts-nocheck
+import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
+import getDateDefaultValue from './../utils/getDateDefaultValue'
+import WeekModal from './../WeekModal'
+
+// 内库使用-start
+import DateUtil from './../../../utils/DateUtil'
+import Combo from './../../Combo'
+import Input from './../../Input'
+// 内库使用-end
+
+/* 测试使用-start
+import { DateUtil, Combo, Input } from 'lyrixi-mobile'
+测试使用-end */
+
+// 获取周
+const WeekCombo = forwardRef(
+  (
+    {
+      // Combo
+      // Combo: Value & Display Value
+      value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      // Combo: Status
+      readOnly,
+      disabled,
+      allowClear,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Element
+      comboRender,
+      children,
+      leftIconNode,
+      rightIconNode,
+      clearRender,
+
+      // Modal
+      // Modal: Value & Display Value
+      type,
+      min,
+      max,
+      // Modal: Status
+      maskClosable,
+      // Modal: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      titleRender,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
+
+      // Events
+      onChange,
+      onBeforeOpen,
+      onOk
+    },
+    ref
+  ) => {
+    const [open, setOpen] = useState(false)
+    const comboRef = useRef(null)
+    const modalRef = useRef(null)
+
+    useImperativeHandle(ref, () => {
+      return {
+        ...comboRef.current,
+        ...modalRef.current,
+        close: () => setOpen(false),
+        open: () => setOpen(true)
+      }
+    })
+
+    async function handleOpen() {
+      if (typeof onBeforeOpen === 'function') {
+        let goOn = await onBeforeOpen()
+        if (goOn === false) return
+      }
+      setOpen(true)
+    }
+
+    function handleClose() {
+      setOpen(false)
+    }
+
+    // 获取 Combo 节点
+    function getComboNode() {
+      if (typeof comboRender === 'function') {
+        return comboRender({
+          comboRef,
+          open: open,
+          onClick: handleOpen
+        })
+      }
+
+      // comboChildren
+      if (children) {
+        return (
+          <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
+            {children}
+          </Combo>
+        )
+      }
+
+      // 默认使用 Input.Select
+      return (
+        <Input.Select
+          ref={comboRef}
+          // Combo: Value & Display Value
+          value={value}
+          placeholder={placeholder}
+          formatter={formatter || (() => DateUtil.format(value, 'week'))}
+          autoSize={autoSize}
+          separator={separator}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
+          clearRender={clearRender}
+          // Events
+          onChange={onChange}
+          onClick={handleOpen}
+        />
+      )
+    }
+
+    return (
+      <>
+        {getComboNode()}
+        <WeekModal
+          ref={modalRef}
+          // Modal: Value & Display Value
+          value={value || getDateDefaultValue({ min, max })}
+          type={type}
+          min={min}
+          max={max}
+          // Modal: Status
+          open={open}
+          maskClosable={maskClosable}
+          allowClear={allowClear}
+          // Modal: Elements
+          portal={portal}
+          titleRender={titleRender}
+          okNode={okNode}
+          cancelNode={cancelNode}
+          okVisible={okVisible}
+          cancelVisible={cancelVisible}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={onChange}
+          onOk={onOk}
+        />
+      </>
+    )
+  }
+)
+
+export default WeekCombo

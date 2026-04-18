@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Tooltip.jsx"></code>
+<code src="./demos/Tooltip.tsx"></code>
 
 ## API
 

@@ -30,7 +30,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ListPaginationMain/index.jsx"></code>
+<code src="./demos/ListPaginationMain/index.tsx"></code>
 
 ### API
 
@@ -89,7 +89,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ListPaginationCombo/index.jsx"></code>
+<code src="./demos/ListPaginationCombo/index.tsx"></code>
 
 ### API
 
@@ -163,7 +163,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ListPaginationModal/index.jsx"></code>
+<code src="./demos/ListPaginationModal/index.tsx"></code>
 
 ### API
 

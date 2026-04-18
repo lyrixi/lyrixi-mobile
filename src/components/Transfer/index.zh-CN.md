@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Transfer.jsx"></code>
+<code src="./demos/Transfer.tsx"></code>
 
 ## API
 
@@ -53,7 +53,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Combo/index.jsx"></code>
+<code src="./demos/Combo/index.tsx"></code>
 
 ### API
 
@@ -75,7 +75,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Modal/index.jsx"></code>
+<code src="./demos/Modal/index.tsx"></code>
 
 ### API
 
@@ -97,7 +97,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/Main/index.jsx"></code>
+<code src="./demos/Main/index.tsx"></code>
 
 ### API
 

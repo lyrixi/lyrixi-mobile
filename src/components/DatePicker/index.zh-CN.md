@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/DatePickerCombo.jsx"></code>
+<code src="./demos/DatePickerCombo.tsx"></code>
 
 ## API
 
@@ -82,7 +82,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerComboInput.jsx"></code>
+<code src="./demos/DatePickerComboInput.tsx"></code>
 
 ### API
 
@@ -144,7 +144,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerRangeCombo.jsx"></code>
+<code src="./demos/DatePickerRangeCombo.tsx"></code>
 
 ### API
 
@@ -166,7 +166,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerMultipleCombo.jsx"></code>
+<code src="./demos/DatePickerMultipleCombo.tsx"></code>
 
 ### API
 
@@ -188,7 +188,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerWeekCombo.jsx"></code>
+<code src="./demos/DatePickerWeekCombo.tsx"></code>
 
 ### API
 
@@ -210,7 +210,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerTypes.jsx"></code>
+<code src="./demos/DatePickerTypes.tsx"></code>
 
 ### API
 
@@ -240,7 +240,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerRangeSelector.jsx"></code>
+<code src="./demos/DatePickerRangeSelector.tsx"></code>
 
 ### API
 

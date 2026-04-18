@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/general/index.jsx"></code>
+<code src="./demos/general/index.tsx"></code>
 
 ## API
 

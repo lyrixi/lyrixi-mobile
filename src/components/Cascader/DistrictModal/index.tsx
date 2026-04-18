@@ -1,0 +1,169 @@
+// @ts-nocheck
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import { formatType } from './../DistrictMain/utils'
+import updateOkVisible from './updateOkVisible'
+import DistrictMain from './../DistrictMain'
+
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+import NavBarModal from './../../Modal/NavBarModal'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil, Modal } from 'lyrixi-mobile'
+const NavBarModal = Modal.NavBarModal
+测试使用-end */
+
+// 级联选择
+const DistrictModal = forwardRef(
+  (
+    {
+      // Value & Display Value
+      value,
+      type = 'street', // 'country', 'province', 'city', 'district', 'street'
+
+      loadCountries,
+      loadCountryRegions,
+      loadStreets,
+
+      // Status
+      open,
+      min = '',
+      maskClosable,
+
+      // Style
+      safeArea,
+      listStyle,
+      listClassName,
+      itemStyle,
+      itemClassName,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
+      // Elements
+      portal,
+      searchVisible,
+      title,
+      okNode,
+      cancelNode,
+      cancelVisible,
+
+      // Events
+      onClose,
+      onOk,
+      onChange
+    },
+    ref
+  ) => {
+    // eslint-disable-next-line
+    type = formatType(type)
+
+    // 是否显示右上角确认按钮
+    let [okVisible, setOkVisible] = useState(null)
+    let [currentValue, setCurrentValue] = useState(value)
+    const modalRef = useRef(null)
+    const mainRef = useRef(null)
+
+    useImperativeHandle(ref, () => {
+      return {
+        ...modalRef.current,
+        ...mainRef.current
+      }
+    })
+
+    // 同步外部value到内部currentValue
+    useEffect(() => {
+      setCurrentValue(value)
+      // eslint-disable-next-line
+    }, [value])
+
+    // 根据currentValue更新Ok按钮显示状态
+    useEffect(() => {
+      setOkVisible(updateOkVisible(currentValue, min))
+      // eslint-disable-next-line
+    }, [currentValue])
+
+    // 下钻根据min更新Ok按钮显示状态
+    function handleDrillDown(tabs) {
+      setOkVisible(updateOkVisible(tabs, min))
+    }
+
+    async function handleOk() {
+      // 触发 onOk
+      if (onOk) {
+        let goOn = await onOk(currentValue)
+        if (goOn === false) return false
+        if (goOn instanceof Date) {
+          currentValue = goOn
+        }
+      }
+
+      onChange?.(currentValue)
+      onClose?.()
+    }
+
+    function handleChange(newValue) {
+      setCurrentValue(newValue)
+      handleDrillDown(newValue)
+
+      if (!Array.isArray(newValue) || !newValue.length) return
+      // 如果到达叶子节点，或已选到指定类型，立即关闭
+      if (newValue?.[newValue.length - 1]?.isLeaf || newValue?.[newValue.length - 1]?.type?.includes(type)) {
+        onChange?.(newValue)
+        onClose && onClose()
+      }
+    }
+
+    return (
+      <NavBarModal
+        ref={modalRef}
+        // Status
+        open={open}
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-cascader', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Element
+        portal={portal}
+        title={title}
+        okNode={okNode}
+        okVisible={okVisible}
+        cancelNode={cancelNode}
+        cancelVisible={cancelVisible}
+        // Events
+        onClose={onClose}
+        onOk={handleOk}
+      >
+        {/* 弹窗打开时, 再渲染主页面, 避免用户未点击就加载的问题 */}
+        {open && <DistrictMain
+          ref={mainRef}
+          // Modal: Status
+          open={open}
+          // Main: Value & Display Value
+          value={currentValue}
+          type={type}
+          loadCountries={loadCountries}
+          loadCountryRegions={loadCountryRegions}
+          loadStreets={loadStreets}
+          // Main: Status
+          // Main: Style
+          listStyle={listStyle}
+          listClassName={listClassName}
+          itemStyle={itemStyle}
+          itemClassName={itemClassName}
+          // Main: Elements
+          searchVisible={searchVisible}
+          // Main: Events
+          onChange={handleChange}
+        />}
+      </NavBarModal>
+    )
+  }
+)
+
+export default DistrictModal

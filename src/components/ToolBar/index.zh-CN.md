@@ -19,11 +19,11 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/ToolBar.jsx"></code>
+<code src="./demos/ToolBar.tsx"></code>
 
 ### ToolBar.Dropdown
 
-<code src="./demos/ToolBarDropdown.jsx"></code>
+<code src="./demos/ToolBarDropdown.tsx"></code>
 
 ## API
 
@@ -53,7 +53,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarButton.jsx"></code>
+<code src="./demos/ToolBarButton.tsx"></code>
 
 ### API
 
@@ -146,7 +146,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarSearch.jsx"></code>
+<code src="./demos/ToolBarSearch.tsx"></code>
 
 ### API
 
@@ -201,7 +201,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarSearchActive.jsx"></code>
+<code src="./demos/ToolBarSearchActive.tsx"></code>
 
 ### API
 
@@ -223,7 +223,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarDateRange.jsx"></code>
+<code src="./demos/ToolBarDateRange.tsx"></code>
 
 ### API
 
@@ -280,7 +280,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarList.jsx"></code>
+<code src="./demos/ToolBarList.tsx"></code>
 
 ### API
 
@@ -309,7 +309,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarActionSheet.jsx"></code>
+<code src="./demos/ToolBarActionSheet.tsx"></code>
 
 ### API
 
@@ -331,7 +331,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ToolBarFilter.jsx"></code>
+<code src="./demos/ToolBarFilter.tsx"></code>
 
 ### API
 

@@ -1,0 +1,259 @@
+// @ts-nocheck
+import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
+import scrollToTop from './utils/scrollToTop'
+import Loading from './components/Loading'
+import EntityList from './List'
+import VirtualList from './VirtualList'
+import RetryButton from './components/RetryButton'
+
+// 内库使用-start
+import DOMUtil from './../../utils/DOMUtil'
+import Result from './../Result'
+import List from './../List'
+// 内库使用-end
+
+/* 测试使用-start
+import { DOMUtil, Result, List } from 'lyrixi-mobile'
+测试使用-end */
+
+const Main = forwardRef(
+  (
+    {
+      // Value & Display Value
+      value,
+      loadData,
+      /*
+      loadData: (params: { previousResult, action: 'load'|'reload'|'topRefresh'|'bottomRefresh'|'retry' }) => Promise<{
+        status: 'empty(暂无数据)'|'error(加载出错)'|'moreError(更多数据加载出错)'|'noMore(没有更多数据)'|'loading(有更多数据)',
+        message?: string(错误信息),
+        list: Array<any>(列表数据)
+      }>
+      */
+      formatViewList,
+      formatViewItem,
+
+      // Status
+      initialLoad = true,
+      errorRetry = true, // 是否显示重试按钮
+      emptyRetry, // 是否显示刷新按钮
+      multiple,
+      allowClear,
+      checkable,
+      disableTopRefresh = false,
+      disableBottomRefresh = false,
+      virtual,
+      /*
+      {
+        getItemHeight: () => Number
+      }
+      */
+
+      // Style
+      style,
+      className,
+      itemStyle,
+      itemClassName,
+      itemLayout,
+      checkboxVariant,
+      checkboxPosition,
+      loadingModalStyle,
+      loadingModalClassName,
+      loadingMaskStyle,
+      loadingMaskClassName,
+      loadingPortal,
+
+      // Elements
+      itemRender,
+      loadingRender,
+      prependRender,
+      appendRender,
+
+      // Events
+      onChange,
+      onScroll,
+      onScrollEnd,
+      onLoad
+    },
+    ref
+  ) => {
+    // 容器
+    const mainRef = useRef(null)
+
+    // 请求结果
+    /*
+    {
+      status: 'empty'|'error'|'noMore'|'loading', // 'empty' 无数据, 'error' 异常, 'noMore' 没有更多数据, 'loading' 有更多数据
+      message?: string,       // 对应status的提示
+      list: Array<any>,       // 修改页面渲染列表
+    }
+    */
+    const [result, setResult] = useState(null)
+    // 结果状态, 滚动至底部时, 不更新result, 但需要更新底部状态: empty | error | moreError | noMore | loading
+    const [resultStatus, setResultStatus] = useState('')
+    // 加载显示: load | reload | topRefresh | bottomRefresh
+    const [loadAction, setLoadAction] = useState('')
+
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        element: mainRef?.current?.element,
+        getElement: mainRef?.current?.getElement,
+        // IndexBar
+        getAnchors: mainRef?.current?.getAnchors,
+        scrollToAnchor: mainRef?.current?.scrollToAnchor,
+        // 重新加载
+        reload: (action) => {
+          if (action === 'load') {
+            init()
+          } else {
+            loadPage(action || 'reload')
+          }
+        },
+        // 获取结果
+        getResult: () => {
+          return result
+        }
+      }
+    })
+
+    // 渲染完成执行onLoad
+    useEffect(() => {
+      if (!result) return
+
+      onLoad?.({ result, action: loadAction })
+
+      setLoadAction('')
+      // eslint-disable-next-line
+    }, [result])
+
+    // 默认加载
+    useEffect(() => {
+      if (!initialLoad) return
+
+      init()
+      // eslint-disable-next-line
+    }, [])
+
+    // 初始化
+    function init() {
+      loadPage('load')
+    }
+
+    // 统一加载方法: 根据 page 判断刷新/底部加载
+    async function loadPage(action) {
+      if (typeof loadData !== 'function') return
+
+      if (action === 'bottomRefresh') {
+        // 页面级提示时, 滚动到底部都不允许加载
+        if (result.status === 'error') {
+          return true
+        }
+        // 底部加载完成时, 滚动到底部不再加载
+        if (result?.status === 'noMore') {
+          return true
+        }
+        // 底部加载错误重新加载
+        if (result?.status === 'moreError') {
+          setResultStatus('loading')
+        }
+      }
+
+      // 初次加载/重新加载/重试/触顶刷新/点击重试, 滚动到顶部
+      if (['load', 'reload', 'topRefresh', 'retry'].includes(action)) {
+        scrollToTop(mainRef.current?.element)
+      }
+
+      // 请求数据
+      setLoadAction(action)
+      let newResult = await loadData({ previousResult: result, action: action })
+
+      // 返回数据异常，不更新结果
+      if (!['empty', 'error', 'noMore', 'loading'].includes(newResult?.status)) {
+        console.error(
+          `loadData return data must contains status: ['empty','error','noMore','loading']`,
+          newResult
+        )
+        return false
+      }
+      setResult(newResult)
+      setResultStatus(newResult?.status)
+      return true
+    }
+
+    const ListNode = virtual?.getItemHeight ? VirtualList : EntityList
+
+    return (
+      <ListNode
+        ref={mainRef}
+        // Value & Display Value
+        value={value}
+        list={result?.list}
+        formatViewList={
+          typeof formatViewList === 'function'
+            ? (rawList) => formatViewList(rawList, { result })
+            : undefined
+        }
+        formatViewItem={
+          typeof formatViewItem === 'function'
+            ? (rawItem, index) => formatViewItem(rawItem, { result, index })
+            : undefined
+        }
+        // Status
+        virtual={virtual}
+        multiple={multiple}
+        allowClear={allowClear}
+        checkable={checkable}
+        // Style
+        className={DOMUtil.classNames('lyrixi-list-main', className)}
+        style={style}
+        itemStyle={itemStyle}
+        itemClassName={itemClassName}
+        itemLayout={itemLayout}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
+        // Elements
+        itemRender={itemRender}
+        prependRender={prependRender}
+        appendRender={appendRender}
+        // Events
+        onChange={onChange}
+        onScroll={onScroll}
+        onScrollEnd={onScrollEnd}
+        onTopRefresh={disableTopRefresh ? null : () => loadPage('topRefresh')}
+        onBottomRefresh={disableBottomRefresh ? null : () => loadPage('bottomRefresh')}
+      >
+        {/* 底部错误提示 */}
+        {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (
+          <List.InfiniteScroll status={resultStatus} content={result?.message} />
+        ) : null}
+        {/* 页面级错误提示 */}
+        {['empty', 'error'].includes(resultStatus) && (
+          <Result
+            className="lyrixi-list-main-result"
+            status={resultStatus === 'error' ? '500' : 'empty'}
+            title={result?.message}
+          >
+            <RetryButton
+              status={resultStatus}
+              errorRetry={errorRetry}
+              emptyRetry={emptyRetry}
+              onClick={() => loadPage('retry')}
+            />
+          </Result>
+        )}
+        {/* 页面加载遮罩 */}
+        <Loading
+          type={loadAction}
+          loadingRender={loadingRender}
+          loadingModalStyle={loadingModalStyle}
+          loadingModalClassName={loadingModalClassName}
+          loadingMaskStyle={loadingMaskStyle}
+          loadingMaskClassName={loadingMaskClassName}
+          loadingPortal={loadingPortal}
+        />
+      </ListNode>
+    )
+  }
+)
+
+export default Main

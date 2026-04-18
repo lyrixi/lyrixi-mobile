@@ -22,7 +22,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ActionSheetCombo.jsx"></code>
+<code src="./demos/ActionSheetCombo.tsx"></code>
 
 ### API
 
@@ -84,7 +84,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ActionSheetModal.jsx"></code>
+<code src="./demos/ActionSheetModal.tsx"></code>
 
 ### API
 
@@ -135,7 +135,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ActionSheetItem.jsx"></code>
+<code src="./demos/ActionSheetItem.tsx"></code>
 
 ### API
 

@@ -1,0 +1,29 @@
+// @ts-nocheck
+// 设置叶子节点
+function updateIsLeaf(id, { currentValue, value, tabsRef }) {
+  // 更新当前列表叶子节点
+  for (let tab of currentValue || []) {
+    if (tab && tab.id === id) {
+      tab.isLeaf = true
+      break
+    }
+  }
+
+  // 更新value叶子节点
+  for (let tab of value || []) {
+    if (tab && tab.id === id) {
+      tab.isLeaf = true
+      break
+    }
+  }
+
+  // 更新tabs叶子节点
+  for (let tab of tabsRef.current || []) {
+    if (tab && tab.id === id) {
+      tab.isLeaf = true
+      break
+    }
+  }
+}
+
+export default updateIsLeaf

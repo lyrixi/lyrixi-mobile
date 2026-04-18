@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Stamp.jsx"></code>
+<code src="./demos/Stamp.tsx"></code>
 
 ## API
 

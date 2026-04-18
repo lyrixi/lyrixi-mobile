@@ -22,7 +22,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ChatList.jsx"></code>
+<code src="./demos/ChatList.tsx"></code>
 
 ### API
 
@@ -58,7 +58,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ChatItem.jsx"></code>
+<code src="./demos/ChatItem.tsx"></code>
 
 ### API
 
