@@ -1,10 +1,16 @@
 import { DateUtil } from 'lyrixi-mobile'
 
 // 将 dateType、rankType、sortType 等转换为 API 参数
-function serverData({ dateType, rankType, sortType, page = 1 }) {
+function serverData(opts: {
+  dateType?: { id?: string; value?: unknown; cycle?: string }
+  rankType?: { id?: string }
+  sortType?: string
+  page?: number
+}) {
+  const { dateType, rankType, sortType, page = 1 } = opts
   if (!dateType || !rankType) return null
 
-  const params = {
+  const params: Record<string, unknown> = {
     rankType: rankType.id,
     sort: sortType || '2',
     page
@@ -12,7 +18,7 @@ function serverData({ dateType, rankType, sortType, page = 1 }) {
 
   // 处理日期参数
   if (dateType.value) {
-    const date = dateType.value
+    const date = dateType.value as Date | string
     params.year = DateUtil.format(date, 'YYYY')
     params.cycle = dateType.cycle
 

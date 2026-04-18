@@ -1,14 +1,20 @@
+import React from 'react'
+
 // 将列表数据按照 anchor 字段分组
-function formatViewList(list) {
+function formatViewList(list: unknown[]) {
   if (!Array.isArray(list) || list.length === 0) {
     return []
   }
 
   // 使用 Map 来按 anchor 分组
-  const groupMap = new Map()
+  const groupMap = new Map<
+    string,
+    { title: string; anchor: string; children: Record<string, unknown>[] }
+  >()
 
-  list.forEach((item) => {
-    const anchor = item.anchor
+  list.forEach((raw) => {
+    const item = raw as Record<string, unknown>
+    const anchor = item.anchor as string | undefined
     if (anchor) {
       if (!groupMap.has(anchor)) {
         groupMap.set(anchor, {
@@ -17,7 +23,9 @@ function formatViewList(list) {
           children: []
         })
       }
-      groupMap.get(anchor).children.push({
+      const group = groupMap.get(anchor)
+      if (!group) return
+      group.children.push({
         // 原始数据(必传, ListAsync会自动增加_raw字段存储list入参的item的原始数据)
         _raw: item._raw,
         // 唯一标识(必传)
@@ -35,8 +43,8 @@ function formatViewList(list) {
         // 第三行文字
         content: item.content,
         // 右侧操作按钮
-        actionRender: (item) => {
-          return <div>Click {item.name}</div>
+        actionRender: (row: { name?: unknown }) => {
+          return <div>Click {row.name as React.ReactNode}</div>
         }
       })
     }

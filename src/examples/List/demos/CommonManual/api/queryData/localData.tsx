@@ -1,10 +1,11 @@
 import React from 'react'
 
 // 转换 API 返回数据为页面所需格式
-function localData(result) {
-  if (!data) return null
+function localData(result: unknown) {
+  const r = result as { rows?: Array<Record<string, unknown>>; totalPage?: number }
+  if (!r?.rows) return null
 
-  let list = result.rows.map((item) => {
+  let list = r.rows.map((item) => {
     return {
       id: item.id,
       // 左侧图片
@@ -20,8 +21,8 @@ function localData(result) {
       // 第三行文字
       content: item.content,
       // 右侧操作按钮
-      actionRender: ({ item }) => {
-        return <div>Click {item.name}</div>
+      actionRender: ({ item: row }: { item: Record<string, unknown> }) => {
+        return <div>Click {row.name as React.ReactNode}</div>
       },
       // 原始数据
       item: item
@@ -30,7 +31,7 @@ function localData(result) {
 
   return {
     list: list,
-    totalPage: result.totalPage
+    totalPage: r.totalPage
   }
 }
 

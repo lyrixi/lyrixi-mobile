@@ -1,6 +1,7 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { Form, ToolBar, LocaleUtil, Input } from 'lyrixi-mobile'
+import { ToolBar, LocaleUtil, Input } from 'lyrixi-mobile'
+import { useExampleForm, ExampleForm as ExampleFormRoot } from '@examples-compat'
 // 公共组件导入
 
 // 内部组件导入
@@ -8,8 +9,14 @@ import { Form, ToolBar, LocaleUtil, Input } from 'lyrixi-mobile'
 
 const locale = LocaleUtil.locale
 
-function Filter({ queryParams, onSearch }) {
-  const [form] = Form.useForm()
+function Filter({
+  queryParams,
+  onSearch
+}: {
+  queryParams?: Record<string, unknown>
+  onSearch?: (p: Record<string, unknown>) => void
+}) {
+  const [form] = useExampleForm()
   const modifiedRef = useRef(false)
 
   const [active, setActive] = useState(false)
@@ -18,7 +25,7 @@ function Filter({ queryParams, onSearch }) {
   // 显示弹窗时需要还原值
   useEffect(() => {
     if (!visible) return
-    form.setFieldsValue({
+    ;(form as { setFieldsValue: (v: Record<string, unknown>) => void }).setFieldsValue({
       keyword: queryParams?.keyword || '',
       input: queryParams?.input || ''
     })
@@ -44,17 +51,17 @@ function Filter({ queryParams, onSearch }) {
       }}
       onReset={() => {
         modifiedRef.current = false
-        form.resetFields()
+        ;(form as { resetFields: () => void }).resetFields()
       }}
-      onOk={({ close }) => {
+      onOk={({ close }: { close: () => void }) => {
         setActive(modifiedRef.current)
-        console.log(form.getFieldsValue())
-        onSearch && onSearch({ ...queryParams, ...form.getFieldsValue() })
+        console.log((form as { getFieldsValue: () => unknown }).getFieldsValue())
+        onSearch && onSearch({ ...queryParams, ...(form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue() })
         close()
       }}
       modalRender={() => {
         return (
-          <Form
+          <ExampleFormRoot
             layout="vertical"
             form={form}
             onValuesChange={() => {
@@ -62,10 +69,10 @@ function Filter({ queryParams, onSearch }) {
             }}
             style={{ marginLeft: '12px' }}
           >
-            <Form.Item name="input" label={locale('单行文本框')}>
+            <ExampleFormRoot.Item name="input" label={locale('单行文本框')}>
               <Input.Text allowClear placeholder={locale('请输入')} maxLength={50} />
-            </Form.Item>
-          </Form>
+            </ExampleFormRoot.Item>
+          </ExampleFormRoot>
         )
       }}
     />

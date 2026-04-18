@@ -16,8 +16,10 @@
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "lyrixi-mobile": ["src"],
-      "lyrixi-mobile/*": ["src/*", "*"]
+      "lyrixi-mobile/*": ["src/*", "*"],
+      "@examples-compat": ["src/examples/compat/lyrixiRuntime"]
     }
   },
-  "include": [".dumirc.ts", ".fatherrc.ts", "src"]
+  "include": [".dumirc.ts", ".fatherrc.ts", "src"],
+  "exclude": ["src/examples"]
 }

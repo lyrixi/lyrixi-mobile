@@ -3,10 +3,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import {
   Storage,
   LocaleUtil,
-  Toast,
   Page,
   Result,
-  Form,
   Input,
   Select,
   Picker,
@@ -18,6 +16,7 @@ import {
   Location,
   Signature
 } from 'lyrixi-mobile'
+import { useExampleForm, ExampleForm as Form, ExampleToast } from '@examples-compat'
 
 // 公共组件导入
 
@@ -31,13 +30,13 @@ const locale = LocaleUtil.locale
 // 表单编辑页面
 const Edit = () => {
   // 表单
-  const [form] = Form.useForm()
+  const [form] = useExampleForm()
 
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
 
   // 全屏提示: {status: 'empty|500', message: '', data: { baseData: {}, formData: {} }}
-  const [result, setResult] = useState(null)
+  const [result, setResult] = useState<unknown>(null)
 
   useEffect(() => {
     // 前进需要清除缓存
@@ -57,12 +56,12 @@ const Edit = () => {
    * @return {Object} {baseData: xx, formData: xx}
    */
   async function loadData() {
-    let data = await queryData()
+    let data = (await queryData()) as { formData?: unknown } | null
     setResult(data)
 
     // Initialize form with data
     if (data?.formData) {
-      form.setFieldsValue(data.formData)
+      ;(form as { setFieldsValue: (v: unknown) => void }).setFieldsValue(data.formData)
     }
   }
 
@@ -72,10 +71,15 @@ const Edit = () => {
     let data = await validateData({ form })
     if (!data) return
 
+    const loaded = result as { baseData?: unknown } | null
     // 保存表单数据
-    let result = await saveData({ baseData: result?.data?.baseData, data, token: tokenRef.current })
-    if (result.code === '1') {
-      Toast.show({
+    const saveResult = (await saveData({
+      baseData: loaded?.baseData,
+      data,
+      token: tokenRef.current
+    })) as { code?: string; message?: string }
+    if (saveResult.code === '1') {
+      ExampleToast.show({
         content: locale('提交成功!'),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -83,9 +87,9 @@ const Edit = () => {
       })
     }
     // 重复请求
-    else if (result.code === '2') {
-      Toast.show({
-        content: result.message || locale('请勿重复提交!'),
+    else if (saveResult.code === '2') {
+      ExampleToast.show({
+        content: saveResult.message || locale('请勿重复提交!'),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -96,8 +100,8 @@ const Edit = () => {
       // 请求出错需要重新生成token
       tokenRef.current = '' + Date.now()
 
-      Toast.show({
-        content: result.message || locale('提交失败!')
+      ExampleToast.show({
+        content: saveResult.message || locale('提交失败!')
       })
     }
   }
@@ -325,7 +329,12 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {result?.message && <Result status={result.status} title={result.message} />}
+      {(result as { message?: string; status?: string } | null)?.message && (
+        <Result
+          status={(result as { status?: string }).status}
+          title={(result as { message?: string }).message}
+        />
+      )}
     </Page>
   )
 }

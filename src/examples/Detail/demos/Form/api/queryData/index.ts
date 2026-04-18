@@ -1,4 +1,6 @@
-import { LocaleUtil, Request, Device, Loading } from 'lyrixi-mobile'
+import { LocaleUtil, Device, ObjectUtil } from 'lyrixi-mobile'
+import { ExampleLoading, ExampleRequest } from '@examples-compat'
+
 const locale = LocaleUtil.locale
 
 // 获取数据
@@ -27,15 +29,16 @@ function queryData() {
     }
 
     // 修改或者复制
-    Loading.show()
-    Request.post('获取数据接口地址', {
+    ExampleLoading.show()
+    ExampleRequest.post('获取数据接口地址', {
       id: id
     })
-      .then((result) => {
-        Loading.hide()
-        if (result.code === '1') {
+      .then((result: unknown) => {
+        ExampleLoading.hide()
+        const r = result as { code?: string; data?: unknown }
+        if (r.code === '1') {
           // Empty
-          if (ObjectUtil.isEmpty(result.data)) {
+          if (ObjectUtil.isEmpty(r.data)) {
             resolve({
               status: 'empty',
               message: locale('暂无数据')
@@ -63,7 +66,7 @@ function queryData() {
         }
       })
       .catch(() => {
-        Loading.hide()
+        ExampleLoading.hide()
         resolve(locale('获取数据异常！'))
       })
   })

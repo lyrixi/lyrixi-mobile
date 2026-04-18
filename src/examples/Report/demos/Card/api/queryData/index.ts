@@ -1,5 +1,6 @@
 // 第三方库导入
-import { Request, LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil } from 'lyrixi-mobile'
+import { ExampleRequest } from '@examples-compat'
 
 // 公共组件导入
 
@@ -10,17 +11,18 @@ import { Request, LocaleUtil } from 'lyrixi-mobile'
 const locale = LocaleUtil.locale
 
 // 获取报表数据
-function queryData(params) {
+function queryData(params: unknown) {
   return new Promise((resolve) => {
-    Request.post('xxx', params, {
+    ExampleRequest.post('xxx', params, {
       // headers: {
       //   'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
       //   'content-type': 'application/json'
       // }
     })
-      .then((result) => {
-        if (result.code === '1') {
-          let list = result.data
+      .then((result: unknown) => {
+        const r = result as { code?: string; message?: string; data?: unknown }
+        if (r.code === '1') {
+          let list = r.data
           // Empty
           if (!Array.isArray(list) || !list.length) {
             resolve({
@@ -35,14 +37,15 @@ function queryData(params) {
         } else {
           resolve({
             status: '500',
-            message: result.message || locale('服务器繁忙，请稍后重试')
+            message: r.message || locale('服务器繁忙，请稍后重试')
           })
         }
       })
-      .catch((err) => {
+      .catch((err: unknown) => {
+        const e = err as { data?: { message?: string } }
         resolve({
           status: '500',
-          message: err?.data?.message || locale('服务器繁忙，请稍后重试')
+          message: e?.data?.message || locale('服务器繁忙，请稍后重试')
         })
       })
   })

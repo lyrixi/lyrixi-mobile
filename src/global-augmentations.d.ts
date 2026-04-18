@@ -24,6 +24,8 @@ type WeixinJsSdk = {
 
 declare global {
   interface Window {
+    /** 示例页表单缓存 debounce 句柄（Edit/Cache） */
+    formCacheTimeout?: ReturnType<typeof setTimeout>
     lyrixiLocaleData?: Record<string, string>
     lyrixiLocaleLanguage?: string
     dayjsPlugin?: string[]

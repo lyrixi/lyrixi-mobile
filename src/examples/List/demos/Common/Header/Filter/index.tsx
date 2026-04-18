@@ -1,6 +1,7 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { Page, FooterBar, Form, ToolBar, LocaleUtil, Input } from 'lyrixi-mobile'
+import { LocaleUtil, Input } from 'lyrixi-mobile'
+import { useExampleForm, ExampleForm as Form, ExampleToolBar, ExampleFooterBar } from '@examples-compat'
 // 公共组件导入
 
 // 内部组件导入
@@ -8,8 +9,14 @@ import { Page, FooterBar, Form, ToolBar, LocaleUtil, Input } from 'lyrixi-mobile
 
 const locale = LocaleUtil.locale
 
-function Filter({ queryParams, onSearch }) {
-  const [form] = Form.useForm()
+function Filter({
+  queryParams,
+  onSearch
+}: {
+  queryParams?: Record<string, unknown>
+  onSearch?: (p: Record<string, unknown>) => void
+}) {
+  const [form] = useExampleForm()
   const modifiedRef = useRef(false)
 
   const [active, setActive] = useState(false)
@@ -18,7 +25,7 @@ function Filter({ queryParams, onSearch }) {
   // 显示弹窗时需要还原值
   useEffect(() => {
     if (!visible) return
-    form.setFieldsValue({
+    ;(form as { setFieldsValue: (v: Record<string, unknown>) => void }).setFieldsValue({
       keyword: queryParams?.keyword || '',
       input: queryParams?.input || ''
     })
@@ -26,7 +33,7 @@ function Filter({ queryParams, onSearch }) {
   }, [visible])
 
   return (
-    <ToolBar.Filter
+    <ExampleToolBar.Filter
       sizeEqual
       color={active ? 'primary' : 'default'}
       // backgroundColor="default"
@@ -52,16 +59,16 @@ function Filter({ queryParams, onSearch }) {
           </Form>
         )
       }}
-      footerRender={({ onClose }) => {
+      footerRender={({ onClose }: { onClose: () => void }) => {
         return (
-          <FooterBar>
-            <FooterBar.Button block color="default" backgroundColor="default" onClick={onClose}>
+          <ExampleFooterBar>
+            <ExampleFooterBar.Button block color="default" backgroundColor="default" onClick={onClose}>
               {locale('取消')}
-            </FooterBar.Button>
-            <FooterBar.Button block color="white" backgroundColor="primary" onClick={onClose}>
+            </ExampleFooterBar.Button>
+            <ExampleFooterBar.Button block color="white" backgroundColor="primary" onClick={onClose}>
               {locale('确定')}
-            </FooterBar.Button>
-          </FooterBar>
+            </ExampleFooterBar.Button>
+          </ExampleFooterBar>
         )
       }}
     />
