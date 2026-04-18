@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, useRef, useEffect, useState, forwardRef } from 'react'
 import closeAllDropdown from './../utils/closeAllDropdown'
 import Combo from './../components/Combo'

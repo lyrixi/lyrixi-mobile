@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 将用于判断的动画格式化为css中的动画
 function getDataAnimation(animation) {
   if (animation.indexOf('slideLeft') === 0) {

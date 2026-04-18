@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect } from 'react'
 import { Icon, Button, Float, Page, Divider, Storage, ActionSheet } from 'lyrixi-mobile'
 import vconsole from 'vconsole'

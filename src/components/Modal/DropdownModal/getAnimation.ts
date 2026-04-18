@@ -1,4 +1,3 @@
-// @ts-nocheck
 function getAnimation(left, right) {
   if (![undefined, null].includes(left)) {
     return 'slideDownLeft'

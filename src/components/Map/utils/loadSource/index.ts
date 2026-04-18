@@ -1,4 +1,3 @@
-// @ts-nocheck
 import loadLeaflet from './loadLeaflet'
 import loadGoogle from './loadGoogle'
 import loadBaidu from './loadBaidu'

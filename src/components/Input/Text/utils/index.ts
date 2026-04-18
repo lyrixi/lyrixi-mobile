@@ -1,4 +1,3 @@
-// @ts-nocheck
 import splitInputStyle from './splitInputStyle'
 import maxLengthFormatter from './maxLengthFormatter'
 import minMaxFormatter from './minMaxFormatter'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 function getAnchors(scrollerElement) {
   let anchors = []
   let anchorsElement = scrollerElement?.querySelectorAll?.('[data-indexbar-anchor]')

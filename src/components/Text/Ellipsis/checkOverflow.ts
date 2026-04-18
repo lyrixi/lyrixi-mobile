@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 检测内容是否超出行数限制
 function checkOverflow(element) {
   let elementHeight = element.clientHeight

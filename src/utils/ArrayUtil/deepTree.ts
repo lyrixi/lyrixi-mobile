@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* -----------------------------------------------------
   树数据深度化, 将树的parentid深度为children, 必须有id和parentid
   @格式 [{id: '', name: '', parentid: ''}, {id: '', name: '', parentid: ''}]
@@ -9,8 +8,8 @@ function deepTree(flattenTree) {
     return []
   }
 
-  const idMap = {} // 用对象字面量存储节点映射
-  const result = [] // 用于存储最终的层级树
+  const idMap: Record<string, Record<string, unknown> & { children?: unknown[] }> = {} // 用对象字面量存储节点映射
+  const result: unknown[] = [] // 用于存储最终的层级树
 
   // 初始化节点映射
   flattenTree.forEach((node) => {
@@ -21,7 +20,7 @@ function deepTree(flattenTree) {
   flattenTree.forEach((node) => {
     if (node.parentid && idMap[node.parentid]) {
       if (!idMap[node.parentid].children) idMap[node.parentid].children = []
-      idMap[node.parentid].children.push(idMap[node.id])
+      idMap[node.parentid].children!.push(idMap[node.id])
     } else {
       // 如果没有父节点，作为顶级节点
       result.push(idMap[node.id])

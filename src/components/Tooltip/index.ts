@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Tooltip from './Tooltip'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import mockResult from './mockResult'
 
 // 转换 API 返回数据为页面所需格式

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Bridge from './../../utils/Bridge'
 // 内库使用-end

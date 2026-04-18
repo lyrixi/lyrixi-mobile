@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useImperativeHandle, useRef, forwardRef, useState } from 'react'
 import { getTitle, getDefaultRanges, updateRangeValue } from './../utils'
 import formatValue from './../RangeMain/formatValue'

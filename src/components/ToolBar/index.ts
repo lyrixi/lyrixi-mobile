@@ -1,4 +1,3 @@
-// @ts-nocheck
 import ToolBar from './ToolBar'
 import Dropdown from './Dropdown'
 import DateRange from './DateRange'

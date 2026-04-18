@@ -1,4 +1,3 @@
-// @ts-nocheck
 import constant from './constant'
 
 // 计算可见区域元素

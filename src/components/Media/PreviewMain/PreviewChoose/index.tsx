@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import Uploading from './../../Uploading'
 import DOMUtil from './../../../../utils/DOMUtil'

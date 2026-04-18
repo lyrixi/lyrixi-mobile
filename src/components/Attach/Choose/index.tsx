@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import getAccept from './../utils/getAccept'
 import Button from './Button'

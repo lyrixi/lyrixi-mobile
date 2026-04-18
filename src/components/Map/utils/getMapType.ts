@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Get map render type
 function getMapType() {
   if (window.google) {

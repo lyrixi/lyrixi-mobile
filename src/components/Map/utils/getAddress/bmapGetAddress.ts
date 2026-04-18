@@ -1,4 +1,3 @@
-// @ts-nocheck
 import coordsToFit from './../coordsToFit'
 
 // 内库使用-start

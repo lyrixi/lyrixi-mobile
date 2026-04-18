@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useMemo, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import constant from './constant'
 import flattenList from './flattenList'

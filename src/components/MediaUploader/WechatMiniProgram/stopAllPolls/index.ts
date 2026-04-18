@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Get photos by polling interval
 function stopAllPolls(currentId) {
   if (!window.wechatMiniProgramPolls) window.wechatMiniProgramPolls = {}

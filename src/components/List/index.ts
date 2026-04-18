@@ -1,4 +1,3 @@
-// @ts-nocheck
 import InfiniteScroll from './InfiniteScroll'
 import HeaderItem from './HeaderItem'
 import Item from './Item'

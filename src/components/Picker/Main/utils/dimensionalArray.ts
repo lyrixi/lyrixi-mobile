@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 判断是几维数组
 function dimensionalArray(arr) {
   if (!Array.isArray(arr)) {

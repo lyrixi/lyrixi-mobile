@@ -1,4 +1,3 @@
-// @ts-nocheck
 import defaultMarkerIcons from './../../../utils/markerIcons'
 
 // 内库使用-start

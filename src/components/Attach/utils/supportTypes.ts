@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 判断文件类型, 共用方法, 请勿随意修改
 function supportTypes(src, types) {
   if (!Array.isArray(types) || !types.length) {

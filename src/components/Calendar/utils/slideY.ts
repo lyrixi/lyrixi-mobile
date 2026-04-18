@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Months from './Months'
 
 // 上下拉动

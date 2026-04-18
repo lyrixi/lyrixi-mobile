@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 移除Loading
 // eslint-disable-next-line
 export default function destroy({ id } = {}) {

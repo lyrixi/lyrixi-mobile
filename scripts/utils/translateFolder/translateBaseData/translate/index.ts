@@ -1,4 +1,3 @@
-// @ts-nocheck
 const chalk = require('chalk')
 const translate = require('./bingTranslate')
 const languageMap = require('lyrixi-mobile/utils/LocaleUtil/languageMap')

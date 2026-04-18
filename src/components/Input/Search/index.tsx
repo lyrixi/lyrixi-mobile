@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useState, useEffect } from 'react'
 import InputText from './../Text'
 

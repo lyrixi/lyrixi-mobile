@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
 import getDefaultIconClassName from './getDefaultIconClassName'
 

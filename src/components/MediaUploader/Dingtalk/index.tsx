@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getRemainCount from './../../Media/utils/getRemainCount'
 import _uploadItem from './uploadItem'

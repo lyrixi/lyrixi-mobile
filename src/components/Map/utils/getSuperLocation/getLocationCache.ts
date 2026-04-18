@@ -1,4 +1,3 @@
-// @ts-nocheck
 import CacheKeyPrefix from './CacheKeyPrefix'
 import setLocationCache from './setLocationCache'
 

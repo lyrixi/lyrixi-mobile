@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 

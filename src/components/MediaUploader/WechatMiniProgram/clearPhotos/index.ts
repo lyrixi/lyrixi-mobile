@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Toast from './../../../Toast'
 import Request from './../../../../utils/Request'

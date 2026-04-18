@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getDisplayValue from './formatter'
 

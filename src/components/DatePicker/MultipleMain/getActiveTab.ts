@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Get default tab to active
 function getActiveTab(tabs) {
   if (!Array.isArray(tabs) || !tabs.length) return null

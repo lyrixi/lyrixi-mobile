@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import filterCoords from './../../utils/filterCoords'
 import addPolygon from './addPolygon'

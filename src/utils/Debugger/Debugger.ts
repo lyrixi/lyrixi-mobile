@@ -1,4 +1,3 @@
-// @ts-nocheck
 import LocaleUtil from './../LocaleUtil'
 import createDebugElement from './createDebugElement'
 import multipleClick from './multipleClick'
@@ -13,11 +12,16 @@ import { Toast } from 'lyrixi-mobile'
 
 // 如果DB里存储debug, 则默认开启debug模式
 if (window.sessionStorage.getItem('_debug_')) {
-  window.top._debug_ = true
+  const topWin = window.top ?? window
+  topWin._debug_ = true
 }
 
 // Debugger Tools
-let Debugger = {
+const Debugger: {
+  debugVisible?: unknown
+  addTrigger: (container?: HTMLElement | null) => void
+  showDebug: () => boolean | Promise<boolean>
+} = {
   debugVisible: undefined,
   // Add bind: click debug element 10 times and then show debug panel
   addTrigger: function (container) {
@@ -35,21 +39,20 @@ let Debugger = {
     if (this.debugVisible) return true
     return new Promise((resolve) => {
       import('vconsole')
-        .then((VConsole) => {
-          if (VConsole?.default) {
-            // eslint-disable-next-line
-            VConsole = VConsole.default
-          }
-          window.top._debug_ = true
+        .then((mod) => {
+          const VConsoleCtor = mod.default as new () => { destroy?: () => void }
+          const topWin = window.top ?? window
+          topWin._debug_ = true
           window.sessionStorage.setItem('_debug_', '1')
-          this.debugVisible = new VConsole()
+          this.debugVisible = new VConsoleCtor()
           resolve(true)
         })
         .catch((error) => {
           Toast.show({
             content: LocaleUtil.locale(
               '打开调试面板失败',
-              'lyrixi_577dd0de7cc745dc0fcce18b2d9d909a'
+              'lyrixi_577dd0de7cc745dc0fcce18b2d9d909a',
+              undefined
             ),
             maskClickable: true
           })

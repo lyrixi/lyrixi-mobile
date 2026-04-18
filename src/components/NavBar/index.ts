@@ -1,4 +1,3 @@
-// @ts-nocheck
 import NavBar from './NavBar'
 import Title from './Title'
 import Button from './Button'

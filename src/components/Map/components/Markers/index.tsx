@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import createMarkerIcon from './createMarkerIcon'
 import defaultMarkerIcons from './../../utils/markerIcons'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 矫正最大长度与小数位
 function maxLengthFormatter(val, { maxLength }) {
   // eslint-disable-next-line

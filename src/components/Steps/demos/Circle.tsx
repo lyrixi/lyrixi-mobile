@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 
 import { Page, Divider, Steps, Card } from 'lyrixi-mobile'

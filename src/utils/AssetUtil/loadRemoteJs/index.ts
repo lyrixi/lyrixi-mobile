@@ -1,13 +1,25 @@
-// @ts-nocheck
 // 动态加载script的方法
 function loadRemoteJs(
-  src,
-  {
+  src: string,
+  opts?: {
+    async?: boolean
+    charset?: string
+    text?: string
+    type?: string
+    id?: string
+    defer?: boolean
+    crossorigin?: string
+    integrity?: string
+    referrerPolicy?: string
+    onError?: (result: unknown) => void
+    onSuccess?: (result: unknown) => void
+  }
+) {
+  const {
     async,
     charset,
     text,
     type,
-    // 动态属性
     id,
     defer,
     crossorigin,
@@ -15,11 +27,10 @@ function loadRemoteJs(
     referrerPolicy,
     onError,
     onSuccess
-  } = {}
-) {
-  let attrs = {}
+  } = opts || {}
+  let attrs: Record<string, string> = {}
   if (id) attrs.id = id
-  if (defer) attrs.defer = defer
+  if (defer) attrs.defer = ''
   if (crossorigin) attrs.crossorigin = crossorigin
   if (integrity) attrs.integrity = integrity
   if (referrerPolicy) attrs.referrerPolicy = referrerPolicy

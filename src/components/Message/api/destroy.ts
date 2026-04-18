@@ -1,4 +1,3 @@
-// @ts-nocheck
 import globalMessageId from './globalMessageId'
 
 // 移除Message Modal

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { Fragment, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import getAnchorByPoint from './getAnchorByPoint'
 import getAnchorByScroller from './getAnchorByScroller'

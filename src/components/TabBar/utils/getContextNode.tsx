@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 
 // 获取content

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import loadBaseData from './loadBaseData'
 import loadData from './loadData'
 import formatType from './formatType'

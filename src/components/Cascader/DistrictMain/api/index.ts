@@ -1,4 +1,3 @@
-// @ts-nocheck
 import loadCountries from './loadCountries'
 import loadCountryRegions from './loadCountryRegions'
 import loadStreets from './loadStreets'

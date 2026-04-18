@@ -1,4 +1,3 @@
-// @ts-nocheck
 import loadGoogleMap from './loadGoogleMap'
 import loadGoogleTileLayer from './loadGoogleTileLayer'
 

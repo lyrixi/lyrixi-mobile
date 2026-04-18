@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getDefaultRangeId from './getDefaultRangeId'
 
 // 内库使用-start

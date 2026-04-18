@@ -1,4 +1,3 @@
-// @ts-nocheck
 function getAnchorByScroller(scrollerElement) {
   let anchorsElement = scrollerElement?.querySelectorAll?.('[data-indexbar-anchor]')
   if (!anchorsElement?.length) {

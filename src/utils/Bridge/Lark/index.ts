@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 官方文档: https://open.feishu.cn/document/client-docs/h5/
 // 鉴权: https://open.feishu.cn/document/uYjL24iN/uQjMuQjMuQjM/authentication/h5sdkconfig
 
@@ -18,8 +17,14 @@ import { GeoUtil, Clipboard, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
-    if (window.top.tt && window.top.h5sdk) {
+  load: function (opts?: {
+    getScriptSrc?: (ctx: { platform: string }) => string
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { getScriptSrc, onSuccess, onError } = opts || {}
+    const top = window.top ?? window
+    if (top.tt && top.h5sdk) {
       onSuccess?.({
         status: 'success'
       })
@@ -28,15 +33,15 @@ let Bridge = {
 
     let script = document.createElement('script')
     script.type = 'text/javascript'
-    script.defer = 'defer'
+    script.defer = true
     script.src =
       getScriptSrc?.({ platform: 'lark' }) ||
       '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
 
     script.onload = function () {
       if (window.tt && window.h5sdk) {
-        window.top.tt = window.tt
-        window.top.h5sdk = window.h5sdk
+        top.tt = window.tt
+        top.h5sdk = window.h5sdk
       }
 
       onSuccess?.({
@@ -55,37 +60,45 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  config: async function ({
-    getConfigUrl,
-    formatHeaders,
-    formatPayload,
-    formatResponse,
-    onSuccess,
-    onError
-  } = {}) {
+  config: async function (opts?: {
+    getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
+    formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
+    formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
+    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = opts || {}
     // 获取配置url
     let url = ''
     if (typeof getConfigUrl === 'function') {
       url = await getConfigUrl({ platform: 'lark' })
     }
     // 构建payload
-    let payload = getConfigPayload()
+    let payload: Record<string, unknown> = getConfigPayload() as Record<string, unknown>
     if (typeof formatPayload === 'function') {
-      payload = await formatPayload(payload, { platform: 'lark' })
+      payload = (await formatPayload(payload, { platform: 'lark' })) as Record<string, unknown>
     }
     // 构建header
-    let headers = { 'Content-Type': 'application/json' }
+    let headers: Record<string, string> = { 'Content-Type': 'application/json' }
     if (typeof formatHeaders === 'function') {
       headers = await formatHeaders(headers, { platform: 'lark' })
     }
 
     config({ url, headers, payload, formatResponse, onSuccess, onError })
   },
+  goHome: function () {
+    window.history.go(-1)
+  },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function ({ onSuccess, onError } = {}) {
-    window.top.tt.closeWindow({
+  closeWindow: function (opts?: {
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { onSuccess, onError } = opts || {}
+    ;(window.top ?? window).tt?.closeWindow?.({
       success: () => {
         onSuccess?.({ status: 'success' })
       },
@@ -102,32 +115,29 @@ let Bridge = {
   onBack: function () {
     console.log('飞书不支持监听物理返回')
   },
-  openLocation: function ({
-    latitude,
-    longitude,
-    type,
-    name,
-    address,
-    scale,
-    onSuccess,
-    onError
-  } = {}) {
+  openLocation: function (opts?: {
+    latitude?: number
+    longitude?: number
+    type?: string
+    name?: string
+    address?: string
+    scale?: number
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { latitude, longitude, type, name, address, scale: scaleIn, onSuccess, onError } = opts || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
+    let scale = scaleIn ?? 12
     console.log('调用飞书地图...', { latitude, longitude, type, name, address, scale })
 
-    if (!scale) {
-      // eslint-disable-next-line
-      scale = 12
-    } else if (scale < 5) {
-      // eslint-disable-next-line
+    if (scale < 5) {
       scale = 5
     } else if (scale > 18) {
-      // eslint-disable-next-line
       scale = 18
     }
 
-    window.top.tt.openLocation({
+    ;(window.top ?? window).tt?.openLocation?.({
       latitude: coord.latitude,
       longitude: coord.longitude,
       scale: scale,
@@ -146,11 +156,16 @@ let Bridge = {
       }
     })
   },
-  getLocation: function ({ type, onSuccess, onError } = {}) {
+  getLocation: function (opts?: {
+    type?: string
+    onSuccess?: (r: Record<string, unknown>) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { type, onSuccess, onError } = opts || {}
     let targetType = type || 'gcj02'
     console.log('调用飞书定位...', type)
 
-    window.top.tt.getLocation({
+    ;(window.top ?? window).tt?.getLocation?.({
       type: targetType,
       success: (res) => {
         console.error('飞书定位成功', res)
@@ -188,8 +203,14 @@ let Bridge = {
       }
     })
   },
-  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
-    window.top.tt.scanCode({
+  scanCode: function (opts?: {
+    scanType?: string[]
+    onSuccess?: (r: { status: string; resultStr?: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+    onCancel?: (r: { status: string; message?: string }) => void
+  }) {
+    const { scanType, onSuccess, onError, onCancel } = opts || {}
+    ;(window.top ?? window).tt?.scanCode?.({
       scanType: scanType,
       barCodeInput: true,
       success: (res) => {
@@ -212,20 +233,28 @@ let Bridge = {
   uploadFile: function () {
     console.log('调用飞书上传文件暂未实现')
   },
-  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
-    let urls = sources.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
-    let current = sources?.[index]
+  previewMedia: function (opts?: {
+    index?: number
+    sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+    onCancel?: (r: unknown) => void
+  }) {
+    const { index, sources, onSuccess, onError, onCancel } = opts || {}
+    const srcList = sources || []
+    let urls = srcList.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
+    let current = index !== undefined ? srcList[index] : undefined
 
     // 预览视频
     if (current?.fileType === 'video') {
-      Clipboard.copyText(current.fileUrl)
+      Clipboard.copyText(String(current.fileUrl ?? ''))
       return
     }
 
     // 预览图片
-    window.top.tt.previewImage({
+    ;(window.top ?? window).tt?.previewImage?.({
       urls: urls,
-      current: urls?.[index],
+      current: index !== undefined ? urls[index] : urls[0],
       success: () => {
         onSuccess?.({
           status: 'success'
@@ -243,8 +272,16 @@ let Bridge = {
       onCancel: onCancel
     })
   },
-  share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
-    window.top.tt.share({
+  share(opts?: {
+    title?: string
+    description?: string
+    url?: string
+    imageUrl?: string
+    onSuccess?: () => void
+    onError?: (r: { message?: string }) => void
+  }) {
+    const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
+    ;(window.top ?? window).tt?.share?.({
       channelType: ['wx', 'wx_timeline', 'system'],
       contentType: 'url',
       title: title,

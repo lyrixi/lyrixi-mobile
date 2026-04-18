@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import Checkbox from '../Checkbox'
 

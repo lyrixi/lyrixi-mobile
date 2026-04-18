@@ -1,4 +1,3 @@
-// @ts-nocheck
 function convertBytes(bytes, targetUnit = 'MB') {
   const units = {
     B: 1,

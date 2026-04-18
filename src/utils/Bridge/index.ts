@@ -1,4 +1,3 @@
-// @ts-nocheck
 import back from './utils/back'
 import formatOpenLocationCoord from './utils/formatOpenLocationCoord'
 import Browser from './Browser'
@@ -190,9 +189,19 @@ let Bridge = {
    * @returns {void}
    */
   openLocation(
-    { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = {},
-    platform
+    opts?: {
+      latitude?: number
+      longitude?: number
+      type?: string
+      name?: string
+      address?: string
+      scale?: number
+      onSuccess?: (r: unknown) => void
+      onError?: (r: unknown) => void
+    },
+    platform?: string
   ) {
+    const { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = opts || {}
     return this._getCurrentBridge(platform).openLocation({
       latitude,
       longitude,
@@ -213,7 +222,16 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调，返回 {status: 'cancel', code: String, message: String}
    * @returns {void}
    */
-  getLocation({ type = 'wgs84', onSuccess, onError, onCancel } = {}, platform) {
+  getLocation(
+    opts?: {
+      type?: string
+      onSuccess?: (r: unknown) => void
+      onError?: (r: unknown) => void
+      onCancel?: (r: unknown) => void
+    },
+    platform?: string
+  ) {
+    const { type = 'wgs84', onSuccess, onError, onCancel } = opts || {}
     return this._getCurrentBridge(platform).getLocation({ type, onSuccess, onError, onCancel })
   },
   /**
@@ -335,13 +353,12 @@ let Bridge = {
       return bridge.share(params)
     }
     return undefined
-  }
-}
+  },
 
-// Expose 工具类（静态属性）
-Bridge.utils = {
-  back: back,
-  formatOpenLocationCoord: formatOpenLocationCoord
+  utils: {
+    back,
+    formatOpenLocationCoord
+  }
 }
 
 export default Bridge

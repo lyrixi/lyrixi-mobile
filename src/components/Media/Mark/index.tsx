@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 

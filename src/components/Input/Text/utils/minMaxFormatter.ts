@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 矫正最大值和最小值
 function minMaxFormatter(val, { min, max }) {
   if (val && !isNaN(val) && val !== (null || '')) {

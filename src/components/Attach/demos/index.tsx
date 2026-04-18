@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState, useRef } from 'react'
 import { Toast, Page, Divider, Bridge, Button, Attach } from 'lyrixi-mobile'
 

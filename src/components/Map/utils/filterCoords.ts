@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 过滤不合法的坐标数据
 function filterCoords(coords) {
   if (!coords || !Array.isArray(coords)) {

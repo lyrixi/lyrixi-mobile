@@ -1,4 +1,3 @@
-// @ts-nocheck
 import AccordionGroup from './AccordionGroup'
 import Accordion from './Accordion'
 

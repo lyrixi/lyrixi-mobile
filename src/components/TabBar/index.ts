@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Tabs from './Tabs'
 import Group from './Group'
 import Slide from './Slide'

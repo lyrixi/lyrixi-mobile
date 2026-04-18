@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getTitleByType from './getTitleByType'
 
 // 内库使用-start

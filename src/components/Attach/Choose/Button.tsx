@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import Uploading from './../Uploading'
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 const CanvasUtil = {
   toBase64: function (canvas, { suffix = 'image/png', quality = 0.92 }) {
     return canvas.toDataURL(suffix, quality)

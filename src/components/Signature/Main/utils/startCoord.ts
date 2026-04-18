@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 计算无素的top left bottom center的起始绘制位置，能够保证此元素正好绘制到指定的英文位置
 function startCoord(targetWidth, targetHeight, position, { width, height }) {
   let posArr = position.split(' ').map(function (item, index) {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import flattenList from './flattenList'
 import equalItems from './equalItems'
 

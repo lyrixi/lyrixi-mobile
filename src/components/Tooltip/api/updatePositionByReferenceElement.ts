@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getPositionByReferenceElement from './getPositionByReferenceElement'
 import getRelativePosition from './getRelativePosition'
 

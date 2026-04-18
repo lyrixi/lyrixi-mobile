@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 滚动到指定位置
 function getAnchor({ x, y }) {
   let currentButtonElement = document.elementFromPoint(x, y)

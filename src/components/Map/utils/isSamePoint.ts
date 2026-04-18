@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 比较两个点是否相同
 const isSamePoint = (point1, point2) => {
   // 优先比较id

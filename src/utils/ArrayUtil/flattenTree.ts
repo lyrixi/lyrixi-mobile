@@ -1,6 +1,5 @@
-// @ts-nocheck
 function flattenTree(deepTree) {
-  const result = []
+  const result: { id: unknown; name: unknown; parentid: unknown }[] = []
 
   function traverse(node, parentId = null) {
     node.forEach((item) => {

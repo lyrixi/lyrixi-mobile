@@ -1,4 +1,3 @@
-// @ts-nocheck
 import bmapQueryNearby from './bmapQueryNearby'
 import googleQueryNearby from './googleQueryNearby'
 import overpassQueryNearby from './overpassQueryNearby'

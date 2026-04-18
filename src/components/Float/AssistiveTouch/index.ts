@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getPosition from './getPosition'
 import snapToEdge from './snapToEdge'
 

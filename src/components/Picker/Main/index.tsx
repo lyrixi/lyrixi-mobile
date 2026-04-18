@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dimensionalArray from './utils/dimensionalArray'
 import formatValue from './utils/formatValue'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import uploadLocalFile from './uploadLocalFile'
 
 // 内库使用-start

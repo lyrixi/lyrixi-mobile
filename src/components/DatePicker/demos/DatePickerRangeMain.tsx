@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { DatePicker, Page, DateUtil, LocaleUtil, ObjectUtil } from 'lyrixi-mobile'
 

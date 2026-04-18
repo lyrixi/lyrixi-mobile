@@ -1,4 +1,3 @@
-// @ts-nocheck
 import loadOpenstreetTileLayer from './loadOpenstreetTileLayer'
 
 async function loadOpenstreet() {

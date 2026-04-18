@@ -1,4 +1,3 @@
-// @ts-nocheck
 import destroy from './destroy'
 
 // Message.close() - 关闭当前打开的Message对话框

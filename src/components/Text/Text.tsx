@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'

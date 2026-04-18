@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { Page, Cascader, Loading, Input } from 'lyrixi-mobile'
 

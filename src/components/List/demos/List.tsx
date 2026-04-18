@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 import listAllData from './listAllData'

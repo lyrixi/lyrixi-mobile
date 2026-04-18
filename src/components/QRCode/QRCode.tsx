@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import Instance from './instance'
 

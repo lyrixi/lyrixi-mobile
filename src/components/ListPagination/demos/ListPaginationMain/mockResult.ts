@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 测试数据
 const mockResult = {
   code: '1',

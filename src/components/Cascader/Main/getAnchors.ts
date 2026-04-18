@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取IndexBar的anchors
 function getAnchors(list) {
   if (!Array.isArray(list) || list.length === 0) return []

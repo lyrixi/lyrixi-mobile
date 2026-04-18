@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useEffect } from 'react'
 import { Page, VideoPlayer, Button } from 'lyrixi-mobile'
 

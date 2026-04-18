@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useState } from 'react'
 import { Page, ListAsync } from 'lyrixi-mobile'
 import listData from './listData'

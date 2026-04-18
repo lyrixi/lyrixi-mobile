@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 有子项的菜单项，点击无效, 故不返回item
 function getItemById(list, id) {
   for (let item of list) {

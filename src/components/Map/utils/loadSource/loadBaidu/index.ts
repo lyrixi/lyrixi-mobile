@@ -1,4 +1,3 @@
-// @ts-nocheck
 import loadBaiduMap from './loadBaiduMap'
 import loadBaiduTileLayer from './loadBaiduTileLayer'
 

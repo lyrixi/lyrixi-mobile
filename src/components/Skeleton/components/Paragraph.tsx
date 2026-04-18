@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import Avatar from './Avatar'
 import Title from './Title'

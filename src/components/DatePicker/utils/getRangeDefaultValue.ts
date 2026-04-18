@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getDefaultValue from './getDateDefaultValue'
 
 function getRangeDefaultValue({ min, max }) {

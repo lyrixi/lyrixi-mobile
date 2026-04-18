@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
 import Loading from './components/Loading'

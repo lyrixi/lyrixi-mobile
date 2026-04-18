@@ -1,6 +1,12 @@
-// @ts-nocheck
 // 动态加载script的方法
-function loadImage(src, { onError, onSuccess } = {}) {
+function loadImage(
+  src: string,
+  opts?: {
+    onError?: (r: { status: string; img: HTMLImageElement; message: string }) => void
+    onSuccess?: (r: { status: string; img: HTMLImageElement; message: string }) => void
+  }
+) {
+  const { onError, onSuccess } = opts || {}
   return new Promise((resolve) => {
     let img = new Image()
     img.src = src

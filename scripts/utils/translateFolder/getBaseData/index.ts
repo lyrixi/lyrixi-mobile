@@ -1,4 +1,3 @@
-// @ts-nocheck
 const { glob } = require('glob')
 const fs = require('fs')
 const parser = require('@babel/parser')

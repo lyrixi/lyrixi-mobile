@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 关闭所有 Dropdown 实例
 function closeAllDropdown({ exceptId } = {}) {
   if (!window.dropdowns) return

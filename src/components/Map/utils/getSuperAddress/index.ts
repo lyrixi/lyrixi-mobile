@@ -1,4 +1,3 @@
-// @ts-nocheck
 import setAddressCache from './setAddressCache'
 import getAddressCache from './getAddressCache'
 import defaultGetAddress from './../getAddress'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 移除Toast
 function hide({ onClose } = {}) {
   let toastId = '__lyrixi_toast_el__'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 与Attach.uploadItem共用
 
 // 内库使用-start

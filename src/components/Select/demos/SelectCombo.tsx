@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useRef } from 'react'
 import { Page, Select, Checkbox, Card, ToolBar, Text, ObjectUtil } from 'lyrixi-mobile'
 import flatList from './flatList'

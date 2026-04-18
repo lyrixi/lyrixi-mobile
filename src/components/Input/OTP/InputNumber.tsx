@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import InputNode from './../Node'
 import Keyboard from './../../Keyboard'

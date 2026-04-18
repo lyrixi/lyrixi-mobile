@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 与(Attach.getRemainCount, AttachUploader.getRemainCount, MediaUploader.getRemainCount)共用
 
 // 剩余可上传数量

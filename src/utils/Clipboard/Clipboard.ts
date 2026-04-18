@@ -1,21 +1,27 @@
-// @ts-nocheck
 // Clipboard 剪贴板
 import LocaleUtil from './../LocaleUtil' // 国际化数据
 
+type CopyParams = {
+  onSuccess?: (payload: { status: string; message: unknown }) => void
+  onError?: (payload: { status: string; message: unknown }) => void
+  errorMsg?: string
+}
+
 const Clipboard = {
   // 选择元素的内容
-  selectContent: function (element) {
+  selectContent: function (element: Node) {
     // 首先创建一个范围
     let rangeToSelect = document.createRange()
     rangeToSelect.selectNodeContents(element)
 
     // 选择内容
     let selection = window.getSelection()
+    if (!selection) return
     selection.removeAllRanges()
     selection.addRange(rangeToSelect)
   },
   // 为execCommand方法创建一个临时元素
-  createElementForExecCommand: function (textToClipboard) {
+  createElementForExecCommand: function (textToClipboard: string) {
     let forExecElement = document.createElement('div')
     // 放置在可见区域之外
     forExecElement.style.position = 'absolute'
@@ -25,12 +31,12 @@ const Clipboard = {
     forExecElement.textContent = textToClipboard
     document.body.appendChild(forExecElement)
     // contentEditable模式对于Firefox中的execCommand方法是必需的
-    forExecElement.contentEditable = true
+    forExecElement.contentEditable = 'true'
 
     return forExecElement
   },
   // 复制到剪贴板
-  copy: function (input, params = {}) {
+  copy: function (input: string, params: CopyParams = {}) {
     let textToClipboard = input
 
     let success = true
@@ -46,12 +52,10 @@ const Clipboard = {
 
       // UniversalXPConnect是Firefox中剪贴板访问所必需的
       try {
-        if (window.netscape && window.netscape.security) {
-          window.netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect')
-        }
+        window.netscape?.security?.PrivilegeManager?.enablePrivilege('UniversalXPConnect')
         // 将选定内容复制到剪贴板
         // 适用于Firefox和Safari 5之前的版本
-        success = document.execCommand('copy', false, null)
+        success = document.execCommand('copy', false, undefined)
       } catch (e) {
         success = false
       }
@@ -64,7 +68,11 @@ const Clipboard = {
       if (params?.onSuccess)
         params.onSuccess({
           status: 'success',
-          message: LocaleUtil.locale('复制到剪贴板成功', 'lyrixi_4972304451f2ae7687888100446cbb99')
+          message: LocaleUtil.locale(
+            '复制到剪贴板成功',
+            'lyrixi_4972304451f2ae7687888100446cbb99',
+            undefined
+          )
         })
     } else {
       if (params?.onError)
@@ -72,7 +80,11 @@ const Clipboard = {
           status: 'error',
           message:
             params.errorMsg ||
-            LocaleUtil.locale('当前设备不允许访问剪贴板', 'lyrixi_4a3bc2967c96d7a27a8d217a151b7734')
+            LocaleUtil.locale(
+              '当前设备不允许访问剪贴板',
+              'lyrixi_4a3bc2967c96d7a27a8d217a151b7734',
+              undefined
+            )
         })
     }
   }

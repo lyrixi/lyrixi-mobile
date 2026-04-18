@@ -1,4 +1,3 @@
-// @ts-nocheck
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import osmGetAddress from './osmGetAddress'

@@ -1,7 +1,6 @@
-// @ts-nocheck
 // 取出所有先辈节点
 function getDeepTreePredecessorNodes(tree, id) {
-  const predecessorNodes = [] // 用于存储先辈节点
+  const predecessorNodes: unknown[] = [] // 用于存储先辈节点
 
   // 辅助函数：递归遍历查找目标节点的路径
   function traverse(nodes, targetId) {

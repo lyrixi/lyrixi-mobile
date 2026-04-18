@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
 import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'

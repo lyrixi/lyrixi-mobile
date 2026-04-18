@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 官方文档: https://opendocs.alipay.com/open/020oit?scene=SC00001851?pathHash=0f29c54b
 
 import back from './../utils/back'
@@ -16,8 +15,14 @@ import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
-    if (window.top.ap) {
+  load: function (opts?: {
+    getScriptSrc?: (ctx: { platform: string }) => string | undefined
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { getScriptSrc, onSuccess, onError } = opts || {}
+    const topWin = window.top ?? window
+    if (topWin.ap) {
       onSuccess?.({
         status: 'success'
       })
@@ -26,7 +31,7 @@ let Bridge = {
 
     let script = document.createElement('script')
     script.type = 'text/javascript'
-    script.defer = 'defer'
+    script.defer = true
     script.src =
       getScriptSrc?.({ platform: 'alipay' }) ||
       '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
@@ -47,11 +52,11 @@ let Bridge = {
           })
           return
         }
-        window.top.my = window.my
+        ;(window.top ?? window).my = window.my
       }
 
       if (window.ap) {
-        window.top.ap = window.ap
+        ;(window.top ?? window).ap = window.ap
       }
 
       onSuccess?.({
@@ -70,31 +75,39 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  back: function (delta) {
+  goHome: function () {
+    window.history.go(-1)
+  },
+  back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function ({ onSuccess, onError } = {}) {
-    window.top.ap?.popWindow()
+  closeWindow: function (opts?: {
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { onSuccess } = opts || {}
+    ;(window.top ?? window).ap?.popWindow?.()
     onSuccess?.({ status: 'success' })
   },
   onBack: function () {
     console.log('支付宝不支持监听物理返回')
   },
-  openLocation: function ({
-    latitude,
-    longitude,
-    type,
-    name,
-    address,
-    scale,
-    onSuccess,
-    onError
-  } = {}) {
+  openLocation: function (opts?: {
+    latitude?: number
+    longitude?: number
+    type?: string
+    name?: string
+    address?: string
+    scale?: number
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用支付宝地图...', { latitude, longitude, type, name, address, scale })
 
-    window.top.ap.openLocation({
+    ;(window.top ?? window).ap?.openLocation?.({
       title: name || '',
       address: address || '',
       latitude: coord.latitude,
@@ -102,7 +115,7 @@ let Bridge = {
       onSuccess: () => {
         onSuccess?.({ status: 'success' })
       },
-      onError: (error) => {
+      onError: (error: { errorMessage?: string }) => {
         onError?.({
           status: 'error',
           message:
@@ -115,15 +128,27 @@ let Bridge = {
       }
     })
   },
-  getLocation: function ({ type, onSuccess, onError } = {}) {
+  getLocation: function (opts?: {
+    type?: string
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { type, onSuccess, onError } = opts || {}
     console.log('调用支付宝定位...', type)
 
-    window.top.ap.getLocation({
+    ;(window.top ?? window).ap?.getLocation?.({
       type: '2',
-      onSuccess: (res) => {
+      onSuccess: (res: { latitude?: number; longitude?: number; accuracy?: number }) => {
         console.error('支付宝定位成功', res)
         let latitude = res.latitude
         let longitude = res.longitude
+        if (latitude == null || longitude == null) {
+          onError?.({
+            status: 'error',
+            message: `Alipay ${LocaleUtil.locale('定位失败', 'lyrixi_9831baf6b76c1da7b69b463033b924cc')}`
+          })
+          return
+        }
 
         if (type === 'wgs84') {
           const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
@@ -131,7 +156,7 @@ let Bridge = {
           latitude = points[1]
         }
 
-        onSuccess({
+        onSuccess?.({
           status: 'success',
           longitude: longitude,
           latitude: latitude,
@@ -139,13 +164,19 @@ let Bridge = {
           accuracy: res.accuracy
         })
       },
-      onError: (error) => {
+      onError: (error: { errorMessage?: string }) => {
         console.error('支付宝定位失败', error)
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       }
     })
   },
-  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
+  scanCode: function (opts?: {
+    scanType?: string[]
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+    onCancel?: (r: unknown) => void
+  }) {
+    const { scanType, onSuccess, onError, onCancel } = opts || {}
     let type = ''
     if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
@@ -155,18 +186,18 @@ let Bridge = {
       }
     }
 
-    window.top.ap.scan({
+    ;(window.top ?? window).ap?.scan?.({
       type: type,
-      success: (res) => {
+      success: (res: { code?: string }) => {
         onSuccess?.({
           status: 'success',
           resultStr: res.code
         })
       },
-      fail: (error) => {
+      fail: (error: { errorMessage?: string }) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       },
-      cancel: (error) => {
+      cancel: (error: { errorMessage?: string }) => {
         onCancel?.({ status: 'cancel', message: error?.errorMessage || '' })
       }
     })

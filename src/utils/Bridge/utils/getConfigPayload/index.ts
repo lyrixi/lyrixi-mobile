@@ -1,8 +1,12 @@
-// @ts-nocheck
 import getPayloadValue from './getPayloadValue'
 
 function getPayload() {
-  let payload = {
+  let payload: {
+    appId: string
+    url: string
+    lowerAppId?: string
+    suiteType?: string
+  } = {
     appId: getPayloadValue('appId'),
     url: window.location.href.split('#')[0]
   }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 
 // 内库使用-start

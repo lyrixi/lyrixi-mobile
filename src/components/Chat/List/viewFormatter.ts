@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 格式化列表数据为渲染数据, 用于渲染列表组件
 function viewFormatter(list, { formatViewItem, formatViewList }) {
   // 格式化List显示数据, 但仍然需要保留原始数据list

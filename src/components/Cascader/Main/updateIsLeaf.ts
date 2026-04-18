@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 设置叶子节点
 function updateIsLeaf(id, { currentValue, value, tabsRef }) {
   // 更新当前列表叶子节点

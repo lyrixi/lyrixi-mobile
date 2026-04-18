@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useRef, useEffect } from 'react'
 import { Page, Location } from 'lyrixi-mobile'
 

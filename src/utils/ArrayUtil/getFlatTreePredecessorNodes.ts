@@ -1,16 +1,15 @@
-// @ts-nocheck
 function getFlatTreePredecessorNodes(tree, id) {
-  const result = []
+  const result: unknown[] = []
 
   // 构建一个 id -> 节点 的映射
-  const nodeMap = {}
+  const nodeMap: Record<PropertyKey, Record<string, unknown>> = {}
   tree.forEach((node) => {
     nodeMap[node.id] = node
   })
 
   let currentNode = nodeMap[id]
-  while (currentNode && currentNode.parentid) {
-    const parentNode = nodeMap[currentNode.parentid]
+  while (currentNode && currentNode['parentid']) {
+    const parentNode = nodeMap[currentNode['parentid'] as PropertyKey]
     if (parentNode) {
       result.unshift(parentNode) // 确保父节点顺序从根到当前节点
       currentNode = parentNode

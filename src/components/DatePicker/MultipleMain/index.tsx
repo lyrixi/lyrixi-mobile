@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
 import Main from './../Main'
 import formatValue from './formatValue'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 
 import getTabs from './utils/getTabs'

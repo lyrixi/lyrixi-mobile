@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, forwardRef, useImperativeHandle, useRef, useState } from 'react'
 // Compatible with lower version
 // import 'core-js/es/array/flat'

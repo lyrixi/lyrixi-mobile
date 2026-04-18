@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { Fragment } from 'react'
 import Tag from './Tag'
 import InputNode from './../../Node'

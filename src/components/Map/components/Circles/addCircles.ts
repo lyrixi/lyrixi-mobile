@@ -1,4 +1,3 @@
-// @ts-nocheck
 import coordsToFit from './../../utils/coordsToFit'
 
 function addCircles(points, options, layer) {

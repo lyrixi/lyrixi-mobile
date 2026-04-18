@@ -1,4 +1,3 @@
-// @ts-nocheck
 const mapUrl =
   'https://maponline{s}.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=2&udt='
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取当前位置
 function getIndex(activeOption, list) {
   if (!activeOption?.id || !Array.isArray(list) || !list.length) return 0

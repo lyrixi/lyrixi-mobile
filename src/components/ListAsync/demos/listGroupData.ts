@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 分组列表数据：一级为 group 标题，children 为子级列表项（用于 ListAsync 分组示例）
 export default [
   {

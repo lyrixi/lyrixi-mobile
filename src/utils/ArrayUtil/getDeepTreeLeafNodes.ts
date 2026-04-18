@@ -1,7 +1,6 @@
-// @ts-nocheck
 // 获取末级节点
 function getDeepTreeLeafNodes(tree) {
-  const leafNodes = [] // 用于存储末级节点
+  const leafNodes: unknown[] = [] // 用于存储末级节点
 
   function traverse(nodes) {
     for (const node of nodes) {

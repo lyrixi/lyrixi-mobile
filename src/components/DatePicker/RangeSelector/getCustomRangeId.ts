@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取自定义key
 function getCustomRangeId(ranges) {
   // 获取自定义项的key，不是数组则为自定义项:

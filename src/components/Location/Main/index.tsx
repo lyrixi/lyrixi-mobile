@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import Footer from './Choose/Footer'
 import Preview from './Preview'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Request from './../../../utils/Request'
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,14 +7,29 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function config({ url, headers, payload, formatResponse, onSuccess, onError } = {}) {
+function config(opts?: {
+  url?: string
+  headers?: Record<string, string>
+  payload?: Record<string, unknown>
+  formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
+  onSuccess?: (r: { status: string }) => void
+  onError?: (r: { status: string; message?: string }) => void
+}) {
+  const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
+  if (!url || !payload) return
   // 获取鉴权信息
   Request.post(url, payload, {
     headers: headers
   })
-    .then(async (response) => {
-      if (response.code === '1') {
-        let result = await formatResponse(response, { platform: 'lark' })
+    .then(async (response: unknown) => {
+      const res = response as { code?: string; message?: string } & Record<string, unknown>
+      if (res.code === '1') {
+        if (!formatResponse) return
+        const result = (await formatResponse(res, { platform: 'lark' })) as {
+          status?: string
+          message?: string
+          data?: Record<string, unknown>
+        }
         if (result.status === 'error') {
           onError?.({
             status: 'error',
@@ -36,24 +50,25 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
           })
         }, 10000)
 
-        window.top.h5sdk.config({
-          appId: result.data.appId,
-          timestamp: result.data.timeStamp,
-          nonceStr: result.data.nonceStr,
-          signature: result.data.signature,
+        const top = window.top ?? window
+        top.h5sdk?.config?.({
+          appId: result.data?.appId,
+          timestamp: result.data?.timeStamp,
+          nonceStr: result.data?.nonceStr,
+          signature: result.data?.signature,
           jsApiList: ['openLocation', 'getLocation', 'scanCode', 'previewImage', 'closeWindow'],
           // 成功回调
-          onSuccess: (res) => {
+          onSuccess: (sdkRes: unknown) => {
             // 单例
             if (isReady) return
             isReady = true
-            console.log(`config success: `, res)
+            console.log(`config success: `, sdkRes)
             onSuccess?.({
               status: 'success'
             })
           },
           // 失败回调
-          onFail: (err) => {
+          onFail: (err: unknown) => {
             // 单例
             if (isReady) return
             isReady = true
@@ -71,7 +86,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
         onError?.({
           status: 'error',
           message:
-            response.message ||
+            res.message ||
             `Lark ${LocaleUtil.locale(
               '鉴权接口失败，请稍后重试！',
               'lyrixi_7334cbbe6fd40b00e470b91c73f16d2f'
@@ -79,7 +94,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
         })
       }
     })
-    .catch((err) => {
+    .catch(() => {
       onError?.({
         status: 'error',
         message: `Lark ${LocaleUtil.locale(

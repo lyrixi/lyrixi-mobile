@@ -1,4 +1,3 @@
-// @ts-nocheck
 import isDisabledDate from './isDisabledDate'
 import Months from './Months'
 

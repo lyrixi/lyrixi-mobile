@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef } from 'react'
 import DatePickerCombo from './../../WeekCombo'
 import Combo from './Combo'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Main from './../Main'

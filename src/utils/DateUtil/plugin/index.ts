@@ -1,4 +1,3 @@
-// @ts-nocheck
 import dayjs from 'dayjs'
 // dayjs国际化, 常用插件: https://day.js.org/docs/en/plugin/plugin
 import isoWeek from 'dayjs/plugin/isoWeek'
@@ -10,14 +9,15 @@ import utc from 'dayjs/plugin/utc'
 // Add plugin
 function plugin() {
   if (!window.dayjsPlugin) window.dayjsPlugin = []
-  if (window.dayjsPlugin.includes('isoWeek')) return
+  const plugins = window.dayjsPlugin
+  if (plugins.includes('isoWeek')) return
 
   dayjs.extend(isoWeek) // 用于解决format时报错:isoWeek
   dayjs.extend(weekOfYear) // 用于解决format时报错:week
   dayjs.extend(quarterOfYear)
   dayjs.extend(advancedFormat) // 支持高级format
   dayjs.extend(utc)
-  window.dayjsPlugin.push('isoWeek', 'weekOfYear', 'quarterOfYear', 'advancedFormat')
+  plugins.push('isoWeek', 'weekOfYear', 'quarterOfYear', 'advancedFormat')
 }
 
 export default plugin

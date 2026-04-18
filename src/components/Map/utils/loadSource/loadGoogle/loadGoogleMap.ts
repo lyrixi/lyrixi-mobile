@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import AssetUtil from '../../../../../utils/AssetUtil'
 // 内库使用-end

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useRef } from 'react'
 import { Page, Modal, Button, Input } from 'lyrixi-mobile'
 

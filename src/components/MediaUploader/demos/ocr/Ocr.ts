@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { LocaleUtil, Request, Loading, Toast } from 'lyrixi-mobile'
 
 // 新的OCR识别：单个照片识别

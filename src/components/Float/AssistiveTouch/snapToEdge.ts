@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 贴边逻辑（修复纵向越界）
 const snapToEdge = (target, { gap, onChange }) => {
   const rect = target.getBoundingClientRect()

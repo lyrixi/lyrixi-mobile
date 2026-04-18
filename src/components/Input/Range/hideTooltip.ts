@@ -1,4 +1,3 @@
-// @ts-nocheck
 function hideTooltip(tooltipElement) {
   tooltipElement.style.visibility = 'hidden'
 }

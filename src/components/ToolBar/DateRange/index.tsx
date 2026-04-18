@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useEffect, useState } from 'react'
 import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
 import Dropdown from './../Dropdown'

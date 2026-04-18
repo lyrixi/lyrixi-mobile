@@ -1,4 +1,3 @@
-// @ts-nocheck
 import isGroups from './../utils/isGroups'
 function flattenList(list) {
   if (isGroups(list) === false) {

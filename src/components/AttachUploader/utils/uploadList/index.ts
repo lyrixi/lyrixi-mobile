@@ -1,4 +1,3 @@
-// @ts-nocheck
 import uploadFile from './../../Browser/uploadItem'
 
 // 内库使用-start

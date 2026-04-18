@@ -1,4 +1,3 @@
-// @ts-nocheck
 import FooterBar from './FooterBar'
 import Button from './Button'
 

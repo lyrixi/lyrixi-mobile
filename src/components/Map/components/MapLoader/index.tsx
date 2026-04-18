@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import loadSource from './../../utils/loadSource'
 import canvasMarkers from './leaflet.canvas-markers'

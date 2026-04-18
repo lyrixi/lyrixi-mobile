@@ -1,4 +1,3 @@
-// @ts-nocheck
 function getCenter() {
   let latlng = leafletMap?.getCenter()
   let center = {

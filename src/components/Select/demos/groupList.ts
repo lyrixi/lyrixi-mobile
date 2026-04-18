@@ -1,4 +1,3 @@
-// @ts-nocheck
 export default [
   {
     avatar: 'https://api.dicebear.com/7.x/miniavs/svg',

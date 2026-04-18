@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } from 'react'
 
 import coordsToWgs84 from './../../utils/coordsToWgs84'

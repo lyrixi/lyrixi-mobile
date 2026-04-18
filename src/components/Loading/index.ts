@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Loading from './Loading'
 import SpinFade from './SpinFade'
 import Ouroboros from './Ouroboros'

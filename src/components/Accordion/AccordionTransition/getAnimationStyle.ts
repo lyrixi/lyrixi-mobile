@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * 根据内容高度动态计算动画样式
  * @param {number} contentHeight - 内容实际高度（scrollHeight）

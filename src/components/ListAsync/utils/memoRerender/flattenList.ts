@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取当前项在列表中的索引
 const flattenList = (list) => {
   if (!Array.isArray(list) || !list) return []

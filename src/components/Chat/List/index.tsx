@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
 import viewFormatter from './viewFormatter'
 import getSpaceDates from './getSpaceDates'

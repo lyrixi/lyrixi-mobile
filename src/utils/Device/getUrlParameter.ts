@@ -4,7 +4,7 @@
  * @param {String} argSearch - 自定义查询字符串，如果不传则使用 window.location.href
  * @returns {String|Object} 参数值、所有参数对象或查询字符串
  */
-function getUrlParameter(argName, argSearch) {
+function getUrlParameter(argName?: string, argSearch?: string) {
   let url = window.location.href
   if (argSearch) url = argSearch
   let params = {}

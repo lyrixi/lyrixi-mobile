@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * 按照行政区划类型顺序排序
  * @param {Array} value - [{id: '', name: '', type: ['city']}, ...]

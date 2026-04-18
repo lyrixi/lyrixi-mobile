@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, forwardRef } from 'react'
 import { getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'

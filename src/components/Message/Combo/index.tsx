@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 import Header from './../Header'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
 import WeekMain from './../WeekMain'

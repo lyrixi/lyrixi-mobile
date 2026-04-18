@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 根据动画判定方向
 function getClassNameByAnimation(animation) {
   // 构建动画

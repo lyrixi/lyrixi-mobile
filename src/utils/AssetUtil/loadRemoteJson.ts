@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios'
 
 /**
@@ -10,7 +9,15 @@ import axios from 'axios'
  * @param {Function} options.onSuccess - 成功回调（可选）
  * @returns {Promise<{status: 'success|error', data: any, message: string}>}
  */
-async function loadRemoteJson(url, { config, onError, onSuccess } = {}) {
+async function loadRemoteJson(
+  url: string,
+  opts?: {
+    config?: Parameters<typeof axios.get>[1]
+    onError?: (e: { status: string; data: null; message: string }) => void
+    onSuccess?: (r: { status: string; data: unknown; message: string }) => void
+  }
+) {
+  const { config, onError, onSuccess } = opts || {}
   return new Promise((resolve) => {
     // 参数校验
     if (!url || typeof url !== 'string') {
@@ -39,11 +46,12 @@ async function loadRemoteJson(url, { config, onError, onSuccess } = {}) {
         if (typeof data === 'string') {
           try {
             data = JSON.parse(data)
-          } catch (parseError) {
+          } catch (parseError: unknown) {
+            const parseMsg = parseError instanceof Error ? parseError.message : String(parseError)
             let error = {
               status: 'error',
               data: null,
-              message: `Failed to parse JSON: ${parseError.message}`
+              message: `Failed to parse JSON: ${parseMsg}`
             }
             resolve(error)
             onError?.(error)
@@ -59,19 +67,24 @@ async function loadRemoteJson(url, { config, onError, onSuccess } = {}) {
         resolve(result)
         onSuccess?.(result)
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         // 处理各种错误情况
         let errorMessage = 'Failed to load JSON'
+        const err = error as {
+          response?: { status?: number; statusText?: string }
+          request?: unknown
+          message?: string
+        }
 
-        if (error.response) {
+        if (err.response) {
           // 服务器响应了错误状态码
-          errorMessage = `Failed to load JSON: ${error.response.status} ${error.response.statusText}`
-        } else if (error.request) {
+          errorMessage = `Failed to load JSON: ${err.response.status} ${err.response.statusText}`
+        } else if (err.request) {
           // 请求已发送但没有收到响应
           errorMessage = 'Failed to load JSON: No response from server'
         } else {
           // 请求配置出错
-          errorMessage = `Failed to load JSON: ${error.message || 'Network error'}`
+          errorMessage = `Failed to load JSON: ${err.message || 'Network error'}`
         }
 
         let errorResult = {

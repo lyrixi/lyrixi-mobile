@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useState } from 'react'
 import Page from './Page'
 

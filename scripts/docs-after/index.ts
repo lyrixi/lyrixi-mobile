@@ -1,4 +1,3 @@
-// @ts-nocheck
 const fs = require('fs')
 
 // 创建目录

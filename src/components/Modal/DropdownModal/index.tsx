@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 import getAnimation from './getAnimation'

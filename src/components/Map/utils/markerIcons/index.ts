@@ -1,4 +1,3 @@
-// @ts-nocheck
 const markerIcons = {
   centerMarkerIcon: {
     active: true,

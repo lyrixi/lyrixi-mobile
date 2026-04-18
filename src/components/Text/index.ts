@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Text from './Text'
 import getDisplayValue from './getDisplayValue'
 

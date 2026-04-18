@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Device from './../../../../utils/Device'
 import Storage from './../../../../utils/Storage'
@@ -8,7 +7,7 @@ import Storage from './../../../../utils/Storage'
 import { Device, Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-function getPayloadValue(payloadKey) {
+function getPayloadValue(payloadKey: string): string {
   let urlPayloadValue = Device.getUrlParameter(payloadKey)
   let payloadValue =
     urlPayloadValue ||

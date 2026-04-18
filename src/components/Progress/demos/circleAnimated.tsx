@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 import { Page, Progress, Divider, Card } from 'lyrixi-mobile'
 

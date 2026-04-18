@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 // import Sortable from 'sortablejs'
 import { ReactSortable } from 'react-sortablejs'

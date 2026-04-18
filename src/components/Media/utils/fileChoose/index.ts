@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getRemainCount from './../../utils/getRemainCount'
 import compressImage from './compressImage'
 

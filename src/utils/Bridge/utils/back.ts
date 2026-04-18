@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
 import Device from './../../Device'
@@ -10,9 +9,13 @@ import { Device, Message, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 客户端默认返回控制
-async function back(delta = -1, { closeWindow, goHome }) {
+async function back(
+  delta = -1,
+  helpers?: { closeWindow?: () => void; goHome?: () => void }
+) {
+  const { closeWindow = () => {}, goHome = () => {} } = helpers || {}
   // 返回操作对象与返回层级
-  let isFromApp = Device.getUrlParameter('isFromApp') || ''
+  let isFromApp = String(Device.getUrlParameter('isFromApp') || '')
 
   if (isFromApp === '1') {
     closeWindow()

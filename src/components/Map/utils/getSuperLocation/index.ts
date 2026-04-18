@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getLocationCache from './getLocationCache'
 import setLocationCache from './setLocationCache'
 import clearLocationCache from './clearLocationCache'

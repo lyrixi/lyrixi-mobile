@@ -1,4 +1,3 @@
-// @ts-nocheck
 import coordsToFit from './../../utils/coordsToFit'
 import createMarkerIcon from './../Markers/createMarkerIcon'
 

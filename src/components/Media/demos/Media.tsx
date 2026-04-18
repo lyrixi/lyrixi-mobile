@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState, useRef } from 'react'
 import { HistoryUtil, Toast, Page, Divider, Bridge, Media } from 'lyrixi-mobile'
 // import VConsole from 'vconsole'

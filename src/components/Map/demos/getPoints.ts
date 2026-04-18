@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 生成随机点
 /*
 points = getPoints({

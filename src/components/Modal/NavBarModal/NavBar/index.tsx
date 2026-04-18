@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef } from 'react'
 import Cancel from './Cancel'
 import Ok from './Ok'

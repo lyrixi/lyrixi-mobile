@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react'
 import { splitInputStyle, correctValue as _correctValue } from './../Text/utils'
 import getClearNode from './../Text/getClearNode'

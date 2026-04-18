@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import InputText from './InputText'
 import InputNumber from './InputNumber'

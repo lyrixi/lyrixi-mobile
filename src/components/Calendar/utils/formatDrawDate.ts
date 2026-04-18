@@ -1,4 +1,3 @@
-// @ts-nocheck
 import isDisabledDate from './isDisabledDate'
 
 // 获取当前绘制日期

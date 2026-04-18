@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef } from 'react'
 import { Page, ToolBar, Button } from 'lyrixi-mobile'
 

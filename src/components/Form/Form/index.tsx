@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef } from 'react'
 import Form from 'rc-field-form'
 import Items from './../components/Items'

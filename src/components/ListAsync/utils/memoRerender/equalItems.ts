@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import ArrayUtil from './../../../../utils/ArrayUtil'
 // 内库使用-end

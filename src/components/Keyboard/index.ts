@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Number from './Number'
 
 const Keyboard = {

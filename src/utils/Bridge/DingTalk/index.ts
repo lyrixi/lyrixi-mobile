@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 官方文档: https://open.dingtalk.com/document/development/jsapi-overview
 
 import back from './../utils/back'
@@ -19,8 +18,13 @@ import { LocaleUtil, Clipboard, GeoUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   // 特有方法
-  setTitle: function ({ title, onSuccess, onError } = {}) {
-    window.top.dd.setNavigationTitle({
+  setTitle: function (opts?: {
+    title?: string
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { title, onSuccess, onError } = opts || {}
+    ;(window.top ?? window).dd?.setNavigationTitle?.({
       title: title,
       success: () => {
         onSuccess?.({ status: 'success' })
@@ -39,8 +43,13 @@ let Bridge = {
     })
   },
   // 通用方法
-  load: function ({ getScriptSrc, onSuccess, onError } = {}) {
-    if (window.top.dd) {
+  load: function (opts?: {
+    getScriptSrc?: (ctx: { platform: string }) => string
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { getScriptSrc, onSuccess, onError } = opts || {}
+    if ((window.top ?? window).dd) {
       onSuccess?.({
         status: 'success'
       })
@@ -49,14 +58,14 @@ let Bridge = {
 
     let script = document.createElement('script')
     script.type = 'text/javascript'
-    script.defer = 'defer'
+    script.defer = true
     script.src =
       getScriptSrc?.({ platform: 'dingtalk' }) ||
       '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
 
     script.onload = function () {
       if (window.dd) {
-        window.top.dd = window.dd
+        (window.top ?? window).dd = window.dd
       }
 
       onSuccess?.({
@@ -75,38 +84,46 @@ let Bridge = {
 
     document.body.appendChild(script)
   },
-  config: async function ({
-    getConfigUrl,
-    formatHeaders,
-    formatPayload,
-    formatResponse,
-    onSuccess,
-    onError
-  } = {}) {
+  config: async function (opts?: {
+    getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
+    formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
+    formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
+    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = opts || {}
     // 获取配置url
     let url = ''
     if (typeof getConfigUrl === 'function') {
       url = await getConfigUrl({ platform: 'dingtalk' })
     }
     // 构建payload
-    let payload = getConfigPayload()
+    let payload: Record<string, unknown> = getConfigPayload() as Record<string, unknown>
     if (typeof formatPayload === 'function') {
-      payload = await formatPayload(payload, { platform: 'dingtalk' })
+      payload = (await formatPayload(payload, { platform: 'dingtalk' })) as Record<string, unknown>
     }
     // 构建header
-    let headers = { 'Content-Type': 'application/json' }
+    let headers: Record<string, string> = { 'Content-Type': 'application/json' }
     if (typeof formatHeaders === 'function') {
       headers = await formatHeaders(headers, { platform: 'dingtalk' })
     }
 
     config({ url, headers, payload, formatResponse, onSuccess, onError })
   },
+  goHome: function () {
+    window.history.go(-1)
+  },
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function ({ onSuccess, onError } = {}) {
-    if (window.top.dd?.env?.platform === 'pc') {
-      window?.top?.dd?.quitPage({
+  closeWindow: function (opts?: {
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { onSuccess, onError } = opts || {}
+    if ((window.top ?? window).dd?.env?.platform === 'pc') {
+      ;(window.top ?? window).dd?.quitPage?.({
         success: () => {
           onSuccess?.({ status: 'success' })
         },
@@ -125,7 +142,7 @@ let Bridge = {
       return
     }
 
-    window.top.dd.closePage({
+    ;(window.top ?? window).dd?.closePage?.({
       success: () => {
         onSuccess?.({ status: 'success' })
       },
@@ -145,21 +162,22 @@ let Bridge = {
   onBack: function () {
     console.log('钉钉不支持监听物理返回')
   },
-  openLocation: function ({
-    latitude,
-    longitude,
-    type,
-    name,
-    address,
-    scale,
-    onSuccess,
-    onError
-  } = {}) {
+  openLocation: function (opts?: {
+    latitude?: number
+    longitude?: number
+    type?: string
+    name?: string
+    address?: string
+    scale?: number
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用钉钉地图...', { latitude, longitude, type, name, address, scale })
 
-    window.top.dd.openLocation({
+    ;(window.top ?? window).dd?.openLocation?.({
       title: name || '',
       address: address || '',
       latitude: coord.latitude,
@@ -180,10 +198,15 @@ let Bridge = {
       }
     })
   },
-  getLocation: function ({ type, onSuccess, onError } = {}) {
+  getLocation: function (opts?: {
+    type?: string
+    onSuccess?: (r: Record<string, unknown>) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { type, onSuccess, onError } = opts || {}
     console.log('调用钉钉定位...', type)
 
-    window.top.dd.getLocation({
+    ;(window.top ?? window).dd?.getLocation?.({
       type: 0,
       useCache: false,
       coordinate: '1',
@@ -221,7 +244,13 @@ let Bridge = {
       }
     })
   },
-  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
+  scanCode: function (opts?: {
+    scanType?: string[]
+    onSuccess?: (r: { status: string; resultStr?: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+    onCancel?: () => void
+  }) {
+    const { scanType, onSuccess, onError, onCancel } = opts || {}
     let type = 'all'
     if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
@@ -231,7 +260,7 @@ let Bridge = {
       }
     }
 
-    window.top.dd.biz.util.scan({
+    (window.top ?? window).dd?.biz?.util?.scan?.({
       type: type,
       onSuccess: (res) => {
         onSuccess?.({
@@ -245,27 +274,27 @@ let Bridge = {
       onCancel: onCancel
     })
   },
-  chooseMedia: function ({
-    count,
-    sourceType,
-    sizeType,
-    mediaType,
-    maxDuration,
-    onSuccess,
-    onError,
-    onCancel
-  } = {}) {
-    // eslint-disable-next-line
-    count = count || 9
+  chooseMedia: function (opts?: {
+    count?: number
+    sourceType?: string[]
+    sizeType?: string[]
+    mediaType?: string[]
+    maxDuration?: number
+    onSuccess?: (r: { status: string; localFiles?: unknown[] }) => void
+    onError?: (r: unknown) => void
+    onCancel?: () => void
+  }) {
+    const { count: countIn, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
+      opts || {}
+    let count = countIn || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
-      // eslint-disable-next-line
       count = 1
     }
 
-    const handleSuccess = async function (res) {
-      let localFiles = []
-      for (let file of res?.files) {
-        let localFile = {
+    const handleSuccess = async function (res: { files?: Array<Record<string, unknown> & { path?: string; fileType?: string }> }) {
+      let localFiles: Array<Record<string, unknown>> = []
+      for (let file of res.files || []) {
+        let localFile: Record<string, unknown> = {
           fileThumbnail: file.path,
           fileUrl: file.path,
           filePath: file.path,
@@ -273,8 +302,10 @@ let Bridge = {
           fileExtension: file.fileType
         }
 
-        if (sizeType?.indexOf?.('compressed') >= 0) {
-          localFile = await compressImage(localFile)
+        if ((sizeType || []).includes('compressed')) {
+          localFile = (await compressImage(
+            localFile as Parameters<typeof compressImage>[0]
+          )) as Record<string, unknown>
         }
 
         localFiles.push(localFile)
@@ -312,7 +343,7 @@ let Bridge = {
       position: 'back',
       sourceType: sourceType || ['camera', 'album']
     })
-    window.top.dd.chooseImage({
+    ;(window.top ?? window).dd?.chooseImage?.({
       count: count,
       secret: false,
       position: 'back',
@@ -321,16 +352,24 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadFile: async function ({
-    localFile,
-    getUploadUrl,
-    formatHeaders,
-    formatPayload,
-    formatResponse,
-    onSuccess,
-    onError,
-    onCancel
-  } = {}) {
+  uploadFile: async function (opts?: {
+    localFile?: { filePath?: string; fileType?: string; [key: string]: unknown }
+    getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
+    formatHeaders?: (
+      h: Record<string, string>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, string>>
+    formatPayload?: (
+      p: Record<string, unknown>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, unknown>>
+    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+    onCancel?: (r: unknown) => void
+  }) {
+    const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError, onCancel } =
+      opts || {}
     const url = (await getUploadUrl?.({ platform: 'dingtalk' })) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
       onError &&
@@ -349,11 +388,11 @@ let Bridge = {
       return
     }
 
-    let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
+    let payload: Record<string, unknown> = { filePath: localFile.filePath, fileType: localFile.fileType }
     if (typeof formatPayload === 'function') {
-      payload = await formatPayload(payload, { platform: 'dingtalk' })
+      payload = (await formatPayload(payload, { platform: 'dingtalk' })) as Record<string, unknown>
     }
-    let headers = { 'Content-Type': 'multipart/form-data' }
+    let headers: Record<string, string> = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeaders === 'function') {
       headers = await formatHeaders(headers, { platform: 'dingtalk' })
     }
@@ -373,7 +412,7 @@ let Bridge = {
         return
       }
 
-      let response = {
+      let response: { code: string; result: unknown; status?: string } = {
         code: 'success',
         result: data
       }
@@ -384,7 +423,7 @@ let Bridge = {
       }
 
       if (typeof formatResponse === 'function') {
-        response = await formatResponse(response, { platform: 'dingtalk' })
+        response = (await formatResponse(response, { platform: 'dingtalk' })) as typeof response
       }
 
       if (response.status === 'success') {
@@ -403,7 +442,7 @@ let Bridge = {
       fileType: localFile.fileType
     })
 
-    window.top.dd.uploadFile({
+    ;(window.top ?? window).dd?.uploadFile?.({
       url: url.startsWith('http') ? url : window.origin + url,
       header: headers,
       formData: payload,
@@ -427,20 +466,28 @@ let Bridge = {
       }
     })
   },
-  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
-    let urls = sources.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
-    let current = sources?.[index]
+  previewMedia: function (opts?: {
+    index?: number
+    sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: unknown) => void
+    onCancel?: (r: unknown) => void
+  }) {
+    const { index, sources, onSuccess, onError, onCancel } = opts || {}
+    const srcList = sources || []
+    let urls = srcList.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
+    let current = index !== undefined ? srcList[index] : undefined
 
     // 预览视频
     if (current?.fileType === 'video') {
-      Clipboard.copyText(current.fileUrl)
+      Clipboard.copyText(String(current.fileUrl ?? ''))
       return
     }
 
     // 预览图片
-    window.top.dd.previewImage({
+    ;(window.top ?? window).dd?.previewImage?.({
       urls: urls,
-      current: index || 0,
+      current: index ?? 0,
       success: () => {
         onSuccess?.({
           status: 'success'
@@ -465,8 +512,16 @@ let Bridge = {
       }
     })
   },
-  share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
-    window.top.dd.biz.util.share({
+  share(opts?: {
+    title?: string
+    description?: string
+    url?: string
+    imageUrl?: string
+    onSuccess?: () => void
+    onError?: (r: { message?: string }) => void
+  }) {
+    const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
+    ;(window.top ?? window).dd?.biz?.util?.share?.({
       type: 0, // 分享类型，0:全部组件 默认；1:只能分享到钉钉；2:不能分享，只有刷新按钮
       url: url,
       title: title,

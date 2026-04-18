@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Request from './../../Request'
 import LocaleUtil from './../../LocaleUtil'
@@ -8,7 +7,12 @@ import LocaleUtil from './../../LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadServerId({ url, headers, payload }) {
+function uploadServerId(opts?: {
+  url?: string
+  headers?: Record<string, string>
+  payload?: Record<string, unknown>
+}) {
+  const { url, headers, payload } = opts || {}
   return new Promise((resolve) => {
     Request.post(url, payload, {
       headers: headers || {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getWeekNames from './getWeekNames'
 
 // 内库使用-start

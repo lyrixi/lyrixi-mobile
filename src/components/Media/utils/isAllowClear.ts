@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * 公用方法, 用于判断是否允许清除/删除
  * @param {boolean|function} allowClear - 是否允许清除（布尔值或函数）

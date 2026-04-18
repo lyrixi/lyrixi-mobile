@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Weeks from './Weeks'
 import Months from './Months'
 import formatDrawDate from './formatDrawDate'

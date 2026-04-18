@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import getClassNameByAnimation from './../../Modal/api/getClassNameByAnimation'
 // 内库使用-end

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 
 // 失败重传图标

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 const InputText = forwardRef(

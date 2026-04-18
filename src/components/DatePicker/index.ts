@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getTitle, getDefaultRanges, getRangeId } from './utils'
 
 import Combo from './Combo'

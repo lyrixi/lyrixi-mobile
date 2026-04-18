@@ -1,4 +1,3 @@
-// @ts-nocheck
 import uploadFile from './uploadFile'
 import back from './../utils/back'
 
@@ -15,20 +14,28 @@ import { LocaleUtil, Clipboard, GeoUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Browser = {
-  load: function ({ onSuccess } = {}) {
+  /** 调试开关：为 true 时 getBrowserLocation / scanCode 等走模拟逻辑 */
+  debug: false,
+  load: function (opts?: { onSuccess?: (r: { status: string }) => void }) {
+    const { onSuccess } = opts || {}
     onSuccess?.({
       status: 'success'
     })
   },
-  config: async function ({ onSuccess } = {}) {
+  config: async function (opts?: { onSuccess?: (r: { status: string }) => void }) {
+    const { onSuccess } = opts || {}
     onSuccess?.({
       status: 'success'
     })
   },
-  back: function (delta) {
+  back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function ({ onSuccess, onError } = {}) {
+  closeWindow: function (opts?: {
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { onSuccess } = opts || {}
     window.history.go(-1)
     onSuccess?.({ status: 'success' })
   },
@@ -40,17 +47,24 @@ let Browser = {
       )} onBack`
     })
   },
-  setTitle: function ({ title, onSuccess, onError } = {}) {
-    window.top.document.title = title
+  setTitle: function (opts?: {
+    title?: string
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { title, onSuccess } = opts || {}
+    const topWin = window.top ?? window
+    topWin.document.title = title ?? ''
     onSuccess?.({ status: 'success' })
   },
-  openWindow: function ({ url, target } = {}) {
+  openWindow: function (opts?: { url?: string; target?: string }) {
+    const { url, target } = opts || {}
     if (target === '_self') {
-      window.location.replace(url)
+      if (url) window.location.replace(url)
       return
     }
     if (Device.device === 'pc') {
-      window.open(url)
+      if (url) window.open(url)
       return
     }
     if (url) window.location.href = url
@@ -58,7 +72,12 @@ let Browser = {
   goHome: function () {
     window.history.go(-1)
   },
-  tel: function ({ number, onSuccess, onError } = {}) {
+  tel: function (opts?: {
+    number?: string | number
+    onSuccess?: (r: { status: string }) => void
+    onError?: (r: { status: string; message?: string }) => void
+  }) {
+    const { number, onSuccess, onError } = opts || {}
     if (Device.device === 'pc') {
       Toast.show({
         content: `Browser ${LocaleUtil.locale(
@@ -68,7 +87,7 @@ let Browser = {
       })
       return
     }
-    if (isNaN(number)) {
+    if (number == null || Number.isNaN(Number(number))) {
       onError?.({
         status: 'error',
         message: `Browser ${LocaleUtil.locale(
@@ -81,16 +100,17 @@ let Browser = {
     window.location.href = 'tel:' + number
     onSuccess?.({ status: 'success' })
   },
-  openLocation: function ({
-    latitude,
-    longitude,
-    type,
-    name,
-    address,
-    scale,
-    onSuccess,
-    onError
-  } = {}) {
+  openLocation: function (opts?: {
+    latitude?: number
+    longitude?: number
+    type?: string
+    name?: string
+    address?: string
+    scale?: number
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { latitude, longitude, type, onError } = opts || {}
     if (!latitude || !longitude || !type) return
     let message = `Browser ${LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
@@ -103,27 +123,42 @@ let Browser = {
     })
     onError?.({ status: 'error', message: message })
   },
-  getLocation: function ({ type, onSuccess, onError } = {}) {
-    this.getBrowserLocation({ type, onSuccess, onError })
+  getLocation: function (opts?: {
+    type?: string
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    this.getBrowserLocation(opts)
   },
-  getBrowserLocation: function ({ type, onSuccess, onError } = {}) {
+  getBrowserLocation: function (opts?: {
+    type?: string
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { type, onSuccess, onError } = opts || {}
     if (this.debug) {
       console.log('模拟浏览器定位...', type)
       setTimeout(() => {
-        let res = {
-          status: 'success',
-          message: '',
-          speed: '0.0',
-          accuracy: '3.0.0',
-          type: type || 'wgs84'
-        }
-        if (type === 'gcj02') {
-          res.latitude = 39.909187
-          res.longitude = 116.397451
-        } else {
-          res.latitude = 39.907783490367706
-          res.longitude = 116.39120737493609
-        }
+        const res =
+          type === 'gcj02'
+            ? {
+                status: 'success' as const,
+                message: '',
+                speed: '0.0',
+                accuracy: '3.0.0',
+                type: type || 'wgs84',
+                latitude: 39.909187,
+                longitude: 116.397451
+              }
+            : {
+                status: 'success' as const,
+                message: '',
+                speed: '0.0',
+                accuracy: '3.0.0',
+                type: type || 'wgs84',
+                latitude: 39.907783490367706,
+                longitude: 116.39120737493609
+              }
         onSuccess?.(res)
       }, 2000)
       return
@@ -200,7 +235,7 @@ let Browser = {
                 'lyrixi_8a95092c3c8f57da8b4a619eeead5795'
               )}`
               break
-            case error.UNKNOWN_ERROR:
+            case 0:
               code = 'UNKNOWN_ERROR'
               console.log(
                 `Browser ${LocaleUtil.locale(
@@ -246,7 +281,13 @@ let Browser = {
     }
     return
   },
-  scanCode: function ({ scanType, onSuccess, onError, onCancel } = {}) {
+  scanCode: function (opts?: {
+    scanType?: string[]
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+    onCancel?: (r: unknown) => void
+  }) {
+    const { scanType, onSuccess, onError, onCancel } = opts || {}
     if (!this.debug) {
       let message = `Browser ${LocaleUtil.locale(
         '此平台不支持',
@@ -275,15 +316,23 @@ let Browser = {
       content: message
     })
   },
-  uploadFile: async function ({
-    localFile,
-    getUploadUrl,
-    formatHeaders,
-    formatPayload,
-    formatResponse,
-    onSuccess,
-    onError
-  } = {}) {
+  uploadFile: async function (opts?: {
+    localFile?: { filePath?: string; fileType?: string }
+    getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
+    formatHeaders?: (
+      h: Record<string, string>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, string>>
+    formatPayload?: (
+      p: Record<string, unknown>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, unknown>>
+    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
+      opts || {}
     let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
       onError &&
@@ -293,23 +342,27 @@ let Browser = {
         })
       return
     }
-    let payload = { filePath: localFile.filePath, fileType: localFile.fileType }
-    if (typeof formatPayload === 'function') {
-      payload = await formatPayload(payload, { platform: 'browser' })
+    if (!localFile?.filePath || !localFile?.fileType) {
+      onError?.({ status: 'error', message: 'localFile error' })
+      return
     }
-    let headers = { 'Content-Type': 'multipart/form-data' }
+    let payload: Record<string, unknown> = { filePath: localFile.filePath, fileType: localFile.fileType }
+    if (typeof formatPayload === 'function') {
+      payload = (await formatPayload(payload, { platform: 'browser' })) as Record<string, unknown>
+    }
+    let headers: Record<string, string> = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeaders === 'function') {
       headers = await formatHeaders(headers, { platform: 'browser' })
     }
 
-    let response = await uploadFile({
+    let response = (await uploadFile({
       url: url,
       headers: headers,
       payload: payload
-    })
+    })) as { status: string; [key: string]: unknown }
 
     if (response.status === 'success' && typeof formatResponse === 'function') {
-      response = await formatResponse(response, { platform: 'browser' })
+      response = (await formatResponse(response, { platform: 'browser' })) as typeof response
     }
 
     if (response.status === 'success') {
@@ -318,7 +371,14 @@ let Browser = {
       onError?.(response)
     }
   },
-  previewMedia: function ({ index, sources, onSuccess, onError, onCancel } = {}) {
+  previewMedia: function (opts?: {
+    index?: number
+    sources?: unknown[]
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+    onCancel?: (r: unknown) => void
+  }) {
+    const { onError } = opts || {}
     onError?.({
       status: 'error',
       message: `Browser ${LocaleUtil.locale(
@@ -327,7 +387,12 @@ let Browser = {
       )} previewMedia`
     })
   },
-  previewFile: function ({ fileUrl, onSuccess, onError } = {}) {
+  previewFile: function (opts?: {
+    fileUrl?: string
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { onError } = opts || {}
     let message = `Browser ${LocaleUtil.locale(
       '此平台不支持',
       'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
@@ -337,8 +402,16 @@ let Browser = {
     })
     onError && onError({ status: 'error', message: message })
   },
-  share({ title, description, url, imageUrl, onSuccess, onError } = {}) {
-    Clipboard.copyText(url)
+  share(opts?: {
+    title?: string
+    description?: string
+    url?: string
+    imageUrl?: string
+    onSuccess?: (r: unknown) => void
+    onError?: (r: unknown) => void
+  }) {
+    const { url, onSuccess } = opts || {}
+    Clipboard.copyText(url || '')
     onSuccess &&
       onSuccess({
         status: 'success'

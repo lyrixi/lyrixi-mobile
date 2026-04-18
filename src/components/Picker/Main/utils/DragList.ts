@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getTranslateValue from './getTranslateValue'
 import MathUtil from './../../../MathUtil'
 

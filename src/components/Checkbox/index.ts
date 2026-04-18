@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Checkbox from './Checkbox'
 import Group from './Group'
 

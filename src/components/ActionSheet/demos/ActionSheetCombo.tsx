@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState } from 'react'
 import { Page, Device, ActionSheet, SafeArea } from 'lyrixi-mobile'
 

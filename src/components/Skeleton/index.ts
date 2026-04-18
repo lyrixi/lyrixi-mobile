@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Avatar from './components/Avatar'
 import Title from './components/Title'
 import Item from './components/Item'

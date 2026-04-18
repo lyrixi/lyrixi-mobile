@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 import {
   loadBaseData,

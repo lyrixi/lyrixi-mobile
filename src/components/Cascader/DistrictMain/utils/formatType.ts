@@ -1,4 +1,3 @@
-// @ts-nocheck
 function formatType(type) {
   if (['country', 'province', 'city', 'district', 'street'].includes(type)) {
     return type

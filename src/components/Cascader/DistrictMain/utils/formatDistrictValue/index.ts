@@ -1,4 +1,3 @@
-// @ts-nocheck
 import sortValue from './sortValue'
 import findDistrictLeafIndex from './findDistrictLeafIndex'
 

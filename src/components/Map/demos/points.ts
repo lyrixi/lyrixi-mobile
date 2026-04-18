@@ -1,4 +1,3 @@
-// @ts-nocheck
 export default [
   {
     area: '建邺区',

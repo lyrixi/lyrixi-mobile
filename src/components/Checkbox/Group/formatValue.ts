@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * formatValue - 将传入的 value 规范化为标准对象格式
  * @param {*} value - 原始 value，可能是字符串、字符串数组、对象或对象数组

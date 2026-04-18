@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import MultipleMain from './../MultipleMain'
 

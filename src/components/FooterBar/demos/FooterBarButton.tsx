@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import { Icon, Page, Divider, FooterBar, Button } from 'lyrixi-mobile'
 

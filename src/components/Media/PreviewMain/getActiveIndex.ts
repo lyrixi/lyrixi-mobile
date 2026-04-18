@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 当前选中项
 function getActiveIndex({ index, list }) {
   if (!Array.isArray(list) || !list.length) return 0

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import globalMessageId from './../globalMessageId'
 
 // 渲染Message遮罩

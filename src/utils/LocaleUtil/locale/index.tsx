@@ -27,7 +27,7 @@ function valuesToText(values, variables) {
  * @param {Array} variables {0: <div><div>}
  * @return {Node} 返回react node
  */
-function locale(remark, key, variables) {
+function locale(remark: string, key?: string, variables?: unknown) {
   // Get key's value
   let localeData = window.lyrixiLocaleData || {}
   let value = key && typeof key === 'string' ? localeData[key || ''] : ''

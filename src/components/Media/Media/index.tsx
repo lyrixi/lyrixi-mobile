@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 import fileChoose from './../utils/fileChoose'
 import choose from './../utils/choose'

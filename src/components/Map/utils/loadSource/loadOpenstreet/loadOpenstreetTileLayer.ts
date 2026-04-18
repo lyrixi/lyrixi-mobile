@@ -1,4 +1,3 @@
-// @ts-nocheck
 function loadOpenstreetTileLayer() {
   window.L.tileLayer.currentTileLayer = function () {
     return window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

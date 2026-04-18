@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 当前值所占百分比
 function getPercent({ min, max, value }) {
   if (typeof min !== 'number' || typeof max !== 'number' || typeof value !== 'number') {

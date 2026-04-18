@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { App, Page, Calendar, DateUtil, Card, Divider, Button } from 'lyrixi-mobile'
 

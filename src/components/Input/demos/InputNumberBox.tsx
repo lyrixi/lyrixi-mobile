@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { Page, MathUtil, Divider, Card, Input } from 'lyrixi-mobile'
 

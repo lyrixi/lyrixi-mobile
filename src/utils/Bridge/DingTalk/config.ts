@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Request from './../../../utils/Request'
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,14 +7,29 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function config({ url, headers, payload, formatResponse, onSuccess, onError } = {}) {
+function config(opts?: {
+  url?: string
+  headers?: Record<string, string>
+  payload?: Record<string, unknown>
+  formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
+  onSuccess?: (r: { status: string }) => void
+  onError?: (r: { status: string; message?: string }) => void
+}) {
+  const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
+  if (!url || !payload) return
   // 获取鉴权信息
   Request.post(url, payload, {
     headers: headers
   })
-    .then(async (response) => {
-      if (response.code === '1') {
-        let result = await formatResponse(response, { platform: 'dingtalk' })
+    .then(async (response: unknown) => {
+      const res = response as { code?: string; message?: string } & Record<string, unknown>
+      if (res.code === '1') {
+        if (!formatResponse) return
+        const result = (await formatResponse(res, { platform: 'dingtalk' })) as {
+          status?: string
+          message?: string
+          data?: Record<string, unknown>
+        }
         if (result.status === 'error') {
           onError?.({
             status: 'error',
@@ -40,13 +54,14 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
           })
         }, 10000)
 
+        const top = window.top ?? window
         // 必填，需要使用的jsapi列表，注意：不要带dd。
-        window.top.dd.config({
-          agentId: result.data.agentId, // 必填，微应用ID
-          appId: result.data.appId, // 必填，企业ID
-          timeStamp: result.data.timeStamp, // 必填，生成签名的时间戳
-          nonceStr: result.data.nonceStr, // 必填，自定义固定字符串。
-          signature: result.data.signature, // 必填，签名
+        top.dd?.config?.({
+          agentId: result.data?.agentId, // 必填，微应用ID
+          appId: result.data?.appId, // 必填，企业ID
+          timeStamp: result.data?.timeStamp, // 必填，生成签名的时间戳
+          nonceStr: result.data?.nonceStr, // 必填，自定义固定字符串。
+          signature: result.data?.signature, // 必填，签名
           type: 0, // 选填。0表示微应用的jsapi,1表示服务窗的jsapi；不填默认为0。该参数从dingtalk.js的0.8.3版本开始支持
           // https://open.dingtalk.com/document/orgapp/client-api-comparison-table
           jsApiList: [
@@ -64,7 +79,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
         })
 
         // 该方法必须带上，用来捕获鉴权出现的异常信息，否则不方便排查出现的问题
-        window.top.dd.error(function (err) {
+        top.dd?.error?.(function (err: { errorMessage?: string }) {
           console.error('鉴权失败:', err)
           onError?.({
             status: 'error',
@@ -74,7 +89,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
             )} ${err?.errorMessage || ''}`
           })
         })
-        window.top.dd.ready(function () {
+        top.dd?.ready?.(function () {
           console.log('鉴权成功')
           onSuccess?.({
             status: 'success'
@@ -85,7 +100,7 @@ function config({ url, headers, payload, formatResponse, onSuccess, onError } = 
         onError?.({
           status: 'error',
           message:
-            response.message ||
+            res.message ||
             `DingTalk ${LocaleUtil.locale(
               '鉴权接口失败，请稍后重试！',
               'lyrixi_7334cbbe6fd40b00e470b91c73f16d2f'

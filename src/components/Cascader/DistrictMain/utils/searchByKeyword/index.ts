@@ -1,4 +1,3 @@
-// @ts-nocheck
 import hasIntersection from './hasIntersection'
 
 // 内库使用-start

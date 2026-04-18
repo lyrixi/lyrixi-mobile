@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import filterCoords from './../../utils/filterCoords'
 import addCircles from './addCircles'

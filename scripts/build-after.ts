@@ -1,4 +1,3 @@
-// @ts-nocheck
 const fs = require('fs')
 
 // 删除目录

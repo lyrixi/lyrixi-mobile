@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Request from './../../../../utils/Request'
 import LocaleUtil from './../../../../utils/LocaleUtil'

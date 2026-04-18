@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getRemainCount from './../../../Media/utils/getRemainCount'
 import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import Request from './../../../utils/Request'
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,8 +7,23 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+type WecomPayload = { appId?: string } & Record<string, unknown>
+
+type WecomAgentConfigOptions = {
+  url?: string
+  headers?: Record<string, string>
+  payload?: WecomPayload
+  formatResponse?: (
+    response: unknown,
+    ctx: { platform: string }
+  ) => Promise<unknown> | unknown
+  onSuccess?: (p: { status: string }) => void
+  onError?: (p: { status: string; message?: string; messsage?: string }) => void
+}
+
 // 企业微信自建应用和SASS应用鉴权
-function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, onError } = {}) {
+function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
+  const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
   if (!url || !payload?.appId) {
     onError?.({
       status: 'error',
@@ -24,10 +38,14 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
   Request.post(url, payload, {
     headers: headers
   })
-    .then(async (response) => {
-      if (response.code === '1') {
-        // 这里的result需要返回{corpid: appId, ...}
-        let result = await formatResponse(response, { platform: 'wecom' })
+    .then(async (response: unknown) => {
+      const res = response as { code?: string; message?: string } & Record<string, unknown>
+      if (res.code === '1') {
+        if (!formatResponse) return
+        const result = (await formatResponse(res, { platform: 'wecom' })) as Record<string, unknown> & {
+          status?: string
+          message?: string
+        }
         if (result.status === 'error') {
           onError?.({
             status: 'error',
@@ -36,8 +54,13 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
           return
         }
 
-        // eslint-disable-next-line
-        window.top.wx.agentConfig({
+        const top = window.top ?? window
+        const wx = top.wx
+        if (!wx?.agentConfig) {
+          onError?.({ status: 'error', messsage: 'wx.agentConfig not available' })
+          return
+        }
+        wx.agentConfig({
           ...result,
           jsApiList: [
             'openLocation',
@@ -76,17 +99,17 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
           //必填
           debug: false,
           beta: true,
-          success: function (res) {
+          success: function () {
             onSuccess?.({
               status: 'success'
             })
           },
-          fail: function (res) {
-            console.error('鉴权失败:', res)
+          fail: function (err: { errMsg?: string }) {
+            console.error('鉴权失败:', err)
             onError?.({
               status: 'error',
               messsage:
-                res.errMsg ||
+                err.errMsg ||
                 `WeChat ${LocaleUtil.locale(
                   '鉴权失败，请稍后重试！',
                   'lyrixi_2a3ba5ab52970d065f994590dcb73c9b'
@@ -98,7 +121,7 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
         onError?.({
           status: 'error',
           messsage:
-            response.message ||
+            res.message ||
             `WeChat ${LocaleUtil.locale(
               '鉴权接口失败，请稍后重试！',
               'lyrixi_7334cbbe6fd40b00e470b91c73f16d2f'
@@ -106,7 +129,7 @@ function wecomAgentConfig({ url, headers, payload, formatResponse, onSuccess, on
         })
       }
     })
-    .catch((e) => {
+    .catch(() => {
       onError?.({
         status: 'error',
         messsage: `WeChat ${LocaleUtil.locale(

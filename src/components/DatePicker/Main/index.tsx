@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef } from 'react'
 import WeekMain from './../WeekMain'
 import DateMain from './DateMain'

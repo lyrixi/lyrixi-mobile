@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import Item from './../Item'
 import isAllowClear from './../utils/isAllowClear'

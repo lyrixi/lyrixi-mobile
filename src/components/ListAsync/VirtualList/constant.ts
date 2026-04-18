@@ -1,4 +1,3 @@
-// @ts-nocheck
 const constant = {
   // 缓冲高度
   startBuffer: 80,

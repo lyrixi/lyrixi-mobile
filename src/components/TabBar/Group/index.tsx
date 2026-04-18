@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 import getContextNode from './../utils/getContextNode'
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 公共点击leaflet点
 function markerClickLeaflet({ points, layerGroup, clearMarkers, defaultIcon, onClick }) {
   // Must only one layer

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Clipboard from './Clipboard'
 
 // 内库使用-start
@@ -12,7 +11,11 @@ import { LocaleUtil, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
 
 // 复制连接
-function copyText(url, { onSuccess, onError } = {}) {
+function copyText(
+  url: string,
+  opts?: { onSuccess?: () => void; onError?: () => void }
+) {
+  const { onSuccess, onError } = opts || {}
   Clipboard.copy(url, {
     onSuccess: () => {
       onSuccess
@@ -20,7 +23,8 @@ function copyText(url, { onSuccess, onError } = {}) {
         : Toast.show({
           content: LocaleUtil.locale(
             '链接已复制到剪贴板',
-            'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
+            'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75',
+            undefined
           )
         })
     },
@@ -31,10 +35,11 @@ function copyText(url, { onSuccess, onError } = {}) {
           maskStyle: {
             zIndex: 100
           },
-          title: LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca'),
+          title: LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca', undefined),
           content: `${LocaleUtil.locale(
             '链接复制到剪贴板失败, 请长按复制',
-            'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1'
+            'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1',
+            undefined
           )}
           <br/>${url}`,
           buttons: [

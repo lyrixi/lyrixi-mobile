@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getTitle from './getTitle'
 import getDateDefaultValue from './getDateDefaultValue'
 import getRangeDefaultValue from './getRangeDefaultValue'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
 // 内库使用-end

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let rbush = require('./rbush')
 if (rbush.default) {
   rbush = rbush.default

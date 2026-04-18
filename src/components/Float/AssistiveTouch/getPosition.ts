@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 转换为left/top体系
 function getPosition(target) {
   const rect = target.getBoundingClientRect()

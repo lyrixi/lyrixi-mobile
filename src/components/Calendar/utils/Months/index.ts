@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getDateRowIndex from './getDateRowIndex'
 import paginateMonths from './paginateMonths'
 

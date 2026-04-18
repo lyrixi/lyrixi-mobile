@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import { Page, Form, Divider, Select, Input, FooterBar, LocaleUtil } from 'lyrixi-mobile'
 

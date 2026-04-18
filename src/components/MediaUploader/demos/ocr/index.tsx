@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import vconsole from 'vconsole'
 import { Bridge, Page, MediaUploader } from 'lyrixi-mobile'

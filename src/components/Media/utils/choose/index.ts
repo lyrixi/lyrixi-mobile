@@ -1,4 +1,3 @@
-// @ts-nocheck
 import getRemainCount from './../../utils/getRemainCount'
 
 // 内库使用-start

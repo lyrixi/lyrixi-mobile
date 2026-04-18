@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 加载google地图leaflet插件
 function loadGoogleTileLayer() {
   window.L.tileLayer.currentTileLayer = function () {

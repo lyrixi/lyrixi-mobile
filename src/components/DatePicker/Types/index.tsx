@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 
 import WeekCombo from './WeekCombo'

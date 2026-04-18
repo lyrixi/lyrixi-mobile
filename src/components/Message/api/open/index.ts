@@ -1,7 +1,35 @@
-// @ts-nocheck
+import type { ReactNode } from 'react'
 import destroy from './../destroy'
 import showMask from './showMask'
 import updateAttribute from './updateAttribute'
+
+export type MessageOpenButton = {
+  id?: string
+  name: string
+  className?: string
+  style?: Record<string, unknown>
+  onClick?: () => boolean | void
+}
+
+export type MessageOpenProps = {
+  onOpen?: () => void
+  onClose?: () => void
+  portal?: HTMLElement | string | boolean
+  maskClassName?: string
+  maskStyle?: Record<string, unknown>
+  maskClosable?: boolean
+  icon?: string
+  title?: ReactNode
+  titleClassName?: string
+  titleStyle?: Record<string, unknown>
+  content?: ReactNode
+  contentClassName?: string
+  contentStyle?: Record<string, unknown>
+  footerClassName?: string
+  footerStyle?: Record<string, unknown>
+  buttonsLayout?: 'vertical' | 'horizontal'
+  buttons?: MessageOpenButton[]
+}
 
 // 弹出Message对话框
 export default function open({
@@ -36,7 +64,7 @@ export default function open({
 
   // 按钮数组: [{name: string, onClick: function, className?: string, style?: object}]
   buttons = []
-}) {
+}: MessageOpenProps) {
   let mask = null
 
   // 点击遮罩

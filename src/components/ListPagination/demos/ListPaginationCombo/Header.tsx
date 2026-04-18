@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { LocaleUtil, ToolBar } from 'lyrixi-mobile'
 const locale = LocaleUtil.locale

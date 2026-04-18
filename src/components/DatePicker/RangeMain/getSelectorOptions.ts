@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 将{key: value}转为[{id: key, name: value}]
 function getSelectorOptions(ranges, filter) {
   let options = Object.entries(ranges).map(([name, value]) => {

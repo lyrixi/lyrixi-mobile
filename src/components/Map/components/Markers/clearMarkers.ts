@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Clear all marker
 function clearMarkers({ canvasLayer, layer }) {
   if (!canvasLayer || !layer) return

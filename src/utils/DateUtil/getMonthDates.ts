@@ -1,11 +1,13 @@
-// @ts-nocheck
 // const minuteMillisecond = 60 * 1000
 // const hourMillisecond = 60 * 60 * 1000
 const dayMillisecond = 24 * 60 * 60 * 1000
 // const weekMillisecond = 7 * 24 * 60 * 60 * 1000
 
+type MonthCell = Date & { isCurrent?: boolean }
+
 // 月数据, 当前月isCurrent为true, 返回6行7列二维数组(服务日历控件)
-function getMonthDates(currentDate, weekStart) {
+function getMonthDates(currentDate: Date | number | string, weekStart?: string) {
+  const targetMonth = new Date(currentDate).getMonth()
   let date = new Date(currentDate)
   // 获得本月日历, 返回42天
   // 月头的位置, 周日为0
@@ -28,8 +30,8 @@ function getMonthDates(currentDate, weekStart) {
   let startMillisecond = date.getTime() - dayMillisecond * firstDayIndex
 
   // 生成月
-  let rows = []
-  let data = []
+  const rows: MonthCell[][] = []
+  const data: MonthCell[] = []
   for (let i = 0; i < 42; i++) {
     // 设置日期
     data.push(new Date())
@@ -37,7 +39,7 @@ function getMonthDates(currentDate, weekStart) {
     else data[i].setTime(data[i - 1].getTime() + dayMillisecond)
     // 设置当月标识isCurrent
     data[i].isCurrent = false
-    if (data[i].getMonth() === currentDate.getMonth()) data[i].isCurrent = true
+    if (data[i].getMonth() === targetMonth) data[i].isCurrent = true
 
     // 每7创建一个新组
     if (i % 7 === 0) {

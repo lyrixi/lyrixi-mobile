@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import { useForm as useRcForm } from 'rc-field-form'
 

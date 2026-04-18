@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } from 'react'
 import AccordionTransition from './AccordionTransition'
 

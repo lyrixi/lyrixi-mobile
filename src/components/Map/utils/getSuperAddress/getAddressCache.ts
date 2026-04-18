@@ -1,4 +1,3 @@
-// @ts-nocheck
 import CacheKey from './CacheKey'
 import setAddressCache from './setAddressCache'
 import clearAddressCache from './clearAddressCache'

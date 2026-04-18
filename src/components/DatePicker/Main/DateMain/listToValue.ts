@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取合法
 function getValidDate(year, month, date) {
   let maxDays = new Date(year, month + 1, 0).getDate()

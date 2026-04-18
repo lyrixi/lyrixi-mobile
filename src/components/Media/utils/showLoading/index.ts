@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 与Attach.showLoading共用
 
 // 内库使用-start

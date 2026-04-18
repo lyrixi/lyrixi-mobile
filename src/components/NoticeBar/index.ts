@@ -1,4 +1,3 @@
-// @ts-nocheck
 import NoticeBar from './NoticeBar'
 
 // Component Name, for compact

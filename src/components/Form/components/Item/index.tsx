@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useContext } from 'react'
 import ItemsContext from './../ItemsContext'
 import CommonItem from './Item'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取文件类型
 function getAccept(types) {
   if (!Array.isArray(types) || !types.length) return ''

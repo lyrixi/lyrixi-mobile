@@ -1,4 +1,3 @@
-// @ts-nocheck
 import CacheKey from './CacheKey'
 
 // 内库使用-start

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useRef, forwardRef, useImperativeHandle, useState } from 'react'
 
 // 内库使用-start

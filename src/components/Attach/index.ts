@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Attach from './Attach'
 
 import validateListStatus from './../Media/utils/validateListStatus'

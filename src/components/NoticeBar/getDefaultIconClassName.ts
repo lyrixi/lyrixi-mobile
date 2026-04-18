@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 获取默认图标
 function getDefaultIconClassName(type) {
   switch (type) {

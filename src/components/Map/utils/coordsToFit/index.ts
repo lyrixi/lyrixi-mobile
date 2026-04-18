@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'
 // 内库使用-end

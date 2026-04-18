@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Weeks from './../Weeks'
 import getDateRowIndex from './getDateRowIndex'
 

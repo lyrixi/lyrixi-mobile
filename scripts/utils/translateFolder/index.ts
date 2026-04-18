@@ -1,4 +1,3 @@
-// @ts-nocheck
 const chalk = require('chalk')
 const _ = require('lodash')
 const getBaseData = require('./getBaseData/index')

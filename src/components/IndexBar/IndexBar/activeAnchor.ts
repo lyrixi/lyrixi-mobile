@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 选中sidebar的anchor
 function activeAnchor(anchor, { sidebarElement, tooltipElement }) {
   let buttonsElement = sidebarElement?.querySelectorAll?.('.lyrixi-indexbar-button')

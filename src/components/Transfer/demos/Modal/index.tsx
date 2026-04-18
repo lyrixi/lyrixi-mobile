@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { Page } from 'lyrixi-mobile'
 import { Transfer } from 'lyrixi-mobile'

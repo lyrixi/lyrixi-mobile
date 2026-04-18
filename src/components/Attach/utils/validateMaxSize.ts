@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 校验文件框上传文件大小
 function validateMaxSize(fileSize, maxSize) {
   if (maxSize && fileSize) {

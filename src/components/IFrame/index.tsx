@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useImperativeHandle, forwardRef, useEffect, useRef } from 'react'
 
 // 全屏iframe

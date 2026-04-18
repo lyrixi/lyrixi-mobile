@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 
 // 照片视频预览

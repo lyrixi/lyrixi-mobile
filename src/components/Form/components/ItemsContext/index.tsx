@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { createContext } from 'react'
 
 // 1. 创建 Context

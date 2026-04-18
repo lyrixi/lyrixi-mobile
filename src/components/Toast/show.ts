@@ -1,4 +1,3 @@
-// @ts-nocheck
 import hide from './hide'
 
 // 内库使用-start

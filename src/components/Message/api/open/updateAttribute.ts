@@ -1,4 +1,3 @@
-// @ts-nocheck
 import updateStyle from './updateStyle'
 
 // 内库使用-start

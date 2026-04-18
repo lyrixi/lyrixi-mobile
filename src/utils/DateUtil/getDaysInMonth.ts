@@ -1,7 +1,6 @@
-// @ts-nocheck
 // 获取当月天数
-function getDaysInMonth(date) {
-  const currentDate = new Date(date instanceof Date ? date : null)
+function getDaysInMonth(date: Date | string | number) {
+  const currentDate = date instanceof Date ? date : new Date(date)
   const year = currentDate.getFullYear() // 获取当前年份
   const month = currentDate.getMonth() // 获取当前月份（0-11）
 

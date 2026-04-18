@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Circle from './Circle'
 import Bar from './Bar'
 

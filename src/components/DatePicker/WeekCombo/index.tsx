@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import getDateDefaultValue from './../utils/getDateDefaultValue'
 import WeekModal from './../WeekModal'

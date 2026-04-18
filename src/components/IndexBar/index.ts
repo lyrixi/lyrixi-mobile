@@ -1,4 +1,3 @@
-// @ts-nocheck
 import IndexBar from './IndexBar'
 import Anchor from './Anchor'
 

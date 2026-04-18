@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 第三方库导入
 import React, { useState } from 'react'
 import { ListPagination, Page, Card } from 'lyrixi-mobile'

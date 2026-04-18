@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 截取此id前面的array
 function sliceArray(arr, id) {
   const index = Array.isArray(arr) && arr.length ? arr.findIndex((item) => item.id === id) : -1

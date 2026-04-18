@@ -1,4 +1,3 @@
-// @ts-nocheck
 import compareType from './compareType'
 
 // 根据min判断是否显示确定按钮

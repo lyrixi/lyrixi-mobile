@@ -1,7 +1,6 @@
-// @ts-nocheck
 // 获取指定节点
 function getDeepTreeNodes(tree, filter) {
-  const result = []
+  const result: unknown[] = []
 
   function traverse(nodes) {
     for (const node of nodes) {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import { Page, Divider, TabBar } from 'lyrixi-mobile'
 

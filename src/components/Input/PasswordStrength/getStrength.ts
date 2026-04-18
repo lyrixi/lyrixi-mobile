@@ -1,4 +1,3 @@
-// @ts-nocheck
 function getStrength(password) {
   if (password.length === 0) return 0
 

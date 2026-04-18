@@ -1,4 +1,3 @@
-// @ts-nocheck
 import uploadWechat from './../../Wechat/uploadItem'
 import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'

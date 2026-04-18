@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, forwardRef } from 'react'
 import PreviewMain from './../PreviewMain'
 import DOMUtil from './../../../utils/DOMUtil'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Create bmap,amap,etc map to use invoke api
 function createCurrentMap(container, { center } = {}) {
   // center for search feature

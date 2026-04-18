@@ -1,4 +1,3 @@
-// @ts-nocheck
 import ObjectUtil from './../../../../utils/ObjectUtil'
 
 // 格式化值

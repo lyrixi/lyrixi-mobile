@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
 // 内部组件导出

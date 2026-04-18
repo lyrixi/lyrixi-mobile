@@ -1,4 +1,3 @@
-// @ts-nocheck
 // 点击canvas绘制的marker
 function markerClickCanvas({ points, layerGroup, clearMarkers, defaultIcon, onClick }) {
   layerGroup.addOnClickListener((e, data) => {
