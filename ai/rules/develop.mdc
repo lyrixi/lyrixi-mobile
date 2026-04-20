@@ -7,20 +7,6 @@ alwaysApply: false
 
 # 开发规范
 
-与 **`usage.mdc`**（lyrixi-mobile **库**怎么用）互补, 本文件约定**业务项目**里怎么组织代码——典型页面模板与 `examples` 对照、**import 顺序**、**代码书写顺序**（hooks → 工具函数 → effects → 事件）、**页面命名**、**页面结构**（`api` / `utils` / `Header` / `Main` / `Footer` / 入口 `index`）、**className**、**Ref 与 DOM 变量名**、**值结构**、**事件与 Props 命名**、**国际化文案**（`LocaleUtil.locale`）。
-
-## 不同类型页面开发模板
-
-- 详情页面: `lyrixi-mobile/src/examples/Detail/demos/Form`, 详细描述见:`examples/detail-page.mdc`
-
-- 新增编辑页面(不带缓存): `lyrixi-mobile/src/examples/Edit/demos/Common`, 详细描述见:`examples/edit-page.mdc`
-- 新增编辑页面(带缓存): `lyrixi-mobile/src/examples/Edit/demos/Cache`, 详细描述见:`examples/edit-page.mdc`
-
-- 列表页面(不带缓存): `lyrixi-mobile/src/examples/List/demos/Common`, 详细描述见:`examples/list-page.mdc`
-- 列表页面(带缓存): `lyrixi-mobile/src/examples/List/demos/Cache`, 详细描述见:`examples/list-page.mdc`
-
-详细描述如下：
-
 ## import 顺序
 
 同一文件内建议按下列分组, **组与组之间空一行**, 同组内可按**包名字母序**排序:
