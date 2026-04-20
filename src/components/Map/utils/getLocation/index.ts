@@ -1,5 +1,6 @@
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
+import normalizeLocationResult from './../normalizeLocationResult'
 // 内库使用-end
 
 /* 测试使用-start
@@ -26,7 +27,7 @@ function getLocation(options) {
       type: type,
       onSuccess: (result) => {
         console.log('lyrixi location success:', result)
-        resolve(result)
+        resolve(normalizeLocationResult(result as Record<string, unknown>))
       },
       onError: (error) => {
         console.error('lyrixi location fail:', error)

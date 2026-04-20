@@ -126,24 +126,23 @@ let Browser = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
     onError?: ErrorCallback
   }) {
     this.getBrowserLocation(opts)
   },
   getBrowserLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
     if (this.debug) {
       console.log('模拟浏览器定位...', type)
       setTimeout(() => {
-        const res =
+        const data =
           type === 'gcj02'
             ? {
-                status: 'success' as const,
                 message: '',
                 speed: '0.0',
                 accuracy: '3.0.0',
@@ -152,7 +151,6 @@ let Browser = {
                 longitude: 116.397451
               }
             : {
-                status: 'success' as const,
                 message: '',
                 speed: '0.0',
                 accuracy: '3.0.0',
@@ -160,7 +158,12 @@ let Browser = {
                 latitude: 39.907783490367706,
                 longitude: 116.39120737493609
               }
-        onSuccess?.(res)
+        onSuccess?.({
+          status: 'success',
+          code: '',
+          message: '',
+          data
+        })
       }, 2000)
       return
     }
@@ -188,16 +191,19 @@ let Browser = {
             longitude = points[0]
             latitude = points[1]
           }
-          let res: SuccessResult<Record<string, unknown>> = {
+          onSuccess?.({
             status: 'success',
+            code: '',
             message: '',
-            speed: position.coords.speed,
-            accuracy: position.coords.accuracy,
-            longitude: longitude,
-            latitude: latitude,
-            type: type || 'wgs84'
-          }
-          onSuccess?.(res)
+            data: {
+              message: '',
+              speed: position.coords.speed,
+              accuracy: position.coords.accuracy,
+              longitude: longitude,
+              latitude: latitude,
+              type: type || 'wgs84'
+            }
+          })
         },
         (error) => {
           let code = ''
@@ -284,7 +290,7 @@ let Browser = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onSuccess?: SuccessCallback<{ data: { content: string } }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -305,7 +311,13 @@ let Browser = {
       return
     }
     setTimeout(function () {
-      if (onSuccess) onSuccess({ status: 'success', resultStr: '504823170310092750280333' })
+      if (onSuccess)
+        onSuccess({
+          status: 'success',
+          code: '',
+          message: '',
+          data: { content: '504823170310092750280333' }
+        })
     }, 500)
   },
   chooseMedia: function () {

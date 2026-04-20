@@ -3,6 +3,7 @@ import setLocationCache from './setLocationCache'
 
 // 内库使用-start
 import Storage from './../../../../utils/Storage'
+import normalizeLocationResult from './../normalizeLocationResult'
 // 内库使用-end
 
 /* 测试使用-start
@@ -21,7 +22,7 @@ async function getLocationCache(type, cacheExpires) {
       if (cacheExpires) {
         await setLocationCache(type, cacheExpires, data)
       }
-      return data
+      return normalizeLocationResult(data as Record<string, unknown>)
     }
   } catch (e) {
     // ignore

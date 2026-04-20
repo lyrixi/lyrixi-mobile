@@ -218,7 +218,7 @@ let Bridge = {
    * 获取当前地理位置
    * @param {Object} params - 定位参数
    * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}
+   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data: { latitude, longitude, speed, accuracy, type } }
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @param {Function} params.onCancel - 取消回调，返回 {status: 'cancel', code: String, message: String}
    * @returns {void}
@@ -226,7 +226,7 @@ let Bridge = {
   getLocation(
     opts?: {
       type?: string
-      onSuccess?: SuccessCallback<Record<string, unknown>>
+      onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
       onError?: ErrorCallback
       onCancel?: CancelCallback
     },
@@ -239,11 +239,19 @@ let Bridge = {
    * 获取浏览器地理位置（所有平台都可以调用）
    * @param {Object} params - 定位参数
    * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'gcj02'
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}
+   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data }
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getBrowserLocation(params, platform) {
+  getBrowserLocation(
+    params?: {
+      type?: string
+      onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+      onError?: ErrorCallback
+      [key: string]: unknown
+    },
+    platform?: string
+  ) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.getBrowserLocation) {
       return bridge.getBrowserLocation(params)
@@ -254,7 +262,7 @@ let Bridge = {
    * 扫描二维码并返回结果
    * @param {Object} params - 扫码参数
    * @param {Array<String>} params.scanType - 扫码类型，['qrCode', 'barCode']，默认为 ['qrCode', 'barCode']
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', resultStr: String}
+   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data: { resultStr } }
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
@@ -359,14 +367,14 @@ let Bridge = {
    * 人脸识别活体检测
    * @param {Object} params - 配置鉴权参数
    * @param {Object} params.getConfig - 配置不同平台的入参
-   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data }
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
   detectFace(
     params?: {
       getConfig?: (ctx: { platform: string }) => Promise<string> | string
-      onSuccess?: SuccessCallback<Record<string, unknown>>
+      onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
       onError?: ErrorCallback
     },
     platform?: string
@@ -392,6 +400,9 @@ export type {
   CallbackResult,
   SuccessCallback,
   ErrorCallback,
-  CancelCallback
+  CancelCallback,
+  LocationSuccessPayload,
+  ScanCodeSuccessPayload,
+  DetectFaceSuccessPayload
 } from './types'
 export default Bridge

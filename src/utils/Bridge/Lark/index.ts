@@ -5,7 +5,7 @@ import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
-import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult } from '../types'
+import type { SuccessCallback, ErrorCallback, CancelCallback } from '../types'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -159,7 +159,7 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
@@ -171,8 +171,7 @@ let Bridge = {
       success: (res) => {
         console.error('飞书定位成功', res)
 
-        let result: SuccessResult<Record<string, unknown>> = {
-          status: 'success',
+        let data: Record<string, unknown> = {
           longitude: res.longitude,
           latitude: res.latitude,
           type: res.type,
@@ -182,8 +181,7 @@ let Bridge = {
         if (res.type && res.type !== targetType) {
           const points = GeoUtil.coordtransform([res.longitude, res.latitude], res.type, targetType)
 
-          result = {
-            status: 'success',
+          data = {
             longitude: points[0],
             latitude: points[1],
             type: targetType,
@@ -191,7 +189,12 @@ let Bridge = {
           }
         }
 
-        onSuccess?.(result)
+        onSuccess?.({
+          status: 'success',
+          code: '',
+          message: '',
+          data
+        })
       },
       fail: (error) => {
         console.error('飞书定位失败', error)
@@ -206,7 +209,7 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onSuccess?: SuccessCallback<{ data: { content: string } }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -217,7 +220,9 @@ let Bridge = {
       success: (res) => {
         onSuccess?.({
           status: 'success',
-          resultStr: res.resultStr
+          code: '',
+          message: '',
+          data: { content: res.resultStr || '' }
         })
       },
       fail: (error) => {

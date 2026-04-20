@@ -201,7 +201,7 @@ let Bridge = {
   },
   getLocation: function (params?: {
     type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = params || {}
@@ -230,15 +230,19 @@ let Bridge = {
         longitude = points[0]
         latitude = points[1]
 
-        let result: SuccessResult<Record<string, unknown>> = {
-          status: 'success',
+        const data = {
           type: type,
           latitude: latitude,
           longitude: longitude,
           accuracy: res.accuracy
         }
-        console.log('转换后坐标', result)
-        onSuccess?.(result)
+        console.log('转换后坐标', data)
+        onSuccess?.({
+          status: 'success',
+          code: '',
+          message: '',
+          data
+        })
       },
       onError: (error) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
@@ -247,7 +251,7 @@ let Bridge = {
   },
   scanCode: function (params?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onSuccess?: SuccessCallback<{ data: { content: string } }>
     onError?: ErrorCallback
     onCancel?: () => void
   }) {
@@ -266,7 +270,9 @@ let Bridge = {
       onSuccess: (res) => {
         onSuccess?.({
           status: 'success',
-          resultStr: res.text
+          code: '',
+          message: '',
+          data: { content: res.text || '' }
         })
       },
       onError: (error) => {
@@ -515,7 +521,7 @@ let Bridge = {
    */
   detectFace: async function (params?: {
     getConfig?: (ctx: { platform: string }) => Promise<string> | string
-    onSuccess?: SuccessCallback<{ result?: unknown }>
+    onSuccess?: SuccessCallback<{ data: { result: unknown } }>
     onError?: ErrorCallback
   }) {
     const { getConfig, onSuccess, onError } = params || {}
@@ -538,7 +544,9 @@ let Bridge = {
       onSuccess: (res) => {
         onSuccess?.({
           status: 'success',
-          result: res
+          code: '',
+          message: '',
+          data: { result: res }
         })
       },
       onFail: (err) => {

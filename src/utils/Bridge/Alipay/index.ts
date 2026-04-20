@@ -131,7 +131,7 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
@@ -159,10 +159,14 @@ let Bridge = {
 
         onSuccess?.({
           status: 'success',
-          longitude: longitude,
-          latitude: latitude,
-          type: type || 'gcj02',
-          accuracy: res.accuracy
+          code: '',
+          message: '',
+          data: {
+            longitude: longitude,
+            latitude: latitude,
+            type: type || 'gcj02',
+            accuracy: res.accuracy
+          }
         })
       },
       onError: (error: { errorMessage?: string }) => {
@@ -173,7 +177,7 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onSuccess?: SuccessCallback<{ data: { content: string } }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -192,7 +196,9 @@ let Bridge = {
       success: (res: { code?: string }) => {
         onSuccess?.({
           status: 'success',
-          resultStr: res.code
+          code: '',
+          message: '',
+          data: { content: res.code ?? '' }
         })
       },
       fail: (error: { errorMessage?: string }) => {

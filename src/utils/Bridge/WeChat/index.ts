@@ -195,7 +195,7 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -212,10 +212,14 @@ let Bridge = {
         console.error('微信定位成功', res)
         onSuccess?.({
           status: 'success',
-          longitude: res.longitude,
-          latitude: res.latitude,
-          type: type || 'gcj02',
-          accuracy: res.accuracy
+          code: '',
+          message: '',
+          data: {
+            longitude: res.longitude,
+            latitude: res.latitude,
+            type: type || 'gcj02',
+            accuracy: res.accuracy
+          }
         })
       },
       fail: (error) => {
@@ -230,7 +234,7 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onSuccess?: SuccessCallback<{ data: { content: string } }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -298,7 +302,9 @@ let Bridge = {
         }
         onSuccess?.({
           status: 'success',
-          resultStr: resultStr
+          code: '',
+          message: '',
+          data: { content: resultStr }
         })
       },
       fail: (error) => {

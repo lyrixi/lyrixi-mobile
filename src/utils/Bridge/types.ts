@@ -26,6 +26,15 @@ export type CancelResult = {
 
 export type SuccessCallback<TExtra extends object = object> = (result: SuccessResult<TExtra>) => void
 
+/** getLocation / getBrowserLocation 成功：业务字段统一在 data */
+export type LocationSuccessPayload = SuccessResult<{ data: Record<string, unknown> }>
+
+/** scanCode 成功：扫码内容在 data.resultStr */
+export type ScanCodeSuccessPayload = SuccessResult<{ data: { content: string } }>
+
+/** detectFace 成功：原生返回在 data.result */
+export type DetectFaceSuccessPayload = SuccessResult<{ data: { result: unknown } }>
+
 export type ErrorCallback = (result: ErrorResult) => void
 
 export type CancelCallback = (result: CancelResult) => void
