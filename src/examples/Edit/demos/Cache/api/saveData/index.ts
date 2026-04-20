@@ -1,4 +1,5 @@
-import { LocaleUtil, Device, Loading, Request } from 'lyrixi-mobile'
+import { Device, Loading, LocaleUtil, Request } from 'lyrixi-mobile'
+
 import serverData from './serverData'
 
 const locale = LocaleUtil.locale

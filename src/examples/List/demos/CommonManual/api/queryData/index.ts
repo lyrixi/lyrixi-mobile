@@ -1,6 +1,7 @@
 import { LocaleUtil, Request } from 'lyrixi-mobile'
-import serverData from './serverData'
+
 import localData from './localData'
+import serverData from './serverData'
 
 // 获取列表
 let page = 1

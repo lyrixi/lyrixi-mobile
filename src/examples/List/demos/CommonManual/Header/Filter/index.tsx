@@ -1,10 +1,5 @@
-// 第三方库导入
-import React, { useRef, useEffect, useState } from 'react'
-import { ToolBar, LocaleUtil, Input, Form } from 'lyrixi-mobile'
-// 公共组件导入
-
-// 内部组件导入
-// 样式图片等资源文件导入
+import React, { useEffect, useRef, useState } from 'react'
+import { Form, Input, LocaleUtil, ToolBar } from 'lyrixi-mobile'
 
 const locale = LocaleUtil.locale
 
@@ -31,41 +26,55 @@ function Filter({
     // eslint-disable-next-line
   }, [visible])
 
+  const handleOpen = () => {
+    setVisible(true)
+  }
+
+  const handleClose = () => {
+    setVisible(false)
+  }
+
+  // 取消还原激活状态
+  const handleCancel = () => {
+    modifiedRef.current = active
+  }
+
+  const handleConfig = () => {}
+
+  const handleReset = () => {
+    modifiedRef.current = false
+    ;(form as { resetFields: () => void }).resetFields()
+  }
+
+  const handleOk = ({ close }: { close: () => void }) => {
+    setActive(modifiedRef.current)
+    onSearch?.({
+      ...queryParams,
+      ...(form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue()
+    })
+    close()
+  }
+
+  const handleValuesChange = () => {
+    modifiedRef.current = true
+  }
+
   return (
     <ToolBar.Filter
       sizeEqual
       color={active ? 'primary' : 'default'}
-      onOpen={() => {
-        setVisible(true)
-      }}
-      onClose={() => {
-        setVisible(false)
-      }}
-      // 取消还原激活状态
-      onCancel={() => {
-        modifiedRef.current = active
-      }}
-      onConfig={() => {
-        console.log('setting')
-      }}
-      onReset={() => {
-        modifiedRef.current = false
-        ;(form as { resetFields: () => void }).resetFields()
-      }}
-      onOk={({ close }: { close: () => void }) => {
-        setActive(modifiedRef.current)
-        console.log((form as { getFieldsValue: () => unknown }).getFieldsValue())
-        onSearch?.({ ...queryParams, ...(form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue() })
-        close()
-      }}
+      onOpen={handleOpen}
+      onClose={handleClose}
+      onCancel={handleCancel}
+      onConfig={handleConfig}
+      onReset={handleReset}
+      onOk={handleOk}
       modalRender={() => {
         return (
           <Form
             layout="vertical"
             form={form}
-            onValuesChange={() => {
-              modifiedRef.current = true
-            }}
+            onValuesChange={handleValuesChange}
             style={{ marginLeft: '12px' }}
           >
             <Form.Item name="input" label={locale('单行文本框')}>

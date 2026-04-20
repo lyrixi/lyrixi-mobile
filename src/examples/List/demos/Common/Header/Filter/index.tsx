@@ -1,10 +1,5 @@
-// 第三方库导入
-import React, { useRef, useEffect, useState } from 'react'
-import { LocaleUtil, Input, Form, ToolBar, FooterBar } from 'lyrixi-mobile'
-// 公共组件导入
-
-// 内部组件导入
-// 样式图片等资源文件导入
+import React, { useEffect, useRef, useState } from 'react'
+import { FooterBar, Form, Input, LocaleUtil, ToolBar } from 'lyrixi-mobile'
 
 const locale = LocaleUtil.locale
 
@@ -31,25 +26,38 @@ function Filter({
     // eslint-disable-next-line
   }, [visible])
 
+  const handleOpen = () => {
+    setVisible(true)
+  }
+
+  const handleClose = () => {
+    setVisible(false)
+  }
+
+  const handleConfirm = (onClose: () => void) => {
+    const values = (form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue()
+    setActive(!!modifiedRef.current)
+    onSearch?.({ ...queryParams, ...values })
+    onClose()
+  }
+
+  const handleValuesChange = () => {
+    modifiedRef.current = true
+  }
+
   return (
     <ToolBar.Filter
       sizeEqual
       color={active ? 'primary' : 'default'}
       // backgroundColor="default"
-      onOpen={() => {
-        setVisible(true)
-      }}
-      onClose={() => {
-        setVisible(false)
-      }}
+      onOpen={handleOpen}
+      onClose={handleClose}
       modalRender={() => {
         return (
           <Form
             layout="vertical"
             form={form}
-            onValuesChange={() => {
-              modifiedRef.current = true
-            }}
+            onValuesChange={handleValuesChange}
             style={{ marginLeft: '12px' }}
           >
             <Form.Item name="input" label={locale('单行文本框')}>
@@ -59,18 +67,17 @@ function Filter({
         )
       }}
       footerRender={({ onClose }: { onClose: () => void }) => {
-        const handleConfirm = () => {
-          const values = (form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue()
-          setActive(!!modifiedRef.current)
-          onSearch?.({ ...queryParams, ...values })
-          onClose()
-        }
         return (
           <FooterBar>
             <FooterBar.Button block color="default" backgroundColor="default" onClick={onClose}>
               {locale('取消')}
             </FooterBar.Button>
-            <FooterBar.Button block color="white" backgroundColor="primary" onClick={handleConfirm}>
+            <FooterBar.Button
+              block
+              color="white"
+              backgroundColor="primary"
+              onClick={() => handleConfirm(onClose)}
+            >
               {locale('确定')}
             </FooterBar.Button>
           </FooterBar>

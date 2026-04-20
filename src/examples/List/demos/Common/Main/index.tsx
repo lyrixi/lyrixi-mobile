@@ -1,9 +1,6 @@
-// 第三方库导入
 import React, { forwardRef } from 'react'
 import { ListPagination } from 'lyrixi-mobile'
 
-// 项目内部模块导入
-// 内部组件函数导入
 import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewItem from './formatViewItem'

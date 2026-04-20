@@ -1,4 +1,5 @@
-import { LocaleUtil, Storage, Device, Loading, Request } from 'lyrixi-mobile'
+import { Device, Loading, LocaleUtil, Request, Storage } from 'lyrixi-mobile'
+
 import cacheConfig from './../cacheConfig'
 
 const locale = LocaleUtil.locale
