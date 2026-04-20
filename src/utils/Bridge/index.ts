@@ -189,7 +189,7 @@ let Bridge = {
    * @returns {void}
    */
   openLocation(
-    opts?: {
+    params?: {
       latitude?: number
       longitude?: number
       type?: string
@@ -351,6 +351,28 @@ let Bridge = {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.share) {
       return bridge.share(params)
+    }
+    return undefined
+  },
+  /**
+   * 人脸识别活体检测
+   * @param {Object} params - 配置鉴权参数
+   * @param {Object} params.getConfig - 配置不同平台的入参
+   * @param {Function} params.onSuccess - 成功回调
+   * @param {Function} params.onError - 失败回调
+   * @returns {void}
+   */
+  detectFace(
+    params?: {
+      getConfig?: (ctx: { platform: string }) => Promise<string> | string
+      onSuccess?: (res: unknown) => void
+      onError?: (err: unknown) => void
+    },
+    platform?: string
+  ) {
+    const bridge = this._getCurrentBridge(platform)
+    if (bridge.detectFace) {
+      return bridge.detectFace(params)
     }
     return undefined
   },

@@ -75,6 +75,9 @@ declare global {
           scan?: (opts: Record<string, unknown>) => void
           share?: (opts: Record<string, unknown>) => void
         }
+        ATMBle?: {
+          exclusiveLiveCheck?: (opts: Record<string, unknown>) => void
+        }
       }
     }
   }

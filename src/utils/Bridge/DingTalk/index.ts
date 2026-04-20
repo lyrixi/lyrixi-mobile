@@ -18,12 +18,12 @@ import { LocaleUtil, Clipboard, GeoUtil } from 'lyrixi-mobile'
 
 let Bridge = {
   // 特有方法
-  setTitle: function (opts?: {
+  setTitle: function (params?: {
     title?: string
     onSuccess?: (r: { status: string }) => void
     onError?: (r: { status: string; message?: string }) => void
   }) {
-    const { title, onSuccess, onError } = opts || {}
+    const { title, onSuccess, onError } = params || {}
     ;(window.top ?? window).dd?.setNavigationTitle?.({
       title: title,
       success: () => {
@@ -43,12 +43,12 @@ let Bridge = {
     })
   },
   // 通用方法
-  load: function (opts?: {
+  load: function (params?: {
     getScriptSrc?: (ctx: { platform: string }) => string
     onSuccess?: (r: { status: string }) => void
     onError?: (r: { status: string; message?: string }) => void
   }) {
-    const { getScriptSrc, onSuccess, onError } = opts || {}
+    const { getScriptSrc, onSuccess, onError } = params || {}
     if ((window.top ?? window).dd) {
       onSuccess?.({
         status: 'success'
@@ -84,7 +84,7 @@ let Bridge = {
 
     document.body.appendChild(script)
   },
-  config: async function (opts?: {
+  config: async function (params?: {
     getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
     formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
     formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
@@ -92,7 +92,7 @@ let Bridge = {
     onSuccess?: (r: unknown) => void
     onError?: (r: unknown) => void
   }) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = opts || {}
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = params || {}
     // 获取配置url
     let url = ''
     if (typeof getConfigUrl === 'function') {
@@ -117,11 +117,11 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (opts?: {
+  closeWindow: function (params?: {
     onSuccess?: (r: { status: string }) => void
     onError?: (r: { status: string; message?: string }) => void
   }) {
-    const { onSuccess, onError } = opts || {}
+    const { onSuccess, onError } = params || {}
     if ((window.top ?? window).dd?.env?.platform === 'pc') {
       ;(window.top ?? window).dd?.quitPage?.({
         success: () => {
@@ -162,7 +162,7 @@ let Bridge = {
   onBack: function () {
     console.log('钉钉不支持监听物理返回')
   },
-  openLocation: function (opts?: {
+  openLocation: function (params?: {
     latitude?: number
     longitude?: number
     type?: string
@@ -172,7 +172,7 @@ let Bridge = {
     onSuccess?: (r: { status: string }) => void
     onError?: (r: { status: string; message?: string }) => void
   }) {
-    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
+    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用钉钉地图...', { latitude, longitude, type, name, address, scale })
@@ -198,12 +198,12 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (opts?: {
+  getLocation: function (params?: {
     type?: string
     onSuccess?: (r: Record<string, unknown>) => void
     onError?: (r: { status: string; message?: string }) => void
   }) {
-    const { type, onSuccess, onError } = opts || {}
+    const { type, onSuccess, onError } = params || {}
     console.log('调用钉钉定位...', type)
 
     ;(window.top ?? window).dd?.getLocation?.({
@@ -244,13 +244,13 @@ let Bridge = {
       }
     })
   },
-  scanCode: function (opts?: {
+  scanCode: function (params?: {
     scanType?: string[]
     onSuccess?: (r: { status: string; resultStr?: string }) => void
     onError?: (r: { status: string; message?: string }) => void
     onCancel?: () => void
   }) {
-    const { scanType, onSuccess, onError, onCancel } = opts || {}
+    const { scanType, onSuccess, onError, onCancel } = params || {}
     let type = 'all'
     if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
@@ -274,7 +274,7 @@ let Bridge = {
       onCancel: onCancel
     })
   },
-  chooseMedia: function (opts?: {
+  chooseMedia: function (params?: {
     count?: number
     sourceType?: string[]
     sizeType?: string[]
@@ -285,7 +285,7 @@ let Bridge = {
     onCancel?: () => void
   }) {
     const { count: countIn, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
-      opts || {}
+    params || {}
     let count = countIn || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
       count = 1
@@ -311,8 +311,7 @@ let Bridge = {
         localFiles.push(localFile)
       }
 
-      onSuccess &&
-        onSuccess({
+        onSuccess?.({
           status: 'success',
           localFiles: localFiles
         })
@@ -352,7 +351,7 @@ let Bridge = {
       fail: handleError
     })
   },
-  uploadFile: async function (opts?: {
+  uploadFile: async function (params?: {
     localFile?: { filePath?: string; fileType?: string; [key: string]: unknown }
     getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
     formatHeaders?: (
@@ -369,19 +368,17 @@ let Bridge = {
     onCancel?: (r: unknown) => void
   }) {
     const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError, onCancel } =
-      opts || {}
+    params || {}
     const url = (await getUploadUrl?.({ platform: 'dingtalk' })) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
-      onError &&
-        onError({
+        onError?.({
           status: 'error',
           message: `localFile error`
         })
       return
     }
     if (!url || typeof url !== 'string') {
-      onError &&
-        onError({
+        onError?.({
           status: 'error',
           message: `url error`
         })
@@ -401,8 +398,7 @@ let Bridge = {
       console.log('钉钉uploadImage成功:', res)
       const { data, statusCode } = res
       if (statusCode !== 200) {
-        onError &&
-          onError({
+          onError?.({
             status: 'error',
             message: `DingTalk ${LocaleUtil.locale(
               '网络异常，上传失败',
@@ -466,14 +462,14 @@ let Bridge = {
       }
     })
   },
-  previewMedia: function (opts?: {
+  previewMedia: function (params?: {
     index?: number
     sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
     onSuccess?: (r: { status: string }) => void
     onError?: (r: unknown) => void
     onCancel?: (r: unknown) => void
   }) {
-    const { index, sources, onSuccess, onError, onCancel } = opts || {}
+    const { index, sources, onSuccess, onError, onCancel } = params || {}
     const srcList = sources || []
     let urls = srcList.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
     let current = index !== undefined ? srcList[index] : undefined
@@ -512,7 +508,35 @@ let Bridge = {
       }
     })
   },
-  share(opts?: {
+  /**
+   * 人脸识别活体检测（钉钉 ATM BLE）
+   * @see dd.biz.ATMBle.exclusiveLiveCheck
+   */
+  detectFace: async function (params?: {
+    getConfig?: (ctx: { platform: string }) => Promise<string> | string
+    onSuccess?: (res: unknown) => void
+    onError?: (err: unknown) => void
+  }) {
+    const { getConfig, onSuccess, onError } = params || {}
+    // 获取配置url
+    let config = ''
+    if (typeof getConfig === 'function') {
+      config = await getConfig({ platform: 'dingtalk' })
+    }
+    ;(window.top ?? window).dd?.biz?.ATMBle?.exclusiveLiveCheck?.({
+      ...config,
+      onSuccess: (res) => {
+        onSuccess?.({
+          status: 'success',
+          result: res
+        })
+      },
+      onFail: (err) => {
+        onError?.(err)
+      }
+    })
+  },
+  share(params?: {
     title?: string
     description?: string
     url?: string
@@ -520,7 +544,7 @@ let Bridge = {
     onSuccess?: () => void
     onError?: (r: { message?: string }) => void
   }) {
-    const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
+    const { title, description, url, imageUrl, onSuccess, onError } = params || {}
     ;(window.top ?? window).dd?.biz?.util?.share?.({
       type: 0, // 分享类型，0:全部组件 默认；1:只能分享到钉钉；2:不能分享，只有刷新按钮
       url: url,
@@ -528,16 +552,15 @@ let Bridge = {
       content: description,
       image: imageUrl,
       onSuccess: function () {
-        onSuccess && onSuccess()
+        onSuccess?.()
       },
       onFail: function (err) {
         console.log('DingTalk Share onError:', err)
-        onError &&
-          onError({
-            message:
-              err?.errMsg ||
-              `DingTalk ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
-          })
+        onError?.({
+          message:
+            err?.errMsg ||
+            `DingTalk ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
+        })
       }
     })
   }
