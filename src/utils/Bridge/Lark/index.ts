@@ -5,6 +5,7 @@ import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
+import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult } from '../types'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -19,8 +20,8 @@ import { GeoUtil, Clipboard, LocaleUtil } from 'lyrixi-mobile'
 let Bridge = {
   load: function (opts?: {
     getScriptSrc?: (ctx: { platform: string }) => string
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { getScriptSrc, onSuccess, onError } = opts || {}
     const top = window.top ?? window
@@ -94,8 +95,8 @@ let Bridge = {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function (opts?: {
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { onSuccess, onError } = opts || {}
     ;(window.top ?? window).tt?.closeWindow?.({
@@ -122,8 +123,8 @@ let Bridge = {
     name?: string
     address?: string
     scale?: number
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { latitude, longitude, type, name, address, scale: scaleIn, onSuccess, onError } = opts || {}
     if (!latitude || !longitude || !type) return
@@ -158,8 +159,8 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: (r: Record<string, unknown>) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
     let targetType = type || 'gcj02'
@@ -170,7 +171,7 @@ let Bridge = {
       success: (res) => {
         console.error('飞书定位成功', res)
 
-        let result = {
+        let result: SuccessResult<Record<string, unknown>> = {
           status: 'success',
           longitude: res.longitude,
           latitude: res.latitude,
@@ -205,9 +206,9 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: (r: { status: string; resultStr?: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
-    onCancel?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { scanType, onSuccess, onError, onCancel } = opts || {}
     ;(window.top ?? window).tt?.scanCode?.({
@@ -236,9 +237,9 @@ let Bridge = {
   previewMedia: function (opts?: {
     index?: number
     sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
-    onCancel?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { index, sources, onSuccess, onError, onCancel } = opts || {}
     const srcList = sources || []
@@ -278,7 +279,7 @@ let Bridge = {
     url?: string
     imageUrl?: string
     onSuccess?: () => void
-    onError?: (r: { message?: string }) => void
+    onError?: ErrorCallback
   }) {
     const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
     ;(window.top ?? window).tt?.share?.({
@@ -294,12 +295,12 @@ let Bridge = {
       fail(err) {
         console.log('Lark Share onError:', err)
 
-        onError &&
-          onError({
-            message:
-              err?.message ||
-              `Lark ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
-          })
+        onError?.({
+          status: 'error',
+          message:
+            err?.message ||
+            `Lark ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
+        })
       }
     })
   }

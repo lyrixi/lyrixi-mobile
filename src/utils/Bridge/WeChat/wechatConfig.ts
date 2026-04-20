@@ -1,6 +1,7 @@
 // 内库使用-start
 import Request from './../../../utils/Request'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import type { SuccessCallback, ErrorCallback } from '../types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -17,8 +18,8 @@ type WechatConfigOptions = {
     response: unknown,
     ctx: { platform: string }
   ) => Promise<unknown> | unknown
-  onSuccess?: (p: { status: string }) => void
-  onError?: (p: { status: string; message?: string; messsage?: string }) => void
+  onSuccess?: SuccessCallback
+  onError?: ErrorCallback
 }
 
 function wechatConfig(opts?: WechatConfigOptions) {
@@ -51,14 +52,14 @@ function wechatConfig(opts?: WechatConfigOptions) {
         if (result.status === 'error') {
           onError?.({
             status: 'error',
-            messsage: result.message
+            message: result.message
           })
           return
         }
         const top = window.top ?? window
         const wx = top.wx
         if (!wx) {
-          onError?.({ status: 'error', messsage: 'wx JSSDK not loaded' })
+          onError?.({ status: 'error', message: 'wx JSSDK not loaded' })
           return
         }
         wx?.config?.(
@@ -106,7 +107,7 @@ function wechatConfig(opts?: WechatConfigOptions) {
           console.log(err)
           onError?.({
             status: 'error',
-            messsage: JSON.stringify(err)
+            message: JSON.stringify(err)
           })
         })
         wx?.ready?.(() => {
@@ -118,7 +119,7 @@ function wechatConfig(opts?: WechatConfigOptions) {
       } else {
         onError?.({
           status: 'error',
-          messsage:
+          message:
             res.message ||
             `WeChat ${LocaleUtil.locale(
               '鉴权接口失败，请稍后重试！',
@@ -140,7 +141,7 @@ function wechatConfig(opts?: WechatConfigOptions) {
     .catch(() => {
       onError?.({
         status: 'error',
-        messsage: `WeChat ${LocaleUtil.locale(
+        message: `WeChat ${LocaleUtil.locale(
           '鉴权接口异常，请稍后重试！',
           'lyrixi_d015103b9b8864df89ed3c7edb96eca0',
           undefined

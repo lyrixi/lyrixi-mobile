@@ -1,5 +1,6 @@
 import uploadFile from './uploadFile'
 import back from './../utils/back'
+import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult, ErrorResult } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -16,13 +17,13 @@ import { LocaleUtil, Clipboard, GeoUtil, Device, Toast } from 'lyrixi-mobile'
 let Browser = {
   /** 调试开关：为 true 时 getBrowserLocation / scanCode 等走模拟逻辑 */
   debug: false,
-  load: function (opts?: { onSuccess?: (r: { status: string }) => void }) {
+  load: function (opts?: { onSuccess?: SuccessCallback }) {
     const { onSuccess } = opts || {}
     onSuccess?.({
       status: 'success'
     })
   },
-  config: async function (opts?: { onSuccess?: (r: { status: string }) => void }) {
+  config: async function (opts?: { onSuccess?: SuccessCallback }) {
     const { onSuccess } = opts || {}
     onSuccess?.({
       status: 'success'
@@ -32,8 +33,8 @@ let Browser = {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function (opts?: {
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { onSuccess } = opts || {}
     window.history.go(-1)
@@ -49,8 +50,8 @@ let Browser = {
   },
   setTitle: function (opts?: {
     title?: string
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { title, onSuccess } = opts || {}
     const topWin = window.top ?? window
@@ -74,8 +75,8 @@ let Browser = {
   },
   tel: function (opts?: {
     number?: string | number
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { number, onSuccess, onError } = opts || {}
     if (Device.device === 'pc') {
@@ -107,8 +108,8 @@ let Browser = {
     name?: string
     address?: string
     scale?: number
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { latitude, longitude, type, onError } = opts || {}
     if (!latitude || !longitude || !type) return
@@ -125,15 +126,15 @@ let Browser = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     this.getBrowserLocation(opts)
   },
   getBrowserLocation: function (opts?: {
     type?: string
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
     if (this.debug) {
@@ -187,7 +188,7 @@ let Browser = {
             longitude = points[0]
             latitude = points[1]
           }
-          let res = {
+          let res: SuccessResult<Record<string, unknown>> = {
             status: 'success',
             message: '',
             speed: position.coords.speed,
@@ -258,7 +259,7 @@ let Browser = {
                 'lyrixi_9831baf6b76c1da7b69b463033b924cc'
               )}`
           }
-          let res = { status: 'error', code: code, message: message }
+          let res: ErrorResult = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
           onError?.(res)
         },
@@ -269,7 +270,7 @@ let Browser = {
         }
       )
     } else {
-      let res = {
+      let res: ErrorResult = {
         status: 'error',
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
         message: `Browser ${LocaleUtil.locale(
@@ -283,9 +284,9 @@ let Browser = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
-    onCancel?: (r: unknown) => void
+    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { scanType, onSuccess, onError, onCancel } = opts || {}
     if (!this.debug) {
@@ -328,8 +329,8 @@ let Browser = {
       ctx: { platform: string }
     ) => Promise<Record<string, unknown>>
     formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
       opts || {}
@@ -366,17 +367,17 @@ let Browser = {
     }
 
     if (response.status === 'success') {
-      onSuccess?.(response)
+      onSuccess?.(response as SuccessResult<Record<string, unknown>>)
     } else {
-      onError?.(response)
+      onError?.(response as ErrorResult)
     }
   },
   previewMedia: function (opts?: {
     index?: number
     sources?: unknown[]
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
-    onCancel?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { onError } = opts || {}
     onError?.({
@@ -389,8 +390,8 @@ let Browser = {
   },
   previewFile: function (opts?: {
     fileUrl?: string
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { onError } = opts || {}
     let message = `Browser ${LocaleUtil.locale(
@@ -407,8 +408,8 @@ let Browser = {
     description?: string
     url?: string
     imageUrl?: string
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { url, onSuccess } = opts || {}
     Clipboard.copyText(url || '')

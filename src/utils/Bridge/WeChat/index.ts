@@ -7,6 +7,7 @@ import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 import wechatConfig from './wechatConfig'
 import wecomAgentConfig from './wecomAgentConfig'
+import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult, ErrorResult } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -22,8 +23,8 @@ import { LocaleUtil, Clipboard, Device, Toast } from 'lyrixi-mobile'
 let Bridge = {
   load: function (opts?: {
     getScriptSrc?: (ctx: { platform: string }) => string
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { getScriptSrc, onSuccess, onError } = opts || {}
     const platform = Device.platform
@@ -111,8 +112,8 @@ let Bridge = {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function (opts?: {
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { onSuccess } = opts || {}
     if (['wechatMiniProgram', 'wecomMiniProgram'].includes(Device.platform || '')) {
@@ -123,8 +124,8 @@ let Bridge = {
     onSuccess?.({ status: 'success' })
   },
   onBack: function (opts?: {
-    onError?: (r: unknown) => void
-    onSuccess?: (r: { status: string }) => boolean | void | Promise<boolean | void>
+    onError?: ErrorCallback
+    onSuccess?: (r: SuccessResult) => boolean | void | Promise<boolean | void>
   }) {
     const { onError, onSuccess } = opts || {}
     ;(window.top ?? window).wx?.onHistoryBack?.(() => {
@@ -151,8 +152,8 @@ let Bridge = {
     name?: string
     address?: string
     scale?: number
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
     if (!latitude || !longitude || !type) return
@@ -194,9 +195,9 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: (r: Record<string, unknown>) => void
-    onError?: (r: { status: string; message?: string }) => void
-    onCancel?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { type, onSuccess, onError, onCancel } = opts || {}
     if (Device.device === 'pc') {
@@ -229,9 +230,9 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: (r: { status: string; resultStr?: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
-    onCancel?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { scanType, onSuccess, onError, onCancel } = opts || {}
     if (Device.device === 'pc') {
@@ -314,9 +315,9 @@ let Bridge = {
     sizeType?: string[]
     mediaType?: string[]
     maxDuration?: number
-    onSuccess?: (r: { status: string; localFiles?: unknown[] }) => void
-    onError?: (r: { status: string; message?: string; code?: string }) => void
-    onCancel?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<{ localFiles?: unknown[] }>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { count, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
       opts || {}
@@ -399,8 +400,8 @@ let Bridge = {
       ctx: { platform: string }
     ) => Promise<Record<string, unknown>>
     formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
       opts || {}
@@ -470,9 +471,9 @@ let Bridge = {
         }
 
         if (response.status === 'success') {
-          onSuccess?.(response)
+          onSuccess?.(response as SuccessResult<Record<string, unknown>>)
         } else {
-          onError?.(response)
+          onError?.(response as ErrorResult)
         }
       },
       fail: function (error) {
@@ -492,9 +493,9 @@ let Bridge = {
         fileType?: string
       }
     >
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
-    onCancel?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { index, sources, onSuccess, onError, onCancel } = opts || {}
     if (Device.device === 'pc') {
@@ -549,8 +550,8 @@ let Bridge = {
   },
   previewFile: function (opts?: {
     fileUrl?: string
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { fileUrl, onSuccess, onError } = opts || {}
     if (Device.device === 'pc' || Device.platform === 'wechat') {
@@ -587,8 +588,8 @@ let Bridge = {
     description?: string
     url?: string
     imageUrl?: string
-    onSuccess?: (r?: unknown) => void
-    onError?: (r?: { message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
     // 微信服务号中分享
@@ -598,7 +599,7 @@ let Bridge = {
         desc: description || '',
         link: url || '',
         imgUrl: imageUrl || '',
-        onSuccess: function (res) {
+        onSuccess: function () {
           onSuccess?.({ status: 'success' })
         },
         onError: function (err) {
@@ -608,12 +609,12 @@ let Bridge = {
               err?.errMsg ||
               `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
           })
-          onError &&
-            onError({
-              message:
-                err?.errMsg ||
-                `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
-            })
+          onError?.({
+            status: 'error',
+            message:
+              err?.errMsg ||
+              `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
+          })
         }
       })
     }
@@ -631,17 +632,17 @@ let Bridge = {
           console.log('WeCom Share result:', res)
 
           if (res.err_msg === 'shareAppMessage:ok') {
-            onSuccess && onSuccess()
+            onSuccess?.({ status: 'success' })
           } else {
-            onError &&
-              onError({
-                message:
-                  (typeof res.errMsg === 'string' ? res.errMsg : undefined) ||
-                  `WeChat ${LocaleUtil.locale(
-                    '分享失败',
-                    'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f'
-                  )}`
-              })
+            onError?.({
+              status: 'error',
+              message:
+                (typeof res.errMsg === 'string' ? res.errMsg : undefined) ||
+                `WeChat ${LocaleUtil.locale(
+                  '分享失败',
+                  'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f'
+                )}`
+            })
           }
         }
       )

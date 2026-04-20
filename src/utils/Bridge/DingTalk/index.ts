@@ -5,6 +5,7 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import compressImage from './compressImage'
 import config from './config'
+import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult, ErrorResult } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -20,8 +21,8 @@ let Bridge = {
   // 特有方法
   setTitle: function (params?: {
     title?: string
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { title, onSuccess, onError } = params || {}
     ;(window.top ?? window).dd?.setNavigationTitle?.({
@@ -45,8 +46,8 @@ let Bridge = {
   // 通用方法
   load: function (params?: {
     getScriptSrc?: (ctx: { platform: string }) => string
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { getScriptSrc, onSuccess, onError } = params || {}
     if ((window.top ?? window).dd) {
@@ -118,8 +119,8 @@ let Bridge = {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function (params?: {
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { onSuccess, onError } = params || {}
     if ((window.top ?? window).dd?.env?.platform === 'pc') {
@@ -169,8 +170,8 @@ let Bridge = {
     name?: string
     address?: string
     scale?: number
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
@@ -200,8 +201,8 @@ let Bridge = {
   },
   getLocation: function (params?: {
     type?: string
-    onSuccess?: (r: Record<string, unknown>) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = params || {}
     console.log('调用钉钉定位...', type)
@@ -229,7 +230,7 @@ let Bridge = {
         longitude = points[0]
         latitude = points[1]
 
-        let result = {
+        let result: SuccessResult<Record<string, unknown>> = {
           status: 'success',
           type: type,
           latitude: latitude,
@@ -246,8 +247,8 @@ let Bridge = {
   },
   scanCode: function (params?: {
     scanType?: string[]
-    onSuccess?: (r: { status: string; resultStr?: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onError?: ErrorCallback
     onCancel?: () => void
   }) {
     const { scanType, onSuccess, onError, onCancel } = params || {}
@@ -280,8 +281,8 @@ let Bridge = {
     sizeType?: string[]
     mediaType?: string[]
     maxDuration?: number
-    onSuccess?: (r: { status: string; localFiles?: unknown[] }) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback<{ localFiles?: unknown[] }>
+    onError?: ErrorCallback
     onCancel?: () => void
   }) {
     const { count: countIn, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
@@ -363,9 +364,9 @@ let Bridge = {
       ctx: { platform: string }
     ) => Promise<Record<string, unknown>>
     formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
-    onCancel?: (r: unknown) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError, onCancel } =
     params || {}
@@ -423,9 +424,9 @@ let Bridge = {
       }
 
       if (response.status === 'success') {
-        onSuccess?.(response)
+        onSuccess?.(response as SuccessResult<Record<string, unknown>>)
       } else {
-        onError?.(response)
+        onError?.(response as ErrorResult)
       }
     }
 
@@ -465,9 +466,9 @@ let Bridge = {
   previewMedia: function (params?: {
     index?: number
     sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: unknown) => void
-    onCancel?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { index, sources, onSuccess, onError, onCancel } = params || {}
     const srcList = sources || []
@@ -514,17 +515,26 @@ let Bridge = {
    */
   detectFace: async function (params?: {
     getConfig?: (ctx: { platform: string }) => Promise<string> | string
-    onSuccess?: (res: unknown) => void
-    onError?: (err: unknown) => void
+    onSuccess?: SuccessCallback<{ result?: unknown }>
+    onError?: ErrorCallback
   }) {
     const { getConfig, onSuccess, onError } = params || {}
-    // 获取配置url
-    let config = ''
+    let apiParams: Record<string, unknown> = {}
     if (typeof getConfig === 'function') {
-      config = await getConfig({ platform: 'dingtalk' })
+      const raw = await getConfig({ platform: 'dingtalk' })
+      if (typeof raw === 'string') {
+        try {
+          const parsed = JSON.parse(raw) as unknown
+          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+            apiParams = parsed as Record<string, unknown>
+          }
+        } catch {
+          /* 非 JSON 字符串则不作为扩展参数 */
+        }
+      }
     }
     ;(window.top ?? window).dd?.biz?.ATMBle?.exclusiveLiveCheck?.({
-      ...config,
+      ...apiParams,
       onSuccess: (res) => {
         onSuccess?.({
           status: 'success',
@@ -532,7 +542,11 @@ let Bridge = {
         })
       },
       onFail: (err) => {
-        onError?.(err)
+        onError?.({
+          status: 'error',
+          code: '',
+          message: typeof err === 'object' && err !== null ? JSON.stringify(err) : String(err)
+        })
       }
     })
   },
@@ -542,7 +556,7 @@ let Bridge = {
     url?: string
     imageUrl?: string
     onSuccess?: () => void
-    onError?: (r: { message?: string }) => void
+    onError?: ErrorCallback
   }) {
     const { title, description, url, imageUrl, onSuccess, onError } = params || {}
     ;(window.top ?? window).dd?.biz?.util?.share?.({
@@ -557,6 +571,7 @@ let Bridge = {
       onFail: function (err) {
         console.log('DingTalk Share onError:', err)
         onError?.({
+          status: 'error',
           message:
             err?.errMsg ||
             `DingTalk ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`

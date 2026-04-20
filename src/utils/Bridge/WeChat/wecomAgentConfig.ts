@@ -1,6 +1,7 @@
 // 内库使用-start
 import Request from './../../../utils/Request'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import type { SuccessCallback, ErrorCallback } from '../types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -17,8 +18,8 @@ type WecomAgentConfigOptions = {
     response: unknown,
     ctx: { platform: string }
   ) => Promise<unknown> | unknown
-  onSuccess?: (p: { status: string }) => void
-  onError?: (p: { status: string; message?: string; messsage?: string }) => void
+  onSuccess?: SuccessCallback
+  onError?: ErrorCallback
 }
 
 // 企业微信自建应用和SASS应用鉴权
@@ -57,7 +58,7 @@ function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
         const top = window.top ?? window
         const wx = top.wx
         if (!wx?.agentConfig) {
-          onError?.({ status: 'error', messsage: 'wx.agentConfig not available' })
+          onError?.({ status: 'error', message: 'wx.agentConfig not available' })
           return
         }
         wx.agentConfig({
@@ -108,7 +109,7 @@ function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
             console.error('鉴权失败:', err)
             onError?.({
               status: 'error',
-              messsage:
+              message:
                 err.errMsg ||
                 `WeChat ${LocaleUtil.locale(
                   '鉴权失败，请稍后重试！',
@@ -120,7 +121,7 @@ function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
       } else {
         onError?.({
           status: 'error',
-          messsage:
+          message:
             res.message ||
             `WeChat ${LocaleUtil.locale(
               '鉴权接口失败，请稍后重试！',
@@ -132,7 +133,7 @@ function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
     .catch(() => {
       onError?.({
         status: 'error',
-        messsage: `WeChat ${LocaleUtil.locale(
+        message: `WeChat ${LocaleUtil.locale(
           '鉴权接口异常，请稍后重试！',
           'lyrixi_d015103b9b8864df89ed3c7edb96eca0'
         )}`

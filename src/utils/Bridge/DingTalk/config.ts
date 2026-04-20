@@ -1,6 +1,7 @@
 // 内库使用-start
 import Request from './../../../utils/Request'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import type { SuccessCallback, ErrorCallback } from '../types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -12,8 +13,8 @@ function config(opts?: {
   headers?: Record<string, string>
   payload?: Record<string, unknown>
   formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
-  onSuccess?: (r: { status: string }) => void
-  onError?: (r: { status: string; message?: string }) => void
+  onSuccess?: SuccessCallback
+  onError?: ErrorCallback
 }) {
   const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
   if (!url || !payload) return

@@ -8,6 +8,7 @@ import GeoUtil from './../../GeoUtil'
 import LocaleUtil from './../../LocaleUtil'
 import AssetUtil from './../../AssetUtil'
 import Device from './../../Device'
+import type { SuccessCallback, ErrorCallback, CancelCallback } from '../types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -17,8 +18,8 @@ import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 let Bridge = {
   load: function (opts?: {
     getScriptSrc?: (ctx: { platform: string }) => string | undefined
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: { status: string; message?: string }) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { getScriptSrc, onSuccess, onError } = opts || {}
     const topWin = window.top ?? window
@@ -82,8 +83,8 @@ let Bridge = {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function (opts?: {
-    onSuccess?: (r: { status: string }) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { onSuccess } = opts || {}
     ;(window.top ?? window).ap?.popWindow?.()
@@ -99,8 +100,8 @@ let Bridge = {
     name?: string
     address?: string
     scale?: number
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback
+    onError?: ErrorCallback
   }) {
     const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
     if (!latitude || !longitude || !type) return
@@ -130,8 +131,8 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
+    onSuccess?: SuccessCallback<Record<string, unknown>>
+    onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
     console.log('调用支付宝定位...', type)
@@ -172,9 +173,9 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
-    onCancel?: (r: unknown) => void
+    onSuccess?: SuccessCallback<{ resultStr?: string }>
+    onError?: ErrorCallback
+    onCancel?: CancelCallback
   }) {
     const { scanType, onSuccess, onError, onCancel } = opts || {}
     let type = ''

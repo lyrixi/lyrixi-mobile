@@ -5,6 +5,7 @@ import WeChat from './WeChat'
 import Alipay from './Alipay'
 import DingTalk from './DingTalk'
 import Lark from './Lark'
+import type { SuccessCallback, ErrorCallback, CancelCallback } from './types'
 
 // 内库使用-start
 import Device from './../Device'
@@ -196,12 +197,12 @@ let Bridge = {
       name?: string
       address?: string
       scale?: number
-      onSuccess?: (r: unknown) => void
-      onError?: (r: unknown) => void
+      onSuccess?: SuccessCallback
+      onError?: ErrorCallback
     },
     platform?: string
   ) {
-    const { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = opts || {}
+    const { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = params || {}
     return this._getCurrentBridge(platform).openLocation({
       latitude,
       longitude,
@@ -225,9 +226,9 @@ let Bridge = {
   getLocation(
     opts?: {
       type?: string
-      onSuccess?: (r: unknown) => void
-      onError?: (r: unknown) => void
-      onCancel?: (r: unknown) => void
+      onSuccess?: SuccessCallback<Record<string, unknown>>
+      onError?: ErrorCallback
+      onCancel?: CancelCallback
     },
     platform?: string
   ) {
@@ -365,8 +366,8 @@ let Bridge = {
   detectFace(
     params?: {
       getConfig?: (ctx: { platform: string }) => Promise<string> | string
-      onSuccess?: (res: unknown) => void
-      onError?: (err: unknown) => void
+      onSuccess?: SuccessCallback<Record<string, unknown>>
+      onError?: ErrorCallback
     },
     platform?: string
   ) {
@@ -383,4 +384,14 @@ let Bridge = {
   }
 }
 
+export type {
+  ResultStatus,
+  SuccessResult,
+  ErrorResult,
+  CancelResult,
+  CallbackResult,
+  SuccessCallback,
+  ErrorCallback,
+  CancelCallback
+} from './types'
 export default Bridge
