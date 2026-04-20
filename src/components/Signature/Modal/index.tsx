@@ -69,7 +69,7 @@ const Modal = forwardRef(
             // Events
             onChange={onChange}
             onCancel={() => {
-              onClose && onClose()
+              onClose?.()
             }}
           />
         )}

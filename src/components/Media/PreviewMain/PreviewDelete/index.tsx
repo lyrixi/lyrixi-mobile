@@ -6,7 +6,7 @@ const PreviewDelete = ({ onDelete }) => {
       className="lyrixi-media-preview-main-delete"
       onClick={(e) => {
         e.stopPropagation()
-        onDelete && onDelete()
+        onDelete?.()
       }}
     ></div>
   )

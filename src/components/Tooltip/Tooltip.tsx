@@ -51,19 +51,6 @@ const Tooltip = forwardRef(
       }
     })
 
-    // 受控显隐时, 需要更新容器位置
-    useEffect(() => {
-      if (open) {
-        updatePosition()
-      }
-      if (open === null) return
-      if (open) {
-        typeof onOpen === 'function' && onOpen()
-      } else {
-        typeof onClose === 'function' && onClose()
-      }
-    }, [open]) // eslint-disable-line
-
     // 更新Modal位置
     function updatePosition(targetReferenceElement) {
       // 参考元素
@@ -100,6 +87,19 @@ const Tooltip = forwardRef(
         }
       }
     }
+
+    // 受控显隐时, 需要更新容器位置
+    useEffect(() => {
+      if (open) {
+        updatePosition()
+      }
+      if (open === null) return
+      if (open) {
+        if (typeof onOpen === 'function') onOpen()
+      } else {
+        if (typeof onClose === 'function') onClose()
+      }
+    }, [open]) // eslint-disable-line
 
     // 非受控显隐, 为子元素增加点击事件显隐
     async function handleOpen() {

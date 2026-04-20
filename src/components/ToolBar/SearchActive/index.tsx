@@ -117,7 +117,7 @@ const SearchBar = (
         className="lyrixi-toolbar-search-button-cancel"
         // Events
         onClick={(e) => {
-          onCancel && onCancel()
+          onCancel?.()
         }}
       >
         {LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c')}

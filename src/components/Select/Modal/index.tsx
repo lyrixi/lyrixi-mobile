@@ -101,7 +101,7 @@ const Modal = forwardRef(
       // 单选时立即关闭
       if (!multiple) {
         onChange?.(newValue)
-        onClose && onClose()
+        onClose?.()
       }
     }
 

@@ -49,8 +49,8 @@ const NavBarModal = forwardRef(
     function handleCancelClick(e) {
       e.stopPropagation()
 
-      onCancel && onCancel()
-      onClose && onClose()
+      onCancel?.()
+      onClose?.()
     }
 
     async function handleOkClick(e) {

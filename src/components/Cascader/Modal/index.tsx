@@ -89,7 +89,7 @@ const CascaderModal = forwardRef(
         if (onChange) {
           onChange(newValue)
         }
-        onClose && onClose()
+        onClose?.()
       }
     }
 

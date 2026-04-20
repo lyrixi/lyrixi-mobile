@@ -37,22 +37,6 @@ function App({
   // result: {status: 'empty'|'error'|'noMore'|'loading', message: string}
   let [result, setResult] = useState(null)
 
-  // Execute only once
-  useEffect(() => {
-    // 更新主题
-    if (themeConfig?.fontSize) {
-      Theme.setFontSize(themeConfig.fontSize)
-    }
-
-    // 启用后门(点击10次后门, 唤醒vconsole调试面板)
-    if (debugElement && debugElement instanceof Element) {
-      Debugger.addTrigger(debugElement)
-    }
-
-    load()
-    // eslint-disable-next-line
-  }, [])
-
   async function load() {
     // 加载语言文件
     if (language) {
@@ -87,6 +71,22 @@ function App({
       message: 'success'
     })
   }
+
+  // Execute only once
+  useEffect(() => {
+    // 更新主题
+    if (themeConfig?.fontSize) {
+      Theme.setFontSize(themeConfig.fontSize)
+    }
+
+    // 启用后门(点击10次后门, 唤醒vconsole调试面板)
+    if (debugElement && debugElement instanceof Element) {
+      Debugger.addTrigger(debugElement)
+    }
+
+    void load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- 仅挂载时执行一次初始化
+  }, [])
 
   // 国际化文件尚未加载成功, 会导致显示中文
   if (result === null) {

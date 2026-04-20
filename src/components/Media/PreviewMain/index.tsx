@@ -205,7 +205,7 @@ const PreviewMain = forwardRef(
         onChange: onChangeRef.current
       })
       _hideLoading()
-      onClose && onClose()
+      onClose?.()
       return chooseResult
     }
 
@@ -223,7 +223,7 @@ const PreviewMain = forwardRef(
         onChange: onChangeRef.current
       })
       _hideLoading()
-      onClose && onClose()
+      onClose?.()
       return chooseResult
     }
 

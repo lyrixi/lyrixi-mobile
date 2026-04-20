@@ -58,7 +58,7 @@ const PreviewModal = forwardRef(
     useEffect(() => {
       if (!list || !list.length || !list[0].fileUrl) {
         if (open) {
-          onClose && onClose()
+          onClose?.()
         }
       }
       // eslint-disable-next-line

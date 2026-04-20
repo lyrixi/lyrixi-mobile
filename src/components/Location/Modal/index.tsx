@@ -91,7 +91,7 @@ const LocationModal = forwardRef(
         if (onChange) {
           onChange(newValue)
         }
-        onClose && onClose()
+        onClose?.()
       }
     }
 

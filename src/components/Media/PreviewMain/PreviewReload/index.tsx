@@ -6,7 +6,7 @@ const PreviewReload = ({ onReUpload }) => {
       className="lyrixi-media-preview-main-reload"
       onClick={(e) => {
         e.stopPropagation()
-        onReUpload && onReUpload()
+        onReUpload?.()
       }}
     >
       <div className="lyrixi-media-preview-main-reload-icon">

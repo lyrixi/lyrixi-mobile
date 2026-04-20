@@ -95,7 +95,7 @@ const ActionSheetCombo = (
     if (!Array.isArray(list) || !list.length) {
       return
     }
-    onClick && onClick()
+    onClick?.()
     setOpen(true)
   }
 

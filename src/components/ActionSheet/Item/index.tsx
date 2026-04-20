@@ -20,7 +20,7 @@ const Item = ({ checked, disabled, style, className, onClick, children }) => {
       )}
       onClick={(e) => {
         e.stopPropagation()
-        onClick && onClick(e)
+        onClick?.(e)
       }}
     >
       {children}

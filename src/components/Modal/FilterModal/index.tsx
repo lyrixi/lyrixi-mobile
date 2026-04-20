@@ -61,8 +61,8 @@ function FilterModal(
             onCancel={(e) => {
               e.stopPropagation()
 
-              onCancel && onCancel()
-              onClose && onClose()
+              onCancel?.()
+              onClose?.()
             }}
           />
         </Page.Header>

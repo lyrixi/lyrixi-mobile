@@ -18,7 +18,7 @@ const Tag = ({ style, className, name, readOnly, disabled, allowClear, onEdit, o
         readOnly || disabled
           ? undefined
           : (e) => {
-            onEdit && onEdit()
+            onEdit?.()
             e.stopPropagation()
           }
       }
@@ -28,7 +28,7 @@ const Tag = ({ style, className, name, readOnly, disabled, allowClear, onEdit, o
         <i
           className="lyrixi-select-tags-item-clear"
           onClick={(e) => {
-            onDelete && onDelete()
+            onDelete?.()
             e.stopPropagation()
           }}
         ></i>

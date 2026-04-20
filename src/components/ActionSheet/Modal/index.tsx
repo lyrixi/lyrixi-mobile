@@ -124,7 +124,7 @@ const ActionSheetModal = forwardRef(
                   style={itemStyle}
                   className={itemClassName}
                   onClick={(e) => {
-                    item?.onClick && item?.onClick(e)
+                    item?.onClick?.(e)
                     handleChange(item)
                   }}
                 >

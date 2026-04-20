@@ -6,7 +6,7 @@ const PreviewClose = ({ onClose }) => {
       className="lyrixi-media-preview-main-close"
       onClick={(e) => {
         e.stopPropagation()
-        onClose && onClose()
+        onClose?.()
       }}
     ></div>
   )

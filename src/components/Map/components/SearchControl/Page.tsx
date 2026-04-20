@@ -35,7 +35,7 @@ function SearchPage({
     setResult(null)
 
     // Go back
-    onClose && onClose()
+    onClose?.()
   }
 
   // 搜索

@@ -137,12 +137,12 @@ const LocationCombo = forwardRef(
     // 显隐回调
     useEffect(() => {
       if (modalOpen) {
-        onOpen && onOpen()
+        onOpen?.()
       } else if (modalOpen === '') {
         // Don't trigger onClose on initial render
         return
       } else {
-        onClose && onClose()
+        onClose?.()
       }
       // eslint-disable-next-line
     }, [modalOpen])
