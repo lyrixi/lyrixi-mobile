@@ -18,7 +18,7 @@ function queryData(
     }
     params.page = page
     Request.post(
-      'url',
+      '/api/examples/list/query',
       { ...serverData(params) },
       {
         headers: {

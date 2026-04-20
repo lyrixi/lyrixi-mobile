@@ -35,7 +35,7 @@ const Header = ({ queryParams, onSearch }) => {
               setSearchValue(value)
             }}
             onSearch={(keyword) => {
-              onSearch && onSearch({ ...queryParams, keyword: keyword })
+              onSearch?.({ ...queryParams, keyword: keyword })
               setSearchActive(false)
             }}
             onCancel={() => {

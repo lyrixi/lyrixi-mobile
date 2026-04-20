@@ -9,7 +9,7 @@ async function approveData(_opts?: { token?: string }) {
 
   return new Promise((resolve) => {
     Request.post(
-      '审批数据接口地址',
+      '/api/examples/detail/approve',
       { id: id },
       {
         headers: {

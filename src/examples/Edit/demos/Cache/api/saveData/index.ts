@@ -11,14 +11,12 @@ async function saveData(opts: { baseData?: unknown; data?: unknown; token?: stri
   // 构建服务器参数
   let params = (await serverData({ baseData, data })) as Record<string, unknown>
 
-  // 新增
-  let url = '提交数据接口地址'
+  const url = '/api/examples/save'
 
-  // 编辑
-  let id = Device.getUrlParameter('id')
+  // 编辑时附带 id
+  const id = Device.getUrlParameter('id')
   if (id) {
     params.id = id
-    url = '提交数据接口地址'
   }
 
   return new Promise((resolve) => {

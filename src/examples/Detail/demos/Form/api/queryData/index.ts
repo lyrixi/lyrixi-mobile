@@ -29,7 +29,7 @@ function queryData() {
 
     // 修改或者复制
     Loading.show()
-    Request.post('获取数据接口地址', {
+    Request.post('/api/examples/detail/load', {
       id: id
     })
       .then((result: unknown) => {

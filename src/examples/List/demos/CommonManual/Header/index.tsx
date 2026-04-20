@@ -30,7 +30,7 @@ const Header = ({ queryParams, onSearch }) => {
             allowClear
             value={queryParams?.keyword || ''}
             onSearch={(keyword) => {
-              onSearch && onSearch({ ...queryParams, keyword: keyword })
+              onSearch?.({ ...queryParams, keyword: keyword })
               setSearchActive(false)
             }}
             onBlur={() => {

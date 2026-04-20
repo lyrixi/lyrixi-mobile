@@ -59,12 +59,18 @@ function Filter({
         )
       }}
       footerRender={({ onClose }: { onClose: () => void }) => {
+        const handleConfirm = () => {
+          const values = (form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue()
+          setActive(!!modifiedRef.current)
+          onSearch?.({ ...queryParams, ...values })
+          onClose()
+        }
         return (
           <FooterBar>
             <FooterBar.Button block color="default" backgroundColor="default" onClick={onClose}>
               {locale('取消')}
             </FooterBar.Button>
-            <FooterBar.Button block color="white" backgroundColor="primary" onClick={onClose}>
+            <FooterBar.Button block color="white" backgroundColor="primary" onClick={handleConfirm}>
               {locale('确定')}
             </FooterBar.Button>
           </FooterBar>

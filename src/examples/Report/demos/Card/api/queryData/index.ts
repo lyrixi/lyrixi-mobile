@@ -12,7 +12,7 @@ const locale = LocaleUtil.locale
 // 获取报表数据
 function queryData(params: unknown) {
   return new Promise((resolve) => {
-    Request.post('xxx', params, {
+    Request.post('/api/examples/report/query', params, {
       // headers: {
       //   'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
       //   'content-type': 'application/json'

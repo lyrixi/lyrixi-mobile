@@ -55,7 +55,7 @@ function Filter({
       onOk={({ close }: { close: () => void }) => {
         setActive(modifiedRef.current)
         console.log((form as { getFieldsValue: () => unknown }).getFieldsValue())
-        onSearch && onSearch({ ...queryParams, ...(form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue() })
+        onSearch?.({ ...queryParams, ...(form as { getFieldsValue: () => Record<string, unknown> }).getFieldsValue() })
         close()
       }}
       modalRender={() => {
