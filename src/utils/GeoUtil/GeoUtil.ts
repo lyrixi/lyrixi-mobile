@@ -3,10 +3,41 @@
  * @param {Point} 格式:[latitude, longitude]
  * @param {Polygon} 格式:[[latitude, longitude], [latitude, longitude]]
  * @param {Line} 格式:[latitude1, longitude1, latitude2, longitude2]
- * @param {Line<Array>} 格式:[[latitude1, longitude1, latitude2, longitude2]]
+ * @param {Line<Array>} 格式:[[latitude1, longitude1], [latitude2, longitude2]]
  */
 
-const GeoUtil: Record<string, any> = {}
+/** 单点 [分量0, 分量1]，一般为经纬度之一对（顺序以具体方法为准，多为 [lng, lat]） */
+export type Point = [number, number]
+
+/** 多边形顶点序列 */
+export type Polygon = Point[]
+
+/** 线段平面四元组 [x1, y1, x2, y2]，与 `pointOnLine` 入参一致 */
+export type Line = [number, number, number, number]
+
+/** GeoUtil 实例类型（供内部自引用与导出） */
+export interface GeoUtilType {
+  polygonToLines: (polygon: Polygon, isRegular?: boolean) => [Point, Point][]
+  pointInsidePolygon: (point: Point, polygon: Polygon) => boolean
+  lineIntersectLine: (line0: [Point, Point], line1: [Point, Point]) => boolean
+  polygonInsidePolygon: (py0: Polygon, py1: Polygon) => boolean
+  isPoint: (point: Point) => boolean
+  equalPoint: (p0: Point, p1: Point) => boolean
+  getMiddlePoint: (p0: Point, p1: Point) => Point
+  isPolygon: (polygon: Polygon) => boolean
+  pointOnLine: (point: Point, line: Line) => boolean
+  getDistance: (p0: Point, p1: Point) => number
+  sortPoints: (points: Polygon) => Polygon
+  coordtransform: (point: Point, from: string, to: string) => Point | null
+  coordstransform: (
+    points: Polygon | undefined,
+    from?: string,
+    to?: string
+  ) => Polygon | Array<Point | null> | undefined
+  isInChina: (point: Point) => boolean | null
+}
+
+const GeoUtil = {} as GeoUtilType
 /**
  * 多边形转线
  * @param {Polygon} polygon 多边形
@@ -14,7 +45,7 @@ const GeoUtil: Record<string, any> = {}
  * @return {Line<Array>} [[[lng, lat], [lng, lat]], [[lng, lat], [lng, lat]]]
  */
 GeoUtil.polygonToLines = function (polygon, isRegular) {
-  const lines: number[][][] = []
+  const lines: [Point, Point][] = []
   // 取出所有相邻的线
   for (let i = 0; i < polygon.length - 1; i++) {
     lines.push([
@@ -228,6 +259,23 @@ GeoUtil.getDistance = function (p0, p1) {
   s = Math.round(s * 10000) / 10000
   return s
 }
+
+function isLeft(p0: Point, a: Point, b: Point) {
+  return (a[0] - p0[0]) * (b[1] - p0[1]) - (b[0] - p0[0]) * (a[1] - p0[1])
+}
+
+function distCompare(p0: Point, a: Point, b: Point) {
+  let distA = (p0[0] - a[0]) * (p0[0] - a[0]) + (p0[1] - a[1]) * (p0[1] - a[1])
+  let distB = (p0[0] - b[0]) * (p0[0] - b[0]) + (p0[1] - b[1]) * (p0[1] - b[1])
+  return distA - distB
+}
+
+function angleCompare(p0: Point, a: Point, b: Point) {
+  let left = isLeft(p0, a, b)
+  if (left === 0) return distCompare(p0, a, b) // 将==改为===以兼容eslint
+  return left
+}
+
 /**
  * 多边形坐标点按逆时针排序, 从右上角开始到右下角结束
  * @param {Polygon} points [[lng, lat]]
@@ -237,7 +285,7 @@ GeoUtil.getDistance = function (p0, p1) {
 GeoUtil.sortPoints = function (points) {
   // eslint-disable-next-line
   points = points.splice(0)
-  let p0 = {}
+  const p0: Point = [0, 0]
   p0[1] = Math.min.apply(
     null,
     points.map((p) => p[1])
@@ -249,21 +297,6 @@ GeoUtil.sortPoints = function (points) {
   points.sort((a, b) => angleCompare(p0, a, b))
   return points
 }
-function angleCompare(p0, a, b) {
-  let left = isLeft(p0, a, b)
-  if (left === 0) return distCompare(p0, a, b) // 将==改为===以兼容eslint
-  return left
-}
-
-function isLeft(p0, a, b) {
-  return (a[0] - p0[0]) * (b[1] - p0[1]) - (b[0] - p0[0]) * (a[1] - p0[1])
-}
-
-function distCompare(p0, a, b) {
-  let distA = (p0[0] - a[0]) * (p0[0] - a[0]) + (p0[1] - a[1]) * (p0[1] - a[1])
-  let distB = (p0[0] - b[0]) * (p0[0] - b[0]) + (p0[1] - b[1]) * (p0[1] - b[1])
-  return distA - distB
-}
 /**
  * 坐标转换
  * @param {Point} point [lng, lat]
@@ -271,7 +304,7 @@ function distCompare(p0, a, b) {
  * @param {String} to 转换坐标类型 'wgs84 | gcj02 | bd09'
  * @return {Point} 错误返回null
  */
-GeoUtil.coordtransform = function (point, from, to) {
+GeoUtil.coordtransform = function (point: Point, from: string, to: string): Point | null {
   if (!point || point.length !== 2) {
     console.log('GeoUtil coordtransform: point参数不正确')
     return null
@@ -286,7 +319,7 @@ GeoUtil.coordtransform = function (point, from, to) {
   let ee = 0.00669342162296594323
 
   // 百度经纬度坐标转国测局坐标
-  function bd09togcj02(bd_lon, bd_lat) {
+  function bd09togcj02(bd_lon: number, bd_lat: number): Point {
     let x_pi = (3.14159265358979324 * 3000.0) / 180.0
     let x = bd_lon - 0.0065
     let y = bd_lat - 0.006
@@ -297,7 +330,7 @@ GeoUtil.coordtransform = function (point, from, to) {
     return [gg_lng, gg_lat]
   }
   // 国测局坐标转百度经纬度坐标
-  function gcj02tobd09(lng, lat) {
+  function gcj02tobd09(lng: number, lat: number): Point {
     let z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * x_PI)
     let theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * x_PI)
     let bd_lng = z * Math.cos(theta) + 0.0065
@@ -305,8 +338,36 @@ GeoUtil.coordtransform = function (point, from, to) {
     return [bd_lng, bd_lat]
   }
 
+  function transformlat(lng: number, lat: number) {
+    let ret =
+      -100.0 +
+      2.0 * lng +
+      3.0 * lat +
+      0.2 * lat * lat +
+      0.1 * lng * lat +
+      0.2 * Math.sqrt(Math.abs(lng))
+    ret += ((20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0) / 3.0
+    ret += ((20.0 * Math.sin(lat * PI) + 40.0 * Math.sin((lat / 3.0) * PI)) * 2.0) / 3.0
+    ret += ((160.0 * Math.sin((lat / 12.0) * PI) + 320 * Math.sin((lat * PI) / 30.0)) * 2.0) / 3.0
+    return ret
+  }
+
+  function transformlng(lng: number, lat: number) {
+    let ret =
+      300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng))
+    ret += ((20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0) / 3.0
+    ret += ((20.0 * Math.sin(lng * PI) + 40.0 * Math.sin((lng / 3.0) * PI)) * 2.0) / 3.0
+    ret += ((150.0 * Math.sin((lng / 12.0) * PI) + 300.0 * Math.sin((lng / 30.0) * PI)) * 2.0) / 3.0
+    return ret
+  }
+
+  function out_of_china(lng: number, lat: number) {
+    // 判断是否在国内, 不在国内则不做偏移
+    return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271 || false
+  }
+
   // WGS84转国测局坐标
-  function wgs84togcj02(lng, lat) {
+  function wgs84togcj02(lng: number, lat: number): Point {
     if (out_of_china(lng, lat)) {
       return [lng, lat]
     } else {
@@ -324,7 +385,7 @@ GeoUtil.coordtransform = function (point, from, to) {
     }
   }
   // 国测局坐标转换为WGS84
-  function gcj02towgs84(lng, lat) {
+  function gcj02towgs84(lng: number, lat: number): Point {
     if (out_of_china(lng, lat)) {
       return [lng, lat]
     } else {
@@ -343,43 +404,15 @@ GeoUtil.coordtransform = function (point, from, to) {
   }
 
   // WGS84转换为百度坐标
-  function wgs84tobd09(lng, lat) {
+  function wgs84tobd09(lng: number, lat: number): Point {
     let [longitude, latitude] = wgs84togcj02(lng, lat)
     return gcj02tobd09(longitude, latitude)
   }
 
   // 百度坐标转换为WGS84
-  function bd09towgs84(lng, lat) {
+  function bd09towgs84(lng: number, lat: number): Point {
     let [longitude, latitude] = bd09togcj02(lng, lat)
     return gcj02towgs84(longitude, latitude)
-  }
-
-  function transformlat(lng, lat) {
-    let ret =
-      -100.0 +
-      2.0 * lng +
-      3.0 * lat +
-      0.2 * lat * lat +
-      0.1 * lng * lat +
-      0.2 * Math.sqrt(Math.abs(lng))
-    ret += ((20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0) / 3.0
-    ret += ((20.0 * Math.sin(lat * PI) + 40.0 * Math.sin((lat / 3.0) * PI)) * 2.0) / 3.0
-    ret += ((160.0 * Math.sin((lat / 12.0) * PI) + 320 * Math.sin((lat * PI) / 30.0)) * 2.0) / 3.0
-    return ret
-  }
-
-  function transformlng(lng, lat) {
-    let ret =
-      300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng))
-    ret += ((20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0) / 3.0
-    ret += ((20.0 * Math.sin(lng * PI) + 40.0 * Math.sin((lng / 3.0) * PI)) * 2.0) / 3.0
-    ret += ((150.0 * Math.sin((lng / 12.0) * PI) + 300.0 * Math.sin((lng / 30.0) * PI)) * 2.0) / 3.0
-    return ret
-  }
-
-  function out_of_china(lng, lat) {
-    // 判断是否在国内, 不在国内则不做偏移
-    return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271 || false
   }
 
   // 方法总结
