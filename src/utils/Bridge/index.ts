@@ -350,8 +350,8 @@ let Bridge = {
    * @param {Array<String>} params.platforms - 分享平台, 微信、企微、飞书、钉钉都不支持, 默认分享到当前平台
    * @param {String} params.title - 分享标题(必填)
    * @param {String} params.description - 分享副标题
-   * @param {Number} params.url - 分享连接
-   * @param {String} params.imageUrl - 分享连接的图片
+   * @param {String} params.url - 分享链接
+   * @param {String} params.imageUrl - 分享链接配图
    * @param {Function} params.onSuccess - 分享成功回调
    * @param {Function} params.onError - 分享失败回调
    * @returns {void}
@@ -364,10 +364,10 @@ let Bridge = {
     return undefined
   },
   /**
-   * 人脸识别活体检测
-   * @param {Object} params - 配置鉴权参数
-   * @param {Object} params.getConfig - 配置不同平台的入参
-   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data }
+   * 人脸识别活体检测（钉钉 dd.biz.ATMBle.exclusiveLiveCheck 等）
+   * @param {Object} params - 调用参数
+   * @param {Function} params.getConfig - 返回原生接口入参对象 function({ platform }) => Record 或 Promise<Record>，会展开传入底层 API
+   * @param {Function} params.onSuccess - 成功回调，data 含 match、confidence 等
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */

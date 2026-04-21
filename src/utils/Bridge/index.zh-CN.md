@@ -33,31 +33,58 @@ Bridge 已支持以下平台：
 
 ## API
 
-### load(params)
+多数方法支持**第二个可选参数** `platform`（字符串），用于指定使用哪个平台的 Bridge 实现（例如测试或显式指定环境）。不传时由运行时 `Device.platform` 决定。
 
-加载平台 SDK。
+### load(params, platform?)
+
+加载平台 SDK（如微信 JSSDK 等）。
 
 **参数：**
 
-- `getScriptSrc` (Function) - 平台脚本地址, function({ platform: String }) => String
-- `onSuccess` (Function) - 加载成功
-- `onError` (Function) - 加载失败
+- `getScriptSrc` (Function, 可选) - 自定义脚本地址，`function({ platform: String }) => String`
+- `onSuccess` (Function, 可选) - 加载成功，回调入参为 `{ status: 'success', ... }`
+- `onError` (Function, 可选) - 加载失败
 
 **示例：**
 
 ```javascript
-Bridge.load(
-  (result) => {
+Bridge.load({
+  getScriptSrc: ({ platform }) => {
+    // 可覆盖默认 CDN，未实现时各平台有内置默认地址
+    return '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+  },
+  onSuccess: (result) => {
     if (result.status === 'success') {
       console.log('SDK 加载成功')
     }
   },
-  {
-    wechat: {
-      src: '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
-    }
+  onError: (err) => {
+    console.log('加载失败', err)
   }
-)
+})
+```
+
+### config(params, platform?)
+
+JS-SDK **鉴权配置**（拉取 signature 并调用各平台 `config`）。微信 / 企业微信 / 钉钉 / 飞书等实现不同，需配合后端签名接口使用。
+
+**参数：**
+
+- `getConfigUrl` (Function, 可选) - 获取签名接口地址，`function({ platform: String }) => String | Promise<String>`
+- `formatHeaders` (Function, 可选) - 格式化请求头
+- `formatPayload` (Function, 可选) - 格式化请求体（如 `appId`、`url` 等）
+- `formatResponse` (Function, 可选) - 格式化接口返回为各平台所需字段
+- `onSuccess` (Function, 可选) - 鉴权成功
+- `onError` (Function, 可选) - 鉴权失败
+
+**示例：**
+
+```javascript
+Bridge.config({
+  getConfigUrl: ({ platform }) => '/api/js-sdk-signature',
+  onSuccess: () => console.log('config 成功'),
+  onError: (e) => console.log('config 失败', e)
+})
 ```
 
 ### back(delta)
@@ -108,9 +135,9 @@ Bridge.closeWindow()
 
 ```javascript
 Bridge.onBack({
-  onSuccess() => {
+  onSuccess: () => {
     console.log('用户点击了返回键')
-    return true
+    return true // 返回 true 表示允许返回；false 表示拦截并需再次监听
   }
 })
 ```
@@ -180,7 +207,7 @@ Bridge.goHome()
 **示例：**
 
 ```javascript
-Bridge.tel('10086')
+Bridge.tel({ number: '10086' })
 ```
 
 ### getLocation(params)
@@ -190,8 +217,9 @@ Bridge.tel('10086')
 **参数：**
 
 - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
-- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', latitude: Number, longitude: Number, speed: Number, accuracy: Number, type: String}`
-- `onError` (Function) - 失败回调，返回 `{status: 'error', code: String, message: String}`
+- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code, message, data: { latitude, longitude, speed, accuracy, type, ... } }`（以实际平台为准）
+- `onError` (Function) - 失败回调
+- `onCancel` (Function, 可选) - 取消回调
 
 **示例：**
 
@@ -231,7 +259,7 @@ Bridge.getBrowserLocation({
 })
 ```
 
-### openLocation(params)
+### openLocation(params, platform?)
 
 打开地图查看位置。
 
@@ -239,12 +267,10 @@ Bridge.getBrowserLocation({
 
 - `latitude` (Number) - 纬度
 - `longitude` (Number) - 经度
+- `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
 - `name` (String) - 位置名称
 - `address` (String) - 位置地址
-- `scale` (Number, 可选) - 地图缩放级别，范围从 1~28，默认为 16
-- `slatitude` (Number, 可选) - 起点纬度
-- `slongitude` (Number, 可选) - 起点经度
-- `sname` (String, 可选) - 起点名
+- `scale` (Number, 可选) - 地图缩放级别
 - `onSuccess` (Function, 可选) - 成功回调
 - `onError` (Function, 可选) - 失败回调
 
@@ -411,7 +437,32 @@ Bridge.previewFile({
 })
 ```
 
-### share(params)
+### detectFace(params, platform?)
+
+人脸识别 / 活体检测（当前为**钉钉** `dd.biz.ATMBle.exclusiveLiveCheck`，其他平台未实现则不会调用）。
+
+**参数：**
+
+- `getConfig` (Function, 可选) - 异步或同步返回**调用原生接口所需的参数对象**，`function({ platform: String }) => Record<String, Any> | Promise<Record<String, Any>>`。返回值会展开传入钉钉 API，用于传入鉴权等字段。
+- `onSuccess` (Function, 可选) - 成功回调，`data` 中含 `match`（是否通过）、`confidence`（置信度，可能为 `undefined`）
+- `onError` (Function, 可选) - 失败回调
+
+**示例：**
+
+```javascript
+Bridge.detectFace({
+  getConfig: async ({ platform }) => {
+    const res = await fetch('/api/dingtalk-live-check-config').then((r) => r.json())
+    return res // 需与后端约定字段，与钉钉 API 一致
+  },
+  onSuccess: (res) => {
+    console.log('检测结果', res.data?.match, res.data?.confidence)
+  },
+  onError: (err) => console.log(err)
+})
+```
+
+### share(params, platform?)
 
 消息分享。
 
@@ -460,6 +511,8 @@ Bridge 还提供了一些工具方法：
 
 | API                  | 浏览器 | 微信 | 企业微信 | 支付宝 | 钉钉 | 飞书 | 小程序 |
 | -------------------- | ------ | ---- | -------- | ------ | ---- | ---- | ------ |
+| `load`               | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
+| `config`             | ✅\*   | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `back`               | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `closeWindow`        | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `onBack`             | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
@@ -475,7 +528,10 @@ Bridge 还提供了一些工具方法：
 | `uploadFile`         | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `previewMedia`       | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `previewFile`        | ❌     | ❌   | ❌       | ❌     | ❌   | ❌   | ❌     |
+| `detectFace`         | ❌     | ❌   | ❌       | ❌     | ✅   | ❌   | ❌     |
 | `share`              | ❌     | ✅   | ✅       | ❌     | ✅   | ✅   | ✅     |
+
+\* 浏览器等平台为占位实现（直接成功回调），便于联调；真实鉴权以各端文档为准。
 
 **说明：**
 
