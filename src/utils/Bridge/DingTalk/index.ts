@@ -543,14 +543,17 @@ let Bridge = {
           status: 'success',
           code: '',
           message: '',
-          data: { result: res }
+          data: { 
+            match: res?.photoStatus === 1,
+            confidence: ''
+          }
         })
       },
       onFail: (err) => {
         onError?.({
           status: 'error',
-          code: '',
-          message: typeof err === 'object' && err !== null ? JSON.stringify(err) : String(err)
+          code: err?.errorCode,
+          message: err?.errorMessage
         })
       }
     })
