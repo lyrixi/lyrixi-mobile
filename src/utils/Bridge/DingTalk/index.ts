@@ -28,7 +28,7 @@ let Bridge = {
     ;(window.top ?? window).dd?.setNavigationTitle?.({
       title: title,
       success: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       fail: (error) => {
         onError?.({
@@ -52,7 +52,8 @@ let Bridge = {
     const { getScriptSrc, onSuccess, onError } = params || {}
     if ((window.top ?? window).dd) {
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
       return
     }
@@ -70,7 +71,8 @@ let Bridge = {
       }
 
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
     }
     script.onerror = function () {
@@ -126,7 +128,7 @@ let Bridge = {
     if ((window.top ?? window).dd?.env?.platform === 'pc') {
       ;(window.top ?? window).dd?.quitPage?.({
         success: () => {
-          onSuccess?.({ status: 'success' })
+          onSuccess?.({ status: 'success', data: undefined })
         },
         fail: (error) => {
           onError?.({
@@ -145,7 +147,7 @@ let Bridge = {
 
     ;(window.top ?? window).dd?.closePage?.({
       success: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       fail: (error) => {
         onError?.({
@@ -184,7 +186,7 @@ let Bridge = {
       latitude: coord.latitude,
       longitude: coord.longitude,
       onSuccess: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       onError: (error) => {
         onError?.({
@@ -201,7 +203,7 @@ let Bridge = {
   },
   getLocation: function (params?: {
     type?: string
-    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+    onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = params || {}
@@ -251,7 +253,7 @@ let Bridge = {
   },
   scanCode: function (params?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ data: { content: string } }>
+    onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: () => void
   }) {
@@ -287,7 +289,7 @@ let Bridge = {
     sizeType?: string[]
     mediaType?: string[]
     maxDuration?: number
-    onSuccess?: SuccessCallback<{ data: { localFiles: unknown[] } }>
+    onSuccess?: SuccessCallback<{ localFiles: unknown[] }>
     onError?: ErrorCallback
     onCancel?: () => void
   }) {
@@ -497,7 +499,8 @@ let Bridge = {
       current: index ?? 0,
       success: () => {
         onSuccess?.({
-          status: 'success'
+          status: 'success',
+          data: undefined
         })
       },
       fail: (error) => {
@@ -525,7 +528,7 @@ let Bridge = {
    */
   detectFace: async function (params?: {
     getConfig?: (ctx: { platform: string }) => Promise<string> | string
-    onSuccess?: SuccessCallback<{ data: { result: unknown } }>
+    onSuccess?: SuccessCallback<{ result: unknown }>
     onError?: ErrorCallback
   }) {
     const { getConfig, onSuccess, onError } = params || {}

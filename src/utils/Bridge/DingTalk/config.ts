@@ -93,7 +93,8 @@ function config(opts?: {
         top.dd?.ready?.(function () {
           console.log('鉴权成功')
           onSuccess?.({
-            status: 'success'
+            status: 'success',
+            data: undefined
           })
         })
       } else {

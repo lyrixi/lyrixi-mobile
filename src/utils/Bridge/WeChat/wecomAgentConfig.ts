@@ -102,7 +102,8 @@ function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
           beta: true,
           success: function () {
             onSuccess?.({
-              status: 'success'
+              status: 'success',
+              data: undefined
             })
           },
           fail: function (err: { errMsg?: string }) {

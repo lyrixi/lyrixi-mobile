@@ -25,7 +25,8 @@ let Bridge = {
     const topWin = window.top ?? window
     if (topWin.ap) {
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
       return
     }
@@ -61,7 +62,8 @@ let Bridge = {
       }
 
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
     }
     script.onerror = function () {
@@ -88,7 +90,7 @@ let Bridge = {
   }) {
     const { onSuccess } = opts || {}
     ;(window.top ?? window).ap?.popWindow?.()
-    onSuccess?.({ status: 'success' })
+    onSuccess?.({ status: 'success', data: undefined })
   },
   onBack: function () {
     console.log('支付宝不支持监听物理返回')
@@ -114,7 +116,7 @@ let Bridge = {
       latitude: coord.latitude,
       longitude: coord.longitude,
       onSuccess: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       onError: (error: { errorMessage?: string }) => {
         onError?.({
@@ -131,7 +133,7 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+    onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
@@ -177,7 +179,7 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ data: { content: string } }>
+    onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {

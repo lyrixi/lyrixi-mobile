@@ -226,7 +226,7 @@ let Bridge = {
   getLocation(
     opts?: {
       type?: string
-      onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+      onSuccess?: SuccessCallback<Record<string, unknown>>
       onError?: ErrorCallback
       onCancel?: CancelCallback
     },
@@ -246,7 +246,7 @@ let Bridge = {
   getBrowserLocation(
     params?: {
       type?: string
-      onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+      onSuccess?: SuccessCallback<Record<string, unknown>>
       onError?: ErrorCallback
       [key: string]: unknown
     },
@@ -374,7 +374,7 @@ let Bridge = {
   detectFace(
     params?: {
       getConfig?: (ctx: { platform: string }) => Promise<string> | string
-      onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+      onSuccess?: SuccessCallback<Record<string, unknown>>
       onError?: ErrorCallback
     },
     platform?: string
@@ -393,16 +393,11 @@ let Bridge = {
 }
 
 export type {
-  ResultStatus,
   SuccessResult,
   ErrorResult,
   CancelResult,
-  CallbackResult,
   SuccessCallback,
   ErrorCallback,
-  CancelCallback,
-  LocationSuccessPayload,
-  ScanCodeSuccessPayload,
-  DetectFaceSuccessPayload
+  CancelCallback
 } from './types'
 export default Bridge

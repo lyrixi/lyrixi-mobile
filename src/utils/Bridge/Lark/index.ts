@@ -27,7 +27,8 @@ let Bridge = {
     const top = window.top ?? window
     if (top.tt && top.h5sdk) {
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
       return
     }
@@ -46,7 +47,8 @@ let Bridge = {
       }
 
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
     }
     script.onerror = function () {
@@ -101,7 +103,7 @@ let Bridge = {
     const { onSuccess, onError } = opts || {}
     ;(window.top ?? window).tt?.closeWindow?.({
       success: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       fail: (error) => {
         onError?.({
@@ -145,7 +147,7 @@ let Bridge = {
       name: name,
       address: address,
       success: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       fail: (error) => {
         onError?.({
@@ -159,7 +161,7 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+    onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
@@ -209,7 +211,7 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ data: { content: string } }>
+    onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -263,7 +265,8 @@ let Bridge = {
       current: index !== undefined ? urls[index] : urls[0],
       success: () => {
         onSuccess?.({
-          status: 'success'
+          status: 'success',
+          data: undefined
         })
       },
       fail: (error) => {

@@ -30,7 +30,8 @@ let Bridge = {
     const platform = Device.platform
     if ((window.top ?? window).wx) {
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
       return
     }
@@ -56,7 +57,8 @@ let Bridge = {
       }
 
       onSuccess?.({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
     }
     script.onerror = function () {
@@ -121,16 +123,16 @@ let Bridge = {
     } else {
       ;(window.top ?? window).wx?.closeWindow?.()
     }
-    onSuccess?.({ status: 'success' })
+    onSuccess?.({ status: 'success', data: undefined })
   },
   onBack: function (opts?: {
     onError?: ErrorCallback
-    onSuccess?: (r: SuccessResult) => boolean | void | Promise<boolean | void>
+    onSuccess?: (r: SuccessResult<undefined>) => boolean | void | Promise<boolean | void>
   }) {
     const { onError, onSuccess } = opts || {}
     ;(window.top ?? window).wx?.onHistoryBack?.(() => {
       const back = async () => {
-        let isBack = await onSuccess?.({ status: 'success' })
+        let isBack = await onSuccess?.({ status: 'success', data: undefined })
         // 不允许返回, 则需要再次监听返回
         if (isBack === false) {
           this.onBack({ onError, onSuccess })
@@ -181,7 +183,7 @@ let Bridge = {
       address: address, // 地址详情说明
       scale: scale || 12, // 地图缩放级别,整型值,范围从1~28。默认为最大
       success: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       fail: (error) => {
         onError?.({
@@ -195,7 +197,7 @@ let Bridge = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+    onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -234,7 +236,7 @@ let Bridge = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ data: { content: string } }>
+    onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -321,7 +323,7 @@ let Bridge = {
     sizeType?: string[]
     mediaType?: string[]
     maxDuration?: number
-    onSuccess?: SuccessCallback<{ data: { localFiles: unknown[] } }>
+    onSuccess?: SuccessCallback<{ localFiles: unknown[] }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -545,7 +547,8 @@ let Bridge = {
       current: urls[index || 0],
       success: () => {
         onSuccess?.({
-          status: 'success'
+          status: 'success',
+          data: undefined
         })
       },
       fail: (error) => {
@@ -585,7 +588,7 @@ let Bridge = {
     ;(window.top ?? window).wx?.previewFile?.({
       url: fileUrl,
       onSuccess: () => {
-        onSuccess?.({ status: 'success' })
+        onSuccess?.({ status: 'success', data: undefined })
       },
       fail: (error) => {
         onError?.({
@@ -614,7 +617,7 @@ let Bridge = {
         link: url || '',
         imgUrl: imageUrl || '',
         onSuccess: function () {
-          onSuccess?.({ status: 'success' })
+          onSuccess?.({ status: 'success', data: undefined })
         },
         onError: function (err) {
           console.log('WeChat Share onError:', err)
@@ -646,7 +649,7 @@ let Bridge = {
           console.log('WeCom Share result:', res)
 
           if (res.err_msg === 'shareAppMessage:ok') {
-            onSuccess?.({ status: 'success' })
+            onSuccess?.({ status: 'success', data: undefined })
           } else {
             onError?.({
               status: 'error',
@@ -666,7 +669,8 @@ let Bridge = {
       Clipboard.copyText(url || '')
       onSuccess &&
         onSuccess({
-          status: 'success'
+          status: 'success',
+          data: undefined
         })
     }
   }

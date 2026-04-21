@@ -20,13 +20,15 @@ let Browser = {
   load: function (opts?: { onSuccess?: SuccessCallback }) {
     const { onSuccess } = opts || {}
     onSuccess?.({
-      status: 'success'
+      status: 'success',
+      data: undefined
     })
   },
   config: async function (opts?: { onSuccess?: SuccessCallback }) {
     const { onSuccess } = opts || {}
     onSuccess?.({
-      status: 'success'
+      status: 'success',
+      data: undefined
     })
   },
   back: function (delta?: number) {
@@ -38,7 +40,7 @@ let Browser = {
   }) {
     const { onSuccess } = opts || {}
     window.history.go(-1)
-    onSuccess?.({ status: 'success' })
+    onSuccess?.({ status: 'success', data: undefined })
   },
   onBack: function () {
     Toast.show({
@@ -56,7 +58,7 @@ let Browser = {
     const { title, onSuccess } = opts || {}
     const topWin = window.top ?? window
     topWin.document.title = title ?? ''
-    onSuccess?.({ status: 'success' })
+    onSuccess?.({ status: 'success', data: undefined })
   },
   openWindow: function (opts?: { url?: string; target?: string }) {
     const { url, target } = opts || {}
@@ -99,7 +101,7 @@ let Browser = {
       return
     }
     window.location.href = 'tel:' + number
-    onSuccess?.({ status: 'success' })
+    onSuccess?.({ status: 'success', data: undefined })
   },
   openLocation: function (opts?: {
     latitude?: number
@@ -126,14 +128,14 @@ let Browser = {
   },
   getLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+    onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
     this.getBrowserLocation(opts)
   },
   getBrowserLocation: function (opts?: {
     type?: string
-    onSuccess?: SuccessCallback<{ data: Record<string, unknown> }>
+    onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
     const { type, onSuccess, onError } = opts || {}
@@ -290,7 +292,7 @@ let Browser = {
   },
   scanCode: function (opts?: {
     scanType?: string[]
-    onSuccess?: SuccessCallback<{ data: { content: string } }>
+    onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -427,7 +429,8 @@ let Browser = {
     Clipboard.copyText(url || '')
     onSuccess &&
       onSuccess({
-        status: 'success'
+        status: 'success',
+        data: undefined
       })
   }
 }

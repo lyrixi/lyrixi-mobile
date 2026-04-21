@@ -113,7 +113,8 @@ function wechatConfig(opts?: WechatConfigOptions) {
         wx?.ready?.(() => {
           console.log('鉴权完成')
           onSuccess?.({
-            status: 'success'
+            status: 'success',
+            data: undefined
           })
         })
       } else {

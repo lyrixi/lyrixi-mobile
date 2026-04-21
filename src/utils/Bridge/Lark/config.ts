@@ -65,7 +65,8 @@ function config(opts?: {
             isReady = true
             console.log(`config success: `, sdkRes)
             onSuccess?.({
-              status: 'success'
+              status: 'success',
+              data: undefined
             })
           },
           // 失败回调
