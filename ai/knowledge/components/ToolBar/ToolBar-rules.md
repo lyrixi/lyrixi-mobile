@@ -1,0 +1,7 @@
+- 列表页顶部查询区**优先**使用 `ToolBar` 承载，不要手写一排零散按钮/输入框替代其职责。
+- 搜索场景**优先**使用 `ToolBar.Search` + `ToolBar.SearchActive` 两段式交互。
+- 将 `ToolBar.Search` 作为只读入口时，**应**设置 `readOnly` 并在点击后切换到 `ToolBar.SearchActive`。
+- `ToolBar.SearchActive` 的 `onSearch` **应**负责把关键词合并回父层 `queryParams`，而不是只改局部状态。
+- 筛选弹层**优先**使用 `ToolBar.Filter` + `modalRender` + `footerRender` 组合，不要手写“打开弹窗按钮 + 独立 Modal”重复其能力。
+- `ToolBar.Filter` 的筛选确认动作**应**通过 `onSearch({ ...queryParams, ...values })` 上浮到父层。
+- 列表页里若同时存在搜索与筛选，**不得**让两者分别维护互相不知情的请求参数源。

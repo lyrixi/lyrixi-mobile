@@ -22,7 +22,8 @@
 
 4. **可选能力**  
    - `cacheName` / `virtual`：列表缓存与虚拟滚动（示例 Main 支持传参，入口未演示时可省略）。  
-   - `Footer`：独立组件文件存在，本 Common 入口未挂载；需要底部固定按钮时再在 `Page` 内引入。
+   - `Footer`：独立组件文件存在，本 Common 入口未挂载；需要底部固定按钮时再在 `Page` 内引入。  
+   - `Page.Main`：Common 示例当前未包一层 `Page.Main`，但知识库允许通过 DSL `layout.usePageMain` 显式决定是否使用。
 
 ---
 
@@ -30,7 +31,7 @@
 
 | 路径 | 职责 |
 |------|------|
-| `index.tsx` | 页面壳：`Page` + 组装 `Header` / `Main`；`queryParams` 状态。 |
+| `index.tsx` | 页面壳：`Page` + 组装 `Header` / `Main`；`queryParams` 状态；可按 DSL 决定是否用 `Page.Main` 包列表区。 |
 | `Header/index.tsx` | `Page.Header` + `ToolBar`：只读搜索入口 → 展开 `SearchActive`；挂载 `Filter`。 |
 | `Header/Filter/index.tsx` | `ToolBar.Filter` + `Form` + `FooterBar`：筛选弹层表单项（示例为单行文本）。 |
 | `Main/index.tsx` | `ListPagination.Main`：`url`、`payload={queryParams}`、`formatPayload` / `formatResult` / `formatViewItem`。 |
@@ -45,16 +46,18 @@
 
 ## 组件依赖（lyrixi-mobile）
 
-- **布局**：`Page`（示例中子节点直接放在 `Page` 下；规范用法可包一层 `Page.Main` 包裹列表区域，与文档 `list-page.mdc` 对齐）。  
+- **布局**：`Page`（示例当前直接把 `Main` 放在 `Page` 下；新生成页面优先由 DSL `layout.usePageMain` 显式决定是否包 `Page.Main`）。  
 - **顶栏**：`Page.Header`、`ToolBar`、`ToolBar.Search`、`ToolBar.SearchActive`、`ToolBar.Filter`。  
 - **表单与底栏**：`Form`、`Input`、`FooterBar`。  
 - **列表**：`ListPagination.Main`（需从默认导出对象取 `Main`：`import ListPagination from 'lyrixi-mobile/components/ListPagination'` 或包入口按文档导出）。
+
+组件/属性细节见：`components-reference.md`
 
 ---
 
 ## 与代码生成（Skill + DSL）的关系
 
 - **不变部分**：上述目录角色、数据流、`ListPagination.Main` + 三 format 分层。  
-- **可变部分**：由 **DSL** 描述：`url`、`contentType`、请求字段映射、响应路径、列表展示字段映射等；生成器按 `ai/knowledge/dsl/templates/list-page.template.json` 填充 `formatPayload` / `formatResult` / `formatViewItem` 与 `Main` 上的 `url` / `headers`。
+- **可变部分**：由 **DSL** 描述：`url`、`contentType`、请求字段映射、响应路径、列表展示字段映射、是否生成 Footer、是否使用 `Page.Main` 等；生成器按 `ai/knowledge/dsl/templates/list-page.template.json` 填充 `formatPayload` / `formatResult` / `formatViewItem` 与 `Main` 上的 `url` / `headers`。
 
 详见同目录 `data-flow.md`、`../../dsl/list-page.schema.md`。

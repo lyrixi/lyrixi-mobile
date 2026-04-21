@@ -7,7 +7,7 @@ import Main from './Main'
 // 简便的列表组件, 只需要传入url和params即可
 const Common = () => {
   // 查询参数
-  const [queryParams, setQueryParams] = useState({ query: '1' })
+  const [queryParams, setQueryParams] = useState({ keyword: '1' })
 
   return (
     <Page>

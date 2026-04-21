@@ -25,7 +25,7 @@ npx lyrixi-mobile-ai
 ## 业务使用知识库
 
 ```
-选择 skill（detail-page）
+选择 skill（list-page-from-dsl）
     ↓
 输入 DSL（结构）
     ↓
@@ -37,3 +37,32 @@ skill 执行：
     ↓
 输出 React 代码
 ```
+
+## 推荐用法（List 页面试水）
+
+建议不要只说“参考 ai/knowledge 生成一个列表页”，而是明确要求 AI 按固定顺序读取知识，再基于 DSL 生成。
+
+推荐提示词结构：
+
+```text
+请按 ai/knowledge/skills/list-page-from-dsl.workflow.md 执行。
+
+先读取这些文件：
+- ai/knowledge/dsl/list-page.schema.md
+- ai/knowledge/dsl/templates/list-page.template.json
+- ai/knowledge/examples/List-demos-Common/overview.md
+- ai/knowledge/examples/List-demos-Common/data-flow.md
+- ai/knowledge/examples/List-demos-Common/components-reference.md
+- ai/knowledge/mappings/list-page-dsl-to-files.md
+
+然后基于下面 DSL 生成代码，不要自行发明目录结构或组件：
+<粘贴 DSL JSON>
+
+附加要求：
+- 目标路径：xxx
+- 是否使用 Page.Main：是 / 否
+- 是否生成 Footer：是 / 否
+- 如果 DSL 未覆盖某个实现细节，先列出缺口再生成
+```
+
+也可直接参考：`ai/knowledge/skills/list-page-from-dsl.prompt.md`

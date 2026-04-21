@@ -4,6 +4,9 @@
     "pageId": "MyList",
     "title": "列表示例"
   },
+  "layout": {
+    "usePageMain": true
+  },
   "http": {
     "url": "/api/list/query",
     "method": "POST",
@@ -25,6 +28,7 @@
     "successCode": "1",
     "listPath": "data.list",
     "totalPath": "data.totalPage",
+    "totalMode": "totalPage",
     "messagePath": "message"
   },
   "listItem": {
@@ -58,5 +62,8 @@
         }
       ]
     }
+  },
+  "footer": {
+    "enabled": false
   }
 }

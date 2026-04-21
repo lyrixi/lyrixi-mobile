@@ -1,0 +1,50 @@
+{
+  "Form": {
+    "layout": "'horizontal' | 'vertical' | 'inline' | undefined — 表单布局，默认 horizontal",
+    "labelSpan": "number | undefined — 标签列宽",
+    "labelEllipsis": "boolean | undefined",
+    "mainSpan": "number | undefined — 主体列宽",
+    "mainEllipsis": "boolean | undefined",
+    "virtual": "boolean | undefined",
+    "style": "CSSProperties | undefined",
+    "className": "string | undefined",
+    "children": "ReactNode | undefined",
+    "form": "FormInstance | undefined — 由 Form.useForm 返回",
+    "name": "string | undefined",
+    "validateMessages": "object | undefined",
+    "initialValues": "Record<string, unknown> | undefined",
+    "onFieldsChange": "(fields, allFields) => void | undefined",
+    "onValuesChange": "(changedValues, allValues) => void | undefined"
+  },
+  "Form.Item": {
+    "name": "string | (string | number)[] | undefined — 字段名",
+    "valuePropName": "string | undefined — 例如 checked",
+    "shouldUpdate": "boolean | ((prev, next) => boolean) | undefined",
+    "initialValue": "unknown",
+    "validateTrigger": "string | string[] | undefined",
+    "rules": "Array<{ required?: boolean; ... }> | undefined",
+    "id": "string | undefined",
+    "label": "ReactNode | undefined",
+    "labelHelp": "ReactNode | undefined",
+    "labelSpan": "number | undefined",
+    "labelEllipsis": "boolean | undefined",
+    "mainSpan": "number | undefined",
+    "mainEllipsis": "boolean | undefined",
+    "style": "CSSProperties | undefined",
+    "className": "string | undefined",
+    "layout": "string | undefined",
+    "labelStyle": "CSSProperties | undefined",
+    "labelClassName": "string | undefined",
+    "mainStyle": "CSSProperties | undefined",
+    "mainClassName": "string | undefined",
+    "inputExtraRender": "(ctx: { errors: string[] }) => ReactNode | undefined",
+    "extraRender": "(ctx: { errors: string[] }) => ReactNode | undefined",
+    "children": "ReactNode — 若为 React 组件，会自动注入 value 与 onChange"
+  },
+  "Form.useForm": {
+    "return": "[form] — 用于 setFieldsValue / getFieldsValue / validateFields 等"
+  },
+  "Form.useWatch": {
+    "return": "watch 值 — 监听某个字段值变化"
+  }
+}

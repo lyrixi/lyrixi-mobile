@@ -1,0 +1,63 @@
+{
+  "Input.Text": {
+    "type": "'text' | 'number' | 'tel' | 'password' | 'search' | 'textarea' | 'autoSize' | undefined — 默认 text",
+    "value": "string | number | undefined — 当前值，默认 ''",
+    "placeholder": "string | undefined",
+    "formatter": "(value) => string | undefined — 展示值格式化",
+    "readOnly": "boolean | undefined",
+    "disabled": "boolean | undefined",
+    "allowClear": "boolean | undefined",
+    "autoFocus": "boolean | undefined",
+    "autoSelect": "boolean | undefined",
+    "enableCompositionEnd": "boolean | undefined — 输入法落字后再触发 onChange",
+    "style": "CSSProperties | undefined",
+    "className": "string | undefined",
+    "inputRender": "(props) => ReactNode | undefined",
+    "leftIconNode": "ReactNode | undefined",
+    "rightIconNode": "ReactNode | undefined",
+    "clearRender": "ReactNode | ((props) => ReactNode) | undefined",
+    "precision": "number | undefined — 数值框小数精度",
+    "trim": "boolean | undefined — 文本 trim / 数值补 0 控制",
+    "max": "number | undefined",
+    "min": "number | undefined",
+    "maxLength": "number | undefined",
+    "inputMode": "string | undefined",
+    "enterKeyHint": "string | undefined",
+    "autoComplete": "string | undefined",
+    "autoCorrect": "string | undefined",
+    "spellCheck": "boolean | string | undefined",
+    "onClick": "(e) => void | undefined",
+    "onChange": "(value, meta: { action: string }) => void | undefined",
+    "onBlur": "(e) => void | undefined",
+    "onFocus": "(e) => void | undefined",
+    "onKeyDown": "(e) => void | undefined",
+    "onPressEnter": "(e) => void | undefined"
+  },
+  "Input.Text.ref": {
+    "element": "HTMLElement | null — 根 DOM",
+    "inputElement": "HTMLInputElement | HTMLTextAreaElement | null — 原生输入节点",
+    "getElement": "() => HTMLElement | null",
+    "getInputElement": "() => HTMLInputElement | HTMLTextAreaElement | null",
+    "correctValue": "(value) => string | number | undefined",
+    "focus": "() => void",
+    "blur": "() => void"
+  },
+  "Input.Search": {
+    "value": "string | undefined",
+    "placeholder": "string | undefined",
+    "allowClear": "boolean | undefined",
+    "autoFocus": "boolean | undefined",
+    "autoSelect": "boolean | undefined",
+    "enableCompositionEnd": "boolean | undefined",
+    "maxLength": "number | undefined",
+    "readOnly": "boolean | undefined",
+    "disabled": "boolean | undefined",
+    "onChange": "(value, meta) => void | undefined",
+    "onPressEnter": "(e) => void | undefined",
+    "onSearch": "(keyword) => void | undefined"
+  },
+  "Input.namespace": {
+    "commonKeys": "AutoSize | Number | NumberBox | NumberKeyboard | OTP | Password | PasswordStrength | Range | Rate | Tel | Text | Node | Search | Textarea | Url",
+    "internalOnly": "Select — 内部组件，不建议单独用于业务代码"
+  }
+}

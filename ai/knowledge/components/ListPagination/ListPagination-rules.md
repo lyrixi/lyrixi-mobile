@@ -1,0 +1,7 @@
+- 列表页分页查询**优先**使用 `ListPagination.Main`，不要在页面里重复手写分页状态、追加逻辑、空态/错误态判断。
+- `payload` **应**来自父层统一维护的 `queryParams`，不要在 `Main` 内部再维护另一份查询参数源。
+- `formatPayload`、`formatResult`、`formatViewItem` **应**各司其职：请求体映射、响应解析、视图映射，不要混写。
+- `formatPayload` **应**保留分页 `page`，并在需要时合并固定参数（如 `rows`）。
+- `formatResult` **应**返回统一结构，至少包含 `status` 与 `list`；分页场景应补 `totalPage` 或 `totalRows` 之一。
+- 当前默认请求链路以 `Request.post` 为主；若业务要求真实 GET 或真正表单编码，**必须**先说明当前能力缺口，再决定是否生成降级实现。
+- `formatViewItem` **不得**承担请求、副作用或跨行状态管理，只负责单条 item → 列表协议的映射。

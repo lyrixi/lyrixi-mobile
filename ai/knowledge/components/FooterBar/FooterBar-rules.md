@@ -1,0 +1,6 @@
+- 底部固定操作区**优先**使用 `FooterBar`，不要手写一层普通容器重复其职责。
+- 标准的“取消 / 确定”操作组合**优先**使用两个 `FooterBar.Button`。
+- 需要按钮等宽铺满时，**应**使用 `block`，而不是外层手动算宽度。
+- 筛选弹层底部操作区**优先**通过 `ToolBar.Filter` 的 `footerRender` 返回 `FooterBar`。
+- 若只是普通点击动作，不必给 `FooterBar.Button` 传 `list`；`list` 只用于内置 `ActionSheet.Modal` 选择场景。
+- **不得**在同一底栏里同时混用多套彼此冲突的底部交互规范。

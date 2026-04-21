@@ -57,7 +57,7 @@ ListPage/
   - 封装筛选弹层。
   - 通常使用 `ToolBar.Filter` + `Form` + `FooterBar`。
 - `Main/index.jsx`
-  - 放在 `Page.Main` 中。
+  - 优先放在 `Page.Main` 中；若 DSL 或业务要求不包 `Page.Main`，也允许直接作为 `Page` 子节点。
   - 通常使用 `ListPagination.Main`。
   - 接收 `queryParams`，并结合 `formatPayload` / `formatResult` / `formatViewItem` 组织数据。
 - `Footer/index.jsx`
@@ -76,7 +76,7 @@ import Header from './Header'
 import Main from './Main'
 
 const Common = () => {
-  const [queryParams, setQueryParams] = useState({ query: '1' })
+  const [queryParams, setQueryParams] = useState({ keyword: '1' })
 
   return (
     <Page>
