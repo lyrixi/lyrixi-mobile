@@ -321,7 +321,7 @@ let Bridge = {
     sizeType?: string[]
     mediaType?: string[]
     maxDuration?: number
-    onSuccess?: SuccessCallback<{ localFiles?: unknown[] }>
+    onSuccess?: SuccessCallback<{ data: { localFiles: unknown[] } }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
@@ -355,7 +355,11 @@ let Bridge = {
       }
       onSuccess?.({
         status: 'success',
-        localFiles: localFiles
+        code: '',
+        message: '',
+        data: {
+          localFiles: localFiles
+        }
       })
     }
     const handleError = function (error) {
@@ -379,18 +383,22 @@ let Bridge = {
     // setTimeout(() => {
     //   onSuccess?.({
     //     status: 'success',
-    //     localFiles: [
-    //       {
-    //         fileUrl: '111',
-    //         filePath: '111',
-    //         fileType: 'image'
-    //       },
-    //       {
-    //         fileUrl: '222',
-    //         filePath: '222',
-    //         fileType: 'image'
-    //       }
-    //     ]
+    //     code: '',
+    //     message: '',
+    //     data: {
+    //       localFiles: [
+    //         {
+    //           fileUrl: '111',
+    //           filePath: '111',
+    //           fileType: 'image'
+    //         },
+    //         {
+    //           fileUrl: '222',
+    //           filePath: '222',
+    //           fileType: 'image'
+    //         }
+    //       ]
+    //     }
     //   })
     // }, 1000)
   },

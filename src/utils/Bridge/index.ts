@@ -282,7 +282,7 @@ let Bridge = {
    * @param {Array<String>} params.sourceType - 图片来源，['camera', 'album']，默认为 ['camera', 'album']
    * @param {Array<String>} params.mediaType - 媒体类型，['image', 'video', 'mix']，默认为 ['image']
    * @param {Number} params.maxDuration - 视频最大时长，单位秒，默认为 10
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', localFiles: Array<{fileUrl: 预览url, filePath: 上传url或id, fileType: 文件类型(image|video|file)}>}
+   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data: { localFiles: Array<{fileUrl: 预览url, filePath: 上传url或id, fileType: 文件类型(image|video|file)}> } }
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
@@ -301,8 +301,8 @@ let Bridge = {
    * @param {String} params.getUploadUrl - 上传地址 (必填), function({ platform: String }) => String
    * @param {Object} params.formatHeaders - 格式化请求头, function({ 'Content-Type': 'multipart/form-data' }, { platform: String }) => Object
    * @param {Object} params.formatPayload - 格式化表单数据 function(payload, { platform: String }), 返回 {Object}
-   * @param {Object} params.formatResponse - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', result: Object}
-   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', result: Object}
+   * @param {Object} params.formatResponse - 格式化上传结果 function(payload, { platform: String }), 返回 {status: 'success|error', data: Object}
+   * @param {Function} params.onSuccess - 成功回调，返回 {status: 'success', code, message, data: Object}
    * @param {Function} params.onError - 失败回调
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}

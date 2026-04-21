@@ -287,7 +287,7 @@ let Bridge = {
     sizeType?: string[]
     mediaType?: string[]
     maxDuration?: number
-    onSuccess?: SuccessCallback<{ localFiles?: unknown[] }>
+    onSuccess?: SuccessCallback<{ data: { localFiles: unknown[] } }>
     onError?: ErrorCallback
     onCancel?: () => void
   }) {
@@ -320,7 +320,11 @@ let Bridge = {
 
         onSuccess?.({
           status: 'success',
-          localFiles: localFiles
+          code: '',
+          message: '',
+          data: {
+            localFiles: localFiles
+          }
         })
     }
 
@@ -415,13 +419,13 @@ let Bridge = {
         return
       }
 
-      let response: { code: string; result: unknown; status?: string } = {
+      let response: { code: string; data: unknown; status?: string } = {
         code: 'success',
-        result: data
+        data: data
       }
       if (typeof data === 'string') {
         try {
-          response.result = JSON.parse(data)
+          response.data = JSON.parse(data)
         } catch (e) { }
       }
 

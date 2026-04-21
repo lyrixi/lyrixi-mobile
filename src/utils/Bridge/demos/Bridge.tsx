@@ -173,7 +173,7 @@ export default () => {
                   onSuccess: (res) => {
                     console.log(res)
                     alert(JSON.stringify(res))
-                    imageLocalFiles.current = res?.localFiles
+                    imageLocalFiles.current = res?.data?.localFiles
                   },
                   onError: (error) => {
                     console.log(error)

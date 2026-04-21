@@ -37,8 +37,8 @@ function uploadLocalFile({
             return
           }
 
-          // response.result为新格式化后的新item: {fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
-          let newItem = response.result
+          // response.data为新格式化后的新item: {fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
+          let newItem = response.data
 
           // 校验其是否真的是否法图片
           if (item?.fileType === 'image' && verifyImage) {

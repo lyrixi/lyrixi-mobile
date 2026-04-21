@@ -140,7 +140,7 @@ function MediaUploader(
         mediaType: mediaType,
         isSaveToAlbum: isSaveToAlbum || 0, // 不保存到本地
         onSuccess: async (res) => {
-          const localFiles = res.localFiles
+          const localFiles = res.data?.localFiles
           if (!Array.isArray(localFiles) || !localFiles.length) {
             resolve(null)
             return

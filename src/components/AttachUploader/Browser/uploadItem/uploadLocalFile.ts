@@ -33,8 +33,8 @@ function uploadLocalFile({
           return
         }
 
-        // response.result为新格式化后的新item: {fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
-        let newItem = response.result
+        // response.data为新格式化后的新item: {fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
+        let newItem = response.data
 
         resolve({
           ...item,

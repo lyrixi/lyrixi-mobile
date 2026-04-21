@@ -24,7 +24,9 @@ function uploadFile({ url, headers, payload }) {
       .then(async (result) => {
         resolve({
           status: 'success',
-          result: result
+          code: '',
+          message: '',
+          data: result
         })
       })
       .catch((error) => {

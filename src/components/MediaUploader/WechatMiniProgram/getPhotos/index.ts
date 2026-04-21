@@ -15,11 +15,13 @@ function getPhotos(id, { url, formatResponse }) {
         console.log('服务器返回照片结果:', result)
         let response = {
           status: 'success',
-          result: result
+          code: '',
+          message: '',
+          data: result
         }
         if (typeof formatResponse === 'function') {
           response = await formatResponse(
-            { status: 'success', result: result },
+            { status: 'success', code: '', message: '', data: result },
             {
               platform: 'wechatMiniProgram'
             }
@@ -27,9 +29,9 @@ function getPhotos(id, { url, formatResponse }) {
         }
 
         console.log('照片格式化完成:', response)
-        // 成功, response.result为新格式化后的新item: {fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
+        // 成功, response.data为新格式化后的新item: {fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
         if (response.status === 'success') {
-          resolve(response.result)
+          resolve(response.data)
         }
         // 失败
         else if (response.status === 'error') {
