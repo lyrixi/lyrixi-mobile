@@ -8,7 +8,7 @@ import type { SuccessCallback, ErrorCallback } from '../types'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function config(opts?: {
+function config(params?: {
   url?: string
   headers?: Record<string, string>
   payload?: Record<string, unknown>
@@ -16,7 +16,7 @@ function config(opts?: {
   onSuccess?: SuccessCallback
   onError?: ErrorCallback
 }) {
-  const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
+  const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload) return
   // 获取鉴权信息
   Request.post(url, payload, {

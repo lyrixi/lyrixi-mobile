@@ -22,8 +22,8 @@ type WechatConfigOptions = {
   onError?: ErrorCallback
 }
 
-function wechatConfig(opts?: WechatConfigOptions) {
-  const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
+function wechatConfig(params?: WechatConfigOptions) {
+  const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload?.appId) {
     onError?.({
       status: 'error',

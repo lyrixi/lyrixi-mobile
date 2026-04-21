@@ -17,15 +17,15 @@ import { LocaleUtil, Clipboard, GeoUtil, Device, Toast } from 'lyrixi-mobile'
 let Browser = {
   /** 调试开关：为 true 时 getBrowserLocation / scanCode 等走模拟逻辑 */
   debug: false,
-  load: function (opts?: { onSuccess?: SuccessCallback }) {
-    const { onSuccess } = opts || {}
+  load: function (params?: { onSuccess?: SuccessCallback }) {
+    const { onSuccess } = params || {}
     onSuccess?.({
       status: 'success',
       data: undefined
     })
   },
-  config: async function (opts?: { onSuccess?: SuccessCallback }) {
-    const { onSuccess } = opts || {}
+  config: async function (params?: { onSuccess?: SuccessCallback }) {
+    const { onSuccess } = params || {}
     onSuccess?.({
       status: 'success',
       data: undefined
@@ -34,11 +34,11 @@ let Browser = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (opts?: {
+  closeWindow: function (params?: {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { onSuccess } = opts || {}
+    const { onSuccess } = params || {}
     window.history.go(-1)
     onSuccess?.({ status: 'success', data: undefined })
   },
@@ -50,18 +50,18 @@ let Browser = {
       )} onBack`
     })
   },
-  setTitle: function (opts?: {
+  setTitle: function (params?: {
     title?: string
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { title, onSuccess } = opts || {}
+    const { title, onSuccess } = params || {}
     const topWin = window.top ?? window
     topWin.document.title = title ?? ''
     onSuccess?.({ status: 'success', data: undefined })
   },
-  openWindow: function (opts?: { url?: string; target?: string }) {
-    const { url, target } = opts || {}
+  openWindow: function (params?: { url?: string; target?: string }) {
+    const { url, target } = params || {}
     if (target === '_self') {
       if (url) window.location.replace(url)
       return
@@ -75,12 +75,12 @@ let Browser = {
   goHome: function () {
     window.history.go(-1)
   },
-  tel: function (opts?: {
+  tel: function (params?: {
     number?: string | number
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { number, onSuccess, onError } = opts || {}
+    const { number, onSuccess, onError } = params || {}
     if (Device.device === 'pc') {
       Toast.show({
         content: `Browser ${LocaleUtil.locale(
@@ -103,7 +103,7 @@ let Browser = {
     window.location.href = 'tel:' + number
     onSuccess?.({ status: 'success', data: undefined })
   },
-  openLocation: function (opts?: {
+  openLocation: function (params?: {
     latitude?: number
     longitude?: number
     type?: string
@@ -113,7 +113,7 @@ let Browser = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { latitude, longitude, type, onError } = opts || {}
+    const { latitude, longitude, type, onError } = params || {}
     if (!latitude || !longitude || !type) return
     let message = `Browser ${LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
@@ -126,19 +126,19 @@ let Browser = {
     })
     onError?.({ status: 'error', message: message })
   },
-  getLocation: function (opts?: {
+  getLocation: function (params?: {
     type?: string
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
-    this.getBrowserLocation(opts)
+    this.getBrowserLocation(params)
   },
-  getBrowserLocation: function (opts?: {
+  getBrowserLocation: function (params?: {
     type?: string
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
-    const { type, onSuccess, onError } = opts || {}
+    const { type, onSuccess, onError } = params || {}
     if (this.debug) {
       console.log('模拟浏览器定位...', type)
       setTimeout(() => {
@@ -290,13 +290,13 @@ let Browser = {
     }
     return
   },
-  scanCode: function (opts?: {
+  scanCode: function (params?: {
     scanType?: string[]
     onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { scanType, onSuccess, onError, onCancel } = opts || {}
+    const { scanType, onSuccess, onError, onCancel } = params || {}
     if (!this.debug) {
       let message = `Browser ${LocaleUtil.locale(
         '此平台不支持',
@@ -331,7 +331,7 @@ let Browser = {
       content: message
     })
   },
-  uploadFile: async function (opts?: {
+  uploadFile: async function (params?: {
     localFile?: { filePath?: string; fileType?: string }
     getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
     formatHeaders?: (
@@ -347,7 +347,7 @@ let Browser = {
     onError?: ErrorCallback
   }) {
     const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
-      opts || {}
+      params || {}
     let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
       onError &&
@@ -386,14 +386,14 @@ let Browser = {
       onError?.(response as ErrorResult)
     }
   },
-  previewMedia: function (opts?: {
+  previewMedia: function (params?: {
     index?: number
     sources?: unknown[]
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { onError } = opts || {}
+    const { onError } = params || {}
     onError?.({
       status: 'error',
       message: `Browser ${LocaleUtil.locale(
@@ -402,12 +402,12 @@ let Browser = {
       )} previewMedia`
     })
   },
-  previewFile: function (opts?: {
+  previewFile: function (params?: {
     fileUrl?: string
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { onError } = opts || {}
+    const { onError } = params || {}
     let message = `Browser ${LocaleUtil.locale(
       '此平台不支持',
       'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
@@ -417,7 +417,7 @@ let Browser = {
     })
     onError && onError({ status: 'error', message: message })
   },
-  share(opts?: {
+  share(params?: {
     title?: string
     description?: string
     url?: string
@@ -425,7 +425,7 @@ let Browser = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { url, onSuccess } = opts || {}
+    const { url, onSuccess } = params || {}
     Clipboard.copyText(url || '')
     onSuccess &&
       onSuccess({

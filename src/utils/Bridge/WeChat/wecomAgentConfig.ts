@@ -23,8 +23,8 @@ type WecomAgentConfigOptions = {
 }
 
 // 企业微信自建应用和SASS应用鉴权
-function wecomAgentConfig(opts?: WecomAgentConfigOptions) {
-  const { url, headers, payload, formatResponse, onSuccess, onError } = opts || {}
+function wecomAgentConfig(params?: WecomAgentConfigOptions) {
+  const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload?.appId) {
     onError?.({
       status: 'error',

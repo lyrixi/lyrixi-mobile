@@ -224,7 +224,7 @@ let Bridge = {
    * @returns {void}
    */
   getLocation(
-    opts?: {
+    params?: {
       type?: string
       onSuccess?: SuccessCallback<Record<string, unknown>>
       onError?: ErrorCallback
@@ -232,7 +232,7 @@ let Bridge = {
     },
     platform?: string
   ) {
-    const { type = 'wgs84', onSuccess, onError, onCancel } = opts || {}
+    const { type = 'wgs84', onSuccess, onError, onCancel } = params || {}
     return this._getCurrentBridge(platform).getLocation({ type, onSuccess, onError, onCancel })
   },
   /**

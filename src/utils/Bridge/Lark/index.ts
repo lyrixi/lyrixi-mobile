@@ -18,12 +18,12 @@ import { GeoUtil, Clipboard, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (opts?: {
+  load: function (params?: {
     getScriptSrc?: (ctx: { platform: string }) => string
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { getScriptSrc, onSuccess, onError } = opts || {}
+    const { getScriptSrc, onSuccess, onError } = params || {}
     const top = window.top ?? window
     if (top.tt && top.h5sdk) {
       onSuccess?.({
@@ -63,7 +63,7 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  config: async function (opts?: {
+  config: async function (params?: {
     getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
     formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
     formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
@@ -71,7 +71,7 @@ let Bridge = {
     onSuccess?: (r: unknown) => void
     onError?: (r: unknown) => void
   }) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = opts || {}
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = params || {}
     // 获取配置url
     let url = ''
     if (typeof getConfigUrl === 'function') {
@@ -96,11 +96,11 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (opts?: {
+  closeWindow: function (params?: {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { onSuccess, onError } = opts || {}
+    const { onSuccess, onError } = params || {}
     ;(window.top ?? window).tt?.closeWindow?.({
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
@@ -118,7 +118,7 @@ let Bridge = {
   onBack: function () {
     console.log('飞书不支持监听物理返回')
   },
-  openLocation: function (opts?: {
+  openLocation: function (params?: {
     latitude?: number
     longitude?: number
     type?: string
@@ -128,7 +128,7 @@ let Bridge = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { latitude, longitude, type, name, address, scale: scaleIn, onSuccess, onError } = opts || {}
+    const { latitude, longitude, type, name, address, scale: scaleIn, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     let scale = scaleIn ?? 12
@@ -159,12 +159,12 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (opts?: {
+  getLocation: function (params?: {
     type?: string
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
-    const { type, onSuccess, onError } = opts || {}
+    const { type, onSuccess, onError } = params || {}
     let targetType = type || 'gcj02'
     console.log('调用飞书定位...', type)
 
@@ -209,13 +209,13 @@ let Bridge = {
       }
     })
   },
-  scanCode: function (opts?: {
+  scanCode: function (params?: {
     scanType?: string[]
     onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { scanType, onSuccess, onError, onCancel } = opts || {}
+    const { scanType, onSuccess, onError, onCancel } = params || {}
     ;(window.top ?? window).tt?.scanCode?.({
       scanType: scanType,
       barCodeInput: true,
@@ -241,14 +241,14 @@ let Bridge = {
   uploadFile: function () {
     console.log('调用飞书上传文件暂未实现')
   },
-  previewMedia: function (opts?: {
+  previewMedia: function (params?: {
     index?: number
     sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { index, sources, onSuccess, onError, onCancel } = opts || {}
+    const { index, sources, onSuccess, onError, onCancel } = params || {}
     const srcList = sources || []
     let urls = srcList.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
     let current = index !== undefined ? srcList[index] : undefined
@@ -281,7 +281,7 @@ let Bridge = {
       onCancel: onCancel
     })
   },
-  share(opts?: {
+  share(params?: {
     title?: string
     description?: string
     url?: string
@@ -289,7 +289,7 @@ let Bridge = {
     onSuccess?: () => void
     onError?: ErrorCallback
   }) {
-    const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
+    const { title, description, url, imageUrl, onSuccess, onError } = params || {}
     ;(window.top ?? window).tt?.share?.({
       channelType: ['wx', 'wx_timeline', 'system'],
       contentType: 'url',

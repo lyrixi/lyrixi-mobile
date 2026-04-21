@@ -7,12 +7,12 @@ import LocaleUtil from './../../LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadServerId(opts?: {
+function uploadServerId(params?: {
   url?: string
   headers?: Record<string, string>
   payload?: Record<string, unknown>
 }) {
-  const { url, headers, payload } = opts || {}
+  const { url, headers, payload } = params || {}
   return new Promise((resolve) => {
     Request.post(url, payload, {
       headers: headers || {

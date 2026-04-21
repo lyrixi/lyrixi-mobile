@@ -21,12 +21,12 @@ import { LocaleUtil, Clipboard, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (opts?: {
+  load: function (params?: {
     getScriptSrc?: (ctx: { platform: string }) => string
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { getScriptSrc, onSuccess, onError } = opts || {}
+    const { getScriptSrc, onSuccess, onError } = params || {}
     const platform = Device.platform
     if ((window.top ?? window).wx) {
       onSuccess?.({
@@ -73,7 +73,7 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  config: async function (opts?: {
+  config: async function (params?: {
     getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
     formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
     formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
@@ -81,7 +81,7 @@ let Bridge = {
     onSuccess?: (r: unknown) => void
     onError?: (r: unknown) => void
   }) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = opts || {}
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = params || {}
     let platform = Device.platform
 
     // 获取配置url
@@ -113,11 +113,11 @@ let Bridge = {
   back: function (delta) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (opts?: {
+  closeWindow: function (params?: {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { onSuccess } = opts || {}
+    const { onSuccess } = params || {}
     if (['wechatMiniProgram', 'wecomMiniProgram'].includes(Device.platform || '')) {
       ;(window.top ?? window).wx?.miniProgram?.navigateBack?.({})
     } else {
@@ -125,11 +125,11 @@ let Bridge = {
     }
     onSuccess?.({ status: 'success', data: undefined })
   },
-  onBack: function (opts?: {
+  onBack: function (params?: {
     onError?: ErrorCallback
     onSuccess?: (r: SuccessResult<undefined>) => boolean | void | Promise<boolean | void>
   }) {
-    const { onError, onSuccess } = opts || {}
+    const { onError, onSuccess } = params || {}
     ;(window.top ?? window).wx?.onHistoryBack?.(() => {
       const back = async () => {
         let isBack = await onSuccess?.({ status: 'success', data: undefined })
@@ -147,7 +147,7 @@ let Bridge = {
       return false
     })
   },
-  openLocation: function (opts?: {
+  openLocation: function (params?: {
     latitude?: number
     longitude?: number
     type?: string
@@ -157,7 +157,7 @@ let Bridge = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
+    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
@@ -195,13 +195,13 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (opts?: {
+  getLocation: function (params?: {
     type?: string
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { type, onSuccess, onError, onCancel } = opts || {}
+    const { type, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
       console.log('PC端微信不支持定位...', type)
       return
@@ -234,13 +234,13 @@ let Bridge = {
       },
     })
   },
-  scanCode: function (opts?: {
+  scanCode: function (params?: {
     scanType?: string[]
     onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { scanType, onSuccess, onError, onCancel } = opts || {}
+    const { scanType, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
       Toast.show({
         content: `WeChat ${LocaleUtil.locale(
@@ -317,7 +317,7 @@ let Bridge = {
       }
     })
   },
-  chooseMedia: function (opts?: {
+  chooseMedia: function (params?: {
     count?: number
     sourceType?: string[]
     sizeType?: string[]
@@ -328,7 +328,7 @@ let Bridge = {
     onCancel?: CancelCallback
   }) {
     const { count, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
-      opts || {}
+      params || {}
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
@@ -404,7 +404,7 @@ let Bridge = {
     //   })
     // }, 1000)
   },
-  uploadFile: async function (opts?: {
+  uploadFile: async function (params?: {
     localFile?: { filePath?: string; fileType?: string; [key: string]: unknown }
     getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
     formatHeaders?: (
@@ -420,7 +420,7 @@ let Bridge = {
     onError?: ErrorCallback
   }) {
     const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
-      opts || {}
+      params || {}
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -497,7 +497,7 @@ let Bridge = {
       }
     })
   },
-  previewMedia: function (opts?: {
+  previewMedia: function (params?: {
     index?: number
     sources?: Array<
       Record<string, unknown> & {
@@ -513,7 +513,7 @@ let Bridge = {
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { index, sources, onSuccess, onError, onCancel } = opts || {}
+    const { index, sources, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
       Toast.show({
         content: `WeChat ${LocaleUtil.locale(
@@ -565,12 +565,12 @@ let Bridge = {
       }
     })
   },
-  previewFile: function (opts?: {
+  previewFile: function (params?: {
     fileUrl?: string
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { fileUrl, onSuccess, onError } = opts || {}
+    const { fileUrl, onSuccess, onError } = params || {}
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
@@ -600,7 +600,7 @@ let Bridge = {
       }
     })
   },
-  share(opts?: {
+  share(params?: {
     title?: string
     description?: string
     url?: string
@@ -608,7 +608,7 @@ let Bridge = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { title, description, url, imageUrl, onSuccess, onError } = opts || {}
+    const { title, description, url, imageUrl, onSuccess, onError } = params || {}
     // 微信服务号中分享
     if (Device.platform === 'wechat') {
       ;(window.top ?? window).wx?.updateAppMessageShareData?.({

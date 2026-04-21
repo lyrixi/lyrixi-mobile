@@ -16,12 +16,12 @@ import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (opts?: {
+  load: function (params?: {
     getScriptSrc?: (ctx: { platform: string }) => string | undefined
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { getScriptSrc, onSuccess, onError } = opts || {}
+    const { getScriptSrc, onSuccess, onError } = params || {}
     const topWin = window.top ?? window
     if (topWin.ap) {
       onSuccess?.({
@@ -84,18 +84,18 @@ let Bridge = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (opts?: {
+  closeWindow: function (params?: {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { onSuccess } = opts || {}
+    const { onSuccess } = params || {}
     ;(window.top ?? window).ap?.popWindow?.()
     onSuccess?.({ status: 'success', data: undefined })
   },
   onBack: function () {
     console.log('支付宝不支持监听物理返回')
   },
-  openLocation: function (opts?: {
+  openLocation: function (params?: {
     latitude?: number
     longitude?: number
     type?: string
@@ -105,7 +105,7 @@ let Bridge = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = opts || {}
+    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用支付宝地图...', { latitude, longitude, type, name, address, scale })
@@ -131,12 +131,12 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (opts?: {
+  getLocation: function (params?: {
     type?: string
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
-    const { type, onSuccess, onError } = opts || {}
+    const { type, onSuccess, onError } = params || {}
     console.log('调用支付宝定位...', type)
 
     ;(window.top ?? window).ap?.getLocation?.({
@@ -177,13 +177,13 @@ let Bridge = {
       }
     })
   },
-  scanCode: function (opts?: {
+  scanCode: function (params?: {
     scanType?: string[]
     onSuccess?: SuccessCallback<{ content: string }>
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { scanType, onSuccess, onError, onCancel } = opts || {}
+    const { scanType, onSuccess, onError, onCancel } = params || {}
     let type = ''
     if (scanType && scanType.length === 1) {
       if (scanType.includes('qrCode')) {
