@@ -528,7 +528,7 @@ let Bridge = {
    */
   detectFace: async function (params?: {
     getConfig?: (ctx: { platform: string }) => Promise<Record<string, unknown>> | Record<string, unknown>
-    onSuccess?: SuccessCallback<{ result: unknown }>
+    onSuccess?: SuccessCallback<{ match: boolean, confidence: number | undefined }>
     onError?: ErrorCallback
   }) {
     const { getConfig, onSuccess, onError } = params || {}
@@ -545,7 +545,7 @@ let Bridge = {
           message: '',
           data: { 
             match: res?.photoStatus === 1,
-            confidence: ''
+            confidence: undefined
           }
         })
       },

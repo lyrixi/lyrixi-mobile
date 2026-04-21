@@ -374,7 +374,7 @@ let Bridge = {
   detectFace(
     params?: {
       getConfig?: (ctx: { platform: string }) => Promise<Record<string, unknown>> | Record<string, unknown>
-      onSuccess?: SuccessCallback<Record<string, unknown>>
+      onSuccess?: SuccessCallback<{ match: boolean, confidence: number | undefined }>
       onError?: ErrorCallback
     },
     platform?: string
