@@ -527,27 +527,17 @@ let Bridge = {
    * @see dd.biz.ATMBle.exclusiveLiveCheck
    */
   detectFace: async function (params?: {
-    getConfig?: (ctx: { platform: string }) => Promise<string> | string
+    getConfig?: (ctx: { platform: string }) => Promise<Record<string, unknown>> | Record<string, unknown>
     onSuccess?: SuccessCallback<{ result: unknown }>
     onError?: ErrorCallback
   }) {
     const { getConfig, onSuccess, onError } = params || {}
-    let apiParams: Record<string, unknown> = {}
+    let config: Record<string, unknown> = {}
     if (typeof getConfig === 'function') {
-      const raw = await getConfig({ platform: 'dingtalk' })
-      if (typeof raw === 'string') {
-        try {
-          const parsed = JSON.parse(raw) as unknown
-          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
-            apiParams = parsed as Record<string, unknown>
-          }
-        } catch {
-          /* 非 JSON 字符串则不作为扩展参数 */
-        }
-      }
+      config = await getConfig({ platform: 'dingtalk' })
     }
     ;(window.top ?? window).dd?.biz?.ATMBle?.exclusiveLiveCheck?.({
-      ...apiParams,
+      ...config,
       onSuccess: (res) => {
         onSuccess?.({
           status: 'success',
