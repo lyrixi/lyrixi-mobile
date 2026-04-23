@@ -1,6 +1,6 @@
 // 对应 DSL: ai/knowledge/dsl/base-page.json → ai/knowledge/examples/BasePage
 import React, { useEffect, useState, type FC } from 'react'
-import { Page, Result, Skeleton } from 'lyrixi-mobile'
+import { Page, Result, Skeleton, Loading } from 'lyrixi-mobile'
 
 import { queryData } from './api'
 import { type QueryResult } from './types'
@@ -13,8 +13,12 @@ const BasePage: FC = () => {
   const [result, setResult] = useState<QueryResult<Record<string, unknown>> | null>(null)
 
   async function loadData(): Promise<void> {
-    const next: QueryResult<Record<string, unknown>> = await queryData<Record<string, unknown>>(queryParams ?? {})
+    Loading.show()
+    const next: QueryResult<Record<string, unknown>> = await queryData<Record<string, unknown>>(
+      queryParams ?? {}
+    )
     setResult(next)
+    Loading.hide()
   }
 
   useEffect(() => {
