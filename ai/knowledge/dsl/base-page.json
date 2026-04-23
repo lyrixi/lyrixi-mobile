@@ -14,7 +14,7 @@
       },
       "payload": {
         "id": "Device.getUrlParameter('id')",
-        "dataStr": "queryParams.date.id"
+        "keyword": "queryParams.keyword"
       },
       "response": {
         "code": "1",
