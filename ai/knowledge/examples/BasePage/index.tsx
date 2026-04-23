@@ -7,7 +7,7 @@ import { type QueryResult } from './types'
 import SearchBar from './SearchBar'
 import Content from './Content'
 
-// 业务侧：将 Record 换成自己的类型，例如 { id: string; name: string }
+// 页面名称: types业务侧根据各自的业务自行修改
 const BasePage: FC = () => {
   const [queryParams, setQueryParams] = useState<Record<string, unknown> | null>(null)
   const [result, setResult] = useState<QueryResult<Record<string, unknown>> | null>(null)
