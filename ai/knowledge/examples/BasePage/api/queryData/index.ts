@@ -1,15 +1,14 @@
 import { Device, Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
-import type { Result } from '../../types'
-import { isLoadApiResponse, toBasePageDetail } from '../../types'
+import type { QueryResult } from '../../types'
+import { isLoadApiResponse, toObjectData } from '../../types'
 
 const locale = LocaleUtil.locale
 
 /**
- * 首屏/详情加载（与 init-page DSL：api.modules.queryData 同构）
- * 统一为 types.Result：{ status, message, data }
+ * 首屏/详情加载。`T` 为 `data` 业务类型，默认 `Record<string, unknown>`。业务有强类型时写 `queryData<MyRow>()` 并在本文件内对成功数据做合法收窄或 `as T`。
  */
-function queryData(): Promise<Result> {
+function queryData<T extends Record<string, unknown> = Record<string, unknown>>(): Promise<QueryResult<T>> {
   return new Promise((resolve) => {
     const id = Device.getUrlParameter('id')
 
@@ -53,7 +52,7 @@ function queryData(): Promise<Result> {
               data: undefined
             })
           } else {
-            const detail = toBasePageDetail(r.data)
+            const detail = toObjectData(r.data)
             if (detail === null) {
               resolve({
                 status: 'error',
@@ -64,7 +63,7 @@ function queryData(): Promise<Result> {
               resolve({
                 status: 'success',
                 message: '',
-                data: detail
+                data: detail as T
               })
             }
           }
