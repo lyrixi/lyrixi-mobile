@@ -2,4 +2,4 @@ import queryData from './queryData'
 import approveData from './approveData'
 
 export { queryData, approveData }
-export type { ApproveDataOptions, ApproveDataResult, BasePageQueryDataResult } from '../types'
+export type { ApproveDataOptions, ApproveDataResult, Result } from '../types'

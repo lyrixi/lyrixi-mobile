@@ -1,29 +1,23 @@
 import { Device, Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
-import type { BasePageQueryDataResult } from '../../types'
+import type { Result } from '../../types'
 import { isLoadApiResponse, toBasePageDetail } from '../../types'
 
 const locale = LocaleUtil.locale
 
 /**
  * 首屏/详情加载（与 init-page DSL：api.modules.queryData 同构）
- * 仅返回结构化结果，不返回裸 string，便于页面做类型收窄。
+ * 统一为 types.Result：{ status, message, data }
  */
-function queryData(): Promise<BasePageQueryDataResult> {
+function queryData(): Promise<Result> {
   return new Promise((resolve) => {
-    // Delete it: Test mock data
-    resolve({
-      data: {}
-    })
-    return
-    // Delete it: end
-
     const id = Device.getUrlParameter('id')
 
     if (!id) {
       resolve({
-        status: 'info',
-        message: locale('请传入id')
+        status: 'error',
+        message: locale('请传入id'),
+        data: undefined
       })
       return
     }
@@ -44,8 +38,9 @@ function queryData(): Promise<BasePageQueryDataResult> {
         Loading.hide()
         if (!isLoadApiResponse(raw)) {
           resolve({
-            status: '500',
-            message: locale('获取数据错误！')
+            status: 'error',
+            message: locale('获取数据错误！'),
+            data: undefined
           })
           return
         }
@@ -53,24 +48,31 @@ function queryData(): Promise<BasePageQueryDataResult> {
         if (r.code === '1') {
           if (ObjectUtil.isEmpty(r.data)) {
             resolve({
-              status: 'empty',
-              message: locale('暂无数据')
+              status: 'error',
+              message: locale('暂无数据'),
+              data: undefined
             })
           } else {
             const detail = toBasePageDetail(r.data)
             if (detail === null) {
               resolve({
-                status: '500',
-                message: locale('获取数据错误！')
+                status: 'error',
+                message: locale('获取数据错误！'),
+                data: undefined
               })
             } else {
-              resolve({ data: detail })
+              resolve({
+                status: 'success',
+                message: '',
+                data: detail
+              })
             }
           }
         } else {
           resolve({
-            status: '500',
-            message: locale('获取数据错误！')
+            status: 'error',
+            message: locale('获取数据错误！'),
+            data: undefined
           })
         }
       })
@@ -78,7 +80,8 @@ function queryData(): Promise<BasePageQueryDataResult> {
         Loading.hide()
         resolve({
           status: 'error',
-          message: locale('获取数据异常！')
+          message: locale('获取数据异常！'),
+          data: undefined
         })
       })
   })

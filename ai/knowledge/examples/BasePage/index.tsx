@@ -1,13 +1,13 @@
-// 对应 DSL: ai/knowledge/dsl/components/init-page.json
+// 对应 DSL: ai/knowledge/dsl/base-page.json → ai/knowledge/examples/BasePage
 import React, { useRef, useEffect, useState, type FC } from 'react'
-import { LocaleUtil, Page, Result, Toast } from 'lyrixi-mobile'
+import { LocaleUtil, Page, Result as ResultView, Toast } from 'lyrixi-mobile'
 
 import { queryData, approveData } from './api'
 import {
   type ApproveDataResult,
-  type BasePageQueryDataResult,
-  isBasePageQueryError,
-  isBasePageQuerySuccess
+  type Result,
+  isResultErrorState,
+  isResultWithData
 } from './types'
 import Header from './Header'
 import Main from './Main'
@@ -18,10 +18,10 @@ const locale = LocaleUtil.locale
 const BasePage: FC = () => {
   const tokenRef = useRef<string>(String(Date.now()))
 
-  const [result, setResult] = useState<BasePageQueryDataResult | null>(null)
+  const [result, setResult] = useState<Result | null>(null)
 
   async function loadData(): Promise<void> {
-    const next: BasePageQueryDataResult = await queryData()
+    const next: Result = await queryData()
     setResult(next)
   }
 
@@ -53,12 +53,12 @@ const BasePage: FC = () => {
     <Page>
       <Header />
 
-      {result !== null && isBasePageQuerySuccess(result) ? <Main data={result.data} /> : null}
+      {result !== null && isResultWithData(result) ? <Main data={result.data} /> : null}
 
       <Footer onOk={handleApprove} />
 
-      {result !== null && isBasePageQueryError(result) ? (
-        <Result status={result.status} title={result.message} />
+      {result !== null && isResultErrorState(result) ? (
+        <ResultView status="error" title={result.message} />
       ) : null}
     </Page>
   )

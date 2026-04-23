@@ -1,13 +1,20 @@
 import type { CSSProperties } from 'react'
 
 /**
- * 与 init-page / Result 展示约定：见 Result 组件注释 empty|500|success|…
- * @see src/components/Result/Result/index.tsx
+ * 首屏/详情等业务 payload，DSL 可收窄为具体接口
  */
-export type BasePageResultStatus = 'empty' | '500' | 'success' | 'waiting' | 'info' | 'warning' | 'error'
-
-/** 首屏/详情：业务 payload，DSL 可收窄为具体接口 */
 export type BasePageDetail = Readonly<Record<string, unknown>>
+
+/**
+ * 统一结果态（与 DSL 约定一致）：不拆多个 Success/Error 类型名，全站用 `Result`。
+ * - `success`：`data` 为有效业务数据；`message` 可为空串或成功提示
+ * - `error`：`data` 为 `undefined`；`message` 为错误/空态等说明
+ */
+export type Result = Readonly<{
+  status: 'success' | 'error'
+  message: string
+  data: BasePageDetail | undefined
+}>
 
 export function toBasePageDetail(value: unknown): BasePageDetail | null {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
@@ -20,27 +27,14 @@ export function getBasePageDetailKeyCount(detail: BasePageDetail): number {
   return Object.keys(detail).length
 }
 
-export type BasePageQueryDataSuccess = Readonly<{
-  data: BasePageDetail
-}>
-
-export type BasePageQueryDataError = Readonly<{
-  status: BasePageResultStatus
-  message: string
-}>
-
-export type BasePageQueryDataResult = BasePageQueryDataSuccess | BasePageQueryDataError
-
-export function isBasePageQuerySuccess(
-  value: BasePageQueryDataResult
-): value is BasePageQueryDataSuccess {
-  return 'data' in value
+export function isResultWithData(
+  value: Result
+): value is Result & { status: 'success'; data: BasePageDetail } {
+  return value.status === 'success' && value.data !== undefined
 }
 
-export function isBasePageQueryError(
-  value: BasePageQueryDataResult
-): value is BasePageQueryDataError {
-  return 'status' in value && 'message' in value
+export function isResultErrorState(value: Result): value is Result & { status: 'error' } {
+  return value.status === 'error'
 }
 
 /** 审批/提交：与后端约定，含业务码与提示 */

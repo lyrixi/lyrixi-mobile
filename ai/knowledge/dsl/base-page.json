@@ -1,0 +1,39 @@
+{
+  "refer": "ai/knowledge/examples/BasePage",
+  "description": "用于详情、编辑、新增页面生成, 包含请求/数据处理层骨架。",
+  "meta": {
+    "pageId": "",
+    "title": ""
+  },
+  "api": {
+    "queryData": {
+      "url": "/api/examples/queryData.do",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "payload": {
+        "id": "Device.getUrlParameter('id')",
+        "dataStr": "queryParams.date.id"
+      },
+      "response": {
+        "code": "1",
+        "data": [
+          {
+            "idStr": "id",
+            "nameStr": "name",
+            "introduce": "description",
+            "createTime": "2026-04-23 10:00:00",
+            "updateTime": "2026-04-23 10:00:00"
+          }
+        ],
+        "message": "获取数据成功"
+      }
+    }
+  },
+  "view": {
+    "Header": {},
+    "Main": {},
+    "Footer": {}
+  }
+}
