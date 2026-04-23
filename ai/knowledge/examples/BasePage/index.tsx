@@ -4,11 +4,10 @@ import { Page, Result, Skeleton } from 'lyrixi-mobile'
 
 import { queryData } from './api'
 import { type QueryResult } from './types'
-import Header from './Header'
+import SearchBar from './SearchBar'
 import Content from './Content'
 
 // 业务侧：将 Record 换成自己的类型，例如 { id: string; name: string }
-
 const BasePage: FC = () => {
   const [queryParams, setQueryParams] = useState<Record<string, unknown> | null>(null)
   const [result, setResult] = useState<QueryResult<Record<string, unknown>> | null>(null)
@@ -24,7 +23,10 @@ const BasePage: FC = () => {
 
   return (
     <Page>
-      <Header />
+      <Page.Header>
+        {/* 搜索栏 */}
+        <SearchBar queryParams={queryParams} onQuery={setQueryParams} />
+      </Page.Header>
 
       <Page.Main>
         {/* 主体内容 */}

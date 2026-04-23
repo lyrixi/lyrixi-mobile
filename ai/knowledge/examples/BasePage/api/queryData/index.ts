@@ -33,9 +33,9 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
         }
       }
     )
-      .then((raw: unknown) => {
+      .then((result: unknown) => {
         Loading.hide()
-        if (!isLoadApiResponse(raw)) {
+        if (result?.code === '1') {
           resolve({
             status: 'error',
             message: locale('获取数据错误！'),
