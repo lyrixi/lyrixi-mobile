@@ -1,15 +1,16 @@
 import { Device, Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
-import type { QueryResult } from '../../types'
+import type { QueryResult, RawResult } from '../../types'
 import toData from './toData'
 import toServerParams from './toServerParams'
+
 const locale = LocaleUtil.locale
 
 /**
  * 首屏/详情加载。`T` 为 `data` 业务类型，默认 `Record<string, unknown>`。业务有强类型时写 `queryData<MyRow>()` 并在本文件内对成功数据做合法收窄或 `as T`。
  */
 function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
-  queryParams: Record<string, unknown>
+  queryParams: Record<string, unknown> | null | undefined
 ): Promise<QueryResult<T>> {
   return new Promise((resolve) => {
     const id = Device.getUrlParameter('id')
@@ -36,11 +37,11 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
         }
       }
     )
-      .then((result: unknown) => {
+      .then((raw: unknown) => {
         Loading.hide()
-        if (result?.code === '1') {
-          // 暂无数据
-          if (ObjectUtil.isEmpty(result?.data)) {
+        const result: RawResult<Record<string, unknown>> = raw as RawResult<Record<string, unknown>>
+        if (result.code === '1') {
+          if (ObjectUtil.isEmpty(result.data)) {
             resolve({
               status: 'error',
               message: locale('暂无数据'),
@@ -48,18 +49,17 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
             })
             return
           }
-          // 成功
+          const mapped = toData(result.data) as T
           resolve({
-            status: 'error',
-            message: locale('获取数据错误！'),
-            data: toData(result.data)
+            status: 'success',
+            message: result.message,
+            data: mapped
           })
           return
         }
-        // 错误
         resolve({
           status: 'error',
-          message: locale('获取数据错误！'),
+          message: result.message || locale('获取数据错误！'),
           data: undefined
         })
       })

@@ -13,13 +13,13 @@ const BasePage: FC = () => {
   const [result, setResult] = useState<QueryResult<Record<string, unknown>> | null>(null)
 
   async function loadData(): Promise<void> {
-    const next: QueryResult<Record<string, unknown>> = await queryData<Record<string, unknown>>()
+    const next: QueryResult<Record<string, unknown>> = await queryData<Record<string, unknown>>(queryParams ?? {})
     setResult(next)
   }
 
   useEffect(() => {
     void loadData()
-  }, [])
+  }, [queryParams])
 
   return (
     <Page>
@@ -36,9 +36,7 @@ const BasePage: FC = () => {
       </Page.Main>
 
       {/* 暂无数据或错误 */}
-      {['empty', 'error'].includes(result?.status || '') ? (
-        <Result status={result?.status || ''} title={result?.message || ''} />
-      ) : null}
+      {result?.status === 'error' ? <Result status="error" title={result.message} /> : null}
     </Page>
   )
 }
