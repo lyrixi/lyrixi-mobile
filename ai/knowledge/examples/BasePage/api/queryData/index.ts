@@ -1,7 +1,8 @@
 import { Device, Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
 import type { QueryResult } from '../../types'
-import localData from './localData'
+import toData from './toData'
+import toServerParams from './toServerParams'
 const locale = LocaleUtil.locale
 
 /**
@@ -27,7 +28,7 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
       '/api/examples/queryData.do',
       {
         id: id,
-        keyword: queryParams?.keyword
+        ...toServerParams(queryParams)
       },
       {
         headers: {
@@ -51,7 +52,7 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
           resolve({
             status: 'error',
             message: locale('获取数据错误！'),
-            data: localData(result.data)
+            data: toData(result.data)
           })
           return
         }
