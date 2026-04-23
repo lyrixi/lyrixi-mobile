@@ -29,7 +29,7 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
       '/api/examples/queryData.do',
       {
         id: id,
-        ...toServerParams(queryParams)
+        ...toServerParams(queryParams as Record<string, unknown>)
       },
       {
         headers: {
@@ -49,7 +49,7 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
             })
             return
           }
-          const mapped = toData(result.data) as T
+          const mapped = toData(result.data as Record<string, unknown>) as T
           resolve({
             status: 'success',
             message: result.message,
