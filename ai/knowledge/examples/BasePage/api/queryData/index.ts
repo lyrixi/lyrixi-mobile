@@ -1,14 +1,15 @@
 import { Device, Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
 import type { QueryResult } from '../../types'
-import { isLoadApiResponse, toObjectData } from '../../types'
-
+import localData from './localData'
 const locale = LocaleUtil.locale
 
 /**
  * 首屏/详情加载。`T` 为 `data` 业务类型，默认 `Record<string, unknown>`。业务有强类型时写 `queryData<MyRow>()` 并在本文件内对成功数据做合法收窄或 `as T`。
  */
-function queryData<T extends Record<string, unknown> = Record<string, unknown>>(): Promise<QueryResult<T>> {
+function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
+  queryParams: Record<string, unknown>
+): Promise<QueryResult<T>> {
   return new Promise((resolve) => {
     const id = Device.getUrlParameter('id')
 
@@ -23,9 +24,10 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
 
     Loading.show()
     Request.post(
-      '/api/examples/base-page/load',
+      '/api/examples/queryData.do',
       {
-        id: id
+        id: id,
+        keyword: queryParams?.keyword
       },
       {
         headers: {
@@ -36,44 +38,29 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
       .then((result: unknown) => {
         Loading.hide()
         if (result?.code === '1') {
-          resolve({
-            status: 'error',
-            message: locale('获取数据错误！'),
-            data: undefined
-          })
-          return
-        }
-        const r = raw
-        if (r.code === '1') {
-          if (ObjectUtil.isEmpty(r.data)) {
+          // 暂无数据
+          if (ObjectUtil.isEmpty(result?.data)) {
             resolve({
               status: 'error',
               message: locale('暂无数据'),
               data: undefined
             })
-          } else {
-            const detail = toObjectData(r.data)
-            if (detail === null) {
-              resolve({
-                status: 'error',
-                message: locale('获取数据错误！'),
-                data: undefined
-              })
-            } else {
-              resolve({
-                status: 'success',
-                message: '',
-                data: detail as T
-              })
-            }
+            return
           }
-        } else {
+          // 成功
           resolve({
             status: 'error',
             message: locale('获取数据错误！'),
-            data: undefined
+            data: localData(result.data)
           })
+          return
         }
+        // 错误
+        resolve({
+          status: 'error',
+          message: locale('获取数据错误！'),
+          data: undefined
+        })
       })
       .catch(() => {
         Loading.hide()
