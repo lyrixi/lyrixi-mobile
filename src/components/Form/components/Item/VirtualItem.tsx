@@ -4,20 +4,36 @@ import React, {
   forwardRef,
   useRef,
   useContext,
-  useState
+  useState,
+  type CSSProperties,
+  type ReactNode
 } from 'react'
 import ItemsContext from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
-import Row from './../../../Row'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Row } from 'lyrixi-mobile'
+import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormItem = forwardRef(
+export interface VirtualFormItemRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface VirtualFormItemProps {
+  height?: number
+  id?: string
+  name?: string
+  style?: CSSProperties
+  className?: string
+  layout?: string
+  children?: ReactNode
+}
+
+const FormItem = forwardRef<VirtualFormItemRef, VirtualFormItemProps>(
   (
     {
       // 用于计算虚拟列表的高度
@@ -36,7 +52,7 @@ const FormItem = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
     // Context config
     const { layout: globalLayout, virtual } = useContext(ItemsContext)
 
@@ -45,14 +61,17 @@ const FormItem = forwardRef(
 
     // Expose
     useImperativeHandle(ref, () => {
-      return rootRef.current
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
     })
 
     useEffect(() => {
-      const currentElement = rootRef.current.element
+      const currentElement = rootRef.current
 
       // 检查全局observer是否存在
-      if (virtual.observer && currentElement) {
+      if (virtual?.observer && currentElement) {
         // 开始观察当前元素
         virtual.observer.observe(currentElement)
 
@@ -75,17 +94,14 @@ const FormItem = forwardRef(
     }
 
     return (
-      <Row
+      <div
         ref={rootRef}
-        // Value & Display Value
         id={`${name ? `lyrixi-form-item-${name}` : id || ''}`}
-        // Style
         style={{ height: height, ...style }}
-        className={DOMUtil.classNames('lyrixi-form-item', className, layoutClass)}
+        className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-row lyrixi-form-item', className, layoutClass)}
       >
-        {/* Element: Children */}
         {inViewArea ? children : null}
-      </Row>
+      </div>
     )
   }
 )

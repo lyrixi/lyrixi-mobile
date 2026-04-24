@@ -1,15 +1,40 @@
-import React, { useRef, forwardRef, useImperativeHandle, useState } from 'react'
+import { useRef, forwardRef, useImperativeHandle, useState, type CSSProperties } from 'react'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'
+import type { ModalRef } from './../../Modal/Modal'
 import Button from './../../Button'
+import type { ButtonRef, ButtonProps } from './../../Button/Button'
+import type { ActionSheetItem } from './../../ActionSheet/Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { ActionSheet, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const FooterBarButton = forwardRef(
+export interface FooterBarButtonRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface FooterBarButtonProps extends Omit<ButtonProps, 'onClick'> {
+  // Modal: Value & Display Value
+  list?: ActionSheetItem[]
+
+  // Modal: Style
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+
+  // Modal: Elements
+  portal?: boolean | HTMLElement
+
+  // Events
+  onClick?: ButtonProps['onClick']
+}
+
+const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
   (
     {
       // Button: Style
@@ -49,8 +74,8 @@ const FooterBarButton = forwardRef(
     },
     ref
   ) => {
-    const comboRef = useRef(null)
-    const modalRef = useRef(null)
+    const comboRef = useRef<ButtonRef>(null)
+    const modalRef = useRef<ModalRef | null>(null)
 
     // Modal: Status
     const [open, setOpen] = useState(false)
@@ -58,9 +83,8 @@ const FooterBarButton = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        element: comboRef.current.element,
-        getElement: comboRef.current?.getElement,
-        ...modalRef.current
+        element: comboRef.current?.element ?? null,
+        getElement: () => comboRef.current?.getElement?.() ?? null
       }
     })
 
@@ -107,7 +131,7 @@ const FooterBarButton = forwardRef(
             modalStyle={modalStyle}
             modalClassName={modalClassName}
             // Modal: Element
-            portal={portal}
+            portal={portal as boolean | HTMLElement}
             // Events
             onClose={() => {
               setOpen(false)
@@ -119,7 +143,7 @@ const FooterBarButton = forwardRef(
   }
 )
 
-// Component Name, for compact
-FooterBarButton.componentName = 'FooterBar.Button'
+type FooterBarButtonWithName = typeof FooterBarButton & { componentName: string }
+;(FooterBarButton as FooterBarButtonWithName).componentName = 'FooterBar.Button'
 
-export default FooterBarButton
+export default FooterBarButton as FooterBarButtonWithName

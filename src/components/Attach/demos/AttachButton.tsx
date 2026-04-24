@@ -5,9 +5,11 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Attach.Button>
-          {/* Attach.Button 示例内容 */}
-        </Attach.Button>
+        <Attach.Button
+          className="demo-attach-button"
+          style={{}}
+          uploadingRender={({ uploadingType }) => <span>{uploadingType}</span>}
+        />
       </Page.Main>
     </Page>
   )

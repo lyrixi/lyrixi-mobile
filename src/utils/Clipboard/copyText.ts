@@ -25,7 +25,7 @@ function copyText(
             '链接已复制到剪贴板',
             'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75',
             undefined
-          )
+          ) as string
         })
     },
     onError: () => {

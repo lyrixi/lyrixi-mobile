@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Input } from 'lyrixi-mobile'
 
 export default () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(0)
   return (
     <>
       <Input.Range

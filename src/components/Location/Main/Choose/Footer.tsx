@@ -10,18 +10,28 @@ import FooterBar from './../../../FooterBar'
 import { LocaleUtil, Page, FooterBar } from 'lyrixi-mobile'
 测试使用-end */
 
-// 底部
-function Foot({ onOk, onClear }) {
+type FooterBarWithButton = typeof FooterBar & {
+  Button: React.ComponentType<Record<string, unknown>>
+}
+
+const FooterBarComp = FooterBar as FooterBarWithButton
+
+interface FootProps {
+  onOk?: (() => void) | null
+  onClear?: (() => void) | null
+}
+
+function Foot({ onOk, onClear }: FootProps) {
   return (
     <Page.Footer className="lyrixi-map-footer">
-      <FooterBar>
+      <FooterBarComp>
         {onOk && (
-          <FooterBar.Button block size="l" backgroundColor="primary" color="white" onClick={onOk}>
+          <FooterBarComp.Button block size="l" backgroundColor="primary" color="white" onClick={onOk}>
             {LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721')}
-          </FooterBar.Button>
+          </FooterBarComp.Button>
         )}
         {onClear && (
-          <FooterBar.Button
+          <FooterBarComp.Button
             block
             size="l"
             backgroundColor="default"
@@ -29,9 +39,9 @@ function Foot({ onOk, onClear }) {
             onClick={onClear}
           >
             {LocaleUtil.locale('清空标注', 'lyrixi_ac562906083401454f9b6ab34cd113b8')}
-          </FooterBar.Button>
+          </FooterBarComp.Button>
         )}
-      </FooterBar>
+      </FooterBarComp>
     </Page.Footer>
   )
 }

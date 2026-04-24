@@ -14,7 +14,7 @@ function uploadServerId(params?: {
 }) {
   const { url, headers, payload } = params || {}
   return new Promise((resolve) => {
-    Request.post(url, payload, {
+    Request.post(url ?? '', payload, {
       headers: headers || {
         'Content-Type': 'application/x-www-form-urlencoded'
       }

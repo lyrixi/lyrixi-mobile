@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { HistoryUtil, Toast, Page, Divider, Bridge, Media } from 'lyrixi-mobile'
+import React, { useEffect, useState, useRef, type CSSProperties } from 'react'
+import { Toast, Page, Divider, Bridge, Media } from 'lyrixi-mobile'
+import HistoryUtil from './../../../utils/HistoryUtil/HistoryUtil'
+import type { MediaListItem, MediaComponentProps, MediaImperativeRef } from './../types'
 // import VConsole from 'vconsole'
 // new VConsole()
 
 export default () => {
-  const imageUploaderRef = useRef(null)
+  const imageUploaderRef = useRef<MediaImperativeRef | null>(null)
 
-  const [list, setList] = useState([
+  const [list, setList] = useState<MediaListItem[]>([
     {
       id: '1',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=1',
@@ -51,10 +53,22 @@ export default () => {
   ])
 
   useEffect(() => {
-    Bridge.load(() => {
-      console.log('加载桥接')
-    })
+    Bridge.load(
+      {
+        onSuccess: () => {
+          console.log('加载桥接')
+        }
+      } as Record<string, unknown>
+    )
   }, [])
+
+  const mediaVarsStyle = {
+    '--cell-width': '32px',
+    '--cell-height': '32px',
+    '--cell-radius': '6px',
+    '--count-font-size': '12px',
+    '--choose-icon-size': '12px'
+  } as unknown as CSSProperties
 
   return (
     <Page>
@@ -84,23 +98,15 @@ export default () => {
         <Divider>Preview Operate</Divider>
         <Media
           ref={imageUploaderRef}
-          // Preview operate: start
-          upload={<div style={{ width: '100%', height: '100%', backgroundColor: 'ref' }}>1</div>}
           allowChoose={list?.length ? false : true}
           ellipsis={{ count: 1 }}
-          style={{
-            '--cell-width': '32px',
-            '--cell-height': '32px',
-            '--cell-radius': '6px',
-            '--count-font-size': '12px',
-            '--choose-icon-size': '12px'
-          }}
+          style={mediaVarsStyle}
           previewAllowChoose={true}
           previewAllowClear={true}
-          onPreview={(item, index) => {
+          onPreview={(_item, _index) => {
             HistoryUtil.navigate('imagePreview=1', {
               onBack: () => {
-                imageUploaderRef.current?.setPreviewVisible?.(null)
+                imageUploaderRef.current?.setPreviewVisible(null)
               }
             })
             return 'browser'
@@ -111,17 +117,17 @@ export default () => {
           list={list}
           maxCount={9}
           // onFileChange和onChoose的返回值一致, 都是数组
-          onFileChange={(localFile) => {
+          onFileChange={((localFile: unknown) => {
             return [
               {
                 status: 'choose',
                 localFile: localFile,
-                fileThumbnail: localFile.fileUrl,
-                fileUrl: localFile.fileUrl,
-                fileType: localFile.fileType
+                fileThumbnail: (localFile as { fileUrl?: string }).fileUrl,
+                fileUrl: (localFile as { fileUrl?: string }).fileUrl,
+                fileType: (localFile as { fileType?: string }).fileType
               }
             ]
-          }}
+          }) as unknown as MediaComponentProps['onFileChange']}
           onChange={(newList) => {
             console.log('修改:', newList)
             setList(newList)

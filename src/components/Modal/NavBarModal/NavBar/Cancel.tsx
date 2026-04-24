@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type MouseEvent, type ReactNode } from 'react'
 
 // 内库使用-start
 import Icon from './../../../Icon'
@@ -9,9 +9,14 @@ import NavBar from './../../../NavBar'
 import { Icon, NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
-const Cancel = ({ onClick, children }) => {
+interface CancelProps {
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+  children?: ReactNode
+}
+
+const Cancel = ({ onClick, children }: CancelProps) => {
   // 点击取消
-  function handleClick(e) {
+  function handleClick(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation()
     if (onClick) onClick(e)
   }
@@ -24,7 +29,7 @@ const Cancel = ({ onClick, children }) => {
     <NavBar.Button onClick={handleClick}>
       <Icon
         className="lyrixi-iconfont-close"
-        size={12}
+        size="12"
         style={{ padding: 4 }}
         radius="100%"
         backgroundColor="secondary"

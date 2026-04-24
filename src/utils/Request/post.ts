@@ -5,14 +5,15 @@ import formatResponse from './formatResponse'
 import formatError from './formatError'
 import serializeParams from './serializeParams'
 
-async function post(url, params, config) {
+async function post(url: string, params?: unknown, config?: Record<string, unknown>): Promise<unknown> {
   // Priority reading of cache
   if (config?.cacheKey) {
-    let cacheResponse = await getCache(url, config?.cacheKey)
+    let cacheResponse = await getCache(url, config?.cacheKey as string | number)
     if (cacheResponse !== undefined) return cacheResponse
   }
 
-  const contentType = config?.headers?.['content-type'] || config?.headers?.['Content-Type']
+  const headers = (config?.headers as Record<string, unknown> | undefined)
+  const contentType = (headers?.['content-type'] as string | undefined) || (headers?.['Content-Type'] as string | undefined)
 
   let newParams = params
   if (
@@ -26,8 +27,8 @@ async function post(url, params, config) {
     axios
       .post(url, newParams, config)
       .then((response) => {
-        let newResponse = formatResponse(response)
-        config?.cacheKey && setCache(url, config?.cacheKey, newResponse)
+        let newResponse = formatResponse(response as unknown as Record<string, unknown>)
+        config?.cacheKey && setCache(url, config?.cacheKey as string | number, newResponse)
         resolve(newResponse)
       })
       .catch((error) => {

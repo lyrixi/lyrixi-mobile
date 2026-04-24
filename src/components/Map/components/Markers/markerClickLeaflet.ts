@@ -1,16 +1,35 @@
+import type * as L from 'leaflet'
+
+interface MapPoint {
+  latitude?: number | string
+  longitude?: number | string
+  icon?: unknown
+  [key: string]: unknown
+}
+
 // 公共点击leaflet点
-function markerClickLeaflet({ points, layerGroup, clearMarkers, defaultIcon, onClick }) {
-  // Must only one layer
+function markerClickLeaflet({
+  points,
+  layerGroup,
+  clearMarkers,
+  defaultIcon,
+  onClick
+}: {
+  points: MapPoint[]
+  layerGroup: L.LayerGroup
+  clearMarkers: () => void
+  defaultIcon: L.Icon | L.DivIcon | null
+  onClick: (payload: unknown) => void
+}): void {
   layerGroup.eachLayer(function (layer) {
-    layer.on('click', function (e) {
+    const markerLayer = layer as L.Marker
+    markerLayer.on('click', function (e: L.LeafletMouseEvent) {
       const latitude = e.latlng.lat
       const longitude = e.latlng.lng
 
-      // Get click point
-      let currentPoint = null
-      for (let point of points) {
+      let currentPoint: MapPoint | null = null
+      for (const point of points) {
         if (point.longitude === longitude && point.latitude === latitude) {
-          // eslint-disable-next-line
           currentPoint = point
         }
       }
@@ -19,23 +38,22 @@ function markerClickLeaflet({ points, layerGroup, clearMarkers, defaultIcon, onC
         longitude,
         latitude,
         ...(currentPoint || {}),
-        icon: e?.target?.options?.icon?.options || null,
-        setIcon: (icon, { multiple }) => {
-          // Single choice
+        icon: (e?.target as L.Marker)?.options?.icon
+          ? ((e.target as L.Marker).options.icon as L.Icon).options
+          : null,
+        setIcon: (icon: L.Icon | L.DivIcon, { multiple }: { multiple: boolean }) => {
           if (!multiple) {
             clearMarkers()
-            for (let point of points) {
-              let newIcon = point?.icon || defaultIcon
+            for (const point of points) {
+              let newIcon: L.Icon | L.DivIcon | unknown = point?.icon || defaultIcon
               if (point.latitude === latitude && point.longitude === longitude) {
                 newIcon = icon
               }
-              let marker = window.L.marker([point.latitude, point.longitude], {
-                icon: newIcon
+              const m = window.L!.marker([point.latitude, point.longitude] as L.LatLngExpression, {
+                icon: newIcon as L.Icon
               })
-              marker.addTo(layerGroup)
+              m.addTo(layerGroup)
             }
-
-            // Rebind click
             markerClickLeaflet({
               points,
               clearMarkers,
@@ -43,13 +61,11 @@ function markerClickLeaflet({ points, layerGroup, clearMarkers, defaultIcon, onC
               defaultIcon,
               onClick
             })
-          }
-          // Multiple choice
-          else {
-            e.target.setIcon(icon)
+          } else {
+            ;(e.target as L.Marker).setIcon(icon)
           }
         },
-        remove: () => e.target.remove()
+        remove: () => (e.target as L.Marker).remove()
       })
     })
   })

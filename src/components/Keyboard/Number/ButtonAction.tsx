@@ -8,8 +8,14 @@ import DOMUtil from '../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const ButtonAction = ({ onClick, className = '', children }) => {
-  const handleClick = (e) => {
+interface ButtonActionProps {
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+  className?: string
+  children?: React.ReactNode
+}
+
+const ButtonAction = ({ onClick, className = '', children }: ButtonActionProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     if (onClick) {
       onClick(e)

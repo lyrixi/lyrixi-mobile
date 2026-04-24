@@ -1,7 +1,11 @@
 // 与(Attach.getRemainCount, AttachUploader.getRemainCount, MediaUploader.getRemainCount)共用
 
 // 剩余可上传数量
-function getRemainCount(maxCount, currentCount, maxSelectCount) {
+function getRemainCount(
+  maxCount: number,
+  currentCount: number,
+  maxSelectCount?: number
+) {
   // 矫正错误的入参
   if (!maxCount || isNaN(maxCount)) {
     // eslint-disable-next-line

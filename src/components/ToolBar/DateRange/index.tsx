@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
-import Dropdown from './../Dropdown'
+import Dropdown, { type ToolBarDropdownRef, type ToolBarDropdownProps } from './../Dropdown'
 import DateRange from './DateRange'
 
 // 内库使用-start
@@ -8,6 +8,7 @@ import DateUtil from './../../../utils/DateUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DatePicker from './../../DatePicker'
 import FooterBar from './../../FooterBar'
+import type { DatePickerRangesMap, DatePickerRangeChangeMeta } from './../../DatePicker/datePickerTypes'
 // 内库使用-end
 
 /* 测试使用-start
@@ -15,6 +16,42 @@ import { DateUtil, LocaleUtil, DatePicker, FooterBar } from 'lyrixi-mobile'
 测试使用-end */
 
 const getDefaultRanges = DatePicker.getDefaultRanges
+
+export interface ToolBarDateRangeBarProps {
+  value?: (Date | null)[] | null
+  rangeId?: string | null
+  type?: string
+  placeholder?: string
+  allowClear?: boolean
+  direction?: string
+  block?: boolean
+  color?: string
+  borderColor?: string
+  backgroundColor?: string
+  border?: string
+  size?: string | number | readonly string[]
+  sizeEqual?: boolean
+  fontSize?: string | number
+  radius?: string | number
+  style?: CSSProperties
+  className?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  comboRender?: ToolBarDropdownProps['comboRender']
+  children?: ReactNode
+  arrowRender?: ToolBarDropdownProps['arrowRender']
+  portal?: HTMLElement
+  min?: Date | null
+  max?: Date | null
+  ranges?: DatePickerRangesMap
+  onOk?: (
+    value: (Date | null)[] | null | undefined,
+    meta: { rangeId: string | null | undefined }
+  ) => void | boolean | (Date | null)[] | Promise<void | boolean | (Date | null)[]>
+  onChange?: (value: (Date | null)[] | null, meta: { rangeId: string | null | undefined }) => void
+}
 
 // 日期区间
 function DateRangeBar({
@@ -53,79 +90,105 @@ function DateRangeBar({
   portal,
   min,
   max,
-  ranges,
+  ranges: rangesIn,
 
   // Events
   onOk,
   onChange
-}) {
+}: ToolBarDateRangeBarProps) {
+  let ranges: DatePickerRangesMap | undefined = rangesIn
   if (ranges === undefined) {
     // eslint-disable-next-line
     ranges = getDefaultRanges()
   }
 
-  let [rangeId, setRangeId] = useState(externalRangeId)
-  let [value, setValue] = useState(externalValue)
-  const dropdownRef = useRef(null)
+  const [rangeId, setRangeId] = useState<string | null | undefined>(externalRangeId)
+  const [value, setValue] = useState<(Date | null)[] | null | undefined>(externalValue)
+  const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
 
   useEffect(() => {
     init()
     // eslint-disable-next-line
   }, [externalRangeId, externalValue])
 
+  function rangeTupleEquals(
+    a: (Date | null)[] | null | undefined,
+    b: (Date | null)[] | null | undefined
+  ): boolean {
+    if (a == null && b == null) return true
+    if (!a || !b || a.length !== 2 || b.length !== 2) return false
+    if (!a[0] || !a[1] || !b[0] || !b[1]) return false
+    return (
+      DateUtil.compareRange(a as [Date, Date], b as [Date, Date], type) === 0
+    )
+  }
+
   // 初始化
   function init() {
+    let nextExternalRangeId: string | null | undefined = externalRangeId
     // 外部未传入rangeId, 则根据value获取rangeId
     if (!externalRangeId && externalValue) {
+      const ext = externalValue
+      const rangeForId =
+        ext &&
+        ext[0] &&
+        ext[1] &&
+        rangeId &&
+        ranges &&
+        (ranges as Record<string, unknown>)[rangeId]
       // 如果有rangeId, 判断日期是否一致, 一致则使用rangeId
       if (
-        rangeId &&
-        ranges[rangeId] &&
-        DateUtil.compareRange(externalValue, ranges[rangeId], type) === 0
+        rangeForId &&
+        DateUtil.compareRange(
+          ext as [Date, Date],
+          (ranges as Record<string, [Date, Date]>)[rangeId!] as [Date, Date],
+          type
+        ) === 0
       ) {
-        // eslint-disable-next-line
-        externalRangeId = rangeId
-      }
-      // 如果没有externalRangeId, 则根据value获取externalRangeId
-      else {
-        // eslint-disable-next-line
-        externalRangeId = DatePicker.getRangeId(externalValue, { type, ranges })
+        nextExternalRangeId = rangeId
+      } else {
+        nextExternalRangeId = DatePicker.getRangeId(externalValue, { type, rangeId, ranges })
       }
     }
 
-    if (externalRangeId !== rangeId) {
-      setRangeId(externalRangeId)
+    if (nextExternalRangeId !== rangeId) {
+      setRangeId(nextExternalRangeId)
     }
 
     // Value
-    if (DateUtil.compare(externalValue, value, type) !== 0) {
+    if (!rangeTupleEquals(externalValue, value)) {
       setValue(externalValue)
     }
   }
 
   // 修改
-  async function handleChange(newValue, { rangeId: newRangeId }) {
-    setRangeId(newRangeId)
+  function handleChange(
+    newValue: (Date | null)[] | null,
+    meta?: DatePickerRangeChangeMeta
+  ) {
+    if (meta?.rangeId !== undefined) {
+      setRangeId(meta.rangeId)
+    }
     setValue(newValue)
   }
 
   async function handleOk() {
     // 触发 onOk
+    let currentValue: (Date | null)[] | null | undefined = value
     if (onOk) {
-      let goOn = await onOk?.(value, { rangeId })
+      const goOn = await onOk(currentValue, { rangeId })
       if (goOn === false) return false
       if (goOn instanceof Array) {
-        // eslint-disable-next-line
-        value = goOn
+        currentValue = goOn
       }
     }
 
-    onChange?.(value, { rangeId })
-    dropdownRef.current?.close?.()
+    onChange?.(currentValue ?? null, { rangeId: rangeId ?? null })
+    dropdownRef.current?.close()
   }
 
   function handleCancel() {
-    dropdownRef.current?.close?.()
+    dropdownRef.current?.close()
   }
 
   function handleClose() {
@@ -192,12 +255,12 @@ function DateRangeBar({
       onClose={handleClose}
     >
       {/* comboChildren */}
-      {children || getDisplayValue({ value, type, rangeId, ranges }) || placeholder}
+      {children || getDisplayValue({ value, type, rangeId, ranges, separator: ' ~ ' }) || placeholder}
     </Dropdown>
   )
 }
 
 // Component Name, for compact
-DateRangeBar.componentName = 'ToolBar.DateRange'
+;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName = 'ToolBar.DateRange'
 
 export default DateRangeBar

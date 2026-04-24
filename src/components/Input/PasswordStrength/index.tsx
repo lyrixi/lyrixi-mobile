@@ -10,6 +10,18 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface PasswordStrengthRef {
+  element: HTMLUListElement | null
+  getElement: () => HTMLUListElement | null
+  getStrength: (newValue?: string) => number
+}
+
+interface PasswordStrengthProps {
+  value?: string
+  className?: string
+  style?: React.CSSProperties
+}
+
 const PasswordStrength = (
   {
     // Value & Display Value
@@ -18,12 +30,12 @@ const PasswordStrength = (
     // Style
     className,
     style
-  },
-  ref
+  }: PasswordStrengthProps,
+  ref: React.Ref<PasswordStrengthRef>
 ) => {
   let strength = getStrength(value)
 
-  const rootRef = useRef(null)
+  const rootRef = useRef<HTMLUListElement>(null)
   // Expose
   useImperativeHandle(ref, () => {
     return {
@@ -31,7 +43,7 @@ const PasswordStrength = (
       getElement: () => {
         return rootRef.current
       },
-      getStrength: (newValue) => {
+      getStrength: (newValue?: string) => {
         return getStrength(newValue || value)
       }
     }

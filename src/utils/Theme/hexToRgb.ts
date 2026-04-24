@@ -1,5 +1,4 @@
-// 颜色转为rgba
-export default function hexToRgb(color) {
+export default function hexToRgb(color: string): string | undefined {
   if (!color.includes('#')) {
     return undefined
   }

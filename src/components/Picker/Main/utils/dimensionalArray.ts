@@ -1,5 +1,5 @@
 // 判断是几维数组
-function dimensionalArray(arr) {
+function dimensionalArray(arr: unknown): number {
   if (!Array.isArray(arr)) {
     return 0
   }

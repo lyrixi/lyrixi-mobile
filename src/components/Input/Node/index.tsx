@@ -10,6 +10,42 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface InputNodeRef {
+  element: HTMLDivElement | null
+  inputElement: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: () => HTMLDivElement | null
+  correctValue: (val: string | number) => string | number
+  focus: () => void
+  blur: () => void
+}
+
+export interface InputNodeProps {
+  id?: string
+  type?: string
+  value?: string
+  placeholder?: string
+  formatter?: (value: string) => React.ReactNode
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  cursor?: boolean | null
+  style?: React.CSSProperties
+  className?: string
+  leftIconNode?: React.ReactNode
+  rightIconNode?: React.ReactNode
+  clearRender?: (params: { clearable: boolean; allowClear?: boolean; onClear: (e?: React.MouseEvent | React.TouchEvent) => void; onTouchStart?: (e?: React.TouchEvent) => void }) => React.ReactNode | undefined
+  precision?: number
+  trim?: boolean
+  min?: number
+  max?: number
+  maxLength?: number
+  onChange?: (value: string, meta?: { action: string }) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+  onFocus?: (e: { target: HTMLDivElement | null; currentTarget: HTMLDivElement | null }) => void
+  onBlur?: (e: { target: HTMLDivElement | null; currentTarget: HTMLDivElement | null }) => void
+}
+
 // 内部显示div
 const InputNode = (
   {
@@ -48,17 +84,17 @@ const InputNode = (
     onClick,
     onFocus,
     onBlur
-  },
-  ref
+  }: InputNodeProps,
+  ref: React.Ref<InputNodeRef>
 ) => {
-  let displayValue = typeof formatter === 'function' ? formatter(value) : null
+  let displayValue = typeof formatter === 'function' ? formatter(value || '') : null
 
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
 
   // Elements
-  const rootRef = useRef(null)
-  const inputRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLDivElement>(null)
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -89,7 +125,7 @@ const InputNode = (
     let val = correctValue(value)
     // eslint-disable-next-line
     if (val != value) {
-      onChange(val)
+      onChange && onChange(String(val))
     }
     // eslint-disable-next-line
   }, [])
@@ -115,7 +151,7 @@ const InputNode = (
       return
     }
 
-    let val = value
+    let val: string = value || ''
 
     // trim
     if (trim && val && typeof val === 'string' && val.trim() !== val) {
@@ -125,9 +161,9 @@ const InputNode = (
     // 数值框失焦时需要矫正数值
     if (type === 'number') {
       // 正常输入：矫正最大最小值、小数点、最大长度
-      if (val && !isNaN(val)) {
+      if (val && !isNaN(Number(val))) {
         // 纠正数字
-        val = correctValue(val)
+        val = String(correctValue(val))
       }
       // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
       else {
@@ -148,13 +184,13 @@ const InputNode = (
   }
 
   // 矫正最大长度和小数位截取
-  function correctValue(val) {
+  function correctValue(val: string | number): string | number {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
 
   // 点击清除
-  async function handleClear(e) {
-    e && e?.stopPropagation?.()
+  async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
+    e && (e as React.SyntheticEvent)?.stopPropagation?.()
 
     // Callback
     typeof onChange === 'function' && onChange('', { action: 'clickClear' })

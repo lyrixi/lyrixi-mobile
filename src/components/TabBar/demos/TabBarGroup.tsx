@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, type ComponentProps } from 'react'
 import { Page, Divider, TabBar } from 'lyrixi-mobile'
+
+type TabBarItemArg = Parameters<
+  NonNullable<ComponentProps<typeof TabBar.Group>['onChange']>
+>[0]
 
 export default () => {
   const list = [
@@ -10,10 +14,10 @@ export default () => {
     { id: 'Vegetable', name: 'Vegetable', disabled: true },
     { id: 'Animal', name: 'Animal' }
   ]
-  const [value, setValue] = useState({ name: 'Vegetable', id: 'Vegetable' })
+  const [value, setValue] = useState<TabBarItemArg>({ name: 'Vegetable', id: 'Vegetable' })
 
-  function handleChange(value) {
-    setValue(value)
+  function handleChange(next: TabBarItemArg) {
+    setValue(next)
   }
   return (
     <Page>
@@ -72,7 +76,11 @@ export default () => {
               id: 'Vegetable',
               name: 'Vegetable'
             },
-            { icon: <i className="lyrixi-iconfont-file-text"></i>, id: 'Animal', name: 'Animal' }
+            {
+              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              id: 'Animal',
+              name: 'Animal'
+            }
           ]}
           value={value}
           onChange={(newValue) => {

@@ -9,34 +9,42 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface CheckboxRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface CheckboxProps {
+  checked?: boolean
+  readOnly?: boolean
+  disabled?: boolean
+  variant?: string
+  style?: React.CSSProperties
+  className?: string
+  children?: React.ReactNode
+  iconRender?: (props: { checked?: boolean }) => React.ReactNode
+  iconPosition?: 'left' | 'right'
+  onChange?: (checked: boolean) => void
+}
+
 // 复选框
-const Checkbox = forwardRef(
+const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
   (
     {
-      // Value & Display Value
       checked,
-
-      // Status
       readOnly,
       disabled,
-
-      // Style
       variant,
       style,
       className,
-
-      // Element
       children,
       iconRender,
       iconPosition = 'left',
-
-      // Events
       onChange
     },
     ref
   ) => {
-    // Expose
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -46,13 +54,11 @@ const Checkbox = forwardRef(
       }
     })
 
-    // 点击回调
     function handleClick() {
       if (disabled || readOnly) return
       if (onChange) onChange(!checked)
     }
 
-    // 获取图标节点
     function getIconNode() {
       if (typeof iconRender === 'function') {
         return iconRender({ checked })
@@ -64,26 +70,18 @@ const Checkbox = forwardRef(
     return (
       <div
         ref={rootRef}
-        // Status
         disabled={disabled}
         readOnly={readOnly}
-        // Style
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-checkbox',
           className,
           checked ? 'lyrixi-checked' : ''
         )}
-        // Events
         onClick={handleClick}
       >
-        {/* Element: Icon Left */}
         {iconPosition !== 'right' && IconNode}
-
-        {/* Element: Children */}
         {children && <span className="lyrixi-checkbox-content">{children}</span>}
-
-        {/* Element: Icon Right */}
         {iconPosition === 'right' && IconNode}
       </div>
     )

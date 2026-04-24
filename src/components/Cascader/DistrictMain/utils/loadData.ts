@@ -8,15 +8,37 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 import loadCountryRegionsData from './loadBaseData/loadCountryRegionsData'
 
-// 点击末级加载省市区或街道数据
-async function loadData(tabs, { loadCountryRegions, loadStreets }) {
-  // lastTab为当前选中项
-  let lastTab = tabs?.[tabs?.length - 1]
+interface DistrictTab {
+  id: string | number
+  type?: string[]
+  [key: string]: unknown
+}
 
-  // 若点击国家, 则加载省市区
+interface ApiResult {
+  status: 'success' | 'error' | 'empty'
+  list?: unknown[]
+  message?: string
+}
+
+type LoadCountryRegionsFn = (id: string | number) => Promise<ApiResult>
+type LoadStreetsFn = (id: string | number, ctx?: { value?: DistrictTab[] }) => Promise<ApiResult>
+
+// 点击末级加载省市区或街道数据
+async function loadData(
+  tabs: DistrictTab[],
+  {
+    loadCountryRegions,
+    loadStreets
+  }: {
+    loadCountryRegions: LoadCountryRegionsFn
+    loadStreets: LoadStreetsFn
+  }
+): Promise<ApiResult> {
+  const lastTab = tabs?.[tabs?.length - 1]
+
   if (lastTab?.type?.includes('country')) {
     Loading.show()
-    let countryRegionsData = await loadCountryRegionsData({
+    const countryRegionsData = await loadCountryRegionsData({
       countryId: lastTab.id,
       loadCountryRegions
     })
@@ -24,9 +46,8 @@ async function loadData(tabs, { loadCountryRegions, loadStreets }) {
     return countryRegionsData
   }
 
-  // 加载街道
   Loading.show()
-  let streetsData = await loadStreets(lastTab.id, { value: tabs })
+  const streetsData = await loadStreets(lastTab.id, { value: tabs })
   Loading.hide()
   return streetsData
 }

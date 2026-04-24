@@ -1,8 +1,18 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useMemo, useState, useRef } from 'react'
 import { Page, IndexBar } from 'lyrixi-mobile'
 
+type IndexRow = { letter: string; name: string }
+
+const LETTERS_AZ = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+
 export default () => {
-  const [list, setList] = useState([])
+  const scrollerRef = useRef<HTMLDivElement | null>(null)
+  const [list, setList] = useState<IndexRow[]>([])
+
+  const anchors = useMemo(() => {
+    const fromData = Array.from(new Set(list.map((i) => i.letter))).filter(Boolean)
+    return fromData.length > 0 ? fromData : ['A', 'B', 'C']
+  }, [list])
 
   useEffect(() => {
     // Mock request list
@@ -15,8 +25,8 @@ export default () => {
   }, [])
 
   // 获取A-Z
-  function queryList(letter) {
-    let newList = []
+  function queryList(letter: string[]): IndexRow[] {
+    const newList: IndexRow[] = []
     for (let i = 0; i < letter.length; i++) {
       for (let j = 0; j < 15; j++) {
         newList.push({
@@ -32,7 +42,7 @@ export default () => {
 
   // Render list
   function getListNodes() {
-    let letter = {}
+    const letter: Record<string, boolean> = {}
     return list.map((item, index) => {
       if (!letter[item.letter]) {
         letter[item.letter] = true
@@ -50,48 +60,22 @@ export default () => {
   }
   return (
     <Page>
-      <IndexBar>
+      <div ref={scrollerRef} style={{ height: '100%', overflow: 'auto' }}>
         <Page.Main
           onBottomRefresh={() => {
-            return new Promise((resolve) => {
+            return new Promise<void>((resolve) => {
               setTimeout(() => {
-                let newList = queryList([
-                  'A',
-                  'B',
-                  'C',
-                  'D',
-                  'E',
-                  'F',
-                  'G',
-                  'H',
-                  'I',
-                  'J',
-                  'K',
-                  'L',
-                  'M',
-                  'N',
-                  'O',
-                  'P',
-                  'Q',
-                  'R',
-                  'S',
-                  'T',
-                  'U',
-                  'V',
-                  'W',
-                  'X',
-                  'Y',
-                  'Z'
-                ])
+                const newList = queryList(LETTERS_AZ)
                 setList(newList)
-                resolve(true)
+                resolve()
               }, 2000)
             })
           }}
         >
           <ul>{getListNodes()}</ul>
         </Page.Main>
-      </IndexBar>
+      </div>
+      <IndexBar anchors={anchors} getScrollerElement={() => scrollerRef.current} />
     </Page>
   )
 }

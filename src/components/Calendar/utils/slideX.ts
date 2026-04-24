@@ -1,5 +1,7 @@
 import isDisabledDate from './isDisabledDate'
 import Months from './Months'
+import type { OnErrorHandler, CalendarType, CalendarCellDate } from '../types'
+import type { IsDisabledError } from './isDisabledDate'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -9,37 +11,57 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+type SlideXOp = 'previous' | 'next' | ''
+
 // 左右滑动
 function slideX(
-  op,
-  { type, min, max, duration, currentPage, drawDate, container, bodyX, bodyY, cellHeight, onError }
-) {
-  // 添加动画
+  op: SlideXOp,
+  {
+    type,
+    min,
+    max,
+    duration,
+    currentPage,
+    drawDate,
+    container,
+    bodyX,
+    bodyY,
+    cellHeight,
+    onError
+  }: {
+    type: CalendarType | null
+    min?: Date
+    max?: Date
+    duration: number
+    currentPage: CalendarCellDate[][] | undefined
+    drawDate: Date | null
+    container: HTMLDivElement | null
+    bodyX: HTMLDivElement | null
+    bodyY: HTMLDivElement | null
+    cellHeight: number
+    onError?: OnErrorHandler
+  }
+): Promise<Date | null> {
+  if (!container || !bodyX || !bodyY || !drawDate) {
+    return Promise.resolve(drawDate)
+  }
+
   bodyX.style.transitionDuration = duration + 'ms'
 
-  // 滑动位置
   let translateX = -container.clientWidth
-  // 切换后日期
-  let newDrawDate = drawDate
+  let newDrawDate: Date | null = drawDate
 
-  // 左滑动
   if (op === 'previous') {
-    // 位置
     translateX = 0
 
-    // 日期
     if (type === 'month') {
       newDrawDate = DateUtil.add(drawDate, -1, 'month')
     } else {
       newDrawDate = DateUtil.add(drawDate, -7)
     }
-  }
-  // 右滑动
-  else if (op === 'next') {
-    // 位置
+  } else if (op === 'next') {
     translateX = -container.clientWidth * 2
 
-    // 日期
     if (type === 'month') {
       newDrawDate = DateUtil.add(drawDate, 1, 'month')
     } else {
@@ -47,46 +69,44 @@ function slideX(
     }
   }
 
-  // 使用禁用当天作为选中项
-  let error = isDisabledDate(newDrawDate, { min, max })
-  if (error) {
+  let err: false | IsDisabledError = isDisabledDate(newDrawDate, { min, max })
+  if (err) {
     if (typeof onError === 'function') {
-      let isOk = onError(error)
-      if (isOk === true) error = null
+      const isOk = onError(err)
+      if (isOk === true) {
+        err = false
+      }
     }
-    if (error) {
-      console.log(error?.message)
+    if (err) {
+      if (err && typeof err === 'object' && 'message' in err) {
+        // eslint-disable-next-line no-console
+        console.log(err.message)
+      }
       newDrawDate = drawDate
       translateX = -container.clientWidth
     }
   }
 
-  // 横向移动面板
   bodyX.style.transform = 'translateX(' + translateX + 'px)'
 
-  // 动画执行结束后刷新日历
   return new Promise((resolve) => {
     setTimeout(() => {
       bodyX.style.transitionDuration = '0ms'
 
       resolve(newDrawDate)
 
-      // 复原位置
       setTimeout(() => {
         bodyX.style.transform = 'translateX(' + -container.clientWidth + 'px)'
 
-        // 月视图时, 需要还原位置
         let translateY = 0
         if (type === 'month') {
           translateY = 0
-        }
-        // 周视图时, 需要移动竖向位置
-        else {
-          let drawDateRowIndex = Months.getDateRowIndex(newDrawDate, currentPage)
+        } else if (newDrawDate) {
+          const drawDateRowIndex = Months.getDateRowIndex(newDrawDate, currentPage)
           translateY = -drawDateRowIndex * cellHeight
         }
         bodyY.style.transform = 'translateY(' + translateY + 'px)'
-        bodyY.setAttribute('data-translateY', translateY)
+        bodyY.setAttribute('data-translateY', String(translateY))
       }, 0)
     }, duration)
   })

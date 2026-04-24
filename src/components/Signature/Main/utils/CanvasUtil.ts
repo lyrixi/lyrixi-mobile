@@ -1,24 +1,26 @@
+type ExtendedCanvas = HTMLCanvasElement & { ctx?: CanvasRenderingContext2D }
+
 const CanvasUtil = {
-  toBase64: function (canvas, { suffix = 'image/png', quality = 0.92 }) {
+  toBase64: function (canvas: HTMLCanvasElement, { suffix = 'image/png', quality = 0.92 }: { suffix?: string; quality?: number }) {
     return canvas.toDataURL(suffix, quality)
   },
-  isBlank: function (canvas) {
+  isBlank: function (canvas: HTMLCanvasElement) {
     let blank = document.createElement('canvas')
     blank.width = canvas.width
     blank.height = canvas.height
     if (canvas.toDataURL() === blank.toDataURL()) return true
     return false
   },
-  clear: function (canvas) {
+  clear: function (canvas: ExtendedCanvas) {
     let width = canvas.width
     let height = canvas.height
     let ctx = canvas?.ctx ? canvas.ctx : canvas.getContext('2d')
 
-    ctx.clearRect(0, 0, width, height)
+    ctx?.clearRect(0, 0, width, height)
   },
   // 旋转base64图片-90度
-  rotateBase64: function (base64, { backgroundColor }) {
-    return new Promise((resolve) => {
+  rotateBase64: function (base64: string, { backgroundColor }: { backgroundColor?: string }) {
+    return new Promise<string>((resolve) => {
       const img = new Image()
       img.onload = () => {
         // 创建画布并调整尺寸
@@ -28,6 +30,10 @@ const CanvasUtil = {
 
         // 获取绘图上下文
         const ctx = canvas.getContext('2d')
+        if (!ctx) {
+          resolve('')
+          return
+        }
 
         // 应用变换：移动到画布底部 + 逆时针旋转90度
         ctx.translate(0, canvas.height)

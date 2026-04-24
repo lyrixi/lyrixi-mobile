@@ -8,7 +8,7 @@ import compare from './compare'
  * @returns 若range1等于range2则返回0，若range1包含range2则返回1，若range1不包含range2则返回-1
  */
 
-function compareRange(range1, range2, compareUnit) {
+function compareRange(range1: [Date, Date], range2: [Date, Date], compareUnit: string): -1 | 0 | 1 | undefined {
   if (
     !Array.isArray(range1) ||
     !Array.isArray(range2) ||

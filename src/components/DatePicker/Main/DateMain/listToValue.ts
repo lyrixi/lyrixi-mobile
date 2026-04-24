@@ -1,5 +1,7 @@
+import type { DatePickerPickerType, PickerValueList } from './../../datePickerTypes'
+
 // 获取合法
-function getValidDate(year, month, date) {
+function getValidDate(year: number, month: number, date: number): number {
   let maxDays = new Date(year, month + 1, 0).getDate()
   if (Number(date || 1) > maxDays) {
     return maxDays
@@ -8,7 +10,7 @@ function getValidDate(year, month, date) {
 }
 
 // 列表转日期
-function listToValue(list, type) {
+function listToValue(list: PickerValueList, type: DatePickerPickerType): Date | null {
   if (type === 'year') {
     let year = list[0].id
 

@@ -1,14 +1,17 @@
-// 获取指定节点
-function getDeepTreeNodes(tree, filter) {
-  const result: unknown[] = []
+interface DeepNode extends Record<string, unknown> {
+  id: string | number
+  children?: DeepNode[]
+}
 
-  function traverse(nodes) {
+// 获取指定节点
+function getDeepTreeNodes(tree: DeepNode[], filter: (node: DeepNode) => boolean): DeepNode[] {
+  const result: DeepNode[] = []
+
+  function traverse(nodes: DeepNode[]): void {
     for (const node of nodes) {
-      // 如果当前节点满足过滤条件，加入结果列表
       if (filter(node)) {
         result.push(node)
       }
-      // 如果有子节点，递归遍历子节点
       if (Array.isArray(node.children) && node.children.length) {
         traverse(node.children)
       }

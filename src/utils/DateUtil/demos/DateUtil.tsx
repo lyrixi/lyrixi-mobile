@@ -30,29 +30,22 @@ export default () => {
               console.log('utcOffset:', utcOffset)
               let utcDescription = DateUtil.stringifyUtcOffset(utcOffset)
               console.log('utcDescription:', utcDescription)
-              let currentUtcDate = DateUtil.utcToTimeZone(new Date('2025-05-09 01:01:36'))
+              const sample = new Date('2025-05-09 01:01:36')
+              let currentUtcDate = DateUtil.utcToTimeZone(sample, utcOffset)
               console.log('Current date:', DateUtil.format(currentUtcDate, 'YYYY-MM-DD hh:mm:ss'))
-              let utcToTimeZone = DateUtil.utcToTimeZone(
-                new Date('2025-05-09 01:01:36'),
-                DateUtil.parseUtcOffset('UTC+08:00')
-              )
+              const off8 = DateUtil.parseUtcOffset('UTC+08:00') ?? 0
+              const off9 = DateUtil.parseUtcOffset('UTC+09:00') ?? 0
+              let utcToTimeZone = DateUtil.utcToTimeZone(sample, off8)
               console.log(
                 'Utc to Timezone UTC+8:',
                 DateUtil.format(utcToTimeZone, 'YYYY-MM-DD hh:mm:ss')
               )
-              let utcToDate2 = DateUtil.timeZoneToTimeZone(
-                new Date('2025-05-09 01:01:36'),
-                DateUtil.parseUtcOffset('UTC+08:00'),
-                DateUtil.parseUtcOffset('UTC+09:00')
-              )
+              let utcToDate2 = DateUtil.timeZoneToTimeZone(sample, off8, off9)
               console.log(
                 'Between TimeZones UTC+8 To UTC+9:',
                 DateUtil.format(utcToDate2, 'YYYY-MM-DD hh:mm:ss')
               )
-              let dateToUtc = DateUtil.timeZoneToUtc(
-                new Date('2025-05-09 01:01:36'),
-                DateUtil.parseUtcOffset('UTC+08:00')
-              )
+              let dateToUtc = DateUtil.timeZoneToUtc(sample, off8)
               console.log('Timezone to Utc:', DateUtil.format(dateToUtc, 'YYYY-MM-DD hh:mm:ss'))
             }}
           >
@@ -128,11 +121,11 @@ export default () => {
               const sundayStart = DateUtil.getWeekDates(base)
               console.log(
                 'Week (Monday start):',
-                mondayStart.map((d) => DateUtil.format(d, 'YYYY-MM-DD'))
+                (mondayStart ?? []).map((d) => DateUtil.format(d, 'YYYY-MM-DD'))
               )
               console.log(
                 'Week (Sunday start):',
-                sundayStart.map((d) => DateUtil.format(d, 'YYYY-MM-DD'))
+                (sundayStart ?? []).map((d) => DateUtil.format(d, 'YYYY-MM-DD'))
               )
             }}
           >

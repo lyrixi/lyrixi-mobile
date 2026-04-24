@@ -9,16 +9,28 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface StampProps {
+  shape?: string
+  style?: React.CSSProperties
+  className?: string
+  color?: string
+  children?: React.ReactNode
+}
+
+interface StampRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
 
 // 印章控件
-const Stamp = ({
+const Stamp = forwardRef<StampRef, StampProps>(({
   shape = 'round', // 类型: round, rect
   style,
   className,
   color, // 颜色
   children,
 }, ref) => {
-  const rootRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -43,6 +55,6 @@ const Stamp = ({
       <div className="lyrixi-stamp-inner">{children}</div>
     </div>
   )
-}
+})
 
-export default forwardRef(Stamp)
+export default Stamp

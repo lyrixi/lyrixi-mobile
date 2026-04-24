@@ -10,7 +10,14 @@ import Skeleton from './../../Skeleton'
 import { LocaleUtil, Page, Skeleton } from 'lyrixi-mobile'
 测试使用-end */
 
-const DistrictMainResult = ({ result, onReload, style, className }) => {
+interface DistrictMainLoadingProps {
+  result?: unknown
+  onReload?: () => void
+  style?: React.CSSProperties
+  className?: string
+}
+
+const DistrictMainLoading = ({ result: _result, onReload: _onReload, style, className }: DistrictMainLoadingProps) => {
   return (
     <Page full={false} className="lyrixi-cascader-page">
       <div style={style} className={DOMUtil.classNames('lyrixi-cascader-main', className)}>
@@ -20,4 +27,4 @@ const DistrictMainResult = ({ result, onReload, style, className }) => {
   )
 }
 
-export default DistrictMainResult
+export default DistrictMainLoading

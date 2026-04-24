@@ -1,6 +1,10 @@
 import IndexBar from './IndexBar'
 import Anchor from './Anchor'
 
-IndexBar.Anchor = Anchor
+type IndexBarWithAnchor = typeof IndexBar & { Anchor: typeof Anchor }
 
-export default IndexBar
+;(IndexBar as IndexBarWithAnchor).Anchor = Anchor
+
+export type { IndexBarRef, IndexBarProps } from './IndexBar'
+export type { AnchorProps } from './Anchor'
+export default IndexBar as IndexBarWithAnchor

@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import InputNumber from './../Number'
+import { InputTextRef, type InputTextProps } from './../Text'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -10,8 +11,53 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface NumberBoxRef {
+  element: HTMLDivElement | null
+  inputElement: InputTextRef | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: InputTextRef['getInputElement'] | undefined
+  getInputRef: () => React.RefObject<InputTextRef | null>
+}
+
+interface NumberBoxProps {
+  id?: string
+  name?: string
+  value?: string
+  placeholder?: string
+  formatter?: (value: string) => React.ReactNode
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  autoFocus?: boolean
+  autoSelect?: boolean
+  stepFocus?: boolean
+  className?: string
+  style?: React.CSSProperties
+  plusClassName?: string
+  plusStyle?: React.CSSProperties
+  minusClassName?: string
+  minusStyle?: React.CSSProperties
+  leftIconNode?: React.ReactNode
+  rightIconNode?: React.ReactNode
+  clearRender?: InputTextProps['clearRender']
+  children?: React.ReactNode
+  precision?: number
+  trim?: boolean
+  min?: number
+  max?: number
+  maxLength?: number
+  onClick?: (e: React.MouseEvent) => void
+  onChange?: (val: string) => void
+  onBlur?: (e: React.FocusEvent) => void
+  onFocus?: (e: React.FocusEvent) => void
+  onInput?: React.FormEventHandler<HTMLInputElement>
+  onCompositionStart?: React.CompositionEventHandler<HTMLInputElement>
+  onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement>
+  onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement>
+}
+
 // 数值框
-const NumberBox = forwardRef(
+const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
   (
     {
       id,
@@ -64,8 +110,8 @@ const NumberBox = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
-    const inputRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<InputTextRef>(null)
 
     useImperativeHandle(ref, () => {
       return {
@@ -88,7 +134,7 @@ const NumberBox = forwardRef(
     }, [value]) // eslint-disable-line
 
     // 获取文本框
-    function _getInputElement() {
+    function _getInputElement(): HTMLInputElement | HTMLTextAreaElement | null {
       if (inputRef?.current?.getInputElement) {
         return inputRef.current.getInputElement()
       }
@@ -96,23 +142,23 @@ const NumberBox = forwardRef(
     }
 
     // 更新禁用状态
-    function updateState(val) {
+    function updateState(val: string) {
       let minus = rootRef.current?.querySelector?.('.lyrixi-numberbox-button-minus')
       let plus = rootRef.current?.querySelector?.('.lyrixi-numberbox-button-plus')
-      if (!isNaN(min) && !isNaN(val) && Number(val) <= Number(min)) {
-        minus.setAttribute('disabled', 'true')
+      if (min !== undefined && !isNaN(min) && !isNaN(Number(val)) && Number(val) <= Number(min)) {
+        minus?.setAttribute('disabled', 'true')
       } else {
-        minus.removeAttribute('disabled')
+        minus?.removeAttribute('disabled')
       }
-      if (!isNaN(max) && !isNaN(val) && Number(val) >= Number(max)) {
-        plus.setAttribute('disabled', 'true')
+      if (max !== undefined && !isNaN(max) && !isNaN(Number(val)) && Number(val) >= Number(max)) {
+        plus?.setAttribute('disabled', 'true')
       } else {
-        plus.removeAttribute('disabled')
+        plus?.removeAttribute('disabled')
       }
     }
 
     // 修改值回调
-    function handleChange(val) {
+    function handleChange(val: string) {
       if (disabled) return
       let inputElement = _getInputElement()
       if (!inputElement) return
@@ -126,37 +172,31 @@ const NumberBox = forwardRef(
     }
 
     // 点击减
-    function handleMinus(e) {
+    function handleMinus(e: React.MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
       if (disabled) return
 
       let inputElement = _getInputElement()
       if (!inputElement) return
-      let val = inputRef?.current?.correctValue(
-        MathUtil.strip(Number(inputElement.value || 0) - 1),
-        'blur'
-      )
+      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) - 1))
       // Callback
-      handleChange(val)
+      handleChange(String(val ?? ''))
       if (stepFocus) {
         inputElement.focus()
       }
     }
 
     // 点击加
-    function handlePlus(e) {
+    function handlePlus(e: React.MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
       if (disabled) return
 
       let inputElement = _getInputElement()
       if (!inputElement) return
-      if (isNaN(inputElement?.value)) return
-      let val = inputRef?.current?.correctValue(
-        MathUtil.strip(Number(inputElement.value || 0) + 1),
-        'blur'
-      )
+      if (isNaN(Number(inputElement?.value))) return
+      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) + 1))
       // Callback
-      handleChange(val)
+      handleChange(String(val ?? ''))
       if (stepFocus) {
         inputElement.focus()
       }
@@ -191,17 +231,11 @@ const NumberBox = forwardRef(
           max={max}
           maxLength={maxLength}
           // Events
-          onClick={onClick}
+          onClick={onClick as Parameters<typeof InputNumber>[0]['onClick']}
           onChange={handleChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          onInput={onInput}
-          onCompositionStart={onCompositionStart} // 输入开始时
-          onCompositionUpdate={onCompositionUpdate} // 输入进行中
-          onCompositionEnd={onCompositionEnd} // 输入完成时
-        >
-          {children}
-        </InputNumber>
+          onBlur={onBlur as Parameters<typeof InputNumber>[0]['onBlur']}
+          onFocus={onFocus as Parameters<typeof InputNumber>[0]['onFocus']}
+        />
       )
     }
 
@@ -213,11 +247,14 @@ const NumberBox = forwardRef(
         style={style}
         className={DOMUtil.classNames('lyrixi-numberbox', className)}
         // Status
-        disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
+        {...((min !== undefined && max !== undefined && !isNaN(min) && !isNaN(max)
+          ? Number(min) >= Number(max)
+          : false) || disabled
+          ? { disabled: true }
+          : {})}
       >
         {/* Element: Minus Button */}
         <div
-          type="button"
           // Style
           style={minusStyle}
           className={DOMUtil.classNames(
@@ -236,7 +273,6 @@ const NumberBox = forwardRef(
 
         {/* Element: Plus Button */}
         <div
-          type="button"
           // Style
           style={plusStyle}
           className={DOMUtil.classNames(

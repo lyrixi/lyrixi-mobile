@@ -1,6 +1,19 @@
 import React from 'react'
 import Item from './../Item'
 import isAllowClear from './../utils/isAllowClear'
+import type { MediaListItem } from './../types'
+import type { MediaUploadingProps } from './../Uploading'
+
+export interface MediaListComponentProps {
+  list: MediaListItem[]
+  ellipsis?: { count?: number }
+  allowClear?: boolean | ((item: MediaListItem) => boolean)
+  uploadingRender?: MediaUploadingProps['uploadingRender']
+  itemRender?: (item: MediaListItem) => React.ReactNode
+  onChange?: (list: MediaListItem[], meta: { action: string }) => void
+  onReUpload?: (item: MediaListItem, index: number) => void
+  onPreview?: (item: MediaListItem, index: number) => void
+}
 
 // 照片视频预览
 const List = ({
@@ -19,10 +32,10 @@ const List = ({
   onChange,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}) => {
+}: MediaListComponentProps) => {
   // Delete
-  function handleDelete(item, index) {
-    let newList = list.filter((photo, photoIndex) => {
+  function handleDelete(item: MediaListItem, index: number) {
+    const newList = list.filter((_photo, photoIndex) => {
       return photoIndex !== index
     })
     onChange && onChange(newList, { action: 'delete' })
@@ -52,11 +65,10 @@ const List = ({
                     ? list.length - maxCountVisible
                     : null
                 }
-                uploadingType="item"
                 uploadingRender={uploadingRender}
                 itemRender={itemRender}
                 // Events
-                onDelete={canClear ? handleDelete : null}
+                onDelete={canClear ? handleDelete : undefined}
                 onReUpload={onReUpload}
                 onPreview={onPreview}
               />

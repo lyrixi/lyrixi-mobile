@@ -17,9 +17,9 @@ import { Device } from 'lyrixi-mobile'
 
 let Bridge = {
   // 存储自定义 Bridge
-  _customBridges: {},
+  _customBridges: {} as Record<string, Record<string, unknown>>,
   // 添加自定义 Bridge
-  addBridge(platform, customBridge) {
+  addBridge(platform: string, customBridge: Record<string, unknown>) {
     if (!platform || !customBridge) {
       console.error('Bridge.addBridge: platform and customBridge are required')
       return
@@ -27,12 +27,12 @@ let Bridge = {
     this._customBridges[platform] = customBridge
   },
   // 内部方法：获取当前 Bridge
-  _getCurrentBridge(currentPlatform) {
+  _getCurrentBridge(currentPlatform?: string) {
     const platform = currentPlatform || Device.platform
 
     // 1. 先检查自定义 Bridge
     if (this._customBridges?.[platform]) {
-      return { ...Browser, ...this._customBridges[platform] }
+      return { ...Browser, ...this._customBridges[platform] } as typeof Browser
     }
 
     // 2. 再使用默认 Bridge 选择逻辑
@@ -63,7 +63,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  load(params, platform) {
+  load(params: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.load(params)
   },
@@ -78,7 +78,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  config(params, platform) {
+  config(params: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.config(params)
   },
@@ -92,7 +92,7 @@ let Bridge = {
    * @param {Number} delta - 返回的页面数，默认为 1
    * @returns {void}
    */
-  back(delta, platform) {
+  back(delta?: number, platform?: string) {
     return this._getCurrentBridge(platform).back(delta)
   },
   /**
@@ -102,7 +102,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  closeWindow(params, platform) {
+  closeWindow(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.closeWindow(params)
   },
@@ -113,7 +113,7 @@ let Bridge = {
    * @param {Function} params.onError - 阻止返回失败回调
    * @returns {void}
    */
-  onBack(params, platform) {
+  onBack(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.onBack(params)
   },
@@ -125,7 +125,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  setTitle(params, platform) {
+  setTitle(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.setTitle) {
       return bridge.setTitle(params)
@@ -140,7 +140,7 @@ let Bridge = {
    * @param {String} params.target - 打开方式，'_self' 表示当前窗口
    * @returns {void}
    */
-  openWindow(params, platform) {
+  openWindow(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.openWindow) {
       return bridge.openWindow(params)
@@ -154,10 +154,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  goHome(params, platform) {
+  goHome(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.goHome) {
-      return bridge.goHome(params)
+      return (bridge.goHome as (p?: Record<string, unknown>) => unknown)(params)
     }
     return undefined
   },
@@ -169,7 +169,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  tel(params, platform) {
+  tel(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.tel) {
       return bridge.tel(params)
@@ -267,7 +267,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  scanCode(params, platform) {
+  scanCode(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.scanCode) {
       return bridge.scanCode(params)
@@ -287,7 +287,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  chooseMedia(params, platform) {
+  chooseMedia(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.chooseMedia) {
       return bridge.chooseMedia(params)
@@ -307,7 +307,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  uploadFile(params, platform) {
+  uploadFile(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.uploadFile) {
       return bridge.uploadFile(params)
@@ -324,7 +324,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  previewMedia(params, platform) {
+  previewMedia(params?: Record<string, unknown>, platform?: string) {
     return this._getCurrentBridge(platform).previewMedia(params)
   },
   /**
@@ -337,7 +337,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  previewFile(params, platform) {
+  previewFile(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.previewFile) {
       return bridge.previewFile(params)
@@ -356,7 +356,7 @@ let Bridge = {
    * @param {Function} params.onError - 分享失败回调
    * @returns {void}
    */
-  share(params, platform) {
+  share(params?: Record<string, unknown>, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.share) {
       return bridge.share(params)
@@ -379,9 +379,9 @@ let Bridge = {
     },
     platform?: string
   ) {
-    const bridge = this._getCurrentBridge(platform)
-    if (bridge.detectFace) {
-      return bridge.detectFace(params)
+    const bridge = this._getCurrentBridge(platform) as Record<string, unknown>
+    if (typeof bridge.detectFace === 'function') {
+      return (bridge.detectFace as (p: typeof params) => unknown)(params)
     }
     return undefined
   },

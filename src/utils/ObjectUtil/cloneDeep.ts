@@ -1,6 +1,6 @@
 import _cloneDeep from 'lodash/cloneDeep'
 
-function cloneDeep(value) {
+function cloneDeep<T>(value: T): T {
   return _cloneDeep(value)
 }
 

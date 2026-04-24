@@ -4,10 +4,10 @@ import setCache from './setCache'
 import formatResponse from './formatResponse'
 import formatError from './formatError'
 
-async function get(url, params, config) {
+async function get(url: string, params?: unknown, config?: Record<string, unknown>): Promise<unknown> {
   // Priority reading of cache
   if (config?.cacheKey) {
-    let cacheResponse = await getCache(url, config?.cacheKey)
+    let cacheResponse = await getCache(url, config?.cacheKey as string | number)
     if (cacheResponse !== undefined) return cacheResponse
   }
 
@@ -15,11 +15,11 @@ async function get(url, params, config) {
     axios
       .get(url, {
         params: params,
-        ...config
+        ...(config as Record<string, unknown>)
       })
       .then((response) => {
-        let newResponse = formatResponse(response)
-        config?.cacheKey && setCache(url, config?.cacheKey, newResponse)
+        let newResponse = formatResponse(response as unknown as Record<string, unknown>)
+        config?.cacheKey && setCache(url, config?.cacheKey as string | number, newResponse)
         resolve(newResponse)
       })
       .catch((error) => {

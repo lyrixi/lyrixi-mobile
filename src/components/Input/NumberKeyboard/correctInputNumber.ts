@@ -13,7 +13,7 @@ import { MathUtil } from 'lyrixi-mobile'
  * @param {string} val - 输入的值
  * @returns {string} - 纠正后的值
  */
-function correctInputNumber(val) {
+function correctInputNumber(val: string): string {
   // 如果是合法数字，直接返回(输入中-号允许输入)
   if (MathUtil.isNumber(val, ['-'])) {
     return val

@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import getClassNameByAnimation from './../api/getClassNameByAnimation'
 
@@ -11,7 +11,28 @@ import SafeArea from './../../SafeArea'
 import { DOMUtil, SafeArea, Tooltip } from 'lyrixi-mobile'
 测试使用-end */
 
-const Modal = forwardRef(
+export interface ModalRef {
+  maskElement: HTMLDivElement | null
+  getMaskElement: () => HTMLDivElement | null
+  modalElement: HTMLDivElement | null
+  getModalElement: () => HTMLDivElement | null
+}
+
+export interface ModalProps {
+  open?: boolean
+  maskClosable?: boolean
+  safeArea?: boolean
+  animation?: string
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: HTMLElement | string | boolean | null
+  children?: ReactNode
+  onClose?: (e?: MouseEvent<HTMLDivElement>) => void
+}
+
+const Modal = forwardRef<ModalRef, ModalProps>(
   (
     {
       // Status
@@ -35,8 +56,8 @@ const Modal = forwardRef(
     },
     ref
   ) => {
-    const maskRef = useRef(null)
-    const modalRef = useRef(null)
+    const maskRef = useRef<HTMLDivElement>(null)
+    const modalRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {
       return {
         maskElement: maskRef.current,
@@ -54,7 +75,7 @@ const Modal = forwardRef(
     let animationClassName = getClassNameByAnimation(animation)
 
     // 点击遮罩
-    function handleMaskClick(e) {
+    function handleMaskClick(e: MouseEvent<HTMLDivElement>) {
       if (maskClosable) {
         onClose && onClose(e)
       }
@@ -62,7 +83,7 @@ const Modal = forwardRef(
     }
 
     // 点击模态框
-    function handleModalClick(e) {
+    function handleModalClick(e: MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
     }
 
@@ -100,7 +121,11 @@ const Modal = forwardRef(
     if (portal === null || portal === false) {
       return ModalNode
     }
-    return createPortal(ModalNode, portal || document.getElementById('root') || document.body)
+    const portalTarget =
+      portal instanceof HTMLElement
+        ? portal
+        : (document.getElementById('root') || document.body)
+    return createPortal(ModalNode, portalTarget)
   }
 )
 

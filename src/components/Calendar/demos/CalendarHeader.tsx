@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { Page, Calendar, DateUtil } from 'lyrixi-mobile'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<Date | null>(null)
 
   return (
     <Page>
       <Page.Main>
         <Calendar
           value={value}
-          onChange={setValue}
+          onChange={(v, _c) => {
+            setValue(v as Date | null)
+          }}
           headerRender={({ drawDate, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear }) => (
             <Calendar.Header
               onPreviousMonth={onPreviousMonth}

@@ -8,7 +8,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getStatusDefault(status) {
+function getStatusDefault(status: string) {
   if (status === 'empty') {
     return {
       title: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60'),

@@ -7,7 +7,14 @@ import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 import wechatConfig from './wechatConfig'
 import wecomAgentConfig from './wecomAgentConfig'
-import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult, ErrorResult } from '../types'
+import type {
+  SuccessCallback,
+  ErrorCallback,
+  CancelCallback,
+  SuccessResult,
+  ErrorResult,
+  SDKResult
+} from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -53,7 +60,7 @@ let Bridge = {
 
     script.onload = function () {
       if (window.wx) {
-        (window.top ?? window).wx = window.wx
+        ;(window.top ?? window).wx = window.wx
       }
 
       onSuccess?.({
@@ -75,13 +82,20 @@ let Bridge = {
   },
   config: async function (params?: {
     getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
-    formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
-    formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
+    formatHeaders?: (
+      h: Record<string, string>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, string>>
+    formatPayload?: (
+      p: Record<string, unknown>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, unknown>>
     formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
     onSuccess?: (r: unknown) => void
     onError?: (r: unknown) => void
   }) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = params || {}
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
+      params || {}
     let platform = Device.platform
 
     // 获取配置url
@@ -110,13 +124,10 @@ let Bridge = {
   goHome: function () {
     window.history.go(-1)
   },
-  back: function (delta) {
+  back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: {
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
     const { onSuccess } = params || {}
     if (['wechatMiniProgram', 'wecomMiniProgram'].includes(Device.platform || '')) {
       ;(window.top ?? window).wx?.miniProgram?.navigateBack?.({})
@@ -175,17 +186,16 @@ let Bridge = {
 
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用企业微信地图...', { latitude, longitude, type, name, address, scale })
-
     ;(window.top ?? window).wx?.openLocation?.({
-      latitude: coord.latitude, // 纬度，浮点数，范围为90 ~ -90
-      longitude: coord.longitude, // 经度，浮点数，范围为180 ~ -180。
+      latitude: coord?.latitude ?? 0, // 纬度，浮点数，范围为90 ~ -90
+      longitude: coord?.longitude ?? 0, // 经度，浮点数，范围为180 ~ -180。
       name: name, // 位置名
       address: address, // 地址详情说明
       scale: scale || 12, // 地图缩放级别,整型值,范围从1~28。默认为最大
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -210,7 +220,7 @@ let Bridge = {
     console.log('调用微信定位...', type)
     ;(window.top ?? window).wx?.getLocation?.({
       type: type,
-      success: (res) => {
+      success: (res: SDKResult) => {
         console.error('微信定位成功', res)
         onSuccess?.({
           status: 'success',
@@ -224,14 +234,14 @@ let Bridge = {
           }
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         console.error('微信定位失败', error)
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         console.error('拒绝微信定位', error)
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
-      },
+      }
     })
   },
   scanCode: function (params?: {
@@ -263,44 +273,45 @@ let Bridge = {
       needResult: 1,
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc.join('/'),
-      success: (res) => {
-        let resultStr = res.resultStr
-        if (res.resultStr.indexOf('QR,') >= 0) {
-          resultStr = res.resultStr.substring('QR,'.length)
-        } else if (res.resultStr.indexOf('EAN_13,') >= 0) {
-          resultStr = res.resultStr.substring('EAN_13,'.length)
-        } else if (res.resultStr.indexOf('EAN_8,') >= 0) {
-          resultStr = res.resultStr.substring('EAN_8,'.length)
-        } else if (res.resultStr.indexOf('AZTEC,') >= 0) {
-          resultStr = res.resultStr.substring('AZTEC,'.length)
-        } else if (res.resultStr.indexOf('DATAMATRIX,') >= 0) {
-          resultStr = res.resultStr.substring('DATAMATRIX,'.length)
-        } else if (res.resultStr.indexOf('UPCA,') >= 0) {
-          resultStr = res.resultStr.substring('UPCA,'.length)
-        } else if (res.resultStr.indexOf('UPC_A,') >= 0) {
-          resultStr = res.resultStr.substring('UPC_A,'.length)
-        } else if (res.resultStr.indexOf('UPCE,') >= 0) {
-          resultStr = res.resultStr.substring('UPCE,'.length)
-        } else if (res.resultStr.indexOf('UPC_E,') >= 0) {
-          resultStr = res.resultStr.substring('UPC_E,'.length)
-        } else if (res.resultStr.indexOf('CODABAR,') >= 0) {
-          resultStr = res.resultStr.substring('CODABAR,'.length)
-        } else if (res.resultStr.indexOf('CODE_39,') >= 0) {
-          resultStr = res.resultStr.substring('CODE_39,'.length)
-        } else if (res.resultStr.indexOf('CODE_93,') >= 0) {
-          resultStr = res.resultStr.substring('CODE_93,'.length)
-        } else if (res.resultStr.indexOf('CODE_128,') >= 0) {
-          resultStr = res.resultStr.substring('CODE_128,'.length)
-        } else if (res.resultStr.indexOf('ITF,') >= 0) {
-          resultStr = res.resultStr.substring('ITF,'.length)
-        } else if (res.resultStr.indexOf('MAXICODE,') >= 0) {
-          resultStr = res.resultStr.substring('MAXICODE,'.length)
-        } else if (res.resultStr.indexOf('PDF_417,') >= 0) {
-          resultStr = res.resultStr.substring('PDF_417,'.length)
-        } else if (res.resultStr.indexOf('RSS_14,') >= 0) {
-          resultStr = res.resultStr.substring('RSS_14,'.length)
-        } else if (res.resultStr.indexOf('RSSEXPANDED,') >= 0) {
-          resultStr = res.resultStr.substring('RSSEXPANDED,'.length)
+      success: (res: SDKResult) => {
+        const rawResultStr = res.resultStr ?? ''
+        let resultStr: string = rawResultStr
+        if (rawResultStr.indexOf('QR,') >= 0) {
+          resultStr = rawResultStr.substring('QR,'.length)
+        } else if (rawResultStr.indexOf('EAN_13,') >= 0) {
+          resultStr = rawResultStr.substring('EAN_13,'.length)
+        } else if (rawResultStr.indexOf('EAN_8,') >= 0) {
+          resultStr = rawResultStr?.substring('EAN_8,'.length)
+        } else if (rawResultStr.indexOf('AZTEC,') >= 0) {
+          resultStr = rawResultStr.substring('AZTEC,'.length)
+        } else if (rawResultStr.indexOf('DATAMATRIX,') >= 0) {
+          resultStr = rawResultStr.substring('DATAMATRIX,'.length)
+        } else if (rawResultStr.indexOf('UPCA,') >= 0) {
+          resultStr = rawResultStr.substring('UPCA,'.length)
+        } else if (rawResultStr.indexOf('UPC_A,') >= 0) {
+          resultStr = rawResultStr.substring('UPC_A,'.length)
+        } else if (rawResultStr.indexOf('UPCE,') >= 0) {
+          resultStr = rawResultStr.substring('UPCE,'.length)
+        } else if (rawResultStr.indexOf('UPC_E,') >= 0) {
+          resultStr = rawResultStr.substring('UPC_E,'.length)
+        } else if (rawResultStr.indexOf('CODABAR,') >= 0) {
+          resultStr = rawResultStr.substring('CODABAR,'.length)
+        } else if (rawResultStr.indexOf('CODE_39,') >= 0) {
+          resultStr = rawResultStr.substring('CODE_39,'.length)
+        } else if (rawResultStr.indexOf('CODE_93,') >= 0) {
+          resultStr = rawResultStr.substring('CODE_93,'.length)
+        } else if (rawResultStr.indexOf('CODE_128,') >= 0) {
+          resultStr = rawResultStr.substring('CODE_128,'.length)
+        } else if (rawResultStr.indexOf('ITF,') >= 0) {
+          resultStr = rawResultStr.substring('ITF,'.length)
+        } else if (rawResultStr.indexOf('MAXICODE,') >= 0) {
+          resultStr = rawResultStr.substring('MAXICODE,'.length)
+        } else if (rawResultStr.indexOf('PDF_417,') >= 0) {
+          resultStr = rawResultStr.substring('PDF_417,'.length)
+        } else if (rawResultStr.indexOf('RSS_14,') >= 0) {
+          resultStr = rawResultStr.substring('RSS_14,'.length)
+        } else if (rawResultStr.indexOf('RSSEXPANDED,') >= 0) {
+          resultStr = rawResultStr.substring('RSSEXPANDED,'.length)
         }
         onSuccess?.({
           status: 'success',
@@ -309,10 +320,10 @@ let Bridge = {
           data: { content: resultStr }
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -327,8 +338,18 @@ let Bridge = {
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { count, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
-      params || {}
+    const {
+      count,
+      sourceType,
+      sizeType,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      mediaType,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      maxDuration,
+      onSuccess,
+      onError,
+      onCancel
+    } = params || {}
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
@@ -341,10 +362,10 @@ let Bridge = {
       return
     }
 
-    const handleSuccess = async function (res) {
+    const handleSuccess = async function (res: SDKResult) {
       // res.localIds 为数组，每一项是本地临时图片ID
       let localFiles: Array<Record<string, unknown>> = []
-      for (let localId of res?.localIds) {
+      for (let localId of (res?.localIds as string[] | undefined) ?? []) {
         // 缩略图用base64显示, 非缩略图用localId显示
         let preview = await getPreview(localId)
         let localFile = {
@@ -364,7 +385,7 @@ let Bridge = {
         }
       })
     }
-    const handleError = function (error) {
+    const handleError = function (error: SDKResult) {
       onError?.({ status: 'error', message: error?.errMsg || '' })
     }
 
@@ -374,7 +395,7 @@ let Bridge = {
       sizeType,
       success: handleSuccess,
       fail: handleError,
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     }
@@ -419,8 +440,15 @@ let Bridge = {
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
-    const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
-      params || {}
+    const {
+      localFile,
+      getUploadUrl,
+      formatHeaders,
+      formatPayload,
+      formatResponse,
+      onSuccess,
+      onError
+    } = params || {}
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -452,7 +480,7 @@ let Bridge = {
     wx.uploadImage({
       localId: localFile?.filePath,
       isShowProgressTips: 0,
-      success: async function (res) {
+      success: async function (res: SDKResult) {
         let serverId = res.serverId
         if (!localFile) return
         let payload: Record<string, unknown> = {
@@ -461,7 +489,10 @@ let Bridge = {
           fileType: localFile.fileType
         }
         if (typeof formatPayload === 'function') {
-          payload = (await formatPayload(payload, { platform: 'wechat' })) as Record<string, unknown>
+          payload = (await formatPayload(payload, { platform: 'wechat' })) as Record<
+            string,
+            unknown
+          >
         }
         let headers: Record<string, string> = { 'Content-Type': 'multipart/form-data' }
         if (typeof formatHeaders === 'function') {
@@ -492,7 +523,7 @@ let Bridge = {
           onError?.(response as ErrorResult)
         }
       },
-      fail: function (error) {
+      fail: function (error: SDKResult) {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       }
     })
@@ -551,7 +582,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         console.log('微信previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -560,7 +591,7 @@ let Bridge = {
             `WeChat ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -590,7 +621,7 @@ let Bridge = {
       onSuccess: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -619,7 +650,7 @@ let Bridge = {
         onSuccess: function () {
           onSuccess?.({ status: 'success', data: undefined })
         },
-        onError: function (err) {
+        onError: function (err: SDKResult) {
           console.log('WeChat Share onError:', err)
           Toast.show({
             content:
@@ -655,10 +686,7 @@ let Bridge = {
               status: 'error',
               message:
                 (typeof res.errMsg === 'string' ? res.errMsg : undefined) ||
-                `WeChat ${LocaleUtil.locale(
-                  '分享失败',
-                  'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f'
-                )}`
+                `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`
             })
           }
         }

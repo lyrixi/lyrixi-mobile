@@ -50,13 +50,13 @@ async function back(
       content: confirmContent,
       buttons: [
         {
-          name: LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c'),
+          name: LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c') as string,
           onClick: () => {
             return true
           }
         },
         {
-          name: LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721'),
+          name: LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721') as string,
           className: 'lyrixi-primary',
           onClick: () => {
             // 提示后关闭当前页面

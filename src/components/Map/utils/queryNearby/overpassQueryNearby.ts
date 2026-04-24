@@ -1,4 +1,5 @@
 // 内库使用-start
+import type { QueryNearbyParams } from './bmapQueryNearby'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
@@ -6,9 +7,32 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface OverpassTag {
+  name?: string
+  'addr:city'?: string
+  'addr:housename'?: string
+  'addr:postcode'?: string
+  'addr:street'?: string
+  [k: string]: string | undefined
+}
+
+interface OverpassNode {
+  tags?: OverpassTag
+  lat?: number
+  lon?: number
+}
+
+function isOverpassData(d: unknown): d is { elements: OverpassNode[] } {
+  if (!d || typeof d !== 'object') {
+    return false
+  }
+  const o = d as { elements?: unknown }
+  return Array.isArray(o.elements)
+}
+
 // 搜索附近
-function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
-  let nearQuery = radius ? `(around:${radius},${latitude},${longitude})` : ''
+function overpassQueryNearby({ keyword, longitude, latitude, radius }: QueryNearbyParams) {
+  const nearQuery = radius ? `(around:${radius},${latitude},${longitude})` : ''
 
   const overpassQuery = `
         [out:json];
@@ -19,41 +43,50 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
   return new Promise((resolve) => {
     fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`)
       .then((response) => response.json())
-      .then((data) => {
-        // 显示查询结果
-        if (data?.elements?.length > 0) {
-          let list = []
-          for (let item of data.elements) {
-            let name = item.tags.name
-            let address =
-              (item?.tags?.['addr:city'] || '') +
-              (item?.tags?.['addr:housename'] || '') +
-              (item?.tags?.['addr:postcode'] || '') +
-              (item?.tags?.['addr:street'] || '')
+      .then((data: unknown) => {
+        if (isOverpassData(data) && data.elements.length > 0) {
+          const list: { name: string; latitude: number; longitude: number; address: string; type: 'wgs84' }[] = []
+          for (const item of data.elements) {
+            const name = item.tags?.name
+            const tags = item.tags
+            const address =
+              (tags?.['addr:city'] || '') +
+              (tags?.['addr:housename'] || '') +
+              (tags?.['addr:postcode'] || '') +
+              (tags?.['addr:street'] || '')
 
-            if (!name && !address) continue
+            if (!name && !address) {
+              continue
+            }
+            const lat = item.lat
+            const lon = item.lon
+            if (typeof lat !== 'number' || typeof lon !== 'number') {
+              continue
+            }
             list.push({
-              name: name,
-              latitude: item.lat,
-              longitude: item.lon,
+              name: name || address,
+              latitude: lat,
+              longitude: lon,
               address: address,
               type: 'wgs84'
             })
           }
-          resolve({
-            status: 'success',
-            list: list
-          })
-        } else {
-          resolve({
-            status: 'empty',
-            message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
-          })
+          if (list.length) {
+            resolve({
+              status: 'success' as const,
+              list: list
+            })
+            return
+          }
         }
-      })
-      .catch((error) => {
         resolve({
-          status: 'error',
+          status: 'empty' as const,
+          message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
+        })
+      })
+      .catch(() => {
+        resolve({
+          status: 'error' as const,
           message: LocaleUtil.locale('查询失败', 'lyrixi_0d66ed02d74d0bd89431d6d59533ffb3')
         })
       })

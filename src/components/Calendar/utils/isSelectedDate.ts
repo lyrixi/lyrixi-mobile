@@ -6,20 +6,28 @@ import DateUtil from '../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { CalendarSelectionMode, CalendarValue } from '../types'
+
 // 当前日期是否选中, 空:未选中 数组:[selected:选中 selected-start:开始 selected-end:结束]
-function isSelectedDate(date, selected, selectionMode) {
-  // 区间匹配开始日期和结束日期
+function isSelectedDate(
+  date: Date,
+  selected: CalendarValue,
+  selectionMode: CalendarSelectionMode
+): string[] | null {
   if (Array.isArray(selected)) {
     if (selectionMode === 'range' && selected.length === 2) {
-      let isSelected = []
-      // Date is between startDate and endDate, add selected class
-      if (DateUtil.compare(date, selected[0]) >= 0 && DateUtil.compare(date, selected[1]) <= 0) {
+      const start = selected[0] as Date
+      const end = selected[1] as Date
+      const isSelected: string[] = []
+      const vs = DateUtil.compare(date, start, 'date') ?? 0
+      const ve = DateUtil.compare(date, end, 'date') ?? 0
+      if (vs >= 0 && ve <= 0) {
         isSelected.push('lyrixi-selected')
       }
-      if (DateUtil.compare(date, selected[0]) === 0) {
+      if (vs === 0) {
         isSelected.push('lyrixi-selected-start')
       }
-      if (DateUtil.compare(date, selected[1]) === 0) {
+      if (ve === 0) {
         isSelected.push('lyrixi-selected-end')
       }
       if (isSelected.length) {
@@ -27,22 +35,20 @@ function isSelectedDate(date, selected, selectionMode) {
       }
       return null
     }
-    // 多选精确匹配选中日期
     if (
       selectionMode === 'multiple' &&
-      selected.some((selectedDate) => DateUtil.compare(date, selectedDate) === 0)
+      selected.some((selectedDate) => selectedDate && DateUtil.compare(date, selectedDate, 'date') === 0)
     ) {
       return ['lyrixi-selected']
     }
     return null
   }
 
-  // date mode
-  if (selected instanceof Date === false) {
+  if (!(selected instanceof Date)) {
     return null
   }
 
-  if (DateUtil.compare(date, selected) === 0) {
+  if (DateUtil.compare(date, selected, 'date') === 0) {
     return ['lyrixi-selected']
   }
 

@@ -31,12 +31,15 @@ export default () => {
           <Keyboard.Number
             open={openFull}
             value={valueFull}
-            onChange={setValueFull}
-            dot="."
-            minus="-"
+            onChange={(v) => setValueFull(v)}
+            dot
+            minus
             okVisible
             cancelVisible
-            onOk={(val) => setValueFull(val)}
+            onOk={(val) => {
+              setValueFull(val)
+              return true
+            }}
             onCancel={() => setOpenFull(false)}
             onClose={() => setOpenFull(false)}
           />
@@ -53,7 +56,7 @@ export default () => {
           <Keyboard.Number
             open={open1}
             value={value1}
-            onChange={setValue1}
+            onChange={(v) => setValue1(v)}
             onClose={() => setOpen1(false)}
           />
         </Card>
@@ -69,8 +72,8 @@ export default () => {
           <Keyboard.Number
             open={open2}
             value={value2}
-            onChange={setValue2}
-            dot="."
+            onChange={(v) => setValue2(v)}
+            dot
             onClose={() => setOpen2(false)}
           />
         </Card>
@@ -86,8 +89,8 @@ export default () => {
           <Keyboard.Number
             open={open3}
             value={value3}
-            onChange={setValue3}
-            minus="-"
+            onChange={(v) => setValue3(v)}
+            minus
             onClose={() => setOpen3(false)}
           />
         </Card>
@@ -103,11 +106,12 @@ export default () => {
           <Keyboard.Number
             open={open4}
             value={value4}
-            onChange={setValue4}
+            onChange={(v) => setValue4(v)}
             okVisible
             okNode={<span>完成</span>}
             onOk={(val) => {
               setValue4(val)
+              return true
             }}
             onClose={() => setOpen4(false)}
           />
@@ -124,7 +128,7 @@ export default () => {
           <Keyboard.Number
             open={open5}
             value={value5}
-            onChange={setValue5}
+            onChange={(v) => setValue5(v)}
             cancelVisible
             cancelNode={<span>收起</span>}
             onCancel={() => setOpen5(false)}
@@ -143,7 +147,7 @@ export default () => {
           <Keyboard.Number
             open={open6}
             value={value6}
-            onChange={setValue6}
+            onChange={(v) => setValue6(v)}
             safeArea
             modalStyle={{ borderRadius: '12px 12px 0 0' }}
             modalClassName="lyrixi-keyboard-demo-custom"

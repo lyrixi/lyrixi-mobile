@@ -1,5 +1,5 @@
 // 比较年月日时，大于返回1,等于返回0,小于返回-1
-function compareHour(d1, d2) {
+function compareHour(d1: Date | string | number, d2: Date | string | number) {
   let date1 = new Date(d1)
   let date2 = new Date(d2)
   date1.setMinutes(0, 0, 0)

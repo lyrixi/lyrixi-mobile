@@ -1,8 +1,16 @@
-import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, {
+  useEffect,
+  useState,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  type ReactNode
+} from 'react'
 
 import getPhotos from './getPhotos'
 import clearPhotos from './clearPhotos'
 import stopAllPolls from './stopAllPolls'
+import generateId from './generateId'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -10,31 +18,39 @@ import Toast from './../../Toast'
 import Media from './../../Media'
 import Loading from './../../Loading'
 import ActionSheet from './../../ActionSheet'
+import type { ActionSheetItem } from './../../ActionSheet/Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { Toast, LocaleUtil, Media, Loading, ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
+import { WechatMiniProgramUploaderProps, MediaHandle, MediaItem } from '../types'
+import type {
+  FileImageCompressOptions,
+  MediaListItem,
+  MediaComponentProps
+} from './../../Media/types'
+
 // 微信小程序拍照上传, 通过前端id，通过接口与小程序通信，轮询接口获取小程序上传的照片
 function WechatMiniProgram(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
+    list = [],
     maxUploadCount = 5,
     maxChooseCount = 9,
-    mediaType, // video.录相 | 其它.为拍照
+    mediaType,
     ellipsis,
     sourceType = ['album', 'camera'],
-    sizeType = ['compressed'], // ['original', 'compressed']
-    isSaveToAlbum = 0, // 是否保存到本地
+    sizeType = ['compressed'],
+    isSaveToAlbum = 0,
     fileImageCompress,
-    chooseExtraParams, // 仅对客户端有效
+    chooseExtraParams,
 
     // Status
-    async = false, // 是否异步上传(目前只有app支持)
+    async = false,
     verifyImage,
-    reUpload = true, // 支持重新上传
+    reUpload = true,
     allowClear = true,
     allowChoose = true,
     previewAllowChoose,
@@ -53,22 +69,11 @@ function WechatMiniProgram(
     previewMaskClassName,
 
     // Element
-    uploadRender, // 上传按钮覆盖的dom
+    uploadRender,
     uploadingRender,
     itemRender,
     previewPortal,
     previewCancelPosition,
-    /*
-  格式化上传结果
-  入参:
-  {platform: 'browser', uploadItem: item, result: result}
-  返回格式:
-  {
-  fileThumbnail: 缩略图,
-  fileUrl: 高清图,
-  filePath: 入库路径
-  }
-  */
     getItemExtra,
     getUploadUrl,
     formatChoose,
@@ -78,38 +83,35 @@ function WechatMiniProgram(
 
     // Events
     onBeforeChoose,
-    // onChoose,
-    // onFileChange,
-    // onUpload,
     onChange,
     onPreview,
     onNavigateTo
-  },
-  ref
+  }: WechatMiniProgramUploaderProps,
+  ref: React.ForwardedRef<MediaHandle>
 ) {
   // 返回{saveMediaUrl, getMediaUrl}
   const uploadUrl = getUploadUrl?.({ platform: 'wechatMiniProgram' }) || {}
-  const saveMediaUrl = uploadUrl.saveMediaUrl || ''
-  const getMediaUrl = uploadUrl.getMediaUrl || ''
+  const saveMediaUrl = (uploadUrl.saveMediaUrl as string) || ''
+  const getMediaUrl = (uploadUrl.getMediaUrl as string) || ''
 
   // Auto generate id, used to get item form server
-  const idRef = useRef(Object.generateGUID())
+  const idRef = useRef(generateId())
 
   // Photo and Album select actionsheet open
   const [open, setOpen] = useState(false)
 
-  const mediaRef = useRef(null)
+  const mediaRef = useRef<MediaHandle | null>(null)
 
   // Newest List
   const listRef = useRef(Array.isArray(list) ? list : [])
 
   // Change event
-  const onChangeRef = useRef()
+  const onChangeRef = useRef<((list: MediaItem[]) => void) | undefined>(undefined)
   onChangeRef.current = onChange
 
   useImperativeHandle(ref, () => {
     return {
-      ...mediaRef.current,
+      ...(mediaRef.current ?? ({} as MediaHandle)),
       chooseMedia: async () => {
         let uploadElement = mediaRef.current?.element?.querySelector?.(
           '.lyrixi-media-item.image-choose'
@@ -119,16 +121,12 @@ function WechatMiniProgram(
             content: LocaleUtil.locale(
               '未找到拍照按钮, 调用拍照失败',
               'lyrixi_76637d130a70149d956bf9acc14e2108'
-            )
+            ) as string
           })
           return false
         }
 
-        let chooseOk = await handleChoose({
-          nativeEvent: {
-            target: uploadElement
-          }
-        })
+        let chooseOk = await handleChoose()
         return chooseOk
       },
       uploadList: () => {
@@ -136,7 +134,7 @@ function WechatMiniProgram(
           content: LocaleUtil.locale(
             '小程序不支持异步上传',
             'lyrixi_34b5161adb0dd53091258a0558e9c2f1'
-          )
+          ) as string
         })
       }
     }
@@ -161,7 +159,7 @@ function WechatMiniProgram(
     if (item) {
       stopAllPolls()
       console.log('当前照片', listRef.current)
-      listRef.current = [...listRef.current, item]
+      listRef.current = [...listRef.current, item as MediaItem]
       console.log('照片拍完, 清空redis', listRef.current)
       await clearPhotos(idRef.current, { url: saveMediaUrl })
       onChangeRef.current && onChangeRef.current(listRef.current)
@@ -169,10 +167,11 @@ function WechatMiniProgram(
       return
     }
     // Null Get item by polling interval 3s
-    window[idRef.current] = setTimeout(() => {
+    ;(window as unknown as Record<string, unknown>)[idRef.current] = setTimeout(() => {
       updatePhotos()
     }, 3000)
   }
+
   // 组件移除时, 停止轮询
   useEffect(() => {
     return () => {
@@ -193,8 +192,9 @@ function WechatMiniProgram(
   }, [list])
 
   // Jump to WeChat mini program to photo
-  async function goCamera(sourceType) {
-    if (typeof uploadUrl.navigateToMiniProgram !== 'function') {
+  async function goCamera(sourceTypeParam: string[]) {
+    const navigateToFn = (uploadUrl as Record<string, unknown>).navigateToMiniProgram
+    if (typeof navigateToFn !== 'function') {
       Toast.show({ content: 'uploadUrl.navigateToMiniProgram is not a function' })
       return false
     }
@@ -204,18 +204,19 @@ function WechatMiniProgram(
       stopAllPolls(idRef.current)
 
       // 添加额外的item信息, 方便传递, 例如水印等
-      let itemExtra = null
+      let itemExtra: Record<string, unknown> | null = null
       if (typeof getItemExtra === 'function') {
-        itemExtra = await getItemExtra({ platform: 'wechatMiniProgram' })
-        if (itemExtra === false) {
+        const extra = await getItemExtra({ platform: 'wechatMiniProgram' })
+        if (extra === false) {
           resolve(false)
           return
         }
+        itemExtra = extra as Record<string, unknown> | null
       }
 
       // Protect click
       Loading.show({
-        content: LocaleUtil.locale('打开小程序拍照', 'lyrixi_e55618c26ebea1724e7f5d8a0489995c')
+        content: LocaleUtil.locale('打开小程序拍照', 'lyrixi_e55618c26ebea1724e7f5d8a0489995c') as string
       })
       setTimeout(() => {
         Loading.hide()
@@ -224,30 +225,29 @@ function WechatMiniProgram(
 
       console.log('进入小程序拍照')
       try {
-        let payload = undefined
+        let payload: Record<string, unknown> | undefined = undefined
         if (typeof formatPayload === 'function') {
-          payload = await formatPayload?.({ ...itemExtra }, { platform: 'wechatMiniProgram' })
+          const itemExtraObj: Record<string, unknown> = itemExtra !== null ? itemExtra : {}
+          payload = await formatPayload({ ...itemExtraObj }, { platform: 'wechatMiniProgram' })
         }
 
-        let goOn = await onNavigateTo({
+        const itemExtraForNav: Record<string, unknown> = itemExtra !== null ? itemExtra : {}
+        const navParams: Record<string, unknown> = {
           id: idRef.current,
-          sourceType: sourceType,
+          sourceType: sourceTypeParam,
           maxChooseCount: maxChooseCount,
           payload: payload,
-          ...itemExtra
-        })
-
-        if (goOn === false) {
-          return
+          ...itemExtraForNav
         }
 
-        goOn = await uploadUrl.navigateToMiniProgram({
-          id: idRef.current,
-          sourceType: sourceType,
-          maxChooseCount: maxChooseCount,
-          payload: payload,
-          ...itemExtra
-        })
+        if (typeof onNavigateTo === 'function') {
+          let goOn = await onNavigateTo(navParams)
+          if (goOn === false) {
+            return
+          }
+        }
+
+        let goOn = await (navigateToFn as (p: Record<string, unknown>) => Promise<boolean>)(navParams)
 
         if (goOn === false) {
           return
@@ -285,17 +285,67 @@ function WechatMiniProgram(
     return isOk
   }
 
+  const mediaTypeList =
+    mediaType == null
+      ? undefined
+      : Array.isArray(mediaType)
+        ? mediaType
+        : [mediaType]
+
+  const ellipsisForMedia =
+    ellipsis === true ? { count: 1 } : ellipsis && typeof ellipsis === 'object' ? ellipsis : undefined
+
+  const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
+
+  const uploadPositionNarrow: 'start' | 'end' | undefined =
+    uploadPosition === 'start' || uploadPosition === 'end' ? uploadPosition : undefined
+
+  const previewCancelNarrow: 'left' | 'right' | undefined =
+    previewCancelPosition === 'left' || previewCancelPosition === 'right'
+      ? previewCancelPosition
+      : undefined
+
+  const uploadRenderFn =
+    uploadRender == null
+      ? undefined
+      : typeof uploadRender === 'function'
+        ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+        : () => uploadRender
+
+  const uploadingRenderFn =
+    uploadingRender == null
+      ? undefined
+      : typeof uploadingRender === 'function'
+        ? (uploadingRender as (ctx: MediaListItem & { uploadingType: string }) => ReactNode)
+        : (ctx: MediaListItem & { uploadingType: string }) => uploadingRender
+
+  const itemRenderFn =
+    itemRender == null
+      ? undefined
+      : typeof itemRender === 'function'
+        ? (itemRender as (item: MediaListItem) => ReactNode)
+        : (_item: MediaListItem) => itemRender as ReactNode
+
+  const onBeforeChooseForMedia: MediaComponentProps['onBeforeChoose'] =
+    typeof onBeforeChoose === 'function'
+      ? (e) => {
+          void e
+          return onBeforeChoose() as boolean | void | Promise<boolean | void>
+        }
+      : undefined
+
   return (
     <>
       <Media
         ref={mediaRef}
         // Value & Display Value
         list={list}
-        maxUploadCount={maxUploadCount}
-        mediaType={mediaType}
-        ellipsis={ellipsis}
+        maxCount={maxUploadCount}
+        mediaType={mediaTypeList}
+        ellipsis={ellipsisForMedia}
         sourceType={sourceType}
         sizeType={sizeType}
+        fileImageCompress={fileImageOpts}
         // Status
         async={async}
         reUpload={reUpload}
@@ -306,7 +356,7 @@ function WechatMiniProgram(
         // Style
         style={style}
         className={className}
-        uploadPosition={uploadPosition}
+        uploadPosition={uploadPositionNarrow}
         previewSafeArea={previewSafeArea}
         previewNavBarStyle={previewNavBarStyle}
         previewNavBarClassName={previewNavBarClassName}
@@ -315,24 +365,22 @@ function WechatMiniProgram(
         previewMaskStyle={previewMaskStyle}
         previewMaskClassName={previewMaskClassName}
         // Element
-        uploadRender={uploadRender}
-        uploadingRender={uploadingRender}
-        itemRender={itemRender}
+        uploadRender={uploadRenderFn}
+        uploadingRender={uploadingRenderFn}
+        itemRender={itemRenderFn}
         previewPortal={previewPortal}
-        previewCancelPosition={previewCancelPosition}
+        previewCancelPosition={previewCancelNarrow}
         // Events
-        onBeforeChoose={onBeforeChoose}
+        onBeforeChoose={onBeforeChooseForMedia}
         onChoose={handleChoose}
-        // onFileChange={onFileChange}
-        // onUpload={onUpload}
         onChange={onChange}
         onPreview={async (item, index) => {
-          // 自定义预览
           if (typeof onPreview === 'function') {
-            let goOn = await onPreview(item, index)
-            if (goOn !== true) return goOn
+            const goOn = await onPreview(item, index)
+            if (goOn !== true) {
+              return goOn as boolean | void | 'nativeMedia' | 'nativeFile' | 'browser'
+            }
           }
-
           return 'nativeMedia'
         }}
       />
@@ -349,11 +397,14 @@ function WechatMiniProgram(
             name: LocaleUtil.locale('从相册选择', 'lyrixi_83c39abd16cd6a770fc1c3c326aabbdd')
           }
         ]}
-        onChange={async (item) => {
-          mediaRef.current?.showLoading?.()
-          await goCamera([item.id])
-          mediaRef.current?.hideLoading?.()
-          setOpen(false)
+        onChange={(item: ActionSheetItem | null) => {
+          if (!item) return
+          void (async () => {
+            mediaRef.current?.showLoading?.()
+            await goCamera([String(item.id)])
+            mediaRef.current?.hideLoading?.()
+            setOpen(false)
+          })()
         }}
         onClose={() => {
           setOpen(false)

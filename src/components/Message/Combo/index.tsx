@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import Modal from './../Modal'
 import Header from './../Header'
 import Main from './../Main'
@@ -15,7 +15,31 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const MessageCombo = forwardRef(
+interface ComboButton {
+  id?: string
+  name?: ReactNode
+  style?: CSSProperties
+  className?: string
+  onClick?: (e: MouseEvent<HTMLDivElement>) => boolean | void | Promise<boolean | void>
+}
+
+interface MessageComboRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface MessageComboProps {
+  children?: ReactNode
+  iconRender?: () => ReactNode
+  title?: ReactNode
+  content?: ReactNode
+  buttons?: ComboButton[]
+  buttonsLayout?: string
+  className?: string
+  style?: CSSProperties
+}
+
+const MessageCombo = forwardRef<MessageComboRef, MessageComboProps>(
   (
     {
       children,
@@ -32,15 +56,15 @@ const MessageCombo = forwardRef(
     ref
   ) => {
     // 控制Modal显隐
-    const [open, setOpen] = useState(null)
+    const [open, setOpen] = useState<boolean | null>(null)
 
-    const comboRef = useRef(null)
+    const comboRef = useRef<HTMLDivElement>(null)
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         element: comboRef.current,
         getElement: () => comboRef.current,
-        ...modalRef.current,
+        ...(modalRef.current as object | null ?? {}),
         close: () => {
           setOpen(false)
         },
@@ -72,7 +96,7 @@ const MessageCombo = forwardRef(
         >
           {children}
         </div>
-        <Modal open={open} onClose={() => setOpen(false)}>
+        <Modal open={open ?? false} onClose={() => setOpen(false)}>
           {(IconNode || title) && (
             <Header>
               {IconNode}
@@ -90,7 +114,7 @@ const MessageCombo = forwardRef(
                     style={style}
                     className={className}
                     onClick={async (e) => {
-                      let newVisible = await onClick(e)
+                      let newVisible = onClick ? await onClick(e) : undefined
                       if (typeof newVisible === 'boolean') {
                         setOpen(!newVisible)
                       }

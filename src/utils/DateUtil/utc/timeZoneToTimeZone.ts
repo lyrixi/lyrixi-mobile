@@ -1,5 +1,5 @@
 // 在两个时区间转换
-function timeZoneToTimeZone(timeZoneDate, fromOffset, toOffset) {
+function timeZoneToTimeZone(timeZoneDate: Date, fromOffset: number, toOffset: number) {
   if (!(timeZoneDate instanceof Date) || Number.isNaN(timeZoneDate.getTime())) {
     return null
   }

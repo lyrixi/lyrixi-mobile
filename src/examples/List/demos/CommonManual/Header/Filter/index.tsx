@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Form, Input, LocaleUtil, ToolBar } from 'lyrixi-mobile'
+import React, { useEffect, useRef, useState, type ComponentProps } from 'react'
+import { Form, Input, LocaleUtil } from 'lyrixi-mobile'
+import ToolBarFilter from '../../../../../../components/ToolBar/Filter'
 
 const locale = LocaleUtil.locale
 
@@ -59,32 +60,33 @@ function Filter({
     modifiedRef.current = true
   }
 
-  return (
-    <ToolBar.Filter
-      sizeEqual
-      color={active ? 'primary' : 'default'}
-      onOpen={handleOpen}
-      onClose={handleClose}
-      onCancel={handleCancel}
-      onConfig={handleConfig}
-      onReset={handleReset}
-      onOk={handleOk}
-      modalRender={() => {
-        return (
-          <Form
-            layout="vertical"
-            form={form}
-            onValuesChange={handleValuesChange}
-            style={{ marginLeft: '12px' }}
-          >
-            <Form.Item name="input" label={locale('单行文本框')}>
-              <Input.Text allowClear placeholder={locale('请输入')} maxLength={50} />
-            </Form.Item>
-          </Form>
-        )
-      }}
-    />
-  )
+  type TFP = ComponentProps<typeof ToolBarFilter>
+  const filterProps = {
+    sizeEqual: true,
+    color: active ? 'primary' : 'default',
+    onOpen: handleOpen,
+    onClose: handleClose,
+    onCancel: handleCancel,
+    onConfig: handleConfig,
+    onReset: handleReset,
+    onOk: handleOk,
+    modalRender: () => {
+      return (
+        <Form
+          layout="vertical"
+          form={form}
+          onValuesChange={handleValuesChange}
+          style={{ marginLeft: '12px' }}
+        >
+          <Form.Item name="input" label={String(locale('单行文本框'))}>
+            <Input.Text allowClear placeholder={String(locale('请输入'))} maxLength={50} />
+          </Form.Item>
+        </Form>
+      )
+    }
+  } as unknown as TFP
+
+  return <ToolBarFilter {...filterProps} />
 }
 
 export default Filter

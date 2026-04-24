@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { type MouseEvent } from 'react'
+
+export interface MediaDeleteProps {
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
 
 // 照片视频预览
 const Delete = ({
   // Events
   onClick
-}) => {
+}: MediaDeleteProps) => {
   return (
     <div
       // Style

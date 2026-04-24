@@ -1,15 +1,21 @@
+interface DistrictItem {
+  id?: string | number
+  type?: string[] | string
+  isLeaf?: boolean
+  [key: string]: unknown
+}
+
 // 判断value中是否有某一项为末级，返回该项的索引（0开始），没有则返回-1
-function findDistrictLeafIndex(value, maxType) {
-  // 对象
-  if (Array.isArray(value?.type) && value.type.includes(maxType)) {
+function findDistrictLeafIndex(value: DistrictItem | DistrictItem[], maxType: string): number {
+  if (Array.isArray((value as DistrictItem).type) && ((value as DistrictItem).type as string[]).includes(maxType)) {
     return 0
   }
 
-  // 数组
-  if (!Array.isArray(value) || value.length === 0) return -1
+  if (!Array.isArray(value) || (value as DistrictItem[]).length === 0) return -1
 
-  for (let i = 0; i < value.length; i++) {
-    const item = value[i]
+  const arr = value as DistrictItem[]
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i]
     if (item.isLeaf) {
       return i
     }

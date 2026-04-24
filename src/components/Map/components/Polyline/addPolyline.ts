@@ -1,18 +1,35 @@
+import type * as L from 'leaflet'
 import coordsToFit from './../../utils/coordsToFit'
 
-// Polyline
-function addPolyline(points, options, layer) {
-  // eslint-disable-next-line
-  points = coordsToFit(points)
-  // eslint-disable-next-line
-  points = points.filter((point) => point)
-  if (!Array.isArray(points) || points.length === 0) return
+export interface LinePoint {
+  latitude?: number | string
+  longitude?: number | string
+  [key: string]: unknown
+}
 
-  let polyline = window.L.polyline(
-    points.map((point) => [point.latitude, point.longitude]),
-    // options
+export interface LineStyleOptions {
+  color?: string
+  [key: string]: unknown
+}
+
+// Polyline
+function addPolyline(
+  points: LinePoint[] | null | undefined,
+  options: LineStyleOptions,
+  layer: L.LayerGroup
+): void {
+  let fitted: unknown = coordsToFit(points)
+  if (Array.isArray(fitted)) {
+    fitted = (fitted as LinePoint[]).filter((point) => point)
+  }
+  if (!Array.isArray(fitted) || fitted.length === 0) return
+
+  const list = fitted as LinePoint[]
+
+  const polyline = window.L!.polyline(
+    list.map((point) => [point.latitude, point.longitude] as L.LatLngExpression),
     {
-      color: options?.color || 'red'
+      color: (options?.color as string) || 'red'
     }
   )
   polyline.addTo(layer)

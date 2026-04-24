@@ -21,7 +21,7 @@ export default () => {
           ref={modalRef}
           open={open}
           onClose={() => setOpen(false)}
-          footerRender={({ close }) => (
+          footerRender={({ onClose }) => (
             <Page.Footer>
               <FooterBar>
                 <FooterBar.Button
@@ -48,7 +48,7 @@ export default () => {
                   backgroundColor="primary"
                   onClick={() => {
                     console.log('confirm')
-                    close()
+                    onClose?.()
                   }}
                 >
                   Ok

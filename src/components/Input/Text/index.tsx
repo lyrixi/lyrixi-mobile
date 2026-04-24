@@ -16,6 +16,68 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+type TextInputElement = (HTMLInputElement | HTMLTextAreaElement) & {
+  composing?: boolean
+  preventBlur?: boolean
+}
+
+export interface InputTextRef {
+  element: HTMLDivElement | null
+  inputElement: TextInputElement | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: () => TextInputElement | null
+  correctValue: (val: string | number) => string | number
+  focus: () => void
+  blur: () => void
+}
+
+export interface InputTextProps {
+  id?: string
+  name?: string
+  type?: string
+  value?: string
+  placeholder?: string
+  formatter?: (value: string) => React.ReactNode
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  autoFocus?: boolean
+  autoSelect?: boolean
+  enableCompositionEnd?: boolean
+  style?: React.CSSProperties
+  className?: string
+  inputRender?: (params: Record<string, unknown>) => React.ReactNode
+  leftIconNode?: React.ReactNode
+  rightIconNode?: React.ReactNode
+  clearRender?: (params: {
+    clearable: boolean
+    allowClear?: boolean
+    onClear: (e?: React.MouseEvent | React.TouchEvent) => void
+    onTouchStart?: (e?: React.TouchEvent) => void
+  }) => React.ReactNode | undefined
+  precision?: number
+  trim?: boolean
+  max?: number
+  min?: number
+  maxLength?: number
+  inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode']
+  enterKeyHint?: React.InputHTMLAttributes<HTMLInputElement>['enterKeyHint']
+  autoComplete?: string
+  autoCorrect?: string
+  spellCheck?: boolean | 'true' | 'false'
+  cursor?: boolean | null
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+  onChange?: (value: string, meta?: { action: string }) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onInput?: React.FormEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onCompositionStart?: React.CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
+}
+
 const InputText = (
   {
     id,
@@ -66,15 +128,15 @@ const InputText = (
     onFocus,
     onKeyDown,
     onPressEnter
-  },
-  ref
+  }: InputTextProps,
+  ref: React.Ref<InputTextRef>
 ) => {
   // 输入框展示值
   const displayValue = typeof formatter === 'function' ? formatter(value) : null
 
   // Elements
-  const rootRef = useRef(null)
-  const inputRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<TextInputElement | null>(null)
 
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
@@ -109,11 +171,11 @@ const InputText = (
     let val = ''
 
     // 矫正为正确的值
-    val = correctValue(value)
+    val = String(correctValue(value))
 
     // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
     if (val && value && String(val) !== String(value)) {
-      onChange(val, { action: 'load' })
+      onChange && onChange(val, { action: 'load' })
     }
   }, []) // eslint-disable-line
 
@@ -128,7 +190,7 @@ const InputText = (
   }, [value, enableCompositionEnd])
 
   // 矫正最大长度和小数位截取
-  function correctValue(val) {
+  function correctValue(val: string | number): string | number {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
 
@@ -141,10 +203,13 @@ const InputText = (
       inputRef.current.select()
     }
     // 设置光标位置到文本末尾(number框不支持)
-    else if (inputRef.current.value.length && inputRef.current.setSelectionRange) {
+    else if (
+      inputRef.current.value.length &&
+      (inputRef.current as HTMLInputElement).setSelectionRange
+    ) {
       const length = inputRef.current.value.length
       try {
-        inputRef.current.setSelectionRange(length, length)
+        ;(inputRef.current as HTMLInputElement).setSelectionRange(length, length)
       } catch (e) {
         console.log(e)
       }
@@ -152,7 +217,7 @@ const InputText = (
   }
 
   // 获取焦点时, 如果readOnly或者disabled时, 需要立即失去焦点, 解决ios会出现底栏的问题
-  function handleFocus(e) {
+  function handleFocus(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
     if (readOnly || disabled) {
       e.target.blur()
       return
@@ -161,8 +226,8 @@ const InputText = (
   }
 
   // 修改值
-  async function handleChange(e) {
-    let target = e.target
+  async function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const target = e.target as TextInputElement
     // enableCompositionEnd 时，组合中不触发 onChange（由 handleCompositionEnd 落字后触发）
     if (enableCompositionEnd && target?.composing) {
       return
@@ -177,9 +242,9 @@ const InputText = (
     // 矫正maxLength和小数点位数(不能矫正其它框，因为矫正将无法输入中文)
     if (val && type === 'number') {
       // 不能校验最小值，因为min={0.1}时，无法删除
-      val = minMaxFormatter(val, { max })
-      val = precisionFormatter(val, { precision, trim: false })
-      val = maxLengthFormatter(val, { maxLength })
+      val = String(minMaxFormatter(val, { max }))
+      val = String(precisionFormatter(val, { precision, trim: false }))
+      val = String(maxLengthFormatter(val, { maxLength }))
       if (target.value !== val) {
         target.value = val
       }
@@ -190,18 +255,20 @@ const InputText = (
   }
 
   // enableCompositionEnd输入完成触发onChange: 输入法开始组合（如拼音未选字）
-  function handleCompositionStart(e) {
-    e.target.composing = true
+  function handleCompositionStart(
+    e: React.CompositionEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    ;(e.target as TextInputElement).composing = true
   }
 
   // enableCompositionEnd输入完成触发onChange: 输入法结束组合（选字/回车落字后）, 再触发 onChange
-  function handleCompositionEnd(e) {
-    e.target.composing = false
-    handleChange(e)
+  function handleCompositionEnd(e: React.CompositionEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    ;(e.target as TextInputElement).composing = false
+    handleChange(e as unknown as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
   }
 
   // 数值框失去焦点, 校验最大值和最小值
-  function handleBlur(e) {
+  function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
     if (readOnly || disabled) {
       return
     }
@@ -216,9 +283,9 @@ const InputText = (
     // 数值框失焦时需要矫正数值
     if (type === 'number') {
       // 正常输入：矫正最大最小值、小数点、最大长度
-      if (val && !isNaN(val)) {
+      if (val && !isNaN(Number(val))) {
         // 纠正数字
-        val = correctValue(val)
+        val = String(correctValue(val))
       }
       // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
       else {
@@ -233,17 +300,20 @@ const InputText = (
       if (onChange) onChange(val, { action: 'blur' })
     }
 
-    if (!inputRef.current?.preventBlur) {
+    const inputEl = inputRef.current
+    if (!inputEl?.preventBlur) {
       if (onBlur) onBlur(e)
     }
   }
 
   // 点击清除(blur生效)
-  async function handleClear(e) {
-    e && e?.stopPropagation?.()
+  async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
+    e && (e as React.SyntheticEvent)?.stopPropagation?.()
 
     // 删除阻止blur
-    delete inputRef?.current?.preventBlur
+    if (inputRef.current) {
+      delete inputRef.current.preventBlur
+    }
 
     // 获取焦点
     focus()
@@ -252,7 +322,7 @@ const InputText = (
     typeof onChange === 'function' && onChange('', { action: 'clickClear' })
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) {
     onKeyDown && onKeyDown(e)
     if (typeof onPressEnter !== 'function') return
     // 监听 Enter 键（keyCode 13 或 'Enter'）
@@ -261,7 +331,7 @@ const InputText = (
       e.preventDefault()
 
       // 失焦收起键盘（移动端）
-      e.target.blur()
+      e.currentTarget.blur()
 
       // 执行搜索
       onPressEnter(e)
@@ -300,7 +370,7 @@ const InputText = (
       return (
         <div className="lyrixi-input-autoSize">
           <textarea
-            ref={inputRef}
+            ref={inputRef as React.RefObject<HTMLTextAreaElement>}
             name={name}
             // Value & Display Value
             {...(enableCompositionEnd ? { defaultValue: value } : { value })}
@@ -339,7 +409,7 @@ const InputText = (
       // 如果值绑定属性,则只有通过父组件的prop来改变值
       return (
         <textarea
-          ref={inputRef}
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           name={name}
           // Value & Display Value
           {...(enableCompositionEnd ? { defaultValue: value } : { value })}
@@ -373,7 +443,7 @@ const InputText = (
     // 其它类型
     return (
       <input
-        ref={inputRef}
+        ref={inputRef as React.RefObject<HTMLInputElement>}
         name={name}
         type={type} // number类型需要text，否则focus无法设置光标到末尾
         // Value & Display Value
@@ -456,14 +526,16 @@ const InputText = (
       {disabled || !allowClear
         ? null
         : getClearNode({
-          clearRender,
-          allowClear,
-          value,
-          onClear: handleClear,
-          onTouchStart: (e) => {
-            inputRef.current.preventBlur = true
-          }
-        })}
+            clearRender,
+            allowClear,
+            value,
+            onClear: handleClear,
+            onTouchStart: () => {
+              if (inputRef.current) {
+                inputRef.current.preventBlur = true
+              }
+            }
+          })}
 
       {/* Right */}
       {rightIconNode}

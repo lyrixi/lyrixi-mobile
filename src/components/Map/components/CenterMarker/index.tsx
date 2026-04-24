@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import type * as L from 'leaflet'
+import type { MapContainerAPI } from './../MapContainer'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import createCenterMarkerIcon from './createCenterMarkerIcon'
 import addCenterMarker from './addCenterMarker'
@@ -8,37 +10,51 @@ import clearCenterMarker from './clearCenterMarker'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-// 中心点标注
-const CenterMarker = forwardRef(
+interface MapPoint {
+  latitude?: number | string
+  longitude?: number | string
+  type?: string
+  icon?: unknown
+  onClick?: (info: MapPoint) => void
+  [key: string]: unknown
+}
+
+interface CenterMarkerProps {
+  value?: MapPoint | null
+  style?: React.CSSProperties
+  className?: string
+  map?: MapContainerAPI
+  icon?: L.Icon | L.DivIcon | null
+  onClick?: ((info: MapPoint) => void) | null
+  onDragStart?: ((map: MapContainerAPI) => void) | null
+  onDragEnd?: ((map: MapContainerAPI) => void) | null
+}
+
+interface CenterMarkerRef {
+  element: HTMLSpanElement | null
+  getElement: () => HTMLSpanElement | null
+}
+
+const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
   (
     {
-      // Value & Display Value
       value,
-
-      // Style
       style,
       className,
-
-      // Element
       map,
       icon,
-
-      // Events
       onClick,
       onDragStart,
       onDragEnd
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLSpanElement>(null)
 
-    // Default Icon
     const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
 
-    // Center Marker layer
-    const centerMarkerLayerRef = useRef(null)
+    const centerMarkerLayerRef = useRef<L.LayerGroup | null>(null)
 
-    // Expose
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -47,8 +63,8 @@ const CenterMarker = forwardRef(
     })
 
     useEffect(() => {
-      // Center marker layer init
-      centerMarkerLayerRef.current = window.L.layerGroup().addTo(map.leafletMap)
+      if (!map?.leafletMap) return
+      centerMarkerLayerRef.current = window.L!.layerGroup().addTo(map.leafletMap)
 
       return () => {
         clearCenterMarker(centerMarkerLayerRef.current)
@@ -60,12 +76,12 @@ const CenterMarker = forwardRef(
       if (!value?.longitude || !value?.latitude || !value?.type) {
         return
       }
-      // Destroy clear center marker
       clearCenterMarker(centerMarkerLayerRef.current)
-      map.onDragStart = null
-      map.onDragEnd = null
+      if (map) {
+        map.onDragStart = null
+        map.onDragEnd = null
+      }
 
-      // Add center marker and drag interaction
       addCenterMarker(
         {
           longitude: value.longitude,
@@ -75,32 +91,32 @@ const CenterMarker = forwardRef(
         },
         {
           onClick: value?.onClick || onClick,
-          icon: icon || createCenterMarkerIcon(markerIcons?.centerMarkerIcon)
+          icon: icon || createCenterMarkerIcon((markerIcons as Record<string, unknown>)?.centerMarkerIcon as Parameters<typeof createCenterMarkerIcon>[0])
         },
         centerMarkerLayerRef.current
       )
 
-      map.onDragStart = (map) => {
-        if (onDragEnd) {
-          rootRef?.current?.classList?.remove?.('lyrixi-active')
+      if (map) {
+        map.onDragStart = (mapAPI: MapContainerAPI) => {
+          if (onDragEnd) {
+            rootRef?.current?.classList?.remove?.('lyrixi-active')
+          }
+          onDragStart && onDragStart(mapAPI)
         }
-        onDragStart && onDragStart(map)
-      }
-      map.onDragEnd = (map) => {
-        if (onDragEnd) {
-          rootRef?.current?.classList?.add?.('lyrixi-active')
-          onDragEnd(map)
+        map.onDragEnd = (mapAPI: MapContainerAPI) => {
+          if (onDragEnd) {
+            rootRef?.current?.classList?.add?.('lyrixi-active')
+            onDragEnd(mapAPI)
+          }
         }
       }
 
       // eslint-disable-next-line
     }, [value])
 
-    // 拖拽过程时显示的点, 拖拽结束隐藏
     return (
       <span
         ref={rootRef}
-        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-map-center-marker lyrixi-active', className)}
       ></span>

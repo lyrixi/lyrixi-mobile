@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import initBridge from './initBridge'
+import initBridge, { InitBridgeConfig } from './initBridge'
 
 // 内库使用-start
 import Theme from './../../utils/Theme'
@@ -24,6 +24,37 @@ window.addEventListener(
   false
 )
 
+interface MapConfig {
+  type: 'bmap' | 'amap' | 'google'
+  key: string
+}
+
+interface ThemeConfig {
+  fontSize?: 'm' | 'l' | 'xl'
+}
+
+interface AppLoadResult {
+  status: string
+  message?: string
+}
+
+interface AppProps {
+  mapConfig?: MapConfig | null
+  bridgeConfig?: InitBridgeConfig | null
+  language?: string | null
+  debugElement?: HTMLElement | null
+  preload?: (() => Promise<AppLoadResult>) | null
+  themeConfig?: ThemeConfig | null
+  children?: React.ReactNode
+}
+
+// Cast Result to avoid missing required props errors from untyped component
+const ResultComponent = Result as React.ComponentType<{
+  status?: string
+  title?: React.ReactNode
+  children?: React.ReactNode
+}>
+
 // 顶层容器
 function App({
   mapConfig = null, // 地图配置 {type: 'bmap' | 'amap' | 'google', key: 'xxx'}
@@ -33,34 +64,34 @@ function App({
   preload = null, // 预加载函数, 返回 {status: 'success'|'error', message: string}
   themeConfig = null, // 主题配置 {fontSize: 'm' | 'l' | 'xl'}
   children
-}) {
+}: AppProps) {
   // result: {status: 'empty'|'error'|'noMore'|'loading', message: string}
-  let [result, setResult] = useState(null)
+  const [result, setResult] = useState<AppLoadResult | null>(null)
 
   async function load() {
     // 加载语言文件
     if (language) {
-      let result = await LocaleUtil.loadLocale(language)
-      if (result.status === 'error') {
-        setResult(result)
+      const langResult = await LocaleUtil.loadLocale(language)
+      if (langResult.status === 'error') {
+        setResult({ status: 'error', message: langResult.message })
         return
       }
     }
 
     // 加载必要的库
     if (preload) {
-      let result = await preload?.()
-      if (result.status === 'error') {
-        setResult(result)
+      const preloadResult = await preload()
+      if (preloadResult.status === 'error') {
+        setResult(preloadResult)
         return
       }
     }
 
     // 启用桥接功能
     if (bridgeConfig && typeof bridgeConfig === 'object') {
-      let result = await initBridge(bridgeConfig)
-      if (result.status === 'error') {
-        setResult(result)
+      const bridgeResult = await initBridge(bridgeConfig)
+      if (bridgeResult.status === 'error') {
+        setResult(bridgeResult)
         return
       }
     }
@@ -80,7 +111,7 @@ function App({
     }
 
     // 启用后门(点击10次后门, 唤醒vconsole调试面板)
-    if (debugElement && debugElement instanceof Element) {
+    if (debugElement && debugElement instanceof HTMLElement) {
       Debugger.addTrigger(debugElement)
     }
 
@@ -96,13 +127,11 @@ function App({
   // Error
   if (result?.status === 'error') {
     return (
-      <Result status={result?.status === 'error' ? '500' : 'empty'} title={result?.message}>
-        {result?.status !== 'empty' ? (
-          <Button className="lyrixi-result-button" color="primary" onClick={() => load('retry')}>
-            {LocaleUtil.locale('重试', 'lyrixi_132c5cdcceb0f1f17c8c088a42959aa4')}
-          </Button>
-        ) : null}
-      </Result>
+      <ResultComponent status="500" title={result?.message}>
+        <Button className="lyrixi-result-button" color="primary" onClick={() => void load()}>
+          {LocaleUtil.locale('重试', 'lyrixi_132c5cdcceb0f1f17c8c088a42959aa4')}
+        </Button>
+      </ResultComponent>
     )
   }
 
@@ -114,8 +143,17 @@ function App({
           type: mapConfig.type,
           key: mapConfig.key
         }}
-        onError={(error) => {
-          setResult(error)
+        onError={(loadError) => {
+          const msg = loadError.message
+          setResult({
+            status: 'error',
+            message:
+              typeof msg === 'string' || typeof msg === 'number'
+                ? String(msg)
+                : msg == null
+                  ? undefined
+                  : '加载失败'
+          })
         }}
       >
         {/* 地图加载完成后才会渲染children */}
@@ -125,7 +163,7 @@ function App({
   }
 
   // Ordinary container
-  return children
+  return <>{children}</>
 }
 
 export default App

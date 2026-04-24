@@ -1,5 +1,5 @@
 // 根据动画判定方向
-function getClassNameByAnimation(animation) {
+function getClassNameByAnimation(animation: string): string {
   // 构建动画
   let position = ''
   switch (animation) {

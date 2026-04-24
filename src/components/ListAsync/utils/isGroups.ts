@@ -1,5 +1,5 @@
-function isGroups(list) {
-  if (Array.isArray(list?.[0]?.children) && list[0].children.length) return true
+function isGroups(list: Record<string, unknown>[] | undefined | null) {
+  if (Array.isArray(list?.[0]?.children) && (list?.[0]?.children as unknown[]).length) return true
   return false
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Chat } from 'lyrixi-mobile'
+import type { ChatRawItem } from './../List/viewFormatter'
 
 export default () => {
   const list = [
@@ -23,12 +24,10 @@ export default () => {
 
   // 使用 formatViewItem 格式化单个项
   // 注意：formatViewItem 和 formatViewList 只需要使用其中一个
-  function formatViewItem(item, { index } = {}) {
+  function formatViewItem(item: ChatRawItem, { index }: { index: number }): ChatRawItem {
     return {
       ...item,
-      // 可以在这里添加或修改显示相关的属性
-      // 原始数据会自动保存在 _raw 中
-      authorNode: item.name || `用户${index + 1}`
+      authorNode: (typeof item.name === 'string' ? item.name : null) || `用户${index + 1}`
     }
   }
 

@@ -23,30 +23,32 @@ import LocaleUtil from './../../utils/LocaleUtil'
 import { DOMUtil, LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
+import { MediaUploaderProps, MediaHandle } from './types'
+
 // 照片上传
 function MediaUploader(
   {
     // Value & Display Value
     mediaType = ['image'],
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
+    list = [],
     maxUploadCount,
     maxChooseCount,
-    platform, // 强制上传平台: browser | wechatMiniProgram | wechat | wecom | wecomMiniProgram | dingtalk
+    platform,
     ellipsis,
     sourceType = ['album', 'camera'],
-    sizeType = ['compressed'], // ['original', 'compressed']
-    isSaveToAlbum = 0, // 是否保存到本地
+    sizeType = ['compressed'],
+    isSaveToAlbum = 0,
     fileImageCompress,
 
     // Status
-    async = false, // 是否异步上传(目前只有app支持)
-    verifyImage = true, // 校验上传完成的图片是否可访问
-    reUpload = true, // 支持重新上传
+    async = false,
+    verifyImage = true,
+    reUpload = true,
     allowClear = false,
     allowChoose = false,
     previewAllowChoose,
     previewAllowClear,
-    compatible = true, // 兼容模式, 允许模式切换（小程序/浏览器）
+    compatible = true,
     timeout,
 
     // Style
@@ -62,22 +64,11 @@ function MediaUploader(
     previewMaskClassName,
 
     // Element
-    uploadRender, // 上传按钮覆盖的dom
+    uploadRender,
     uploadingRender,
     itemRender,
     previewPortal,
     previewCancelPosition,
-    /*
-  格式化上传结果
-  入参:
-  {platform: 'browser', uploadItem: item, result: result}
-  返回格式:
-  {
-    fileThumbnail: 缩略图,
-    fileUrl: 高清图,
-    filePath: 入库路径
-  }
-  */
     getItemExtra,
     getUploadUrl,
     formatChoose,
@@ -89,9 +80,12 @@ function MediaUploader(
     onBeforeChoose,
     onUpload,
     onChange,
-    onPreview
-  },
-  ref
+    onPreview,
+
+    chooseExtraParams,
+    onNavigateTo
+  }: MediaUploaderProps,
+  ref: React.ForwardedRef<MediaHandle>
 ) {
   // 鸿蒙小程序微信8.0后报错: chooselmage: permission denied， 解决方法: 此版本鸿蒙微信有bug，强制同步上传(同步上传会用小程序和浏览器上传)
   if (Device?.os === 'harmony' && platform === 'wechatMiniProgram') {
@@ -103,17 +97,17 @@ function MediaUploader(
   const [compatiblePlatform, setCompatiblePlatform] = useState(platform)
 
   // 5秒间隔自动切成浏览器定位
-  const intervalRef = useRef(new Interval(5000))
+  const intervalRef = useRef(Interval(5000))
 
   useEffect(() => {
-    if (['browser', 'wechatMiniProgram'].includes(platform)) {
+    if (['browser', 'wechatMiniProgram'].includes(platform ?? '')) {
       setCompatiblePlatform(platform)
     }
     // eslint-disable-next-line
   }, [platform])
 
   // 跳转小程序拍摄多媒体两次间隔小于5秒，则使用浏览器拍摄
-  const handleWechatMiniProgramMedia = () => {
+  const handleWechatMiniProgramMedia = async (): Promise<boolean | void> => {
     let isTimeout = intervalRef.current.isTimeout()
     if (isTimeout === false) {
       Toast.show({
@@ -121,7 +115,7 @@ function MediaUploader(
         content: LocaleUtil.locale(
           '检测到您的机型不支持小程序拍照，已强制为您切换成浏览器拍照',
           'lyrixi_9e6eedcd7097658099a215f77cada387'
-        ),
+        ) as string,
         onClose: () => {
           setCompatiblePlatform('browser')
         }
@@ -210,7 +204,12 @@ function MediaUploader(
             onCompatiblePlatformChange={setCompatiblePlatform}
           />
         ) : null}
-        <WechatMiniProgram ref={ref} onNavigateTo={handleWechatMiniProgramMedia} {...commonProps} />
+        <WechatMiniProgram
+          ref={ref}
+          onNavigateTo={handleWechatMiniProgramMedia}
+          chooseExtraParams={chooseExtraParams}
+          {...commonProps}
+        />
       </div>
     )
   }
@@ -247,6 +246,8 @@ function MediaUploader(
   return <Browser ref={ref} {...commonProps} style={style} className={className} />
 }
 
-const MediaUploaderComponent = forwardRef(MediaUploader)
+const MediaUploaderComponent = forwardRef<MediaHandle, MediaUploaderProps>(MediaUploader) as React.ForwardRefExoticComponent<MediaUploaderProps & React.RefAttributes<MediaHandle>> & {
+  uploadList: typeof uploadList
+}
 MediaUploaderComponent.uploadList = uploadList
 export default MediaUploaderComponent

@@ -1,7 +1,7 @@
-import show from './show'
+import show, { type ShowProps } from './show'
 import hide from './hide'
 
-const Toast = {
+const Toast: { defaultProps?: ShowProps; show: typeof show; hide: typeof hide } = {
   show,
   hide
 }

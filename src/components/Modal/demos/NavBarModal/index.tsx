@@ -8,9 +8,9 @@ export default () => {
     setOpen(!open)
   }
 
-  function handleOk({ close }) {
+  function handleOk() {
     console.log('确定按钮被点击')
-    close()
+    setOpen(false)
   }
 
   function handleCancel() {
@@ -30,7 +30,7 @@ export default () => {
           open={open}
           onClose={() => setOpen(false)}
           title="Title"
-          ok="Ok"
+          okNode="Ok"
           // cancel="Cancel"
           onOk={handleOk}
         // onCancel={handleCancel}

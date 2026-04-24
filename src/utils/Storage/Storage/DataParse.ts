@@ -1,7 +1,7 @@
 // 数据存入时使用字符串, 回显时使用原数据类型
 const DataParse = {
   // 入库
-  stringify: function (val) {
+  stringify: function (val: unknown): string {
     if (typeof val === 'number') {
       return '_number:' + val.toString()
     }
@@ -24,7 +24,7 @@ const DataParse = {
     return ''
   },
   // 出库
-  parse: function (val) {
+  parse: function (val: unknown): unknown {
     if (!val || typeof val !== 'string') {
       return val
     }

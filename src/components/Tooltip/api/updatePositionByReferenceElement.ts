@@ -1,46 +1,64 @@
 import getPositionByReferenceElement from './getPositionByReferenceElement'
 import getRelativePosition from './getRelativePosition'
 
+interface UpdateOptions {
+  referenceElement?: HTMLElement | null
+  parentElement?: HTMLElement | null
+  animation?: string
+  bottom?: string | number | null
+  top?: string | number | null
+  left?: string | number | null
+  right?: string | number | null
+  offset?: {
+    top?: number
+    bottom?: number
+    left?: number
+    right?: number
+  }
+}
+
 // 修改元素位置相对于参考元素的定位
 function updatePositionByReferenceElement(
-  current,
-  { referenceElement, parentElement, animation, bottom, top, left, right, offset } = {}
+  current: HTMLElement,
+  { referenceElement, parentElement, animation = '', bottom, top, left, right, offset }: UpdateOptions = {}
 ) {
   // 自动计算位置
   let position =
     referenceElement && parentElement
       ? getRelativePosition({ targetElement: referenceElement, parentElement, animation })
-      : getPositionByReferenceElement({ referenceElement, animation })
+      : getPositionByReferenceElement({ referenceElement: referenceElement || null, animation })
+
+  if (!position) return
 
   // 自定义位置
-  if (![undefined, null].includes(bottom)) {
-    current.style.bottom = bottom
-  } else if (![undefined, null].includes(top)) {
-    current.style.top = top
+  if (![undefined, null].includes(bottom as null)) {
+    current.style.bottom = String(bottom)
+  } else if (![undefined, null].includes(top as null)) {
+    current.style.top = String(top)
   }
   // 从下往上弹-计算位置
   else if (typeof position.bottom === 'number') {
-    current.style.bottom = parseInt(position.bottom + (offset?.bottom || 0)) + 'px'
+    current.style.bottom = parseInt(String(position.bottom + (offset?.bottom || 0))) + 'px'
   }
   // 从上往下弹
   else if (typeof position.top === 'number') {
-    current.style.top = parseInt(position.top + (offset?.top || 0)) + 'px'
+    current.style.top = parseInt(String(position.top + (offset?.top || 0))) + 'px'
   }
 
   // 自定义位置
-  if (![undefined, null].includes(left)) {
-    current.style.left = left
-  } else if (![undefined, null].includes(right)) {
-    current.style.right = right
+  if (![undefined, null].includes(left as null)) {
+    current.style.left = String(left)
+  } else if (![undefined, null].includes(right as null)) {
+    current.style.right = String(right)
   }
   // 左右弹出-计算位置
   // 左侧弹出
   else if (typeof position.left === 'number') {
-    current.style.left = parseInt(position.left + (offset?.left || 0)) + 'px'
+    current.style.left = parseInt(String(position.left + (offset?.left || 0))) + 'px'
   }
   // 右侧弹出
   else if (typeof position.right === 'number') {
-    current.style.right = parseInt(position.right + (offset?.right || 0)) + 'px'
+    current.style.right = parseInt(String(position.right + (offset?.right || 0))) + 'px'
   }
 }
 

@@ -1,19 +1,23 @@
-// 根据id, 取出此id的后代节点数据, 即[{id: '', name: '', parentid: ''}]
-function getFlatTreeDescendantNodes(tree, id) {
-  // eslint-disable-next-line
-  if (typeof id === 'number') id = String(id)
+interface FlatNode extends Record<string, unknown> {
+  id: string | number
+  parentid?: string | number | null
+}
 
-  let descendants: unknown[] = []
-  function buildDescendants(tree, id) {
-    for (let i = 0; i < tree.length; i++) {
-      const item = tree[i]
-      if (id && item['parentid'] === id.toString()) {
+// 根据id, 取出此id的后代节点数据, 即[{id: '', name: '', parentid: ''}]
+function getFlatTreeDescendantNodes(tree: FlatNode[], id: string | number): FlatNode[] {
+  const strId = String(id)
+  const descendants: FlatNode[] = []
+
+  function buildDescendants(nodes: FlatNode[], parentId: string): void {
+    for (const item of nodes) {
+      if (parentId && String(item['parentid']) === parentId) {
         descendants.push(item)
-        buildDescendants(tree, item['id'])
+        buildDescendants(nodes, String(item['id']))
       }
     }
   }
-  buildDescendants(tree, id)
+
+  buildDescendants(tree, strId)
   return descendants
 }
 

@@ -1,5 +1,4 @@
-// 校验照片是否存在
-function accessImageSrc(src) {
+function accessImageSrc(src: string): Promise<boolean> {
   return new Promise((resolve) => {
     let img = new Image()
     img.src = src

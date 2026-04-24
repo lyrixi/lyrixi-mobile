@@ -1,5 +1,5 @@
 // 获取文件类型
-function getAccept(types) {
+function getAccept(types: string[] | undefined) {
   if (!Array.isArray(types) || !types.length) return ''
   let accepts = types.map((type) => {
     if (type === 'image') {

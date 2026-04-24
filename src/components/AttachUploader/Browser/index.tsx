@@ -1,167 +1,159 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Attach from './../../Attach'
+import type { AttachRef, AttachListItem } from './../../Attach/Attach'
 // 内库使用-end
+
+import type { AttachUploaderItem, AttachUploaderBaseProps } from './../types'
+import type { AttachNativeFilePayload } from './../../Attach/types'
 
 /* 测试使用-start
 import { LocaleUtil, Toast, Attach } from 'lyrixi-mobile'
 测试使用-end */
 
-// 照片上传
-function Browser(
-  {
-    // Value & Display Value
-    list = [],
-    /*
-  [
-    {
-      fileUrl: "全路径(必传)",
-      filePath: "入库路径(必传)",
-      fileName: "文件名(必传)",
-      fileSize: "文件大小(字节)",
-      status: "choose|uploading|error|success",
-    },
-  ]
-  */
-    maxCount = 5,
-    maxChooseCount = 1,
-    sourceType = ['album', 'camera'],
-    maxSize,
+function toToastString(s: string | import('react').ReactNode): string {
+  return typeof s === 'string' ? s : ''
+}
 
-    // Status
-    async = false, // 是否异步上传(目前只有app支持)
-    reUpload = true, // 支持重新上传
+type BrowserProps = Omit<AttachUploaderBaseProps, 'onFileChange' | 'onUpload'>
+
+const Browser = forwardRef<AttachRef, BrowserProps>(function Browser(
+  {
+    list = [],
+    maxCount = 5,
+    maxChooseCount: _maxChooseCount = 1,
+    sourceType: sourceTypeProp = ['album', 'camera'],
+    maxSize,
+    async = false,
+    reUpload = true,
     allowClear = true,
     allowChoose = true,
-
-    // Style
     className,
     uploadPosition,
-
-    // Element
-    uploadRender, // 上传按钮覆盖的dom
+    uploadRender,
     uploadingRender,
     itemRender,
-
-    // Preview Server
     previewPortal,
     previewServerUrl,
     previewServerSourceType,
-    /*
-  格式化上传结果
-  入参:
-  {platform: 'browser', uploadItem: item, result: result}
-  返回格式:
-  {
-    fileUrl: 高清图,
-    filePath: 入库路径,
-    fileName: 文件名,
-    fileSize: 文件大小(字节),
-  }
-  */
     getUploadUrl,
     formatHeaders,
     formatPayload,
     formatResponse,
-
-    // Events
     onBeforeChoose,
-    // onUpload,
     onChange,
     onPreview
   },
   ref
 ) {
-  const attachRef = useRef(null)
+  const attachRef = useRef<AttachRef | null>(null)
 
-  useImperativeHandle(ref, () => {
+  const sourceTypeList = useMemo((): string[] => {
+    if (sourceTypeProp == null) return ['album', 'camera']
+    return Array.isArray(sourceTypeProp) ? sourceTypeProp : [sourceTypeProp]
+  }, [sourceTypeProp])
+
+  useImperativeHandle(ref, (): AttachRef => {
+    const base = attachRef.current
     return {
-      ...attachRef.current,
-      chooseFile: () => {
+      element: base?.element ?? null,
+      getElement: () => base?.getElement() ?? null,
+      updateStatus: () => {
+        base?.updateStatus()
+      },
+      chooseFile: async () => {
         Toast.show({
-          content: LocaleUtil.locale(
-            '浏览器上传模式, 不支持编程式调用拍照',
-            'lyrixi_18a8c44715538c3079cf8bf9fd46fe82'
+          content: toToastString(
+            LocaleUtil.locale(
+              '浏览器上传模式, 不支持编程式调用拍照',
+              'lyrixi_18a8c44715538c3079cf8bf9fd46fe82',
+              undefined
+            )
           )
         })
         return false
+      },
+      choose: (e) => (base ? base.choose(e) : Promise.resolve(false)),
+      uploadList: (nl, m) => (base ? base.uploadList(nl, m) : Promise.resolve([])),
+      showLoading: (o) => {
+        base?.showLoading(o)
+      },
+      hideLoading: (o) => {
+        base?.hideLoading(o)
       }
     }
   })
 
-  // 上传文件
-  async function uploadItem(item) {
-    // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
-    let newItem = await _uploadItem(item, {
+  async function uploadItem(item: AttachUploaderItem) {
+    const newItem = await _uploadItem(item, {
       getUploadUrl,
       formatHeaders,
       formatPayload,
       formatResponse
     })
-
     console.log('浏览器上传后新item:', newItem)
-    // 更新状态
     return newItem
   }
 
-  // 选择文件
-  async function handleChoose(localFile) {
-    // eslint-disable-next-line
-    return new Promise(async (resolve) => {
-      // 前置校验
-      if (typeof onBeforeChoose === 'function') {
-        let isOk = await onBeforeChoose()
-        if (isOk === false) {
-          resolve(false)
-          return
-        }
-      }
+  function isNativePayload(
+    a: import('react').ChangeEvent<HTMLInputElement> | AttachNativeFilePayload
+  ): a is AttachNativeFilePayload {
+    return typeof a === 'object' && a != null && 'fileName' in a && 'status' in a
+  }
 
-      resolve({
+  async function handleFileOrNative(
+    arg: import('react').ChangeEvent<HTMLInputElement> | AttachNativeFilePayload
+  ): Promise<unknown> {
+    if (!isNativePayload(arg)) {
+      return undefined
+    }
+    if (typeof onBeforeChoose === 'function') {
+      const isOk = await onBeforeChoose()
+      if (isOk === false) {
+        return
+      }
+    }
+    return [
+      {
         status: 'choose',
-        localFile: localFile,
-        fileSize: localFile.fileSize,
-        fileUrl: localFile.fileUrl
-      })
-    })
+        localFile: { ...arg },
+        fileSize: arg.fileSize,
+        fileUrl: arg.fileUrl,
+        fileName: arg.fileName
+      } as AttachListItem
+    ]
   }
 
   return (
     <Attach
       ref={attachRef}
-      // Value & Display Value
-      list={list}
+      list={list as AttachListItem[]}
       maxCount={maxCount}
-      sourceType={sourceType}
+      sourceType={sourceTypeList}
       maxSize={maxSize}
-      // Status
       async={async}
       reUpload={reUpload}
       allowChoose={allowChoose}
       allowClear={allowClear}
-      // Style
       className={className}
       uploadPosition={uploadPosition}
-      // Element
       uploadRender={uploadRender}
       uploadingRender={uploadingRender}
       itemRender={itemRender}
-      // Preview Server
       previewPortal={previewPortal}
       previewServerUrl={previewServerUrl}
       previewServerSourceType={previewServerSourceType}
-      // Events
       onBeforeChoose={onBeforeChoose}
-      onFileChange={handleChoose}
+      onFileChange={handleFileOrNative}
       onUpload={uploadItem}
       onChange={onChange}
       onPreview={onPreview}
     />
   )
-}
+})
 
-export default forwardRef(Browser)
+export default Browser

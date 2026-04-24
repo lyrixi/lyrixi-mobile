@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PreviewReload = ({ onReUpload }) => {
+const PreviewReload = ({ onReUpload }: { onReUpload?: () => void }) => {
   return (
     <div
       className="lyrixi-media-preview-main-reload"

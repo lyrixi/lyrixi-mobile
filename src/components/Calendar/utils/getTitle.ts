@@ -7,7 +7,7 @@ import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取标题字符串
-function getTitle(drawDate, { type } = {}) {
+function getTitle(drawDate: Date | null | undefined, { type }: { type?: string | null } = {}) {
   if (!drawDate) {
     return ''
   }

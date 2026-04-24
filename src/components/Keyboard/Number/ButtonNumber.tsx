@@ -7,8 +7,14 @@ import DOMUtil from '../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-const ButtonNumber = ({ children, onClick, className = '' }) => {
-  const handleClick = (e) => {
+interface ButtonNumberProps {
+  onClick?: (value: React.ReactNode) => void
+  className?: string
+  children?: React.ReactNode
+}
+
+const ButtonNumber = ({ children, onClick, className = '' }: ButtonNumberProps) => {
+  const handleClick = (e: React.TouchEvent<HTMLDivElement>) => {
     e.stopPropagation()
     if (onClick) {
       onClick(children)

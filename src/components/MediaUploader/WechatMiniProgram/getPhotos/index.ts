@@ -7,13 +7,22 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// Get photos by polling interval
-function getPhotos(id, { url, formatResponse }) {
+interface GetPhotosResponse {
+  status: string
+  code?: string
+  message?: string
+  data?: unknown
+}
+
+function getPhotos(
+  id: string,
+  { url, formatResponse }: { url: string; formatResponse?: (r: GetPhotosResponse, ctx: { platform: string }) => GetPhotosResponse | Promise<GetPhotosResponse> }
+): Promise<unknown> {
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
         console.log('服务器返回照片结果:', result)
-        let response = {
+        let response: GetPhotosResponse = {
           status: 'success',
           code: '',
           message: '',
@@ -22,28 +31,21 @@ function getPhotos(id, { url, formatResponse }) {
         if (typeof formatResponse === 'function') {
           response = await formatResponse(
             { status: 'success', code: '', message: '', data: result },
-            {
-              platform: 'wechatMiniProgram'
-            }
+            { platform: 'wechatMiniProgram' }
           )
         }
 
         console.log('照片格式化完成:', response)
-        // 成功, response.data为新格式化后的新item: {fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'success' | 'error'}
         if (response.status === 'success') {
           resolve(response.data)
-        }
-        // 失败
-        else if (response.status === 'error') {
+        } else if (response.status === 'error') {
           resolve(response.message)
-        }
-        // 加载中
-        else {
+        } else {
           resolve(null)
         }
       })
-      .catch((error) => {
-        resolve(LocaleUtil.locale('获取照片异常', 'lyrixi_a189fb8a40ac4d851d6888b886c0022f'))
+      .catch(() => {
+        resolve(LocaleUtil.locale('获取照片异常', 'lyrixi_a189fb8a40ac4d851d6888b886c0022f') as string)
       })
   })
 }

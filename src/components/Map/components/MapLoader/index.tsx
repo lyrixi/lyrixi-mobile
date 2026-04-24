@@ -12,68 +12,57 @@ import Button from './../../../Button'
 import { LocaleUtil, Result, Button } from 'lyrixi-mobile'
 测试使用-end */
 
-// Load map js and css source
-const MapLoader = forwardRef(
+interface LoadResult {
+  status: 'success' | 'error'
+  message?: string | React.ReactNode
+  data?: unknown
+  [key: string]: unknown
+}
+
+interface MapLoaderProps {
+  config?: {
+    key?: string
+    type?: string
+    leaflet?: { css?: string; js?: string }
+    [key: string]: unknown
+  }
+  getAddress?: ((...args: unknown[]) => unknown) | null
+  getLocation?: ((...args: unknown[]) => unknown) | null
+  openLocation?: ((...args: unknown[]) => unknown) | null
+  queryNearby?: ((...args: unknown[]) => unknown) | null
+  loadingRender?: (() => React.ReactNode) | null
+  loadingNode?: React.ReactNode
+  children?: React.ReactNode
+  onError?: ((result: LoadResult & { reload?: () => void }) => Promise<LoadResult | undefined> | LoadResult | undefined | void) | null
+  onSuccess?: ((result: { status: string; map: { reload: () => void } }) => void) | null
+}
+
+interface MapLoaderRef {
+  reload: () => void
+}
+
+const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
   (
     {
-      // Value & Display Value
-      /*
-      {
-        key: '地图的key',
-        type: 'bmap' | 'amap' | 'google',
-        markerIcons: {
-          centerMarkerIcon: {
-            iconUrl: `中心点图标`,
-            iconRetinaUrl: `中心点图标2x`,
-            shadowUrl: `阴影图标`,
-            shadowRetinaUrl: `阴影图标2x`,
-            shadowSize: [39, 39],
-            iconSize: [30, 49],
-            iconAnchor: [15, 25]
-          },
-          markerIcon: {
-            iconUrl: `点位图标`,
-            iconRetinaUrl: `点位图标2x`,
-            shadowUrl: `阴影图标`,
-            shadowRetinaUrl: `阴影图标2x`,
-            shadowSize: [33, 33],
-            iconSize: [20, 33],
-            iconAnchor: [10, 16]
-          }
-        },
-        leaflet: {
-          css: `leaflet.css网络地址`,
-          js: `leaflet.js网络地址`
-        }
-      }
-      */
       config,
-
-      // Utils
       getAddress,
       getLocation,
       openLocation,
       queryNearby,
-
-      // Element
       loadingRender,
       loadingNode,
       children,
-
-      // Events
       onError,
       onSuccess
     },
     ref
   ) => {
-    // result: {status: 'success'|'error', data: any, message: string}
-    let [result, setResult] = useState(null)
+    let [result, setResult] = useState<LoadResult | null>(null)
 
-    const APIRef = useRef({
+    const APIRef = useRef<MapLoaderRef>({
       reload: loadData
     })
 
-    // 节点
     useImperativeHandle(ref, () => {
       return APIRef.current
     })
@@ -83,23 +72,18 @@ const MapLoader = forwardRef(
       // eslint-disable-next-line
     }, [])
 
-    // 加载
     async function loadData() {
-      // Utils
       if (typeof getAddress === 'function') window.defaultGetAddress = getAddress
       if (typeof getLocation === 'function') window.defaultGetLocation = getLocation
       if (typeof openLocation === 'function') window.defaultOpenLocation = openLocation
       if (typeof queryNearby === 'function') window.defaultQueryNearby = queryNearby
 
-      // 地图Key/Type/MarkerIcons/Leaflet配置
       if (config?.key && config?.type) {
         window.MapLoaderConfig = {
           ...window.MapLoaderConfig,
           ...config
         }
-      }
-      // 没有设置config，则读取默认配置
-      else if (window.MapLoaderConfig) {
+      } else if (window.MapLoaderConfig) {
         // eslint-disable-next-line
         config = window.MapLoaderConfig
       }
@@ -115,34 +99,30 @@ const MapLoader = forwardRef(
         return
       }
 
-      // Load map resource
-      result = await loadSource(window.MapLoaderConfig)
-      if (result?.status === 'error') {
-        // 自定义处理错误
+      let loadResult: LoadResult = await loadSource(window.MapLoaderConfig) as LoadResult
+      if (loadResult?.status === 'error') {
         if (onError) {
-          let newResult = await onError({ ...result, ...APIRef.current })
+          const newResult = await onError({ ...loadResult, ...APIRef.current })
           if (newResult !== undefined) {
-            result = newResult
+            loadResult = newResult
           }
         }
       } else {
         onSuccess && onSuccess({ status: 'success', map: APIRef.current })
       }
-      setResult(result)
+      setResult(loadResult)
     }
 
-    // 未加载完成显示空
     if (result === null) {
       if (loadingNode) {
-        return loadingNode
+        return <>{loadingNode}</>
       }
       if (loadingRender) {
-        return loadingRender()
+        return <>{loadingRender()}</>
       }
       return null
     }
 
-    // 加载失败
     if (result.status === 'error' && typeof result.message === 'string') {
       return (
         <Result title={result.message} className="lyrixi-map-container-result" status={'500'}>
@@ -159,19 +139,15 @@ const MapLoader = forwardRef(
       )
     }
 
-    // onError可自定义渲染自定义DOM
     if (result.message && React.isValidElement(result.message)) {
-      return result.message
+      return result.message as React.ReactElement
     }
 
-    // Add leaflet plugin: canvas markers(window.L.canvasIconLayer)
     if (window.L) {
       canvasMarkers(window.L)
     }
-    // require('leaflet-canvas-marker')
 
-    // 加载成功
-    return children
+    return <>{children}</>
   }
 )
 

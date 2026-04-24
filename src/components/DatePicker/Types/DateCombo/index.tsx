@@ -1,6 +1,8 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../Combo'
 import Combo from './Combo'
+import type { DatePickerComboProps } from './../../datePickerTypes'
+import type { ComboProps } from './../../../Input/Select'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -12,94 +14,100 @@ import Input from './../../../Input'
 import { DateUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
+type DateComboPropsLocal = {
+  value?: Date | null
+  type: string
+  min?: Date | null
+  max?: Date | null
+  style?: React.CSSProperties
+  className?: string
+  onChange?: (value: Date) => void
+}
+
 // 日期类型选择控件: 年月日季
-const DateCombo = forwardRef(
-  (
-    {
-      // Value & Display Value
-      value,
-      // Status
-      type,
-      min,
-      max,
-      // Style
-      style,
-      className,
+const DateCombo = forwardRef<unknown, DateComboPropsLocal>(function TypesDateCombo(
+  {
+    // Value & Display Value
+    value,
+    // Status
+    type,
+    min,
+    max,
+    // Style
+    style,
+    className,
 
-      // Events
-      onChange
-    },
-    ref
-  ) => {
-    // 向前
-    function handlePrev(e) {
-      if (!value) return
-      let newValue = updateValue(value, -1)
-      onChange && onChange(newValue)
-    }
-
-    // 向后
-    function handleNext(e) {
-      if (!value) return
-      let newValue = updateValue(value, 1)
-      onChange && onChange(newValue)
-    }
-
-    /**
-     * 切换日期
-     * @param {Date} newValue 日期
-     * @param {Number} go 前行后退, 0: 当前; -1: 后退; 1: 前进;
-     */
-    function updateValue(value, go = 0) {
-      let newValue = value
-      if (['year', 'quarter', 'month', 'date'].includes(type) === false) {
-        return
-      }
-      if (newValue instanceof Date === false) {
-        newValue = new Date()
-      }
-      if (type === 'date') {
-        // eslint-disable-next-line
-        type = 'day'
-      }
-
-      if (typeof go === 'number') {
-        return DateUtil.add(newValue, go, type)
-      }
-
-      return newValue
-    }
-
-    return (
-      <>
-        <Input.IconLeftArrow
-          className="lyrixi-datepicker-types-combo-previous"
-          onClick={handlePrev}
-        />
-        <DatePickerCombo
-          value={value}
-          type={type}
-          min={min}
-          max={max}
-          onChange={onChange}
-          comboRender={({ comboRef, onClick }) => {
-            return (
-              <Combo
-                ref={comboRef}
-                className={DOMUtil.classNames('lyrixi-datepicker-types-combo-date', className)}
-                style={style}
-                onClick={onClick}
-                type={type}
-                value={value}
-              />
-            )
-          }}
-          ref={ref}
-        />
-        <Input.IconRightArrow className="lyrixi-datepicker-types-combo-next" onClick={handleNext} />
-      </>
-    )
+    // Events
+    onChange
+  },
+  ref
+) {
+  // 向前
+  function handlePrev(e: MouseEvent) {
+    if (!value) return
+    const newValue = updateValue(value, -1)
+    if (newValue) onChange && onChange(newValue)
   }
-)
+
+  // 向后
+  function handleNext(e: MouseEvent) {
+    if (!value) return
+    const newValue = updateValue(value, 1)
+    if (newValue) onChange && onChange(newValue)
+  }
+
+  function updateValue(val: Date, go = 0) {
+    let newValue: Date = val
+    if (['year', 'quarter', 'month', 'date'].includes(type) === false) {
+      return
+    }
+    if (newValue instanceof Date === false) {
+      newValue = new Date()
+    }
+    let addUnit: string = type
+    if (type === 'date') {
+      addUnit = 'day'
+    }
+
+    if (typeof go === 'number') {
+      return DateUtil.add(newValue, go, addUnit)
+    }
+
+    return newValue
+  }
+
+  return (
+    <>
+      <Input.IconLeftArrow
+        iconClassName="lyrixi-datepicker-types-combo-previous"
+        onClick={handlePrev}
+      />
+      <DatePickerCombo
+        value={value}
+        type={type as DatePickerComboProps['type']}
+        min={min}
+        max={max}
+        onChange={((v) => onChange && v instanceof Date && onChange(v)) as ComboProps['onChange']}
+        comboRender={({ comboRef, onClick }) => {
+          return (
+            <Combo
+              ref={comboRef as Ref<Record<string, unknown> | null>}
+              className={DOMUtil.classNames('lyrixi-datepicker-types-combo-date', className)}
+              style={style}
+              onClick={onClick}
+              type={type}
+              value={value}
+            />
+          )
+        }}
+        ref={ref}
+      />
+      <Input.IconRightArrow
+        iconClassName="lyrixi-datepicker-types-combo-next"
+        onClick={handleNext}
+      />
+    </>
+  )
+})
 
 export default DateCombo

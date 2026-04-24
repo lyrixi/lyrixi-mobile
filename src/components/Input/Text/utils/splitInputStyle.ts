@@ -1,4 +1,6 @@
-function splitStyle(externalStyle) {
+import type { CSSProperties } from 'react'
+
+function splitStyle(externalStyle?: CSSProperties): { style: CSSProperties; inputStyle: CSSProperties } {
   const {
     color,
     fontSize,
@@ -8,10 +10,10 @@ function splitStyle(externalStyle) {
     maxHeight,
     textAlign,
     textIndent,
-    ...style
+    ...rest
   } = externalStyle || {}
 
-  const inputStyle = {}
+  const inputStyle: CSSProperties = {}
   if (color) {
     inputStyle.color = color
   }
@@ -36,6 +38,8 @@ function splitStyle(externalStyle) {
   if (lineHeight) {
     inputStyle.lineHeight = lineHeight
   }
+
+  const style: CSSProperties = rest
 
   // 强制宽度
   if (style?.width && !style?.flex) {

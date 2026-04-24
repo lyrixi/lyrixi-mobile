@@ -4,57 +4,60 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const SpinFade = (
-  {
-    // Style
-    color,
-    size,
-    style,
-    className
-  },
-  ref
-) => {
-  const rootRef = useRef(null)
-  useImperativeHandle(ref, () => {
-    return {
-      element: rootRef.current,
-      getElement: () => {
-        return rootRef.current
-      }
-    }
-  })
-
-  const newStyle = style || {}
-  if (color) {
-    newStyle.color = color
-  }
-  if (size) {
-    newStyle.width = size
-  }
-  if (size) {
-    newStyle.height = size
-  }
-
-  return (
-    <div
-      style={newStyle}
-      className={DOMUtil.classNames('lyrixi-loading-spinfade', className)}
-      ref={rootRef}
-    >
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-      <div className="lyrixi-loading-spinfade-item"></div>
-    </div>
-  )
+interface SpinFadeProps {
+  color?: string
+  size?: string | number
+  style?: React.CSSProperties
+  className?: string
 }
 
-export default forwardRef(SpinFade)
+interface SpinFadeRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+const SpinFade = forwardRef<SpinFadeRef, SpinFadeProps>(
+  ({ color, size, style, className }, ref) => {
+    const rootRef = useRef<HTMLDivElement>(null)
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => {
+          return rootRef.current
+        }
+      }
+    })
+
+    const newStyle: React.CSSProperties = style ? { ...style } : {}
+    if (color) {
+      newStyle.color = color
+    }
+    if (size) {
+      newStyle.width = size
+      newStyle.height = size
+    }
+
+    return (
+      <div
+        style={newStyle}
+        className={DOMUtil.classNames('lyrixi-loading-spinfade', className)}
+        ref={rootRef}
+      >
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+        <div className="lyrixi-loading-spinfade-item"></div>
+      </div>
+    )
+  }
+)
+
+export default SpinFade

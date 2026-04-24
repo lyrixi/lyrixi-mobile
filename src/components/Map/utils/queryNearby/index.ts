@@ -1,4 +1,5 @@
 import bmapQueryNearby from './bmapQueryNearby'
+import type { QueryNearbyParams } from './bmapQueryNearby'
 import googleQueryNearby from './googleQueryNearby'
 import overpassQueryNearby from './overpassQueryNearby'
 
@@ -11,36 +12,50 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 搜索附近
-function queryNearby({ map, keyword, longitude, latitude, type, radius }) {
-  // eslint-disable-next-line
-  return new Promise(async (resolve) => {
+function queryNearby(params: QueryNearbyParams): Promise<unknown> {
+  return new Promise((resolve) => {
     let queryNearbyTimeout = false
-    // Search error protect: google and bmap error no callback
-    let queryNearbyTimer = window.setTimeout(() => {
+    const queryNearbyTimer = window.setTimeout(() => {
       queryNearbyTimeout = true
-      let error = {
+      const error = {
         status: 'error',
-        message: LocaleUtil.locale('查询超时', 'lyrixi_82105ffb651ae5b2c2a08fa1b1b506ef')
+        message: String(
+          LocaleUtil.locale('查询超时', 'lyrixi_82105ffb651ae5b2c2a08fa1b1b506ef')
+        )
       }
       resolve(error)
     }, 5000)
 
-    let result = null
+    const run = async (): Promise<void> => {
+      let result: unknown = null
 
-    // 默认优先使用系统级定位
-    let defaultQueryNearby = window?.defaultQueryNearby
-    if (typeof defaultQueryNearby === 'function') {
-      result = await defaultQueryNearby({ map, keyword, longitude, latitude, type, radius })
-    } else if (window.google) {
-      result = await googleQueryNearby({ map, keyword, longitude, latitude, type, radius })
-    } else if (window.BMap) {
-      result = await bmapQueryNearby({ map, keyword, longitude, latitude, type, radius })
-    } else {
-      result = await overpassQueryNearby({ map, keyword, longitude, latitude, type, radius })
+      const def = window.defaultQueryNearby
+      if (typeof def === 'function') {
+        const fn = def as (p: QueryNearbyParams) => Promise<unknown> | unknown
+        result = await fn(params)
+      } else if (window.google) {
+        result = await googleQueryNearby(params)
+      } else if (window.BMap) {
+        const p = bmapQueryNearby(params)
+        result =
+          p == null
+            ? { status: 'error', message: String(LocaleUtil.locale('查询失败', 'lyrixi_0d66ed02d74d0bd89431d6d59533ffb3')) }
+            : await p
+      } else {
+        result = await overpassQueryNearby(params)
+      }
+      if (queryNearbyTimeout) {
+        return
+      }
+      window.clearTimeout(queryNearbyTimer)
+      resolve(
+        result ?? {
+          status: 'error',
+          message: String(LocaleUtil.locale('查询失败', 'lyrixi_0d66ed02d74d0bd89431d6d59533ffb3'))
+        }
+      )
     }
-    if (queryNearbyTimeout) return
-    window.clearTimeout(queryNearbyTimer)
-    resolve(result)
+    void run()
   })
 }
 

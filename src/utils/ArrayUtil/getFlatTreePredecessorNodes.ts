@@ -1,17 +1,21 @@
-function getFlatTreePredecessorNodes(tree, id) {
-  const result: unknown[] = []
+interface FlatNode extends Record<string, unknown> {
+  id: string | number
+  parentid?: string | number | null
+}
 
-  // 构建一个 id -> 节点 的映射
-  const nodeMap: Record<PropertyKey, Record<string, unknown>> = {}
+function getFlatTreePredecessorNodes(tree: FlatNode[], id: string | number): FlatNode[] {
+  const result: FlatNode[] = []
+
+  const nodeMap: Record<string | number, FlatNode> = {}
   tree.forEach((node) => {
     nodeMap[node.id] = node
   })
 
-  let currentNode = nodeMap[id]
-  while (currentNode && currentNode['parentid']) {
-    const parentNode = nodeMap[currentNode['parentid'] as PropertyKey]
+  let currentNode: FlatNode | undefined = nodeMap[id]
+  while (currentNode && currentNode['parentid'] != null) {
+    const parentNode: FlatNode | undefined = nodeMap[currentNode['parentid'] as string | number]
     if (parentNode) {
-      result.unshift(parentNode) // 确保父节点顺序从根到当前节点
+      result.unshift(parentNode)
       currentNode = parentNode
     } else {
       break

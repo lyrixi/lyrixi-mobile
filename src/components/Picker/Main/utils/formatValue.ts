@@ -1,17 +1,21 @@
 import ObjectUtil from './../../../../utils/ObjectUtil'
+import type { PickerColumnItem } from './../Slots'
 
 // 格式化值
-function formatValue(value, { lists, listCount }) {
+function formatValue(
+  value: PickerColumnItem[] | null | undefined,
+  { lists, listCount }: { lists: PickerColumnItem[][] | null; listCount: number }
+): PickerColumnItem[] | null {
   if (!Array.isArray(lists)) return null
 
-  let newValue = null
+  let newValue: PickerColumnItem[] | null = null
   if (!Array.isArray(value)) {
-    newValue = [...Array(listCount)].map((item, slotIndex) => {
-      return lists[slotIndex][0]
+    newValue = [...Array(listCount)].map((_item, slotIndex) => {
+      return (lists as PickerColumnItem[][])[slotIndex][0]
     })
     return newValue
   } else {
-    newValue = ObjectUtil.cloneDeep(value)
+    newValue = ObjectUtil.cloneDeep(value) as PickerColumnItem[]
   }
 
   // 如果项数少，填充数组

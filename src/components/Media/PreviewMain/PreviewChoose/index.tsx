@@ -1,20 +1,27 @@
-import React from 'react'
+import React, { type ChangeEvent, type MouseEvent, type SyntheticEvent } from 'react'
 import Uploading from './../../Uploading'
 import DOMUtil from './../../../../utils/DOMUtil'
 
+export interface PreviewChooseProps {
+  mediaType?: string | string[]
+  sourceType: string[]
+  onBeforeChoose?: (
+    e: MouseEvent
+  ) => boolean | void | Promise<boolean | void>
+  onChoose?: (e?: SyntheticEvent) => void | Promise<unknown>
+  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
+}
+
 // 上传按钮
 const Choose = ({
-  // Value & Display Value
   mediaType,
   sourceType,
-
-  // Events
   onBeforeChoose,
   onChoose,
   onFileChange
-}) => {
+}: PreviewChooseProps) => {
   // 点击选择框
-  async function handleUploadClick(e) {
+  async function handleUploadClick(e: MouseEvent<HTMLDivElement>) {
     // Fix react 16 sync events lost issues
     if (e.persist && typeof e.persist === 'function') e.persist()
     let target = e.currentTarget
@@ -29,7 +36,8 @@ const Choose = ({
     // 点击的是input框
     if (onFileChange) {
       // 防止选择重复图片时不触发
-      let inputElement = target.querySelector('input')
+      const inputElement = target.querySelector('input') as HTMLInputElement | null
+      if (!inputElement) return
       inputElement.value = ''
       inputElement.click()
       return
@@ -42,7 +50,7 @@ const Choose = ({
   if (!onChoose && !onFileChange) return null
 
   // 判断是否仅相册或者仅拍照
-  let fileProps = {}
+  let fileProps: Record<string, string> = {}
   if (sourceType.length === 1 && sourceType[0] === 'camera') {
     fileProps = {
       capture: 'camera'

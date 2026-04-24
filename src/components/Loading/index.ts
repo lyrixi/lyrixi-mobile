@@ -6,11 +6,21 @@ import show from './show'
 import hide from './hide'
 import exists from './exists'
 
-Loading.SpinFade = SpinFade
-Loading.Ouroboros = Ouroboros
-Loading.BallWave = BallWave
-Loading.show = show
-Loading.hide = hide
-Loading.exists = exists
+type LoadingWithStatics = typeof Loading & {
+  SpinFade: typeof SpinFade
+  Ouroboros: typeof Ouroboros
+  BallWave: typeof BallWave
+  show: typeof show
+  hide: typeof hide
+  exists: typeof exists
+}
 
-export default Loading
+const LoadingExport = Loading as LoadingWithStatics
+LoadingExport.SpinFade = SpinFade
+LoadingExport.Ouroboros = Ouroboros
+LoadingExport.BallWave = BallWave
+LoadingExport.show = show
+LoadingExport.hide = hide
+LoadingExport.exists = exists
+
+export default LoadingExport

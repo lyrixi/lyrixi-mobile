@@ -9,6 +9,14 @@ import IndexBar from './../../IndexBar'
 import { DOMUtil, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
+interface HeaderItemProps {
+  style?: React.CSSProperties
+  className?: string
+  anchor?: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+}
+
 // 获取分组标题
 function HeaderItem({
   // Style
@@ -19,7 +27,7 @@ function HeaderItem({
   anchor,
   title,
   description
-}) {
+}: HeaderItemProps) {
   let TitleNode = (
     <>
       {title && <div className="lyrixi-list-title">{title}</div>}

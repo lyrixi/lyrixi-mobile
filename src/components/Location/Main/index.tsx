@@ -5,86 +5,92 @@ import Choose from './Choose'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import type { MapContainerAPI, MapContainerProps } from './../../Map/components/MapContainer'
 // 内库使用-end
 
-// 地图标注
-const Main = forwardRef(
+interface LocationValue {
+  latitude?: number | string
+  longitude?: number | string
+  type?: string
+  address?: string
+  value?: string
+  [key: string]: unknown
+}
+
+interface MainProps {
+  value?: LocationValue | null
+  cacheExpires?: number
+  open?: string
+  autoLocation?: boolean
+  nearbyVisible?: boolean
+  className?: string
+  style?: React.CSSProperties
+  id?: string
+  mapConfig?: Record<string, unknown>
+  getLocation?: MapContainerProps['getLocation']
+  getAddress?: MapContainerProps['getAddress']
+  onChange?: (newValue: LocationValue | null) => void
+  onOk?: ((value: LocationValue | null) => void) | null
+  onClear?: (() => void) | null
+}
+
+const Main = forwardRef<unknown, MainProps>(
   (
     {
-      // Value & Display Value
-      value, // {latitude: '纬度', longitude: '经度', value: '地址'}
+      value,
       cacheExpires,
-
-      // Status
-      open, // 显示类型: preview、choose
+      open,
       autoLocation = true,
       nearbyVisible,
-
-      // Style
       className,
       style,
-
-      // Element
       id,
       mapConfig,
       getLocation,
       getAddress,
-
-      // Events
       onChange,
       onOk,
       onClear
     },
     ref
   ) => {
-    const mainRef = useRef(null)
-    const mapRef = useRef(null)
+    const mainRef = useRef<HTMLDivElement>(null)
+    const mapRef = useRef<MapContainerAPI | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
         mainElement: mainRef.current,
         getMainElement: () => mainRef.current,
-        ...mapRef.current
+        ...(mapRef.current || {})
       }
     })
 
     return (
       <>
-        {/* Element: Map Container */}
         <div
           ref={mainRef}
-          // Element
           id={id}
-          // Style
           style={style}
           className={DOMUtil.classNames('lyrixi-map-main', className)}
         >
-          {/* Element: Preview */}
           {open === 'preview' && (
             <Preview
               ref={mapRef}
-              // Value & Display Value
               value={value}
-              // Element
               mapConfig={mapConfig}
             />
           )}
 
-          {/* Element: Choose */}
           {open === 'choose' && (
             <Choose
               ref={mapRef}
-              // Value & Display Value
               value={value}
               cacheExpires={cacheExpires}
-              // Status
               autoLocation={autoLocation}
               nearbyVisible={nearbyVisible}
-              // Element
               mapConfig={mapConfig}
               getLocation={getLocation}
               getAddress={getAddress}
-              // Events
               onChange={(newValue) => {
                 onChange && onChange(newValue)
               }}
@@ -97,7 +103,7 @@ const Main = forwardRef(
               onOk
                 ? () => {
                   console.log('选择标注:')
-                  onOk?.(value)
+                  onOk?.(value ?? null)
                 }
                 : null
             }

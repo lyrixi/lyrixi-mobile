@@ -1,5 +1,5 @@
 // 获取默认图标
-function getDefaultIconClassName(type) {
+function getDefaultIconClassName(type: string): string | null {
   switch (type) {
     case 'success':
       return 'lyrixi-iconfont-circle-ok'

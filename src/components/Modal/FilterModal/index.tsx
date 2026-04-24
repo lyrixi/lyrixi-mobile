@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react'
-import Modal from './../Modal'
+import React, { forwardRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import Modal, { type ModalRef, type ModalProps } from './../Modal'
 import NavBar from './../NavBarModal/NavBar'
 
 // 内库使用-start
@@ -11,6 +11,21 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { LocaleUtil, Page, NavBar } from 'lyrixi-mobile'
 测试使用-end */
+
+interface FilterModalProps {
+  open?: boolean
+  maskClosable?: boolean
+  safeArea?: boolean
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: ModalProps['portal']
+  children?: ReactNode
+  footerRender?: (params: { onClose?: ModalProps['onClose'] }) => ReactNode
+  onClose?: ModalProps['onClose']
+  onCancel?: () => void
+}
 
 // 侧边查询
 function FilterModal(
@@ -34,8 +49,8 @@ function FilterModal(
     // Events
     onClose,
     onCancel
-  },
-  ref
+  }: FilterModalProps,
+  ref: React.ForwardedRef<ModalRef>
 ) {
   return (
     <Modal
@@ -58,7 +73,7 @@ function FilterModal(
           <NavBar
             title={LocaleUtil.locale('筛选', 'lyrixi_c2fe6253c4ca802cf2230b0b5e15eb25')}
             cancelNode={LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c')}
-            onCancel={(e) => {
+            onCancel={(e: MouseEvent<HTMLDivElement>) => {
               e.stopPropagation()
 
               onCancel?.()

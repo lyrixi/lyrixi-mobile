@@ -7,8 +7,15 @@ import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
+interface PositionResult {
+  bottom: number | null
+  top: number | null
+  left: number | null
+  right: number | null
+}
+
 // 根据源位置计算弹框位置
-function getPositionByReferenceElement({ referenceElement, animation }) {
+function getPositionByReferenceElement({ referenceElement, animation }: { referenceElement: HTMLElement | null; animation: string }): PositionResult | null {
   if (
     !referenceElement ||
     Object.prototype.toString.call(referenceElement).indexOf('[object HTML') === -1
@@ -16,10 +23,10 @@ function getPositionByReferenceElement({ referenceElement, animation }) {
     return null
   // 获取子元素的位置
   let rect = referenceElement.getBoundingClientRect()
-  let top = null
-  let bottom = null
-  let left = null
-  let right = null
+  let top: number | null = null
+  let bottom: number | null = null
+  let left: number | null = null
+  let right: number | null = null
   // 根据不同位置的弹窗，计算位置
   let position = getClassNameByAnimation(animation)
   // 从下往上弹

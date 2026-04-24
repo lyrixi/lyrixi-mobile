@@ -6,6 +6,20 @@ import GeoUtil from './../../../../utils/GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface CoordInput {
+  inChinaTo?: string
+  outChinaTo?: string
+  longitude?: number | string
+  latitude?: number | string
+  type?: string
+  isInChina?: boolean
+  [key: string]: unknown
+}
+
+function isCoordRecord(v: unknown): v is CoordInput {
+  return typeof v === 'object' && v !== null
+}
+
 // 坐标自动转换
 /*
 # 绘制地图瓦片 currentTileLayer
@@ -38,7 +52,6 @@ import { GeoUtil } from 'lyrixi-mobile'
 
 
 
-
 # 地址逆解析
 ## 百度
 - 国内: wgs84转bd09后解析
@@ -51,6 +64,7 @@ import { GeoUtil } from 'lyrixi-mobile'
 - 国内解析结果: gcj02转wgs84返回
 - 国外: wgs84解析
 - 国外解析结果: wgs84直接返回
+
 
 
 
@@ -71,7 +85,7 @@ import { GeoUtil } from 'lyrixi-mobile'
 - 国内google与高德: 使用gcj02绘点
 - 国外百度,google与高德: 使用wgs84绘点
 */
-function coordToFit(coord) {
+function coordToFit(coord: CoordInput): CoordInput {
   // 参数不合法
   if (
     (!coord?.inChinaTo && !coord?.outChinaTo) ||
@@ -83,46 +97,59 @@ function coordToFit(coord) {
   }
 
   // 是否在中国
-  let isInChina = GeoUtil.isInChina([coord.longitude, coord.latitude]) === true
-  coord.isInChina = isInChina
+  const isInChina = GeoUtil.isInChina([Number(coord.longitude), Number(coord.latitude)]) === true
+  const next: CoordInput = { ...coord, isInChina }
 
   // 不在中国
   if (!isInChina) {
     // 不在中国转为指定坐标
     if (coord.outChinaTo) {
-      let [longitude, latitude] = GeoUtil.coordtransform(
-        [coord.longitude, coord.latitude],
+      const transformed = GeoUtil.coordtransform(
+        [Number(coord.longitude), Number(coord.latitude)],
         coord.type,
         coord.outChinaTo
       )
-
+      if (!transformed) {
+        return next
+      }
+      const [longitude, latitude] = transformed
       return {
-        ...coord,
+        ...next,
         longitude,
         latitude,
         type: coord.outChinaTo
       }
     }
-    return coord
+    return next
   }
   // 在中国
-  else {
-    let [longitude, latitude] = GeoUtil.coordtransform(
-      [coord.longitude, coord.latitude],
+  if (coord.inChinaTo) {
+    const transformed = GeoUtil.coordtransform(
+      [Number(coord.longitude), Number(coord.latitude)],
       coord.type,
       coord.inChinaTo
     )
+    if (!transformed) {
+      return next
+    }
+    const [longitude, latitude] = transformed
     return {
-      ...coord,
+      ...next,
       longitude,
       latitude,
       type: coord.inChinaTo
     }
   }
+  return next
 }
 
 // 国内转gcj02, 国外转wgs84
-function coordsToFit(coords, { inChinaTo, outChinaTo = 'wgs84' } = {}) {
+function coordsToFit(
+  coords: unknown,
+  options: { inChinaTo?: string; outChinaTo?: string } = {}
+): unknown {
+  const { inChinaTo: inChinaToOpt, outChinaTo = 'wgs84' } = options
+  let inChinaTo = inChinaToOpt
   // 未指定国内坐标系
   if (!inChinaTo) {
     // 高德和google国内使用gcj02
@@ -139,7 +166,7 @@ function coordsToFit(coords, { inChinaTo, outChinaTo = 'wgs84' } = {}) {
 
   // 坐标集合转换
   if (Array.isArray(coords) && coords.length) {
-    return coords.map((coord) => {
+    return (coords as CoordInput[]).map((coord) => {
       if (!coord.inChinaTo && inChinaTo) {
         coord.inChinaTo = inChinaTo
       }
@@ -150,7 +177,7 @@ function coordsToFit(coords, { inChinaTo, outChinaTo = 'wgs84' } = {}) {
     })
   }
   // 单个坐标转换
-  else if (toString.call(coords) === '[object Object]') {
+  if (isCoordRecord(coords)) {
     if (!coords.inChinaTo && inChinaTo) {
       coords.inChinaTo = inChinaTo
     }

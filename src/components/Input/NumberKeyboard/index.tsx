@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { maxLengthFormatter, minMaxFormatter, precisionFormatter } from './../Text/utils'
 
-import InputNode from './../Node'
+import InputNode, { InputNodeRef, InputNodeProps } from './../Node'
 import correctInputNumber from './correctInputNumber'
 
 // 内库使用-start
@@ -14,7 +14,37 @@ import MathUtil from '../../../utils/MathUtil'
 import { DOMUtil, Keyboard, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const NumberKeyboard = forwardRef(
+interface NumberKeyboardRef extends InputNodeRef {
+  focus: () => void
+  blur: () => void
+}
+
+interface NumberKeyboardProps {
+  ok?: React.ReactNode | null
+  id?: string
+  value?: string
+  placeholder?: string
+  formatter?: InputNodeProps['formatter']
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  style?: React.CSSProperties
+  className?: string
+  leftIconNode?: React.ReactNode
+  rightIconNode?: React.ReactNode
+  clearRender?: InputNodeProps['clearRender']
+  precision?: number
+  trim?: boolean
+  min?: number
+  max?: number
+  maxLength?: number
+  onChange?: (value: string) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+  onFocus?: InputNodeProps['onFocus']
+  onBlur?: InputNodeProps['onBlur']
+}
+
+const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
   (
     {
       // Modal
@@ -58,12 +88,12 @@ const NumberKeyboard = forwardRef(
     },
     ref
   ) => {
-    const inputRef = useRef(null)
-    const [keyboardOpen, setKeyboardOpen] = useState(null)
+    const inputRef = useRef<InputNodeRef>(null)
+    const [keyboardOpen, setKeyboardOpen] = useState<boolean | undefined>(undefined)
 
     // Expose
     useImperativeHandle(ref, () => ({
-      ...inputRef.current,
+      ...(inputRef.current as InputNodeRef),
       focus: () => {
         setKeyboardOpen(true)
       },
@@ -73,15 +103,15 @@ const NumberKeyboard = forwardRef(
     }))
 
     // 处理输入框点击
-    const handleInputClick = (e) => {
+    const handleInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
       setKeyboardOpen(true)
       onClick && onClick(e)
     }
 
-    const handleChange = (newValue) => {
+    const handleChange = (newValue: string) => {
       // 不能校验最小值，因为min={0.1}时，无法删除
-      let val = minMaxFormatter(newValue, { max })
-      val = precisionFormatter(val, { precision, trim: false })
+      let val = String(minMaxFormatter(newValue, { max }))
+      val = String(precisionFormatter(val, { precision, trim: false }))
       val = maxLengthFormatter(val, { maxLength })
       // 输入.不触发onChange
       console.log('val', val, MathUtil.isNumber(val, ['-']))
@@ -132,13 +162,13 @@ const NumberKeyboard = forwardRef(
         {/* Modal */}
         <Keyboard.Number
           // Modal: Element
-          ok={ok}
+          okNode={ok}
           // Input: Value & Display Value
           value={value}
           // Modal: Status
           open={keyboardOpen}
-          dot={precision === 0 ? null : true}
-          minus={min >= 0 ? null : true}
+          dot={precision === 0 ? undefined : true}
+          minus={min !== undefined && min >= 0 ? undefined : true}
           // Events
           onChange={handleChange}
           onClose={handleClose}

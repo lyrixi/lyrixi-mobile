@@ -2,6 +2,27 @@ import React, { forwardRef } from 'react'
 import Edit from './Edit'
 import Add from './Add'
 
+import type { ComboAddRef } from './Add'
+import type { EditRef } from './Edit'
+
+export interface ComboProps {
+  value?: string
+  allowClear?: boolean
+  className?: string
+  style?: React.CSSProperties
+  modalClassName?: string
+  modalStyle?: React.CSSProperties
+  maskStyle?: React.CSSProperties
+  maskClassName?: string
+  portal?: Element
+  color?: string
+  backgroundColor?: string
+  onChange?: (base64: string | null) => void
+  onPreview?: (src: string) => Promise<boolean | string | void>
+}
+
+export type ComboInstanceRef = ComboAddRef | EditRef
+
 // Combo
 const Combo = (
   {
@@ -27,8 +48,8 @@ const Combo = (
     // Events
     onChange,
     onPreview
-  },
-  ref
+  }: ComboProps,
+  ref: React.Ref<ComboInstanceRef>
 ) => {
   // 已签显示图片
   if (value && typeof value === 'string') {
@@ -55,10 +76,7 @@ const Combo = (
       style={style}
       modalClassName={modalClassName}
       modalStyle={modalStyle}
-      maskStyle={maskStyle}
-      maskClassName={maskClassName}
       // Element
-      portal={portal}
       color={color} // 绘画配置: 画笔颜色
       backgroundColor={backgroundColor} // 绘画配置: 背景颜色
       // Events
@@ -67,4 +85,4 @@ const Combo = (
   )
 }
 
-export default forwardRef(Combo)
+export default forwardRef<ComboInstanceRef, ComboProps>(Combo)

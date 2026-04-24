@@ -1,9 +1,7 @@
-// 获取文件扩展名
-function getFileExtension(src) {
+function getFileExtension(src: string): string | null {
   if (typeof src !== 'string') {
     return ''
   }
-  // 使用正则表达式提取文件扩展名
   const match = src.match(/\.([a-zA-Z0-9]+)(?:\?.*)?$/)
   return match ? match[1] : null
 }

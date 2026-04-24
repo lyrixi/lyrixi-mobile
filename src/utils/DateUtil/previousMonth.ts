@@ -1,5 +1,5 @@
 // 上一月
-function previousMonth(currentDate) {
+function previousMonth(currentDate: Date): Date {
   const previousMonthDate = new Date(currentDate)
   previousMonthDate.setMonth(currentDate.getMonth() - 1)
 

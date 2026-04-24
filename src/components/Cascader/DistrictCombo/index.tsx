@@ -1,6 +1,9 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
+import type { ComboProps, ComboRef } from './../../Input/Select'
+import type { CascaderNode } from './../cascaderTypes'
+import type { DistrictModalProps } from './../DistrictModal'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -10,41 +13,62 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
+export type DistrictComboRef = ComboRef & {
+  open: () => void
+  close: () => void
+} & Record<string, unknown>
+
+type DistrictComboProps = ComboProps &
+  Pick<
+    DistrictModalProps,
+    | 'loadCountries'
+    | 'loadCountryRegions'
+    | 'loadStreets'
+    | 'maskClosable'
+    | 'listStyle'
+    | 'listClassName'
+    | 'itemStyle'
+    | 'itemClassName'
+    | 'modalStyle'
+    | 'modalClassName'
+    | 'maskStyle'
+    | 'maskClassName'
+    | 'portal'
+    | 'title'
+    | 'okNode'
+    | 'cancelNode'
+    | 'cancelVisible'
+    | 'searchVisible'
+  > & {
+    type?: string
+    min?: string
+    onBeforeOpen?: () => boolean | Promise<boolean>
+  }
+
 // 级联选择
-const DistrictCombo = forwardRef(
+const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
   (
     {
-      // Combo
-      // Combo: Value & Display Value
       value,
       placeholder,
       autoSize,
       mode,
-      // Combo: Status
       readOnly,
       disabled,
       allowClear,
-      // Combo: Style
       style,
       className,
-      // Combo: Element
       formatter,
       separator,
       leftIconNode,
       rightIconNode,
       clearRender,
-
-      // Modal
-      // Modal: Value & Display Value
-      type = 'street', // 'country', 'province', 'city', 'district', 'street'
+      type: typeProp = 'street',
       loadCountries,
       loadCountryRegions,
       loadStreets,
-      // Modal: Status
       min = '',
       maskClosable,
-
-      // Modal: Style
       listStyle,
       listClassName,
       itemStyle,
@@ -53,42 +77,40 @@ const DistrictCombo = forwardRef(
       modalClassName,
       maskStyle,
       maskClassName,
-      // Modal: Elements
       portal,
       title,
       okNode,
       cancelNode,
       cancelVisible,
       searchVisible,
-
-      // Events
       onChange,
       onBeforeOpen
     },
     ref
   ) => {
-    // eslint-disable-next-line
-    type = formatType(type)
+    const districtType = formatType(typeProp)
 
     const [open, setOpen] = useState(false)
-    // editableOptions需要根据list计算value的type, loadList后才能计算value的type
-    const comboRef = useRef(null)
-    const modalRef = useRef(null)
+    const comboRef = useRef<ComboRef | null>(null)
+    const modalRef = useRef<Record<string, unknown> | null>(null)
 
-    // Expose api
     useImperativeHandle(ref, () => {
+      const c = (comboRef.current as Record<string, unknown> | null) ?? {}
+      const m = (modalRef.current as Record<string, unknown> | null) ?? {}
       return {
-        ...comboRef.current,
-        ...modalRef.current,
+        ...c,
+        ...m,
         close: () => setOpen(false),
         open: () => setOpen(true)
-      }
+      } as DistrictComboRef
     })
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
-        let goOn = await onBeforeOpen()
-        if (goOn === false) return
+        const goOn = await onBeforeOpen()
+        if (goOn === false) {
+          return
+        }
       }
       setOpen(true)
     }
@@ -101,58 +123,48 @@ const DistrictCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
           autoSize={autoSize}
           mode={mode}
-          // Combo: Status
           readOnly={readOnly}
           disabled={disabled}
           allowClear={allowClear}
-          // Combo: Style
           style={style}
           className={className}
-          // Combo: Element
           formatter={formatter}
           separator={separator}
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
-          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <DistrictModal
           ref={modalRef}
-          // Modal: Value & Display Value
-          value={value}
-          type={type}
+          value={value as CascaderNode[] | null}
+          type={districtType}
           loadCountries={loadCountries}
           loadCountryRegions={loadCountryRegions}
           loadStreets={loadStreets}
-          // Modal: Status
           open={open}
           min={min}
           maskClosable={maskClosable}
-          // Modal: Style
           listStyle={listStyle}
           listClassName={listClassName}
           itemStyle={itemStyle}
           itemClassName={itemClassName}
-          className={modalClassName}
-          style={modalStyle}
-          maskClassName={maskClassName}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
           maskStyle={maskStyle}
-          // Modal: Elements
+          maskClassName={maskClassName}
           portal={portal}
           title={title}
           okNode={okNode}
           cancelNode={cancelNode}
           cancelVisible={cancelVisible}
           searchVisible={searchVisible}
-          // Modal: Events
-          onChange={onChange}
+          onChange={onChange as (v: CascaderNode[]) => void}
           onClose={handleClose}
         />
       </>

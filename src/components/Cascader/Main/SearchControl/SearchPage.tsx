@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-
+import React, { useState, type ReactNode, type ComponentProps } from 'react'
+import type { CascaderNode } from './../../cascaderTypes'
 // 内库使用-start
 import ArrayUtil from './../../../../utils/ArrayUtil'
 import LocaleUtil from '../../../../utils/LocaleUtil'
 import Page from './../../../Page'
 import ToolBar from './../../../ToolBar'
+import SearchActive from './../../../ToolBar/SearchActive'
 import Result from './../../../Result'
 import List from './../../../List'
 import Text from './../../../Text'
@@ -14,37 +15,63 @@ import Text from './../../../Text'
 import { LocaleUtil, ArrayUtil, Page, ToolBar, Result, List, Text } from 'lyrixi-mobile'
 测试使用-end */
 
+type SearchActiveBarProps = ComponentProps<typeof SearchActive>
+
+type PathNode = CascaderNode & { path?: CascaderNode[] }
+type SearchResult = {
+  status: string
+  message?: ReactNode
+  list: Array<{ path: CascaderNode[]; name?: ReactNode; id?: string | number; [key: string]: unknown }>
+}
+
 // 搜索页面
-const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
-  const [result, setResult] = useState([])
+const SearchPage = ({
+  list: externalList,
+  onSearch,
+  onChange,
+  onClose
+}: {
+  list: CascaderNode[]
+  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) =>
+    | void
+    | SearchResult
+    | Promise<SearchResult | void>
+  onChange?: (v: CascaderNode[]) => void
+  onClose?: () => void
+}) => {
+  const [result, setResult] = useState<SearchResult | null>(null)
   const [keyword, setKeyword] = useState('')
 
-  async function handleSearch(newKeyword) {
+  async function handleSearch(newKeyword: string) {
     setKeyword(newKeyword)
     if (typeof onSearch === 'function') {
-      let newResult = await onSearch?.(newKeyword, { list: externalList })
-      setResult(newResult)
+      const newResult = await onSearch(newKeyword, { list: externalList })
+      if (newResult != null) {
+        setResult(newResult)
+      }
       return
     }
 
     const currentList =
       newKeyword && newKeyword.trim()
-        ? ArrayUtil.getDeepTreeNodes(externalList, (node) => {
-          return String(node.name).includes(newKeyword)
-        })
+        ? ArrayUtil.getDeepTreeNodes(externalList as never, (node) => {
+            return String((node as CascaderNode).name).includes(newKeyword)
+          })
         : []
 
     if (currentList.length > 0) {
       setResult({
         status: 'success',
         message: '',
-        // list过滤掉children, 否则List组件会将children当作子项也展示出来
-        list: currentList.map((node) => {
+        list: (currentList as PathNode[]).map((node) => {
           const { children, ...restNode } = node
-          const path = ArrayUtil.getDeepTreePredecessorNodes(externalList, node.id)
+          const path = (ArrayUtil.getDeepTreePredecessorNodes(
+            externalList as never,
+            (node as CascaderNode).id
+          ) as CascaderNode[]).concat(node as CascaderNode)
           return {
             ...restNode,
-            path: path.concat(node)
+            path
           }
         })
       })
@@ -59,21 +86,18 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     }
   }
 
-  // 如果list不存在，则不显示搜索页面
   if (!Array.isArray(externalList) || !externalList.length) {
     return null
   }
 
   function getListNode() {
-    console.log('result', result)
-    if (Array.isArray(result?.list) && result?.list.length > 0) {
+    if (result != null && Array.isArray(result.list) && result.list.length > 0) {
       return (
         <List
-          list={result?.list.map((node) => {
-            // 构建路径名称
-            let pathName = node.path
+          list={result.list.map((node) => {
+            const pathName = (node.path ?? [])
               .map((option) => {
-                return option.name
+                return (option as CascaderNode).name
               })
               .join('/')
             return {
@@ -82,18 +106,19 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
             }
           })}
           onChange={(item) => {
-            onChange?.(item.path)
+            if (item != null && !Array.isArray(item) && Array.isArray((item as { path?: CascaderNode[] }).path)) {
+              onChange?.((item as { path: CascaderNode[] }).path)
+            }
           }}
         />
       )
     }
 
-    // 没有关键字或报错
-    if (result?.status !== 'success') {
+    if (result == null || result?.status !== 'success') {
       return (
         <Result
           title={
-            result?.message ||
+            (result?.message as ReactNode) ||
             LocaleUtil.locale('请输入关键字', 'lyrixi_db91cb073ee4c9b76289e93ae2b4aa04')
           }
           status={result?.status || 'empty'}
@@ -108,19 +133,20 @@ const SearchPage = ({ list: externalList, onSearch, onChange, onClose }) => {
     <Page className="lyrixi-cascader-search-page">
       <Page.Header className="lyrixi-cascader-search-header">
         <ToolBar variant="filled">
-          <ToolBar.SearchActive
-            value={keyword}
-            enableCompositionEnd
-            allowClear
-            onChange={handleSearch}
-            onCancel={() => {
-              onClose?.()
-            }}
+          <SearchActive
+            {...({
+              value: keyword,
+              enableCompositionEnd: true,
+              allowClear: true,
+              onChange: handleSearch,
+              onCancel: () => {
+                onClose?.()
+              }
+            } as unknown as SearchActiveBarProps)}
           />
         </ToolBar>
       </Page.Header>
 
-      {/* 搜索结果列表 */}
       <Page.Main>{getListNode()}</Page.Main>
     </Page>
   )

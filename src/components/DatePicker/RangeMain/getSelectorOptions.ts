@@ -1,5 +1,10 @@
+import type { DatePickerRangesMap } from './../datePickerTypes'
+
 // 将{key: value}转为[{id: key, name: value}]
-function getSelectorOptions(ranges, filter) {
+function getSelectorOptions(
+  ranges: DatePickerRangesMap,
+  filter?: (item: { id: string; name: string; value: unknown }) => boolean
+) {
   let options = Object.entries(ranges).map(([name, value]) => {
     return { id: name, name: name, value: value }
   })

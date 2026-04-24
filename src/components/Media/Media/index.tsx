@@ -1,4 +1,12 @@
-import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
+import React, {
+  useImperativeHandle,
+  forwardRef,
+  useState,
+  useRef,
+  type CSSProperties,
+  type SyntheticEvent,
+  type ChangeEvent
+} from 'react'
 import fileChoose from './../utils/fileChoose'
 import choose from './../utils/choose'
 import uploadItem from './../utils/uploadItem'
@@ -10,392 +18,388 @@ import PreviewModal from './../PreviewModal'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
+import Device from './../../../utils/Device'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 // 内库使用-end
 
+import type { MediaComponentProps, MediaListItem } from './../types'
+
 /* 测试使用-start
 import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
+function localeToastContent(key: string, id: string, args?: unknown[]) {
+  const v = LocaleUtil.locale(key, id, args as string[] | undefined)
+  return typeof v === 'string' ? v : String(v)
+}
+
 // 照片视频预览
-const Media = forwardRef(
-  (
-    {
-      // Value & Display Value
-      list = [],
-      /*
-    [
-      {
-        fileThumbnail: "全路径(必传)",
-        fileUrl: "全路径(必传)",
-        filePath: "目录/年月/照片名.jpg(必传)",
-        status: "choose|uploading|error|success",
+const Media = forwardRef(function Media(
+  {
+    // Value & Display Value
+    list = [],
+    maxCount,
+    mediaType = ['image'], // video.录相 | 其它.为拍照
+    ellipsis,
+    sourceType = ['album', 'camera'],
+    sizeType = ['compressed'], // ['original', 'compressed']
+    fileImageCompress, // 浏览器选择图片压缩配置, { maxWidth: 最大宽度, quality: 质量 }
+
+    // Status
+    allowChoose = false,
+    allowClear = false,
+    async: asyncUpload = false,
+    reUpload = true,
+    previewAllowChoose,
+    previewAllowClear,
+
+    // Style
+    style,
+    className,
+    uploadPosition = 'end', // start | end
+    previewSafeArea,
+    previewNavBarStyle,
+    previewNavBarClassName,
+    previewModalStyle,
+    previewModalClassName,
+    previewMaskStyle,
+    previewMaskClassName,
+
+    // Element
+    uploadRender, // 上传按钮覆盖的dom
+    uploadingRender,
+    itemRender,
+    previewPortal,
+    previewCancelPosition,
+
+    // Events
+    onBeforeChoose,
+    onChoose,
+    onFileChange,
+    onUpload,
+    onChange,
+    onPreview
+  }: MediaComponentProps,
+  ref
+) {
+  const rootRef = useRef<HTMLDivElement | null>(null)
+
+  // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
+  const onFileChangeRef = useRef(onFileChange)
+  onFileChangeRef.current = onFileChange
+
+  const onChangeRef = useRef(onChange)
+  onChangeRef.current = onChange
+
+  // Judge wether to display choose button
+  let chooseVisible = allowChoose
+  if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
+    chooseVisible = false
+  }
+
+  // 预览类型: browser|native
+  const previewTypeRef = useRef<string | null>(Device.platform === 'browser' ? 'browser' : null)
+  const [previewVisible, setPreviewVisible] = useState<number | null>(null)
+
+  // Refresh state (bump only; value is not read)
+  const [, setUpdateStatus] = useState(0)
+
+  // Expose
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current,
+      updateStatus: () => {
+        setUpdateStatus((u) => u + 1)
       },
-    ]
-    */
-      maxCount,
-      mediaType = ['image'], // video.录相 | 其它.为拍照
-      ellipsis,
-      sourceType = ['album', 'camera'],
-      sizeType = ['compressed'], // ['original', 'compressed']
-      fileImageCompress, // 浏览器选择图片压缩配置, { maxWidth: 最大宽度, quality: 质量 }
+      chooseFile: _choose,
+      choose: _choose,
+      uploadList: uploadList,
+      showLoading: _showLoading,
+      hideLoading: _hideLoading,
+      setPreviewVisible: setPreviewVisible
+    }
+  })
 
-      // Status
-      allowChoose = false,
-      allowClear = false,
-      async = false,
-      reUpload = true,
-      previewAllowChoose,
-      previewAllowClear,
+  // 显隐Loading
+  function _showLoading(options?: { content?: string; index?: number }) {
+    showLoading(rootRef.current, options)
+  }
 
-      // Style
-      style,
-      className,
-      uploadPosition = 'end', // start | end
-      previewSafeArea,
-      previewNavBarStyle,
-      previewNavBarClassName,
-      previewModalStyle,
-      previewModalClassName,
-      previewMaskStyle,
-      previewMaskClassName,
+  function _hideLoading(options?: { failIndexes?: number[] }) {
+    hideLoading(rootRef.current, options)
+  }
 
-      // Element
-      uploadRender, // 上传按钮覆盖的dom
-      uploadingRender,
-      itemRender,
-      previewPortal,
-      previewCancelPosition,
-
-      // Events
-      onBeforeChoose,
-      onChoose,
-      onFileChange,
-      onUpload,
-      onChange,
-      onPreview
-    },
-    ref
-  ) => {
-    const rootRef = useRef(null)
-
-    // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
-    const onFileChangeRef = useRef()
-    onFileChangeRef.current = onFileChange
-
-    const onChangeRef = useRef()
-    onChangeRef.current = onChange
-
-    // Judge wether to display choose button
-    let chooseVisible = allowChoose
-    if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
-      chooseVisible = false
+  // Expose manual choose
+  async function _choose(e?: SyntheticEvent) {
+    if (!chooseVisible) {
+      Toast.show({
+        content: localeToastContent(
+          '此照片控件无拍照功能, 请勿调用拍照',
+          'lyrixi_35a3ca0b2cebe63e346eb2ef97193284'
+        )
+      })
+      return false
+    }
+    const chooseElement = rootRef.current?.querySelector?.('[data-type="upload"]')
+    if (!chooseElement) {
+      Toast.show({
+        content: localeToastContent(
+          '未找到拍照按钮, 调用拍照失败',
+          'lyrixi_76637d130a70149d956bf9acc14e2108'
+        )
+      })
+      return false
     }
 
-    // 预览类型: browser|native
-    const previewTypeRef = useRef(Bridge?.platform === 'browser' ? 'browser' : null)
-    const [previewVisible, setPreviewVisible] = useState(null)
+    const ev = e as { nativeEvent?: { target?: EventTarget } } | undefined
+    const chooseCallBack = ev?.nativeEvent?.target ? handleFileChange : handleChoose
+    const chooseOk = await chooseCallBack(e)
+    return chooseOk
+  }
 
-    // Refresh state
-    const [updateStatus, setUpdateStatus] = useState(0)
+  // 上传
+  async function uploadList(newList?: MediaListItem[], { action }: { action?: string } = {}) {
+    let workList: MediaListItem[] = newList ? [...newList] : [...list]
+    if (!workList) return
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current,
-        updateStatus: () => {
-          setUpdateStatus(updateStatus + 1)
-        },
-        chooseFile: _choose,
-        choose: _choose,
-        uploadList: uploadList,
-        showLoading: _showLoading,
-        hideLoading: _hideLoading,
-        setPreviewVisible: setPreviewVisible
-      }
+    let hasUploaded = false
+    // 开始上传
+    _showLoading({
+      content: localeToastContent('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1')
     })
-
-    // 显隐Loading
-    function _showLoading(options) {
-      showLoading(rootRef.current, options)
-    }
-
-    function _hideLoading(options) {
-      hideLoading(rootRef.current, options)
-    }
-
-    // Expose manual choose
-    async function _choose(e) {
-      if (!chooseVisible) {
-        Toast.show({
-          content: LocaleUtil.locale(
-            '此照片控件无拍照功能, 请勿调用拍照',
-            'lyrixi_35a3ca0b2cebe63e346eb2ef97193284'
-          )
-        })
-        return false
+    for (let idx = 0; idx < workList.length; idx++) {
+      const el = workList[idx]
+      // 只上传未上传或上传失败的照片
+      if (el.status === 'choose' || el.status === 'error') {
+        workList[idx] = (await uploadItem(el, { onUpload })) as MediaListItem
+        hasUploaded = true
       }
-      let chooseElement = rootRef.current?.querySelector?.('[data-type="upload"]')
-      if (!chooseElement) {
-        Toast.show({
-          content: LocaleUtil.locale(
-            '未找到拍照按钮, 调用拍照失败',
-            'lyrixi_76637d130a70149d956bf9acc14e2108'
-          )
-        })
-        return false
-      }
-
-      let chooseCallBack = e?.nativeEvent?.target ? handleFileChange : handleChoose
-      let chooseOk = await chooseCallBack(e)
-      return chooseOk
     }
+    _hideLoading()
 
-    // 上传
-    async function uploadList(newList, { action } = {}) {
-      // eslint-disable-next-line
-      if (!newList) newList = [...list]
-      if (!newList) return
-
-      let hasUploaded = false
-      // 开始上传
-      _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1')
-      })
-      for (let [index, item] of newList.entries()) {
-        // 只上传未上传或上传失败的照片
-        if (item.status === 'choose' || item.status === 'error') {
-          newList[index] = await uploadItem(item, { onUpload })
-          hasUploaded = true
-        }
-      }
-      _hideLoading()
-
-      // 不支持重新上传，则过滤上传失败的照片
-      if (!reUpload) {
-        if (Array.isArray(newList) && newList.length) {
-          let failCount = 0
-          // eslint-disable-next-line
-          newList = newList.filter((photo) => {
-            if (
-              photo.status === 'error' ||
-              photo.status === 'choose' ||
-              photo.status === 'uploading'
-            ) {
-              failCount++
-              return false
-            }
-            return true
-          })
-          // 上传失败
-          if (failCount) {
-            Toast.show({
-              content: `${LocaleUtil.locale(
-                `网络异常，上传失败${failCount}张`,
-                'lyrixi_a096455f5d98e5ead856c948379040a6',
-
-                [failCount]
-              )}`
-            })
+    // 不支持重新上传，则过滤上传失败的照片
+    if (!reUpload) {
+      if (Array.isArray(workList) && workList.length) {
+        let failCount = 0
+        // eslint-disable-next-line
+        workList = workList.filter((photo) => {
+          if (
+            photo.status === 'error' ||
+            photo.status === 'choose' ||
+            photo.status === 'uploading'
+          ) {
+            failCount++
+            return false
           }
+          return true
+        })
+        // 上传失败
+        if (failCount) {
+          Toast.show({
+            content: `${localeToastContent(
+              `网络异常，上传失败${failCount}张`,
+              'lyrixi_a096455f5d98e5ead856c948379040a6',
+              [failCount]
+            )}`
+          })
         }
       }
-
-      if (hasUploaded) {
-        onChangeRef.current && onChangeRef.current(newList, { action: action || 'upload' })
-      }
-
-      return newList
     }
 
-    // 选择照片
-    async function handleFileChange(e) {
-      _showLoading()
-      let chooseResult = await fileChoose({
-        file: e.nativeEvent.target,
-        async,
-        sizeType,
-        maxWidth: fileImageCompress?.maxWidth,
-        quality: fileImageCompress?.quality,
-        maxCount,
-        list,
-        uploadPosition,
-        uploadList,
-        onFileChange: onFileChangeRef.current,
-        onChange: onChangeRef.current
-      })
-      _hideLoading()
-      return chooseResult
+    if (hasUploaded) {
+      onChangeRef.current && onChangeRef.current(workList, { action: action || 'upload' })
     }
 
-    // 选择照片
-    async function handleChoose(e) {
-      _showLoading()
-      let chooseResult = await choose({
-        async,
-        sizeType,
-        maxCount,
-        list,
-        uploadPosition,
-        uploadList,
-        onChoose,
-        onChange: onChangeRef.current
-      })
-      _hideLoading()
-      return chooseResult
+    return workList
+  }
+
+  // 选择照片
+  async function handleFileChange(e: ChangeEvent<HTMLInputElement> | SyntheticEvent | undefined) {
+    const target =
+      e && 'currentTarget' in e ? (e as ChangeEvent<HTMLInputElement>).currentTarget : undefined
+    _showLoading()
+    const chooseResult = await fileChoose({
+      file: target,
+      async: asyncUpload,
+      sizeType,
+      maxWidth: fileImageCompress?.maxWidth,
+      quality: fileImageCompress?.quality,
+      maxCount,
+      list,
+      uploadPosition,
+      uploadList,
+      onFileChange: onFileChangeRef.current,
+      onChange: onChangeRef.current
+    } as any)
+    _hideLoading()
+    return chooseResult
+  }
+
+  // 选择照片
+  async function handleChoose(_e?: SyntheticEvent) {
+    _showLoading()
+    const chooseResult = await choose({
+      async: asyncUpload,
+      sizeType,
+      maxCount,
+      list,
+      uploadPosition,
+      uploadList,
+      onChoose,
+      onChange: onChangeRef.current
+    } as any)
+    _hideLoading()
+    return chooseResult
+  }
+
+  // 重新上传
+  async function handleReUpload(item: MediaListItem, index: number) {
+    if (typeof onChange !== 'function') {
+      console.warn('Media: onChange is not a function')
+      return
+    }
+    const newList: MediaListItem[] = [...list]
+    // 开始上传
+    _showLoading({
+      content: localeToastContent('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1'),
+      index: index
+    })
+    newList[index] = (await uploadItem(item, { onUpload })) as MediaListItem
+    _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
+
+    onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
+  }
+
+  // 点击预览
+  async function handlePreview(item: MediaListItem, index: number) {
+    // 自定义预览
+    if (typeof onPreview === 'function') {
+      const goOn = await onPreview(item, index)
+      if (goOn === false) return
+      previewTypeRef.current = goOn as string | null
     }
 
-    // 重新上传
-    async function handleReUpload(item, index) {
-      if (typeof onChange !== 'function') {
-        console.warn('Media: onChange is not a function')
-        return
-      }
-      let newList = [...list]
-      // 开始上传
-      _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1'),
+    // 本地能力预览照片
+    if (previewTypeRef.current === 'nativeMedia') {
+      Bridge.previewMedia({
+        sources: list,
         index: index
       })
-      newList[index] = await uploadItem(item, { onUpload })
-      _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
+    }
+    // 视频使用previewFile预览
+    else if (previewTypeRef.current === 'nativeFile') {
+      Bridge.previewFile(item)
+    }
+    // 浏览器预览
+    else {
+      previewTypeRef.current = 'browser'
+      setPreviewVisible(Number(index))
+    }
+  }
 
-      onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
+  // 上传node
+  function getChooseNode() {
+    if (!chooseVisible) {
+      return null
     }
 
-    // 点击预览
-    async function handlePreview(item, index) {
-      // 自定义预览
-      if (typeof onPreview === 'function') {
-        let goOn = await onPreview(item, index)
-        if (goOn === false) return
-        previewTypeRef.current = goOn
-      }
-
-      // 本地能力预览照片
-      if (previewTypeRef.current === 'nativeMedia') {
-        Bridge.previewMedia({
-          sources: list,
-          index: index
-        })
-      }
-      // 视频使用previewFile预览
-      else if (previewTypeRef.current === 'nativeFile') {
-        Bridge.previewFile(item)
-      }
-      // 浏览器预览
-      else {
-        previewTypeRef.current = 'browser'
-        setPreviewVisible(Number(index))
-      }
-    }
-
-    // 上传node
-    function getChooseNode() {
-      if (!chooseVisible) {
-        return null
-      }
-
-      return (
-        <Choose
-          // Value & Display Value
-          mediaType={mediaType}
-          sourceType={sourceType}
-          // Element
-          uploadRender={uploadRender}
-          uploadingRender={uploadingRender}
-          // Events
-          onChoose={onChoose ? handleChoose : null}
-          onFileChange={onFileChange ? handleFileChange : null}
-          // File框不支持onBeforeChoose
-          onBeforeChoose={
-            typeof onBeforeChoose === 'function'
-              ? async (e) => {
+    return (
+      <Choose
+        // Value & Display Value
+        mediaType={mediaType}
+        sourceType={sourceType}
+        // Element
+        uploadRender={uploadRender}
+        uploadingRender={uploadingRender}
+        // Events
+        onChoose={onChoose ? handleChoose : undefined}
+        onFileChange={onFileChange ? handleFileChange : undefined}
+        onBeforeChoose={
+          typeof onBeforeChoose === 'function'
+            ? async (e) => {
                 _showLoading()
-                let isOk = await onBeforeChoose(e)
+                const isOk = await onBeforeChoose(e)
                 _hideLoading()
                 return isOk
               }
-              : null
-          }
-        />
-      )
-    }
-
-    // Render
-    return (
-      <div
-        ref={rootRef}
-        // Style
-        style={style}
-        className={DOMUtil.classNames('lyrixi-media', className)}
-      >
-        {/* Element: 图片上传按钮(start) */}
-        {uploadPosition === 'start' && getChooseNode()}
-
-        {/* Element: 图片列表 */}
-        <List
-          // Value & Display Value
-          list={list}
-          mediaType={mediaType}
-          ellipsis={ellipsis}
-          // Status
-          allowClear={allowClear}
-          // Element
-          uploadingRender={uploadingRender}
-          itemRender={itemRender}
-          // Events
-          onChange={onChangeRef.current}
-          onReUpload={handleReUpload}
-          onPreview={handlePreview}
-        />
-
-        {/* Element: 图片上传按钮(end) */}
-        {uploadPosition === 'end' && getChooseNode()}
-
-        {/* Element: 预览 */}
-        {previewTypeRef.current === 'browser' && (
-          <PreviewModal
-            // Value & Display Value
-            list={list} // 需要预览的资源列表{fileUrl: '图片或视频的地址', type: 'video|image, 默认image', fileThumbnail: '封面地址'}
-            index={previewVisible}
-            mediaType={mediaType}
-            maxCount={maxCount}
-            sourceType={sourceType}
-            sizeType={sizeType}
-            fileImageCompress={fileImageCompress}
-            // Style
-            safeArea={previewSafeArea}
-            previewNavBarStyle={previewNavBarStyle}
-            previewNavBarClassName={previewNavBarClassName}
-            modalStyle={previewModalStyle}
-            modalClassName={previewModalClassName}
-            maskStyle={previewMaskStyle}
-            maskClassName={previewMaskClassName}
-            // Status
-            open={typeof previewVisible === 'number'}
-            allowChoose={previewAllowChoose}
-            allowClear={previewAllowClear}
-            // Elements
-            portal={previewPortal}
-            cancelPosition={previewCancelPosition}
-            // Events
-            onBeforeChoose={onBeforeChoose}
-            onChoose={onChoose}
-            onFileChange={onFileChange}
-            onUpload={onUpload}
-            onChange={onChange}
-            onClose={() => {
-              setPreviewVisible(null)
-            }}
-          />
-        )}
-      </div>
+            : undefined
+        }
+      />
     )
   }
-)
+
+  // Render
+  return (
+    <div
+      ref={rootRef}
+      // Style
+      style={style as CSSProperties}
+      className={DOMUtil.classNames('lyrixi-media', className)}
+    >
+      {/* Element: 图片上传按钮(start) */}
+      {uploadPosition === 'start' && getChooseNode()}
+
+      {/* Element: 图片列表 */}
+      <List
+        // Value & Display Value
+        list={list as MediaListItem[]}
+        ellipsis={ellipsis}
+        // Status
+        allowClear={allowClear}
+        // Element
+        uploadingRender={uploadingRender}
+        itemRender={itemRender}
+        // Events
+        onChange={onChangeRef.current}
+        onReUpload={handleReUpload}
+        onPreview={handlePreview}
+      />
+
+      {/* Element: 图片上传按钮(end) */}
+      {uploadPosition === 'end' && getChooseNode()}
+
+      {/* Element: 预览 */}
+      {previewTypeRef.current === 'browser' && (
+        <PreviewModal
+          // Value & Display Value
+          list={list as MediaListItem[]}
+          index={previewVisible ?? undefined}
+          mediaType={mediaType}
+          maxCount={maxCount}
+          sourceType={sourceType}
+          sizeType={sizeType}
+          fileImageCompress={fileImageCompress}
+          // Style
+          safeArea={previewSafeArea}
+          navBarStyle={previewNavBarStyle}
+          navBarClassName={previewNavBarClassName}
+          modalStyle={previewModalStyle}
+          modalClassName={previewModalClassName}
+          maskStyle={previewMaskStyle}
+          maskClassName={previewMaskClassName}
+          // Status
+          open={typeof previewVisible === 'number'}
+          allowChoose={previewAllowChoose}
+          allowClear={previewAllowClear}
+          // Elements
+          portal={previewPortal}
+          cancelPosition={previewCancelPosition}
+          // Events
+          onBeforeChoose={onBeforeChoose}
+          onChoose={onChoose}
+          onFileChange={onFileChange}
+          onUpload={onUpload}
+          onChange={onChange}
+          onClose={() => {
+            setPreviewVisible(null)
+          }}
+        />
+      )}
+    </div>
+  )
+})
 
 export default Media

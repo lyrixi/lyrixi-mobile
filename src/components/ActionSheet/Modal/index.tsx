@@ -4,19 +4,54 @@ import Item from './../Item'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import Modal from './../../Modal/Modal'
+import Modal, { ModalRef } from './../../Modal/Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, LocaleUtil, Modal } from 'lyrixi-mobile'
 测试使用-end */
 
-const ActionSheetModal = forwardRef(
+export interface ActionSheetItem {
+  id: string | number
+  name: React.ReactNode
+  disabled?: boolean
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+}
+
+export interface ActionSheetModalProps {
+  value?: ActionSheetItem | null
+  list?: ActionSheetItem[]
+  open?: boolean
+  maskClosable?: boolean
+  allowClear?: boolean
+  safeArea?: boolean
+  modalStyle?: React.CSSProperties
+  modalClassName?: string
+  maskStyle?: React.CSSProperties
+  maskClassName?: string
+  itemStyle?: React.CSSProperties
+  itemClassName?: string
+  groupStyle?: React.CSSProperties
+  groupClassName?: string
+  portal?: boolean | HTMLElement
+  title?: React.ReactNode
+  cancelNode?: React.ReactNode
+  cancelVisible?: boolean
+  itemRender?: (
+    item: ActionSheetItem,
+    helpers: { onChange: (item: ActionSheetItem) => void }
+  ) => React.ReactNode
+  onChange?: (value: ActionSheetItem | null) => void
+  onCancel?: () => void
+  onClose?: () => void
+}
+
+const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
   (
     {
       // Value & Display Value
       value,
-      list,
+      list: listProp,
 
       // Status
       open = false,
@@ -51,14 +86,14 @@ const ActionSheetModal = forwardRef(
   ) => {
     // 过滤非法数据
     // eslint-disable-next-line
-    list = list?.filter?.((item) => {
+    const list = listProp?.filter?.((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
     })
 
     // 点击选项
-    async function handleChange(item) {
-      let currentValue = item
+    function handleChange(item: ActionSheetItem) {
+      let currentValue: ActionSheetItem | null = item
       if (allowClear) {
         if (item.id === value?.id) {
           currentValue = null
@@ -85,6 +120,7 @@ const ActionSheetModal = forwardRef(
         </div>
       )
     }
+
     return (
       <Modal
         ref={ref}

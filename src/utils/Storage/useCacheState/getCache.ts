@@ -1,8 +1,8 @@
 import Storage from './../Storage'
 
-function getCache(cacheName) {
+function getCache(cacheName: string): unknown {
   return (
-    window[cacheName] || Storage.getLocalStorage(cacheName) || Storage.getSessionStorage(cacheName)
+    (window as unknown as Record<string, unknown>)[cacheName] || Storage.getLocalStorage(cacheName) || Storage.getSessionStorage(cacheName)
   )
 }
 

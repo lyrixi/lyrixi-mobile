@@ -1,4 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import type { CalendarProps, CalendarRef, CalendarValue, WeekStart } from './../../Calendar/types'
+import type { DatePickerWeekMainProps } from './../datePickerTypes'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -11,7 +13,7 @@ import { DateUtil, Calendar } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日期快捷选择
-function WeekMain(
+const WeekMain = forwardRef<CalendarRef, DatePickerWeekMainProps>(function WeekMain(
   {
     // Modal: Status
     open = true,
@@ -30,46 +32,40 @@ function WeekMain(
   },
   ref
 ) {
-  // Range value
-  const rangeValueRef = useRef(null)
-
-  // Expose tools
-  const weekMainRef = useRef(null)
+  const rangeValueRef = useRef<(Date | null)[] | null | Date | null>(null)
+  const weekMainRef = useRef<CalendarRef | null>(null)
   useImperativeHandle(ref, () => {
-    const {
-      element: mainElement,
-      getElement: getMainElement,
-      ...otherMainRef
-    } = weekMainRef?.current || {}
+    const w = weekMainRef.current
     return {
-      mainElement: mainElement,
-      getMainElement: getMainElement,
-      ...otherMainRef,
-      getValue: () => {
-        return value instanceof Date ? value : null
-      }
-    }
+      ...(w ?? ({} as CalendarRef)),
+      getValue: () => (value instanceof Date ? value : null)
+    } as unknown as CalendarRef
   })
 
-  async function handleChange(rangeValue, { currentDate, action }) {
-    onChange && onChange(action === 'clear' ? null : currentDate)
+  const handleChange: NonNullable<CalendarProps['onChange']> = (_calValue, ctx) => {
+    onChange && onChange(ctx.action === 'clear' ? null : ctx.currentDate)
   }
 
-  let weekDates = DateUtil.getWeekDates(value, weekStart)
-  rangeValueRef.current =
-    Array.isArray(weekDates) && weekDates.length ? [weekDates[0], weekDates[6]] : null
+  const weekDates = value ? DateUtil.getWeekDates(value, weekStart) : null
+  if (Array.isArray(weekDates) && weekDates.length) {
+    rangeValueRef.current = [weekDates[0], weekDates[6]]
+  } else {
+    rangeValueRef.current = null
+  }
 
   return (
     <Calendar
       ref={weekMainRef}
+      open={open}
       // Value & Display Value
-      value={rangeValueRef.current}
+      value={rangeValueRef.current as CalendarValue}
       // Status
-      min={min}
-      max={max}
+      min={min ?? undefined}
+      max={max ?? undefined}
       draggable={['horizontal']}
-      weekStart={'Monday'}
-      selectionMode={'range'}
+      weekStart={weekStart as WeekStart}
+      type="week"
+      selectionMode="range"
       allowClear={allowClear}
       // Style
       style={style}
@@ -78,6 +74,6 @@ function WeekMain(
       onChange={handleChange}
     />
   )
-}
+})
 
-export default forwardRef(WeekMain)
+export default WeekMain

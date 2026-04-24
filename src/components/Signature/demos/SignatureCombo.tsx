@@ -6,12 +6,12 @@ import { Signature, Page, Toast, Device, Bridge } from 'lyrixi-mobile'
 // SafeArea.debug()
 
 export default () => {
-  const [value, setValue] = useState(
+  const [value, setValue] = useState<string | null>(
     'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
   )
 
   useEffect(() => {
-    Bridge.load()
+    Bridge.load({})
   }, [])
 
   return (
@@ -22,8 +22,7 @@ export default () => {
           // color="#000000"
           // backgroundColor="white"
           // disabled={true}
-          value={value}
-          safeArea="auto"
+          value={value ?? undefined}
           onChange={(newVal) => {
             console.log(newVal)
             setValue(newVal)

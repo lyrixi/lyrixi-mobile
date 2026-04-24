@@ -1,5 +1,16 @@
+type RawItem = Record<string, unknown>
+type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
+
+interface ViewFormatterOptions {
+  formatViewItem?: (item: ViewItem, options: { index: number }) => ViewItem
+  formatViewList?: (list: ViewItem[]) => ViewItem[]
+}
+
 // 格式化列表数据为渲染数据, 用于渲染列表组件
-function viewFormatter(list, { formatViewItem, formatViewList }) {
+function viewFormatter(
+  list: ViewItem[] | undefined,
+  { formatViewItem, formatViewList }: ViewFormatterOptions
+): ViewItem[] | undefined {
   // 格式化List显示数据, 但仍然需要保留原始数据list
   if (typeof formatViewList === 'function') {
     let newList = list?.map((item) => {
@@ -13,7 +24,7 @@ function viewFormatter(list, { formatViewItem, formatViewList }) {
 
       return { ...item, _raw: item }
     })
-    return formatViewList(newList)
+    return formatViewList(newList || [])
   }
 
   // 格式化Item显示数据, 但仍然需要保留原始数据item

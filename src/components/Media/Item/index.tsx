@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type MouseEvent } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,6 +9,19 @@ import Uploading from './../Uploading'
 import Reload from './Reload'
 import Delete from './Delete'
 import RemainCount from './RemainCount'
+import type { MediaListItem } from './../types'
+import type { MediaUploadingProps } from './../Uploading'
+
+export interface MediaItemProps {
+  item: MediaListItem
+  index: number
+  remainCount?: number | null
+  uploadingRender?: MediaUploadingProps['uploadingRender']
+  itemRender?: (item: MediaListItem) => React.ReactNode
+  onDelete?: (item: MediaListItem, index: number) => void
+  onReUpload?: (item: MediaListItem, index: number) => void
+  onPreview?: (item: MediaListItem, index: number) => void
+}
 
 // 照片视频预览
 const Item = ({
@@ -25,15 +38,19 @@ const Item = ({
   onDelete,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}) => {
+}: MediaItemProps) => {
   return (
     <div
       // Element
       data-index={index}
       // Style, 状态status: choose|uploading|error|success
-      className={DOMUtil.classNames('lyrixi-media-item', item.className, `lyrixi-${item.status}`)}
+      className={DOMUtil.classNames(
+        'lyrixi-media-item',
+        typeof item.className === 'string' ? item.className : null,
+        `lyrixi-${item.status}`
+      )}
       // Events
-      onClick={(e) => {
+      onClick={(e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
 
         onPreview && onPreview(item, index)
@@ -43,13 +60,13 @@ const Item = ({
       {item?.localFile?.tempFileThumbnail || item?.fileThumbnail ? (
         <Img
           reloadKey={item?.reloadKey}
-          fileUrl={item?.localFile?.tempFileThumbnail || item?.fileThumbnail}
+          fileUrl={String(item?.localFile?.tempFileThumbnail || item?.fileThumbnail || '')}
         />
       ) : null}
 
       {/* 重新上传图标 */}
       <Reload
-        onClick={(e) => {
+        onClick={() => {
           onReUpload && onReUpload(item, index)
         }}
       />
@@ -60,7 +77,7 @@ const Item = ({
       {/* 删除按钮 */}
       {onDelete && (
         <Delete
-          onClick={(e) => {
+          onClick={() => {
             onDelete(item, index)
           }}
         />

@@ -6,8 +6,15 @@ import GeoUtil from './../../../../utils/GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface MapPoint {
+  longitude?: number | string
+  latitude?: number | string
+  type?: string
+  [key: string]: unknown
+}
+
 // 单个点转换
-function getPoint(point, type) {
+function getPoint(point: MapPoint, type: string | undefined): MapPoint | null {
   if (!point?.longitude || !point?.latitude) {
     console.error('MapContainer wgs84ToCoords invalid parameter:', point)
     return null
@@ -15,11 +22,14 @@ function getPoint(point, type) {
   // 无需要转换
   if (!type) return point
 
-  let newPoint = GeoUtil.coordtransform(
-    [point.longitude, point.latitude],
-    point.type || 'wgs84',
+  const newPoint = GeoUtil.coordtransform(
+    [Number(point.longitude), Number(point.latitude)],
+    (point.type || 'wgs84') as string,
     type
   )
+  if (!newPoint) {
+    return null
+  }
   return {
     ...point,
     type: type,
@@ -28,14 +38,19 @@ function getPoint(point, type) {
   }
 }
 
-// 转成wgs84坐标
-function wgs84ToCoords(points, type) {
+function wgs84ToCoords(point: MapPoint, type: string | undefined): MapPoint | null
+function wgs84ToCoords(points: MapPoint[] | null | undefined, type: string | undefined): (MapPoint | null)[]
+function wgs84ToCoords(
+  points: MapPoint | MapPoint[] | null | undefined,
+  type: string | undefined
+): MapPoint | (MapPoint | null)[] | null {
   if (Array.isArray(points) && points.length) {
     return points.map((point) => {
       return getPoint(point, type)
     })
-  } else if (toString.call(points) === '[object Object]') {
-    return getPoint(points, type)
+  }
+  if (points && typeof points === 'object' && toString.call(points) === '[object Object]') {
+    return getPoint(points as MapPoint, type)
   }
   return null
 }

@@ -1,11 +1,13 @@
 import React, { useRef } from 'react'
 import Uploading from './../Uploading'
+import type { AttachFileItem, AttachItemProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Clipboard from './../../../utils/Clipboard'
 import AssetUtil from './../../../utils/AssetUtil'
+import Device from './../../../utils/Device'
 import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
 import Message from './../../Message'
@@ -14,6 +16,10 @@ import Message from './../../Message'
 /* 测试使用-start
 import { DOMUtil, LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
+
+function toToastString(text: string | import('react').ReactNode): string {
+  return typeof text === 'string' ? text : ''
+}
 
 // Item
 const Item = ({
@@ -29,51 +35,61 @@ const Item = ({
   onDelete,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}) => {
+}: AttachItemProps) => {
   // 预览类型: browser|native
-  const previewTypeRef = useRef(Bridge?.platform === 'browser' ? 'browser' : null)
+  const previewTypeRef = useRef<unknown>(Device.platform === 'browser' ? 'browser' : null)
 
   // 点击预览
-  async function handlePreview(item, index) {
+  async function handlePreview(attach: AttachFileItem, attachIndex: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
-      let goOn = await onPreview(item, index)
+      const goOn = await onPreview(attach, attachIndex)
       if (goOn === false) return
       previewTypeRef.current = goOn
     }
 
     // 失败的文件用localFileUrl预览
-    if (item.status === 'error') {
+    if (attach.status === 'error') {
       Toast.show({
-        content: LocaleUtil.locale(
-          '图片未上传成功, 无法预览',
-          'lyrixi_48ec308c5a5abf2b6dc08111a4aa08bb'
+        content: toToastString(
+          LocaleUtil.locale(
+            '图片未上传成功, 无法预览',
+            'lyrixi_48ec308c5a5abf2b6dc08111a4aa08bb'
+          )
         )
       })
       return
     }
 
     // 预览地址
-    let previewUrl = decodeURIComponent(decodeURIComponent(item.fileUrl))
+    const fileUrl = attach.fileUrl
+    let previewUrl =
+      fileUrl == null
+        ? ''
+        : typeof fileUrl === 'string'
+          ? decodeURIComponent(decodeURIComponent(fileUrl))
+          : ''
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
-        content: LocaleUtil.locale('预览地址不合法', 'lyrixi_abbd8dd2fbc71bf8315e71e5e80d041a')
+        content: toToastString(LocaleUtil.locale('预览地址不合法', 'lyrixi_abbd8dd2fbc71bf8315e71e5e80d041a'))
       })
       return
     }
 
     // 只有客户端和企微支持预览文件
     if (previewTypeRef.current === 'nativeFile') {
-      Bridge.previewFile(item)
+      Bridge.previewFile(attach)
     }
     // 平台预览需要复制到剪贴板
     else {
       Clipboard.copy(previewUrl, {
         onSuccess: () => {
           Toast.show({
-            content: LocaleUtil.locale(
-              '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
-              'lyrixi_6326307026a1ebefc8b307e7ef1c58b5'
+            content: toToastString(
+              LocaleUtil.locale(
+                '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
+                'lyrixi_6326307026a1ebefc8b307e7ef1c58b5'
+              )
             )
           })
         },
@@ -99,7 +115,7 @@ const Item = ({
   }
 
   // 获取附件类型图标
-  function getIcon(src) {
+  function getIcon(src: string | undefined) {
     let suffix = typeof src === 'string' ? AssetUtil.getFileExtension(src) : null
     if (!suffix) return 'unknown'
     if (suffix.indexOf('?') !== -1) {
@@ -188,7 +204,7 @@ const Item = ({
       </div>
 
       {/* 自定义渲染 */}
-      {itemRender && itemRender(item)}
+      {itemRender && itemRender(item, index)}
     </div>
   )
 }

@@ -8,6 +8,8 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { AssetUtil, Bridge, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import { UploadLocalFileParams, UploadResponse } from '../../types'
+
 // 上传localFile
 function uploadLocalFile({
   localFile,
@@ -16,17 +18,16 @@ function uploadLocalFile({
   formatPayload,
   formatResponse,
   verifyImage,
-  // 用于构建新Item的入参
   item
-}) {
+}: UploadLocalFileParams): Promise<unknown> {
   return new Promise((resolve) => {
     Bridge.uploadFile({
       getUploadUrl,
-      localFile, // 需要上传的图片的本地ID，由chooseImage接口获得
+      localFile,
       formatHeaders,
       formatPayload,
       formatResponse,
-      onSuccess: async function (response) {
+      onSuccess: async function (response: UploadResponse) {
         if (response.status === 'error') {
           resolve({
             ...item,
@@ -41,8 +42,8 @@ function uploadLocalFile({
 
         // 校验其是否真的是否法图片
         if (item?.fileType === 'image' && verifyImage) {
-          console.log('校验图片是否可访问:', newItem.fileThumbnail)
-          let isValid = await AssetUtil.accessImage(newItem.fileThumbnail)
+          console.log('校验图片是否可访问:', newItem?.fileThumbnail)
+            let isValid = await AssetUtil.accessImage(newItem?.fileThumbnail ?? '')
           if (!isValid) {
             resolve({
               ...item,
@@ -63,7 +64,7 @@ function uploadLocalFile({
           status: 'success'
         })
       },
-      onError: function (error) {
+      onError: function (error: { message?: string }) {
         resolve({
           ...item,
           status: 'error',

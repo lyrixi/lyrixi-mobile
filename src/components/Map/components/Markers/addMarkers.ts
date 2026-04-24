@@ -1,38 +1,56 @@
+import type * as L from 'leaflet'
 import coordsToFit from './../../utils/coordsToFit'
+import type { CanvasMarkerLayer } from './clearMarkers'
 import createMarkerIcon from './createMarkerIcon'
 import clearMarkers from './clearMarkers'
 import markerClickLeaflet from './markerClickLeaflet'
 import markerClickCanvas from './markerClickCanvas'
 
+export interface MapPoint {
+  latitude?: number | string
+  longitude?: number | string
+  type?: string
+  icon?: unknown
+  [key: string]: unknown
+}
+
 // Marker
-function addMarkers(points, { icon, onClick = null }, { layer, canvasLayer }) {
+function addMarkers(
+  points: MapPoint[] | null | undefined,
+  { icon, onClick = null }: { icon: L.Icon | L.DivIcon | null; onClick?: ((payload: unknown) => void) | null },
+  {
+    layer,
+    canvasLayer
+  }: { layer: L.LayerGroup; canvasLayer: CanvasMarkerLayer }
+): void {
   if (!canvasLayer || !layer) return
 
-  // eslint-disable-next-line
-  points = coordsToFit(points)
-  // eslint-disable-next-line
-  points = points.filter((point) => point)
-  if (!Array.isArray(points) || points.length === 0) return
+  let fitted: unknown = coordsToFit(points)
+  if (Array.isArray(fitted)) {
+    fitted = fitted.filter((p: unknown) => p)
+  }
+  if (!Array.isArray(fitted) || fitted.length === 0) return
+  const list = fitted as MapPoint[]
 
   // canvas不支持渲染html
-  let enableCanvas =
-    points.length > 100 &&
-    points.every((point) => {
-      return point?.icon?.html ? false : true
+  const enableCanvas =
+    list.length > 100 &&
+    list.every((point) => {
+      return point?.icon && typeof point.icon === 'object' && (point.icon as { html?: unknown })?.html
+        ? false
+        : true
     })
 
   // Draw markers
-  for (let point of points) {
-    let marker = window.L.marker(
-      [point.latitude, point.longitude],
-      // options
-      {
-        icon: point?.icon ? createMarkerIcon(point.icon) : icon,
-        // zIndexOffset默认0, z-index = 原始z-index + zIndexOffset
-        // zIndexOffset为undefined, 则会删除z-index, 会按顺序显示
-        // 其它方法都不可用, 因为地图放大缩放后会重置z-index
-        zIndexOffset: undefined
-      }
+  for (const point of list) {
+    const mIcon: L.Icon | L.DivIcon | null = point?.icon ? createMarkerIcon(point.icon) : icon
+    const opts: L.MarkerOptions = {}
+    if (mIcon) {
+      opts.icon = mIcon
+    }
+    const marker = window.L!.marker(
+      [Number(point.latitude), Number(point.longitude)] as L.LatLngExpression,
+      opts
     )
     if (enableCanvas) {
       canvasLayer.addMarker(marker)
@@ -42,10 +60,9 @@ function addMarkers(points, { icon, onClick = null }, { layer, canvasLayer }) {
   }
 
   if (!onClick) return
-  // Leaflet canvas marker plugin click
   if (enableCanvas) {
     markerClickCanvas({
-      points,
+      points: list,
       layerGroup: canvasLayer,
       clearMarkers: () => clearMarkers({ layer, canvasLayer }),
       defaultIcon: icon,
@@ -53,7 +70,7 @@ function addMarkers(points, { icon, onClick = null }, { layer, canvasLayer }) {
     })
   } else {
     markerClickLeaflet({
-      points,
+      points: list,
       clearMarkers: () => clearMarkers({ layer, canvasLayer }),
       layerGroup: layer,
       defaultIcon: icon,

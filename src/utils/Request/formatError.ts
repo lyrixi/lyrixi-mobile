@@ -1,7 +1,7 @@
-// Format axios error
-function formatError(response) {
-  let result = response
-  // axios错误信息多返回了两层, 减少一层, 返回{status: 401, data: {code: 'xxx', message: 'xxx'}}
+type AxiosLikeError = { config?: unknown; response?: Record<string, unknown>; [key: string]: unknown }
+
+function formatError(response: AxiosLikeError): AxiosLikeError {
+  let result: AxiosLikeError = response
   if (response.config && response.response) {
     result = response.response
   }

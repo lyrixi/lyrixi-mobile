@@ -1,16 +1,26 @@
 import React, { useRef, useState } from 'react'
-import { Page, Map, Loading } from 'lyrixi-mobile'
+import type * as L from 'leaflet'
+import { Page, Loading } from 'lyrixi-mobile'
 
-const { MapLoader, MapChoose, coordsToWgs84 } = Map
+import MapLoader from '../components/MapLoader'
+import MapChoose from '../pages/MapChoose'
+import coordsToWgs84 from '../utils/coordsToWgs84'
+import type { MapContainerAPI } from '../components/MapContainer'
+import type { MapChooseProps, MapChooseValue } from '../pages/MapChoose'
+
+/** Demo: marker onClick payload from Markers (custom API) */
+interface DemoMarkerClickPayload {
+  setIcon: (icon: L.Icon | L.DivIcon, opts?: { multiple?: boolean }) => void
+}
 
 // 生成随机点
 // import getPoints from './getPoints'
 // const points = getPoints()
 
 export default () => {
-  const mapRef = useRef(null)
+  const mapRef = useRef<MapContainerAPI>(null)
   // Bridge.debug = true
-  let [value, setValue] = useState({
+  let [value, setValue] = useState<MapChooseValue>({
     // address: '美国白宫',
     // latitude: 38.8976763,
     // longitude: -77.0365298,
@@ -41,13 +51,19 @@ export default () => {
   })
   */
 
+  const handleMapChooseChange: MapChooseProps['onChange'] = (newValue) => {
+    console.log('newValue:', newValue)
+    if (newValue != null && !Array.isArray(newValue)) {
+      setValue((prev) => ({ ...prev, ...newValue }))
+    }
+  }
+
   return (
     <Page>
       <Page.Main>
         <MapLoader
           loadingNode={<Loading content="Loading..." />}
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap',
             markerIcons: {
@@ -83,16 +99,14 @@ export default () => {
               // readOnly
               // autoLocation={false}
               zoom={16}
-              value={coordsToWgs84(value)}
-              onChange={(newValue) => {
-                console.log('newValue:', newValue)
-                setValue(newValue)
-              }}
+              value={(coordsToWgs84(value) ?? undefined) as MapChooseValue | undefined}
+              onChange={handleMapChooseChange}
               onMarkerClick={(e) => {
+                const payload = e as DemoMarkerClickPayload
                 console.log('点击marker:', e)
                 console.log(mapRef.current)
                 // e.remove()
-                let newMarkerIcon = window.L.icon({
+                const newMarkerIcon = window.L.icon({
                   active: true,
                   iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-icon.bak.png`,
                   iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-icon.bak.png`,
@@ -101,8 +115,8 @@ export default () => {
                   shadowSize: [33, 33],
                   iconSize: [20, 33],
                   iconAnchor: [10, 16]
-                })
-                e.setIcon(newMarkerIcon, { multiple: false })
+                } as L.IconOptions & { active?: boolean })
+                payload.setIcon(newMarkerIcon, { multiple: false })
               }}
             // getLocation={(data) => {
             //   console.log(data)

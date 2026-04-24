@@ -90,7 +90,11 @@ function ieOnEnd(
     onSuccess?: (r: { status: string; script: HTMLScriptElement; message: string }) => void
   }
 ) {
-  const { onError, onSuccess } = opts || {}
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onError,
+    onSuccess
+  } = opts || {}
   const s = script as LegacyIEScript
   s.onreadystatechange = function () {
     if (this.readyState !== 'complete' && this.readyState !== 'loaded') return
@@ -103,3 +107,5 @@ function ieOnEnd(
       })
   }
 }
+
+export {}

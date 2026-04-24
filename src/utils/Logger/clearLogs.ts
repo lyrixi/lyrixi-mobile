@@ -13,7 +13,7 @@ import { DateUtil, Storage } from 'lyrixi-mobile'
  * 清空本地日志
  * @param {Date} logDate 可选，传入则仅清除该日期日志；不传则清除全部
  */
-async function clearLogs(logDate) {
+async function clearLogs(logDate?: Date): Promise<boolean | void> {
   try {
     // 获取所有存储的键名
     const allKeys = await Storage.getKeys()

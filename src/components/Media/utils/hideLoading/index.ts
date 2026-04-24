@@ -8,7 +8,10 @@ import Loading from './../../../Loading'
 import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
-function hideLoading(element, { failIndexes } = {}) {
+function hideLoading(
+  element: Element | null | undefined,
+  { failIndexes }: { failIndexes?: number[] } = {}
+) {
   if (!element) return
   // 根节点遮罩
   element.classList.remove('lyrixi-uploading')
@@ -18,7 +21,8 @@ function hideLoading(element, { failIndexes } = {}) {
   // 当前项遮罩
   let itemsElement = element.querySelectorAll(`[data-index]`)
   if (itemsElement) {
-    for (let itemElement of itemsElement) {
+    for (let i = 0; i < itemsElement.length; i++) {
+      const itemElement = itemsElement[i] as HTMLElement
       let itemIndex = Number(itemElement.getAttribute('data-index'))
       itemElement.classList.remove('lyrixi-uploading')
       // 更新失败状态
@@ -27,6 +31,7 @@ function hideLoading(element, { failIndexes } = {}) {
       }
     }
   }
+
 
   Loading.hide()
 }

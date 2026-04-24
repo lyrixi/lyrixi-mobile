@@ -2,9 +2,14 @@ import React, { forwardRef, useContext } from 'react'
 import ItemsContext from './../ItemsContext'
 import CommonItem from './Item'
 import VirtualItem from './VirtualItem'
+import type { FormItemRef, FormItemProps } from './Item'
+
+export interface ItemProps extends FormItemProps {
+  height?: number
+}
 
 // layout: horizontal | vertical | inline
-const Item = forwardRef(
+const Item = forwardRef<FormItemRef, ItemProps>(
   (
     {
       id,

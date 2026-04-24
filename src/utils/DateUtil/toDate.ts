@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 // 转为日期格式
-function toDate(date) {
+function toDate(date: Date | string | number | null | undefined) {
   if (!date) return null
 
   // If date is time, convert to date with current date

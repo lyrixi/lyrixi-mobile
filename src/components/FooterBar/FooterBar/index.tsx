@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,7 +8,18 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const FooterBar = forwardRef(
+export interface FooterBarRef {
+  element: HTMLElement | null
+  getElement: () => HTMLElement | null
+}
+
+export interface FooterBarProps {
+  className?: string
+  style?: CSSProperties
+  children?: ReactNode
+}
+
+const FooterBar = forwardRef<FooterBarRef, FooterBarProps>(
   (
     {
       // Style
@@ -20,7 +31,7 @@ const FooterBar = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLElement>(null)
 
     // Expose tools
     useImperativeHandle(ref, () => {
@@ -35,7 +46,7 @@ const FooterBar = forwardRef(
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames('lyrixi-footerbar', className)}
+        className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-footerbar', className)}
       >
         {children}
       </footer>

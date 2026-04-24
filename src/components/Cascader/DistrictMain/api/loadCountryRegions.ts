@@ -7,39 +7,47 @@ import Request from './../../../../utils/Request'
 import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
-function loadCountryRegions(countryId = '86') {
+interface ApiResult {
+  status: 'success' | 'error'
+  list?: unknown[]
+  message?: string
+}
+
+function loadCountryRegions(countryId: string | number = '86'): Promise<ApiResult> {
   return new Promise((resolve) => {
     const language = LocaleUtil.getLanguage()
+    const countryKey = String(countryId)
 
-    // 优先读取缓存
     window.countryRegions =
-      window.countryRegions || JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}')
-    if (window.countryRegions?.[countryId]) {
+      window.countryRegions || JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}') as Record<string, unknown[]>
+    if (window.countryRegions?.[countryKey]) {
       resolve({
         status: 'success',
-        list: window.countryRegions[countryId]
+        list: window.countryRegions[countryKey]
       })
       return
     }
 
-    // 加载语言对应的文件
     Request.get(
-      `https://lyrixi.github.io/lyrixi-mobile/assets/district/${language}/${countryId}.json`
+      `https://lyrixi.github.io/lyrixi-mobile/assets/district/${language}/${countryKey}.json`,
+      undefined,
+      undefined
     )
-      .then(function (list) {
-        // 存到缓存中
-        window.countryRegions = JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}')
-        window.countryRegions[countryId] = list || []
-        window.sessionStorage.setItem('countryRegions', JSON.stringify(window.countryRegions))
-        resolve({
-          status: 'success',
-          list: window.countryRegions[countryId]
-        })
+      .then(function (list: unknown) {
+        window.countryRegions = JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}') as Record<string, unknown[]>
+        if (window.countryRegions) {
+          window.countryRegions[countryKey] = (list as unknown[]) || []
+          window.sessionStorage.setItem('countryRegions', JSON.stringify(window.countryRegions))
+          resolve({
+            status: 'success',
+            list: window.countryRegions[countryKey]
+          })
+        }
       })
       .catch(() => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('获取省市区数据失败', 'lyrixi_6779a06b0961e051e7b3ea0296305d18')
+          message: LocaleUtil.locale('获取省市区数据失败', 'lyrixi_6779a06b0961e051e7b3ea0296305d18') as string
         })
       })
   })

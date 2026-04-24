@@ -1,8 +1,8 @@
-/**
- * 间隔时间追踪器（函数实现）
- * 用于检测方法调用间隔，当间隔小于指定时间时触发回调, 间隔5秒自动切成浏览器拍照
- */
-function Interval(interval) {
+interface IntervalTracker {
+  isTimeout(): boolean
+}
+
+function Interval(interval: number): IntervalTracker {
   let lastCallTime = 0
 
   return {

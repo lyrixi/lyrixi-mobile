@@ -1,5 +1,5 @@
 // 将 queryParams 转换为 API 参数
-function serverData(queryParams) {
+function serverData(queryParams: Record<string, unknown>) {
   const params = {
     rows: 50,
     ...queryParams

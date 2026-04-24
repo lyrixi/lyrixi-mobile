@@ -1,10 +1,21 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const NavBarTitle = forwardRef(
+interface NavBarTitleRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface NavBarTitleProps {
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+const NavBarTitle = forwardRef<NavBarTitleRef, NavBarTitleProps>(
   (
     {
       children,
@@ -14,7 +25,7 @@ const NavBarTitle = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {

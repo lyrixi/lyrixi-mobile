@@ -12,8 +12,39 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface StepItem {
+  id?: string
+  icon?: React.ReactNode
+  status?: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+}
+
+interface StepsValue {
+  index?: number
+  id?: string
+  status?: string
+  activeIndex?: number
+  icon?: React.ReactNode
+}
+
+interface StepsProps {
+  value?: StepsValue
+  list?: StepItem[]
+  style?: React.CSSProperties
+  className?: string
+  iconSize?: number
+  align?: string
+  direction?: string
+}
+
+interface StepsRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
 // 步骤条
-const Steps = forwardRef(
+const Steps = forwardRef<StepsRef, StepsProps>(
   (
     {
       // Value & Display Value
@@ -29,7 +60,7 @@ const Steps = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -40,7 +71,7 @@ const Steps = forwardRef(
     })
 
     // 获取每项的状态
-    function getItemStatus(item, index) {
+    function getItemStatus(item: StepItem, index: number): string {
       // 没有索引, 也没有id, 则没有选中项
       if (typeof value?.index !== 'number' && !value?.id) return 'wait'
 
@@ -49,7 +80,7 @@ const Steps = forwardRef(
       // 根据id判断选中项
       if (value?.id) {
         if (item?.id === value?.id) {
-          value.activeIndex = index
+          if (value) value.activeIndex = index
           return activeStatus
         }
 
@@ -64,10 +95,12 @@ const Steps = forwardRef(
       if (typeof value?.index === 'number') {
         return index < value.index ? 'finish' : value.index === index ? 'active' : 'wait'
       }
+
+      return 'wait'
     }
 
     // 获取Step
-    function getStepNode(item, index, params) {
+    function getStepNode(item: StepItem, index: number, params: Record<string, unknown>) {
       if (direction === 'vertical') {
         if (align === 'center') {
           return <StepVerticalCenter key={index} {...params} />
@@ -94,7 +127,7 @@ const Steps = forwardRef(
           '--steps-title-height':
             typeof iconSize === 'number' && iconSize > 24 ? iconSize + 'px' : '24px',
           '--steps-icon-size': typeof iconSize === 'number' ? iconSize + 'px' : '8px'
-        }}
+        } as React.CSSProperties}
         className={DOMUtil.classNames(
           'lyrixi-steps',
           className,

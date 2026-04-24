@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-function diffDate(d1, d2) {
+function diffDate(d1: Date, d2: Date) {
   return dayjs(d1).diff(dayjs(d2), 'day')
 }
 

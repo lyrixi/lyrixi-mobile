@@ -1,9 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
+import type * as L from 'leaflet'
 import { Page, Map, Button } from 'lyrixi-mobile'
+
+import type { MapMarkersHandle } from '../pages/MapMarkers'
+import type { MarkersHandle } from '../components/Markers'
+import type { MapPoint } from '../utils/coordsToWgs84'
 
 // 生成随机点
 const { MapLoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map
 import getPoints from './getPoints'
+
+/** Demo: marker onClick payload from Markers (custom API) */
+interface DemoMarkerClickPayload {
+  setIcon: (icon: L.Icon | L.DivIcon, opts?: { multiple?: boolean }) => void
+}
 
 // 随机生成点, 用于测试性能
 const points = coordsToWgs84(
@@ -76,14 +86,18 @@ const points = coordsToWgs84(
 // ])
 
 export default () => {
-  const mapRef = useRef(mapRef)
+  const mapRef = useRef<MapMarkersHandle | null>(null)
 
   function handleFocusPoint() {
-    mapRef.current.markersRef.current.focus(points[0])
+    const handle = mapRef.current?.markersRef.current
+    const p0 = points[0]
+    if (handle && p0 != null) {
+      handle.focus(p0 as Parameters<MarkersHandle['focus']>[0])
+    }
   }
 
   function handleBlurPoint() {
-    mapRef.current.markersRef.current.blur()
+    mapRef.current?.markersRef.current?.blur()
   }
 
   return (
@@ -95,7 +109,6 @@ export default () => {
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap',
             markerIcons: {
@@ -128,9 +141,7 @@ export default () => {
             <MapMarkers
               ref={mapRef}
               // 转换为wgs84坐标
-              ZoomControlProps={{
-                style: { bottom: '20px' }
-              }}
+              zoomControlStyle={{ bottom: '20px' }}
               // 标注
               markers={points}
               // 折线
@@ -152,10 +163,11 @@ export default () => {
               //   color: '#ff8800'
               // }}
               onMarkerClick={(e) => {
+                const payload = e as DemoMarkerClickPayload
                 console.log('点击marker:', e)
                 console.log(mapRef.current)
                 // e.remove()
-                let newMarkerIcon = window.L.icon({
+                const newMarkerIcon = window.L.icon({
                   active: true,
                   iconUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-icon.bak.png`,
                   iconRetinaUrl: `https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/images/marker-icon.bak.png`,
@@ -164,8 +176,8 @@ export default () => {
                   shadowSize: [33, 33],
                   iconSize: [20, 33],
                   iconAnchor: [10, 16]
-                })
-                e.setIcon(newMarkerIcon, { multiple: true })
+                } as L.IconOptions & { active?: boolean })
+                payload.setIcon(newMarkerIcon, { multiple: true })
               }}
               // onMarkerClick={(e) => {
               //   console.log('点击marker:', e)
@@ -192,14 +204,16 @@ export default () => {
                 // 地图加载失败
                 if (result?.status === 'error') return
 
-                let currentZoom = result?.map?.getZoom()
-                result?.map?.setZoom(currentZoom - 1)
+                const currentZoom = result?.map?.getZoom()
+                if (result?.map != null && currentZoom != null) {
+                  result.map.setZoom(currentZoom - 1)
+                }
               }}
             >
               <LocationControl
                 style={{ bottom: '20px' }}
                 onChange={(result) => {
-                  mapRef.current.panTo(result)
+                  mapRef.current?.panTo(result as MapPoint)
                 }}
               />
             </MapMarkers>

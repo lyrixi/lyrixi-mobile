@@ -81,7 +81,7 @@ const Edit = () => {
     })) as { code?: string; message?: string }
     if (saveResult.code === '1') {
       Toast.show({
-        content: locale('提交成功!'),
+        content: String(locale('提交成功!')),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -90,7 +90,7 @@ const Edit = () => {
     // 重复请求
     else if (saveResult.code === '2') {
       Toast.show({
-        content: saveResult.message || locale('请勿重复提交!'),
+        content: String(saveResult.message || locale('请勿重复提交!')),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -102,7 +102,7 @@ const Edit = () => {
       tokenRef.current = '' + Date.now()
 
       Toast.show({
-        content: saveResult.message || locale('提交失败!')
+        content: String(saveResult.message || locale('提交失败!'))
       })
     }
   }
@@ -112,9 +112,9 @@ const Edit = () => {
       <Page.Main
         // 滚动结束记录滚动条位置
         onScrollEnd={(e) => {
-          // 记录滚动条位置
-          if (cacheConfig?.name && typeof e?.target?.scrollTop === 'number') {
-            Storage.setCache(`${cacheConfig.name}:scrollTop`, e.target.scrollTop, {
+          const el = e.target
+          if (cacheConfig?.name && el instanceof HTMLElement) {
+            Storage.setCache(`${cacheConfig.name}:scrollTop`, el.scrollTop, {
               persist: cacheConfig?.persist
             })
           }
@@ -138,33 +138,34 @@ const Edit = () => {
           <Form.Item
             height={42}
             name="input"
-            label={locale('Input')}
+            label={String(locale('Input'))}
             rules={[
               {
                 required: true,
-                message: locale('Input cannot be empty')
+                message: String(locale('Input cannot be empty'))
               }
             ]}
           >
-            <Input.Text placeholder={locale('Please input')} maxLength={50} />
+            <Input.Text placeholder={String(locale('Please input'))} maxLength={50} />
           </Form.Item>
           <Form.Item
             height={97}
             name="textarea"
             maxLength={150}
-            label={locale('Textarea')}
-            extra={({ value }) => {
-              return <div className="lyrixi-text-right">{`${value?.length || '0'} / 150`}</div>
+            label={String(locale('Textarea'))}
+            extra={({ value }: { value: unknown }) => {
+              const s = typeof value === 'string' ? value : ''
+              return <div className="lyrixi-text-right">{`${s.length} / 150`}</div>
             }}
           >
-            <Input.Textarea placeholder={locale('Please input')} />
+            <Input.Textarea placeholder={String(locale('Please input'))} />
           </Form.Item>
-          <Form.Item height={42} name="autoSize" label={locale('Auto fit')}>
-            <Input.AutoSize placeholder={locale('Please input')} />
+          <Form.Item height={42} name="autoSize" label={String(locale('Auto fit'))}>
+            <Input.AutoSize placeholder={String(locale('Please input'))} />
           </Form.Item>
-          <Form.Item height={42} name="select" label={locale('Select')}>
+          <Form.Item height={42} name="select" label={String(locale('Select'))}>
             <Select.Combo
-              placeholder={locale('Please select')}
+              placeholder={String(locale('Please select'))}
               list={[
                 {
                   id: '1',
@@ -178,9 +179,9 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={42} name="picker" label={locale('Picker')}>
+          <Form.Item height={42} name="picker" label={String(locale('Picker'))}>
             <Picker.Combo
-              placeholder={locale('Please select')}
+              placeholder={String(locale('Please select'))}
               list={[
                 {
                   id: '1',
@@ -194,12 +195,12 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={50} name="switch" valuePropName="checked" label={locale('Switch')}>
+          <Form.Item height={50} name="switch" valuePropName="checked" label={String(locale('Switch'))}>
             <Switch />
           </Form.Item>
-          <Form.Item height={74} name="checkbox" label={locale('Checkbox')}>
+          <Form.Item height={74} name="checkbox" label={String(locale('Checkbox'))}>
             <Checkbox.Group
-              placeholder={locale('Please select')}
+              placeholder={String(locale('Please select'))}
               list={[
                 {
                   id: '1',
@@ -213,10 +214,10 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={74} name="radio" label={locale('Radio')}>
+          <Form.Item height={74} name="radio" label={String(locale('Radio'))}>
             <Checkbox.Group
               multiple={false}
-              placeholder={locale('Please select')}
+              placeholder={String(locale('Please select'))}
               list={[
                 {
                   id: '1',
@@ -230,9 +231,8 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={102} name="selector" label={locale('Selector')}>
+          <Form.Item height={102} name="selector" label={String(locale('Selector'))}>
             <Selector
-              placeholder={locale('Please select')}
               list={[
                 {
                   id: '1',
@@ -254,73 +254,73 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={42} name="number" label={locale('Number')}>
-            <Input.Number placeholder={locale('Please input')} />
+          <Form.Item height={42} name="number" label={String(locale('Number'))}>
+            <Input.Number placeholder={String(locale('Please input'))} />
           </Form.Item>
           <Form.Item
             height={48}
             name="numberBox"
-            label={locale('Number box')}
+            label={String(locale('Number box'))}
             rules={[
               {
                 required: true,
-                message: locale('Number box can not empty')
+                message: String(locale('Number box can not empty'))
               }
             ]}
           >
-            <Input.NumberBox placeholder={locale('Please input')} />
+            <Input.NumberBox placeholder={String(locale('Please input'))} />
           </Form.Item>
           <Form.Item
             height={72}
             name="password"
-            label={locale('Password')}
-            extra={({ value }) => {
-              return <Input.PasswordStrength value={value} />
+            label={String(locale('Password'))}
+            extra={({ value }: { value: unknown }) => {
+              return <Input.PasswordStrength value={typeof value === 'string' ? value : undefined} />
             }}
           >
-            <Input.Password placeholder={locale('Please input')} />
+            <Input.Password placeholder={String(locale('Please input'))} />
           </Form.Item>
-          <Form.Item height={55} name="range" label={locale('Range')}>
+          <Form.Item height={55} name="range" label={String(locale('Range'))}>
             <Input.Range />
           </Form.Item>
-          <Form.Item height={55} name="rate" label={locale('Rate')}>
+          <Form.Item height={55} name="rate" label={String(locale('Rate'))}>
             <Input.Rate />
           </Form.Item>
-          <Form.Item height={42} name="tel" label={locale('Tel')}>
-            <Input.Tel placeholder={locale('Please input')} />
+          <Form.Item height={42} name="tel" label={String(locale('Tel'))}>
+            <Input.Tel placeholder={String(locale('Please input'))} />
           </Form.Item>
-          <Form.Item height={42} name="url" label={locale('Url')}>
-            <Input.Url placeholder={locale('Please input')} />
+          <Form.Item height={42} name="url" label={String(locale('Url'))}>
+            <Input.Url placeholder={String(locale('Please input'))} />
           </Form.Item>
-          <Form.Item height={42} name="datetime" label={locale('Datetime')}>
-            <DatePicker.Combo type="datetime" placeholder={locale('Please select')} allowClear />
+          <Form.Item height={42} name="datetime" label={String(locale('Datetime'))}>
+            <DatePicker.Combo type="datetime" placeholder={String(locale('Please select'))} allowClear />
           </Form.Item>
-          <Form.Item height={42} name="date" label={locale('Date')}>
-            <DatePicker.Combo placeholder={locale('Please select')} allowClear />
+          <Form.Item height={42} name="date" label={String(locale('Date'))}>
+            <DatePicker.Combo placeholder={String(locale('Please select'))} allowClear />
           </Form.Item>
-          <Form.Item height={42} name="time" label={locale('Time')}>
-            <DatePicker.Combo type="time" placeholder={locale('Please select')} allowClear />
+          <Form.Item height={42} name="time" label={String(locale('Time'))}>
+            <DatePicker.Combo type="time" placeholder={String(locale('Please select'))} allowClear />
           </Form.Item>
-          <Form.Item height={42} name="dateRange" label={locale('Date range')}>
-            <DatePicker.RangeCombo placeholder={locale('Please select')} allowClear />
+          <Form.Item height={42} name="dateRange" label={String(locale('Date range'))}>
+            <DatePicker.RangeCombo placeholder={String(locale('Please select'))} allowClear />
           </Form.Item>
-          <Form.Item height={42} name="district" label={locale('District')}>
-            <Cascader.DistrictCombo placeholder={locale('Please select')} allowClear />
+          <Form.Item height={42} name="district" label={String(locale('District'))}>
+            <Cascader.DistrictCombo placeholder={String(locale('Please select'))} allowClear />
           </Form.Item>
-          <Form.Item height={44} name="location" label={locale('Location')}>
+          <Form.Item height={44} name="location" label={String(locale('Location'))}>
             <Location.Combo
               type="gcj02"
-              config={{
+              mapConfig={{
                 key: '',
                 type: 'bmap'
               }}
-              placeholder={locale('Please select')}
+              placeholder={String(locale('Please select'))}
               allowClear
               previewVisible
               chooseVisible
             />
           </Form.Item>
-          <Form.Item height={52} name="signature" label={locale('Signature')}>
+          <Form.Item height={52} name="signature" label={String(locale('Signature'))}>
             <Signature.Combo />
           </Form.Item>
         </Form>
@@ -332,8 +332,8 @@ const Edit = () => {
       {/* Error */}
       {(result as { message?: string; status?: string } | null)?.message && (
         <Result
-          status={(result as { status?: string }).status}
-          title={(result as { message?: string }).message}
+          status={String((result as { status?: string }).status ?? 'empty')}
+          title={String((result as { message?: string }).message ?? '')}
         />
       )}
     </Page>

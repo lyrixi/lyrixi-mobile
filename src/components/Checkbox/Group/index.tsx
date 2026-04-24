@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
-import Checkbox from '../Checkbox'
+import Checkbox, { CheckboxProps } from '../Checkbox'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,35 +7,53 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 import formatValue from './formatValue'
 
+export interface CheckboxListItem {
+  id: string | number
+  name?: string
+  [key: string]: unknown
+}
+
+export interface CheckboxGroupRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface CheckboxGroupProps {
+  value?: unknown
+  list?: CheckboxListItem[]
+  /** Demos / Select-style API; group itself does not render a placeholder */
+  placeholder?: string
+  disabled?: boolean
+  readOnly?: boolean
+  allowClear?: boolean
+  multiple?: boolean
+  className?: string
+  style?: React.CSSProperties
+  iconRender?: CheckboxProps['iconRender']
+  iconPosition?: CheckboxProps['iconPosition']
+  onChange?: (value: CheckboxListItem | CheckboxListItem[] | null) => void
+}
+
 // Checkbox-Group
-const CheckboxGroup = forwardRef(
+const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
   (
     {
-      // Value & Display Value
       value,
       list,
-
-      // Status
+      placeholder: _placeholder,
       disabled,
       readOnly,
       allowClear,
       multiple,
-
-      // Style
       className,
       style,
-
-      // Element
       iconRender,
       iconPosition = 'left',
-
-      // Events
       onChange
     },
     ref
   ) => {
-    // 节点
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -45,52 +63,43 @@ const CheckboxGroup = forwardRef(
       }
     })
 
-    // 格式化 value：将字符串 ID 转换为完整对象
     const formattedValue = useMemo(
-      () => formatValue(value, list, multiple),
+      () => formatValue(value, list ?? [], multiple ?? false),
       [value, list, multiple]
     )
 
     return (
       <div
         ref={rootRef}
-        // Status
         disabled={disabled}
         readOnly={readOnly}
-        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-checkbox-group', className)}
       >
-        {/* Element: Checkboxes */}
         {Array.isArray(list) && list.length
           ? list.map((item) => {
             if (!item?.id) return null
 
             const isChecked = multiple
-              ? formattedValue.some((valueItem) => valueItem?.id === item.id)
-              : formattedValue?.id === item.id
+              ? Array.isArray(formattedValue) && formattedValue.some((valueItem) => valueItem?.id === item.id)
+              : !Array.isArray(formattedValue) && formattedValue?.id === item.id
 
             return (
               <Checkbox
-                key={item.id}
-                // Value & Display Value
+                key={String(item.id)}
                 checked={isChecked}
-                // Element
                 iconRender={iconRender}
                 iconPosition={iconPosition}
-                // Events
                 onChange={(checked) => {
-                  let newValue = null
-                  // 多选
+                  let newValue: CheckboxListItem | CheckboxListItem[] | null = null
                   if (multiple) {
+                    const currentArr = Array.isArray(formattedValue) ? formattedValue : []
                     if (!checked) {
-                      newValue = formattedValue.filter((valueItem) => valueItem?.id !== item.id)
+                      newValue = currentArr.filter((valueItem) => valueItem?.id !== item.id)
                     } else {
-                      newValue = [...(formattedValue || []), item]
+                      newValue = [...currentArr, item]
                     }
-                  }
-                  // 单选
-                  else {
+                  } else {
                     if (!checked) {
                       newValue = allowClear ? null : item
                     } else {
@@ -100,7 +109,7 @@ const CheckboxGroup = forwardRef(
                   onChange && onChange(newValue)
                 }}
               >
-                {item.name || ''}
+                {String(item.name || '')}
               </Checkbox>
             )
           })

@@ -1,3 +1,21 @@
+/** Raw SDK callback data shape (DingTalk / WeChat / Lark / Alipay etc.) */
+export type SDKResult = {
+  errorCode?: string | number
+  errorMessage?: string
+  errMsg?: string
+  message?: string
+  photoStatus?: number
+  latitude?: number
+  longitude?: number
+  accuracy?: number
+  type?: string
+  statusCode?: number
+  data?: unknown
+  resultStr?: string
+  text?: string
+  [key: string]: unknown
+}
+
 /** 成功结果固定形状；无业务载荷时 `T` 为 `undefined`，`data` 为 `undefined`。 */
 export type SuccessResult<T = undefined> = {
   status: 'success'

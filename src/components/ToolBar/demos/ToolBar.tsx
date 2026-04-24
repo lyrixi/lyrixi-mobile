@@ -1,18 +1,23 @@
 import React, { useState, useRef } from 'react'
 
 import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar } from 'lyrixi-mobile'
+import type { ToolBarDropdownRef } from '../Dropdown'
+import type { ToolBarFilterRef } from '../Filter'
 
-export default () => {
-  const dropdownRef = useRef(null)
-  const [mainElement, setMainElement] = useState(null)
-  const [dateRange, setDateRange] = useState(null)
-  const [item, setItem] = useState(null)
+type ToolbarListItem = { id: string; name: string; disabled?: boolean }
+
+export default function ToolBarDemo() {
+  const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
+  const filterRef = useRef<ToolBarFilterRef | null>(null)
+  const [, setMainElement] = useState<HTMLElement | null>(null)
+  const [dateRange, setDateRange] = useState<(Date | null)[] | null>(null)
+  const [item, setItem] = useState<ToolbarListItem | null>(null)
   const [search, setSearch] = useState('')
   const [searchActive, setSearchActive] = useState(false)
   const [filledSearchActive, setFilledSearchActive] = useState(false)
-  const filterRef = useRef(null)
 
-  function getDropdownModalNode({ open, close } = {}) {
+  function getDropdownModalNode(ctx: { open: boolean | null; onClose: () => void }) {
+    const onClose = ctx.onClose
     return (
       <div>
         <div style={{ height: '300px' }}>Modal Content</div>
@@ -21,7 +26,8 @@ export default () => {
             block
             backgroundColor="default"
             onClick={() => {
-              typeof close === 'function' ? close() : dropdownRef.current.close()
+              if (typeof onClose === 'function') onClose()
+              else dropdownRef.current?.close()
             }}
           >
             {LocaleUtil.locale('取消', 'lyrixi.cancel')}
@@ -46,10 +52,9 @@ export default () => {
       <Page.Main
         ref={(current) => {
           if (!current?.element) return
-          setMainElement(current?.element || null)
+          setMainElement(current.element)
         }}
       >
-        {/* Dropdown */}
         <Card>
           <Card.Header>Dropdown</Card.Header>
           <Card.Main>
@@ -93,37 +98,27 @@ export default () => {
                   }
                   return '>'
                 }}
-
                 placeholder={'DateRange'}
                 value={dateRange}
-                // allowClear={true}
-                onChange={(newDateRange, { rangeId }) => {
+                onChange={(newDateRange) => {
                   console.log('修改:', newDateRange)
                   setDateRange(newDateRange)
-                  // setDateRangeId(rangeId)
                 }}
               />
               <ToolBar.DateRange
-
                 placeholder="DateRange"
-                format="MM-DD"
                 value={dateRange}
-                // allowClear={true}
-                onChange={(newDateRange, { rangeId }) => {
+                onChange={(newDateRange) => {
                   console.log('修改:', newDateRange)
                   setDateRange(newDateRange)
-                  // setDateRangeId(rangeId)
                 }}
               />
               <ToolBar.DateRange
-
                 placeholder="DateRange"
                 value={dateRange}
-                // allowClear={true}
-                onChange={(newDateRange, { rangeId }) => {
+                onChange={(newDateRange) => {
                   console.log('修改:', newDateRange)
                   setDateRange(newDateRange)
-                  // setDateRangeId(rangeId)
                 }}
               />
             </ToolBar>
@@ -136,10 +131,9 @@ export default () => {
             <ToolBar>
               <ToolBar.List
                 left={12}
-
                 placeholder="List"
                 value={item}
-                onChange={setItem}
+                onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -157,10 +151,9 @@ export default () => {
                 ]}
               />
               <ToolBar.List
-
                 placeholder="List"
                 value={item}
-                onChange={setItem}
+                onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -186,12 +179,9 @@ export default () => {
           <Card.Main>
             <ToolBar>
               <ToolBar.ActionSheet
-
-                // color="primary"
-
                 placeholder="List"
                 value={item}
-                onChange={setItem}
+                onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -212,7 +202,6 @@ export default () => {
           </Card.Main>
         </Card>
 
-        {/* Button */}
         <Card>
           <Card.Header>Button</Card.Header>
           <Card.Main>
@@ -227,13 +216,12 @@ export default () => {
               </Flex.Compact>
               <Flex.Compact>
                 <ToolBar.List
-                  arrowRender={null}
                   sizeEqual
                   maskStyle={{
                     zIndex: 99
                   }}
                   value={item}
-                  onChange={setItem}
+                  onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
                   list={[
                     {
                       id: 'desc',
@@ -262,7 +250,6 @@ export default () => {
           </Card.Main>
         </Card>
 
-        {/* Filter */}
         <Card>
           <Card.Header>Filter Side</Card.Header>
           <Card.Main>
@@ -334,7 +321,6 @@ export default () => {
           <Card.Header>SearchBar active</Card.Header>
           <Card.Main>
             <ToolBar>
-
               {searchActive ? (
                 <ToolBar.SearchActive
                   value={search}
@@ -346,30 +332,29 @@ export default () => {
                   onBlur={() => {
                     setSearchActive(false)
                   }}
-                // onCancel={() => {
-                //   setSearchActive(false)
-                // }}
                 />
-              ) : <>
-                <ToolBar.Search
-                  value={search}
-                  readOnly
-                  onClick={() => {
-                    setSearchActive(true)
-                  }}
-                />
-                <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
-                  <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                    <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-                  </ToolBar.Button>
-                  <ToolBar.Filter
-                    sizeEqual
-                    modalRender={() => {
-                      return <div style={{ height: '300px' }}>Modal Content</div>
+              ) : (
+                <>
+                  <ToolBar.Search
+                    value={search}
+                    readOnly
+                    onClick={() => {
+                      setSearchActive(true)
                     }}
                   />
-                </Flex.Compact>
-              </>}
+                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                    <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                    </ToolBar.Button>
+                    <ToolBar.Filter
+                      sizeEqual
+                      modalRender={() => {
+                        return <div style={{ height: '300px' }}>Modal Content</div>
+                      }}
+                    />
+                  </Flex.Compact>
+                </>
+              )}
             </ToolBar>
           </Card.Main>
         </Card>
@@ -390,26 +375,28 @@ export default () => {
                     setFilledSearchActive(false)
                   }}
                 />
-              ) : <>
-                <ToolBar.Search
-                  value={search}
-                  readOnly
-                  onClick={() => {
-                    setFilledSearchActive(true)
-                  }}
-                />
-                <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
-                  <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                    <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
-                  </ToolBar.Button>
-                  <ToolBar.Filter
-                    sizeEqual
-                    modalRender={() => {
-                      return <div style={{ height: '300px' }}>Modal Content</div>
+              ) : (
+                <>
+                  <ToolBar.Search
+                    value={search}
+                    readOnly
+                    onClick={() => {
+                      setFilledSearchActive(true)
                     }}
                   />
-                </Flex.Compact>
-              </>}
+                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                    <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
+                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                    </ToolBar.Button>
+                    <ToolBar.Filter
+                      sizeEqual
+                      modalRender={() => {
+                        return <div style={{ height: '300px' }}>Modal Content</div>
+                      }}
+                    />
+                  </Flex.Compact>
+                </>
+              )}
             </ToolBar>
           </Card.Main>
         </Card>

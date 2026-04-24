@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Page, Divider, Input, Card, Button, ObjectUtil } from 'lyrixi-mobile'
 
 export default () => {
-  const inputTextRef = useRef(null)
+  const inputTextRef = useRef<React.ComponentRef<typeof Input.Text> | null>(null)
   const [value, setValue] = useState('')
   const [value2, setValue2] = useState('')
   const [value3, setValue3] = useState('')

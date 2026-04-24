@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Page, Cascader } from 'lyrixi-mobile'
+import type { CascaderNode } from './../cascaderTypes'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<CascaderNode[] | null>(null)
 
   return (
     <Page>
@@ -13,9 +14,6 @@ export default () => {
             console.log('修改: ', newValue)
             setValue(newValue)
           }}
-          placeholder={'DistrictMain'}
-          allowClear
-          maskStyle={{ zIndex: '9' }}
         />
       </Page.Main>
     </Page>

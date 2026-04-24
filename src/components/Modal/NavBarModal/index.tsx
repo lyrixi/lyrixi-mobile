@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react'
-import Modal from '../Modal'
+import React, { forwardRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import Modal, { type ModalRef, type ModalProps } from '../Modal'
 import NavBar from './NavBar'
 
 // 内库使用-start
@@ -10,8 +10,32 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface NavBarModalProps {
+  open?: boolean
+  maskClosable?: boolean
+  safeArea?: boolean
+  navBarStyle?: CSSProperties
+  navBarClassName?: string
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: ModalProps['portal']
+  title?: ReactNode
+  okNode?: ReactNode
+  okVisible?: boolean
+  okPosition?: 'left' | 'right'
+  cancelNode?: ReactNode
+  cancelVisible?: boolean
+  cancelPosition?: 'left' | 'right'
+  children?: ReactNode
+  onCancel?: () => void
+  onOk?: () => boolean | void | Promise<boolean | void>
+  onClose?: ModalProps['onClose']
+}
+
 // NavBarModal
-const NavBarModal = forwardRef(
+const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
   (
     {
       // Status
@@ -46,14 +70,14 @@ const NavBarModal = forwardRef(
     ref
   ) => {
     // 事件
-    function handleCancelClick(e) {
+    function handleCancelClick(e: MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
 
       onCancel?.()
       onClose?.()
     }
 
-    async function handleOkClick(e) {
+    async function handleOkClick(e: MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
       if (onOk) {
         let goOn = await onOk()

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 // 第三方库导入
 import { Page } from 'lyrixi-mobile'
+import type { ListAsyncRef, LoadResult } from '../../../../components/ListAsync'
 
 // 公共组件导入
 
@@ -14,18 +15,17 @@ import './index.less'
 
 // 普通列表
 const Common = () => {
-  const mainRef = useRef(null)
-  let [queryParams, setQueryParams] = useState(null)
+  const mainRef = useRef<ListAsyncRef | null>(null)
+  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
   return (
     <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}
-        onSearch={(newQueryParams) => {
-          queryParams = newQueryParams
+        onSearch={(newQueryParams: Record<string, unknown>) => {
           setQueryParams(newQueryParams)
-          mainRef.current.reload()
+          mainRef.current?.reload('reload')
         }}
       />
 
@@ -34,26 +34,28 @@ const Common = () => {
         ref={mainRef}
         loadData={async ({ previousResult, action }) => {
           console.log('action:', action)
-          const result = await queryData(queryParams, {
+          const result = (await queryData(queryParams, {
             action: action
-          })
-          let newList = null
-          if (result.status !== 'error') {
+          })) as {
+            status: string
+            message?: string
+            data?: { list: unknown[] }
+          }
+          let newList: unknown[] | null = null
+          if (result.status !== 'error' && result.data?.list) {
+            const prev = (previousResult?.list ?? []) as unknown[]
             newList =
-              action === 'bottomRefresh'
-                ? previousResult.list.concat(result.data.list)
-                : result.data.list
+              action === 'bottomRefresh' ? prev.concat(result.data.list) : result.data.list
           }
 
           return {
             status: result.status,
             message: result.message,
-            list: newList
-          }
+            list: newList ?? undefined
+          } as LoadResult
         }}
-        // value={value}
         onChange={() => {
-          console.log('onChange:', arguments)
+          console.log('onChange')
         }}
       />
     </Page>

@@ -1,6 +1,7 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../WeekCombo'
 import Combo from './Combo'
+import type { ComboProps } from './../../../Input/Select'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -12,65 +13,73 @@ import Input from './../../../Input'
 import { DateUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
+type WeekComboLocalProps = {
+  value?: Date | null
+  min?: Date | null
+  max?: Date | null
+  style?: React.CSSProperties
+  className?: string
+  onChange?: (value: Date) => void
+}
+
 // 周选择
-const Week = forwardRef(
-  (
-    {
-      // Value & Display Value
-      value,
-      // Status
-      min,
-      max,
-      // Style
-      style,
-      className,
-      // Events
-      onChange
-    },
-    ref
-  ) => {
-    // 向前
-    function handlePrev(e) {
-      if (value instanceof Date === false) return
-      onChange && onChange(DateUtil.previousWeek(value))
-    }
-
-    // 向后
-    function handleNext(e) {
-      if (value instanceof Date === false) return
-      onChange && onChange(DateUtil.nextWeek(value))
-    }
-
-    return (
-      <>
-        <Input.IconLeftArrow
-          className="lyrixi-datepicker-types-combo-previous"
-          onClick={handlePrev}
-        />
-        <DatePickerCombo
-          ref={ref}
-          value={value}
-          min={min}
-          max={max}
-          onChange={(newValue) => {
-            onChange && onChange(newValue)
-          }}
-          comboRender={({ comboRef, onClick }) => {
-            return (
-              <Combo
-                ref={comboRef}
-                className={DOMUtil.classNames('lyrixi-datepicker-types-combo-date', className)}
-                style={style}
-                onClick={onClick}
-                value={value}
-              />
-            )
-          }}
-        />
-        <Input.IconRightArrow className="lyrixi-datepicker-types-combo-next" onClick={handleNext} />
-      </>
-    )
+const Week = forwardRef<unknown, WeekComboLocalProps>(function TypesWeekCombo(
+  {
+    // Value & Display Value
+    value,
+    // Status
+    min,
+    max,
+    // Style
+    style,
+    className,
+    // Events
+    onChange
+  },
+  ref
+) {
+  // 向前
+  function handlePrev(_e: MouseEvent) {
+    if (!(value instanceof Date)) return
+    onChange && onChange(DateUtil.previousWeek(value))
   }
-)
+
+  // 向后
+  function handleNext(_e: MouseEvent) {
+    if (!(value instanceof Date)) return
+    onChange && onChange(DateUtil.nextWeek(value))
+  }
+
+  return (
+    <>
+      <Input.IconLeftArrow
+        iconClassName="lyrixi-datepicker-types-combo-previous"
+        onClick={handlePrev}
+      />
+      <DatePickerCombo
+        ref={ref}
+        value={value}
+        min={min}
+        max={max}
+        onChange={((v) => v instanceof Date && onChange && onChange(v)) as ComboProps['onChange']}
+        comboRender={({ comboRef, onClick }) => {
+          return (
+            <Combo
+              ref={comboRef as Ref<Record<string, unknown> | null>}
+              className={DOMUtil.classNames('lyrixi-datepicker-types-combo-date', className)}
+              style={style}
+              onClick={onClick}
+              value={value}
+            />
+          )
+        }}
+      />
+      <Input.IconRightArrow
+        iconClassName="lyrixi-datepicker-types-combo-next"
+        onClick={handleNext}
+      />
+    </>
+  )
+})
 
 export default Week

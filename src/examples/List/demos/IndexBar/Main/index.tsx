@@ -1,6 +1,9 @@
 // 第三方库导入
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type Ref } from 'react'
 import { ListPagination } from 'lyrixi-mobile'
+import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
+import type { LoadResult } from 'lyrixi-mobile/components/ListAsync'
+import type { VirtualOptions } from 'lyrixi-mobile/components/ListAsync/VirtualList'
 
 // 项目内部模块导入
 // 内部组件函数导入
@@ -8,8 +11,18 @@ import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewList from './formatViewList'
 
-// 简便的列表组件, 只需要传入url和params即可
-const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => {
+export type IndexBarListMainProps = {
+  cacheName: string
+  virtual?: VirtualOptions
+  queryParams: Record<string, unknown>
+  onLoad?: (ctx: { result: LoadResult | null; action: string }) => void
+  onScrollEnd?: (e: React.SyntheticEvent) => void
+}
+
+const Main = (
+  { cacheName, virtual, queryParams, onLoad, onScrollEnd }: IndexBarListMainProps,
+  ref: Ref<ListPaginationRef>
+) => {
   return (
     <ListPagination.Main
       ref={ref}
@@ -17,7 +30,7 @@ const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => 
       virtual={virtual}
       url="/"
       payload={queryParams}
-      formatPayload={({ page, ...payload }) => {
+      formatPayload={({ page, ...payload }: { page?: number } & Record<string, unknown>) => {
         return formatPayload({
           ...payload,
           page
@@ -34,4 +47,4 @@ const Main = ({ cacheName, virtual, queryParams, onLoad, onScrollEnd }, ref) => 
   )
 }
 
-export default forwardRef(Main)
+export default forwardRef<ListPaginationRef, IndexBarListMainProps>(Main)

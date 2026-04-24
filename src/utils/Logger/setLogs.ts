@@ -58,7 +58,7 @@ async function clearExpireLogs() {
  * 记录日志到存储
  * @param {Array} args - console.info的参数
  */
-async function _saveStorage(args) {
+async function _saveStorage(args: unknown): Promise<boolean | void> {
   try {
     // 获取当前时间
     const timestamp = DateUtil.format(new Date(), 'YYYY-MM-DD hh:mm:ss')
@@ -103,7 +103,7 @@ async function _saveStorage(args) {
 }
 
 // 日志队列（使用头指针避免逐项删除导致的开销与错误）
-let queueArgs: string[] = []
+let queueArgs: unknown[] = []
 let queueHead = 0
 let isProcessing = false
 
@@ -138,7 +138,7 @@ async function drainQueue() {
  * 记录日志到存储（队列版本）
  * @param {Array} args - console.info的参数
  */
-async function setLogs(args) {
+async function setLogs(args: unknown): Promise<void> {
   queueArgs.push(args)
   // 触发处理（幂等）
   drainQueue()

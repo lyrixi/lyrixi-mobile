@@ -1,23 +1,39 @@
+import React from 'react'
+
+interface TabItem {
+  id?: string | number
+  isLeaf?: boolean
+  [key: string]: unknown
+}
+
 // 设置叶子节点
-function updateIsLeaf(id, { currentValue, value, tabsRef }) {
-  // 更新当前列表叶子节点
-  for (let tab of currentValue || []) {
+function updateIsLeaf(
+  id: string | number,
+  {
+    currentValue,
+    value,
+    tabsRef
+  }: {
+    currentValue?: TabItem[]
+    value?: TabItem[]
+    tabsRef: React.MutableRefObject<TabItem[]>
+  }
+): void {
+  for (const tab of currentValue || []) {
     if (tab && tab.id === id) {
       tab.isLeaf = true
       break
     }
   }
 
-  // 更新value叶子节点
-  for (let tab of value || []) {
+  for (const tab of value || []) {
     if (tab && tab.id === id) {
       tab.isLeaf = true
       break
     }
   }
 
-  // 更新tabs叶子节点
-  for (let tab of tabsRef.current || []) {
+  for (const tab of tabsRef.current || []) {
     if (tab && tab.id === id) {
       tab.isLeaf = true
       break

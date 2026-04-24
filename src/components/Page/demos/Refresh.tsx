@@ -1,8 +1,11 @@
 import React from 'react'
 import { Page, List } from 'lyrixi-mobile'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper'
 
-const list = []
+type Row = { id: number; name: string }
+
+const list: Row[] = []
 for (let i = 0; i < 100; i++) {
   list.push({
     id: i,
@@ -21,9 +24,9 @@ export default () => {
   }
   function handleBottomRefresh() {
     console.log('底部加载')
-    return new Promise<boolean>((resolve) => {
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
-        resolve(true)
+        resolve()
       }, 1000)
     })
   }
@@ -39,7 +42,7 @@ export default () => {
           spaceBetween={50}
           style={{ height: '200px' }}
           onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
+          onSwiper={(swiper: SwiperType) => console.log(swiper)}
         >
           <SwiperSlide>Slide 1</SwiperSlide>
           <SwiperSlide>Slide 2</SwiperSlide>

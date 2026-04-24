@@ -25,7 +25,7 @@ function isNumber(str: unknown, validValues: unknown[] = []) {
 }
 
 // 提取数值, 不能在输入中使用, 因为在部分机型中会忽略小数点
-function extractNumber(str) {
+function extractNumber(str: unknown): string | unknown {
   if (isNumber(str)) return str
   // 匹配包含小数点的连续数值
   const match = String(str).match(/-?\d+(?:\.\d+)?/)
@@ -37,7 +37,7 @@ function extractNumber(str) {
  * @param {Number} number
  * @param {Boolean} decimalThousands 小数是否需要千分位
  */
-function thousands(number, decimalThousands) {
+function thousands(number: number | string, decimalThousands?: boolean): string {
   // 小数位也要千分位
   if (decimalThousands) {
     return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -54,7 +54,7 @@ function thousands(number, decimalThousands) {
  * @param {Number} precision
  * @returns
  */
-function fixed(number, precision) {
+function fixed(number: number | string, precision: number): string {
   let numStr = String(number)
   let decimalIndex = numStr.indexOf('.')
   if (decimalIndex !== -1) {
@@ -80,7 +80,7 @@ function round(number: string | number, precision: number) {
  * @param {Number} precision
  * @returns
  */
-function strip(number, precision = 12) {
+function strip(number: number, precision = 12): number {
   return +parseFloat(number.toPrecision(precision))
 }
 
@@ -89,7 +89,7 @@ function strip(number, precision = 12) {
  * @param {Number} number
  * @returns
  */
-function antiThousands(number) {
+function antiThousands(number: number | string): string {
   return `${number || ''}`.replace(/,/g, '')
 }
 
@@ -103,7 +103,7 @@ function antiThousands(number) {
  * @param {Number} maxPosition 最大位置
  * @returns
  */
-function inertia({ cellSize, distance, duration, currentPosition, minPosition, maxPosition }) {
+function inertia({ cellSize, distance, duration, currentPosition, minPosition, maxPosition }: { cellSize: number; distance: number; duration: number; currentPosition: number; minPosition: number; maxPosition: number }) {
   // 摩擦力
   let friction = 0.002
 
@@ -156,7 +156,7 @@ function inertia({ cellSize, distance, duration, currentPosition, minPosition, m
  * @param {String} type 'space' | 'font-size' | 'font-weight' | 'radius', 不传则不使用变量
  * @returns {String} 间距大小
  */
-function variableSize(size, type) {
+function variableSize(size: number | string, type?: string) {
   // 如果是数字，则直接返回
   let sizeNumber = extractNumber(size)
   if (isNumber(sizeNumber)) {
@@ -164,8 +164,8 @@ function variableSize(size, type) {
   }
 
   // 如果是间距变量, 则返回变量
-  if (type && DOMUtil.variables.sizes.includes(size)) {
-    return `var(--lyrixi-${type}-${size})`
+  if (type && DOMUtil.variables.sizes.includes(String(size))) {
+    return `var(--lyrixi-${type}-${String(size)})`
   }
 
   // 默认返回空字符串

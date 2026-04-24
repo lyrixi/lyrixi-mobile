@@ -7,10 +7,10 @@ import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 矫正小数位截取
-function precisionFormatter(value, { precision, trim }) {
-  let val = value
+function precisionFormatter(value: string | number, { precision, trim }: { precision?: number; trim?: boolean }): string | number {
+  let val: string | number = value
   // 符合截取条件时
-  if (typeof precision === 'number' && !isNaN(val) && val !== (null || '')) {
+  if (typeof precision === 'number' && !isNaN(Number(val)) && val !== '') {
     if (trim) {
       val = Number(val || 0)
     }

@@ -6,11 +6,12 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function Icon({
-  checked,
-  // 变体: 'solid'|'text'|'outlined'|'filled'
-  variant = 'solid'
-}) {
+interface IconProps {
+  checked?: boolean
+  variant?: string
+}
+
+function Icon({ checked, variant = 'solid' }: IconProps) {
   return (
     <span
       className={DOMUtil.classNames(

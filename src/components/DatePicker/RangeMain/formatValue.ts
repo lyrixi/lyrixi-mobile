@@ -1,5 +1,5 @@
 // 格式化value, 过滤不合法的值
-function formatValue(value) {
+function formatValue(value: unknown): [Date | null, Date | null] | null {
   if (!Array.isArray(value) || value.length !== 2) {
     return null
   }

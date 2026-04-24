@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import type { ComboProps } from '../../Input/Select'
 import Page from 'lyrixi-mobile/components/Page'
 import DatePicker from 'lyrixi-mobile/components/DatePicker'
 import Card from 'lyrixi-mobile/components/Card'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<Date | null>(null)
   return (
     <Page>
       <Page.Main>
@@ -15,7 +16,7 @@ export default () => {
               type="date"
               placeholder="请选择日期"
               value={value}
-              onChange={setValue}
+              onChange={setValue as ComboProps['onChange']}
               allowClear
             />
           </Card.Main>

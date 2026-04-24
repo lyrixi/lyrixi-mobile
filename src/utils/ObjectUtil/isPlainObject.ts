@@ -1,6 +1,6 @@
 import _isPlainObject from 'lodash/isPlainObject'
 
-function isPlainObject(value) {
+function isPlainObject(value: unknown): boolean {
   // 处理 Date 类型：检查是否为无效日期
   if (value instanceof Date) {
     return isNaN(value.getTime())

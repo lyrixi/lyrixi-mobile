@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { isSelectedDate, isDisabledDate, getTranslateValue } from './../utils'
 import Toggle from './../Toggle'
+import type { BodyProps, BodyRef, CalendarCellDate } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -13,26 +14,22 @@ import { DateUtil, DOMUtil } from 'lyrixi-mobile'
 
 const threshold = 50
 
+type TouchDirection = 0 | 'horizontal' | 'vertical' | null
+
 // 日历
-const Body = forwardRef(
+const Body = forwardRef<BodyRef, BodyProps>(
   (
     {
-      // Modal: Status
       open,
-      // Value & Display Value
       value,
       selectionMode = 'single',
       pages,
-      // Style
       cellHeight,
-      // Status
-      min, // 禁用之前日期
-      max, // 禁用之后日期
-      draggable,
+      min,
+      max,
+      draggable = ['horizontal', 'vertical'],
       allowClear,
-      // Elements
       dateRender,
-      // Events
       onChange,
       onSlideX,
       onSlideY,
@@ -40,23 +37,19 @@ const Body = forwardRef(
     },
     ref
   ) => {
-    // 容器
-    const rootRef = useRef(null)
-    const bodyXRef = useRef(null)
-    const bodyYRef = useRef(null)
+    const ch = cellHeight
+    const rootRef = useRef<HTMLDivElement>(null)
+    const bodyXRef = useRef<HTMLDivElement | null>(null)
+    const bodyYRef = useRef<HTMLDivElement | null>(null)
 
-    // 标识是否正在绘制，用于解决鼠标移动时，没有开始绘制，则不处理
     const isDrawingRef = useRef(false)
 
-    // 触摸信息
-    let touchesRef = useRef({
+    const touchesRef = useRef({
       startX: 0,
       startY: 0,
-      // 拖动方向: 'vertical|horizontal'
-      direction: 0
+      direction: 0 as TouchDirection
     })
 
-    // Expose Methods
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -65,8 +58,8 @@ const Body = forwardRef(
     })
 
     useEffect(() => {
-      bodyXRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-x')
-      bodyYRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-y')
+      bodyXRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-x') as HTMLDivElement | null
+      bodyYRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-y') as HTMLDivElement | null
     }, [])
 
     useEffect(() => {
@@ -77,158 +70,154 @@ const Body = forwardRef(
     /* --------------------
     Events handle
     -------------------- */
-    function handleTouchStart(e) {
+    function handleTouchStart(e: React.TouchEvent | React.MouseEvent) {
       e.stopPropagation()
 
-      // 鼠标开始绘制
       isDrawingRef.current = true
 
-      // 解决拖动时影响document弹性
       if (e.type === 'touchstart') {
         e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
       }
-      let pos = DOMUtil.getEventPosition(e)
+      const pos = DOMUtil.getEventPosition(
+        e as unknown as globalThis.TouchEvent | globalThis.MouseEvent
+      )
       touchesRef.current.startX = pos.clientX
       touchesRef.current.startY = pos.clientY
     }
-    function handleTouchMove(e) {
+    function handleTouchMove(e: React.TouchEvent | React.MouseEvent) {
       e.stopPropagation()
 
-      // 鼠标移动时，如果没有开始绘制，则不处理
       if (!isDrawingRef.current) {
         return
       }
 
-      let pos = DOMUtil.getEventPosition(e)
-      let currentX = pos.clientX
-      let currentY = pos.clientY
-      let diffX = touchesRef.current.startX - currentX
-      let diffY = touchesRef.current.startY - currentY
+      const pos = DOMUtil.getEventPosition(
+        e as unknown as globalThis.TouchEvent | globalThis.MouseEvent
+      )
+      const currentX = pos.clientX
+      const currentY = pos.clientY
+      const diffX = touchesRef.current.startX - currentX
+      const diffY = touchesRef.current.startY - currentY
 
-      // 判断拉动方向
       if (touchesRef.current.direction === 0) {
-        touchesRef.current.direction = Math.abs(diffX) > Math.abs(diffY) ? 'horizontal' : 'vertical'
+        touchesRef.current.direction = (Math.abs(diffX) > Math.abs(diffY) ? 'horizontal' : 'vertical') as TouchDirection
       }
-      // 禁止上下拖动
-      if (
-        draggable?.includes('horizontal') === false &&
-        touchesRef.current.direction === 'horizontal'
-      ) {
+      if (draggable?.includes('horizontal') === false && touchesRef.current.direction === 'horizontal') {
         touchesRef.current.direction = null
       }
-      // 禁止左右拖动
-      if (
-        draggable?.includes('vertical') === false &&
-        touchesRef.current.direction === 'vertical'
-      ) {
+      if (draggable?.includes('vertical') === false && touchesRef.current.direction === 'vertical') {
         touchesRef.current.direction = null
       }
 
-      // 左右拉动
-      if (touchesRef.current.direction === 'horizontal') {
-        // bodyX的位置
+      if (touchesRef.current.direction === 'horizontal' && bodyXRef.current) {
         let translateX = bodyXRef.current.getAttribute('data-translateX')
         if (!translateX) {
           translateX = getTranslateValue(bodyXRef.current.style.transform)
-          translateX && bodyXRef.current.setAttribute('data-translateX', translateX)
+          if (translateX) {
+            bodyXRef.current.setAttribute('data-translateX', translateX)
+          }
         }
-
-        let moveX = translateX - diffX
+        if (!translateX) {
+          return
+        }
+        const numX = Number(translateX)
+        if (Number.isNaN(numX)) {
+          return
+        }
+        const moveX = numX - diffX
         bodyXRef.current.style.transform = 'translateX(' + moveX + 'px)'
-      }
-      // 上下拉动
-      else if (touchesRef.current.direction === 'vertical') {
-        // body的高度
-        let height = rootRef.current.getAttribute('data-height')
-        if (!height) {
-          height = rootRef.current.clientHeight
-          height && rootRef.current.setAttribute('data-height', height)
+      } else if (touchesRef.current.direction === 'vertical' && rootRef.current && bodyYRef.current) {
+        let heightAttr = rootRef.current.getAttribute('data-height')
+        if (!heightAttr) {
+          const h = rootRef.current.clientHeight
+          if (h) {
+            rootRef.current.setAttribute('data-height', String(h))
+            heightAttr = String(h)
+          }
         }
-
-        let moveY = height - diffY
-        // 边缘禁止拉动
+        if (!heightAttr) {
+          return
+        }
+        const height = Number(heightAttr)
+        if (Number.isNaN(height)) {
+          return
+        }
+        const moveY = height - diffY
         if (moveY < 40 || moveY > 240) {
           return
         }
-        // 上下拉动
         rootRef.current.style.height = moveY + 'px'
 
-        // 跟随上下移动
         let initTranslateY = bodyYRef.current.getAttribute('data-translateY')
         if (!initTranslateY) {
-          initTranslateY = getTranslateValue(bodyYRef.current.style.transform)
-          bodyYRef.current.setAttribute('data-translateY', initTranslateY)
+          const fromTransform = getTranslateValue(bodyYRef.current.style.transform) ?? '0'
+          initTranslateY = fromTransform
+          bodyYRef.current.setAttribute('data-translateY', fromTransform)
         }
-        let translateY = Number(initTranslateY) + moveY - cellHeight
+        const translateY = Number(initTranslateY) + moveY - ch
         if (translateY < 0) {
           bodyYRef.current.style.transform = `translateY(${translateY}px)`
         }
       }
     }
-    async function handleTouchEnd(e) {
+    async function handleTouchEnd(e: React.TouchEvent | React.MouseEvent) {
       e.stopPropagation()
 
-      // 鼠标结束绘制
       isDrawingRef.current = false
 
-      // 解除对move时的弹性对当前div的锁定
       if (e.type === 'touchend') {
         e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
       }
 
-      let pos = DOMUtil.getEventPosition(e)
-      let endX = pos.clientX
-      let endY = pos.clientY
-      let diffX = touchesRef.current.startX - endX
-      let diffY = touchesRef.current.startY - endY
-      let direction = touchesRef.current.direction
+      const pos = DOMUtil.getEventPosition(
+        e as unknown as globalThis.TouchEvent | globalThis.MouseEvent
+      )
+      const endX = pos.clientX
+      const endY = pos.clientY
+      const diffX = touchesRef.current.startX - endX
+      const diffY = touchesRef.current.startY - endY
+      const direction = touchesRef.current.direction
 
-      // 清空滑动方向
       touchesRef.current.direction = 0
 
-      // 左右滑动
       if (direction === 'horizontal') {
-        // 滑动动作过小，则还原
         if (Math.abs(diffX) < threshold) {
           onSlideX && onSlideX('')
           return
         }
 
-        // 下一页
         if (diffX > 0) {
           onSlideX && onSlideX('next')
-        }
-        // 上一页
-        else {
+        } else {
           onSlideX && onSlideX('previous')
         }
-      }
-      // 上下滑动
-      else if (direction === 'vertical') {
-        // 滑动动作过小，则还原
+      } else if (direction === 'vertical') {
         if (Math.abs(diffY) < threshold) {
           onSlideY && onSlideY('')
           return
         }
-        // 展开
         if (diffY < 0) {
           onSlideY && onSlideY('expand')
-        }
-        // 收缩
-        else {
+        } else {
           onSlideY && onSlideY('collapse')
         }
       }
     }
 
-    // 若视窗大小变化, 需要更新x轴的位置
     function handleWindowResize() {
-      let width = rootRef.current?.parentNode?.clientWidth
-      if (!width) return
+      const width = rootRef.current?.parentElement?.clientWidth
+      if (!width) {
+        return
+      }
 
-      let bodyX = rootRef.current?.querySelector?.('.lyrixi-calendar-body-x')
-      let translatex = bodyX.getAttribute('data-translatex')
-      if (Number(translatex)) return
+      const bodyX = rootRef.current?.querySelector?.('.lyrixi-calendar-body-x') as HTMLDivElement | null
+      if (!bodyX) {
+        return
+      }
+      const translatex = bodyX.getAttribute('data-translatex')
+      if (Number(translatex)) {
+        return
+      }
 
       bodyX.style.transform = `translateX(-${width}px)`
       bodyX.setAttribute('data-translatex', `-${width}`)
@@ -237,12 +226,14 @@ const Body = forwardRef(
     }
     requestAnimationFrame(handleWindowResize)
 
+    const pageList = (pages ?? []) as CalendarCellDate[][][]
+
     return (
       <>
         <div
           ref={rootRef}
           className="lyrixi-calendar-body"
-          style={{ height: cellHeight * 6 }}
+          style={{ height: ch * 6 }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -252,18 +243,15 @@ const Body = forwardRef(
         >
           <div className="lyrixi-calendar-body-y">
             <div className="lyrixi-calendar-body-x">
-              {/* 3页 */}
-              {(pages || []).map((page, pageIndex) => {
+              {pageList.map((page, pageIndex) => {
                 return (
                   <div className="lyrixi-calendar-page" key={pageIndex}>
-                    {/* 6行 */}
                     {page.map((row, rowIndex) => {
                       return (
                         <div className="lyrixi-calendar-row" key={rowIndex}>
-                          {/* 7列 */}
                           {row.map((date, dateIndex) => {
-                            let isSelected = isSelectedDate(date, value, selectionMode)
-                            let selectedClassNames = []
+                            const isSelected = isSelectedDate(date, value, selectionMode)
+                            const selectedClassNames: string[] = []
                             if (isSelected?.includes('lyrixi-selected')) {
                               selectedClassNames.push('lyrixi-selected')
                             }
@@ -273,9 +261,9 @@ const Body = forwardRef(
                             if (isSelected?.includes('lyrixi-selected-end')) {
                               selectedClassNames.push('lyrixi-selected-end')
                             }
-                            selectedClassNames = selectedClassNames.join(' ')
+                            const selectedClassString = selectedClassNames.join(' ')
 
-                            let isDisabled = isDisabledDate(date, { min, max })
+                            const isDisabled = isDisabledDate(date, { min, max })
                             return (
                               <div
                                 key={dateIndex}
@@ -284,24 +272,22 @@ const Body = forwardRef(
                                   date.isCurrent
                                     ? 'lyrixi-calendar-date-current-month'
                                     : 'lyrixi-calendar-date-out-month',
-                                  DateUtil.compare(new Date(), date) === 0
+                                  DateUtil.compare(new Date(), date, 'date') === 0
                                     ? 'lyrixi-calendar-date-today'
                                     : '',
-                                  selectedClassNames,
+                                  selectedClassString,
                                   isDisabled ? 'lyrixi-calendar-date-disabled' : ''
                                 )}
-                                style={{ height: cellHeight + 'px' }}
-                                onClick={(e) => {
-                                  e.stopPropagation()
-                                  // 清空
+                                style={{ height: ch + 'px' }}
+                                onClick={(ev) => {
+                                  ev.stopPropagation()
                                   if (
                                     allowClear &&
-                                    e.currentTarget.classList.contains('lyrixi-selected')
+                                    ev.currentTarget.classList.contains('lyrixi-selected')
                                   ) {
                                     onChange?.(date, { action: 'clear' })
                                     return
                                   }
-                                  // 选择日期
                                   onChange?.(date, { action: 'select' })
                                 }}
                               >
@@ -336,7 +322,6 @@ const Body = forwardRef(
             onMouseMove={handleTouchMove}
             onMouseUp={handleTouchEnd}
           >
-            {/* 箭头转向：slideY 在日历根节点 .lyrixi-calendar 上增删 class lyrixi-expand，Calendar.less 里 .lyrixi-calendar.lyrixi-expand .lyrixi-calendar-toggle-svg 通过覆盖 path 的 d（下箭头↔上箭头）实现展开时箭头朝上、收缩时朝下，path 上的 transition 做过渡 */}
             <Toggle onClick={onToggle} />
           </div>
         )}

@@ -6,7 +6,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getWeekNames(start) {
+function getWeekNames(start: string) {
   if (start === 'Monday') {
     return [
       LocaleUtil.locale('一', 'lyrixi_7941da94db2a83c04d0d85ee45ecb1e3'),
@@ -16,7 +16,7 @@ function getWeekNames(start) {
       LocaleUtil.locale('五', 'lyrixi_1fcc29d077c043016d325c68d328187f'),
       LocaleUtil.locale('六', 'lyrixi_61b453523d86ac98afd3c98bdf1b0f9d'),
       LocaleUtil.locale('日', 'lyrixi_3edddd85ac2c5e612fb71dbb89e7d1c5')
-    ]
+    ] as string[]
   }
   return [
     LocaleUtil.locale('日', 'lyrixi_3edddd85ac2c5e612fb71dbb89e7d1c5'),
@@ -26,7 +26,7 @@ function getWeekNames(start) {
     LocaleUtil.locale('四', 'lyrixi_21716cf311071e8d339b611c8bdce9e4'),
     LocaleUtil.locale('五', 'lyrixi_1fcc29d077c043016d325c68d328187f'),
     LocaleUtil.locale('六', 'lyrixi_61b453523d86ac98afd3c98bdf1b0f9d')
-  ]
+  ] as string[]
 }
 
 export default getWeekNames

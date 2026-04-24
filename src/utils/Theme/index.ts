@@ -1,7 +1,9 @@
 import hexToRgb from './hexToRgb'
 import setFontSize from './setFontSize'
 
-export default {
+const Theme = {
   hexToRgb,
   setFontSize
 }
+
+export default Theme

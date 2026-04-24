@@ -9,16 +9,16 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { HeaderProps, HeaderRef } from './types'
+
 // 日历头部
-const Header = forwardRef(
+const Header = forwardRef<HeaderRef, HeaderProps>(
   (
     { className, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear, children, style },
     ref
   ) => {
-    // 容器
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
-    // 暴露方法
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,

@@ -1,4 +1,4 @@
-import React, { useContext, createContext, type CSSProperties, type ReactNode } from 'react'
+import React, { useContext, createContext, Children, Fragment, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -25,17 +25,29 @@ export interface CompactProps {
   style?: CSSProperties
   className?: string
   children?: ReactNode
+  /** 在子节点之间插入的分隔节点 */
+  separator?: ReactNode
   block?: boolean
   size?: string
   direction?: string
   radius?: string
 }
 
-function CompactBase({ style, className, children, block, size, direction, radius }: CompactProps) {
+function interleaveChildren(children: ReactNode, separator: ReactNode): ReactNode {
+  const arr = Children.toArray(children)
+  if (arr.length <= 1) return children
+  return arr.reduce<ReactNode[]>((acc, child, i) => {
+    if (i > 0) acc.push(<Fragment key={`sep-${i}`}>{separator}</Fragment>)
+    acc.push(<Fragment key={`item-${i}`}>{child}</Fragment>)
+    return acc
+  }, [])
+}
+
+function CompactBase({ style, className, children, separator, block, size, direction, radius }: CompactProps) {
   const parentContext = useCompactContext()
 
-  const gap = MathUtil.variableSize(size, undefined)
-  const radiusSize = MathUtil.variableSize(radius, undefined)
+  const gap = size != null ? MathUtil.variableSize(size, undefined) : ''
+  const radiusSize = radius != null ? MathUtil.variableSize(radius, undefined) : ''
 
   const gapStyle = {
     '--lyrixi-flex-compact-gap': gap,
@@ -57,7 +69,7 @@ function CompactBase({ style, className, children, block, size, direction, radiu
           className
         )}
       >
-        {children}
+        {separator != null ? interleaveChildren(children, separator) : children}
       </div>
     </Context.Provider>
   )

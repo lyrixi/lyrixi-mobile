@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,54 +8,64 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface BadgeProps {
+  children?: ReactNode
+  style?: CSSProperties
+  className?: string
+  maxLength?: number
+  ellipsis?: string
+}
+
+interface BadgeRef {
+  element: HTMLSpanElement | null
+  getElement: () => HTMLSpanElement | null
+}
+
 // 数值标
-const Badge = forwardRef(
-  (
-    {
-      // Value & Display Value
-      children = '0',
+const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
+  {
+    // Value & Display Value
+    children = '0',
 
-      // Style
-      style,
-      className,
+    // Style
+    style,
+    className,
 
-      // Validate
-      maxLength = 2,
-      ellipsis = '+' // 有maxLength属性时ellipsis才生效
-    },
-    ref
-  ) => {
-    // 节点
-    const rootRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
-
-    // 标题
-    let text = children
-    if (maxLength && children && (typeof children === 'string' || typeof children === 'number')) {
-      text = text.toString()
-      // 数字大于99,则显示99+
-      if (!isNaN(text)) {
-        text = text.length > maxLength ? '99999'.substring(0, maxLength) + ellipsis : text
-      } else {
-        text = text.length > maxLength ? text.substring(0, maxLength) + ellipsis : text
-      }
+    // Validate
+    maxLength = 2,
+    ellipsis = '+' // 有maxLength属性时ellipsis才生效
+  },
+  ref
+) {
+  // 节点
+  const rootRef = useRef<HTMLSpanElement | null>(null)
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current
     }
-    return (
-      <span
-        ref={rootRef}
-        // Style
-        style={style}
-        className={DOMUtil.classNames('lyrixi-badge', className)}
-      >
-        {text}
-      </span>
-    )
+  })
+
+  // 标题
+  let text: ReactNode = children
+  if (maxLength && (children || children === 0) && (typeof children === 'string' || typeof children === 'number')) {
+    const raw = String(children)
+    if (!isNaN(Number(raw))) {
+      text = raw.length > maxLength ? '99999'.substring(0, maxLength) + ellipsis : raw
+    } else {
+      text = raw.length > maxLength ? raw.substring(0, maxLength) + ellipsis : raw
+    }
   }
-)
+  return (
+    <span
+      ref={rootRef}
+      // Style
+      style={style}
+      className={DOMUtil.classNames('lyrixi-badge', className)}
+    >
+      {text}
+    </span>
+  )
+})
 
 export default Badge

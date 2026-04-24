@@ -1,9 +1,11 @@
-import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, useContext, type CSSProperties, type ReactNode } from 'react'
 import ItemsContext from './../ItemsContext'
+import type { EllipsisConfig } from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 import Row from '../../../Row'
+import type { ColRef } from '../../../Row'
 import Text from '../../../Text'
 // 内库使用-end
 
@@ -11,7 +13,18 @@ import Text from '../../../Text'
 import { DOMUtil, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormMain = forwardRef(
+export interface FormMainProps {
+  ellipsis?: EllipsisConfig
+  span?: number | string
+  style?: CSSProperties
+  className?: string
+  errorMessage?: string
+  inputExtraNode?: ReactNode
+  extraNode?: ReactNode
+  children?: ReactNode
+}
+
+const FormMain = forwardRef<ColRef, FormMainProps>(
   (
     {
       // Status
@@ -33,37 +46,41 @@ const FormMain = forwardRef(
     // 获取全局配置
     const { layout, mainSpan, mainEllipsis } = useContext(ItemsContext)
 
-    const rootRef = useRef(null)
+    const rootRef = useRef<ColRef>(null)
 
     // Expose
     useImperativeHandle(ref, () => {
-      return rootRef.current
+      return rootRef.current!
     })
+
+    const activeEllipsis = ellipsis || mainEllipsis || undefined
 
     return (
       <Row.Col
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames('lyrixi-form-item-main', className)}
+        className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-form-item-main', className)}
         span={layout === 'horizontal' ? span || mainSpan || 16 : 24}
       >
-        <div className="lyrixi-form-item-main-input">
-          {/* Element: Children */}
-          {ellipsis?.rows || mainEllipsis?.rows ? (
-            <Text ellipsis={ellipsis || mainEllipsis}>{children}</Text>
-          ) : (
-            children
-          )}
-          {/* Element: Input extra */}
-          {inputExtraNode && (
-            <div className="lyrixi-form-item-main-input-extra">{inputExtraNode}</div>
-          )}
-        </div>
-        {/* Value & Display Value: Error */}
-        {errorMessage && <div className="lyrixi-form-item-main-error">{errorMessage}</div>}
-        {/* Element: Main extra */}
-        {extraNode && <div className="lyrixi-form-item-main-extra">{extraNode}</div>}
+        <>
+          <div className="lyrixi-form-item-main-input">
+            {/* Element: Children */}
+            {activeEllipsis?.rows ? (
+              <Text ellipsis={activeEllipsis}>{children}</Text>
+            ) : (
+              children
+            )}
+            {/* Element: Input extra */}
+            {inputExtraNode && (
+              <div className="lyrixi-form-item-main-input-extra">{inputExtraNode}</div>
+            )}
+          </div>
+          {/* Value & Display Value: Error */}
+          {errorMessage && <div className="lyrixi-form-item-main-error">{errorMessage}</div>}
+          {/* Element: Main extra */}
+          {extraNode && <div className="lyrixi-form-item-main-extra">{extraNode}</div>}
+        </>
       </Row.Col>
     )
   }

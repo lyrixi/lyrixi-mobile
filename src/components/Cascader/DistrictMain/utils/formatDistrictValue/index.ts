@@ -10,19 +10,32 @@ import ArrayUtil from '../../../../../utils/ArrayUtil'
 import { ObjectUtil, ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface DistrictItem {
+  id?: string | number
+  parentid?: string | number
+  type?: string[]
+  isLeaf?: boolean
+  [key: string]: unknown
+}
+
 // 更新value的type
-function formatDistrictValue(value, { list, maxType }) {
+function formatDistrictValue(
+  value: DistrictItem[],
+  { list, maxType }: { list: DistrictItem[]; maxType?: string }
+): DistrictItem[] | null {
   if (!Array.isArray(value) || !value.length || !Array.isArray(list) || !list.length) return null
 
-  for (let item of value) {
-    // id
+  for (const item of value) {
     if (item.id && typeof item.id === 'number') {
       item.id = String(item.id)
     }
 
-    // 更新type
     if (item.id) {
-      let node = ArrayUtil.getDeepTreeNode(list, item.id)
+      // getDeepTreeNode 期望带 id 的树节点；与 DistrictItem 在运行时一致
+      const node = ArrayUtil.getDeepTreeNode(
+        list as unknown as Parameters<typeof ArrayUtil.getDeepTreeNode>[0],
+        item.id
+      ) as DistrictItem | null
       if (node) {
         item.type = node.type
       }
@@ -31,8 +44,8 @@ function formatDistrictValue(value, { list, maxType }) {
 
   sortValue(value)
 
-  // Add parentid and add street type
-  for (let [index, item] of value.entries()) {
+  for (let index = 0; index < value.length; index++) {
+    const item = value[index] as DistrictItem
     if (item.parentid && typeof item.parentid === 'number') {
       item.parentid = String(item.parentid)
     }
@@ -40,7 +53,6 @@ function formatDistrictValue(value, { list, maxType }) {
       item.parentid = value?.[index - 1]?.id || ''
     }
 
-    // 如果上级是市或者区, 则type为street
     if (
       ObjectUtil.isEmpty(value[index].type) &&
       index === value.length - 1 &&
@@ -50,12 +62,10 @@ function formatDistrictValue(value, { list, maxType }) {
     }
   }
 
-  // 从叶子节点后，舍弃掉后面的item
   if (maxType) {
     const leafIndex = findDistrictLeafIndex(value, maxType)
     if (leafIndex >= 0 && leafIndex < value.length) {
       value.length = leafIndex + 1
-      // 标记为isLeaf方便Cascader.Main解析
       value[value.length - 1].isLeaf = true
     }
   }

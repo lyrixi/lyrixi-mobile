@@ -1,3 +1,4 @@
+import type * as L from 'leaflet'
 import defaultMarkerIcons from './../../../utils/markerIcons'
 
 // 内库使用-start
@@ -8,14 +9,32 @@ import ObjectUtil from './../../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+type MarkerIconConfig = {
+  className?: string
+  iconUrl?: string
+  iconRetinaUrl?: string
+  shadowUrl?: string
+  shadowRetinaUrl?: string
+  shadowSize?: [number, number]
+  iconSize?: [number, number]
+  iconAnchor?: [number, number]
+  shadowAnchor?: [number, number]
+  popupAnchor?: [number, number]
+  html?: string
+  [key: string]: unknown
+}
+
 // 创建图标, 被CenterMarker共用
-function createMarkerIcon(icon) {
+function createMarkerIcon(icon: unknown): L.Icon | L.DivIcon | null {
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   // 已经是图标了则直接返回
   if (icon instanceof window.L.Icon || icon instanceof window.L.divIcon) {
-    return icon
+    return icon as L.Icon | L.DivIcon
   }
+
+  const cfg: MarkerIconConfig =
+    icon !== null && typeof icon === 'object' ? (icon as MarkerIconConfig) : {}
 
   const {
     // DivIcon
@@ -31,7 +50,7 @@ function createMarkerIcon(icon) {
     iconAnchor,
     shadowAnchor,
     popupAnchor
-  } = icon || {}
+  } = cfg
 
   if (html) {
     return window.L.divIcon(
@@ -50,26 +69,27 @@ function createMarkerIcon(icon) {
           popupAnchor
         },
         (v) => v !== undefined || v !== null
-      )
+      ) as L.DivIconOptions
     )
   }
 
+  const defaults = defaultMarkerIcons.markerIcon as MarkerIconConfig
   return window.L.icon(
     ObjectUtil.pickBy(
       {
-        className: className || defaultMarkerIcons.markerIcon?.className,
-        iconUrl: iconUrl || defaultMarkerIcons.markerIcon?.iconUrl,
-        iconRetinaUrl: iconRetinaUrl || defaultMarkerIcons.markerIcon?.iconRetinaUrl,
-        shadowUrl: shadowUrl || defaultMarkerIcons.markerIcon?.shadowUrl,
-        shadowRetinaUrl: shadowRetinaUrl || defaultMarkerIcons.markerIcon?.shadowRetinaUrl,
-        shadowSize: shadowSize || defaultMarkerIcons.markerIcon?.shadowSize,
-        iconSize: iconSize || defaultMarkerIcons.markerIcon?.iconSize,
-        iconAnchor: iconAnchor || defaultMarkerIcons.markerIcon?.iconAnchor,
-        shadowAnchor: shadowAnchor || defaultMarkerIcons.markerIcon?.shadowAnchor,
-        popupAnchor: popupAnchor || defaultMarkerIcons.markerIcon?.popupAnchor
+        className: className || defaults.className,
+        iconUrl: iconUrl || defaults.iconUrl,
+        iconRetinaUrl: iconRetinaUrl || defaults.iconRetinaUrl,
+        shadowUrl: shadowUrl || defaults.shadowUrl,
+        shadowRetinaUrl: shadowRetinaUrl || defaults.shadowRetinaUrl,
+        shadowSize: shadowSize || defaults.shadowSize,
+        iconSize: iconSize || defaults.iconSize,
+        iconAnchor: iconAnchor || defaults.iconAnchor,
+        shadowAnchor: shadowAnchor || defaults.shadowAnchor,
+        popupAnchor: popupAnchor || defaults.popupAnchor
       },
       (v) => v !== undefined || v !== null
-    )
+    ) as L.IconOptions
   )
 }
 

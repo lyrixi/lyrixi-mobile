@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Loading.SpinFade>
-          {/* Loading.SpinFade 示例内容 */}
-        </Loading.SpinFade>
+        <Loading.SpinFade />
       </Page.Main>
     </Page>
   )

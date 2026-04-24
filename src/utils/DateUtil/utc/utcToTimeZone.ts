@@ -1,5 +1,5 @@
 // 将 UTC 转为指定时区
-function utcToTimeZone(utcDate, offset) {
+function utcToTimeZone(utcDate: Date, offset: number) {
   // 检查参数
   if (!(utcDate instanceof Date) || Number.isNaN(utcDate.getTime())) {
     return null

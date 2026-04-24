@@ -2,51 +2,50 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Button from './../../Button'
+import Button, { type ButtonProps, type ButtonRef } from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
 
-const ToolBarButton = forwardRef(
-  (
-    {
-      // Style
-      direction,
-      block,
-      color,
-      backgroundColor,
-      borderColor,
-      border = 'none',
-      size,
-      sizeEqual,
-      fontSize,
-      radius = 'm',
-      style,
-      className,
+const ToolBarButton = forwardRef<ButtonRef, ButtonProps>(function ToolBarButton(
+  {
+    // Style
+    direction,
+    block,
+    color,
+    backgroundColor,
+    borderColor,
+    border = 'none',
+    size,
+    sizeEqual,
+    fontSize,
+    radius = 'm',
+    style,
+    className,
 
-      // Element
-      children,
+    // Element
+    children,
 
-      // Events
-      onClick
-    },
-    ref
-  ) => {
-    const rootRef = useRef(null)
+    // Events
+    onClick
+  },
+  ref
+) {
+  const rootRef = useRef<ButtonRef | null>(null)
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
+  // Expose
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current?.element ?? null,
+      getElement: () => rootRef.current?.getElement() ?? null
+    }
+  })
 
-    return (
-      <Button
-        ref={rootRef}
+  return (
+    <Button
+      ref={rootRef}
         // Style
         color={color}
         borderColor={borderColor}
@@ -66,10 +65,10 @@ const ToolBarButton = forwardRef(
         {children}
       </Button>
     )
-  }
-)
+})
 
 // Component Name, for compact
-ToolBarButton.componentName = 'ToolBar.Button'
+;(ToolBarButton as typeof ToolBarButton & { componentName?: string }).componentName =
+  'ToolBar.Button'
 
 export default ToolBarButton

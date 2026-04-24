@@ -1,16 +1,15 @@
-// 序列化参数, {id: '1', id2: {id-1: '1'}} => "id1=1&id2.id-1=1"
-function serializeParams(val, prefix = '') {
+function serializeParams(val: unknown, prefix = ''): string | unknown {
   if (val && Object.prototype.toString.call(val) === '[object Object]') {
     const usp = new URLSearchParams()
-    const build = (o, p) => {
+    const build = (o: Record<string, unknown>, p: string) => {
       Object.keys(o).forEach((key) => {
         const paramKey = p ? `${p}.${key}` : key
         o[key] && typeof o[key] === 'object'
-          ? build(o[key], paramKey)
-          : usp.append(paramKey, o[key])
+          ? build(o[key] as Record<string, unknown>, paramKey)
+          : usp.append(paramKey, String(o[key]))
       })
     }
-    build(val, prefix)
+    build(val as Record<string, unknown>, prefix)
     return usp.toString()
   }
   return val

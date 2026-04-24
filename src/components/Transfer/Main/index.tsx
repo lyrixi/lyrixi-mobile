@@ -1,35 +1,38 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-// import Sortable from 'sortablejs'
 import { ReactSortable } from 'react-sortablejs'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 
 import Card from './../../Card'
 import Item from './Item'
+import type { TransferItem, TransferMainProps, TransferTitles } from './../types'
+
+function normalizeTitles(
+  titles: TransferMainProps['titles']
+): TransferTitles | undefined {
+  if (titles == null) return undefined
+  if (Array.isArray(titles)) {
+    return { selected: titles[0], unSelected: titles[1] }
+  }
+  return titles
+}
 
 // 穿梭框
-const Transfer = (
+const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
   {
-    // Value & Display Value
     value,
     list,
-    titles,
-
-    // Status
-    open,
-    allowClear,
-
-    // Style
+    titles: titlesProp,
+    open: _open,
+    allowClear: _allowClear,
     className,
     style,
-
-    // Events
     onChange
   },
   ref
-) => {
-  // 容器
-  const mainRef = useRef(null)
+) {
+  const mainRef = useRef<HTMLDivElement | null>(null)
+  const titles = normalizeTitles(titlesProp)
 
   // 暴露方法
   useImperativeHandle(ref, () => {
@@ -40,7 +43,7 @@ const Transfer = (
   })
 
   // 删除
-  function handleDelete(item, index) {
+  function handleDelete(item: TransferItem, _index: number) {
     if (onChange) {
       onChange(
         value.filter((selected) => {
@@ -51,8 +54,8 @@ const Transfer = (
   }
 
   // 添加
-  function handleAdd(item, index) {
-    for (let originItem of list) {
+  function handleAdd(item: TransferItem, _index: number) {
+    for (const originItem of list) {
       if (originItem.id === item.id) {
         if (onChange) {
           onChange([...value, item])
@@ -63,8 +66,8 @@ const Transfer = (
   }
 
   // 未选列表
-  let unSelectedList = list?.filter(
-    (item, index) => !value?.some((selected) => selected.id === item.id)
+  const unSelectedList = list?.filter(
+    (item, _index) => !value?.some((selected) => selected.id === item.id)
   )
 
   return (
@@ -92,8 +95,7 @@ const Transfer = (
             // Value & Display Value
             list={value}
             // Events
-            setList={(newValue) => {
-              // 如果值未发生变化则不触发onChange
+            setList={(newValue: TransferItem[]) => {
               if (
                 JSON.stringify(value.map((item) => item.id)) ===
                 JSON.stringify(newValue.map((item) => item.id))
@@ -108,8 +110,7 @@ const Transfer = (
             {value.map((item, index) => {
               return (
                 <Item
-                  key={item.id}
-                  // Events
+                  key={String(item.id)}
                   onDelete={() => handleDelete(item, index)}
                   sortable
                 >
@@ -138,8 +139,7 @@ const Transfer = (
             {unSelectedList.map((item, index) => {
               return (
                 <Item
-                  key={item.id}
-                  // Events
+                  key={String(item.id)}
                   onAdd={() => handleAdd(item, index)}
                 >
                   {item?.name || ''}
@@ -151,6 +151,6 @@ const Transfer = (
       ) : null}
     </div>
   )
-}
+})
 
-export default forwardRef(Transfer)
+export default Transfer

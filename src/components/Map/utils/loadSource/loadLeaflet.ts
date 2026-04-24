@@ -6,8 +6,12 @@ import AssetUtil from '../../../../utils/AssetUtil'
 import { AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+function pickResult(r: unknown): Record<string, unknown> {
+  return typeof r === 'object' && r !== null ? { ...(r as Record<string, unknown>) } : {}
+}
+
 // 加载地图资源
-function loadLeaflet({ css, js } = {}) {
+function loadLeaflet({ css, js }: { css?: string; js?: string } = {}): Promise<unknown> {
   return new Promise((resolve) => {
     if (window.L) {
       resolve({
@@ -17,42 +21,34 @@ function loadLeaflet({ css, js } = {}) {
       return
     }
 
-    // Delete old css
     const cssTag = document.getElementById('leaflet-css')
-    if (cssTag) {
+    if (cssTag?.parentNode) {
       cssTag.parentNode.removeChild(cssTag)
     }
 
-    // Load css
     const link = document.createElement('link')
     link.rel = 'stylesheet'
-    // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
     link.href =
       css || 'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/css/leaflet.css'
     link.id = 'leaflet-css'
     document.head.appendChild(link)
 
-    // Delete old script
     const scriptTag = document.getElementById('leaflet-js')
-    if (scriptTag) {
+    if (scriptTag?.parentNode) {
       scriptTag.parentNode.removeChild(scriptTag)
     }
 
-    // Load js
-    // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
     AssetUtil.loadRemoteJs(
       js || 'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
       {
         id: 'leaflet-js',
-        // integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
-        // crossorigin: '',
-        onSuccess: (result) => {
+        onSuccess: (result: unknown) => {
           resolve({
-            ...result,
+            ...pickResult(result),
             data: window.L
           })
         },
-        onError: (result) => {
+        onError: (result: unknown) => {
           resolve(result)
         }
       }

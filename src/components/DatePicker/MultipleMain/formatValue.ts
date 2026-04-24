@@ -1,3 +1,5 @@
+import type { DatePickerMultipleValue, DatePickerPickerType } from './../datePickerTypes'
+
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
@@ -7,14 +9,18 @@ import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // Format value
-function formatValue(value, type) {
+function formatValue(
+  value: unknown,
+  type: DatePickerPickerType | string
+): DatePickerMultipleValue {
   if (!Array.isArray(value) || !value.length) {
     return null
   }
   return value.map((tab) => {
-    let date = tab.value instanceof Date ? tab.value : new Date()
+    const t = tab as { value?: Date; [k: string]: unknown }
+    let date = t.value instanceof Date ? t.value : new Date()
     return {
-      ...tab,
+      ...t,
       value: date,
       name: DateUtil.format(date, type)
     }

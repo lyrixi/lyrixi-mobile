@@ -85,7 +85,7 @@ const FullScreen = {
     }
   },
   // 监听
-  on: function (element, fn) {
+  on: function (element: HTMLElement | null | undefined, fn: EventListener): void {
     let target = element || document
     target.addEventListener('webkitfullscreenchange', fn, false)
     target.addEventListener('mozfullscreenchange', fn, false)

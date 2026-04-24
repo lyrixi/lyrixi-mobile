@@ -84,10 +84,7 @@ let Bridge = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: {
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
     const { onSuccess } = params || {}
     ;(window.top ?? window).ap?.popWindow?.()
     onSuccess?.({ status: 'success', data: undefined })
@@ -109,12 +106,11 @@ let Bridge = {
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用支付宝地图...', { latitude, longitude, type, name, address, scale })
-
     ;(window.top ?? window).ap?.openLocation?.({
       title: name || '',
       address: address || '',
-      latitude: coord.latitude,
-      longitude: coord.longitude,
+      latitude: coord?.latitude ?? 0,
+      longitude: coord?.longitude ?? 0,
       onSuccess: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
@@ -138,7 +134,6 @@ let Bridge = {
   }) {
     const { type, onSuccess, onError } = params || {}
     console.log('调用支付宝定位...', type)
-
     ;(window.top ?? window).ap?.getLocation?.({
       type: '2',
       onSuccess: (res: { latitude?: number; longitude?: number; accuracy?: number }) => {
@@ -155,8 +150,10 @@ let Bridge = {
 
         if (type === 'wgs84') {
           const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
-          longitude = points[0]
-          latitude = points[1]
+          if (points) {
+            longitude = points[0]
+            latitude = points[1]
+          }
         }
 
         onSuccess?.({

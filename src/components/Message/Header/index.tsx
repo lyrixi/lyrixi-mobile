@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,7 +8,18 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Header = forwardRef(
+interface MessageHeaderRef {
+  element: HTMLElement | null
+  getElement: () => HTMLElement | null
+}
+
+interface MessageHeaderProps {
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+const Header = forwardRef<MessageHeaderRef, MessageHeaderProps>(
   (
     {
       children,
@@ -18,7 +29,7 @@ const Header = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {

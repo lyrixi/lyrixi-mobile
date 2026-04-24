@@ -6,7 +6,7 @@ const ITEM_HEIGHT = 72
 
 export default () => {
   const mainRef = useRef(null)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<Record<string, unknown> | Record<string, unknown>[] | null>(null)
 
   return (
     <Page>
@@ -26,13 +26,13 @@ export default () => {
             description: `description ${prevList.length + i + 1}`
           }))
           const list = isLoadMore ? [...prevList, ...nextChunk] : nextChunk
-          return {
+          return Promise.resolve({
             status: list.length >= 60 ? 'noMore' : 'loading',
             message: list.length >= 60 ? '没有更多了' : undefined,
             list
-          }
+          })
         }}
-        onChange={setValue}
+        onChange={(v) => setValue(v)}
         checkable
         allowClear
       />

@@ -36,9 +36,9 @@ export default () => {
           <div>
             <h3>Using Message.Combo Component</h3>
             <Message.Combo
-              iconRender={
-                <Icon className="lyrixi-iconfont-config lyrixi-color-primary" size={80}></Icon>
-              }
+              iconRender={() => (
+                <Icon className="lyrixi-iconfont-config lyrixi-color-primary" size="80"></Icon>
+              )}
               title="Title"
               content={<div>Content</div>}
               buttonsLayout="vertical"

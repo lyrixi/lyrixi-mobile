@@ -6,14 +6,20 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getDefaultValue({ min, max }) {
+function getDefaultValue({ min, max }: { min?: Date | null; max?: Date | null }): Date {
   const now = new Date()
 
-  if (min && DateUtil.compare(now, min, 'date') < 0) {
-    return min
+  if (min != null) {
+    const cmpMin = DateUtil.compare(now, min, 'date')
+    if (cmpMin !== undefined && cmpMin < 0) {
+      return min
+    }
   }
-  if (max && DateUtil.compare(now, max, 'date') > 0) {
-    return max
+  if (max != null) {
+    const cmpMax = DateUtil.compare(now, max, 'date')
+    if (cmpMax !== undefined && cmpMax > 0) {
+      return max
+    }
   }
   return now
 }

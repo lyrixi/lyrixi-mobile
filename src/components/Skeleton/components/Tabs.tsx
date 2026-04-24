@@ -9,45 +9,56 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Tabs = (
-  {
-    // Value & Display Value
-    length,
-
-    // Status
-    animated = true,
-
-    // Style
-    className,
-    style,
-    tabClassName,
-    tabStyle
-  },
-  ref
-) => {
-  return (
-    <div
-      ref={ref}
-      // Style
-      style={style}
-      className={DOMUtil.classNames('lyrixi-skeleton-tabs', className)}
-    >
-      {Array.from({ length: length || 4 }).map((_, index) => (
-        <Block
-          key={index}
-          // Status
-          animated={animated}
-          // Style
-          style={tabStyle}
-          className={DOMUtil.classNames(
-            'lyrixi-skeleton-block-tab',
-            'lyrixi-skeleton-block-darken',
-            tabClassName
-          )}
-        />
-      ))}
-    </div>
-  )
+interface TabsProps {
+  length?: number
+  animated?: boolean
+  className?: string
+  style?: React.CSSProperties
+  tabClassName?: string
+  tabStyle?: React.CSSProperties
 }
 
-export default forwardRef(Tabs)
+const Tabs = forwardRef<HTMLDivElement, TabsProps>(
+  (
+    {
+      // Value & Display Value
+      length,
+
+      // Status
+      animated = true,
+
+      // Style
+      className,
+      style,
+      tabClassName,
+      tabStyle
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        // Style
+        style={style}
+        className={DOMUtil.classNames('lyrixi-skeleton-tabs', className)}
+      >
+        {Array.from({ length: length || 4 }).map((_, index) => (
+          <Block
+            key={index}
+            // Status
+            animated={animated}
+            // Style
+            style={tabStyle}
+            className={DOMUtil.classNames(
+              'lyrixi-skeleton-block-tab',
+              'lyrixi-skeleton-block-darken',
+              tabClassName
+            )}
+          />
+        ))}
+      </div>
+    )
+  }
+)
+
+export default Tabs

@@ -1,9 +1,15 @@
 import React, { forwardRef } from 'react'
 import CommonForm from './Form'
 import VirtualForm from './VirtualForm'
+import type { FormItemsRef, FormItemsProps } from './Form'
+import type { EllipsisConfig } from './../ItemsContext'
+
+export interface ItemsProps extends FormItemsProps {
+  virtual?: boolean
+}
 
 // layout: horizontal | vertical | inline
-const Form = forwardRef(
+const Form = forwardRef<FormItemsRef, ItemsProps>(
   (
     {
       virtual,
@@ -25,9 +31,9 @@ const Form = forwardRef(
           ref={ref}
           layout={layout}
           labelSpan={labelSpan}
-          labelEllipsis={labelEllipsis}
+          labelEllipsis={labelEllipsis as EllipsisConfig | null}
           mainSpan={mainSpan}
-          mainEllipsis={mainEllipsis}
+          mainEllipsis={mainEllipsis as EllipsisConfig | null}
           className={className}
           style={style}
         >
@@ -40,9 +46,9 @@ const Form = forwardRef(
         ref={ref}
         layout={layout}
         labelSpan={labelSpan}
-        labelEllipsis={labelEllipsis}
+        labelEllipsis={labelEllipsis as EllipsisConfig | null}
         mainSpan={mainSpan}
-        mainEllipsis={mainEllipsis}
+        mainEllipsis={mainEllipsis as EllipsisConfig | null}
         className={className}
         style={style}
       >

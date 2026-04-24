@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Page, ActionSheet, SafeArea } from 'lyrixi-mobile'
+import type { ActionSheetItem } from './../Modal'
 
 export default () => {
   const list = [
@@ -20,7 +21,7 @@ export default () => {
     { id: '15', name: '测试13' },
     { id: '16', name: '测试14' }
   ]
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<ActionSheetItem | null>(null)
 
   useEffect(() => { }, [])
 
@@ -38,9 +39,6 @@ export default () => {
           }}
           onClose={() => {
             console.log('onClose')
-          }}
-          onOpen={() => {
-            console.log('onOpen')
           }}
         />
       </Page.Main>

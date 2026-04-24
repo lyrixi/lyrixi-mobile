@@ -1,6 +1,6 @@
 import Text from './Text'
 import getDisplayValue from './getDisplayValue'
 
-Text.getDisplayValue = getDisplayValue
+const TextWithUtils = Object.assign(Text, { getDisplayValue })
 
-export default Text
+export default TextWithUtils

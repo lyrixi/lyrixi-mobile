@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
+import type { MarkersHandle } from '../components/Markers'
+
 const { MapLoader, MapContainer, Markers, coordsToWgs84 } = Map
 
 export default () => {
-  const markersRef = useRef(null)
+  const markersRef = useRef<MarkersHandle | null>(null)
 
   const points = coordsToWgs84([
     {
@@ -43,7 +45,11 @@ export default () => {
   ])
 
   function handleFocusPoint() {
-    markersRef.current?.focus(points[0])
+    const p0 = points[0]
+    if (p0 == null) {
+      return
+    }
+    markersRef.current?.focus(p0)
   }
 
   function handleBlurPoint() {
@@ -59,7 +65,6 @@ export default () => {
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap',
             markerIcons: {
@@ -74,11 +79,13 @@ export default () => {
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapContainer
-              center={coordsToWgs84({
-                latitude: 31.982723,
-                longitude: 118.735298,
-                type: 'gcj02'
-              })}
+              center={
+                coordsToWgs84({
+                  latitude: 31.982723,
+                  longitude: 118.735298,
+                  type: 'gcj02'
+                }) ?? undefined
+              }
               zoom={16}
             >
               <Markers

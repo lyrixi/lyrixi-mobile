@@ -1,5 +1,8 @@
-import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useState, useRef, useImperativeHandle, type Ref } from 'react'
 import Modal from './../Modal'
+import type { ComboRef } from './../../Input/Select'
+import type { ModalRef } from './../../Modal/Modal'
+import type { PickerComboProps, PickerComboRef } from '../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -10,66 +13,67 @@ import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // Picker
-const PickerCombo = forwardRef(
-  (
-    {
-      // Combo
-      // Combo: Value & Display Value
-      value,
-      placeholder,
-      formatter,
-      autoSize,
-      separator,
-      mode,
-      // Combo: Status
-      readOnly,
-      disabled,
-      allowClear,
-      // Combo: Style
-      style,
-      className,
-      // Combo: Element
-      leftIconNode,
-      rightIconNode,
-      clearRender,
+const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function PickerCombo(
+  {
+    // Combo
+    // Combo: Value & Display Value
+    value,
+    placeholder,
+    formatter,
+    autoSize,
+    separator,
+    mode,
+    // Combo: Status
+    readOnly,
+    disabled,
+    allowClear,
+    // Combo: Style
+    style,
+    className,
+    // Combo: Element
+    leftIconNode,
+    rightIconNode,
+    clearRender,
 
-      // Modal
-      // Modal: Value & Display Value
-      list,
-      // Modal: Status
-      maskClosable,
-      // Modal: Style
-      safeArea,
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
-      // Modal: Elements
-      portal,
-      title,
-      okNode,
-      cancelNode,
-      okVisible,
-      cancelVisible,
+    // Modal
+    // Modal: Value & Display Value
+    list,
+    // Modal: Status
+    maskClosable,
+    // Modal: Style
+    safeArea,
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
+    // Modal: Elements
+    portal,
+    title,
+    okNode,
+    cancelNode,
+    okVisible,
+    cancelVisible,
 
-      // Events
-      onChange,
-      onBeforeOpen
-    },
-    ref
-  ) => {
-    const [open, setOpen] = useState(false)
-    const comboRef = useRef(null)
-    const modalRef = useRef(null)
+    // Events
+    onChange,
+    onBeforeOpen
+  },
+  ref: Ref<PickerComboRef>
+) {
+  const [open, setOpen] = useState(false)
+  const comboRef = useRef<ComboRef | null>(null)
+  const modalRef = useRef<ModalRef | null>(null)
 
-    useImperativeHandle(ref, () => {
-      return {
-        ...comboRef.current,
-        ...modalRef.current,
-        close: () => setOpen(false),
-        open: () => setOpen(true)
-      }
-    })
+  useImperativeHandle(ref, () => {
+    return {
+      ...((typeof comboRef.current === 'object' && comboRef.current !== null
+        ? comboRef.current
+        : {}) as ComboRef),
+      ...((typeof modalRef.current === 'object' && modalRef.current !== null ? modalRef.current : {}) as ModalRef),
+      close: () => setOpen(false),
+      open: () => setOpen(true)
+    } as PickerComboRef
+  })
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
@@ -137,7 +141,6 @@ const PickerCombo = forwardRef(
         />
       </>
     )
-  }
-)
+  })
 
 export default PickerCombo

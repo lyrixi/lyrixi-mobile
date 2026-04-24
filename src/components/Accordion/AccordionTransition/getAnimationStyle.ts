@@ -1,11 +1,17 @@
+import React from 'react'
+
 /**
  * 根据内容高度动态计算动画样式
- * @param {number} contentHeight - 内容实际高度（scrollHeight）
- * @param {number} minHeight - 收起时的最小高度
- * @param {boolean} isExpanded - 是否展开
- * @returns {Object} 包含 maxHeight 和 transitionDuration 的样式对象
+ * @param contentHeight - 内容实际高度（scrollHeight）
+ * @param minHeight - 收起时的最小高度
+ * @param isExpanded - 是否展开
+ * @returns 包含 maxHeight 和 transitionDuration 的样式对象
  */
-export const getAnimationStyle = (contentHeight, minHeight = 0, isExpanded = false) => {
+export const getAnimationStyle = (
+  contentHeight: number,
+  minHeight: number = 0,
+  isExpanded: boolean = false
+): React.CSSProperties => {
   // 计算展开时的 max-height（实际高度 + 一点余量）
   const expandedMaxHeight = contentHeight + 50
 
@@ -28,7 +34,7 @@ export const getAnimationStyle = (contentHeight, minHeight = 0, isExpanded = fal
       ? `${expandedMaxHeight}px`
       : `${collapsedMaxHeight}px`,
     '--lyrixi-accordion-duration': `${duration}ms`
-  }
+  } as React.CSSProperties
 }
 
 export default getAnimationStyle

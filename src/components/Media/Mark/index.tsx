@@ -1,8 +1,14 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type CSSProperties, type ReactNode } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 
+export interface MediaMarkProps {
+  labels?: ReactNode[]
+  style?: CSSProperties
+  className?: string
+}
+
 // 照片标识
-function Mark(
+const Mark = forwardRef<HTMLDivElement, MediaMarkProps>(function Mark(
   {
     // Elements
     labels,
@@ -22,15 +28,15 @@ function Mark(
     >
       {Array.isArray(labels) && labels.length
         ? labels.map((label, index) => {
-          return (
-            <div className="lyrixi-media-item-mark-label" key={index}>
-              {label}
-            </div>
-          )
-        })
+            return (
+              <div className="lyrixi-media-item-mark-label" key={index}>
+                {label}
+              </div>
+            )
+          })
         : null}
     </div>
   )
-}
+})
 
-export default forwardRef(Mark)
+export default Mark

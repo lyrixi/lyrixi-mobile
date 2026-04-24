@@ -6,19 +6,21 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { DatePickerPickerType, PickerValueList } from './../../datePickerTypes'
+
 // 日期转列表
-function valueToList(value, type) {
-  let currentDate = value
-  if (value instanceof Date === false) {
-    currentDate = new Date()
-  }
+function valueToList(
+  value: Date | null | undefined,
+  type: DatePickerPickerType
+): PickerValueList | null {
+  const currentDate: Date = value instanceof Date ? value : new Date()
 
   let year = currentDate.getFullYear()
   let month = currentDate.getMonth() + 1
   let date = currentDate.getDate()
   let hour = currentDate.getHours()
   let minute = currentDate.getMinutes()
-  let quarter = DateUtil.quarter(currentDate)
+  let quarter = DateUtil.quarter(currentDate) ?? 1
 
   if (type === 'year') {
     return [{ id: year, name: year }]

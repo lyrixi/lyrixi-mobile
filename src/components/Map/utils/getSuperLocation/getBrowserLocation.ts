@@ -7,13 +7,13 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-function getBrowserLocation(params = {}) {
+function getBrowserLocation(params: Record<string, unknown> = {}): Promise<unknown> {
   return new Promise((resolve) => {
     Bridge.getBrowserLocation({
       ...params,
-      onSuccess: (r) => resolve(normalizeLocationResult(r as Record<string, unknown>)),
+      onSuccess: (r: unknown) => resolve(normalizeLocationResult(r as Record<string, unknown>)),
       onError: resolve
-    })
+    } as Record<string, unknown>)
   })
 }
 

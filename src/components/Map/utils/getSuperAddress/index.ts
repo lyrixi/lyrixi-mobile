@@ -2,13 +2,16 @@ import setAddressCache from './setAddressCache'
 import getAddressCache from './getAddressCache'
 import defaultGetAddress from './../getAddress'
 
+export interface GetSuperAddressParams {
+  cacheExpiresContinue?: boolean
+  cacheExpires?: number | null
+  type: string
+  latitude: number
+  longitude: number
+}
+
 /**
- * @description: 获取地址
- * @param {longitude, latitude, type: 'gcj02|wgs84'} params
- * @return {
- * address
- * ...
- * }
+ * 获取地址（带缓存）
  */
 async function getSuperAddress({
   cacheExpiresContinue = true,
@@ -16,29 +19,27 @@ async function getSuperAddress({
   type,
   latitude,
   longitude
-}) {
-  // 先查缓存
+}: GetSuperAddressParams): Promise<unknown> {
   const cacheData = await getAddressCache(
-    { type, latitude, longitude },
+    { latitude, longitude },
     cacheExpiresContinue ? cacheExpires : null
   )
   if (cacheData) {
     console.log('地址读取缓存:', cacheData)
     return cacheData
   }
-  // 没有缓存则查接口
-  const result = await defaultGetAddress({
+  const result: unknown = await defaultGetAddress({
     latitude,
     longitude,
     type
   })
-
-  // 查询成功则缓存结果
-  if (result.status === 'success') {
+  const r = result as { status?: string; [key: string]: unknown }
+  if (r?.status === 'success') {
     console.log(`地址查询成功, 设置缓存${cacheExpires}秒:`, result)
-    await setAddressCache({ longitude, latitude, cacheExpires }, result)
+    if (cacheExpires) {
+      await setAddressCache({ longitude, latitude, cacheExpires }, result)
+    }
   }
-
   return result
 }
 

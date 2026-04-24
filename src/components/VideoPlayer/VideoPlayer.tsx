@@ -1,9 +1,7 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-// import ReactPlayer from 'react-player'
 
 // 内库使用-start
-// import LocaleUtil from './../../utils/LocaleUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
@@ -11,8 +9,28 @@ import DOMUtil from './../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface VideoPlayerProps {
+  src?: string
+  autoPlay?: boolean
+  style?: React.CSSProperties
+  className?: string
+  portal?: Element
+  poster?: string
+  children?: React.ReactNode
+  /** 顶部区域（如关闭按钮），在内容区上方渲染 */
+  headerRender?: () => ReactNode
+  onError?: (err: { status: string; message: string; error: unknown }) => void
+}
+
+export interface VideoPlayerRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  pause: () => void
+  play: () => void
+}
+
 // 视频预览
-const VideoPlayer = forwardRef(
+const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
   (
     {
       // Value & Display Value
@@ -27,15 +45,14 @@ const VideoPlayer = forwardRef(
       portal,
       poster = '',
       children,
+      headerRender,
 
       // Events
       onError
     },
     ref
   ) => {
-    const rootRef = useRef(null)
-    // 等安卓升级到8.0.0版本后, 再使用ReactPlayer
-    // const playerRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Playing status: true: playing, false: paused
     const [playing, setPlaying] = useState(autoPlay)
@@ -54,12 +71,6 @@ const VideoPlayer = forwardRef(
       }
     })
 
-    // Handle player error
-    // const handleError = (err) => {
-    //   const errorMsg = LocaleUtil.locale('视频加载失败, 请稍后再试', 'lyrixi.video.load.failed')
-    //   onError?.({ status: 'error', message: errorMsg, error: err })
-    // }
-
     const Node = (
       <div
         className={DOMUtil.classNames('lyrixi-videoplayer-page', className)}
@@ -69,19 +80,7 @@ const VideoPlayer = forwardRef(
           setPlaying(!playing)
         }}
       >
-        {/* <ReactPlayer
-          ref={playerRef}
-          src={src}
-          controls={true}
-          playing={playing}
-          style={{ width: '100%', height: '100%' }}
-          onReady={() => {
-            if (autoPlay) {
-              setPlaying(true)
-            }
-          }}
-          onError={handleError}
-        /> */}
+        {headerRender ? headerRender() : null}
         not support react-player
         {children}
       </div>

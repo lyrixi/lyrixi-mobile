@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { Page, DatePicker, DateUtil, Card } from 'lyrixi-mobile'
 
 export default () => {
-  const [rangeId1, setRangeId1] = useState(null)
-  const [value1, setValue1] = useState([new Date(), new Date()])
+  const [rangeId1, setRangeId1] = useState<string | null>(null)
+  const [value1, setValue1] = useState<(Date | null)[]>([new Date(), new Date()])
 
-  const [rangeId2, setRangeId2] = useState(null)
-  const [value2, setValue2] = useState(null)
+  const [rangeId2, setRangeId2] = useState<string | null>(null)
+  const [value2, setValue2] = useState<(Date | null)[] | null>(null)
 
-  const [rangeId3, setRangeId3] = useState(null)
-  const [value3, setValue3] = useState(null)
+  const [rangeId3, setRangeId3] = useState<string | null>(null)
+  const [value3, setValue3] = useState<(Date | null)[] | null>(null)
 
   return (
     <Page>
@@ -21,10 +21,11 @@ export default () => {
               allowClear
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
-                setValue1(newValue)
-                setRangeId1(rangeId)
+                if (newValue) setValue1(newValue)
+                setRangeId1(rangeId ?? null)
               }}
             />
           </Card.Main>
@@ -50,10 +51,11 @@ export default () => {
               }}
               rangeId={rangeId2}
               value={value2}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
                 setValue2(newValue)
-                setRangeId2(rangeId)
+                setRangeId2(rangeId ?? null)
               }}
             />
           </Card.Main>
@@ -67,10 +69,11 @@ export default () => {
               type="datetime"
               rangeId={rangeId3}
               value={value3}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
                 setValue3(newValue)
-                setRangeId3(rangeId)
+                setRangeId3(rangeId ?? null)
               }}
             />
           </Card.Main>
@@ -85,10 +88,11 @@ export default () => {
               max={new Date()}
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
-                setValue1(newValue)
-                setRangeId1(rangeId)
+                if (newValue) setValue1(newValue)
+                setRangeId1(rangeId ?? null)
               }}
             />
           </Card.Main>
@@ -103,10 +107,11 @@ export default () => {
               endDisabled
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
-                setValue1(newValue)
-                setRangeId1(rangeId)
+                if (newValue) setValue1(newValue)
+                setRangeId1(rangeId ?? null)
               }}
             />
           </Card.Main>
@@ -122,10 +127,11 @@ export default () => {
               minuteStep={15}
               rangeId={rangeId3}
               value={value3}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
                 setValue3(newValue)
-                setRangeId3(rangeId)
+                setRangeId3(rangeId ?? null)
               }}
             />
           </Card.Main>
@@ -138,13 +144,14 @@ export default () => {
               allowClear
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, { rangeId }) => {
+              onChange={(newValue, meta) => {
+                const rangeId = meta?.rangeId
                 console.log('修改:', newValue, rangeId)
-                setValue1(newValue)
-                setRangeId1(rangeId)
+                if (newValue) setValue1(newValue)
+                setRangeId1(rangeId ?? null)
               }}
-              onOk={(newValue, { rangeId }) => {
-                console.log('确认:', newValue, rangeId)
+              onOk={() => {
+                console.log('确认')
               }}
             />
           </Card.Main>
@@ -153,4 +160,3 @@ export default () => {
     </Page>
   )
 }
-

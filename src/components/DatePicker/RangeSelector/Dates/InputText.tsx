@@ -9,18 +9,26 @@ import Input from './../../../Input'
 import { DateUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
+type InputTextProps = {
+  value?: (Date | null)[] | null
+  displayValue?: string
+  type?: string
+  separator?: string
+  onChange?: (value: (Date | null)[] | null) => void
+}
+
 // Custom Input
 const InputText = ({
   // Value & Display Value
   value,
   displayValue,
   // Status
-  type,
+  type = 'date',
   // Elements
   separator,
   // Events
   onChange
-}) => {
+}: InputTextProps) => {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
   let endDate = Array.isArray(value) && value[1] instanceof Date ? value[1] : null
@@ -33,11 +41,11 @@ const InputText = ({
         return startDate || endDate ? (
           <div className="lyrixi-datepicker-rangecombo-dates">
             <div className="lyrixi-datepicker-rangecombo-date start">
-              {DateUtil.format(startDate, type)}
+              {startDate ? DateUtil.format(startDate, type) : ''}
             </div>
             <div className="lyrixi-datepicker-rangecombo-separator">{separator || ' ~ '}</div>
             <div className="lyrixi-datepicker-rangecombo-date end">
-              {DateUtil.format(endDate, type)}
+              {endDate ? DateUtil.format(endDate, type) : ''}
             </div>
           </div>
         ) : null

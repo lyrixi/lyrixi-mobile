@@ -1,14 +1,13 @@
 // 矫正最大长度与小数位
-function maxLengthFormatter(val, { maxLength }) {
-  // eslint-disable-next-line
-  if (typeof val === 'number') val = String(val)
+function maxLengthFormatter(val: string | number, { maxLength }: { maxLength?: number }): string {
+  let strVal = typeof val === 'number' ? String(val) : val
 
   // 最大长度
-  if (maxLength && val && val.length > maxLength) {
+  if (maxLength && strVal && strVal.length > maxLength) {
     // eslint-disable-next-line
-    val = val.substring(0, maxLength)
+    strVal = strVal.substring(0, maxLength)
   }
-  return val
+  return strVal
 }
 
 export default maxLengthFormatter

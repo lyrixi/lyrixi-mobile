@@ -1,7 +1,21 @@
 import React from 'react'
 
 import Page from './../../Page'
+import type { PageLayout } from './../../Page'
 import Paragraph from './../components/Paragraph'
+
+interface ListProps {
+  listLength?: number
+  paragraphLength?: number
+  animated?: boolean
+  safeArea?: boolean
+  full?: boolean
+  className?: string
+  style?: React.CSSProperties
+  divider?: string
+  layout?: PageLayout
+  animation?: string
+}
 
 const List = ({
   // Value & Display Value
@@ -19,7 +33,7 @@ const List = ({
   divider,
   layout,
   animation
-}) => {
+}: ListProps) => {
   return (
     <Page
       // Status

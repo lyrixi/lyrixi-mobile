@@ -1,12 +1,12 @@
 import React from 'react'
 
-function formatViewItem(item) {
+function formatViewItem(item: Record<string, unknown>) {
   return {
     id: item.id,
     // 左侧图片
-    imageUrl: item.imageUrl || '',
+    imageUrl: (item.imageUrl as string | undefined) || '',
     // 头像
-    avatarUrl: item.avatarUrl || '',
+    avatarUrl: (item.avatarUrl as string | undefined) || '',
     // 第一行文字
     title: item.name,
     // 第二行文字
@@ -16,8 +16,8 @@ function formatViewItem(item) {
     // 第三行文字
     content: item.content,
     // 右侧操作按钮
-    actionRender: (item) => {
-      return <div>Click {item.name}</div>
+    actionRender: (it: Record<string, unknown>) => {
+      return <div>Click {String(it.name ?? '')}</div>
     }
   }
 }

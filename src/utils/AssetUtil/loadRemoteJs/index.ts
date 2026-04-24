@@ -43,12 +43,12 @@ function loadRemoteJs(
       text: text,
       type: type,
       attrs: attrs,
-      onError: (result) => {
+      onError: (result: unknown) => {
         resolve(result)
         // 支持新的 onError
         onError?.(result)
       },
-      onSuccess: (result) => {
+      onSuccess: (result: unknown) => {
         resolve(result)
         // 支持新的 onSuccess
         onSuccess?.(result)

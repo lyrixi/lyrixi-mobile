@@ -8,13 +8,18 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface MediaImgProps {
+  fileUrl?: string
+  reloadKey?: unknown
+}
+
 // 图片显示
 const Img = ({
   // Value & Display Value
-  fileUrl,
+  fileUrl = '',
   // 重新加载的key
   reloadKey
-}) => {
+}: MediaImgProps) => {
   const [loadStatus, setLoadStatus] = useState('loading') // 'loading' | 'success' | 'error'
 
   useEffect(() => {

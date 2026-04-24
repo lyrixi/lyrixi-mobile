@@ -8,8 +8,12 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Toast, Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// Save photos at delete
-function clearPhotos(id, { url }) {
+interface ClearPhotosResult {
+  code?: string
+  message?: string
+}
+
+function clearPhotos(id: string, { url }: { url: string }): Promise<boolean> {
   return new Promise((resolve) => {
     console.log('清除照片:', url, id)
     Request.post(url, {
@@ -18,16 +22,17 @@ function clearPhotos(id, { url }) {
     })
       .then((result) => {
         console.log('照片清除成功:', result)
-        if (result.code === '1') {
+        const res = result as ClearPhotosResult
+        if (res.code === '1') {
           resolve(true)
         } else {
-          Toast.show({ content: result.message })
+          Toast.show({ content: res.message })
           resolve(false)
         }
       })
-      .catch((error) => {
+      .catch(() => {
         Toast.show({
-          content: LocaleUtil.locale('照片删除异常', 'lyrixi_c6def5fa7c7e41ced1921c9e09ce97bb')
+          content: LocaleUtil.locale('照片删除异常', 'lyrixi_c6def5fa7c7e41ced1921c9e09ce97bb') as string
         })
         resolve(false)
       })

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-
+import type { MapContainerAPI } from './../MapContainer'
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
-import ToolBar from './../../../ToolBar'
+import SearchActive from './../../../ToolBar/SearchActive'
 import List from './../../../List'
 import Page from './../../../Page'
 import Result from './../../../Result'
@@ -14,56 +14,64 @@ import Text from './../../../Text'
 import { LocaleUtil, Loading, ToolBar, List, Page, Result, Text } from 'lyrixi-mobile'
 测试使用-end */
 
+const MapSearchActive = SearchActive as unknown as React.FC<{
+  value?: string
+  allowClear?: boolean
+  onSearch?: (kw: string) => void
+  onCancel?: () => void
+}>
+
+interface QueryNearbyResult {
+  list?: Array<Record<string, unknown>>
+  message?: string
+  status?: string
+  [key: string]: unknown
+}
+
+function isQueryResult(v: unknown): v is QueryNearbyResult {
+  return typeof v === 'object' && v !== null
+}
+
+export interface SearchPageProps {
+  open: boolean
+  map?: MapContainerAPI
+  onClose?: () => void
+  onChange?: (item: unknown) => void
+}
+
 // 搜索
-function SearchPage({
-  // Status
-  open,
-
-  // Element
-  map,
-
-  // Events
-  onClose,
-  onChange
-}) {
-  let [result, setResult] = useState(null)
+function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
+  const [result, setResult] = useState<QueryNearbyResult | null>(null)
   const [keyword, setKeyword] = useState('')
 
-  // 返回
   function handleBack() {
-    // Reset list
     setResult(null)
-
-    // Go back
     onClose?.()
   }
 
-  // 搜索
-  async function handleSearch(keyword) {
-    if (!keyword) {
+  async function handleSearch(keywordVal: string) {
+    if (!keywordVal || !map) {
       return
     }
-    let center = map.getCenter()
+    const center = map.getCenter()
+    const loadMsg = LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
     Loading.show({
-      content: LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
+      content: typeof loadMsg === 'string' ? loadMsg : '…'
     })
-    let newResult = await map.queryNearby({
+    const newResult = (await map.queryNearby({
       map: map,
-      keyword: keyword,
+      keyword: keywordVal,
       latitude: center.latitude,
       longitude: center.longitude,
       type: center.type
-    })
+    })) as unknown
     Loading.hide()
 
-    setResult(newResult)
+    setResult(isQueryResult(newResult) ? newResult : { message: 'Invalid result' })
   }
 
-  // 选中一项
-  function handleClick(item) {
+  function handleClick(item: unknown) {
     if (onChange) onChange(item)
-
-    // 回到地图页面
     handleBack()
   }
 
@@ -71,19 +79,18 @@ function SearchPage({
     return null
   }
 
+  const list = result?.list
+  const hasList = Array.isArray(list) && list.length > 0
+
   return (
     <Page className="lyrixi-map-searchControl-page">
-      {/* Element: Header */}
       <Page.Header className="lyrixi-map-searchControl-header">
-        <ToolBar.SearchActive
-          // Value & Display Value
+        <MapSearchActive
           value={keyword}
-          // Status
           allowClear
-          // Events
-          onSearch={(keyword) => {
-            setKeyword(keyword)
-            handleSearch(keyword)
+          onSearch={(kw: string) => {
+            setKeyword(kw)
+            void handleSearch(kw)
           }}
           onCancel={() => {
             handleBack()
@@ -91,27 +98,27 @@ function SearchPage({
         />
       </Page.Header>
 
-      {/* Element: Body */}
       <div className="lyrixi-map-searchControl-main">
-        {Array.isArray(result?.list) && result?.list.length ? (
+        {hasList && list ? (
           <List
-            list={result?.list}
+            list={list}
             onChange={handleClick}
-            formatViewItem={(item) => {
+            formatViewItem={(item: Record<string, unknown>) => {
+              const name = typeof item.name === 'string' ? item.name : ''
+              const address = typeof item.address === 'string' ? item.address : undefined
               return {
                 ...item,
-                title: <Text highlight={keyword || ''}>{item.name}</Text>,
-                description: item.address
+                title: <Text highlight={keyword || ''}>{name}</Text>,
+                description: address
               }
             }}
           />
         ) : null}
 
-        {/* Query error or empty */}
         {typeof result?.message === 'string' && (
           <Result
             className="lyrixi-map-main-result"
-            status={result?.status}
+            status={result?.status || 'error'}
             title={result?.message}
           />
         )}

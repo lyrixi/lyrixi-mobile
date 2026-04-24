@@ -6,8 +6,13 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface GetDisplayValueOptions {
+  maxCount?: number
+  precision?: number
+}
+
 // 获取显示名称
-function getDisplayValue(value, { maxCount, precision } = {}) {
+function getDisplayValue(value: unknown, { maxCount, precision }: GetDisplayValueOptions = {}) {
   // Date
   if (value instanceof Date) {
     return DateUtil.format(value, 'YYYY-MM-DD')
@@ -24,13 +29,13 @@ function getDisplayValue(value, { maxCount, precision } = {}) {
     }
 
     // Select
-    let displayValue = value.map((item) => {
+    let displayValue: (string | number)[] = value.map((item) => {
       if (item instanceof Date) {
         return DateUtil.format(item, 'YYYY-MM-DD')
-      } else if (typeof item === 'object') {
-        return item.name || ''
+      } else if (typeof item === 'object' && item !== null) {
+        return (item as Record<string, unknown>).name as string || ''
       }
-      return item
+      return item as string | number
     })
     let count = value.length
     if (maxCount && count > maxCount) {

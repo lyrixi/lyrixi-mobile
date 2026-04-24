@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, type ComponentType } from 'react'
 import {
   Attach,
   Card,
@@ -25,6 +25,10 @@ import { queryData, saveData, validateData } from './../Cache/api'
 import Footer from './../Cache/Footer'
 
 const locale = LocaleUtil.locale
+
+// Attach/Media demos use richer callbacks than the exported prop types describe
+const AttachUntyped = Attach as unknown as ComponentType<Record<string, unknown>>
+const MediaUntyped = Media as unknown as ComponentType<Record<string, unknown>>
 
 // 表单编辑页面
 const Edit = () => {
@@ -71,7 +75,7 @@ const Edit = () => {
     })) as { code?: string; message?: string }
     if (saveResult.code === '1') {
       Toast.show({
-        content: locale('提交成功!'),
+        content: String(locale('提交成功!')),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -80,7 +84,7 @@ const Edit = () => {
     // 重复请求
     else if (saveResult.code === '2') {
       Toast.show({
-        content: saveResult.message || locale('请勿重复提交!'),
+        content: String(saveResult.message || locale('请勿重复提交!')),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -92,7 +96,7 @@ const Edit = () => {
       tokenRef.current = '' + Date.now()
 
       Toast.show({
-        content: saveResult.message || locale('提交失败!')
+        content: String(saveResult.message || locale('提交失败!'))
       })
     }
   }
@@ -109,37 +113,40 @@ const Edit = () => {
           >
             <Form.Item
               name="input"
-              label={locale(
-                'Input Overflow Title, It is very very very long,  It is really very very very long'
+              label={String(
+                locale(
+                  'Input Overflow Title, It is very very very long,  It is really very very very long'
+                )
               )}
-              help="Help info"
+              labelHelp="Help info"
               rules={[
                 {
                   required: true,
-                  message: locale('Input cannot be empty')
+                  message: String(locale('Input cannot be empty'))
                 }
               ]}
             >
-              <Input.Text allowClear placeholder={locale('Please input')} maxLength={50} />
+              <Input.Text allowClear placeholder={String(locale('Please input'))} maxLength={50} />
             </Form.Item>
             <Form.Item
               name="textarea"
               maxLength={150}
-              label={locale('Textarea')}
-              extra={({ value }) => {
-                return <div className="lyrixi-text-right">{`${value?.length || '0'} / 150`}</div>
+              label={String(locale('Textarea'))}
+              extra={({ value }: { value: unknown }) => {
+                const s = typeof value === 'string' ? value : ''
+                return <div className="lyrixi-text-right">{`${s.length} / 150`}</div>
               }}
             >
-              <Input.Textarea allowClear placeholder={locale('Please input')} />
+              <Input.Textarea allowClear placeholder={String(locale('Please input'))} />
             </Form.Item>
-            <Form.Item name="autoSize" label={locale('Auto fit')}>
-              <Input.AutoSize allowClear placeholder={locale('Please input')} />
+            <Form.Item name="autoSize" label={String(locale('Auto fit'))}>
+              <Input.AutoSize allowClear placeholder={String(locale('Please input'))} />
             </Form.Item>
-            <Form.Item name="selectTags" label={locale('Select Tags')}>
+            <Form.Item name="selectTags" label={String(locale('Select Tags'))}>
               <Select.Combo
                 multiple
                 mode="tags"
-                placeholder={locale('Please select')}
+                placeholder={String(locale('Please select'))}
                 list={[
                   {
                     id: '1',
@@ -153,10 +160,10 @@ const Edit = () => {
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="select" label={locale('Select')}>
+            <Form.Item name="select" label={String(locale('Select'))}>
               <Select.Combo
                 multiple={false}
-                placeholder={locale('Please select')}
+                placeholder={String(locale('Please select'))}
                 list={[
                   {
                     id: '1',
@@ -170,9 +177,9 @@ const Edit = () => {
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="picker" label={locale('Picker')}>
+            <Form.Item name="picker" label={String(locale('Picker'))}>
               <Picker.Combo
-                placeholder={locale('Please select')}
+                placeholder={String(locale('Please select'))}
                 list={[
                   {
                     id: '1',
@@ -186,12 +193,12 @@ const Edit = () => {
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="switch" valuePropName="checked" label={locale('Switch')}>
+            <Form.Item name="switch" valuePropName="checked" label={String(locale('Switch'))}>
               <Switch />
             </Form.Item>
-            <Form.Item name="checkbox" label={locale('Checkbox')}>
+            <Form.Item name="checkbox" label={String(locale('Checkbox'))}>
               <Checkbox.Group
-                placeholder={locale('Please select')}
+                placeholder={String(locale('Please select'))}
                 list={[
                   {
                     id: '1',
@@ -205,10 +212,10 @@ const Edit = () => {
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="radio" label={locale('Radio')}>
+            <Form.Item name="radio" label={String(locale('Radio'))}>
               <Checkbox.Group
                 multiple={false}
-                placeholder={locale('Please select')}
+                placeholder={String(locale('Please select'))}
                 list={[
                   {
                     id: '1',
@@ -222,9 +229,8 @@ const Edit = () => {
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="selector" label={locale('Selector')}>
+            <Form.Item name="selector" label={String(locale('Selector'))}>
               <Selector
-                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
@@ -246,43 +252,48 @@ const Edit = () => {
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="number" label={locale('Number')}>
-              <Input.Number allowClear placeholder={locale('Please input')} />
+            <Form.Item name="number" label={String(locale('Number'))}>
+              <Input.Number allowClear placeholder={String(locale('Please input'))} />
             </Form.Item>
             <Form.Item
               name="numberBox"
-              label={locale('Number box')}
+              label={String(locale('Number box'))}
               rules={[
                 {
                   required: true,
-                  message: locale('Number box can not empty')
+                  message: String(locale('Number box can not empty'))
                 }
               ]}
             >
-              <Input.NumberBox placeholder={locale('Please input')} />
+              <Input.NumberBox placeholder={String(locale('Please input'))} />
             </Form.Item>
             <Form.Item
               name="password"
-              label={locale('Password')}
-              extra={({ value }) => {
-                return <Input.PasswordStrength value={value} style={{ marginTop: 8 }} />
+              label={String(locale('Password'))}
+              extra={({ value }: { value: unknown }) => {
+                return (
+                  <Input.PasswordStrength
+                    value={typeof value === 'string' ? value : undefined}
+                    style={{ marginTop: 8 }}
+                  />
+                )
               }}
             >
-              <Input.Password allowClear placeholder={locale('Please input')} />
+              <Input.Password allowClear placeholder={String(locale('Please input'))} />
             </Form.Item>
-            <Form.Item name="range" label={locale('Range')}>
+            <Form.Item name="range" label={String(locale('Range'))}>
               <Input.Range />
             </Form.Item>
-            <Form.Item name="rate" label={locale('Rate')}>
+            <Form.Item name="rate" label={String(locale('Rate'))}>
               <Input.Rate />
             </Form.Item>
-            <Form.Item name="tel" label={locale('Tel')}>
-              <Input.Tel allowClear placeholder={locale('Please input')} />
+            <Form.Item name="tel" label={String(locale('Tel'))}>
+              <Input.Tel allowClear placeholder={String(locale('Please input'))} />
             </Form.Item>
-            <Form.Item name="url" label={locale('Url')}>
-              <Input.Url allowClear placeholder={locale('Please input')} />
+            <Form.Item name="url" label={String(locale('Url'))}>
+              <Input.Url allowClear placeholder={String(locale('Please input'))} />
             </Form.Item>
-            <Form.Item name="signature" layout="vertical" label={locale('Signature')}>
+            <Form.Item name="signature" layout="vertical" label={String(locale('Signature'))}>
               <Signature.Combo allowClear={true} />
             </Form.Item>
           </Form>
@@ -290,66 +301,78 @@ const Edit = () => {
         <Card>
           <Divider>Vertical Layout</Divider>
           <Form form={form} layout="vertical" style={{ margin: '0 12px' }}>
-            <Form.Item name="datetime" label={locale('Datetime')}>
-              <DatePicker.Combo type="datetime" placeholder={locale('Please select')} allowClear />
+            <Form.Item name="datetime" label={String(locale('Datetime'))}>
+              <DatePicker.Combo type="datetime" placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
-            <Form.Item name="date" label={locale('Date')}>
-              <DatePicker.Combo placeholder={locale('Please select')} allowClear />
+            <Form.Item name="date" label={String(locale('Date'))}>
+              <DatePicker.Combo placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
-            <Form.Item name="time" label={locale('Time')}>
-              <DatePicker.Combo type="time" placeholder={locale('Please select')} allowClear />
+            <Form.Item name="time" label={String(locale('Time'))}>
+              <DatePicker.Combo type="time" placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
-            <Form.Item name="dateRange" label={locale('Date range')}>
-              <DatePicker.RangeCombo placeholder={locale('Please select')} allowClear />
+            <Form.Item name="dateRange" label={String(locale('Date range'))}>
+              <DatePicker.RangeCombo placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
-            <Form.Item name="district" label={locale('District')}>
-              <Cascader.DistrictCombo placeholder={locale('Please select')} allowClear />
+            <Form.Item name="district" label={String(locale('District'))}>
+              <Cascader.DistrictCombo placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
-            <Form.Item name="location" label={locale('Location')}>
+            <Form.Item name="location" label={String(locale('Location'))}>
               <Location.Combo
                 type="gcj02"
-                config={{
+                mapConfig={{
                   key: '',
                   type: 'bmap'
                 }}
-                placeholder={locale('Please select')}
+                placeholder={String(locale('Please select'))}
                 allowClear
                 previewVisible
                 chooseVisible
               />
             </Form.Item>
-            <Form.Item name="signature" label={locale('Signature')}>
+            <Form.Item name="signature" label={String(locale('Signature'))}>
               <Signature.Combo />
             </Form.Item>
-            <Form.Item name="attach" label={locale('Attach')}>
-              <Attach
+            <Form.Item name="attach" label={String(locale('Attach'))}>
+              <AttachUntyped
                 reUpload={false}
                 allowChoose
                 allowClear
                 uploadPosition="start"
                 maxSize={300 * 1024 * 1024}
-                list={[
-                  {
-                    name: '1',
-                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    status: 'error'
-                  },
-                  {
-                    name: '2',
-                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
-                  }
-                ]}
+                list={
+                  [
+                    {
+                      name: '1',
+                      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                      status: 'error'
+                    },
+                    {
+                      name: '2',
+                      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                    }
+                  ] as Array<{ name: string; fileUrl: string; status?: string }>
+                }
                 count={9}
-                onFileChange={async ({ fileName, fileSize, fileURL, fileData }) => {
+                onFileChange={async ({
+                  fileName,
+                  fileSize,
+                  fileURL,
+                  fileData
+                }: {
+                  fileName: string
+                  fileSize: number
+                  fileURL: string
+                  fileData: unknown
+                }) => {
                   console.log({ fileName, fileSize, fileURL, fileData })
                 }}
-                onChange={(newList) => {
+                onChange={(newList: unknown) => {
                   console.log('修改:', newList)
                 }}
               />
             </Form.Item>
-            <Form.Item name="image" label={locale('Media')}>
-              <Media
+            <Form.Item name="image" label={String(locale('Media'))}>
+              <MediaUntyped
                 allowChoose
                 allowClear
                 list={[
@@ -378,10 +401,20 @@ const Edit = () => {
                   }
                 ]}
                 count={9}
-                onFileChange={async ({ fileName, fileSize, fileURL, fileData }) => {
+                onFileChange={async ({
+                  fileName,
+                  fileSize,
+                  fileURL,
+                  fileData
+                }: {
+                  fileName: string
+                  fileSize: number
+                  fileURL: string
+                  fileData: unknown
+                }) => {
                   console.log({ fileName, fileSize, fileURL, fileData })
                 }}
-                onChange={(newList) => {
+                onChange={(newList: unknown) => {
                   console.log('修改:', newList)
                 }}
               />
@@ -396,8 +429,12 @@ const Edit = () => {
       {/* Error */}
       {(result as { message?: string; status?: string; title?: string } | null)?.message && (
         <Result
-          status={(result as { status?: string }).status}
-          title={(result as { title?: string; message?: string }).title || (result as { message?: string }).message}
+          status={String((result as { status?: string }).status ?? 'empty')}
+          title={String(
+            (result as { title?: string; message?: string }).title ||
+              (result as { message?: string }).message ||
+              ''
+          )}
         />
       )}
     </Page>

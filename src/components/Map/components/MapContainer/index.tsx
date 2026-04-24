@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import type * as L from 'leaflet'
 
 import getMapType from './../../utils/getMapType'
 import createLeafletMap from './createLeafletMap'
@@ -22,31 +23,86 @@ import Result from './../../../Result'
 import { LocaleUtil, GeoUtil, Result } from 'lyrixi-mobile'
 测试使用-end */
 
-const MapContainer = forwardRef(
+interface MapPoint {
+  latitude?: number | string
+  longitude?: number | string
+  type?: string
+  [key: string]: unknown
+}
+
+type GetAddressFn = (...args: unknown[]) => Promise<Record<string, unknown>>
+type GetLocationFn = (...args: unknown[]) => Promise<MapPoint | null>
+type QueryNearbyFn = (...args: unknown[]) => unknown
+
+export interface MapContainerAPI {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  type: string
+  currentMap: unknown
+  leafletMap: L.Map | null
+  openLocation: ((opts: Record<string, unknown>) => void) | null | undefined
+  getAddress: (coord: MapPoint) => Promise<Record<string, unknown> | { status: string; message: string }>
+  getLocation: (params: Record<string, unknown>) => Promise<MapPoint | null>
+  queryNearby: QueryNearbyFn
+  center: MapPoint
+  setView: (...params: unknown[]) => void
+  panTo: (coords: MapPoint | MapPoint[]) => void
+  getCenter: () => { latitude: number; longitude: number; type?: string }
+  zoomIn: () => void
+  zoomOut: () => void
+  getZoom: () => number | null
+  setZoom: (zoom: number) => unknown
+  onZoomStart?: (map: MapContainerAPI) => void
+  onZoom?: (map: MapContainerAPI) => void
+  onZoomEnd?: (map: MapContainerAPI) => void
+  onMoveStart?: (map: MapContainerAPI) => void
+  onMove?: (map: MapContainerAPI) => void
+  onMoveEnd?: (map: MapContainerAPI) => void
+  onDragStart?: ((map: MapContainerAPI) => void) | null
+  onDrag?: (map: MapContainerAPI) => void
+  onDragEnd?: ((map: MapContainerAPI) => void) | null
+}
+
+export interface MapContainerProps {
+  center?: MapPoint | MapPoint[]
+  zoom?: number
+  minZoom?: number
+  maxZoom?: number
+  cacheExpires?: number
+  getAddress?: GetAddressFn | null
+  getLocation?: GetLocationFn | null
+  openLocation?: ((...args: unknown[]) => unknown) | null
+  queryNearby?: QueryNearbyFn | null
+  style?: React.CSSProperties
+  className?: string
+  children?: React.ReactNode
+  onLoad?: (result: { status: string; message?: string; map?: MapContainerAPI }) => void
+  onZoomStart?: (map: MapContainerAPI) => void
+  onZoom?: (map: MapContainerAPI) => void
+  onZoomEnd?: (map: MapContainerAPI) => void
+  onMoveStart?: (map: MapContainerAPI) => void
+  onMove?: (map: MapContainerAPI) => void
+  onMoveEnd?: (map: MapContainerAPI) => void
+  onDragStart?: (map: MapContainerAPI) => void
+  onDrag?: (map: MapContainerAPI) => void
+  onDragEnd?: (map: MapContainerAPI) => void
+}
+
+const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   (
     {
-      // Value & Display Value
-      center,
+      center: centerProp,
       zoom,
       minZoom,
       maxZoom,
-      // 定位与获取位置缓存时长: 秒
       cacheExpires,
-
-      // Utils
-      getAddress,
-      getLocation,
-      openLocation,
-      queryNearby,
-
-      // Style
+      getAddress: getAddressProp,
+      getLocation: getLocationProp,
+      openLocation: openLocationProp,
+      queryNearby: queryNearbyProp,
       style,
       className,
-
-      // Element
       children,
-
-      // Events
       onLoad,
       onZoomStart,
       onZoom,
@@ -60,206 +116,197 @@ const MapContainer = forwardRef(
     },
     ref
   ) => {
-    // 指定获取定位和地址的方法
-    // eslint-disable-next-line
-    if (typeof getAddress !== 'function') getAddress = cacheExpires ? defaultGetSuperAddress : defaultGetAddress
-    // eslint-disable-next-line
-    if (typeof getLocation !== 'function') getLocation = cacheExpires ? defaultGetSuperLocation : defaultGetLocation
-    if (typeof openLocation !== 'function') {
-      // eslint-disable-next-line
-      openLocation = window?.defaultOpenLocation
-    }
-    // eslint-disable-next-line
-    if (typeof queryNearby !== 'function') queryNearby = defaultQueryNearby
+    let getAddress: GetAddressFn =
+      typeof getAddressProp === 'function'
+        ? getAddressProp
+        : cacheExpires
+          ? (defaultGetSuperAddress as GetAddressFn)
+          : (defaultGetAddress as GetAddressFn)
 
-    if (typeof center !== 'object' || !center?.longitude || !center?.latitude || !center?.type) {
-      // eslint-disable-next-line
+    let getLocation: GetLocationFn =
+      typeof getLocationProp === 'function'
+        ? getLocationProp
+        : cacheExpires
+          ? (defaultGetSuperLocation as GetLocationFn)
+          : (defaultGetLocation as GetLocationFn)
+
+    const openLocation: ((...args: unknown[]) => unknown) | undefined =
+      typeof openLocationProp === 'function' ? openLocationProp : window?.defaultOpenLocation
+
+    let queryNearby: QueryNearbyFn =
+      typeof queryNearbyProp === 'function' ? queryNearbyProp : (defaultQueryNearby as QueryNearbyFn)
+
+    let center: MapPoint
+    const centerObj = Array.isArray(centerProp) ? null : centerProp
+    if (
+      typeof centerObj !== 'object' ||
+      !centerObj?.longitude ||
+      !centerObj?.latitude ||
+      !centerObj?.type
+    ) {
       center = coordsToFit(
         window?.MapLoaderConfig?.center || {
           latitude: 39.909187,
           longitude: 116.397451,
           type: 'gcj02'
-          // address: '北京天安门'
         }
-      )
+      ) as MapPoint
+    } else {
+      center = centerObj
     }
 
-    const rootRef = useRef(null)
-    // null: 加载中; string: 加载失败; object: 加载成功
-    let [leafletMap, setLeafletMap] = useState(null)
+    const rootRef = useRef<HTMLDivElement>(null)
+    let [leafletMap, setLeafletMap] = useState<L.Map | string | null>(null)
 
-    // Define export Api
-    const APIRef = useRef({
+    function localeToErrorString(node: string | React.ReactNode): string {
+      return typeof node === 'string' ? node : 'Error'
+    }
+
+    const APIRef = useRef<MapContainerAPI>({
       element: rootRef.current,
       getElement: () => rootRef.current,
       type: getMapType(),
-      // Dynamic props
       currentMap: null,
       leafletMap: null,
-      // 打开位置地图
       openLocation: openLocation,
-      // 指定获取定位和地址的方法
-      getAddress: async (coord) => {
-        if (typeof coord !== 'object' || !coord?.longitude || !coord?.latitude || !coord?.type) {
+      getAddress: async (coord: MapPoint) => {
+        if (!coord?.longitude || !coord?.latitude || !coord?.type) {
           return {
             status: 'error',
             message: 'getAddress must pass longitude, latitude and type'
           }
         }
-
-        let result = await getAddress({ ...coord, cacheExpires })
-
-        // Get address success
+        const result = await getAddress({ ...coord, cacheExpires })
         if (result?.address) {
-          result = {
-            ...coord,
-            ...result
-          }
+          return { ...coord, ...result }
         }
-
         return result
       },
-      // Get location
-      getLocation: async (params) => {
-        let result = await getLocation({ ...params, cacheExpires })
+      getLocation: async (params: Record<string, unknown>) => {
+        const result = await getLocation({ ...params, cacheExpires })
         return result
       },
-      // 搜索附近与搜索
-      /*
-      入参:
-      {
-        map: APIRef.current, // 内部使用map.currentMap
-        keyword: '',
-        longitude: '',
-        latitude: '',
-        radius: 1000 // 不传半径则为模糊搜索
-      }
-      出参:
-      {
-        address: '上海市南京东路830号',
-        latitude: 31.237415229632834,
-        longitude: 121.47015544295395,
-        name: 'eve lom市百一店'
-      }
-      */
       queryNearby: queryNearby,
       center: center,
-      // Functions
-      setView: (...params) => {
-        leafletMap?.setView(...params)
+      setView: (...params: unknown[]) => {
+        ;(leafletMap as L.Map)?.setView(...(params as Parameters<L.Map['setView']>))
       },
-      panTo: (coords) => {
-        if (!leafletMap) return
+      panTo: (coords: MapPoint | MapPoint[]) => {
+        if (!leafletMap || typeof leafletMap === 'string') return
+        const lmap = leafletMap as L.Map
         if (Array.isArray(coords)) {
-          let points = coords.map((coord) => {
+          let points = coords.map((coord: MapPoint) => {
             if (!coord?.latitude || !coord?.longitude || !coord?.type) {
               console.error('MapContainer panTo invalid parameter:', coord)
               return null
             }
-            let newCoord = coordsToFit(coord)
+            const newCoord = coordsToFit(coord) as MapPoint
             return newCoord?.latitude && newCoord?.longitude
-              ? [newCoord.latitude, newCoord.longitude]
+              ? ([newCoord.latitude, newCoord.longitude] as [number, number])
               : null
           })
-          points = points.filter((point) => point)
-
-          if (Array.isArray(points) && points.length) {
-            leafletMap.fitBounds(points, { padding: [1, 1] })
+          const validPoints = points.filter((point): point is [number, number] => point !== null)
+          if (validPoints.length) {
+            lmap.fitBounds(validPoints as L.LatLngBoundsExpression, { padding: [1, 1] })
           }
         } else if (typeof coords === 'object') {
           if (!coords?.latitude || !coords?.longitude || !coords?.type) {
             console.error('MapContainer panTo invalid parameter:', coords)
             return
           }
-          let newCoord = coordsToFit(coords)
-
+          const newCoord = coordsToFit(coords) as MapPoint
           if (newCoord?.latitude && newCoord?.longitude) {
-            leafletMap.panTo([newCoord.latitude, newCoord.longitude])
+            lmap.panTo([newCoord.latitude as number, newCoord.longitude as number])
           }
         }
       },
       getCenter: () => {
-        let latlng = leafletMap?.getCenter()
-        let center = {
+        const lmap = leafletMap as L.Map
+        const latlng = lmap?.getCenter()
+        const c: { latitude: number; longitude: number; type?: string } = {
           latitude: latlng.lat,
           longitude: latlng.lng
         }
 
-        // 百度国内坐标为gcj02和bd09
-        let isInChina = GeoUtil.isInChina([center.longitude, center.latitude])
+        const isInChina = GeoUtil.isInChina([c.longitude, c.latitude])
         if (isInChina) {
           if (window.google || window.AMap) {
-            center.type = 'gcj02'
+            c.type = 'gcj02'
           } else if (window.BMap) {
-            center.type = 'bd09'
+            c.type = 'bd09'
           }
         } else {
-          center.type = 'wgs84'
+          c.type = 'wgs84'
         }
 
-        return center
+        return c
       },
       zoomIn: () => {
-        leafletMap?.zoomIn()
+        ;(leafletMap as L.Map)?.zoomIn()
       },
       zoomOut: () => {
-        leafletMap?.zoomOut()
+        ;(leafletMap as L.Map)?.zoomOut()
       },
       getZoom: () => {
-        return leafletMap?.getZoom?.() || null
+        return (leafletMap as L.Map)?.getZoom?.() || null
       },
-      setZoom: (zoom) => {
-        if (!leafletMap?.setZoom) return
-        return leafletMap.setZoom(zoom)
+      setZoom: (zoom: number) => {
+        const lmap = leafletMap as L.Map
+        if (!lmap?.setZoom) return
+        return lmap.setZoom(zoom)
       }
     })
 
-    // Export API
     useImperativeHandle(ref, () => {
       return APIRef.current
     })
 
-    // Init leafletMap and currentMap
     useEffect(() => {
       APIRef.current.element = rootRef.current
       loadData()
       // eslint-disable-next-line
     }, [])
 
-    // Load data
     async function loadData() {
       if (!rootRef.current?.querySelector) {
-        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi_6a9144880f91a917d142206c4ecf2103'))
+        setLeafletMap(
+          localeToErrorString(
+            LocaleUtil.locale('No Container', 'lyrixi_6a9144880f91a917d142206c4ecf2103')
+          )
+        )
         return
       }
 
-      // Create leaflet leafletMap
+      const tileLayerEx = window.L?.tileLayer as (typeof window.L.tileLayer & {
+        currentTileLayer?: (() => L.TileLayer) & { config?: Record<string, unknown> }
+      }) | undefined
+
       leafletMap = await createLeafletMap(
-        rootRef.current?.querySelector?.('.lyrixi-map-container'),
+        rootRef.current?.querySelector?.('.lyrixi-map-container') as HTMLElement,
         {
           center,
           zoom,
           minZoom,
           maxZoom
         }
-      )
-      APIRef.current.leafletMap = leafletMap
+      ) as L.Map | null
+      APIRef.current.leafletMap = leafletMap as L.Map | null
 
-      let currentMapContainer = rootRef?.current?.querySelector?.('.lyrixi-map-api-container')
+      const currentMapContainer = rootRef?.current?.querySelector?.('.lyrixi-map-api-container') as HTMLElement | null
       if (!currentMapContainer) {
-        setLeafletMap(LocaleUtil.locale('No Container', 'lyrixi_6a9144880f91a917d142206c4ecf2103'))
+        setLeafletMap(
+          localeToErrorString(
+            LocaleUtil.locale('No Container', 'lyrixi_6a9144880f91a917d142206c4ecf2103')
+          )
+        )
         return
       }
 
-      // Create bmap,amap,etc current map to use invoke api
-      const currentMap = await createCurrentMap(currentMapContainer, {
-        center
-      })
+      const currentMap = await createCurrentMap(currentMapContainer, { center })
       APIRef.current.currentMap = currentMap
 
-      // Load leafletMap failed
-      if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
-        let errorMessage = !window.L
+      if (!window.L || !tileLayerEx?.currentTileLayer) {
+        const errorMessage = !window.L
           ? LocaleUtil.locale(
             '请在Map组件需要使用MapLoader包裹',
             'lyrixi_5075eec6f717dd4179774e90bedc721b'
@@ -271,83 +318,71 @@ const MapContainer = forwardRef(
         setLeafletMap(leafletMap)
         onLoad?.({
           status: 'error',
-          message: errorMessage
+          message: localeToErrorString(errorMessage)
         })
         return
       }
 
-      // Init leafletMap events
       events()
 
-      // Render children
       setLeafletMap(leafletMap)
 
-      // onLoad event
       onLoad?.({
         status: 'success',
         map: APIRef.current
       })
     }
 
-    // Bind events
     function events() {
-      // Listen zoom event
-      leafletMap.on('zoomstart', function () {
+      const lmap = leafletMap as L.Map
+      lmap.on('zoomstart', function () {
         onZoomStart && onZoomStart(APIRef.current)
         APIRef.current.onZoomStart && APIRef.current.onZoomStart(APIRef.current)
       })
-      leafletMap.on('zoom', function () {
+      lmap.on('zoom', function () {
         onZoom && onZoom(APIRef.current)
         APIRef.current.onZoom && APIRef.current.onZoom(APIRef.current)
       })
-      leafletMap.on('zoomend', function () {
+      lmap.on('zoomend', function () {
         onZoomEnd && onZoomEnd(APIRef.current)
         APIRef.current.onZoomEnd && APIRef.current.onZoomEnd(APIRef.current)
       })
 
-      // Listen move event
-      leafletMap.on('movestart', function () {
+      lmap.on('movestart', function () {
         onMoveStart && onMoveStart(APIRef.current)
         APIRef.current.onMoveStart && APIRef.current.onMoveStart(APIRef.current)
       })
-      leafletMap.on('move', function () {
+      lmap.on('move', function () {
         onMove && onMove(APIRef.current)
         APIRef.current.onMove && APIRef.current.onMove(APIRef.current)
       })
-      leafletMap.on('moveend', function (e) {
+      lmap.on('moveend', function () {
         onMoveEnd && onMoveEnd(APIRef.current)
         APIRef.current.onMoveEnd && APIRef.current.onMoveEnd(APIRef.current)
       })
 
-      // Listen drag event
-      leafletMap.on('dragstart', function () {
+      lmap.on('dragstart', function () {
         onDragStart && onDragStart(APIRef.current)
         APIRef.current.onDragStart && APIRef.current.onDragStart(APIRef.current)
       })
-      leafletMap.on('drag', function () {
+      lmap.on('drag', function () {
         onDrag && onDrag(APIRef.current)
         APIRef.current.onDrag && APIRef.current.onDrag(APIRef.current)
       })
-      leafletMap.on('dragend', function (e) {
+      lmap.on('dragend', function () {
         onDragEnd && onDragEnd(APIRef.current)
         APIRef.current.onDragEnd && APIRef.current.onDragEnd(APIRef.current)
       })
     }
 
-    // Render
     let newChildren = null
-    // 未加载完成显示空
     if (!leafletMap) {
       newChildren = null
-    }
-    // 加载失败
-    else if (typeof leafletMap === 'string') {
+    } else if (typeof leafletMap === 'string') {
       newChildren = (
         <Result className="lyrixi-map-container-result" status="500" title={leafletMap} />
       )
-    }
-    // 加载成功
-    else {
+    } else {
       newChildren = injectChildrenProps(children, {
         map: APIRef.current
       })
@@ -356,17 +391,11 @@ const MapContainer = forwardRef(
     return (
       <div
         ref={rootRef}
-        // Style
         style={style}
         className={DOMUtil.classNames('lyrixi-map', className)}
       >
-        {/* Element: Leaflet Map Container */}
         <div className="lyrixi-map-container"></div>
-
-        {/* Element: API Map Container */}
         <div className="lyrixi-map-api-container"></div>
-
-        {/* Element: Children */}
         {leafletMap ? newChildren : null}
       </div>
     )

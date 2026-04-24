@@ -1,88 +1,112 @@
 import getPosition from './getPosition'
 import snapToEdge from './snapToEdge'
+import type { GapOption } from './snapToEdge'
 
-let AssistiveTouch = function (target, { gap, onDragEnd } = {}) {
-  let s = this
+interface AssistiveTouchOptions {
+  gap?: GapOption
+  onDragEnd?: (data: Record<string, unknown>) => void
+}
 
-  if (!target) return
+class AssistiveTouch {
+  private target!: HTMLElement
+  private gap: GapOption | undefined
+  private onDragEnd: ((data: Record<string, unknown>) => void) | undefined
+  private touches!: {
+    isDragging: boolean
+    startX: number
+    startY: number
+    currentLeft: number
+    currentTop: number
+  }
 
-  target.style.position = 'fixed'
+  constructor(target: HTMLElement, { gap, onDragEnd }: AssistiveTouchOptions = {}) {
+    if (!target) return
 
-  // 拖动信息
-  let touches = {
-    isDragging: false,
-    startX: 0,
-    startY: 0,
-    currentLeft: 0,
-    currentTop: 0
+    this.target = target
+    this.gap = gap
+    this.onDragEnd = onDragEnd
+
+    target.style.position = 'fixed'
+
+    this.touches = {
+      isDragging: false,
+      startX: 0,
+      startY: 0,
+      currentLeft: 0,
+      currentTop: 0
+    }
+
+    this.handleTouchStart = this.handleTouchStart.bind(this)
+    this.handleTouchMove = this.handleTouchMove.bind(this)
+    this.handleTouchEnd = this.handleTouchEnd.bind(this)
   }
 
   // 触摸开始
-  function handleTouchStart(e) {
-    // e.preventDefault()
-    touches.isDragging = true
+  private handleTouchStart(e: TouchEvent): void {
+    this.touches.isDragging = true
     const touch = e.touches[0]
-    touches.startX = touch.clientX
-    touches.startY = touch.clientY
-    const pos = getPosition(target)
-    touches.currentLeft = pos.left
-    touches.currentTop = pos.top
-    target.style.transition = 'none'
+    this.touches.startX = touch.clientX
+    this.touches.startY = touch.clientY
+    const pos = getPosition(this.target)
+    this.touches.currentLeft = pos.left
+    this.touches.currentTop = pos.top
+    this.target.style.transition = 'none'
   }
 
   // 触摸移动
-  function handleTouchMove(e) {
-    if (!touches.isDragging) return
+  private handleTouchMove(e: TouchEvent): void {
+    if (!this.touches.isDragging) return
     e.preventDefault()
     const touch = e.touches[0]
-    const deltaX = touch.clientX - touches.startX
-    const deltaY = touch.clientY - touches.startY
+    const deltaX = touch.clientX - this.touches.startX
+    const deltaY = touch.clientY - this.touches.startY
 
-    target.style.left = `${touches.currentLeft + deltaX}px`
-    target.style.top = `${touches.currentTop + deltaY}px`
+    this.target.style.left = `${this.touches.currentLeft + deltaX}px`
+    this.target.style.top = `${this.touches.currentTop + deltaY}px`
   }
 
   // 触摸结束
-  function handleTouchEnd(e) {
-    if (!touches.isDragging) return
-    touches.isDragging = false
+  private handleTouchEnd(e: TouchEvent): void {
+    if (!this.touches.isDragging) return
+    this.touches.isDragging = false
 
-    // 点击时不要修改位置
-    let endX = e?.clientX || e?.changedTouches?.[0]?.clientX
-    let endY = e?.clientY || e?.changedTouches?.[0]?.clientY
-    let diffX = touches.startX - endX
-    let diffY = touches.startY - endY
+    const changedTouch = e.changedTouches?.[0]
+    const endX = changedTouch?.clientX ?? 0
+    const endY = changedTouch?.clientY ?? 0
+    const diffX = this.touches.startX - endX
+    const diffY = this.touches.startY - endY
     if (Math.abs(diffX) < 5 && Math.abs(diffY) < 5) {
       return
     }
 
     // 贴边
-    snapToEdge(target, { gap })
+    snapToEdge(this.target, { gap: this.gap })
 
-    if (onDragEnd) {
-      const pos = getPosition(target)
-      onDragEnd && onDragEnd({ ...e, ...pos })
+    if (this.onDragEnd) {
+      const pos = getPosition(this.target)
+      this.onDragEnd({ ...pos })
     }
   }
 
   /* --------------------
   Touch Events
   -------------------- */
-  s.events = function (detach) {
-    let action = detach ? 'removeEventListener' : 'addEventListener'
-    target[action]('touchstart', handleTouchStart, { passive: false })
-    target[action]('touchmove', handleTouchMove, { passive: false })
-    target[action]('touchend', handleTouchEnd, false)
-    target[action]('touchcancel', handleTouchEnd, false)
+  events(detach?: boolean): void {
+    const action = detach ? 'removeEventListener' : 'addEventListener'
+    this.target[action]('touchstart', this.handleTouchStart as EventListener, { passive: false } as AddEventListenerOptions)
+    this.target[action]('touchmove', this.handleTouchMove as EventListener, { passive: false } as AddEventListenerOptions)
+    this.target[action]('touchend', this.handleTouchEnd as EventListener, false)
+    this.target[action]('touchcancel', this.handleTouchEnd as EventListener, false)
   }
+
   // attach、dettach事件
-  s.attach = function (event) {
-    s.events()
+  attach(): void {
+    this.events()
   }
-  s.detach = function (event) {
-    s.events(true)
+
+  detach(): void {
+    this.events(true)
   }
-  return s
 }
 
 export default AssistiveTouch

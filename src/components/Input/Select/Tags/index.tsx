@@ -1,6 +1,35 @@
 import React, { Fragment } from 'react'
 import Tag from './Tag'
 import InputNode from './../../Node'
+import { InputNodeProps } from './../../Node'
+
+interface TagItem {
+  id?: string | number
+  name?: string
+  className?: string
+  style?: React.CSSProperties
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  [key: string]: unknown
+}
+
+interface TagsProps {
+  separator?: string
+  leftIconNode?: React.ReactNode
+  rightIconNode?: React.ReactNode
+  clearRender?: InputNodeProps['clearRender']
+  className?: string
+  style?: React.CSSProperties
+  placeholder?: string
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  value?: TagItem | TagItem[]
+  onAdd?: (e: React.MouseEvent<HTMLDivElement>) => void
+  onEdit?: (item: TagItem) => void
+  onChange?: (value: TagItem[], meta?: { action: string }) => void
+}
 
 // 标签模式
 const Tags = ({
@@ -20,7 +49,7 @@ const Tags = ({
   onAdd,
   onEdit,
   onChange
-}) => {
+}: TagsProps) => {
   return (
     <InputNode
       leftIconNode={leftIconNode}
@@ -30,8 +59,8 @@ const Tags = ({
       readOnly={readOnly}
       style={style}
       onClick={onAdd}
-      value={value}
-      onChange={onChange}
+      value={typeof value === 'string' ? value : undefined}
+      onChange={onChange as InputNodeProps['onChange']}
       allowClear={allowClear}
       clearRender={clearRender}
       placeholder={placeholder}
@@ -39,7 +68,7 @@ const Tags = ({
         if (Array.isArray(value)) {
           return value.map((item, index) => {
             return (
-              <Fragment key={item.id || index}>
+              <Fragment key={String(item.id || index)}>
                 <Tag
                   className={item.className}
                   style={item.style}
@@ -51,7 +80,7 @@ const Tags = ({
                     onEdit && onEdit(item)
                   }}
                   onDelete={() => {
-                    let currentValue = value.filter((valueItem) => valueItem.id !== item.id)
+                    let currentValue = (value as TagItem[]).filter((valueItem) => valueItem.id !== item.id)
                     onChange && onChange(currentValue, { action: 'clickDelete' })
                   }}
                 />

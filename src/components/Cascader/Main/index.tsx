@@ -1,11 +1,12 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect, type CSSProperties, type ReactNode } from 'react'
 import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'
-import formatValue from './../utils/formatValue'
+import formatValue, { type CascaderTab } from './../utils/formatValue'
 import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
+import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -21,8 +22,39 @@ import TabBar from './../../TabBar'
 import { ObjectUtil, LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-mobile'
 测试使用-end */
 
+interface ResultState {
+  status: string
+  list?: CascaderNode[]
+  message?: ReactNode
+  async?: boolean
+}
+
+export interface CascaderMainRef {
+  mainElement: HTMLDivElement | null
+  getMainElement: () => HTMLDivElement | null
+  update: (value: CascaderNode[] | null | undefined, opts?: { action?: string }) => void
+}
+
+interface CascaderMainProps {
+  value?: CascaderNode[]
+  list?: CascaderNode[]
+  loadData?: LoadDataFn
+  listStyle?: CSSProperties
+  listClassName?: string
+  itemStyle?: CSSProperties
+  itemClassName?: string
+  searchVisible?: boolean
+  tabbarRender?: (params: {
+    list: CascaderNode[]
+    value: CascaderNode | undefined
+    onChange: (tab: CascaderNode) => void
+  }) => ReactNode
+  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => unknown
+  onChange?: (value: CascaderNode[]) => void
+}
+
 // 主体
-const CascaderMain = forwardRef(
+const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
   (
     {
       // Value & Display Value
@@ -47,14 +79,16 @@ const CascaderMain = forwardRef(
     ref
   ) => {
     // 全部tab
-    let tabsRef = useRef([])
+    const tabsRef = useRef<CascaderNode[]>([])
 
     // 选中tab
-    let [activeTab, setActiveTab] = useState(null)
+    const [activeTab, setActiveTab] = useState<CascaderNode | undefined>(undefined)
 
     // 选中列表, 文本则为错误
-    let currentList = ArrayUtil.updateDeepTreeParentId(externalList)
-    let [result, setResult] = useState(
+    const currentList = ArrayUtil.updateDeepTreeParentId(
+      (externalList ?? []) as unknown as Parameters<typeof ArrayUtil.updateDeepTreeParentId>[0]
+    ) as CascaderNode[] | null
+    const [result, setResult] = useState<ResultState>(
       currentList
         ? { status: 'success', list: currentList }
         : {
@@ -64,7 +98,7 @@ const CascaderMain = forwardRef(
     )
 
     // Expose
-    const mainRef = useRef(null)
+    const mainRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {
       return {
         mainElement: mainRef.current,
@@ -79,7 +113,11 @@ const CascaderMain = forwardRef(
       if (
         !Array.isArray(externalList) ||
         !externalList.length ||
-        ArrayUtil.isEqual(tabsRef.current, value, ['id', 'name'])
+        ArrayUtil.isEqual(
+          tabsRef.current as Record<string, unknown>[],
+          (value ?? []) as Record<string, unknown>[],
+          ['id', 'name']
+        )
       ) {
         return
       }
@@ -93,9 +131,11 @@ const CascaderMain = forwardRef(
     }, [value])
 
     // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
-    async function update(newValue, { action } = {}) {
+    async function update(newValue: CascaderNode[] | null | undefined, { action }: { action?: string } = {}) {
       // 更新tabs
-      tabsRef.current = ObjectUtil.cloneDeep(formatValue(newValue))
+      tabsRef.current = ObjectUtil.cloneDeep(
+        (formatValue(newValue as unknown as CascaderTab[] | null | undefined) ?? []) as CascaderNode[]
+      )
 
       // 滚动条还原
       if (mainRef.current) {
@@ -104,7 +144,7 @@ const CascaderMain = forwardRef(
 
       // 无值显示根列表
       if (!newValue || ObjectUtil.isEmpty(newValue)) {
-        setActiveTab(null)
+        setActiveTab(undefined)
         setResult({
           status: 'success',
           list: externalList
@@ -113,7 +153,7 @@ const CascaderMain = forwardRef(
       }
 
       // 获取当前列表(按行为策略)
-      let newResult = await getActionData(newValue, { action })
+      const newResult = await getActionData(newValue, { action })
 
       // 接口报错, 或暂无数据
       if (newResult.status !== 'success') {
@@ -128,7 +168,7 @@ const CascaderMain = forwardRef(
       }
 
       // 有子级, 则增加一个tab
-      let lastTab = newValue[newValue.length - 1]
+      const lastTab = newValue[newValue.length - 1]
       if (!lastTab?.isLeaf) {
         tabsRef.current.push({
           isChoose: true,
@@ -146,15 +186,15 @@ const CascaderMain = forwardRef(
     // 统一根据操作行为获取列表:
     // - clickItem/load: 优先查子级, 无子级则显示同级
     // - clickTab: 显示同级
-    async function getActionData(tabs, { action } = {}) {
+    async function getActionData(tabs: CascaderNode[], { action }: { action?: string } = {}): Promise<ResultState> {
       if (!Array.isArray(tabs) || !tabs.length) {
-        return externalList
+        return { status: 'success', list: externalList }
       }
 
-      let lastTab = tabs?.[tabs?.length - 1]
+      const lastTab = tabs?.[tabs?.length - 1]
 
       // clickItem/load查子级列表
-      if (['clickItem', 'load'].includes(action)) {
+      if (['clickItem', 'load'].includes(action ?? '')) {
         // 末级节点, 查询同级列表
         const childrenData = await getChildrenData(
           tabs.filter((tab) => !tab.isChoose && !tab.isLeaf)
@@ -176,16 +216,18 @@ const CascaderMain = forwardRef(
         // 点击非请选择查同级列表
         return await getSiblingData(tabs)
       }
+
+      return { status: 'success', list: externalList }
     }
 
     // 获取同级列表
-    async function getSiblingData(tabs) {
+    async function getSiblingData(tabs: CascaderNode[]): Promise<ResultState> {
       return await getChildrenData(tabs.slice(0, tabs.length - 1))
     }
 
     // 获取下级列表, 没有返回null
-    async function getChildrenData(tabs) {
-      let lastTab = tabs?.[tabs?.length - 1]
+    async function getChildrenData(tabs: CascaderNode[]): Promise<ResultState> {
+      const lastTab = tabs?.[tabs?.length - 1]
 
       // externalList为空, 或者不合法, 需要重新获取
       if (!Array.isArray(externalList) || !externalList.length) {
@@ -196,49 +238,66 @@ const CascaderMain = forwardRef(
       }
 
       // 渲染子级, 返回{status: 'success|error|empty', message: '', list:[]}
-      let newResult = await loadChildren(tabs, { externalLoadData, externalList })
+      const newResult = await loadChildren(tabs, {
+        externalLoadData,
+        externalList: externalList as CascaderNode[]
+      })
 
       // 异步获取的数据, 无值则为叶子节点
       if (newResult.async && newResult.status === 'empty') {
         // 更新value的叶子节点
-        updateIsLeaf(lastTab.id, { currentValue: tabs, value, tabsRef })
+        if (lastTab?.id !== undefined) {
+          updateIsLeaf(lastTab.id, { currentValue: tabs, value, tabsRef })
+        }
 
         // 更新externalList的叶子节点
-        ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-          node.children = newResult?.list || []
-          node.isLeaf = true
-        })
+        if (lastTab?.id !== undefined) {
+          ArrayUtil.setDeepTreeNode(
+            externalList as unknown as Parameters<typeof ArrayUtil.setDeepTreeNode>[0],
+            lastTab.id,
+            (node) => {
+              node.children = (newResult?.list ?? []) as unknown as NonNullable<typeof node.children>
+              node.isLeaf = true
+            }
+          )
+        }
       }
       // 异步获取的数据, 有值更新列表的children, 并返回
       else if (newResult.async && newResult.status === 'success') {
-        ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-          node.children = newResult?.list || []
-        })
+        if (lastTab?.id !== undefined) {
+          ArrayUtil.setDeepTreeNode(
+            externalList as unknown as Parameters<typeof ArrayUtil.setDeepTreeNode>[0],
+            lastTab.id,
+            (node) => {
+              node.children = (newResult?.list ?? []) as unknown as NonNullable<typeof node.children>
+            }
+          )
+        }
       }
 
       // 返回result
-      return newResult
+      return newResult as ResultState
     }
 
     // 点击选项, value不包含children
-    async function handleDrill({ children, ...item }) {
+    function handleDrill({ children: _children, ...item }: CascaderNode) {
       // 防止用户快速点击多次触发
       Loading.show({
         id: '__lyrixi_loading_cascader_drill_mask__',
         content: 'Get children...',
         style: {
-          opacity: 0
+          opacity: '0'
         }
       })
 
-      let newValue = ObjectUtil.cloneDeep(value)
+      let newValue = ObjectUtil.cloneDeep(value) as CascaderNode[] | null | undefined
 
       // 点击项的父级为选中项
-      let parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)
+      const parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)
 
       // 已经存在于tabs上, 截取
       if (parentTabIndex !== -1) {
-        newValue = newValue.slice(0, parentTabIndex + 1)
+        newValue = (newValue ?? []).slice(0, parentTabIndex + 1)
         newValue.push({ ...item })
       }
       // 不在tabs上, 为第一项
@@ -256,15 +315,15 @@ const CascaderMain = forwardRef(
     }
 
     // Tab 激活处理(点击tab时查同级)
-    const handleClickTab = async (tab) => {
+    const handleClickTab = async (tab: CascaderNode) => {
       // 滚动条还原
       if (mainRef.current) {
         mainRef.current.scrollTop = 0
       }
 
       // 点击tab时, 展示该tab同级(其父级的children)
-      let activeTabs = sliceArray(tabsRef.current, tab?.id)
-      let newResult = await getActionData(activeTabs, { action: 'clickTab' })
+      const activeTabs = sliceArray(tabsRef.current, tab?.id)
+      const newResult = await getActionData(activeTabs, { action: 'clickTab' })
 
       setActiveTab(tab)
       setResult(newResult)
@@ -277,12 +336,21 @@ const CascaderMain = forwardRef(
         return tabbarRender({
           list: tabsRef.current,
           value: activeTab,
-          onChange: handleClickTab
+          onChange: (item) => {
+            void handleClickTab(item as CascaderNode)
+          }
         })
       }
 
       return (
-        <TabBar.Tabs gap={12} list={tabsRef.current} value={activeTab} onChange={handleClickTab} />
+        <TabBar.Tabs
+          gap="12"
+          list={tabsRef.current}
+          value={activeTab}
+          onChange={(item) => {
+            void handleClickTab(item as CascaderNode)
+          }}
+        />
       )
     }
 
@@ -293,7 +361,7 @@ const CascaderMain = forwardRef(
           {/* 索引栏: 为了防止遮住搜索页面, 需要放在搜索框上面 */}
           <IndexBar
             className="lyrixi-cascader-indexbar"
-            anchors={getAnchors(result?.list)}
+            anchors={getAnchors((result?.list ?? []) as Parameters<typeof getAnchors>[0])}
             getScrollerElement={() => mainRef.current}
           />
 
@@ -302,12 +370,9 @@ const CascaderMain = forwardRef(
             <SearchControl
               list={externalList}
               onSearch={onSearch}
-              onChange={(newValue) => {
-                let lastItem = newValue[newValue.length - 1]
+              onChange={(newValue: CascaderNode[]) => {
+                const lastItem = newValue[newValue.length - 1]
                 newValue.length = newValue.length - 1
-                // eslint-disable-next-line
-                value = newValue
-                tabsRef.current = newValue
 
                 handleDrill(lastItem)
               }}
@@ -331,12 +396,8 @@ const CascaderMain = forwardRef(
             // Events
             onReLoad={async () => {
               update(value, { action: 'load' })
-              // if (typeof onReLoad !== 'function') return
-              // let newList = await onReLoad(value, { list: externalList, update })
-              // if (!newList) return
-              // setResult(newList)
             }}
-            onSelect={(item) => handleDrill(item)}
+            onSelect={(item: CascaderNode) => handleDrill(item)}
           />
 
 

@@ -5,7 +5,7 @@ import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
-import type { SuccessCallback, ErrorCallback, CancelCallback } from '../types'
+import type { SuccessCallback, ErrorCallback, CancelCallback, SDKResult } from '../types'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -93,7 +93,7 @@ let Bridge = {
   goHome: function () {
     window.history.go(-1)
   },
-  back: function (delta) {
+  back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
   closeWindow: function (params?: {
@@ -105,7 +105,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -141,15 +141,15 @@ let Bridge = {
     }
 
     ;(window.top ?? window).tt?.openLocation?.({
-      latitude: coord.latitude,
-      longitude: coord.longitude,
+      latitude: coord?.latitude ?? 0,
+  longitude: coord?.longitude ?? 0,
       scale: scale,
       name: name,
       address: address,
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -170,7 +170,7 @@ let Bridge = {
 
     ;(window.top ?? window).tt?.getLocation?.({
       type: targetType,
-      success: (res) => {
+      success: (res: SDKResult) => {
         console.error('飞书定位成功', res)
 
         let data: Record<string, unknown> = {
@@ -181,13 +181,15 @@ let Bridge = {
         }
 
         if (res.type && res.type !== targetType) {
-          const points = GeoUtil.coordtransform([res.longitude, res.latitude], res.type, targetType)
+          const points = GeoUtil.coordtransform([res.longitude ?? 0, res.latitude ?? 0], res.type ?? 'wgs84', targetType)
 
-          data = {
-            longitude: points[0],
-            latitude: points[1],
-            type: targetType,
-            accuracy: res.accuracy
+          if (points) {
+            data = {
+              longitude: points[0],
+              latitude: points[1],
+              type: targetType,
+              accuracy: res.accuracy
+            }
           }
         }
 
@@ -198,7 +200,7 @@ let Bridge = {
           data
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         console.error('飞书定位失败', error)
         onError?.({
           status: 'error',
@@ -219,7 +221,7 @@ let Bridge = {
     ;(window.top ?? window).tt?.scanCode?.({
       scanType: scanType,
       barCodeInput: true,
-      success: (res) => {
+      success: (res: SDKResult) => {
         onSuccess?.({
           status: 'success',
           code: '',
@@ -227,10 +229,10 @@ let Bridge = {
           data: { content: res.resultStr || '' }
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -269,7 +271,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         console.log('飞书previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -300,7 +302,7 @@ let Bridge = {
       success() {
         onSuccess && onSuccess()
       },
-      fail(err) {
+      fail(err: SDKResult) {
         console.log('Lark Share onError:', err)
 
         onError?.({

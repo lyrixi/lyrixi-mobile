@@ -1,48 +1,60 @@
 import Months from './Months'
+import type { CalendarCellDate } from '../types'
+
+type SlideYOp = 'expand' | 'collapse' | ''
 
 // 上下拉动
-function slideY(op, { duration, currentPage, drawDate, cellHeight, bodyHeight, body, bodyY }) {
-  // 添加动画
+function slideY(
+  op: SlideYOp,
+  {
+    duration,
+    currentPage,
+    drawDate,
+    cellHeight,
+    bodyHeight,
+    body,
+    bodyY
+  }: {
+    duration: number
+    currentPage: CalendarCellDate[][] | undefined
+    drawDate: Date | null
+    cellHeight: number
+    bodyHeight: number
+    body: HTMLDivElement | null
+    bodyY: HTMLDivElement | null
+  }
+) {
+  if (!body || !bodyY) {
+    return
+  }
+
   body.style.transitionDuration = duration + 'ms'
 
-  let height = 0
-  let translateY = 0
-  let drawDateRowIndex = Months.getDateRowIndex(drawDate, currentPage)
+  let height: number | string
+  let translateY: number | string
+  const drawDateRowIndex = drawDate ? Months.getDateRowIndex(drawDate, currentPage) : 0
 
-  // 样式标记展开和收缩, 用currentType代替
-  // if (op) {
-  //   body.parentNode.classList.remove('lyrixi-expand')
-  //   body.parentNode.classList.remove('lyrixi-collapse')
-  //   body.parentNode.classList.add('lyrixi-' + op)
-  // }
-
-  // 展开
   if (op === 'expand') {
     height = bodyHeight
     translateY = 0
-    bodyY.setAttribute('data-translateY', translateY)
-  }
-  // 收缩
-  else if (op === 'collapse') {
+    bodyY.setAttribute('data-translateY', String(translateY))
+  } else if (op === 'collapse') {
     height = cellHeight
 
     translateY = -drawDateRowIndex * cellHeight
-    bodyY.setAttribute('data-translateY', translateY)
+    bodyY.setAttribute('data-translateY', String(translateY))
+  } else {
+    const h = body.getAttribute('data-height')
+    const t = bodyY.getAttribute('data-translateY')
+    height = h != null && h !== '' ? h : '0'
+    translateY = t != null && t !== '' ? t : 0
   }
-  // 维持现状
-  else {
-    height = body.getAttribute('data-height')
-    translateY = bodyY.getAttribute('data-translateY')
-  }
-  body.style.height = height + 'px'
+  body.style.height = (typeof height === 'number' ? String(height) : height) + 'px'
   bodyY.style.transform = 'translateY(' + translateY + 'px)'
 
-  // 动画执行结束后刷新日历
   setTimeout(() => {
-    // 清除动画
     body.style.transitionDuration = '0ms'
 
-    // 重置拖动前高度
     body.removeAttribute('data-height')
   }, duration)
 }

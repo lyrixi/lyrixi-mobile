@@ -1,12 +1,23 @@
-function getCenter() {
-  let latlng = leafletMap?.getCenter()
-  let center = {
+import type * as L from 'leaflet'
+
+// 内库使用-start
+import GeoUtil from './../../../../utils/GeoUtil'
+// 内库使用-end
+
+interface CenterResult {
+  latitude: number
+  longitude: number
+  type?: string
+}
+
+function getCenter(leafletMap: L.Map): CenterResult {
+  const latlng = leafletMap.getCenter()
+  const center: CenterResult = {
     latitude: latlng.lat,
     longitude: latlng.lng
   }
 
-  // 百度国内坐标为gcj02和bd09
-  let isInChina = GeoUtil.isInChina([center.longitude, center.latitude])
+  const isInChina = GeoUtil.isInChina([center.longitude, center.latitude])
   if (isInChina) {
     if (window.google || window.AMap) {
       center.type = 'gcj02'

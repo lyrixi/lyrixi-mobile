@@ -1,12 +1,26 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-const InputText = forwardRef(
+interface OTPInputTextRef {
+  focus: (index: number) => void
+  blur: () => void
+}
+
+interface OTPInputTextProps {
+  values: string[]
+  disabled?: boolean
+  readOnly?: boolean
+  onChange: (index: number, value: string) => void
+  onKeyDown: (key: string, index: number) => void
+  onPaste?: React.ClipboardEventHandler<HTMLInputElement>
+}
+
+const InputText = forwardRef<OTPInputTextRef, OTPInputTextProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {
-    const inputRefs = useRef([])
+    const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
     // Expose
     useImperativeHandle(ref, () => ({
-      focus: (index) => {
+      focus: (index: number) => {
         if (inputRefs.current.length === 0 || !inputRefs.current?.[index]) return
         const input = inputRefs.current[index]
         if (input?.focus) {
@@ -30,7 +44,7 @@ const InputText = forwardRef(
         {values.map((value, index) => (
           <input
             key={index}
-            ref={(el) => (inputRefs.current[index] = el)}
+            ref={(el) => { inputRefs.current[index] = el }}
             type="text"
             value={value || ''}
             disabled={disabled}
@@ -44,7 +58,7 @@ const InputText = forwardRef(
             onPaste={onPaste}
             onClick={(e) => {
               // 点击时选中所有文本
-              const input = e.target
+              const input = e.target as HTMLInputElement
               input.select()
             }}
             autoComplete="off"

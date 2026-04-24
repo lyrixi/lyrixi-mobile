@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
@@ -7,7 +8,9 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 校验照片是否已经上传完成
-function validateListStatus(list) {
+function validateListStatus(
+  list: Array<{ status?: string }> | null | undefined
+): true | ReactNode {
   for (let item of list || []) {
     if (item.status === 'error' || item.status === 'choose' || item.status === 'uploading') {
       return LocaleUtil.locale(

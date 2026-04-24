@@ -1,5 +1,5 @@
 // Click limit times to callback
-function multipleClick(element, count = 10, callback) {
+function multipleClick(element: HTMLElement & { hasEventListener?: boolean }, count = 10, callback?: () => void): void {
   if (!element || element?.hasEventListener) return
   let clickCount = 0
 

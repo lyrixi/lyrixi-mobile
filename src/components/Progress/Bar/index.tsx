@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type Ref } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,44 +8,50 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const ProgressBar = forwardRef(
-  (
-    {
-      percent = 0,
-      // 其它属性
-      className,
-      style
-    },
-    ref
-  ) => {
-    const rootRef = useRef(null)
+type ProgressBarStyle = CSSProperties & { [key: string]: string | number | undefined }
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
+interface ProgressBarProps {
+  percent?: number
+  className?: string
+  style?: ProgressBarStyle
+}
 
-    // 确保percent在0-100范围内
-    const availablePercent = Math.max(0, Math.min(100, percent))
+interface ProgressBarRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
 
-    return (
+const ProgressBar = forwardRef<ProgressBarRef, ProgressBarProps>(function ProgressBar(
+  { percent = 0, className, style },
+  ref: Ref<ProgressBarRef>
+) {
+  const rootRef = useRef<HTMLDivElement | null>(null)
+
+  // Expose
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current
+    }
+  })
+
+  // 确保percent在0-100范围内
+  const availablePercent = Math.max(0, Math.min(100, Number(percent) || 0))
+
+  return (
+    <div
+      style={style}
+      className={DOMUtil.classNames('lyrixi-progress-bar', className)}
+      ref={rootRef}
+    >
       <div
-        style={style}
-        className={DOMUtil.classNames('lyrixi-progress-bar', className)}
-        ref={rootRef}
-      >
-        <div
-          className="lyrixi-progress-bar-fill"
-          style={{
-            width: `${availablePercent}%`
-          }}
-        />
-      </div>
-    )
-  }
-)
+        className="lyrixi-progress-bar-fill"
+        style={{
+          width: `${availablePercent}%`
+        }}
+      />
+    </div>
+  )
+})
 
 export default ProgressBar

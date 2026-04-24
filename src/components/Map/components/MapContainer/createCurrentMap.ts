@@ -1,49 +1,52 @@
-// Create bmap,amap,etc map to use invoke api
-function createCurrentMap(container, { center } = {}) {
-  // center for search feature
-  let wgs84Center = null
-  // Get the first point if array center
-  if (center?.longitude && center?.latitude) {
-    wgs84Center = center
-  } else if (
-    Array.isArray(center) &&
-    center.length &&
-    center[0]?.longitude &&
-    center[0]?.latitude
-  ) {
+interface MapCenter {
+  latitude?: number | string
+  longitude?: number | string
+  [key: string]: unknown
+}
+
+interface CreateCurrentMapOptions {
+  center?: MapCenter | MapCenter[]
+}
+
+function createCurrentMap(container: HTMLElement, { center }: CreateCurrentMapOptions = {}): unknown {
+  let wgs84Center: { longitude: number | string; latitude: number | string } | null = null
+
+  const centerObj = Array.isArray(center) ? null : center
+  const centerArr = Array.isArray(center) ? center : null
+
+  if (centerObj?.longitude && centerObj?.latitude) {
+    wgs84Center = { longitude: centerObj.longitude, latitude: centerObj.latitude }
+  } else if (centerArr && centerArr.length && centerArr[0]?.longitude && centerArr[0]?.latitude) {
     wgs84Center = {
-      longitude: center[0]?.longitude,
-      latitude: center[0]?.latitude
+      longitude: centerArr[0].longitude,
+      latitude: centerArr[0].latitude
     }
   }
 
-  // Map instance
-  let currentMap = null
+  let currentMap: unknown = null
 
-  // Init google map
   if (window.google) {
-    let googleCenter = new window.google.maps.LatLng(wgs84Center.longitude, wgs84Center.latitude)
-
+    const googleCenter = new window.google.maps.LatLng(
+      Number(wgs84Center?.longitude ?? 0),
+      Number(wgs84Center?.latitude ?? 0)
+    )
     currentMap = new window.google.maps.Map(container, {
       center: googleCenter,
       zoom: 5,
       mapTypeId: window.google.maps.MapTypeId.ROADMAP
     })
-  }
-  // Init baidu map
-  else if (window.BMap) {
-    // currentMap不需要展示, 搜索时会panTo, 所以点在什么位置并不重要
-    let bmapCenter = new window.BMap.Point(wgs84Center.longitude, wgs84Center.latitude)
-    currentMap = new window.BMap.Map(container)
-    currentMap.centerAndZoom(bmapCenter, 12)
-
-    // 禁用地图拖拽
-    currentMap.disableDragging()
-
-    // 禁用地图缩放
-    currentMap.disableScrollWheelZoom()
-    currentMap.disableDoubleClickZoom()
-    currentMap.disablePinchToZoom()
+  } else if (window.BMap) {
+    const bmapCenter = new window.BMap.Point(
+      Number(wgs84Center?.longitude ?? 0),
+      Number(wgs84Center?.latitude ?? 0)
+    )
+    const bmap = new window.BMap.Map(container)
+    bmap.centerAndZoom(bmapCenter, 12)
+    bmap.disableDragging()
+    bmap.disableScrollWheelZoom()
+    bmap.disableDoubleClickZoom()
+    bmap.disablePinchToZoom()
+    currentMap = bmap
   }
 
   return currentMap

@@ -1,8 +1,8 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
 import Loading from './components/Loading'
-import EntityList from './List'
-import VirtualList from './VirtualList'
+import EntityList, { MainRef as EntityListRef, MainProps as EntityListProps } from './List'
+import VirtualList, { VirtualListRef, VirtualListProps, VirtualOptions } from './VirtualList'
 import RetryButton from './components/RetryButton'
 
 // 内库使用-start
@@ -15,39 +15,66 @@ import List from './../List'
 import { DOMUtil, Result, List } from 'lyrixi-mobile'
 测试使用-end */
 
-const Main = forwardRef(
+type RawItem = Record<string, unknown>
+type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
+
+type LoadAction = 'load' | 'reload' | 'topRefresh' | 'bottomRefresh' | 'retry' | ''
+
+export interface ListAsyncRef {
+  element: HTMLElement | null
+  getElement: () => HTMLElement | null
+  getAnchors?: () => string[]
+  scrollToAnchor?: (anchor: string) => void
+  reload: (action?: string) => void
+  getResult: () => LoadResult | null
+}
+
+type SharedListProps = Omit<EntityListProps, 'formatViewList' | 'formatViewItem' | 'virtual'>
+
+export interface LoadResult {
+  status: string
+  message?: string
+  list?: ViewItem[]
+  scrollTop?: number
+  [key: string]: unknown
+}
+
+export interface ListAsyncProps extends SharedListProps {
+  value?: RawItem | RawItem[] | null
+  loadData?: (params: { previousResult: LoadResult | null; action: string }) => Promise<LoadResult>
+  formatViewList?: (rawList: ViewItem[], options: { result: LoadResult | null }) => ViewItem[]
+  formatViewItem?: (rawItem: ViewItem, options: { result: LoadResult | null; index: number }) => ViewItem
+  initialLoad?: boolean
+  errorRetry?: boolean
+  emptyRetry?: boolean
+  virtual?: VirtualOptions
+  disableTopRefresh?: boolean
+  disableBottomRefresh?: boolean
+  loadingModalStyle?: React.CSSProperties
+  loadingModalClassName?: string
+  loadingMaskStyle?: React.CSSProperties
+  loadingMaskClassName?: string
+  loadingPortal?: HTMLElement
+  loadingRender?: (options: { action?: string }) => React.ReactNode
+  onLoad?: (params: { result: LoadResult | null; action: LoadAction }) => void
+}
+
+const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
   (
     {
-      // Value & Display Value
       value,
       loadData,
-      /*
-      loadData: (params: { previousResult, action: 'load'|'reload'|'topRefresh'|'bottomRefresh'|'retry' }) => Promise<{
-        status: 'empty(暂无数据)'|'error(加载出错)'|'moreError(更多数据加载出错)'|'noMore(没有更多数据)'|'loading(有更多数据)',
-        message?: string(错误信息),
-        list: Array<any>(列表数据)
-      }>
-      */
       formatViewList,
       formatViewItem,
-
-      // Status
       initialLoad = true,
-      errorRetry = true, // 是否显示重试按钮
-      emptyRetry, // 是否显示刷新按钮
+      errorRetry = true,
+      emptyRetry,
       multiple,
       allowClear,
       checkable,
       disableTopRefresh = false,
       disableBottomRefresh = false,
       virtual,
-      /*
-      {
-        getItemHeight: () => Number
-      }
-      */
-
-      // Style
       style,
       className,
       itemStyle,
@@ -60,14 +87,10 @@ const Main = forwardRef(
       loadingMaskStyle,
       loadingMaskClassName,
       loadingPortal,
-
-      // Elements
       itemRender,
       loadingRender,
       prependRender,
       appendRender,
-
-      // Events
       onChange,
       onScroll,
       onScrollEnd,
@@ -75,98 +98,70 @@ const Main = forwardRef(
     },
     ref
   ) => {
-    // 容器
-    const mainRef = useRef(null)
+    const mainRef = useRef<EntityListRef | VirtualListRef | null>(null)
 
-    // 请求结果
-    /*
-    {
-      status: 'empty'|'error'|'noMore'|'loading', // 'empty' 无数据, 'error' 异常, 'noMore' 没有更多数据, 'loading' 有更多数据
-      message?: string,       // 对应status的提示
-      list: Array<any>,       // 修改页面渲染列表
-    }
-    */
-    const [result, setResult] = useState(null)
-    // 结果状态, 滚动至底部时, 不更新result, 但需要更新底部状态: empty | error | moreError | noMore | loading
-    const [resultStatus, setResultStatus] = useState('')
-    // 加载显示: load | reload | topRefresh | bottomRefresh
-    const [loadAction, setLoadAction] = useState('')
+    const [result, setResult] = useState<LoadResult | null>(null)
+    const [resultStatus, setResultStatus] = useState<string>('')
+    const [loadAction, setLoadAction] = useState<LoadAction>('')
 
     // Expose
     useImperativeHandle(ref, () => {
+      const vRef = mainRef.current as VirtualListRef | null
       return {
-        element: mainRef?.current?.element,
-        getElement: mainRef?.current?.getElement,
-        // IndexBar
-        getAnchors: mainRef?.current?.getAnchors,
-        scrollToAnchor: mainRef?.current?.scrollToAnchor,
-        // 重新加载
-        reload: (action) => {
+        element: mainRef.current?.element ?? null,
+        getElement: () => mainRef.current?.element ?? null,
+        getAnchors: vRef?.getAnchors ? () => vRef.getAnchors() : undefined,
+        scrollToAnchor: vRef?.scrollToAnchor ? (anchor: string) => vRef.scrollToAnchor(anchor) : undefined,
+        reload: (action?: string) => {
           if (action === 'load') {
             init()
           } else {
             loadPage(action || 'reload')
           }
         },
-        // 获取结果
-        getResult: () => {
-          return result
-        }
-      }
+        getResult: () => result
+      } as ListAsyncRef
     })
 
-    // 渲染完成执行onLoad
     useEffect(() => {
       if (!result) return
-
       onLoad?.({ result, action: loadAction })
-
       setLoadAction('')
       // eslint-disable-next-line
     }, [result])
 
-    // 默认加载
     useEffect(() => {
       if (!initialLoad) return
-
       init()
       // eslint-disable-next-line
     }, [])
 
-    // 初始化
     function init() {
       loadPage('load')
     }
 
-    // 统一加载方法: 根据 page 判断刷新/底部加载
-    async function loadPage(action) {
+    async function loadPage(action: string) {
       if (typeof loadData !== 'function') return
 
       if (action === 'bottomRefresh') {
-        // 页面级提示时, 滚动到底部都不允许加载
-        if (result.status === 'error') {
+        if (result?.status === 'error') {
           return true
         }
-        // 底部加载完成时, 滚动到底部不再加载
         if (result?.status === 'noMore') {
           return true
         }
-        // 底部加载错误重新加载
         if (result?.status === 'moreError') {
           setResultStatus('loading')
         }
       }
 
-      // 初次加载/重新加载/重试/触顶刷新/点击重试, 滚动到顶部
       if (['load', 'reload', 'topRefresh', 'retry'].includes(action)) {
-        scrollToTop(mainRef.current?.element)
+        scrollToTop(mainRef.current?.element ?? null)
       }
 
-      // 请求数据
-      setLoadAction(action)
+      setLoadAction(action as LoadAction)
       let newResult = await loadData({ previousResult: result, action: action })
 
-      // 返回数据异常，不更新结果
       if (!['empty', 'error', 'noMore', 'loading'].includes(newResult?.status)) {
         console.error(
           `loadData return data must contains status: ['empty','error','noMore','loading']`,
@@ -179,58 +174,58 @@ const Main = forwardRef(
       return true
     }
 
-    const ListNode = virtual?.getItemHeight ? VirtualList : EntityList
+    const useVirtual = !!(virtual?.getItemHeight)
 
-    return (
-      <ListNode
-        ref={mainRef}
-        // Value & Display Value
-        value={value}
-        list={result?.list}
-        formatViewList={
-          typeof formatViewList === 'function'
-            ? (rawList) => formatViewList(rawList, { result })
-            : undefined
-        }
-        formatViewItem={
-          typeof formatViewItem === 'function'
-            ? (rawItem, index) => formatViewItem(rawItem, { result, index })
-            : undefined
-        }
-        // Status
+    const sharedProps = {
+      value,
+      list: result?.list,
+      formatViewList:
+        typeof formatViewList === 'function'
+          ? (rawList: ViewItem[]) => formatViewList(rawList, { result })
+          : undefined,
+      formatViewItem:
+        typeof formatViewItem === 'function'
+          ? (rawItem: ViewItem, options: { index: number }) =>
+              formatViewItem(rawItem, { result, index: options.index })
+          : undefined,
+      multiple,
+      allowClear,
+      checkable,
+      className: DOMUtil.classNames('lyrixi-list-main', className),
+      style,
+      itemStyle,
+      itemClassName,
+      itemLayout,
+      checkboxVariant,
+      checkboxPosition,
+      itemRender,
+      prependRender,
+      appendRender,
+      onChange,
+      onScroll,
+      onScrollEnd,
+      onTopRefresh: disableTopRefresh ? undefined : (() => loadPage('topRefresh')),
+      onBottomRefresh: disableBottomRefresh ? undefined : (() => loadPage('bottomRefresh'))
+    }
+
+    return useVirtual ? (
+      <VirtualList
+        ref={mainRef as React.Ref<VirtualListRef>}
+        {...(sharedProps as VirtualListProps)}
         virtual={virtual}
-        multiple={multiple}
-        allowClear={allowClear}
-        checkable={checkable}
-        // Style
-        className={DOMUtil.classNames('lyrixi-list-main', className)}
-        style={style}
-        itemStyle={itemStyle}
-        itemClassName={itemClassName}
-        itemLayout={itemLayout}
-        checkboxVariant={checkboxVariant}
-        checkboxPosition={checkboxPosition}
-        // Elements
-        itemRender={itemRender}
-        prependRender={prependRender}
-        appendRender={appendRender}
-        // Events
-        onChange={onChange}
-        onScroll={onScroll}
-        onScrollEnd={onScrollEnd}
-        onTopRefresh={disableTopRefresh ? null : () => loadPage('topRefresh')}
-        onBottomRefresh={disableBottomRefresh ? null : () => loadPage('bottomRefresh')}
       >
-        {/* 底部错误提示 */}
         {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (
           <List.InfiniteScroll status={resultStatus} content={result?.message} />
         ) : null}
-        {/* 页面级错误提示 */}
         {['empty', 'error'].includes(resultStatus) && (
           <Result
             className="lyrixi-list-main-result"
             status={resultStatus === 'error' ? '500' : 'empty'}
             title={result?.message}
+            description={undefined}
+            style={undefined}
+            imageRender={undefined}
+            imageUrl={undefined}
           >
             <RetryButton
               status={resultStatus}
@@ -240,7 +235,6 @@ const Main = forwardRef(
             />
           </Result>
         )}
-        {/* 页面加载遮罩 */}
         <Loading
           type={loadAction}
           loadingRender={loadingRender}
@@ -250,7 +244,44 @@ const Main = forwardRef(
           loadingMaskClassName={loadingMaskClassName}
           loadingPortal={loadingPortal}
         />
-      </ListNode>
+      </VirtualList>
+    ) : (
+      <EntityList
+        ref={mainRef as React.Ref<EntityListRef>}
+        {...(sharedProps as EntityListProps)}
+        safeArea={false}
+      >
+        {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (
+          <List.InfiniteScroll status={resultStatus} content={result?.message} />
+        ) : null}
+        {['empty', 'error'].includes(resultStatus) && (
+          <Result
+            className="lyrixi-list-main-result"
+            status={resultStatus === 'error' ? '500' : 'empty'}
+            title={result?.message}
+            description={undefined}
+            style={undefined}
+            imageRender={undefined}
+            imageUrl={undefined}
+          >
+            <RetryButton
+              status={resultStatus}
+              errorRetry={errorRetry}
+              emptyRetry={emptyRetry}
+              onClick={() => loadPage('retry')}
+            />
+          </Result>
+        )}
+        <Loading
+          type={loadAction}
+          loadingRender={loadingRender}
+          loadingModalStyle={loadingModalStyle}
+          loadingModalClassName={loadingModalClassName}
+          loadingMaskStyle={loadingMaskStyle}
+          loadingMaskClassName={loadingMaskClassName}
+          loadingPortal={loadingPortal}
+        />
+      </EntityList>
     )
   }
 )

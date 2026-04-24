@@ -9,23 +9,43 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Tabs = forwardRef(
+interface TabBarItem {
+  id?: string | number
+  name?: React.ReactNode
+  description?: React.ReactNode
+  placeholder?: React.ReactNode
+  disabled?: boolean
+  iconRender?: (params: Record<string, unknown>) => React.ReactNode
+  content?: React.ReactNode | ((params: Record<string, unknown>) => React.ReactNode)
+}
+
+interface TabBarValue {
+  id?: string | number
+}
+
+interface TabsProps {
+  value?: TabBarValue
+  list?: TabBarItem[]
+  separator?: React.ReactNode
+  gap?: string | number
+  style?: React.CSSProperties
+  className?: string
+  disabled?: boolean
+  descriptionPosition?: string
+  onChange?: (item: TabBarItem) => void
+}
+
+interface TabsRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+const Tabs = forwardRef<TabsRef, TabsProps>(
   (
     {
       // Value
       value,
       list = [],
-      /*
-      [
-        {
-          iconRender: function,
-          name: string,
-          description: string,
-          disabled
-          content: Node,
-        }
-      ]
-      */
 
       // Style
       separator,
@@ -40,7 +60,7 @@ const Tabs = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -51,7 +71,7 @@ const Tabs = forwardRef(
     })
 
     // 根据value判断此项是否为选中状态
-    function getIsChecked(item) {
+    function getIsChecked(item: TabBarItem) {
       if (item?.id !== undefined && value?.id !== undefined) {
         return item.id === value.id
       }
@@ -68,6 +88,10 @@ const Tabs = forwardRef(
       return list.map((item, index) => {
         const { name, description, placeholder } = item
         let checked = getIsChecked(item)
+        const itemStyle: React.CSSProperties = {
+          ...(style || {}),
+          marginLeft: gap || style?.marginLeft
+        }
         return (
           <Fragment key={index}>
             <div
@@ -81,10 +105,7 @@ const Tabs = forwardRef(
                 item?.disabled ? 'lyrixi-disabled' : '',
                 checked ? 'lyrixi-active' : ''
               )}
-              style={{
-                ...style,
-                marginLeft: gap || style?.marginLeft
-              }}
+              style={itemStyle}
               onClick={(e) => {
                 e.stopPropagation()
                 onChange && onChange(item)
@@ -119,7 +140,6 @@ const Tabs = forwardRef(
       <div
         style={style}
         className={DOMUtil.classNames('lyrixi-tabbar-tabs', className, gap ? 'lyrixi-compact' : '')}
-        disabled={disabled}
         ref={rootRef}
       >
         {getTabs()}

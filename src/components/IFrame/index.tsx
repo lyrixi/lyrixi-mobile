@@ -1,21 +1,38 @@
-import React, { useImperativeHandle, forwardRef, useEffect, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useEffect, useRef, type CSSProperties } from 'react'
+
+export interface IFrameRef {
+  element: HTMLIFrameElement | null
+}
+
+export interface IFrameProps {
+  src?: string
+  data?: unknown
+  style?: CSSProperties
+  className?: string
+}
 
 // 全屏iframe
-function IFrame({ src, data, style, className }, ref) {
-  const iframeRef = useRef(null)
+const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, style, className }, ref) {
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useImperativeHandle(ref, () => {
-    return iframeRef.current
+    return {
+      element: iframeRef.current
+    }
   })
 
   // 修改src，用替换的方法不会产生历史记录长度
   useEffect(() => {
-    let iframe = iframeRef.current
-    // 使用 replace 方法修改 src 属性值
-    iframe.contentWindow.location.replace(src)
+    const iframe = iframeRef.current
+    if (!iframe) return
 
-    if (iframe) {
-      iframe.data = data
+    // 使用 replace 方法修改 src 属性值
+    if (src) {
+      iframe.contentWindow?.location.replace(src)
+    }
+
+    if (data !== undefined) {
+      ;(iframe as HTMLIFrameElement & { data?: unknown }).data = data
     }
     // eslint-disable-next-line
   }, [src])
@@ -30,6 +47,6 @@ function IFrame({ src, data, style, className }, ref) {
       className={className}
     />
   )
-}
+})
 
-export default forwardRef(IFrame)
+export default IFrame

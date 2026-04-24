@@ -1,8 +1,7 @@
 /// <reference types="jest" />
 import React from 'react'
 import { render } from '@testing-library/react'
-import ErrorBoundary from './../ErrorBoundary'
-import Combo from './demos/Combo'
+import DatePickerCombo from './Combo'
 
 test('白屏测试', () => {
   console.error = (error: unknown) => {
@@ -12,11 +11,7 @@ test('白屏测试', () => {
   console.warn = jest.fn()
 
   try {
-    const { container } = render(
-      <ErrorBoundary>
-        <Combo />
-      </ErrorBoundary>,
-    )
+    const { container } = render(<DatePickerCombo value={null} onChange={() => {}} />)
 
     if (container.textContent?.indexOf('Something went wrong.') !== -1) {
       throw new Error('已白屏, 未通过测试')

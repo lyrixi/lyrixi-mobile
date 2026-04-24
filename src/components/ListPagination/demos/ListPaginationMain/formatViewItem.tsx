@@ -1,6 +1,16 @@
 import React from 'react'
 
-function formatViewItem(item, { index } = {}) {
+type Row = Record<string, unknown> & {
+  id?: string | number
+  name?: string
+  imageUrl?: string
+  avatarUrl?: string
+  introduce?: string
+  note?: string
+  content?: string
+}
+
+function formatViewItem(item: Row, { index = 0 }: { index: number } = { index: 0 }) {
   return {
     id: item.id ?? index,
     // 左侧图片
@@ -16,8 +26,8 @@ function formatViewItem(item, { index } = {}) {
     // vertical: 第三行文字, horizontal: 右侧操作文字
     content: item.content,
     // vertical:第四行操作按钮, horizontal: 右侧操作按钮
-    actionRender: (item) => {
-      return <div>Click {item.name}</div>
+    actionRender: (row: Row) => {
+      return <div>Click {row.name}</div>
     }
   }
 }

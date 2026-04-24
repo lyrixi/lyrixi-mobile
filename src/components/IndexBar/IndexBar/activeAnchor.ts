@@ -1,18 +1,26 @@
 // 选中sidebar的anchor
-function activeAnchor(anchor, { sidebarElement, tooltipElement }) {
-  let buttonsElement = sidebarElement?.querySelectorAll?.('.lyrixi-indexbar-button')
+function activeAnchor(
+  anchor: string,
+  {
+    sidebarElement,
+    tooltipElement
+  }: { sidebarElement?: HTMLElement | null; tooltipElement?: HTMLElement | null }
+): void {
+  const buttonsElement = sidebarElement?.querySelectorAll?.('.lyrixi-indexbar-button')
   if (buttonsElement && buttonsElement.length) {
-    for (let i = 0, buttonElement; (buttonElement = buttonsElement[i++]);) {
+    for (let i = 0, buttonElement; (buttonElement = buttonsElement[i++] as Element | undefined);) {
       buttonElement.classList.remove('lyrixi-active')
     }
   }
 
-  let currentButtonElement = sidebarElement?.querySelector?.(
+  const currentButtonElement = sidebarElement?.querySelector?.(
     `[data-indexbar-anchor-button="${anchor}"]`
   )
   if (currentButtonElement) {
     currentButtonElement.classList.add('lyrixi-active')
-    tooltipElement && (tooltipElement.innerHTML = anchor || '')
+    if (tooltipElement) {
+      tooltipElement.innerHTML = anchor || ''
+    }
   }
 }
 

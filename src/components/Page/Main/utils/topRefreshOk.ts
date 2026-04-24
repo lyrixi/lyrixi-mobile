@@ -16,11 +16,15 @@ function topRefreshOk(
 
     let finishMsg = ''
     if (isOk === false) {
-      finishMsg = LocaleUtil.locale('刷新失败', 'lyrixi_245c7a0541c033776b61a33bda10bd99', undefined)
+      finishMsg = String(
+        LocaleUtil.locale('刷新失败', 'lyrixi_245c7a0541c033776b61a33bda10bd99', undefined)
+      )
     } else if (typeof isOk === 'string') {
       finishMsg = isOk
     } else {
-      finishMsg = LocaleUtil.locale('刷新成功', 'lyrixi_efa2ebd79d14fa135072faa401a3154d', undefined)
+      finishMsg = String(
+        LocaleUtil.locale('刷新成功', 'lyrixi_efa2ebd79d14fa135072faa401a3154d', undefined)
+      )
     }
     if (topText) topText.innerHTML = finishMsg
 

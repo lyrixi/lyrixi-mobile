@@ -1,5 +1,17 @@
-import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import Main from './../Main'
+import React, {
+  useEffect,
+  forwardRef,
+  useState,
+  useRef,
+  useImperativeHandle,
+  type ReactNode,
+  type Ref,
+  type CSSProperties,
+  type MouseEvent
+} from 'react'
+import Main, { type PickerMainRef, type PickerMainProps } from './../Main'
+import type { PickerColumnItem } from './../Main/Slots'
+import type { ModalRef, ModalProps } from './../../Modal/Modal'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -11,51 +23,78 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
+export interface PickerModalProps {
+  value?: unknown
+  list?: unknown
+  open?: boolean
+  maskClosable?: boolean
+  allowClear?: boolean
+  safeArea?: boolean
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: ModalProps['portal']
+  title?: ReactNode
+  okNode?: ReactNode
+  cancelNode?: ReactNode
+  okVisible?: boolean
+  cancelVisible?: boolean
+  onClose?: (e?: MouseEvent<HTMLDivElement>) => void
+  onOk?: (value: unknown) => boolean | void | Date | Promise<boolean | void | Date>
+  onChange?: (value: unknown) => void
+}
+
 // Modal
-const Modal = forwardRef(
-  (
-    {
-      // Value & Display Value
-      value,
-      list,
+const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
+  {
+    // Value & Display Value
+    value,
+    list,
 
-      // Status
-      open,
-      maskClosable,
-      allowClear,
+    // Status
+    open,
+    maskClosable,
+    allowClear,
 
-      // Style
-      safeArea,
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
+    // Style
+    safeArea,
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
 
-      // Elements
-      portal,
-      title,
-      okNode,
-      cancelNode,
-      okVisible,
-      cancelVisible,
+    // Elements
+    portal,
+    title,
+    okNode,
+    cancelNode,
+    okVisible,
+    cancelVisible,
 
-      // Events
-      onClose,
-      onOk,
-      onChange
-    },
-    ref
-  ) => {
-    let [currentValue, setCurrentValue] = useState(value)
-    const modalRef = useRef(null)
-    const mainRef = useRef(null)
+    // Events
+    onClose,
+    onOk,
+    onChange
+  },
+  ref: Ref<ModalRef>
+) {
+  let [currentValue, setCurrentValue] = useState<unknown>(value)
+  const modalRef = useRef<ModalRef | null>(null)
+  const mainRef = useRef<PickerMainRef | null>(null)
 
-    useImperativeHandle(ref, () => {
+  useImperativeHandle(
+    ref,
+    () => {
       return {
-        ...modalRef.current,
-        ...mainRef.current
-      }
-    })
+        ...((typeof modalRef.current === 'object' && modalRef.current !== null
+          ? modalRef.current
+          : {}) as ModalRef),
+        ...((typeof mainRef.current === 'object' && mainRef.current !== null ? mainRef.current : {}) as Record<string, unknown>)
+      } as ModalRef
+    },
+    []
+  )
 
     // 同步外部value到内部
     useEffect(() => {
@@ -76,9 +115,9 @@ const Modal = forwardRef(
       onClose?.()
     }
 
-    function handleChange(newValue) {
-      setCurrentValue(newValue)
-    }
+  function handleChange(newValue: PickerColumnItem[]) {
+    setCurrentValue(newValue)
+  }
 
     return (
       <NavBarModal
@@ -109,8 +148,8 @@ const Modal = forwardRef(
           // Modal: Status
           open={open}
           // Value & Display Value
-          value={currentValue}
-          list={list}
+          value={currentValue as PickerMainProps['value']}
+          list={list as PickerMainProps['list']}
           // Status
           allowClear={allowClear}
           // Events

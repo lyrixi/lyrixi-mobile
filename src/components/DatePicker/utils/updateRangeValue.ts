@@ -7,19 +7,23 @@ import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 边界处理: 00:00:00到23:59:59; 开始日期小于结束日期, 则交换位置
-function updateRangeValue(rangeDates = [], type, { autoSwapValue } = {}) {
+function updateRangeValue(
+  rangeDates: unknown[] = [],
+  type: string,
+  { autoSwapValue }: { autoSwapValue?: boolean } = {}
+): ((Date | null)[] | null) | null {
   if (!Array.isArray(rangeDates) || rangeDates.length !== 2) {
     return null
   }
   const [startDate, endDate] = rangeDates
   if (!(startDate instanceof Date) || !(endDate instanceof Date)) {
-    return rangeDates
+    return rangeDates as (Date | null)[]
   }
 
-  const adjustStart = (date) => {
+  const adjustStart = (date: Date) => {
     return DateUtil.startOrEnd(date, type, 'start')
   }
-  const adjustEnd = (date) => {
+  const adjustEnd = (date: Date) => {
     return DateUtil.startOrEnd(date, type, 'end')
   }
 

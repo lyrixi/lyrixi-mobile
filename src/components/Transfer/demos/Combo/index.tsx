@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react'
 import { Page, Button } from 'lyrixi-mobile'
 import { Transfer } from 'lyrixi-mobile'
+import type { TransferItem } from './../../types'
 
 export default () => {
   const transferRef = useRef(null)
-  const [value, setValue] = useState([
+  const [value, setValue] = useState<TransferItem[]>([
     { id: '1', name: '1' },
     { id: '2', name: '2' }
   ])
@@ -44,9 +45,7 @@ export default () => {
             console.log(newValue)
             setValue(newValue)
           }}
-          mainProps={{
-            titles: { selected: '标题1', unSelected: '标题2' }
-          }}
+          titles={{ selected: '标题1', unSelected: '标题2' }}
         />
       </Page.Main>
     </Page>

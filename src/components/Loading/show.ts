@@ -7,20 +7,25 @@ import LocaleUtil from './../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 显示Loading
-// eslint-disable-next-line
-export default function (props) {
-  const { portal, id, maskClassName, maskStyle, className, style, content, onOpen } = {
-    ...(this?.defaultProps || {}),
-    ...(props || {})
-  }
+interface ShowProps {
+  portal?: HTMLElement | null
+  id?: string
+  maskClassName?: string
+  maskStyle?: Record<string, string>
+  className?: string
+  style?: Record<string, string>
+  content?: string
+  onOpen?: () => void
+}
 
-  // 渲染
-  function render() {
-    let loadingId = id || '__lyrixi_loading_mask__'
+// 显示Loading
+export default function showLoading(props?: ShowProps): HTMLElement | null {
+  const { portal, id, maskClassName, maskStyle, className, style, content, onOpen } = props || {}
+
+  function render(): HTMLElement | null {
+    const loadingId = id || '__lyrixi_loading_mask__'
     let mask = document.getElementById(loadingId)
 
-    // 如果没生成成功, 则强制生成
     if (!mask) {
       mask = document.createElement('div')
       mask.innerHTML = `<div class="lyrixi-loading">
@@ -41,29 +46,30 @@ export default function (props) {
           <div class="lyrixi-loading-content"></div>
         </div>`
 
-      // 添加到dom上
-      let root = portal || document.getElementById('root') || document.body
+      const root = portal || document.getElementById('root') || document.body
       root.appendChild(mask)
     }
 
-    // 更新mask
     mask.setAttribute(
       'class',
       DOMUtil.classNames('lyrixi-mask-loading lyrixi-mask lyrixi-active', maskClassName)
     )
     mask.setAttribute('id', loadingId)
     mask.setAttribute('style', '')
-    for (let key in maskStyle || {}) {
-      mask.style[key] = maskStyle[key]
+    if (maskStyle) {
+      for (const key in maskStyle) {
+        ;(mask.style as unknown as Record<string, string>)[key] = maskStyle[key] as string
+      }
     }
 
-    // 更新container
-    let container = mask.querySelector('.lyrixi-loading')
+    const container = mask.querySelector<HTMLElement>('.lyrixi-loading')
     if (container) {
-      container?.setAttribute('class', DOMUtil.classNames('lyrixi-loading', className))
-      container?.setAttribute('style', '')
-      for (let key in style || {}) {
-        container.style[key] = style[key]
+      container.setAttribute('class', DOMUtil.classNames('lyrixi-loading', className))
+      container.setAttribute('style', '')
+      if (style) {
+        for (const key in style) {
+          ;(container.style as unknown as Record<string, string>)[key] = style[key] as string
+        }
       }
     }
 
@@ -72,9 +78,11 @@ export default function (props) {
       typeof caption === 'string'
         ? caption
         : `${LocaleUtil.locale('加载中', 'lyrixi_f013ea9dcba3f5ca1278aa850931fec8')}...`
-    mask.querySelector('.lyrixi-loading-content').innerHTML = caption
+    const contentEl = mask.querySelector('.lyrixi-loading-content')
+    if (contentEl) {
+      contentEl.innerHTML = caption
+    }
 
-    // 显示
     mask.classList.add('lyrixi-active')
 
     if (typeof onOpen === 'function') {
@@ -83,5 +91,6 @@ export default function (props) {
 
     return mask
   }
+
   return render()
 }

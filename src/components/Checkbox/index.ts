@@ -1,5 +1,5 @@
 import Checkbox from './Checkbox'
 import Group from './Group'
 
-Checkbox.Group = Group
-export default Checkbox
+const CheckboxWithGroup = Object.assign(Checkbox, { Group })
+export default CheckboxWithGroup

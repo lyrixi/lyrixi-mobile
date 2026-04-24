@@ -6,8 +6,25 @@ import ArrayUtil from '../../../utils/ArrayUtil'
 import { ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-async function loadChildren(tabs, { externalLoadData, externalList }) {
-  // 没有选中项为根节点, 返回externalList
+import type { CascaderNode, LoadDataFn } from '../cascaderTypes'
+
+interface LoadResult {
+  async: boolean
+  status: 'success' | 'error' | 'empty'
+  list?: CascaderNode[]
+  message?: string
+}
+
+async function loadChildren(
+  tabs: CascaderNode[],
+  {
+    externalLoadData,
+    externalList
+  }: {
+    externalLoadData?: LoadDataFn
+    externalList: CascaderNode[]
+  }
+): Promise<LoadResult> {
   if (!Array.isArray(tabs) || !tabs.length) {
     return {
       async: false,
@@ -16,11 +33,14 @@ async function loadChildren(tabs, { externalLoadData, externalList }) {
     }
   }
 
-  // lastTab为当前选中项
-  let lastTabId = tabs?.[tabs?.length - 1]?.id
-  let node = ArrayUtil.getDeepTreeNode(externalList, lastTabId)
+  const lastTabId = tabs?.[tabs?.length - 1]?.id
+  const node = lastTabId !== undefined
+    ? (ArrayUtil.getDeepTreeNode(
+        externalList as Parameters<typeof ArrayUtil.getDeepTreeNode>[0],
+        lastTabId
+      ) as CascaderNode | null)
+    : null
 
-  // 获取到子列表
   if (node && Array.isArray(node.children)) {
     return {
       async: false,
@@ -29,7 +49,6 @@ async function loadChildren(tabs, { externalLoadData, externalList }) {
     }
   }
 
-  // 末级节点或者没有获取下钻的load方法, 则认为是末级节点
   if (node?.isLeaf || typeof externalLoadData !== 'function') {
     return {
       async: false,
@@ -38,10 +57,8 @@ async function loadChildren(tabs, { externalLoadData, externalList }) {
     }
   }
 
-  // 异步获取子列表数据
-  let result = await externalLoadData(tabs, { list: externalList })
-  result.async = true
-  return result
+  const result = await externalLoadData(tabs, { list: externalList })
+  return { ...result, async: true } as LoadResult
 }
 
 export default loadChildren

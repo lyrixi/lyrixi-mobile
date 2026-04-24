@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Page, ToolBar } from 'lyrixi-mobile'
 
-export default () => {
-  const [item, setItem] = useState({
+type Item = { id: string; name: string; disabled?: boolean }
+
+export default function ToolBarListDemo() {
+  const [item, setItem] = useState<Item | null>({
     disabled: true,
     id: '',
     name: 'Disabled'
@@ -13,7 +15,7 @@ export default () => {
       <Page.Main>
         <ToolBar.List
           value={item}
-          onChange={setItem}
+          onChange={(v) => setItem((v as Item) ?? null)}
           list={[
             {
               disabled: true,

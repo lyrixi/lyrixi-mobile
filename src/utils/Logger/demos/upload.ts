@@ -1,6 +1,9 @@
 import { Device, Request, DateUtil } from 'lyrixi-mobile'
 
-function upload({ date, content }) {
+type LogUploadPayload = { date: Date; content: unknown }
+
+function upload(data: unknown): Promise<boolean> {
+  const { date, content } = data as LogUploadPayload
   // 调用上报接口
   return new Promise((resolve) => {
     // 生成文件名: ${YYYYMMDD}_${Device.platform}_${username}_${userId}_${hhmmss}.txt
@@ -25,8 +28,9 @@ function upload({ date, content }) {
       fileName: fileName,
       fileContent: fileContent
     })
-      .then((response) => {
-        if (response.code === '1') {
+      .then((response: unknown) => {
+        const r = response as { code?: string }
+        if (r.code === '1') {
           resolve(true)
         } else {
           resolve(false)

@@ -7,7 +7,7 @@
 function getUrlParameter(argName?: string, argSearch?: string) {
   let url = window.location.href
   if (argSearch) url = argSearch
-  let params = {}
+  const params: Record<string, string> = {}
   // 如果url中包含?说明有参数
   if (url?.indexOf?.('?') !== -1) {
     if (!argName) return '?' + url.split('?')[1]

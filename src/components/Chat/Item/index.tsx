@@ -9,35 +9,51 @@ import Checkbox from './../../Checkbox'
 import { DOMUtil, Checkbox } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface ChatItemRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface ChatItemProps {
+  id?: string | number
+  _raw?: Record<string, unknown>
+  checked?: boolean
+  checkable?: boolean
+  className?: string
+  position?: string
+  style?: React.CSSProperties
+  checkboxVariant?: string
+  checkboxPosition?: string
+  avatarUrl?: string
+  avatarRender?: (ctx: { checked?: boolean; [key: string]: unknown }) => React.ReactNode
+  avatarNode?: React.ReactNode
+  authorRender?: (ctx: { checked?: boolean; [key: string]: unknown }) => React.ReactNode
+  authorNode?: React.ReactNode
+  content?: React.ReactNode
+  onChange?: (checked: boolean) => void
+}
+
 const Chat = (
   {
-    // Value & Display Value
     id,
     _raw,
-
-    // Status
     checked,
     checkable,
-
-    // Style
     className,
     position,
     style,
     checkboxVariant,
     checkboxPosition,
-
-    // Elements
     avatarUrl,
     avatarRender,
     avatarNode,
     authorRender,
     authorNode,
     content
-  },
-  ref
+  }: ChatItemProps,
+  ref: React.ForwardedRef<ChatItemRef>
 ) => {
-  // 节点
-  const rootRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
   useImperativeHandle(ref, () => {
     return {
       element: rootRef.current,
@@ -45,7 +61,6 @@ const Chat = (
     }
   })
 
-  // 渲染头像
   function getAvatarNode() {
     if (typeof avatarRender === 'function') {
       return (
@@ -59,10 +74,16 @@ const Chat = (
             alt=""
             src={avatarUrl}
             onError={(e) => {
-              e.target.parentNode.classList.add('lyrixi-error')
+              const target = e.target as HTMLImageElement
+              if (target.parentNode instanceof Element) {
+                target.parentNode.classList.add('lyrixi-error')
+              }
             }}
             onLoad={(e) => {
-              e.target.parentNode.classList.add('lyrixi-success')
+              const target = e.target as HTMLImageElement
+              if (target.parentNode instanceof Element) {
+                target.parentNode.classList.add('lyrixi-success')
+              }
             }}
             className="lyrixi-avatar"
           />
@@ -72,7 +93,6 @@ const Chat = (
     return <div className="lyrixi-chat-item-avatar">{avatarNode}</div>
   }
 
-  // 渲染作者
   function getAuthorNode() {
     if (typeof authorRender === 'function') {
       return (
@@ -87,10 +107,8 @@ const Chat = (
     return null
   }
 
-  // 获取checkbox
   function getCheckboxNode() {
     if (!checkable) return null
-
     return <Checkbox variant={checkboxVariant} checked={checked} />
   }
 
@@ -100,24 +118,20 @@ const Chat = (
       className={DOMUtil.classNames('lyrixi-chat-item', `lyrixi-${position}`, className)}
       ref={rootRef}
     >
-      {/* Left Checkbox */}
-      {checkboxPosition !== 'right' && getCheckboxNode(checked)}
+      {checkboxPosition !== 'right' && getCheckboxNode()}
 
       <div className="lyrixi-chat-item-main">
-        {/* Avatar */}
         {getAvatarNode()}
 
-        {/* Meta */}
         <div className="lyrixi-chat-item-content">
           {getAuthorNode()}
           <div className="lyrixi-chat-item-content-bubble">{content}</div>
         </div>
       </div>
 
-      {/* Right Checkbox */}
-      {checkboxPosition === 'right' && getCheckboxNode(checked)}
+      {checkboxPosition === 'right' && getCheckboxNode()}
     </div>
   )
 }
 
-export default forwardRef(Chat)
+export default forwardRef<ChatItemRef, ChatItemProps>(Chat)

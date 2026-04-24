@@ -1,3 +1,4 @@
+// Leaflet Baidu layer: class extend & internal TileLayer APIs are not representable in strict types.
 const mapUrl =
   'https://maponline{s}.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=2&udt='
 
@@ -16,11 +17,12 @@ function getCrs() {
   return window.L.Util.extend({}, window.L.CRS.Earth, {
     code: 'EPSG:Baidu',
     projection: projection,
-    transformation: new window.L.transformation(1, 0.5, -1, 0.5),
-    scale: function (zoom) {
+    // Leaflet: factory L.transformation(a, b, c, d), not a constructor
+    transformation: (window.L as { transformation: (a: number, b: number, c: number, d: number) => object }).transformation(1, 0.5, -1, 0.5),
+    scale: function (zoom: number) {
       return 1 / Math.pow(2, 18 - zoom)
     },
-    zoom: function (scale) {
+    zoom: function (scale: number) {
       return 18 - Math.log(1 / scale) / Math.LN2
     },
     wrapLng: undefined
@@ -33,12 +35,16 @@ function loadBaiduTileLayer() {
   }
 
   // 瓦片
+  const TileLayerProto = window.L.TileLayer as typeof window.L.TileLayer & {
+    prototype: { initialize: (this: unknown, url: string, options: Record<string, unknown>) => void }
+  }
+
   const BaiduTileLayer = window.L.TileLayer.extend({
-    initialize: function (options) {
+    initialize: function (this: unknown, options: Record<string, unknown>) {
       // eslint-disable-next-line
-      options = L.extend(
+      options = window.L.extend(
         {
-          getUrlArgs: (o) => {
+          getUrlArgs: (o: { x: number; y: number; z: number }) => {
             return { x: o.x, y: -1 - o.y, z: o.z }
           },
           subdomains: ['0', '1', '2', '3'],
@@ -49,9 +55,9 @@ function loadBaiduTileLayer() {
         },
         options
       )
-      window.L.TileLayer.prototype.initialize.call(this, mapUrl, options)
+      TileLayerProto.prototype.initialize.call(this, mapUrl, options)
     },
-    getTileUrl: function (coords) {
+    getTileUrl: function (this: { options: { getUrlArgs?: (c: { x: number; y: number; z: number }) => { x: number; y: number; z: number } }; _url: string; _getSubdomain: (c: { x: number; y: number; z: number }) => string }, coords: { x: number; y: number; z: number }) {
       if (this.options.getUrlArgs) {
         return window.L.Util.template(
           this._url,
@@ -62,7 +68,7 @@ function loadBaiduTileLayer() {
           )
         )
       } else {
-        return window.L.TileLayer.prototype.getTileUrl.call(this, coords)
+        return window.L.TileLayer.prototype.getTileUrl.call(this, coords as never)
       }
     }
   })

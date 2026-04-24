@@ -1,55 +1,55 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef } from 'react'
 import Page from './Page'
+import type { MapContainerAPI } from './../MapContainer'
 
 // 内库使用-start
-import ToolBar from './../../../ToolBar'
+import SearchBar from './../../../ToolBar/Search'
+import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
 import { ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
-// 搜索
-function SearchControl(
+const MapSearchBar = SearchBar as React.ForwardRefExoticComponent<
   {
-    // Element
-    map,
+    readOnly?: boolean
+    className?: string
+    style?: React.CSSProperties
+    onClick?: () => void
+  } & React.RefAttributes<unknown>
+>
 
-    // Events
-    onChange
-  },
-  ref
-) {
-  // 搜索结果页面显隐
-  const [open, setOpen] = useState(false)
+export interface SearchControlProps {
+  style?: React.CSSProperties
+  className?: string
+  map?: MapContainerAPI
+  onChange?: (item: unknown) => void
+}
+
+// 搜索
+const SearchControl = forwardRef<unknown, SearchControlProps>(({ map, onChange, style, className }, ref) => {
+  const [open, setOpen] = React.useState(false)
 
   return (
     <>
-      {/* Element: Search Bar */}
-      <ToolBar.Search
-        ref={ref}
-        // Status
+      <MapSearchBar
+        ref={ref as React.Ref<unknown>}
         readOnly
-        // Style
-        className="lyrixi-map-searchControl-navigation"
-        // Events
+        className={DOMUtil.classNames('lyrixi-map-searchControl-navigation', className)}
+        style={style}
         onClick={() => {
           setOpen(!open)
         }}
       />
 
-      {/* Element: Search Page */}
       <Page
-        // Status
         open={open}
-        // Element
         map={map}
-        // Events
-        onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         onChange={onChange}
       />
     </>
   )
-}
-export default forwardRef(SearchControl)
+})
+export default SearchControl

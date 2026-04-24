@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { DatePicker, Page, DateUtil, LocaleUtil, ObjectUtil } from 'lyrixi-mobile'
 
 export default () => {
-  const [rangeId, setRangeId] = useState(null)
-  const [value, setValue] = useState([new Date(), new Date()])
+  const [rangeId, setRangeId] = useState<string | null>(null)
+  const [value, setValue] = useState<(Date | null)[]>([new Date(), new Date()])
   return (
     <Page>
       <Page.Header className="lyrixi-text-center">日期快捷选择</Page.Header>
@@ -29,17 +29,18 @@ export default () => {
           // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
+          open
           rangesVisible={true}
           rangeId={rangeId}
           value={value}
-          onChange={(newValue, { rangeId }) => {
-            console.log('修改:', newValue, rangeId)
-            setValue(newValue)
-            setRangeId(rangeId)
+          onChange={(newValue, meta) => {
+            const id = meta?.rangeId
+            console.log('修改:', newValue, id)
+            if (newValue) setValue(newValue)
+            setRangeId(id ?? null)
           }}
         />
       </Page.Main>
     </Page>
   )
 }
-

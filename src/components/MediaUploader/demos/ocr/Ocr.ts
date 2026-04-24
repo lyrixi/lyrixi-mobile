@@ -1,9 +1,15 @@
 import { LocaleUtil, Request, Loading, Toast } from 'lyrixi-mobile'
 
+type OcrItem = {
+  fileUrl?: string
+  ocrResult?: unknown
+  ocrErrMsg?: string
+} & Record<string, unknown>
+
 // 新的OCR识别：单个照片识别
-function recognizeItem(item) {
+function recognizeItem(item: OcrItem | null) {
   // eslint-disable-next-line
-  return new Promise(async (resolve) => {
+  return new Promise<OcrItem | null>(async (resolve) => {
     // 识别完成
     if (!item) {
       resolve(item)
@@ -12,7 +18,7 @@ function recognizeItem(item) {
 
     // 没有必要数据直接报错
     if (!item.fileUrl) {
-      item.ocrErrMsg = LocaleUtil.locale(`缺少url参数, 无法进行ocr识别！`)
+      item.ocrErrMsg = String(LocaleUtil.locale(`缺少url参数, 无法进行ocr识别！`))
 
       Toast.show({ content: item.ocrErrMsg })
       resolve(item)
@@ -30,14 +36,15 @@ function recognizeItem(item) {
         }
       }
     )
-      .then((result) => {
+      .then((result: unknown) => {
         item.ocrResult = result || null
+        const r = result as { code?: string; message?: string } | null
 
         Loading.hide()
-        if (result?.code === '1') {
+        if (r?.code === '1') {
           resolve(item)
         } else {
-          item.ocrErrMsg = result?.message || locale('名片识别失败！')
+          item.ocrErrMsg = r?.message || String(LocaleUtil.locale('名片识别失败！'))
           Toast.show({ content: item.ocrErrMsg })
           Loading.hide()
           resolve(item)
@@ -45,7 +52,7 @@ function recognizeItem(item) {
       })
       .catch(() => {
         Loading.hide()
-        item.ocrErrMsg = locale('名片识别失败！')
+        item.ocrErrMsg = String(LocaleUtil.locale('名片识别失败！'))
         resolve(item)
       })
   })

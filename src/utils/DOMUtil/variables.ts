@@ -26,4 +26,5 @@ const colors = [
 const sizes = ['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
 
 // 导出颜色枚举值
-export default { colors, sizes }
+const variables = { colors, sizes }
+export default variables

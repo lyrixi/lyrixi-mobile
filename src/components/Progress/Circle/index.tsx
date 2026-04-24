@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode, type Ref } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,56 +8,65 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const ProgressCircle = forwardRef(
-  (
-    {
-      percent = 0,
-      children,
-      size = 50,
-      style,
-      // 其它属性
-      className
-    },
-    ref
-  ) => {
-    const rootRef = useRef(null)
+/** 含 ring 宽度、动画时长等 CSS 变量 */
+type ProgressCircleStyle = CSSProperties & { [key: string]: string | number | undefined }
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
+interface ProgressCircleProps {
+  percent?: number
+  children?: ReactNode
+  size?: number
+  style?: ProgressCircleStyle
+  className?: string
+}
 
-    // 确保percent在0-100范围内
-    const availablePercent = Math.max(0, Math.min(100, percent))
+interface ProgressCircleRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
 
-    // 1. 优先从 style 里获取
-    let trackWidth = 4 // 默认值
-    if (style && style['--lyrixi-progress-track-width']) {
-      // 兼容 '8', '8px', '8.5', '8.5px'
-      const val = style['--lyrixi-progress-track-width']
-      const num = typeof val === 'string' ? parseFloat(val) : Number(val)
-      if (!isNaN(num)) trackWidth = num
+const ProgressCircle = forwardRef<ProgressCircleRef, ProgressCircleProps>(function ProgressCircle(
+  { percent = 0, children, size = 50, style, className },
+  ref: Ref<ProgressCircleRef>
+) {
+  const rootRef = useRef<HTMLDivElement | null>(null)
+
+  // Expose
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current
     }
+  })
 
-    // 2. 计算半径
-    const radius = (size - trackWidth) / 2
-    const circumference = 2 * Math.PI * radius
-    const strokeDasharray = circumference
-    const strokeDashoffset = circumference - (availablePercent / 100) * circumference
+  // 确保percent在0-100范围内
+  const availablePercent = Math.max(0, Math.min(100, Number(percent) || 0))
 
-    return (
-      <div
-        className={DOMUtil.classNames('lyrixi-progress-circle', className)}
-        ref={rootRef}
-        style={{
-          width: size,
-          height: size,
-          ...style
-        }}
-      >
+  // 1. 优先从 style 里获取
+  let trackWidth = 4 // 默认值
+  if (style && style['--lyrixi-progress-track-width'] !== undefined) {
+    // 兼容 '8', '8px', '8.5', '8.5px'
+    const val = style['--lyrixi-progress-track-width']
+    const num = typeof val === 'string' ? parseFloat(val) : Number(val)
+    if (!isNaN(num)) trackWidth = num
+  }
+
+  // 2. 计算半径
+  const radius = (size - trackWidth) / 2
+  const circumference = 2 * Math.PI * radius
+  const strokeDasharray = circumference
+  const strokeDashoffset = circumference - (availablePercent / 100) * circumference
+  const mergedStyle: CSSProperties = {
+    width: size,
+    height: size,
+    ...(style && typeof style === 'object' ? style : {})
+  }
+
+  return (
+    <div
+      className={DOMUtil.classNames('lyrixi-progress-circle', className)}
+      ref={rootRef}
+      style={mergedStyle}
+    >
         {/* SVG环形进度条 */}
         <svg
           width={size}
@@ -94,10 +103,9 @@ const ProgressCircle = forwardRef(
         </svg>
 
         {/* 垂直居中的内容 */}
-        <div className="lyrixi-progress-circle-content">{children}</div>
-      </div>
-    )
-  }
-)
+      <div className="lyrixi-progress-circle-content">{children}</div>
+    </div>
+  )
+})
 
 export default ProgressCircle

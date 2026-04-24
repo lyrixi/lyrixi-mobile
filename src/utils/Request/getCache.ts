@@ -6,7 +6,7 @@ import Storage from './../Storage'
 import { Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-async function getCache(url, cacheKey) {
+async function getCache(url: string, cacheKey: string | number): Promise<unknown> {
   if (!cacheKey || !['string', 'number'].includes(typeof cacheKey)) {
     return undefined
   }

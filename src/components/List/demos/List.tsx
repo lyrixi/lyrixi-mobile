@@ -3,9 +3,11 @@ import { Page, List, Card, Button } from 'lyrixi-mobile'
 import listAllData from './listAllData'
 import listData from './listData'
 
+type Raw = Record<string, unknown>
+
 export default () => {
-  const [singleValue, setSingleValue] = useState(null)
-  const [multipleValue, setMultipleValue] = useState([])
+  const [singleValue, setSingleValue] = useState<Raw | Raw[] | null>(null)
+  const [multipleValue, setMultipleValue] = useState<Raw[]>([])
 
   return (
     <Page>
@@ -61,7 +63,11 @@ export default () => {
               value={multipleValue}
               onChange={(newMultipleValue) => {
                 console.log('newMultipleValue:', newMultipleValue)
-                setMultipleValue(newMultipleValue)
+                if (newMultipleValue == null) {
+                  setMultipleValue([])
+                } else {
+                  setMultipleValue(Array.isArray(newMultipleValue) ? newMultipleValue : [newMultipleValue])
+                }
               }}
               checkable
               multiple
@@ -96,10 +102,12 @@ export default () => {
               allowClear
               formatViewItem={(item, { index }) => ({
                 ...item,
-                title: <div>
-                  <span style={{ color: '#999' }}>{index}: </span>
-                  <span>{item.name}</span>
-                </div>
+                title: (
+                  <div>
+                    <span style={{ color: '#999' }}>{index}: </span>
+                    <span>{String((item as { name?: unknown }).name ?? '')}</span>
+                  </div>
+                )
               })}
             />
           </Card.Main>
@@ -116,13 +124,13 @@ export default () => {
               allowClear
               itemRender={(item, { checked, onChange: onSelect, index }) => (
                 <List.Item
-                  _raw={item._raw}
-                  key={item._raw?.id || item?.id || index}
+                  _raw={item._raw as Raw}
+                  key={String((item._raw as { id?: unknown } | undefined)?.id ?? (item as { id?: unknown }).id ?? index)}
                   checked={checked}
                   checkable
                   onSelect={onSelect}
-                  title={item.name}
-                  description={item.description}
+                  title={item.name as React.ReactNode}
+                  description={item.description as React.ReactNode}
                   note={'note'}
                   actionRender={() => <Button size="s">操作</Button>}
                 />

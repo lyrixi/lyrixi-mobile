@@ -11,7 +11,31 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const InputOTP = forwardRef(
+interface OTPRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  focus: (itemIndex?: number) => void
+  blur: () => void
+}
+
+interface OTPInputRef {
+  focus: (index: number) => void
+  blur: () => void
+}
+
+interface OTPProps {
+  type?: string
+  value?: unknown[]
+  disabled?: boolean
+  readOnly?: boolean
+  className?: string
+  style?: React.CSSProperties
+  maxLength?: number
+  onChange?: (value: string[]) => void
+  onComplete?: (value: string[]) => void
+}
+
+const InputOTP = forwardRef<OTPRef, OTPProps>(
   (
     {
       type = 'number', // 'text' 或 'number'
@@ -36,10 +60,10 @@ const InputOTP = forwardRef(
     ref
   ) => {
     // eslint-disable-next-line
-    value = formatValue(value, maxLength)
+    const formattedValue: string[] = formatValue(value, maxLength)
 
-    const rootRef = useRef(null)
-    const inputRef = useRef([])
+    const rootRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<OTPInputRef | null>(null)
 
     // Expose
     useImperativeHandle(ref, () => ({
@@ -50,7 +74,7 @@ const InputOTP = forwardRef(
     }))
 
     // 获焦
-    function focus(itemIndex) {
+    function focus(itemIndex?: number) {
       inputRef.current?.focus?.(itemIndex || 0)
     }
 
@@ -60,16 +84,16 @@ const InputOTP = forwardRef(
     }
 
     // 粘贴值, 更新数组值
-    function textToValue(text) {
+    function textToValue(text: string | number) {
       if (typeof text === 'number') {
         // eslint-disable-next-line
         text = text.toString()
       }
       if (!text) return
 
-      const newValue = Array(maxLength).fill('')
+      const newValue: string[] = Array(maxLength).fill('')
       for (let i = 0; i < Math.min(text.length, maxLength); i++) {
-        newValue[i] = text[i]
+        newValue[i] = (text as string)[i]
       }
 
       if (onChange) {
@@ -86,8 +110,8 @@ const InputOTP = forwardRef(
     }
 
     // 修改项, 更新数组值
-    function updateItem(itemIndex, newItemValue) {
-      const newValue = [...value]
+    function updateItem(itemIndex: number, newItemValue: string) {
+      const newValue = [...formattedValue]
       newValue[itemIndex] = newItemValue
 
       if (onChange) {
@@ -100,7 +124,7 @@ const InputOTP = forwardRef(
     }
 
     // 处理输入变化
-    const handleChange = (itemIndex, newItemValue) => {
+    const handleChange = (itemIndex: number, newItemValue: string) => {
       console.log('handleChange', itemIndex, newItemValue)
       if (disabled || readOnly) return
 
@@ -114,13 +138,13 @@ const InputOTP = forwardRef(
     }
 
     // 处理键盘事件
-    const handleKeyDown = (key, itemIndex) => {
+    const handleKeyDown = (key: string, itemIndex: number) => {
       if (disabled || readOnly) return
 
       // 处理退格键
       if (key === 'Backspace') {
         // 当前项没有值时, 获焦上一个输入框
-        if (!value[itemIndex] && itemIndex > 0) {
+        if (!formattedValue[itemIndex] && itemIndex > 0) {
           focus(itemIndex - 1)
         }
       }
@@ -135,7 +159,7 @@ const InputOTP = forwardRef(
     }
 
     // 处理粘贴
-    const handlePaste = (e) => {
+    const handlePaste = (e: React.ClipboardEvent) => {
       if (disabled || readOnly) return
       e.preventDefault()
 
@@ -159,14 +183,14 @@ const InputOTP = forwardRef(
         <InputComponent
           ref={inputRef}
           // Value & Display Value
-          values={value}
+          values={formattedValue}
           // Status
           disabled={disabled}
           readOnly={readOnly}
           // Events
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          onPaste={handlePaste}
+          onPaste={handlePaste as React.ClipboardEventHandler<HTMLElement>}
         />
       </div>
     )

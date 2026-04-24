@@ -1,9 +1,10 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
-import Main from './../Main'
+import Main, { ListPaginationRef, ListPaginationProps } from './../Main'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../../components/Modal/NavBarModal'
+import { ModalRef } from './../../../components/Modal/Modal'
 // 内库使用-end
 
 /* 测试使用-start
@@ -11,8 +12,38 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
+type RawItem = Record<string, unknown>
+type ItemChangeArg = RawItem & { checked?: boolean }
+
+export interface ModalPaginationRef extends ModalRef {
+  reload?: ListPaginationRef['reload']
+  getResult?: ListPaginationRef['getResult']
+  updateCache?: ListPaginationRef['updateCache']
+  clearCache?: ListPaginationRef['clearCache']
+  getCache?: ListPaginationRef['getCache']
+}
+
+export interface ModalPaginationProps extends ListPaginationProps {
+  // Modal-specific props
+  open?: boolean
+  maskClosable?: boolean
+  safeArea?: boolean
+  list?: RawItem[]
+  modalStyle?: React.CSSProperties
+  modalClassName?: string
+  maskStyle?: React.CSSProperties
+  maskClassName?: string
+  portal?: HTMLElement | string | boolean | null
+  title?: React.ReactNode
+  cancelNode?: React.ReactNode
+  cancelVisible?: boolean
+  headerRender?: (options: { open?: boolean; value?: unknown; list?: RawItem[] }) => React.ReactNode
+  onOk?: (value: unknown) => Promise<unknown | false> | unknown | false
+  onClose?: () => void
+}
+
 // Modal
-const Modal = forwardRef(
+const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
   (
     {
       // Value & Display Value
@@ -22,7 +53,7 @@ const Modal = forwardRef(
       headers,
       payload,
       pagination,
-      formatPayload, // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
+      formatPayload,
       formatResult,
       formatViewList,
       formatViewItem,
@@ -74,21 +105,21 @@ const Modal = forwardRef(
     },
     ref
   ) => {
-    let [currentValue, setCurrentValue] = useState(value)
-    const modalRef = useRef(null)
-    const mainRef = useRef(null)
+    let [currentValue, setCurrentValue] = useState<RawItem | RawItem[] | null>(() => value ?? null)
+    const modalRef = useRef<ModalRef | null>(null)
+    const mainRef = useRef<ListPaginationRef | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
-        ...modalRef.current,
-        ...mainRef.current
-      }
+        ...(modalRef.current as ModalRef),
+        ...(mainRef.current as ListPaginationRef)
+      } as ModalPaginationRef
     })
 
     // 同步外部value到内部
     useEffect(() => {
       if (open) {
-        setCurrentValue(value)
+        setCurrentValue(value ?? null)
       }
     }, [open, value])
 
@@ -107,20 +138,22 @@ const Modal = forwardRef(
       if (onOk) {
         let goOn = await onOk(currentValue)
         if (goOn === false) return false
-        if (goOn instanceof Array || goOn?.id) {
-          // eslint-disable-next-line
-          currentValue = goOn
+        if (Array.isArray(goOn) || (goOn as RawItem)?.id) {
+          currentValue = goOn as RawItem | RawItem[]
         }
       }
-      onChange?.(currentValue)
+      const checked = (Array.isArray(currentValue) ? currentValue[0] : currentValue) as ItemChangeArg
+      onChange?.(currentValue, { checkedItem: checked })
       onClose?.()
     }
 
-    function handleChange(newValue) {
+    function handleChange(
+      newValue: RawItem | RawItem[] | null,
+      options: { checkedItem: ItemChangeArg }
+    ) {
       setCurrentValue(newValue)
-      // 单选时立即关闭
       if (!multiple) {
-        onChange?.(newValue)
+        onChange?.(newValue, options)
         onClose?.()
       }
     }
@@ -128,71 +161,60 @@ const Modal = forwardRef(
     return (
       <NavBarModal
         ref={modalRef}
-        // Status
         open={open}
         maskClosable={maskClosable}
         safeArea={safeArea}
-        // Style
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-modal-listpagination', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        // Elements
         portal={portal}
         title={title}
         okVisible={multiple}
         cancelNode={cancelNode}
         cancelVisible={cancelVisible}
-        // Events
         onClose={onClose}
         onOk={handleOk}
       >
-        {/* Element: Header */}
         {getHeaderNode()}
 
-
-        {/* Element: Main */}
-        {open && <Main
-          ref={mainRef}
-          // Value & Display Value
-          value={currentValue}
-          url={url}
-          headers={headers}
-          payload={payload}
-          pagination={pagination}
-          formatPayload={formatPayload} // 格式化查询参数: ({page}) => { return {rows: 必传, 默认值20, 用于计算分页} }
-          formatResult={formatResult}
-          formatViewList={formatViewList}
-          formatViewItem={formatViewItem}
-          // Status
-          errorRetry={errorRetry}
-          emptyRetry={emptyRetry}
-          allowClear={allowClear}
-          multiple={multiple}
-          checkable={checkable}
-          disableTopRefresh={disableTopRefresh}
-          disableBottomRefresh={disableBottomRefresh}
-          virtual={virtual}
-          // Element
-          itemRender={itemRender}
-          loadingRender={loadingRender}
-          prependRender={prependRender}
-          appendRender={appendRender}
-
-          // Style
-          itemStyle={itemStyle}
-          itemClassName={itemClassName}
-          itemLayout={itemLayout}
-          checkboxVariant={checkboxVariant}
-          checkboxPosition={checkboxPosition}
-          loadingModalStyle={loadingModalStyle}
-          loadingModalClassName={loadingModalClassName}
-          loadingMaskStyle={loadingMaskStyle}
-          loadingMaskClassName={loadingMaskClassName || 'lyrixi-mask-listpagination-loading'}
-          loadingPortal={loadingPortal}
-          // Events
-          onChange={handleChange}
-        />}
+        {open && (
+          <Main
+            ref={mainRef}
+            value={currentValue as ListPaginationProps['value']}
+            url={url}
+            headers={headers}
+            payload={payload}
+            pagination={pagination}
+            formatPayload={formatPayload}
+            formatResult={formatResult}
+            formatViewList={formatViewList}
+            formatViewItem={formatViewItem}
+            errorRetry={errorRetry}
+            emptyRetry={emptyRetry}
+            allowClear={allowClear}
+            multiple={multiple}
+            checkable={checkable}
+            disableTopRefresh={disableTopRefresh}
+            disableBottomRefresh={disableBottomRefresh}
+            virtual={virtual}
+            itemRender={itemRender}
+            loadingRender={loadingRender}
+            prependRender={prependRender}
+            appendRender={appendRender}
+            itemStyle={itemStyle}
+            itemClassName={itemClassName}
+            itemLayout={itemLayout}
+            checkboxVariant={checkboxVariant}
+            checkboxPosition={checkboxPosition}
+            loadingModalStyle={loadingModalStyle}
+            loadingModalClassName={loadingModalClassName}
+            loadingMaskStyle={loadingMaskStyle}
+            loadingMaskClassName={loadingMaskClassName || 'lyrixi-mask-listpagination-loading'}
+            loadingPortal={loadingPortal}
+            onChange={handleChange}
+          />
+        )}
       </NavBarModal>
     )
   }

@@ -5,22 +5,30 @@ import Block from './Block'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const Item = (
-  {
-    animated = true,
-    className,
-    style
-  },
-  ref
-) => {
-  return (
-    <Block
-      ref={ref}
-      animated={animated}
-      style={style}
-      className={DOMUtil.classNames('lyrixi-skeleton-block-item', className)}
-    />
-  )
+interface ItemProps {
+  animated?: boolean
+  className?: string
+  style?: React.CSSProperties
 }
 
-export default forwardRef(Item)
+const Item = forwardRef<HTMLDivElement, ItemProps>(
+  (
+    {
+      animated = true,
+      className,
+      style
+    },
+    ref
+  ) => {
+    return (
+      <Block
+        ref={ref}
+        animated={animated}
+        style={style}
+        className={DOMUtil.classNames('lyrixi-skeleton-block-item', className)}
+      />
+    )
+  }
+)
+
+export default Item

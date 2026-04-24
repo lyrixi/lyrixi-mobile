@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Divider, Page, Cascader, ObjectUtil } from 'lyrixi-mobile'
+import type { CascaderNode } from './../cascaderTypes'
 
 export default () => {
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
-  const [value1, setValue1] = useState([])
-  const [value2, setValue2] = useState([])
-  const [value3, setValue3] = useState([])
-  const [value4, setValue4] = useState([])
-  const [value5, setValue5] = useState([])
-  const [value6, setValue6] = useState([])
-  const [value7, setValue7] = useState([])
-  const [value8, setValue8] = useState([])
-  const [value9, setValue9] = useState([])
+  const [value1, setValue1] = useState<CascaderNode[]>([])
+  const [value2, setValue2] = useState<CascaderNode[]>([])
+  const [value3, setValue3] = useState<CascaderNode[]>([])
+  const [value4, setValue4] = useState<CascaderNode[]>([])
+  const [value5, setValue5] = useState<CascaderNode[]>([])
+  const [value6, setValue6] = useState<CascaderNode[]>([])
+  const [value7, setValue7] = useState<CascaderNode[]>([])
+  const [value8, setValue8] = useState<CascaderNode[]>([])
+  const [value9, setValue9] = useState<CascaderNode[]>([])
 
   useEffect(() => {
     setTimeout(() => {
@@ -42,18 +43,24 @@ export default () => {
           <Divider>formatter</Divider>
           <Cascader.DistrictCombo
             // type={'country'}
-            formatter={(value) => {
-              if (!value?.length) return ''
-              console.log('formatter value: ', value)
-              return value
-                .filter((item) => !item?.type?.includes('country'))
+            formatter={(value: unknown) => {
+              const v = value as CascaderNode[] | undefined
+              if (!v?.length) {
+                return ''
+              }
+              console.log('formatter value: ', v)
+              return v
+                .filter((item) => {
+                  const t = item.type
+                  return !Array.isArray(t) || !(t as string[]).includes('country')
+                })
                 .map((item) => item.name)
                 .join('-')
             }}
             value={value1}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue1(newValue)
+              setValue1(newValue as CascaderNode[])
             }}
             placeholder={'country'}
             allowClear
@@ -67,7 +74,7 @@ export default () => {
             value={value2}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue2(newValue)
+              setValue2(newValue as CascaderNode[])
             }}
             placeholder={'province'}
             allowClear
@@ -81,7 +88,7 @@ export default () => {
             value={value3}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue3(newValue)
+              setValue3(newValue as CascaderNode[])
             }}
             placeholder={'city'}
             allowClear
@@ -95,7 +102,7 @@ export default () => {
             value={value4}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue4(newValue)
+              setValue4(newValue as CascaderNode[])
             }}
             placeholder={'district'}
             allowClear
@@ -109,7 +116,7 @@ export default () => {
             value={value5}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue5(newValue)
+              setValue5(newValue as CascaderNode[])
             }}
             placeholder={'street'}
             allowClear
@@ -124,7 +131,7 @@ export default () => {
             value={value6}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue6(newValue)
+              setValue6(newValue as CascaderNode[])
             }}
             placeholder={'searchVisible'}
             allowClear
@@ -133,11 +140,11 @@ export default () => {
         <Card>
           <Divider>disabled</Divider>
           <Cascader.DistrictCombo
-            disabled={['country', 'province', 'city', 'district', 'street']}
+            disabled
             value={value7}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue7(newValue)
+              setValue7(newValue as CascaderNode[])
             }}
             placeholder={'disabled'}
             allowClear
@@ -150,7 +157,7 @@ export default () => {
             value={value8}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue8(newValue)
+              setValue8(newValue as CascaderNode[])
             }}
             placeholder={'min'}
             allowClear
@@ -162,7 +169,7 @@ export default () => {
             value={value9}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue9(newValue)
+              setValue9(newValue as CascaderNode[])
             }}
             placeholder={'zIndex'}
             allowClear

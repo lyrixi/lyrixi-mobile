@@ -5,6 +5,23 @@ import getStatusDefault from './getStatusDefault'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
+export interface ResultProps {
+  // Value & Display Value
+  status: string
+  title?: string | null | React.ReactNode
+  description?: React.ReactNode
+
+  // Style
+  full?: boolean
+  style?: React.CSSProperties
+  className?: string
+
+  // Element
+  imageRender?: (() => React.ReactNode) | null
+  imageUrl?: string | null
+  children?: React.ReactNode
+}
+
 // 结果页, status: empty|500|success|waiting|info|warning|error
 function Result({
   // Value & Display Value
@@ -21,7 +38,7 @@ function Result({
   imageRender,
   imageUrl,
   children
-}) {
+}: ResultProps) {
   let statusDefault = getStatusDefault(status)
 
   // 渲染图片

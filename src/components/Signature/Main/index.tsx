@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import Signature from './Signature'
+import Signature, { SignatureRef } from './Signature'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,6 +8,21 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
+
+interface MainProps {
+  style?: React.CSSProperties
+  color?: string
+  backgroundColor?: string
+  onChange?: (base64: string | null) => void
+  onCancel?: () => void
+}
+
+interface MainRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  getBase64?: (() => Promise<string | null>) | undefined
+  clear?: (() => void) | undefined
+}
 
 // 手写签名
 const Main = (
@@ -20,12 +35,12 @@ const Main = (
     // Events
     onChange,
     onCancel
-  },
-  ref
+  }: MainProps,
+  ref: React.Ref<MainRef>
 ) => {
-  const rootRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
   // 签名
-  const signatureRef = useRef(null)
+  const signatureRef = useRef<SignatureRef>(null)
 
   // 外部调用
   useImperativeHandle(ref, () => {
@@ -47,6 +62,7 @@ const Main = (
       {/* Element: Signature Canvas */}
       <Signature
         ref={signatureRef}
+        style={style}
         color={color} // 绘画配置: 画笔颜色
         backgroundColor={backgroundColor} // 绘画配置: 背景颜色
       />
@@ -81,7 +97,7 @@ const Main = (
           // Events
           onClick={async () => {
             let base64 = await signatureRef?.current?.getBase64?.()
-            onChange && onChange(base64)
+            onChange && onChange(base64 ?? null)
           }}
         >
           <p>{LocaleUtil.locale('确认', 'lyrixi_e83a256e4f5bb4ff8b3d804b5473217a')}</p>
@@ -91,4 +107,4 @@ const Main = (
   )
 }
 
-export default forwardRef(Main)
+export default forwardRef<MainRef, MainProps>(Main)

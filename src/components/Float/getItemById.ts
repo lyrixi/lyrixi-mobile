@@ -1,6 +1,12 @@
+interface ListItem {
+  id: string
+  children?: ListItem[]
+  [key: string]: unknown
+}
+
 // 有子项的菜单项，点击无效, 故不返回item
-function getItemById(list, id) {
-  for (let item of list) {
+function getItemById(list: ListItem[], id: string): ListItem | undefined {
+  for (const item of list) {
     if (id === item.id && !item?.children?.length) return item
 
     // if (Array.isArray(item.children) && item.children?.length) {

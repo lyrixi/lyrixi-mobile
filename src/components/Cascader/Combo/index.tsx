@@ -1,5 +1,8 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import CascaderModal from './../Modal'
+import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+import type { ComboProps, ComboRef } from './../../Input/Select'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -9,43 +12,57 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
+export type CascaderComboRef = ComboRef & {
+  open: () => void
+  close: () => void
+} & Record<string, unknown>
+
+export type CascaderComboProps = ComboProps & {
+  list?: CascaderNode[]
+  loadData?: LoadDataFn
+  maskClosable?: boolean
+  safeArea?: boolean
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: string | boolean | HTMLElement | null
+  title?: ReactNode
+  okNode?: ReactNode
+  cancelNode?: ReactNode
+  okVisible?: boolean
+  cancelVisible?: boolean
+  searchVisible?: boolean
+  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
+  onBeforeOpen?: () => boolean | Promise<boolean>
+}
+
 // Cascader
-const CascaderCombo = forwardRef(
+const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
   (
     {
-      // Combo
-      // Combo: Value & Display Value
       value,
       placeholder,
       formatter,
       autoSize,
       separator,
       mode,
-      // Combo: Status
       readOnly,
       disabled,
       allowClear,
-      // Combo: Style
       style,
       className,
-      // Combo: Element
       leftIconNode,
       rightIconNode,
       clearRender,
-
-      // Modal
-      // Modal: Value & Display Value
       list,
       loadData,
-      // Modal: Status
       maskClosable,
-      // Modal: Style
       safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
-      // Modal: Elements
       portal,
       title,
       okNode,
@@ -53,8 +70,6 @@ const CascaderCombo = forwardRef(
       okVisible,
       cancelVisible,
       searchVisible,
-
-      // Events
       onSearch,
       onChange,
       onBeforeOpen
@@ -62,22 +77,26 @@ const CascaderCombo = forwardRef(
     ref
   ) => {
     const [open, setOpen] = useState(false)
-    const comboRef = useRef(null)
-    const modalRef = useRef(null)
+    const comboRef = useRef<ComboRef | null>(null)
+    const modalRef = useRef<Record<string, unknown> | null>(null)
 
     useImperativeHandle(ref, () => {
+      const c = (comboRef.current as Record<string, unknown> | null) ?? {}
+      const m = modalRef.current ?? {}
       return {
-        ...comboRef.current,
-        ...modalRef.current,
+        ...c,
+        ...m,
         close: () => setOpen(false),
         open: () => setOpen(true)
-      }
+      } as CascaderComboRef
     })
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
-        let goOn = await onBeforeOpen()
-        if (goOn === false) return
+        const goOn = await onBeforeOpen()
+        if (goOn === false) {
+          return
+        }
       }
       setOpen(true)
     }
@@ -90,39 +109,31 @@ const CascaderCombo = forwardRef(
       <>
         <Input.Select
           ref={comboRef}
-          // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
           formatter={formatter}
           autoSize={autoSize}
           separator={separator}
           mode={mode}
-          // Combo: Status
           readOnly={readOnly}
           disabled={disabled}
           allowClear={allowClear}
-          // Combo: Style
           style={style}
           className={className}
-          // Combo: Element
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
-          // Events
           onChange={onChange}
           onClick={handleOpen}
         />
         <CascaderModal
           ref={modalRef}
-          // Modal: Value & Display Value
-          value={value}
+          value={value as CascaderNode[]}
           list={list}
           loadData={loadData}
-          // Modal: Status
           open={open}
           maskClosable={maskClosable}
           allowClear={allowClear}
-          // Modal: Elements
           portal={portal}
           title={title}
           okNode={okNode}
@@ -130,16 +141,14 @@ const CascaderCombo = forwardRef(
           okVisible={okVisible}
           cancelVisible={cancelVisible}
           searchVisible={searchVisible}
-          // Modal: Style
           safeArea={safeArea}
           modalStyle={modalStyle}
           modalClassName={modalClassName}
           maskStyle={maskStyle}
           maskClassName={maskClassName}
-          // Events
           onSearch={onSearch}
           onClose={handleClose}
-          onChange={onChange}
+          onChange={onChange as (v: CascaderNode[]) => void}
         />
       </>
     )

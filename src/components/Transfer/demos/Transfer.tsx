@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Page from 'lyrixi-mobile/components/Page'
 import Transfer from 'lyrixi-mobile/components/Transfer'
 import Card from 'lyrixi-mobile/components/Card'
+import type { TransferItem } from './../types'
 
 export default () => {
-  const [value, setValue] = useState([{ id: '1', name: '选项1' }])
+  const [value, setValue] = useState<TransferItem[]>([{ id: '1', name: '选项1' }])
   const list = [
     { id: '1', name: '选项1' },
     { id: '2', name: '选项2' },
@@ -22,7 +23,7 @@ export default () => {
               list={list}
               value={value}
               titles={['待选', '已选']}
-              onChange={setValue}
+              onChange={(v) => setValue(v)}
             />
           </Card.Main>
         </Card>

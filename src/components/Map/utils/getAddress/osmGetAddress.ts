@@ -6,25 +6,27 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { AddressParams } from './bmapGetAddress'
+
 // 地址逆解析函数
-function osmGetAddress(params) {
+function osmGetAddress(params: AddressParams): Promise<unknown> {
   const url =
     'https://nominatim.openstreetmap.org/reverse?format=json&lat=' +
-    params.latitude +
+    String(params.latitude) +
     '&lon=' +
-    params.longitude
+    String(params.longitude)
 
   return new Promise((resolve) => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => {
+      .then((data: { display_name?: string }) => {
         resolve({
           ...params,
           status: 'success',
           address: data.display_name
         })
       })
-      .catch((error) => {
+      .catch(() => {
         resolve({
           status: 'error',
           message: LocaleUtil.locale(

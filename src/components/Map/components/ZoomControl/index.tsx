@@ -1,45 +1,47 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import type { MapContainerAPI } from './../MapContainer'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+export interface ZoomControlProps {
+  style?: React.CSSProperties
+  className?: string
+  map?: MapContainerAPI
+  onZoomIn?: (map: MapContainerAPI) => void
+  onZoomOut?: (map: MapContainerAPI) => void
+}
+
 // 缩放控件
-function ZoomControl(
+const ZoomControl = forwardRef<
   {
-    // Style
-    style,
-    className,
-
-    // Element
-    map,
-
-    // Events
-    onZoomIn,
-    onZoomOut
+    element: HTMLDivElement | null
+    getElement: () => HTMLDivElement | null
+    zoomOut: () => void
+    zoomIn: () => void
   },
-  ref
-) {
-  // 容器
-  const rootRef = useRef(null)
+  ZoomControlProps
+>(({ style, className, map, onZoomIn, onZoomOut }, ref) => {
+  const rootRef = useRef<HTMLDivElement>(null)
 
   useImperativeHandle(ref, () => {
     return {
       element: rootRef.current,
       getElement: () => rootRef.current,
-      zoomOut: zoomOut,
-      zoomIn: zoomIn
+      zoomOut,
+      zoomIn
     }
   })
 
-  // 缩小地图
   function zoomOut() {
+    if (!map) return
     map.zoomOut()
     onZoomOut && onZoomOut(map)
   }
 
-  // 放大地图
   function zoomIn() {
+    if (!map) return
     map.zoomIn()
     onZoomIn && onZoomIn(map)
   }
@@ -47,21 +49,18 @@ function ZoomControl(
   return (
     <div
       ref={rootRef}
-      // Style
       style={style}
       className={DOMUtil.classNames('lyrixi-map-zoomControl', className)}
     >
-      {/* Element: Zoom In */}
       <div className="lyrixi-map-zoomControl-in" onClick={zoomIn}>
         <div className="lyrixi-map-zoomControl-icon"></div>
       </div>
 
-      {/* Element: Zoom Out */}
       <div className="lyrixi-map-zoomControl-out" onClick={zoomOut}>
         <div className="lyrixi-map-zoomControl-icon"></div>
       </div>
     </div>
   )
-}
+})
 
-export default forwardRef(ZoomControl)
+export default ZoomControl

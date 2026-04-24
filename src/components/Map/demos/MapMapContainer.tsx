@@ -1,10 +1,13 @@
 import React, { useRef } from 'react'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
+import type { MapContainerAPI } from '../components/MapContainer'
+import type { MapPoint } from '../utils/coordsToWgs84'
+
 const { MapLoader, MapContainer, coordsToWgs84 } = Map
 
 export default () => {
-  const mapRef = useRef(null)
+  const mapRef = useRef<MapContainerAPI | null>(null)
 
   const center = coordsToWgs84({
     latitude: 31.982664,
@@ -14,14 +17,13 @@ export default () => {
     // longitude: 116.397451,
     // type: 'gcj02',
     // address: '天安门'
-  })
+  }) as MapPoint | null
 
   return (
     <Page>
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap'
           }}
@@ -32,7 +34,7 @@ export default () => {
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapContainer
               ref={mapRef}
-              center={center}
+              center={center ?? undefined}
               zoom={16}
               minZoom={10}
               maxZoom={18}
@@ -74,7 +76,7 @@ export default () => {
         <div style={{ padding: '10px' }}>
           <Button
             onClick={() => {
-              if (mapRef.current) {
+              if (mapRef.current && center) {
                 mapRef.current.panTo(center)
                 console.log('移动到中心点')
               }
@@ -86,6 +88,9 @@ export default () => {
             onClick={() => {
               if (mapRef.current) {
                 const zoom = mapRef.current.getZoom()
+                if (zoom == null) {
+                  return
+                }
                 mapRef.current.setZoom(zoom + 1)
                 console.log('放大，当前缩放级别:', mapRef.current.getZoom())
               }
@@ -97,6 +102,9 @@ export default () => {
             onClick={() => {
               if (mapRef.current) {
                 const zoom = mapRef.current.getZoom()
+                if (zoom == null) {
+                  return
+                }
                 mapRef.current.setZoom(zoom - 1)
                 console.log('缩小，当前缩放级别:', mapRef.current.getZoom())
               }
@@ -107,7 +115,7 @@ export default () => {
           <Button
             onClick={async () => {
               if (mapRef.current) {
-                const location = await mapRef.current.getLocation()
+                const location = await mapRef.current.getLocation({ type: 'wgs84' })
                 console.log('获取当前位置:', location)
               }
             }}
@@ -117,7 +125,7 @@ export default () => {
           <Button
             onClick={async () => {
               if (mapRef.current) {
-                const address = await mapRef.current.getAddress(center)
+                const address = await mapRef.current.getAddress(center as MapPoint)
                 console.log('获取地址:', address)
               }
             }}

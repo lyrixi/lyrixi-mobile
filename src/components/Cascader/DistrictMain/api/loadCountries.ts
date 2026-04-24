@@ -8,13 +8,18 @@ import Request from './../../../../utils/Request'
 import { ObjectUtil, LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
-function loadCountries() {
+interface ApiResult {
+  status: 'success' | 'error'
+  list?: unknown[]
+  message?: string
+}
+
+function loadCountries(): Promise<ApiResult> {
   return new Promise((resolve) => {
     const language = LocaleUtil.getLanguage()
 
-    // 优先读取缓存
     window.countries =
-      window.countries || JSON.parse(window.sessionStorage.getItem('countries') || '[]')
+      window.countries || JSON.parse(window.sessionStorage.getItem('countries') || '[]') as unknown[]
     if (!ObjectUtil.isEmpty(window.countries)) {
       resolve({
         status: 'success',
@@ -23,10 +28,9 @@ function loadCountries() {
       return
     }
 
-    // 加载语言对应的文件
-    Request.get(`https://lyrixi.github.io/lyrixi-mobile/assets/district/${language}/country.json`)
-      .then(function (json) {
-        window.countries = json || []
+    Request.get(`https://lyrixi.github.io/lyrixi-mobile/assets/district/${language}/country.json`, undefined, undefined)
+      .then(function (json: unknown) {
+        window.countries = (json as unknown[]) || []
         window.sessionStorage.setItem('countries', JSON.stringify(window.countries))
         resolve({
           status: 'success',
@@ -36,7 +40,7 @@ function loadCountries() {
       .catch(() => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('获取国家数据失败', 'lyrixi_12c1c752c3d8f3ce8f3c687cabd4a626')
+          message: LocaleUtil.locale('获取国家数据失败', 'lyrixi_12c1c752c3d8f3ce8f3c687cabd4a626') as string
         })
       })
   })

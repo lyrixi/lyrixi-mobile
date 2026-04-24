@@ -8,23 +8,39 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface AddressParams {
+  longitude?: number | string
+  latitude?: number | string
+  type?: string
+  address?: string
+  [key: string]: unknown
+}
+
 // 百度地址逆解析
-function bmapGetAddress(params) {
-  // eslint-disable-next-line
-  return new Promise(async (resolve) => {
-    // 国内转为bd09
-    let coord = coordsToFit({
+function bmapGetAddress(params: AddressParams): Promise<unknown> {
+  return new Promise((resolve) => {
+    const bmap = window.BMap
+    if (!bmap) {
+      resolve({ status: 'error', message: 'BMap not loaded' })
+      return
+    }
+    const coord = coordsToFit({
       longitude: params.longitude,
       latitude: params.latitude,
       type: params.type,
       inChinaTo: 'bd09'
-    })
-    let bdPoint = new window.BMap.Point(coord.longitude, coord.latitude)
+    }) as { longitude?: number; latitude?: number } | null
 
-    // 逆解析
-    let geocoder = new window.BMap.Geocoder()
-    geocoder.getLocation(bdPoint, (res) => {
-      if (!res?.address) {
+    if (!coord?.longitude || !coord?.latitude) {
+      resolve({ status: 'error', message: 'invalid coordinates' })
+      return
+    }
+
+    const bdPoint = new bmap.Point(Number(coord.longitude), Number(coord.latitude))
+    const geocoder = new bmap.Geocoder()
+    geocoder.getLocation(bdPoint, (res: unknown) => {
+      const r = res as { address?: string }
+      if (!r?.address) {
         resolve({
           status: 'error',
           message: LocaleUtil.locale(
@@ -38,7 +54,7 @@ function bmapGetAddress(params) {
       resolve({
         ...params,
         status: 'success',
-        address: res.address
+        address: r.address
       })
     })
   })

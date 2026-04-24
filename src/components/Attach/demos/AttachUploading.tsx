@@ -5,9 +5,11 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Attach.Uploading>
-          {/* Attach.Uploading 示例内容 */}
-        </Attach.Uploading>
+        <Attach.Uploading
+          uploadingType="demo"
+          className="demo-attach-uploading"
+          uploadingRender={({ uploadingType }) => <span>{uploadingType}</span>}
+        />
       </Page.Main>
     </Page>
   )

@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { type MouseEvent } from 'react'
+
+interface PreviewToolbarProps {
+  onRotateAnticlockwise?: (e: MouseEvent) => void
+  onRotateClockwise?: (e: MouseEvent) => void
+  onZoomOut?: (e: MouseEvent) => void
+  onZoomIn?: (e: MouseEvent) => void
+}
 
 const PreviewToolbar = ({
   onRotateAnticlockwise,
   onRotateClockwise,
   onZoomOut,
   onZoomIn
-}) => {
+}: PreviewToolbarProps) => {
   return (
     <div className="lyrixi-media-preview-main-toolbar">
       <div

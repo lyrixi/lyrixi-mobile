@@ -9,10 +9,12 @@ import clearLogs from './clearLogs'
 import uploadLogs from './uploadLogs'
 
 // 导出所有方法
-export default {
+const Logger = {
   config,
   setLogs,
   getLogs,
   clearLogs,
   uploadLogs
 }
+
+export default Logger

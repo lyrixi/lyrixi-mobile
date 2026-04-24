@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 内库使用-start
-import ListBase from './../../List'
+import ListBase, { ListProps } from './../../List/List'
 // 内库使用-end
 
 /* 测试使用-start
@@ -24,7 +24,7 @@ export default function List({
   checkboxPosition,
   itemRender,
   onChange
-}) {
+}: ListProps) {
   return (
     <ListBase
       value={value}

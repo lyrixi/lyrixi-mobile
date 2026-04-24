@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 
 export default () => {
-  const [checkedId, setCheckedId] = useState(null)
+  const [checkedId, setCheckedId] = useState<string | number | null>(null)
 
   return (
     <Page>
@@ -43,7 +43,9 @@ export default () => {
               _raw={{ id: '6' }}
               checkable
               checked={checkedId === '6'}
-              onSelect={(raw) => setCheckedId(raw.checked ? raw.id : null)}
+              onSelect={(raw) =>
+                setCheckedId(raw.checked ? (raw.id as string | number | undefined) ?? null : null)
+              }
               title="checkable 可选项"
               description="单选示例"
             />

@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+import type * as L from 'leaflet'
 import filterCoords from './../../utils/filterCoords'
-import addPolygon from './addPolygon'
+import addPolygon, { type PolyPoint, type PolyStyleOptions } from './addPolygon'
 import clearPolygon from './clearPolygon'
+import type { MapContainerAPI } from './../MapContainer'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -11,32 +13,33 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface PolygonProps {
+  points?: unknown
+  color?: string
+  fillColor?: string
+  fillOpacity?: number
+  weight?: number
+  map?: MapContainerAPI
+}
+
 // 多边形
-const Polygon = forwardRef(
+const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
   (
     {
-      // Value & Display Value
-      points,
-
-      // Style
+      points: pointsProp,
       color,
       fillColor,
       fillOpacity,
       weight,
-
-      // Element
       map
     },
     ref
   ) => {
-    // Polygon layer
-    const polygonLayerRef = useRef(null)
+    let points = pointsProp as unknown
+    const polygonLayerRef = useRef<L.LayerGroup | null>(null)
 
-    // 过滤错误的点位
-    // eslint-disable-next-line
     points = filterCoords(points)
 
-    // Expose
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -46,18 +49,21 @@ const Polygon = forwardRef(
     })
 
     useEffect(() => {
-      // Polygon layer init
-      polygonLayerRef.current = window.L.layerGroup().addTo(map.leafletMap)
+      const lf = map?.leafletMap
+      if (!lf) {
+        return
+      }
+      polygonLayerRef.current = window.L!.layerGroup().addTo(lf)
 
       return () => {
         clearPolygon(polygonLayerRef.current)
       }
-      // eslint-disable-next-line
-    }, [])
+    }, [map])
 
     useEffect(() => {
       if (!polygonLayerRef.current) return
-      if (ObjectUtil.isEmpty(points) || points.length < 3) {
+      const arr = points as PolyPoint[]
+      if (ObjectUtil.isEmpty(arr) || arr.length < 3) {
         clearPolygon(polygonLayerRef.current)
         return
       }
@@ -67,20 +73,19 @@ const Polygon = forwardRef(
     }, [JSON.stringify(points)])
 
     function draw() {
-      if (ObjectUtil.isEmpty(points) || points.length < 3) {
+      const arr = points as PolyPoint[]
+      if (ObjectUtil.isEmpty(arr) || arr.length < 3) {
         return
       }
       clearPolygon(polygonLayerRef.current)
-      addPolygon(
-        points,
-        {
-          color,
-          fillColor,
-          fillOpacity,
-          weight
-        },
-        polygonLayerRef.current
-      )
+      if (!polygonLayerRef.current) return
+      const style: PolyStyleOptions = {
+        color,
+        fillColor,
+        fillOpacity,
+        weight
+      }
+      addPolygon(arr, style, polygonLayerRef.current)
     }
 
     return <></>

@@ -1,6 +1,6 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { LocaleUtil, Divider, Page, Result, Card, Text as LyrixiText, Form, Toast } from 'lyrixi-mobile'
+import { LocaleUtil, Divider, Page, Result, Card, Text, Form, Toast } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
@@ -10,8 +10,6 @@ import Footer from './Footer'
 // 样式图片等资源文件导入
 
 const locale = LocaleUtil.locale
-
-const Text = LyrixiText as unknown as React.ComponentType<Record<string, unknown>>
 
 // 表单编辑页面
 const FormDetail = () => {
@@ -44,7 +42,7 @@ const FormDetail = () => {
     }
     if (res.code === '1') {
       Toast.show({
-        content: locale('审批通过!'),
+        content: String(locale('审批通过!')),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -53,7 +51,7 @@ const FormDetail = () => {
     // 重复请求
     else if (res.code === '2') {
       Toast.show({
-        content: res.message || locale('请勿重复提交!'),
+        content: String(res.message || locale('请勿重复提交!')),
         onClose: () => {
           // 提交完成后操作: 返回等
         }
@@ -65,12 +63,16 @@ const FormDetail = () => {
       tokenRef.current = '' + Date.now()
 
       Toast.show({
-        content: res.message || locale('审批失败!')
+        content: String(res.message || locale('审批失败!'))
       })
     }
   }
 
-  const resData = result as { data?: Record<string, unknown>; status?: string; message?: string } | null
+  const resData = result as {
+    data?: Record<string, unknown>
+    status?: string
+    message?: string
+  } | null
 
   return (
     <Page>
@@ -92,7 +94,7 @@ const FormDetail = () => {
               </Form.Item>
 
               <Form.Item label={locale('Select')}>
-                <Text>{LyrixiText.getDisplayValue(resData?.data?.select)}</Text>
+                <Text>{Text.getDisplayValue(resData?.data?.select)}</Text>
               </Form.Item>
             </Form>
           </Card>
@@ -100,11 +102,11 @@ const FormDetail = () => {
             <Divider>Vertical Layout</Divider>
             <Form layout="vertical" style={{ marginLeft: '12px' }}>
               <Form.Item label={locale('Input')}>
-                <Text>{LyrixiText.getDisplayValue(resData?.data?.input)}</Text>
+                <Text>{Text.getDisplayValue(resData?.data?.input)}</Text>
               </Form.Item>
 
               <Form.Item label={locale('Select')}>
-                <Text>{LyrixiText.getDisplayValue(resData?.data?.select)}</Text>
+                <Text>{Text.getDisplayValue(resData?.data?.select)}</Text>
               </Form.Item>
             </Form>
           </Card>

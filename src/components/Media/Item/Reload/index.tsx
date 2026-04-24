@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { type MouseEvent } from 'react'
+
+export interface MediaReloadProps {
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
 
 // 失败重传图标
 const Reload = ({
   // Events
   onClick
-}) => {
+}: MediaReloadProps) => {
   return (
     <div
       // Style
@@ -12,8 +16,9 @@ const Reload = ({
       // Events
       onClick={(e) => {
         e.stopPropagation()
+        const parent = e.currentTarget.parentElement
         // 上传失败允许重新上传
-        if (e.currentTarget.parentNode.classList.contains('lyrixi-error')) {
+        if (parent?.classList.contains('lyrixi-error')) {
           onClick && onClick(e)
         }
       }}

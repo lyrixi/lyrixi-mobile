@@ -1,22 +1,28 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const ToolBar = forwardRef(
-  (
-    {
-      // Style
-      variant, // 变体: filled, default
-      className,
-      style,
+export interface ToolBarProps {
+  variant?: string
+  className?: string
+  style?: CSSProperties
+  children?: ReactNode
+}
 
-      // Element
-      children
-    },
-    ref
-  ) => {
+const ToolBar = forwardRef<HTMLDivElement, ToolBarProps>(function ToolBar(
+  {
+    // Style
+    variant, // 变体: filled, default
+    className,
+    style,
+
+    // Element
+    children
+  },
+  ref
+) {
     return (
       <div
         ref={ref}
@@ -32,7 +38,6 @@ const ToolBar = forwardRef(
         {children}
       </div>
     )
-  }
-)
+})
 
 export default ToolBar

@@ -1,18 +1,19 @@
 // 加载google地图leaflet插件
 function loadGoogleTileLayer() {
-  window.L.tileLayer.currentTileLayer = function () {
-    return new window.L.tileLayer(
+  const Leaf = window.L!
+  Leaf.tileLayer.currentTileLayer = function () {
+    return Leaf.tileLayer(
       'https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}&scale=2'
-    )
+    ) as import('leaflet').TileLayer
   }
 
   // maxBounds
-  let southWest = window.L.latLng(-85.05112878, -Infinity)
-  let northEast = window.L.latLng(85.05112878, Infinity)
-  const maxBounds = window.L.latLngBounds(southWest, northEast)
+  let southWest = Leaf.latLng(-85.05112878, -Infinity)
+  let northEast = Leaf.latLng(85.05112878, Infinity)
+  const maxBounds = Leaf.latLngBounds(southWest, northEast)
 
   // maxZoom, minZoom
-  window.L.tileLayer.currentTileLayer.config = {
+  Leaf.tileLayer.currentTileLayer.config = {
     maxBounds,
     maxZoom: 18,
     minZoom: 1

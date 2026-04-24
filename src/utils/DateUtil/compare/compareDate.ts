@@ -1,5 +1,5 @@
 // 比较年月日,大于返回1,等于返回0,小于返回-1
-function compareDate(d1, d2) {
+function compareDate(d1: Date, d2: Date) {
   const year1 = d1.getFullYear()
   const month1 = d1.getMonth() // 注意：月是从0开始的
   const day1 = d1.getDate()

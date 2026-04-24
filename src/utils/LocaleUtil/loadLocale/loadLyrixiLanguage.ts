@@ -29,7 +29,7 @@ async function loadLyrixiLanguage(language: string) {
           result = {
             status: 'success',
             message: 'Local locale loaded',
-            data: window.lyrixiLocaleData
+            data: window.lyrixiLocaleData as Record<string, string> | undefined
           }
         }
         resolve(result)

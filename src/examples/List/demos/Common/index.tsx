@@ -7,20 +7,20 @@ import Main from './Main'
 // 简便的列表组件, 只需要传入url和params即可
 const Common = () => {
   // 查询参数
-  const [queryParams, setQueryParams] = useState({ keyword: '1' })
+  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({ keyword: '1' })
 
   return (
     <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}
-        onSearch={(newQueryParams) => {
+        onSearch={(newQueryParams: Record<string, unknown>) => {
           setQueryParams(newQueryParams)
         }}
       />
 
       {/* 列表 */}
-      <Main queryParams={queryParams} />
+      <Main cacheName="list-common-demo" queryParams={queryParams} />
     </Page>
   )
 }

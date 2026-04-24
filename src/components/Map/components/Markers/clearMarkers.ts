@@ -1,10 +1,21 @@
+import type * as L from 'leaflet'
+
+export interface CanvasMarkerLayer {
+  clearLayers: () => void
+  addMarker: (m: L.Marker) => void
+  removeMarker: (target: unknown, all?: boolean) => void
+  addOnClickListener: (cb: (e: unknown, data: unknown) => void) => void
+}
+
 // Clear all marker
-function clearMarkers({ canvasLayer, layer }) {
+function clearMarkers(layers: {
+  canvasLayer: CanvasMarkerLayer | null | undefined
+  layer: L.LayerGroup | null | undefined
+}): void {
+  const { canvasLayer, layer } = layers
   if (!canvasLayer || !layer) return
-  // Clear Leaflet plugin layer
-  canvasLayer && canvasLayer.clearLayers()
-  // Clear Leaflet layer
-  layer && layer.clearLayers()
+  canvasLayer.clearLayers()
+  layer.clearLayers()
 }
 
 export default clearMarkers

@@ -1,23 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, type ComponentProps } from 'react'
 import SearchPage from './SearchPage'
 
 // 内库使用-start
 import Page from './../../../Page'
 import ToolBar from './../../../ToolBar'
+import SearchBar from './../../../ToolBar/Search'
 // 内库使用-end
 
 /* 测试使用-start
 import { Page, ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { CascaderNode } from './../../cascaderTypes'
+
+type SearchBarFieldProps = ComponentProps<typeof SearchBar>
+
 // 搜索
 function SearchControl({
-  // Value & Display Value
   list,
-
-  // Events
   onSearch,
   onChange
+}: {
+  list: CascaderNode[]
+  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
+  onChange?: (v: CascaderNode[]) => void
 }) {
   // 搜索结果页面显隐
   const [open, setOpen] = useState(false)
@@ -27,13 +33,13 @@ function SearchControl({
       {/* Element: Search Bar */}
       <Page.Header className="lyrixi-cascader-search-header">
         <ToolBar variant="filled">
-          <ToolBar.Search
-            // Status
-            readOnly
-            // Events
-            onClick={() => {
-              setOpen(!open)
-            }}
+          <SearchBar
+            {...({
+              readOnly: true,
+              onClick: () => {
+                setOpen(!open)
+              }
+            } as unknown as SearchBarFieldProps)}
           />
         </ToolBar>
       </Page.Header>

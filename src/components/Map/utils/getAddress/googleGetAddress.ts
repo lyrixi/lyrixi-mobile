@@ -8,39 +8,38 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { AddressParams } from './bmapGetAddress'
+
 // 地址逆解析
-function googleGetAddress(params) {
-  // eslint-disable-next-line
-  return new Promise(async (resolve) => {
-    // 国内转为gcj02
-    let coord = coordsToFit({
+function googleGetAddress(params: AddressParams): Promise<unknown> {
+  return new Promise((resolve) => {
+    const g = window.google
+    if (!g?.maps?.LatLng || !g.maps.Geocoder) {
+      resolve({ status: 'error', message: 'Google Maps not loaded' })
+      return
+    }
+    const coord = coordsToFit({
       longitude: params.longitude,
       latitude: params.latitude,
       type: params.type,
       inChinaTo: 'gcj02'
-    })
-    let latLng = new window.google.maps.LatLng(coord.latitude, coord.longitude)
+    }) as { latitude?: number; longitude?: number } | null
 
-    // 逆解析
-    let geocoder = new window.google.maps.Geocoder()
-    geocoder.geocode({ location: latLng }, function (results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-          let result = {
-            ...params,
-            status: 'success',
-            address: results[0].formatted_address
-          }
-          resolve(result)
-        } else {
-          resolve({
-            status: 'error',
-            message: LocaleUtil.locale(
-              '获取地址失败, 请稍后重试',
-              'lyrixi_f1f199dd46c73946aa4b3140e98752a4'
-            )
-          })
-        }
+    if (!coord?.latitude || !coord?.longitude) {
+      resolve({ status: 'error', message: 'invalid coordinates' })
+      return
+    }
+
+    const latLng = new g.maps.LatLng(Number(coord.latitude), Number(coord.longitude))
+    const geocoder = new g.maps.Geocoder()
+    geocoder.geocode({ location: latLng }, function (results: unknown, status: unknown) {
+      if (status === 'OK' && Array.isArray(results) && results[0]) {
+        const first = results[0] as { formatted_address?: string }
+        resolve({
+          ...params,
+          status: 'success',
+          address: first.formatted_address
+        })
       } else {
         resolve({
           status: 'error',

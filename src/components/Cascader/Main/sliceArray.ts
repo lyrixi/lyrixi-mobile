@@ -1,7 +1,9 @@
+import type { CascaderNode } from '../cascaderTypes'
+
 // 截取此id前面的array
-function sliceArray(arr, id) {
+function sliceArray(arr: CascaderNode[], id: string | number): CascaderNode[] {
   const index = Array.isArray(arr) && arr.length ? arr.findIndex((item) => item.id === id) : -1
-  if (index === -1) return [] // 如果没有找到，返回空数组
+  if (index === -1) return []
   return arr.slice(0, index + 1)
 }
 

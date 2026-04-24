@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode, type Ref } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
+import type { CascaderNode } from './../cascaderTypes'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,24 +14,52 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-// 级联选择
-const DistrictModal = forwardRef(
+type LoadCountriesFn = () => Promise<import('../DistrictMain/utils/loadBaseData').ApiResult>
+type LoadCountryRegionsFn = (id?: string | number) => Promise<import('../DistrictMain/utils/loadBaseData').ApiResult>
+type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<import('../DistrictMain/utils/loadBaseData').ApiResult>
+
+export interface DistrictModalProps {
+  value?: CascaderNode[] | null
+  type?: string
+  loadCountries?: LoadCountriesFn
+  loadCountryRegions?: LoadCountryRegionsFn
+  loadStreets?: LoadStreetsFn
+  open?: boolean
+  min?: string
+  maskClosable?: boolean
+  safeArea?: boolean
+  listStyle?: CSSProperties
+  listClassName?: string
+  itemStyle?: CSSProperties
+  itemClassName?: string
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: string | boolean | HTMLElement | null
+  searchVisible?: boolean
+  title?: ReactNode
+  okNode?: ReactNode
+  cancelNode?: ReactNode
+  cancelVisible?: boolean
+  onClose?: () => void
+  onOk?: (value: CascaderNode[] | null | undefined) => boolean | Promise<unknown> | void
+  onChange?: (value: CascaderNode[]) => void
+}
+
+type DistrictMainHandle = { loadList: () => Promise<void>; list: unknown }
+
+const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
   (
     {
-      // Value & Display Value
       value,
-      type = 'street', // 'country', 'province', 'city', 'district', 'street'
-
+      type: typeProp = 'street',
       loadCountries,
       loadCountryRegions,
       loadStreets,
-
-      // Status
       open,
       min = '',
       maskClosable,
-
-      // Style
       safeArea,
       listStyle,
       listClassName,
@@ -40,76 +69,64 @@ const DistrictModal = forwardRef(
       modalClassName,
       maskStyle,
       maskClassName,
-
-      // Elements
       portal,
       searchVisible,
       title,
       okNode,
       cancelNode,
       cancelVisible,
-
-      // Events
       onClose,
       onOk,
       onChange
     },
     ref
   ) => {
-    // eslint-disable-next-line
-    type = formatType(type)
+    const districtType = formatType(typeProp)
 
-    // 是否显示右上角确认按钮
-    let [okVisible, setOkVisible] = useState(null)
-    let [currentValue, setCurrentValue] = useState(value)
-    const modalRef = useRef(null)
-    const mainRef = useRef(null)
+    const [okVisible, setOkVisible] = useState(false)
+    const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(value as CascaderNode[] | null | undefined)
+    const modalRef = useRef<unknown>(null)
+    const mainRef = useRef<DistrictMainHandle | null>(null)
 
     useImperativeHandle(ref, () => {
-      return {
-        ...modalRef.current,
-        ...mainRef.current
-      }
+      const a = (modalRef.current as Record<string, unknown> | null) ?? {}
+      const b = (mainRef.current as Record<string, unknown> | null) ?? {}
+      return { ...a, ...b }
     })
 
-    // 同步外部value到内部currentValue
     useEffect(() => {
-      setCurrentValue(value)
-      // eslint-disable-next-line
+      setCurrentValue(value as CascaderNode[] | null | undefined)
     }, [value])
 
-    // 根据currentValue更新Ok按钮显示状态
     useEffect(() => {
       setOkVisible(updateOkVisible(currentValue, min))
-      // eslint-disable-next-line
-    }, [currentValue])
+    }, [currentValue, min])
 
-    // 下钻根据min更新Ok按钮显示状态
-    function handleDrillDown(tabs) {
+    function handleDrillDown(tabs: CascaderNode[] | null | undefined) {
       setOkVisible(updateOkVisible(tabs, min))
     }
 
     async function handleOk() {
-      // 触发 onOk
       if (onOk) {
-        let goOn = await onOk(currentValue)
-        if (goOn === false) return false
-        if (goOn instanceof Date) {
-          currentValue = goOn
+        const goOn = await onOk(currentValue)
+        if (goOn === false) {
+          return false
         }
       }
 
-      onChange?.(currentValue)
+      onChange?.((currentValue ?? []) as CascaderNode[])
       onClose?.()
     }
 
-    function handleChange(newValue) {
+    function handleChange(newValue: CascaderNode[]) {
       setCurrentValue(newValue)
       handleDrillDown(newValue)
 
-      if (!Array.isArray(newValue) || !newValue.length) return
-      // 如果到达叶子节点，或已选到指定类型，立即关闭
-      if (newValue?.[newValue.length - 1]?.isLeaf || newValue?.[newValue.length - 1]?.type?.includes(type)) {
+      if (!Array.isArray(newValue) || !newValue.length) {
+        return
+      }
+      const last = newValue[newValue.length - 1]
+      if (last?.isLeaf || (Array.isArray(last?.type) && last.type.includes(districtType))) {
         onChange?.(newValue)
         onClose?.()
       }
@@ -117,49 +134,40 @@ const DistrictModal = forwardRef(
 
     return (
       <NavBarModal
-        ref={modalRef}
-        // Status
+        ref={modalRef as Ref<unknown> as never}
         open={open}
         maskClosable={maskClosable}
-        // Style
         safeArea={safeArea}
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-modal-cascader', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        // Element
         portal={portal}
         title={title}
         okNode={okNode}
         okVisible={okVisible}
         cancelNode={cancelNode}
         cancelVisible={cancelVisible}
-        // Events
         onClose={onClose}
         onOk={handleOk}
       >
-        {/* 弹窗打开时, 再渲染主页面, 避免用户未点击就加载的问题 */}
-        {open && <DistrictMain
-          ref={mainRef}
-          // Modal: Status
-          open={open}
-          // Main: Value & Display Value
-          value={currentValue}
-          type={type}
-          loadCountries={loadCountries}
-          loadCountryRegions={loadCountryRegions}
-          loadStreets={loadStreets}
-          // Main: Status
-          // Main: Style
-          listStyle={listStyle}
-          listClassName={listClassName}
-          itemStyle={itemStyle}
-          itemClassName={itemClassName}
-          // Main: Elements
-          searchVisible={searchVisible}
-          // Main: Events
-          onChange={handleChange}
-        />}
+        {open && (
+          <DistrictMain
+            ref={mainRef as Ref<DistrictMainHandle> as never}
+            open={open}
+            value={currentValue}
+            type={districtType}
+            loadCountries={loadCountries}
+            loadCountryRegions={loadCountryRegions}
+            loadStreets={loadStreets}
+            listStyle={listStyle}
+            listClassName={listClassName}
+            itemStyle={itemStyle}
+            itemClassName={itemClassName}
+            searchVisible={searchVisible}
+            onChange={handleChange}
+          />
+        )}
       </NavBarModal>
     )
   }

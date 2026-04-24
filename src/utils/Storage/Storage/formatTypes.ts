@@ -12,7 +12,7 @@ const DRIVER_MAPPING = {
  * @param {Array} types - 驱动类型数组，可以是字符串或常量
  * @returns {Array} 转换后的驱动常量数组
  */
-const formatTypes = (types) => {
+const formatTypes = (types: unknown[]): string[] => {
   if (!Array.isArray(types) || types.length === 0) {
     // 如果没有提供类型或数组为空，返回所有三个常量
     return [DRIVER_MAPPING.indexedDB, DRIVER_MAPPING.localStorage, DRIVER_MAPPING.webSQL]

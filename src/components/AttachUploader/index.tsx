@@ -6,102 +6,74 @@ import uploadList from './utils/uploadList'
 // 内部组件
 import Browser from './Browser'
 
+import type { AttachRef } from './../Attach/Attach'
+import type { AttachUploaderBaseProps } from './types'
+
 // 照片上传
-function AttachUploader(
+const AttachUploader = forwardRef<AttachRef, AttachUploaderBaseProps>(function AttachUploader(
   {
-    // Value & Display Value
-    list = [], // [{fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
+    list = [],
     maxCount,
     maxChooseCount,
-    sourceType,
+    extension,
+    sourceType: sourceTypeProp,
     maxSize,
-
-    // Status
-    async = false, // 是否异步上传(目前只有app支持)
-    reUpload = true, // 支持重新上传
+    async = false,
+    reUpload = true,
     allowClear = true,
     allowChoose = true,
-
-    // Style
     className,
     uploadPosition,
-
-    // Element
-    uploadRender, // 上传按钮覆盖的dom
+    uploadRender,
     uploadingRender,
     itemRender,
-
-    // Preview Server
     previewPortal,
     previewServerUrl,
     previewServerSourceType,
-    /*
-    格式化上传结果
-    入参:
-    {platform: 'browser', uploadItem: item, result: result}
-    返回格式:
-    /*
-      {
-        fileUrl: "全路径(必传)",
-        filePath: "入库路径(必传)",
-        fileName: "文件名(必传)",
-        fileSize: "文件大小(字节)",
-      },
-    */
     getUploadUrl,
     formatHeaders,
     formatPayload,
     formatResponse,
-
-    // Events
     onBeforeChoose,
-    // onChoose,
-    onFileChange,
+    onFileChange: _onFileChange,
     onUpload,
     onChange,
     onPreview
   },
   ref
 ) {
-  // 公共属性对象，所有平台组件共享
-  const commonProps = {
-    // Value & Display Value
-    list,
-    maxCount,
-    maxChooseCount,
-    sourceType,
-    maxSize,
-    // Status
-    async,
-    reUpload,
-    allowClear,
-    allowChoose,
-    // Style
-    className,
-    uploadPosition,
-    // Element
-    uploadRender,
-    uploadingRender,
-    itemRender,
-    // Preview Server
-    previewPortal,
-    previewServerUrl,
-    previewServerSourceType,
-    getUploadUrl,
-    formatHeaders,
-    formatPayload,
-    formatResponse,
-    // Events
-    onBeforeChoose,
-    onFileChange,
-    onUpload,
-    onChange,
-    onPreview
-  }
+  const sourceType = sourceTypeProp ?? extension
+  return (
+    <Browser
+      ref={ref}
+      list={list}
+      maxCount={maxCount}
+      maxChooseCount={maxChooseCount}
+      sourceType={sourceType}
+      maxSize={maxSize}
+      async={async}
+      reUpload={reUpload}
+      allowClear={allowClear}
+      allowChoose={allowChoose}
+      className={className}
+      uploadPosition={uploadPosition}
+      uploadRender={uploadRender}
+      uploadingRender={uploadingRender}
+      itemRender={itemRender}
+      previewPortal={previewPortal}
+      previewServerUrl={previewServerUrl}
+      previewServerSourceType={previewServerSourceType}
+      getUploadUrl={getUploadUrl}
+      formatHeaders={formatHeaders}
+      formatPayload={formatPayload}
+      formatResponse={formatResponse}
+      onBeforeChoose={onBeforeChoose}
+      onChange={onChange}
+      onPreview={onPreview}
+    />
+  )
+})
 
-  return <Browser ref={ref} {...commonProps} />
-}
+;(AttachUploader as unknown as { uploadList: typeof uploadList }).uploadList = uploadList
 
-AttachUploader.uploadList = uploadList
-
-export default forwardRef(AttachUploader)
+export default AttachUploader

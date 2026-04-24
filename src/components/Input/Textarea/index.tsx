@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
-import InputText from './../Text'
+import InputText, { InputTextRef, InputTextProps } from './../Text'
 
-const Textarea = forwardRef(
+const Textarea = forwardRef<InputTextRef, InputTextProps>(
   (
     {
       id,

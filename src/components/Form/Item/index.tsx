@@ -1,18 +1,62 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type ReactNode, type CSSProperties } from 'react'
 import { Field } from 'rc-field-form'
+import type { Rule, NamePath, Meta } from 'rc-field-form/lib/interface'
+import type { ShouldUpdate } from 'rc-field-form/lib/Field'
 import Item from './../components/Item'
 import Label from './../components/ItemLabel'
 import Main from './../components/ItemMain'
+import type { FormItemRef } from './../components/Item/Item'
 
-const FormItem = forwardRef(
+export interface FormItemProps {
+  // Field properties
+  name?: NamePath
+  valuePropName?: string
+  shouldUpdate?: ShouldUpdate
+  initialValue?: unknown
+  validateTrigger?: string | string[]
+  rules?: Rule[]
+
+  // Value & Display Value
+  id?: string
+
+  // Status
+  labelEllipsis?: { rows?: number; [key: string]: unknown }
+  labelSpan?: number | string
+  mainSpan?: number | string
+  mainEllipsis?: { rows?: number; [key: string]: unknown }
+
+  // Style
+  style?: CSSProperties
+  className?: string
+  layout?: string
+  /** Row height for virtual list layout (see `components/Item`) */
+  height?: number
+  /** Demo / compatibility; apply max length on the input child in practice */
+  maxLength?: number
+  labelStyle?: CSSProperties
+  labelClassName?: string
+  mainStyle?: CSSProperties
+  mainClassName?: string
+
+  // Elements
+  label?: ReactNode
+  labelHelp?: ReactNode
+  inputExtraRender?: (opts: { errors: string[] }) => ReactNode
+  extraRender?: (opts: { errors: string[] }) => ReactNode
+  /** Renders below the main control; receives current field value (e.g. char count). */
+  extra?: (opts: { value: unknown }) => ReactNode
+  children?: ReactNode
+}
+
+const FormItem = forwardRef<FormItemRef, FormItemProps>(
   (
     {
       // Field properties
-      name, // field required property
+      name,
       valuePropName,
       shouldUpdate,
       initialValue,
-      validateTrigger, // onBlur
+      validateTrigger,
       rules,
 
       // Value & Display Value
@@ -28,6 +72,8 @@ const FormItem = forwardRef(
       style,
       className,
       layout,
+      height,
+      maxLength: _maxLength,
       labelStyle,
       labelClassName,
       mainStyle,
@@ -38,6 +84,7 @@ const FormItem = forwardRef(
       labelHelp,
       inputExtraRender,
       extraRender,
+      extra,
       children
     },
     ref
@@ -51,18 +98,19 @@ const FormItem = forwardRef(
         initialValue={initialValue}
         validateTrigger={validateTrigger}
       >
-        {(control, renderMeta, context) => {
+        {(control: Record<string, unknown>, renderMeta: Meta) => {
           return (
             <Item
               ref={ref}
               id={id}
-              name={name}
+              name={typeof name === 'string' ? name : undefined}
               // Value & Display Value
 
               // Style
               style={style}
               className={className}
               layout={layout}
+              height={height}
             >
               <Label
                 // Value & Display Value
@@ -72,7 +120,7 @@ const FormItem = forwardRef(
                 className={labelClassName}
                 span={labelSpan}
                 // Validate
-                required={(rules || []).some((rule) => rule.required)}
+                required={(rules || []).some((rule) => typeof rule === 'object' && !('validator' in rule) ? rule.required : false)}
                 // Element
                 help={labelHelp}
               >
@@ -87,23 +135,29 @@ const FormItem = forwardRef(
                 className={mainClassName}
                 // Element
                 errorMessage={renderMeta?.errors?.[0] || ''}
-                inputExtraNode={inputExtraRender?.({ errors: renderMeta?.errors })}
-                extraNode={extraRender?.({ errors: renderMeta?.errors })}
+                inputExtraNode={inputExtraRender?.({ errors: renderMeta?.errors ?? [] })}
+                extraNode={
+                  extra?.({ value: control?.value }) ?? extraRender?.({ errors: renderMeta?.errors ?? [] })
+                }
               >
                 {/* In Form, Set value and onChange props to children: */}
                 {React.Children.map(children, (child) => {
                   // 检查是否是一个 React 组件（函数组件或类组件），而不是原生元素
                   if (React.isValidElement(child) && typeof child.type !== 'string') {
                     // 克隆该组件并注入新的属性
-                    return React.cloneElement(child, {
+                    return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
                       value: control?.value,
-                      onChange: (...changeProps) => {
+                      onChange: (...changeProps: unknown[]) => {
                         // 调用原有onChange（如果存在）
-                        if (typeof child.props.onChange === 'function') {
-                          child.props.onChange(...changeProps)
+                        const childOnChange = (child.props as Record<string, unknown>).onChange
+                        if (typeof childOnChange === 'function') {
+                          childOnChange(...changeProps)
                         }
                         // 执行父组件的逻辑
-                        control?.onChange && control.onChange(...changeProps)
+                        const controlOnChange = control?.onChange
+                        if (typeof controlOnChange === 'function') {
+                          controlOnChange(...changeProps)
+                        }
                       }
                     })
                   }

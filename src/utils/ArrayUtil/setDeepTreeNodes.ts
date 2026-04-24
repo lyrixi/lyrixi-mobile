@@ -1,9 +1,16 @@
+interface DeepNode extends Record<string, unknown> {
+  id: string | number
+  children?: DeepNode[]
+}
+
 // Recurse tree, set node
-function setDeepTreeNodes(tree, updateNode) {
+function setDeepTreeNodes(
+  tree: DeepNode[],
+  updateNode?: (node: DeepNode) => void
+): DeepNode[] {
   for (const node of tree) {
     updateNode && updateNode(node)
     if (Array.isArray(node.children) && node.children.length) {
-      // 递归查找子节点
       setDeepTreeNodes(node.children, updateNode)
     }
   }

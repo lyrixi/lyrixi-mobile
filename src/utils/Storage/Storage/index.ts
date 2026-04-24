@@ -7,7 +7,7 @@ import formatTypes from './formatTypes'
 const Storage = {
   ...LocalStorage,
   ...SessionStorage,
-  config: (cfg) => {
+  config: (cfg: { types?: unknown[] } | undefined) => {
     const config: { driver?: ReturnType<typeof formatTypes> } = {}
     if (cfg?.types) {
       config.driver = formatTypes(cfg.types)
@@ -15,7 +15,7 @@ const Storage = {
     return localforage.config(config)
   },
   // 从仓库中获取 key 对应的值并将结果提供给回调函数。如果 key 不存在，getItem() 将返回 null。
-  getItem: (key) => {
+  getItem: (key: string) => {
     if (!key) {
       console.error('Storage.getItem: key is empty')
       return null
@@ -32,7 +32,7 @@ const Storage = {
       localforage
         .keys()
         .then(async (keys) => {
-          const items = {}
+          const items: Record<string, unknown> = {}
           for (let key of keys) {
             const value = await localforage.getItem(key)
             items[key] = value
@@ -45,7 +45,7 @@ const Storage = {
     })
   },
   // 将数据保存到离线仓库。
-  setItem: (key, value) => {
+  setItem: (key: string, value: unknown) => {
     if (!key) {
       console.error('Storage.setItem: key is empty')
       return null
@@ -53,7 +53,7 @@ const Storage = {
     return localforage.setItem(key, value)
   },
   // 从离线仓库中删除 key 对应的值。
-  removeItem: (key) => {
+  removeItem: (key: string) => {
     if (!key) {
       console.error('Storage.removeItem: key is empty')
       return undefined

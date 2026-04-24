@@ -7,7 +7,7 @@ function getPayload() {
     lowerAppId?: string
     suiteType?: string
   } = {
-    appId: getPayloadValue('appId'),
+    appId: getPayloadValue('appId') || '',
     url: window.location.href.split('#')[0]
   }
   // 获取下游appId

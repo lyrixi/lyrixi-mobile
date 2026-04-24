@@ -1,186 +1,197 @@
-import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
+import React, {
+  forwardRef,
+  useRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+  type CSSProperties,
+  type ReactNode
+} from 'react'
 import Popup from './Popup'
+import type { PopupRef } from './Popup'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
 // 内库使用-start
 import Combo from './../Combo'
+import type { ComboRef } from './../Combo'
 // 内库使用-end
 
 /* 测试使用-start
 import { Combo } from 'lyrixi-mobile'
 测试使用-end */
 
-const Tooltip = forwardRef(
-  (
-    {
-      // Status
-      maskClosable = true,
+export interface TooltipProps {
+  maskClosable?: boolean
+  style?: CSSProperties
+  className?: string
+  animation?: string
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  children?: ReactNode
+  comboRender?: (ctx: {
+    comboRef: React.RefObject<ComboRef | null>
+    open: boolean | null
+    onClick: () => void
+  }) => ReactNode
+  modalRender?: (ctx: { open: boolean | null; onClose: () => void }) => ReactNode
+  referenceElement?: Element | null | (() => Element | null)
+  portal?: boolean | Element | null
+  onBeforeOpen?: () => boolean | void | Promise<boolean | void>
+  onOpen?: () => void
+  onClose?: () => void
+}
 
-      // Style
-      style,
-      className,
-      animation = 'slideDownLeft', // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
+const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Tooltip(
+  {
+    maskClosable = true,
+    style,
+    className,
+    animation = 'slideDownLeft',
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
+    children,
+    comboRender,
+    modalRender,
+    referenceElement: externalReferenceElement,
+    portal,
+    onBeforeOpen,
+    onOpen,
+    onClose
+  },
+  ref
+) {
+  const [open, setOpen] = useState<boolean | null>(null)
+  const modalRef = useRef<PopupRef | null>(null)
+  const comboRef = useRef<ComboRef | null>(null)
 
-      // Element
-      children,
-      comboRender,
-      modalRender,
-      referenceElement: externalReferenceElement,
-      portal,
+  useImperativeHandle(ref, () => {
+    return {
+      ...(typeof comboRef.current === 'object' && comboRef.current !== null
+        ? (comboRef.current as unknown as Record<string, unknown>)
+        : {}),
+      ...(typeof modalRef.current === 'object' && modalRef.current !== null
+        ? (modalRef.current as unknown as Record<string, unknown>)
+        : {})
+    }
+  })
 
-      // Events
-      onBeforeOpen,
-      onOpen,
-      onClose
-    },
-    ref
-  ) => {
-    // 非受控显隐
-    let [open, setOpen] = useState(null)
-    const modalRef = useRef(null)
-    const comboRef = useRef(null)
-
-    useImperativeHandle(ref, () => {
-      return {
-        ...comboRef.current,
-        ...modalRef.current
-      }
-    })
-
-    // 更新Modal位置
-    function updatePosition(targetReferenceElement) {
-      // 参考元素
-      let referenceElement =
-        typeof externalReferenceElement === 'function'
-          ? externalReferenceElement()
-          : externalReferenceElement
-      if (targetReferenceElement) {
-        referenceElement = targetReferenceElement
-      }
-
-      if (!referenceElement) {
-        let element = comboRef?.current?.element
-        if (!element && typeof comboRef?.current?.getElement === 'function') {
-          element = comboRef.current.getElement()
-        }
-        referenceElement = element
-      }
-
-      // 位移元素
-      let modalElement = modalRef?.current?.modalElement ? modalRef?.current?.modalElement : null
-
-      if (referenceElement && modalElement) {
-        // 没有自定义位置时生效
-        if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-          updatePositionByReferenceElement(modalElement, {
-            referenceElement: referenceElement,
-            animation: animation,
-            offset: {
-              top: 8,
-              bottom: 8
-            }
-          })
-        }
-      }
+  function updatePosition(targetReferenceElement?: HTMLElement | null) {
+    let referenceElement: HTMLElement | null | undefined =
+      typeof externalReferenceElement === 'function'
+        ? (externalReferenceElement() as HTMLElement | null)
+        : (externalReferenceElement as HTMLElement | null | undefined)
+    if (targetReferenceElement) {
+      referenceElement = targetReferenceElement
     }
 
-    // 受控显隐时, 需要更新容器位置
-    useEffect(() => {
-      if (open) {
-        updatePosition()
+    if (!referenceElement) {
+      let element: HTMLElement | null | undefined = comboRef.current?.element
+      if (!element && typeof comboRef.current?.getElement === 'function') {
+        element = comboRef.current.getElement()
       }
-      if (open === null) return
-      if (open) {
-        if (typeof onOpen === 'function') onOpen()
-      } else {
-        if (typeof onClose === 'function') onClose()
-      }
-    }, [open]) // eslint-disable-line
+      referenceElement = element ?? undefined
+    }
 
-    // 非受控显隐, 为子元素增加点击事件显隐
-    async function handleOpen() {
-      if (!open === true) {
-        if (typeof onBeforeOpen === 'function') {
-          let goOn = await onBeforeOpen()
-          if (goOn === false) return
-        }
-      }
+    const modalElement = modalRef.current?.modalElement ?? null
 
-      // 没有自定义位置时生效
+    if (referenceElement && modalElement) {
       if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
-        updatePosition(comboRef.current?.element)
-      }
-
-      setOpen(!open)
-    }
-
-    // 获取 Combo 节点
-    function getComboNode() {
-      if (typeof comboRender === 'function') {
-        return comboRender({
-          comboRef,
-          open: open,
-          onClick: handleOpen
+        updatePositionByReferenceElement(modalElement, {
+          referenceElement: referenceElement,
+          animation: animation,
+          offset: {
+            top: 8,
+            bottom: 8
+          }
         })
       }
+    }
+  }
 
-      // comboChildren
-      if (children) {
-        return (
-          <Combo
-            ref={comboRef}
-            // Style
-            style={style}
-            className={className}
-            // Events
-            onClick={handleOpen}
-          >
-            {children}
-          </Combo>
-        )
+  useEffect(() => {
+    if (open) {
+      updatePosition()
+    }
+    if (open === null) return
+    if (open) {
+      if (typeof onOpen === 'function') onOpen()
+    } else {
+      if (typeof onClose === 'function') onClose()
+    }
+  }, [open]) // eslint-disable-line
+
+  async function handleOpen() {
+    if (open !== true) {
+      if (typeof onBeforeOpen === 'function') {
+        const goOn = await onBeforeOpen()
+        if (goOn === false) return
       }
-
-      return null
     }
 
-    return (
-      <>
-        {/* Element: Combo */}
-        {getComboNode()}
+    if (!modalStyle?.left && !modalStyle?.top && !modalStyle?.right && !modalStyle?.bottom) {
+      const el = comboRef.current ? comboRef.current.element : null
+      updatePosition(el)
+    }
 
-        {/* Element: Popup */}
-        <Popup
-          ref={modalRef}
-          // Status
-          open={typeof open === 'boolean' ? open : open}
-          maskClosable={maskClosable}
-          // Style
-          animation={animation}
-          modalStyle={modalStyle}
-          modalClassName={modalClassName}
-          maskStyle={maskStyle}
-          maskClassName={maskClassName}
-          // Element
-          portal={portal}
-          // Events
-          onClose={() => {
-            setOpen(false)
-          }}
-        >
-          {modalRender?.({
-            open: open,
-            onClose: () => {
-              setOpen(false)
-            }
-          })}
-        </Popup>
-      </>
-    )
+    setOpen((prev) => !prev)
   }
-)
+
+  function getComboNode() {
+    if (typeof comboRender === 'function') {
+      return comboRender({
+        comboRef,
+        open: open,
+        onClick: handleOpen
+      })
+    }
+
+    if (children) {
+      return (
+        <Combo
+          ref={comboRef}
+          style={style}
+          className={className}
+          onClick={handleOpen}
+        >
+          {children}
+        </Combo>
+      )
+    }
+
+    return null
+  }
+
+  return (
+    <>
+      {getComboNode()}
+
+      <Popup
+        ref={modalRef}
+        open={!!open}
+        maskClosable={maskClosable}
+        animation={animation}
+        modalStyle={modalStyle}
+        modalClassName={modalClassName}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        portal={portal instanceof Element ? portal : null}
+        onClose={() => {
+          setOpen(false)
+        }}
+      >
+        {modalRender?.({
+          open: open,
+          onClose: () => {
+            setOpen(false)
+          }
+        })}
+      </Popup>
+    </>
+  )
+})
 
 export default Tooltip

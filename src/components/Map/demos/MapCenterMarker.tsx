@@ -16,7 +16,6 @@ export default () => {
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap',
             markerIcons: {
@@ -31,25 +30,25 @@ export default () => {
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapContainer
-              center={coordsToWgs84(value)}
+              center={coordsToWgs84(value) ?? undefined}
               zoom={16}
               onDragEnd={(map) => {
                 const center = map.getCenter()
                 setValue({
-                  latitude: center.lat,
-                  longitude: center.lng,
+                  latitude: center.latitude,
+                  longitude: center.longitude,
                   type: 'wgs84',
                   address: ''
                 })
               }}
             >
               <CenterMarker
-                value={coordsToWgs84(value)}
+                value={coordsToWgs84(value) ?? undefined}
                 onDragEnd={(map) => {
                   const center = map.getCenter()
                   setValue({
-                    latitude: center.lat,
-                    longitude: center.lng,
+                    latitude: center.latitude,
+                    longitude: center.longitude,
                     type: 'wgs84',
                     address: ''
                   })

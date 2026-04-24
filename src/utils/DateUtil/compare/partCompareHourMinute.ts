@@ -1,5 +1,5 @@
 // 比较时分,格式:hh:mm,大于返回1,等于返回0,小于返回-1
-function compareTime(d1, d2) {
+function compareTime(d1: Date, d2: Date) {
   let hour1 = d1.getHours()
   let hour2 = d2.getHours()
   let minute1 = d1.getMinutes()

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import destroy from './../destroy'
-import showMask from './showMask'
+import showMask, { type MessageMaskElement } from './showMask'
 import updateAttribute from './updateAttribute'
 
 export type MessageOpenButton = {
@@ -64,51 +64,54 @@ export default function open({
 
   // 按钮数组: [{name: string, onClick: function, className?: string, style?: object}]
   buttons = []
-}: MessageOpenProps) {
-  let mask = null
+}: MessageOpenProps): MessageMaskElement {
+  let mask: MessageMaskElement | null = null
 
   // 点击遮罩
-  function handleMaskClick(e) {
+  function handleMaskClick(e: MouseEvent) {
     e.stopPropagation()
 
+    const target = e.target as HTMLElement
+
     // 点击按钮
-    if (e.target.classList.contains('lyrixi-message-button')) {
+    if (target.classList.contains('lyrixi-message-button')) {
       handleButtonClick(e)
       return
     }
 
     // 点击遮罩
-    if (e.target.classList.contains('lyrixi-mask')) {
+    if (target.classList.contains('lyrixi-mask')) {
       // 读取更新后的属性
-      const maskClosable = mask?.maskClosable
-      const onClose = mask?.onClose
+      const currentMaskClosable = mask?.maskClosable
+      const currentOnClose = mask?.onClose
 
-      if (maskClosable) {
-        if (onClose) onClose()
-        destroy(e.currentTarget)
+      if (currentMaskClosable) {
+        if (currentOnClose) currentOnClose()
+        destroy(e.currentTarget as MessageMaskElement)
       }
     }
   }
 
   // 点击按钮
-  function handleButtonClick(e) {
-    const buttonId = e.target.id
+  function handleButtonClick(e: MouseEvent) {
+    const target = e.target as HTMLElement
+    const buttonId = target.id
     const buttonIndex = parseInt(buttonId.replace('lyrixi-message-button-', ''))
-    const buttons = mask?.buttons || []
-    const button = buttons[buttonIndex]
+    const currentButtons = mask?.buttons || []
+    const button = currentButtons[buttonIndex]
 
     if (button && typeof button.onClick === 'function') {
       const result = button.onClick()
       // 如果onClick返回false，不关闭弹窗
       if (result !== false) {
-        const onClose = mask?.onClose
-        if (onClose) onClose()
-        destroy(e.currentTarget.closest('.lyrixi-mask-message'))
+        const currentOnClose = mask?.onClose
+        if (currentOnClose) currentOnClose()
+        destroy((e.currentTarget as HTMLElement).closest('.lyrixi-mask-message') as MessageMaskElement | null)
       }
     } else {
-      const onClose = mask?.onClose
-      if (onClose) onClose()
-      destroy(e.currentTarget.closest('.lyrixi-mask-message'))
+      const currentOnClose = mask?.onClose
+      if (currentOnClose) currentOnClose()
+      destroy((e.currentTarget as HTMLElement).closest('.lyrixi-mask-message') as MessageMaskElement | null)
     }
     e.stopPropagation()
   }

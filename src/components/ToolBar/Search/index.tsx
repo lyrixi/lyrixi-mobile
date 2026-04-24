@@ -3,15 +3,16 @@ import React, { forwardRef } from 'react'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import Input from './../../Input'
+import InputSearch, { type SearchProps } from './../../Input/Search'
+import type { InputTextRef } from './../../Input/Text'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, LocaleUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const Search = (
-  {
+const Search = forwardRef<InputTextRef, SearchProps>(function Search(props, ref) {
+  const {
     id,
     name,
 
@@ -56,19 +57,18 @@ const Search = (
     onKeyDown,
     onPressEnter,
     onSearch
-  },
-  ref
-) => {
+  } = props
+
   return (
-    <Input.Search
+    <InputSearch
       ref={ref}
       id={id}
       name={name}
       // Value & Display Value
       value={value}
-      placeholder={
-        placeholder || LocaleUtil.locale('搜索', 'lyrixi_e5f71fc31e7246dd6ccc5539570471b0')
-      }
+      placeholder={String(
+        placeholder ?? LocaleUtil.locale('搜索', 'lyrixi_e5f71fc31e7246dd6ccc5539570471b0')
+      )}
       formatter={formatter}
       // Status
       readOnly={readOnly}
@@ -82,7 +82,7 @@ const Search = (
       className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}
       // Element
       inputRender={inputRender}
-      leftIconNode={<i className="lyrixi-toolbar-search-input-left-icon" />}
+      leftIconNode={leftIconNode || <i className="lyrixi-toolbar-search-input-left-icon" />}
       rightIconNode={rightIconNode}
       clearRender={clearRender}
       // Validate
@@ -103,6 +103,6 @@ const Search = (
       onSearch={onSearch}
     />
   )
-}
+})
 
-export default forwardRef(Search)
+export default Search

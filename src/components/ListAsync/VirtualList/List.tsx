@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 // 内库使用-start
-import List from './../../List'
+import List, { ListProps, ListRef } from './../../List/List'
 // 内库使用-end
 
 /* 测试使用-start
@@ -10,9 +10,15 @@ import { List } from 'lyrixi-mobile'
 
 // 虚拟滚动条需要用绝对定位
 const itemAbsoluteStyle = {
-  position: 'absolute',
+  position: 'absolute' as const,
   left: 0,
   right: 0
+}
+
+type RawItem = Record<string, unknown>
+
+interface VirtualListProps extends ListProps {
+  height?: number
 }
 
 // 普通列表
@@ -24,45 +30,21 @@ const VirtualList = (
     multiple,
     allowClear,
     list,
-    /*
-    // Group
-    {
-      title: '',
-      children: ...
-    },
-    // No Group
-    {
-      _raw: 原始数据, 必传,
-      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
-      id: '选项1',
-      title: '选项1',
-      description: '普通描述',
-      content: '自定义内容',
-      actionRender: () => {
-        return <Button>action</Button>
-      }
-    }
-    */
-
     // Status
     checkable,
-
     // Style
     itemStyle,
     itemClassName,
     itemLayout,
     checkboxVariant,
     checkboxPosition,
-
     // Elements
     itemRender,
-
     // Events
     onChange
-  },
-  ref
+  }: VirtualListProps,
+  ref: React.Ref<ListRef>
 ) => {
-  // 滚动占位元素
   return (
     <List
       ref={ref}
@@ -72,12 +54,15 @@ const VirtualList = (
       allowClear={allowClear}
       list={list?.map((item) => {
         // 虚拟滚动条需要用绝对定位
-        item.style = {
-          ...item?.style,
-          ...itemAbsoluteStyle,
-          top: item.virtualData.top
+        const virtualData = (item as RawItem & { virtualData?: { top?: number } }).virtualData
+        return {
+          ...item,
+          style: {
+            ...(item.style as React.CSSProperties | undefined),
+            ...itemAbsoluteStyle,
+            top: virtualData?.top
+          }
         }
-        return item
       })}
       // Status
       checkable={checkable}
@@ -100,4 +85,4 @@ const VirtualList = (
   )
 }
 
-export default forwardRef(VirtualList)
+export default forwardRef<ListRef, VirtualListProps>(VirtualList)

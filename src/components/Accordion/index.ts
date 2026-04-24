@@ -1,6 +1,6 @@
 import AccordionGroup from './AccordionGroup'
 import Accordion from './Accordion'
 
-Accordion.Group = AccordionGroup
+const AccordionWithGroup = Object.assign(Accordion, { Group: AccordionGroup })
 
-export default Accordion
+export default AccordionWithGroup

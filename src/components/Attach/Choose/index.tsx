@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ChangeEvent, type MouseEvent } from 'react'
 import getAccept from './../utils/getAccept'
 import Button from './Button'
 
@@ -10,37 +10,38 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface AttachChooseProps {
+  sourceType: string[]
+  disabled?: boolean
+  className?: string
+  uploadRender?: (ctx: { uploadingType: string }) => React.ReactNode
+  uploadingRender?: (ctx: { uploadingType: string }) => React.ReactNode
+  onBeforeChoose?: (e: MouseEvent<HTMLDivElement>) => boolean | void | Promise<boolean | void>
+  onChoose?: (e: MouseEvent<HTMLDivElement>) => void | Promise<unknown>
+  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void
+}
+
 // 上传按钮
-const Attach = ({
-  // Value & Display Value
+const AttachChoose = ({
   sourceType,
-
-  // Status
   disabled,
-
-  // Style
   className,
-
-  // Element
   uploadRender,
-
   uploadingRender,
-
-  // Events
   onBeforeChoose,
   onChoose,
   onFileChange
-}) => {
+}: AttachChooseProps) => {
   // 选择文件
-  function handleFileChange(e) {
-    onFileChange && onFileChange(e)
+  function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
+    onFileChange?.(e)
   }
 
   // 点击选择框
-  async function handleUploadClick(e) {
+  async function handleUploadClick(e: MouseEvent<HTMLDivElement>) {
     // Fix react 16 sync events lost issues
-    if (e.persist && typeof e.persist === 'function') e.persist()
-    let target = e.currentTarget
+    e.persist?.()
+    const target = e.currentTarget
     e.stopPropagation()
 
     if (target.classList.contains('lyrixi-disabled')) {
@@ -49,21 +50,22 @@ const Attach = ({
 
     // 前置校验
     if (typeof onBeforeChoose === 'function') {
-      let goOn = await onBeforeChoose(e)
+      const goOn = await onBeforeChoose(e)
       if (goOn === false) return
     }
 
     // 点击的是input框
     if (onFileChange) {
       // 防止选择重复图片时不触发
-      let inputElement = target.querySelector('input')
+      const inputElement = target.querySelector('input') as HTMLInputElement | null
+      if (!inputElement) return
       inputElement.value = ''
       inputElement.click()
       return
     }
 
     // 触发选择
-    onChoose && onChoose(e)
+    onChoose?.(e)
   }
 
   // 上传node
@@ -106,4 +108,4 @@ const Attach = ({
   )
 }
 
-export default Attach
+export default AttachChoose

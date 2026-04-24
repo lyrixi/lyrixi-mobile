@@ -1,5 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
+import type { ComboRef } from './../../Input/Select'
+import type { SelectComboProps } from './../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -9,159 +11,137 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const SelectCombo = forwardRef(
-  (
-    {
-      // Combo
-      // Combo: Value & Display Value
-      value,
-      placeholder,
-      formatter,
-      autoSize,
-      separator,
-      mode,
-      // Combo: Status
-      readOnly,
-      disabled,
-      allowClear,
-      multiple,
-      // Combo: Style
-      style,
-      className,
-      // Combo: Element
-      leftIconNode,
-      rightIconNode,
-      clearRender,
+const SelectCombo = forwardRef<Record<string, unknown>, SelectComboProps>(function SelectCombo(
+  {
+    value,
+    placeholder,
+    formatter,
+    autoSize,
+    separator,
+    mode,
+    readOnly,
+    disabled,
+    allowClear,
+    multiple,
+    style,
+    className,
+    leftIconNode,
+    rightIconNode,
+    clearRender,
+    list,
+    formatViewList,
+    formatViewItem,
+    maskClosable,
+    checkable,
+    safeArea,
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
+    checkboxVariant,
+    checkboxPosition,
+    itemStyle,
+    itemClassName,
+    itemLayout,
+    portal,
+    title,
+    cancelNode,
+    cancelVisible,
+    headerRender,
+    itemRender,
+    onOk,
+    onChange,
+    onBeforeOpen
+  },
+  ref
+) {
+  const [open, setOpen] = useState(false)
+  const comboRef = useRef<ComboRef | null>(null)
+  const modalRef = useRef<Record<string, unknown> | null>(null)
 
-      // Modal
-      // Modal: Value & Display Value
-      list,
-      formatViewList,
-      formatViewItem,
-      // Modal: Status
-      maskClosable,
-      checkable,
-      // Modal: Style
-      safeArea,
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
-      checkboxVariant,
-      checkboxPosition,
-      itemStyle,
-      itemClassName,
-      itemLayout,
-      // Modal: Elements
-      portal,
-      title,
-      cancelNode,
-      cancelVisible,
-      headerRender,
-      itemRender,
-
-      // Events
-      onOk,
-      onChange,
-      onBeforeOpen
-    },
-    ref
-  ) => {
-    const [open, setOpen] = useState(false)
-    const comboRef = useRef(null)
-    const modalRef = useRef(null)
-
-    useImperativeHandle(ref, () => {
-      return {
-        ...comboRef.current,
-        ...modalRef.current,
-        close: () => setOpen(false),
-        open: () => setOpen(true)
-      }
-    })
-
-    async function handleOpen() {
-      if (typeof onBeforeOpen === 'function') {
-        let goOn = await onBeforeOpen()
-        if (goOn === false) return
-      }
-      setOpen(true)
+  useImperativeHandle(ref, () => {
+    return {
+      ...(typeof comboRef.current === 'object' && comboRef.current !== null
+        ? (comboRef.current as unknown as Record<string, unknown>)
+        : {}),
+      ...(typeof modalRef.current === 'object' && modalRef.current !== null
+        ? (modalRef.current as unknown as Record<string, unknown>)
+        : {}),
+      close: () => setOpen(false),
+      open: () => setOpen(true)
     }
+  })
 
-    function handleClose() {
-      setOpen(false)
+  async function handleOpen() {
+    if (typeof onBeforeOpen === 'function') {
+      const goOn = await onBeforeOpen()
+      if (goOn === false) return
     }
-
-    function handleChange(newValue) {
-      onChange?.(newValue)
-      setOpen(false)
-    }
-
-    return (
-      <>
-        <Input.Select
-          ref={comboRef}
-          // Combo: Value & Display Value
-          value={value}
-          placeholder={placeholder}
-          formatter={formatter}
-          autoSize={autoSize}
-          separator={separator}
-          mode={mode}
-          multiple={multiple}
-          // Combo: Status
-          readOnly={readOnly}
-          disabled={disabled}
-          allowClear={allowClear}
-          // Combo: Style
-          style={style}
-          className={className}
-          // Combo: Element
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
-          clearRender={clearRender}
-          // Events
-          onChange={onChange}
-          onClick={handleOpen}
-        />
-        <Modal
-          ref={modalRef}
-          // Value & Display Value
-          value={value}
-          list={list}
-          formatViewList={formatViewList}
-          formatViewItem={formatViewItem}
-          // Status
-          open={open}
-          maskClosable={maskClosable}
-          safeArea={safeArea}
-          multiple={multiple}
-          checkable={checkable}
-          // Style
-          modalStyle={modalStyle}
-          modalClassName={modalClassName}
-          maskStyle={maskStyle}
-          maskClassName={maskClassName}
-          itemStyle={itemStyle}
-          itemClassName={itemClassName}
-          itemLayout={itemLayout}
-          checkboxVariant={checkboxVariant}
-          checkboxPosition={checkboxPosition}
-          // Elements
-          portal={portal}
-          title={title}
-          cancelNode={cancelNode}
-          cancelVisible={cancelVisible}
-          headerRender={headerRender}
-          itemRender={itemRender}
-          // Events
-          onOk={onOk}
-          onChange={handleChange}
-          onClose={handleClose}
-        />
-      </>
-    )
+    setOpen(true)
   }
-)
+
+  function handleClose() {
+    setOpen(false)
+  }
+
+  function handleChange(newValue: unknown) {
+    onChange?.(newValue)
+    setOpen(false)
+  }
+
+  return (
+    <>
+      <Input.Select
+        ref={comboRef}
+        value={value}
+        placeholder={placeholder}
+        formatter={formatter}
+        autoSize={autoSize}
+        separator={separator}
+        mode={mode}
+        readOnly={readOnly}
+        disabled={disabled}
+        allowClear={allowClear}
+        style={style}
+        className={className}
+        leftIconNode={leftIconNode}
+        rightIconNode={rightIconNode}
+        clearRender={clearRender}
+        onChange={onChange}
+        onClick={handleOpen}
+      />
+      <Modal
+        ref={modalRef}
+        value={value}
+        list={list}
+        formatViewList={formatViewList}
+        formatViewItem={formatViewItem}
+        open={open}
+        maskClosable={maskClosable}
+        safeArea={safeArea}
+        multiple={multiple}
+        checkable={checkable}
+        modalStyle={modalStyle}
+        modalClassName={modalClassName}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        itemStyle={itemStyle}
+        itemClassName={itemClassName}
+        itemLayout={itemLayout}
+        checkboxVariant={checkboxVariant}
+        checkboxPosition={checkboxPosition}
+        portal={portal}
+        title={title}
+        cancelNode={cancelNode}
+        cancelVisible={cancelVisible}
+        headerRender={headerRender}
+        itemRender={itemRender}
+        onOk={onOk}
+        onChange={handleChange}
+        onClose={handleClose}
+      />
+    </>
+  )
+})
 
 export default SelectCombo

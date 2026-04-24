@@ -1,7 +1,8 @@
-import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
+import type { GapOption, SnapPosition } from './AssistiveTouch/snapToEdge'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -10,10 +11,28 @@ import SafeArea from './../SafeArea'
 
 /* 测试使用-start
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
+
+export interface FloatRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface FloatProps {
+  draggable?: boolean
+  gap?: GapOption
+  safeArea?: boolean
+  style?: CSSProperties
+  className?: string
+  portal?: Element | DocumentFragment
+  children?: ReactNode
+  onDragEnd?: (data: { position: SnapPosition }) => void
+}
+
+type FloatElement = HTMLDivElement & { initialPosition?: boolean }
 
 // 悬浮按钮
-function Float(
+const Float = forwardRef<FloatRef, FloatProps>(function Float(
   {
     // Status
     draggable,
@@ -33,10 +52,10 @@ function Float(
   },
   ref
 ) {
-  const rootRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
 
   // 拖动信息
-  let touchesRef = useRef({
+  const touchesRef = useRef({
     isDragging: false,
     startX: 0,
     startY: 0,
@@ -53,11 +72,11 @@ function Float(
   })
 
   // 触摸开始
-  function handleTouchStart(e) {
+  function handleTouchStart(e: React.TouchEvent<HTMLDivElement>): void {
     e.stopPropagation()
 
     // 解决拖动时影响document弹性
-    e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
+    e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault as EventListener, false)
 
     touchesRef.current.isDragging = true
     const touch = e.touches[0]
@@ -70,16 +89,17 @@ function Float(
   }
 
   // 触摸移动
-  function handleTouchMove(e) {
+  function handleTouchMove(e: React.TouchEvent<HTMLDivElement>): void {
     e.stopPropagation()
 
     // 拖动前, 清除冲突定位
-    if (!e.currentTarget.initialPosition) {
-      e.currentTarget.initialPosition = true
-      e.currentTarget.style.left = `${touchesRef.current.currentLeft}px`
-      e.currentTarget.style.top = `${touchesRef.current.currentTop}px`
-      e.currentTarget.style.right = 'auto'
-      e.currentTarget.style.bottom = 'auto'
+    const target = e.currentTarget as FloatElement
+    if (!target.initialPosition) {
+      target.initialPosition = true
+      target.style.left = `${touchesRef.current.currentLeft}px`
+      target.style.top = `${touchesRef.current.currentTop}px`
+      target.style.right = 'auto'
+      target.style.bottom = 'auto'
     }
 
     // e.preventDefault()
@@ -87,28 +107,29 @@ function Float(
     const deltaX = touch.clientX - touchesRef.current.startX
     const deltaY = touch.clientY - touchesRef.current.startY
 
-    e.currentTarget.style.left = `${touchesRef.current.currentLeft + deltaX}px`
-    e.currentTarget.style.top = `${touchesRef.current.currentTop + deltaY}px`
+    target.style.left = `${touchesRef.current.currentLeft + deltaX}px`
+    target.style.top = `${touchesRef.current.currentTop + deltaY}px`
   }
 
   // 触摸结束
-  function handleTouchEnd(e) {
+  function handleTouchEnd(e: React.TouchEvent<HTMLDivElement>): void {
     e.stopPropagation()
 
     // 拖动前, 清除冲突定位
-    e.currentTarget.initialPosition = false
+    ;(e.currentTarget as FloatElement).initialPosition = false
 
     // 解除对move时的弹性对当前div的锁定
-    e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault, false)
+    e.currentTarget.removeEventListener('touchmove', DOMUtil.preventDefault as EventListener, false)
 
     // 拖拽结束
     touchesRef.current.isDragging = false
 
     // 点击时不要修改位置
-    let endX = e?.clientX || e?.changedTouches?.[0]?.clientX
-    let endY = e?.clientY || e?.changedTouches?.[0]?.clientY
-    let diffX = touchesRef.current.startX - endX
-    let diffY = touchesRef.current.startY - endY
+    const changedTouch = e.changedTouches?.[0]
+    const endX = changedTouch?.clientX ?? touchesRef.current.startX
+    const endY = changedTouch?.clientY ?? touchesRef.current.startY
+    const diffX = touchesRef.current.startX - endX
+    const diffY = touchesRef.current.startY - endY
 
     // 判断是否是点击
     if (Math.abs(diffX) < 5 && Math.abs(diffY) < 5) {
@@ -120,7 +141,7 @@ function Float(
       gap,
       onChange:
         typeof onDragEnd === 'function'
-          ? (pos) => {
+          ? (pos: SnapPosition) => {
             onDragEnd({ position: pos })
           }
           : undefined
@@ -128,14 +149,14 @@ function Float(
   }
 
   // Node
-  let Node = (
+  const Node = (
     <div
       ref={rootRef}
       style={style}
-      className={DOMUtil.classNames('lyrixi-float-container', className)}
-      onTouchStart={draggable ? handleTouchStart : null}
-      onTouchMove={draggable ? handleTouchMove : null}
-      onTouchEnd={draggable ? handleTouchEnd : null}
+      className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-float-container', className)}
+      onTouchStart={draggable ? handleTouchStart : undefined}
+      onTouchMove={draggable ? handleTouchMove : undefined}
+      onTouchEnd={draggable ? handleTouchEnd : undefined}
     // onTouchMove里已经阻止的点击事件, 所以这里就不需要加了
     // onClickCapture={(e) => {
     //   console.log('click', touchesRef.current.isDragging)
@@ -154,7 +175,7 @@ function Float(
   if (!portal) {
     return Node
   }
-  return createPortal(Node, portal || document.getElementById('root'))
-}
+  return createPortal(Node, portal || document.getElementById('root') || document.body)
+})
 
-export default forwardRef(Float)
+export default Float

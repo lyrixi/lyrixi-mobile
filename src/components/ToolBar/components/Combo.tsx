@@ -1,16 +1,41 @@
-import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Button from './../../Button'
+import type { ButtonRef } from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface ComboRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface ComboProps {
+  open?: boolean | null
+  direction?: string
+  block?: boolean
+  color?: string
+  backgroundColor?: string
+  borderColor?: string
+  border?: string
+  size?: string | number | readonly string[]
+  sizeEqual?: boolean
+  fontSize?: string | number
+  radius?: string | number
+  style?: CSSProperties
+  className?: string
+  arrowRender?: (props: { open: boolean | null }) => ReactNode
+  children?: ReactNode
+  onClick?: MouseEventHandler<HTMLDivElement>
+}
+
 // 操作表下拉
-function Combo(
+const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
   {
     // Status
     open,
@@ -38,23 +63,23 @@ function Combo(
   },
   ref
 ) {
-  const comboRef = useRef(null)
+  const comboRef = useRef<ButtonRef | null>(null)
   useImperativeHandle(ref, () => {
     return {
-      element: comboRef.current.element,
-      getElement: comboRef.current?.getElement
+      element: comboRef.current?.element ?? null,
+      getElement: () => comboRef.current?.element ?? null
     }
   })
 
   // 获取箭头节点
   function getArrowNode() {
     if (typeof arrowRender === 'function') {
-      return arrowRender({ open: open })
+      return arrowRender({ open: open ?? null })
     }
     return null
   }
 
-  let ArrowNode = getArrowNode()
+  const ArrowNode = getArrowNode()
 
   return (
     <Button
@@ -82,6 +107,6 @@ function Combo(
       {getArrowNode()}
     </Button>
   )
-}
+})
 
-export default forwardRef(Combo)
+export default Combo

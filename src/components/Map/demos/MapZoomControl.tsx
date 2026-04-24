@@ -9,7 +9,6 @@ export default () => {
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap'
           }}

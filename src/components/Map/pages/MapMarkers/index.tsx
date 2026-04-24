@@ -1,22 +1,65 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
-import MapContainer from './../../components/MapContainer'
+import MapContainer, {
+  type MapContainerAPI,
+  type MapContainerProps
+} from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
-import Markers from './../../components/Markers'
+import Markers, { type MarkersHandle } from './../../components/Markers'
 import Circles from './../../components/Circles'
+import type { CirclePoint } from './../../components/Circles/addCircles'
 import Polyline from './../../components/Polyline'
+import type { LinePoint } from './../../components/Polyline/addPolyline'
+
+export interface MapMarkersProps {
+  markers?: unknown
+  minZoom?: number
+  maxZoom?: number
+  polyline?: unknown
+  circles?: unknown
+  style?: React.CSSProperties
+  className?: string
+  polylineStyle?: React.CSSProperties
+  polylineClassName?: string
+  circlesStyle?: React.CSSProperties
+  circlesClassName?: string
+  zoomControlStyle?: React.CSSProperties
+  zoomControlClassName?: string
+  getAddress?: MapContainerProps['getAddress']
+  getLocation?: MapContainerProps['getLocation']
+  queryNearby?: MapContainerProps['queryNearby']
+  openLocation?: MapContainerProps['openLocation']
+  children?: React.ReactNode
+  onLoad?: MapContainerProps['onLoad']
+  onMarkerClick?: (e: unknown) => void
+  onZoomStart?: MapContainerProps['onZoomStart']
+  onZoom?: MapContainerProps['onZoom']
+  onZoomEnd?: MapContainerProps['onZoomEnd']
+  onMoveStart?: MapContainerProps['onMoveStart']
+  onMove?: MapContainerProps['onMove']
+  onMoveEnd?: MapContainerProps['onMoveEnd']
+  onDragStart?: MapContainerProps['onDragStart']
+  onDrag?: MapContainerProps['onDrag']
+  onDragEnd?: MapContainerProps['onDragEnd']
+}
+
+export type MapMarkersHandle =
+  | (MapContainerAPI & {
+      markersRef: React.MutableRefObject<MarkersHandle | null>
+      polylineRef: React.MutableRefObject<{ redraw: () => void } | null>
+      circlesRef: React.MutableRefObject<{ redraw: () => void } | null>
+      zoomRef: React.MutableRefObject<React.ElementRef<typeof ZoomControl> | null>
+    })
+  | null
 
 // 地图标注
-function MapMarkers(
+const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMarkers(
   {
-    // Value & Display Value
     markers,
     minZoom,
     maxZoom,
     polyline,
     circles,
-
-    // Style
     style,
     className,
     polylineStyle,
@@ -25,17 +68,11 @@ function MapMarkers(
     circlesClassName,
     zoomControlStyle,
     zoomControlClassName,
-
-    // Utils
     getAddress,
     getLocation,
     queryNearby,
     openLocation,
-
-    // Elements
     children,
-
-    // Events
     onLoad,
     onMarkerClick,
     onZoomStart,
@@ -50,54 +87,56 @@ function MapMarkers(
   },
   ref
 ) {
-  // 地图容器
-  const mapRef = useRef(null)
+  const mapRef = useRef<MapContainerAPI | null>(null)
+  const markersRef = useRef<MarkersHandle | null>(null)
+  const circlesRef = useRef<{ redraw: () => void } | null>(null)
+  const polylineRef = useRef<{ redraw: () => void } | null>(null)
+  const zoomRef = useRef<React.ElementRef<typeof ZoomControl> | null>(null)
 
-  const markersRef = useRef(null)
-  const circlesRef = useRef(null)
-  const polylineRef = useRef(null)
-  const zoomRef = useRef(null)
-
-  // Expose
+  // Ref handle extends MapContainerAPI with map refs; may be null before map is ready. React ref typings expect the non-null branch for useImperativeHandle.
+  // @ts-expect-error MapMarkersHandle includes null; TS useImperativeHandle infers the non-null handle shape only
   useImperativeHandle(ref, () => {
-    return {
-      ...mapRef?.current,
-      markersRef: markersRef,
-      polylineRef: polylineRef,
-      circlesRef: circlesRef,
-      zoomRef: zoomRef
+    const m = mapRef.current
+    if (!m) {
+      return null
     }
+    return {
+      ...m,
+      markersRef,
+      polylineRef,
+      circlesRef,
+      zoomRef
+    } as MapMarkersHandle
   })
 
   useEffect(() => {
     if (!markers) return
-    mapRef.current?.panTo?.(markers)
-    // eslint-disable-next-line
+    const target = markers as unknown as Parameters<MapContainerAPI['panTo']>[0]
+    mapRef.current?.panTo?.(target)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(markers)])
 
   return (
     <MapContainer
       ref={mapRef}
-      // Value & Display Value
       zoom={14}
       minZoom={minZoom}
       maxZoom={maxZoom}
-      // Utils
       getAddress={getAddress}
       getLocation={getLocation}
       queryNearby={queryNearby}
       openLocation={openLocation}
-      // Style
       className={className}
       style={style}
-      // Events
       onLoad={(result) => {
-        // 地图加载失败
         if (result?.status === 'error') return
-
-        // 加载完成后更新视图
-        result?.map?.panTo?.(markers)
-
+        if (markers) {
+          if (Array.isArray(markers)) {
+            result?.map?.panTo?.(markers as unknown as Parameters<MapContainerAPI['panTo']>[0])
+          } else {
+            result?.map?.panTo?.(markers as Parameters<MapContainerAPI['panTo']>[0])
+          }
+        }
         onLoad && onLoad(result)
       }}
       onZoomStart={onZoomStart}
@@ -110,50 +149,47 @@ function MapMarkers(
       onDrag={onDrag}
       onDragEnd={onDragEnd}
     >
-      {/* Element: Markers */}
-      <Markers
-        ref={markersRef}
-        // Value & Display Value
-        points={markers}
-        // Events
-        onClick={onMarkerClick}
-      />
+      <>
+        <Markers ref={markersRef} points={markers} onClick={onMarkerClick} />
 
-      {/* Element: Circles */}
-      {circles && (
-        <Circles
-          ref={circlesRef}
-          // Value & Display Value
-          points={circles}
-          // Style
-          className={circlesClassName}
-          style={circlesStyle}
+        {circles ? (
+          <Circles
+            {...({
+              ref: circlesRef,
+              points: circles as CirclePoint[],
+              className: circlesClassName,
+              style: circlesStyle
+            } as React.ComponentPropsWithRef<typeof Circles>)}
+          />
+        ) : null}
+
+        {polyline ? (
+          <Polyline
+            {...({
+              ref: polylineRef,
+              points: polyline as LinePoint[],
+              className: polylineClassName,
+              style: polylineStyle
+            } as React.ComponentPropsWithRef<typeof Polyline>)}
+          />
+        ) : null}
+
+        <ZoomControl
+          ref={zoomRef}
+          onZoomIn={(m) => {
+            void m
+          }}
+          onZoomOut={(m) => {
+            void m
+          }}
+          className={zoomControlClassName}
+          style={{ bottom: '20px', ...zoomControlStyle }}
         />
-      )}
 
-      {/* Element: Polyline */}
-      {polyline && (
-        <Polyline
-          ref={polylineRef}
-          // Value & Display Value
-          points={polyline}
-          // Style
-          className={polylineClassName}
-          style={polylineStyle}
-        />
-      )}
-
-      {/* Element: ZoomControl */}
-      <ZoomControl
-        ref={zoomRef}
-        // Style
-        className={zoomControlClassName}
-        style={{ bottom: '20px', ...zoomControlStyle }}
-      />
-
-      {children}
+        {children}
+      </>
     </MapContainer>
   )
-}
+})
 
-export default forwardRef(MapMarkers)
+export default MapMarkers

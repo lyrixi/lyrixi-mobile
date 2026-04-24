@@ -9,7 +9,10 @@ import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
 // 显隐Loading
-function showLoading(element, { content, index } = {}) {
+function showLoading(
+  element: Element | null | undefined,
+  { content, index }: { content?: string; index?: number } = {}
+) {
   if (!element) return
   // 根节点遮罩
   element.classList.add('lyrixi-uploading')

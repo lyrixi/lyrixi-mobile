@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Loading.Ouroboros>
-          {/* Loading.Ouroboros 示例内容 */}
-        </Loading.Ouroboros>
+        <Loading.Ouroboros />
       </Page.Main>
     </Page>
   )

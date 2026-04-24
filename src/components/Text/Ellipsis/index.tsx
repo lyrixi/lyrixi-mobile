@@ -10,13 +10,24 @@ import checkOverflow from './checkOverflow'
 import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface EllipsisConfig {
+  rows?: number
+  expandable?: boolean
+  defaultExpanded?: boolean
+}
+
+interface EllipsisProps {
+  ellipsis?: EllipsisConfig
+  children?: React.ReactNode
+}
+
 const Ellipsis = ({
   // Status
   ellipsis,
   // Element
   children
-}) => {
-  const rootRef = useRef(null)
+}: EllipsisProps) => {
+  const rootRef = useRef<HTMLDivElement>(null)
   // 展开和收缩
   const [expanded, setExpanded] = useState(ellipsis?.defaultExpanded || false)
   // 展开和收缩按钮的高度
@@ -26,6 +37,7 @@ const Ellipsis = ({
 
   useEffect(() => {
     if (!ellipsis?.expandable) return
+    if (!rootRef.current) return
 
     let isOverflow = checkOverflow(rootRef.current)
     setIsOverflow(isOverflow)
@@ -37,10 +49,10 @@ const Ellipsis = ({
     if (!isOverflow) return
 
     // 获取展开/收起按钮的高度
-    const toggle = rootRef.current?.querySelector('.lyrixi-text-ellipsis-toggle')
-    const toggleHeight = toggle?.offsetHeight
-    if (toggleHeight) {
-      setToggleHeight(`${toggleHeight}px`)
+    const toggle = rootRef.current?.querySelector('.lyrixi-text-ellipsis-toggle') as HTMLElement | null
+    const toggleHeightPx = toggle?.offsetHeight
+    if (toggleHeightPx) {
+      setToggleHeight(`${toggleHeightPx}px`)
       return
     }
   }, [isOverflow])
@@ -60,7 +72,7 @@ const Ellipsis = ({
         isOverflow && 'lyrixi-text-ellipsis-toggle-show',
         expanded ? 'lyrixi-expanded' : ''
       )}
-      style={style}
+      style={style as React.CSSProperties}
     >
       {/* Element: 展开和收缩按钮 */}
       {isOverflow && (

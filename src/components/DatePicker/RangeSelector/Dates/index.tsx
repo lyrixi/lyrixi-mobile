@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { type CSSProperties } from 'react'
 import RangeCombo from './../../RangeCombo'
+import type { DatePickerRangeComboProps } from './../../datePickerTypes'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -9,6 +10,27 @@ import Input from './../../../Input'
 /* 测试使用-start
 import { LocaleUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
+
+type CustomDatesProps = Pick<
+  DatePickerRangeComboProps,
+  | 'value'
+  | 'type'
+  | 'min'
+  | 'max'
+  | 'hourStep'
+  | 'minuteStep'
+  | 'startDisabled'
+  | 'endDisabled'
+  | 'allowClear'
+  | 'portal'
+  | 'onChange'
+  | 'onOk'
+> & {
+  maskClassName?: string
+  maskStyle?: CSSProperties
+  modalClassName?: string
+  modalStyle?: CSSProperties
+}
 
 // 自定义日期选择弹窗: 两框选择
 export default function CustomDates({
@@ -33,16 +55,17 @@ export default function CustomDates({
   // Events
   onChange,
   onOk
-}) {
+}: CustomDatesProps) {
   return (
     <div className="lyrixi-datepicker-rangeselector-date">
       <RangeCombo
         // Value & Display Value
         value={value}
-        placeholder={LocaleUtil.locale('请选择', 'lyrixi_708c9d6d2ad108ab2c560530810deae9')}
-        ranges={null}
+        placeholder={String(
+          LocaleUtil.locale('请选择', 'lyrixi_708c9d6d2ad108ab2c560530810deae9')
+        )}
         // Status
-        type={type}
+        type={type as DatePickerRangeComboProps['type']}
         allowClear={allowClear}
         startDisabled={startDisabled}
         endDisabled={endDisabled}
@@ -62,8 +85,8 @@ export default function CustomDates({
           return clearable ? <Input.IconClear onClick={onClear} /> : <Input.IconRightArrow />
         }}
         // Events
-        onChange={onChange}
-        onOk={onOk}
+        onChange={onChange as DatePickerRangeComboProps['onChange']}
+        onOk={onOk as DatePickerRangeComboProps['onOk']}
       />
     </div>
   )

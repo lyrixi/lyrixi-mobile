@@ -1,8 +1,14 @@
+export interface CascaderTab {
+  id?: string | number
+  parentid?: string | number
+  [key: string]: unknown
+}
+
 // 格式化选中项, 补充parentid
-function formatValue(value) {
+function formatValue(value: CascaderTab[] | null | undefined): CascaderTab[] | null {
   if (!Array.isArray(value) || !value.length) return null
-  for (let [index, item] of value.entries()) {
-    // id和parentid必须为string
+  for (let index = 0; index < value.length; index++) {
+    const item = value[index]
     if (item.id && typeof item.id === 'number') {
       item.id = String(item.id)
     }

@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,12 +8,31 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Button = forwardRef(
+interface MessageButtonRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface MessageButtonProps {
+  className?: string
+  style?: CSSProperties
+  /** 占满一行（与业务 less 搭配，示例用） */
+  block?: boolean
+  color?: string
+  backgroundColor?: string
+  children?: ReactNode
+  onClick?: MouseEventHandler<HTMLDivElement>
+}
+
+const Button = forwardRef<MessageButtonRef, MessageButtonProps>(
   (
     {
       // Style
       className,
       style,
+      block,
+      color,
+      backgroundColor,
       // Elements
       children,
       // Events
@@ -21,7 +40,7 @@ const Button = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -33,7 +52,12 @@ const Button = forwardRef(
 
     return (
       <div
-        style={style}
+        style={{
+          ...(color ? { color } : {}),
+          ...(backgroundColor ? { backgroundColor } : {}),
+          ...(block ? { width: '100%', display: 'block' } : {}),
+          ...style
+        }}
         className={DOMUtil.classNames('lyrixi-message-button', className)}
         onClick={onClick}
         ref={rootRef}
@@ -44,7 +68,7 @@ const Button = forwardRef(
   }
 )
 
-// Component Name, for compact
-Button.componentName = 'ToolBar.Button'
+type ButtonWithName = typeof Button & { componentName: string }
+;(Button as ButtonWithName).componentName = 'ToolBar.Button'
 
-export default Button
+export default Button as ButtonWithName

@@ -17,7 +17,7 @@ function getPayloadValue(payloadKey: string): string {
   if (payloadValue) {
     Storage.setLocalStorage(payloadKey, payloadValue)
   }
-  return payloadValue
+  return String(payloadValue || '')
 }
 
 export default getPayloadValue

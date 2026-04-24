@@ -9,27 +9,28 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { CalendarCellDate } from '../../types'
+
 // 获得上月日历
-function getPrevMonthData(currentDate, weekStart) {
-  let date = DateUtil.previousMonth(new Date(currentDate))
-  return DateUtil.getMonthDates(date, weekStart)
+function getPrevMonthData(currentDate: Date, weekStart: string) {
+  const date = DateUtil.previousMonth(new Date(currentDate))
+  return DateUtil.getMonthDates(date, weekStart) as CalendarCellDate[][]
 }
 // 获得下月日历
-function getNextMonthData(currentDate, weekStart) {
-  let date = DateUtil.nextMonth(new Date(currentDate))
-  return DateUtil.getMonthDates(date, weekStart)
+function getNextMonthData(currentDate: Date, weekStart: string) {
+  const date = DateUtil.nextMonth(new Date(currentDate))
+  return DateUtil.getMonthDates(date, weekStart) as CalendarCellDate[][]
 }
 
 // 获取三个月的日历数据, 每个月渲染42格, 共126格
-function getMonths(currentDate, { weekStart }) {
+function getMonths(currentDate: Date | null, { weekStart }: { weekStart: string }) {
   if (!currentDate) {
     return null
   }
 
-  // 获取三个月的日历数据
-  let data = {
+  const data = {
     previous: getPrevMonthData(currentDate, weekStart),
-    current: DateUtil.getMonthDates(currentDate, weekStart),
+    current: DateUtil.getMonthDates(currentDate, weekStart) as CalendarCellDate[][],
     next: getNextMonthData(currentDate, weekStart)
   }
 
@@ -39,13 +40,9 @@ function getMonths(currentDate, { weekStart }) {
 const Months = {
   previousMonth: DateUtil.previousMonth,
   nextMonth: DateUtil.nextMonth,
-  // 当前日期在日历中的行数, 用于周视图替换同行上下周数据
   getDateRowIndex,
-  // 当前日期一月的日期
   getMonthDates: DateUtil.getMonthDates,
-  // 获取上月,本月与下月数据集合
   getMonths,
-  // 对months进行分页[[row, row, ...], [row, row, ...], [row, row, ...]]
   paginateMonths
 }
 

@@ -7,17 +7,31 @@ import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { DOMUtil, Keyboard } from 'lyrixi-mobile'
 测试使用-end */
 
-const InputNumber = forwardRef(
+interface OTPInputNumberRef {
+  focus: (index: number) => void
+  blur: () => void
+}
+
+interface OTPInputNumberProps {
+  values: string[]
+  disabled?: boolean
+  readOnly?: boolean
+  onChange: (index: number, value: string) => void
+  onKeyDown: (key: string, index: number) => void
+  onPaste?: React.ClipboardEventHandler<HTMLDivElement>
+}
+
+const InputNumber = forwardRef<OTPInputNumberRef, OTPInputNumberProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [keyboardOpen, setKeyboardOpen] = useState(false)
 
     // Expose
     useImperativeHandle(ref, () => ({
-      focus: (index) => {
+      focus: (index: number) => {
         if (index >= 0 && index < values.length) {
           setCurrentIndex(index)
           setKeyboardOpen(true)
@@ -29,7 +43,7 @@ const InputNumber = forwardRef(
     }))
 
     // 处理输入框点击
-    const handleInputClick = (index) => {
+    const handleInputClick = (index: number) => {
       if (!disabled && !readOnly) {
         setCurrentIndex(index)
         setKeyboardOpen(true)
@@ -60,7 +74,7 @@ const InputNumber = forwardRef(
 
         <Keyboard.Number
           value={values[currentIndex]}
-          onChange={(val, { action }) => {
+          onChange={(val: string, { action }: { action: string }) => {
             if (action === 'delete') {
               onKeyDown && onKeyDown('Backspace', currentIndex)
               // 如果当前项没有值, 则将上一项清空
@@ -76,10 +90,10 @@ const InputNumber = forwardRef(
             // 替换老值, 只保留新值
             onChange(currentIndex, val.replace(values[currentIndex], ''))
           }}
-          ok={null}
+          okVisible={false}
           onClose={handleKeyboardClose}
           open={keyboardOpen}
-          precision={0}
+          dot={false}
         />
       </>
     )

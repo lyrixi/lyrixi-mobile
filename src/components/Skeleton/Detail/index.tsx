@@ -1,8 +1,22 @@
 import React from 'react'
 
 import Page from './../../Page'
+import type { PageLayout } from './../../Page'
 import Paragraph from './../components/Paragraph'
 import Tabs from './../components/Tabs'
+
+interface DetailProps {
+  listLength?: number
+  paragraphLength?: number
+  animated?: boolean
+  safeArea?: boolean
+  full?: boolean
+  className?: string
+  style?: React.CSSProperties
+  divider?: string
+  layout?: PageLayout
+  animation?: string
+}
 
 const Detail = ({
   // Value & Display Value
@@ -20,7 +34,7 @@ const Detail = ({
   divider,
   layout,
   animation
-}) => {
+}: DetailProps) => {
   return (
     <Page
       // Status

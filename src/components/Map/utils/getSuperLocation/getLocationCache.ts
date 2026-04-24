@@ -11,20 +11,31 @@ import {Storage } from 'lyrixi-mobile'
 测试使用-end */
 
 // 读取缓存
-async function getLocationCache(type, cacheExpires) {
+async function getLocationCache(
+  type: string,
+  cacheExpires: number | null | undefined
+): Promise<unknown | null> {
   const cacheKey = `${CacheKeyPrefix}${type}`
-  const cache = await Storage.getItem(cacheKey)
+  const cache = (await Storage.getItem(cacheKey)) as
+    | { data?: Record<string, unknown>; expires?: number }
+    | null
+    | undefined
   if (!cache) return null
   try {
     const { data, expires } = cache
     if (typeof expires === 'number' && Date.now() < expires) {
-      // 再次缓存延长时效
       if (cacheExpires) {
-        await setLocationCache(type, cacheExpires, data)
+        if (data && typeof data === 'object' && 'longitude' in data && 'latitude' in data) {
+          await setLocationCache(
+            type,
+            cacheExpires,
+            data as { longitude: number; latitude: number; [key: string]: unknown }
+          )
+        }
       }
-      return normalizeLocationResult(data as Record<string, unknown>)
+      return data ? normalizeLocationResult(data) : null
     }
-  } catch (e) {
+  } catch {
     // ignore
   }
   return null

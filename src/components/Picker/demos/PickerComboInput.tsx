@@ -4,7 +4,7 @@ import Picker from 'lyrixi-mobile/components/Picker'
 import Card from 'lyrixi-mobile/components/Card'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<unknown>(null)
   const list = [
     { id: '1', name: '选项1' },
     { id: '2', name: '选项2' },
@@ -19,7 +19,7 @@ export default () => {
             <Picker.Combo
               list={list}
               value={value}
-              onChange={setValue}
+              onChange={(v) => setValue(v)}
               placeholder="请选择"
               allowClear
             />

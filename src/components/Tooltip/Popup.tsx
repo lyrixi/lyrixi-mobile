@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import getDataAnimation from './api/getDataAnimation'
 
@@ -12,125 +12,119 @@ import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
-const Popup = forwardRef(
-  (
-    {
-      // Status
-      open,
-      maskClosable = true,
+export interface PopupRef {
+  maskElement: HTMLDivElement | null
+  getMaskElement: () => HTMLDivElement | null
+  modalElement: HTMLDivElement | null
+  getModalElement: () => HTMLDivElement | null
+}
 
-      // Style
-      animation, // none | slideLeft | slideRight | slideUp | slideDown | zoom | fade
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
+export interface PopupProps {
+  open?: boolean
+  maskClosable?: boolean
+  animation?: string
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: Element | null
+  children?: ReactNode
+  onClose?: () => void
+}
 
-      // Element
-      portal,
-      children,
+const Popup = forwardRef<PopupRef, PopupProps>(function Popup(
+  {
+    open,
+    maskClosable = true,
+    animation,
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
+    portal,
+    children,
+    onClose
+  },
+  ref
+) {
+  const maskRef = useRef<HTMLDivElement | null>(null)
+  const modalRef = useRef<HTMLDivElement | null>(null)
 
-      // Events
-      onClose
-    },
-    ref
-  ) => {
-    const maskRef = useRef(null)
-    const modalRef = useRef(null)
+  const position = getClassNameByAnimation(String(animation ?? ''))
+  const dataAnimation = getDataAnimation(animation as string)
 
-    // 构建动画
-    let position = getClassNameByAnimation(animation)
-    let dataAnimation = getDataAnimation(animation)
-
-    useImperativeHandle(ref, () => {
-      return {
-        maskElement: maskRef.current,
-        getMaskElement: () => {
-          return maskRef.current
-        },
-        modalElement: modalRef.current,
-        getModalElement: () => {
-          return modalRef.current
-        }
+  useImperativeHandle(ref, () => {
+    return {
+      maskElement: maskRef.current,
+      getMaskElement: () => {
+        return maskRef.current
+      },
+      modalElement: modalRef.current,
+      getModalElement: () => {
+        return modalRef.current
       }
-    })
-
-    // 点击遮罩
-    function handleMaskClick(e) {
-      if (maskClosable && onClose) onClose()
-      e.stopPropagation()
     }
+  })
 
-    // 箭头颜色: 根据style中的backgroundColor和borderColor
-    let arrowStyle = null
-    let arrowOuterStyle = null
-    let backgroundColor = modalStyle?.backgroundColor
-    let borderColor = modalStyle?.borderColor
-    // 从下往上弹
-    if (position.indexOf('bottom') === 0) {
-      arrowStyle = backgroundColor
-        ? {
-          borderTopColor: backgroundColor
-        }
-        : null
-      arrowOuterStyle = borderColor
-        ? {
-          borderTopColor: borderColor
-        }
-        : null
-    }
-    // 从上往下弹
-    else {
-      arrowStyle = backgroundColor
-        ? {
-          borderBottomColor: backgroundColor
-        }
-        : null
-      arrowOuterStyle = borderColor
-        ? {
-          borderBottomColor: borderColor
-        }
-        : null
-    }
+  function handleMaskClick(e: MouseEvent<HTMLDivElement>) {
+    if (maskClosable && onClose) onClose()
+    e.stopPropagation()
+  }
 
-    return createPortal(
+  const backgroundColor = modalStyle?.backgroundColor
+  const borderColor = modalStyle?.borderColor
+
+  let arrowStyle: CSSProperties | null = null
+  let arrowOuterStyle: CSSProperties | null = null
+  if (position.indexOf('bottom') === 0) {
+    arrowStyle = backgroundColor
+      ? {
+          borderTopColor: String(backgroundColor)
+        }
+      : null
+    arrowOuterStyle = borderColor
+      ? {
+          borderTopColor: String(borderColor)
+        }
+      : null
+  } else {
+    arrowStyle = backgroundColor
+      ? {
+          borderBottomColor: String(backgroundColor)
+        }
+      : null
+    arrowOuterStyle = borderColor
+      ? {
+          borderBottomColor: String(borderColor)
+        }
+      : null
+  }
+
+  return createPortal(
+    <div
+      ref={maskRef}
+      style={maskStyle}
+      className={DOMUtil.classNames('lyrixi-mask lyrixi-mask-tooltip', maskClassName, open ? 'lyrixi-active' : '')}
+      onClick={handleMaskClick}
+    >
       <div
-        ref={maskRef}
-        // Style
-        style={maskStyle}
+        ref={modalRef}
+        style={modalStyle}
         className={DOMUtil.classNames(
-          'lyrixi-mask lyrixi-mask-tooltip',
-          maskClassName,
+          'lyrixi-modal-animation lyrixi-tooltip tooltip-bottom',
+          position,
+          modalClassName,
           open ? 'lyrixi-active' : ''
         )}
-        // Events
-        onClick={handleMaskClick}
+        data-animation={dataAnimation}
       >
-        <div
-          ref={modalRef}
-          // Style
-          style={modalStyle}
-          className={DOMUtil.classNames(
-            'lyrixi-modal-animation lyrixi-tooltip tooltip-bottom',
-            position,
-            modalClassName,
-            open ? 'lyrixi-active' : ''
-          )}
-          data-animation={dataAnimation}
-        >
-          {/* Element: Content */}
-          <div className="lyrixi-tooltip-content">{children}</div>
-
-          {/* Element: Arrow Outer */}
-          <div className="lyrixi-tooltip-arrow-outer" style={arrowOuterStyle}></div>
-
-          {/* Element: Arrow */}
-          <div className="lyrixi-tooltip-arrow" style={arrowStyle}></div>
-        </div>
-      </div>,
-      portal || document.getElementById('root') || document.body
-    )
-  }
-)
+        <div className="lyrixi-tooltip-content">{children}</div>
+        <div className="lyrixi-tooltip-arrow-outer" style={arrowOuterStyle ?? undefined}></div>
+        <div className="lyrixi-tooltip-arrow" style={arrowStyle ?? undefined}></div>
+      </div>
+    </div>,
+    portal ?? document.getElementById('root') ?? document.body
+  )
+})
 
 export default Popup

@@ -1,5 +1,5 @@
 // 获取当前季度
-function quarter(date) {
+function quarter(date: Date) {
   if (date instanceof Date === false) {
     return undefined
   }

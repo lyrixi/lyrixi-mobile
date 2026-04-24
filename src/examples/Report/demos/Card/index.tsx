@@ -12,26 +12,35 @@ import Header from './Header'
 // 样式图片等资源文件导入
 const locale = LocaleUtil.locale
 
+type CardItem = { id?: string; name?: string; [key: string]: unknown }
+
+type DataResult = {
+  status?: string
+  message?: string
+  data?: unknown
+}
+
 // 日报报表卡片组件（日报分析）
 const DailyCard = () => {
-  const title =
-    decodeURIComponent(decodeURIComponent(Device.getUrlParameter('title') || '')) ||
-    locale('部门报表')
+  const title = String(
+    decodeURIComponent(decodeURIComponent((Device.getUrlParameter('title') as string) || '')) ||
+      locale('部门报表')
+  )
 
   // Tabs
-  let [tabs, setTabs] = useState(null)
-  const [tab, setTab] = useState(null)
+  const [tabs, setTabs] = useState<CardItem[] | null>(null)
+  const [tab, setTab] = useState<CardItem | null>(null)
 
   // Slides
-  const [slides, setSlides] = useState(null)
-  const [slide, setSlide] = useState(null)
+  const [slides, setSlides] = useState<CardItem[] | null>(null)
+  const [slide, setSlide] = useState<CardItem | null>(null)
 
   // 数据: { status: 'empty|500', message: '', data: {  } }
-  const [result, setResult] = useState(null)
+  const [result, setResult] = useState<DataResult | null>(null)
 
   useEffect(() => {
     // 初始化数据
-    initData()
+    void initData()
 
     // eslint-disable-next-line
   }, [])
@@ -39,60 +48,58 @@ const DailyCard = () => {
   // 加载数据
   async function initData() {
     // 加载tabs
-    let tabsResult = await queryTabs()
+    const tabsResult = (await queryTabs()) as DataResult & { data?: CardItem[] }
     if (tabsResult.status) {
       setResult(tabsResult)
       return
     }
 
-    setTabs(tabsResult.data)
-    setTab(tabsResult.data[0])
+    setTabs(tabsResult.data ?? null)
+    setTab(tabsResult.data?.[0] ?? null)
 
     // 加载slides
-    let slidesResult = await querySlides()
+    const slidesResult = (await querySlides()) as DataResult & { data?: CardItem[] }
     if (slidesResult.status) {
       setResult(slidesResult)
       return
     }
 
-    setSlides(slidesResult.data)
-    setSlide(slidesResult.data[0])
+    setSlides(slidesResult.data ?? null)
+    setSlide(slidesResult.data?.[0] ?? null)
 
     // 加载数据
-    updateData({
-      tabId: tabsResult.data[0]?.id,
-      slideId: slidesResult.data[0]?.id
+    await updateData({
+      tabId: tabsResult.data?.[0]?.id,
+      slideId: slidesResult.data?.[0]?.id
     })
   }
 
   // 更新数据
-  async function updateData(params) {
-    // 加载数据
-    let dataResult = await queryData(params)
-
+  async function updateData(params: { tabId?: string | number; slideId?: string | number }) {
+    const dataResult = (await queryData(params)) as DataResult
     setResult(dataResult)
   }
 
   // Slide Change
-  function handleSlideChange(newSlide) {
+  function handleSlideChange(newSlide: CardItem) {
     setSlide(newSlide)
-    updateData({
+    void updateData({
       tabId: tab?.id,
       slideId: newSlide?.id
     })
   }
 
   // Tab Change
-  function handleTabChange(newTab) {
-    setTab(newTab[0])
-    updateData({
+  function handleTabChange(newTab: CardItem[]) {
+    setTab(newTab[0] ?? null)
+    void updateData({
       tabId: newTab[0]?.id,
       slideId: slide?.id
     })
   }
 
   return (
-    <div>
+    <>
       {/* 头部 */}
       <Header
         title={title}
@@ -110,7 +117,7 @@ const DailyCard = () => {
           data={result.data}
           onClick={() => {
             Bridge.openWindow({
-              title: title,
+              title,
               url: `xx?title=${encodeURIComponent(encodeURIComponent(title))}`
             })
           }}
@@ -118,8 +125,10 @@ const DailyCard = () => {
       )}
 
       {/* Data error */}
-      {result?.status && <Result status={result.status} title={result.message} />}
-    </div>
+      {result?.status && (
+        <Result status={String(result.status)} title={String(result.message ?? '')} />
+      )}
+    </>
   )
 }
 

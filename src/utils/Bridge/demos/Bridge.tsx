@@ -2,11 +2,12 @@ import React, { useRef } from 'react'
 import vconsole from 'vconsole'
 
 import { Loading, Button, Bridge, Page, Divider, Card } from 'lyrixi-mobile'
+import type { SDKResult } from '../types'
 
 new vconsole()
 
 export default () => {
-  const imageLocalFiles = useRef(null)
+  const imageLocalFiles = useRef<unknown[] | null>(null)
 
   return (
     <Page>
@@ -108,7 +109,7 @@ export default () => {
               style={{ margin: '12px 10px' }}
               radius="m"
               onClick={() => {
-                Bridge.logOut()
+                ;(Bridge as { logOut?: () => void }).logOut?.()
               }}
             >
               logout
@@ -143,11 +144,11 @@ export default () => {
               onClick={() => {
                 Bridge.scanCode({
                   scanType: ['barCode'],
-                  onSuccess: (res) => {
+                  onSuccess: (res: SDKResult) => {
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
-                  onError: (error) => {
+                  onError: (error: SDKResult) => {
                     console.log(error)
                     alert(JSON.stringify(error))
                   }
@@ -170,16 +171,17 @@ export default () => {
                 Bridge.chooseMedia({
                   sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                   sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-                  onSuccess: (res) => {
+                  onSuccess: (res: SDKResult) => {
                     console.log(res)
                     alert(JSON.stringify(res))
-                    imageLocalFiles.current = res?.data?.localFiles
+                    const data = res?.data as { localFiles?: unknown[] } | undefined
+                    imageLocalFiles.current = data?.localFiles ?? null
                   },
-                  onError: (error) => {
+                  onError: (error: SDKResult) => {
                     console.log(error)
                     alert(JSON.stringify(error))
                   },
-                  onCancel: (res) => {
+                  onCancel: (res: SDKResult) => {
                     console.log(res)
                     alert(JSON.stringify(res))
                   }
@@ -217,17 +219,17 @@ export default () => {
                     uploadDir: 'test'
                   },
                   localFile: imageLocalFiles.current[0],
-                  onSuccess: function (res) {
+                  onSuccess: function (res: SDKResult) {
                     console.log(res)
                     alert(JSON.stringify(res))
                     Loading.hide()
                   },
-                  onError: function (error) {
+                  onError: function (error: SDKResult) {
                     console.log(error)
                     alert(JSON.stringify(error))
                     Loading.hide()
                   },
-                  onCancel: function (res) {
+                  onCancel: function (res: SDKResult) {
                     console.log(res)
                     alert(JSON.stringify(res))
                     Loading.hide()
@@ -296,9 +298,7 @@ export default () => {
               radius="m"
               onClick={() => {
                 Bridge.openLocation({
-                  slatitude: 32.02, // 起点纬度
-                  slongitude: 118.79, // 起点经度
-                  sname: '起点', // 起点名
+                  type: 'gcj02',
                   latitude: 39.81, // 纬度，浮点数，范围为90 ~ -90
                   longitude: 116.49, // 经度，浮点数，范围为180 ~ -180。
                   name: '终点', // 位置名
@@ -325,12 +325,12 @@ export default () => {
                 })
                 Bridge.getLocation({
                   type: 'gcj02',
-                  onSuccess: (res) => {
+                  onSuccess: (res: SDKResult) => {
                     Loading.hide()
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
-                  onError: (error) => {
+                  onError: (error: SDKResult) => {
                     Loading.hide()
                     console.log(error)
                     alert(JSON.stringify(error))
@@ -351,12 +351,12 @@ export default () => {
                 })
                 Bridge.getLocation({
                   type: 'wgs84',
-                  onSuccess: (res) => {
+                  onSuccess: (res: SDKResult) => {
                     Loading.hide()
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
-                  onError: (error) => {
+                  onError: (error: SDKResult) => {
                     Loading.hide()
                     console.log(error)
                     alert(JSON.stringify(error))

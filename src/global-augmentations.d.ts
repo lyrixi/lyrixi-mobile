@@ -1,4 +1,6 @@
 /** 运行时代码挂载到 window 的扩展（Locale 等） */
+import type * as leaflet from 'leaflet'
+
 export {}
 
 /** 与 window.wx 对齐的宽松类型，避免为每个 API 维护完整签名 */
@@ -22,11 +24,84 @@ type WeixinJsSdk = {
   miniProgram?: { navigateBack: (opts: Record<string, unknown>) => void }
 }
 
+/** MapLoader 配置 */
+interface MapLoaderConfigType {
+  key?: string
+  type?: string
+  markerIcons?: Record<string, unknown>
+  leaflet?: { css?: string; js?: string }
+  [key: string]: unknown
+}
+
+/** currentTileLayer: 自定义瓦片图层工厂函数（百度/高德/OpenStreet 等加载后挂载） */
+type CurrentTileLayerFn = (() => leaflet.TileLayer) & {
+  config?: Record<string, unknown>
+}
+
+/** Leaflet 扩展插件（canvas-markers 等动态注入） */
+type LeafletWithPlugins = Omit<typeof leaflet, 'tileLayer'> & {
+  tileLayer: typeof leaflet.tileLayer & {
+    currentTileLayer?: CurrentTileLayerFn
+  }
+  canvasIconLayer?: (options?: Record<string, unknown>) => unknown
+}
+
+/** 百度地图 BMap namespace（CDN 动态注入） */
+type BMapStatic = {
+  Point: new (lng: number, lat: number) => unknown
+  Map: new (container: unknown, opts?: Record<string, unknown>) => {
+    centerAndZoom: (center: unknown, zoom: number) => void
+    disableDragging: () => void
+    disableScrollWheelZoom: () => void
+    disableDoubleClickZoom: () => void
+    disablePinchToZoom: () => void
+    [key: string]: unknown
+  }
+  LocalSearch: new (map: unknown, opts: Record<string, unknown>) => {
+    getStatus: () => unknown
+    search: (keyword: string, options?: Record<string, unknown>) => void
+    searchNearby: (keyword: string, center: unknown, radius: number) => void
+  }
+  Geocoder: new () => {
+    getLocation: (point: unknown, cb: (result: unknown) => void) => void
+  }
+  [key: string]: unknown
+}
+
+/** 高德地图 AMap namespace（CDN 动态注入） */
+type AMapStatic = Record<string, unknown>
+
+/** Google Maps namespace（CDN 动态注入） */
+type GoogleMapsStatic = {
+  maps: {
+    LatLng: new (lat: number, lng: number) => unknown
+    Map: new (container: unknown, opts?: Record<string, unknown>) => unknown
+    MapTypeId: { ROADMAP: string; [key: string]: unknown }
+    Geocoder: new () => {
+      geocode: (
+        request: Record<string, unknown>,
+        callback?: (results: unknown, status: unknown) => void
+      ) => Promise<unknown> | void
+    }
+    importLibrary: (name: string) => Promise<Record<string, unknown>>
+    [key: string]: unknown
+  }
+}
+
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    /** Allow non-standard disabled attribute on non-form elements for CSS selector patterns */
+    disabled?: boolean
+    /** Allow non-standard readOnly attribute on non-form elements for CSS selector patterns */
+    readOnly?: boolean
+  }
+}
+
 declare global {
   interface Window {
     /** 示例页表单缓存 debounce 句柄（Edit/Cache） */
     formCacheTimeout?: ReturnType<typeof setTimeout>
-    lyrixiLocaleData?: Record<string, string>
+    lyrixiLocaleData?: unknown
     lyrixiLocaleLanguage?: string
     dayjsPlugin?: string[]
     _debug_?: unknown
@@ -80,6 +155,39 @@ declare global {
         }
       }
     }
+    /** Leaflet（CDN 动态注入，含 canvas-markers 等插件） */
+    L?: LeafletWithPlugins
+    /** Leaflet 加载状态标记 */
+    leaflet?: unknown
+    /** 百度地图 */
+    BMap?: BMapStatic
+    /** 百度地图状态码 */
+    BMAP_STATUS_SUCCESS?: unknown
+    /** 百度地图回调 */
+    onBMapLoad?: () => void
+    /** 高德地图 */
+    AMap?: AMapStatic
+    /** Google Maps */
+    google?: GoogleMapsStatic
+    /** 地图加载器全局配置 */
+    MapLoaderConfig?: MapLoaderConfigType
+    /** 地图 utils 默认实现（MapLoader 注入） */
+    defaultGetAddress?: (...args: unknown[]) => unknown
+    defaultGetLocation?: (...args: unknown[]) => unknown
+    defaultOpenLocation?: (...args: unknown[]) => unknown
+    defaultQueryNearby?: (...args: unknown[]) => unknown
+    /** 地区选择器数据缓存 */
+    countries?: unknown[]
+    countryRegions?: Record<string, unknown[]>
+    streets?: Record<string, unknown>
+    /** ToolBar 下拉注册表 */
+    dropdowns?: Record<string, { close?: () => void; open?: () => void }>
+    /** 微信小程序上传轮询注册表 */
+    wechatMiniProgramPolls?: Record<string, boolean>
+    /** 当前语言（覆盖 navigator.language） */
+    language?: string
+    /** 登录用户信息（业务侧注入） */
+    loginUser?: { name?: string; id?: string; tenantId?: string; [key: string]: unknown }
   }
 
   interface Navigator {

@@ -1,7 +1,6 @@
 // Loading是否存在
-// eslint-disable-next-line
-export default function ({ id } = {}) {
-  let modal = document.getElementById(id || '__lyrixi_loading_mask__')
+export default function existsLoading({ id }: { id?: string } = {}): boolean {
+  const modal = document.getElementById(id || '__lyrixi_loading_mask__')
   if (modal) return true
   return false
 }

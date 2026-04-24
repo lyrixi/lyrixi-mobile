@@ -1,5 +1,5 @@
 // 时区方法: 将指定时区时间转为 UTC, 入参: "日期, 时区偏移总分钟数", 返回: "UTC日期"
-function timeZoneToUtc(utcDate, offset) {
+function timeZoneToUtc(utcDate: Date, offset: number) {
   // 检查参数
   if (!(utcDate instanceof Date) || Number.isNaN(utcDate.getTime())) {
     return null

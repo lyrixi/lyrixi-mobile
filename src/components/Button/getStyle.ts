@@ -38,12 +38,25 @@ export default function getStyle({
   style,
   className
 }: GetStyleParams): { style: CSSProperties; className: string } {
-  let fontSizeResolved: string | number | undefined = fontSize as string | number | undefined
-  fontSizeResolved = (MathUtil.variableSize(fontSizeResolved, undefined) as string | number | undefined) || fontSizeResolved
+  let fontSizeResolved: string | number | undefined
+  if (fontSize != null && (typeof fontSize === 'string' || typeof fontSize === 'number')) {
+    fontSizeResolved = (MathUtil.variableSize(fontSize, '') as string) || fontSize
+  } else {
+    fontSizeResolved = undefined
+  }
+
   let sizeResolved: string | number | readonly string[] | unknown = size
-  sizeResolved = MathUtil.variableSize(sizeResolved, undefined) || sizeResolved
+  if (
+    sizeResolved != null &&
+    (typeof sizeResolved === 'string' || typeof sizeResolved === 'number')
+  ) {
+    sizeResolved = (MathUtil.variableSize(sizeResolved, '') as string) || sizeResolved
+  }
+
   let radiusResolved: string | number | unknown = radius
-  radiusResolved = MathUtil.variableSize(radiusResolved, undefined) || radiusResolved
+  if (radius != null && (typeof radius === 'string' || typeof radius === 'number')) {
+    radiusResolved = (MathUtil.variableSize(radius, '') as string) || radius
+  }
 
   const isColorClass = DOMUtil.variables.colors.includes(color as string)
   const isBorderColorClass = DOMUtil.variables.colors.includes(borderColor as string)

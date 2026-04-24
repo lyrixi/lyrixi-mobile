@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import type * as L from 'leaflet'
 import createMarkerIcon from './createMarkerIcon'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import filterCoords from './../../utils/filterCoords'
 import isSamePoint from './../../utils/isSamePoint'
-import addMarkers from './addMarkers'
-import clearMarkers from './clearMarkers'
+import addMarkers, { type MapPoint } from './addMarkers'
+import clearMarkers, { type CanvasMarkerLayer } from './clearMarkers'
+import type { MapContainerAPI } from './../MapContainer'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -14,36 +16,51 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+type MapCoord = ReturnType<typeof filterCoords>[number]
+
+export interface MarkersProps {
+  points?: unknown
+  map?: MapContainerAPI
+  icon?: unknown
+  style?: React.CSSProperties
+  className?: string
+  onClick?: (payload: unknown) => void
+}
+
+export interface MarkersHandle {
+  redraw: () => void
+  focus: (point: MapCoord) => void
+  blur: () => void
+}
+
 // 批量标注
-const Markers = forwardRef(
+const Markers = forwardRef<MarkersHandle, MarkersProps>(
   (
     {
-      // Value & Display Value
-      points,
-
-      // Element
+      points: pointsProp,
       map,
       icon,
-
-      // Events
+      style,
+      className,
       onClick
     },
     ref
   ) => {
-    // Marker layer
-    const layersRef = useRef(null)
+    void style
+    void className
+    let points = pointsProp as MapCoord[]
 
-    // 当前聚焦的点(置顶显示)
-    const focusedPointRef = useRef(null)
+    const layersRef = useRef<{
+      canvasLayer: CanvasMarkerLayer
+      layer: L.LayerGroup
+    } | null>(null)
 
-    // Default Icon
+    const focusedPointRef = useRef<MapCoord | null>(null)
+
     const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
 
-    // 过滤错误的点位
-    // eslint-disable-next-line
     points = filterCoords(points)
 
-    // Expose
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -55,34 +72,44 @@ const Markers = forwardRef(
     })
 
     useEffect(() => {
-      // Marker common layer and canvas layer init
+      const lf = map?.leafletMap
+      if (!lf || !window.L?.canvasIconLayer) {
+        return
+      }
+      const layerFactory = window.L.canvasIconLayer as
+        | ((options?: Record<string, unknown>) => { addTo: (m: L.Map) => unknown })
+        | undefined
+      if (!layerFactory) return
+      const canvasRaw = layerFactory({}).addTo(lf) as unknown as CanvasMarkerLayer
+      const layerRaw = window.L.layerGroup().addTo(lf)
       layersRef.current = {
-        canvasLayer: window.L.canvasIconLayer({}).addTo(map.leafletMap),
-        layer: window.L.layerGroup().addTo(map.leafletMap)
+        canvasLayer: canvasRaw,
+        layer: layerRaw
       }
 
       return () => {
-        clearMarkers(layersRef.current)
+        if (layersRef.current) {
+          clearMarkers(layersRef.current)
+        }
       }
-      // eslint-disable-next-line
-    }, [])
+    }, [map])
 
     useEffect(() => {
       if (ObjectUtil.isEmpty(points)) {
-        clearMarkers(layersRef.current)
+        if (layersRef.current) {
+          clearMarkers(layersRef.current)
+        }
         return
       }
       draw()
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
-    // 聚焦指定点（置顶显示）
-    function focus(point) {
+    function focus(point: MapCoord) {
       focusedPointRef.current = point
       draw()
     }
 
-    // 取消聚焦（恢复正常显示）
     function blur() {
       focusedPointRef.current = null
       draw()
@@ -92,35 +119,24 @@ const Markers = forwardRef(
       if (ObjectUtil.isEmpty(points)) {
         return
       }
-      clearMarkers(layersRef.current)
+      const layers = layersRef.current
+      if (!layers) {
+        return
+      }
+      clearMarkers(layers)
 
-      // 构建有序的点数组(改变点的渲染顺序)
-      let orderedPoints = null
+      let orderedPoints: MapCoord[]
 
-      // 如果有聚焦点，调整渲染顺序
       if (focusedPointRef.current) {
         const focusedPoint = focusedPointRef.current
-
-        // 过滤出非聚焦点
         orderedPoints = points.filter((point) => !isSamePoint(point, focusedPoint))
-
-        // 将聚焦点添加到数组末尾（置顶显示）
         orderedPoints.push(focusedPoint)
-      }
-      // 如果没有聚焦点，直接渲染所有点
-      else {
+      } else {
         orderedPoints = points
       }
 
-      // 一次性绘制所有点
-      addMarkers(
-        orderedPoints,
-        {
-          onClick: onClick,
-          icon: createMarkerIcon(icon || markerIcons?.markerIcon)
-        },
-        layersRef.current
-      )
+      const resolvedIcon = createMarkerIcon(icon || markerIcons?.markerIcon)
+      addMarkers(orderedPoints as MapPoint[], { onClick: onClick, icon: resolvedIcon }, layers)
     }
 
     return <></>

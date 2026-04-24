@@ -3,40 +3,46 @@ import loadCountryRegions from './loadCountryRegions'
 import loadStreets from './loadStreets'
 import formatCountryRegions from './formatCountryRegions'
 
+interface DistrictNode {
+  id: string | number
+  name?: string
+  type?: string[]
+  isLeaf?: boolean
+  parentid?: string | number
+  [key: string]: unknown
+}
+
+interface ApiResult {
+  status: 'success' | 'error' | 'empty'
+  list?: DistrictNode[]
+  message?: string
+}
+
 const api = {
-  // 获取国家
-  loadCountries: async function () {
-    let result = await loadCountries()
-    if (result?.status === 'success') {
-      result.list = result.list.map((node) => {
+  loadCountries: async function (): Promise<ApiResult> {
+    const result = await loadCountries()
+    if (result?.status === 'success' && Array.isArray(result.list)) {
+      result.list = (result.list as DistrictNode[]).map((node) => {
         node.type = ['country']
         return node
       })
     }
-    return result
+    return result as ApiResult
   },
-  /**
-   * @description: 获取省市区
-   * @param {Number} countryId 国家ID
-   * @return {[{id: '100200', name: '江苏省', parentid: '86', ...}]}
-   */
-  loadCountryRegions: async function (countryId) {
-    let result = await loadCountryRegions(countryId)
-    if (result?.status === 'success') {
-      result.list = formatCountryRegions(result.list, countryId)
-      return result
+
+  loadCountryRegions: async function (countryId: string | number): Promise<ApiResult> {
+    const result = await loadCountryRegions(countryId)
+    if (result?.status === 'success' && Array.isArray(result.list)) {
+      result.list = formatCountryRegions(result.list as DistrictNode[], countryId)
+      return result as ApiResult
     }
-    return result
+    return result as ApiResult
   },
-  /**
-   * @description: 获取街道
-   * @param {Number} id 区ID
-   * @return {{id: '100200300', name: '沙洲街道', parentid: '100200', type: ['street'], isLeaf: true}}
-   */
-  loadStreets: async function (districtId) {
-    let result = await loadStreets(districtId)
-    if (result.status === 'success') {
-      result.list = result.list.map((item) => {
+
+  loadStreets: async function (districtId: string | number): Promise<ApiResult> {
+    const result = await loadStreets(districtId)
+    if (result.status === 'success' && Array.isArray(result.list)) {
+      result.list = (result.list as DistrictNode[]).map((item: DistrictNode) => {
         return {
           id: item.id,
           name: item.name,
@@ -46,7 +52,7 @@ const api = {
         }
       })
     }
-    return result
+    return result as ApiResult
   }
 }
 

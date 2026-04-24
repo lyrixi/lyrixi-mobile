@@ -1,7 +1,11 @@
 import React, { forwardRef, useState, useEffect } from 'react'
-import InputText from './../Text'
+import InputText, { InputTextRef, InputTextProps } from './../Text'
 
-const Search = forwardRef(
+export interface SearchProps extends InputTextProps {
+  onSearch?: (value: string) => void
+}
+
+const Search = forwardRef<InputTextRef, SearchProps>(
   (
     {
       id,
@@ -104,7 +108,7 @@ const Search = forwardRef(
         onKeyDown={onKeyDown}
         onPressEnter={(e) => {
           onPressEnter && onPressEnter(e)
-          e?.target?.blur?.()
+          e?.currentTarget?.blur?.()
           onSearch && onSearch(typeof onChange === 'function' ? value : keyword)
         }}
       />

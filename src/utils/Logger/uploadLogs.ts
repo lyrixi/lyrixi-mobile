@@ -13,7 +13,7 @@ import { DateUtil, LocaleUtil, Storage } from 'lyrixi-mobile'
 /**
  * 上报日志到服务器
  */
-async function uploadLogs(upload) {
+async function uploadLogs(upload: (data: unknown) => Promise<unknown>): Promise<unknown> {
   // 获取所有存储的键名
   const allKeys = await Storage.getKeys()
 

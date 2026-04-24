@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 import ItemsContext from './../ItemsContext'
+import type { EllipsisConfig } from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -9,8 +10,24 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface VirtualFormRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface VirtualFormProps {
+  style?: CSSProperties
+  className?: string
+  layout?: string
+  labelSpan?: number
+  labelEllipsis?: EllipsisConfig | null
+  mainSpan?: number
+  mainEllipsis?: EllipsisConfig | null
+  children?: ReactNode
+}
+
 // layout: horizontal | vertical | inline
-const VirtualForm = forwardRef(
+const VirtualForm = forwardRef<VirtualFormRef, VirtualFormProps>(
   (
     {
       // Value & Display Value
@@ -29,11 +46,11 @@ const VirtualForm = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Virtual
-    let [observer, setObserver] = useState(null)
-    const observerCallbacksRef = useRef(new WeakMap())
+    const [observer, setObserver] = useState<IntersectionObserver | null>(null)
+    const observerCallbacksRef = useRef(new WeakMap<Element, (visible: boolean) => void>())
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -45,11 +62,9 @@ const VirtualForm = forwardRef(
 
     useEffect(() => {
       // 创建IntersectionObserver实例
-      // eslint-disable-next-line
-      observer = new IntersectionObserver(
+      const newObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            // console.log(entry.target.classList.contains('lyrixi-form-item'))
             const callback = observerCallbacksRef.current.get(entry.target)
             callback?.(entry.isIntersecting)
           })
@@ -60,13 +75,11 @@ const VirtualForm = forwardRef(
           // rootMargin: '0px',
         }
       )
-      setObserver(observer)
+      setObserver(newObserver)
 
       // 组件卸载时清理
       return () => {
-        if (observer) {
-          observer.disconnect()
-        }
+        newObserver.disconnect()
       }
     }, [])
 
@@ -74,10 +87,10 @@ const VirtualForm = forwardRef(
       <ItemsContext.Provider
         value={{
           layout,
-          labelSpan,
-          labelEllipsis,
-          mainSpan,
-          mainEllipsis,
+          labelSpan: labelSpan ?? 4,
+          labelEllipsis: labelEllipsis ?? null,
+          mainSpan: mainSpan ?? 20,
+          mainEllipsis: mainEllipsis ?? null,
           virtual: { observer: observer, observerCallbacks: observerCallbacksRef.current }
         }}
       >
@@ -85,7 +98,7 @@ const VirtualForm = forwardRef(
           ref={rootRef}
           // Style
           style={style}
-          className={DOMUtil.classNames('lyrixi-form-items lyrixi-virtual', className)}
+          className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-form-items lyrixi-virtual', className)}
         >
           {/* Element: Children */}
           {children}

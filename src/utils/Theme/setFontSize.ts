@@ -1,5 +1,5 @@
 // 更新字体大小
-function setFontSize(fontSize) {
+function setFontSize(fontSize: string): void {
   // 定义三套字体大小
   const fontSizes = {
     // m: 标准
@@ -35,8 +35,8 @@ function setFontSize(fontSize) {
   }
 
   // 设置字体大小
-  if (fontSizes?.[fontSize]) {
-    let fontSizeData = fontSizes[fontSize]
+  if (fontSizes?.[fontSize as keyof typeof fontSizes]) {
+    let fontSizeData = fontSizes[fontSize as keyof typeof fontSizes]
     document.documentElement.style.setProperty('--lyrixi-font-size-xxxl', fontSizeData.xxxl)
     document.documentElement.style.setProperty('--lyrixi-font-size-xxl', fontSizeData.xxl)
     document.documentElement.style.setProperty('--lyrixi-font-size-xl', fontSizeData.xl)

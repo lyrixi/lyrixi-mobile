@@ -1,30 +1,23 @@
-// 使用虚拟滚动条解决渲染性能
-// import { useInViewport } from 'ahooks'
+type EventFn = (...args: unknown[]) => unknown
 
-// 发布订阅模式
 const Observer = {
-  events: {},
-  /*
-	events: {
-		eventName1: [fn1, fn2],
-		eventName2: [fn1, fn2]
-	}
-	*/
-  on: function (eventName, fn) {
+  events: {} as Record<string, EventFn[]>,
+  on: function (eventName: string, fn: EventFn): void {
     if (!this.events[eventName]) {
       this.events[eventName] = []
     }
     this.events[eventName].push(fn)
   },
-  emit: function (eventName, ...args) {
+  emit: function (eventName: string, ...args: unknown[]): boolean {
     const fns = this.events[eventName]
     if (!Array.isArray(fns) || !fns.length) return false
     // eslint-disable-next-line
-    for (let i = 0, fn; (fn = fns[i++]); ) {
-      fn.apply(this, ...args)
+    for (let i = 0, fn: EventFn | undefined; (fn = fns[i++]); ) {
+      fn.apply(this, args)
     }
+    return true
   },
-  off: function (eventName, fn) {
+  off: function (eventName: string, fn: EventFn): boolean {
     let fns = this.events[eventName]
     if (!Array.isArray(fns) || !fns.length) return false
     for (let i = 0; i < fns.length; i++) {
@@ -33,10 +26,12 @@ const Observer = {
         fns.splice(i, 1)
       }
     }
+    return true
   },
-  destroy: function (eventName) {
+  destroy: function (eventName?: string): void {
     if (!eventName) {
       this.events = {}
+      return
     }
     delete this.events[eventName]
   }

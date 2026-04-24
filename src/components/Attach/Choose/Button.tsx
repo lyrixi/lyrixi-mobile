@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef, type CSSProperties, type ReactNode } from 'react'
 import Uploading from './../Uploading'
 
 // 内库使用-start
@@ -10,9 +10,24 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface UploadButtonRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface UploadButtonProps {
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  style?: CSSProperties
+  className?: string
+  disabled?: boolean
+}
+
 // 上传按钮
-const UploadButton = ({ uploadingRender, style, className }, ref) => {
-  const rootRef = useRef(null)
+const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function UploadButton(
+  { uploadingRender, style, className, disabled },
+  ref
+) {
+  const rootRef = useRef<HTMLDivElement | null>(null)
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -26,7 +41,12 @@ const UploadButton = ({ uploadingRender, style, className }, ref) => {
     <div
       ref={rootRef}
       style={style}
-      className={DOMUtil.classNames('lyrixi-attach-choose-button', className)}
+      className={DOMUtil.classNames(
+        'lyrixi-attach-choose-button',
+        className,
+        disabled && 'lyrixi-disabled'
+      )}
+      aria-disabled={disabled}
     >
       <i className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add"></i>
 
@@ -43,6 +63,6 @@ const UploadButton = ({ uploadingRender, style, className }, ref) => {
       </div>
     </div>
   )
-}
+})
 
-export default forwardRef(UploadButton)
+export default UploadButton

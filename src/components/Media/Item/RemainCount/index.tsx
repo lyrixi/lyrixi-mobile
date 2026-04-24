@@ -1,10 +1,14 @@
 import React from 'react'
 
+export interface RemainCountProps {
+  count: number
+}
+
 // 图片显示
 const RemainCount = ({
   // Value & Display Value
   count
-}) => {
+}: RemainCountProps) => {
   return (
     <div
       // Style

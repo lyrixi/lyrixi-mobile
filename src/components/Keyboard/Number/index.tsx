@@ -10,7 +10,7 @@ import ButtonQuick from './ButtonQuick'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
-import Page from '../../Page'
+import Page, { PageRef } from '../../Page'
 import Icon from './../../Icon'
 // 内库使用-end
 
@@ -18,30 +18,50 @@ import Icon from './../../Icon'
 import { LocaleUtil, DOMUtil, SafeArea, Page, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const KeyboardNumber = forwardRef(
+type KeyboardAction = 'number' | 'dot' | 'minus' | 'delete'
+
+export interface KeyboardNumberRef {
+  element: HTMLElement | null
+  getElement: () => HTMLElement | null
+}
+
+export interface KeyboardNumberProps {
+  safeArea?: boolean
+  portal?: HTMLElement
+  value?: string
+  onChange?: (value: string, options: { action: KeyboardAction }) => void
+  dot?: boolean
+  minus?: boolean
+  okNode?: React.ReactNode
+  okVisible?: boolean
+  cancelNode?: React.ReactNode
+  cancelVisible?: boolean
+  onOk?: (value: string) => Promise<boolean | undefined> | boolean | undefined
+  onCancel?: () => void
+  modalStyle?: React.CSSProperties
+  modalClassName?: string
+  open?: boolean
+  onOpen?: () => void
+  onClose?: () => void
+}
+
+const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
   (
     {
       safeArea = true,
       portal,
-      // 值控制
       value = '',
       onChange,
-
-      // 按钮配置
-      dot, // 小数点按钮
-      minus, // 负号按钮
+      dot,
+      minus,
       okNode,
       okVisible,
       cancelNode,
       cancelVisible,
       onOk,
       onCancel,
-
-      // 遮罩配置
       modalStyle,
       modalClassName,
-
-      // 显示控制
       open,
       onOpen,
       onClose
@@ -49,14 +69,13 @@ const KeyboardNumber = forwardRef(
     ref
   ) => {
     const isDeleteInMainRef = useRef(false)
-    const rootRef = useRef(null)
+    const rootRef = useRef<PageRef | null>(null)
 
-    // 暴露给父组件的方法
     useImperativeHandle(ref, () => ({
-      ...rootRef.current
+      element: rootRef.current?.element ?? null,
+      getElement: () => rootRef.current?.element ?? null
     }))
 
-    // 处理open变化
     useEffect(() => {
       if (open && onOpen) {
         onOpen()
@@ -64,44 +83,33 @@ const KeyboardNumber = forwardRef(
       // eslint-disable-next-line
     }, [open, onOpen])
 
-    // 处理点击键盘外部
     useEffect(() => {
       if (!open) return
-      // 解决于click刚绑定就触发的问题, 因为click会冒泡到document上，所以刚绑定，冒泡后会触发click
       let openTime = Date.now()
 
-      const handleOutsideClick = (event) => {
-        // 忽略打开后 1秒 内的事件
+      const handleOutsideClick = (event: MouseEvent) => {
         if (Date.now() - openTime < 100) return
-
         if (!rootRef.current?.element) return
-        if (rootRef.current.element.contains(event.target)) return
+        if (rootRef.current.element.contains(event.target as Node)) return
         if (onClose) {
           onClose()
         }
       }
 
-      // document.addEventListener('mousedown', handleOutsideClick)
-      // document.addEventListener('touchend', handleOutsideClick)
-
       document.addEventListener('click', handleOutsideClick)
 
       return () => {
-        // document.removeEventListener('mousedown', handleOutsideClick)
-        // document.removeEventListener('touchend', handleOutsideClick)
-
         document.removeEventListener('click', handleOutsideClick)
       }
     }, [open, onClose])
-    // 处理数字按键点击
-    const handleNumber = (num) => {
-      let newValue = value + num
+
+    const handleNumber = (num: React.ReactNode) => {
+      let newValue = value + String(num ?? '')
       if (onChange) {
         onChange(newValue, { action: 'number' })
       }
     }
 
-    // 处理小数点
     const handleDot = () => {
       const currentValue = value || ''
       const newValue = currentValue + '.'
@@ -110,7 +118,6 @@ const KeyboardNumber = forwardRef(
       }
     }
 
-    // 处理负号
     const handleMinus = () => {
       const currentValue = value || ''
       const newValue = currentValue + '-'
@@ -119,7 +126,6 @@ const KeyboardNumber = forwardRef(
       }
     }
 
-    // 处理删除按键
     const handleDelete = () => {
       let newValue = ''
       if (value.length > 0) {
@@ -130,7 +136,6 @@ const KeyboardNumber = forwardRef(
       }
     }
 
-    // 处理确定按钮
     const handleOk = async () => {
       if (onOk) {
         let goOn = await onOk(value)
@@ -139,7 +144,6 @@ const KeyboardNumber = forwardRef(
       onClose?.()
     }
 
-    // 处理取消按钮
     const handleCancel = () => {
       if (onCancel) {
         onCancel()
@@ -149,10 +153,8 @@ const KeyboardNumber = forwardRef(
       }
     }
 
-    // 第四行 根据配置动态布局
     function getOperateRowNode() {
       isDeleteInMainRef.current = true
-      // 当ok、dot、minus都没有时, 删除按钮放在右下角
       if (!okVisible && !dot && !minus) {
         return (
           <>
@@ -164,7 +166,6 @@ const KeyboardNumber = forwardRef(
           </>
         )
       }
-      // 当没有ok, 但dot和minus有一个时, 删除按钮放在右下角, 其他按钮放在左下角
       if (!okVisible && ((dot && !minus) || (!dot && minus))) {
         return (
           <>
@@ -179,7 +180,6 @@ const KeyboardNumber = forwardRef(
       }
 
       isDeleteInMainRef.current = false
-      // 全都有时, 键盘区不显示删除按钮
       return (
         <>
           {dot ? (
@@ -197,7 +197,6 @@ const KeyboardNumber = forwardRef(
       )
     }
 
-    // 构建键盘节点
     const KeyboardNode = (
       <Page
         ref={rootRef}
@@ -210,9 +209,7 @@ const KeyboardNumber = forwardRef(
           okVisible ? 'lyrixi-keyboard-has-ok' : ''
         )}
         style={modalStyle}
-        onClick={(e) => e.stopPropagation()}
       >
-        {/* 顶部操作栏 */}
         <Page.Header>
           {cancelVisible && (
             <ButtonQuick onClick={handleCancel}>
@@ -225,43 +222,36 @@ const KeyboardNumber = forwardRef(
           )}
         </Page.Header>
 
-        {/* 键盘主体 */}
         <Page full={false} layout="horizontal">
           <Page.Main>
-            {/* 第一行 1-3 */}
             <div className="lyrixi-keyboard-main-row">
               <ButtonNumber onClick={handleNumber}>1</ButtonNumber>
               <ButtonNumber onClick={handleNumber}>2</ButtonNumber>
               <ButtonNumber onClick={handleNumber}>3</ButtonNumber>
             </div>
 
-            {/* 第二行 4-6 */}
             <div className="lyrixi-keyboard-main-row">
               <ButtonNumber onClick={handleNumber}>4</ButtonNumber>
               <ButtonNumber onClick={handleNumber}>5</ButtonNumber>
               <ButtonNumber onClick={handleNumber}>6</ButtonNumber>
             </div>
 
-            {/* 第三行 7-9 */}
             <div className="lyrixi-keyboard-main-row">
               <ButtonNumber onClick={handleNumber}>7</ButtonNumber>
               <ButtonNumber onClick={handleNumber}>8</ButtonNumber>
               <ButtonNumber onClick={handleNumber}>9</ButtonNumber>
             </div>
 
-            {/* 第四行 根据配置动态布局 */}
             <div className="lyrixi-keyboard-main-row">{getOperateRowNode()}</div>
           </Page.Main>
 
           <Page.Aside className="lyrixi-flex lyrixi-flex-vertical">
-            {/* 删除键 - 只在有确定按钮时显示在侧边栏 */}
             {isDeleteInMainRef.current === false && (
               <ButtonAction className="lyrixi-delete" onClick={handleDelete}>
                 <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
               </ButtonAction>
             )}
 
-            {/* 确定按钮 */}
             {okVisible && (
               <ButtonAction className="lyrixi-ok" onClick={handleOk}>
                 {okNode || LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721')}
@@ -273,7 +263,6 @@ const KeyboardNumber = forwardRef(
       </Page>
     )
 
-    // 渲染到body
     return createPortal(KeyboardNode, portal || document.getElementById('root') || document.body)
   }
 )

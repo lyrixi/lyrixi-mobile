@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { Page, VideoPlayer, Button } from 'lyrixi-mobile'
+import type { VideoPlayerRef } from './..'
 
 export default () => {
-  const videoPlayerRef = useRef(null)
+  const videoPlayerRef = useRef<VideoPlayerRef | null>(null)
   return (
     <Page>
       <Page.Main>
@@ -24,14 +25,14 @@ export default () => {
       <Page.Footer>
         <Button
           onClick={() => {
-            videoPlayerRef.current.play()
+            videoPlayerRef.current?.play()
           }}
         >
           Play
         </Button>
         <Button
           onClick={() => {
-            videoPlayerRef.current.pause()
+            videoPlayerRef.current?.pause()
           }}
         >
           Pause

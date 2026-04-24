@@ -1,2 +1,3 @@
 // 全局MessageModal的id
-export default 'lyrixi_Global_MessageModal'
+const globalMessageId = 'lyrixi_Global_MessageModal'
+export default globalMessageId

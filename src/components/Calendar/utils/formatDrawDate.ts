@@ -1,20 +1,29 @@
 import isDisabledDate from './isDisabledDate'
+import type { CalendarValue } from '../types'
 
 // 获取当前绘制日期
-function formatDrawDate(newValue, { min, max }) {
-  let newDrawDate = newValue
+function formatDrawDate(
+  newValue: CalendarValue,
+  { min, max }: { min?: Date; max?: Date }
+): Date {
+  let newDrawDate: Date | undefined
   if (Array.isArray(newValue)) {
-    newDrawDate = newValue[newValue.length - 1]
+    const last = newValue[newValue.length - 1]
+    newDrawDate = last instanceof Date ? last : undefined
+  } else if (newValue instanceof Date) {
+    newDrawDate = newValue
   }
-  if (newDrawDate instanceof Date === false) {
+
+  if (newDrawDate == null || !(newDrawDate instanceof Date)) {
     newDrawDate = new Date()
   }
 
   // 访问禁止日期
-  let error = isDisabledDate(newDrawDate, { min, max })
-  if (error) {
-    console.log(error?.message)
-    return error.date
+  const err = isDisabledDate(newDrawDate, { min, max })
+  if (err !== false) {
+    // eslint-disable-next-line no-console
+    console.log(err.message)
+    return err.date
   }
 
   return newDrawDate

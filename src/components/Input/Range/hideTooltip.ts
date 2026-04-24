@@ -1,4 +1,4 @@
-function hideTooltip(tooltipElement) {
+function hideTooltip(tooltipElement: HTMLElement): void {
   tooltipElement.style.visibility = 'hidden'
 }
 

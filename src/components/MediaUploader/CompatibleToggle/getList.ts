@@ -1,3 +1,5 @@
+import React from 'react'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
@@ -6,16 +8,21 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getList(platform) {
-  const list = [
+interface ListItem {
+  id: string
+  name: React.ReactNode
+}
+
+function getList(): ListItem[]
+function getList(platform: string): ListItem
+function getList(platform?: string): ListItem | ListItem[] {
+  const list: ListItem[] = [
     {
       id: 'wechatMiniProgram',
-      // 需要相反显示
       name: LocaleUtil.locale('浏览器拍照', 'lyrixi_8aa7d6484388695501c2cd7f434b5de0')
     },
     {
       id: 'browser',
-      // 需要相反显示
       name: LocaleUtil.locale('小程序拍照', 'lyrixi_ac5428f5890edb02a740bb243ed51dda')
     }
   ]

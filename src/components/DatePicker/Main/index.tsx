@@ -1,9 +1,12 @@
 import React, { forwardRef } from 'react'
 import WeekMain from './../WeekMain'
 import DateMain from './DateMain'
+import type { DatePickerMainSectionProps } from './../datePickerTypes'
+import type { CalendarRef } from '../../Calendar/types'
+import type { PickerMainRef } from './../../Picker/Main'
 
 // 日期选择
-function Main(
+const Main = forwardRef<unknown, DatePickerMainSectionProps>(function DatePickerMain(
   {
     // Modal: Status
     open,
@@ -20,14 +23,15 @@ function Main(
     minuteStep,
 
     // Events
-    onChange
+    onChange,
+    allowClear
   },
   ref
 ) {
   if (type === 'week') {
     return (
       <WeekMain
-        ref={ref}
+        ref={ref as React.ForwardedRef<CalendarRef>}
         // Modal: Status
         open={open}
         // Value & Display Value
@@ -35,6 +39,7 @@ function Main(
         // Status
         min={min}
         max={max}
+        allowClear={allowClear}
         // Style
         style={style}
         className={className}
@@ -46,7 +51,7 @@ function Main(
 
   return (
     <DateMain
-      ref={ref}
+      ref={ref as React.ForwardedRef<PickerMainRef>}
       // Modal: Status
       open={open}
       // Value & Display Value
@@ -57,6 +62,7 @@ function Main(
       max={max}
       hourStep={hourStep}
       minuteStep={minuteStep}
+      allowClear={allowClear}
       // Style
       style={style}
       className={className}
@@ -64,6 +70,6 @@ function Main(
       onChange={onChange}
     />
   )
-}
+})
 
-export default forwardRef(Main)
+export default Main

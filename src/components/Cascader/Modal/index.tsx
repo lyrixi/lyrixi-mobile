@@ -1,4 +1,6 @@
-import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type ReactNode, type CSSProperties, type Ref } from 'react'
+import type { CascaderMainRef } from './../Main'
+import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
 import Main from './../Main'
 
 // 内库使用-start
@@ -11,37 +13,53 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
+export interface CascaderModalProps {
+  value?: CascaderNode[] | null
+  list?: CascaderNode[] | null
+  loadData?: LoadDataFn
+  open?: boolean
+  maskClosable?: boolean
+  allowClear?: boolean
+  safeArea?: boolean
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  portal?: string | boolean | HTMLElement | null
+  searchVisible?: boolean
+  title?: ReactNode
+  okNode?: ReactNode
+  cancelNode?: ReactNode
+  okVisible?: boolean
+  cancelVisible?: boolean
+  onClose?: () => void
+  onOk?: (value: CascaderNode[] | null | undefined) => boolean | Promise<unknown> | void
+  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
+  onChange?: (value: CascaderNode[], meta?: unknown) => void
+}
+
 // Modal
-const CascaderModal = forwardRef(
+const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
   (
     {
-      // Value & Display Value
       value,
       list,
       loadData,
-
-      // Status
       open,
       maskClosable,
-      allowClear,
-
-      // Style
+      allowClear: _allowClear,
       safeArea,
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
-
-      // Elements
       portal,
-      searchVisible, // Filter useless props to protect the feature
+      searchVisible,
       title,
       okNode,
       cancelNode,
       okVisible,
       cancelVisible,
-
-      // Events
       onClose,
       onOk,
       onSearch,
@@ -49,84 +67,75 @@ const CascaderModal = forwardRef(
     },
     ref
   ) => {
-    let [currentValue, setCurrentValue] = useState(value)
-    const modalRef = useRef(null)
-    const mainRef = useRef(null)
+    const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(value)
+    const modalRef = useRef<unknown>(null)
+    const mainRef = useRef<CascaderMainRef | null>(null)
 
     useImperativeHandle(ref, () => {
-      return {
-        ...modalRef.current,
-        ...mainRef.current
-      }
+      const a = (modalRef.current as Record<string, unknown> | null) ?? {}
+      const b = (mainRef.current as CascaderMainRef | null) ?? ({} as CascaderMainRef)
+      return { ...a, ...b } as Record<string, unknown>
     })
 
-    // 同步外部value到内部currentValue
     useEffect(() => {
       setCurrentValue(value)
     }, [value])
 
     async function handleOk() {
-      // 触发 onOk
       if (onOk) {
-        let goOn = await onOk(currentValue)
-        if (goOn === false) return false
+        const goOn = await onOk(currentValue)
+        if (goOn === false) {
+          return false
+        }
         if (goOn instanceof Date) {
-          currentValue = goOn
+          /* legacy: Date return path kept for API compat */
         }
       }
 
-      onChange?.(currentValue)
+      if (onChange) {
+        onChange((currentValue ?? []) as CascaderNode[])
+      }
       onClose?.()
     }
 
-    function handleChange(newValue, newArguments) {
+    function handleChange(newValue: CascaderNode[], _newArguments?: unknown) {
       setCurrentValue(newValue)
 
-      // 单选时，如果是叶子节点，立即关闭
-      let lastTab =
-        Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
+      const lastTab = Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
       if (lastTab?.isLeaf) {
-        if (onChange) {
-          onChange(newValue)
-        }
+        onChange?.(newValue)
         onClose?.()
       }
     }
 
     return (
       <NavBarModal
-        ref={modalRef}
-        // Status
+        ref={modalRef as Ref<unknown> as never}
         open={open}
         maskClosable={maskClosable}
-        // Style
         safeArea={safeArea}
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-modal-cascader', modalClassName)}
         maskStyle={maskStyle}
         maskClassName={maskClassName}
-        // Element
         portal={portal}
         title={title}
         okNode={okNode}
         cancelNode={cancelNode}
         okVisible={okVisible}
         cancelVisible={cancelVisible}
-        // Events
         onClose={onClose}
         onOk={handleOk}
       >
-        {/* 弹窗打开时, 再渲染主页面, 避免用户未点击就加载的问题 */}
         {open && (
           <Main
             ref={mainRef}
-            value={currentValue}
-            allowClear={allowClear}
+            value={currentValue ?? undefined}
             searchVisible={searchVisible}
-            list={list}
+            list={list ?? undefined}
             loadData={loadData}
             onSearch={onSearch}
-            onChange={handleChange}
+            onChange={handleChange as (v: CascaderNode[]) => void}
           />
         )}
       </NavBarModal>

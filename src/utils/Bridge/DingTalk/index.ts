@@ -5,7 +5,14 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import compressImage from './compressImage'
 import config from './config'
-import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult, ErrorResult } from '../types'
+import type {
+  SuccessCallback,
+  ErrorCallback,
+  CancelCallback,
+  SuccessResult,
+  ErrorResult,
+  SDKResult
+} from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -30,7 +37,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -67,7 +74,7 @@ let Bridge = {
 
     script.onload = function () {
       if (window.dd) {
-        (window.top ?? window).dd = window.dd
+        ;(window.top ?? window).dd = window.dd
       }
 
       onSuccess?.({
@@ -89,13 +96,20 @@ let Bridge = {
   },
   config: async function (params?: {
     getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
-    formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
-    formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
+    formatHeaders?: (
+      h: Record<string, string>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, string>>
+    formatPayload?: (
+      p: Record<string, unknown>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, unknown>>
     formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
     onSuccess?: (r: unknown) => void
     onError?: (r: unknown) => void
   }) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = params || {}
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
+      params || {}
     // 获取配置url
     let url = ''
     if (typeof getConfigUrl === 'function') {
@@ -117,20 +131,17 @@ let Bridge = {
   goHome: function () {
     window.history.go(-1)
   },
-  back: function (delta) {
+  back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: {
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
     const { onSuccess, onError } = params || {}
     if ((window.top ?? window).dd?.env?.platform === 'pc') {
       ;(window.top ?? window).dd?.quitPage?.({
         success: () => {
           onSuccess?.({ status: 'success', data: undefined })
         },
-        fail: (error) => {
+        fail: (error: SDKResult) => {
           onError?.({
             status: 'error',
             message:
@@ -149,7 +160,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -179,16 +190,15 @@ let Bridge = {
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用钉钉地图...', { latitude, longitude, type, name, address, scale })
-
     ;(window.top ?? window).dd?.openLocation?.({
       title: name || '',
       address: address || '',
-      latitude: coord.latitude,
-      longitude: coord.longitude,
+      latitude: coord?.latitude ?? 0,
+      longitude: coord?.longitude ?? 0,
       onSuccess: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      onError: (error) => {
+      onError: (error: SDKResult) => {
         onError?.({
           status: 'error',
           message:
@@ -208,7 +218,6 @@ let Bridge = {
   }) {
     const { type, onSuccess, onError } = params || {}
     console.log('调用钉钉定位...', type)
-
     ;(window.top ?? window).dd?.getLocation?.({
       type: 0,
       useCache: false,
@@ -216,10 +225,10 @@ let Bridge = {
       cacheTimeout: 20,
       withReGeocode: false,
       targetAccuracy: '200',
-      onSuccess: (res) => {
+      onSuccess: (res: SDKResult) => {
         console.log('钉钉定位完成', res)
-        let latitude = res.latitude
-        let longitude = res.longitude
+        let latitude = res.latitude ?? 0
+        let longitude = res.longitude ?? 0
         let currentType = 'gcj02'
         let isInChina = GeoUtil.isInChina([longitude, latitude])
         if (isInChina) {
@@ -228,9 +237,11 @@ let Bridge = {
           currentType = 'wgs84'
         }
 
-        const points = GeoUtil.coordtransform([longitude, latitude], currentType, type)
-        longitude = points[0]
-        latitude = points[1]
+        const points = GeoUtil.coordtransform([longitude, latitude], currentType, type ?? 'wgs84')
+        if (points) {
+          longitude = points[0]
+          latitude = points[1]
+        }
 
         const data = {
           type: type,
@@ -246,7 +257,7 @@ let Bridge = {
           data
         })
       },
-      onError: (error) => {
+      onError: (error: SDKResult) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       }
     })
@@ -267,9 +278,9 @@ let Bridge = {
       }
     }
 
-    (window.top ?? window).dd?.biz?.util?.scan?.({
+    ;(window.top ?? window).dd?.biz?.util?.scan?.({
       type: type,
-      onSuccess: (res) => {
+      onSuccess: (res: SDKResult) => {
         onSuccess?.({
           status: 'success',
           code: '',
@@ -277,7 +288,7 @@ let Bridge = {
           data: { content: res.text || '' }
         })
       },
-      onError: (error) => {
+      onError: (error: SDKResult) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       },
       onCancel: onCancel
@@ -293,14 +304,26 @@ let Bridge = {
     onError?: ErrorCallback
     onCancel?: () => void
   }) {
-    const { count: countIn, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
-    params || {}
+    const {
+      count: countIn,
+      sourceType,
+      sizeType,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      mediaType,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      maxDuration,
+      onSuccess,
+      onError,
+      onCancel
+    } = params || {}
     let count = countIn || 9
     if (sourceType?.length === 1 && sourceType.includes('camera') && count > 1) {
       count = 1
     }
 
-    const handleSuccess = async function (res: { files?: Array<Record<string, unknown> & { path?: string; fileType?: string }> }) {
+    const handleSuccess = async function (res: {
+      files?: Array<Record<string, unknown> & { path?: string; fileType?: string }>
+    }) {
       let localFiles: Array<Record<string, unknown>> = []
       for (let file of res.files || []) {
         let localFile: Record<string, unknown> = {
@@ -320,17 +343,17 @@ let Bridge = {
         localFiles.push(localFile)
       }
 
-        onSuccess?.({
-          status: 'success',
-          code: '',
-          message: '',
-          data: {
-            localFiles: localFiles
-          }
-        })
+      onSuccess?.({
+        status: 'success',
+        code: '',
+        message: '',
+        data: {
+          localFiles: localFiles
+        }
+      })
     }
 
-    const handleError = function (error) {
+    const handleError = function (error: SDKResult) {
       if (
         error?.errorCode === '11' ||
         error?.errorCode === '-1' ||
@@ -343,7 +366,7 @@ let Bridge = {
         onError &&
           onError({
             status: 'error',
-            code: error?.errorCode || '',
+            code: String(error?.errorCode ?? '') || undefined,
             message: error?.errorMessage || ''
           })
       }
@@ -380,25 +403,36 @@ let Bridge = {
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError, onCancel } =
-    params || {}
+    const {
+      localFile,
+      getUploadUrl,
+      formatHeaders,
+      formatPayload,
+      formatResponse,
+      onSuccess,
+      onError,
+      onCancel
+    } = params || {}
     const url = (await getUploadUrl?.({ platform: 'dingtalk' })) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
-        onError?.({
-          status: 'error',
-          message: `localFile error`
-        })
+      onError?.({
+        status: 'error',
+        message: `localFile error`
+      })
       return
     }
     if (!url || typeof url !== 'string') {
-        onError?.({
-          status: 'error',
-          message: `url error`
-        })
+      onError?.({
+        status: 'error',
+        message: `url error`
+      })
       return
     }
 
-    let payload: Record<string, unknown> = { filePath: localFile.filePath, fileType: localFile.fileType }
+    let payload: Record<string, unknown> = {
+      filePath: localFile.filePath,
+      fileType: localFile.fileType
+    }
     if (typeof formatPayload === 'function') {
       payload = (await formatPayload(payload, { platform: 'dingtalk' })) as Record<string, unknown>
     }
@@ -407,17 +441,17 @@ let Bridge = {
       headers = await formatHeaders(headers, { platform: 'dingtalk' })
     }
 
-    const handleSuccess = async function (res) {
+    const handleSuccess = async function (res: SDKResult) {
       console.log('钉钉uploadImage成功:', res)
       const { data, statusCode } = res
       if (statusCode !== 200) {
-          onError?.({
-            status: 'error',
-            message: `DingTalk ${LocaleUtil.locale(
-              '网络异常，上传失败',
-              'lyrixi_18904cde640c2efd37bc6ed3e9dedc77'
-            )}`
-          })
+        onError?.({
+          status: 'error',
+          message: `DingTalk ${LocaleUtil.locale(
+            '网络异常，上传失败',
+            'lyrixi_18904cde640c2efd37bc6ed3e9dedc77'
+          )}`
+        })
         return
       }
 
@@ -428,7 +462,7 @@ let Bridge = {
       if (typeof data === 'string') {
         try {
           response.data = JSON.parse(data)
-        } catch (e) { }
+        } catch (e) {}
       }
 
       if (typeof formatResponse === 'function') {
@@ -450,7 +484,6 @@ let Bridge = {
       filePath: localFile.filePath,
       fileType: localFile.fileType
     })
-
     ;(window.top ?? window).dd?.uploadFile?.({
       url: url.startsWith('http') ? url : window.origin + url,
       header: headers,
@@ -459,17 +492,17 @@ let Bridge = {
       filePath: localFile.filePath,
       fileType: localFile.fileType,
       success: handleSuccess,
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         onError?.({
           status: 'error',
-          code: error?.errorCode || '',
+          code: String(error?.errorCode ?? '') || undefined,
           message: error?.errorMessage || ''
         })
       },
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         onCancel?.({
           status: 'cancel',
-          code: error?.errorCode || '',
+          code: String(error?.errorCode ?? '') || undefined,
           message: error?.errorMessage || ''
         })
       }
@@ -477,7 +510,13 @@ let Bridge = {
   },
   previewMedia: function (params?: {
     index?: number
-    sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
+    sources?: Array<
+      Record<string, unknown> & {
+        localFile?: { tempFileUrl?: string }
+        fileUrl?: string
+        fileType?: string
+      }
+    >
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
     onCancel?: CancelCallback
@@ -503,20 +542,20 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error) => {
+      fail: (error: SDKResult) => {
         console.log('钉钉previewImage失败:', error)
         onError?.({
           status: 'error',
-          code: error?.errorCode || '',
+          code: String(error?.errorCode ?? '') || undefined,
           message:
             error?.errorMessage ||
             `DingTalk ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: (error) => {
+      cancel: (error: SDKResult) => {
         onCancel?.({
           status: 'cancel',
-          code: error?.errorCode || '',
+          code: String(error?.errorCode ?? '') || undefined,
           message: error?.errorMessage || ''
         })
       }
@@ -527,8 +566,10 @@ let Bridge = {
    * @see dd.biz.ATMBle.exclusiveLiveCheck
    */
   detectFace: async function (params?: {
-    getConfig?: (ctx: { platform: string }) => Promise<Record<string, unknown>> | Record<string, unknown>
-    onSuccess?: SuccessCallback<{ match: boolean, confidence: number | undefined }>
+    getConfig?: (ctx: {
+      platform: string
+    }) => Promise<Record<string, unknown>> | Record<string, unknown>
+    onSuccess?: SuccessCallback<{ match: boolean; confidence: number | undefined }>
     onError?: ErrorCallback
   }) {
     const { getConfig, onSuccess, onError } = params || {}
@@ -538,21 +579,21 @@ let Bridge = {
     }
     ;(window.top ?? window).dd?.biz?.ATMBle?.exclusiveLiveCheck?.({
       ...config,
-      onSuccess: (res) => {
+      onSuccess: (res: SDKResult) => {
         onSuccess?.({
           status: 'success',
           code: '',
           message: '',
-          data: { 
+          data: {
             match: res?.photoStatus === 1,
             confidence: undefined
           }
         })
       },
-      onFail: (err) => {
+      onFail: (err: SDKResult) => {
         onError?.({
           status: 'error',
-          code: err?.errorCode,
+          code: err?.errorCode !== undefined ? String(err.errorCode) : undefined,
           message: err?.errorMessage
         })
       }
@@ -576,7 +617,7 @@ let Bridge = {
       onSuccess: function () {
         onSuccess?.()
       },
-      onFail: function (err) {
+      onFail: function (err: SDKResult) {
         console.log('DingTalk Share onError:', err)
         onError?.({
           status: 'error',

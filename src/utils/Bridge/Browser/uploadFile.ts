@@ -7,7 +7,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function uploadFile({ url, headers, payload }) {
+function uploadFile({ url, headers, payload }: { url: string; headers?: Record<string, string>; payload?: Record<string, string | Blob> }) {
   return new Promise((resolve) => {
     const newPayload = new FormData()
     for (const key in payload) {

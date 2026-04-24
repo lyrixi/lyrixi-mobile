@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <Attach.List>
-          {/* Attach.List 示例内容 */}
-        </Attach.List>
+        <Attach.List list={[]} onChange={() => {}} />
       </Page.Main>
     </Page>
   )

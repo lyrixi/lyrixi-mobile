@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
-import InputText from './../Text'
+import InputText, { InputTextRef, InputTextProps } from './../Text'
 
-const Number = forwardRef(
+const Number = forwardRef<InputTextRef, InputTextProps>(
   (
     {
       id,

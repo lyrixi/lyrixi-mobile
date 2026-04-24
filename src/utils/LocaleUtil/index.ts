@@ -17,7 +17,7 @@ const LocaleUtil = {
    *   return lang || null
    * })
    */
-  addLanguage(getCustomLanguage) {
+  addLanguage(getCustomLanguage: () => string | null | undefined): void {
     if (typeof getCustomLanguage === 'function') {
       this._getCustomGetLanguages.push(getCustomLanguage)
     }
@@ -34,9 +34,9 @@ const LocaleUtil = {
   locale: locale,
   loadLocale: loadLocale,
   setLocale: setLocale,
-  getLanguageMap: (language) => {
+  getLanguageMap: (language?: string) => {
     if (language) {
-      return languageMap?.[language] || null
+      return (languageMap as Record<string, unknown>)?.[language] || null
     }
     return languageMap
   }

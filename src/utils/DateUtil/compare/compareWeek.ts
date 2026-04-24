@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 // 比较周数,大于返回1,等于返回0,小于返回-1
-function compareWeek(d1, d2) {
+function compareWeek(d1: Date, d2: Date) {
   let year1 = d1.getFullYear()
   let year2 = d2.getFullYear()
   let week1 = dayjs(d1).week()

@@ -9,10 +9,12 @@ import Button from 'lyrixi-mobile/components/Button'
 import formatResult from '../ListPaginationMain/formatResult'
 import formatViewItem from '../ListPaginationMain/formatViewItem'
 
+type Row = Record<string, unknown>
+
 // ListPagination.Modal：受控弹窗内分页列表选择
 export default () => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<Row | Row[] | null>(null)
 
   return (
     <Page>

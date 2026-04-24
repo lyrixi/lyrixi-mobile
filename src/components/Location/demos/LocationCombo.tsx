@@ -1,23 +1,25 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, type ComponentProps } from 'react'
 import { Page, Location, Card, Button } from 'lyrixi-mobile'
 
+type Loc = Exclude<ComponentProps<typeof Location.Combo>['value'], undefined>
+
 export default () => {
-  const [value1, setValue1] = useState({
+  const [value1, setValue1] = useState<Loc | null>({
     latitude: 31.990374883871525,
     longitude: 118.73769931504451,
     type: 'gcj02',
     address: '南京烽火科技'
   })
 
-  const [value2, setValue2] = useState(null)
-  const [value3, setValue3] = useState({
+  const [value2, setValue2] = useState<Loc | null>(null)
+  const [value3, setValue3] = useState<Loc>({
     latitude: 39.909187,
     longitude: 116.397451,
     type: 'gcj02',
     address: '天安门'
   })
 
-  const comboRef = useRef(null)
+  const comboRef = useRef<React.ComponentRef<typeof Location.Combo> | null>(null)
 
   return (
     <Page>
@@ -130,7 +132,6 @@ export default () => {
               type="wgs84"
               // 可以用全局设置window.MapLoaderConfig代替
               mapConfig={{
-                key: 'bmap key',
                 key: '4KFq5IGKQM1c6vkVhgIpAYFu',
                 type: 'bmap'
               }}
@@ -150,7 +151,6 @@ export default () => {
               type="gcj02"
               // 可以用全局设置window.MapLoaderConfig代替
               mapConfig={{
-                key: 'bmap key',
                 key: '4KFq5IGKQM1c6vkVhgIpAYFu',
                 type: 'bmap'
               }}
@@ -249,7 +249,6 @@ export default () => {
               clickAction="choose"
               type="gcj02"
               mapConfig={{
-                key: 'bmap key',
                 key: '4KFq5IGKQM1c6vkVhgIpAYFu',
                 type: 'bmap'
               }}

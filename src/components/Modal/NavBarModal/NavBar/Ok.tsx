@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type MouseEvent, type ReactNode } from 'react'
 
 // 内库使用-start
 import NavBar from './../../../NavBar'
@@ -9,9 +9,15 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { NavBar, LocaleUtil } from 'lyrixi-mobile'
 测试使用-start */
 
-const Ok = ({ total, children, onClick }) => {
+interface OkProps {
+  total?: number
+  children?: ReactNode
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
+
+const Ok = ({ total, children, onClick }: OkProps) => {
   // 点击确定
-  function handleOkClick(e) {
+  function handleOkClick(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation()
     if (onClick) onClick(e)
   }

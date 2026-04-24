@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react'
-import { Page, Select, Checkbox, Card, ToolBar, Text, ObjectUtil } from 'lyrixi-mobile'
+import React, { useState, useRef, type CSSProperties } from 'react'
+import { Page, Select, Card, ToolBar, Text, ObjectUtil } from 'lyrixi-mobile'
 import flatList from './flatList'
 import groupList from './groupList'
 
 export default () => {
   const [keyword, setKeyword] = useState('')
-  const [singleValue, setSingleValue] = useState(null)
+  const [singleValue, setSingleValue] = useState<unknown>(null)
 
-  const [multipleValue, setMultipleValue] = useState([
+  const [multipleValue, setMultipleValue] = useState<unknown[]>([
     {
       allowClear: true,
       id: '1',
@@ -42,7 +42,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(v) => setSingleValue(v)}
             />
           </Card.Main>
         </Card>
@@ -57,7 +57,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={setMultipleValue}
+              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -73,7 +73,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={setMultipleValue}
+              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -89,7 +89,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(v) => setSingleValue(v)}
             />
           </Card.Main>
         </Card>
@@ -106,7 +106,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={setMultipleValue}
+              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -124,7 +124,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={setMultipleValue}
+              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -138,11 +138,9 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={setSingleValue}
-              checkboxRender={({ checked }) => {
-                return <Checkbox checked={checked} />
-              }}
-              checkable="left"
+              onChange={(v) => setSingleValue(v)}
+              checkable
+              checkboxPosition="left"
             />
           </Card.Main>
         </Card>
@@ -156,7 +154,7 @@ export default () => {
               allowClear
               value={singleValue}
               list={groupList}
-              onChange={setSingleValue}
+              onChange={(v) => setSingleValue(v)}
             />
           </Card.Main>
         </Card>
@@ -170,7 +168,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(v) => setSingleValue(v)}
               modalStyle={{ height: '300px' }}
               modalClassName="custom"
             />
@@ -209,7 +207,11 @@ export default () => {
               // Keyword hightlight 
               formatViewItem={(item) => {
                 return {
-                  title: <Text style={item.style} highlight={keyword}>{item.name}</Text>
+                  title: (
+                    <Text style={item.style as CSSProperties} highlight={keyword}>
+                      {String(item.name ?? '')}
+                    </Text>
+                  )
                 }
               }}
               onChange={(newValue) => {

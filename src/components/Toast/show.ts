@@ -4,9 +4,27 @@ import hide from './hide'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
+type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
+
+export interface ShowProps {
+  duration?: number
+  maskClickable?: boolean
+  position?: string
+  portal?: HTMLElement
+  id?: string
+  maskClassName?: string
+  maskStyle?: React.CSSProperties
+  className?: string
+  style?: React.CSSProperties
+  content?: string
+  onOpen?: () => void
+  onClose?: () => void
+}
+
 // 显示Toast
 // eslint-disable-next-line
-function show(props) {
+function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
+  const context = this as { defaultProps?: ShowProps } | undefined
   const {
     // Visible duration
     duration,
@@ -24,7 +42,7 @@ function show(props) {
     onOpen,
     onClose
   } = {
-    ...(this?.defaultProps || {}),
+    ...(context?.defaultProps || {}),
     ...(props || {})
   }
 
@@ -32,10 +50,10 @@ function show(props) {
   function render() {
     let toastId = id || '__lyrixi_toast_el__'
     // 如果没生成成功, 则强制生成
-    let mask = document.getElementById(toastId)
+    let mask = document.getElementById(toastId) as ExtendedHTMLElement | null
     if (!mask) {
       // Create mask
-      mask = document.createElement('div')
+      mask = document.createElement('div') as ExtendedHTMLElement
 
       mask.innerHTML = `<div class="lyrixi-toast">
         <div class="lyrixi-toast-wrapper">
@@ -57,8 +75,12 @@ function show(props) {
     )
     mask.setAttribute('id', toastId)
     mask.setAttribute('style', '')
-    for (let key in maskStyle || {}) {
-      if (maskStyle[key] !== undefined) mask.style[key] = maskStyle[key]
+    if (maskStyle) {
+      for (let key in maskStyle) {
+        const k = key as keyof React.CSSProperties
+        const val = maskStyle[k]
+        if (val !== undefined) (mask.style as unknown as Record<string, unknown>)[key] = val
+      }
     }
 
     // Update container
@@ -71,12 +93,16 @@ function show(props) {
     }
 
     // Update wrapper
-    let wrapper = mask.querySelector('.lyrixi-toast-wrapper')
+    let wrapper = mask.querySelector('.lyrixi-toast-wrapper') as HTMLElement | null
     if (wrapper) {
       wrapper?.setAttribute('class', DOMUtil.classNames('lyrixi-toast-wrapper', className))
       wrapper?.setAttribute('style', '')
-      for (let key in style || {}) {
-        wrapper.style[key] = style[key]
+      if (style) {
+        for (let key in style) {
+          const k = key as keyof React.CSSProperties
+          const val = style[k]
+          if (val !== undefined) (wrapper.style as unknown as Record<string, unknown>)[key] = val
+        }
       }
     }
 
@@ -88,7 +114,8 @@ function show(props) {
 
     // Open toast
     mask.classList.add('lyrixi-active')
-    mask.childNodes[0].classList.add('lyrixi-active')
+    const firstChild = mask.childNodes[0] as Element | undefined
+    firstChild?.classList?.add('lyrixi-active')
 
     if (typeof onOpen === 'function') {
       onOpen()

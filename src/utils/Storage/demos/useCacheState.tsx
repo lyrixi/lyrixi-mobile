@@ -1,8 +1,10 @@
 import React from 'react'
 import { Storage, Page, Button } from 'lyrixi-mobile'
 
+type CacheDemo = { name: string } | null
+
 export default () => {
-  const [data, setData] = Storage.useCacheState(null, {
+  const [data, setData] = Storage.useCacheState<CacheDemo>(null, {
     name: 'cache-state-pageName-futureName',
     persist: true
   })
@@ -22,7 +24,7 @@ export default () => {
         <Button
           className="lyrixi-flex"
           onClick={() => {
-            setData()
+            setData(null)
           }}
         >
           Remove Cache

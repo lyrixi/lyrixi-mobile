@@ -1,6 +1,12 @@
 import ObjectUtil from './../../../utils/ObjectUtil'
+
+interface SpaceDatesResult {
+  isOverTime: boolean
+  dates: Date[]
+}
+
 // 在现有时间集合中，增加超过timeSpace的时间
-function getSpaceDates(date, dates, timeSpace) {
+function getSpaceDates(date: Date, dates: Date[], timeSpace: number): SpaceDatesResult {
   if (date instanceof Date === false) {
     return {
       isOverTime: false,
@@ -15,12 +21,10 @@ function getSpaceDates(date, dates, timeSpace) {
     }
   }
 
-  // 检查date和dates中的每个日期差距是否超过timeSpace
   const isOverTime = dates.some((existingDate) => {
-    return Math.abs(new Date(date) - new Date(existingDate)) > timeSpace
+    return Math.abs(date.getTime() - new Date(existingDate).getTime()) > timeSpace
   })
 
-  // 否则将新日期加入到dates中并返回新的dates
   if (isOverTime) {
     return {
       isOverTime: true,
@@ -28,7 +32,6 @@ function getSpaceDates(date, dates, timeSpace) {
     }
   }
 
-  // 如果传入的date与dates中的任何日期相差小于timeSpace，返回原来的dates
   return {
     isOverTime: false,
     dates

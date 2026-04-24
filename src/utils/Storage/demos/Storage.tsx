@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { Storage, Page, Button, Input, Card, Divider, Form } from 'lyrixi-mobile'
 
+function errMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error)
+}
+
 export default () => {
   const [key, setKey] = useState('demo-storage-key')
   const [value, setValue] = useState('demo-storage-value')
@@ -18,8 +22,8 @@ export default () => {
     try {
       await Storage.setItem(key, value)
       setResult('设置成功')
-    } catch (error) {
-      setResult(`设置失败: ${error.message}`)
+    } catch (error: unknown) {
+      setResult(`设置失败: ${errMessage(error)}`)
     }
   }
 
@@ -27,8 +31,8 @@ export default () => {
     try {
       const data = await Storage.getItem(key)
       setResult(`获取结果: ${JSON.stringify(data)}`)
-    } catch (error) {
-      setResult(`获取失败: ${error.message}`)
+    } catch (error: unknown) {
+      setResult(`获取失败: ${errMessage(error)}`)
     }
   }
 
@@ -36,8 +40,8 @@ export default () => {
     try {
       const keys = await Storage.getKeys()
       setResult(`所有键: ${JSON.stringify(keys)}`)
-    } catch (error) {
-      setResult(`获取失败: ${error.message}`)
+    } catch (error: unknown) {
+      setResult(`获取失败: ${errMessage(error)}`)
     }
   }
 
@@ -45,8 +49,8 @@ export default () => {
     try {
       const items = await Storage.getItems()
       setResult(`所有数据: ${JSON.stringify(items)}`)
-    } catch (error) {
-      setResult(`获取失败: ${error.message}`)
+    } catch (error: unknown) {
+      setResult(`获取失败: ${errMessage(error)}`)
     }
   }
 
@@ -54,8 +58,8 @@ export default () => {
     try {
       await Storage.removeItem(key)
       setResult('删除成功')
-    } catch (error) {
-      setResult(`删除失败: ${error.message}`)
+    } catch (error: unknown) {
+      setResult(`删除失败: ${errMessage(error)}`)
     }
   }
 
@@ -63,8 +67,8 @@ export default () => {
     try {
       await Storage.clear()
       setResult('清空成功')
-    } catch (error) {
-      setResult(`清空失败: ${error.message}`)
+    } catch (error: unknown) {
+      setResult(`清空失败: ${errMessage(error)}`)
     }
   }
 
@@ -80,14 +84,14 @@ export default () => {
               <Input.Text
                 placeholder="请输入键名"
                 value={key}
-                onChange={(e) => setKey(e.target.value)}
+                onChange={(v) => setKey(v)}
               />
             </Form.Item>
             <Form.Item name="value" label="值">
               <Input.Text
                 placeholder="请输入值"
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(v) => setValue(v)}
               />
             </Form.Item>
           </Form>

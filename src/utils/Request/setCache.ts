@@ -6,7 +6,7 @@ import Storage from './../Storage'
 import { Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-function setCache(url, cacheKey, data) {
+function setCache(url: string, cacheKey: string | number, data: unknown): void {
   if (!cacheKey || !['string', 'number'].includes(typeof cacheKey)) {
     return
   }

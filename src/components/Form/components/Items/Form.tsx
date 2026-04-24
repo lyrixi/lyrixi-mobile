@@ -1,5 +1,6 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 import ItemsContext from './../ItemsContext'
+import type { EllipsisConfig } from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -9,8 +10,24 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface FormItemsRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface FormItemsProps {
+  style?: CSSProperties
+  className?: string
+  layout?: string
+  labelSpan?: number
+  labelEllipsis?: EllipsisConfig | null
+  mainSpan?: number
+  mainEllipsis?: EllipsisConfig | null
+  children?: ReactNode
+}
+
 // layout: horizontal | vertical | inline
-const Form = forwardRef(
+const Form = forwardRef<FormItemsRef, FormItemsProps>(
   (
     {
       // Value & Display Value
@@ -29,7 +46,7 @@ const Form = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -41,13 +58,19 @@ const Form = forwardRef(
 
     return (
       <ItemsContext.Provider
-        value={{ layout, labelSpan, labelEllipsis, mainSpan, mainEllipsis }}
+        value={{
+          layout,
+          labelSpan: labelSpan ?? 4,
+          labelEllipsis: labelEllipsis ?? null,
+          mainSpan: mainSpan ?? 20,
+          mainEllipsis: mainEllipsis ?? null
+        }}
       >
         <div
           ref={rootRef}
           // Style
           style={style}
-          className={DOMUtil.classNames('lyrixi-form-items', className)}
+          className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-form-items', className)}
         >
           {/* Element: Children */}
           {children}

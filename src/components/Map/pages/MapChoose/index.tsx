@@ -1,8 +1,11 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } from 'react'
 
-import coordsToWgs84 from './../../utils/coordsToWgs84'
+import coordsToWgs84, { type MapPoint as WgsMapPoint } from './../../utils/coordsToWgs84'
 
-import MapContainer from './../../components/MapContainer'
+import MapContainer, {
+  type MapContainerAPI,
+  type MapContainerProps
+} from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
 import SearchControl from './../../components/SearchControl'
 import CenterMarker from './../../components/CenterMarker'
@@ -20,28 +23,79 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Loading, Toast, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+function strLocale(node: string | React.ReactNode): string {
+  return typeof node === 'string' ? node : '…'
+}
+
+export interface MapChooseValue {
+  latitude?: number | string
+  longitude?: number | string
+  type?: string
+  address?: string
+  name?: string
+  [key: string]: unknown
+}
+
+export interface MapChooseProps {
+  value?: MapChooseValue
+  center?: MapContainerProps['center']
+  /** 地图缩放级别，默认 14 */
+  zoom?: number
+  minZoom?: number
+  maxZoom?: number
+  cacheExpires?: number
+  readOnly?: boolean
+  autoLocation?: boolean
+  nearbyVisible?: boolean
+  getAddress?: MapContainerProps['getAddress']
+  getLocation?: MapContainerProps['getLocation']
+  queryNearby?: MapContainerProps['queryNearby']
+  openLocation?: MapContainerProps['openLocation']
+  style?: React.CSSProperties
+  className?: string
+  searchControlStyle?: React.CSSProperties
+  searchControlClassName?: string
+  centerMarkerStyle?: React.CSSProperties
+  centerMarkerClassName?: string
+  markersStyle?: React.CSSProperties
+  markersClassName?: string
+  zoomControlStyle?: React.CSSProperties
+  zoomControlClassName?: string
+  locationControlStyle?: React.CSSProperties
+  locationControlClassName?: string
+  nearbyControlStyle?: React.CSSProperties
+  nearbyControlClassName?: string
+  children?: React.ReactNode
+  onLoad?: MapContainerProps['onLoad']
+  onChange?: (value: WgsMapPoint | (WgsMapPoint | null)[] | null) => void
+  onMarkerClick?: (e: unknown) => void
+  onZoomStart?: MapContainerProps['onZoomStart']
+  onZoom?: MapContainerProps['onZoom']
+  onZoomEnd?: MapContainerProps['onZoomEnd']
+  onMoveStart?: MapContainerProps['onMoveStart']
+  onMove?: MapContainerProps['onMove']
+  onMoveEnd?: MapContainerProps['onMoveEnd']
+  onDragStart?: MapContainerProps['onDragStart']
+  onDrag?: MapContainerProps['onDrag']
+  onDragEnd?: MapContainerProps['onDragEnd']
+}
+
 // 地图选点
-function MapChoose(
+const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose(
   {
-    // Value & Display Value
-    value, // {latitude: '纬度', longitude: '经度', address: '地址', type: '坐标类型'}
+    value,
     center,
+    zoom: zoomProp,
     minZoom,
     maxZoom,
     cacheExpires,
-
-    // Status
     readOnly,
     autoLocation = true,
     nearbyVisible,
-
-    // Utils
     getAddress,
     getLocation,
     queryNearby,
     openLocation,
-
-    // Style
     style,
     className,
     searchControlStyle,
@@ -56,11 +110,7 @@ function MapChoose(
     locationControlClassName,
     nearbyControlStyle,
     nearbyControlClassName,
-
-    // Elements
     children,
-
-    // Events
     onLoad,
     onChange,
     onMarkerClick,
@@ -76,125 +126,125 @@ function MapChoose(
   },
   ref
 ) {
-  // 地图容器
-  const mapRef = useRef(null)
+  const mapRef = useRef<MapContainerAPI | null>(null)
+  const nearbyRef = useRef<React.ComponentRef<typeof NearbyControl> | null>(null)
+  const locationRef = useRef<React.ElementRef<typeof LocationControl> | null>(null)
+  const zoomRef = useRef<React.ElementRef<typeof ZoomControl> | null>(null)
+  const [points, setPoints] = useState<unknown[] | null>(null)
 
-  // 附近的点
-  const nearbyRef = useRef(null)
-
-  // 定位
-  const locationRef = useRef(null)
-
-  // 放大缩小
-  const zoomRef = useRef(null)
-
-  // Marker
-  let [points, setPoints] = useState(null)
-
-  // Expose
-  useImperativeHandle(ref, () => {
-    return mapRef?.current
-  })
+  // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current == null.
+  useImperativeHandle(ref, () => mapRef.current as MapContainerAPI)
 
   useEffect(() => {
     if (value?.longitude && value?.latitude && value?.type) {
-      mapRef.current?.panTo?.(value)
+      mapRef.current?.panTo(value as WgsMapPoint)
     }
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(value)])
 
-  // 获取当前位置
   async function handleAutoLocation() {
     if (value?.longitude && value?.latitude && value?.address) {
       return
     }
 
-    let newValue = value ? { ...value } : null
+    let newValue: MapChooseValue | null = value ? { ...value } : null
 
-    // 默认选中当前位置
     if (!newValue?.longitude || !newValue?.latitude) {
       Loading.show({
-        content: LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd')
+        content: strLocale(
+          LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd')
+        )
       })
-      let result = await mapRef.current?.getLocation?.({ type: 'wgs84' })
+      const result: unknown = await mapRef.current?.getLocation?.({ type: 'wgs84' })
       Loading.hide()
-      if (result.status === 'error') {
+      if (
+        result &&
+        typeof result === 'object' &&
+        'status' in result &&
+        (result as { status: string }).status === 'error'
+      ) {
+        const message = (result as { message?: string }).message
         Toast.show({
-          content: result.message
+          content: typeof message === 'string' ? message : 'Error'
         })
         return
       }
       newValue = {
         ...(newValue || {}),
-        ...result
+        ...(result as MapChooseValue)
       }
     }
 
-    // 获取地址
     if (!newValue?.address) {
       Loading.show({
-        content: LocaleUtil.locale('获取地址中...', 'lyrixi_727c51b4575192c9cc0ca17b67375392')
+        content: strLocale(
+          LocaleUtil.locale('获取地址中...', 'lyrixi_727c51b4575192c9cc0ca17b67375392')
+        )
       })
-      let result = await mapRef.current?.getAddress?.(newValue)
+      const result: unknown = await mapRef.current?.getAddress?.(newValue as WgsMapPoint)
       Loading.hide()
-      if (result.status === 'error') {
+      if (
+        result &&
+        typeof result === 'object' &&
+        'status' in result &&
+        (result as { status: string }).status === 'error'
+      ) {
+        const message = (result as { message?: string }).message
         Toast.show({
-          content: result.message
+          content: typeof message === 'string' ? message : 'Error'
         })
         return
       }
       newValue = {
         ...(newValue || {}),
-        ...result
+        ...(result as MapChooseValue)
       }
     }
 
     if (newValue?.longitude && newValue?.latitude && newValue?.type) {
-      mapRef.current?.panTo?.(newValue)
+      mapRef.current?.panTo(newValue as WgsMapPoint)
     }
 
     handleChange(newValue)
   }
 
-  // Format coord to wgs84 before change
-  function handleChange(newValue) {
-    let fmtNewValue = coordsToWgs84(newValue)
-    onChange && onChange(fmtNewValue)
+  function handleChange(newValue: unknown) {
+    if (newValue === null || newValue === undefined) {
+      onChange && onChange(null)
+      return
+    }
+    if (typeof newValue !== 'object') {
+      return
+    }
+    const fmt = coordsToWgs84(newValue as WgsMapPoint)
+    onChange && onChange(fmt)
   }
 
-  console.log('nearbyVisible:', nearbyVisible)
   return (
     <MapContainer
       ref={mapRef}
-      // Value & Display Value
       center={value || center}
-      zoom={14}
+      zoom={zoomProp ?? 14}
       minZoom={minZoom}
       maxZoom={maxZoom}
       cacheExpires={cacheExpires}
-      // Utils
       getAddress={getAddress}
       getLocation={getLocation}
       queryNearby={queryNearby}
       openLocation={openLocation}
-      // Style
       className={className}
       style={style}
-      // Events
       onLoad={(result) => {
-        // 地图加载失败
         if (result?.status === 'error') return
 
-        // 加载完成后更新视图
         if (value?.longitude && value?.latitude && value?.type) {
-          result?.map?.panTo?.(value)
+          result?.map?.panTo?.(value as WgsMapPoint)
         }
 
         onLoad && onLoad(result)
 
-        // 当前位置
         if (readOnly || !autoLocation) return
-        handleAutoLocation()
+        void handleAutoLocation()
       }}
       onZoomStart={onZoomStart}
       onZoom={onZoom}
@@ -206,130 +256,110 @@ function MapChoose(
       onDrag={onDrag}
       onDragEnd={onDragEnd}
     >
-      {/* Element: SearchControl */}
       {readOnly ? null : (
         <SearchControl
-          // Events
           onChange={handleChange}
-          // Style
           className={searchControlClassName}
           style={searchControlStyle}
         />
       )}
 
-      {/* Element: CenterMarker */}
       <CenterMarker
-        // Value & Display Value
         value={value}
-        // Events
         onDragEnd={
           readOnly
             ? null
-            : async (map) => {
-              let center = map.getCenter()
-              let result = {
-                ...center
+            : async (map: MapContainerAPI) => {
+                const center = map.getCenter()
+                let result: WgsMapPoint = {
+                  ...center
+                } as WgsMapPoint
+                Loading.show({
+                  content: strLocale(
+                    LocaleUtil.locale('获取地址中...', 'lyrixi_727c51b4575192c9cc0ca17b67375392')
+                  )
+                })
+                const addr: unknown = await map.getAddress(result)
+                if (
+                  addr &&
+                  typeof addr === 'object' &&
+                  'status' in addr &&
+                  (addr as { status: string }).status !== 'error'
+                ) {
+                  result = { ...result, ...(addr as WgsMapPoint) }
+                }
+                Loading.hide()
+                handleChange(result as MapChooseValue)
               }
-
-              Loading.show({
-                content: LocaleUtil.locale(
-                  '获取地址中...',
-                  'lyrixi_727c51b4575192c9cc0ca17b67375392'
-                )
-              })
-              result = await map.getAddress(result)
-              Loading.hide()
-
-              handleChange(result)
-            }
         }
-        // Style
         className={centerMarkerClassName}
         style={centerMarkerStyle}
       />
 
-      {/* Element: Markers */}
       {!readOnly ? (
         <Markers
-          // Value & Display Value
           points={points}
-          // Events
           onClick={onMarkerClick}
-          // Style
           className={markersClassName}
           style={markersStyle}
         />
       ) : null}
 
-      {/* Element: ZoomControl */}
       <ZoomControl
         ref={zoomRef}
-        // Events
-        onZoomIn={(map) => {
+        onZoomIn={(m) => {
           setTimeout(() => {
-            console.log('放大', map.getZoom())
+            console.log('放大', m.getZoom())
           }, 300)
         }}
-        onZoomOut={(map) => {
+        onZoomOut={(m) => {
           setTimeout(() => {
-            console.log('缩小', map.getZoom())
+            console.log('缩小', m.getZoom())
           }, 300)
         }}
-        // Style
         className={zoomControlClassName}
         style={{ bottom: readOnly ? '115px' : '145px', ...zoomControlStyle }}
       />
 
-      {/* Element: LocationControl */}
       {readOnly ? null : (
         <LocationControl
           ref={locationRef}
-          // Events
           onChange={handleChange}
-          // Style
           className={locationControlClassName}
           style={{ bottom: '145px', ...locationControlStyle }}
         />
       )}
 
-      {/* Element: NearbyControl */}
       <NearbyControl
-        ref={nearbyRef}
-        // Status
-        readOnly={readOnly}
-        nearbyVisible={nearbyVisible}
-        // Value & Display Value
-        value={value}
-        radius={1000}
-        // Events
-        onChange={handleChange}
-        onSuccess={(result) => {
-          let { list } = result || {}
-          // 间距调整, 附件面板的高度在展开后会很高会出问题
-          // let bottom = nearbyRef.current.element.clientHeight
-          // if (bottom) {
-          //   bottom = bottom + 20 + 'px'
-          //   if (locationRef.current?.element) locationRef.current.element.style.bottom = bottom
-          //   if (zoomRef.current?.element) zoomRef.current.element.style.bottom = bottom
-          // }
-          if (list?.length) {
-            setPoints(list)
-          } else {
+        {...({
+          ref: nearbyRef,
+          readOnly,
+          nearbyVisible,
+          value,
+          radius: 1000,
+          onChange: handleChange,
+          onSuccess: (result: unknown) => {
+            const list =
+              result && typeof result === 'object' && 'list' in result
+                ? (result as { list?: unknown[] }).list
+                : undefined
+            if (list?.length) {
+              setPoints((list as unknown[]).map((i) => i) as unknown[])
+            } else {
+              setPoints(null)
+            }
+          },
+          onError: () => {
             setPoints(null)
-          }
-        }}
-        onError={(result) => {
-          console.log('附近推荐加载失败:', result)
-          setPoints(null)
-        }}
-        // Style
-        className={nearbyControlClassName}
-        style={nearbyControlStyle}
+          },
+          className: nearbyControlClassName,
+          style: nearbyControlStyle
+        } as React.ComponentPropsWithRef<typeof NearbyControl>)}
       />
 
       {children}
     </MapContainer>
   )
-}
+})
 
-export default forwardRef(MapChoose)
+export default MapChoose

@@ -2,10 +2,10 @@ import React, { useState, useRef } from 'react'
 import { Page, Input, Card, Divider, FooterBar } from 'lyrixi-mobile'
 
 export default () => {
-  const inputRef = useRef(null)
+  const inputRef = useRef<React.ComponentRef<typeof Input.OTP> | null>(null)
   const [value, setValue] = useState(['1', '2', '3', '4', '5', '6'])
 
-  const handleComplete = (completedValue) => {
+  const handleComplete = (completedValue: string[]) => {
     console.log('OTP输入完成:', completedValue)
   }
 
@@ -90,7 +90,7 @@ export default () => {
         </Card>
       </Page.Main>
       <Page.Footer>
-        <FooterBar type="text">
+        <FooterBar>
           <FooterBar.Button onClick={() => inputRef.current?.focus()}>
             聚焦第一个输入框
           </FooterBar.Button>

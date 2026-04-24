@@ -13,7 +13,7 @@ export default function classNames(...args: unknown[]): string {
   return classes
 }
 
-function parseValue(arg) {
+function parseValue(arg: unknown): string {
   if (typeof arg === 'string') {
     return arg.trim()
   }
@@ -26,17 +26,19 @@ function parseValue(arg) {
     return classNames(...arg)
   }
 
+  if (arg === null) return ''
+
   if (
-    arg.toString !== Object.prototype.toString &&
-    !arg.toString.toString().includes('[native code]')
+    (arg as object).toString !== Object.prototype.toString &&
+    !(arg as object).toString.toString().includes('[native code]')
   ) {
-    return arg.toString()
+    return (arg as object).toString()
   }
 
   let classes = ''
 
-  for (const key in arg) {
-    if (hasOwn.call(arg, key) && arg[key]) {
+  for (const key in arg as object) {
+    if (hasOwn.call(arg, key) && (arg as Record<string, unknown>)[key]) {
       classes = appendClass(classes, key)
     }
   }
@@ -44,7 +46,7 @@ function parseValue(arg) {
   return classes
 }
 
-function appendClass(value, newClass) {
+function appendClass(value: string, newClass: string): string {
   if (!newClass) {
     return value
   }

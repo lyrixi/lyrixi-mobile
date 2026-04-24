@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from 'react'
 import _uploadItem from './uploadItem'
 
 // 内库使用-start
@@ -11,24 +11,31 @@ import Media from './../../Media'
 import { LocaleUtil, Toast, Media } from 'lyrixi-mobile'
 测试使用-end */
 
+import { CommonUploaderProps, MediaHandle, MediaItem } from '../types'
+import type {
+  FileImageCompressOptions,
+  MediaListItem,
+  MediaComponentProps
+} from './../../Media/types'
+
 // 照片上传
 function Browser(
   {
     // Value & Display Value
-    list = [], // [{fileThumbnail: '全路径', fileUrl: '全路径', filePath: '目录/年月/照片名.jpg', status: 'choose|uploading|error|success'}]
+    list = [],
     maxUploadCount = 5,
     maxChooseCount = 1,
     mediaType,
     ellipsis,
     sourceType = ['album', 'camera'],
-    sizeType = ['compressed'], // ['original', 'compressed']
-    isSaveToAlbum = 0, // 是否保存到本地
+    sizeType = ['compressed'],
+    isSaveToAlbum = 0,
     fileImageCompress,
 
     // Status
-    async = false, // 是否异步上传(目前只有app支持)
+    async = false,
     verifyImage,
-    reUpload = true, // 支持重新上传
+    reUpload = true,
     allowClear = true,
     allowChoose = true,
     previewAllowChoose,
@@ -41,28 +48,19 @@ function Browser(
     previewSafeArea,
     navBarStyle,
     navBarClassName,
+    previewNavBarStyle,
+    previewNavBarClassName,
     previewModalStyle,
     previewModalClassName,
     previewMaskStyle,
     previewMaskClassName,
 
     // Element
-    uploadRender, // 上传按钮覆盖的dom
+    uploadRender,
     uploadingRender,
     itemRender,
     previewPortal,
     previewCancelPosition,
-    /*
-  格式化上传结果
-  入参:
-  {platform: 'browser', uploadItem: item, result: result}
-  返回格式:
-  {
-    fileThumbnail: 缩略图,
-    fileUrl: 高清图,
-    filePath: 入库路径
-  }
-  */
     getItemExtra,
     getUploadUrl,
     formatChoose,
@@ -72,23 +70,22 @@ function Browser(
 
     // Events
     onBeforeChoose,
-    // onUpload,
     onChange,
     onPreview
-  },
-  ref
+  }: CommonUploaderProps,
+  ref: React.ForwardedRef<MediaHandle>
 ) {
-  const mediaRef = useRef(null)
+  const mediaRef = useRef<MediaHandle | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...mediaRef.current,
+      ...(mediaRef.current ?? ({} as MediaHandle)),
       chooseMedia: () => {
         Toast.show({
           content: LocaleUtil.locale(
             '浏览器上传模式, 不支持编程式调用拍照',
             'lyrixi_18a8c44715538c3079cf8bf9fd46fe82'
-          )
+          ) as string
         })
         return false
       }
@@ -96,8 +93,7 @@ function Browser(
   })
 
   // 上传文件
-  async function uploadItem(item) {
-    // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
+  async function uploadItem(item: MediaItem) {
     let newItem = await _uploadItem(item, {
       getUploadUrl,
       formatHeaders,
@@ -107,12 +103,11 @@ function Browser(
     })
 
     console.log('浏览器上传后新item:', newItem)
-    // 更新状态
     return newItem
   }
 
   // 选择文件
-  async function handleChoose(localFile) {
+  async function handleChoose(localFile: MediaItem) {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // 前置校验
@@ -125,39 +120,89 @@ function Browser(
       }
 
       // 添加额外的item信息, 方便传递, 例如水印等
-      let itemExtra = null
+      let itemExtra: Record<string, unknown> | null = null
       if (typeof getItemExtra === 'function') {
-        itemExtra = await getItemExtra({ platform: 'browser' })
-        if (itemExtra === false) {
+        const extra = await getItemExtra({ platform: 'browser' })
+        if (extra === false) {
           resolve(false)
           return
         }
+        itemExtra = extra as Record<string, unknown> | null
       }
 
       resolve([
         {
           status: 'choose',
           localFile: localFile,
-          fileThumbnail: localFile.fileUrl,
-          fileUrl: localFile.fileUrl,
-          fileType: localFile.fileType,
+          fileThumbnail: (localFile as Record<string, unknown>).fileUrl,
+          fileUrl: (localFile as Record<string, unknown>).fileUrl,
+          fileType: (localFile as Record<string, unknown>).fileType,
           ...itemExtra
         }
       ])
     })
   }
 
+  const mediaTypeList =
+    mediaType == null
+      ? undefined
+      : Array.isArray(mediaType)
+        ? mediaType
+        : [mediaType]
+
+  const ellipsisForMedia =
+    ellipsis === true ? { count: 1 } : ellipsis && typeof ellipsis === 'object' ? ellipsis : undefined
+
+  const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
+
+  const uploadPositionNarrow: 'start' | 'end' | undefined =
+    uploadPosition === 'start' || uploadPosition === 'end' ? uploadPosition : undefined
+
+  const previewCancelNarrow: 'left' | 'right' | undefined =
+    previewCancelPosition === 'left' || previewCancelPosition === 'right'
+      ? previewCancelPosition
+      : undefined
+
+  const uploadRenderFn =
+    uploadRender == null
+      ? undefined
+      : typeof uploadRender === 'function'
+        ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+        : () => uploadRender
+
+  const uploadingRenderFn =
+    uploadingRender == null
+      ? undefined
+      : typeof uploadingRender === 'function'
+        ? (uploadingRender as (ctx: MediaListItem & { uploadingType: string }) => ReactNode)
+        : (ctx: MediaListItem & { uploadingType: string }) => uploadingRender
+
+  const itemRenderFn =
+    itemRender == null
+      ? undefined
+      : typeof itemRender === 'function'
+        ? (itemRender as (item: MediaListItem) => ReactNode)
+        : (_item: MediaListItem) => itemRender as ReactNode
+
+  const onBeforeChooseForMedia: MediaComponentProps['onBeforeChoose'] =
+    typeof onBeforeChoose === 'function'
+      ? (e) => {
+          void e
+          return onBeforeChoose() as boolean | void | Promise<boolean | void>
+        }
+      : undefined
+
   return (
     <Media
       ref={mediaRef}
       // Value & Display Value
       list={list}
-      maxUploadCount={maxUploadCount}
-      mediaType={mediaType}
-      ellipsis={ellipsis}
+      maxCount={maxUploadCount}
+      mediaType={mediaTypeList}
+      ellipsis={ellipsisForMedia}
       sourceType={sourceType}
       sizeType={sizeType}
-      fileImageCompress={fileImageCompress}
+      fileImageCompress={fileImageOpts}
       // Status
       async={async}
       reUpload={reUpload}
@@ -168,32 +213,32 @@ function Browser(
       // Style
       style={style}
       className={className}
-      uploadPosition={uploadPosition}
+      uploadPosition={uploadPositionNarrow}
       previewSafeArea={previewSafeArea}
-      navBarStyle={navBarStyle}
-      navBarClassName={navBarClassName}
+      previewNavBarStyle={previewNavBarStyle ?? navBarStyle}
+      previewNavBarClassName={previewNavBarClassName ?? navBarClassName}
       previewModalStyle={previewModalStyle}
       previewModalClassName={previewModalClassName}
       previewMaskStyle={previewMaskStyle}
       previewMaskClassName={previewMaskClassName}
       // Element
-      uploadRender={uploadRender}
-      uploadingRender={uploadingRender}
-      itemRender={itemRender}
+      uploadRender={uploadRenderFn}
+      uploadingRender={uploadingRenderFn}
+      itemRender={itemRenderFn}
       previewPortal={previewPortal}
-      previewCancelPosition={previewCancelPosition}
+      previewCancelPosition={previewCancelNarrow}
       // Events
-      onBeforeChoose={onBeforeChoose}
-      onFileChange={handleChoose}
+      onBeforeChoose={onBeforeChooseForMedia}
+      onFileChange={handleChoose as unknown as MediaComponentProps['onFileChange']}
       onUpload={uploadItem}
       onChange={onChange}
       onPreview={async (item, index) => {
-        // 自定义预览
         if (typeof onPreview === 'function') {
-          let goOn = await onPreview(item, index)
-          if (goOn !== true) return goOn
+          const goOn = await onPreview(item, index)
+          if (goOn !== true) {
+            return goOn as boolean | void | 'nativeMedia' | 'nativeFile' | 'browser'
+          }
         }
-
         return 'browser'
       }}
     />

@@ -11,7 +11,28 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Range = forwardRef(
+interface RangeRef {
+  element: HTMLDivElement | null
+  inputElement: HTMLInputElement | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: () => HTMLInputElement | null
+}
+
+interface RangeProps {
+  id?: string
+  name?: string
+  value?: number
+  readOnly?: boolean
+  disabled?: boolean
+  className?: string
+  style?: React.CSSProperties
+  min?: number
+  max?: number
+  step?: number
+  onChange?: (value: number) => void
+}
+
+const Range = forwardRef<RangeRef, RangeProps>(
   (
     {
       id,
@@ -38,11 +59,11 @@ const Range = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
-    const inputRef = useRef(null)
-    const tooltipRef = useRef(null)
-    const handleRef = useRef(null)
-    const railRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
+    const tooltipRef = useRef<HTMLDivElement>(null)
+    const handleRef = useRef<HTMLDivElement>(null)
+    const railRef = useRef<HTMLDivElement>(null)
 
     useImperativeHandle(ref, () => {
       return {
@@ -55,40 +76,40 @@ const Range = forwardRef(
 
     useEffect(() => {
       updateContainer()
-      hideTooltip(tooltipRef.current)
+      if (tooltipRef.current) hideTooltip(tooltipRef.current)
       // eslint-disable-next-line
     }, [])
 
-    function handleChange(e) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       if (disabled || readOnly) return
-      let newValue = e.currentTarget.value
+      let newValue: string | number = e.currentTarget.value
 
       if (newValue) newValue = Number(newValue || 0)
       if (onChange) {
-        onChange(newValue)
+        onChange(newValue as number)
       }
 
       // 更新位置
-      updateContainer(newValue)
+      updateContainer(newValue as number)
     }
 
     // 显示tooltip
     function handleTouchStart() {
       updateContainer()
-      showTooltip(tooltipRef.current)
+      if (tooltipRef.current) showTooltip(tooltipRef.current)
     }
 
     function handleTouchEnd() {
-      hideTooltip(tooltipRef.current)
+      if (tooltipRef.current) hideTooltip(tooltipRef.current)
     }
 
-    function updateContainer(newValue) {
+    function updateContainer(newValue?: number) {
       let currentValue = newValue ?? value ?? 0
       let percent = getPercent({ min, max, value: currentValue })
-      handleRef.current.style.left = `calc(${percent}% - 8px)`
-      tooltipRef.current.style.left = `calc(${percent}% - 12px)`
-      railRef.current.style.width = `${percent}%`
-      tooltipRef.current.innerHTML = currentValue
+      if (handleRef.current) handleRef.current.style.left = `calc(${percent}% - 8px)`
+      if (tooltipRef.current) tooltipRef.current.style.left = `calc(${percent}% - 12px)`
+      if (railRef.current) railRef.current.style.width = `${percent}%`
+      if (tooltipRef.current) tooltipRef.current.innerHTML = String(currentValue)
     }
 
     return (

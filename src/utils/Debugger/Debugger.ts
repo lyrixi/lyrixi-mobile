@@ -53,7 +53,7 @@ const Debugger: {
               '打开调试面板失败',
               'lyrixi_577dd0de7cc745dc0fcce18b2d9d909a',
               undefined
-            ),
+            ) as string,
             maskClickable: true
           })
           resolve(false)

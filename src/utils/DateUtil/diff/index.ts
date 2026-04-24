@@ -7,7 +7,7 @@ import diffMinute from './diffMinute'
 import diffSecond from './diffSecond'
 
 // 比较年月日,大于返回1,等于返回0,小于返回-1, diffUnit: 'year|quarter|month|week|day|hour|minute|second'
-function diff(d1, d2, diffUnit) {
+function diff(d1: Date, d2: Date, diffUnit: string) {
   if (d1 instanceof Date === false || d2 instanceof Date === false) {
     return undefined
   }

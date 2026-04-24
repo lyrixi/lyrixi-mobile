@@ -1,3 +1,4 @@
+import type * as L from 'leaflet'
 import defaultMarkerIcons from './../../../utils/markerIcons'
 
 // 内库使用-start
@@ -8,19 +9,31 @@ import ObjectUtil from './../../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 创建图标
-function createCenterMarkerIcon(icon) {
+interface IconOptions {
+  html?: string
+  className?: string
+  iconUrl?: string
+  iconRetinaUrl?: string
+  shadowUrl?: string
+  shadowRetinaUrl?: string
+  shadowSize?: [number, number]
+  iconSize?: [number, number]
+  iconAnchor?: [number, number]
+  shadowAnchor?: [number, number]
+  popupAnchor?: [number, number]
+  active?: boolean
+  [key: string]: unknown
+}
+
+function createCenterMarkerIcon(icon?: IconOptions | null): L.Icon | L.DivIcon | null {
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
-  // 已经是图标了则直接返回
-  if (icon instanceof window.L.Icon || icon instanceof window.L.divIcon) {
-    return icon
+  if (icon && (icon instanceof window.L.Icon || icon instanceof window.L.DivIcon)) {
+    return icon as L.Icon | L.DivIcon
   }
 
   const {
-    // DivIcon
     html,
-    // DivIcon & Icon
     className,
     iconUrl,
     iconRetinaUrl,
@@ -37,7 +50,7 @@ function createCenterMarkerIcon(icon) {
     return window.L.divIcon(
       ObjectUtil.pickBy(
         {
-          html: html,
+          html,
           className,
           iconUrl,
           iconRetinaUrl,
@@ -49,8 +62,8 @@ function createCenterMarkerIcon(icon) {
           shadowAnchor,
           popupAnchor
         },
-        (v) => v !== undefined || v !== null
-      )
+        (v: unknown) => v !== undefined && v !== null
+      ) as L.DivIconOptions
     )
   }
 
@@ -68,8 +81,8 @@ function createCenterMarkerIcon(icon) {
         shadowAnchor: shadowAnchor || defaultMarkerIcons.centerMarkerIcon?.shadowAnchor,
         popupAnchor: popupAnchor || defaultMarkerIcons.centerMarkerIcon?.popupAnchor
       },
-      (v) => v !== undefined || v !== null
-    )
+      (v: unknown) => v !== undefined && v !== null
+    ) as L.IconOptions
   )
 }
 

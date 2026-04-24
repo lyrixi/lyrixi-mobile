@@ -8,8 +8,35 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface RateRef {
+  element: HTMLDivElement | null
+  inputElement: HTMLInputElement | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: () => HTMLInputElement | null
+}
+
+interface RateIconParams {
+  className: string
+  style?: React.CSSProperties
+}
+
+interface RateProps {
+  id?: string
+  name?: string
+  value?: number
+  readOnly?: boolean
+  disabled?: boolean
+  style?: React.CSSProperties
+  className?: string
+  iconRender?: (params: RateIconParams) => React.ReactNode
+  min?: number
+  max?: number
+  step?: number
+  onChange?: (value: number) => void
+}
+
 // 评分组件
-const Rate = forwardRef(
+const Rate = forwardRef<RateRef, RateProps>(
   (
     {
       id,
@@ -39,8 +66,8 @@ const Rate = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
-    const inputRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -50,17 +77,17 @@ const Rate = forwardRef(
       }
     })
 
-    function handleChange(e) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       if (disabled || readOnly) return
-      let newValue = e.currentTarget.value
+      let newValue: string | number = e.currentTarget.value
 
       if (newValue) newValue = Number(newValue || 0)
       if (onChange) {
-        onChange(newValue)
+        onChange(newValue as number)
       }
     }
 
-    function getItemActiveWidth(itemValue) {
+    function getItemActiveWidth(itemValue: number): string {
       // 当前项位于整数位
       if (itemValue <= value) {
         return '100%'
@@ -74,7 +101,7 @@ const Rate = forwardRef(
     }
 
     // 获取图标节点
-    function getIconNode(index, isActive = false) {
+    function getIconNode(index: number, isActive: boolean = false): React.ReactNode {
       if (typeof iconRender === 'function') {
         return iconRender({
           className: isActive

@@ -1,17 +1,19 @@
 import Compressor from 'compressorjs'
 
+type CompressOpts = { quality?: number; maxWidth?: number }
+
 /**
  * 图片压缩
- * @param {File} image 图片
- * @param {String} resultType 需要返回的类型blob、file、base64
- * @param {Number} quality 图片压缩比，数字越小，图片压缩越小
- * @return
  */
-export default function compressImage(image, resultType, { quality, maxWidth }) {
+export default function compressImage(
+  image: File,
+  resultType: 'blob' | 'file' | 'base64' | undefined,
+  { quality, maxWidth }: CompressOpts
+): Promise<Blob | File | string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
     new Compressor(image, {
-      maxWidth: maxWidth || '1279',
-      quality: quality || 0.6,
+      maxWidth: (maxWidth ?? 1279) as number,
+      quality: quality ?? 0.6,
       success(result) {
         if (!resultType || resultType === 'blob') {
           resolve(result)

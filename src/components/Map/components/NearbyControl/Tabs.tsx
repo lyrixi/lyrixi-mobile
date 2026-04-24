@@ -9,26 +9,26 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 选项卡
-function Tabs({
-  // Value & Display Value
-  tab,
+type TabItem = (ReturnType<typeof getTabs>)[number]
 
-  // Events
-  onChange
-}) {
-  let tabs = getTabs()
+export interface TabsProps {
+  tab: TabItem
+  onChange: (t: TabItem) => void
+}
+
+// 选项卡
+function Tabs({ tab, onChange }: TabsProps) {
+  const tabs = getTabs()
   return (
     <div className="lyrixi-map-nearbyControl-tabs">
-      {tabs.map((item) => {
+      {tabs.map((item, index) => {
         return (
           <div
-            key={item.name}
+            key={index}
             className={DOMUtil.classNames(
               'lyrixi-map-nearbyControl-tab',
               tab.name === item.name ? 'lyrixi-active' : ''
             )}
-            // Events
             onClick={() => {
               onChange && onChange(item)
             }}

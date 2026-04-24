@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties, type ReactNode } from 'react'
 import getDefaultIconClassName from './getDefaultIconClassName'
 
 // 内库使用-start
@@ -10,8 +10,29 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
+interface NoticeBarRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  close: () => void
+  open: () => void
+}
+
+interface NoticeBarProps {
+  title?: ReactNode
+  description?: ReactNode
+  type?: 'success' | 'info' | 'warning' | 'error'
+  closable?: boolean
+  style?: CSSProperties
+  className?: string
+  iconRender?: () => ReactNode
+  iconClassName?: string
+  iconColor?: string
+  iconBackgroundColor?: string
+  iconSize?: string | number
+}
+
 // 通告栏
-const NoticeBar = forwardRef(
+const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
   (
     {
       // Value & Display Value
@@ -36,7 +57,7 @@ const NoticeBar = forwardRef(
     ref
   ) => {
     // 节点
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
     const [visible, setVisible] = useState(true)
 
     useImperativeHandle(ref, () => {
@@ -52,20 +73,19 @@ const NoticeBar = forwardRef(
     if (!visible) return null
 
     // 获取图标节点
-    function getIconNode() {
+    function getIconNode(): ReactNode {
       // 自定义图标渲染
       if (typeof iconRender === 'function') {
         return iconRender()
       }
 
       // 默认图标
-      // eslint-disable-next-line
-      iconClassName = iconClassName || getDefaultIconClassName(type)
-      if (iconClassName) {
+      const resolvedIconClassName = iconClassName || getDefaultIconClassName(type)
+      if (resolvedIconClassName) {
         return (
           <Icon
-            className={iconClassName}
-            size={iconSize}
+            className={resolvedIconClassName}
+            size={iconSize != null ? String(iconSize) : undefined}
             color={iconColor}
             backgroundColor={iconBackgroundColor}
           />

@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, type ComponentProps } from 'react'
 import { LocaleUtil, Page, ToolBar } from 'lyrixi-mobile'
+import SearchBar from '../../../../../components/ToolBar/Search'
+import SearchActive from '../../../../../components/ToolBar/SearchActive'
 
 import Filter from './Filter'
 
 const locale = LocaleUtil.locale
 
+type SearchBarProps = ComponentProps<typeof SearchBar>
+type SearchActiveProps = ComponentProps<typeof SearchActive>
+
 // 筛选栏
-const Header = ({ queryParams, onSearch }) => {
+const Header = ({
+  queryParams,
+  onSearch
+}: {
+  queryParams: Record<string, unknown>
+  onSearch: (p: Record<string, unknown>) => void
+}) => {
   const [searchActive, setSearchActive] = useState(false)
   const [searchValue, setSearchValue] = useState(queryParams?.keyword || '')
 
@@ -34,22 +45,26 @@ const Header = ({ queryParams, onSearch }) => {
   return (
     <Page.Header>
       <ToolBar>
-        {/* 搜索 */}
-        <ToolBar.Search
-          placeholder={locale('按名称/拼音/拼音首字母查询')}
-          value={queryParams?.keyword || ''}
-          readOnly
-          onClick={handleSearchBarClick}
+        {/* 搜索 — ToolBar subcomponents are structurally untyped; narrow at call site */}
+        <SearchBar
+          {...({
+            placeholder: String(locale('按名称/拼音/拼音首字母查询')),
+            value: String(queryParams?.keyword ?? ''),
+            readOnly: true,
+            onClick: handleSearchBarClick
+          } as unknown as SearchBarProps)}
         />
         {searchActive && (
-          <ToolBar.SearchActive
-            placeholder={locale('按名称/拼音/拼音首字母查询')}
-            allowClear
-            value={searchValue}
-            onChange={handleSearchChange}
-            onSearch={handleSearch}
-            onCancel={handleSearchCancel}
-            onBlur={handleSearchBlur}
+          <SearchActive
+            {...({
+              placeholder: String(locale('按名称/拼音/拼音首字母查询')),
+              allowClear: true,
+              value: searchValue,
+              onChange: handleSearchChange,
+              onSearch: handleSearch,
+              onCancel: handleSearchCancel,
+              onBlur: handleSearchBlur
+            } as unknown as SearchActiveProps)}
           />
         )}
         {/* 筛选弹窗 */}

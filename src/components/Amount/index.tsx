@@ -9,6 +9,15 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface AmountProps {
+  precision?: number
+  currencySymbol?: string
+  style?: React.CSSProperties
+  className?: string
+  noStyle?: boolean
+  children?: number | string
+}
+
 // 金额
 function Amount({
   // Value & Display Value
@@ -22,16 +31,16 @@ function Amount({
 
   // Element
   children
-}) {
-  if (isNaN(children)) {
+}: AmountProps) {
+  if (isNaN(Number(children))) {
     return null
   }
 
-  let num = MathUtil.thousands(Number(children).toFixed(precision))
-  let integer = num.split('.')?.[0]
-  let decimal = num.split('.')?.[1]
+  const num = MathUtil.thousands(Number(children).toFixed(precision), false)
+  const integer = num.split('.')?.[0]
+  const decimal = num.split('.')?.[1]
 
-  let displayValue = null
+  let displayValue: React.ReactNode = null
   // No style
   if (noStyle) {
     displayValue = (currencySymbol || '') + (integer || '') + (decimal ? '.' + decimal : '')

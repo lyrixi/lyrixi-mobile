@@ -72,23 +72,23 @@ const dateUtil = {
   // 时区方法: 获取当前UTC偏移量, 分钟数是国际时区标准, 返回: 总分钟数
   utcOffset: utcOffset,
   // 时区方法: 将 UTC 转为指定时区, 入参: "UTC日期, 时区偏移总分钟数", 返回: "日期"
-  utcToTimeZone: (utcDate, offset) => {
+  utcToTimeZone: (utcDate: Date, offset: number) => {
     if (utcDate && typeof offset === 'number') {
-      return utcToTimeZone(utcDate, offset)
+      return utcToTimeZone(utcDate, offset) ?? utcDate
     }
     return utcDate || new Date()
   },
   // 时区方法: 将指定时区时间转为 UTC, 入参: "日期, 时区偏移总分钟数", 返回: "UTC日期"
-  timeZoneToUtc: (date, offset) => {
+  timeZoneToUtc: (date: Date, offset: number) => {
     if (date && typeof offset === 'number') {
-      return timeZoneToUtc(date, offset)
+      return timeZoneToUtc(date, offset) ?? date
     }
     return date || new Date()
   },
   // 时区方法: 在两个时区间转换, 入参: "日期, 原时区偏移总分钟数, 目标时区偏移总分钟数", 返回: "日期"
-  timeZoneToTimeZone: (timeZoneDate, fromOffset, toOffset) => {
+  timeZoneToTimeZone: (timeZoneDate: Date, fromOffset: number, toOffset: number) => {
     if (timeZoneDate && typeof fromOffset === 'number' && typeof toOffset === 'number') {
-      return timeZoneToTimeZone(timeZoneDate, fromOffset, toOffset)
+      return timeZoneToTimeZone(timeZoneDate, fromOffset, toOffset) ?? timeZoneDate
     }
     return timeZoneDate || new Date()
   },

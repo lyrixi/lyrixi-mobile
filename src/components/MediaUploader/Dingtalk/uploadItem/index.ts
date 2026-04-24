@@ -9,11 +9,13 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import { MediaItem, UploadItemConfig } from '../../types'
+
 // 单张照片上传
 function uploadItem(
-  item,
-  { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }
-) {
+  item: MediaItem,
+  { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }: UploadItemConfig
+): Promise<unknown> {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -21,21 +23,23 @@ function uploadItem(
       errMsg = LocaleUtil.locale(
         '没有localFile，无法上传！',
         'lyrixi_8ac73a3ce4e53db295057aaab0e6b1cf'
-      )
+      ) as string
       resolve(errMsg)
       return
     }
 
     // 上传到阿里云
     let newItem = await uploadLocalFile({
-      localFile: item?.localFile,
+      localFile: item.localFile!,
       getUploadUrl,
       formatHeaders,
-      formatPayload: (payload, payloadExtra) =>
-        formatPayload?.({ ...payload, ...item }, payloadExtra),
+      formatPayload: (payload: Record<string, unknown>, payloadExtra: { platform: string }) => {
+        const merged = { ...payload, ...(item as Record<string, unknown>) }
+        const result = formatPayload?.(merged, payloadExtra)
+        return result ?? {}
+      },
       formatResponse,
       verifyImage,
-      // 用于构建新Item的入参
       item
     })
 

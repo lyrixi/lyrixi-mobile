@@ -1,5 +1,24 @@
+interface GapOption {
+  left?: number
+  right?: number
+  top?: number
+  bottom?: number
+}
+
+interface SnapPosition {
+  top: string
+  right: string
+  bottom: string
+  left: string
+}
+
+interface SnapToEdgeOptions {
+  gap?: GapOption
+  onChange?: (pos: SnapPosition) => void
+}
+
 // 贴边逻辑（修复纵向越界）
-const snapToEdge = (target, { gap, onChange }) => {
+const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): void => {
   const rect = target.getBoundingClientRect()
   const screenWidth = window.innerWidth
   const screenHeight = window.innerHeight
@@ -59,3 +78,4 @@ const snapToEdge = (target, { gap, onChange }) => {
 }
 
 export default snapToEdge
+export type { GapOption, SnapToEdgeOptions, SnapPosition }

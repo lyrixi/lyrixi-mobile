@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 // 第三方库导入
 import { Page } from 'lyrixi-mobile'
+import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
 
 // 公共组件导入
 
@@ -13,35 +14,35 @@ import './../Common/index.less'
 
 // 虚拟滚动列表
 const Virtual = () => {
-  let [queryParams, setQueryParams] = useState(null)
+  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
-  // Expose
-  const mainRef = useRef(null)
+  const mainRef = useRef<ListPaginationRef | null>(null)
 
   return (
     <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}
-        onSearch={(newQueryParams) => {
-          queryParams = newQueryParams
-          setQueryParams(queryParams)
-          mainRef.current.reload()
+        onSearch={(newQueryParams: Record<string, unknown>) => {
+          setQueryParams(newQueryParams)
+          mainRef.current?.reload('reload')
         }}
       />
 
       {/* 列表 */}
       <Main
         ref={mainRef}
+        cacheName="list-virtual-demo"
+        queryParams={queryParams}
         virtual={{
-          getItemHeight: (item) => {
-            if (item?.virtualData?.type === 'group') {
+          getItemHeight: (item: Record<string, unknown>) => {
+            const row = item as { virtualData?: { type?: string } }
+            if (row?.virtualData?.type === 'group') {
               return 33
             }
             return 71
           }
         }}
-        params={queryParams}
       />
     </Page>
   )

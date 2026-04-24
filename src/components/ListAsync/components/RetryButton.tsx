@@ -9,8 +9,15 @@ import Button from './../../Button'
 import { LocaleUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
 
+interface RetryButtonProps {
+  status?: string
+  errorRetry?: boolean
+  emptyRetry?: boolean
+  onClick?: () => void
+}
+
 // 暂无数据或者错误
-const RetryButton = ({ status, errorRetry, emptyRetry, onClick }) => {
+const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: RetryButtonProps) => {
   if (status === 'error') {
     if (!errorRetry) {
       return null

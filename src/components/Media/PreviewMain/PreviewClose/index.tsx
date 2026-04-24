@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PreviewClose = ({ onClose }) => {
+const PreviewClose = ({ onClose }: { onClose?: () => void }) => {
   return (
     <div
       className="lyrixi-media-preview-main-close"

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import Cancel from './Cancel'
 import Ok from './Ok'
 
@@ -10,7 +10,26 @@ import NavBar from './../../../NavBar'
 import { NavBar } from 'lyrixi-mobile'
 测试使用-start */
 
-const Head = forwardRef(
+interface NavBarModalNavBarRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface NavBarModalNavBarProps {
+  style?: CSSProperties
+  className?: string
+  title?: ReactNode
+  okNode?: ReactNode
+  okVisible?: boolean
+  okPosition?: 'left' | 'right'
+  cancelNode?: ReactNode
+  cancelVisible?: boolean
+  cancelPosition?: 'left' | 'right'
+  onOk?: (e: MouseEvent<HTMLDivElement>) => void
+  onCancel?: (e: MouseEvent<HTMLDivElement>) => void
+}
+
+const Head = forwardRef<NavBarModalNavBarRef, NavBarModalNavBarProps>(
   (
     {
       // Style
@@ -32,13 +51,19 @@ const Head = forwardRef(
     },
     ref
   ) => {
+    const barRef = useRef<HTMLDivElement>(null)
+    useImperativeHandle(ref, () => ({
+      element: barRef.current,
+      getElement: () => barRef.current
+    }))
+
     let CancelNode = cancelVisible ? <Cancel onClick={onCancel}>{cancelNode}</Cancel> : null
 
     let OkNode = okVisible ? <Ok onClick={onOk}>{okNode}</Ok> : null
 
     // 带按钮
     return (
-      <NavBar ref={ref} style={style} className={className}>
+      <NavBar ref={barRef} style={style} className={className}>
         {/* 取消按钮 */}
         {cancelPosition === 'left' && CancelNode}
         {okPosition === 'left' && OkNode}

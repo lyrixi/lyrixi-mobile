@@ -2,6 +2,8 @@ import React, { useEffect, useImperativeHandle, useRef, forwardRef, useState } f
 import { getTitle, getDefaultRanges, updateRangeValue } from './../utils'
 import formatValue from './../RangeMain/formatValue'
 import RangeMain from './../RangeMain'
+import type { DatePickerModalRef, DatePickerRangeModalProps } from './../datePickerTypes'
+import type { ModalRef } from './../../Modal/Modal'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -14,153 +16,160 @@ const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
 // RangeModal
-const RangeModal = forwardRef(
-  (
-    {
-      // Value & Display Value
-      value,
-      autoSwapValue = true,
-      type = 'date',
-      min,
-      max,
-      hourStep,
-      minuteStep,
-      startDisabled,
-      endDisabled,
-      rangeId,
-      ranges,
-      titles,
+const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(function DatePickerRangeModal(
+  {
+    // Value & Display Value
+    value,
+    autoSwapValue = true,
+    type = 'date',
+    min,
+    max,
+    hourStep,
+    minuteStep,
+    startDisabled,
+    endDisabled,
+    rangeId,
+    ranges: rangesProp,
+    titles,
 
-      // Status
-      open,
-      rangesVisible,
-      maskClosable,
-      allowClear,
+    // Status
+    open,
+    rangesVisible,
+    maskClosable,
+    allowClear,
 
-      // Style
-      safeArea,
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
+    // Style
+    safeArea,
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
 
-      // Elements
-      portal,
-      separator,
-      titleRender,
-      okNode,
-      cancelNode,
-      okVisible,
-      cancelVisible,
+    // Elements
+    portal,
+    separator,
+    titleRender,
+    okNode,
+    cancelNode,
+    okVisible,
+    cancelVisible,
 
-      // Events
-      onClose,
-      onOpen,
-      onChange,
-      onOk
-    },
-    ref
-  ) => {
-    if (ranges === undefined) {
-      // eslint-disable-next-line
-      ranges = getDefaultRanges()
-    }
-
-    let [currentValue, setCurrentValue] = useState(value)
-    const [currentRangeId, setCurrentRangeId] = useState(rangeId)
-    const modalRef = useRef(null)
-    const mainRef = useRef(null)
-
-    useImperativeHandle(ref, () => {
-      return {
-        ...modalRef.current,
-        ...mainRef.current
-      }
-    })
-
-    // 同步外部value到内部currentValue
-    useEffect(() => {
-      setCurrentValue(formatValue(value))
-      setCurrentRangeId(rangeId)
-    }, [value, rangeId])
-
-    async function handleOk() {
-      if (onOk) {
-        let goOn = await onOk(currentValue)
-        if (goOn === false) return false
-        if (goOn instanceof Array) {
-          currentValue = goOn
-        }
-      }
-
-      // 触发 onChange
-      onChange?.(updateRangeValue(currentValue, type, { autoSwapValue }), {
-        rangeId: currentRangeId,
-        ranges
-      })
-      onClose?.()
-    }
-
-    function handleChange(newValue, { rangeId: newRangeId } = {}) {
-      setCurrentValue(newValue)
-      setCurrentRangeId(newRangeId)
-    }
-
-    // 自定义标题节点
-    let titleNode = titleRender?.(currentValue, { type }) || null
-
-    return (
-      <NavBarModal
-        ref={modalRef}
-        // Status
-        open={open}
-        maskClosable={maskClosable}
-        // Style
-        safeArea={safeArea}
-        modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
-        maskStyle={maskStyle}
-        maskClassName={maskClassName}
-        // Element
-        portal={portal}
-        title={titleNode || getTitle(currentValue, { type, separator })}
-        okNode={okNode}
-        cancelNode={cancelNode}
-        okVisible={true}
-        cancelVisible={cancelVisible}
-        // Events
-        onClose={onClose}
-        onOpen={onOpen}
-        onOk={handleOk}
-      >
-        <RangeMain
-          ref={mainRef}
-          // Modal: Status
-          open={open}
-          // Value & display value
-          value={currentValue}
-          autoSwapValue={autoSwapValue}
-          rangeId={currentRangeId}
-          ranges={ranges}
-          // Status
-          type={type}
-          rangesVisible={rangesVisible}
-          allowClear={allowClear}
-          min={min}
-          max={max}
-          hourStep={hourStep}
-          minuteStep={minuteStep}
-          startDisabled={startDisabled}
-          endDisabled={endDisabled}
-          // Elements
-          titles={titles}
-          portal={modalRef?.current?.element}
-          // Events
-          onChange={handleChange}
-        />
-      </NavBarModal>
-    )
+    // Events
+    onClose,
+    onChange,
+    onOk
+  },
+  ref
+) {
+  let ranges = rangesProp
+  if (ranges === undefined) {
+    // eslint-disable-next-line
+    ranges = getDefaultRanges()
   }
-)
+
+  const [currentValue, setCurrentValue] = useState(() => formatValue(value))
+  const [currentRangeId, setCurrentRangeId] = useState<string | null | undefined>(rangeId)
+  const modalRef = useRef<ModalRef | null>(null)
+  const mainRef = useRef<Record<string, unknown> | null>(null)
+
+  useImperativeHandle(ref, () => {
+    return {
+      ...(typeof modalRef.current === 'object' && modalRef.current !== null
+        ? (modalRef.current as unknown as Record<string, unknown>)
+        : {}),
+      ...(typeof mainRef.current === 'object' && mainRef.current !== null ? mainRef.current : {})
+    } as DatePickerModalRef
+  })
+
+  // 同步外部value到内部currentValue
+  useEffect(() => {
+    setCurrentValue(formatValue(value))
+    setCurrentRangeId(rangeId)
+  }, [value, rangeId])
+
+  async function handleOk() {
+    let val = currentValue
+    if (onOk) {
+      const goOn = await onOk(val ?? null)
+      if (goOn === false) return false
+      if (Array.isArray(goOn) && goOn.length === 2) {
+        val = formatValue(goOn) ?? [goOn[0] as Date, goOn[1] as Date]
+        setCurrentValue(val)
+      }
+    }
+
+    // 触发 onChange
+    const next = updateRangeValue((val ?? currentValue) ?? [null, null], type, { autoSwapValue })
+    onChange?.(next ?? null, {
+      rangeId: currentRangeId,
+      ranges
+    })
+    onClose?.()
+  }
+
+  function handleChange(
+    newValue: (Date | null)[] | null,
+    meta?: { rangeId?: string | null }
+  ) {
+    setCurrentValue(
+      newValue && newValue.length === 2 ? ([newValue[0], newValue[1]] as [Date | null, Date | null]) : null
+    )
+    setCurrentRangeId(meta?.rangeId)
+  }
+
+  // 自定义标题节点
+  const titleNode = titleRender?.(currentValue, { type, separator }) ?? null
+
+  return (
+    <NavBarModal
+      ref={modalRef}
+      // Status
+      open={open}
+      maskClosable={maskClosable}
+      // Style
+      safeArea={safeArea}
+      modalStyle={modalStyle}
+      modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
+      maskStyle={maskStyle}
+      maskClassName={maskClassName}
+      // Element
+      portal={portal}
+      title={titleNode || getTitle(currentValue, { type, separator })}
+      okNode={okNode}
+      cancelNode={cancelNode}
+      okVisible={true}
+      cancelVisible={cancelVisible}
+      // Events
+      onClose={onClose}
+      onOk={handleOk}
+    >
+      <RangeMain
+        ref={mainRef}
+        // Modal: Status
+        open={open}
+        // Value & display value
+        value={currentValue}
+        autoSwapValue={autoSwapValue}
+        rangeId={currentRangeId}
+        ranges={ranges}
+        // Status
+        type={type}
+        rangesVisible={rangesVisible}
+        allowClear={allowClear}
+        min={min}
+        max={max}
+        hourStep={hourStep}
+        minuteStep={minuteStep}
+        startDisabled={startDisabled}
+        endDisabled={endDisabled}
+        // Elements
+        titles={titles}
+        portal={modalRef.current?.modalElement}
+        // Events
+        onChange={handleChange}
+      />
+    </NavBarModal>
+  )
+})
 
 export default RangeModal

@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
 import Item from './../Item'
+import type { AttachListProps, AttachFileItem } from './../types'
 
 // 内库使用-start
 import Media from './../../Media'
@@ -26,17 +27,10 @@ const List = ({
   onChange,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}) => {
-  // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
-  const onReUploadRef = useRef()
-  const onPreviewRef = useRef()
-
-  onReUploadRef.current = onReUpload
-  onPreviewRef.current = onPreview
-
+}: AttachListProps) => {
   // Delete
-  function handleDelete(item, index) {
-    let newList = list.filter((attach, attachIndex) => {
+  function handleDelete(item: AttachFileItem, index: number) {
+    const newList = (list ?? []).filter((attach, attachIndex) => {
       return attachIndex !== index
     })
     onChange && onChange(newList, { action: 'delete' })

@@ -1,5 +1,5 @@
 // 下一月
-function nextMonth(currentDate) {
+function nextMonth(currentDate: Date): Date {
   const nextMonthDate = new Date(currentDate)
   nextMonthDate.setMonth(currentDate.getMonth() + 1)
 

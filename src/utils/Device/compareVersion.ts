@@ -5,7 +5,7 @@
  * @param {String} separator - 分隔符，默认为 '.'
  * @returns {Number} -1: v1小于v2, 0: v1等于v2, 1: v1大于v2
  */
-function compareVersion(v1, v2, separator = '.') {
+function compareVersion(v1: string, v2: string, separator = '.'): -1 | 0 | 1 {
   // Comaptiable with IOS version
   if (v1.indexOf(separator) === -1 && v1.indexOf('_') !== -1) {
     // eslint-disable-next-line

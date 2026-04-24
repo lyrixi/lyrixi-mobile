@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { DatePicker, Toast } from 'lyrixi-mobile'
+import type { DatePickerMultipleValue } from '../datePickerTypes'
 
 export default () => {
-  const [mulValue, setMulValue] = useState([
+  const [mulValue, setMulValue] = useState<DatePickerMultipleValue>([
     {
       id: 'start',
       description: 'Start',
@@ -30,14 +31,7 @@ export default () => {
         type="datetime"
         onChange={(newValue) => {
           console.log(newValue)
-          setMulValue(newValue)
-        }}
-        // title="选择日期"
-        onClose={() => {
-          console.log('onClose')
-        }}
-        onOpen={() => {
-          console.log('onOpen')
+          if (newValue) setMulValue(newValue)
         }}
         allowClear
         min={new Date()}

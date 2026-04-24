@@ -6,32 +6,34 @@ import AssetUtil from '../../../../../utils/AssetUtil'
 import { AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+function pickResult(r: unknown): Record<string, unknown> {
+  return typeof r === 'object' && r !== null ? { ...(r as Record<string, unknown>) } : {}
+}
+
 // 加载google地图资源
-function loadGoogleMap(key) {
+function loadGoogleMap(key: string | undefined): Promise<unknown> {
   return new Promise((resolve) => {
     if (window.google) {
       resolve(window.google)
       return
     }
 
-    // Delete old script
     const scriptTag = document.getElementById('lyrixi-google-map-js')
-    if (scriptTag) {
+    if (scriptTag?.parentNode) {
       scriptTag.parentNode.removeChild(scriptTag)
     }
 
-    // Load js
     AssetUtil.loadRemoteJs(`https://maps.googleapis.com/maps/api/js?key=${key}`, {
       id: 'lyrixi-google-map-js',
-      onSuccess: (result) => {
+      onSuccess: (result: unknown) => {
         resolve({
-          ...result,
+          ...pickResult(result),
           data: window.google
         })
       },
-      onError: (result) => {
+      onError: (result: unknown) => {
         resolve({
-          ...result,
+          ...pickResult(result),
           code: 'GOOGLE_MAP_LOAD_ERROR',
           message: 'google地图加载失败'
         })

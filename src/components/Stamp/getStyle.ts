@@ -10,17 +10,20 @@ function getStyle({
   // Style
   color,
   style
+}: {
+  color?: string
+  style?: React.CSSProperties
 }) {
   // 判断颜色是否在枚举值中
-  const isColorClass = DOMUtil.variables.colors.includes(color)
+  const isColorClass = color != null && color !== '' && DOMUtil.variables.colors.includes(color)
 
   // 构建自定义样式
-  const newStyle = {
+  const newStyle: React.CSSProperties = {
     ...(!isColorClass ? {
       color: color,
       // 如果不考虑兼容性问题, 可以使用自定义样式:
       '--lyrixi-stamp-color': color,
-    } : {}),
+    } as React.CSSProperties : {}),
     ...style
   }
 

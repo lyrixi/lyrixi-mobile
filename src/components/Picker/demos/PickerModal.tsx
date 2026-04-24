@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Picker, Page } from 'lyrixi-mobile'
 
+type Row = { name: string; id: string }
+
 export default () => {
-  const [list, setList] = useState([])
-  const [value, setValue] = useState(null)
+  const [list, setList] = useState<Row[]>([])
+  const [value, setValue] = useState<unknown>(null)
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,18 +25,15 @@ export default () => {
     <Page>
       <Page.Main>
         <Picker.Modal
-          open={true}
-          value={'8571532967972181136'}
+          open
+          value="8571532967972181136"
           list={list}
           onChange={(newValue) => {
             console.log('onChange:', newValue)
-            // setValue(newValue)
+            setValue(newValue)
           }}
           onClose={() => {
             console.log('onClose')
-          }}
-          onOpen={() => {
-            console.log('onOpen')
           }}
         />
       </Page.Main>

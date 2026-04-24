@@ -9,6 +9,16 @@ import Loading from './../../Loading'
 import { Skeleton, Loading } from 'lyrixi-mobile'
 测试使用-end */
 
+interface MainLoadingProps {
+  type?: string
+  loadingRender?: (options: { action?: string }) => React.ReactNode
+  loadingModalStyle?: React.CSSProperties
+  loadingModalClassName?: string
+  loadingMaskStyle?: React.CSSProperties
+  loadingMaskClassName?: string
+  loadingPortal?: HTMLElement
+}
+
 // 暂无数据或者错误
 const MainLoading = ({
   type,
@@ -18,9 +28,9 @@ const MainLoading = ({
   loadingMaskStyle,
   loadingMaskClassName,
   loadingPortal
-}) => {
+}: MainLoadingProps) => {
   if (typeof loadingRender === 'function') {
-    return loadingRender({ action: type })
+    return <>{loadingRender({ action: type })}</>
   }
 
   const LoadingNode = <Loading

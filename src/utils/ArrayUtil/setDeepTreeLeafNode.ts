@@ -1,8 +1,15 @@
+interface DeepNode extends Record<string, unknown> {
+  id: string | number
+  children?: DeepNode[]
+}
+
 // 更新末级节点
-function setDeepTreeLeafNode(tree, updateNode) {
+function setDeepTreeLeafNode(
+  tree: DeepNode[],
+  updateNode?: (node: DeepNode) => void
+): DeepNode[] {
   for (const node of tree) {
     if (Array.isArray(node.children) && node.children.length) {
-      // 递归查找子节点
       setDeepTreeLeafNode(node.children, updateNode)
     } else {
       updateNode && updateNode(node)

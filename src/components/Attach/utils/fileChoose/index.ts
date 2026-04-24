@@ -9,14 +9,36 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
 // 内库使用-end
 
+import type { AttachFileItem, AttachNativeFilePayload } from '../../types'
+
 /* 测试使用-start
 import { ObjectUtil, LocaleUtil, Toast} from 'lyrixi-mobile'
 测试使用-end */
 
+function toToastString(s: string | import('react').ReactNode): string {
+  return typeof s === 'string' ? s : ''
+}
+
+export interface FileChooseOptions {
+  file: HTMLInputElement
+  async: boolean
+  maxSize?: number
+  maxCount?: number
+  sourceType: string[]
+  list?: AttachFileItem[]
+  uploadPosition: 'start' | 'end' | string
+  uploadList: (
+    newList: AttachFileItem[],
+    opts?: { action?: string }
+  ) => Promise<AttachFileItem[] | undefined>
+  onFileChange?: (payload: AttachNativeFilePayload) => unknown
+  onChange?: (list: AttachFileItem[], meta: { action: string }) => void
+}
+
 // 选择文件
 async function fileChoose({
   file,
-  async,
+  async: asyncMode,
   maxSize,
   maxCount,
   sourceType,
@@ -25,14 +47,17 @@ async function fileChoose({
   uploadList,
   onFileChange,
   onChange
-}) {
-  if (file?.type !== 'file') return false
+}: FileChooseOptions) {
+  if (file.type !== 'file') return false
 
-  if (!file || !file.files?.[0]) {
+  if (!file.files?.[0]) {
     Toast.show({
-      content: LocaleUtil.locale(
-        '没有选择文件，无法上传！',
-        'lyrixi_9f6cc6e6521fd4edd8d40704b83e4ef7'
+      content: toToastString(
+        LocaleUtil.locale(
+          '没有选择文件，无法上传！',
+          'lyrixi_9f6cc6e6521fd4edd8d40704b83e4ef7',
+          undefined
+        )
       ),
       maskClickable: true
     })
@@ -42,10 +67,12 @@ async function fileChoose({
   // 大于总数禁止选择
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(
-        `总数不能大于${maxCount}`,
-        'lyrixi_2d5162e5511eccd2b3d50796122c6e6e',
-        [maxCount]
+      content: toToastString(
+        LocaleUtil.locale(
+          `总数不能大于${maxCount}`,
+          'lyrixi_2d5162e5511eccd2b3d50796122c6e6e',
+          [maxCount]
+        )
       ),
       maskClickable: true
     })
@@ -53,14 +80,16 @@ async function fileChoose({
   }
 
   // 数据
-  let fileData = file.files?.[0]
-  let fileName = fileData?.name || file.value
-  let fileURL = URL.createObjectURL(fileData)
-  let fileSize = fileData?.size
-  let fileType = fileData?.type
-  if (fileType?.includes?.('image')) {
+  const fileData = file.files?.[0]
+  if (!fileData) return false
+
+  const fileName = fileData.name || file.value
+  const fileURL = URL.createObjectURL(fileData)
+  const fileSize = fileData.size
+  let fileType: string
+  if (fileData.type?.includes?.('image')) {
     fileType = 'image'
-  } else if (fileType?.includes?.('video')) {
+  } else if (fileData.type?.includes?.('video')) {
     fileType = 'video'
   } else {
     fileType = 'file'
@@ -68,11 +97,12 @@ async function fileChoose({
 
   if (maxSize && !validateMaxSize(fileSize, maxSize)) {
     Toast.show({
-      content: LocaleUtil.locale(
-        `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
-        'lyrixi_e547fe1eb4fcf8bef4514d7519ee6eb9',
-
-        [Math.abs(convertBytes(maxSize))]
+      content: toToastString(
+        LocaleUtil.locale(
+          `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
+          'lyrixi_e547fe1eb4fcf8bef4514d7519ee6eb9',
+          [Math.abs(convertBytes(maxSize))]
+        )
       )
     })
     return false
@@ -81,9 +111,12 @@ async function fileChoose({
   // 未获取到文件名
   if (!fileName) {
     Toast.show({
-      content: LocaleUtil.locale(
-        `未获取到文件名, 无法上传`,
-        'lyrixi_2d3425258de2a42e62df1e9c55201ea2'
+      content: toToastString(
+        LocaleUtil.locale(
+          `未获取到文件名, 无法上传`,
+          'lyrixi_2d3425258de2a42e62df1e9c55201ea2',
+          undefined
+        )
       ),
       maskClickable: true
     })
@@ -93,37 +126,39 @@ async function fileChoose({
   // 判断文件选中的类型
   if (!supportTypes(fileName, sourceType)) {
     Toast.show({
-      content: LocaleUtil.locale(
-        `只支持选择${sourceType.join(',')}格式的文件`,
-        'lyrixi_457455da3092979a928191f95101f15e',
-
-        [sourceType.join(',')]
+      content: toToastString(
+        LocaleUtil.locale(
+          `只支持选择${sourceType.join(',')}格式的文件`,
+          'lyrixi_457455da3092979a928191f95101f15e',
+          [sourceType.join(',')]
+        )
       ),
       maskClickable: true
     })
     return false
   }
 
-  let currentList = null
+  let currentList: AttachFileItem[] | null = null
   if (typeof onFileChange === 'function') {
-    currentList = await onFileChange({
-      fileName: fileName,
-      fileSize: fileSize,
-      fileType: fileType,
+    const r = await onFileChange({
+      fileName,
+      fileSize,
+      fileType,
       filePath: fileData,
       fileUrl: fileURL,
       status: 'choose'
     })
+    currentList = Array.isArray(r) ? (r as AttachFileItem[]) : null
   }
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     console.error('onFileChange返回的数据不正确, 请返回数组', currentList)
-    onChange && onChange(null, { action: 'choose' })
+    onChange && onChange([], { action: 'choose' })
     return null
   }
 
   // 构建新的列表
-  let newList = []
+  let newList: AttachFileItem[] = []
   // 新放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]
@@ -134,14 +169,14 @@ async function fileChoose({
   }
 
   // 异步上传
-  if (async) {
+  if (asyncMode) {
     onChange && onChange(newList, { action: 'choose' })
     return newList
   }
 
   // 同步上传: list发生变化即开始上传
-  newList = await uploadList(newList, { action: 'upload' })
-  return newList
+  const uploaded = await uploadList(newList, { action: 'upload' })
+  return uploaded ?? newList
 }
 
 export default fileChoose

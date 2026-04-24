@@ -1,6 +1,12 @@
 import uploadFile from './uploadFile'
 import back from './../utils/back'
-import type { SuccessCallback, ErrorCallback, CancelCallback, SuccessResult, ErrorResult } from '../types'
+import type {
+  SuccessCallback,
+  ErrorCallback,
+  CancelCallback,
+  SuccessResult,
+  ErrorResult
+} from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../LocaleUtil'
@@ -34,10 +40,7 @@ let Browser = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: {
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
     const { onSuccess } = params || {}
     window.history.go(-1)
     onSuccess?.({ status: 'success', data: undefined })
@@ -190,8 +193,10 @@ let Browser = {
           console.log('调用浏览器定位成功', { type, longitude, latitude })
           if (type === 'gcj02') {
             const points = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'gcj02')
-            longitude = points[0]
-            latitude = points[1]
+            if (points) {
+              longitude = points[0]
+              latitude = points[1]
+            }
           }
           onSuccess?.({
             status: 'success',
@@ -296,7 +301,14 @@ let Browser = {
     onError?: ErrorCallback
     onCancel?: CancelCallback
   }) {
-    const { scanType, onSuccess, onError, onCancel } = params || {}
+    const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      scanType,
+      onSuccess,
+      onError,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onCancel
+    } = params || {}
     if (!this.debug) {
       let message = `Browser ${LocaleUtil.locale(
         '此平台不支持',
@@ -346,8 +358,15 @@ let Browser = {
     onSuccess?: SuccessCallback<Record<string, unknown>>
     onError?: ErrorCallback
   }) {
-    const { localFile, getUploadUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
-      params || {}
+    const {
+      localFile,
+      getUploadUrl,
+      formatHeaders,
+      formatPayload,
+      formatResponse,
+      onSuccess,
+      onError
+    } = params || {}
     let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
       onError &&
@@ -361,7 +380,10 @@ let Browser = {
       onError?.({ status: 'error', message: 'localFile error' })
       return
     }
-    let payload: Record<string, unknown> = { filePath: localFile.filePath, fileType: localFile.fileType }
+    let payload: Record<string, unknown> = {
+      filePath: localFile.filePath,
+      fileType: localFile.fileType
+    }
     if (typeof formatPayload === 'function') {
       payload = (await formatPayload(payload, { platform: 'browser' })) as Record<string, unknown>
     }
@@ -373,7 +395,7 @@ let Browser = {
     let response = (await uploadFile({
       url: url,
       headers: headers,
-      payload: payload
+      payload: payload as Record<string, string | Blob>
     })) as { status: string; [key: string]: unknown }
 
     if (response.status === 'success' && typeof formatResponse === 'function') {

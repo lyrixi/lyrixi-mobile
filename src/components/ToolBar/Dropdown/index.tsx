@@ -1,6 +1,15 @@
-import React, { useImperativeHandle, useRef, useEffect, useState, forwardRef } from 'react'
+import React, {
+  useImperativeHandle,
+  useRef,
+  useEffect,
+  useState,
+  forwardRef,
+  type CSSProperties,
+  type MouseEvent,
+  type ReactNode
+} from 'react'
 import closeAllDropdown from './../utils/closeAllDropdown'
-import Combo from './../components/Combo'
+import Combo, { type ComboRef } from './../components/Combo'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -13,182 +22,228 @@ import { ObjectUtil, DOMUtil, Modal } from 'lyrixi-mobile'
 const DropdownModal = Modal.DropdownModal
 测试使用-end */
 
-const Dropdown = forwardRef(
-  (
-    {
-      // Combo: Style
-      direction,
-      block,
-      color = 'default',
-      backgroundColor,
-      borderColor = 'default',
-      border = 'none',
-      size,
-      sizeEqual,
-      radius = 'm',
-      fontSize,
-      style,
-      className,
+export interface ToolBarDropdownRef {
+  element?: HTMLDivElement | null
+  getElement?: () => HTMLDivElement | null
+  close: () => void
+  open: () => void
+}
 
-      // Combo: Element
-      children,
-      comboRender,
-      arrowRender = () => (
-        <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>
-      ),
+export interface ToolBarDropdownProps {
+  direction?: string
+  block?: boolean
+  color?: string
+  backgroundColor?: string
+  borderColor?: string
+  border?: string
+  size?: string | number | readonly string[]
+  sizeEqual?: boolean
+  radius?: string | number
+  fontSize?: string | number
+  style?: CSSProperties
+  className?: string
+  children?: ReactNode
+  comboRender?: (params: {
+    comboRef: React.RefObject<ComboRef | null>
+    open: boolean | null
+    onClick: (e: MouseEvent) => void | Promise<void>
+  }) => ReactNode
+  arrowRender?: (props: { open: boolean | null }) => ReactNode
+  modalStyle?: CSSProperties
+  modalClassName?: string
+  maskStyle?: CSSProperties
+  maskClassName?: string
+  offset?: { top?: number; bottom?: number; left?: number; right?: number }
+  left?: string | number
+  right?: string | number
+  portal?: HTMLElement
+  modalRender?: (ctx: { open: boolean | null; onClose: () => void }) => ReactNode
+  onBeforeOpen?: () => boolean | void | Promise<boolean | void>
+  onOpen?: () => void
+  onClose?: () => void
+}
 
-      // Modal: Style
-      modalStyle,
-      modalClassName,
-      maskStyle,
-      maskClassName,
-      offset = {
-        top: 6
-      },
-      left,
-      right,
+const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function Dropdown(
+  {
+    // Combo: Style
+    direction,
+    block,
+    color = 'default',
+    backgroundColor,
+    borderColor = 'default',
+    border = 'none',
+    size,
+    sizeEqual,
+    radius = 'm',
+    fontSize,
+    style,
+    className,
 
-      // Modal: Element
-      portal,
-      modalRender,
+    // Combo: Element
+    children,
+    comboRender,
+    arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>,
 
-      // Events
-      onBeforeOpen,
-      onOpen,
-      onClose
+    // Modal: Style
+    modalStyle,
+    modalClassName,
+    maskStyle,
+    maskClassName,
+    offset = {
+      top: 6
     },
-    ref
-  ) => {
-    const [open, setOpen] = useState(null)
-    const comboRef = useRef(null)
-    // 唯一id，用于关闭时排除其他dropdown
-    const idRef = useRef(ObjectUtil.randomUUID())
+    left,
+    right,
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        ...comboRef.current,
-        close: () => setOpen(false),
-        open: () => setOpen(true)
-      }
-    })
+    // Modal: Element
+    portal,
+    modalRender,
 
-    // 注册当前实例到全局集合
-    useEffect(() => {
-      if (!window.dropdowns) window.dropdowns = {}
-      window.dropdowns[idRef.current] = {
-        close: () => setOpen(false),
-        open: () => setOpen(true)
-      }
+    // Events
+    onBeforeOpen,
+    onOpen,
+    onClose
+  },
+  ref
+) {
+  const [open, setOpen] = useState<boolean | null>(null)
+  const comboRef = useRef<ComboRef | null>(null)
+  // 唯一id，用于关闭时排除其他dropdown
+  const idRef = useRef<string>(ObjectUtil.randomUUID())
 
-      // 组件卸载时移除实例
-      return () => {
-        // eslint-disable-next-line
-        delete window.dropdowns[idRef.current]
-      }
-      // eslint-disable-next-line
-    }, [])
-
-    useEffect(() => {
-      if (open === null) return
-      // 打开前先关闭其他所有 dropdown
-      if (open) {
-        closeAllDropdown({ exceptId: idRef.current })
-        onOpen?.()
-      } else {
-        onClose?.()
-      }
-      // eslint-disable-next-line
-    }, [open])
-
-    async function handleClick(e) {
-      let newOpen = !open
-      if (!newOpen) {
+  // Expose
+  useImperativeHandle(ref, () => {
+    const cr = comboRef.current
+    return {
+      ...(cr ? { element: cr.element, getElement: cr.getElement } : {}),
+      close: () => {
         setOpen(false)
-        return
+      },
+      open: () => {
+        setOpen(true)
       }
+    }
+  })
 
-      if (typeof onBeforeOpen === 'function') {
-        let goOn = await onBeforeOpen()
-        if (goOn === false) return
-      }
-
-      setOpen(true)
+  // 注册当前实例到全局集合
+  useEffect(() => {
+    if (!window.dropdowns) {
+      window.dropdowns = {}
+    }
+    const map = window.dropdowns
+    map[idRef.current] = {
+      close: () => setOpen(false),
+      open: () => setOpen(true)
     }
 
-    // 获取标题节点
-    function getComboNode() {
-      if (typeof comboRender === 'function') {
-        return comboRender({
-          comboRef,
-          open: open,
-          onClick: handleClick
-        })
-      }
-      return (
-        <Combo
-          ref={comboRef}
-          // Status
-          open={open}
-          // Style
-          style={style}
-          className={className}
-          color={color}
-          borderColor={borderColor}
-          backgroundColor={backgroundColor}
-          sizeEqual={sizeEqual}
-          border={border}
-          direction={direction}
-          block={block}
-          fontSize={fontSize}
-          radius={radius}
-          size={size}
-          // Elements
-          arrowRender={arrowRender}
-          // Events
-          onClick={handleClick}
-        >
-          {children}
-        </Combo>
-      )
+    // 组件卸载时移除实例
+    return () => {
+      // eslint-disable-next-line
+      delete map[idRef.current]
+    }
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (open === null) return
+    // 打开前先关闭其他所有 dropdown
+    if (open) {
+      closeAllDropdown({ exceptId: idRef.current })
+      onOpen?.()
+    } else {
+      onClose?.()
+    }
+    // eslint-disable-next-line
+  }, [open])
+
+  async function handleClick(e: MouseEvent) {
+    let newOpen = !open
+    if (!newOpen) {
+      setOpen(false)
+      return
     }
 
-    const ComboNode = getComboNode()
+    if (typeof onBeforeOpen === 'function') {
+      let goOn = await onBeforeOpen()
+      if (goOn === false) return
+    }
 
+    setOpen(true)
+  }
+
+  // 获取标题节点
+  function getComboNode() {
+    if (typeof comboRender === 'function') {
+      return comboRender({
+        comboRef,
+        open: open,
+        onClick: handleClick
+      })
+    }
     return (
-      <>
-        {/* Combo */}
-        {ComboNode}
-
-        {/* Modal */}
-        <DropdownModal
-          // Status
-          open={open}
-          // Style
-          maskStyle={maskStyle}
-          maskClassName={DOMUtil.classNames('lyrixi-mask-toolbar-dropdown', maskClassName)}
-          modalStyle={modalStyle}
-          modalClassName={DOMUtil.classNames('lyrixi-modal-toolbar-dropdown', modalClassName)}
-          // Element
-          portal={portal}
-          offset={offset}
-          left={left}
-          right={right}
-          referenceElement={comboRef.current?.element}
-          // Events
-          onClose={() => setOpen(false)}
-        >
-          {modalRender?.({
-            open: open,
-            onClose: () => setOpen(false)
-          })}
-        </DropdownModal>
-      </>
+      <Combo
+        ref={comboRef}
+        // Status
+        open={open}
+        // Style
+        style={style}
+        className={className}
+        color={color}
+        borderColor={borderColor}
+        backgroundColor={backgroundColor}
+        sizeEqual={sizeEqual}
+        border={border}
+        direction={direction}
+        block={block}
+        fontSize={fontSize}
+        radius={radius}
+        size={size}
+        // Elements
+        arrowRender={arrowRender}
+        // Events
+        onClick={handleClick}
+      >
+        {children}
+      </Combo>
     )
   }
-)
+
+  const ComboNode = getComboNode()
+  const modalOpen = open ?? false
+
+  return (
+    <>
+      {/* Combo */}
+      {ComboNode}
+
+      {/* Modal */}
+      <DropdownModal
+        // Status
+        open={modalOpen}
+        // Style
+        maskStyle={maskStyle}
+        maskClassName={DOMUtil.classNames('lyrixi-mask-toolbar-dropdown', maskClassName)}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-toolbar-dropdown', modalClassName)}
+        // Element
+        portal={portal}
+        offset={offset}
+        left={left}
+        right={right}
+        referenceElement={comboRef.current?.element}
+        // Events
+        onClose={() => setOpen(false)}
+      >
+        {modalRender?.({
+          open: open,
+          onClose: () => setOpen(false)
+        })}
+      </DropdownModal>
+    </>
+  )
+})
 
 // Component Name, for compact
-Dropdown.componentName = 'ToolBar.Dropdown'
+;(Dropdown as typeof Dropdown & { componentName?: string }).componentName = 'ToolBar.Dropdown'
 
 export default Dropdown

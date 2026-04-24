@@ -1,28 +1,36 @@
+interface FlatNode extends Record<string, unknown> {
+  id: string | number
+  parentid?: string | number | null
+}
+
+interface DeepNode extends Record<string, unknown> {
+  id: string | number
+  parentid?: string | number | null
+  children?: DeepNode[]
+}
+
 /* -----------------------------------------------------
   树数据深度化, 将树的parentid深度为children, 必须有id和parentid
   @格式 [{id: '', name: '', parentid: ''}, {id: '', name: '', parentid: ''}]
   @return [{id: '', name: '', children: {}}]
  ----------------------------------------------------- */
-function deepTree(flattenTree) {
+function deepTree(flattenTree: FlatNode[]): DeepNode[] {
   if (!Array.isArray(flattenTree) || !flattenTree.length) {
     return []
   }
 
-  const idMap: Record<string, Record<string, unknown> & { children?: unknown[] }> = {} // 用对象字面量存储节点映射
-  const result: unknown[] = [] // 用于存储最终的层级树
+  const idMap: Record<string | number, DeepNode> = {}
+  const result: DeepNode[] = []
 
-  // 初始化节点映射
   flattenTree.forEach((node) => {
     idMap[node.id] = { ...node }
   })
 
-  // 构建层级树
   flattenTree.forEach((node) => {
-    if (node.parentid && idMap[node.parentid]) {
+    if (node.parentid != null && idMap[node.parentid]) {
       if (!idMap[node.parentid].children) idMap[node.parentid].children = []
       idMap[node.parentid].children!.push(idMap[node.id])
     } else {
-      // 如果没有父节点，作为顶级节点
       result.push(idMap[node.id])
     }
   })

@@ -7,8 +7,15 @@ import DateUtil from './../../../../utils/DateUtil'
 import { LocaleUtil, DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { DatePickerPickerType, PickerListItem } from './../../datePickerTypes'
+
 // 数据
-function getList(value, type, { hourStep, minuteStep }) {
+function getList(
+  value: Date | null | undefined,
+  type: DatePickerPickerType,
+  { hourStep, minuteStep }: { hourStep?: number; minuteStep?: number }
+): PickerListItem[][] | null {
+  const refDate = value instanceof Date ? value : new Date()
   if (!hourStep || typeof hourStep !== 'number') {
     // eslint-disable-next-line
     hourStep = 1
@@ -38,7 +45,7 @@ function getList(value, type, { hourStep, minuteStep }) {
 
   // Date
   let dates = []
-  for (let item = 1; item <= DateUtil.getDaysInMonth(value); item++) {
+  for (let item = 1; item <= DateUtil.getDaysInMonth(refDate); item++) {
     dates.push({
       id: item,
       name: LocaleUtil.locale(`${item}日`, 'lyrixi_61de597598e60f20242b51155990ae57', [String(item)])

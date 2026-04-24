@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -6,9 +6,20 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
 
-const ConfirmIcon = forwardRef(
+interface MessageIconRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface MessageIconProps {
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+const ConfirmIcon = forwardRef<MessageIconRef, MessageIconProps>(
   (
     {
       children,
@@ -18,7 +29,7 @@ const ConfirmIcon = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {

@@ -14,6 +14,9 @@ import DOMUtil from './../../../utils/DOMUtil'
 import Map from './../../Map'
 import Input from './../../Input'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import type { MapContainerProps } from './../../Map/components/MapContainer'
+import type { MapPoint } from './../../Map/utils/coordsToWgs84'
+import type { InputTextRef } from './../../Input/Text'
 // 内库使用-end
 
 /* 测试使用-start
@@ -29,21 +32,66 @@ const {
   wgs84ToCoords
 } = Map
 
-// 定位控件
-const LocationCombo = forwardRef(
+interface LocationValue {
+  latitude?: number | string
+  longitude?: number | string
+  type?: string
+  address?: string
+  value?: string
+  nearbyVisible?: boolean
+  [key: string]: unknown
+}
+
+interface ComboProps {
+  value?: LocationValue | null
+  placeholder?: string
+  type?: string
+  getAddress?: ((...args: unknown[]) => unknown) | null
+  getLocation?: ((...args: unknown[]) => unknown) | null
+  cacheExpires?: number
+  mapConfig?: Record<string, unknown>
+  autoSize?: boolean
+  allowClear?: boolean
+  disabled?: boolean
+  editable?: boolean
+  autoLocation?: boolean
+  locationVisible?: boolean
+  chooseVisible?: boolean | { nearbyVisible?: boolean }
+  previewVisible?: boolean
+  clickAction?: string
+  className?: string
+  modalClassName?: string
+  modalStyle?: React.CSSProperties
+  portal?: HTMLElement | null
+  errorText?: string
+  loadingText?: string
+  onChange?: ((value: LocationValue | null) => void) | null
+  onOpen?: (() => void) | null
+  onClose?: (() => void) | null
+  onLocationStatusChange?: ((status: string) => void) | null
+  onError?: ((error: { status: string; message: string }) => void) | null
+}
+
+interface ComboRef {
+  element: unknown
+  getElement: () => unknown
+}
+
+type InputWithText = typeof Input & {
+  Text: React.ComponentType<Record<string, unknown>>
+}
+const InputComp = Input as InputWithText
+
+const LocationCombo = forwardRef<ComboRef, ComboProps>(
   (
     {
-      // Value & Display Value
-      value, // {latitude: '纬度', longitude: '经度', value: '地址'}
+      value,
       placeholder,
-      type = 'gcj02', // 坐标类型
-      getAddress, // 获取定位和地址工具类
-      getLocation, // 获取定位和地址工具类
-      // 定位与获取位置缓存时长: 秒
+      type = 'gcj02',
+      getAddress,
+      getLocation,
       cacheExpires,
-      mapConfig, // 地图加载修改
-
-      // Status
+      mapConfig,
       autoSize,
       allowClear,
       disabled = false,
@@ -52,22 +100,16 @@ const LocationCombo = forwardRef(
       locationVisible = true,
       chooseVisible = false,
       previewVisible = false,
-      clickAction, // 点击整行触发的动作: location | choose | preview
-
-      // Style
+      clickAction,
       className,
       modalClassName,
       modalStyle,
-
-      // Element
       portal = document.getElementById('root') || document.body,
       errorText = LocaleUtil.locale(
         '定位失败, 请检查定位权限是否开启',
         'lyrixi_a96a3989d602067144139bf31bf27121'
       ),
       loadingText = LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd'),
-
-      // Events
       onChange,
       onOpen,
       onClose,
@@ -77,41 +119,40 @@ const LocationCombo = forwardRef(
     ref
   ) => {
     let address = value?.value || value?.address
-    // 格式化值
     if (address && (!value?.value || !value?.address)) {
-      value.address = address
-      value.value = address
+      value = { ...value, address, value: address }
     }
 
-    // 获取定位和地址工具类
-    // eslint-disable-next-line
-    if (typeof getAddress !== 'function') getAddress = cacheExpires ? defaultGetSuperAddress : defaultGetAddress
-    // eslint-disable-next-line
-    if (typeof getLocation !== 'function') getLocation = cacheExpires ? defaultGetSuperLocation : defaultGetLocation
+    const resolveGetAddress: NonNullable<MapContainerProps['getAddress']> =
+      typeof getAddress === 'function'
+        ? (getAddress as NonNullable<MapContainerProps['getAddress']>)
+        : (cacheExpires ? defaultGetSuperAddress : defaultGetAddress) as NonNullable<
+            MapContainerProps['getAddress']
+          >
+    const resolveGetLocation: NonNullable<MapContainerProps['getLocation']> =
+      typeof getLocation === 'function'
+        ? (getLocation as NonNullable<MapContainerProps['getLocation']>)
+        : (cacheExpires ? defaultGetSuperLocation : defaultGetLocation) as NonNullable<
+            MapContainerProps['getLocation']
+          >
 
-    // 错误信息
     const errMsgRef = useRef(errorText)
 
-    // 定位状态, -1.定位中; 0.定位失败时隐藏text框, 显示定位中或者定位失败的div; 1定位成功显示文本框
     let [locationStatus, setLocationStatus] = useState('1')
 
-    // 显示预览preview、选择choose
     const [modalOpen, setModalOpen] = useState('')
 
-    const onChangeRef = useRef()
+    const onChangeRef = useRef<((value: LocationValue | null) => void) | null | undefined>(onChange)
     onChangeRef.current = onChange
-    const onErrorRef = useRef()
+    const onErrorRef = useRef<((error: { status: string; message: string }) => void) | null | undefined>(onError)
     onErrorRef.current = onError
 
-    // 节点
-    const comboRef = useRef(null)
+    const comboRef = useRef<InputTextRef | null>(null)
     useImperativeHandle(ref, () => {
       return {
         element: comboRef?.current?.getElement ? comboRef.current.getElement() : comboRef?.current,
         getElement: () => {
-          // div
-          let element = comboRef?.current
-          // Input.Text
+          let element: unknown = comboRef?.current
           if (comboRef?.current?.getElement) {
             element = comboRef.current.getElement()
           }
@@ -120,7 +161,6 @@ const LocationCombo = forwardRef(
       }
     })
 
-    // 失败后设置值, 可外部强制改为成功
     useEffect(() => {
       if (
         locationStatus === '0' &&
@@ -134,12 +174,10 @@ const LocationCombo = forwardRef(
       // eslint-disable-next-line
     }, [value])
 
-    // 显隐回调
     useEffect(() => {
       if (modalOpen) {
         onOpen?.()
       } else if (modalOpen === '') {
-        // Don't trigger onClose on initial render
         return
       } else {
         onClose?.()
@@ -147,14 +185,12 @@ const LocationCombo = forwardRef(
       // eslint-disable-next-line
     }, [modalOpen])
 
-    // 自动定位
     useEffect(() => {
       if (autoLocation !== true) return
       handleAutoLocation()
       // eslint-disable-next-line
     }, [autoLocation])
 
-    // 定位状态
     useEffect(() => {
       if (onLocationStatusChange) {
         onLocationStatusChange(locationStatus)
@@ -162,11 +198,10 @@ const LocationCombo = forwardRef(
       // eslint-disable-next-line
     }, [locationStatus])
 
-    // 获取位置
-    async function addAddress(value) {
-      let newValue = value
+    async function addAddress(val: LocationValue | null): Promise<LocationValue | string | null> {
+      let newValue: LocationValue | string | null = val
       if (typeof newValue === 'object' && newValue?.longitude && newValue?.latitude) {
-        let addrRes = await getAddress({
+        const addrRes = await resolveGetAddress({
           cacheExpires,
           type: type,
           ...newValue
@@ -175,88 +210,67 @@ const LocationCombo = forwardRef(
           newValue = {
             ...newValue,
             ...addrRes
-          }
+          } as LocationValue
         } else {
           newValue = LocaleUtil.locale(
             '获取地址失败, 请稍后重试',
             'lyrixi_f1f199dd46c73946aa4b3140e98752a4'
-          )
+          ) as string
         }
       }
       return newValue
     }
 
-    // 自动定位
     async function handleAutoLocation() {
-      // 有经纬度, 补充address
       if (value && value.latitude && value.longitude) {
-        // 有地址, 则定位完成
         if (value.value || value.address) {
           if (onChangeRef?.current) {
             onChangeRef.current(value)
           }
-        }
-        // 无地址, 则需要地址逆解析
-        else {
+        } else {
           locationStatus = '-1'
-          setLocationStatus('-1') // 定位中...
+          setLocationStatus('-1')
 
-          let newValue = await addAddress(value)
-
+          const newValue = await addAddress(value)
           updateValue(newValue)
         }
-      }
-      // 定位并获取地址
-      else {
+      } else {
         handleLocation('autoLocation')
       }
     }
 
-    // 点击文本框
-    function handleClick(e) {
+    function handleClick(e: React.MouseEvent) {
       e.stopPropagation()
-      // 正在定位不允许操作
-      if (locationStatus === '-1') {
-        return
-      }
+      if (locationStatus === '-1') return
+      if (disabled) return
 
-      // 禁用
-      if (disabled) {
-        return
-      }
-
-      // 点击输入
       if (editable) {
         if (locationStatus === '0') {
-          // 非只读状态下, 点击错误面板, 允许手动输入位置
           locationStatus = '1'
           setLocationStatus('1')
         }
         return
       }
 
-      // 点击整行定位
       if (clickAction === 'location') {
         handleLocation('clickInput')
         return
       }
 
-      // 点击整行预览或选点
       if (clickAction) {
         setModalOpen(clickAction)
         return
       }
     }
 
-    // Update new value
-    function updateValue(_newValue) {
-      // 转为国测局坐标
-      let newValue =
-        _newValue?.longitude && _newValue?.latitude ? wgs84ToCoords(_newValue, type) : _newValue
+    function updateValue(_newValue: LocationValue | string | null) {
+      let newValue: LocationValue | string | null =
+        typeof _newValue === 'object' && _newValue?.longitude && _newValue?.latitude
+          ? wgs84ToCoords(_newValue as LocationValue, type)
+          : _newValue
 
-      // 定位失败
-      if (!newValue?.longitude || !newValue?.latitude || typeof newValue === 'string') {
-        errMsgRef.current = typeof newValue === 'string' ? newValue : errorText
+      if (!newValue || typeof newValue === 'string' || !(newValue as LocationValue)?.longitude || !(newValue as LocationValue)?.latitude) {
+        errMsgRef.current = typeof newValue === 'string' ? newValue : (errorText ?? '')
         if (onErrorRef?.current) {
           onErrorRef.current({
             status: 'error',
@@ -265,46 +279,37 @@ const LocationCombo = forwardRef(
         }
         locationStatus = '0'
         setLocationStatus('0')
-        // 回调onChange
         onChangeRef?.current && onChangeRef.current(null)
-      }
-      // 定位成功
-      else {
+      } else {
         locationStatus = '1'
         setLocationStatus('1')
 
-        if (newValue.address && !newValue.value) {
-          newValue.value = newValue.address
+        const locVal = newValue as LocationValue
+        if (locVal.address && !locVal.value) {
+          locVal.value = locVal.address as string
         }
-        // 回调onChange
-        onChangeRef?.current && onChangeRef.current(newValue)
+        onChangeRef?.current && onChangeRef.current(locVal)
       }
     }
 
-    // 定位, isAutoLocation表示初始化时自动定位
-    async function handleLocation(action) {
-      // 定位中...
+    async function handleLocation(action: string) {
       locationStatus = '-1'
       setLocationStatus('-1')
 
-      // 开始定位
-      let newValue = await getLocation({
+      let newValue = (await resolveGetLocation({
         cacheExpires,
         action: action,
         type: type
-      })
+      })) as LocationValue | null
 
-      // 获取地址信息
-      newValue = await addAddress(newValue)
-
-      updateValue(newValue)
+      const withAddress = await addAddress(newValue)
+      updateValue(withAddress)
     }
 
-    // 定位和选择按钮
-    function getRightIconNode() {
-      if (disabled) return null
-      let rightIconNode = []
-      // 显示选择
+    function getRightIconNode(): React.ReactNode[] {
+      if (disabled) return []
+      const rightIconNode: React.ReactNode[] = []
+
       if (chooseVisible) {
         rightIconNode.push(
           <i
@@ -321,7 +326,7 @@ const LocationCombo = forwardRef(
           ></i>
         )
       }
-      // 显示预览
+
       if (previewVisible) {
         rightIconNode.push(
           <i
@@ -340,7 +345,7 @@ const LocationCombo = forwardRef(
           ></i>
         )
       }
-      // 显示定位
+
       if (locationVisible) {
         rightIconNode.push(
           <i
@@ -360,8 +365,7 @@ const LocationCombo = forwardRef(
       return rightIconNode
     }
 
-    // 加载和错误面板, 显示这些面板时将会隐藏文本框, 样式必须与文本框一致
-    let statusNode = null
+    let statusNode: React.ReactNode = null
     if (locationStatus === '-1') {
       statusNode = (
         <div className="lyrixi-location-combo-positioning lyrixi-input-text">{loadingText}</div>
@@ -372,83 +376,60 @@ const LocationCombo = forwardRef(
       )
     }
 
+    const nearbyVisibleProp = typeof chooseVisible === 'object' ? chooseVisible?.nearbyVisible : undefined
+
     return (
       <Fragment>
-        {/* Element: Input Text */}
-        <Input.Text
+        <InputComp.Text
           ref={comboRef}
           placeholder={placeholder}
-          // Element
           type={autoSize ? 'autoSize' : 'text'}
           rightIconNode={<>{getRightIconNode()}</>}
-          inputRender={
-            statusNode
-              ? () => {
-                return statusNode
-              }
-              : null
-          }
-          // Value & Display Value
+          inputRender={statusNode ? () => statusNode : undefined}
           value={value?.value || value?.address || ''}
-          // Status
           allowClear={allowClear}
           readOnly={!editable}
           disabled={disabled}
-          // Style
           className={DOMUtil.classNames(
             'lyrixi-location-combo-success',
             'lyrixi-location-combo',
             className,
             locationStatus === '-1' ? 'lyrixi-positioning' : ''
           )}
-          // Events
           onClick={handleClick}
           onChange={(address, event) => {
             if (event?.action === 'clickClear') {
               if (onChange) onChange(null)
               return
             }
-            let newValue = ObjectUtil.cloneDeep(value)
-            if (!newValue) {
-              newValue = {}
-            }
+            const newValue = ObjectUtil.cloneDeep(value) || ({} as LocationValue)
             newValue.value = address
             newValue.address = address
             if (onChange) onChange(newValue)
           }}
         />
 
-        {/* Element: Modal */}
         <Modal
-          // Value & Display Value
           cacheExpires={cacheExpires}
           mapConfig={mapConfig}
-          getAddress={getAddress}
-          getLocation={getLocation}
-          // Status
+          getAddress={resolveGetAddress}
+          getLocation={resolveGetLocation}
           open={modalOpen}
           allowClear={allowClear}
-          nearbyVisible={chooseVisible?.nearbyVisible}
-          // Style
+          nearbyVisible={nearbyVisibleProp}
           modalClassName={modalClassName}
           modalStyle={modalStyle}
-          // Element
           portal={portal}
-          // Value & Display Value
-          value={coordsToWgs84(value, type)}
-          // Events
-          onOpen={() => { }}
+          value={value ? (coordsToWgs84(value as MapPoint, type) as LocationValue | null) : null}
           onClose={() => setModalOpen('')}
-          onChange={(_newValue) => {
-            // 转坐标
-            let newValue = wgs84ToCoords(_newValue, type)
+          onChange={(_newValue: LocationValue | null) => {
+            const newValue = _newValue
+              ? wgs84ToCoords(_newValue as MapPoint, type)
+              : null
 
-            // 选择地址后，更新显示状态
             if (newValue) {
               updateValue(newValue)
-            }
-            // 清空值
-            else {
+            } else {
               onChange && onChange(null)
             }
           }}

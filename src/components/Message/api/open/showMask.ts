@@ -1,12 +1,25 @@
 import globalMessageId from './../globalMessageId'
 
+export interface MessageMaskElement extends HTMLElement {
+  timeout?: ReturnType<typeof setTimeout>
+  maskClosable?: boolean
+  onOpen?: () => void
+  onClose?: () => void
+  buttons?: Array<{ id?: string; name: string; className?: string; style?: Record<string, unknown>; onClick?: () => boolean | void }>
+}
+
+interface ShowMaskParams {
+  portal?: HTMLElement | string | boolean
+  onMaskClick: (e: MouseEvent) => void
+}
+
 // 渲染Message遮罩
-function showMask({ portal, onMaskClick }) {
+function showMask({ portal, onMaskClick }: ShowMaskParams): MessageMaskElement {
   // 如果没生成成功, 则强制生成
-  let mask = document.querySelector('#' + globalMessageId)
+  let mask = document.querySelector('#' + globalMessageId) as MessageMaskElement | null
   if (!mask) {
     // 创建dom
-    mask = document.createElement('div')
+    mask = document.createElement('div') as MessageMaskElement
     mask.setAttribute('class', `lyrixi-mask lyrixi-mask-message`)
     mask.setAttribute('id', globalMessageId)
     mask.innerHTML = `
@@ -22,7 +35,7 @@ function showMask({ portal, onMaskClick }) {
     `
 
       // 添加到dom上
-      ; (portal || document.getElementById('root') || document.body).appendChild(mask)
+      ; (portal instanceof HTMLElement ? portal : (document.getElementById('root') || document.body)).appendChild(mask)
 
     // 绑定事件
     mask.removeEventListener('click', onMaskClick, false)
@@ -31,15 +44,15 @@ function showMask({ portal, onMaskClick }) {
 
   // 渲染完成后补充active, 解决渲染后动画不生效的问题
   setTimeout(() => {
-    mask = document.querySelector('#' + globalMessageId)
-    if (!mask) return
+    const currentMask = document.querySelector('#' + globalMessageId) as MessageMaskElement | null
+    if (!currentMask) return
     // 如果正在移除，则停止移除
-    if (mask.timeout) {
-      window.clearTimeout(mask.timeout)
+    if (currentMask.timeout) {
+      window.clearTimeout(currentMask.timeout)
     }
     // 动画显示
-    mask.classList.add('lyrixi-active')
-    mask.querySelector('.lyrixi-modal-message').classList.add('lyrixi-active')
+    currentMask.classList.add('lyrixi-active')
+    currentMask.querySelector('.lyrixi-modal-message')?.classList.add('lyrixi-active')
   }, 10)
 
   return mask

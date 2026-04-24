@@ -1,4 +1,5 @@
 import updateStyle from './updateStyle'
+import type { MessageMaskElement } from './showMask'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -8,9 +9,29 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface UpdateAttributeParams {
+  maskClosable?: boolean
+  onOpen?: () => void
+  onClose?: () => void
+  portal?: HTMLElement | string | boolean
+  maskClassName?: string
+  maskStyle?: Record<string, unknown>
+  icon?: string
+  title?: unknown
+  titleClassName?: string
+  titleStyle?: Record<string, unknown>
+  content?: unknown
+  contentClassName?: string
+  contentStyle?: Record<string, unknown>
+  footerClassName?: string
+  footerStyle?: Record<string, unknown>
+  buttonsLayout?: string
+  buttons?: Array<{ id?: string; name: string; className?: string; style?: Record<string, unknown>; onClick?: () => boolean | void }>
+}
+
 // 更新Message属性
 function updateAttribute(
-  mask,
+  mask: MessageMaskElement,
   {
     maskClosable,
     onOpen,
@@ -43,7 +64,7 @@ function updateAttribute(
 
     // 按钮数组
     buttons = []
-  }
+  }: UpdateAttributeParams
 ) {
   // 更新遮罩
   updateStyle(mask, {
@@ -53,22 +74,22 @@ function updateAttribute(
   })
 
   // 更新header
-  let headerElement = mask.querySelector('.lyrixi-message-header')
+  let headerElement = mask.querySelector('.lyrixi-message-header') as HTMLElement | null
   let hasHeaderContent = false
 
   // 更新图标
-  let iconElement = mask.querySelector('.lyrixi-message-icon')
+  let iconElement = mask.querySelector('.lyrixi-message-icon') as HTMLElement | null
   if (icon) {
     hasHeaderContent = true
     iconElement?.classList?.remove?.('lyrixi-hide')
-    iconElement.className = DOMUtil.classNames('lyrixi-message-icon', icon)
+    if (iconElement) iconElement.className = DOMUtil.classNames('lyrixi-message-icon', icon)
   } else {
     iconElement?.classList?.add?.('lyrixi-hide')
-    iconElement.className = 'lyrixi-message-icon lyrixi-hide'
+    if (iconElement) iconElement.className = 'lyrixi-message-icon lyrixi-hide'
   }
 
   // 更新标题
-  let titleElement = mask.querySelector('.lyrixi-message-title')
+  let titleElement = mask.querySelector('.lyrixi-message-title') as HTMLElement | null
   updateStyle(titleElement, {
     className: titleClassName,
     style: titleStyle,
@@ -77,7 +98,7 @@ function updateAttribute(
   if (title) {
     hasHeaderContent = true
     titleElement?.classList?.remove?.('lyrixi-hide')
-    titleElement.innerHTML = title
+    if (titleElement) titleElement.innerHTML = String(title)
   } else {
     titleElement?.classList?.add?.('lyrixi-hide')
   }
@@ -90,7 +111,7 @@ function updateAttribute(
   }
 
   // 更新内容
-  let contentElement = mask.querySelector('.lyrixi-message-main')
+  let contentElement = mask.querySelector('.lyrixi-message-main') as HTMLElement | null
   updateStyle(contentElement, {
     className: contentClassName,
     style: contentStyle,
@@ -98,17 +119,16 @@ function updateAttribute(
   })
   if (content) {
     if (typeof content === 'string') {
-      contentElement.innerHTML = content
+      if (contentElement) contentElement.innerHTML = content
     } else {
-      // 如果content是React元素，我们需要特殊处理
-      contentElement.innerHTML = content
+      if (contentElement) contentElement.innerHTML = String(content)
     }
   } else {
-    contentElement.innerHTML = ''
+    if (contentElement) contentElement.innerHTML = ''
   }
 
   // 更新底部
-  let footerElement = mask.querySelector('.lyrixi-message-footer')
+  let footerElement = mask.querySelector('.lyrixi-message-footer') as HTMLElement | null
   updateStyle(footerElement, {
     className: footerClassName,
     style: footerStyle,
@@ -117,7 +137,7 @@ function updateAttribute(
   })
 
   // 设置按钮布局
-  footerElement.setAttribute('data-layout', buttonsLayout)
+  footerElement?.setAttribute('data-layout', buttonsLayout)
 
   // 渲染按钮
   if (Array.isArray(buttons) && buttons.length > 0) {
@@ -131,18 +151,18 @@ function updateAttribute(
         .join('; ')
       buttonsHTML += `<div class="lyrixi-message-button ${className}" id="${buttonId}" style="${styleString}">${name}</div>`
     })
-    footerElement.innerHTML = buttonsHTML
+    if (footerElement) footerElement.innerHTML = buttonsHTML
 
     // 绑定按钮点击事件
     buttons.forEach((button, index) => {
-      const buttonElement = footerElement.querySelector(`#lyrixi-message-button-${index}`)
+      const buttonElement = footerElement?.querySelector(`#lyrixi-message-button-${index}`)
       if (buttonElement && button.onClick) {
-        buttonElement.onclick = button.onClick
+        (buttonElement as HTMLElement).onclick = button.onClick
       }
     })
   } else {
     footerElement?.classList?.add?.('lyrixi-hide')
-    footerElement.innerHTML = ''
+    if (footerElement) footerElement.innerHTML = ''
   }
 
   // 更新事件中用到的属性
@@ -152,7 +172,7 @@ function updateAttribute(
   mask.buttons = buttons
 
   // dom透传
-  if (toString.call(portal).indexOf('HTML') !== -1) {
+  if (portal instanceof HTMLElement) {
     portal.appendChild(mask)
   } else {
     ; (document.getElementById('root') || document.body).appendChild(mask)

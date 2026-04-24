@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, type ComponentProps } from 'react'
 import { Page, Location } from 'lyrixi-mobile'
 
+type MainVal = ComponentProps<typeof Location.Main>['value']
+
 export default () => {
-  const mainRef = useRef(null)
-  const [value, setValue] = useState(null)
+  const mainRef = useRef<React.ComponentRef<typeof Location.Main> | null>(null)
+  const [value, setValue] = useState<MainVal>(null)
 
   useEffect(() => {
     // 延迟设置值
@@ -27,7 +29,6 @@ export default () => {
         autoLocation={false}
         // 可以用全局设置window.MapLoaderConfig代替
         mapConfig={{
-          key: 'bmap key',
           key: '4KFq5IGKQM1c6vkVhgIpAYFu',
           type: 'bmap'
         }}

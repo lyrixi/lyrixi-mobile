@@ -9,6 +9,31 @@ import Checkbox from './../../Checkbox'
 import { DOMUtil,Checkbox } from 'lyrixi-mobile'
 测试使用-end */
 
+type RawItem = Record<string, unknown>
+
+interface ItemProps {
+  _raw?: RawItem
+  checked?: boolean
+  disabled?: boolean
+  checkable?: boolean
+  style?: React.CSSProperties
+  className?: string
+  layout?: string
+  imageUrl?: string
+  imageRender?: (item: RawItem & { checked?: boolean }) => React.ReactNode
+  avatarUrl?: string
+  avatarRender?: (item: RawItem & { checked?: boolean }) => React.ReactNode
+  title?: React.ReactNode
+  description?: React.ReactNode
+  note?: React.ReactNode
+  content?: React.ReactNode
+  actionRender?: (item: RawItem & { checked?: boolean }) => React.ReactNode
+  checkboxVariant?: string
+  checkboxPosition?: string
+  onSelect?: (item: RawItem & { checked?: boolean }) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
+}
+
 const Item = ({
   // Value & Display Value
   _raw,
@@ -39,7 +64,7 @@ const Item = ({
   // Events
   onSelect,
   onClick
-}) => {
+}: ItemProps) => {
   // 获取checkbox
   function getCheckboxNode() {
     if (!checkable) return null
@@ -68,10 +93,12 @@ const Item = ({
             alt=""
             src={imageUrl}
             onError={(e) => {
-              e.target.parentNode.classList.add('lyrixi-error')
+              const target = e.target as HTMLImageElement
+              target.parentElement?.classList.add('lyrixi-error')
             }}
             onLoad={(e) => {
-              e.target.parentNode.classList.add('lyrixi-success')
+              const target = e.target as HTMLImageElement
+              target.parentElement?.classList.add('lyrixi-success')
             }}
             className="lyrixi-image"
           />
@@ -97,10 +124,12 @@ const Item = ({
             alt=""
             src={avatarUrl}
             onError={(e) => {
-              e.target.parentNode.classList.add('lyrixi-error')
+              const target = e.target as HTMLImageElement
+              target.parentElement?.classList.add('lyrixi-error')
             }}
             onLoad={(e) => {
-              e.target.parentNode.classList.add('lyrixi-success')
+              const target = e.target as HTMLImageElement
+              target.parentElement?.classList.add('lyrixi-success')
             }}
             className="lyrixi-avatar"
           />
@@ -138,7 +167,7 @@ const Item = ({
         }}
       >
         {/* Left Checkbox */}
-        {checkboxPosition !== 'right' && getCheckboxNode(checked)}
+        {checkboxPosition !== 'right' && getCheckboxNode()}
 
         {/* Main */}
         <div className="lyrixi-list-item-main">
@@ -166,7 +195,7 @@ const Item = ({
         </div>
 
         {/* Right Checkbox */}
-        {checkboxPosition === 'right' && getCheckboxNode(checked)}
+        {checkboxPosition === 'right' && getCheckboxNode()}
       </div>
     )
   }

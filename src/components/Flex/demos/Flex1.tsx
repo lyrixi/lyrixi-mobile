@@ -28,8 +28,9 @@ export default () => {
                 { id: 'custom', name: 'Custom' }
               ]}
               onChange={(value) => {
-                setMode(value?.id as string)
-                setGap(value?.id !== 'custom' ? (value?.id as string) : 2)
+                if (value == null || Array.isArray(value)) return
+                setMode(String(value.id))
+                setGap(value.id !== 'custom' ? String(value.id) : 2)
               }}
             />
             <Input.Range

@@ -26,8 +26,14 @@ function getStyle({
   style,
   className
 }: IconStyleInput): { style: CSSProperties; className: string } {
-  const resolvedSize = (MathUtil.variableSize(size, undefined) as string | undefined) || size
-  const resolvedRadius = (MathUtil.variableSize(radius, undefined) as string | undefined) || radius
+  const resolvedSize =
+    size != null && size !== ''
+      ? (MathUtil.variableSize(size, undefined) as string | undefined) || size
+      : size
+  const resolvedRadius =
+    radius != null && radius !== ''
+      ? (MathUtil.variableSize(radius, undefined) as string | undefined) || radius
+      : radius
 
   const isColorClass = !!(color && DOMUtil.variables.colors.includes(color))
   const isBackgroundColorClass = !!(

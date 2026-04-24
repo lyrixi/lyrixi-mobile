@@ -32,22 +32,22 @@ export default () => {
         >
           <Form.Item
             name="input"
-            label={LocaleUtil.locale('单行文本框')}
+            label={LocaleUtil.locale('单行文本框') as string}
             labelHelp="Help info"
             extraRender={() => <div>Main Extra Info</div>}
             inputExtraRender={() => <div>Input Extra Info</div>}
             rules={[
               {
                 required: true,
-                message: LocaleUtil.locale('单行文本框不能为空')
+                message: LocaleUtil.locale('单行文本框不能为空') as string
               }
             ]}
           >
-            <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
+            <Input.Text placeholder={LocaleUtil.locale('请输入') as string} maxLength={50} />
           </Form.Item>
-          <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
+          <Form.Item name="select" label={LocaleUtil.locale('下拉选择框') as string}>
             <Select.Combo
-              placeholder={LocaleUtil.locale('请选择')}
+              placeholder={LocaleUtil.locale('请选择') as string}
               list={[
                 {
                   id: '1',
@@ -60,8 +60,8 @@ export default () => {
               ]}
             />
           </Form.Item>
-          <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>
-            <Input.AutoSize placeholder={LocaleUtil.locale('请输入')} />
+          <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框') as string}>
+            <Input.AutoSize placeholder={LocaleUtil.locale('请输入') as string} />
           </Form.Item>
         </Form>
 
@@ -69,20 +69,20 @@ export default () => {
         <Form layout="vertical" form={form}>
           <Form.Item
             name="input2"
-            label={LocaleUtil.locale('单行文本框')}
+            label={LocaleUtil.locale('单行文本框') as string}
             labelHelp="提示信息"
             rules={[
               {
                 required: true,
-                message: LocaleUtil.locale('单行文本框不能为空')
+                message: LocaleUtil.locale('单行文本框不能为空') as string
               }
             ]}
           >
-            <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
+            <Input.Text placeholder={LocaleUtil.locale('请输入') as string} maxLength={50} />
           </Form.Item>
-          <Form.Item name="select2" label={LocaleUtil.locale('下拉选择框')}>
+          <Form.Item name="select2" label={LocaleUtil.locale('下拉选择框') as string}>
             <Select.Combo
-              placeholder={LocaleUtil.locale('请选择')}
+              placeholder={LocaleUtil.locale('请选择') as string}
               list={[
                 {
                   id: '1',
@@ -99,8 +99,8 @@ export default () => {
               }}
             />
           </Form.Item>
-          <Form.Item name="textarea2" label={LocaleUtil.locale('多行文本框')}>
-            <Input.AutoSize placeholder={LocaleUtil.locale('请输入')} />
+          <Form.Item name="textarea2" label={LocaleUtil.locale('多行文本框') as string}>
+            <Input.AutoSize placeholder={LocaleUtil.locale('请输入') as string} />
           </Form.Item>
         </Form>
       </Page.Main>

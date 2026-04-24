@@ -11,6 +11,26 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
+interface ParagraphProps {
+  length?: number
+  divider?: string
+  animated?: boolean
+  className?: string
+  style?: React.CSSProperties
+  avatarVisible?: boolean
+  avatarClassName?: string
+  avatarStyle?: React.CSSProperties
+  titleVisible?: boolean
+  titleClassName?: string
+  titleStyle?: React.CSSProperties
+  itemClassName?: string
+  itemStyle?: React.CSSProperties
+  oddClassName?: string
+  oddStyle?: React.CSSProperties
+  evenClassName?: string
+  evenStyle?: React.CSSProperties
+}
+
 const Paragraph = ({
   // Value & Display Value
   length,
@@ -34,7 +54,7 @@ const Paragraph = ({
   oddStyle,
   evenClassName,
   evenStyle
-}) => {
+}: ParagraphProps) => {
   return (
     <div
       // Style

@@ -1,11 +1,16 @@
-// 根据id, 取出此id节点的数据, 即{id: '', name: '', parentid: ''}
-function getFlattenTreeNode(tree, id) {
-  for (const node of tree) {
-    if (node.id === id) {
-      return node // 找到目标节点，直接返回
-    }
-  }
-  return null // 如果整个树中都没有找到，返回 null
+interface FlatNode extends Record<string, unknown> {
+  id: string | number
+  parentid?: string | number | null
 }
 
-export default getFlattenTreeNode
+// 根据id, 取出此id节点的数据, 即{id: '', name: '', parentid: ''}
+function getFlatTreeNode(tree: FlatNode[], id: string | number): FlatNode | null {
+  for (const node of tree) {
+    if (node.id === id) {
+      return node
+    }
+  }
+  return null
+}
+
+export default getFlatTreeNode

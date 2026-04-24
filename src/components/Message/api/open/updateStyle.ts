@@ -2,8 +2,14 @@
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
+interface UpdateStyleParams {
+  style?: Record<string, unknown>
+  className?: string
+  baseClassName: string
+}
+
 // 更新class和style
-function updateStyle(target, { style, className, baseClassName }) {
+function updateStyle(target: HTMLElement | null, { style, className, baseClassName }: UpdateStyleParams) {
   if (!target) return
 
   // 还原样式
@@ -14,7 +20,9 @@ function updateStyle(target, { style, className, baseClassName }) {
   if (style) {
     // eslint-disable-next-line
     for (let stylePropName in style) {
-      target.style[stylePropName] = style[stylePropName]
+      const el = target.style as unknown as Record<string, string>
+      const v = style[stylePropName]
+      el[stylePropName] = v == null ? '' : String(v)
     }
   }
   if (className) {

@@ -1,4 +1,10 @@
-import React, { useImperativeHandle, forwardRef, useEffect, useState } from 'react'
+import React, {
+  useImperativeHandle,
+  forwardRef,
+  useEffect,
+  useState,
+  type CSSProperties
+} from 'react'
 import {
   loadBaseData,
   loadData as _loadData,
@@ -6,10 +12,13 @@ import {
   formatDistrictValue,
   searchByKeyword
 } from './utils/index'
+import type { DistrictItem } from './utils/formatDistrictValue'
+import type { ApiResult } from './utils/loadBaseData'
 import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
 import DistrictMainLoading from './Loading'
+import type { CascaderNode, LoadDataResult } from './../cascaderTypes'
 
 // 内库使用-start
 import ObjectUtil from '../../../utils/ObjectUtil'
@@ -20,44 +29,52 @@ import ArrayUtil from '../../../utils/ArrayUtil'
 import { ObjectUtil, LocaleUtil, ArrayUtil, Button, Result } from 'lyrixi-mobile'
 测试使用-end */
 
+type LoadCountriesFn = () => Promise<ApiResult>
+type LoadCountryRegionsFn = (id?: string | number) => Promise<ApiResult>
+type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<ApiResult>
+
+export interface DistrictMainProps {
+  open?: boolean
+  value?: CascaderNode[] | null
+  type?: string
+  loadCountries?: LoadCountriesFn
+  loadCountryRegions?: LoadCountryRegionsFn
+  loadStreets?: LoadStreetsFn
+  listStyle?: CSSProperties
+  listClassName?: string
+  itemStyle?: CSSProperties
+  itemClassName?: string
+  searchVisible?: boolean
+  onChange?: (v: CascaderNode[]) => void
+}
+
 // 地址选择
-const CascaderDistrictMain = forwardRef(
+const CascaderDistrictMain = forwardRef<
+  { loadList: () => Promise<void>; list: unknown },
+  DistrictMainProps
+>(
   (
     {
-      // Modal: Status
       open = true,
-
-      // Value & Display Value
       value,
-      type, // 'country', 'province', 'city', 'district', 'street'
+      type: typeProp,
       loadCountries = api.loadCountries,
       loadCountryRegions = api.loadCountryRegions,
       loadStreets = api.loadStreets,
-
-      // Style
       listStyle,
       listClassName,
       itemStyle,
       itemClassName,
-
-      // Elements
       searchVisible = true,
-
-      // Events
       onChange
     },
     ref
   ) => {
-    // 记录完整数据列表, 国家->省市区->街道, { status: 'success' | 'error', message: string, list: [] }
-    let [result, setResult] = useState(null)
+    const maxType = formatType(typeProp ?? 'street')
 
-    // 完整的值, 大多传入的value数据是不完整的, 没有type、parentid、disabled, 补充完整后才可使用
-    let [fullValue, setFullValue] = useState(null)
+    const [result, setResult] = useState<ApiResult | null>(null)
+    const [fullValue, setFullValue] = useState<CascaderNode[] | null>(null)
 
-    // eslint-disable-next-line
-    type = formatType(type)
-
-    // Expose api
     useImperativeHandle(ref, () => {
       return {
         loadList: initList,
@@ -66,86 +83,98 @@ const CascaderDistrictMain = forwardRef(
     })
 
     useEffect(() => {
-      // 没有合法的基础列表, 则更新列表
-      initList()
+      void initList()
       // eslint-disable-next-line
     }, [value])
 
-    // 初始化时, 加载国家省市区数据
     async function initList() {
       setResult(null)
 
-      // 加载国家省市区数据
-      let baseData = await loadBaseData({
+      const baseData = await loadBaseData({
         countryId: value?.[0]?.id,
         loadCountries,
-        loadCountryRegions
+        loadCountryRegions: loadCountryRegions as (id?: string | number) => Promise<ApiResult>
       })
 
-      // 获取国家省市区数据失败, 显示错误
       if (baseData?.status === 'error') {
         setResult(baseData)
         return
       }
 
-      // 大多传入的value数据是不完整的, 没有type、parentid、disabled
       let newValue = value
-      if (value?.length) {
-        newValue = formatDistrictValue(ObjectUtil.cloneDeep(value), { list: baseData?.list, maxType: type })
+      if (value?.length && baseData?.list?.length) {
+        const formatted = formatDistrictValue(ObjectUtil.cloneDeep(value) as DistrictItem[], {
+          list: baseData.list as DistrictItem[],
+          maxType
+        })
+        newValue = (formatted ?? value) as CascaderNode[]
       }
 
-      // 1.无选中项, 说明国家省市区已经覆盖选中项的层级
-      // 2.国家省市区已经覆盖选中项的层级
-      let lastTab = newValue?.[newValue.length - 1]
+      const lastTab = newValue?.[newValue.length - 1]
       if (
         !newValue?.length ||
-        ArrayUtil.getDeepTreeNode(baseData?.list, lastTab?.id)
+        ArrayUtil.getDeepTreeNode(
+          (baseData?.list ?? []) as unknown as Parameters<typeof ArrayUtil.getDeepTreeNode>[0],
+          lastTab?.id as string | number
+        )
       ) {
         setResult(baseData)
 
-        // 如果value有变化, 则更新fullValue
-        if (!ArrayUtil.isEqual(fullValue, newValue)) {
-          setFullValue(newValue)
+        if (
+          !ArrayUtil.isEqual(
+            (fullValue ?? []) as Record<string, unknown>[],
+            (newValue ?? []) as Record<string, unknown>[]
+          )
+        ) {
+          setFullValue(newValue ?? null)
         }
         return
       }
 
-      // 有选中项, 且选国家省市区没有此层级的子列表, 说明是街道
-      let districtId = value?.[value.length - 2]?.id
-      let streetsData = await loadStreets(districtId, { value: newValue })
+      const districtId = value?.[value.length - 2]?.id
+      if (districtId === undefined) {
+        setResult(baseData)
+        return
+      }
+      const streetsData = await loadStreets(districtId, { value: newValue })
       if (streetsData?.status === 'error') {
         setResult(streetsData)
         return
       }
-      // 街道数据加载成功, 合并到国家省市区
-      if (streetsData?.status === 'success') {
-        ArrayUtil.setDeepTreeNode(baseData.list, districtId, (node) => {
-          node.children = streetsData?.list || []
+      if (streetsData?.status === 'success' && baseData.list) {
+        const tree = baseData.list as unknown as Parameters<typeof ArrayUtil.setDeepTreeNode>[0]
+        ArrayUtil.setDeepTreeNode(tree, districtId, (node) => {
+          // API rows match deep-tree shape; narrow at I/O boundary
+          node.children = (streetsData?.list ?? []) as unknown as NonNullable<typeof node.children>
         })
       }
 
       setResult(baseData)
 
-      // 如果value有变化, 则更新fullValue
-      if (!ArrayUtil.isEqual(value, newValue)) {
-        setFullValue(newValue)
+      if (
+        !ArrayUtil.isEqual(
+          (value ?? []) as Record<string, unknown>[],
+          (newValue ?? []) as Record<string, unknown>[]
+        )
+      ) {
+        setFullValue(newValue ?? null)
       }
     }
 
-    // 加载国家子级列表, 或街道列表, Casacader.Main会自动将结果列表设置到result.list中
-    async function loadData(tabs) {
-      let childrenData = await _loadData(tabs, {
-        list: result.list,
-        loadCountryRegions,
-        loadStreets
+    async function loadData(
+      tabs: CascaderNode[],
+      _ctx: { list: CascaderNode[] }
+    ): Promise<LoadDataResult> {
+      const childrenData = await _loadData(tabs, {
+        loadCountryRegions: loadCountryRegions as LoadCountryRegionsFn,
+        loadStreets: loadStreets as LoadStreetsFn
       })
-      return childrenData
+      return childrenData as LoadDataResult
     }
 
     return (
       <>
         {!result?.status && <DistrictMainLoading />}
-        {/* 基础列表加载中或加载失败, 显示结果页 */}
         {result?.status === 'error' && (
           <DistrictMainResult
             result={result}
@@ -154,24 +183,22 @@ const CascaderDistrictMain = forwardRef(
             className={listClassName}
           />
         )}
-        {/* 必须等基础列表加载成功后, 再渲染主组件 */}
         {result?.status === 'success' && (
           <Main
-            // Modal: Status
-            open={open}
-            // Value & Display Value
-            value={fullValue}
-            list={result?.list}
+            value={fullValue ?? undefined}
+            list={result?.list as CascaderNode[] | undefined}
             loadData={loadData}
-            // Style
             listStyle={listStyle}
             listClassName={listClassName}
             itemStyle={itemStyle}
             itemClassName={itemClassName}
-            // Elements
             searchVisible={searchVisible}
-            // Events
-            onSearch={(keyword, { list }) => searchByKeyword(keyword, { list, type })}
+            onSearch={(keyword, { list }) =>
+              searchByKeyword(keyword, {
+                list: list as never,
+                type: maxType
+              })
+            }
             onChange={(newValue) => {
               setFullValue(newValue)
               onChange?.(newValue)

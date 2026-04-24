@@ -6,10 +6,27 @@ import Bridge from './../../utils/Bridge'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
+interface BridgeResultPayload {
+  message?: string
+}
+
+export interface InitBridgeConfig {
+  getScriptSrc?: () => string
+  getConfigUrl?: () => string
+  formatHeaders?: (...args: unknown[]) => unknown
+  formatPayload?: (...args: unknown[]) => unknown
+  formatResponse?: (...args: unknown[]) => unknown
+}
+
+export interface InitBridgeResult {
+  status: 'success' | 'error'
+  message: string | undefined
+}
+
 /**
  * 初始化桥接：先加载 Bridge，再配置鉴权
- * @param {Object} bridgeConfig - 桥接配置参数
- * @returns {Promise<{status: 'success|error', message: string}>}
+ * @param bridgeConfig - 桥接配置参数
+ * @returns Promise resolving to status and message
  */
 function initBridge({
   getScriptSrc,
@@ -17,42 +34,50 @@ function initBridge({
   formatHeaders,
   formatPayload,
   formatResponse
-} = {}) {
+}: InitBridgeConfig = {}): Promise<InitBridgeResult> {
   return new Promise((resolve) => {
     // 先调用 Bridge.load
-    Bridge.load({
-      getScriptSrc,
-      onSuccess: () => {
-        // Bridge.load 成功后，调用 Bridge.config 进行鉴权
-        Bridge.config({
-          getConfigUrl,
-          formatHeaders,
-          formatPayload,
-          formatResponse,
-          onSuccess: (result) => {
-            // 鉴权成功
-            resolve({
-              status: 'success',
-              message: result?.message
-            })
-          },
-          onError: (error) => {
-            // 鉴权失败
-            resolve({
-              status: 'error',
-              message: error?.message
-            })
-          }
-        })
+    // eslint-disable-next-line
+    Bridge.load(
+      {
+        getScriptSrc,
+        onSuccess: () => {
+          // Bridge.load 成功后，调用 Bridge.config 进行鉴权
+          // eslint-disable-next-line
+          Bridge.config(
+            {
+              getConfigUrl,
+              formatHeaders,
+              formatPayload,
+              formatResponse,
+              onSuccess: (result: BridgeResultPayload) => {
+                // 鉴权成功
+                resolve({
+                  status: 'success',
+                  message: result?.message
+                })
+              },
+              onError: (error: BridgeResultPayload) => {
+                // 鉴权失败
+                resolve({
+                  status: 'error',
+                  message: error?.message
+                })
+              }
+            },
+            undefined
+          )
+        },
+        onError: (error: BridgeResultPayload) => {
+          // Bridge.load 失败
+          resolve({
+            status: 'error',
+            message: error?.message || '桥接加载失败'
+          })
+        }
       },
-      onError: (error) => {
-        // Bridge.load 失败
-        resolve({
-          status: 'error',
-          message: error?.message || '桥接加载失败'
-        })
-      }
-    })
+      undefined
+    )
   })
 }
 

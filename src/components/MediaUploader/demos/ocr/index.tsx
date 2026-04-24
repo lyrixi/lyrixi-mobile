@@ -1,24 +1,28 @@
 import React, { useState } from 'react'
 import vconsole from 'vconsole'
-import { Bridge, Page, MediaUploader } from 'lyrixi-mobile'
+import { Page, MediaUploader } from 'lyrixi-mobile'
 import Ocr from './Ocr'
-Bridge.load()
+import Bridge from './../../../../utils/Bridge'
+
+type DemoItem = {
+  fileThumbnail?: string
+  fileUrl?: string
+  filePath?: string
+} & Record<string, unknown>
+
+Bridge.load({})
 
 new vconsole()
 export default () => {
-  const [list, setList] = useState([
+  const [list, setList] = useState<DemoItem[]>([
     {
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
       filePath: '/lyrixi-mobile/assets/test/1.jpg'
-      // ocrResult: { message: '1', code: '1' },
-      // ocr_result: { message: '1', code: '1' },
-      // image_path: 'user'
-      // bizId: '1'
     }
   ])
 
-  function handlePhotoChange(newList) {
+  function handlePhotoChange(newList: DemoItem[]) {
     // setList(
     //   newList.map((item) => {
     //     if (item.ocrResult) item.ocr_result = item.ocrResult

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Page, List, Card } from 'lyrixi-mobile'
 import listData from './listData'
 
+type Row = Record<string, unknown>
+
 export default () => {
-  const [singleValue, setSingleValue] = useState(null)
+  const [singleValue, setSingleValue] = useState<Row | Row[] | null>(null)
 
   return (
     <Page>
@@ -15,7 +17,7 @@ export default () => {
             <List
               list={listData}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(v) => setSingleValue(v)}
               checkable
               allowClear
             />

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Page, Cascader, Loading, Input } from 'lyrixi-mobile'
+import { Page, Cascader, Loading } from 'lyrixi-mobile'
+import type { CascaderNode, LoadDataResult } from './../cascaderTypes'
 
 export default () => {
-  const [value, setValue] = useState([
+  const [value, setValue] = useState<CascaderNode[]>([
     {
       id: '1',
       name: '根节点',
@@ -21,21 +22,23 @@ export default () => {
     }
   ])
 
-  // 加载街道
-  function loadData(tabs) {
+  function loadData(
+    tabs: CascaderNode[],
+    _ctx: { list: CascaderNode[] }
+  ): Promise<LoadDataResult> {
     return new Promise((resolve) => {
       console.log('loadData:', tabs)
       Loading.show()
-      let lastTab = tabs?.[tabs?.length - 1]
-      let leaves = [
+      const lastTab = tabs?.[tabs.length - 1]
+      const leaves: CascaderNode[] = [
         {
-          parentid: lastTab.id,
+          parentid: lastTab?.id,
           name: '孙子节点1',
           id: '1-1-1',
           isLeaf: true
         },
         {
-          parentid: lastTab.id,
+          parentid: lastTab?.id,
           name: '孙子节点2',
           id: '1-1-2',
           isLeaf: true
@@ -55,7 +58,6 @@ export default () => {
     <Page>
       <Page.Main>
         <Cascader.Combo
-          allowClear
           list={[
             {
               id: '1',
@@ -70,12 +72,12 @@ export default () => {
           ]}
           loadData={loadData}
           value={value}
-          placeholder={`Select`}
+          placeholder="Select"
           onChange={(newValue) => {
             console.log('修改:', newValue)
-            setValue(newValue)
+            setValue(newValue as CascaderNode[])
           }}
-          safeArea={true}
+          safeArea
           title="级联选择"
         />
       </Page.Main>

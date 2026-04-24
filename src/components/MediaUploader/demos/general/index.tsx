@@ -1,12 +1,21 @@
 import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
 import { MediaUploader, Page, Toast } from 'lyrixi-mobile'
+import type { MediaItem, MediaHandle } from './../../types'
+import uploadListUtil from './../../utils/uploadList'
 
-const { uploadList, validateListStatus } = MediaUploader
 new vconsole()
+
+function normalizeList(
+  r: MediaItem | MediaItem[] | null
+): MediaItem[] {
+  if (r == null) return []
+  return Array.isArray(r) ? r : [r]
+}
+
 export default () => {
-  const imageUploaderRef = useRef(null)
-  const [list, setList] = useState([
+  const imageUploaderRef = useRef<MediaHandle | null>(null)
+  const [list, setList] = useState<MediaItem[]>([
     {
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
@@ -20,27 +29,29 @@ export default () => {
     }
   ])
 
-  function handlePhotoChange(newList) {
+  function handlePhotoChange(newList: MediaItem[]) {
     console.log('update:', newList)
     setList(newList)
   }
-  // 异步上传
+
   async function handleAsyncUploadList() {
-    let newList = await imageUploaderRef.current.uploadList()
+    const run = imageUploaderRef.current?.uploadList
+    if (typeof run !== 'function') return
+    const newList = await run()
     console.log('newList:', newList)
   }
 
-  // 异步上传
   async function handleAsyncUploader() {
-    let newList = await uploadList(list)
-    console.log('newList:', newList)
-    setList(newList)
+    const newList = await uploadListUtil(list, { platform: 'browser' })
+    setList(normalizeList(newList))
   }
 
   async function handleValidate() {
-    let isOK = await validateListStatus(list)
-    if (isOK !== true) {
-      Toast.show({ content: isOK })
+    const failed = list.filter((i) => i.status === 'error' || i.status === 'uploading')
+    if (failed.length) {
+      Toast.show({ content: '存在未成功项，请检查后重试' })
+    } else {
+      Toast.show({ content: '状态正常' })
     }
   }
 
@@ -49,28 +60,17 @@ export default () => {
       <Page.Header className="lyrixi-text-center">普通拍照</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <MediaUploader
-          // reUpload={false}
-          // async
           platform="browser"
           uploadPosition="start"
           ref={imageUploaderRef}
-          // timeout={2000}
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
           maxUploadCount={4}
           onChange={handlePhotoChange}
-          upload={<div style={{ width: '100%', height: '100%', backgroundColor: 'ref' }}>1</div>}
-        // allowChoose={list?.length ? false : true}
-        // allowClear={false}
-        // visibleCount={1}
-        // style={{
-        //   '--cell-width': '32px',
-        //   '--cell-height': '32px',
-        //   '--cell-radius': '6px',
-        //   '--count-font-size': '12px',
-        //   '--choose-icon-size': '12px'
-        // }}
+          uploadRender={
+            <div style={{ width: '100%', height: '100%', backgroundColor: 'ref' }}>1</div>
+          }
         />
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleAsyncUploadList}>
           imageUploaderRef.current.uploadList
@@ -79,7 +79,7 @@ export default () => {
           uploadList
         </div>
         <div style={{ height: '50px', background: '#f8f8f8' }} onClick={handleValidate}>
-          validateListStatus
+          校验列表状态
         </div>
       </Page.Main>
     </Page>

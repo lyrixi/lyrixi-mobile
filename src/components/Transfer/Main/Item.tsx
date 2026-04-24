@@ -1,24 +1,23 @@
-import React from 'react'
+import React, { type ReactNode } from 'react'
+
+export interface TransferItemProps {
+  children?: ReactNode
+  sortable?: boolean
+  onAdd?: () => void
+  onDelete?: () => void
+}
 
 // 单项
-const Item = ({
-  // Value & Display Value
-  children,
-
-  // Status
-  sortable,
-
-  // Events
-  onAdd,
-  onDelete
-}) => {
+const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
   return (
     <div className="lyrixi-transfer-item">
       {/* Element: Operate */}
       <div
         className="lyrixi-transfer-item-operate"
-        // Events
-        onClick={onAdd || onDelete}
+        onClick={() => {
+          if (onAdd) onAdd()
+          else onDelete?.()
+        }}
       >
         {onAdd ? (
           <i className="lyrixi-transfer-item-operate-icon lyrixi-add" />
@@ -31,11 +30,11 @@ const Item = ({
       <div className="lyrixi-transfer-item-content">{children}</div>
 
       {/* Element: Drop Handle */}
-      {sortable && (
+      {sortable ? (
         <div className="lyrixi-transfer-item-drop">
           <i className="lyrixi-transfer-item-drop-icon" />
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

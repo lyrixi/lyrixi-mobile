@@ -4,7 +4,7 @@ import { Page, Progress, Divider, Card } from 'lyrixi-mobile'
 const AnimatedBarDemo = () => {
   const [percent, setPercent] = useState(0)
 
-  const handlePercentChange = (newPercent) => {
+  const handlePercentChange = (newPercent: number) => {
     setPercent(newPercent)
   }
 

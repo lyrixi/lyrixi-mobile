@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Page, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
+import type { DatePickerRangeComboProps } from '../datePickerTypes'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<(Date | null)[] | null>(null)
   return (
     <Page>
       <Page.Main>
@@ -13,7 +14,7 @@ export default () => {
               type="year"
               placeholder="Year"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
             />
           </Card.Main>
         </Card>
@@ -25,7 +26,7 @@ export default () => {
               type="month"
               placeholder="Month"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -38,7 +39,7 @@ export default () => {
               type="date"
               placeholder="Date"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -51,7 +52,7 @@ export default () => {
               type="time"
               placeholder="Time"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -64,7 +65,7 @@ export default () => {
               type="datetime"
               placeholder="Datetime"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -77,7 +78,7 @@ export default () => {
               type="week"
               placeholder="Week"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -93,7 +94,7 @@ export default () => {
                 return DatePicker.getTitle(value, 'YYYY年MM月DD日 周ddd')
               }}
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -108,7 +109,7 @@ export default () => {
               hourStep={5}
               minuteStep={5}
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -122,7 +123,7 @@ export default () => {
               max={DateUtil.add(new Date(), 30)}
               placeholder="min & max"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -134,7 +135,7 @@ export default () => {
             <DatePicker.RangeCombo
               placeholder="onOk"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               onOk={(newValue) => {
                 Toast.show({ content: 'Use onOk to stop' })
                 return false
@@ -150,7 +151,7 @@ export default () => {
             <DatePicker.RangeCombo
               placeholder="startDisabled & endDisabled"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               startDisabled
               endDisabled
               allowClear
@@ -164,7 +165,7 @@ export default () => {
             <DatePicker.RangeCombo
               placeholder="rangesVisible"
               value={value}
-              onChange={setValue}
+              onChange={setValue as DatePickerRangeComboProps['onChange']}
               rangesVisible
               allowClear
             />

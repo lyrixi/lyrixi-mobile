@@ -1,15 +1,33 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Button from './../../Button'
+import Button, { type ButtonRef } from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
 
-const NavBarButton = forwardRef(
+interface NavBarButtonProps {
+  direction?: string
+  block?: boolean
+  color?: string
+  backgroundColor?: string
+  borderColor?: string
+  border?: string
+  size?: string | number | readonly string[]
+  sizeEqual?: boolean
+  fontSize?: string | number
+  radius?: string | number
+  style?: CSSProperties
+  className?: string
+  disabled?: boolean
+  children?: ReactNode
+  onClick?: MouseEventHandler<HTMLDivElement>
+}
+
+const NavBarButton = forwardRef<ButtonRef, NavBarButtonProps>(
   (
     {
       // Button: Style

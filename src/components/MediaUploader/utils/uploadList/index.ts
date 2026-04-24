@@ -14,6 +14,12 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import { MediaItem, UploadItemConfig } from '../../types'
+
+interface UploadListConfig extends UploadItemConfig {
+  platform?: string
+}
+
 /**
  * 导出给外部使用的工具类: 异步上传图片
  * @param {Array|Object} pendingList ImageUploader控件返回的待传列表
@@ -21,10 +27,13 @@ import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
  * @returns {Array} [{原item属性, filePath: '', fileUrl: '', fileThumbnail: '', status: 'error|success'}]
  */
 
-async function uploadList(pendingList, uploadConfig) {
+async function uploadList(
+  pendingList: MediaItem | MediaItem[],
+  uploadConfig: UploadListConfig
+): Promise<MediaItem | MediaItem[] | null> {
   // 根据平台选择上传方法
   let currentPlatform = uploadConfig?.platform || Device.platform
-  let uploadItem = null
+  let uploadItem: ((item: MediaItem, config: UploadItemConfig) => Promise<unknown>) | null = null
   if (Device.device === 'pc' || ['browser', 'lark'].includes(currentPlatform)) {
     uploadItem = uploadFile
   } else if (currentPlatform === 'dingtalk') {
@@ -44,15 +53,19 @@ async function uploadList(pendingList, uploadConfig) {
     return null
   }
 
-  let list = null
+  let list: MediaItem[] | null = null
 
   // 如果是对象则转为数组
   if (toString.call(pendingList) === '[object Object]') {
-    list = [pendingList]
+    list = [pendingList as MediaItem]
   }
   // 如果是数组
   else if (Array.isArray(pendingList)) {
-    list = pendingList
+    list = pendingList as MediaItem[]
+  }
+
+  if (!list) {
+    return null
   }
 
   // 过滤非法的list
@@ -61,7 +74,7 @@ async function uploadList(pendingList, uploadConfig) {
   })
   if (ObjectUtil.isEmpty(list)) {
     Toast.show({
-      content: LocaleUtil.locale('uploadList参数列表错误', 'lyrixi_02e1574baeddc79ed7bfa5931dde85f0')
+      content: LocaleUtil.locale('uploadList参数列表错误', 'lyrixi_02e1574baeddc79ed7bfa5931dde85f0') as string
     })
     return null
   }
@@ -69,7 +82,7 @@ async function uploadList(pendingList, uploadConfig) {
   // 不支持的平台
   if (!uploadItem) {
     Toast.show({
-      content: LocaleUtil.locale('不支持此平台上传', 'lyrixi_84281205c0ab7c4983124a98006c7014')
+      content: LocaleUtil.locale('不支持此平台上传', 'lyrixi_84281205c0ab7c4983124a98006c7014') as string
     })
     return list?.map?.((item) => {
       if (!item.fileUrl?.startsWith?.('http')) {
@@ -80,7 +93,8 @@ async function uploadList(pendingList, uploadConfig) {
   }
 
   // 开始上传
-  for (let [index, item] of list.entries()) {
+  for (let index = 0; index < list.length; index++) {
+    const item = list[index]
     // 已经上传成功
     if (item?.status === 'success') {
       console.log('此项无需上传:', item)
@@ -98,13 +112,14 @@ async function uploadList(pendingList, uploadConfig) {
       getUploadUrl: uploadConfig?.getUploadUrl,
       formatHeaders: uploadConfig?.formatHeaders,
       formatPayload: uploadConfig?.formatPayload,
-      formatResponse: uploadConfig?.formatResponse
+      formatResponse: uploadConfig?.formatResponse,
+      verifyImage: uploadConfig?.verifyImage
     })
 
     console.log(`上传结果：`, newItem)
 
     // 重新设置list
-    list[index] = newItem
+    list[index] = newItem as MediaItem
   }
   return toString.call(pendingList) === '[object Object]' ? list[0] : list
 }

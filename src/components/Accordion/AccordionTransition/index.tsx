@@ -9,10 +9,16 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface AccordionTransitionProps {
+  open: boolean
+  children?: React.ReactNode
+  minHeight?: number
+}
+
 // AccordionTransition组件
-const AccordionTransition = ({ open, children, minHeight = 0 }) => {
-  const innerRef = useRef(null)
-  const [animationStyle, setAnimationStyle] = useState({})
+const AccordionTransition = ({ open, children, minHeight = 0 }: AccordionTransitionProps) => {
+  const innerRef = useRef<HTMLDivElement>(null)
+  const [animationStyle, setAnimationStyle] = useState<React.CSSProperties>({})
 
   // 计算并更新动画样式
   useEffect(() => {

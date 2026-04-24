@@ -1,5 +1,5 @@
 // 转换为left/top体系
-function getPosition(target) {
+function getPosition(target: HTMLElement): { left: number; top: number } {
   const rect = target.getBoundingClientRect()
   const style = window.getComputedStyle(target)
 

@@ -1,7 +1,7 @@
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
-import viewFormatter from './viewFormatter'
+import viewFormatter, { type ChatRawItem, type ChatViewItem } from './viewFormatter'
 import getSpaceDates from './getSpaceDates'
-import Item from './../Item'
+import Item, { ChatItemProps } from './../Item'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -11,45 +11,47 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// List
+type ChatListItem = ChatRawItem
+
+interface ChatListValue {
+  id?: string | number
+  [key: string]: unknown
+}
+
+export interface ChatListRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface ChatListProps {
+  value?: ChatListValue[]
+  list?: ChatListItem[]
+  formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
+  formatViewItem?: (item: ChatRawItem, ctx: { index: number }) => ChatRawItem
+  checkable?: boolean
+  checkboxVariant?: string
+  checkboxPosition?: string
+  timeSpace?: number
+  onChange?: (value: ChatListValue[]) => void
+}
+
 const List = (
   {
-    // Value & Display Value
     value,
     list,
-    /*
-    {
-      position: 'left',
-      avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
-      id: '选项1',
-      authorNode: '选项1',
-      content: '自定义内容',
-      time: new Date()
-    }
-    */
     formatViewList,
     formatViewItem,
-
-    // Status
     checkable,
-
-    // Style
     checkboxVariant,
     checkboxPosition,
-
-    // Elements
-    timeSpace = 60000, // 时间间隔, 单位 ms, 默认1分钟
-
-    // Events
+    timeSpace = 60000,
     onChange
-  },
-  ref
+  }: ChatListProps,
+  ref: React.ForwardedRef<ChatListRef>
 ) => {
-  // 格式化为渲染list, 原list记录到_raw中
   let displayList = viewFormatter(list, { formatViewList, formatViewItem })
 
-  // Expose
-  const rootRef = useRef(null)
+  const rootRef = useRef<HTMLDivElement>(null)
   useImperativeHandle(ref, () => {
     return {
       element: rootRef.current,
@@ -59,34 +61,28 @@ const List = (
     }
   })
 
-  // 获取单项
-  function getItemNode(item, index) {
+  function getItemNode(item: ChatViewItem, index: number) {
     return (
       <Item
-        key={item.id ?? item._raw?.id ?? index}
-        // Value & Display Value
-        _raw={item._raw ?? { id: item.id ?? index }}
-        // Status
+        key={String(item.id ?? item._raw?.id ?? index)}
+        _raw={(item._raw ?? { id: item.id ?? index }) as Record<string, unknown>}
         checkable={checkable}
-        checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
-        // Style
+        checked={(value?.findIndex?.((valueItem) => valueItem?.id === item.id) ?? -1) >= 0}
         position={item.position}
         checkboxVariant={checkboxVariant}
         checkboxPosition={checkboxPosition}
-        // Elements
         avatarUrl={item.avatarUrl}
-        avatarRender={item.avatarRender}
-        avatarNode={item.avatarNode}
-        authorRender={item.authorRender}
-        authorNode={item.authorNode || item.name}
-        content={item.content}
-        // Events
+        avatarRender={item.avatarRender as ChatItemProps['avatarRender']}
+        avatarNode={item.avatarNode as React.ReactNode}
+        authorRender={item.authorRender as ChatItemProps['authorRender']}
+        authorNode={(item.authorNode ?? item.name) as React.ReactNode}
+        content={item.content as React.ReactNode}
         onChange={(checked) => {
-          let newValue = null
+          let newValue: ChatListValue[] = []
           if (!checked) {
-            newValue = value.filter((valueItem) => valueItem?.id !== item.id)
+            newValue = (value ?? []).filter((valueItem) => valueItem?.id !== item.id)
           } else {
-            newValue = [...(value || []), item]
+            newValue = [...(value ?? []), item]
           }
           onChange && onChange(newValue)
         }}
@@ -94,17 +90,15 @@ const List = (
     )
   }
 
-  // 时间分栏
-  let dates = []
+  let dates: Date[] = []
 
   return (
     <div className="lyrixi-chat-list" ref={rootRef}>
       {displayList?.map?.((item, index) => {
-        let bar = null
+        let bar: React.ReactNode = null
         if (item.time) {
-          let spaceDates = getSpaceDates(item.time, dates, timeSpace)
+          const spaceDates = getSpaceDates(item.time, dates, timeSpace)
           dates = spaceDates.dates
-          // 超过时间间隔，则显示时间分栏
           if (spaceDates.isOverTime) {
             bar = (
               <div className="lyrixi-chat-divider-time">
@@ -125,4 +119,4 @@ const List = (
   )
 }
 
-export default forwardRef(List)
+export default forwardRef<ChatListRef, ChatListProps>(List)

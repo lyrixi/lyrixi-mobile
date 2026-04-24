@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 import { Page, ToolBar, Button } from 'lyrixi-mobile'
+import type { ToolBarDropdownRef } from '../Dropdown'
 
-export default () => {
-  const dropdownRef = useRef(null)
+export default function ToolBarDropdownDemo() {
+  const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
 
   return (
     <Page>
@@ -34,9 +35,11 @@ export default () => {
           </ToolBar.Dropdown>
         </ToolBar>
         <Page.Main>
-          <Button onClick={() => {
-            dropdownRef.current.open()
-          }}>
+          <Button
+            onClick={() => {
+              dropdownRef.current?.open()
+            }}
+          >
             Click to open dropdown
           </Button>
         </Page.Main>

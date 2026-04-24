@@ -1,6 +1,6 @@
 import NoticeBar from './NoticeBar'
 
-// Component Name, for compact
-NoticeBar.componentName = 'NoticeBar'
+type NoticeBarWithName = typeof NoticeBar & { componentName: string }
+;(NoticeBar as NoticeBarWithName).componentName = 'NoticeBar'
 
-export default NoticeBar
+export default NoticeBar as NoticeBarWithName

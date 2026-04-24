@@ -1,5 +1,7 @@
+import type { MediaListItem } from './../types'
+
 // 当前选中项
-function getActiveIndex({ index, list }) {
+function getActiveIndex({ index, list }: { index?: number; list?: MediaListItem[] }) {
   if (!Array.isArray(list) || !list.length) return 0
 
   let activeIndex = 0

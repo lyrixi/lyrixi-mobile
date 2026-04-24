@@ -1,20 +1,41 @@
+import type * as L from 'leaflet'
 import coordsToFit from './../../utils/coordsToFit'
 
-// Polygon
-function addPolygon(points, options, layer) {
-  // eslint-disable-next-line
-  points = coordsToFit(points)
-  // eslint-disable-next-line
-  points = points.filter((point) => point)
-  if (!Array.isArray(points) || points.length < 3) return
+export interface PolyPoint {
+  latitude?: number | string
+  longitude?: number | string
+  [key: string]: unknown
+}
 
-  let polygon = window.L.polygon(
-    points.map((point) => [point.latitude, point.longitude]),
+export interface PolyStyleOptions {
+  color?: string
+  fillColor?: string
+  fillOpacity?: number
+  weight?: number
+  [key: string]: unknown
+}
+
+// Polygon
+function addPolygon(
+  points: PolyPoint[] | null | undefined,
+  options: PolyStyleOptions,
+  layer: L.LayerGroup
+): void {
+  let fitted: unknown = coordsToFit(points)
+  if (Array.isArray(fitted)) {
+    fitted = (fitted as PolyPoint[]).filter((point) => point)
+  }
+  if (!Array.isArray(fitted) || fitted.length < 3) return
+
+  const list = fitted as PolyPoint[]
+
+  const polygon = window.L!.polygon(
+    list.map((point) => [point.latitude, point.longitude] as L.LatLngExpression),
     {
-      color: options?.color || '#3388ff',
-      fillColor: options?.fillColor ?? options?.color ?? '#3388ff',
-      fillOpacity: options?.fillOpacity ?? 0.2,
-      weight: options?.weight ?? 2
+      color: (options?.color as string) || '#3388ff',
+      fillColor: (options?.fillColor as string) ?? (options?.color as string) ?? '#3388ff',
+      fillOpacity: (options?.fillOpacity as number) ?? 0.2,
+      weight: (options?.weight as number) ?? 2
     }
   )
   polygon.addTo(layer)

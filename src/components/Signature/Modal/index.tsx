@@ -4,15 +4,33 @@ import Main from './../Main'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Page from './../../Page'
+import Page, { type PageRef } from './../../Page'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
 
+interface ModalProps {
+  value?: string
+  open?: boolean
+  modalClassName?: string
+  modalStyle?: React.CSSProperties
+  portal?: Element
+  color?: string
+  backgroundColor?: string
+  onChange?: (base64: string | null) => void
+  onOpen?: () => void
+  onClose?: () => void
+}
+
+export interface ModalRef {
+  modalElement: HTMLElement | null
+  getModalElement: () => HTMLElement | null
+}
+
 // Modal
-const Modal = forwardRef(
+const Modal = forwardRef<ModalRef, ModalProps>(
   (
     {
       // Value & Display Value
@@ -37,13 +55,13 @@ const Modal = forwardRef(
     ref
   ) => {
     // Expose
-    const modalRef = useRef(null)
+    const modalRef = useRef<PageRef | null>(null)
     useImperativeHandle(ref, () => {
       return {
-        modalElement: modalRef?.current?.element || modalRef?.current,
+        modalElement: modalRef?.current?.element || null,
         getModalElement: modalRef?.current?.getElement
-          ? modalRef?.current?.getElement
-          : () => modalRef.current
+          ? modalRef.current.getElement
+          : () => null
       }
     })
 
@@ -61,8 +79,6 @@ const Modal = forwardRef(
         {/* Element: Main */}
         {open && (
           <Main
-            // Value & Display Value
-            value={value}
             // Style
             color={color} // 绘画配置: 画笔颜色
             backgroundColor={backgroundColor} // 绘画配置: 背景颜色

@@ -17,22 +17,23 @@ export default () => {
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap'
           }}
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapContainer
-              center={coordsToWgs84(value)}
+              center={coordsToWgs84(value) ?? undefined}
               zoom={16}
             >
               <NearbyControl
-                value={coordsToWgs84(value)}
+                value={coordsToWgs84(value) ?? undefined}
                 radius={1000}
                 onChange={(item) => {
                   console.log('选择附近地点:', item)
-                  setValue(item)
+                  if (item && typeof item === 'object') {
+                    setValue((prev) => ({ ...prev, ...(item as typeof prev) }))
+                  }
                 }}
                 onSuccess={(result) => {
                   console.log('搜索成功:', result)

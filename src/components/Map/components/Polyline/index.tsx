@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+import type * as L from 'leaflet'
 import filterCoords from './../../utils/filterCoords'
-import addPolyline from './addPolyline'
+import addPolyline, { type LinePoint, type LineStyleOptions } from './addPolyline'
 import clearPolyline from './clearPolyline'
+import type { MapContainerAPI } from './../MapContainer'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -11,29 +13,27 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface PolylineProps {
+  points?: unknown
+  color?: string
+  map?: MapContainerAPI
+}
+
 // 批量折线
-const Polyline = forwardRef(
+const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
   (
     {
-      // Value & Display Value
-      points,
-
-      // Style
+      points: pointsProp,
       color,
-
-      // Element
       map
     },
     ref
   ) => {
-    // Polyline layer
-    const polylineLayerRef = useRef(null)
+    let points = pointsProp as unknown
+    const polylineLayerRef = useRef<L.LayerGroup | null>(null)
 
-    // 过滤错误的点位
-    // eslint-disable-next-line
     points = filterCoords(points)
 
-    // Expose
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -43,14 +43,16 @@ const Polyline = forwardRef(
     })
 
     useEffect(() => {
-      // Polyline layer init
-      polylineLayerRef.current = window.L.layerGroup().addTo(map.leafletMap)
+      const lf = map?.leafletMap
+      if (!lf) {
+        return
+      }
+      polylineLayerRef.current = window.L!.layerGroup().addTo(lf)
 
       return () => {
         clearPolyline(polylineLayerRef.current)
       }
-      // eslint-disable-next-line
-    }, [])
+    }, [map])
 
     useEffect(() => {
       if (!polylineLayerRef.current) return
@@ -68,7 +70,9 @@ const Polyline = forwardRef(
         return
       }
       clearPolyline(polylineLayerRef.current)
-      addPolyline(points, { color }, polylineLayerRef.current)
+      if (!polylineLayerRef.current) return
+      const style: LineStyleOptions = { color }
+      addPolyline(points as LinePoint[], style, polylineLayerRef.current)
     }
 
     return <></>

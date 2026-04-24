@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, type ComponentProps, type CSSProperties, type MouseEvent, type ReactNode } from 'react'
 import Combo from './../components/Combo'
 
 // 内库使用-start
@@ -9,8 +9,31 @@ import ActionSheet from './../../ActionSheet'
 import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
+type ASComboProps = ComponentProps<typeof ActionSheet.Combo>
+type ComboRenderParams = Parameters<NonNullable<ASComboProps['comboRender']>>[0]
+
+export interface ToolBarActionSheetStyleProps {
+  direction?: string
+  block?: boolean
+  color?: string
+  backgroundColor?: string
+  borderColor?: string
+  border?: string
+  size?: string | number | readonly string[]
+  sizeEqual?: boolean
+  radius?: string | number
+  style?: CSSProperties
+  className?: string
+  arrowRender?: (props: { open: boolean | null }) => ReactNode
+}
+
+type ToolBarActionSheetProps = ASComboProps & ToolBarActionSheetStyleProps
+
 // 操作表下拉
-function ToolBarActionSheet(
+const ToolBarActionSheet = forwardRef<
+  { close: () => void; open: () => void },
+  ToolBarActionSheetProps
+>(function ToolBarActionSheet(
   {
     // Value & Display Value
     value,
@@ -45,17 +68,18 @@ function ToolBarActionSheet(
     onBeforeOpen,
     onOpen,
     onClose,
-    onChange
+    onChange,
+    ...rest
   },
   ref
 ) {
   // 修改
-  async function handleChange(newValue) {
+  function handleChange(newValue: Parameters<NonNullable<ASComboProps['onChange']>>[0]) {
     onChange?.(newValue)
   }
 
   // 获取标题节点
-  function getComboNode({ comboRef, open, onClick }) {
+  function getComboNode({ comboRef, open, onClick }: ComboRenderParams) {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef,
@@ -83,7 +107,10 @@ function ToolBarActionSheet(
         // Elements
         arrowRender={arrowRender}
         // Events
-        onClick={onClick}
+        onClick={(e: MouseEvent<HTMLDivElement>) => {
+          e.stopPropagation()
+          onClick()
+        }}
       >
         {/* comboChildren */}
         {children || value?.name || placeholder}
@@ -110,11 +137,13 @@ function ToolBarActionSheet(
       onOpen={onOpen}
       onClose={onClose}
       onChange={handleChange}
+      {...rest}
     />
   )
-}
+})
 
 // Component Name, for compact
-ToolBarActionSheet.componentName = 'ToolBar.ActionSheet'
+;(ToolBarActionSheet as typeof ToolBarActionSheet & { componentName?: string }).componentName =
+  'ToolBar.ActionSheet'
 
-export default forwardRef(ToolBarActionSheet)
+export default ToolBarActionSheet

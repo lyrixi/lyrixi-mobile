@@ -1,10 +1,15 @@
 import loadGoogleMap from './loadGoogleMap'
 import loadGoogleTileLayer from './loadGoogleTileLayer'
 
-// 加载BMap地图资源
-async function loadGoogle(key) {
-  let result = await loadGoogleMap(key)
-  if (result.status === 'error') {
+interface LoadStatus {
+  status?: string
+  [key: string]: unknown
+}
+
+async function loadGoogle(key: string | undefined): Promise<unknown> {
+  const result: unknown = await loadGoogleMap(key)
+  const r = result as LoadStatus
+  if (r?.status === 'error') {
     return result
   }
   await loadGoogleTileLayer()

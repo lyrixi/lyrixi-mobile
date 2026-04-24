@@ -7,13 +7,20 @@ import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
+interface PositionResult {
+  bottom: number | null
+  top: number | null
+  left: number | null
+  right: number | null
+}
+
 /**
  * 计算目标元素相对于参考元素的坐标位置和尺寸
  * @param {HTMLElement} targetElement - 目标元素
  * @param {HTMLElement} parentElement - 参考元素（坐标系基准）
  * @returns {Object} 包含 left, top, width, height 的相对位置对象
  */
-function getRelativePosition({ targetElement, parentElement, animation }) {
+function getRelativePosition({ targetElement, parentElement, animation }: { targetElement: HTMLElement; parentElement: HTMLElement; animation: string }): PositionResult {
   // 获取元素在视口中的绝对位置和尺寸
   const targetRect = targetElement.getBoundingClientRect()
   const parentRect = parentElement.getBoundingClientRect()
@@ -26,10 +33,10 @@ function getRelativePosition({ targetElement, parentElement, animation }) {
     height: targetRect.height // 目标元素高度
   }
 
-  let top = null
-  let bottom = null
-  let left = null
-  let right = null
+  let top: number | null = null
+  let bottom: number | null = null
+  let left: number | null = null
+  let right: number | null = null
   // 根据不同位置的弹窗，计算位置
   let position = getClassNameByAnimation(animation)
   // 从下往上弹

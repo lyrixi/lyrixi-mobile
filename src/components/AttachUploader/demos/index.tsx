@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, type ComponentProps } from 'react'
 import vconsole from 'vconsole'
 import { Page, AttachUploader } from 'lyrixi-mobile'
 
 new vconsole()
 
+type UploaderList = NonNullable<ComponentProps<typeof AttachUploader>['list']>
+
 export default () => {
-  const [list, setList] = useState([
+  const [list, setList] = useState<UploaderList>([
     {
       fileName: '1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg'
@@ -19,7 +21,7 @@ export default () => {
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.pdf'
     }
   ])
-  function handlePhotoChange(newList) {
+  function handlePhotoChange(newList: UploaderList) {
     console.log(newList)
     setList(newList)
   }
@@ -28,24 +30,11 @@ export default () => {
       <Page.Header className="lyrixi-text-center">附件上传</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <AttachUploader
-          // visibleCount={1}
           maxCount={2}
-          extension={['image']} // ['image', 'video', 'audio', 'jpg等指定后缀']
+          extension={['image']}
           uploadPosition="start"
           list={list}
           onChange={handlePhotoChange}
-          onDelete={handlePhotoChange}
-        // 缩略图显示
-        // visibleCount={1}
-        // ModalProps={{
-        //   captionProps: {
-        //     caption: '附件列表'
-        //   },
-        //   listExtraHeaderRender: () => {
-        //     return <div>修改前</div>
-        //   }
-        // }}
-        // style={{ border: '1px solid red' }}
         />
       </Page.Main>
     </Page>

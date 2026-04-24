@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 // 第三方库导入
 import { IndexBar, Page } from 'lyrixi-mobile'
+import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
+import type { LoadResult } from 'lyrixi-mobile/components/ListAsync'
 
 // 公共组件导入
 
@@ -13,46 +15,48 @@ import './../Common/index.less'
 
 // IndexBar列表示例
 const IndexBarList = () => {
-  const mainRef = useRef(null)
-  const indexBarRef = useRef(null)
-  let [queryParams, setQueryParams] = useState(null)
+  const mainRef = useRef<ListPaginationRef | null>(null)
+  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
   // IndexBar anchors
-  const [anchors, setAnchors] = useState(null)
+  const [anchors, setAnchors] = useState<string[] | null>(null)
 
   return (
     <Page>
       {/* 搜索栏 */}
       <Header
         queryParams={queryParams}
-        onSearch={(newQueryParams) => {
-          queryParams = newQueryParams
+        onSearch={(newQueryParams: Record<string, unknown>) => {
           setQueryParams(newQueryParams)
-          mainRef.current.reload()
+          mainRef.current?.reload('reload')
         }}
       />
 
       {/* 列表 */}
       <Main
         ref={mainRef}
-        params={queryParams}
-        // 列表加载完成后, 更新索引栏anchors
-        onLoad={({ result, action }) => {
-          let newAnchors = {}
-          for (let i = 0; i < result?.list?.length; i++) {
-            let item = result?.list[i]
-            if (item?.anchor) {
-              newAnchors[item?.anchor] = item?.anchor
+        cacheName="indexbar-list-demo"
+        queryParams={queryParams}
+        onLoad={({ result, action }: { result: LoadResult | null; action: string }) => {
+          void action
+          const newAnchors: Record<string, string> = {}
+          const list = result?.list
+          if (Array.isArray(list)) {
+            for (let i = 0; i < list.length; i++) {
+              const item = list[i] as { anchor?: string } | undefined
+              if (item?.anchor) {
+                newAnchors[item.anchor] = item.anchor
+              }
             }
           }
           setAnchors(Object.values(newAnchors))
         }}
-        onScrollEnd={(e) => {
-          indexBarRef.current.activeAnchor()
+        onScrollEnd={() => {
+          /* scroll position updates handled by IndexBar scroll listener */
         }}
       />
 
-      <IndexBar anchors={anchors} ref={indexBarRef} scrollerElement={mainRef?.current?.element} />
+      <IndexBar anchors={anchors ?? undefined} getScrollerElement={() => mainRef.current?.element ?? null} />
     </Page>
   )
 }

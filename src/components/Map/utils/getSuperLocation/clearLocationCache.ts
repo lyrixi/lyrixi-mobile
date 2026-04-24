@@ -9,7 +9,7 @@ import {Storage } from 'lyrixi-mobile'
 测试使用-end */
 
 // 清除缓存
-async function clearLocationCache(type) {
+async function clearLocationCache(type: string | undefined | null): Promise<void> {
   if (type) {
     const cacheKey = `${CacheKeyPrefix}${type}`
     await Storage.removeItem(cacheKey)

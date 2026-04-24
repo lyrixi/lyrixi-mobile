@@ -1,13 +1,15 @@
-// 根据id, 在指定id节点下加入属性数据, 例如{children: [{id: '', name: '', parentid: ''}]}
-function setDeepTreeNode(tree, id, updateNode) {
+interface DeepNode extends Record<string, unknown> {
+  id: string | number
+  children?: DeepNode[]
+}
+
+function setDeepTreeNode(tree: DeepNode[], id: string | number, updateNode?: (node: DeepNode) => void): DeepNode[] {
   for (const node of tree) {
     if (node.id === id) {
-      // 找到目标节点，调用 updateNode 方法更新其属性
       updateNode && updateNode(node)
       break
     }
     if (Array.isArray(node.children) && node.children.length) {
-      // 递归查找子节点
       setDeepTreeNode(node.children, id, updateNode)
     }
   }

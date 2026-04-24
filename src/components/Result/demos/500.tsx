@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Result, Button, LocaleUtil } from 'lyrixi-mobile'
+import Bridge from './../../../utils/Bridge'
 
 export default () => {
   return (

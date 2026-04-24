@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties, type ReactNode } from 'react'
 import Item from './Item'
 
 // 内库使用-start
@@ -10,13 +10,45 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+/** 列表项 */
+export interface SelectorItem {
+  id?: string | number
+  name?: ReactNode
+}
+
+/** 超出条数时折叠为「更多」 */
+export interface SelectorEllipsis {
+  count: number
+}
+
+export interface SelectorProps {
+  value?: SelectorItem[]
+  list: SelectorItem[]
+  ellipsis?: SelectorEllipsis
+  disabled?: boolean
+  multiple?: boolean
+  allowClear?: boolean
+  className?: string
+  style?: CSSProperties
+  columns?: number
+  id?: string
+  onChange?: (value: SelectorItem[]) => void | Promise<void>
+}
+
+export interface SelectorRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  instance: { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
+  getInstance: () => { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
+}
+
 // 选择组
-const Selector = forwardRef(
+const Selector = forwardRef<SelectorRef, SelectorProps>(
   (
     {
       // Value & Display Value
       value,
-      list,
+      list: listProp,
       ellipsis, // 省略配置
 
       // Status
@@ -38,8 +70,7 @@ const Selector = forwardRef(
     ref
   ) => {
     // 过滤非法数据
-    // eslint-disable-next-line
-    list = list.filter((item) => {
+    const list = listProp.filter((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
     })
@@ -48,7 +79,7 @@ const Selector = forwardRef(
     const [expanded, setExpanded] = useState(false)
 
     // 节点
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement | null>(null)
     const instance = useRef({
       equalsItem: equals
     })
@@ -62,7 +93,7 @@ const Selector = forwardRef(
     })
 
     // 判断是否相同
-    function equals(item1, item2) {
+    function equals(item1: SelectorItem, item2: SelectorItem) {
       if (item1.id && item2.id) {
         return item1.id === item2.id
       } else if (item1.name && item2.name) {
@@ -72,7 +103,7 @@ const Selector = forwardRef(
       }
     }
     // 根据value判断此项是否为选中状态
-    function getIsActive(item) {
+    function getIsActive(item: SelectorItem) {
       if (!Array.isArray(value) || !value.length) {
         return false
       }
@@ -84,8 +115,8 @@ const Selector = forwardRef(
     }
 
     // 修改回调
-    async function handleChange(checked, currentItem) {
-      let newValue = []
+    async function handleChange(checked: boolean, currentItem: SelectorItem) {
+      let newValue: SelectorItem[] = []
       if (!multiple) {
         // 允许取消单选
         if (!checked && allowClear && Array.isArray(value) && value.length === 1) {
@@ -94,19 +125,18 @@ const Selector = forwardRef(
           newValue = [currentItem]
         }
       } else {
-        // eslint-disable-next-line
-        if (!Array.isArray(value)) value = []
+        const prev = Array.isArray(value) ? value : []
         if (checked) {
-          newValue.push(...value, currentItem)
+          newValue = [...prev, currentItem]
         } else {
-          newValue = value.filter((activeItem) => {
+          newValue = prev.filter((activeItem) => {
             if (equals(currentItem, activeItem)) return false
             return true
           })
         }
       }
 
-      if (onChange) onChange(newValue)
+      if (onChange) void onChange(newValue)
     }
 
     // 处理展开/收起
@@ -115,9 +145,13 @@ const Selector = forwardRef(
     }
 
     // 判断是否需要显示省略按钮
-    const hasEllipsis = ellipsis && ellipsis.count && list.length > ellipsis.count
+    const ellipsisCount = ellipsis?.count
+    const hasEllipsis = Boolean(ellipsisCount && list.length > ellipsisCount)
     // 实际显示的列表
-    const displayList = hasEllipsis && !expanded ? list.slice(0, ellipsis.count) : list
+    const displayList =
+      hasEllipsis && !expanded && ellipsisCount != null
+        ? list.slice(0, ellipsisCount)
+        : list
 
     return (
       <div
@@ -125,7 +159,7 @@ const Selector = forwardRef(
         // Element
         id={id}
         // Style
-        style={Object.assign({ '--columns': columns }, style)}
+        style={Object.assign({ ['--columns' as string]: columns } as CSSProperties, style)}
         className={DOMUtil.classNames('lyrixi-selector', className)}
       >
         {/* Element: Items */}
@@ -137,7 +171,9 @@ const Selector = forwardRef(
               disabled={disabled}
               checked={getIsActive(item)}
               // Events
-              onChange={(checked) => handleChange(checked, item, index)}
+              onChange={(checked: boolean) => {
+                void handleChange(checked, item)
+              }}
             >
               {item.name}
             </Item>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, type CSSProperties } from 'react'
 import { QRCode } from 'lyrixi-mobile'
 
-const Logo = {
+const Logo: CSSProperties = {
   position: 'absolute',
   left: '50%',
   top: '50%',

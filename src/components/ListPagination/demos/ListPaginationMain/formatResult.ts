@@ -1,22 +1,31 @@
+import type { LoadResult } from '../../../ListAsync'
 import mockResult from './mockResult'
 
 // 转换 API 返回数据为页面所需格式
-function formatResult(result) {
+type ApiResult = {
+  code?: string
+  message?: string
+  data?: { list?: unknown[]; totalPage?: number }
+}
+
+function formatResult(
+  _result: unknown,
+  _options: { payload: Record<string, unknown> }
+): LoadResult {
   // 测试数据
   // eslint-disable-next-line
-  result = mockResult
+  const result: ApiResult = mockResult as ApiResult
   if (result.code === '1') {
-    let list = result?.data?.list
+    const list = result?.data?.list
     return {
       status: 'success',
-      list: list,
+      list: list as LoadResult['list'],
       totalPage: result?.data?.totalPage
     }
-  } else {
-    return {
-      status: 'error',
-      message: result.message
-    }
+  }
+  return {
+    status: 'error',
+    message: result.message
   }
 }
 

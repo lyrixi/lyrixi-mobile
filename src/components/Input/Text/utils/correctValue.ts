@@ -10,9 +10,18 @@ import MathUtil from '../../../../utils/MathUtil'
 import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface CorrectValueOptions {
+  type?: string
+  min?: number
+  max?: number
+  maxLength?: number
+  trim?: boolean
+  precision?: number
+}
+
 // 矫正最大长度和小数位截取
-function correctValue(value, { type, min, max, maxLength, trim, precision }) {
-  let val = value
+function correctValue(value: string | number, { type, min, max, maxLength, trim, precision }: CorrectValueOptions): string | number {
+  let val: string | number = value
   if (val === undefined || val === '') return val
   if (typeof val !== 'string' && typeof val !== 'number') return ''
 
@@ -26,7 +35,8 @@ function correctValue(value, { type, min, max, maxLength, trim, precision }) {
   val = maxLengthFormatter(val, { maxLength })
 
   if (type === 'number') {
-    val = MathUtil.extractNumber(val)
+    const extracted = MathUtil.extractNumber(val)
+    val = (typeof extracted === 'string' || typeof extracted === 'number' ? extracted : String(extracted)) as string | number
   }
 
   return val

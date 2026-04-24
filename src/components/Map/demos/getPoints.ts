@@ -8,7 +8,15 @@ points = getPoints({
   count: 100
 })
 */
-function getPoints({ center, radius = 1000, count = 110 } = {}) {
+function getPoints({
+  center,
+  radius = 1000,
+  count = 110
+}: {
+  center?: { latitude?: number; longitude?: number }
+  radius?: number
+  count?: number
+} = {}) {
   let latitude = center?.latitude || 31.990374883871525
   let longitude = center?.longitude || 118.73769931504451
 

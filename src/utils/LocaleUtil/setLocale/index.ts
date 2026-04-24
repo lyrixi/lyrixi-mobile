@@ -1,8 +1,7 @@
-// 设置lyrixi国际化语言与数据
 async function setLocale(
-  language,
-  data
-) {
+  language: string,
+  data: unknown
+): Promise<void> {
   window.lyrixiLocaleLanguage = language
   window.lyrixiLocaleData = data
 }

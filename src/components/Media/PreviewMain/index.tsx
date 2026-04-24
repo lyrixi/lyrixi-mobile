@@ -1,9 +1,17 @@
-import React, { useEffect, forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import React, {
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type CSSProperties,
+  type Ref
+} from 'react'
 // Compatible with lower version
 // import 'core-js/es/array/flat'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide, type SwiperClass, type SwiperRef } from 'swiper/react'
 import { Zoom, Pagination } from 'swiper/modules'
-import fileChoose from './../utils/fileChoose'
+import fileChoose, { type MediaFileChooseOptions } from './../utils/fileChoose'
 import choose from './../utils/choose'
 import uploadItem from './../utils/uploadItem'
 import showLoading from './../utils/showLoading'
@@ -30,267 +38,292 @@ import VideoPlayer from './../../VideoPlayer'
 import { LocaleUtil, DOMUtil, Device, SafeArea, Toast, VideoPlayer } from 'lyrixi-mobile'
 测试使用-end */
 
-const PreviewMain = forwardRef(
-  (
-    {
-      // Value & Display Value
-      list, // 需要预览的资源列表{fileUrl: '图片或视频的地址', fileThumbnail: '封面地址', fileType: 'video|image'}
-      index, // 当前显示的资源序号
-      mediaType,
-      sourceType = ['album', 'camera'],
-      sizeType = ['compressed'], // ['original', 'compressed']
-      maxCount,
-      fileImageCompress,
+import type { MediaListItem, FileImageCompressOptions, MediaComponentProps } from './../types'
+import type { SyntheticEvent } from 'react'
 
-      // Status
-      open = true,
-      closable = false,
-      allowChoose = false,
-      allowClear = false,
-      async = false,
-      reUpload = true,
+function toToastString(s: string | import('react').ReactNode): string {
+  return typeof s === 'string' ? s : ''
+}
 
-      // Style
-      className,
-      style,
-      safeArea,
+function itemMediaUrl(item: MediaListItem): string {
+  const raw = item?.localFile?.tempFileUrl ?? item?.fileUrl
+  return raw == null || raw === '' ? '' : String(raw)
+}
 
-      // Events
-      onBeforeChoose,
-      onChoose,
-      onFileChange,
-      onUpload,
-      onChange,
-      onClose
-    },
-    ref
-  ) => {
-    const swiperRef = useRef(null)
-    // 显示项, 用于判断是否允许删除
-    const [activeIndex, setActiveIndex] = useState(0)
-    // 每张图片的旋转角度 (度): { [slideIndex]: 0 | 90 | 180 | 270 }
-    const [rotations, setRotations] = useState({})
+function itemPosterUrl(item: MediaListItem): string {
+  const raw = item?.localFile?.tempFileThumbnail ?? item?.fileThumbnail
+  return raw == null || raw === '' ? '' : String(raw)
+}
 
-    // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
-    const onFileChangeRef = useRef()
-    onFileChangeRef.current = onFileChange
+export interface PreviewMainProps {
+  list?: MediaListItem[]
+  index?: number
+  mediaType?: string | string[]
+  sourceType?: string[]
+  sizeType?: string[]
+  maxCount?: number
+  fileImageCompress?: FileImageCompressOptions
+  open?: boolean
+  closable?: boolean
+  allowChoose?: boolean
+  allowClear?: boolean | ((item: MediaListItem) => boolean)
+  async?: boolean
+  reUpload?: boolean
+  className?: string
+  style?: CSSProperties
+  safeArea?: boolean
+  onBeforeChoose?: MediaComponentProps['onBeforeChoose']
+  onChoose?: MediaComponentProps['onChoose']
+  onFileChange?: MediaComponentProps['onFileChange']
+  onUpload?: MediaComponentProps['onUpload']
+  onChange?: MediaComponentProps['onChange']
+  onClose?: () => void
+}
 
-    const onChangeRef = useRef()
-    onChangeRef.current = onChange
+export interface PreviewMainRef {
+  mainElement: SwiperRef | null
+  getMainElement: () => SwiperRef | null
+}
 
-    // Judge wether to display choose button
-    let chooseVisible = allowChoose
-    if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
-      chooseVisible = false
+const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function PreviewMain(
+  {
+    list: listProp = [],
+    index,
+    mediaType,
+    sourceType = ['album', 'camera'],
+    sizeType = ['compressed'],
+    maxCount,
+    fileImageCompress,
+
+    open = true,
+    closable = false,
+    allowChoose = false,
+    allowClear = false,
+    async: asyncUpload = false,
+    reUpload = true,
+
+    className,
+    style,
+    safeArea,
+
+    onBeforeChoose,
+    onChoose,
+    onFileChange,
+    onUpload,
+    onChange,
+    onClose
+  },
+  ref: Ref<PreviewMainRef>
+) {
+  const list: MediaListItem[] = listProp
+  const swiperRef = useRef<SwiperRef | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [rotations, setRotations] = useState<Record<number, number>>({})
+
+  const onFileChangeRef = useRef<MediaComponentProps['onFileChange'] | undefined>(undefined)
+  onFileChangeRef.current = onFileChange
+
+  const onChangeRef = useRef<MediaComponentProps['onChange'] | undefined>(undefined)
+  onChangeRef.current = onChange
+
+  // Judge wether to display choose button
+  let chooseVisible = allowChoose
+  if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
+    chooseVisible = false
+  }
+
+  const canClear = isAllowClear(allowClear, list?.[activeIndex])
+
+  useImperativeHandle(ref, () => {
+    return {
+      mainElement: swiperRef.current,
+      getMainElement: () => swiperRef.current
     }
+  })
+  useEffect(() => {
+    if (!open || typeof swiperRef?.current?.swiper?.slideTo !== 'function') return
+    const newActiveIndex = getActiveIndex({ index, list })
+    swiperRef.current.swiper.slideTo(newActiveIndex, 0)
+    setActiveIndex(newActiveIndex)
+    // eslint-disable-next-line
+  }, [open])
 
-    // 判断当前项是否允许删除
-    const canClear = isAllowClear(allowClear, list?.[activeIndex])
+  function _showLoading(options?: { content?: string; index?: number }) {
+    showLoading(swiperRef.current as unknown as Element, options)
+  }
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        mainElement: swiperRef.current,
-        getMainElement: () => swiperRef.current
-      }
+  function _hideLoading(options?: { failIndexes?: number[] }) {
+    hideLoading(swiperRef.current as unknown as Element, options)
+  }
+
+  function handleSwipe(swiper: SwiperClass) {
+    setActiveIndex(swiper.activeIndex)
+  }
+
+  async function uploadList(
+    newList: MediaListItem[] | undefined,
+    { action }: { action?: string } = {}
+  ) {
+      // eslint-disable-next-line
+    if (!newList) newList = [...list]
+    if (!newList) return
+
+    let hasUploaded = false
+    _showLoading({
+      content: toToastString(
+        LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1')
+      )
     })
-    useEffect(() => {
-      if (!open || typeof swiperRef?.current?.swiper?.slideTo !== 'function') return
-      let newActiveIndex = getActiveIndex({ index, list })
-      swiperRef.current.swiper.slideTo(newActiveIndex, 0)
-      setActiveIndex(newActiveIndex)
-      // eslint-disable-next-line
-    }, [open])
-
-    // 显隐Loading
-    function _showLoading(options) {
-      showLoading(swiperRef.current, options)
-    }
-
-    function _hideLoading(options) {
-      hideLoading(swiperRef.current, options)
-    }
-
-    // 滑动视频需要暂停其它视频
-    function handleSwipe(swiper) {
-      // 更新当前激活的索引
-      setActiveIndex(swiper.activeIndex)
-    }
-
-    // 上传
-    async function uploadList(newList, { action } = {}) {
-      // eslint-disable-next-line
-      if (!newList) newList = [...list]
-      if (!newList) return
-
-      let hasUploaded = false
-      // 开始上传
-      _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1')
-      })
-      for (let [index, item] of newList.entries()) {
-        // 只上传未上传或上传失败的照片
-        if (item.status === 'choose' || item.status === 'error') {
-          newList[index] = await uploadItem(item, { onUpload })
-          hasUploaded = true
-        }
+    for (let index = 0; index < newList.length; index++) {
+      const item = newList[index]
+      if (item.status === 'choose' || item.status === 'error') {
+        newList[index] = (await uploadItem(item, { onUpload })) as MediaListItem
+        hasUploaded = true
       }
-      _hideLoading()
+    }
+    _hideLoading()
 
-      // 不支持重新上传，则过滤上传失败的照片
-      if (!reUpload) {
-        if (Array.isArray(newList) && newList.length) {
-          let failCount = 0
-          // eslint-disable-next-line
-          newList = newList.filter((photo) => {
-            if (
-              photo.status === 'error' ||
-              photo.status === 'choose' ||
-              photo.status === 'uploading'
-            ) {
-              failCount++
-              return false
-            }
-            return true
-          })
-          // 上传失败
-          if (failCount) {
-            Toast.show({
-              content: `${LocaleUtil.locale(
+    if (!reUpload) {
+      if (Array.isArray(newList) && newList.length) {
+        let failCount = 0
+        newList = newList.filter((photo) => {
+          if (
+            photo.status === 'error' ||
+            photo.status === 'choose' ||
+            photo.status === 'uploading'
+          ) {
+            failCount++
+            return false
+          }
+          return true
+        })
+        if (failCount) {
+          Toast.show({
+            content: toToastString(
+              LocaleUtil.locale(
                 `网络异常，上传失败${failCount}张`,
                 'lyrixi_a096455f5d98e5ead856c948379040a6',
-
                 [failCount]
-              )}`
-            })
-          }
+              )
+            )
+          })
         }
       }
-
-      if (hasUploaded) {
-        onChangeRef.current && onChangeRef.current(newList, { action: action || 'upload' })
-      }
-
-      return newList
     }
 
-    // Delete
-    function handleDelete() {
-      let index = swiperRef.current?.swiper?.activeIndex
-      if (typeof index !== 'number') {
-        console.error('PreviewMain: index is not a number', swiperRef.current)
-        return
-      }
-
-      let newList = list.filter((photo, photoIndex) => {
-        return photoIndex !== index
-      })
-      onChangeRef.current && onChangeRef.current(newList, { action: 'delete' })
+    if (hasUploaded) {
+      onChangeRef.current?.(newList, { action: action || 'upload' })
     }
 
-    // 选择照片
-    async function handleFileChange(e) {
-      _showLoading()
-      let chooseResult = await fileChoose({
-        file: e.nativeEvent.target,
-        async,
-        sizeType,
-        maxWidth: fileImageCompress?.maxWidth,
-        quality: fileImageCompress?.quality,
-        maxCount,
-        list,
-        uploadPosition: 'end',
-        uploadList,
-        onFileChange: onFileChangeRef.current,
-        onChange: onChangeRef.current
-      })
-      _hideLoading()
-      onClose?.()
-      return chooseResult
+    return newList
+  }
+
+  function handleDelete() {
+    const delIndex = swiperRef.current?.swiper?.activeIndex
+    if (typeof delIndex !== 'number') {
+      console.error('PreviewMain: index is not a number', swiperRef.current)
+      return
     }
+    const newListDel = list.filter((_photo, photoIndex) => photoIndex !== delIndex)
+    onChangeRef.current?.(newListDel, { action: 'delete' })
+  }
 
-    // 选择照片
-    async function handleChoose(e) {
-      _showLoading()
-      let chooseResult = await choose({
-        async,
-        sizeType,
-        maxCount,
-        list,
-        uploadPosition: 'end',
-        uploadList,
-        onChoose,
-        onChange: onChangeRef.current
-      })
-      _hideLoading()
-      onClose?.()
-      return chooseResult
+  async function handleFileChange(e: SyntheticEvent<HTMLInputElement>) {
+    _showLoading({})
+    const chooseResult = await fileChoose({
+      file: e.currentTarget,
+      async: asyncUpload,
+      sizeType,
+      maxWidth: fileImageCompress?.maxWidth,
+      quality: fileImageCompress?.quality,
+      maxCount,
+      list,
+      uploadPosition: 'end',
+      uploadList,
+      onFileChange: onFileChangeRef.current as MediaFileChooseOptions['onFileChange'] | undefined,
+      onChange: onChangeRef.current
+    })
+    _hideLoading()
+    onClose?.()
+    return chooseResult
+  }
+
+  async function handleChoose() {
+    _showLoading({})
+    const chooseResult = await choose({
+      async: asyncUpload,
+      maxCount,
+      list,
+      uploadPosition: 'end',
+      uploadList,
+      onChoose: onChoose ? () => onChoose() : undefined,
+      onChange: onChangeRef.current
+    })
+    _hideLoading()
+    onClose?.()
+    return chooseResult
+  }
+
+  async function handleReUpload() {
+    if (typeof onChange !== 'function') {
+      console.warn('Media: onChange is not a function')
+      return
     }
-
-    // 重新上传
-    async function handleReUpload() {
-      if (typeof onChange !== 'function') {
-        console.warn('Media: onChange is not a function')
-        return
-      }
-      let index = swiperRef.current?.swiper?.activeIndex
-      if (typeof index !== 'number') {
-        console.error('PreviewMain: index is not a number', swiperRef.current)
-        return
-      }
-
-      let item = list[index]
-      let newList = [...list]
-      // 开始上传
-      _showLoading({
-        content: LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1'),
-        index: index
-      })
-      newList[index] = await uploadItem(item, { onUpload })
-      _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
-
-      onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
+    const reIdx = swiperRef.current?.swiper?.activeIndex
+    if (typeof reIdx !== 'number') {
+      console.error('PreviewMain: index is not a number', swiperRef.current)
+      return
     }
+    const reItem = list[reIdx]
+    const newListRe = [...list]
+    _showLoading({
+      content: toToastString(
+        LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1')
+      ),
+      index: reIdx
+    })
+    newListRe[reIdx] = (await uploadItem(reItem, { onUpload })) as MediaListItem
+    _hideLoading(
+      newListRe[reIdx].status === 'error' ? { failIndexes: [reIdx] } : undefined
+    )
+    onChangeRef.current?.(newListRe, { action: 'reUpload' })
+  }
 
-    function handleTouchStart(_, e) {
-      e.stopPropagation()
-      // 解决拖动时影响document弹性
-      if (e.currentTarget.touchMovePreventDefault) return
-      e.currentTarget.touchMovePreventDefault = true
-      e.currentTarget.addEventListener('touchmove', DOMUtil.preventDefault, false)
-    }
+  function handleTouchStart(_swiper: SwiperClass, e: globalThis.TouchEvent) {
+    e.stopPropagation()
+    const t = e.currentTarget as HTMLElement & { touchMovePreventDefault?: boolean }
+    if (t.touchMovePreventDefault) return
+    t.touchMovePreventDefault = true
+    t.addEventListener('touchmove', DOMUtil.preventDefault, false)
+  }
 
-    // 顺时针旋转 90 度
-    function handleRotateClockwise(e) {
-      e.stopPropagation()
-      setRotations((prev) => ({
-        ...prev,
-        [activeIndex]: ((prev[activeIndex] ?? 0) + 90) % 360
-      }))
-    }
+  function handleRotateClockwise(e: React.MouseEvent) {
+    e.stopPropagation()
+    setRotations((prev) => ({
+      ...prev,
+      [activeIndex]: ((prev[activeIndex] ?? 0) + 90) % 360
+    }))
+  }
 
-    // 逆时针旋转 90 度
-    function handleRotateAnticlockwise(e) {
-      e.stopPropagation()
-      setRotations((prev) => ({
-        ...prev,
-        [activeIndex]: ((prev[activeIndex] ?? 0) - 90 + 360) % 360
-      }))
-    }
+  function handleRotateAnticlockwise(e: React.MouseEvent) {
+    e.stopPropagation()
+    setRotations((prev) => ({
+      ...prev,
+      [activeIndex]: ((prev[activeIndex] ?? 0) - 90 + 360) % 360
+    }))
+  }
 
-    // 放大
-    function handleZoomIn(e) {
-      e.stopPropagation()
-      swiperRef.current?.swiper?.zoom?.in()
-    }
+  function handleZoomIn(e: React.MouseEvent) {
+    e.stopPropagation()
+    void swiperRef.current?.swiper?.zoom?.in()
+  }
 
-    // 缩小
-    function handleZoomOut(e) {
-      e.stopPropagation()
-      swiperRef.current?.swiper?.zoom?.out()
-    }
+  function handleZoomOut(e: React.MouseEvent) {
+    e.stopPropagation()
+    void swiperRef.current?.swiper?.zoom?.out()
+  }
 
-    return (
+  return (
       <Swiper
         ref={swiperRef}
         spaceBetween={0}
@@ -343,13 +376,13 @@ const PreviewMain = forwardRef(
                       <img
                         alt=""
                         className="swiper-zoom-target"
-                        src={item?.localFile?.tempFileUrl || item?.fileUrl}
+                        src={itemMediaUrl(item)}
                       />
                     </div>)}
                     {list?.[index]?.fileType === 'video' && (
                       <VideoPlayer
-                        poster={item?.localFile?.tempFileThumbnail || item?.fileThumbnail}
-                        src={item?.localFile?.tempFileUrl || item?.fileUrl}
+                        poster={itemPosterUrl(item)}
+                        src={itemMediaUrl(item)}
                         autoPlay={false}
                       />
                     )}
@@ -360,7 +393,8 @@ const PreviewMain = forwardRef(
               )
             })}
         {/* 图片操作：旋转、放大缩小（仅当前为图片时显示） */}
-        {list?.[activeIndex]?.fileType !== 'video' && Device.device === 'pc' && (
+        {list?.[activeIndex]?.fileType !== 'video' &&
+          (Device as { device: string }).device === 'pc' && (
           <PreviewToolbar
             onRotateAnticlockwise={handleRotateAnticlockwise}
             onRotateClockwise={handleRotateClockwise}
@@ -379,25 +413,24 @@ const PreviewMain = forwardRef(
             sourceType={sourceType}
             mediaType={mediaType}
             // Events
-            onChoose={onChoose ? handleChoose : null}
-            onFileChange={onFileChange ? handleFileChange : null}
+            onChoose={onChoose ? () => void handleChoose() : undefined}
+            onFileChange={onFileChange ? handleFileChange : undefined}
             // File框不支持onBeforeChoose
             onBeforeChoose={
               typeof onBeforeChoose === 'function'
-                ? async (e) => {
-                  _showLoading()
-                  let isOk = await onBeforeChoose(e)
-                  _hideLoading()
-                  return isOk
-                }
-                : null
+                ? async (e: Parameters<NonNullable<typeof onBeforeChoose>>[0]) => {
+                    _showLoading({})
+                    const isOk = await onBeforeChoose(e)
+                    _hideLoading()
+                    return isOk
+                  }
+                : undefined
             }
           />
         ) : null}
         {safeArea === true && <SafeArea />}
       </Swiper>
-    )
-  }
-)
+  )
+})
 
 export default PreviewMain

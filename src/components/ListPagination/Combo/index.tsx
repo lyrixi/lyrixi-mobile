@@ -1,15 +1,32 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import Modal from './../Modal'
+import Modal, { ModalPaginationRef, ModalPaginationProps } from './../Modal'
 
 // 内库使用-start
 import Input from './../../Input'
+import { ComboRef, ComboProps } from './../../Input/Select'
 // 内库使用-end
 
 /* 测试使用-start
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const Combo = forwardRef(
+type RawItem = Record<string, unknown>
+type ItemChangeArg = RawItem & { checked?: boolean }
+
+export interface ComboPaginationRef extends ComboRef, Partial<ModalPaginationRef> {
+  close: () => void
+  open: () => void
+}
+
+export interface ComboPaginationProps
+  extends Omit<ModalPaginationProps, 'onChange' | 'value'>,
+    Omit<ComboProps, 'onChange' | 'value'> {
+  value?: RawItem | RawItem[] | null
+  onChange?: (value: unknown) => void
+  onBeforeOpen?: () => Promise<boolean | undefined> | boolean | undefined
+}
+
+const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
   (
     {
       // Combo
@@ -38,7 +55,7 @@ const Combo = forwardRef(
       headers,
       payload,
       pagination,
-      formatPayload, // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
+      formatPayload,
       formatResult,
       formatViewList,
       formatViewItem,
@@ -86,16 +103,16 @@ const Combo = forwardRef(
     ref
   ) => {
     const [open, setOpen] = useState(false)
-    const comboRef = useRef(null)
-    const modalRef = useRef(null)
+    const comboRef = useRef<ComboRef | null>(null)
+    const modalRef = useRef<ModalPaginationRef | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
-        ...comboRef.current,
-        ...modalRef.current,
+        ...(comboRef.current as ComboRef),
+        ...(modalRef.current as ModalPaginationRef),
         close: () => setOpen(false),
         open: () => setOpen(true)
-      }
+      } as ComboPaginationRef
     })
 
     async function handleOpen() {
@@ -110,7 +127,10 @@ const Combo = forwardRef(
       setOpen(false)
     }
 
-    function handleChange(newValue) {
+    function handleChange(
+      newValue: RawItem | RawItem[] | null,
+      _options: { checkedItem: ItemChangeArg }
+    ) {
       onChange?.(newValue)
       setOpen(false)
     }
@@ -126,7 +146,6 @@ const Combo = forwardRef(
           autoSize={autoSize}
           separator={separator}
           mode={mode}
-          multiple={multiple}
           // Combo: Status
           readOnly={readOnly}
           disabled={disabled}
@@ -150,7 +169,7 @@ const Combo = forwardRef(
           headers={headers}
           payload={payload}
           pagination={pagination}
-          formatPayload={formatPayload} // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
+          formatPayload={formatPayload}
           formatResult={formatResult}
           formatViewList={formatViewList}
           formatViewItem={formatViewItem}

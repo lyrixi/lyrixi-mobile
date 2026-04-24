@@ -1,13 +1,14 @@
 import dayjs from 'dayjs'
+import type { OpUnitType } from 'dayjs'
 
 // 边界时间: 00:00:00或23:59:59
-function startOrEnd(date, type, boundary = 'start') {
+function startOrEnd(date: Date, type: string, boundary = 'start') {
   if (boundary === 'start') {
     if (['year', 'quarter', 'month'].includes(type)) {
-      return dayjs(date).startOf(type).toDate()
+      return dayjs(date).startOf(type as OpUnitType).toDate()
     }
     if (type === 'week') {
-      return dayjs(date).startOf('isoWeek').toDate()
+      return dayjs(date).startOf('isoWeek' as OpUnitType).toDate()
     }
     if (type === 'date') {
       return dayjs(date).startOf('day').toDate()
@@ -21,10 +22,10 @@ function startOrEnd(date, type, boundary = 'start') {
 
   if (boundary === 'end') {
     if (['year', 'quarter', 'month'].includes(type)) {
-      return dayjs(date).endOf(type).toDate()
+      return dayjs(date).endOf(type as OpUnitType).toDate()
     }
     if (type === 'week') {
-      return dayjs(date).endOf('isoWeek').toDate()
+      return dayjs(date).endOf('isoWeek' as OpUnitType).toDate()
     }
     if (type === 'date') {
       return dayjs(date).endOf('day').toDate()

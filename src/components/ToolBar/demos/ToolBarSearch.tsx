@@ -5,9 +5,7 @@ export default () => {
   return (
     <Page>
       <Page.Main>
-        <ToolBar.Search>
-          {/* ToolBar.Search 示例内容 */}
-        </ToolBar.Search>
+        <ToolBar.Search placeholder="Search" value="" onSearch={() => {}} />
       </Page.Main>
     </Page>
   )

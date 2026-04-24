@@ -3,6 +3,7 @@
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
+import type { MediaListItem } from './../../types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -10,7 +11,16 @@ import { LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传文件
-async function uploadItem(item, { onUpload }) {
+async function uploadItem(
+  item: MediaListItem,
+  {
+    onUpload
+  }: {
+    onUpload?: (
+      item: MediaListItem
+    ) => void | MediaListItem | unknown | Promise<MediaListItem | void | unknown>
+  }
+) {
   if (typeof onUpload !== 'function') {
     Toast.show({
       content: `没有onUpload入参, 无法上传`
@@ -32,7 +42,11 @@ async function uploadItem(item, { onUpload }) {
   }
 
   // 开始上传, 返回结果 {...item, status: 'success' | 'error'}
-  let newItem = await onUpload(item)
+  const raw = await onUpload(item)
+  if (raw === undefined || raw === null) {
+    return { ...item, status: 'success' }
+  }
+  const newItem = raw as MediaListItem
 
   // 上传失败
   if (newItem.status === 'error') {

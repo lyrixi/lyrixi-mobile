@@ -2,15 +2,32 @@ import React, { forwardRef } from 'react'
 import List from './List'
 
 // 内库使用-start
-import Page from './../../Page'
+import Page, { PageMainRef, PageMainProps } from './../../Page'
+import { ListProps } from './../../List/List'
 // 内库使用-end
 
 /* 测试使用-start
 import { Page } from 'lyrixi-mobile'
 测试使用-end */
 
+export type MainRef = PageMainRef
+
+export interface MainProps extends ListProps {
+  virtual?: boolean
+  className?: string
+  style?: React.CSSProperties
+  prependRender?: (options: { list?: ListProps['list']; value?: ListProps['value']; onChange?: ListProps['onChange'] }) => React.ReactNode
+  appendRender?: (options: { list?: ListProps['list']; value?: ListProps['value']; onChange?: ListProps['onChange'] }) => React.ReactNode
+  children?: React.ReactNode
+  onScroll?: PageMainProps['onScroll']
+  onScrollEnd?: PageMainProps['onScrollEnd']
+  onTopRefresh?: PageMainProps['onTopRefresh']
+  onBottomRefresh?: PageMainProps['onBottomRefresh']
+  safeArea?: boolean
+}
+
 // 列表
-const Main = forwardRef(
+const Main = forwardRef<MainRef, MainProps>(
   (
     {
       // Value & Display Value

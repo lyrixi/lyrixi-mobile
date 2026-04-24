@@ -1,4 +1,4 @@
-function preventDefault(e) {
+function preventDefault(e: Event): void {
   e.preventDefault()
 }
 

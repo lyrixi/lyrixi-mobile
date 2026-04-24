@@ -32,7 +32,7 @@ export default () => {
   }
 
   const handleRemoveLocalStorages = () => {
-    const success = Storage.removeLocalStorages((key) => key.startsWith('demo-'))
+    const success = Storage.removeLocalStorages((k) => k != null && k.startsWith('demo-'))
     setResult(`批量删除成功: ${success}`)
   }
 
@@ -53,14 +53,14 @@ export default () => {
               <Input.Text
                 placeholder="请输入键名"
                 value={key}
-                onChange={(e) => setKey(e.target.value)}
+                onChange={(v) => setKey(v)}
               />
             </Form.Item>
             <Form.Item name="value" label="值">
               <Input.Text
                 placeholder="请输入值"
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(v) => setValue(v)}
               />
             </Form.Item>
           </Form>

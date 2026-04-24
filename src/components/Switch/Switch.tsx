@@ -8,8 +8,25 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface SwitchProps {
+  checked?: boolean
+  readOnly?: boolean
+  disabled?: boolean
+  size?: string
+  style?: React.CSSProperties
+  className?: string
+  on?: React.ReactNode
+  off?: React.ReactNode
+  onChange?: (checked: boolean) => void
+}
+
+interface SwitchRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
 // 开关控件
-const Switch = forwardRef(
+const Switch = forwardRef<SwitchRef, SwitchProps>(
   (
     {
       // Value & Display Value
@@ -33,7 +50,7 @@ const Switch = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // 节点
     useImperativeHandle(ref, () => {
@@ -54,7 +71,7 @@ const Switch = forwardRef(
           className,
           checked ? 'lyrixi-active' : '',
           readOnly ? 'lyrixi-readOnly' : '',
-          disabled ? 'lyrixi-disabled' : disabled
+          disabled ? 'lyrixi-disabled' : (disabled === false ? '' : '')
         )}
         // Events
         onClick={(e) => {

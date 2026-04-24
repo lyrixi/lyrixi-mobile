@@ -1,5 +1,5 @@
 // 判断文件类型, 共用方法, 请勿随意修改
-function supportTypes(src, types) {
+function supportTypes(src: string, types: string[]) {
   if (!Array.isArray(types) || !types.length) {
     return true
   }
@@ -8,8 +8,8 @@ function supportTypes(src, types) {
   }
 
   // 提取文件扩展名
-  let fileExtension = src.split('?')[0].split('.')
-  fileExtension = fileExtension[fileExtension.length - 1].toLowerCase()
+  const parts = src.split('?')[0].split('.')
+  const fileExtension = (parts[parts.length - 1] ?? '').toLowerCase()
   if (!fileExtension) return false
   for (let type of types) {
     if (type === 'image') {

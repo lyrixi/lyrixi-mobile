@@ -6,23 +6,24 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { CalendarValue } from '../types'
+
 // Range value, sort two date
-function sortRangeValue(newDate, value) {
-  // No value, click date, start date and end date is same
+function sortRangeValue(newDate: Date, value: CalendarValue): Date[] {
   if (!Array.isArray(value) || value.length !== 2) {
     return [newDate, newDate]
   }
+  const v0 = value[0] as Date
+  const v1 = value[1] as Date
 
-  // Just has start date, select end date
-  if (DateUtil.compare(value[0], value[1]) === 0) {
-    let newValue = [value[0], newDate]
-    if (DateUtil.compare(value[0], newDate) === -1) {
-      newValue = [newDate, value[0]]
+  if (DateUtil.compare(v0, v1, 'date') === 0) {
+    let newValue: Date[] = [v0, newDate]
+    if (DateUtil.compare(v0, newDate, 'date') === -1) {
+      newValue = [newDate, v0]
     }
     return newValue
   }
 
-  // Reselect start date
   return [newDate, newDate]
 }
 

@@ -14,7 +14,7 @@ import { Storage, DateUtil } from 'lyrixi-mobile'
  * @param {Date} logDate - 指定日期，可选参数
  * @returns {Object} 返回对象格式 {key: value, key: value}
  */
-async function getLogs(logDate) {
+async function getLogs(logDate?: Date): Promise<Record<string, unknown>> {
   try {
     // 获取所有存储的键名
     const allKeys = await Storage.getKeys()
@@ -26,7 +26,7 @@ async function getLogs(logDate) {
       return {}
     }
 
-    const result = {}
+    const result: Record<string, unknown> = {}
 
     // 如果指定了日期，只返回该日期的日志
     if (logDate instanceof Date && !Number.isNaN(logDate.getTime())) {

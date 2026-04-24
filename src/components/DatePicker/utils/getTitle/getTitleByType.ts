@@ -6,7 +6,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getTitleByType(type) {
+function getTitleByType(type?: string) {
   if (type === 'year') {
     return LocaleUtil.locale('选择年', 'lyrixi_49dc0093879a6d5222f2341270419a8b')
   }

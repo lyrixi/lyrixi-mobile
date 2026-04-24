@@ -117,11 +117,11 @@ const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
     if (touchesRef.current.diffY >= threshold) {
       topIcon?.classList.add('lyrixi-page-main-pull-push-icon-down')
       if (topText)
-        topText.innerHTML = LocaleUtil.locale('释放立即刷新', 'lyrixi_bb045b7b0ce191f0568fb4d0a9858b8d', undefined)
+        topText.innerHTML = LocaleUtil.locale('释放立即刷新', 'lyrixi_bb045b7b0ce191f0568fb4d0a9858b8d', undefined) as string
     } else {
       topIcon?.classList.remove('lyrixi-page-main-pull-push-icon-down')
       if (topText)
-        topText.innerHTML = LocaleUtil.locale('下拉可以刷新', 'lyrixi_76985db7270fb8bc2add09291b637964', undefined)
+        topText.innerHTML = LocaleUtil.locale('下拉可以刷新', 'lyrixi_76985db7270fb8bc2add09291b637964', undefined) as string
     }
   }
 
@@ -143,7 +143,7 @@ const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
       topIcon?.classList.remove('lyrixi-page-main-pull-push-icon-down')
       topIcon?.classList.add('lyrixi-page-main-pull-push-icon-loading')
       if (topText)
-        topText.innerHTML = `${LocaleUtil.locale('加载中', 'lyrixi_f013ea9dcba3f5ca1278aa850931fec8', undefined)}...`
+        topText.innerHTML = `${LocaleUtil.locale('加载中', 'lyrixi_f013ea9dcba3f5ca1278aa850931fec8', undefined) as string}...`
 
       if (onTopRefresh) {
         isLoadingRef.current = true

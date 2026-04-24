@@ -8,8 +8,19 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface TagProps {
+  style?: React.CSSProperties
+  className?: string
+  name?: string
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  onEdit?: () => void
+  onDelete?: () => void
+}
+
 // 标签
-const Tag = ({ style, className, name, readOnly, disabled, allowClear, onEdit, onDelete }) => {
+const Tag = ({ style, className, name, readOnly, disabled, allowClear, onEdit, onDelete }: TagProps) => {
   return (
     <div
       className={DOMUtil.classNames('lyrixi-select-tags-item', className)}

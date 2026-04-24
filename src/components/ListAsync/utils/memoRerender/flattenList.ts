@@ -1,10 +1,12 @@
+type RawItem = Record<string, unknown>
+
 // 获取当前项在列表中的索引
-const flattenList = (list) => {
+const flattenList = (list: RawItem[] | null | undefined): RawItem[] => {
   if (!Array.isArray(list) || !list) return []
-  let items = []
+  let items: RawItem[] = []
   for (let item of list) {
-    if (Array.isArray(item.children) && item.children.length) {
-      items = items.concat(item.children)
+    if (Array.isArray(item.children) && (item.children as unknown[]).length) {
+      items = items.concat(item.children as RawItem[])
     } else {
       items.push(item)
     }

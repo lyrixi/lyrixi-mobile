@@ -27,7 +27,7 @@ let Device = {
    *   return null
    * })
    */
-  addPlatform(getCustomPlatform) {
+  addPlatform(getCustomPlatform: (ua: string) => { platform?: string; platformVersion?: string } | null | undefined): void {
     if (typeof getCustomPlatform === 'function') {
       this._getCustomPlatforms.push(getCustomPlatform)
     }

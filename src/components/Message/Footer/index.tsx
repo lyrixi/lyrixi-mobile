@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,7 +8,19 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Footer = forwardRef(
+interface MessageFooterRef {
+  element: HTMLElement | null
+  getElement: () => HTMLElement | null
+}
+
+interface MessageFooterProps {
+  layout?: string
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+const Footer = forwardRef<MessageFooterRef, MessageFooterProps>(
   (
     {
       layout = 'horizontal',
@@ -19,7 +31,7 @@ const Footer = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLElement>(null)
 
     // Expose tools
     useImperativeHandle(ref, () => {

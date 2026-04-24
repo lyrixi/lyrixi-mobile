@@ -9,14 +9,17 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 小程序拍照兼容方式切换, 小程序经常呼不起来
-function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }) {
+interface CompatibleToggleProps {
+  compatible?: boolean | string
+  compatiblePlatform?: string
+  onCompatiblePlatformChange?: (platform: string) => void
+}
+
+function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }: CompatibleToggleProps) {
   const list = getList()
 
-  // 获取当前选中项
-  const currentItem = getList(compatiblePlatform)
+  const currentItem = getList(compatiblePlatform || 'browser')
 
-  // 获取另一项用于切换
   const otherItem = list.find((item) => item.id !== currentItem.id)
 
   const handleToggle = () => {
@@ -48,7 +51,7 @@ function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatform
           className="lyrixi-icon icon-sort-fill lyrixi-font-size-s"
           style={{ transform: 'rotate(90deg)', width: '12px', height: '12px' }}
         ></i>
-        <span style={{ marginLeft: '4px' }}>{currentItem.name}</span>
+        <span style={{ marginLeft: '4px' }}>{currentItem.name as React.ReactNode}</span>
       </span>
     </span>
   )

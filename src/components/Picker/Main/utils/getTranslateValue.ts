@@ -1,5 +1,5 @@
 // 获取translateX或者translateY的值
-function getTranslateValue(transform) {
+function getTranslateValue(transform: string | undefined | null): string | null {
   return transform?.match(/-?\d+/)?.[0] || null
 }
 

@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,7 +8,18 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-start */
 
-const ConfirmTitle = forwardRef(
+interface MessageTitleRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+interface MessageTitleProps {
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+const ConfirmTitle = forwardRef<MessageTitleRef, MessageTitleProps>(
   (
     {
       children,
@@ -18,7 +29,7 @@ const ConfirmTitle = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // Expose
     useImperativeHandle(ref, () => {

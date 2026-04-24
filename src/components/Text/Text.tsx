@@ -11,8 +11,30 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+interface EllipsisConfig {
+  rows?: number
+  expandable?: boolean
+  defaultExpanded?: boolean
+}
 
-const Text = forwardRef(
+interface TextProps {
+  highlight?: string | string[]
+  ellipsis?: EllipsisConfig
+  color?: string
+  fontSize?: string | number
+  fontWeight?: string | number
+  style?: React.CSSProperties
+  className?: string
+  children?: React.ReactNode
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+}
+
+interface TextRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+const Text = forwardRef<TextRef, TextProps>(
   (
     {
       // Value & Display Value
@@ -36,7 +58,7 @@ const Text = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const rootRef = useRef<HTMLDivElement>(null)
 
     // color,fontSize,fontWeight转为className或者指定style
     let { style: newStyle, className: newClassName } = getStyle({

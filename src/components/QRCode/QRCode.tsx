@@ -1,30 +1,43 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect, type CSSProperties, type ReactNode, type Ref } from 'react'
 import Instance from './instance'
-
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 import MathUtil from './../../utils/MathUtil'
 // 内库使用-end
 
+type QRLib = InstanceType<typeof Instance>
+
 /* 测试使用-start
 import { DOMUtil, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+function cssSizeToNumber(value: string | number | undefined, fallback: number): number {
+  const n = Number(MathUtil.extractNumber(value ?? fallback))
+  return Number.isFinite(n) && n > 0 ? n : fallback
+}
+
+interface QRCodeProps {
+  style?: CSSProperties
+  text?: string
+  children?: ReactNode
+  className?: string
+}
+
+export interface QRCodeRef {
+  element: HTMLSpanElement | null
+  instance: QRLib | null
+  getElement: () => HTMLSpanElement | null
+  getInstance: () => QRLib | null
+}
+
 // 生成二维码
-const QRCode = forwardRef(
-  (
-    {
-      style,
-      text,
-      children,
-      // 其它属性
-      className
-    },
-    ref
-  ) => {
-    // 节点
-    const rootRef = useRef(null)
-    const instance = useRef(null)
+const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
+  { style, text, children, className },
+  ref: Ref<QRCodeRef>
+) {
+  // 节点
+  const rootRef = useRef<HTMLSpanElement | null>(null)
+  const instance = useRef<QRLib | null>(null)
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -39,16 +52,16 @@ const QRCode = forwardRef(
       if (!instance.current) {
         instance.current = new Instance(rootRef.current, {
           text: text || '',
-          width: MathUtil.extractNumber(style?.width || 230),
-          height: MathUtil.extractNumber(style?.width || 230),
+          width: cssSizeToNumber(style?.width, 230),
+          height: cssSizeToNumber(style?.height ?? style?.width, 230),
           colorDark: style?.color || '#000000',
           colorLight: style?.backgroundColor || '#ffffff',
           correctLevel: Instance.CorrectLevel.M // L,M,Q,H
         })
       }
 
-      const width = MathUtil.extractNumber(style?.width || 0)
-      const height = MathUtil.extractNumber(style?.height || 0)
+      const width = cssSizeToNumber(style?.width, 0)
+      const height = cssSizeToNumber(style?.height, 0)
       const color = style?.color
       const backgroundColor = style?.backgroundColor
       if (width) instance.current._htOption.width = width
@@ -59,13 +72,12 @@ const QRCode = forwardRef(
       // eslint-disable-next-line
     }, [text])
 
-    if (!text) return null
-    return (
-      <span style={style} className={DOMUtil.classNames('lyrixi-qrcode', className)} ref={rootRef}>
-        {children}
-      </span>
-    )
-  }
-)
+  if (!text) return null
+  return (
+    <span style={style} className={DOMUtil.classNames('lyrixi-qrcode', className)} ref={rootRef}>
+      {children}
+    </span>
+  )
+})
 
 export default QRCode

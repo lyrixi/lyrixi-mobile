@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle, type Ref } from 'react'
 import supportTypes from './../utils/supportTypes'
 
 // 内库使用-start
@@ -22,18 +22,29 @@ import {
 } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface AttachPreviewMainProps {
+  fileName?: string
+  previewServerUrl?: string
+  fileUrl?: string
+  previewServerSourceType?: string[]
+}
+
+export interface AttachPreviewMainRef {
+  mainElement: HTMLDivElement | null
+  getMainElement: () => HTMLDivElement | null
+}
+
 // 附件预览
-function AttachPreviewMain(
+const AttachPreviewMain = forwardRef<AttachPreviewMainRef, AttachPreviewMainProps>(function AttachPreviewMain(
   {
-    // Value & Display Value
     fileName,
-    previewServerUrl, // 在线预览平台地址, 将会将fileUrl拼接到后面
+    previewServerUrl,
     fileUrl,
     previewServerSourceType = ['image', 'video', 'audio', 'pdf']
   },
-  ref
+  ref: Ref<AttachPreviewMainRef>
 ) {
-  const mainRef = useRef(null)
+  const mainRef = useRef<HTMLDivElement | null>(null)
   // 节点
   useImperativeHandle(ref, () => {
     return {
@@ -49,8 +60,8 @@ function AttachPreviewMain(
     if (previewServerUrl && typeof previewServerUrl === 'string') {
       let urlParamSrc = encodeURIComponent(encodeURIComponent(fileUrl))
       return previewServerUrl.indexOf('?') === -1
-        ? `${previewServerUrl}?url=${urlParamSrc}}`
-        : `${previewServerUrl}&url=${urlParamSrc}}`
+        ? `${previewServerUrl}?url=${urlParamSrc}`
+        : `${previewServerUrl}&url=${urlParamSrc}`
     }
     return fileUrl
   }
@@ -60,7 +71,8 @@ function AttachPreviewMain(
 
   return (
     <div ref={mainRef} className="lyrixi-attach-preview-main" style={{ height: '600px' }}>
-      {supportTypes(fileUrl, previewServerSourceType) === false ? (
+      {typeof fileUrl === 'string' &&
+      supportTypes(fileUrl, previewServerSourceType) === false ? (
         <Result
           status="error"
           title={fileName}
@@ -72,7 +84,9 @@ function AttachPreviewMain(
           <Button
             color="primary"
             onClick={() => {
-              Bridge.previewFile({ fileUrl: fileUrl })
+              if (typeof fileUrl === 'string') {
+                Bridge.previewFile({ fileUrl })
+              }
             }}
           >
             {LocaleUtil.locale('点击预览', 'lyrixi_52ad09ab6864e032eb8c416cb74dcb72')}
@@ -83,6 +97,6 @@ function AttachPreviewMain(
       )}
     </div>
   )
-}
+})
 
-export default forwardRef(AttachPreviewMain)
+export default AttachPreviewMain

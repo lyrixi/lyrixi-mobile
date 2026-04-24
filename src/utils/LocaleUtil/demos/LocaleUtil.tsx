@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { Page, LocaleUtil, Card, Button } from 'lyrixi-mobile'
 
 export default () => {
-  const [currentLanguage, setCurrentLanguage] = useState(null)
+  const [currentLanguage, setCurrentLanguage] = useState<string | null>(null)
 
   useEffect(() => {
     initLocale()
@@ -21,7 +21,7 @@ export default () => {
   }
 
   // 切换语言
-  async function switchLanguage(language) {
+  async function switchLanguage(language: string) {
     await initLocale(language)
   }
 

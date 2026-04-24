@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Page } from 'lyrixi-mobile'
 
-const list = []
+type Row = { id: number; name: string }
+
+const list: Row[] = []
 for (let i = 0; i < 100; i++) {
   list.push({
     id: i,
@@ -19,9 +21,9 @@ export default () => {
 
   function handleBottomRefresh() {
     console.log('底部加载')
-    return new Promise<boolean>((resolve) => {
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
-        resolve(true)
+        resolve()
       }, 5000)
     })
   }

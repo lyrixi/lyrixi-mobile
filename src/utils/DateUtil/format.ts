@@ -3,7 +3,7 @@
 import dayjs from 'dayjs'
 
 // 入口: 格式化日期
-function format(date, type) {
+function format(date: Date, type: string) {
   if (date instanceof Date === false) {
     return ''
   }

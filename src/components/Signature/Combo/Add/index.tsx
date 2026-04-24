@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
-import Modal from './../../Modal'
+import Modal, { type ModalRef } from './../../Modal'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -9,6 +9,25 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
+
+interface ComboAddProps {
+  value?: string
+
+  className?: string
+  style?: React.CSSProperties
+  modalClassName?: string
+  modalStyle?: React.CSSProperties
+
+  color?: string
+  backgroundColor?: string
+
+  onChange?: (base64: string | null) => void
+}
+
+export interface ComboAddRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
 
 // Combo
 const Combo = (
@@ -28,26 +47,18 @@ const Combo = (
 
     // Events
     onChange
-  },
-  ref
+  }: ComboAddProps,
+  ref: React.Ref<ComboAddRef>
 ) => {
   const [open, setOpen] = useState(false)
 
-  const comboRef = useRef(null)
-  const modalRef = useRef(null)
+  const comboRef = useRef<HTMLDivElement>(null)
+  const modalRef = useRef<ModalRef | null>(null)
+
   useImperativeHandle(ref, () => {
     return {
-      element: comboRef?.current?.getElement ? comboRef.current.getElement() : comboRef.current,
-      getElement: () => {
-        // div
-        let element = comboRef?.current
-        // Input.Text
-        if (comboRef?.current?.getElement) {
-          element = comboRef.current.getElement()
-        }
-        return element
-      },
-      ...modalRef?.current
+      element: comboRef.current,
+      getElement: () => comboRef.current
     }
   })
 
@@ -57,7 +68,7 @@ const Combo = (
   }
 
   // 修改签名
-  async function handleChange(base64) {
+  async function handleChange(base64: string | null) {
     onChange?.(base64)
     setOpen(false)
   }
@@ -105,4 +116,4 @@ const Combo = (
   )
 }
 
-export default forwardRef(Combo)
+export default forwardRef<ComboAddRef, ComboAddProps>(Combo)

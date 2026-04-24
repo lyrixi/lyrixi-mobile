@@ -7,43 +7,50 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function loadStreets(districtId) {
+interface ApiResult {
+  status: 'success' | 'error' | 'empty'
+  list?: unknown[]
+  message?: string
+}
+
+function loadStreets(districtId: string | number): Promise<ApiResult> {
+  const districtKey = String(districtId)
   return new Promise((resolve) => {
-    // 优先读取缓存
-    window.streets = window.streets || JSON.parse(window.sessionStorage.getItem('streets') || '{}')
-    if (window.streets?.[districtId]) {
+    window.streets = window.streets || JSON.parse(window.sessionStorage.getItem('streets') || '{}') as Record<string, unknown>
+    if (window.streets?.[districtKey]) {
       resolve({
         status: 'success',
-        list: window.streets[districtId]
+        list: window.streets[districtKey] as unknown[]
       })
       return
     }
 
-    // 加载语言对应的文件
     Request.get(`https://lyrixi.github.io/lyrixi-mobile/assets/district/streets.json`, {
-      districtId: districtId
-    })
-      .then(function (list) {
-        // 存到缓存中
-        window.streets = JSON.parse(window.sessionStorage.getItem('streets') || '{}')
-        window.streets[districtId] = list || []
-        window.sessionStorage.setItem('streets', JSON.stringify(window.streets))
-        if (list?.length) {
-          resolve({
-            status: 'success',
-            list: window.streets[districtId]
-          })
-        } else {
-          resolve({
-            status: 'empty',
-            list: []
-          })
+      districtId: districtKey
+    }, undefined)
+      .then(function (list: unknown) {
+        window.streets = JSON.parse(window.sessionStorage.getItem('streets') || '{}') as Record<string, unknown>
+        if (window.streets) {
+          window.streets[districtKey] = (list as unknown[]) || []
+          window.sessionStorage.setItem('streets', JSON.stringify(window.streets))
+          const storedList = window.streets[districtKey] as unknown[]
+          if (storedList?.length) {
+            resolve({
+              status: 'success',
+              list: storedList
+            })
+          } else {
+            resolve({
+              status: 'empty',
+              list: []
+            })
+          }
         }
       })
       .catch(() => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('获取街道异常', 'lyrixi_04a95d24fd2fec048b9caa91f496ceca')
+          message: LocaleUtil.locale('获取街道异常', 'lyrixi_04a95d24fd2fec048b9caa91f496ceca') as string
         })
       })
   })

@@ -1,13 +1,40 @@
 import constant from './constant'
 
+type VirtualData = {
+  type?: string
+  height: number
+  top: number
+  index: number
+}
+
+type VirtualItem = Record<string, unknown> & { virtualData: VirtualData }
+
+interface GetVisibleItemsOptions {
+  prependHeight: number
+  items: VirtualItem[]
+  itemHeights: number[]
+  scrollTop: number | undefined
+  containerHeight: number
+}
+
 // 计算可见区域元素
-function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, containerHeight }) {
+function getVisibleItems({
+  prependHeight,
+  items,
+  itemHeights,
+  scrollTop,
+  containerHeight
+}: GetVisibleItemsOptions): VirtualItem[] {
   if (!Array.isArray(items) || !items.length) return []
+  const scrollTopValue = scrollTop ?? 0
   // 计算每一项的 top 值和高度
-  let top = 0
-  for (let [index, item] of items.entries()) {
-    let itemHeight = itemHeights[index]
-    top = index === 0 ? 0 : items[index - 1].virtualData.top + items[index - 1].virtualData.height
+  for (let index = 0; index < items.length; index++) {
+    const item = items[index]
+    const itemHeight = itemHeights[index]
+    const top =
+      index === 0
+        ? 0
+        : items[index - 1].virtualData.top + items[index - 1].virtualData.height
     item.virtualData = {
       type: item.virtualData?.type || undefined,
       height: itemHeight,
@@ -20,7 +47,7 @@ function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, contain
   let startIndex = 0
   while (
     items[startIndex] &&
-    items[startIndex].virtualData.top < scrollTop - prependHeight - constant.startBuffer
+    items[startIndex].virtualData.top < scrollTopValue - prependHeight - constant.startBuffer
   ) {
     startIndex++
   }
@@ -29,7 +56,7 @@ function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, contain
   let endIndex = startIndex
   while (
     items[endIndex] &&
-    items[endIndex].virtualData.top < scrollTop + containerHeight + constant.endBuffer
+    items[endIndex].virtualData.top < scrollTopValue + containerHeight + constant.endBuffer
   ) {
     endIndex++
   }

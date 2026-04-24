@@ -1,193 +1,241 @@
 import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import Modal from './../Modal'
+import Modal, { ActionSheetItem } from './../Modal'
+import Combo, { ComboRef } from './../../Combo'
 
 // 内库使用-start
 import Input from './../../Input'
-import Combo from './../../Combo'
+import type { ComboRef as InputSelectComboRef } from './../../Input/Select'
 // 内库使用-end
 
 /* 测试使用-start
-import { Input, Combo } from 'lyrixi-mobile'
+import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
+interface ActionSheetComboHandle {
+  close: () => void
+  open: () => void
+}
+
+interface ActionSheetComboProps {
+  // Combo
+  value?: ActionSheetItem | null
+  placeholder?: string
+  formatter?: (...args: unknown[]) => string
+  autoSize?: boolean
+  separator?: string
+  mode?: string
+  readOnly?: boolean
+  disabled?: boolean
+  allowClear?: boolean
+  style?: React.CSSProperties
+  className?: string
+  comboRender?: (props: {
+    comboRef: React.RefObject<ComboRef | null>
+    open: boolean
+    onClick: () => void
+  }) => React.ReactNode
+  children?: React.ReactNode
+  leftIconNode?: React.ReactNode
+  rightIconNode?: React.ReactNode
+  clearRender?: () => React.ReactNode
+
+  // Modal
+  list?: ActionSheetItem[]
+  maskClosable?: boolean
+  safeArea?: boolean
+  modalStyle?: React.CSSProperties
+  modalClassName?: string
+  maskStyle?: React.CSSProperties
+  maskClassName?: string
+  portal?: boolean | HTMLElement
+  title?: React.ReactNode
+  cancelNode?: React.ReactNode
+  cancelVisible?: boolean
+  itemRender?: (
+    item: ActionSheetItem,
+    helpers: { onChange: (item: ActionSheetItem) => void }
+  ) => React.ReactNode
+
+  // Events
+  onBeforeOpen?: () => Promise<boolean | void>
+  onOpen?: () => void
+  onClose?: () => void
+  onClick?: () => void
+  onChange?: (value: ActionSheetItem | null) => void
+}
+
 // 卡片选择
-const ActionSheetCombo = (
-  {
-    // Combo
-    // Combo: Value & Display Value
-    value,
-    placeholder,
-    formatter,
-    autoSize,
-    separator,
-    mode,
-    // Combo: Status
-    readOnly,
-    disabled,
-    allowClear,
-    // Combo: Style
-    style,
-    className,
-    // Combo: Elements
-    comboRender,
-    children,
-    leftIconNode,
-    rightIconNode,
-    clearRender,
+const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProps>(
+  (
+    {
+      // Combo
+      value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      mode,
+      readOnly,
+      disabled,
+      allowClear,
+      style,
+      className,
+      comboRender,
+      children,
+      leftIconNode,
+      rightIconNode,
+      clearRender,
 
-    // Modal
-    // Modal: Value & Display Value
-    list,
-    // Modal: Status
-    maskClosable,
-    // Modal: Style
-    safeArea,
-    modalStyle,
-    modalClassName,
-    maskStyle,
-    maskClassName,
-    // Modal: Elements
-    portal,
-    title,
-    cancelNode,
-    cancelVisible,
-    itemRender,
+      // Modal
+      list,
+      maskClosable,
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      portal,
+      title,
+      cancelNode,
+      cancelVisible,
+      itemRender,
 
-    // Events
-    onBeforeOpen,
-    onOpen,
-    onClose,
-    onClick,
-    onChange
-  },
-  ref
-) => {
-  const [open, setOpen] = useState(null)
-  const comboRef = useRef(null)
-  const modalRef = useRef(null)
+      // Events
+      onBeforeOpen,
+      onOpen,
+      onClose,
+      onClick,
+      onChange
+    },
+    ref
+  ) => {
+    const [open, setOpen] = useState<boolean | null>(null)
+    const comboRef = useRef<ComboRef | null>(null)
 
-  useImperativeHandle(ref, () => {
-    return {
-      ...comboRef.current,
-      ...modalRef.current,
+    useImperativeHandle(ref, () => ({
       close: () => setOpen(false),
       open: () => setOpen(true)
-    }
-  })
+    }))
 
-  useEffect(() => {
-    if (open === null) return
-    if (open) {
-      onOpen?.()
-    } else {
-      onClose?.()
-    }
-    // eslint-disable-next-line
-  }, [open])
+    useEffect(() => {
+      if (open === null) return
+      if (open) {
+        onOpen?.()
+      } else {
+        onClose?.()
+      }
+      // eslint-disable-next-line
+    }, [open])
 
-  async function handleOpen() {
-    if (typeof onBeforeOpen === 'function') {
-      let goOn = await onBeforeOpen()
-      if (goOn === false) return
-    }
+    async function handleOpen() {
+      if (typeof onBeforeOpen === 'function') {
+        const goOn = await onBeforeOpen()
+        if (goOn === false) return
+      }
 
-    // 如果没有 list，则不打开
-    if (!Array.isArray(list) || !list.length) {
-      return
-    }
-    onClick?.()
-    setOpen(true)
-  }
-
-  function handleClose() {
-    setOpen(false)
-  }
-
-  function handleChange(newValue) {
-    if (onChange) {
-      onChange(newValue)
-    }
-    setOpen(false)
-  }
-
-  // 获取 Combo 节点
-  function getComboNode() {
-    if (typeof comboRender === 'function') {
-      return comboRender({
-        comboRef,
-        open: open,
-        onClick: handleOpen
-      })
+      // 如果没有 list，则不打开
+      if (!Array.isArray(list) || !list.length) {
+        return
+      }
+      onClick?.()
+      setOpen(true)
     }
 
-    // comboChildren
-    if (children) {
+    function handleClose() {
+      setOpen(false)
+    }
+
+    function handleChange(newValue: ActionSheetItem | null) {
+      if (onChange) {
+        onChange(newValue)
+      }
+      setOpen(false)
+    }
+
+    // 获取 Combo 节点
+    function getComboNode() {
+      if (typeof comboRender === 'function') {
+        return comboRender({
+          comboRef,
+          open: open ?? false,
+          onClick: handleOpen
+        })
+      }
+
+      // comboChildren
+      if (children) {
+        return (
+          <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
+            {children}
+          </Combo>
+        )
+      }
+
+      // 默认使用 Input.Select
       return (
-        <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
-          {children}
-        </Combo>
+        <Input.Select
+          ref={comboRef as React.Ref<InputSelectComboRef>}
+          // Combo: Value & Display Value
+          value={value}
+          placeholder={placeholder}
+          formatter={formatter}
+          autoSize={autoSize}
+          separator={separator}
+          mode={mode}
+          // Combo: Status
+          readOnly={readOnly}
+          disabled={disabled}
+          allowClear={allowClear}
+          // Combo: Style
+          style={style}
+          className={className}
+          // Combo: Element
+          leftIconNode={leftIconNode}
+          rightIconNode={rightIconNode}
+          clearRender={clearRender}
+          // Events
+          onChange={
+            onChange
+              ? (v: unknown, meta?: { action: string }) => {
+                  onChange(v as ActionSheetItem | null)
+                }
+              : undefined
+          }
+          onClick={handleOpen}
+        />
       )
     }
 
-    // 默认使用 Input.Select
     return (
-      <Input.Select
-        ref={comboRef}
-        // Combo: Value & Display Value
-        value={value}
-        placeholder={placeholder}
-        formatter={formatter}
-        autoSize={autoSize}
-        separator={separator}
-        mode={mode}
-        // Combo: Status
-        readOnly={readOnly}
-        disabled={disabled}
-        allowClear={allowClear}
-        // Combo: Style
-        style={style}
-        className={className}
-        // Combo: Element
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
-        clearRender={clearRender}
-        // Events
-        onChange={onChange}
-        onClick={handleOpen}
-      />
+      <>
+        {getComboNode()}
+        <Modal
+          // Modal: Value & Display Value
+          value={value}
+          list={list}
+          // Modal: Status
+          open={open ?? false}
+          maskClosable={maskClosable}
+          allowClear={allowClear}
+          // Modal: Elements
+          portal={portal}
+          title={title}
+          cancelNode={cancelNode}
+          cancelVisible={cancelVisible}
+          itemRender={itemRender}
+          // Modal: Style
+          safeArea={safeArea}
+          modalStyle={modalStyle}
+          modalClassName={modalClassName}
+          maskStyle={maskStyle}
+          maskClassName={maskClassName}
+          // Events
+          onClose={handleClose}
+          onChange={handleChange}
+        />
+      </>
     )
   }
+)
 
-  return (
-    <>
-      {getComboNode()}
-      <Modal
-        ref={modalRef}
-        // Modal: Value & Display Value
-        value={value}
-        list={list}
-        // Modal: Status
-        open={open}
-        maskClosable={maskClosable}
-        allowClear={allowClear}
-        // Modal: Elements
-        portal={portal}
-        title={title}
-        cancelNode={cancelNode}
-        cancelVisible={cancelVisible}
-        itemRender={itemRender}
-        // Modal: Style
-        safeArea={safeArea}
-        modalStyle={modalStyle}
-        modalClassName={modalClassName}
-        maskStyle={maskStyle}
-        maskClassName={maskClassName}
-        // Events
-        onClose={handleClose}
-        onChange={handleChange}
-      />
-    </>
-  )
-}
-
-export default forwardRef(ActionSheetCombo)
+export default ActionSheetCombo

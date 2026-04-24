@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { DatePicker } from 'lyrixi-mobile'
 
+type ComboRef = { close?: () => void; open?: () => void }
+
 export default () => {
-  const date1Ref = useRef(null)
-  const date2Ref = useRef(null)
-  const [value, setValue] = useState(null)
+  const date1Ref = useRef<ComboRef | null>(null)
+  const date2Ref = useRef<ComboRef | null>(null)
+  const [value, setValue] = useState<Date | null>(null)
 
   return (
     <>
@@ -14,32 +16,22 @@ export default () => {
         placeholder="Please select WeekCombo"
         type="datetime"
         allowClear
-        // min={new Date()}
-        // max={new Date()}
-        // maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.lyrixi-mask.lyrixi-active')) {
-            date1Ref.current.close()
-            date2Ref.current.close()
+            date1Ref.current?.close?.()
+            date2Ref.current?.close?.()
             return false
           }
           return true
-        }}
-        onClose={() => {
-          console.log('onClose')
-        }}
-        onOpen={() => {
-          console.log('onOpen')
         }}
         maskStyle={{
           zIndex: 999
         }}
         onChange={(newValue) => {
-          setValue(newValue)
+          setValue(newValue as Date | null)
         }}
         value={value}
       />
     </>
   )
 }
-

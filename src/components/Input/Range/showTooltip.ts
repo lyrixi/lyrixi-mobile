@@ -1,4 +1,4 @@
-function showToolTip(tooltipElement) {
+function showToolTip(tooltipElement: HTMLElement): void {
   tooltipElement.style.visibility = 'visible'
 }
 

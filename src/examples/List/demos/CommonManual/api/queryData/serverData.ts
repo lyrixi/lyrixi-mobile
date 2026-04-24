@@ -18,7 +18,8 @@ function serverData(opts: {
 
   // 处理日期参数
   if (dateType.value) {
-    const date = dateType.value as Date | string
+    const raw = dateType.value as Date | string
+    const date = raw instanceof Date ? raw : new Date(raw)
     params.year = DateUtil.format(date, 'YYYY')
     params.cycle = dateType.cycle
 

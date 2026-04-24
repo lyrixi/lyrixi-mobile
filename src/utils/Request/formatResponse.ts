@@ -1,8 +1,8 @@
-// Format axios response
-function formatResponse(response) {
-  let result = response
-  // axios多返回了一层, 则获取接口返回的data
-  if (response.config && response.data) {
+type AxiosLikeResponse = { config?: unknown; data?: unknown; [key: string]: unknown }
+
+function formatResponse(response: AxiosLikeResponse): unknown {
+  let result: unknown = response
+  if (response.config && response.data !== undefined) {
     result = response.data
   }
   if (typeof result === 'string') {

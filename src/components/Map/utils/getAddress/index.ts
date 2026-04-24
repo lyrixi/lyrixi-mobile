@@ -11,22 +11,19 @@ import { Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 地址逆解析
-async function getAddress(params) {
-  // 已存在地址则不需要解析
+async function getAddress(
+  params: {
+    address?: string
+    longitude?: number | string
+    latitude?: number | string
+    type?: string
+    [key: string]: unknown
+  } | null | undefined
+): Promise<unknown> {
   if (params?.address) {
     return params
   }
 
-  let result = null
-
-  // 默认优先使用系统级定位
-  let defaultGetAddress = window?.defaultGetAddress
-  if (typeof defaultGetAddress === 'function') {
-    result = await defaultGetAddress(params)
-    return result
-  }
-
-  // 参数不全
   if (!params?.longitude || !params?.latitude || !params?.type) {
     return {
       status: 'error',
@@ -34,6 +31,12 @@ async function getAddress(params) {
     }
   }
 
+  const defaultGetAddress = window?.defaultGetAddress
+  if (typeof defaultGetAddress === 'function') {
+    return defaultGetAddress(params)
+  }
+
+  let result: unknown
   if (window.google) {
     result = await googleGetAddress(params)
   } else if (window.BMap) {
@@ -42,14 +45,16 @@ async function getAddress(params) {
     result = await osmGetAddress(params)
   }
 
-  // getAddress failed
-  if (result.status === 'error') {
-    Toast.show({ content: result.message })
+  const r = result as { status?: string; message?: string; [key: string]: unknown }
+  if (r?.status === 'error') {
+    if (r.message) {
+      Toast.show({ content: r.message })
+    }
     return result
   }
 
   return {
-    ...result,
+    ...(r && typeof r === 'object' ? r : {}),
     ...params
   }
 }

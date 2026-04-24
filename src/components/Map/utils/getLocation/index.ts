@@ -7,37 +7,40 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-// 定位
-function getLocation(options) {
-  const type = options?.type || 'wgs84'
+export interface GetLocationOptions {
+  type?: string
+  [key: string]: unknown
+}
 
-  // eslint-disable-next-line
-  return new Promise(async (resolve) => {
-    let defaultGetLocation = window?.defaultGetLocation
-    if (typeof defaultGetLocation === 'function') {
-      let result = await defaultGetLocation({
-        type: type
+// 定位
+function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
+  const t = options?.type || 'wgs84'
+
+  return new Promise((resolve) => {
+    const w = window
+    const defaultGet = w.defaultGetLocation as ((o: { type: string }) => Promise<unknown>) | undefined
+    if (typeof defaultGet === 'function') {
+      void defaultGet({ type: t }).then((result: unknown) => {
+        resolve(result)
       })
-      resolve(result)
       return
     }
 
-    // 开始定位
     Bridge.getLocation({
-      type: type,
-      onSuccess: (result) => {
+      type: t,
+      onSuccess: (result: unknown) => {
         console.log('lyrixi location success:', result)
         resolve(normalizeLocationResult(result as Record<string, unknown>))
       },
-      onError: (error) => {
+      onError: (error: unknown) => {
         console.error('lyrixi location fail:', error)
         resolve(error)
       },
-      onCancel: (error) => {
+      onCancel: (error: unknown) => {
         console.error('lyrixi location cancel:', error)
         resolve(error)
       }
-    })
+    } as Record<string, unknown>)
   })
 }
 

@@ -6,16 +6,24 @@ import FilterModal from './FilterModal'
 
 import getClassNameByAnimation from './api/getClassNameByAnimation'
 
+type ModalWithParts = typeof Modal & {
+  NavBarModal: typeof NavBarModal
+  DropdownModal: typeof DropdownModal
+  FilterModal: typeof FilterModal
+  getClassNameByAnimation: typeof getClassNameByAnimation
+}
+
 // NavBar
-Modal.NavBarModal = NavBarModal
+;(Modal as ModalWithParts).NavBarModal = NavBarModal
 
 // Dropdown
-Modal.DropdownModal = DropdownModal
+;(Modal as ModalWithParts).DropdownModal = DropdownModal
 
 // Filter
-Modal.FilterModal = FilterModal
+;(Modal as ModalWithParts).FilterModal = FilterModal
 
 // Js Api
-Modal.getClassNameByAnimation = getClassNameByAnimation
+;(Modal as ModalWithParts).getClassNameByAnimation = getClassNameByAnimation
 
-export default Modal
+export type { ModalRef, ModalProps } from './Modal'
+export default Modal as ModalWithParts

@@ -3,19 +3,35 @@ import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react
 
 // 内库使用-start
 import Storage from './../../../utils/Storage'
-import ListAsync from './../../ListAsync'
+import ListAsync, { ListAsyncRef, ListAsyncProps, LoadResult } from './../../ListAsync'
 // 内库使用-end
 
 /* 测试使用-start
 import { Storage, ListAsync } from 'lyrixi-mobile'
 测试使用-end */
 
-// 项目内部模块导入
-
 import queryData from './queryData'
 
+type RawItem = Record<string, unknown>
+
+export interface ListPaginationRef extends ListAsyncRef {
+  updateCache: (extraCache?: Record<string, unknown>) => void
+  clearCache: () => unknown
+  getCache: () => unknown
+}
+
+export interface ListPaginationProps extends Omit<ListAsyncProps, 'loadData'> {
+  cacheName?: string
+  url?: string
+  headers?: Record<string, string>
+  payload?: Record<string, unknown>
+  pagination?: { rows?: number }
+  formatPayload?: (params: Record<string, unknown>) => Promise<Record<string, unknown>> | Record<string, unknown>
+  formatResult?: (result: unknown, options: { payload: Record<string, unknown> }) => Promise<LoadResult> | LoadResult
+}
+
 // 简便的列表组件, 只需要传入url和formatPayload即可
-const ListPagination = forwardRef(
+const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
   (
     {
       cacheName,
@@ -25,7 +41,7 @@ const ListPagination = forwardRef(
       headers,
       payload,
       pagination = { rows: 20 },
-      formatPayload, // 格式化查询参数: ({ page }) => { return { rows: 必传, 默认值20, 用于计算分页} }
+      formatPayload,
       formatResult,
       formatViewList,
       formatViewItem,
@@ -33,7 +49,6 @@ const ListPagination = forwardRef(
       // Status
       errorRetry,
       emptyRetry,
-      // initialLoad,
       multiple,
       allowClear,
       checkable,
@@ -70,41 +85,34 @@ const ListPagination = forwardRef(
     ref
   ) => {
     const isFirstLoad = useRef(true)
-    const mainRef = useRef(null)
-    // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
+    const mainRef = useRef<ListAsyncRef | null>(null)
     const pageRef = useRef(1)
 
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        ...mainRef.current,
-        // 更新缓存, 支持存额外数据, 建议存查询参数updateCache({ queryParams: {} })
-        updateCache: (extraCache = {}) => {
+        ...(mainRef.current as ListAsyncRef),
+        updateCache: (extraCache: Record<string, unknown> = {}) => {
           if (!cacheName) return
-          let lastResult = mainRef.current?.getResult()
-          // 报错不存数据
+          let lastResult = mainRef.current?.getResult() as (LoadResult & Record<string, unknown>) | null
+          if (!lastResult) return
           if (lastResult?.status === 'error') return
-          // 存滚动条位置
           let scrollTop = mainRef.current?.element?.scrollTop
           lastResult.scrollTop = scrollTop
-          // 存查询参数
           for (let key in extraCache) {
             lastResult[key] = extraCache[key]
           }
-
-          // 设置缓存
           Storage.setCache(cacheName, lastResult, { persist: 'session' })
         },
         clearCache: () => {
-          return Storage.clearCache(cacheName)
+          return Storage.clearCache(cacheName!)
         },
         getCache: () => {
-          return Storage.getCache(cacheName)
+          return Storage.getCache(cacheName!)
         }
       }
     })
 
-    // 参数发生变化需要刷新列表
     useEffect(() => {
       if (isFirstLoad.current) {
         isFirstLoad.current = false
@@ -118,42 +126,40 @@ const ListPagination = forwardRef(
     return (
       <ListAsync
         ref={mainRef}
-        // Value & Display Value
         value={value}
         formatViewList={formatViewList}
         formatViewItem={formatViewItem}
         loadData={async ({ previousResult, action }) => {
-          // 初始化时, 有缓存时优先读取缓存
           if (action === 'load' && cacheName) {
             let cacheResult = Storage.getCache(cacheName)
             if (cacheResult) {
-              return cacheResult
+              return cacheResult as LoadResult
             }
           }
 
-          // 在线查询数据
-          const result = await queryData(url, headers, payload, {
-            // 每页行数, 为空则不分页
+          const result = await queryData(url || '', headers, payload, {
             rows: typeof pagination?.rows === 'number' ? pagination?.rows : undefined,
-            // 每个实例维护自己的页码，避免多 ListPagination 时 page 串用
             pageRef,
             previousResult,
             action,
             formatPayload,
             formatResult
           })
-          let newList = null
+
+          let newList: RawItem[] | null = null
           if (result.status !== 'error') {
+            const prevList = (previousResult?.list || []) as RawItem[]
             newList =
-              action === 'bottomRefresh' ? previousResult.list.concat(result.list) : result.list
+              action === 'bottomRefresh'
+                ? prevList.concat((result.list || []) as RawItem[])
+                : (result.list || []) as RawItem[]
           }
 
           return {
-            result,
-            list: newList
-          }
+            ...result,
+            list: newList || undefined
+          } as LoadResult
         }}
-        // Status
         initialLoad={false}
         errorRetry={errorRetry}
         emptyRetry={emptyRetry}
@@ -163,7 +169,6 @@ const ListPagination = forwardRef(
         disableTopRefresh={disableTopRefresh}
         disableBottomRefresh={disableBottomRefresh}
         virtual={virtual}
-        // Style
         itemStyle={itemStyle}
         itemClassName={itemClassName}
         itemLayout={itemLayout}
@@ -176,24 +181,21 @@ const ListPagination = forwardRef(
         loadingMaskStyle={loadingMaskStyle}
         loadingMaskClassName={loadingMaskClassName}
         loadingPortal={loadingPortal}
-        // Elements
         itemRender={itemRender}
         loadingRender={loadingRender}
         prependRender={prependRender}
         appendRender={appendRender}
-        // Events
         onChange={onChange}
         onScroll={onScroll}
         onScrollEnd={onScrollEnd}
         onLoad={({ result, action }) => {
-          // 初始化时, 有缓存时优先读取缓存, 并滚动到缓存位置
           if (action === 'load' && cacheName) {
-            let cacheResult = Storage.getCache(cacheName)
-            console.log(mainRef)
-            mainRef.current.element.scrollTop = cacheResult?.scrollTop || 0
+            let cacheResult = Storage.getCache(cacheName) as { scrollTop?: number } | null
+            if (mainRef.current?.element) {
+              mainRef.current.element.scrollTop = cacheResult?.scrollTop || 0
+            }
           }
-
-          onLoad?.({ result, action: action })
+          onLoad?.({ result, action })
         }}
       />
     )

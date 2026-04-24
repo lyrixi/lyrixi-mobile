@@ -1,7 +1,10 @@
 import React from 'react'
 
 // 获取content
-function getContextNode(content, params) {
+function getContextNode(
+  content: React.ReactNode | ((params: Record<string, unknown>) => React.ReactNode),
+  params: Record<string, unknown>
+): React.ReactNode {
   if (typeof content === 'function') {
     return content(params)
   }

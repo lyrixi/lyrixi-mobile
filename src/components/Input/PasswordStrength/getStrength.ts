@@ -1,4 +1,4 @@
-function getStrength(password) {
+function getStrength(password: string): number {
   if (password.length === 0) return 0
 
   let matches = 0

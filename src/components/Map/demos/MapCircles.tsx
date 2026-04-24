@@ -30,18 +30,19 @@ export default () => {
       <Page.Main>
         <MapLoader
           config={{
-            key: 'bmap key',
             key: '4KFq5IGKQM1c6vkVhgIpAYFu',
             type: 'bmap'
           }}
         >
           <div style={{ position: 'relative', width: '100%', height: '500px' }}>
             <MapContainer
-              center={coordsToWgs84({
-                latitude: 39.909187,
-                longitude: 116.397451,
-                type: 'gcj02'
-              })}
+              center={
+                coordsToWgs84({
+                  latitude: 39.909187,
+                  longitude: 116.397451,
+                  type: 'gcj02'
+                }) ?? undefined
+              }
               zoom={14}
             >
               <Circles points={points} color="#ff8800" radius={500} />

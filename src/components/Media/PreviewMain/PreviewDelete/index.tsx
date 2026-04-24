@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PreviewDelete = ({ onDelete }) => {
+const PreviewDelete = ({ onDelete }: { onDelete?: () => void }) => {
   return (
     <div
       className="lyrixi-media-preview-main-delete"

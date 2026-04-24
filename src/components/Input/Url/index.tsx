@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import InputText from './../Text'
+import InputText, { InputTextRef, InputTextProps } from './../Text'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -13,7 +13,11 @@ import Message from './../../Message'
 import { LocaleUtil, Clipboard, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
 
-const Url = forwardRef(
+interface UrlProps extends InputTextProps {
+  onPreview?: (value: string) => Promise<boolean | undefined> | boolean | undefined
+}
+
+const Url = forwardRef<InputTextRef, UrlProps>(
   (
     {
       id,
@@ -67,13 +71,16 @@ const Url = forwardRef(
     },
     ref
   ) => {
-    function copyLink(url) {
+    function copyLink(url: string) {
+      const toastShow = Toast.show.bind(undefined)
       Clipboard.copy(url, {
         onSuccess: () => {
-          Toast.show({
-            content: LocaleUtil.locale(
-              '链接已复制到剪贴板',
-              'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
+          toastShow({
+            content: String(
+              LocaleUtil.locale(
+                '链接已复制到剪贴板',
+                'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
+              )
             )
           })
         },
@@ -82,11 +89,13 @@ const Url = forwardRef(
             maskStyle: {
               zIndex: 100
             },
-            title: LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca'),
+            title: String(LocaleUtil.locale('提示', 'lyrixi_02d9819ddaaaeb1b7b22b12608c7e5ca')),
             content:
-              LocaleUtil.locale(
-                '链接复制到剪贴板失败, 请长按复制',
-                'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1'
+              String(
+                LocaleUtil.locale(
+                  '链接复制到剪贴板失败, 请长按复制',
+                  'lyrixi_8c1958b63a87bd3e1fa1e550c058ffe1'
+                )
               ) + `<br/>${url}`,
             buttons: [
               {
@@ -100,17 +109,18 @@ const Url = forwardRef(
       })
     }
 
-    const handleClick = async (e) => {
+    const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
       // 只读才可以复制连接
       if (!readOnly && !disabled) return
 
       // 网址不再需要协议前缀 有前缀则保留，无前缀则手动拼接http协议作为前缀
-      let value = e.target.value
-      let url = /^(https|http)?:\/\//.test(value) ? value : `http://${value}`
+      const target = e.target as HTMLInputElement
+      let urlValue = target.value
+      let url = /^(https|http)?:\/\//.test(urlValue) ? urlValue : `http://${urlValue}`
 
       // 自定义预览
       if (typeof onPreview === 'function') {
-        let goOn = await onPreview(value)
+        let goOn = await onPreview(urlValue)
         if (goOn === false) return
       }
 

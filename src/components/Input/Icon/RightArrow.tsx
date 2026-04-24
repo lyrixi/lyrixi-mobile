@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 // 内库使用-start
-import Icon from './../../Icon'
+import Icon, { IconRef, IconProps } from './../../Icon'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
@@ -9,7 +9,12 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const IconRightArrow = forwardRef(
+interface IconRightArrowProps extends Omit<IconProps, 'className'> {
+  padding?: number
+  iconClassName?: string
+}
+
+const IconRightArrow = forwardRef<IconRef, IconRightArrowProps>(
   (
     {
       // Status
@@ -19,10 +24,8 @@ const IconRightArrow = forwardRef(
       color, // 颜色: default, transparent, primary, info, warning, danger, success
       backgroundColor, // 背景颜色: default, transparent, white, primary, info, warning, danger, success
       size = 'm', // 尺寸: xxs, xs, s, m, l, xl
-      padding, // 内边距: 数值
       radius, // 圆角: xxs, xs, s, m, l, xl
       style,
-      className,
 
       // Element ClassName
       iconClassName,
@@ -46,8 +49,7 @@ const IconRightArrow = forwardRef(
         className={DOMUtil.classNames(
           'lyrixi-input-icon',
           'lyrixi-right-icon',
-          iconClassName || 'lyrixi-input-icon-right-arrow',
-          className
+          iconClassName || 'lyrixi-input-icon-right-arrow'
         )}
         // Events
         onClick={onClick}

@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import type * as L from 'leaflet'
 import filterCoords from './../../utils/filterCoords'
-import addCircles from './addCircles'
+import addCircles, { type CirclePoint } from './addCircles'
 import clearCircles from './clearCircles'
+import type { MapContainerAPI } from './../MapContainer'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -11,30 +13,29 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+export interface CirclesProps {
+  points?: unknown
+  color?: string
+  radius?: number
+  map?: MapContainerAPI
+}
+
 // 批量圈
-const Circles = forwardRef(
+const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
   (
     {
-      // Value & Display Value
-      points,
-
-      // Style
+      points: pointsProp,
       color,
       radius,
-
-      // Element
       map
     },
     ref
   ) => {
-    // Circle layer
-    const circlesLayerRef = useRef(null)
+    let points = pointsProp as unknown
+    const circlesLayerRef = useRef<L.LayerGroup | null>(null)
 
-    // 过滤错误的点位
-    // eslint-disable-next-line
     points = filterCoords(points)
 
-    // Expose
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -44,21 +45,22 @@ const Circles = forwardRef(
     })
 
     useEffect(() => {
-      // Circle layer init
-      circlesLayerRef.current = window.L.layerGroup().addTo(map.leafletMap)
+      const lf = map?.leafletMap
+      if (!lf) {
+        return
+      }
+      circlesLayerRef.current = window.L!.layerGroup().addTo(lf)
 
       return () => {
         clearCircles(circlesLayerRef.current)
       }
-      // eslint-disable-next-line
-    }, [])
+    }, [map])
 
     useEffect(() => {
       if (ObjectUtil.isEmpty(points)) {
         clearCircles(circlesLayerRef.current)
         return
       }
-
       draw()
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
@@ -68,7 +70,8 @@ const Circles = forwardRef(
         return
       }
       clearCircles(circlesLayerRef.current)
-      addCircles(points, { color, radius }, circlesLayerRef.current)
+      if (!circlesLayerRef.current) return
+      addCircles(points as CirclePoint[], { color, radius }, circlesLayerRef.current)
     }
 
     return <></>

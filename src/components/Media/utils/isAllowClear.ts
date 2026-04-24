@@ -4,7 +4,10 @@
  * @param {object} item - 当前项数据
  * @returns {boolean} 是否允许清除
  */
-function isAllowClear(allowClear, item) {
+function isAllowClear(
+  allowClear: boolean | ((item: Record<string, unknown>) => boolean) | undefined,
+  item: Record<string, unknown>
+) {
   // 如果 allowClear 是函数，调用函数判断
   if (typeof allowClear === 'function') {
     return allowClear(item)

@@ -1,4 +1,5 @@
 import React from 'react'
+import type { MapContainerAPI } from './../../MapContainer'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -8,38 +9,35 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-// 导航
-function Navigation({
-  // Value & Display Value
-  type,
-  longitude,
-  latitude,
-  name,
-  address,
+export interface NavigationProps {
+  type?: string
+  longitude?: number | string
+  latitude?: number | string
+  name?: string
+  address?: string
+  map?: MapContainerAPI
+}
 
-  // Element
-  map
-}) {
-  if (!longitude || !latitude || typeof map?.openLocation !== 'function') return null
+// 导航
+function Navigation({ type, longitude, latitude, name, address, map }: NavigationProps) {
+  if (!longitude || !latitude) return null
+  const open = map?.openLocation
+  if (typeof open !== 'function') return null
   return (
     <span
       className="lyrixi-map-navigation-button"
-      // Events
       onClick={() =>
-        map.openLocation({
+        open({
           map,
           type,
           longitude,
           latitude,
           name,
           address
-        })
+        } as Record<string, unknown>)
       }
     >
-      {/* Element: Icon */}
       <i className="lyrixi-map-navigation-button-icon"></i>
-
-      {/* Element: Text */}
       <span className="lyrixi-map-navigation-button-text">
         {LocaleUtil.locale('导航', 'lyrixi_056f2d7df6e6b64625c3a2d27ce07b05')}
       </span>
