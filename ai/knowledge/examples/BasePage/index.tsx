@@ -39,6 +39,8 @@ const BasePage: FC = () => {
         {!result ? <Skeleton /> : null}
       </Page.Main>
 
+      <Page.Footer></Page.Footer>
+
       {/* 暂无数据或错误 */}
       {result?.status === 'error' ? <Result status="error" title={result.message} /> : null}
     </Page>

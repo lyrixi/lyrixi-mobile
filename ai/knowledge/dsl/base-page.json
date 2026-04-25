@@ -29,7 +29,12 @@
     }
   },
   "view": {
-    "Header": {},
+    "Header": {
+      "SearchBar": {
+        "placeholder": "按名称/拼音/拼音首字母查询",
+        "value": "queryParams?.keyword"
+      }
+    },
     "Main": {},
     "Footer": {},
     "Skeleton": {}

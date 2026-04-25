@@ -3,7 +3,7 @@ import { LocaleUtil, ToolBar } from 'lyrixi-mobile'
 
 const locale = LocaleUtil.locale
 
-const Header: FC<Record<string, unknown>> = ({ queryParams, onQuery }) => {
+const Header: FC<Record<string, unknown>> = ({ queryParams: Record<string, unknown> | null, onQuery: (p: Record<string, unknown>) => void }) => {
   return (
     <ToolBar>
       <ToolBar.Search
