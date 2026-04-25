@@ -5,46 +5,6 @@ type LegacyIEScript = HTMLScriptElement & {
   readyState?: string
 }
 
-module.exports = function load(
-  src: string,
-  opts?: {
-    type?: string
-    async?: boolean
-    text?: string
-    attrs?: Record<string, string>
-    onError?: (r: { status: string; script: HTMLScriptElement; message: string }) => void
-    onSuccess?: (r: { status: string; script: HTMLScriptElement; message: string }) => void
-  }
-) {
-  const { type, async, text, attrs, onError, onSuccess } = opts || {}
-  let head = document.head || document.getElementsByTagName('head')[0]
-  let script = document.createElement('script')
-
-  script.type = type || 'text/javascript'
-  script.async = Boolean(async)
-  script.src = src
-
-  if (attrs) {
-    setAttributes(script, attrs)
-  }
-
-  if (text) {
-    script.text = '' + text
-  }
-
-  let onend = 'onload' in script ? stdOnEnd : ieOnEnd
-  onend(script, { onError, onSuccess })
-
-  // some good legacy browsers (firefox) fail the 'in' detection above
-  // so as a fallback we always set onload
-  // old IE will ignore this and new IE will set onload
-  if (!script.onload) {
-    stdOnEnd(script, { onError, onSuccess })
-  }
-
-  head.appendChild(script)
-}
-
 function setAttributes(script: HTMLScriptElement, attrs: Record<string, string>) {
   // eslint-disable-next-line
   for (let attr in attrs) {
@@ -105,4 +65,46 @@ function ieOnEnd(
   }
 }
 
-export {}
+export default function loadScript(
+  src: string,
+  opts?: {
+    type?: string
+    async?: boolean
+    text?: string
+    charset?: string
+    attrs?: Record<string, string>
+    onError?: (r: { status: string; script: HTMLScriptElement; message: string }) => void
+    onSuccess?: (r: { status: string; script: HTMLScriptElement; message: string }) => void
+  }
+) {
+  const { type, async, text, charset, attrs, onError, onSuccess } = opts || {}
+  let head = document.head || document.getElementsByTagName('head')[0]
+  let script = document.createElement('script')
+
+  script.type = type || 'text/javascript'
+  script.async = Boolean(async)
+  if (charset) {
+    script.setAttribute('charset', charset)
+  }
+  script.src = src
+
+  if (attrs) {
+    setAttributes(script, attrs)
+  }
+
+  if (text) {
+    script.text = '' + text
+  }
+
+  let onend = 'onload' in script ? stdOnEnd : ieOnEnd
+  onend(script, { onError, onSuccess })
+
+  // some good legacy browsers (firefox) fail the 'in' detection above
+  // so as a fallback we always set onload
+  // old IE will ignore this and new IE will set onload
+  if (!script.onload) {
+    stdOnEnd(script, { onError, onSuccess })
+  }
+
+  head.appendChild(script)
+}

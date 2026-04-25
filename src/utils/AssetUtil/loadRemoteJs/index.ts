@@ -1,3 +1,5 @@
+import loadScript from './loadscript'
+
 // 动态加载script的方法
 function loadRemoteJs(
   src: string,
@@ -36,7 +38,6 @@ function loadRemoteJs(
   if (referrerPolicy) attrs.referrerPolicy = referrerPolicy
 
   return new Promise((resolve) => {
-    const loadScript = require('./loadscript')
     loadScript(src, {
       async: async,
       charset: charset,
