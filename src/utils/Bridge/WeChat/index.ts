@@ -365,7 +365,9 @@ let Bridge = {
     const handleSuccess = async function (res: SDKResult) {
       // res.localIds 为数组，每一项是本地临时图片ID
       let localFiles: Array<Record<string, unknown>> = []
-      for (let localId of (res?.localIds as string[] | undefined) ?? []) {
+      // 先展开为变量，避免 Babel 对 for-of 右侧复杂类型表达式报错
+      const localIds: string[] = (res?.localIds as string[] | undefined) ?? []
+      for (const localId of localIds) {
         // 缩略图用base64显示, 非缩略图用localId显示
         let preview = await getPreview(localId)
         let localFile = {
