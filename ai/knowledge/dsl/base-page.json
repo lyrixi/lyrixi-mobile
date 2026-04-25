@@ -1,10 +1,7 @@
 {
   "refer": "ai/knowledge/examples/BasePage",
   "description": "用于详情、编辑、新增页面生成, 包含请求/数据处理层骨架。从本文件生成/改写同构页时，按 ai/knowledge/skills/base-page-dsl.md 中流程执行。",
-  "meta": {
-    "pageId": "",
-    "title": ""
-  },
+  "pageName": "BasePage",
   "api": {
     "queryData": {
       "url": "/api/examples/queryData.do",
