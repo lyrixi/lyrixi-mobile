@@ -1,6 +1,0 @@
-- 列表页筛选输入框**优先**使用 `Input.Text`。
-- 搜索交互中，工具条场景**优先**使用 `ToolBar.Search` / `ToolBar.SearchActive`，而不是直接拿 `Input.Search` 自己拼一套工具条。
-- 受控场景下，`value` 与 `onChange` **应**成对出现，避免显示值与真实值脱节。
-- 需要输入法落字后再触发 `onChange` 的场景，才使用 `enableCompositionEnd`。
-- **不得**把 `Input.Select` 当作对外公开的独立业务输入组件；源码已标注其为内部组件。
-- 数值、搜索、文本输入的职责不同，**不得**混用错误的子组件名称猜 API。
