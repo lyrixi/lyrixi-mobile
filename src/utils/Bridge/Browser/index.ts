@@ -265,7 +265,10 @@ let Browser = {
             default:
               code = 'LOCATION_ERROR'
               console.log(
-                `Browser ${LocaleUtil.locale('定位失败', 'lyrixi_9831baf6b76c1da7b69b463033b924cc')}`
+                `Browser ${LocaleUtil.locale(
+                  '定位失败',
+                  'lyrixi_9831baf6b76c1da7b69b463033b924cc'
+                )}`
               )
               message = `Browser ${LocaleUtil.locale(
                 '定位失败',
@@ -369,11 +372,10 @@ let Browser = {
     } = params || {}
     let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
-      onError &&
-        onError({
-          status: 'error',
-          message: `url error`
-        })
+      onError?.({
+        status: 'error',
+        message: `url error`
+      })
       return
     }
     if (!localFile?.filePath || !localFile?.fileType) {
@@ -437,7 +439,7 @@ let Browser = {
     Toast.show({
       content: message
     })
-    onError && onError({ status: 'error', message: message })
+    onError?.({ status: 'error', message: message })
   },
   share(params?: {
     title?: string
@@ -449,11 +451,10 @@ let Browser = {
   }) {
     const { url, onSuccess } = params || {}
     Clipboard.copyText(url || '')
-    onSuccess &&
-      onSuccess({
-        status: 'success',
-        data: undefined
-      })
+    onSuccess?.({
+      status: 'success',
+      data: undefined
+    })
   }
 }
 export default Browser

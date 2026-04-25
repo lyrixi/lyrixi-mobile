@@ -360,15 +360,14 @@ let Bridge = {
         error?.errorCode === 11 ||
         error?.errorCode === -1
       ) {
-        onCancel && onCancel()
+        onCancel?.()
       } else {
         console.error('钉钉uploadImage失败:', error)
-        onError &&
-          onError({
-            status: 'error',
-            code: String(error?.errorCode ?? '') || undefined,
-            message: error?.errorMessage || ''
-          })
+        onError?.({
+          status: 'error',
+          code: String(error?.errorCode ?? '') || undefined,
+          message: error?.errorMessage || ''
+        })
       }
     }
 

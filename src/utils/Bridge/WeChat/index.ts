@@ -463,11 +463,10 @@ let Bridge = {
 
     let url = (await getUploadUrl?.({ platform: 'wechat' })) || ''
     if (!url || typeof url !== 'string') {
-      onError &&
-        onError({
-          status: 'error',
-          message: `url error`
-        })
+      onError?.({
+        status: 'error',
+        message: `url error`
+      })
       return
     }
 
@@ -612,7 +611,7 @@ let Bridge = {
       Toast.show({
         content: message
       })
-      onError && onError({ status: 'error', message: message })
+      onError?.({ status: 'error', message: message })
       return
     }
 
@@ -695,11 +694,10 @@ let Bridge = {
     // 小程序中不支持h5分享，所以需要复制链接
     else {
       Clipboard.copyText(url || '')
-      onSuccess &&
-        onSuccess({
-          status: 'success',
-          data: undefined
-        })
+      onSuccess?.({
+        status: 'success',
+        data: undefined
+      })
     }
   }
 }

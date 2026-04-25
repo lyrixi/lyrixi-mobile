@@ -65,13 +65,20 @@ let Bridge = {
   },
   config: async function (params?: {
     getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
-    formatHeaders?: (h: Record<string, string>, ctx: { platform: string }) => Promise<Record<string, string>>
-    formatPayload?: (p: Record<string, unknown>, ctx: { platform: string }) => Promise<Record<string, unknown>>
+    formatHeaders?: (
+      h: Record<string, string>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, string>>
+    formatPayload?: (
+      p: Record<string, unknown>,
+      ctx: { platform: string }
+    ) => Promise<Record<string, unknown>>
     formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
     onSuccess?: (r: unknown) => void
     onError?: (r: unknown) => void
   }) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } = params || {}
+    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
+      params || {}
     // 获取配置url
     let url = ''
     if (typeof getConfigUrl === 'function') {
@@ -96,10 +103,7 @@ let Bridge = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: {
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
     const { onSuccess, onError } = params || {}
     ;(window.top ?? window).tt?.closeWindow?.({
       success: () => {
@@ -128,7 +132,16 @@ let Bridge = {
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
   }) {
-    const { latitude, longitude, type, name, address, scale: scaleIn, onSuccess, onError } = params || {}
+    const {
+      latitude,
+      longitude,
+      type,
+      name,
+      address,
+      scale: scaleIn,
+      onSuccess,
+      onError
+    } = params || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     let scale = scaleIn ?? 12
@@ -142,7 +155,7 @@ let Bridge = {
 
     ;(window.top ?? window).tt?.openLocation?.({
       latitude: coord?.latitude ?? 0,
-  longitude: coord?.longitude ?? 0,
+      longitude: coord?.longitude ?? 0,
       scale: scale,
       name: name,
       address: address,
@@ -167,7 +180,6 @@ let Bridge = {
     const { type, onSuccess, onError } = params || {}
     let targetType = type || 'gcj02'
     console.log('调用飞书定位...', type)
-
     ;(window.top ?? window).tt?.getLocation?.({
       type: targetType,
       success: (res: SDKResult) => {
@@ -181,7 +193,11 @@ let Bridge = {
         }
 
         if (res.type && res.type !== targetType) {
-          const points = GeoUtil.coordtransform([res.longitude ?? 0, res.latitude ?? 0], res.type ?? 'wgs84', targetType)
+          const points = GeoUtil.coordtransform(
+            [res.longitude ?? 0, res.latitude ?? 0],
+            res.type ?? 'wgs84',
+            targetType
+          )
 
           if (points) {
             data = {
@@ -245,7 +261,13 @@ let Bridge = {
   },
   previewMedia: function (params?: {
     index?: number
-    sources?: Array<Record<string, unknown> & { localFile?: { tempFileUrl?: string }; fileUrl?: string; fileType?: string }>
+    sources?: Array<
+      Record<string, unknown> & {
+        localFile?: { tempFileUrl?: string }
+        fileUrl?: string
+        fileType?: string
+      }
+    >
     onSuccess?: SuccessCallback
     onError?: ErrorCallback
     onCancel?: CancelCallback
@@ -300,7 +322,7 @@ let Bridge = {
       url: url,
       image: imageUrl,
       success() {
-        onSuccess && onSuccess()
+        onSuccess?.()
       },
       fail(err: SDKResult) {
         console.log('Lark Share onError:', err)

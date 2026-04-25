@@ -33,7 +33,11 @@ interface MapLoaderProps {
   loadingRender?: (() => React.ReactNode) | null
   loadingNode?: React.ReactNode
   children?: React.ReactNode
-  onError?: ((result: LoadResult & { reload?: () => void }) => Promise<LoadResult | undefined> | LoadResult | undefined | void) | null
+  onError?:
+    | ((
+        result: LoadResult & { reload?: () => void }
+      ) => Promise<LoadResult | undefined> | LoadResult | undefined | void)
+    | null
   onSuccess?: ((result: { status: string; map: { reload: () => void } }) => void) | null
 }
 
@@ -99,7 +103,7 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
         return
       }
 
-      let loadResult: LoadResult = await loadSource(window.MapLoaderConfig) as LoadResult
+      let loadResult: LoadResult = (await loadSource(window.MapLoaderConfig)) as LoadResult
       if (loadResult?.status === 'error') {
         if (onError) {
           const newResult = await onError({ ...loadResult, ...APIRef.current })
@@ -108,7 +112,7 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
           }
         }
       } else {
-        onSuccess && onSuccess({ status: 'success', map: APIRef.current })
+        onSuccess?.({ status: 'success', map: APIRef.current })
       }
       setResult(loadResult)
     }

@@ -62,23 +62,21 @@ function stdOnEnd(
   const { onError, onSuccess } = opts || {}
   script.onload = function () {
     this.onerror = this.onload = null
-    onSuccess &&
-      onSuccess({
-        status: 'success',
-        script: script,
-        message: ''
-      })
+    onSuccess?.({
+      status: 'success',
+      script: script,
+      message: ''
+    })
   }
   script.onerror = function () {
     // this.onload = null here is necessary
     // because even IE9 works not like others
     this.onerror = this.onload = null
-    onError &&
-      onError({
-        status: 'error',
-        script: script,
-        message: 'Failed to load ' + this.src
-      })
+    onError?.({
+      status: 'error',
+      script: script,
+      message: 'Failed to load ' + this.src
+    })
   }
 }
 
@@ -99,12 +97,11 @@ function ieOnEnd(
   s.onreadystatechange = function () {
     if (this.readyState !== 'complete' && this.readyState !== 'loaded') return
     this.onreadystatechange = null
-    onSuccess &&
-      onSuccess({
-        status: 'success',
-        script: script,
-        message: ''
-      })
+    onSuccess?.({
+      status: 'success',
+      script: script,
+      message: ''
+    })
   }
 }
 

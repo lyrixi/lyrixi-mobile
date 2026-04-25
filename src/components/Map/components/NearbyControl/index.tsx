@@ -45,109 +45,109 @@ export interface NearbyControlProps {
 
 // 附近推荐
 const Nearby = forwardRef<
-  { element: HTMLDivElement | null; getElement: () => HTMLDivElement | null; reload: () => void } | null,
+  {
+    element: HTMLDivElement | null
+    getElement: () => HTMLDivElement | null
+    reload: () => void
+  } | null,
   NearbyControlProps
->(
-  (
-    {
-      value,
-      radius,
-      readOnly,
-      nearbyVisible = true,
-      map,
-      onChange,
-      onSuccess,
-      onError
-    },
-    ref
-  ) => {
-    const rootRef = useRef<HTMLDivElement>(null)
+>(({ value, radius, readOnly, nearbyVisible = true, map, onChange, onSuccess, onError }, ref) => {
+  const rootRef = useRef<HTMLDivElement>(null)
 
-    const [result, setResult] = useState<QueryNearbyResult | null>(null)
-    const [tab, setTab] = useState(getTabs()[0])
+  const [result, setResult] = useState<QueryNearbyResult | null>(null)
+  const [tab, setTab] = useState(getTabs()[0])
 
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current,
-        reload: loadData
-      }
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current,
+      reload: loadData
+    }
+  })
+
+  useEffect(() => {
+    if (
+      !nearbyVisible ||
+      readOnly ||
+      !tab?.name ||
+      !value?.longitude ||
+      !value?.latitude ||
+      Loading.exists()
+    )
+      return
+    if (!map) return
+    void loadData()
+    // eslint-disable-next-line
+  }, [JSON.stringify(tab), JSON.stringify(value)])
+
+  async function loadData() {
+    if (!map) return
+    const loadMsg = LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
+    Loading.show({
+      content: typeof loadMsg === 'string' ? loadMsg : '…'
     })
+    const newResult = (await map.queryNearby({
+      map: map,
+      keyword: (tab as { id?: string; name?: string }).id || tab.name,
+      longitude: value?.longitude,
+      latitude: value?.latitude,
+      type: value?.type,
+      radius: radius
+    })) as QueryNearbyResult
+    Loading.hide()
 
-    useEffect(() => {
-      if (!nearbyVisible || readOnly || !tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
-      if (!map) return
-      void loadData()
-      // eslint-disable-next-line
-    }, [JSON.stringify(tab), JSON.stringify(value)])
+    setResult(newResult)
 
-    async function loadData() {
-      if (!map) return
-      const loadMsg = LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
-      Loading.show({
-        content: typeof loadMsg === 'string' ? loadMsg : '…'
-      })
-      const newResult = (await map.queryNearby({
-        map: map,
-        keyword: (tab as { id?: string; name?: string }).id || tab.name,
-        longitude: value?.longitude,
-        latitude: value?.latitude,
-        type: value?.type,
-        radius: radius
-      })) as QueryNearbyResult
-      Loading.hide()
-
-      setResult(newResult)
-
-      const contentElement = rootRef.current?.querySelector<HTMLElement>('.lyrixi-map-nearbyControl-main')
-      if (contentElement) {
-        contentElement.scrollTop = 0
-      }
-
-      if (newResult.status === 'success') {
-        onSuccess && onSuccess(newResult)
-      } else {
-        onError && onError(newResult)
-      }
+    const contentElement = rootRef.current?.querySelector<HTMLElement>(
+      '.lyrixi-map-nearbyControl-main'
+    )
+    if (contentElement) {
+      contentElement.scrollTop = 0
     }
 
-    return (
-      <div className="lyrixi-map-nearbyControl" ref={rootRef}>
-        <Current
-          map={map}
-          readOnly={readOnly}
-          value={value}
-          onChange={(item) => {
-            onChange && onChange(item)
-          }}
-        />
-
-        {!nearbyVisible || readOnly ? null : (
-          <>
-            <Toggle />
-
-            <div className="lyrixi-map-nearbyControl-body">
-              <Tabs tab={tab} onChange={setTab} />
-
-              <Main
-                result={result}
-                value={value}
-                onChange={(item: Record<string, unknown>) => {
-                  if (map) {
-                    map.panTo({
-                      longitude: item.longitude as number | string,
-                      latitude: item.latitude as number | string,
-                      type: item.type as string | undefined
-                    })
-                  }
-                  onChange && onChange(item)
-                }}
-              />
-            </div>
-          </>
-        )}
-      </div>
-    )
+    if (newResult.status === 'success') {
+      onSuccess?.(newResult)
+    } else {
+      onError?.(newResult)
+    }
   }
-)
+
+  return (
+    <div className="lyrixi-map-nearbyControl" ref={rootRef}>
+      <Current
+        map={map}
+        readOnly={readOnly}
+        value={value}
+        onChange={(item) => {
+          onChange && onChange(item)
+        }}
+      />
+
+      {!nearbyVisible || readOnly ? null : (
+        <>
+          <Toggle />
+
+          <div className="lyrixi-map-nearbyControl-body">
+            <Tabs tab={tab} onChange={setTab} />
+
+            <Main
+              result={result}
+              value={value}
+              onChange={(item: Record<string, unknown>) => {
+                if (map) {
+                  map.panTo({
+                    longitude: item.longitude as number | string,
+                    latitude: item.latitude as number | string,
+                    type: item.type as string | undefined
+                  })
+                }
+                onChange && onChange(item)
+              }}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  )
+})
 export default Nearby

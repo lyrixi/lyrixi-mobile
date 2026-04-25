@@ -18,7 +18,7 @@ function loadImage(
       }
       resolve(result)
       // 支持新的 onSuccess
-      onSuccess && onSuccess(result)
+      onSuccess?.(result)
     }
     img.onerror = function () {
       let result = {
@@ -28,7 +28,7 @@ function loadImage(
       }
       resolve(result)
       // 支持新的 onError
-      onError && onError(result)
+      onError?.(result)
     }
   })
 }
