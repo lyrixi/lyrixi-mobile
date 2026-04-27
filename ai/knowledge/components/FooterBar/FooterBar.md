@@ -5,7 +5,7 @@
 - `FooterBar`
 - `FooterBar.Button`
 
-## Usage
+## 只有按钮
 
 ```tsx
 <FooterBar>
@@ -18,4 +18,15 @@
 </FooterBar>
 ```
 
-若按钮需要弹出 `ActionSheet.Modal`，可给 `FooterBar.Button` 传 `list`。
+## 按钮列表
+
+```tsx
+<FooterBar>
+  <FooterBar.Button block backgroundColor="default" onClick={onClose}>
+    取消
+  </FooterBar.Button>
+  <FooterBar.Button block color="white" backgroundColor="primary" onClick={onConfirm}>
+    确定
+  </FooterBar.Button>
+</FooterBar>
+```
