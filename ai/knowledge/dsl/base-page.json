@@ -14,8 +14,8 @@
         "keyword": "queryParams.keyword"
       },
       "response": {
-        "code:result.status": "1:成功;其它:失败",
-        "rows:result.data": [
+        "code转成result.status": "1:成功;其它:失败",
+        "rows转成result.data<Array<Record<string, unknown>>": [
           {
             "idStr": "转成id字段",
             "nameStr": "转成name字段",
@@ -24,7 +24,7 @@
             "updateTime": "转成description字段"
           }
         ],
-        "errMsg:result.message": "获取数据成功"
+        "errMsg转成result.message": "获取数据成功"
       }
     }
   },

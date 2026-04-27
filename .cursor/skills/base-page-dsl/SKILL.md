@@ -24,12 +24,12 @@ api 用于发请求, 组装数据, 构建 result;
 `[动态字段]:queryParams.[动态字段]`: 通过`toServerParams(queryParams)`转成服务器所需要的数据, `toServerParams`的转换方法则是`[动态字段] = queryParams.[动态字段]`;
 ```
 
-5. response: 本质上是将后台返回的结果转成本地的 state(result), json 中的 response 为转换的映射关系, 格式为`"[服务器字段名称]:result?.[status|data|message]]": "服务器返回值的说明"`, 其中`[服务器字段名称]`根据冒号后面的定义也可称为`status服务器插槽字段|data服务器插槽字段|message服务器插槽字段`, 其中`result.data`需要用 toData 转为本地数据, 若 json 中未定义 response 的映射, 则使用默认值:
+5. response: 本质上是将后台返回的结果转成本地的 state(result), json 中的 response 为转换的映射关系, 格式为`"[服务器字段名称]转成result?.[status|data|message]]": "服务器返回值的说明"`, 其中`[服务器字段名称]`根据冒号后面的定义也可称为`status服务器插槽字段|data服务器插槽字段|message服务器插槽字段`, 其中`result.data`需要用 toData 转为本地数据, 若 json 中未定义 response 的映射, 则使用默认值:
 
 ```bash
-result.status: 若json中未指定`"[服务器字段]:result.status"`, 则默认读取code, code的状态码若无说明, 则默认为 1 成功，其它失败, 成功 result.status = 'success', 失败 result.status = 'error';
-result.data: 若json中未指定`"[服务器字段]:result.data"`, result.data = 服务器响应结果.data, 若 服务器响应结果.data 的数据为空, 则 result.status 为 empty, 用toData强制转换数据的name;
-result.message: 若json中未指定`"[服务器字段]:result.message"`, 失败时为错误信息，成功时为成功信息, 对应 result.message
+result.status: 若json中未指定`"[服务器字段]转成result.status"`, 则默认读取code, code的状态码若无说明, 则默认为 1 成功，其它失败, 成功 result.status = 'success', 失败 result.status = 'error';
+result.data: 若json中未指定`"[服务器字段]转成result.data"`, result.data = 服务器响应结果.data, 若 服务器响应结果.data 的数据为空, 则 result.status 为 empty, 用toData强制转换数据的name;
+result.message: 若json中未指定`"[服务器字段]转成result.message"`, 失败时为错误信息，成功时为成功信息, 对应 result.message
 ```
 
 # view
