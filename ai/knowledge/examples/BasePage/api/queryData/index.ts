@@ -45,8 +45,11 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
         const response: RawResult<Record<string, unknown>> = raw as RawResult<
           Record<string, unknown>
         >
-        if (response.code === 'code:result.status插槽值的成功值') {
-          if (ObjectUtil.isEmpty(response.data)) {
+        if (
+          response?.['status服务器插槽字段'] ===
+          '[status服务器插槽字段]:result.status插槽值的成功值'
+        ) {
+          if (ObjectUtil.isEmpty(response?.['data服务器插槽字段'])) {
             resolve({
               status: 'error',
               message: locale('暂无数据'),
@@ -54,17 +57,17 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
             })
             return
           }
-          const mapped = toData(response.data as Record<string, unknown>) as T
+          const data = toData(response?.['data服务器插槽字段'] as Record<string, unknown>) as T
           resolve({
             status: 'success',
-            message: response.message,
-            data: mapped
+            message: response?.['message服务器插槽字段'],
+            data: data
           })
           return
         }
         resolve({
           status: 'error',
-          message: result.message || locale('获取数据错误！'),
+          message: response?.['message服务器插槽字段'] || locale('获取数据错误！'),
           data: undefined
         })
       })
