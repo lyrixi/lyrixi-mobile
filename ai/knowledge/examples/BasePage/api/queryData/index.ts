@@ -13,8 +13,8 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
   queryParams: Record<string, unknown> | null | undefined
 ): Promise<QueryResult<T>> {
   return new Promise((resolve) => {
-    const id = Device.getUrlParameter('id')
-
+    // payload.id插槽值: 开始
+    const id = `payload.id插槽值`
     if (!id) {
       resolve({
         status: 'error',
@@ -23,18 +23,21 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
       })
       return
     }
+    // payload.id插槽值: 结束
 
     Loading.show()
-    Request.post(
-      '/api/examples/queryData.do',
+    Request?.[`method插槽值`](
+      'url插槽值',
       {
+        // payload.id插槽值: 开始
         id: id,
+        // payload.id插槽值: 结束
+        // payload.queryParams插槽值: 开始
         ...toServerParams(queryParams as Record<string, unknown>)
+        // payload.queryParams插槽值: 结束
       },
       {
-        headers: {
-          'content-type': 'application/json'
-        }
+        headers: `headers插槽值`
       }
     )
       .then((raw: unknown) => {
