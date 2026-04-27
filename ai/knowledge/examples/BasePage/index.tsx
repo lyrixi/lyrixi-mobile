@@ -14,10 +14,10 @@ const BasePage: FC = () => {
 
   async function loadData(): Promise<void> {
     Loading.show()
-    const next: QueryResult<Record<string, unknown>> = await queryData<Record<string, unknown>>(
-      queryParams ?? {}
-    )
-    setResult(next)
+    const newResult: QueryResult<Record<string, unknown>> = await queryData<
+      Record<string, unknown>
+    >(queryParams ?? {})
+    setResult(newResult)
     Loading.hide()
   }
 
@@ -27,16 +27,21 @@ const BasePage: FC = () => {
 
   return (
     <Page>
+      {/* Header组件插槽: start */}
       <Page.Header>
-        {/* 搜索栏 */}
+        {/* Header.SearchBar组件插槽: start */}
         <SearchBar queryParams={queryParams} onQuery={setQueryParams} />
+        {/* Header.SearchBar组件插槽: end */}
       </Page.Header>
+      {/* Header组件插槽: end */}
 
       <Page.Main>
-        {/* 主体内容 */}
+        {/* Main组件插槽: start */}
         {result?.status === 'success' ? <Content data={result.data} /> : null}
-        {/* 加载中 */}
+        {/* Main组件插槽: end */}
+        {/* Skeleton组件插槽: start */}
         {!result ? <Skeleton /> : null}
+        {/* Skeleton组件插槽: end */}
       </Page.Main>
 
       <Page.Footer></Page.Footer>

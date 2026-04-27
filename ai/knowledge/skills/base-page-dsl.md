@@ -27,7 +27,11 @@ api 用于发请求, 组装数据, 构建 result;
 5. response: 本质上是将后台返回的结果转成本地的 state(result), json 中的 response 为转换的映射关系, 格式为`"[服务器字段]:result?.[status|data|message]]": "服务器返回值的说明"`, 其中`result.data`需要用 toData 转为本地数据, 若 json 中未定义 response 的映射, 则使用默认值:
 
 ```bash
-result.status: 若json中未指定`:result.status`, 则默认读取code, code的状态码若无说明, 则默认为 1 成功，其它失败, 成功 result.status = 'success', 失败 result.status = 'error';
-result.data: 若json中未指定`:result.data`, result.data = 服务器响应结果.data, 若 服务器响应结果.data 的数据为空, 则 result.status 为 empty, 用toData强制转换数据的name;
-result.message: 若json中未指定`:result.message`, 失败时为错误信息，成功时为成功信息, 对应 result.message
+result.status: 若json中未指定`"[服务器字段]:result.status"`, 则默认读取code, code的状态码若无说明, 则默认为 1 成功，其它失败, 成功 result.status = 'success', 失败 result.status = 'error';
+result.data: 若json中未指定`"[服务器字段]:result.data"`, result.data = 服务器响应结果.data, 若 服务器响应结果.data 的数据为空, 则 result.status 为 empty, 用toData强制转换数据的name;
+result.message: 若json中未指定`"[服务器字段]:result.message"`, 失败时为错误信息，成功时为成功信息, 对应 result.message
 ```
+
+# view
+
+定义页面上显示的组件, 格式为: `"组件名称(Header|Main|Footer|Skeleton)": 配置`, 若未定义对应组件则将则组件的代码删除
