@@ -7,7 +7,7 @@ import toServerParams from './toServerParams'
 const locale = LocaleUtil.locale
 
 /**
- * 首屏/详情加载。`T` 为 `data` 业务类型，默认 `Record<string, unknown>`。业务有强类型时写 `queryData<MyRow>()` 并在本文件内对成功数据做合法收窄或 `as T`。
+ * 加载数据
  */
 function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
   queryParams: Record<string, unknown> | null | undefined
@@ -42,11 +42,11 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
     )
       .then((raw: unknown) => {
         Loading.hide()
-        // 不要修改response, data变量名称
+        // 不要修改response, data变量名称(生成代码时删除此注释)
         const response: RawResult<Record<string, unknown>> = raw as RawResult<
           Record<string, unknown>
         >
-        // 不要重新定义SUCCESS_CODE, 直接使用['status服务器插槽字段']的值作为成功值, 例如:"code:result.status": "1:成功;其它:失败", 就生成: response.code === '1'
+        // 不要重新定义SUCCESS_CODE, 直接使用['status服务器插槽字段']的值作为成功值, 例如:"code:result.status": "1:成功;其它:失败", 就生成: response.code === '1'(生成代码时删除此注释)
         if (
           response?.['status服务器插槽字段'] ===
           '[status服务器插槽字段]:result.status插槽值的成功值'
