@@ -42,9 +42,11 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
     )
       .then((raw: unknown) => {
         Loading.hide()
+        // 不要修改response, data变量名称
         const response: RawResult<Record<string, unknown>> = raw as RawResult<
           Record<string, unknown>
         >
+        // 不要重新定义SUCCESS_CODE, 直接使用['status服务器插槽字段']的值作为成功值, 例如:"code:result.status": "1:成功;其它:失败", 就生成: response.code === '1'
         if (
           response?.['status服务器插槽字段'] ===
           '[status服务器插槽字段]:result.status插槽值的成功值'
