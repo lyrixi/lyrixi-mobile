@@ -19,7 +19,7 @@
 执行以下命令， 将把 rule 会生成到项目的.cursor 中
 
 ```
-npx lyrixi-mobile-ai
+npx lyrixi-mobile:ai
 ```
 
 ## 业务使用知识库
