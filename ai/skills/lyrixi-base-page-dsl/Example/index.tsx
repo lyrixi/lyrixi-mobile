@@ -1,4 +1,4 @@
-// 对应 DSL: .cursor/skills/base-page-dsl/DSL.json → .cursor/skills/base-page-dsl/Example
+// 对应 DSL: .cursor/skills/lyrixi-base-page-dsl/DSL.json → .cursor/skills/lyrixi-base-page-dsl/Example
 import React, { useEffect, useState, type FC } from 'react'
 import { Page, Result, Skeleton, Loading } from 'lyrixi-mobile'
 
