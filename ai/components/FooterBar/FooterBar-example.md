@@ -1,4 +1,4 @@
-# FooterBar
+# FooterBar Example
 
 底部操作条容器。列表页筛选弹层、页面底部固定动作区都适合使用：
 
