@@ -1,0 +1,12 @@
+{
+  "components": [
+    {
+      "keywords": "Page|页面",
+      "name": "Page",
+      "props": ".cursor/knowledge/components/Page/Page-props.json",
+      "rule": ".cursor/knowledge/components/Page/Page-rules.md",
+      "example": ".cursor/knowledge/components/Page/Page-example.md"
+    }
+  ],
+  "utils": [{}]
+}

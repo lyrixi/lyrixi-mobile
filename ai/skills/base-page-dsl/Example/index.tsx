@@ -1,4 +1,4 @@
-// 对应 DSL: ai/knowledge/dsl/base-page.json → ai/knowledge/examples/BasePage
+// 对应 DSL: ai/skills/base-page-dsl/DSL.json → ai/skills/base-page-dsl/Example
 import React, { useEffect, useState, type FC } from 'react'
 import { Page, Result, Skeleton, Loading } from 'lyrixi-mobile'
 
@@ -8,7 +8,7 @@ import SearchBar from './SearchBar'
 import Content from './Content'
 
 // 页面名称: types业务侧根据各自的业务自行修改
-const BasePage: FC = () => {
+const Example: FC = () => {
   const [queryParams, setQueryParams] = useState<Record<string, unknown> | null>(null)
   const [result, setResult] = useState<QueryResult<Record<string, unknown>> | null>(null)
 
@@ -52,4 +52,4 @@ const BasePage: FC = () => {
   )
 }
 
-export default BasePage
+export default Example
