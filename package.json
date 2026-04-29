@@ -35,10 +35,7 @@
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "bin": {
-    "lyrixi-mobile-ai": "./ai/lyrixi-mobile-ai.cjs"
-  },
-  "dependencies": {
-    "tsx": "^4.19.2"
+    "lyrixi-mobile-ai": "./ai/init.js"
   },
   "files": [
     "ai",
@@ -123,6 +120,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "stylelint": "^14.9.1",
+    "tsx": "^4.19.2",
     "typescript": "~5.6.0"
   },
   "peerDependencies": {

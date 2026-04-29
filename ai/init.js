@@ -1,11 +1,10 @@
-import * as fs from 'node:fs'
-import * as path from 'node:path'
-import { fileURLToPath } from 'node:url'
+/**
+ * npx终端不支持ts, 所以这里使用js
+ */
+const fs = require('node:fs')
+const path = require('node:path')
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-function copyRecursive(src: string, dest: string): void {
+function copyRecursive(src, dest) {
   const stat = fs.statSync(src)
   if (stat.isDirectory()) {
     fs.mkdirSync(dest, { recursive: true })
@@ -18,9 +17,7 @@ function copyRecursive(src: string, dest: string): void {
   fs.copyFileSync(src, dest)
 }
 
-type CopyTask = { label: string; from: string; to: string }
-
-function main(): void {
+function main() {
   const projectRoot = process.cwd()
   const packageRoot = path.join(__dirname, '..')
   const aiDir = path.join(packageRoot, 'ai')
@@ -31,22 +28,14 @@ function main(): void {
   }
 
   const cursorDir = path.join(projectRoot, '.cursor')
-  const tasks: CopyTask[] = [
+  const tasks = [
     {
       label: 'lyrixi-knowledge',
       from: path.join(aiDir, 'lyrixi-knowledge'),
       to: path.join(cursorDir, 'lyrixi-knowledge')
     },
-    {
-      label: 'rules',
-      from: path.join(aiDir, 'rules'),
-      to: path.join(cursorDir, 'rules')
-    },
-    {
-      label: 'skills',
-      from: path.join(aiDir, 'skills'),
-      to: path.join(cursorDir, 'skills')
-    }
+    { label: 'rules', from: path.join(aiDir, 'rules'), to: path.join(cursorDir, 'rules') },
+    { label: 'skills', from: path.join(aiDir, 'skills'), to: path.join(cursorDir, 'skills') }
   ]
 
   for (const { label, from, to } of tasks) {

@@ -16,7 +16,7 @@
 
 ## 业务加载知识库
 
-执行以下命令，将把 `ai/lyrixi-knowledge`、`ai/rules/**`、`ai/skills/**` 同步到当前项目下的 `.cursor/lyrixi-knowledge`、`.cursor/rules`、`.cursor/skills`（实现见 `ai/init.ts`）
+执行以下命令，将把 `ai/lyrixi-knowledge`、`ai/rules/**`、`ai/skills/**` 同步到当前项目下的 `.cursor/lyrixi-knowledge`、`.cursor/rules`、`.cursor/skills`（实现见 `ai/init.js`）
 
 ```
 npx lyrixi-mobile-ai
