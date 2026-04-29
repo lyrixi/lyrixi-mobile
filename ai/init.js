@@ -1,6 +1,5 @@
-/**
- * npx终端不支持ts, 所以这里使用js
- */
+#!/usr/bin/env node
+// package.json 的 bin 入口首行必须是 #! + node，否则 npx/系统可能用 sh 执行本文件，会报 import/const 等「command not found」。另：bin 不能指向 .ts，需纯 JS。
 const fs = require('node:fs')
 const path = require('node:path')
 
