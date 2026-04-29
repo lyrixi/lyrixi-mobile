@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
@@ -6,8 +8,6 @@ import DateUtil from './../../../utils/DateUtil'
 /* 测试使用-start
 import { LocaleUtil, DateUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { ReactNode } from 'react'
 
 export type IsDisabledError = {
   code: string

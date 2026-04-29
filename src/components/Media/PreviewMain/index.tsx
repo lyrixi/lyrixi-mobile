@@ -5,7 +5,8 @@ import React, {
   useRef,
   useState,
   type CSSProperties,
-  type Ref
+  type Ref,
+  type SyntheticEvent
 } from 'react'
 // Compatible with lower version
 // import 'core-js/es/array/flat'
@@ -39,7 +40,6 @@ import { LocaleUtil, DOMUtil, Device, SafeArea, Toast, VideoPlayer } from 'lyrix
 测试使用-end */
 
 import type { MediaListItem, FileImageCompressOptions, MediaComponentProps } from './../types'
-import type { SyntheticEvent } from 'react'
 
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''

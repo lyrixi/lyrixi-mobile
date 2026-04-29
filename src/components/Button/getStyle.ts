@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react'
+
 // 内库使用-start
 import MathUtil from './../../utils/MathUtil'
 import DOMUtil from './../../utils/DOMUtil'
@@ -6,8 +8,6 @@ import DOMUtil from './../../utils/DOMUtil'
 /* 测试使用-start
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { CSSProperties } from 'react'
 
 export interface GetStyleParams {
   direction?: string
