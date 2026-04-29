@@ -1,0 +1,51 @@
+{
+  "Page": {
+    "safeArea": "boolean | undefined — 是否在末尾附加 SafeArea",
+    "full": "boolean | undefined — 是否附加 lyrixi-full，默认 true",
+    "layout": "'horizontal' | 'vertical' | undefined — 页面 flex 布局方向",
+    "animation": "string | undefined — 写入 data-animation",
+    "style": "CSSProperties | undefined — 根节点样式",
+    "className": "string | undefined — 根节点类名",
+    "children": "ReactNode | undefined — 页面内容"
+  },
+  "Page.ref": {
+    "element": "HTMLElement | null — 根 DOM",
+    "getElement": "() => HTMLElement | null"
+  },
+  "Page.Header": {
+    "safeArea": "boolean | undefined — 是否附加 SafeArea",
+    "style": "CSSProperties | undefined",
+    "className": "string | undefined",
+    "children": "ReactNode | undefined"
+  },
+  "Page.Header.ref": {
+    "element": "HTMLElement | null",
+    "getElement": "() => HTMLElement | null"
+  },
+  "Page.Main": {
+    "threshold": "number | undefined — 下拉刷新触发阈值，默认 50",
+    "safeArea": "boolean | undefined — 是否附加 SafeArea",
+    "touchStopPropagation": "boolean | undefined — 触摸事件是否阻止冒泡，默认 true",
+    "style": "CSSProperties | undefined",
+    "className": "string | undefined",
+    "children": "ReactNode | undefined",
+    "onTopRefresh": "() => boolean | string | undefined | Promise<boolean | string | undefined> — 下拉刷新回调",
+    "onBottomRefresh": "() => void | Promise<void> — 触底加载回调",
+    "onScroll": "(e) => void | undefined — 滚动中回调",
+    "onScrollEnd": "(e) => void | undefined — 停止滚动后的回调"
+  },
+  "Page.Main.ref": {
+    "element": "HTMLElement | null",
+    "getElement": "() => HTMLElement | null"
+  },
+  "Page.Footer": {
+    "safeArea": "boolean | undefined — 是否附加 SafeArea",
+    "style": "CSSProperties | undefined",
+    "className": "string | undefined",
+    "children": "ReactNode | undefined"
+  },
+  "Page.Footer.ref": {
+    "element": "HTMLElement | null",
+    "getElement": "() => HTMLElement | null"
+  }
+}

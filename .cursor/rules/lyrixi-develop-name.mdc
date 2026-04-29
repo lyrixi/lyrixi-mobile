@@ -1,0 +1,112 @@
+---
+description: 业务项目开发规范（页面结构与命名、值与事件）
+globs:
+  - '**/*.{js,jsx,ts,tsx}'
+alwaysApply: false
+---
+
+# 命名规范
+
+## 页面名称
+
+总则: **参考主流前端习惯**, 使用**意义贴切、可读性好的英文**, 避免拼音与无意义缩写。
+
+- 列表后缀：`List`
+- 明细列表后缀(List 下钻仍然是列表时使用此命名)：`Record`
+- 编辑后缀：`Edit`
+- 详情后缀（只读展示）：`Detail`
+
+## 页面结构
+
+### api 文件夹
+
+所有的数据封装与转换、数据请求、数据响应都在 api 里完成
+
+1. 数据请求方法名:
+
+- 增/改提交: `saveXxx`
+- 删除: `deleteXxx`
+- 查询: `queryXxx`
+
+2. 数据封装与转换：
+
+- 前端数据转成服务端所需数据: `serverXxx`，如 `serverData`、`serverPhoto`
+- 服务端数据转成前端数据: `localXxx`，如 `localData`、`localPhoto`
+
+### utils 工具文件夹
+
+页面级的工具方法
+
+### Header 组件文件夹
+
+渲染头部内容(包含 Filter 筛选组件等), 暴露操作的方法, 例如: onSearch 等
+
+### Footer 组件文件夹
+
+渲染底部内容, 暴露操作的方法, 例如: onSave 等
+
+### Main 组件文件夹
+
+渲染中间主区域, 暴露操作的方法, 例如: onChange 等
+
+### index 页面入口文件
+
+- 查询参数: `[queryParams, setQueryParams] = useState(null)`
+- 加载数据: 引入`api`, 定义`loadData`调用 api 的 queryData
+- 渲染页面: 引入`Header`、`Main`、`Footer`
+
+示例:
+
+```jsx
+const Common = () => {
+  // 查询参数
+  let [queryParams, setQueryParams] = useState({})
+
+  return (
+    <Page>
+      {/* 头部 */}
+      <Header
+        queryParams={queryParams}
+        onSearch={(newQueryParams) => {
+          queryParams = newQueryParams
+          setQueryParams(newQueryParams)
+        }}
+      />
+
+      {/* 主体 */}
+      <Main queryParams={queryParams} />
+
+      {/* 底部 */}
+      <Footer onSave={handleSave} />
+    </Page>
+  )
+}
+```
+
+## className 类名
+
+`项目前缀(可以防冲突)-功能名`, 多个样式, 使用`DOMUtil.classNames`包裹
+
+## Ref 和实体 DOM 命名
+
+- React ref 命名：`xxRef`，如 `rootRef`、`listRef`
+- 保存真实 DOM 节点变量：`xxElement`，如 `rootElement`、`inputElement`
+
+## 值结构约定
+
+- 单选值通常为：`{ id, name }`
+- 多选值通常为：`Array<{ id, name }>`
+- 列表数据通常为：`[{ id, name, ... }]`
+- 通过 `onChange` / `onSelect` 更新受控值
+
+## 事件约定
+
+- **Props 回调命名**：`on` + 大写首字母的事件语义，即 `onXxx` 形式；若中间含名词，名词放在 `on` 之后、事件语义之前。
+  - 示例：`onVisibleChange`、`onButtonClick`、`onSearch`、`onSelect`
+- **组件内处理函数命名**：与 props 对应，`handle` + 与 `on` 后相同的一段。
+  - 示例：`onChange` → `handleChange`；`onVisibleChange` → `handleVisibleChange`；`onButtonClick` → `handleButtonClick`
+
+### Props 属性命名
+
+- **启用/禁用**：动词在前 — `enableXxx`、`disableXxx`
+- **显隐**：优先 `visible`；若语义上 `visible` 不能准确表达，则用 **`xxVisible`**

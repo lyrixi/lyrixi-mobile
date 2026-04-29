@@ -1,0 +1,42 @@
+{
+  "example": ".cursor/skills/lyrixi-base-page-dsl/Example",
+  "description": "用于详情、编辑、新增页面生成, 包含请求/数据处理层骨架。从本文件生成/改写同构页时，按 .cursor/skills/base-page-dsl/SKILL.md 中流程执行。",
+  "path": "src/examples/Test",
+  "api": {
+    "queryData": {
+      "url": "/api/examples/queryData.do",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "payload": {
+        "id": "Device.getUrlParameter('id')",
+        "keyword": "queryParams.keyword"
+      },
+      "response": {
+        "code->result.status": "1:成功;其它:失败",
+        "rows->result.data<Array<Record<string, unknown>>": [
+          {
+            "idStr": "->id",
+            "nameStr": "->name",
+            "introduce": "->description",
+            "createTime": "->description",
+            "updateTime": "->description"
+          }
+        ],
+        "errMsg->result.message": "动态信息"
+      }
+    }
+  },
+  "view": {
+    "Header": {
+      "SearchBar": {
+        "placeholder": "按名称/拼音/拼音首字母查询",
+        "value": "queryParams?.keyword"
+      }
+    },
+    "Main": {},
+    "Footer": {},
+    "Skeleton": {}
+  }
+}
