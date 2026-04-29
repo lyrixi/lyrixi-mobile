@@ -6,7 +6,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
 
 interface MessageMainRef {
   element: HTMLElement | null

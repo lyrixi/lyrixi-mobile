@@ -7,7 +7,7 @@ import NavBar from './../../../NavBar'
 
 /* 测试使用-start
 import { Icon, NavBar } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
 
 interface CancelProps {
   onClick?: (e: MouseEvent<HTMLDivElement>) => void

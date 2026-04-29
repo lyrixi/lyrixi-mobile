@@ -7,7 +7,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 
 /* 测试使用-start
 import { NavBar, LocaleUtil } from 'lyrixi-mobile'
-测试使用-start */
+测试使用-end */
 
 interface OkProps {
   total?: number
