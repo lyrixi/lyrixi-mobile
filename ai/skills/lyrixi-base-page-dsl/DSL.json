@@ -1,6 +1,6 @@
 {
   "example": ".cursor/skills/lyrixi-base-page-dsl/Example",
-  "description": "用于详情、编辑、新增页面生成, 包含请求/数据处理层骨架。从本文件生成/改写同构页时，按 .cursor/skills/base-page-dsl/SKILL.md 中流程执行。",
+  "description": "用于详情、编辑、新增页面生成, 包含请求/数据处理层骨架。从本文件生成/改写同构页时，按 .cursor/skills/lyrixi-base-page-dsl/SKILL.md 中流程执行。",
   "path": "src/examples/Test",
   "api": {
     "queryData": {
