@@ -8,9 +8,9 @@
 
 ## DSL 生成生成级代码(用 DSL 提示词)
 
-- **`knowledge/components`**：定义了组件的使用方法
-- **`knowledge/utils`**：定义了工具的使用方法
-- **`knowledge/mappings.json`**：决定用什么组件, 会根据提示词自动匹配使用哪个组件
+- **`lyrixi-knowledge/components`**：定义了组件的使用方法
+- **`lyrixi-knowledge/utils`**：定义了工具的使用方法
+- **`lyrixi-knowledge/mappings.json`**：决定用什么组件, 会根据提示词自动匹配使用哪个组件
 
 - **`skills/dsl`**：skill + 定制 dsl.json -> 读取 Example, 并通过插槽定制功能 -> 生成生产级代码
 
