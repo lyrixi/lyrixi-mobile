@@ -4,7 +4,7 @@
 
 # path
 
-代码生成到的本地路径
+代码生成到的本地路径, 入口页面类名需要和 Path 的末级名一致, 例如: `src/examples/Test`页面类名则为`Test`
 
 # api
 
