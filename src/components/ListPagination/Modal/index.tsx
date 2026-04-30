@@ -123,7 +123,7 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
       }
     }, [open, value])
 
-    function getHeaderNode() {
+    function renderHeader() {
       if (typeof headerRender === 'function') {
         return headerRender({
           open: open,
@@ -176,7 +176,7 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
         onClose={onClose}
         onOk={handleOk}
       >
-        {getHeaderNode()}
+        {renderHeader()}
 
         {open && (
           <Main

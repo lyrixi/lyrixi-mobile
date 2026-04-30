@@ -22,7 +22,7 @@ const InfiniteScroll = ({
   // Elements
   content
 }: InfiniteScrollProps) => {
-  function getStatusNode() {
+  function renderStatus() {
     if (!status || typeof status !== 'string') return null
 
     if (status === 'loading') {
@@ -60,7 +60,7 @@ const InfiniteScroll = ({
     )
   }
 
-  return <div className="lyrixi-list-infinitescroll">{getStatusNode()}</div>
+  return <div className="lyrixi-list-infinitescroll">{renderStatus()}</div>
 }
 
 export default InfiniteScroll

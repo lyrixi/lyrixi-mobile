@@ -59,13 +59,13 @@ const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
       if (onChange) onChange(!checked)
     }
 
-    function getIconNode() {
+    function renderIcon() {
       if (typeof iconRender === 'function') {
         return iconRender({ checked })
       }
       return <Icon variant={variant} checked={checked} />
     }
-    const IconNode = getIconNode()
+    const IconNode = renderIcon()
 
     return (
       <div

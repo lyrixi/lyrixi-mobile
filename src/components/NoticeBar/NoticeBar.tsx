@@ -73,7 +73,7 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
     if (!visible) return null
 
     // 获取图标节点
-    function getIconNode(): ReactNode {
+    function renderIcon(): ReactNode {
       // 自定义图标渲染
       if (typeof iconRender === 'function') {
         return iconRender()
@@ -95,7 +95,7 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
       return null
     }
 
-    const IconNode = getIconNode()
+    const IconNode = renderIcon()
 
     return (
       <div

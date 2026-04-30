@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'
-import getHighlightNode from './getHighlightNode'
+import renderHighlight from './renderHighlight'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -80,7 +80,7 @@ const Text = forwardRef<TextRef, TextProps>(
 
 
     // 处理高亮
-    const content = highlight ? getHighlightNode(children, highlight) : children
+    const content = highlight ? renderHighlight(children, highlight) : children
 
     return (
       <div

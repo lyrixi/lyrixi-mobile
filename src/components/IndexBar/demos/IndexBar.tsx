@@ -41,7 +41,7 @@ export default () => {
   console.log('list:', list)
 
   // Render list
-  function getListNodes() {
+  function renderList() {
     const letter: Record<string, boolean> = {}
     return list.map((item, index) => {
       if (!letter[item.letter]) {
@@ -72,7 +72,7 @@ export default () => {
             })
           }}
         >
-          <ul>{getListNodes()}</ul>
+          <ul>{renderList()}</ul>
         </Page.Main>
       </div>
       <IndexBar anchors={anchors} getScrollerElement={() => scrollerRef.current} />

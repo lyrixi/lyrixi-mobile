@@ -97,7 +97,7 @@ const List = (
     onChange && onChange(newValue, { checkedItem: _raw })
   }
 
-  function getItemNode(item: ViewItem, index: number) {
+  function renderItem(item: ViewItem, index: number) {
     let checked = false
     if (value) {
       checked = multiple
@@ -150,12 +150,12 @@ const List = (
                   className={item.className as string | undefined}
                 />
                 {item.children.map((option, optionIndex) => {
-                  return getItemNode(option, optionIndex)
+                  return renderItem(option, optionIndex)
                 })}
               </Fragment>
             )
           }
-          return getItemNode(item, index)
+          return renderItem(item, index)
         })}
     </div>
   )

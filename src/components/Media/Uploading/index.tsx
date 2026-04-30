@@ -28,7 +28,7 @@ const Uploading = ({
   uploadingRender
 }: MediaUploadingProps) => {
   // 上传中node
-  function getUploadingNode() {
+  function renderUploading() {
     if (typeof uploadingRender === 'function') {
       return uploadingRender({ ...item, uploadingType })
     }
@@ -41,7 +41,7 @@ const Uploading = ({
 
   return (
     <div className={DOMUtil.classNames('lyrixi-media-uploading', className)}>
-      {getUploadingNode()}
+      {renderUploading()}
     </div>
   )
 }

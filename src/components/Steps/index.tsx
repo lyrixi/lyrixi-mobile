@@ -100,7 +100,7 @@ const Steps = forwardRef<StepsRef, StepsProps>(
     }
 
     // 获取Step
-    function getStepNode(item: StepItem, index: number, params: Record<string, unknown>) {
+    function renderStep(item: StepItem, index: number, params: Record<string, unknown>) {
       if (direction === 'vertical') {
         if (align === 'center') {
           return <StepVerticalCenter key={index} {...params} />
@@ -138,7 +138,7 @@ const Steps = forwardRef<StepsRef, StepsProps>(
       >
         {Array.isArray(list) &&
           list.map((item, index) => {
-            return getStepNode(item, index, {
+            return renderStep(item, index, {
               iconChildren: iconSize >= 24 ? '' + index : '',
               icon: item?.icon,
               rail: index < list.length - 1,

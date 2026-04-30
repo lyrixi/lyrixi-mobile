@@ -6,7 +6,7 @@ import React from 'react'
  * @param highlight - 要高亮的关键词，支持多个（按长词优先避免短词抢占匹配）
  * @returns {ReactNode} 处理后的节点
  */
-function getHighlightNode(
+function renderHighlight(
   children: React.ReactNode,
   highlight: string | string[]
 ): React.ReactNode {
@@ -47,4 +47,4 @@ function getHighlightNode(
   })
 }
 
-export default getHighlightNode
+export default renderHighlight

@@ -153,7 +153,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }
 
-    function getOperateRowNode() {
+    function renderOperateRow() {
       isDeleteInMainRef.current = true
       if (!okVisible && !dot && !minus) {
         return (
@@ -242,7 +242,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
               <ButtonNumber onClick={handleNumber}>9</ButtonNumber>
             </div>
 
-            <div className="lyrixi-keyboard-main-row">{getOperateRowNode()}</div>
+            <div className="lyrixi-keyboard-main-row">{renderOperateRow()}</div>
           </Page.Main>
 
           <Page.Aside className="lyrixi-flex lyrixi-flex-vertical">

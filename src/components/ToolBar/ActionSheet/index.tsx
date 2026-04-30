@@ -79,7 +79,7 @@ const ToolBarActionSheet = forwardRef<
   }
 
   // 获取标题节点
-  function getComboNode({ comboRef, open, onClick }: ComboRenderParams) {
+  function renderCombo({ comboRef, open, onClick }: ComboRenderParams) {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef,
@@ -131,7 +131,7 @@ const ToolBarActionSheet = forwardRef<
       modalClassName={modalClassName}
       // Element
       portal={portal}
-      comboRender={getComboNode}
+      comboRender={renderCombo}
       // Events
       onBeforeOpen={onBeforeOpen}
       onOpen={onOpen}

@@ -100,7 +100,7 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
   const modalValue: Date = value instanceof Date ? value : getDateDefaultValue({ min, max })
 
   // 获取 Combo 节点
-  function getComboNode() {
+  function renderCombo() {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef: comboRef as React.RefObject<unknown>,
@@ -148,7 +148,7 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
 
   return (
     <>
-      {getComboNode()}
+      {renderCombo()}
       <WeekModal
         ref={modalRef}
         // Modal: Value & Display Value

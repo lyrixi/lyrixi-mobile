@@ -61,7 +61,7 @@ const List = (
     }
   })
 
-  function getItemNode(item: ChatViewItem, index: number) {
+  function renderItem(item: ChatViewItem, index: number) {
     return (
       <Item
         key={String(item.id ?? item._raw?.id ?? index)}
@@ -111,7 +111,7 @@ const List = (
         return (
           <Fragment key={index}>
             {bar}
-            {getItemNode(item, index)}
+            {renderItem(item, index)}
           </Fragment>
         )
       })}

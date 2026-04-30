@@ -18,7 +18,7 @@ export interface UploadingProps {
 // 上传中图标
 const Uploading = ({ uploadingType, className, uploadingRender }: UploadingProps) => {
   // 上传中node
-  function getUploadingNode() {
+  function renderUploading() {
     if (typeof uploadingRender === 'function') {
       return uploadingRender({ uploadingType })
     }
@@ -31,7 +31,7 @@ const Uploading = ({ uploadingType, className, uploadingRender }: UploadingProps
 
   return (
     <div className={DOMUtil.classNames('lyrixi-attach-uploading', className)}>
-      {getUploadingNode()}
+      {renderUploading()}
     </div>
   )
 }

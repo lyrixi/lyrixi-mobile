@@ -386,7 +386,7 @@ function Attach(
   }
 
   // 上传node
-  function getChooseNode() {
+  function renderChoose() {
     if (!chooseVisible || typeof onChange !== 'function') {
       return null
     }
@@ -422,7 +422,7 @@ function Attach(
   return (
     <div ref={rootRef} style={style} className={DOMUtil.classNames('lyrixi-attach', className)}>
       {/* 头部上传按钮 */}
-      {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
+      {uploadPosition === 'start' && (onChoose || onFileChange) && renderChoose()}
 
       {/* 列表（可由 children 完全替换） */}
       {children ?? (
@@ -442,7 +442,7 @@ function Attach(
       )}
 
       {/* 底部上传按钮 */}
-      {uploadPosition === 'end' && (onChoose || onFileChange) && getChooseNode()}
+      {uploadPosition === 'end' && (onChoose || onFileChange) && renderChoose()}
 
       {/* 预览 */}
       {previewTypeRef.current === 'browser' && previewVisible != null && (

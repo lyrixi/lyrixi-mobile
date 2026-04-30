@@ -42,7 +42,7 @@ function Result({
   let statusDefault = getStatusDefault(status)
 
   // 渲染图片
-  function getImageNode() {
+  function renderImage() {
     if (imageUrl === null) return null
 
     if (imageRender) {
@@ -55,7 +55,7 @@ function Result({
   }
 
   // 渲染标题
-  function getTitleNode() {
+  function renderTitle() {
     if (title === null) return null
     if (title) {
       return <div className="lyrixi-result-title">{title}</div>
@@ -70,10 +70,10 @@ function Result({
       className={DOMUtil.classNames('lyrixi-result', full ? 'lyrixi-full' : '', className)}
     >
       {/* Element: Image */}
-      {getImageNode()}
+      {renderImage()}
 
       {/* Value & Display Value: Title */}
-      {getTitleNode()}
+      {renderTitle()}
 
       {/* Value & Display Value: Description */}
       {description && <div className="lyrixi-result-description">{description}</div>}

@@ -329,7 +329,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       setResult(newResult)
     }
 
-    function getTabsNode() {
+    function renderTabs() {
       if (result?.status !== 'success') return null
 
       if (typeof tabbarRender === 'function') {
@@ -380,7 +380,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
           )}
 
           {/* Tab */}
-          {getTabsNode()}
+          {renderTabs()}
 
           {/* 主体 */}
           <Main

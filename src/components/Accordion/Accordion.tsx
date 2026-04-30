@@ -108,7 +108,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
     })
 
     // 获取箭头节点
-    function getArrowNode() {
+    function renderArrow() {
       if (typeof arrowRender === 'function') {
         return <div className="lyrixi-accordion-arrow">{arrowRender({ open })}</div>
       }
@@ -120,10 +120,10 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
       )
     }
 
-    const ArrowNode = getArrowNode()
+    const ArrowNode = renderArrow()
 
     // 获取Header节点
-    function getHeaderNode() {
+    function renderHeader() {
       if (typeof headerRender === 'function') {
         return headerRender({
           open,
@@ -145,7 +145,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
     }
 
     // 获取Footer节点
-    function getEllipsisNode() {
+    function renderEllipsis() {
       if (typeof ellipsisRender === 'function') {
         return ellipsisRender({
           open,
@@ -184,7 +184,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         className={DOMUtil.classNames('lyrixi-accordion', className, open ? 'lyrixi-active' : '')}
       >
         {/* Element: Header */}
-        {getHeaderNode()}
+        {renderHeader()}
 
         {/* Element: Main */}
         <AccordionTransition open={open} minHeight={minHeight}>
@@ -192,7 +192,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         </AccordionTransition>
 
         {/* Element: Footer */}
-        {getEllipsisNode()}
+        {renderEllipsis()}
       </div>
     )
   }

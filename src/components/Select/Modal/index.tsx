@@ -67,7 +67,7 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
     }
   }, [open, value])
 
-  function getHeaderNode() {
+  function renderHeader() {
     if (typeof headerRender === 'function') {
       return headerRender({
         open: open ?? false,
@@ -121,7 +121,7 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
       onClose={onClose}
       onOk={handleConfirm}
     >
-      {getHeaderNode()}
+      {renderHeader()}
 
       <Main
         ref={mainRef}

@@ -6,7 +6,7 @@ import {
   precisionFormatter,
   correctValue as _correctValue
 } from './utils'
-import getClearNode from './getClearNode'
+import renderClear from './renderClear'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -339,7 +339,7 @@ const InputText = (
   }
 
   // render
-  function getInputNode() {
+  function renderInput() {
     if (typeof inputRender === 'function') {
       return inputRender({
         inputRef,
@@ -505,7 +505,7 @@ const InputText = (
         )}
       >
         {/* Main */}
-        {getInputNode()}
+        {renderInput()}
 
         {/* Blur display value */}
         {displayValue ? (
@@ -525,7 +525,7 @@ const InputText = (
       {/* Clear Icon */}
       {disabled || !allowClear
         ? null
-        : getClearNode({
+        : renderClear({
             clearRender,
             allowClear,
             value,

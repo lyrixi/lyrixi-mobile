@@ -101,7 +101,7 @@ const Rate = forwardRef<RateRef, RateProps>(
     }
 
     // 获取图标节点
-    function getIconNode(index: number, isActive: boolean = false): React.ReactNode {
+    function renderIcon(index: number, isActive: boolean = false): React.ReactNode {
       if (typeof iconRender === 'function') {
         return iconRender({
           className: isActive
@@ -158,8 +158,8 @@ const Rate = forwardRef<RateRef, RateProps>(
 
         {/* Element: Icon & Active Icon */}
         {new Array(max).fill(1).map((item, index) => {
-          const IconNode = getIconNode(index, false)
-          const ActiveIconNode = getIconNode(index, true)
+          const IconNode = renderIcon(index, false)
+          const ActiveIconNode = renderIcon(index, true)
 
           return (
             <div className="lyrixi-input-rate-item" key={index}>

@@ -28,7 +28,7 @@ const Step = ({
   description
 }: StepProps) => {
   // 获取图标节点
-  function getIconNode() {
+  function renderIcon() {
     if (typeof iconRender === 'function') {
       return iconRender({
         children: iconChildren,
@@ -38,7 +38,7 @@ const Step = ({
     }
     return <div className="lyrixi-steps-item-icon-circle">{iconChildren}</div>
   }
-  const IconNode = getIconNode()
+  const IconNode = renderIcon()
 
   return (
     <div className={DOMUtil.classNames('lyrixi-steps-item lyrixi-vertical lyrixi-left', status)}>

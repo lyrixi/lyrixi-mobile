@@ -61,7 +61,7 @@ const Chat = (
     }
   })
 
-  function getAvatarNode() {
+  function renderAvatar() {
     if (typeof avatarRender === 'function') {
       return (
         <div className="lyrixi-chat-item-avatar">{avatarRender({ ...(_raw || {}), checked })}</div>
@@ -93,7 +93,7 @@ const Chat = (
     return <div className="lyrixi-chat-item-avatar">{avatarNode}</div>
   }
 
-  function getAuthorNode() {
+  function renderAuthor() {
     if (typeof authorRender === 'function') {
       return (
         <div className="lyrixi-chat-item-content-author">
@@ -107,7 +107,7 @@ const Chat = (
     return null
   }
 
-  function getCheckboxNode() {
+  function renderCheckbox() {
     if (!checkable) return null
     return <Checkbox variant={checkboxVariant} checked={checked} />
   }
@@ -118,18 +118,18 @@ const Chat = (
       className={DOMUtil.classNames('lyrixi-chat-item', `lyrixi-${position}`, className)}
       ref={rootRef}
     >
-      {checkboxPosition !== 'right' && getCheckboxNode()}
+      {checkboxPosition !== 'right' && renderCheckbox()}
 
       <div className="lyrixi-chat-item-main">
-        {getAvatarNode()}
+        {renderAvatar()}
 
         <div className="lyrixi-chat-item-content">
-          {getAuthorNode()}
+          {renderAuthor()}
           <div className="lyrixi-chat-item-content-bubble">{content}</div>
         </div>
       </div>
 
-      {checkboxPosition === 'right' && getCheckboxNode()}
+      {checkboxPosition === 'right' && renderCheckbox()}
     </div>
   )
 }

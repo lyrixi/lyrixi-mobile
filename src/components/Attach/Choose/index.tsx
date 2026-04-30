@@ -69,7 +69,7 @@ const AttachChoose = ({
   }
 
   // 上传node
-  function getUploadNode() {
+  function renderUpload() {
     if (typeof uploadRender === 'function') {
       return uploadRender({ uploadingType: 'choose' })
     }
@@ -90,7 +90,7 @@ const AttachChoose = ({
       onClick={handleUploadClick}
     >
       {/* 上传按钮 */}
-      {getUploadNode()}
+      {renderUpload()}
 
       {/* 启用file框 */}
       {onFileChange && (

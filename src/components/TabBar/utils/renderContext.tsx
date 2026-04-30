@@ -1,7 +1,7 @@
 import React from 'react'
 
-// 获取content
-function getContextNode(
+// 渲染 content（字符串 / 节点 / 函数）
+function renderContext(
   content: React.ReactNode | ((params: Record<string, unknown>) => React.ReactNode),
   params: Record<string, unknown>
 ): React.ReactNode {
@@ -14,4 +14,4 @@ function getContextNode(
   return content
 }
 
-export default getContextNode
+export default renderContext

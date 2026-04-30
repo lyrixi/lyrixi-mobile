@@ -51,14 +51,14 @@ const Loading = forwardRef<LoadingRef, LoadingProps>(
       }
     })
 
-    function getIconNode(): React.ReactNode {
+    function renderIcon(): React.ReactNode {
       if (typeof iconRender === 'function') {
         return iconRender()
       }
       return <SpinFade />
     }
 
-    const IconNode = getIconNode()
+    const IconNode = renderIcon()
 
     const Node = (
       <div

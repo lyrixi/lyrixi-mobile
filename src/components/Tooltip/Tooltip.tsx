@@ -140,7 +140,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
     setOpen((prev) => !prev)
   }
 
-  function getComboNode() {
+  function renderCombo() {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef,
@@ -167,7 +167,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 
   return (
     <>
-      {getComboNode()}
+      {renderCombo()}
 
       <Popup
         ref={modalRef}

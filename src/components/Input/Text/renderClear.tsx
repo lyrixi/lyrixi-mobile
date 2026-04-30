@@ -10,7 +10,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 
 import IconClear from './../Icon/Clear'
 
-interface GetClearNodeParams {
+interface RenderClearParams {
   clearRender?: (params: { clearable: boolean; allowClear?: boolean; onClear: (e?: React.MouseEvent | React.TouchEvent) => void; onTouchStart?: (e?: React.TouchEvent) => void }) => React.ReactNode | undefined
   allowClear?: boolean
   value?: string
@@ -19,7 +19,7 @@ interface GetClearNodeParams {
 }
 
 // 渲染清除按钮
-function getClearNode({ clearRender, allowClear, value, onClear, onTouchStart }: GetClearNodeParams): React.ReactNode {
+function renderClear({ clearRender, allowClear, value, onClear, onTouchStart }: RenderClearParams): React.ReactNode {
   let clearable = !ObjectUtil.isEmpty(value) || typeof value === 'number' ? true : false
 
   // 自定义渲染清空按钮
@@ -40,4 +40,4 @@ function getClearNode({ clearRender, allowClear, value, onClear, onTouchStart }:
   return <IconClear onTouchStart={onTouchStart} onClick={onClear as React.MouseEventHandler<HTMLElement>} />
 }
 
-export default getClearNode
+export default renderClear

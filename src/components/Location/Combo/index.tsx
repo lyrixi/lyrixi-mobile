@@ -306,7 +306,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       updateValue(withAddress)
     }
 
-    function getRightIconNode(): React.ReactNode[] {
+    function renderRightIcon(): React.ReactNode[] {
       if (disabled) return []
       const rightIconNode: React.ReactNode[] = []
 
@@ -384,7 +384,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
           ref={comboRef}
           placeholder={placeholder}
           type={autoSize ? 'autoSize' : 'text'}
-          rightIconNode={<>{getRightIconNode()}</>}
+          rightIconNode={<>{renderRightIcon()}</>}
           inputRender={statusNode ? () => statusNode : undefined}
           value={value?.value || value?.address || ''}
           allowClear={allowClear}

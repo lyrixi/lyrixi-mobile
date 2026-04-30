@@ -79,12 +79,12 @@ const MessageCombo = forwardRef<MessageComboRef, MessageComboProps>(
     }
 
     // 获取图标节点
-    function getIconNode() {
+    function renderIcon() {
       if (typeof iconRender !== 'function') return null
 
       return <Icon>{iconRender()}</Icon>
     }
-    const IconNode = getIconNode()
+    const IconNode = renderIcon()
 
     return (
       <>

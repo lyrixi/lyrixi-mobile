@@ -105,7 +105,7 @@ const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
     }
 
     // 获取取消按钮节点
-    function getCancelNode() {
+    function renderCancel() {
       if (cancelVisible === false) return null
 
       return (
@@ -169,7 +169,7 @@ const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
               )
             })}
         </div>
-        {getCancelNode()}
+        {renderCancel()}
       </Modal>
     )
   }

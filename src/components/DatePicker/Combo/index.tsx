@@ -100,7 +100,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
     }
 
     // 获取 Combo 节点
-    function getComboNode() {
+    function renderCombo() {
       if (typeof comboRender === 'function') {
         return comboRender({
           comboRef: comboRef as React.RefObject<unknown>,
@@ -150,7 +150,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
 
     return (
       <>
-        {getComboNode()}
+        {renderCombo()}
         <Modal
           ref={modalRef}
           // Modal: Value & Display Value

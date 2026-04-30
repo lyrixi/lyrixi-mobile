@@ -122,7 +122,7 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
   }
 
   // 获取选择控件的node
-  function getPickerComboNode() {
+  function renderPickerCombo() {
     if (!value) return null
     let pickerNode: ReactNode = undefined
     if (typeof pickerComboRender === 'function') {
@@ -164,7 +164,7 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
         style={pickerComboStyle}
         className={DOMUtil.classNames('lyrixi-datepicker-types-combo', pickerComboClassName)}
       >
-        {value?.value instanceof Date ? getPickerComboNode() : null}
+        {value?.value instanceof Date ? renderPickerCombo() : null}
       </div>
     </div>
   )

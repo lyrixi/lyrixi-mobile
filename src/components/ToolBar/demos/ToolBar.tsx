@@ -16,7 +16,7 @@ export default function ToolBarDemo() {
   const [searchActive, setSearchActive] = useState(false)
   const [filledSearchActive, setFilledSearchActive] = useState(false)
 
-  function getDropdownModalNode(ctx: { open: boolean | null; onClose: () => void }) {
+  function renderDropdownModal(ctx: { open: boolean | null; onClose: () => void }) {
     const onClose = ctx.onClose
     return (
       <div>
@@ -69,11 +69,11 @@ export default function ToolBarDemo() {
                 Dropdown left
               </ToolBar.Dropdown>
 
-              <ToolBar.Dropdown modalRender={getDropdownModalNode} ref={dropdownRef}>
+              <ToolBar.Dropdown modalRender={renderDropdownModal} ref={dropdownRef}>
                 Dropdown ref
               </ToolBar.Dropdown>
 
-              <ToolBar.Dropdown modalRender={getDropdownModalNode}>Dropdown modal</ToolBar.Dropdown>
+              <ToolBar.Dropdown modalRender={renderDropdownModal}>Dropdown modal</ToolBar.Dropdown>
 
               <ToolBar.Dropdown
                 right={12}

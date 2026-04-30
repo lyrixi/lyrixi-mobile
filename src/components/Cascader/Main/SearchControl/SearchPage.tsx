@@ -90,7 +90,7 @@ const SearchPage = ({
     return null
   }
 
-  function getListNode() {
+  function renderList() {
     if (result != null && Array.isArray(result.list) && result.list.length > 0) {
       return (
         <List
@@ -147,7 +147,7 @@ const SearchPage = ({
         </ToolBar>
       </Page.Header>
 
-      <Page.Main>{getListNode()}</Page.Main>
+      <Page.Main>{renderList()}</Page.Main>
     </Page>
   )
 }

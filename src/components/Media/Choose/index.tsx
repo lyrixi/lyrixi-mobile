@@ -68,14 +68,14 @@ const Choose = ({
   }
 
   // 上传node
-  function getUploadNode() {
+  function renderUpload() {
     if (typeof uploadRender === 'function') {
       return uploadRender({ uploadType: 'choose' })
     }
     return null
   }
 
-  const uploadNode = getUploadNode()
+  const uploadNode = renderUpload()
 
   if (!onChoose && !onFileChange) return null
 

@@ -72,14 +72,14 @@ const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
   })
 
   // 获取箭头节点
-  function getArrowNode() {
+  function renderArrow() {
     if (typeof arrowRender === 'function') {
       return arrowRender({ open: open ?? null })
     }
     return null
   }
 
-  const ArrowNode = getArrowNode()
+  const ArrowNode = renderArrow()
 
   return (
     <Button
@@ -104,7 +104,7 @@ const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
     >
       {/* 有箭头左右对齐, 没有箭头居中对齐 */}
       {ArrowNode ? <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span> : children}
-      {getArrowNode()}
+      {renderArrow()}
     </Button>
   )
 })

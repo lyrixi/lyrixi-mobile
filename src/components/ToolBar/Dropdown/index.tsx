@@ -172,7 +172,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
   }
 
   // 获取标题节点
-  function getComboNode() {
+  function renderCombo() {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef,
@@ -208,7 +208,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     )
   }
 
-  const ComboNode = getComboNode()
+  const ComboNode = renderCombo()
   const modalOpen = open ?? false
 
   return (

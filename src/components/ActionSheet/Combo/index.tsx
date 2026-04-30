@@ -153,7 +153,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
     }
 
     // 获取 Combo 节点
-    function getComboNode() {
+    function renderCombo() {
       if (typeof comboRender === 'function') {
         return comboRender({
           comboRef,
@@ -208,7 +208,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
 
     return (
       <>
-        {getComboNode()}
+        {renderCombo()}
         <Modal
           // Modal: Value & Display Value
           value={value}

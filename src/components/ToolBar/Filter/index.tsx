@@ -133,7 +133,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
   }, [open])
 
   // 获取标题节点
-  function getComboNode() {
+  function renderCombo() {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef,
@@ -171,7 +171,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     )
   }
 
-  const ComboNode = getComboNode()
+  const ComboNode = renderCombo()
   const modalOpen = open ?? false
 
   return (

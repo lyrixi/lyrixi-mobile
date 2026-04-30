@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
-import getContextNode from './../utils/getContextNode'
+import renderContext from './../utils/renderContext'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -115,7 +115,7 @@ const Menus = forwardRef<MenusRef, MenusProps>(
                 {description && descriptionPosition !== 'top' ? (
                   <div className="lyrixi-tabbar-menus-tab-description">{description}</div>
                 ) : null}
-                {getContextNode(item.content, { ...item, checked: checked })}
+                {renderContext(item.content, { ...item, checked: checked })}
               </div>
             </div>
 

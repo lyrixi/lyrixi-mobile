@@ -66,19 +66,19 @@ const Item = ({
   onClick
 }: ItemProps) => {
   // 获取checkbox
-  function getCheckboxNode() {
+  function renderCheckbox() {
     if (!checkable) return null
 
     return <Checkbox variant={checkboxVariant} checked={checked} />
   }
 
   // 获取note
-  function getNoteNode() {
+  function renderNote() {
     return <div className="lyrixi-list-item-meta-note">{note}</div>
   }
 
   // 渲染图片
-  function getImageNode() {
+  function renderImage() {
     if (typeof imageRender === 'function') {
       return (
         <div className="lyrixi-list-item-meta-image">
@@ -109,7 +109,7 @@ const Item = ({
   }
 
   // 渲染头像
-  function getAvatarNode() {
+  function renderAvatar() {
     if (typeof avatarRender === 'function') {
       return (
         <div className="lyrixi-list-item-meta-avatar">
@@ -140,7 +140,7 @@ const Item = ({
   }
 
   // 获取action
-  function getActionNode() {
+  function renderAction() {
     if (typeof actionRender === 'function') {
       return actionRender({ ...(_raw || {}), checked })
     }
@@ -149,7 +149,7 @@ const Item = ({
   }
 
   // 获取item节点
-  function getItemNode() {
+  function renderItem() {
     return (
       <div
         style={style}
@@ -167,15 +167,15 @@ const Item = ({
         }}
       >
         {/* Left Checkbox */}
-        {checkboxPosition !== 'right' && getCheckboxNode()}
+        {checkboxPosition !== 'right' && renderCheckbox()}
 
         {/* Main */}
         <div className="lyrixi-list-item-main">
           {/* Meta */}
           <div className="lyrixi-list-item-meta">
-            {getImageNode()}
+            {renderImage()}
 
-            {getAvatarNode()}
+            {renderAvatar()}
 
             <div className="lyrixi-list-item-meta-content">
               <div className="lyrixi-list-item-meta-title">{title}</div>
@@ -184,23 +184,23 @@ const Item = ({
               )}
             </div>
 
-            {getNoteNode()}
+            {renderNote()}
           </div>
 
           {/* Content */}
           {content && <div className="lyrixi-list-item-content">{content}</div>}
 
           {/* Action */}
-          {actionRender && <div className="lyrixi-list-item-action">{getActionNode()}</div>}
+          {actionRender && <div className="lyrixi-list-item-action">{renderAction()}</div>}
         </div>
 
         {/* Right Checkbox */}
-        {checkboxPosition === 'right' && getCheckboxNode()}
+        {checkboxPosition === 'right' && renderCheckbox()}
       </div>
     )
   }
 
-  return getItemNode()
+  return renderItem()
 }
 
 export default Item

@@ -301,7 +301,7 @@ const Media = forwardRef(function Media(
   }
 
   // 上传node
-  function getChooseNode() {
+  function renderChoose() {
     if (!chooseVisible) {
       return null
     }
@@ -340,7 +340,7 @@ const Media = forwardRef(function Media(
       className={DOMUtil.classNames('lyrixi-media', className)}
     >
       {/* Element: 图片上传按钮(start) */}
-      {uploadPosition === 'start' && getChooseNode()}
+      {uploadPosition === 'start' && renderChoose()}
 
       {/* Element: 图片列表 */}
       <List
@@ -359,7 +359,7 @@ const Media = forwardRef(function Media(
       />
 
       {/* Element: 图片上传按钮(end) */}
-      {uploadPosition === 'end' && getChooseNode()}
+      {uploadPosition === 'end' && renderChoose()}
 
       {/* Element: 预览 */}
       {previewTypeRef.current === 'browser' && (
