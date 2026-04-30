@@ -7,9 +7,9 @@ import Circles from './../../components/Circles'
 import type { CirclePoint } from './../../components/Circles/addCircles'
 import Polyline from './../../components/Polyline'
 import type { LinePoint } from './../../components/Polyline/addPolyline'
-import type { MapMarkersProps, MapMarkersHandle } from './types'
+import type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from './types'
 
-export type { MapMarkersProps, MapMarkersHandle } from './types'
+export type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from './types'
 
 // 地图标注
 const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMarkers(
@@ -50,9 +50,9 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
 
   const markersRef = useRef<MarkersHandle | null>(null)
 
-  const circlesRef = useRef<{ redraw: () => void } | null>(null)
+  const circlesRef = useRef<CirclesRef | null>(null)
 
-  const polylineRef = useRef<{ redraw: () => void } | null>(null)
+  const polylineRef = useRef<PolylineRef | null>(null)
 
   const zoomRef = useRef<ZoomControlRef | null>(null)
 

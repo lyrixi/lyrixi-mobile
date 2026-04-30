@@ -2,6 +2,10 @@ import type { CSSProperties, MutableRefObject, ReactNode } from 'react'
 import type { MapContainerAPI, MapContainerProps } from './../../components/MapContainer'
 import type { MarkersHandle } from './../../components/Markers'
 import type { ZoomControlRef } from './../../components/ZoomControl'
+import type { PolylineRef } from './../../components/Polyline/types'
+import type { CirclesRef } from './../../components/Circles/types'
+
+export type { PolylineRef, CirclesRef }
 
 export interface MapMarkersProps {
   markers?: unknown
@@ -38,8 +42,8 @@ export interface MapMarkersProps {
 export type MapMarkersHandle =
   | (MapContainerAPI & {
       markersRef: MutableRefObject<MarkersHandle | null>
-      polylineRef: MutableRefObject<{ redraw: () => void } | null>
-      circlesRef: MutableRefObject<{ redraw: () => void } | null>
+      polylineRef: MutableRefObject<PolylineRef | null>
+      circlesRef: MutableRefObject<CirclesRef | null>
       zoomRef: MutableRefObject<ZoomControlRef | null>
     })
   | null

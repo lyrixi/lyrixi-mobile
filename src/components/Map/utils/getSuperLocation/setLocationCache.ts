@@ -10,17 +10,17 @@ import Storage from './../../../../utils/Storage'
 import { ObjectUtil, GeoUtil, Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-type LocData = { longitude: number; latitude: number; [key: string]: unknown }
+import type { LocCacheData } from './types'
 
 // 设置缓存
 async function setLocationCache(
   type: string,
   cacheExpires: number,
-  data: LocData
+  data: LocCacheData
 ): Promise<boolean> {
   if (!cacheExpires) return false
-  const wgs84Data = ObjectUtil.cloneDeep(data) as LocData
-  const gcj02Data = ObjectUtil.cloneDeep(data) as LocData
+  const wgs84Data = ObjectUtil.cloneDeep(data) as LocCacheData
+  const gcj02Data = ObjectUtil.cloneDeep(data) as LocCacheData
   if (type === 'wgs84') {
     const gcj02Point = GeoUtil.coordtransform([data.longitude, data.latitude], 'wgs84', 'gcj02')
     if (!gcj02Point) {

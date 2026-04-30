@@ -1,5 +1,9 @@
 import type { MapContainerAPI } from './../MapContainer'
 
+export interface CirclesRef {
+  redraw: () => void
+}
+
 export interface CirclesProps {
   points?: unknown
   color?: string

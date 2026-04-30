@@ -1,5 +1,9 @@
 import type { MapContainerAPI } from './../MapContainer'
 
+export interface PolylineRef {
+  redraw: () => void
+}
+
 export interface PolylineProps {
   points?: unknown
   color?: string

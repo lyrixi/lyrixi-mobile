@@ -10,6 +10,8 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import {Storage } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { LocCacheData } from './types'
+
 // 读取缓存
 async function getLocationCache(
   type: string,
@@ -29,7 +31,7 @@ async function getLocationCache(
           await setLocationCache(
             type,
             cacheExpires,
-            data as { longitude: number; latitude: number; [key: string]: unknown }
+            data as LocCacheData
           )
         }
       }

@@ -20,3 +20,10 @@ export interface GetSuperLocationOptions {
   cacheExpires?: number | null
   type: string
 }
+
+/** 写入定位缓存时的数据形态 */
+export interface LocCacheData {
+  longitude: number
+  latitude: number
+  [key: string]: unknown
+}

@@ -6,12 +6,9 @@ import GeoUtil from './../../../../utils/GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface MapPoint {
-  longitude?: number | string
-  latitude?: number | string
-  type?: string
-  [key: string]: unknown
-}
+import type { MapPoint } from './types'
+
+export type { MapPoint } from './types'
 
 // 单个点转换
 function getPoint(point: MapPoint, type: string | undefined): MapPoint | null {

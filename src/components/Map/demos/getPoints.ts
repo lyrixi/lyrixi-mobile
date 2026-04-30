@@ -1,3 +1,5 @@
+import type { GetPointsOptions } from './types'
+
 // 生成随机点
 /*
 points = getPoints({
@@ -8,15 +10,7 @@ points = getPoints({
   count: 100
 })
 */
-function getPoints({
-  center,
-  radius = 1000,
-  count = 110
-}: {
-  center?: { latitude?: number; longitude?: number }
-  radius?: number
-  count?: number
-} = {}) {
+function getPoints({ center, radius = 1000, count = 110 }: GetPointsOptions = {}) {
   let latitude = center?.latitude || 31.990374883871525
   let longitude = center?.longitude || 118.73769931504451
 

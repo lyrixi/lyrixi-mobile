@@ -6,12 +6,14 @@ import AssetUtil from '../../../../utils/AssetUtil'
 import { AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { LoadLeafletOptions } from './types'
+
 function pickResult(r: unknown): Record<string, unknown> {
   return typeof r === 'object' && r !== null ? { ...(r as Record<string, unknown>) } : {}
 }
 
 // 加载地图资源
-function loadLeaflet({ css, js }: { css?: string; js?: string } = {}): Promise<unknown> {
+function loadLeaflet({ css, js }: LoadLeafletOptions = {}): Promise<unknown> {
   return new Promise((resolve) => {
     if (window.L) {
       resolve({

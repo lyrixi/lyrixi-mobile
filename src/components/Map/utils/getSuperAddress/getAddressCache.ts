@@ -10,11 +10,7 @@ import Storage from './../../../../utils/Storage'
 import {Storage} from 'lyrixi-mobile'
 测试使用-end */
 
-type CachePayload = {
-  data?: unknown
-  expires?: number
-  coordinate?: { latitude: number; longitude: number }
-}
+import type { AddressCachePayload } from './types'
 
 /**
  * 获取地址缓存
@@ -24,7 +20,7 @@ async function getAddressCache(
   cacheExpires: number | null | undefined
 ): Promise<unknown | null> {
   try {
-    const cache = (await Storage.getItem(CacheKey)) as CachePayload | null | undefined
+    const cache = (await Storage.getItem(CacheKey)) as AddressCachePayload | null | undefined
     if (!cache) return null
 
     const { data, expires, coordinate } = cache

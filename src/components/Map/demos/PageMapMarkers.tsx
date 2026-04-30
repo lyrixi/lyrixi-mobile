@@ -7,13 +7,9 @@ import type { MarkersHandle } from '../components/Markers'
 import type { MapPoint } from '../utils/coordsToWgs84'
 
 // 生成随机点
-const { MapLoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map
+const { MapLoader, MapMarkers, LocationControl, coordsToWgs84 } = Map
 import getPoints from './getPoints'
-
-/** Demo: marker onClick payload from Markers (custom API) */
-interface DemoMarkerClickPayload {
-  setIcon: (icon: L.Icon | L.DivIcon, opts?: { multiple?: boolean }) => void
-}
+import type { DemoMarkerClickPayload } from './types'
 
 // 随机生成点, 用于测试性能
 const points = coordsToWgs84(
@@ -91,7 +87,7 @@ export default () => {
   function handleFocusPoint() {
     const handle = mapRef.current?.markersRef.current
     const p0 = points[0]
-    if (handle && p0 != null) {
+    if (handle && p0 !== null && p0 !== undefined) {
       handle.focus(p0 as Parameters<MarkersHandle['focus']>[0])
     }
   }
@@ -205,7 +201,7 @@ export default () => {
                 if (result?.status === 'error') return
 
                 const currentZoom = result?.map?.getZoom()
-                if (result?.map != null && currentZoom != null) {
+                if (result?.map && typeof currentZoom === 'number') {
                   result.map.setZoom(currentZoom - 1)
                 }
               }}

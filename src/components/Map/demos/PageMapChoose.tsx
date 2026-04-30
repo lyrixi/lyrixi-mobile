@@ -7,11 +7,7 @@ import MapChoose from '../pages/MapChoose'
 import coordsToWgs84 from '../utils/coordsToWgs84'
 import type { MapContainerAPI } from '../components/MapContainer'
 import type { MapChooseProps, MapChooseValue } from '../pages/MapChoose'
-
-/** Demo: marker onClick payload from Markers (custom API) */
-interface DemoMarkerClickPayload {
-  setIcon: (icon: L.Icon | L.DivIcon, opts?: { multiple?: boolean }) => void
-}
+import type { DemoMarkerClickPayload } from './types'
 
 // 生成随机点
 // import getPoints from './getPoints'
@@ -53,7 +49,7 @@ export default () => {
 
   const handleMapChooseChange: MapChooseProps['onChange'] = (newValue) => {
     console.log('newValue:', newValue)
-    if (newValue != null && !Array.isArray(newValue)) {
+    if (newValue !== null && newValue !== undefined && !Array.isArray(newValue)) {
       setValue((prev) => ({ ...prev, ...newValue }))
     }
   }

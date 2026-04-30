@@ -3,7 +3,7 @@ import type { L } from './../../leaflet.types'
 import filterCoords from './../../utils/filterCoords'
 import addPolygon, { type PolyPoint, type PolyStyleOptions } from './addPolygon'
 import clearPolygon from './clearPolygon'
-import type { PolygonProps } from './types'
+import type { PolygonProps, PolygonRef } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -13,10 +13,10 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { PolygonProps } from './types'
+export type { PolygonProps, PolygonRef } from './types'
 
 // 多边形
-const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
+const Polygon = forwardRef<PolygonRef | null, PolygonProps>(
   (
     {
       points: pointsProp,

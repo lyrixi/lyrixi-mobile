@@ -3,7 +3,7 @@ import type { L } from './../../leaflet.types'
 import filterCoords from './../../utils/filterCoords'
 import addPolyline, { type LinePoint, type LineStyleOptions } from './addPolyline'
 import clearPolyline from './clearPolyline'
-import type { PolylineProps } from './types'
+import type { PolylineProps, PolylineRef } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -13,10 +13,10 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { PolylineProps } from './types'
+export type { PolylineProps, PolylineRef } from './types'
 
 // 批量折线
-const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
+const Polyline = forwardRef<PolylineRef | null, PolylineProps>(
   (
     {
       points: pointsProp,
