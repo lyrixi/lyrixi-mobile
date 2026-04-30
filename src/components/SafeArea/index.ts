@@ -9,5 +9,5 @@ type SafeAreaWithDebug = typeof SafeArea & { debug: typeof debug }
 
 ;(SafeArea as SafeAreaWithDebug).debug = debug
 
-export type { SafeAreaProps, SafeAreaRef, SafeAreaType, SafeAreaPosition } from './SafeArea'
+export type { SafeAreaProps, SafeAreaRef, SafeAreaType, SafeAreaPosition } from './types'
 export default SafeArea as SafeAreaWithDebug

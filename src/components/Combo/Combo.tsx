@@ -1,16 +1,7 @@
-import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+import type { ComboProps, ComboRef } from './types'
 
-export interface ComboProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-  onClick?: MouseEventHandler<HTMLDivElement>
-}
-
-export interface ComboRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { ComboProps, ComboRef } from './types'
 
 const Combo = forwardRef<ComboRef, ComboProps>(function Combo({ style, className, children, onClick }, ref) {
   const comboRef = useRef<HTMLDivElement>(null)

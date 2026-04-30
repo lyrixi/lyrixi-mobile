@@ -1,11 +1,11 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect, type CSSProperties, type ReactNode, type Ref } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect, type Ref } from 'react'
 import Instance from './instance'
+import type QRLib from './instance'
+import type { QRCodeProps, QRCodeRef } from './types'
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 import MathUtil from './../../utils/MathUtil'
 // 内库使用-end
-
-type QRLib = InstanceType<typeof Instance>
 
 /* 测试使用-start
 import { DOMUtil, MathUtil } from 'lyrixi-mobile'
@@ -16,19 +16,7 @@ function cssSizeToNumber(value: string | number | undefined, fallback: number): 
   return Number.isFinite(n) && n > 0 ? n : fallback
 }
 
-interface QRCodeProps {
-  style?: CSSProperties
-  text?: string
-  children?: ReactNode
-  className?: string
-}
-
-export interface QRCodeRef {
-  element: HTMLSpanElement | null
-  instance: QRLib | null
-  getElement: () => HTMLSpanElement | null
-  getInstance: () => QRLib | null
-}
+export type { QRCodeProps, QRCodeRef } from './types'
 
 // 生成二维码
 const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(

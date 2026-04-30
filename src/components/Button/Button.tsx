@@ -1,5 +1,6 @@
-import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import getStyle from './getStyle'
+import type { ButtonProps, ButtonRef } from './types'
 
 // 内库使用-start
 import Flex from './../Flex'
@@ -9,29 +10,7 @@ import Flex from './../Flex'
 import { Flex } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface ButtonProps {
-  id?: string
-  direction?: 'horizontal' | 'vertical' | string
-  block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
-  size?: string | number | readonly string[]
-  sizeEqual?: boolean
-  fontSize?: string | number
-  radius?: string | number
-  style?: CSSProperties
-  className?: string
-  disabled?: boolean
-  children?: ReactNode
-  onClick?: MouseEventHandler<HTMLDivElement>
-}
-
-export interface ButtonRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { ButtonProps, ButtonRef } from './types'
 
 const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
   {

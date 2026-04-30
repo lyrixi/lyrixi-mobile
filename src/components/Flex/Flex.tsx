@@ -1,4 +1,5 @@
-import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties } from 'react'
+import type { FlexAlign, FlexJustify, FlexProps, FlexRef, FlexStyleInput } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -9,39 +10,9 @@ import Compact from './Compact'
 import { DOMUtil, Flex } from 'lyrixi-mobile'
 测试使用-end */
 
-export type FlexJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
-export type FlexAlign = 'start' | 'center' | 'end'
-export type FlexDirection = 'horizontal' | 'vertical'
+export type { FlexAlign, FlexDirection, FlexJustify, FlexProps, FlexRef } from './types'
 
-export interface FlexProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-  gap?: string | number
-  justify?: FlexJustify
-  align?: FlexAlign
-  direction?: FlexDirection
-  wrap?: boolean | 'scroll'
-}
-
-export interface FlexRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-function getStyle({
-  gap,
-  justify,
-  align,
-  direction,
-  wrap
-}: {
-  gap?: string | number
-  justify?: FlexJustify
-  align?: FlexAlign
-  direction?: FlexDirection
-  wrap?: boolean | 'scroll'
-}): CSSProperties {
+function getStyle({ gap, justify, align, direction, wrap }: FlexStyleInput): CSSProperties {
   const gapStyle: CSSProperties = {}
   if (gap !== undefined) {
     gapStyle.gap = typeof gap === 'number' ? `${gap}px` : `var(--lyrixi-space-${gap})`

@@ -1,4 +1,5 @@
-import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import type { ButtonTextProps, ButtonTextRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,16 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface ButtonTextProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
-
-export interface ButtonTextRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { ButtonTextProps, ButtonTextRef } from './types'
 
 const ButtonText = forwardRef<ButtonTextRef, ButtonTextProps>(function ButtonText(
   { style, className, children },

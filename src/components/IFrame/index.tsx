@@ -1,15 +1,7 @@
-import React, { useImperativeHandle, forwardRef, useEffect, useRef, type CSSProperties } from 'react'
+import React, { useImperativeHandle, forwardRef, useEffect, useRef } from 'react'
+import type { IFrameProps, IFrameRef } from './types'
 
-export interface IFrameRef {
-  element: HTMLIFrameElement | null
-}
-
-export interface IFrameProps {
-  src?: string
-  data?: unknown
-  style?: CSSProperties
-  className?: string
-}
+export type { IFrameProps, IFrameRef } from './types'
 
 // 全屏iframe
 const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, style, className }, ref) {

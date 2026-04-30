@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useImperativeHandle, forwardRef, useRef } from 'react'
 import AccordionTransition from './AccordionTransition'
+import type { AccordionProps, AccordionRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -10,29 +11,7 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface AccordionRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  open: () => void
-  close: () => void
-}
-
-export interface AccordionProps {
-  open?: boolean
-  style?: React.CSSProperties
-  className?: string
-  minHeight?: number
-  title?: React.ReactNode
-  headerRender?: (props: { open: boolean; onClick: () => void }) => React.ReactNode
-  ellipsis?: { expandText?: React.ReactNode; collapseText?: React.ReactNode }
-  ellipsisRender?: (props: { open: boolean; onClick: () => void }) => React.ReactNode
-  arrowClassName?: string
-  arrowPosition?: 'left' | 'right'
-  arrowRender?: (props: { open: boolean }) => React.ReactNode
-  children?: React.ReactNode
-  onOpen?: () => void
-  onClose?: () => void
-}
+export type { AccordionProps, AccordionRef } from './types'
 
 // Accordion组件
 const Accordion = forwardRef<AccordionRef, AccordionProps>(

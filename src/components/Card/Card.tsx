@@ -1,4 +1,5 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import type { CardProps, CardRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,17 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface CardProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-  onClick?: MouseEventHandler<HTMLDivElement>
-}
-
-export interface CardRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { CardProps, CardRef } from './types'
 
 const Card = forwardRef<CardRef, CardProps>(function Card({ style, className, children, onClick }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)

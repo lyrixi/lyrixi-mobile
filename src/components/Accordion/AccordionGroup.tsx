@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
+import type { AccordionGroupProps, AccordionGroupRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,21 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface AccordionGroupRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  getActiveIndex: () => number | null | undefined
-  openIndex: (index: number) => void
-  close: () => void
-}
-
-export interface AccordionGroupProps {
-  value?: number | null
-  style?: React.CSSProperties
-  className?: string
-  children?: React.ReactNode
-  onChange?: (index: number | null) => void
-}
+export type { AccordionGroupProps, AccordionGroupRef } from './types'
 
 const AccordionGroup = forwardRef<AccordionGroupRef, AccordionGroupProps>(
   (

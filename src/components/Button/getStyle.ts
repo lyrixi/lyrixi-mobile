@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import type { GetStyleParams } from './types'
 
 // 内库使用-start
 import MathUtil from './../../utils/MathUtil'
@@ -9,20 +10,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface GetStyleParams {
-  direction?: string
-  block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
-  size?: string | number | readonly string[] | unknown
-  sizeEqual?: boolean
-  fontSize?: string | number | unknown
-  radius?: string | number | unknown
-  style?: CSSProperties
-  className?: string
-}
+export type { GetStyleParams } from './types'
 
 export default function getStyle({
   direction,
@@ -39,7 +27,7 @@ export default function getStyle({
   className
 }: GetStyleParams): { style: CSSProperties; className: string } {
   let fontSizeResolved: string | number | undefined
-  if (fontSize != null && (typeof fontSize === 'string' || typeof fontSize === 'number')) {
+  if (fontSize !== null && fontSize !== undefined && (typeof fontSize === 'string' || typeof fontSize === 'number')) {
     fontSizeResolved = (MathUtil.variableSize(fontSize, '') as string) || fontSize
   } else {
     fontSizeResolved = undefined
@@ -47,14 +35,15 @@ export default function getStyle({
 
   let sizeResolved: string | number | readonly string[] | unknown = size
   if (
-    sizeResolved != null &&
+    sizeResolved !== null &&
+    sizeResolved !== undefined &&
     (typeof sizeResolved === 'string' || typeof sizeResolved === 'number')
   ) {
     sizeResolved = (MathUtil.variableSize(sizeResolved, '') as string) || sizeResolved
   }
 
   let radiusResolved: string | number | unknown = radius
-  if (radius != null && (typeof radius === 'string' || typeof radius === 'number')) {
+  if (radius !== null && radius !== undefined && (typeof radius === 'string' || typeof radius === 'number')) {
     radiusResolved = (MathUtil.variableSize(radius, '') as string) || radius
   }
 

@@ -5,6 +5,5 @@ type RowWithCol = typeof Row & { Col: typeof Col }
 
 ;(Row as RowWithCol).Col = Col
 
-export type { RowProps, RowRef } from './Row'
-export type { ColProps, ColRef } from './Col'
+export type { RowProps, RowRef, ColProps, ColRef } from './types'
 export default Row as RowWithCol

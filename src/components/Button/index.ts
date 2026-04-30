@@ -10,7 +10,6 @@ type ButtonWithParts = typeof Button & {
 ;(Button as ButtonWithParts).Icon = Icon
 ;(Button as ButtonWithParts).Text = Text
 
-export type { ButtonProps, ButtonRef } from './Button'
-export type { ButtonTextProps, ButtonTextRef } from './ButtonText'
+export type { ButtonProps, ButtonRef, ButtonTextProps, ButtonTextRef } from './types'
 export type { ButtonIconProps } from './ButtonIcon'
 export default Button as ButtonWithParts

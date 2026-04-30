@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import type { IconStyleInput } from './types'
 
 // 内库使用-start
 import MathUtil from './../../utils/MathUtil'
@@ -9,14 +10,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface IconStyleInput {
-  color?: string
-  backgroundColor?: string
-  size?: string
-  radius?: string
-  style?: CSSProperties
-  className?: string
-}
+export type { IconStyleInput } from './types'
 
 function getStyle({
   color,
@@ -27,11 +21,11 @@ function getStyle({
   className
 }: IconStyleInput): { style: CSSProperties; className: string } {
   const resolvedSize =
-    size != null && size !== ''
+    size !== null && size !== undefined && size !== ''
       ? (MathUtil.variableSize(size, undefined) as string | undefined) || size
       : size
   const resolvedRadius =
-    radius != null && radius !== ''
+    radius !== null && radius !== undefined && radius !== ''
       ? (MathUtil.variableSize(radius, undefined) as string | undefined) || radius
       : radius
 

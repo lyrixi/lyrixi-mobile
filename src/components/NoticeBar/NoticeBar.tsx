@@ -1,5 +1,6 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, type ReactNode } from 'react'
 import getDefaultIconClassName from './getDefaultIconClassName'
+import type { NoticeBarProps, NoticeBarRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -10,26 +11,7 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-interface NoticeBarRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  close: () => void
-  open: () => void
-}
-
-interface NoticeBarProps {
-  title?: ReactNode
-  description?: ReactNode
-  type?: 'success' | 'info' | 'warning' | 'error'
-  closable?: boolean
-  style?: CSSProperties
-  className?: string
-  iconRender?: () => ReactNode
-  iconClassName?: string
-  iconColor?: string
-  iconBackgroundColor?: string
-  iconSize?: string | number
-}
+export type { NoticeBarProps, NoticeBarRef } from './types'
 
 // 通告栏
 const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
@@ -85,7 +67,7 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
         return (
           <Icon
             className={resolvedIconClassName}
-            size={iconSize != null ? String(iconSize) : undefined}
+            size={iconSize !== null && iconSize !== undefined ? String(iconSize) : undefined}
             color={iconColor}
             backgroundColor={iconBackgroundColor}
           />

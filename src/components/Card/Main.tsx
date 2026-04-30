@@ -1,4 +1,5 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import type { CardMainProps, CardMainRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,16 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface CardMainProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
-
-export interface CardMainRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { CardMainProps, CardMainRef } from './types'
 
 const Main = forwardRef<CardMainRef, CardMainProps>(function Main({ style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)

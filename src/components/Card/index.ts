@@ -7,7 +7,5 @@ type CardWithParts = typeof Card & { Header: typeof Header; Main: typeof Main }
 ;(Card as CardWithParts).Header = Header
 ;(Card as CardWithParts).Main = Main
 
-export type { CardProps, CardRef } from './Card'
-export type { CardHeaderProps, CardHeaderRef } from './Header'
-export type { CardMainProps, CardMainRef } from './Main'
+export type { CardProps, CardRef, CardHeaderProps, CardHeaderRef, CardMainProps, CardMainRef } from './types'
 export default Card as CardWithParts

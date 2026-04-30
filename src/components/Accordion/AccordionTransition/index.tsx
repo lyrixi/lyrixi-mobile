@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import getAnimationStyle from './getAnimationStyle'
+import type { AccordionTransitionProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,12 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface AccordionTransitionProps {
-  open: boolean
-  children?: React.ReactNode
-  minHeight?: number
-}
 
 // AccordionTransition组件
 const AccordionTransition = ({ open, children, minHeight = 0 }: AccordionTransitionProps) => {

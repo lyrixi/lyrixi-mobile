@@ -1,4 +1,5 @@
 import React, { useContext, createContext, Children, Fragment, type CSSProperties, type ReactNode } from 'react'
+import type { CompactContextValue, CompactProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,28 +10,12 @@ import MathUtil from './../../../utils/MathUtil'
 import { DOMUtil, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface CompactContextValue {
-  block?: boolean
-  size?: string
-  direction?: string
-}
+export type { CompactContextValue, CompactProps } from './types'
 
 const Context = createContext<CompactContextValue | null>(null)
 
 function useCompactContext() {
   return useContext(Context)
-}
-
-export interface CompactProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-  /** 在子节点之间插入的分隔节点 */
-  separator?: ReactNode
-  block?: boolean
-  size?: string
-  direction?: string
-  radius?: string
 }
 
 function interleaveChildren(children: ReactNode, separator: ReactNode): ReactNode {
@@ -46,8 +31,8 @@ function interleaveChildren(children: ReactNode, separator: ReactNode): ReactNod
 function CompactBase({ style, className, children, separator, block, size, direction, radius }: CompactProps) {
   const parentContext = useCompactContext()
 
-  const gap = size != null ? MathUtil.variableSize(size, undefined) : ''
-  const radiusSize = radius != null ? MathUtil.variableSize(radius, undefined) : ''
+  const gap = size !== null && size !== undefined ? MathUtil.variableSize(size, undefined) : ''
+  const radiusSize = radius !== null && radius !== undefined ? MathUtil.variableSize(radius, undefined) : ''
 
   const gapStyle = {
     '--lyrixi-flex-compact-gap': gap,
@@ -69,7 +54,7 @@ function CompactBase({ style, className, children, separator, block, size, direc
           className
         )}
       >
-        {separator != null ? interleaveChildren(children, separator) : children}
+        {separator !== null && separator !== undefined ? interleaveChildren(children, separator) : children}
       </div>
     </Context.Provider>
   )

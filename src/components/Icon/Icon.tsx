@@ -1,31 +1,8 @@
-import React, {
-  useImperativeHandle,
-  forwardRef,
-  useRef,
-  type CSSProperties,
-  type ReactNode,
-  type MouseEventHandler,
-  type TouchEventHandler
-} from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
+import type { IconProps, IconRef } from './types'
 
-export interface IconProps {
-  disabled?: boolean
-  color?: string
-  backgroundColor?: string
-  size?: string
-  radius?: string
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-  onClick?: MouseEventHandler<HTMLElement>
-  onTouchStart?: TouchEventHandler<HTMLElement>
-}
-
-export interface IconRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
+export type { IconProps, IconRef } from './types'
 
 const Icon = forwardRef<IconRef, IconProps>(function Icon(
   {

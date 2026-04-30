@@ -1,5 +1,6 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
 import { createPortal } from 'react-dom'
+import type { VideoPlayerProps, VideoPlayerRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -9,46 +10,18 @@ import DOMUtil from './../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface VideoPlayerProps {
-  src?: string
-  autoPlay?: boolean
-  style?: React.CSSProperties
-  className?: string
-  portal?: Element
-  poster?: string
-  children?: React.ReactNode
-  /** 顶部区域（如关闭按钮），在内容区上方渲染 */
-  headerRender?: () => ReactNode
-  onError?: (err: { status: string; message: string; error: unknown }) => void
-}
-
-export interface VideoPlayerRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  pause: () => void
-  play: () => void
-}
+export type { VideoPlayerProps, VideoPlayerRef } from './types'
 
 // 视频预览
 const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
   (
     {
-      // Value & Display Value
-      src,
       autoPlay = false,
-
-      // Style
       style,
       className,
-
-      // Elements
       portal,
-      poster = '',
       children,
-      headerRender,
-
-      // Events
-      onError
+      headerRender
     },
     ref
   ) => {
