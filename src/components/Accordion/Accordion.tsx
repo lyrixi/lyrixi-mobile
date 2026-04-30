@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useCallback, useEffect, useState, useImperativeHandle, forwardRef, useRef } from 'react'
 import AccordionTransition from './AccordionTransition'
 
 // 内库使用-start
@@ -68,13 +68,22 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
 
     const [open, setOpen] = useState(externalOpen)
 
-    // Controlled component
-    useEffect(() => {
-      if (typeof externalOpen === 'boolean') {
-        setOpen(externalOpen)
+    const handleClick = useCallback(() => {
+      const newOpen = !open
+      if (newOpen) {
+        if (onOpen) {
+          onOpen()
+        } else {
+          setOpen(true)
+        }
+      } else {
+        if (onClose) {
+          onClose()
+        } else {
+          setOpen(false)
+        }
       }
-      // eslint-disable-next-line
-    }, [externalOpen])
+    }, [onClose, onOpen, open])
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -97,23 +106,6 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         }
       }
     })
-
-    const handleClick = () => {
-      const newOpen = !open
-      if (newOpen) {
-        if (onOpen) {
-          onOpen()
-        } else {
-          setOpen(true)
-        }
-      } else {
-        if (onClose) {
-          onClose()
-        } else {
-          setOpen(false)
-        }
-      }
-    }
 
     // 获取箭头节点
     function getArrowNode() {
@@ -175,6 +167,14 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         </div>
       )
     }
+
+    // Controlled component
+    useEffect(() => {
+      if (typeof externalOpen === 'boolean') {
+        setOpen(externalOpen)
+      }
+      // eslint-disable-next-line
+    }, [externalOpen])
 
     return (
       <div

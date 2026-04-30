@@ -64,17 +64,14 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
     let [result, setResult] = useState<LoadResult | null>(null)
 
     const APIRef = useRef<MapLoaderRef>({
+      // 下方 async function 声明在运行时已提升；满足 hooks → 内部工具 → effect
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       reload: loadData
     })
 
     useImperativeHandle(ref, () => {
       return APIRef.current
     })
-
-    useEffect(() => {
-      loadData()
-      // eslint-disable-next-line
-    }, [])
 
     async function loadData() {
       if (typeof getAddress === 'function') window.defaultGetAddress = getAddress
@@ -116,6 +113,11 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
       }
       setResult(loadResult)
     }
+
+    useEffect(() => {
+      loadData()
+      // eslint-disable-next-line
+    }, [])
 
     if (result === null) {
       if (loadingNode) {

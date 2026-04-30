@@ -158,10 +158,6 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
     const rootRef = useRef<HTMLDivElement>(null)
     let [leafletMap, setLeafletMap] = useState<L.Map | string | null>(null)
 
-    function localeToErrorString(node: string | React.ReactNode): string {
-      return typeof node === 'string' ? node : 'Error'
-    }
-
     const APIRef = useRef<MapContainerAPI>({
       element: rootRef.current,
       getElement: () => rootRef.current,
@@ -261,11 +257,54 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       return APIRef.current
     })
 
-    useEffect(() => {
-      APIRef.current.element = rootRef.current
-      loadData()
-      // eslint-disable-next-line
-    }, [])
+    function localeToErrorString(node: string | React.ReactNode): string {
+      return typeof node === 'string' ? node : 'Error'
+    }
+
+    function events() {
+      /* 短路与回调，与既有写法一致 */
+      /* eslint-disable @typescript-eslint/no-unused-expressions */
+      const lmap = leafletMap as L.Map
+      lmap.on('zoomstart', function () {
+        onZoomStart && onZoomStart(APIRef.current)
+        APIRef.current.onZoomStart && APIRef.current.onZoomStart(APIRef.current)
+      })
+      lmap.on('zoom', function () {
+        onZoom && onZoom(APIRef.current)
+        APIRef.current.onZoom && APIRef.current.onZoom(APIRef.current)
+      })
+      lmap.on('zoomend', function () {
+        onZoomEnd && onZoomEnd(APIRef.current)
+        APIRef.current.onZoomEnd && APIRef.current.onZoomEnd(APIRef.current)
+      })
+
+      lmap.on('movestart', function () {
+        onMoveStart && onMoveStart(APIRef.current)
+        APIRef.current.onMoveStart && APIRef.current.onMoveStart(APIRef.current)
+      })
+      lmap.on('move', function () {
+        onMove && onMove(APIRef.current)
+        APIRef.current.onMove && APIRef.current.onMove(APIRef.current)
+      })
+      lmap.on('moveend', function () {
+        onMoveEnd && onMoveEnd(APIRef.current)
+        APIRef.current.onMoveEnd && APIRef.current.onMoveEnd(APIRef.current)
+      })
+
+      lmap.on('dragstart', function () {
+        onDragStart && onDragStart(APIRef.current)
+        APIRef.current.onDragStart && APIRef.current.onDragStart(APIRef.current)
+      })
+      lmap.on('drag', function () {
+        onDrag && onDrag(APIRef.current)
+        APIRef.current.onDrag && APIRef.current.onDrag(APIRef.current)
+      })
+      lmap.on('dragend', function () {
+        onDragEnd && onDragEnd(APIRef.current)
+        APIRef.current.onDragEnd && APIRef.current.onDragEnd(APIRef.current)
+      })
+      /* eslint-enable @typescript-eslint/no-unused-expressions */
+    }
 
     async function loadData() {
       if (!rootRef.current?.querySelector) {
@@ -333,47 +372,11 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       })
     }
 
-    function events() {
-      const lmap = leafletMap as L.Map
-      lmap.on('zoomstart', function () {
-        onZoomStart && onZoomStart(APIRef.current)
-        APIRef.current.onZoomStart && APIRef.current.onZoomStart(APIRef.current)
-      })
-      lmap.on('zoom', function () {
-        onZoom && onZoom(APIRef.current)
-        APIRef.current.onZoom && APIRef.current.onZoom(APIRef.current)
-      })
-      lmap.on('zoomend', function () {
-        onZoomEnd && onZoomEnd(APIRef.current)
-        APIRef.current.onZoomEnd && APIRef.current.onZoomEnd(APIRef.current)
-      })
-
-      lmap.on('movestart', function () {
-        onMoveStart && onMoveStart(APIRef.current)
-        APIRef.current.onMoveStart && APIRef.current.onMoveStart(APIRef.current)
-      })
-      lmap.on('move', function () {
-        onMove && onMove(APIRef.current)
-        APIRef.current.onMove && APIRef.current.onMove(APIRef.current)
-      })
-      lmap.on('moveend', function () {
-        onMoveEnd && onMoveEnd(APIRef.current)
-        APIRef.current.onMoveEnd && APIRef.current.onMoveEnd(APIRef.current)
-      })
-
-      lmap.on('dragstart', function () {
-        onDragStart && onDragStart(APIRef.current)
-        APIRef.current.onDragStart && APIRef.current.onDragStart(APIRef.current)
-      })
-      lmap.on('drag', function () {
-        onDrag && onDrag(APIRef.current)
-        APIRef.current.onDrag && APIRef.current.onDrag(APIRef.current)
-      })
-      lmap.on('dragend', function () {
-        onDragEnd && onDragEnd(APIRef.current)
-        APIRef.current.onDragEnd && APIRef.current.onDragEnd(APIRef.current)
-      })
-    }
+    useEffect(() => {
+      APIRef.current.element = rootRef.current
+      loadData()
+      // eslint-disable-next-line
+    }, [])
 
     let newChildren = null
     if (!leafletMap) {
