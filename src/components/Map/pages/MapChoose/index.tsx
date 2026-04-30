@@ -127,13 +127,15 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
   ref
 ) {
   const mapRef = useRef<MapContainerAPI | null>(null)
+
   const nearbyRef = useRef<React.ComponentRef<typeof NearbyControl> | null>(null)
+
   const locationRef = useRef<React.ElementRef<typeof LocationControl> | null>(null)
+
   const zoomRef = useRef<React.ElementRef<typeof ZoomControl> | null>(null)
+
   const [points, setPoints] = useState<unknown[] | null>(null)
 
-  // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current == null.
-  useImperativeHandle(ref, () => mapRef.current as MapContainerAPI)
 
   useEffect(() => {
     if (value?.longitude && value?.latitude && value?.type) {
@@ -141,6 +143,11 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(value)])
+
+
+  // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current == null.
+  useImperativeHandle(ref, () => mapRef.current as MapContainerAPI)
+
 
   async function handleAutoLocation() {
     if (value?.longitude && value?.latitude && value?.address) {
@@ -208,6 +215,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     handleChange(newValue)
   }
 
+
   function handleChange(newValue: unknown) {
     if (newValue === null || newValue === undefined) {
       onChange && onChange(null)
@@ -219,6 +227,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     const fmt = coordsToWgs84(newValue as WgsMapPoint)
     onChange && onChange(fmt)
   }
+
 
   return (
     <MapContainer

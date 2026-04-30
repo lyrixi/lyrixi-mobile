@@ -54,16 +54,11 @@ const Nearby = forwardRef<
 >(({ value, radius, readOnly, nearbyVisible = true, map, onChange, onSuccess, onError }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
+
   const [result, setResult] = useState<QueryNearbyResult | null>(null)
+
   const [tab, setTab] = useState(getTabs()[0])
 
-  useImperativeHandle(ref, () => {
-    return {
-      element: rootRef.current,
-      getElement: () => rootRef.current,
-      reload: loadData
-    }
-  })
 
   useEffect(() => {
     if (
@@ -79,6 +74,16 @@ const Nearby = forwardRef<
     void loadData()
     // eslint-disable-next-line
   }, [JSON.stringify(tab), JSON.stringify(value)])
+
+
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current,
+      reload: loadData
+    }
+  })
+
 
   async function loadData() {
     if (!map) return
@@ -111,6 +116,7 @@ const Nearby = forwardRef<
       onError?.(newResult)
     }
   }
+
 
   return (
     <div className="lyrixi-map-nearbyControl" ref={rootRef}>

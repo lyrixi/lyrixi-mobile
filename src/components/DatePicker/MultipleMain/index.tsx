@@ -41,11 +41,22 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
     ref
   ) {
     const tabsRef = useRef<DatePickerMultipleTab[] | null>(null)
+
     tabsRef.current = formatValue(value, type)
+
     const [activeTab, setActiveTab] = useState<DatePickerMultipleTab | undefined>(undefined)
+
 
     // Expose tools
     const mainRef = useRef<HTMLDivElement | null>(null)
+
+
+    useEffect(() => {
+      if (activeTab) return
+      setActiveTab(getActiveTab(tabsRef.current) ?? undefined)
+      // eslint-disable-next-line
+    }, [value])
+
     useImperativeHandle(ref, () => {
       return {
         mainElement: mainRef.current,
@@ -56,13 +67,9 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
       }
     })
 
-    useEffect(() => {
-      if (activeTab) return
-      setActiveTab(getActiveTab(tabsRef.current) ?? undefined)
-      // eslint-disable-next-line
-    }, [value])
 
     const tabs = tabsRef.current
+
 
     return (
       <div ref={mainRef} className="lyrixi-picker-multiple-main">

@@ -80,8 +80,17 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
   ref: Ref<ModalRef>
 ) {
   let [currentValue, setCurrentValue] = useState<unknown>(value)
+
   const modalRef = useRef<ModalRef | null>(null)
+
   const mainRef = useRef<PickerMainRef | null>(null)
+
+
+    // 同步外部value到内部
+    useEffect(() => {
+      setCurrentValue(value)
+    }, [value])
+
 
   useImperativeHandle(
     ref,
@@ -96,10 +105,6 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
     []
   )
 
-    // 同步外部value到内部
-    useEffect(() => {
-      setCurrentValue(value)
-    }, [value])
 
     async function handleOk() {
       // 触发 onOk
@@ -115,9 +120,11 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
       onClose?.()
     }
 
+
   function handleChange(newValue: PickerColumnItem[]) {
     setCurrentValue(newValue)
   }
+
 
     return (
       <NavBarModal

@@ -91,23 +91,53 @@ function WechatMiniProgram(
 ) {
   // 返回{saveMediaUrl, getMediaUrl}
   const uploadUrl = getUploadUrl?.({ platform: 'wechatMiniProgram' }) || {}
+
   const saveMediaUrl = (uploadUrl.saveMediaUrl as string) || ''
+
   const getMediaUrl = (uploadUrl.getMediaUrl as string) || ''
+
 
   // Auto generate id, used to get item form server
   const idRef = useRef(generateId())
 
+
   // Photo and Album select actionsheet open
   const [open, setOpen] = useState(false)
 
+
   const mediaRef = useRef<MediaHandle | null>(null)
+
 
   // Newest List
   const listRef = useRef(Array.isArray(list) ? list : [])
 
+
   // Change event
   const onChangeRef = useRef<((list: MediaItem[]) => void) | undefined>(undefined)
+
   onChangeRef.current = onChange
+
+
+  // 组件移除时, 停止轮询
+  useEffect(() => {
+    return () => {
+      console.log('组件移除, 停止轮询, 并清除照片')
+      Loading.hide()
+      stopAllPolls()
+      // eslint-disable-next-line
+      clearPhotos(idRef.current, { url: saveMediaUrl })
+    }
+    // eslint-disable-next-line
+  }, [])
+
+
+  // 外部强行修改list, 需要同步到服务器
+  useEffect(() => {
+    if (Array.isArray(list) === false) return
+    listRef.current = list
+    // eslint-disable-next-line
+  }, [list])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -139,6 +169,7 @@ function WechatMiniProgram(
       }
     }
   })
+
 
   // Get item by polling interval
   async function updatePhotos() {
@@ -172,24 +203,6 @@ function WechatMiniProgram(
     }, 3000)
   }
 
-  // 组件移除时, 停止轮询
-  useEffect(() => {
-    return () => {
-      console.log('组件移除, 停止轮询, 并清除照片')
-      Loading.hide()
-      stopAllPolls()
-      // eslint-disable-next-line
-      clearPhotos(idRef.current, { url: saveMediaUrl })
-    }
-    // eslint-disable-next-line
-  }, [])
-
-  // 外部强行修改list, 需要同步到服务器
-  useEffect(() => {
-    if (Array.isArray(list) === false) return
-    listRef.current = list
-    // eslint-disable-next-line
-  }, [list])
 
   // Jump to WeChat mini program to photo
   async function goCamera(sourceTypeParam: string[]) {
@@ -263,6 +276,7 @@ function WechatMiniProgram(
     })
   }
 
+
   // 选择文件
   async function handleChoose() {
     // 前置校验
@@ -285,6 +299,7 @@ function WechatMiniProgram(
     return isOk
   }
 
+
   const mediaTypeList =
     mediaType == null
       ? undefined
@@ -292,18 +307,23 @@ function WechatMiniProgram(
         ? mediaType
         : [mediaType]
 
+
   const ellipsisForMedia =
     ellipsis === true ? { count: 1 } : ellipsis && typeof ellipsis === 'object' ? ellipsis : undefined
 
+
   const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
+
 
   const uploadPositionNarrow: 'start' | 'end' | undefined =
     uploadPosition === 'start' || uploadPosition === 'end' ? uploadPosition : undefined
+
 
   const previewCancelNarrow: 'left' | 'right' | undefined =
     previewCancelPosition === 'left' || previewCancelPosition === 'right'
       ? previewCancelPosition
       : undefined
+
 
   const uploadRenderFn =
     uploadRender == null
@@ -312,12 +332,14 @@ function WechatMiniProgram(
         ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
         : () => uploadRender
 
+
   const uploadingRenderFn =
     uploadingRender == null
       ? undefined
       : typeof uploadingRender === 'function'
         ? (uploadingRender as (ctx: MediaListItem & { uploadingType: string }) => ReactNode)
         : (ctx: MediaListItem & { uploadingType: string }) => uploadingRender
+
 
   const itemRenderFn =
     itemRender == null
@@ -326,6 +348,7 @@ function WechatMiniProgram(
         ? (itemRender as (item: MediaListItem) => ReactNode)
         : (_item: MediaListItem) => itemRender as ReactNode
 
+
   const onBeforeChooseForMedia: MediaComponentProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'
       ? (e) => {
@@ -333,6 +356,7 @@ function WechatMiniProgram(
           return onBeforeChoose() as boolean | void | Promise<boolean | void>
         }
       : undefined
+
 
   return (
     <>

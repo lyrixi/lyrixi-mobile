@@ -107,23 +107,12 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
   ref
 ) {
   const [open, setOpen] = useState<boolean | null>(null)
+
   const comboRef = useRef<ComboRef | null>(null)
+
   // 唯一id，用于关闭时排除其他dropdown
   const idRef = useRef<string>(ObjectUtil.randomUUID())
 
-  // Expose
-  useImperativeHandle(ref, () => {
-    const cr = comboRef.current
-    return {
-      ...(cr ? { element: cr.element, getElement: cr.getElement } : {}),
-      close: () => {
-        setOpen(false)
-      },
-      open: () => {
-        setOpen(true)
-      }
-    }
-  })
 
   // 注册当前实例到全局集合
   useEffect(() => {
@@ -144,6 +133,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     // eslint-disable-next-line
   }, [])
 
+
   useEffect(() => {
     if (open === null) return
     // 打开前先关闭其他所有 dropdown
@@ -155,6 +145,22 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     }
     // eslint-disable-next-line
   }, [open])
+
+
+  // Expose
+  useImperativeHandle(ref, () => {
+    const cr = comboRef.current
+    return {
+      ...(cr ? { element: cr.element, getElement: cr.getElement } : {}),
+      close: () => {
+        setOpen(false)
+      },
+      open: () => {
+        setOpen(true)
+      }
+    }
+  })
+
 
   async function handleClick(e: MouseEvent) {
     let newOpen = !open
@@ -170,6 +176,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
 
     setOpen(true)
   }
+
 
   // 获取标题节点
   function renderCombo() {
@@ -208,8 +215,11 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     )
   }
 
+
   const ComboNode = renderCombo()
+
   const modalOpen = open ?? false
+
 
   return (
     <>

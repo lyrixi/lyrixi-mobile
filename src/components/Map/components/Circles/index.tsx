@@ -32,17 +32,12 @@ const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
     ref
   ) => {
     let points = pointsProp as unknown
+
     const circlesLayerRef = useRef<L.LayerGroup | null>(null)
+
 
     points = filterCoords(points)
 
-    useImperativeHandle(ref, () => {
-      return {
-        redraw: () => {
-          draw()
-        }
-      }
-    })
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -56,6 +51,7 @@ const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
       }
     }, [map])
 
+
     useEffect(() => {
       if (ObjectUtil.isEmpty(points)) {
         clearCircles(circlesLayerRef.current)
@@ -65,6 +61,16 @@ const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
+
+    useImperativeHandle(ref, () => {
+      return {
+        redraw: () => {
+          draw()
+        }
+      }
+    })
+
+
     function draw() {
       if (ObjectUtil.isEmpty(points)) {
         return
@@ -73,6 +79,7 @@ const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
       if (!circlesLayerRef.current) return
       addCircles(points as CirclePoint[], { color, radius }, circlesLayerRef.current)
     }
+
 
     return <></>
   }

@@ -106,7 +106,20 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
   ref
 ) {
   const comboRef = useRef<ButtonRef | null>(null)
+
   const [open, setOpen] = useState<boolean | null>(null)
+
+
+  useEffect(() => {
+    if (open === null) return
+    if (open) {
+      onOpen?.()
+    } else {
+      onClose?.()
+    }
+    // eslint-disable-next-line
+  }, [open])
+
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -122,15 +135,6 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     }
   })
 
-  useEffect(() => {
-    if (open === null) return
-    if (open) {
-      onOpen?.()
-    } else {
-      onClose?.()
-    }
-    // eslint-disable-next-line
-  }, [open])
 
   // 获取标题节点
   function renderCombo() {
@@ -171,8 +175,11 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     )
   }
 
+
   const ComboNode = renderCombo()
+
   const modalOpen = open ?? false
+
 
   return (
     <>

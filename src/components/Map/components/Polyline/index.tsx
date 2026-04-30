@@ -30,17 +30,12 @@ const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
     ref
   ) => {
     let points = pointsProp as unknown
+
     const polylineLayerRef = useRef<L.LayerGroup | null>(null)
+
 
     points = filterCoords(points)
 
-    useImperativeHandle(ref, () => {
-      return {
-        redraw: () => {
-          draw()
-        }
-      }
-    })
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -54,6 +49,7 @@ const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
       }
     }, [map])
 
+
     useEffect(() => {
       if (!polylineLayerRef.current) return
       if (ObjectUtil.isEmpty(points)) {
@@ -65,6 +61,16 @@ const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
+
+    useImperativeHandle(ref, () => {
+      return {
+        redraw: () => {
+          draw()
+        }
+      }
+    })
+
+
     function draw() {
       if (ObjectUtil.isEmpty(points)) {
         return
@@ -74,6 +80,7 @@ const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
       const style: LineStyleOptions = { color }
       addPolyline(points as LinePoint[], style, polylineLayerRef.current)
     }
+
 
     return <></>
   }

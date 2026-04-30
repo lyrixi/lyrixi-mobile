@@ -51,16 +51,12 @@ const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
   ) => {
     const rootRef = useRef<HTMLSpanElement>(null)
 
+
     const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
+
 
     const centerMarkerLayerRef = useRef<L.LayerGroup | null>(null)
 
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
 
     useEffect(() => {
       if (!map?.leafletMap) return
@@ -71,6 +67,7 @@ const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
       }
       // eslint-disable-next-line
     }, [])
+
 
     useEffect(() => {
       if (!value?.longitude || !value?.latitude || !value?.type) {
@@ -113,6 +110,15 @@ const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
 
       // eslint-disable-next-line
     }, [value])
+
+
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
+    })
+
 
     return (
       <span

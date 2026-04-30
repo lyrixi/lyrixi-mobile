@@ -48,13 +48,19 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
   ref
 ) {
   void _open
+
   void _allowClear
+
   // 一维数组强制改成二维数组
   let lists: PickerColumnItem[][] | null = null
+
   let listCount = 0
 
+
   const rawList = list
+
   const dimensional = dimensionalArray(rawList)
+
   if (dimensional === 2) {
     listCount = (rawList as PickerColumnItem[][]).length
     lists = rawList as PickerColumnItem[][]
@@ -66,11 +72,22 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     lists = null
   }
 
+
   // 节点
   const mainRef = useRef<HTMLDivElement | null>(null)
+
   const slotsRef = useRef<HTMLDivElement | null>(null)
+
   const valueRef = useRef<PickerColumnItem[] | null>(null)
+
   valueRef.current = formatValue(value, { lists, listCount })
+
+
+  useEffect(() => {
+    update()
+    // eslint-disable-next-line
+  }, [value])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -84,10 +101,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     }
   })
 
-  useEffect(() => {
-    update()
-    // eslint-disable-next-line
-  }, [value])
 
   // 更新视图
   function update() {
@@ -101,6 +114,7 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
       slot.style.transform = `translateY(${y}px)`
     }
   }
+
 
   return (
     <div

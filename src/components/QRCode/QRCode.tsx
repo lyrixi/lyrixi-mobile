@@ -37,15 +37,9 @@ const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
 ) {
   // 节点
   const rootRef = useRef<HTMLSpanElement | null>(null)
+
   const instance = useRef<QRLib | null>(null)
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        instance: instance.current,
-        getElement: () => rootRef.current,
-        getInstance: () => instance.current
-      }
-    })
+
 
     useEffect(() => {
       if (!text || typeof text !== 'string') return
@@ -72,7 +66,18 @@ const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
       // eslint-disable-next-line
     }, [text])
 
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        instance: instance.current,
+        getElement: () => rootRef.current,
+        getInstance: () => instance.current
+      }
+    })
+
+
   if (!text) return null
+
   return (
     <span style={style} className={DOMUtil.classNames('lyrixi-qrcode', className)} ref={rootRef}>
       {children}

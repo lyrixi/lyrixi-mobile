@@ -109,13 +109,6 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
     const modalRef = useRef<ModalRef | null>(null)
     const mainRef = useRef<ListPaginationRef | null>(null)
 
-    useImperativeHandle(ref, () => {
-      return {
-        ...(modalRef.current as ModalRef),
-        ...(mainRef.current as ListPaginationRef)
-      } as ModalPaginationRef
-    })
-
     // 同步外部value到内部
     useEffect(() => {
       if (open) {
@@ -123,16 +116,12 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
       }
     }, [open, value])
 
-    function renderHeader() {
-      if (typeof headerRender === 'function') {
-        return headerRender({
-          open: open,
-          value: value,
-          list: list
-        })
-      }
-      return null
-    }
+    useImperativeHandle(ref, () => {
+      return {
+        ...(modalRef.current as ModalRef),
+        ...(mainRef.current as ListPaginationRef)
+      } as ModalPaginationRef
+    })
 
     async function handleOk() {
       if (onOk) {
@@ -156,6 +145,17 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
         onChange?.(newValue, options)
         onClose?.()
       }
+    }
+
+    function renderHeader() {
+      if (typeof headerRender === 'function') {
+        return headerRender({
+          open: open,
+          value: value,
+          list: list
+        })
+      }
+      return null
     }
 
     return (

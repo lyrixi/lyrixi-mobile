@@ -62,15 +62,28 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(fun
   ref
 ) {
   let ranges = rangesProp
+
   if (ranges === undefined) {
     // eslint-disable-next-line
     ranges = getDefaultRanges()
   }
 
+
   const [currentValue, setCurrentValue] = useState(() => formatValue(value))
+
   const [currentRangeId, setCurrentRangeId] = useState<string | null | undefined>(rangeId)
+
   const modalRef = useRef<ModalRef | null>(null)
+
   const mainRef = useRef<Record<string, unknown> | null>(null)
+
+
+  // 同步外部value到内部currentValue
+  useEffect(() => {
+    setCurrentValue(formatValue(value))
+    setCurrentRangeId(rangeId)
+  }, [value, rangeId])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -81,11 +94,6 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(fun
     } as DatePickerModalRef
   })
 
-  // 同步外部value到内部currentValue
-  useEffect(() => {
-    setCurrentValue(formatValue(value))
-    setCurrentRangeId(rangeId)
-  }, [value, rangeId])
 
   async function handleOk() {
     let val = currentValue
@@ -107,6 +115,7 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(fun
     onClose?.()
   }
 
+
   function handleChange(
     newValue: (Date | null)[] | null,
     meta?: { rangeId?: string | null }
@@ -117,8 +126,10 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(fun
     setCurrentRangeId(meta?.rangeId)
   }
 
+
   // 自定义标题节点
   const titleNode = titleRender?.(currentValue, { type, separator }) ?? null
+
 
   return (
     <NavBarModal

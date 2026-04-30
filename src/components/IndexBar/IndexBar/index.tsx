@@ -48,24 +48,18 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
   ) => {
     // 滚动防抖定时器
     const scrollDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
     // Nodes
     const sidebarRef = useRef<HTMLDivElement>(null)
+
     const tooltipRef = useRef<HTMLDivElement>(null)
+
 
     // Touches
     const touchesRef = useRef({
       startX: 0
     })
 
-    useImperativeHandle(ref, () => {
-      return {
-        element: sidebarRef.current,
-        tooltipElement: tooltipRef.current,
-        getElement: () => sidebarRef.current,
-        getTooltipElement: () => tooltipRef.current,
-        scrollToAnchor: goAnchor
-      }
-    })
 
     // 监听滚动事件(有滚动容器时才监听，用 getElement 以便初始化后 ref 挂载也能拿到)
     useEffect(() => {
@@ -78,6 +72,18 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       }
       // eslint-disable-next-line
     }, [])
+
+
+    useImperativeHandle(ref, () => {
+      return {
+        element: sidebarRef.current,
+        tooltipElement: tooltipRef.current,
+        getElement: () => sidebarRef.current,
+        getTooltipElement: () => tooltipRef.current,
+        scrollToAnchor: goAnchor
+      }
+    })
+
 
     // 滚动事件(有滚动容器时才监听)
     function handleScroll(e: Event): void {
@@ -92,6 +98,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
         scrollDebounceRef.current = null
       }, 300)
     }
+
 
     // 触摸时滚动至anchor
     function goAnchor(currentAnchor: string): void {
@@ -118,6 +125,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       })
     }
 
+
     // Sidebar touch move to position Anchor
     function handleTouchStart(e: React.TouchEvent<HTMLDivElement>): void {
       e.stopPropagation()
@@ -137,6 +145,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       goAnchor(currentAnchor)
     }
 
+
     function handleTouchMove(e: React.TouchEvent<HTMLDivElement>): void {
       e.stopPropagation()
 
@@ -149,6 +158,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       goAnchor(currentAnchor)
     }
 
+
     function handleTouchEnd(e: React.TouchEvent<HTMLDivElement>): void {
       e.stopPropagation()
       // 解除对move时的弹性对当前div的锁定
@@ -156,6 +166,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
 
       sidebarRef.current?.classList.remove('lyrixi-active')
     }
+
 
     const Node = (
       <Fragment>
@@ -182,6 +193,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
         <div ref={tooltipRef} className="lyrixi-indexbar-tooltip"></div>
       </Fragment>
     )
+
     return Node
   }
 )

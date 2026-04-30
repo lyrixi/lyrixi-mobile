@@ -52,8 +52,17 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
   ref
 ) {
   let [currentValue, setCurrentValue] = useState<Date | null | undefined>(value)
+
   const modalRef = useRef<ModalRef | null>(null)
+
   const mainRef = useRef<Record<string, unknown> | null>(null)
+
+
+    // 同步外部value到内部currentValue
+    useEffect(() => {
+      setCurrentValue(value)
+    }, [value])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -64,10 +73,6 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
     } as DatePickerModalRef
   })
 
-    // 同步外部value到内部currentValue
-    useEffect(() => {
-      setCurrentValue(value)
-    }, [value])
 
   async function handleOk() {
     // 触发 onOk
@@ -83,12 +88,15 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
     onClose?.()
   }
 
+
   function handleChange(newValue: Date | null) {
     setCurrentValue(newValue)
   }
 
+
   // 自定义标题节点
   const titleNode = titleRender?.(currentValue, { type: type ?? 'date' }) ?? null
+
 
   return (
     <NavBarModal

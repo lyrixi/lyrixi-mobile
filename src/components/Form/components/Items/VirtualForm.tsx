@@ -48,17 +48,12 @@ const VirtualForm = forwardRef<VirtualFormRef, VirtualFormProps>(
   ) => {
     const rootRef = useRef<HTMLDivElement>(null)
 
+
     // Virtual
     const [observer, setObserver] = useState<IntersectionObserver | null>(null)
+
     const observerCallbacksRef = useRef(new WeakMap<Element, (visible: boolean) => void>())
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
 
     useEffect(() => {
       // 创建IntersectionObserver实例
@@ -82,6 +77,16 @@ const VirtualForm = forwardRef<VirtualFormRef, VirtualFormProps>(
         newObserver.disconnect()
       }
     }, [])
+
+
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
+    })
+
 
     return (
       <ItemsContext.Provider

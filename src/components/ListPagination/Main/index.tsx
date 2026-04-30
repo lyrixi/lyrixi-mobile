@@ -85,8 +85,22 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
     ref
   ) => {
     const isFirstLoad = useRef(true)
+
     const mainRef = useRef<ListAsyncRef | null>(null)
+
     const pageRef = useRef(1)
+
+
+    useEffect(() => {
+      if (isFirstLoad.current) {
+        isFirstLoad.current = false
+        mainRef.current?.reload('load')
+        return
+      }
+      mainRef.current?.reload()
+      // eslint-disable-next-line
+    }, [url, JSON.stringify(payload)])
+
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -113,15 +127,6 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
       }
     })
 
-    useEffect(() => {
-      if (isFirstLoad.current) {
-        isFirstLoad.current = false
-        mainRef.current?.reload('load')
-        return
-      }
-      mainRef.current?.reload()
-      // eslint-disable-next-line
-    }, [url, JSON.stringify(payload)])
 
     return (
       <ListAsync

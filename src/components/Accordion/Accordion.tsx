@@ -68,22 +68,13 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
 
     const [open, setOpen] = useState(externalOpen)
 
-    const handleClick = useCallback(() => {
-      const newOpen = !open
-      if (newOpen) {
-        if (onOpen) {
-          onOpen()
-        } else {
-          setOpen(true)
-        }
-      } else {
-        if (onClose) {
-          onClose()
-        } else {
-          setOpen(false)
-        }
+    // Controlled: 同步外部 open
+    useEffect(() => {
+      if (typeof externalOpen === 'boolean') {
+        setOpen(externalOpen)
       }
-    }, [onClose, onOpen, open])
+      // eslint-disable-next-line
+    }, [externalOpen])
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -106,6 +97,23 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         }
       }
     })
+
+    const handleClick = useCallback(() => {
+      const newOpen = !open
+      if (newOpen) {
+        if (onOpen) {
+          onOpen()
+        } else {
+          setOpen(true)
+        }
+      } else {
+        if (onClose) {
+          onClose()
+        } else {
+          setOpen(false)
+        }
+      }
+    }, [onClose, onOpen, open])
 
     // 获取箭头节点
     function renderArrow() {
@@ -167,14 +175,6 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         </div>
       )
     }
-
-    // Controlled component
-    useEffect(() => {
-      if (typeof externalOpen === 'boolean') {
-        setOpen(externalOpen)
-      }
-      // eslint-disable-next-line
-    }, [externalOpen])
 
     return (
       <div

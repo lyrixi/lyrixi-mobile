@@ -119,9 +119,11 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
     ref
   ) => {
     let address = value?.value || value?.address
+
     if (address && (!value?.value || !value?.address)) {
       value = { ...value, address, value: address }
     }
+
 
     const resolveGetAddress: NonNullable<MapContainerProps['getAddress']> =
       typeof getAddress === 'function'
@@ -129,6 +131,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
         : (cacheExpires ? defaultGetSuperAddress : defaultGetAddress) as NonNullable<
             MapContainerProps['getAddress']
           >
+
     const resolveGetLocation: NonNullable<MapContainerProps['getLocation']> =
       typeof getLocation === 'function'
         ? (getLocation as NonNullable<MapContainerProps['getLocation']>)
@@ -136,30 +139,27 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
             MapContainerProps['getLocation']
           >
 
+
     const errMsgRef = useRef(errorText)
+
 
     let [locationStatus, setLocationStatus] = useState('1')
 
+
     const [modalOpen, setModalOpen] = useState('')
 
+
     const onChangeRef = useRef<((value: LocationValue | null) => void) | null | undefined>(onChange)
+
     onChangeRef.current = onChange
+
     const onErrorRef = useRef<((error: { status: string; message: string }) => void) | null | undefined>(onError)
+
     onErrorRef.current = onError
 
+
     const comboRef = useRef<InputTextRef | null>(null)
-    useImperativeHandle(ref, () => {
-      return {
-        element: comboRef?.current?.getElement ? comboRef.current.getElement() : comboRef?.current,
-        getElement: () => {
-          let element: unknown = comboRef?.current
-          if (comboRef?.current?.getElement) {
-            element = comboRef.current.getElement()
-          }
-          return element
-        }
-      }
-    })
+
 
     useEffect(() => {
       if (
@@ -174,6 +174,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       // eslint-disable-next-line
     }, [value])
 
+
     useEffect(() => {
       if (modalOpen) {
         onOpen?.()
@@ -185,11 +186,13 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       // eslint-disable-next-line
     }, [modalOpen])
 
+
     useEffect(() => {
       if (autoLocation !== true) return
       handleAutoLocation()
       // eslint-disable-next-line
     }, [autoLocation])
+
 
     useEffect(() => {
       if (onLocationStatusChange) {
@@ -197,6 +200,20 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       }
       // eslint-disable-next-line
     }, [locationStatus])
+
+    useImperativeHandle(ref, () => {
+      return {
+        element: comboRef?.current?.getElement ? comboRef.current.getElement() : comboRef?.current,
+        getElement: () => {
+          let element: unknown = comboRef?.current
+          if (comboRef?.current?.getElement) {
+            element = comboRef.current.getElement()
+          }
+          return element
+        }
+      }
+    })
+
 
     async function addAddress(val: LocationValue | null): Promise<LocationValue | string | null> {
       let newValue: LocationValue | string | null = val
@@ -221,6 +238,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       return newValue
     }
 
+
     async function handleAutoLocation() {
       if (value && value.latitude && value.longitude) {
         if (value.value || value.address) {
@@ -238,6 +256,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
         handleLocation('autoLocation')
       }
     }
+
 
     function handleClick(e: React.MouseEvent) {
       e.stopPropagation()
@@ -262,6 +281,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
         return
       }
     }
+
 
     function updateValue(_newValue: LocationValue | string | null) {
       let newValue: LocationValue | string | null =
@@ -292,6 +312,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       }
     }
 
+
     async function handleLocation(action: string) {
       locationStatus = '-1'
       setLocationStatus('-1')
@@ -305,6 +326,7 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       const withAddress = await addAddress(newValue)
       updateValue(withAddress)
     }
+
 
     function renderRightIcon(): React.ReactNode[] {
       if (disabled) return []
@@ -365,7 +387,9 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       return rightIconNode
     }
 
+
     let statusNode: React.ReactNode = null
+
     if (locationStatus === '-1') {
       statusNode = (
         <div className="lyrixi-location-combo-positioning lyrixi-input-text">{loadingText}</div>
@@ -376,7 +400,9 @@ const LocationCombo = forwardRef<ComboRef, ComboProps>(
       )
     }
 
+
     const nearbyVisibleProp = typeof chooseVisible === 'object' ? chooseVisible?.nearbyVisible : undefined
+
 
     return (
       <Fragment>

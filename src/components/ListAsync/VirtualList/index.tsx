@@ -78,10 +78,13 @@ const VirtualList = (
   ref: React.Ref<VirtualListRef>
 ) => {
   const rootRef = useRef<PageMainRef | null>(null)
+
   const listRef = useRef<HTMLDivElement | null>(null)
+
 
   // 拉平数据, And set virtualData.type
   const items = useMemo(() => flattenList(list as RawItem[] | undefined) as VirtualItem[], [list])
+
 
   // 计算每一项的高度并缓存
   const itemHeights = useMemo(() => {
@@ -92,11 +95,37 @@ const VirtualList = (
     // eslint-disable-next-line
   }, [list])
 
+
   // 计算总高度
   const totalHeight = itemHeights.reduce((sum, h) => sum + h, 0)
 
+
   // Visible Items and set virtualData style
   const [visibleItems, setVisibleItems] = useState<VirtualItem[] | null>(null)
+
+
+  // 初始化完成时更新显示容器
+  useEffect(() => {
+    if (Array.isArray(list) && list.length) {
+      // 列表更新, 底部自定义区域超过一屏高度, 即使列表高度增加, 也会一直保持在底部, 需要滚动到列表可视区域, 避免一直底部刷新
+      if (ObjectUtil.isEmpty(visibleItems) && totalHeight > constant.startBuffer) {
+        const el = rootRef.current?.element
+        const listEl = listRef.current
+        if (el && listEl) {
+          const appendHeight = el.scrollHeight - (listEl.offsetTop + listEl.offsetHeight)
+          if (appendHeight > el.clientHeight) {
+            el.scrollTop = el.scrollTop - appendHeight - constant.startBuffer
+          }
+        }
+      }
+
+      updateVisibleItems()
+    } else {
+      setVisibleItems(null)
+    }
+    // eslint-disable-next-line
+  }, [list])
+
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -133,27 +162,6 @@ const VirtualList = (
     }
   })
 
-  // 初始化完成时更新显示容器
-  useEffect(() => {
-    if (Array.isArray(list) && list.length) {
-      // 列表更新, 底部自定义区域超过一屏高度, 即使列表高度增加, 也会一直保持在底部, 需要滚动到列表可视区域, 避免一直底部刷新
-      if (ObjectUtil.isEmpty(visibleItems) && totalHeight > constant.startBuffer) {
-        const el = rootRef.current?.element
-        const listEl = listRef.current
-        if (el && listEl) {
-          const appendHeight = el.scrollHeight - (listEl.offsetTop + listEl.offsetHeight)
-          if (appendHeight > el.clientHeight) {
-            el.scrollTop = el.scrollTop - appendHeight - constant.startBuffer
-          }
-        }
-      }
-
-      updateVisibleItems()
-    } else {
-      setVisibleItems(null)
-    }
-    // eslint-disable-next-line
-  }, [list])
 
   // 更新显示容器
   function updateVisibleItems() {
@@ -172,11 +180,13 @@ const VirtualList = (
     })
   }
 
+
   // 滚动
   function handleScroll(e: React.UIEvent<HTMLElement>) {
     updateVisibleItems()
     onScroll && onScroll(e)
   }
+
 
   return (
     <Page.Main

@@ -36,17 +36,12 @@ const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
     ref
   ) => {
     let points = pointsProp as unknown
+
     const polygonLayerRef = useRef<L.LayerGroup | null>(null)
+
 
     points = filterCoords(points)
 
-    useImperativeHandle(ref, () => {
-      return {
-        redraw: () => {
-          draw()
-        }
-      }
-    })
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -60,6 +55,7 @@ const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
       }
     }, [map])
 
+
     useEffect(() => {
       if (!polygonLayerRef.current) return
       const arr = points as PolyPoint[]
@@ -71,6 +67,16 @@ const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
       draw()
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
+
+
+    useImperativeHandle(ref, () => {
+      return {
+        redraw: () => {
+          draw()
+        }
+      }
+    })
+
 
     function draw() {
       const arr = points as PolyPoint[]
@@ -87,6 +93,7 @@ const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
       }
       addPolygon(arr, style, polygonLayerRef.current)
     }
+
 
     return <></>
   }

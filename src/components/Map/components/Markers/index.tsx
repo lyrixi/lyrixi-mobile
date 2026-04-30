@@ -47,29 +47,26 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
     ref
   ) => {
     void style
+
     void className
+
     let points = pointsProp as MapCoord[]
+
 
     const layersRef = useRef<{
       canvasLayer: CanvasMarkerLayer
       layer: L.LayerGroup
     } | null>(null)
 
+
     const focusedPointRef = useRef<MapCoord | null>(null)
+
 
     const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
 
+
     points = filterCoords(points)
 
-    useImperativeHandle(ref, () => {
-      return {
-        redraw: () => {
-          draw()
-        },
-        focus,
-        blur
-      }
-    })
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -94,6 +91,7 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
       }
     }, [map])
 
+
     useEffect(() => {
       if (ObjectUtil.isEmpty(points)) {
         if (layersRef.current) {
@@ -105,15 +103,29 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
+
+    useImperativeHandle(ref, () => {
+      return {
+        redraw: () => {
+          draw()
+        },
+        focus,
+        blur
+      }
+    })
+
+
     function focus(point: MapCoord) {
       focusedPointRef.current = point
       draw()
     }
 
+
     function blur() {
       focusedPointRef.current = null
       draw()
     }
+
 
     function draw() {
       if (ObjectUtil.isEmpty(points)) {
@@ -138,6 +150,7 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
       const resolvedIcon = createMarkerIcon(icon || markerIcons?.markerIcon)
       addMarkers(orderedPoints as MapPoint[], { onClick: onClick, icon: resolvedIcon }, layers)
     }
+
 
     return <></>
   }

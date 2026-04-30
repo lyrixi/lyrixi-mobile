@@ -42,8 +42,19 @@ const Modal = forwardRef<unknown, TransferModalProps>(function TransferModal(
   ref
 ) {
   const [currentValue, setCurrentValue] = useState<TransferItem[] | undefined>(value)
+
   const modalRef = useRef<ModalRef | null>(null)
+
   const mainRef = useRef<unknown>(null)
+
+
+  // 同步外部 value 到内部
+  useEffect(() => {
+    if (open) {
+      setCurrentValue(formatValue(value))
+    }
+  }, [open, value])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -56,12 +67,6 @@ const Modal = forwardRef<unknown, TransferModalProps>(function TransferModal(
     }
   })
 
-  // 同步外部 value 到内部
-  useEffect(() => {
-    if (open) {
-      setCurrentValue(formatValue(value))
-    }
-  }, [open, value])
 
   async function handleOk() {
     if (onOk) {
@@ -74,9 +79,11 @@ const Modal = forwardRef<unknown, TransferModalProps>(function TransferModal(
     onClose?.()
   }
 
+
   function handleChange(newValue: TransferItem[]) {
     setCurrentValue(newValue)
   }
+
 
   return (
     <NavBarModal

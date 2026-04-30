@@ -50,9 +50,52 @@ const CalendarInner = (
 ) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
+
   const [drawDate, setDrawDate] = useState<Date | null>(null)
+
   const [pages, setPages] = useState<CalendarCellDate[][][] | null>(null)
+
   const [currentType, setCurrentType] = useState<CalendarType | null>(null)
+
+
+  useEffect(() => {
+    const newDrawDate = formatDrawDate(value, { min, max })
+    setDrawDate(newDrawDate)
+    // eslint-disable-next-line
+  }, [value])
+
+
+  useEffect(() => {
+    if (drawDate == null || !(drawDate instanceof Date)) {
+      return
+    }
+
+    if (pages && isCurrentDate(drawDate, pages[1])) {
+      return
+    }
+
+    updatePages(drawDate)
+    // eslint-disable-next-line
+  }, [drawDate])
+
+
+  useEffect(() => {
+    if (!Array.isArray(pages)) {
+      return
+    }
+    onPageChange?.(drawDate, {
+      action: 'change',
+      type: currentType,
+      pages: pages
+    })
+
+    if (!currentType) {
+      setCurrentType(type)
+      void handleSlideY(type === 'week' ? 'collapse' : 'expand')
+    }
+    // eslint-disable-next-line
+  }, [pages])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -74,41 +117,6 @@ const CalendarInner = (
     }
   })
 
-  useEffect(() => {
-    const newDrawDate = formatDrawDate(value, { min, max })
-    setDrawDate(newDrawDate)
-    // eslint-disable-next-line
-  }, [value])
-
-  useEffect(() => {
-    if (drawDate == null || !(drawDate instanceof Date)) {
-      return
-    }
-
-    if (pages && isCurrentDate(drawDate, pages[1])) {
-      return
-    }
-
-    updatePages(drawDate)
-    // eslint-disable-next-line
-  }, [drawDate])
-
-  useEffect(() => {
-    if (!Array.isArray(pages)) {
-      return
-    }
-    onPageChange?.(drawDate, {
-      action: 'change',
-      type: currentType,
-      pages: pages
-    })
-
-    if (!currentType) {
-      setCurrentType(type)
-      void handleSlideY(type === 'week' ? 'collapse' : 'expand')
-    }
-    // eslint-disable-next-line
-  }, [pages])
 
   async function handleSlideY(action: 'expand' | 'collapse' | '') {
     if (action === 'expand') {
@@ -128,6 +136,7 @@ const CalendarInner = (
     })
   }
 
+
   async function handleSlideX(action: 'previous' | 'next' | '') {
     const newDrawDate = await slideX(action, {
       type: currentType,
@@ -146,17 +155,20 @@ const CalendarInner = (
     return newDrawDate
   }
 
+
   async function handlePreviousMonth(e?: React.MouseEvent) {
     e?.stopPropagation()
     const newDrawDate = await handleSlideX('previous')
     setDrawDate(newDrawDate)
   }
 
+
   async function handleNextMonth(e?: React.MouseEvent) {
     e?.stopPropagation()
     const newDrawDate = await handleSlideX('next')
     setDrawDate(newDrawDate)
   }
+
 
   function handlePreviousYear(e?: React.MouseEvent) {
     e?.stopPropagation()
@@ -177,6 +189,7 @@ const CalendarInner = (
     setDrawDate(newDrawDate)
   }
 
+
   function handleNextYear(e?: React.MouseEvent) {
     e?.stopPropagation()
     if (drawDate == null || !(drawDate instanceof Date)) {
@@ -195,6 +208,7 @@ const CalendarInner = (
 
     setDrawDate(newDrawDate)
   }
+
 
   function updatePages(newDrawDate: Date | null) {
     let d: Date
@@ -218,7 +232,9 @@ const CalendarInner = (
     setPages(newPages)
   }
 
+
   const weekNames = Weeks.getWeekNames(weekStart)
+
 
   return (
     <div

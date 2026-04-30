@@ -81,13 +81,16 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     // 全部tab
     const tabsRef = useRef<CascaderNode[]>([])
 
+
     // 选中tab
     const [activeTab, setActiveTab] = useState<CascaderNode | undefined>(undefined)
+
 
     // 选中列表, 文本则为错误
     const currentList = ArrayUtil.updateDeepTreeParentId(
       (externalList ?? []) as unknown as Parameters<typeof ArrayUtil.updateDeepTreeParentId>[0]
     ) as CascaderNode[] | null
+
     const [result, setResult] = useState<ResultState>(
       currentList
         ? { status: 'success', list: currentList }
@@ -97,16 +100,10 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
         }
     )
 
+
     // Expose
     const mainRef = useRef<HTMLDivElement>(null)
-    useImperativeHandle(ref, () => {
-      return {
-        mainElement: mainRef.current,
-        getMainElement: () => mainRef.current,
-        // 更新数据
-        update: update
-      }
-    })
+
 
     // 初始化tabs、选中tab、列表
     useEffect(() => {
@@ -129,6 +126,16 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       update(value, { action: 'load' })
       // eslint-disable-next-line
     }, [value])
+
+    useImperativeHandle(ref, () => {
+      return {
+        mainElement: mainRef.current,
+        getMainElement: () => mainRef.current,
+        // 更新数据
+        update: update
+      }
+    })
+
 
     // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
     async function update(newValue: CascaderNode[] | null | undefined, { action }: { action?: string } = {}) {
@@ -183,6 +190,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       setResult(newResult)
     }
 
+
     // 统一根据操作行为获取列表:
     // - clickItem/load: 优先查子级, 无子级则显示同级
     // - clickTab: 显示同级
@@ -220,10 +228,12 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       return { status: 'success', list: externalList }
     }
 
+
     // 获取同级列表
     async function getSiblingData(tabs: CascaderNode[]): Promise<ResultState> {
       return await getChildrenData(tabs.slice(0, tabs.length - 1))
     }
+
 
     // 获取下级列表, 没有返回null
     async function getChildrenData(tabs: CascaderNode[]): Promise<ResultState> {
@@ -279,6 +289,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       return newResult as ResultState
     }
 
+
     // 点击选项, value不包含children
     function handleDrill({ children: _children, ...item }: CascaderNode) {
       // 防止用户快速点击多次触发
@@ -314,6 +325,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       }, 300)
     }
 
+
     // Tab 激活处理(点击tab时查同级)
     const handleClickTab = async (tab: CascaderNode) => {
       // 滚动条还原
@@ -328,6 +340,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       setActiveTab(tab)
       setResult(newResult)
     }
+
 
     function renderTabs() {
       if (result?.status !== 'success') return null
@@ -353,6 +366,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
         />
       )
     }
+
 
     return (
       <>

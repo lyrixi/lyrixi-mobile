@@ -65,8 +65,24 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
   ref
 ) {
   const [open, setOpen] = useState<boolean | null>(null)
+
   const modalRef = useRef<PopupRef | null>(null)
+
   const comboRef = useRef<ComboRef | null>(null)
+
+
+  useEffect(() => {
+    if (open) {
+      updatePosition()
+    }
+    if (open === null) return
+    if (open) {
+      if (typeof onOpen === 'function') onOpen()
+    } else {
+      if (typeof onClose === 'function') onClose()
+    }
+  }, [open])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -78,6 +94,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
         : {})
     }
   })
+
 
   function updatePosition(targetReferenceElement?: HTMLElement | null) {
     let referenceElement: HTMLElement | null | undefined =
@@ -111,18 +128,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
       }
     }
   }
-
-  useEffect(() => {
-    if (open) {
-      updatePosition()
-    }
-    if (open === null) return
-    if (open) {
-      if (typeof onOpen === 'function') onOpen()
-    } else {
-      if (typeof onClose === 'function') onClose()
-    }
-  }, [open]) // eslint-disable-line
+ // eslint-disable-line
 
   async function handleOpen() {
     if (open !== true) {
@@ -139,6 +145,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 
     setOpen((prev) => !prev)
   }
+
 
   function renderCombo() {
     if (typeof comboRender === 'function') {
@@ -164,6 +171,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 
     return null
   }
+
 
   return (
     <>

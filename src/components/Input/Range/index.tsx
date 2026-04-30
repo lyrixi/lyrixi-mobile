@@ -60,10 +60,22 @@ const Range = forwardRef<RangeRef, RangeProps>(
     ref
   ) => {
     const rootRef = useRef<HTMLDivElement>(null)
+
     const inputRef = useRef<HTMLInputElement>(null)
+
     const tooltipRef = useRef<HTMLDivElement>(null)
+
     const handleRef = useRef<HTMLDivElement>(null)
+
     const railRef = useRef<HTMLDivElement>(null)
+
+
+    useEffect(() => {
+      updateContainer()
+      if (tooltipRef.current) hideTooltip(tooltipRef.current)
+      // eslint-disable-next-line
+    }, [])
+
 
     useImperativeHandle(ref, () => {
       return {
@@ -74,11 +86,6 @@ const Range = forwardRef<RangeRef, RangeProps>(
       }
     })
 
-    useEffect(() => {
-      updateContainer()
-      if (tooltipRef.current) hideTooltip(tooltipRef.current)
-      // eslint-disable-next-line
-    }, [])
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       if (disabled || readOnly) return
@@ -93,15 +100,18 @@ const Range = forwardRef<RangeRef, RangeProps>(
       updateContainer(newValue as number)
     }
 
+
     // 显示tooltip
     function handleTouchStart() {
       updateContainer()
       if (tooltipRef.current) showTooltip(tooltipRef.current)
     }
 
+
     function handleTouchEnd() {
       if (tooltipRef.current) hideTooltip(tooltipRef.current)
     }
+
 
     function updateContainer(newValue?: number) {
       let currentValue = newValue ?? value ?? 0
@@ -111,6 +121,7 @@ const Range = forwardRef<RangeRef, RangeProps>(
       if (railRef.current) railRef.current.style.width = `${percent}%`
       if (tooltipRef.current) tooltipRef.current.innerHTML = String(currentValue)
     }
+
 
     return (
       <div

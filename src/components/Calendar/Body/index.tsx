@@ -38,17 +38,35 @@ const Body = forwardRef<BodyRef, BodyProps>(
     ref
   ) => {
     const ch = cellHeight
+
     const rootRef = useRef<HTMLDivElement>(null)
+
     const bodyXRef = useRef<HTMLDivElement | null>(null)
+
     const bodyYRef = useRef<HTMLDivElement | null>(null)
 
+
     const isDrawingRef = useRef(false)
+
 
     const touchesRef = useRef({
       startX: 0,
       startY: 0,
       direction: 0 as TouchDirection
     })
+
+
+    useEffect(() => {
+      bodyXRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-x') as HTMLDivElement | null
+      bodyYRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-y') as HTMLDivElement | null
+    }, [])
+
+
+    useEffect(() => {
+      isDrawingRef.current = false
+      // eslint-disable-next-line
+    }, [open])
+
 
     useImperativeHandle(ref, () => {
       return {
@@ -57,15 +75,6 @@ const Body = forwardRef<BodyRef, BodyProps>(
       }
     })
 
-    useEffect(() => {
-      bodyXRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-x') as HTMLDivElement | null
-      bodyYRef.current = rootRef.current?.querySelector?.('.lyrixi-calendar-body-y') as HTMLDivElement | null
-    }, [])
-
-    useEffect(() => {
-      isDrawingRef.current = false
-      // eslint-disable-next-line
-    }, [open])
 
     /* --------------------
     Events handle
@@ -84,6 +93,7 @@ const Body = forwardRef<BodyRef, BodyProps>(
       touchesRef.current.startX = pos.clientX
       touchesRef.current.startY = pos.clientY
     }
+
     function handleTouchMove(e: React.TouchEvent | React.MouseEvent) {
       e.stopPropagation()
 
@@ -160,6 +170,7 @@ const Body = forwardRef<BodyRef, BodyProps>(
         }
       }
     }
+
     async function handleTouchEnd(e: React.TouchEvent | React.MouseEvent) {
       e.stopPropagation()
 
@@ -204,6 +215,7 @@ const Body = forwardRef<BodyRef, BodyProps>(
       }
     }
 
+
     function handleWindowResize() {
       const width = rootRef.current?.parentElement?.clientWidth
       if (!width) {
@@ -224,9 +236,12 @@ const Body = forwardRef<BodyRef, BodyProps>(
 
       console.log(`Calendar: 更新x轴位移-${width}`)
     }
+
     requestAnimationFrame(handleWindowResize)
 
+
     const pageList = (pages ?? []) as CalendarCellDate[][][]
+
 
     return (
       <>

@@ -51,6 +51,24 @@ const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePic
     ref
   ) {
     const mainRef = useRef<Record<string, unknown> | null>(null)
+
+    useEffect(() => {
+      const [startDate, endDate] = value || [null, null]
+
+      setMultipleDate([
+        {
+          id: 'start',
+          description: LocaleUtil.locale('开始时间', 'lyrixi_592c59589144ddc68d05d528da17dcdc'),
+          value: startDate
+        },
+        {
+          id: 'end',
+          description: LocaleUtil.locale('结束时间', 'lyrixi_f782779e8b5d709462c8e71e0d9019f2'),
+          value: endDate
+        }
+      ])
+    }, [value])
+
     useImperativeHandle(ref, () => {
       return {
         mainElement: mainRef.current,
@@ -68,23 +86,9 @@ const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePic
       }
     })
 
-    const [multipleDate, setMultipleDate] = useState<PickerTab[] | null>(null)
-    useEffect(() => {
-      const [startDate, endDate] = value || [null, null]
 
-      setMultipleDate([
-        {
-          id: 'start',
-          description: LocaleUtil.locale('开始时间', 'lyrixi_592c59589144ddc68d05d528da17dcdc'),
-          value: startDate
-        },
-        {
-          id: 'end',
-          description: LocaleUtil.locale('结束时间', 'lyrixi_f782779e8b5d709462c8e71e0d9019f2'),
-          value: endDate
-        }
-      ])
-    }, [value]) // eslint-disable-line
+    const [multipleDate, setMultipleDate] = useState<PickerTab[] | null>(null)
+ // eslint-disable-line
 
     function handleChange(tabs: DatePickerMultipleValue) {
       if (!tabs || tabs.length < 2) return
@@ -92,10 +96,12 @@ const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePic
       onChange?.(newValue)
     }
 
+
     // 未构建完成Tabs不渲染
     if (!multipleDate) {
       return null
     }
+
 
     return (
       <MultipleMain

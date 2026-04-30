@@ -100,9 +100,28 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
   ) => {
     const mainRef = useRef<EntityListRef | VirtualListRef | null>(null)
 
+
     const [result, setResult] = useState<LoadResult | null>(null)
+
     const [resultStatus, setResultStatus] = useState<string>('')
+
     const [loadAction, setLoadAction] = useState<LoadAction>('')
+
+
+    useEffect(() => {
+      if (!result) return
+      onLoad?.({ result, action: loadAction })
+      setLoadAction('')
+      // eslint-disable-next-line
+    }, [result])
+
+
+    useEffect(() => {
+      if (!initialLoad) return
+      init()
+      // eslint-disable-next-line
+    }, [])
+
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -123,22 +142,11 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       } as ListAsyncRef
     })
 
-    useEffect(() => {
-      if (!result) return
-      onLoad?.({ result, action: loadAction })
-      setLoadAction('')
-      // eslint-disable-next-line
-    }, [result])
-
-    useEffect(() => {
-      if (!initialLoad) return
-      init()
-      // eslint-disable-next-line
-    }, [])
 
     function init() {
       loadPage('load')
     }
+
 
     async function loadPage(action: string) {
       if (typeof loadData !== 'function') return
@@ -174,7 +182,9 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       return true
     }
 
+
     const useVirtual = !!(virtual?.getItemHeight)
+
 
     const sharedProps = {
       value,
@@ -207,6 +217,7 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       onTopRefresh: disableTopRefresh ? undefined : (() => loadPage('topRefresh')),
       onBottomRefresh: disableBottomRefresh ? undefined : (() => loadPage('bottomRefresh'))
     }
+
 
     return useVirtual ? (
       <VirtualList

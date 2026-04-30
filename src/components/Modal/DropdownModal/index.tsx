@@ -59,16 +59,20 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
     // 构建动画
     const animation = getAnimation(left, right)
 
+
     const modalRef = useRef<ModalRef>(null)
 
-    // 继续向外暴露与 Modal 相同的实例能力
-    useImperativeHandle(ref, () => modalRef.current!)
 
     useEffect(() => {
       // 更新模态框位置对齐目标元素
       updateModalPosition()
       // eslint-disable-next-line
     }, [open])
+
+
+    // 继续向外暴露与 Modal 相同的实例能力
+    useImperativeHandle(ref, () => modalRef.current!)
+
 
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
@@ -98,6 +102,7 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
         })
       }
     }
+
 
     return (
       <Modal

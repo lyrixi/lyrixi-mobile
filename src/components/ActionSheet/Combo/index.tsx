@@ -110,12 +110,9 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
     ref
   ) => {
     const [open, setOpen] = useState<boolean | null>(null)
+
     const comboRef = useRef<ComboRef | null>(null)
 
-    useImperativeHandle(ref, () => ({
-      close: () => setOpen(false),
-      open: () => setOpen(true)
-    }))
 
     useEffect(() => {
       if (open === null) return
@@ -126,6 +123,13 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       }
       // eslint-disable-next-line
     }, [open])
+
+
+    useImperativeHandle(ref, () => ({
+      close: () => setOpen(false),
+      open: () => setOpen(true)
+    }))
+
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
@@ -141,9 +145,11 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       setOpen(true)
     }
 
+
     function handleClose() {
       setOpen(false)
     }
+
 
     function handleChange(newValue: ActionSheetItem | null) {
       if (onChange) {
@@ -151,6 +157,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       }
       setOpen(false)
     }
+
 
     // 获取 Combo 节点
     function renderCombo() {
@@ -205,6 +212,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
         />
       )
     }
+
 
     return (
       <>

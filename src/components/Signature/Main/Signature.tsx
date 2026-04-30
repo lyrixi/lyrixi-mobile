@@ -43,12 +43,17 @@ const Signature = (
   ref: React.Ref<SignatureRef>
 ) => {
   const rootRef = useRef<HTMLDivElement>(null)
+
   const canvasRef = useRef<ExtendedCanvas>(null)
+
   const isDrewRef = useRef(false)
+
   // 标识是否正在绘制，用于解决鼠标移动时，没有开始绘制，则不处理
   const isDrawingRef = useRef(false)
+
   // canvas坐标信息
   const clientRectRef = useRef<DOMRect | null>(null)
+
   // 触摸信息
   const touchesRef = useRef({
     beginX: 0,
@@ -56,6 +61,16 @@ const Signature = (
     endX: 0,
     endY: 0
   })
+
+
+  useEffect(() => {
+    updateContainer()
+    if (canvasRef.current) {
+      canvasRef.current.ctx = canvasRef.current.getContext('2d') ?? undefined
+    }
+    // eslint-disable-next-line
+  }, [])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -79,13 +94,6 @@ const Signature = (
     }
   })
 
-  useEffect(() => {
-    updateContainer()
-    if (canvasRef.current) {
-      canvasRef.current.ctx = canvasRef.current.getContext('2d') ?? undefined
-    }
-    // eslint-disable-next-line
-  }, [])
 
   function updateContainer() {
     if (!rootRef.current || !canvasRef.current) return
@@ -96,6 +104,7 @@ const Signature = (
       canvasRef.current.height = height
     }
   }
+
 
   function handleStart(e: React.TouchEvent<HTMLCanvasElement> | React.MouseEvent<HTMLCanvasElement>) {
     e.stopPropagation()
@@ -128,6 +137,7 @@ const Signature = (
     touchesRef.current.beginY = pos.clientY - clientRectRef.current.top
   }
 
+
   function handleMove(e: React.TouchEvent<HTMLCanvasElement> | React.MouseEvent<HTMLCanvasElement>) {
     // 鼠标移动时，如果没有开始绘制，则不处理
     if (!isDrawingRef.current) {
@@ -148,6 +158,7 @@ const Signature = (
     isDrewRef.current = true
   }
 
+
   function handleEnd(e: React.TouchEvent<HTMLCanvasElement> | React.MouseEvent<HTMLCanvasElement>) {
     // 鼠标结束绘制
     isDrawingRef.current = false
@@ -158,12 +169,15 @@ const Signature = (
     }
   }
 
+
   // 不能使用style制定宽高,canvas用style的width|height会导致绘图位置不正确
   const safeStyle = style ? { ...style } : undefined
+
   if (safeStyle) {
     delete safeStyle.width
     delete safeStyle.height
   }
+
 
   return (
     <div

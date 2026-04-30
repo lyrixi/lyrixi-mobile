@@ -116,30 +116,34 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
   ref: Ref<PreviewMainRef>
 ) {
   const list: MediaListItem[] = listProp
+
   const swiperRef = useRef<SwiperRef | null>(null)
+
   const [activeIndex, setActiveIndex] = useState(0)
+
   const [rotations, setRotations] = useState<Record<number, number>>({})
 
+
   const onFileChangeRef = useRef<MediaComponentProps['onFileChange'] | undefined>(undefined)
+
   onFileChangeRef.current = onFileChange
 
+
   const onChangeRef = useRef<MediaComponentProps['onChange'] | undefined>(undefined)
+
   onChangeRef.current = onChange
+
 
   // Judge wether to display choose button
   let chooseVisible = allowChoose
+
   if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
     chooseVisible = false
   }
 
+
   const canClear = isAllowClear(allowClear, list?.[activeIndex])
 
-  useImperativeHandle(ref, () => {
-    return {
-      mainElement: swiperRef.current,
-      getMainElement: () => swiperRef.current
-    }
-  })
   useEffect(() => {
     if (!open || typeof swiperRef?.current?.swiper?.slideTo !== 'function') return
     const newActiveIndex = getActiveIndex({ index, list })
@@ -148,17 +152,29 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     // eslint-disable-next-line
   }, [open])
 
+
+  useImperativeHandle(ref, () => {
+    return {
+      mainElement: swiperRef.current,
+      getMainElement: () => swiperRef.current
+    }
+  })
+
+
   function _showLoading(options?: { content?: string; index?: number }) {
     showLoading(swiperRef.current as unknown as Element, options)
   }
+
 
   function _hideLoading(options?: { failIndexes?: number[] }) {
     hideLoading(swiperRef.current as unknown as Element, options)
   }
 
+
   function handleSwipe(swiper: SwiperClass) {
     setActiveIndex(swiper.activeIndex)
   }
+
 
   async function uploadList(
     newList: MediaListItem[] | undefined,
@@ -218,6 +234,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     return newList
   }
 
+
   function handleDelete() {
     const delIndex = swiperRef.current?.swiper?.activeIndex
     if (typeof delIndex !== 'number') {
@@ -227,6 +244,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     const newListDel = list.filter((_photo, photoIndex) => photoIndex !== delIndex)
     onChangeRef.current?.(newListDel, { action: 'delete' })
   }
+
 
   async function handleFileChange(e: SyntheticEvent<HTMLInputElement>) {
     _showLoading({})
@@ -248,6 +266,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     return chooseResult
   }
 
+
   async function handleChoose() {
     _showLoading({})
     const chooseResult = await choose({
@@ -263,6 +282,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     onClose?.()
     return chooseResult
   }
+
 
   async function handleReUpload() {
     if (typeof onChange !== 'function') {
@@ -289,6 +309,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     onChangeRef.current?.(newListRe, { action: 'reUpload' })
   }
 
+
   function handleTouchStart(_swiper: SwiperClass, e: globalThis.TouchEvent) {
     e.stopPropagation()
     const t = e.currentTarget as HTMLElement & { touchMovePreventDefault?: boolean }
@@ -296,6 +317,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     t.touchMovePreventDefault = true
     t.addEventListener('touchmove', DOMUtil.preventDefault, false)
   }
+
 
   function handleRotateClockwise(e: React.MouseEvent) {
     e.stopPropagation()
@@ -305,6 +327,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     }))
   }
 
+
   function handleRotateAnticlockwise(e: React.MouseEvent) {
     e.stopPropagation()
     setRotations((prev) => ({
@@ -313,15 +336,18 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     }))
   }
 
+
   function handleZoomIn(e: React.MouseEvent) {
     e.stopPropagation()
     void swiperRef.current?.swiper?.zoom?.in()
   }
 
+
   function handleZoomOut(e: React.MouseEvent) {
     e.stopPropagation()
     void swiperRef.current?.swiper?.zoom?.out()
   }
+
 
   return (
       <Swiper

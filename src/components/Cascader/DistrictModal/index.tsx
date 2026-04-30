@@ -83,10 +83,25 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
   ) => {
     const districtType = formatType(typeProp)
 
+
     const [okVisible, setOkVisible] = useState(false)
+
     const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(value as CascaderNode[] | null | undefined)
+
     const modalRef = useRef<unknown>(null)
+
     const mainRef = useRef<DistrictMainHandle | null>(null)
+
+
+    useEffect(() => {
+      setCurrentValue(value as CascaderNode[] | null | undefined)
+    }, [value])
+
+
+    useEffect(() => {
+      setOkVisible(updateOkVisible(currentValue, min))
+    }, [currentValue, min])
+
 
     useImperativeHandle(ref, () => {
       const a = (modalRef.current as Record<string, unknown> | null) ?? {}
@@ -94,17 +109,11 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
       return { ...a, ...b }
     })
 
-    useEffect(() => {
-      setCurrentValue(value as CascaderNode[] | null | undefined)
-    }, [value])
-
-    useEffect(() => {
-      setOkVisible(updateOkVisible(currentValue, min))
-    }, [currentValue, min])
 
     function handleDrillDown(tabs: CascaderNode[] | null | undefined) {
       setOkVisible(updateOkVisible(tabs, min))
     }
+
 
     async function handleOk() {
       if (onOk) {
@@ -117,6 +126,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
       onChange?.((currentValue ?? []) as CascaderNode[])
       onClose?.()
     }
+
 
     function handleChange(newValue: CascaderNode[]) {
       setCurrentValue(newValue)
@@ -131,6 +141,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
         onClose?.()
       }
     }
+
 
     return (
       <NavBarModal

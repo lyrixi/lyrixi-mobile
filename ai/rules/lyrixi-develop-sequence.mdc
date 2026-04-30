@@ -35,8 +35,12 @@ const Example = forwardRef<ExampleRef, ExampleProps>(({...}, ref) => {
   // 4. derived values / memo
 
   // 5. internal helpers
-  const getXX = () => {}
+  const initXX = () => {}
+  const loadXX = () => {}
+  const queryXX = () => {}
   const updateXX = () => {}
+  const saveXX = () => {}
+  const getXX = () => {}
 
   // 6. effects
   useEffect(() => {}, [])

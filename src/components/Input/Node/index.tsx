@@ -89,12 +89,47 @@ const InputNode = (
 ) => {
   let displayValue = typeof formatter === 'function' ? formatter(value || '') : null
 
+
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
 
+
   // Elements
   const rootRef = useRef<HTMLDivElement>(null)
+
   const inputRef = useRef<HTMLDivElement>(null)
+
+
+  // Initialize
+  useEffect(() => {
+    if (!value) return
+
+    // 矫正为正确的值
+    let val = correctValue(value)
+    // eslint-disable-next-line
+    if (val != value) {
+      onChange && onChange(String(val))
+    }
+    // eslint-disable-next-line
+  }, [])
+
+
+  // onFocus & onBlur
+  useEffect(() => {
+    if (typeof cursor !== 'boolean') return
+
+    if (cursor) {
+      onFocus &&
+        onFocus({
+          target: inputRef.current,
+          currentTarget: inputRef.current
+        })
+    } else {
+      handleBlur()
+    }
+    // eslint-disable-next-line
+  }, [cursor])
+
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -117,34 +152,6 @@ const InputNode = (
     }
   })
 
-  // Initialize
-  useEffect(() => {
-    if (!value) return
-
-    // 矫正为正确的值
-    let val = correctValue(value)
-    // eslint-disable-next-line
-    if (val != value) {
-      onChange && onChange(String(val))
-    }
-    // eslint-disable-next-line
-  }, [])
-
-  // onFocus & onBlur
-  useEffect(() => {
-    if (typeof cursor !== 'boolean') return
-
-    if (cursor) {
-      onFocus &&
-        onFocus({
-          target: inputRef.current,
-          currentTarget: inputRef.current
-        })
-    } else {
-      handleBlur()
-    }
-    // eslint-disable-next-line
-  }, [cursor])
 
   function handleBlur() {
     if (readOnly || disabled) {
@@ -183,10 +190,12 @@ const InputNode = (
       })
   }
 
+
   // 矫正最大长度和小数位截取
   function correctValue(val: string | number): string | number {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
+
 
   // 点击清除
   async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
@@ -195,6 +204,7 @@ const InputNode = (
     // Callback
     typeof onChange === 'function' && onChange('', { action: 'clickClear' })
   }
+
 
   return (
     <div

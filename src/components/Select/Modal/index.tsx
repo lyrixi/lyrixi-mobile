@@ -50,6 +50,12 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
   const modalRef = useRef<ModalRef | null>(null)
   const mainRef = useRef<SelectMainRef | null>(null)
 
+  useEffect(() => {
+    if (open) {
+      setCurrentValue(value)
+    }
+  }, [open, value])
+
   useImperativeHandle(ref, () => {
     return {
       ...(typeof modalRef.current === 'object' && modalRef.current !== null
@@ -60,23 +66,6 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
         : {})
     }
   })
-
-  useEffect(() => {
-    if (open) {
-      setCurrentValue(value)
-    }
-  }, [open, value])
-
-  function renderHeader() {
-    if (typeof headerRender === 'function') {
-      return headerRender({
-        open: open ?? false,
-        value: value,
-        list: list
-      })
-    }
-    return null
-  }
 
   async function handleConfirm() {
     let next: unknown = currentValue
@@ -101,6 +90,17 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
       onChange?.(newValue)
       onClose?.()
     }
+  }
+
+  function renderHeader() {
+    if (typeof headerRender === 'function') {
+      return headerRender({
+        open: open ?? false,
+        value: value,
+        list: list
+      })
+    }
+    return null
   }
 
   return (

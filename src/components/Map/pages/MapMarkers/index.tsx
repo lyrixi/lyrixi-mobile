@@ -88,10 +88,23 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
   ref
 ) {
   const mapRef = useRef<MapContainerAPI | null>(null)
+
   const markersRef = useRef<MarkersHandle | null>(null)
+
   const circlesRef = useRef<{ redraw: () => void } | null>(null)
+
   const polylineRef = useRef<{ redraw: () => void } | null>(null)
+
   const zoomRef = useRef<React.ElementRef<typeof ZoomControl> | null>(null)
+
+
+  useEffect(() => {
+    if (!markers) return
+    const target = markers as unknown as Parameters<MapContainerAPI['panTo']>[0]
+    mapRef.current?.panTo?.(target)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(markers)])
+
 
   // Ref handle extends MapContainerAPI with map refs; may be null before map is ready. React ref typings expect the non-null branch for useImperativeHandle.
   // @ts-expect-error MapMarkersHandle includes null; TS useImperativeHandle infers the non-null handle shape only
@@ -109,12 +122,6 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
     } as MapMarkersHandle
   })
 
-  useEffect(() => {
-    if (!markers) return
-    const target = markers as unknown as Parameters<MapContainerAPI['panTo']>[0]
-    mapRef.current?.panTo?.(target)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(markers)])
 
   return (
     <MapContainer

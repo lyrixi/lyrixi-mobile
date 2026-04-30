@@ -111,7 +111,16 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
     ref
   ) => {
     const rootRef = useRef<HTMLDivElement>(null)
+
     const inputRef = useRef<InputTextRef>(null)
+
+
+    useEffect(() => {
+      let inputElement = _getInputElement()
+      let val = (inputElement?.value ? inputElement.value : value) || ''
+      updateState(val)
+    }, [value])
+
 
     useImperativeHandle(ref, () => {
       return {
@@ -126,12 +135,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
         }
       }
     })
-
-    useEffect(() => {
-      let inputElement = _getInputElement()
-      let val = (inputElement?.value ? inputElement.value : value) || ''
-      updateState(val)
-    }, [value]) // eslint-disable-line
+ // eslint-disable-line
 
     // 获取文本框
     function _getInputElement(): HTMLInputElement | HTMLTextAreaElement | null {
@@ -140,6 +144,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
       }
       return null
     }
+
 
     // 更新禁用状态
     function updateState(val: string) {
@@ -157,6 +162,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
       }
     }
 
+
     // 修改值回调
     function handleChange(val: string) {
       if (disabled) return
@@ -170,6 +176,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
       }
       if (onChange) onChange(val)
     }
+
 
     // 点击减
     function handleMinus(e: React.MouseEvent<HTMLDivElement>) {
@@ -186,6 +193,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
       }
     }
 
+
     // 点击加
     function handlePlus(e: React.MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
@@ -201,6 +209,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
         inputElement.focus()
       }
     }
+
 
     // render
     function getInputElement() {
@@ -238,6 +247,7 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
         />
       )
     }
+
 
     return (
       <div

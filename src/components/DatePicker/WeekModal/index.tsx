@@ -51,8 +51,17 @@ const WeekModal = forwardRef<DatePickerModalRef, DatePickerWeekModalProps>(funct
   ref
 ) {
   let [currentValue, setCurrentValue] = useState<Date | null | undefined>(value)
+
   const modalRef = useRef<ModalRef | null>(null)
+
   const mainRef = useRef<CalendarRef | null>(null)
+
+
+  // 同步外部value到内部currentValue
+  useEffect(() => {
+    setCurrentValue(value)
+  }, [value])
+
 
   useImperativeHandle(ref, () => {
     return {
@@ -63,10 +72,6 @@ const WeekModal = forwardRef<DatePickerModalRef, DatePickerWeekModalProps>(funct
     } as DatePickerModalRef
   })
 
-  // 同步外部value到内部currentValue
-  useEffect(() => {
-    setCurrentValue(value)
-  }, [value])
 
   async function handleOk() {
     if (onOk) {
@@ -80,12 +85,15 @@ const WeekModal = forwardRef<DatePickerModalRef, DatePickerWeekModalProps>(funct
     onClose?.()
   }
 
+
   function handleChange(newValue: Date | null) {
     setCurrentValue(newValue)
   }
 
+
   // 自定义标题节点
   const titleNode = titleRender?.(currentValue, { type: 'week' }) ?? null
+
 
   return (
     <NavBarModal

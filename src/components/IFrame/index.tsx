@@ -15,11 +15,6 @@ export interface IFrameProps {
 const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, style, className }, ref) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
-  useImperativeHandle(ref, () => {
-    return {
-      element: iframeRef.current
-    }
-  })
 
   // 修改src，用替换的方法不会产生历史记录长度
   useEffect(() => {
@@ -36,6 +31,14 @@ const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, s
     }
     // eslint-disable-next-line
   }, [src])
+
+
+  useImperativeHandle(ref, () => {
+    return {
+      element: iframeRef.current
+    }
+  })
+
 
   return (
     <iframe

@@ -123,6 +123,7 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
           ? (defaultGetSuperAddress as GetAddressFn)
           : (defaultGetAddress as GetAddressFn)
 
+
     let getLocation: GetLocationFn =
       typeof getLocationProp === 'function'
         ? getLocationProp
@@ -130,14 +131,19 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
           ? (defaultGetSuperLocation as GetLocationFn)
           : (defaultGetLocation as GetLocationFn)
 
+
     const openLocation: ((...args: unknown[]) => unknown) | undefined =
       typeof openLocationProp === 'function' ? openLocationProp : window?.defaultOpenLocation
+
 
     let queryNearby: QueryNearbyFn =
       typeof queryNearbyProp === 'function' ? queryNearbyProp : (defaultQueryNearby as QueryNearbyFn)
 
+
     let center: MapPoint
+
     const centerObj = Array.isArray(centerProp) ? null : centerProp
+
     if (
       typeof centerObj !== 'object' ||
       !centerObj?.longitude ||
@@ -155,8 +161,11 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       center = centerObj
     }
 
+
     const rootRef = useRef<HTMLDivElement>(null)
+
     let [leafletMap, setLeafletMap] = useState<L.Map | string | null>(null)
+
 
     const APIRef = useRef<MapContainerAPI>({
       element: rootRef.current,
@@ -253,13 +262,23 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       }
     })
 
+
+    useEffect(() => {
+      APIRef.current.element = rootRef.current
+      loadData()
+      // eslint-disable-next-line
+    }, [])
+
+
     useImperativeHandle(ref, () => {
       return APIRef.current
     })
 
+
     function localeToErrorString(node: string | React.ReactNode): string {
       return typeof node === 'string' ? node : 'Error'
     }
+
 
     function events() {
       /* 短路与回调，与既有写法一致 */
@@ -305,6 +324,7 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       })
       /* eslint-enable @typescript-eslint/no-unused-expressions */
     }
+
 
     async function loadData() {
       if (!rootRef.current?.querySelector) {
@@ -372,13 +392,9 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       })
     }
 
-    useEffect(() => {
-      APIRef.current.element = rootRef.current
-      loadData()
-      // eslint-disable-next-line
-    }, [])
 
     let newChildren = null
+
     if (!leafletMap) {
       newChildren = null
     } else if (typeof leafletMap === 'string') {
@@ -390,6 +406,7 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
         map: APIRef.current
       })
     }
+
 
     return (
       <div

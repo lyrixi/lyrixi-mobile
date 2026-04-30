@@ -69,12 +69,9 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
     ref
   ) => {
     const isDeleteInMainRef = useRef(false)
+
     const rootRef = useRef<PageRef | null>(null)
 
-    useImperativeHandle(ref, () => ({
-      element: rootRef.current?.element ?? null,
-      getElement: () => rootRef.current?.element ?? null
-    }))
 
     useEffect(() => {
       if (open && onOpen) {
@@ -82,6 +79,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
       // eslint-disable-next-line
     }, [open, onOpen])
+
 
     useEffect(() => {
       if (!open) return
@@ -103,12 +101,20 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }, [open, onClose])
 
+
+    useImperativeHandle(ref, () => ({
+      element: rootRef.current?.element ?? null,
+      getElement: () => rootRef.current?.element ?? null
+    }))
+
+
     const handleNumber = (num: React.ReactNode) => {
       let newValue = value + String(num ?? '')
       if (onChange) {
         onChange(newValue, { action: 'number' })
       }
     }
+
 
     const handleDot = () => {
       const currentValue = value || ''
@@ -118,6 +124,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }
 
+
     const handleMinus = () => {
       const currentValue = value || ''
       const newValue = currentValue + '-'
@@ -125,6 +132,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         onChange(newValue, { action: 'minus' })
       }
     }
+
 
     const handleDelete = () => {
       let newValue = ''
@@ -136,6 +144,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }
 
+
     const handleOk = async () => {
       if (onOk) {
         let goOn = await onOk(value)
@@ -143,6 +152,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
       onClose?.()
     }
+
 
     const handleCancel = () => {
       if (onCancel) {
@@ -152,6 +162,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         onClose()
       }
     }
+
 
     function renderOperateRow() {
       isDeleteInMainRef.current = true
@@ -196,6 +207,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         </>
       )
     }
+
 
     const KeyboardNode = (
       <Page
@@ -262,6 +274,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         {safeArea && <SafeArea className="lyrixi-border-t" style={{ backgroundColor: 'white' }} />}
       </Page>
     )
+
 
     return createPortal(KeyboardNode, portal || document.getElementById('root') || document.body)
   }

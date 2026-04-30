@@ -53,19 +53,14 @@ const FormItem = forwardRef<VirtualFormItemRef, VirtualFormItemProps>(
     ref
   ) => {
     const rootRef = useRef<HTMLDivElement>(null)
+
     // Context config
     const { layout: globalLayout, virtual } = useContext(ItemsContext)
+
 
     // In view area to display
     const [inViewArea, setInViewArea] = useState(false)
 
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        getElement: () => rootRef.current
-      }
-    })
 
     useEffect(() => {
       const currentElement = rootRef.current
@@ -88,10 +83,22 @@ const FormItem = forwardRef<VirtualFormItemRef, VirtualFormItemProps>(
       // eslint-disable-next-line
     }, [])
 
+
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
+    })
+
+
     let layoutClass = ''
+
     if (layout || globalLayout) {
       layoutClass = `lyrixi-form-item-layout-${layout || globalLayout}`
     }
+
 
     return (
       <div
