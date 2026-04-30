@@ -3,7 +3,7 @@ import type { L } from './../../leaflet.types'
 import filterCoords from './../../utils/filterCoords'
 import addCircles, { type CirclePoint } from './addCircles'
 import clearCircles from './clearCircles'
-import type { MapContainerAPI } from './../MapContainer'
+import type { CirclesProps } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -13,12 +13,7 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface CirclesProps {
-  points?: unknown
-  color?: string
-  radius?: number
-  map?: MapContainerAPI
-}
+export type { CirclesProps } from './types'
 
 // 批量圈
 const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
@@ -51,6 +46,7 @@ const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
       }
     }, [map])
 
+    /* eslint-disable @typescript-eslint/no-use-before-define -- draw 声明在下方，与既有结构一致 */
 
     useEffect(() => {
       if (ObjectUtil.isEmpty(points)) {
@@ -80,6 +76,7 @@ const Circles = forwardRef<{ redraw: () => void } | null, CirclesProps>(
       addCircles(points as CirclePoint[], { color, radius }, circlesLayerRef.current)
     }
 
+    /* eslint-enable @typescript-eslint/no-use-before-define */
 
     return <></>
   }

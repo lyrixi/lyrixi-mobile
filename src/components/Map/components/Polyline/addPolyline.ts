@@ -1,16 +1,8 @@
 import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
+import type { LinePoint, LineStyleOptions } from './types'
 
-export interface LinePoint {
-  latitude?: number | string
-  longitude?: number | string
-  [key: string]: unknown
-}
-
-export interface LineStyleOptions {
-  color?: string
-  [key: string]: unknown
-}
+export type { LinePoint, LineStyleOptions } from './types'
 
 // Polyline
 function addPolyline(

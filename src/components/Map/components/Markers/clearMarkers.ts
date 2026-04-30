@@ -1,11 +1,4 @@
-import type { L } from './../../leaflet.types'
-
-export interface CanvasMarkerLayer {
-  clearLayers: () => void
-  addMarker: (m: L.Marker) => void
-  removeMarker: (target: unknown, all?: boolean) => void
-  addOnClickListener: (cb: (e: unknown, data: unknown) => void) => void
-}
+import type { CanvasMarkerLayer } from './types'
 
 // Clear all marker
 function clearMarkers(layers: {

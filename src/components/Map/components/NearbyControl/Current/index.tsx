@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
-import type { MapContainerAPI } from './../../MapContainer'
 import Navigation from './Navigation'
+import type { CurrentProps } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -10,21 +10,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface MapValue {
-  name?: string
-  address?: string
-  longitude?: number | string
-  latitude?: number | string
-  type?: string
-  [key: string]: unknown
-}
-
-export interface CurrentProps {
-  value?: MapValue
-  readOnly?: boolean
-  map?: MapContainerAPI
-  onChange?: (item: unknown) => void
-}
+export type { CurrentProps, MapValue } from './types'
 
 // 当前位置
 const Current = forwardRef<HTMLDivElement, CurrentProps>(({ value, readOnly, map, onChange }, ref) => {
@@ -35,7 +21,7 @@ const Current = forwardRef<HTMLDivElement, CurrentProps>(({ value, readOnly, map
       onClick={() => {
         map?.panTo?.({ longitude: value?.longitude, latitude: value?.latitude, type: value?.type })
         if (!readOnly) {
-          onChange && onChange(value)
+          onChange?.(value)
         }
       }}
     >

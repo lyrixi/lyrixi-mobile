@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { MapContainerAPI } from './../MapContainer'
+import type { SearchPageProps, SearchQueryNearbyResult } from './types'
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
@@ -21,27 +21,15 @@ const MapSearchActive = SearchActive as unknown as React.FC<{
   onCancel?: () => void
 }>
 
-interface QueryNearbyResult {
-  list?: Array<Record<string, unknown>>
-  message?: string
-  status?: string
-  [key: string]: unknown
-}
-
-function isQueryResult(v: unknown): v is QueryNearbyResult {
+function isQueryResult(v: unknown): v is SearchQueryNearbyResult {
   return typeof v === 'object' && v !== null
 }
 
-export interface SearchPageProps {
-  open: boolean
-  map?: MapContainerAPI
-  onClose?: () => void
-  onChange?: (item: unknown) => void
-}
+export type { SearchPageProps } from './types'
 
 // 搜索
 function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
-  const [result, setResult] = useState<QueryNearbyResult | null>(null)
+  const [result, setResult] = useState<SearchQueryNearbyResult | null>(null)
   const [keyword, setKeyword] = useState('')
 
   function handleBack() {

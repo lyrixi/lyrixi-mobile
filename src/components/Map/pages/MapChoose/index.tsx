@@ -2,10 +2,8 @@ import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } f
 
 import coordsToWgs84, { type MapPoint as WgsMapPoint } from './../../utils/coordsToWgs84'
 
-import MapContainer, {
-  type MapContainerAPI,
-  type MapContainerProps
-} from './../../components/MapContainer'
+import MapContainer, { type MapContainerAPI } from './../../components/MapContainer'
+import type { MapChooseProps, MapChooseValue } from './types'
 import ZoomControl from './../../components/ZoomControl'
 import SearchControl from './../../components/SearchControl'
 import CenterMarker from './../../components/CenterMarker'
@@ -27,58 +25,7 @@ function strLocale(node: string | React.ReactNode): string {
   return typeof node === 'string' ? node : '…'
 }
 
-export interface MapChooseValue {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  address?: string
-  name?: string
-  [key: string]: unknown
-}
-
-export interface MapChooseProps {
-  value?: MapChooseValue
-  center?: MapContainerProps['center']
-  /** 地图缩放级别，默认 14 */
-  zoom?: number
-  minZoom?: number
-  maxZoom?: number
-  cacheExpires?: number
-  readOnly?: boolean
-  autoLocation?: boolean
-  nearbyVisible?: boolean
-  getAddress?: MapContainerProps['getAddress']
-  getLocation?: MapContainerProps['getLocation']
-  queryNearby?: MapContainerProps['queryNearby']
-  openLocation?: MapContainerProps['openLocation']
-  style?: React.CSSProperties
-  className?: string
-  searchControlStyle?: React.CSSProperties
-  searchControlClassName?: string
-  centerMarkerStyle?: React.CSSProperties
-  centerMarkerClassName?: string
-  markersStyle?: React.CSSProperties
-  markersClassName?: string
-  zoomControlStyle?: React.CSSProperties
-  zoomControlClassName?: string
-  locationControlStyle?: React.CSSProperties
-  locationControlClassName?: string
-  nearbyControlStyle?: React.CSSProperties
-  nearbyControlClassName?: string
-  children?: React.ReactNode
-  onLoad?: MapContainerProps['onLoad']
-  onChange?: (value: WgsMapPoint | (WgsMapPoint | null)[] | null) => void
-  onMarkerClick?: (e: unknown) => void
-  onZoomStart?: MapContainerProps['onZoomStart']
-  onZoom?: MapContainerProps['onZoom']
-  onZoomEnd?: MapContainerProps['onZoomEnd']
-  onMoveStart?: MapContainerProps['onMoveStart']
-  onMove?: MapContainerProps['onMove']
-  onMoveEnd?: MapContainerProps['onMoveEnd']
-  onDragStart?: MapContainerProps['onDragStart']
-  onDrag?: MapContainerProps['onDrag']
-  onDragEnd?: MapContainerProps['onDragEnd']
-}
+export type { MapChooseProps, MapChooseValue } from './types'
 
 // 地图选点
 const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose(
@@ -136,6 +83,17 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
 
   const [points, setPoints] = useState<unknown[] | null>(null)
 
+  function handleChange(newValue: unknown) {
+    if (newValue === null || newValue === undefined) {
+      onChange?.(null)
+      return
+    }
+    if (typeof newValue !== 'object') {
+      return
+    }
+    const fmt = coordsToWgs84(newValue as WgsMapPoint)
+    onChange?.(fmt)
+  }
 
   useEffect(() => {
     if (value?.longitude && value?.latitude && value?.type) {
@@ -147,7 +105,6 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
 
   // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current == null.
   useImperativeHandle(ref, () => mapRef.current as MapContainerAPI)
-
 
   async function handleAutoLocation() {
     if (value?.longitude && value?.latitude && value?.address) {
@@ -215,20 +172,6 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     handleChange(newValue)
   }
 
-
-  function handleChange(newValue: unknown) {
-    if (newValue === null || newValue === undefined) {
-      onChange && onChange(null)
-      return
-    }
-    if (typeof newValue !== 'object') {
-      return
-    }
-    const fmt = coordsToWgs84(newValue as WgsMapPoint)
-    onChange && onChange(fmt)
-  }
-
-
   return (
     <MapContainer
       ref={mapRef}
@@ -250,7 +193,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
           result?.map?.panTo?.(value as WgsMapPoint)
         }
 
-        onLoad && onLoad(result)
+        onLoad?.(result)
 
         if (readOnly || !autoLocation) return
         void handleAutoLocation()

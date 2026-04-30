@@ -1,19 +1,8 @@
 import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
+import type { CirclePoint, CircleOptions } from './types'
 
-export interface CirclePoint {
-  latitude?: number | string
-  longitude?: number | string
-  radius?: number
-  color?: string
-  [key: string]: unknown
-}
-
-interface CircleOptions {
-  radius?: number
-  color?: string
-  [key: string]: unknown
-}
+export type { CirclePoint } from './types'
 
 function addCircles(
   points: CirclePoint[] | null | undefined,

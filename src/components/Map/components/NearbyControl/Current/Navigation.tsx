@@ -1,5 +1,5 @@
 import React from 'react'
-import type { MapContainerAPI } from './../../MapContainer'
+import type { NavigationProps } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -9,14 +9,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface NavigationProps {
-  type?: string
-  longitude?: number | string
-  latitude?: number | string
-  name?: string
-  address?: string
-  map?: MapContainerAPI
-}
+export type { NavigationProps } from './types'
 
 // 导航
 function Navigation({ type, longitude, latitude, name, address, map }: NavigationProps) {

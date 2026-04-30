@@ -1,5 +1,4 @@
 import React from 'react'
-import type { ReactNode } from 'react'
 
 // 内库使用-start
 import Result from './../../../Result'
@@ -9,11 +8,9 @@ import Result from './../../../Result'
 import { Result } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface MainProps {
-  result: Record<string, unknown> | null
-  value?: unknown
-  onChange?: (item: Record<string, unknown>) => void
-}
+import type { MainProps } from './types'
+
+export type { MainProps } from './types'
 
 // 附近结果
 function Main({ result, onChange }: MainProps) {
@@ -37,12 +34,12 @@ function Main({ result, onChange }: MainProps) {
               key={index}
               data-nearby-item-id={`${String(item.longitude)},${String(item.latitude)}`}
               onClick={() => {
-                onChange && onChange(item)
+                onChange?.(item)
               }}
             >
               <div className="lyrixi-map-nearbyControl-item-content">
                 <p className="lyrixi-map-nearbyControl-item-content-title">
-                  {item.name as ReactNode}
+                  {item.name as React.ReactNode}
                 </p>
                 <p className="lyrixi-map-nearbyControl-item-content-description">
                   {typeof item.address === 'string' ? item.address : ''}

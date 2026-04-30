@@ -1,11 +1,5 @@
 import type { L } from './../../leaflet.types'
-
-interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  icon?: unknown
-  [key: string]: unknown
-}
+import type { MapPoint } from './types'
 
 // 公共点击leaflet点
 function markerClickLeaflet({

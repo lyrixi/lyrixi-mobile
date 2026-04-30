@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
-import type { MapContainerAPI } from './../MapContainer'
 
 import getTabs from './utils/getTabs'
+import type { QueryNearbyResult, NearbyControlProps, NearbyControlRef, NearbyTabItem } from './types'
 import Current from './Current'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
@@ -16,49 +16,19 @@ import Loading from './../../../Loading'
 import { LocaleUtil, Loading } from 'lyrixi-mobile'
 测试使用-end */
 
-interface MapValue {
-  name?: string
-  address?: string
-  longitude?: number | string
-  latitude?: number | string
-  type?: string
-  [key: string]: unknown
-}
-
-interface QueryNearbyResult {
-  status: string
-  list?: unknown[]
-  message?: string
-  [key: string]: unknown
-}
-
-export interface NearbyControlProps {
-  value?: MapValue
-  radius?: number
-  readOnly?: boolean
-  nearbyVisible?: boolean
-  map?: MapContainerAPI
-  onChange?: (item: unknown) => void
-  onSuccess?: (result: unknown) => void
-  onError?: (result: unknown) => void
-}
+export type { NearbyControlProps, MapValue } from './types'
 
 // 附近推荐
-const Nearby = forwardRef<
-  {
-    element: HTMLDivElement | null
-    getElement: () => HTMLDivElement | null
-    reload: () => void
-  } | null,
-  NearbyControlProps
->(({ value, radius, readOnly, nearbyVisible = true, map, onChange, onSuccess, onError }, ref) => {
+const Nearby = forwardRef<NearbyControlRef | null, NearbyControlProps>(
+  ({ value, radius, readOnly, nearbyVisible = true, map, onChange, onSuccess, onError }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
 
   const [result, setResult] = useState<QueryNearbyResult | null>(null)
 
-  const [tab, setTab] = useState(getTabs()[0])
+  const [tab, setTab] = useState<NearbyTabItem>(getTabs()[0])
 
+  /* eslint-disable @typescript-eslint/no-use-before-define -- loadData 声明在下方，与既有结构一致 */
 
   useEffect(() => {
     if (
@@ -117,6 +87,7 @@ const Nearby = forwardRef<
     }
   }
 
+  /* eslint-enable @typescript-eslint/no-use-before-define */
 
   return (
     <div className="lyrixi-map-nearbyControl" ref={rootRef}>
@@ -125,7 +96,7 @@ const Nearby = forwardRef<
         readOnly={readOnly}
         value={value}
         onChange={(item) => {
-          onChange && onChange(item)
+          onChange?.(item)
         }}
       />
 
@@ -147,7 +118,7 @@ const Nearby = forwardRef<
                     type: item.type as string | undefined
                   })
                 }
-                onChange && onChange(item)
+                onChange?.(item)
               }}
             />
           </div>

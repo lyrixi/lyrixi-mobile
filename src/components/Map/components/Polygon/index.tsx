@@ -3,7 +3,7 @@ import type { L } from './../../leaflet.types'
 import filterCoords from './../../utils/filterCoords'
 import addPolygon, { type PolyPoint, type PolyStyleOptions } from './addPolygon'
 import clearPolygon from './clearPolygon'
-import type { MapContainerAPI } from './../MapContainer'
+import type { PolygonProps } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -13,14 +13,7 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface PolygonProps {
-  points?: unknown
-  color?: string
-  fillColor?: string
-  fillOpacity?: number
-  weight?: number
-  map?: MapContainerAPI
-}
+export type { PolygonProps } from './types'
 
 // 多边形
 const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
@@ -55,6 +48,7 @@ const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
       }
     }, [map])
 
+    /* eslint-disable @typescript-eslint/no-use-before-define -- draw 声明在下方，与既有结构一致 */
 
     useEffect(() => {
       if (!polygonLayerRef.current) return
@@ -94,6 +88,7 @@ const Polygon = forwardRef<{ redraw: () => void } | null, PolygonProps>(
       addPolygon(arr, style, polygonLayerRef.current)
     }
 
+    /* eslint-enable @typescript-eslint/no-use-before-define */
 
     return <></>
   }

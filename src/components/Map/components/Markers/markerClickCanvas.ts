@@ -1,12 +1,5 @@
 import type { L } from './../../leaflet.types'
-import type { CanvasMarkerLayer } from './clearMarkers'
-
-interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  icon?: unknown
-  [key: string]: unknown
-}
+import type { MapPoint, CanvasMarkerLayer } from './types'
 
 // 点击canvas绘制的marker
 function markerClickCanvas({

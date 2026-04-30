@@ -3,7 +3,7 @@ import type { L } from './../../leaflet.types'
 import filterCoords from './../../utils/filterCoords'
 import addPolyline, { type LinePoint, type LineStyleOptions } from './addPolyline'
 import clearPolyline from './clearPolyline'
-import type { MapContainerAPI } from './../MapContainer'
+import type { PolylineProps } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -13,11 +13,7 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface PolylineProps {
-  points?: unknown
-  color?: string
-  map?: MapContainerAPI
-}
+export type { PolylineProps } from './types'
 
 // 批量折线
 const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
@@ -49,6 +45,7 @@ const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
       }
     }, [map])
 
+    /* eslint-disable @typescript-eslint/no-use-before-define -- draw 声明在下方，与既有结构一致 */
 
     useEffect(() => {
       if (!polylineLayerRef.current) return
@@ -81,6 +78,7 @@ const Polyline = forwardRef<{ redraw: () => void } | null, PolylineProps>(
       addPolyline(points as LinePoint[], style, polylineLayerRef.current)
     }
 
+    /* eslint-enable @typescript-eslint/no-use-before-define */
 
     return <></>
   }

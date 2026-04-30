@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import Page from './Page'
-import type { MapContainerAPI } from './../MapContainer'
+import type { SearchControlProps } from './types'
 
 // 内库使用-start
 import SearchBar from './../../../ToolBar/Search'
@@ -20,12 +20,7 @@ const MapSearchBar = SearchBar as React.ForwardRefExoticComponent<
   } & React.RefAttributes<unknown>
 >
 
-export interface SearchControlProps {
-  style?: React.CSSProperties
-  className?: string
-  map?: MapContainerAPI
-  onChange?: (item: unknown) => void
-}
+export type { SearchControlProps } from './types'
 
 // 搜索
 const SearchControl = forwardRef<unknown, SearchControlProps>(({ map, onChange, style, className }, ref) => {

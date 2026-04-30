@@ -1,5 +1,6 @@
 import type { L } from './../../../leaflet.types'
 import defaultMarkerIcons from './../../../utils/markerIcons'
+import type { MarkerIconConfig } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../../utils/ObjectUtil'
@@ -8,21 +9,6 @@ import ObjectUtil from './../../../../../utils/ObjectUtil'
 /* 测试使用-start
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-type MarkerIconConfig = {
-  className?: string
-  iconUrl?: string
-  iconRetinaUrl?: string
-  shadowUrl?: string
-  shadowRetinaUrl?: string
-  shadowSize?: [number, number]
-  iconSize?: [number, number]
-  iconAnchor?: [number, number]
-  shadowAnchor?: [number, number]
-  popupAnchor?: [number, number]
-  html?: string
-  [key: string]: unknown
-}
 
 // 创建图标, 被CenterMarker共用
 function createMarkerIcon(icon: unknown): L.Icon | L.DivIcon | null {

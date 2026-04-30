@@ -1,19 +1,8 @@
 import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
+import type { PolyPoint, PolyStyleOptions } from './types'
 
-export interface PolyPoint {
-  latitude?: number | string
-  longitude?: number | string
-  [key: string]: unknown
-}
-
-export interface PolyStyleOptions {
-  color?: string
-  fillColor?: string
-  fillOpacity?: number
-  weight?: number
-  [key: string]: unknown
-}
+export type { PolyPoint, PolyStyleOptions } from './types'
 
 // Polygon
 function addPolygon(

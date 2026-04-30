@@ -1,30 +1,18 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import type { MapContainerAPI } from './../MapContainer'
+import type { ZoomControlProps, ZoomControlRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-export interface ZoomControlProps {
-  style?: React.CSSProperties
-  className?: string
-  map?: MapContainerAPI
-  onZoomIn?: (map: MapContainerAPI) => void
-  onZoomOut?: (map: MapContainerAPI) => void
-}
+export type { ZoomControlProps, ZoomControlRef } from './types'
 
 // 缩放控件
-const ZoomControl = forwardRef<
-  {
-    element: HTMLDivElement | null
-    getElement: () => HTMLDivElement | null
-    zoomOut: () => void
-    zoomIn: () => void
-  },
-  ZoomControlProps
->(({ style, className, map, onZoomIn, onZoomOut }, ref) => {
+const ZoomControl = forwardRef<ZoomControlRef, ZoomControlProps>(
+  ({ style, className, map, onZoomIn, onZoomOut }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
+  /* eslint-disable @typescript-eslint/no-use-before-define -- zoomIn/zoomOut 声明在下方，与既有结构一致 */
   useImperativeHandle(ref, () => {
     return {
       element: rootRef.current,
@@ -37,14 +25,15 @@ const ZoomControl = forwardRef<
   function zoomOut() {
     if (!map) return
     map.zoomOut()
-    onZoomOut && onZoomOut(map)
+    onZoomOut?.(map)
   }
 
   function zoomIn() {
     if (!map) return
     map.zoomIn()
-    onZoomIn && onZoomIn(map)
+    onZoomIn?.(map)
   }
+  /* eslint-enable @typescript-eslint/no-use-before-define */
 
   return (
     <div

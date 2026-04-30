@@ -1,27 +1,18 @@
 import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { CanvasMarkerLayer } from './clearMarkers'
+import type { MapPoint, AddMarkersIconOptions, AddMarkersLayersOptions } from './types'
 import createMarkerIcon from './createMarkerIcon'
 import clearMarkers from './clearMarkers'
 import markerClickLeaflet from './markerClickLeaflet'
 import markerClickCanvas from './markerClickCanvas'
 
-export interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  icon?: unknown
-  [key: string]: unknown
-}
+export type { MapPoint } from './types'
 
 // Marker
 function addMarkers(
   points: MapPoint[] | null | undefined,
-  { icon, onClick = null }: { icon: L.Icon | L.DivIcon | null; onClick?: ((payload: unknown) => void) | null },
-  {
-    layer,
-    canvasLayer
-  }: { layer: L.LayerGroup; canvasLayer: CanvasMarkerLayer }
+  { icon, onClick = null }: AddMarkersIconOptions,
+  { layer, canvasLayer }: AddMarkersLayersOptions
 ): void {
   if (!canvasLayer || !layer) return
 

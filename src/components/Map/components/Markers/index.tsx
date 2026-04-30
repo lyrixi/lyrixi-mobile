@@ -4,9 +4,9 @@ import createMarkerIcon from './createMarkerIcon'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import filterCoords from './../../utils/filterCoords'
 import isSamePoint from './../../utils/isSamePoint'
-import addMarkers, { type MapPoint } from './addMarkers'
-import clearMarkers, { type CanvasMarkerLayer } from './clearMarkers'
-import type { MapContainerAPI } from './../MapContainer'
+import addMarkers from './addMarkers'
+import clearMarkers from './clearMarkers'
+import type { MapCoord, MarkersProps, MarkersHandle, MapPoint, CanvasMarkerLayer } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -16,22 +16,7 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type MapCoord = ReturnType<typeof filterCoords>[number]
-
-export interface MarkersProps {
-  points?: unknown
-  map?: MapContainerAPI
-  icon?: unknown
-  style?: React.CSSProperties
-  className?: string
-  onClick?: (payload: unknown) => void
-}
-
-export interface MarkersHandle {
-  redraw: () => void
-  focus: (point: MapCoord) => void
-  blur: () => void
-}
+export type { MarkersProps, MarkersHandle, MapPoint, MapCoord } from './types'
 
 // 批量标注
 const Markers = forwardRef<MarkersHandle, MarkersProps>(
@@ -67,6 +52,7 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
 
     points = filterCoords(points)
 
+    /* eslint-disable @typescript-eslint/no-use-before-define -- draw / focus / blur 声明在组件后部，与既有结构一致 */
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -114,7 +100,6 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
       }
     })
 
-
     function focus(point: MapCoord) {
       focusedPointRef.current = point
       draw()
@@ -151,6 +136,7 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
       addMarkers(orderedPoints as MapPoint[], { onClick: onClick, icon: resolvedIcon }, layers)
     }
 
+    /* eslint-enable @typescript-eslint/no-use-before-define */
 
     return <></>
   }

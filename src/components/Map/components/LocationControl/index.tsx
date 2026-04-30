@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import type { MapContainerAPI } from './../MapContainer'
+import type { LocationControlProps, LocationControlRef } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -23,20 +24,14 @@ function isErrorResult(
   )
 }
 
-export interface LocationControlProps {
-  style?: React.CSSProperties
-  className?: string
-  map?: MapContainerAPI
-  onChange?: (result: unknown) => void
-}
+export type { LocationControlProps, LocationControlRef } from './types'
 
 // 定位控件
-const LocationControl = forwardRef<
-  { element: HTMLDivElement | null; getElement: () => HTMLDivElement | null; update: () => Promise<unknown> },
-  LocationControlProps
->(({ style, className, map, onChange }, ref) => {
+const LocationControl = forwardRef<LocationControlRef, LocationControlProps>(
+  ({ style, className, map, onChange }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
+  /* eslint-disable @typescript-eslint/no-use-before-define -- location 声明在下方，与既有结构一致 */
   useImperativeHandle(ref, () => {
     return {
       element: rootRef.current,
@@ -72,6 +67,7 @@ const LocationControl = forwardRef<
       Loading.hide()
     })
   }
+  /* eslint-enable @typescript-eslint/no-use-before-define */
 
   async function handleLocation() {
     const result = await location()
