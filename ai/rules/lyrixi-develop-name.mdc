@@ -2,7 +2,7 @@
 description: 实现代码命名规范
 globs:
   - '**/*.{js,jsx,ts,tsx}'
-alwaysApply: false
+alwaysApply: true
 ---
 
 # 实现代码命名规范

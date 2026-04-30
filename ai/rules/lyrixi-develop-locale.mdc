@@ -2,7 +2,7 @@
 description: 业务项目开发规范（国际化文案）
 globs:
   - '**/*.{js,jsx,ts,tsx}'
-alwaysApply: false
+alwaysApply: true
 ---
 
 # 开发规范

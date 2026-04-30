@@ -2,7 +2,7 @@
 description: 业务项目开发规范（代码书写顺序）
 globs:
   - '**/*.{js,jsx,ts,tsx}'
-alwaysApply: false
+alwaysApply: true
 ---
 
 # 代码书写顺序

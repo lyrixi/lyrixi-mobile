@@ -2,7 +2,7 @@
 description: 业务项目开发规范（import顺序）
 globs:
   - '**/*.{js,jsx,ts,tsx}'
-alwaysApply: false
+alwaysApply: true
 ---
 
 # import 顺序
