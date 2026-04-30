@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import type * as L from 'leaflet'
+import type { L } from './../../leaflet.types'
 
 import getMapType from './../../utils/getMapType'
 import createLeafletMap from './createLeafletMap'

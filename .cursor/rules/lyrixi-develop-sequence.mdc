@@ -1,27 +1,62 @@
 ---
-description: 业务项目开发规范（import/书写顺序）
+description: 业务项目开发规范（代码书写顺序）
 globs:
   - '**/*.{js,jsx,ts,tsx}'
-alwaysApply: false
+alwaysApply: true
 ---
 
-# 代码顺序
+# 代码书写顺序
 
-## import 顺序
+指组件内部实现代码的组织顺序，严格按以下顺序书写:
 
-同一文件内建议按下列分组, **组与组之间空一行**, 同组内可按**包名字母序**排序:
+1. props 解构 / 默认值
+2. refs
+3. state
+4. derived values / memo
+5. internal helpers
+6. effects
+7. expose / imperative handle
+8. event handlers
+9. render helpers
+10. return
 
-1. **React 库依赖**, 例如:`react`、`react-dom` 等 react 库的依赖;
-2. **外部依赖**, 例如:`react-router`、`lyrixi-mobile`、`dayjs` 等第三库;
-3. **当前模块引入其它模块**, 例如:`@/`、`utils/`、`components/`等;
-4. **相对路径**：父级 `../` 先于同级 `./`, 先工具与常量，再组件。
+示例:
 
-## 代码书写顺序
+```tsx
+const Example = forwardRef<ExampleRef, ExampleProps>(({...}, ref) => {
+  // 1. props
 
-1. hooks（state / ref）
+  // 2. refs
+  const xxRef = useRef<...>(...)
 
-2. 内部工具函数
+  // 3. state
+  const [...] = useState(...)
 
-3. effects
+  // 4. derived values / memo
 
-4. 事件处理
+  // 5. internal helpers
+  const initXX = () => {}
+  const loadXX = () => {}
+  const queryXX = () => {}
+  const updateXX = () => {}
+  const saveXX = () => {}
+  const getXX = () => {}
+
+  // 6. effects
+  useEffect(() => {}, [])
+
+  // 7. expose / imperative handle
+  useImperativeHandle(...)
+
+  // 8. event handlers
+  const handleXX = () => {}
+
+  // 9. render helpers
+  const renderArrow = () => {}
+
+  // 10. return
+  return (...)
+})
+
+export default Example
+```

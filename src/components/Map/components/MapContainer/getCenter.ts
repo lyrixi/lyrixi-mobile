@@ -1,4 +1,4 @@
-import type * as L from 'leaflet'
+import type { L } from './../../leaflet.types'
 
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'

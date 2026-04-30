@@ -1,4 +1,4 @@
-import type * as L from 'leaflet'
+import type { L } from './../../../leaflet.types'
 import defaultMarkerIcons from './../../../utils/markerIcons'
 
 // 内库使用-start

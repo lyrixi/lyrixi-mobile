@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import type * as L from 'leaflet'
+import type { L } from './../leaflet.types'
 import { Page, Loading } from 'lyrixi-mobile'
 
 import MapLoader from '../components/MapLoader'

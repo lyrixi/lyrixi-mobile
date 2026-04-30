@@ -1,10 +1,12 @@
+import type { L } from '../../../leaflet.types'
+
 // 加载google地图leaflet插件
 function loadGoogleTileLayer() {
   const Leaf = window.L!
   Leaf.tileLayer.currentTileLayer = function () {
     return Leaf.tileLayer(
       'https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}&scale=2'
-    ) as import('leaflet').TileLayer
+    ) as L.TileLayer
   }
 
   // maxBounds

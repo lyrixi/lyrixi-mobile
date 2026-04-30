@@ -1,4 +1,4 @@
-import type * as L from 'leaflet'
+import type { L } from './../../leaflet.types'
 import type { CanvasMarkerLayer } from './clearMarkers'
 
 interface MapPoint {

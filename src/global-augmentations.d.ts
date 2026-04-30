@@ -1,5 +1,5 @@
 /** 运行时代码挂载到 window 的扩展（Locale 等） */
-import type * as leaflet from 'leaflet'
+import type { LeafletWithPlugins as LeafletWindowL } from './components/Map/leaflet.types'
 
 export {}
 
@@ -31,19 +31,6 @@ interface MapLoaderConfigType {
   markerIcons?: Record<string, unknown>
   leaflet?: { css?: string; js?: string }
   [key: string]: unknown
-}
-
-/** currentTileLayer: 自定义瓦片图层工厂函数（百度/高德/OpenStreet 等加载后挂载） */
-type CurrentTileLayerFn = (() => leaflet.TileLayer) & {
-  config?: Record<string, unknown>
-}
-
-/** Leaflet 扩展插件（canvas-markers 等动态注入） */
-type LeafletWithPlugins = Omit<typeof leaflet, 'tileLayer'> & {
-  tileLayer: typeof leaflet.tileLayer & {
-    currentTileLayer?: CurrentTileLayerFn
-  }
-  canvasIconLayer?: (options?: Record<string, unknown>) => unknown
 }
 
 /** 百度地图 BMap namespace（CDN 动态注入） */
@@ -156,7 +143,7 @@ declare global {
       }
     }
     /** Leaflet（CDN 动态注入，含 canvas-markers 等插件） */
-    L?: LeafletWithPlugins
+    L?: LeafletWindowL
     /** Leaflet 加载状态标记 */
     leaflet?: unknown
     /** 百度地图 */
