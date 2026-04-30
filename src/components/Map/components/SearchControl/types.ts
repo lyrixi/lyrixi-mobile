@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, FC, ForwardRefExoticComponent, RefAttributes } from 'react'
 import type { MapContainerAPI } from './../MapContainer'
 
 export interface SearchControlProps {
@@ -22,3 +22,23 @@ export interface SearchPageProps {
   onClose?: () => void
   onChange?: (item: unknown) => void
 }
+
+/** ToolBar.Search 在地图搜索条上的窄化 props（与 forwardRef 断言一致） */
+export type MapSearchBarForwardedProps = {
+  readOnly?: boolean
+  className?: string
+  style?: CSSProperties
+  onClick?: () => void
+} & RefAttributes<unknown>
+
+export type MapSearchBarExoticComponent = ForwardRefExoticComponent<MapSearchBarForwardedProps>
+
+/** SearchActive 在搜索页内的窄化 props */
+export interface MapSearchActiveListProps {
+  value?: string
+  allowClear?: boolean
+  onSearch?: (kw: string) => void
+  onCancel?: () => void
+}
+
+export type MapSearchActiveListComponent = FC<MapSearchActiveListProps>

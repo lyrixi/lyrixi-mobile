@@ -10,7 +10,7 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import {Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { LocCacheData } from './types'
+import type { LocCacheData, LocationStorageCache } from './types'
 
 // 读取缓存
 async function getLocationCache(
@@ -18,10 +18,7 @@ async function getLocationCache(
   cacheExpires: number | null | undefined
 ): Promise<unknown | null> {
   const cacheKey = `${CacheKeyPrefix}${type}`
-  const cache = (await Storage.getItem(cacheKey)) as
-    | { data?: Record<string, unknown>; expires?: number }
-    | null
-    | undefined
+  const cache = (await Storage.getItem(cacheKey)) as LocationStorageCache | null | undefined
   if (!cache) return null
   try {
     const { data, expires } = cache

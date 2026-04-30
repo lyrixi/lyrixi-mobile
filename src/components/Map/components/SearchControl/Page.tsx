@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
-import type { SearchPageProps, SearchQueryNearbyResult } from './types'
+import type {
+  SearchPageProps,
+  SearchQueryNearbyResult,
+  MapSearchActiveListComponent
+} from './types'
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
@@ -14,12 +18,7 @@ import Text from './../../../Text'
 import { LocaleUtil, Loading, ToolBar, List, Page, Result, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const MapSearchActive = SearchActive as unknown as React.FC<{
-  value?: string
-  allowClear?: boolean
-  onSearch?: (kw: string) => void
-  onCancel?: () => void
-}>
+const MapSearchActive = SearchActive as unknown as MapSearchActiveListComponent
 
 function isQueryResult(v: unknown): v is SearchQueryNearbyResult {
   return typeof v === 'object' && v !== null

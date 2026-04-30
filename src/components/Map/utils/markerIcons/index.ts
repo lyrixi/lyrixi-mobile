@@ -1,4 +1,6 @@
-const markerIcons = {
+import type { MarkerIconsConfig } from './types'
+
+const markerIcons: MarkerIconsConfig = {
   centerMarkerIcon: {
     active: true,
     className: 'lyrixi-map-center-marker-icon',

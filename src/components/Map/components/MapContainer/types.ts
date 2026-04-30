@@ -90,3 +90,6 @@ export interface MapContainerProps {
   onDrag?: (map: MapContainerAPI) => void
   onDragEnd?: (map: MapContainerAPI) => void
 }
+
+/** injectChildrenProps 向下注入的额外 props */
+export type MapContainerChildInjectProps = Record<string, unknown>

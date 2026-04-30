@@ -8,17 +8,13 @@ import Storage from './../../../../utils/Storage'
 import {Storage} from 'lyrixi-mobile'
 测试使用-end */
 
+import type { SetAddressCacheParams } from './types'
+
 /**
  * 设置地址缓存
  */
-async function setAddressCache(
-  {
-    latitude,
-    longitude,
-    cacheExpires
-  }: { latitude: number; longitude: number; cacheExpires?: number | null },
-  data: unknown
-): Promise<boolean> {
+async function setAddressCache(params: SetAddressCacheParams, data: unknown): Promise<boolean> {
+  const { latitude, longitude, cacheExpires } = params
   if (!cacheExpires || typeof cacheExpires !== 'number') return false
 
   try {

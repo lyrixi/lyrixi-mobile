@@ -1,5 +1,7 @@
+import type { MapEngineKind } from './types'
+
 // Get map render type
-function getMapType() {
+function getMapType(): MapEngineKind {
   if (window.google) {
     return 'google'
   }

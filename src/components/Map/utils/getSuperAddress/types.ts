@@ -12,3 +12,10 @@ export interface AddressCachePayload {
   expires?: number
   coordinate?: { latitude: number; longitude: number }
 }
+
+/** setAddressCache 第一个参数 */
+export interface SetAddressCacheParams {
+  latitude: number
+  longitude: number
+  cacheExpires?: number | null
+}

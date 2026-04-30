@@ -1,5 +1,5 @@
 import coordsToFit from './../coordsToFit'
-import type { QueryNearbyParams, GooglePlacesApi } from './types'
+import type { QueryNearbyParams, GooglePlacesApi, GooglePlaceLatLngCallable } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -13,7 +13,7 @@ function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === 'object' && v !== null
 }
 
-function hasNumberLatLng(loc: unknown): loc is { lat: () => number; lng: () => number } {
+function hasNumberLatLng(loc: unknown): loc is GooglePlaceLatLngCallable {
   if (typeof loc !== 'object' || loc === null) {
     return false
   }

@@ -30,6 +30,12 @@ export interface OverpassNode {
 }
 
 /** google.maps.places 最小形态（googleQueryNearby 内使用） */
+/** Google Places 返回的 location（lat/lng 为函数） */
+export interface GooglePlaceLatLngCallable {
+  lat: () => number
+  lng: () => number
+}
+
 export type GooglePlacesApi = {
   Place: {
     searchNearby: (r: Record<string, unknown>) => Promise<{ places: unknown[] }>

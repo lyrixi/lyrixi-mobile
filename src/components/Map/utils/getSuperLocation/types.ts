@@ -27,3 +27,9 @@ export interface LocCacheData {
   latitude: number
   [key: string]: unknown
 }
+
+/** Storage.getItem 读出的定位缓存条目 */
+export interface LocationStorageCache {
+  data?: Record<string, unknown>
+  expires?: number
+}

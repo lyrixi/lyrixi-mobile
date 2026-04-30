@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import Page from './Page'
-import type { SearchControlProps } from './types'
+import type { SearchControlProps, MapSearchBarExoticComponent } from './types'
 
 // 内库使用-start
 import SearchBar from './../../../ToolBar/Search'
@@ -11,14 +11,7 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
-const MapSearchBar = SearchBar as React.ForwardRefExoticComponent<
-  {
-    readOnly?: boolean
-    className?: string
-    style?: React.CSSProperties
-    onClick?: () => void
-  } & React.RefAttributes<unknown>
->
+const MapSearchBar = SearchBar as MapSearchBarExoticComponent
 
 export type { SearchControlProps } from './types'
 

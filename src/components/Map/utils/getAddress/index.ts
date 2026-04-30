@@ -1,6 +1,7 @@
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import osmGetAddress from './osmGetAddress'
+import type { GetAddressParams, GetAddressResultShape } from './types'
 
 // 内库使用-start
 import Toast from './../../../Toast'
@@ -11,15 +12,7 @@ import { Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 // 地址逆解析
-async function getAddress(
-  params: {
-    address?: string
-    longitude?: number | string
-    latitude?: number | string
-    type?: string
-    [key: string]: unknown
-  } | null | undefined
-): Promise<unknown> {
+async function getAddress(params: GetAddressParams): Promise<unknown> {
   if (params?.address) {
     return params
   }
@@ -45,7 +38,7 @@ async function getAddress(
     result = await osmGetAddress(params)
   }
 
-  const r = result as { status?: string; message?: string; [key: string]: unknown }
+  const r = result as GetAddressResultShape
   if (r?.status === 'error') {
     if (r.message) {
       Toast.show({ content: r.message })
