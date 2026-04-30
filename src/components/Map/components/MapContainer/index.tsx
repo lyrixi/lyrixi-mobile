@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import type { L } from './../../leaflet.types'
+import type { MapPoint, GetAddressFn, GetLocationFn, QueryNearbyFn, MapContainerAPI, MapContainerProps } from './types'
 
 import getMapType from './../../utils/getMapType'
 import createLeafletMap from './createLeafletMap'
@@ -23,70 +24,7 @@ import Result from './../../../Result'
 import { LocaleUtil, GeoUtil, Result } from 'lyrixi-mobile'
 测试使用-end */
 
-interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  [key: string]: unknown
-}
-
-type GetAddressFn = (...args: unknown[]) => Promise<Record<string, unknown>>
-type GetLocationFn = (...args: unknown[]) => Promise<MapPoint | null>
-type QueryNearbyFn = (...args: unknown[]) => unknown
-
-export interface MapContainerAPI {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  type: string
-  currentMap: unknown
-  leafletMap: L.Map | null
-  openLocation: ((opts: Record<string, unknown>) => void) | null | undefined
-  getAddress: (coord: MapPoint) => Promise<Record<string, unknown> | { status: string; message: string }>
-  getLocation: (params: Record<string, unknown>) => Promise<MapPoint | null>
-  queryNearby: QueryNearbyFn
-  center: MapPoint
-  setView: (...params: unknown[]) => void
-  panTo: (coords: MapPoint | MapPoint[]) => void
-  getCenter: () => { latitude: number; longitude: number; type?: string }
-  zoomIn: () => void
-  zoomOut: () => void
-  getZoom: () => number | null
-  setZoom: (zoom: number) => unknown
-  onZoomStart?: (map: MapContainerAPI) => void
-  onZoom?: (map: MapContainerAPI) => void
-  onZoomEnd?: (map: MapContainerAPI) => void
-  onMoveStart?: (map: MapContainerAPI) => void
-  onMove?: (map: MapContainerAPI) => void
-  onMoveEnd?: (map: MapContainerAPI) => void
-  onDragStart?: ((map: MapContainerAPI) => void) | null
-  onDrag?: (map: MapContainerAPI) => void
-  onDragEnd?: ((map: MapContainerAPI) => void) | null
-}
-
-export interface MapContainerProps {
-  center?: MapPoint | MapPoint[]
-  zoom?: number
-  minZoom?: number
-  maxZoom?: number
-  cacheExpires?: number
-  getAddress?: GetAddressFn | null
-  getLocation?: GetLocationFn | null
-  openLocation?: ((...args: unknown[]) => unknown) | null
-  queryNearby?: QueryNearbyFn | null
-  style?: React.CSSProperties
-  className?: string
-  children?: React.ReactNode
-  onLoad?: (result: { status: string; message?: string; map?: MapContainerAPI }) => void
-  onZoomStart?: (map: MapContainerAPI) => void
-  onZoom?: (map: MapContainerAPI) => void
-  onZoomEnd?: (map: MapContainerAPI) => void
-  onMoveStart?: (map: MapContainerAPI) => void
-  onMove?: (map: MapContainerAPI) => void
-  onMoveEnd?: (map: MapContainerAPI) => void
-  onDragStart?: (map: MapContainerAPI) => void
-  onDrag?: (map: MapContainerAPI) => void
-  onDragEnd?: (map: MapContainerAPI) => void
-}
+export type { MapContainerAPI, MapContainerProps } from './types'
 
 const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   (
@@ -265,6 +203,7 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
 
     useEffect(() => {
       APIRef.current.element = rootRef.current
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define -- loadData 声明在组件后部，与既有结构一致
       loadData()
       // eslint-disable-next-line
     }, [])

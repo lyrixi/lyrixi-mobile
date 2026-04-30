@@ -1,19 +1,6 @@
 import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
-
-interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  [key: string]: unknown
-}
-
-interface CreateLeafletMapOptions {
-  center?: MapPoint | MapPoint[]
-  minZoom?: number
-  maxZoom?: number
-  zoom?: number
-}
+import type { MapPoint, CreateLeafletMapOptions } from './types'
 
 function createLeafletMap(
   container: HTMLElement | null,

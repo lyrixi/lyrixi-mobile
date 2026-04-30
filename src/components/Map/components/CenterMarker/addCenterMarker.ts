@@ -1,19 +1,7 @@
 import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
 import createMarkerIcon from './../Markers/createMarkerIcon'
-
-interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  icon?: unknown
-  [key: string]: unknown
-}
-
-interface AddCenterMarkerOptions {
-  onClick?: ((info: MapPoint & { setIcon?: unknown }) => void) | null
-  icon?: L.Icon | L.DivIcon | null
-}
+import type { MapPoint, AddCenterMarkerOptions } from './types'
 
 function addCenterMarker(
   point: MapPoint,

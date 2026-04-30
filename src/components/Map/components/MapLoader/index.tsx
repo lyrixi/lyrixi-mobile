@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import loadSource from './../../utils/loadSource'
 import canvasMarkers from './leaflet.canvas-markers'
+import type { LoadResult, MapLoaderProps, MapLoaderRef } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -11,39 +12,6 @@ import Button from './../../../Button'
 /* 测试使用-start
 import { LocaleUtil, Result, Button } from 'lyrixi-mobile'
 测试使用-end */
-
-interface LoadResult {
-  status: 'success' | 'error'
-  message?: string | React.ReactNode
-  data?: unknown
-  [key: string]: unknown
-}
-
-interface MapLoaderProps {
-  config?: {
-    key?: string
-    type?: string
-    leaflet?: { css?: string; js?: string }
-    [key: string]: unknown
-  }
-  getAddress?: ((...args: unknown[]) => unknown) | null
-  getLocation?: ((...args: unknown[]) => unknown) | null
-  openLocation?: ((...args: unknown[]) => unknown) | null
-  queryNearby?: ((...args: unknown[]) => unknown) | null
-  loadingRender?: (() => React.ReactNode) | null
-  loadingNode?: React.ReactNode
-  children?: React.ReactNode
-  onError?:
-    | ((
-        result: LoadResult & { reload?: () => void }
-      ) => Promise<LoadResult | undefined> | LoadResult | undefined | void)
-    | null
-  onSuccess?: ((result: { status: string; map: { reload: () => void } }) => void) | null
-}
-
-interface MapLoaderRef {
-  reload: () => void
-}
 
 const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
   (
@@ -72,6 +40,7 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
 
 
     useEffect(() => {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define -- loadData 声明在组件后部，与既有结构一致
       loadData()
       // eslint-disable-next-line
     }, [])

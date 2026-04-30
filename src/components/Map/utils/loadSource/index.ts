@@ -2,20 +2,9 @@ import loadLeaflet from './loadLeaflet'
 import loadGoogle from './loadGoogle'
 import loadBaidu from './loadBaidu'
 import loadOpenstreet from './loadOpenstreet'
+import type { MapLoaderSourceConfig, LoadSourceResult } from './types'
 
-export interface MapLoaderSourceConfig {
-  key?: string
-  type?: string
-  leaflet?: { css?: string; js?: string }
-  [key: string]: unknown
-}
-
-interface LoadResult {
-  status: string
-  message?: string
-  data?: unknown
-  [key: string]: unknown
-}
+export type { MapLoaderSourceConfig } from './types'
 
 // Load leaflet map source
 async function loadSource(
@@ -27,23 +16,23 @@ async function loadSource(
       js: 'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js'
     }
   }
-): Promise<LoadResult> {
-  let result = (await loadLeaflet(options?.leaflet)) as LoadResult
+): Promise<LoadSourceResult> {
+  let result = (await loadLeaflet(options?.leaflet)) as LoadSourceResult
   if (result.status === 'error') {
     return result
   }
 
   if (options.type === 'google') {
-    result = (await loadGoogle(options?.key as string | undefined)) as LoadResult
+    result = (await loadGoogle(options?.key as string | undefined)) as LoadSourceResult
     return result
   }
 
   if (options.type === 'bmap') {
-    result = (await loadBaidu(options?.key as string | undefined)) as LoadResult
+    result = (await loadBaidu(options?.key as string | undefined)) as LoadSourceResult
     return result
   }
 
-  result = (await loadOpenstreet()) as LoadResult
+  result = (await loadOpenstreet()) as LoadSourceResult
   return result
 }
 

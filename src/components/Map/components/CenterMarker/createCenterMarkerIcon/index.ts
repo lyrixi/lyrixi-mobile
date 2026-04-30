@@ -1,5 +1,6 @@
 import type { L } from './../../../leaflet.types'
 import defaultMarkerIcons from './../../../utils/markerIcons'
+import type { CenterMarkerIconOptions } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../../utils/ObjectUtil'
@@ -9,23 +10,7 @@ import ObjectUtil from './../../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface IconOptions {
-  html?: string
-  className?: string
-  iconUrl?: string
-  iconRetinaUrl?: string
-  shadowUrl?: string
-  shadowRetinaUrl?: string
-  shadowSize?: [number, number]
-  iconSize?: [number, number]
-  iconAnchor?: [number, number]
-  shadowAnchor?: [number, number]
-  popupAnchor?: [number, number]
-  active?: boolean
-  [key: string]: unknown
-}
-
-function createCenterMarkerIcon(icon?: IconOptions | null): L.Icon | L.DivIcon | null {
+function createCenterMarkerIcon(icon?: CenterMarkerIconOptions | null): L.Icon | L.DivIcon | null {
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   if (icon && (icon instanceof window.L.Icon || icon instanceof window.L.DivIcon)) {

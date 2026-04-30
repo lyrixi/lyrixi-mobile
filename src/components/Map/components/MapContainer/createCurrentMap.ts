@@ -1,12 +1,4 @@
-interface MapCenter {
-  latitude?: number | string
-  longitude?: number | string
-  [key: string]: unknown
-}
-
-interface CreateCurrentMapOptions {
-  center?: MapCenter | MapCenter[]
-}
+import type { CreateCurrentMapOptions } from './types'
 
 function createCurrentMap(container: HTMLElement, { center }: CreateCurrentMapOptions = {}): unknown {
   let wgs84Center: { longitude: number | string; latitude: number | string } | null = null

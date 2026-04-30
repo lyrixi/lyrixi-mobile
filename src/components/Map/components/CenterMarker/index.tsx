@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import type { L } from './../../leaflet.types'
 import type { MapContainerAPI } from './../MapContainer'
+import type { CenterMarkerProps, CenterMarkerRef } from './types'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import createCenterMarkerIcon from './createCenterMarkerIcon'
 import addCenterMarker from './addCenterMarker'
@@ -9,31 +10,6 @@ import clearCenterMarker from './clearCenterMarker'
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
-
-interface MapPoint {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  icon?: unknown
-  onClick?: (info: MapPoint) => void
-  [key: string]: unknown
-}
-
-interface CenterMarkerProps {
-  value?: MapPoint | null
-  style?: React.CSSProperties
-  className?: string
-  map?: MapContainerAPI
-  icon?: L.Icon | L.DivIcon | null
-  onClick?: ((info: MapPoint) => void) | null
-  onDragStart?: ((map: MapContainerAPI) => void) | null
-  onDragEnd?: ((map: MapContainerAPI) => void) | null
-}
-
-interface CenterMarkerRef {
-  element: HTMLSpanElement | null
-  getElement: () => HTMLSpanElement | null
-}
 
 const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
   (
@@ -98,7 +74,7 @@ const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
           if (onDragEnd) {
             rootRef?.current?.classList?.remove?.('lyrixi-active')
           }
-          onDragStart && onDragStart(mapAPI)
+          onDragStart?.(mapAPI)
         }
         map.onDragEnd = (mapAPI: MapContainerAPI) => {
           if (onDragEnd) {

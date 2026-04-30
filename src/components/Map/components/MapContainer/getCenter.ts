@@ -1,14 +1,9 @@
 import type { L } from './../../leaflet.types'
+import type { CenterResult } from './types'
 
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'
 // 内库使用-end
-
-interface CenterResult {
-  latitude: number
-  longitude: number
-  type?: string
-}
 
 function getCenter(leafletMap: L.Map): CenterResult {
   const latlng = leafletMap.getCenter()
