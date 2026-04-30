@@ -8,13 +8,9 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface AddressParams {
-  longitude?: number | string
-  latitude?: number | string
-  type?: string
-  address?: string
-  [key: string]: unknown
-}
+import type { AddressParams } from './types'
+
+export type { AddressParams } from './types'
 
 // 百度地址逆解析
 function bmapGetAddress(params: AddressParams): Promise<unknown> {

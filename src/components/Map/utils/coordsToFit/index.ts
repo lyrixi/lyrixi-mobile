@@ -6,15 +6,7 @@ import GeoUtil from './../../../../utils/GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface CoordInput {
-  inChinaTo?: string
-  outChinaTo?: string
-  longitude?: number | string
-  latitude?: number | string
-  type?: string
-  isInChina?: boolean
-  [key: string]: unknown
-}
+import type { CoordInput } from './types'
 
 function isCoordRecord(v: unknown): v is CoordInput {
   return typeof v === 'object' && v !== null

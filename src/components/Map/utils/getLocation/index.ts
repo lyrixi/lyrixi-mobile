@@ -7,10 +7,9 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface GetLocationOptions {
-  type?: string
-  [key: string]: unknown
-}
+import type { GetLocationOptions } from './types'
+
+export type { GetLocationOptions } from './types'
 
 // 定位
 function getLocation(options: GetLocationOptions = {}): Promise<unknown> {

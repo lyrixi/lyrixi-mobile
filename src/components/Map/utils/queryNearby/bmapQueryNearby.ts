@@ -1,4 +1,5 @@
 import coordsToFit from './../coordsToFit'
+import type { QueryNearbyParams, FitCoord } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -8,21 +9,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface QueryNearbyParams {
-  map: { currentMap?: unknown; leafletMap?: unknown; [key: string]: unknown }
-  keyword: string
-  longitude: number | string
-  latitude: number | string
-  type: string
-  radius?: number
-}
-
-interface FitCoord {
-  longitude?: number
-  latitude?: number
-  isInChina?: boolean
-  [key: string]: unknown
-}
+export type { QueryNearbyParams } from './types'
 
 // 搜索附近, keyword:搜索关键词
 function bmapQueryNearby({

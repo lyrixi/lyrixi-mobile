@@ -1,14 +1,9 @@
 import setAddressCache from './setAddressCache'
 import getAddressCache from './getAddressCache'
 import defaultGetAddress from './../getAddress'
+import type { GetSuperAddressParams } from './types'
 
-export interface GetSuperAddressParams {
-  cacheExpiresContinue?: boolean
-  cacheExpires?: number | null
-  type: string
-  latitude: number
-  longitude: number
-}
+export type { GetSuperAddressParams } from './types'
 
 /**
  * 获取地址（带缓存）

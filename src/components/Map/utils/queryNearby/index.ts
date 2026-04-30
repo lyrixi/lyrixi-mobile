@@ -1,5 +1,5 @@
 import bmapQueryNearby from './bmapQueryNearby'
-import type { QueryNearbyParams } from './bmapQueryNearby'
+import type { QueryNearbyParams } from './types'
 import googleQueryNearby from './googleQueryNearby'
 import overpassQueryNearby from './overpassQueryNearby'
 
@@ -38,7 +38,7 @@ function queryNearby(params: QueryNearbyParams): Promise<unknown> {
       } else if (window.BMap) {
         const p = bmapQueryNearby(params)
         result =
-          p == null
+          p === null || p === undefined
             ? { status: 'error', message: String(LocaleUtil.locale('查询失败', 'lyrixi_0d66ed02d74d0bd89431d6d59533ffb3')) }
             : await p
       } else {

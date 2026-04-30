@@ -1,26 +1,11 @@
 // 内库使用-start
-import type { QueryNearbyParams } from './bmapQueryNearby'
+import type { QueryNearbyParams, OverpassNode } from './types'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface OverpassTag {
-  name?: string
-  'addr:city'?: string
-  'addr:housename'?: string
-  'addr:postcode'?: string
-  'addr:street'?: string
-  [k: string]: string | undefined
-}
-
-interface OverpassNode {
-  tags?: OverpassTag
-  lat?: number
-  lon?: number
-}
 
 function isOverpassData(d: unknown): d is { elements: OverpassNode[] } {
   if (!d || typeof d !== 'object') {

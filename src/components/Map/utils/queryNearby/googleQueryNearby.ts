@@ -1,5 +1,5 @@
 import coordsToFit from './../coordsToFit'
-import type { QueryNearbyParams } from './bmapQueryNearby'
+import type { QueryNearbyParams, GooglePlacesApi } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -34,14 +34,6 @@ function displayNameToString(name: unknown): string {
   return String(name)
 }
 
-type PlacesApi = {
-  Place: {
-    searchNearby: (r: Record<string, unknown>) => Promise<{ places: unknown[] }>
-    searchByText: (r: Record<string, unknown>) => Promise<{ places: unknown[] }>
-  }
-  SearchNearbyRankPreference: { DISTANCE: string }
-}
-
 // 搜索附近
 async function nearbySearch({
   map,
@@ -68,7 +60,7 @@ async function nearbySearch({
     }
   }
 
-  const { Place, SearchNearbyRankPreference } = (await g.maps.importLibrary('places')) as PlacesApi
+  const { Place, SearchNearbyRankPreference } = (await g.maps.importLibrary('places')) as GooglePlacesApi
   const request: Record<string, unknown> = {
     fields: ['displayName', 'location', 'businessStatus', 'formattedAddress'],
     maxResultCount: 20,
@@ -92,7 +84,7 @@ async function nearbySearch({
   }
   const lon = centerCoordRaw.longitude
   const lat = centerCoordRaw.latitude
-  if (lon == null || lat == null) {
+  if (lon === undefined || lon === null || lat === undefined || lat === null) {
     return {
       status: 'error' as const,
       message: LocaleUtil.locale('查询失败', 'lyrixi_0d66ed02d74d0bd89431d6d59533ffb3')

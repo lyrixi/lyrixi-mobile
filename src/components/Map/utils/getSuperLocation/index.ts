@@ -13,21 +13,9 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface GetLocationOptions {
-  browser?: boolean
-  cacheExpiresContinue?: boolean
-  cacheExpires?: number | null
-  timeout?: number
-  type: string
-}
+import type { GetLocationOptions, LocResult, GetSuperLocationOptions } from './types'
 
-interface LocResult {
-  status?: string
-  code?: string
-  longitude?: number
-  latitude?: number
-  [key: string]: unknown
-}
+export type { GetLocationOptions, GetSuperLocationOptions } from './types'
 
 async function getLocation({
   browser,
@@ -83,7 +71,14 @@ async function getLocation({
 
       const r = result as LocResult
       if (r?.status === 'success') {
-        if (cacheExpires && typeof cacheExpires === 'number' && r.longitude != null && r.latitude != null) {
+        if (
+          cacheExpires &&
+          typeof cacheExpires === 'number' &&
+          r.longitude !== undefined &&
+          r.longitude !== null &&
+          r.latitude !== undefined &&
+          r.latitude !== null
+        ) {
           console.log(`定位成功, 设置缓存${cacheExpires}秒:`, result)
           void setLocationCache(type, cacheExpires, {
             ...r,
@@ -95,13 +90,6 @@ async function getLocation({
       resolve(result)
     })()
   })
-}
-
-export interface GetSuperLocationOptions {
-  timeout?: number
-  cacheExpiresContinue?: boolean
-  cacheExpires?: number | null
-  type: string
 }
 
 /**

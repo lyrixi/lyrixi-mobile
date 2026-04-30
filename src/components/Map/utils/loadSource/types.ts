@@ -11,3 +11,9 @@ export interface LoadSourceResult {
   data?: unknown
   [key: string]: unknown
 }
+
+/** loadBaidu / loadGoogle 等对子步骤返回的轻量形态 */
+export interface LoadStatus {
+  status?: string
+  [key: string]: unknown
+}

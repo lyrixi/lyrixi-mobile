@@ -1,9 +1,4 @@
-interface MapCoord {
-  longitude?: unknown
-  latitude?: unknown
-  type?: unknown
-  [key: string]: unknown
-}
+import type { MapCoord } from './filterCoords/types'
 
 // 过滤不合法的坐标数据
 function filterCoords(coords: unknown): MapCoord[] {

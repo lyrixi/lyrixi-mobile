@@ -6,7 +6,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { AddressParams } from './bmapGetAddress'
+import type { AddressParams } from './types'
 
 // 地址逆解析函数
 function osmGetAddress(params: AddressParams): Promise<unknown> {

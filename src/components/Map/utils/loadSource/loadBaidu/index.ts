@@ -1,10 +1,6 @@
 import loadBaiduMap from './loadBaiduMap'
 import loadBaiduTileLayer from './loadBaiduTileLayer'
-
-interface LoadStatus {
-  status?: string
-  [key: string]: unknown
-}
+import type { LoadStatus } from '../types'
 
 // 加载BMap地图资源
 async function loadBaidu(key: string | undefined): Promise<unknown> {

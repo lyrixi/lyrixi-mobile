@@ -1,10 +1,6 @@
 import loadGoogleMap from './loadGoogleMap'
 import loadGoogleTileLayer from './loadGoogleTileLayer'
-
-interface LoadStatus {
-  status?: string
-  [key: string]: unknown
-}
+import type { LoadStatus } from '../types'
 
 async function loadGoogle(key: string | undefined): Promise<unknown> {
   const result: unknown = await loadGoogleMap(key)
