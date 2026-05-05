@@ -1,6 +1,8 @@
 import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import Modal, { ActionSheetItem } from './../Modal'
+import Modal from './../Modal'
 import Combo, { ComboRef } from './../../Combo'
+import type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
+import type { ActionSheetItem } from './../Modal/types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -11,58 +13,7 @@ import type { ComboRef as InputSelectComboRef } from './../../Input/Select'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ActionSheetComboHandle {
-  close: () => void
-  open: () => void
-}
-
-interface ActionSheetComboProps {
-  // Combo
-  value?: ActionSheetItem | null
-  placeholder?: string
-  formatter?: (...args: unknown[]) => string
-  autoSize?: boolean
-  separator?: string
-  mode?: string
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  style?: React.CSSProperties
-  className?: string
-  comboRender?: (props: {
-    comboRef: React.RefObject<ComboRef | null>
-    open: boolean
-    onClick: () => void
-  }) => React.ReactNode
-  children?: React.ReactNode
-  leftIconNode?: React.ReactNode
-  rightIconNode?: React.ReactNode
-  clearRender?: () => React.ReactNode
-
-  // Modal
-  list?: ActionSheetItem[]
-  maskClosable?: boolean
-  safeArea?: boolean
-  modalStyle?: React.CSSProperties
-  modalClassName?: string
-  maskStyle?: React.CSSProperties
-  maskClassName?: string
-  portal?: boolean | HTMLElement
-  title?: React.ReactNode
-  cancelNode?: React.ReactNode
-  cancelVisible?: boolean
-  itemRender?: (
-    item: ActionSheetItem,
-    helpers: { onChange: (item: ActionSheetItem) => void }
-  ) => React.ReactNode
-
-  // Events
-  onBeforeOpen?: () => Promise<boolean | void>
-  onOpen?: () => void
-  onClose?: () => void
-  onClick?: () => void
-  onChange?: (value: ActionSheetItem | null) => void
-}
+export type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
 
 // 卡片选择
 const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProps>(
@@ -203,7 +154,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
           // Events
           onChange={
             onChange
-              ? (v: unknown, meta?: { action: string }) => {
+              ? (v: unknown) => {
                   onChange(v as ActionSheetItem | null)
                 }
               : undefined

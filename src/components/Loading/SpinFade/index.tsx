@@ -1,20 +1,9 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
+import type { SpinFadeProps, SpinFadeRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
-interface SpinFadeProps {
-  color?: string
-  size?: string | number
-  style?: React.CSSProperties
-  className?: string
-}
-
-interface SpinFadeRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const SpinFade = forwardRef<SpinFadeRef, SpinFadeProps>(
   ({ color, size, style, className }, ref) => {
@@ -28,7 +17,7 @@ const SpinFade = forwardRef<SpinFadeRef, SpinFadeProps>(
       }
     })
 
-    const newStyle: React.CSSProperties = style ? { ...style } : {}
+    const newStyle: CSSProperties = style ? { ...style } : {}
     if (color) {
       newStyle.color = color
     }

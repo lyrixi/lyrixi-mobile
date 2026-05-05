@@ -1,4 +1,5 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type Ref } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type Ref } from 'react'
+import type { ProgressBarProps, ProgressBarRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,19 +8,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-type ProgressBarStyle = CSSProperties & { [key: string]: string | number | undefined }
-
-interface ProgressBarProps {
-  percent?: number
-  className?: string
-  style?: ProgressBarStyle
-}
-
-interface ProgressBarRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const ProgressBar = forwardRef<ProgressBarRef, ProgressBarProps>(function ProgressBar(
   { percent = 0, className, style },

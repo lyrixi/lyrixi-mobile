@@ -1,3 +1,5 @@
+import type { BridgeResultPayload, InitBridgeConfig, InitBridgeResult } from './types'
+
 // 内库使用-start
 import Bridge from './../../utils/Bridge'
 // 内库使用-end
@@ -6,22 +8,7 @@ import Bridge from './../../utils/Bridge'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-interface BridgeResultPayload {
-  message?: string
-}
-
-export interface InitBridgeConfig {
-  getScriptSrc?: () => string
-  getConfigUrl?: () => string
-  formatHeaders?: (...args: unknown[]) => unknown
-  formatPayload?: (...args: unknown[]) => unknown
-  formatResponse?: (...args: unknown[]) => unknown
-}
-
-export interface InitBridgeResult {
-  status: 'success' | 'error'
-  message: string | undefined
-}
+export type { InitBridgeConfig, InitBridgeResult } from './types'
 
 /**
  * 初始化桥接：先加载 Bridge，再配置鉴权

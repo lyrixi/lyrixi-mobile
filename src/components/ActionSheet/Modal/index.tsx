@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import Item from './../Item'
+import type { ActionSheetItem, ActionSheetModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -11,40 +12,7 @@ import Modal, { ModalRef } from './../../Modal/Modal'
 import { DOMUtil, LocaleUtil, Modal } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface ActionSheetItem {
-  id: string | number
-  name: React.ReactNode
-  disabled?: boolean
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-}
-
-export interface ActionSheetModalProps {
-  value?: ActionSheetItem | null
-  list?: ActionSheetItem[]
-  open?: boolean
-  maskClosable?: boolean
-  allowClear?: boolean
-  safeArea?: boolean
-  modalStyle?: React.CSSProperties
-  modalClassName?: string
-  maskStyle?: React.CSSProperties
-  maskClassName?: string
-  itemStyle?: React.CSSProperties
-  itemClassName?: string
-  groupStyle?: React.CSSProperties
-  groupClassName?: string
-  portal?: boolean | HTMLElement
-  title?: React.ReactNode
-  cancelNode?: React.ReactNode
-  cancelVisible?: boolean
-  itemRender?: (
-    item: ActionSheetItem,
-    helpers: { onChange: (item: ActionSheetItem) => void }
-  ) => React.ReactNode
-  onChange?: (value: ActionSheetItem | null) => void
-  onCancel?: () => void
-  onClose?: () => void
-}
+export type { ActionSheetItem, ActionSheetModalProps } from './types'
 
 const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
   (

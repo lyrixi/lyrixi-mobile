@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import initBridge, { InitBridgeConfig } from './initBridge'
+import initBridge from './initBridge'
+import type { AppLoadResult, AppProps } from './types'
 
 // 内库使用-start
 import Theme from './../../utils/Theme'
@@ -24,29 +25,7 @@ window.addEventListener(
   false
 )
 
-interface MapConfig {
-  type: 'bmap' | 'amap' | 'google'
-  key: string
-}
-
-interface ThemeConfig {
-  fontSize?: 'm' | 'l' | 'xl'
-}
-
-interface AppLoadResult {
-  status: string
-  message?: string
-}
-
-interface AppProps {
-  mapConfig?: MapConfig | null
-  bridgeConfig?: InitBridgeConfig | null
-  language?: string | null
-  debugElement?: HTMLElement | null
-  preload?: (() => Promise<AppLoadResult>) | null
-  themeConfig?: ThemeConfig | null
-  children?: React.ReactNode
-}
+export type { AppLoadResult, AppProps, InitBridgeConfig, MapConfig, ThemeConfig } from './types'
 
 // Cast Result to avoid missing required props errors from untyped component
 const ResultComponent = Result as React.ComponentType<{
@@ -150,7 +129,7 @@ function App({
             message:
               typeof msg === 'string' || typeof msg === 'number'
                 ? String(msg)
-                : msg == null
+                : msg === null || msg === undefined
                   ? undefined
                   : '加载失败'
           })

@@ -1,26 +1,12 @@
 import React from 'react'
 import getStatusDefault from './getStatusDefault'
+import type { ResultProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-export interface ResultProps {
-  // Value & Display Value
-  status: string
-  title?: string | null | React.ReactNode
-  description?: React.ReactNode
-
-  // Style
-  full?: boolean
-  style?: React.CSSProperties
-  className?: string
-
-  // Element
-  imageRender?: (() => React.ReactNode) | null
-  imageUrl?: string | null
-  children?: React.ReactNode
-}
+export type { ResultProps } from './types'
 
 // 结果页, status: empty|500|success|waiting|info|warning|error
 function Result({

@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 import SpinFade from './../SpinFade'
+import type { LoadingProps, LoadingRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -10,22 +11,6 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 /* 测试使用-start
 import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface LoadingProps {
-  content?: React.ReactNode
-  modalStyle?: React.CSSProperties
-  modalClassName?: string
-  maskStyle?: React.CSSProperties
-  maskClassName?: string
-  portal?: Element | DocumentFragment
-  iconRender?: () => React.ReactNode
-  children?: React.ReactNode
-}
-
-interface LoadingRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const Loading = forwardRef<LoadingRef, LoadingProps>(
   (

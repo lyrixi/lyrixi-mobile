@@ -1,4 +1,5 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import type { FooterBarProps, FooterBarRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,16 +9,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface FooterBarRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
-
-export interface FooterBarProps {
-  className?: string
-  style?: CSSProperties
-  children?: ReactNode
-}
+export type { FooterBarProps, FooterBarRef } from './types'
 
 const FooterBar = forwardRef<FooterBarRef, FooterBarProps>(
   (

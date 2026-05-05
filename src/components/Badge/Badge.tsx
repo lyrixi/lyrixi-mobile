@@ -1,4 +1,5 @@
-import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import type { BadgeProps, BadgeRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,18 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface BadgeProps {
-  children?: ReactNode
-  style?: CSSProperties
-  className?: string
-  maxLength?: number
-  ellipsis?: string
-}
-
-interface BadgeRef {
-  element: HTMLSpanElement | null
-  getElement: () => HTMLSpanElement | null
-}
+export type { BadgeProps, BadgeRef } from './types'
 
 // 数值标
 const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(

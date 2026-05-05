@@ -1,11 +1,6 @@
 import getPosition from './getPosition'
 import snapToEdge from './snapToEdge'
-import type { GapOption } from './snapToEdge'
-
-interface AssistiveTouchOptions {
-  gap?: GapOption
-  onDragEnd?: (data: Record<string, unknown>) => void
-}
+import type { AssistiveTouchOptions, GapOption } from './types'
 
 class AssistiveTouch {
   private target!: HTMLElement

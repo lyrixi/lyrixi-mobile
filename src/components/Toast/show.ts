@@ -1,25 +1,14 @@
 import hide from './hide'
+import type { CSSProperties } from 'react'
+import type { ShowProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
-type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
+export type { ShowProps } from './types'
 
-export interface ShowProps {
-  duration?: number
-  maskClickable?: boolean
-  position?: string
-  portal?: HTMLElement
-  id?: string
-  maskClassName?: string
-  maskStyle?: React.CSSProperties
-  className?: string
-  style?: React.CSSProperties
-  content?: string
-  onOpen?: () => void
-  onClose?: () => void
-}
+type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
 
 // 显示Toast
 // eslint-disable-next-line
@@ -77,7 +66,7 @@ function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
     mask.setAttribute('style', '')
     if (maskStyle) {
       for (let key in maskStyle) {
-        const k = key as keyof React.CSSProperties
+        const k = key as keyof CSSProperties
         const val = maskStyle[k]
         if (val !== undefined) (mask.style as unknown as Record<string, unknown>)[key] = val
       }
@@ -99,7 +88,7 @@ function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
       wrapper?.setAttribute('style', '')
       if (style) {
         for (let key in style) {
-          const k = key as keyof React.CSSProperties
+          const k = key as keyof CSSProperties
           const val = style[k]
           if (val !== undefined) (wrapper.style as unknown as Record<string, unknown>)[key] = val
         }

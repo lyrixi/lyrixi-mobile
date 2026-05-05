@@ -1,3 +1,5 @@
+import type { LoadingShowProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 import LocaleUtil from './../../utils/LocaleUtil'
@@ -7,19 +9,10 @@ import LocaleUtil from './../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ShowProps {
-  portal?: HTMLElement | null
-  id?: string
-  maskClassName?: string
-  maskStyle?: Record<string, string>
-  className?: string
-  style?: Record<string, string>
-  content?: string
-  onOpen?: () => void
-}
+export type { LoadingShowProps } from './types'
 
 // 显示Loading
-export default function showLoading(props?: ShowProps): HTMLElement | null {
+export default function showLoading(props?: LoadingShowProps): HTMLElement | null {
   const { portal, id, maskClassName, maskStyle, className, style, content, onOpen } = props || {}
 
   function render(): HTMLElement | null {

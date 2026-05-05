@@ -1,4 +1,5 @@
-import React, { forwardRef, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef } from 'react'
+import type { NavBarProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,11 +9,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface NavBarProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
+export type { NavBarProps } from './types'
 
 const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
   (

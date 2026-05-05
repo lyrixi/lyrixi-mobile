@@ -1,4 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import type { SwitchProps, SwitchRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,22 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface SwitchProps {
-  checked?: boolean
-  readOnly?: boolean
-  disabled?: boolean
-  size?: string
-  style?: React.CSSProperties
-  className?: string
-  on?: React.ReactNode
-  off?: React.ReactNode
-  onChange?: (checked: boolean) => void
-}
-
-interface SwitchRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { SwitchProps, SwitchRef } from './types'
 
 // 开关控件
 const Switch = forwardRef<SwitchRef, SwitchProps>(

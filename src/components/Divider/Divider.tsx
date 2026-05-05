@@ -1,4 +1,5 @@
-import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import type { DividerProps, DividerRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -8,16 +9,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface DividerProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
-
-export interface DividerRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { DividerProps, DividerRef } from './types'
 
 const Divider = forwardRef<DividerRef, DividerProps>(function Divider({ style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)

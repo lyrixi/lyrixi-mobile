@@ -1,8 +1,9 @@
-import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
-import type { GapOption, SnapPosition } from './AssistiveTouch/snapToEdge'
+import type { FloatProps, FloatRef } from './types'
+import type { SnapPosition } from './AssistiveTouch/types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -13,21 +14,7 @@ import SafeArea from './../SafeArea'
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface FloatRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface FloatProps {
-  draggable?: boolean
-  gap?: GapOption
-  safeArea?: boolean
-  style?: CSSProperties
-  className?: string
-  portal?: Element | DocumentFragment
-  children?: ReactNode
-  onDragEnd?: (data: { position: SnapPosition }) => void
-}
+export type { FloatProps, FloatRef } from './types'
 
 type FloatElement = HTMLDivElement & { initialPosition?: boolean }
 

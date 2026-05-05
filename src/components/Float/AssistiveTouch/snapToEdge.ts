@@ -1,21 +1,4 @@
-interface GapOption {
-  left?: number
-  right?: number
-  top?: number
-  bottom?: number
-}
-
-interface SnapPosition {
-  top: string
-  right: string
-  bottom: string
-  left: string
-}
-
-interface SnapToEdgeOptions {
-  gap?: GapOption
-  onChange?: (pos: SnapPosition) => void
-}
+import type { SnapToEdgeOptions } from './types'
 
 // 贴边逻辑（修复纵向越界）
 const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): void => {
@@ -68,14 +51,15 @@ const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): 
   target.style.top = `${top}px`
   target.style.bottom = 'auto' // 清除底部定位
 
-  onChange &&
+  if (onChange) {
     onChange({
       top: target.style.top,
       right: target.style.right,
       bottom: target.style.bottom,
       left: target.style.left
     })
+  }
 }
 
 export default snapToEdge
-export type { GapOption, SnapToEdgeOptions, SnapPosition }
+export type { GapOption, SnapToEdgeOptions, SnapPosition } from './types'

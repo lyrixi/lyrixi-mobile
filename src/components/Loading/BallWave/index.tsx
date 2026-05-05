@@ -1,20 +1,9 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
+import type { BallWaveProps, BallWaveRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
-interface BallWaveProps {
-  color?: string
-  size?: string | number
-  style?: React.CSSProperties
-  className?: string
-}
-
-interface BallWaveRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const BallWave = forwardRef<BallWaveRef, BallWaveProps>(
   ({ color, size, style, className }, ref) => {
@@ -28,7 +17,7 @@ const BallWave = forwardRef<BallWaveRef, BallWaveProps>(
       }
     })
 
-    const newStyle: React.CSSProperties = style ? { ...style } : {}
+    const newStyle: CSSProperties = style ? { ...style } : {}
     if (color) {
       newStyle.color = color
     }

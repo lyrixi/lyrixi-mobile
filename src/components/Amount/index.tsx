@@ -1,4 +1,5 @@
 import React from 'react'
+import type { AmountProps } from './types'
 
 // 内库使用-start
 import MathUtil from './../../utils/MathUtil'
@@ -9,14 +10,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface AmountProps {
-  precision?: number
-  currencySymbol?: string
-  style?: React.CSSProperties
-  className?: string
-  noStyle?: boolean
-  children?: number | string
-}
+export type { AmountProps } from './types'
 
 // 金额
 function Amount({

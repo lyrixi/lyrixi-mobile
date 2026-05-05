@@ -1,4 +1,5 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode, type Ref } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type Ref } from 'react'
+import type { ProgressCircleProps, ProgressCircleRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,22 +8,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-/** 含 ring 宽度、动画时长等 CSS 变量 */
-type ProgressCircleStyle = CSSProperties & { [key: string]: string | number | undefined }
-
-interface ProgressCircleProps {
-  percent?: number
-  children?: ReactNode
-  size?: number
-  style?: ProgressCircleStyle
-  className?: string
-}
-
-interface ProgressCircleRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const ProgressCircle = forwardRef<ProgressCircleRef, ProgressCircleProps>(function ProgressCircle(
   { percent = 0, children, size = 50, style, className },
