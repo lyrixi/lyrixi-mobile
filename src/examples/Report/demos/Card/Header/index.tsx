@@ -5,10 +5,10 @@ import { ToolBar, TabBar } from 'lyrixi-mobile'
 // 公共组件导入
 
 // 内部组件导入
+import type { CardItem } from '../types'
+import type { CardHeaderProps } from './types'
 
 // 样式图片等资源文件导入
-
-type CardItem = { id?: string; name?: string; [key: string]: unknown }
 
 // 头部
 const Header = ({
@@ -19,15 +19,7 @@ const Header = ({
   slide,
   onTabChange,
   onSlideChange
-}: {
-  title: string
-  tabs: CardItem[] | null
-  tab: CardItem | null
-  slides: CardItem[] | null
-  slide: CardItem | null
-  onTabChange: (tabs: CardItem[]) => void
-  onSlideChange: (slide: CardItem) => void
-}) => {
+}: CardHeaderProps) => {
   return (
     <div
       className="lyrixi-border-b"

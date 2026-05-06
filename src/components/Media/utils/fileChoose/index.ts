@@ -1,5 +1,7 @@
 import getRemainCount from './../getRemainCount'
+import type { MediaListItem } from '../../types'
 import compressImage from './compressImage'
+import type { MediaFileChooseOptions } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -7,38 +9,14 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
 // 内库使用-end
 
-import type { MediaListItem } from '../../types'
-
 /* 测试使用-start
 import { ObjectUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
+export type { MediaFileChooseChangePayload, MediaFileChooseOptions } from './types'
+
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
-}
-
-export interface MediaFileChooseOptions {
-  file: HTMLInputElement
-  async: boolean
-  sizeType?: string[]
-  maxWidth?: number
-  quality?: number
-  maxCount?: number
-  list?: MediaListItem[]
-  uploadPosition: 'start' | 'end' | string
-  uploadList: (
-    newList: MediaListItem[] | undefined,
-    opts?: { action?: string }
-  ) => Promise<MediaListItem[] | undefined>
-  onFileChange?: (payload: {
-    fileName: string
-    fileSize?: number
-    fileType?: string
-    fileUrl?: string
-    filePath?: File
-    status: string
-  }) => Promise<MediaListItem[] | void> | MediaListItem[] | void
-  onChange?: (list: MediaListItem[], meta: { action: string }) => void
 }
 
 // 选择文件

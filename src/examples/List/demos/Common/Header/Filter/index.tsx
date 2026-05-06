@@ -1,16 +1,17 @@
-import React, { useEffect, useRef, useState, type ComponentProps } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FooterBar, Form, Input, LocaleUtil } from 'lyrixi-mobile'
 import ToolBarFilter from '../../../../../../components/ToolBar/Filter'
 
+import type {
+  FilterHeaderProps,
+  ToolBarFilterFooterRenderParams,
+  ToolBarFilterModalRenderParams,
+  ToolBarFilterProps
+} from './types'
+
 const locale = LocaleUtil.locale
 
-function Filter({
-  queryParams,
-  onSearch
-}: {
-  queryParams?: Record<string, unknown>
-  onSearch?: (p: Record<string, unknown>) => void
-}) {
+function Filter({ queryParams, onSearch }: FilterHeaderProps) {
   const [form] = Form.useForm()
   const modifiedRef = useRef(false)
 
@@ -46,13 +47,12 @@ function Filter({
     modifiedRef.current = true
   }
 
-  type FilterProps = ComponentProps<typeof ToolBarFilter>
   const filterProps = {
     sizeEqual: true,
     color: active ? 'primary' : 'default',
     onOpen: handleOpen,
     onClose: handleClose,
-    modalRender: ({ onClose: _onClose }: { open: boolean | null; onClose: () => void }) => {
+    modalRender: ({ onClose: _onClose }: ToolBarFilterModalRenderParams) => {
       return (
         <Form
           layout="vertical"
@@ -66,7 +66,7 @@ function Filter({
         </Form>
       )
     },
-    footerRender: (params: { onClose?: (e?: React.MouseEvent<HTMLDivElement>) => void }) => {
+    footerRender: (params: ToolBarFilterFooterRenderParams) => {
       const close = () => {
         params.onClose?.()
       }
@@ -90,7 +90,7 @@ function Filter({
         </FooterBar>
       )
     }
-  } as unknown as FilterProps
+  } as unknown as ToolBarFilterProps
 
   return <ToolBarFilter {...filterProps} />
 }

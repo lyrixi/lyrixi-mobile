@@ -9,6 +9,7 @@ import type { ListAsyncRef, LoadResult } from '../../../../components/ListAsync'
 import { queryData } from './api'
 import Header from './Header'
 import Main from './Main'
+import type { CommonManualQueryDataResult } from './types'
 
 // 样式图片等资源文件导入
 import './index.less'
@@ -36,11 +37,7 @@ const Common = () => {
           console.log('action:', action)
           const result = (await queryData(queryParams, {
             action: action
-          })) as {
-            status: string
-            message?: string
-            data?: { list: unknown[] }
-          }
+          })) as CommonManualQueryDataResult
           let newList: unknown[] | null = null
           if (result.status !== 'error' && result.data?.list) {
             const prev = (previousResult?.list ?? []) as unknown[]

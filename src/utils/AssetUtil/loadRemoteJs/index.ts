@@ -1,22 +1,8 @@
 import loadScript from './loadScript'
+import type { LoadRemoteJsOptions } from './types'
 
 // 动态加载script的方法
-function loadRemoteJs(
-  src: string,
-  opts?: {
-    async?: boolean
-    charset?: string
-    text?: string
-    type?: string
-    id?: string
-    defer?: boolean
-    crossorigin?: string
-    integrity?: string
-    referrerPolicy?: string
-    onError?: (result: unknown) => void
-    onSuccess?: (result: unknown) => void
-  }
-) {
+function loadRemoteJs(src: string, opts?: LoadRemoteJsOptions) {
   const {
     async,
     charset,

@@ -3,7 +3,7 @@ import React, { forwardRef, type Ref } from 'react'
 import { ListPagination } from 'lyrixi-mobile'
 import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
 
-import type { IndexBarListMainProps } from './types'
+import type { IndexBarListMainProps, ListDemoFormatPayloadParams } from './types'
 
 // 项目内部模块导入
 // 内部组件函数导入
@@ -24,7 +24,7 @@ const Main = (
       virtual={virtual}
       url="/"
       payload={queryParams}
-      formatPayload={({ page, ...payload }: { page?: number } & Record<string, unknown>) => {
+      formatPayload={({ page, ...payload }: ListDemoFormatPayloadParams) => {
         return formatPayload({
           ...payload,
           page

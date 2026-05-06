@@ -1,16 +1,12 @@
-import React, { useEffect, useRef, useState, type ComponentProps } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Form, Input, LocaleUtil } from 'lyrixi-mobile'
 import ToolBarFilter from '../../../../../../components/ToolBar/Filter'
 
+import type { FilterHeaderProps, ToolBarFilterOkParams, ToolBarFilterProps } from './types'
+
 const locale = LocaleUtil.locale
 
-function Filter({
-  queryParams,
-  onSearch
-}: {
-  queryParams?: Record<string, unknown>
-  onSearch?: (p: Record<string, unknown>) => void
-}) {
+function Filter({ queryParams, onSearch }: FilterHeaderProps) {
   const [form] = Form.useForm()
   const modifiedRef = useRef(false)
 
@@ -47,7 +43,7 @@ function Filter({
     ;(form as { resetFields: () => void }).resetFields()
   }
 
-  const handleOk = ({ close }: { close: () => void }) => {
+  const handleOk = ({ close }: ToolBarFilterOkParams) => {
     setActive(modifiedRef.current)
     onSearch?.({
       ...queryParams,
@@ -60,7 +56,6 @@ function Filter({
     modifiedRef.current = true
   }
 
-  type TFP = ComponentProps<typeof ToolBarFilter>
   const filterProps = {
     sizeEqual: true,
     color: active ? 'primary' : 'default',
@@ -84,7 +79,7 @@ function Filter({
         </Form>
       )
     }
-  } as unknown as TFP
+  } as unknown as ToolBarFilterProps
 
   return <ToolBarFilter {...filterProps} />
 }

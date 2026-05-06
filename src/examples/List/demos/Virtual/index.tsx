@@ -8,6 +8,7 @@ import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/
 // 内部组件导入
 import Header from './../Common/Header'
 import Main from './../Common/Main'
+import type { VirtualDemoItemHeightRow } from './types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
@@ -36,7 +37,7 @@ const Virtual = () => {
         queryParams={queryParams}
         virtual={{
           getItemHeight: (item: Record<string, unknown>) => {
-            const row = item as { virtualData?: { type?: string } }
+            const row = item as VirtualDemoItemHeightRow
             if (row?.virtualData?.type === 'group') {
               return 33
             }

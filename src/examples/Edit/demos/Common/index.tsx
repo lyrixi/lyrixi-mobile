@@ -23,6 +23,14 @@ import {
 
 import { queryData, saveData, validateData } from './../Cache/api'
 import Footer from './../Cache/Footer'
+import type {
+  EditDemoAttachListItem,
+  EditDemoFormItemExtraParams,
+  EditDemoQueryDataResult,
+  EditDemoResultView,
+  EditDemoSaveResult,
+  EditDemoUntypedFileChangePayload
+} from './types'
 
 const locale = LocaleUtil.locale
 
@@ -44,7 +52,7 @@ const Edit = () => {
 
   // 加载数据
   async function loadData() {
-    let data = (await queryData()) as { formData?: unknown; baseData?: unknown } | null
+    let data = (await queryData()) as EditDemoQueryDataResult
     setResult(data)
     baseDataRef.current = data?.baseData ?? null
 
@@ -72,7 +80,7 @@ const Edit = () => {
       baseData: baseDataRef.current,
       data,
       token: tokenRef.current
-    })) as { code?: string; message?: string }
+    })) as EditDemoSaveResult
     if (saveResult.code === '1') {
       Toast.show({
         content: String(locale('提交成功!')),
@@ -100,6 +108,8 @@ const Edit = () => {
       })
     }
   }
+
+  const resultView = result as EditDemoResultView
 
   return (
     <Page>
@@ -132,7 +142,7 @@ const Edit = () => {
               name="textarea"
               maxLength={150}
               label={String(locale('Textarea'))}
-              extra={({ value }: { value: unknown }) => {
+              extra={({ value }: EditDemoFormItemExtraParams) => {
                 const s = typeof value === 'string' ? value : ''
                 return <div className="lyrixi-text-right">{`${s.length} / 150`}</div>
               }}
@@ -270,7 +280,7 @@ const Edit = () => {
             <Form.Item
               name="password"
               label={String(locale('Password'))}
-              extra={({ value }: { value: unknown }) => {
+              extra={({ value }: EditDemoFormItemExtraParams) => {
                 return (
                   <Input.PasswordStrength
                     value={typeof value === 'string' ? value : undefined}
@@ -350,7 +360,7 @@ const Edit = () => {
                       name: '2',
                       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
                     }
-                  ] as Array<{ name: string; fileUrl: string; status?: string }>
+                  ] as EditDemoAttachListItem[]
                 }
                 count={9}
                 onFileChange={async ({
@@ -358,12 +368,7 @@ const Edit = () => {
                   fileSize,
                   fileURL,
                   fileData
-                }: {
-                  fileName: string
-                  fileSize: number
-                  fileURL: string
-                  fileData: unknown
-                }) => {
+                }: EditDemoUntypedFileChangePayload) => {
                   console.log({ fileName, fileSize, fileURL, fileData })
                 }}
                 onChange={(newList: unknown) => {
@@ -406,12 +411,7 @@ const Edit = () => {
                   fileSize,
                   fileURL,
                   fileData
-                }: {
-                  fileName: string
-                  fileSize: number
-                  fileURL: string
-                  fileData: unknown
-                }) => {
+                }: EditDemoUntypedFileChangePayload) => {
                   console.log({ fileName, fileSize, fileURL, fileData })
                 }}
                 onChange={(newList: unknown) => {
@@ -427,14 +427,10 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {(result as { message?: string; status?: string; title?: string } | null)?.message && (
+      {resultView?.message && (
         <Result
-          status={String((result as { status?: string }).status ?? 'empty')}
-          title={String(
-            (result as { title?: string; message?: string }).title ||
-              (result as { message?: string }).message ||
-              ''
-          )}
+          status={String(resultView?.status ?? 'empty')}
+          title={String(resultView?.title || resultView?.message || '')}
         />
       )}
     </Page>

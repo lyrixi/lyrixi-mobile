@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import type { CSSProperties, ReactNode } from 'react'
+import type { CascaderNode } from './../cascaderTypes'
 import CascaderModal from './../Modal'
-import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+import type { CascaderComboProps, CascaderComboRef } from './types'
 import type { ComboProps, ComboRef } from './../../Input/Select'
 
 // 内库使用-start
@@ -12,30 +12,7 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-export type CascaderComboRef = ComboRef & {
-  open: () => void
-  close: () => void
-} & Record<string, unknown>
-
-export type CascaderComboProps = ComboProps & {
-  list?: CascaderNode[]
-  loadData?: LoadDataFn
-  maskClosable?: boolean
-  safeArea?: boolean
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: string | boolean | HTMLElement | null
-  title?: ReactNode
-  okNode?: ReactNode
-  cancelNode?: ReactNode
-  okVisible?: boolean
-  cancelVisible?: boolean
-  searchVisible?: boolean
-  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
-  onBeforeOpen?: () => boolean | Promise<boolean>
-}
+export type { CascaderComboProps, CascaderComboRef } from './types'
 
 // Cascader
 const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(

@@ -2,13 +2,13 @@ import React, { useState, useRef } from 'react'
 // 第三方库导入
 import { IndexBar, Page } from 'lyrixi-mobile'
 import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
-import type { LoadResult } from 'lyrixi-mobile/components/ListAsync'
 
 // 公共组件导入
 
 // 内部组件导入
 import Header from './../Common/Header'
 import Main from './Main'
+import type { IndexBarListLoadContext } from './Main/types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
@@ -37,7 +37,7 @@ const IndexBarList = () => {
         ref={mainRef}
         cacheName="indexbar-list-demo"
         queryParams={queryParams}
-        onLoad={({ result, action }: { result: LoadResult | null; action: string }) => {
+        onLoad={({ result, action }: IndexBarListLoadContext) => {
           void action
           const newAnchors: Record<string, string> = {}
           const list = result?.list

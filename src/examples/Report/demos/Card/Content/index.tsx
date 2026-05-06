@@ -1,7 +1,10 @@
 // 第三方库导入
 import React, { useEffect } from 'react'
 
-function Content({ data, onClick }: { data: unknown; onClick: () => void }) {
+// 内部组件导入
+import type { CardContentProps } from './types'
+
+function Content({ data, onClick }: CardContentProps) {
   useEffect(() => {
     // 初始化
     // eslint-disable-next-line

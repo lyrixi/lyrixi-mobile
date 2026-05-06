@@ -8,17 +8,10 @@ import { Device, Bridge, Result, LocaleUtil } from 'lyrixi-mobile'
 import { queryTabs, querySlides, queryData } from './api'
 import Content from './Content'
 import Header from './Header'
+import type { CardItem, DataResult, ReportCardUpdateDataParams } from './types'
 
 // 样式图片等资源文件导入
 const locale = LocaleUtil.locale
-
-type CardItem = { id?: string; name?: string; [key: string]: unknown }
-
-type DataResult = {
-  status?: string
-  message?: string
-  data?: unknown
-}
 
 // 日报报表卡片组件（日报分析）
 const DailyCard = () => {
@@ -75,7 +68,7 @@ const DailyCard = () => {
   }
 
   // 更新数据
-  async function updateData(params: { tabId?: string | number; slideId?: string | number }) {
+  async function updateData(params: ReportCardUpdateDataParams) {
     const dataResult = (await queryData(params)) as DataResult
     setResult(dataResult)
   }

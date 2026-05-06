@@ -1,23 +1,15 @@
-import React, { useState, type ComponentProps } from 'react'
+import React, { useState } from 'react'
 import { LocaleUtil, Page, ToolBar } from 'lyrixi-mobile'
 import SearchBar from '../../../../../components/ToolBar/Search'
 import SearchActive from '../../../../../components/ToolBar/SearchActive'
 
 import Filter from './Filter'
+import type { HeaderProps, SearchActiveProps, SearchBarProps } from './types'
 
 const locale = LocaleUtil.locale
 
-type SearchBarProps = ComponentProps<typeof SearchBar>
-type SearchActiveProps = ComponentProps<typeof SearchActive>
-
 // 筛选栏
-const Header = ({
-  queryParams,
-  onSearch
-}: {
-  queryParams: Record<string, unknown>
-  onSearch: (p: Record<string, unknown>) => void
-}) => {
+const Header = ({ queryParams, onSearch }: HeaderProps) => {
   const [searchActive, setSearchActive] = useState(false)
 
   const handleSearchBarClick = () => {

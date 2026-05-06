@@ -1,8 +1,4 @@
-export interface CascaderTab {
-  id?: string | number
-  parentid?: string | number
-  [key: string]: unknown
-}
+import type { CascaderTab } from './types'
 
 // 格式化选中项, 补充parentid
 function formatValue(value: CascaderTab[] | null | undefined): CascaderTab[] | null {

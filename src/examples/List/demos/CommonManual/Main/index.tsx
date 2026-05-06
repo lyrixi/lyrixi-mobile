@@ -1,20 +1,13 @@
 import React, { forwardRef, type Ref } from 'react'
 // 第三方库导入
 import { ListAsync } from 'lyrixi-mobile'
-import type { ListAsyncRef, LoadResult } from '../../../../../components/ListAsync'
-import type { VirtualOptions } from '../../../../../components/ListAsync/VirtualList'
+import type { ListAsyncRef } from '../../../../../components/ListAsync'
 
 // 公共组件导入
 
 // 内部组件导入
 import mainLoadingRender from './mainLoadingRender'
-
-type MainProps = {
-  virtual?: VirtualOptions
-  onLoad?: (ctx: { result: LoadResult | null; action: string }) => void
-  onChange?: (value: unknown) => void
-  loadData: (ctx: { previousResult: LoadResult | null; action: string }) => Promise<LoadResult>
-}
+import type { MainProps } from './types'
 
 // 普通列表
 const Main = (

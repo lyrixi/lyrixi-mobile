@@ -1,9 +1,9 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
-import type { ComboProps, ComboRef } from './../../Input/Select'
 import type { CascaderNode } from './../cascaderTypes'
-import type { DistrictModalProps } from './../DistrictModal'
+import type { DistrictComboProps, DistrictComboRef } from './types'
+import type { ComboProps, ComboRef } from './../../Input/Select'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -13,37 +13,7 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-export type DistrictComboRef = ComboRef & {
-  open: () => void
-  close: () => void
-} & Record<string, unknown>
-
-type DistrictComboProps = ComboProps &
-  Pick<
-    DistrictModalProps,
-    | 'loadCountries'
-    | 'loadCountryRegions'
-    | 'loadStreets'
-    | 'maskClosable'
-    | 'listStyle'
-    | 'listClassName'
-    | 'itemStyle'
-    | 'itemClassName'
-    | 'modalStyle'
-    | 'modalClassName'
-    | 'maskStyle'
-    | 'maskClassName'
-    | 'portal'
-    | 'title'
-    | 'okNode'
-    | 'cancelNode'
-    | 'cancelVisible'
-    | 'searchVisible'
-  > & {
-    type?: string
-    min?: string
-    onBeforeOpen?: () => boolean | Promise<boolean>
-  }
+export type { DistrictComboProps, DistrictComboRef } from './types'
 
 // 级联选择
 const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
