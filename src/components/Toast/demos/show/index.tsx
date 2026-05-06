@@ -8,7 +8,7 @@ export default () => {
       maskStyle: { backgroundColor: 'red' },
       position: 'middle',
       content: 'show toast',
-      duration: 5000,
+      duration: 3000,
       maskClickable: false,
       onOpen: () => {
         console.log('custom open:', true)
