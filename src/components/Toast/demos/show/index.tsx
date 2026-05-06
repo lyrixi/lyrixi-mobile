@@ -1,18 +1,14 @@
 import React from 'react'
-import { Page, Toast } from 'lyrixi-mobile'
+import { Page, Toast, Button } from 'lyrixi-mobile'
 
 export default () => {
   function handleToggle() {
-    // Toast.defaultProps = {
-    //   style: { backgroundColor: 'blue' },
-    //   maskStyle: { backgroundColor: 'red' }
-    // }
     let toast = Toast.show({
       style: { backgroundColor: 'blue', color: 'green' },
       maskStyle: { backgroundColor: 'red' },
       position: 'middle',
       content: 'show toast',
-      duration: 2000,
+      duration: 5000,
       maskClickable: false,
       onOpen: () => {
         console.log('custom open:', true)
@@ -22,27 +18,30 @@ export default () => {
       }
     })
     console.log(toast)
+  }
 
-    setTimeout(() => {
-      Toast.show({
-        content: 'hh',
-        onOpen: () => {
-          console.log('hh open:', true)
-        },
-        onClose: () => {
-          console.log('hh open:', false)
-        }
-      })
-    }, 1000)
+  function handleToggle2() {
+    Toast.show({
+      content: 'hh',
+      onOpen: () => {
+        console.log('hh open:', true)
+      },
+      onClose: () => {
+        console.log('hh open:', false)
+      }
+    })
   }
 
   return (
     <Page>
       <Page.Header className="lyrixi-text-center">Toast.show</Page.Header>
       <Page.Main className="lyrixi-bg-white">
-        <div className="demo-title" onClick={handleToggle}>
-          Toast open toggle
-        </div>
+        <Button block radius="l" style={{ margin: '10px 12px' }} onClick={handleToggle}>
+          Custom Toast
+        </Button>
+        <Button block radius="l" style={{ margin: '10px 12px' }} onClick={handleToggle2}>
+          Default Toast
+        </Button>
       </Page.Main>
     </Page>
   )

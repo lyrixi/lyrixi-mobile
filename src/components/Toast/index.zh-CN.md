@@ -19,7 +19,13 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/Toast.tsx"></code>
+### Toast.show
+
+<code src="./demos/show/index.tsx"></code>
+
+### Toast.hide
+
+<code src="./demos/hide/index.tsx"></code>
 
 ## API
 

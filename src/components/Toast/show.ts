@@ -7,7 +7,6 @@ import type { ShowProps } from './types'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
-
 type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
 
 // 显示Toast
@@ -49,8 +48,8 @@ function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
           <div class="lyrixi-toast-content"></div>
         </div>
       </div>`
-        // 添加到dom上
-        ; (portal || document.getElementById('root') || document.body).appendChild(mask)
+      // 添加到dom上
+      ;(portal || document.getElementById('root') || document.body).appendChild(mask)
     }
 
     // Update mask
@@ -77,7 +76,7 @@ function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
     if (container) {
       container?.setAttribute(
         'class',
-        DOMUtil.classNames('lyrixi-toast', position || 'lyrixi-middle')
+        DOMUtil.classNames('lyrixi-toast', position ? `lyrixi-${position}` : 'lyrixi-middle')
       )
     }
 
