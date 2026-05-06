@@ -329,7 +329,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 
       return (
         <TabBar.Tabs
-          gap="12"
+          gap={12}
           list={tabsRef.current}
           value={activeTab}
           onChange={(item) => {

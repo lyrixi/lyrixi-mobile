@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
-
 import renderContext from './../utils/renderContext'
 
 import type { TabBarItem } from './../types'
@@ -82,7 +81,7 @@ const Tabs = forwardRef<TabsRef, TabsProps>(
               style={itemStyle}
               onClick={(e) => {
                 e.stopPropagation()
-                onChange && onChange(item)
+                onChange?.(item)
               }}
             >
               <div className="lyrixi-tabbar-tabs-tab">
