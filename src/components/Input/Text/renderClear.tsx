@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { InputRenderClearParams } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
 // 内库使用-end
@@ -10,16 +12,8 @@ import { ObjectUtil } from 'lyrixi-mobile'
 
 import IconClear from './../Icon/Clear'
 
-interface RenderClearParams {
-  clearRender?: (params: { clearable: boolean; allowClear?: boolean; onClear: (e?: React.MouseEvent | React.TouchEvent) => void; onTouchStart?: (e?: React.TouchEvent) => void }) => React.ReactNode | undefined
-  allowClear?: boolean
-  value?: string
-  onClear: (e?: React.MouseEvent | React.TouchEvent) => void
-  onTouchStart?: (e?: React.TouchEvent) => void
-}
-
 // 渲染清除按钮
-function renderClear({ clearRender, allowClear, value, onClear, onTouchStart }: RenderClearParams): React.ReactNode {
+function renderClear({ clearRender, allowClear, value, onClear, onTouchStart }: InputRenderClearParams): React.ReactNode {
   let clearable = !ObjectUtil.isEmpty(value) || typeof value === 'number' ? true : false
 
   // 自定义渲染清空按钮

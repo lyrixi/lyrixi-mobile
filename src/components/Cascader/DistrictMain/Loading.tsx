@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { DistrictMainLoadingProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Page from './../../Page'
@@ -9,13 +11,6 @@ import Skeleton from './../../Skeleton'
 /* 测试使用-start
 import { LocaleUtil, Page, Skeleton } from 'lyrixi-mobile'
 测试使用-end */
-
-interface DistrictMainLoadingProps {
-  result?: unknown
-  onReload?: () => void
-  style?: React.CSSProperties
-  className?: string
-}
 
 const DistrictMainLoading = ({ result: _result, onReload: _onReload, style, className }: DistrictMainLoadingProps) => {
   return (

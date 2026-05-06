@@ -1,4 +1,6 @@
-import React, { Fragment, forwardRef, type CSSProperties, type ReactNode } from 'react'
+import React, { Fragment, forwardRef } from 'react'
+
+import type { CascaderMainViewProps } from './types'
 import type { CascaderNode } from './../cascaderTypes'
 
 // 内库使用-start
@@ -14,37 +16,20 @@ import IndexBar from './../../IndexBar'
 import { DOMUtil, LocaleUtil, List, Result, Button, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ResultState {
-  status: string
-  list?: CascaderNode[]
-  message?: ReactNode
-}
-
-interface MainProps {
-  result?: ResultState
-  value?: CascaderNode[]
-  style?: CSSProperties
-  className?: string
-  itemStyle?: CSSProperties
-  itemClassName?: string
-  onReLoad?: () => void
-  onSelect: (item: CascaderNode) => void
-}
-
 // Cast Result to accept only the props we need, since Result's props are all inferred as required
 const CascaderResult = Result as React.ComponentType<{
-  title?: ReactNode
+  title?: React.ReactNode
   status?: string
   full?: boolean
-  style?: CSSProperties
+  style?: React.CSSProperties
   className?: string
-  description?: ReactNode
-  imageRender?: () => ReactNode
+  description?: React.ReactNode
+  imageRender?: () => React.ReactNode
   imageUrl?: string | null
-  children?: ReactNode
+  children?: React.ReactNode
 }>
 
-const Main = forwardRef<HTMLDivElement, MainProps>(
+const Main = forwardRef<HTMLDivElement, CascaderMainViewProps>(
   (
     {
       // Value & Display Value

@@ -1,7 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { maxLengthFormatter, minMaxFormatter, precisionFormatter } from './../Text/utils'
 
-import InputNode, { InputNodeRef, InputNodeProps } from './../Node'
+import type { NumberKeyboardProps, NumberKeyboardRef } from './types'
+
+import InputNode, { InputNodeRef } from './../Node'
 import correctInputNumber from './correctInputNumber'
 
 // 内库使用-start
@@ -13,36 +15,6 @@ import MathUtil from '../../../utils/MathUtil'
 /* 测试使用-start
 import { DOMUtil, Keyboard, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface NumberKeyboardRef extends InputNodeRef {
-  focus: () => void
-  blur: () => void
-}
-
-interface NumberKeyboardProps {
-  ok?: React.ReactNode | null
-  id?: string
-  value?: string
-  placeholder?: string
-  formatter?: InputNodeProps['formatter']
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  style?: React.CSSProperties
-  className?: string
-  leftIconNode?: React.ReactNode
-  rightIconNode?: React.ReactNode
-  clearRender?: InputNodeProps['clearRender']
-  precision?: number
-  trim?: boolean
-  min?: number
-  max?: number
-  maxLength?: number
-  onChange?: (value: string) => void
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-  onFocus?: InputNodeProps['onFocus']
-  onBlur?: InputNodeProps['onBlur']
-}
 
 const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
   (
@@ -179,3 +151,6 @@ const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
 )
 
 export default NumberKeyboard
+
+export type { NumberKeyboardProps, NumberKeyboardRef } from './types'
+

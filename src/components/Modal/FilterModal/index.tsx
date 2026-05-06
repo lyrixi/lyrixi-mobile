@@ -1,6 +1,8 @@
-import React, { forwardRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
-import Modal, { type ModalRef, type ModalProps } from './../Modal'
+import React, { forwardRef, type MouseEvent } from 'react'
+import Modal, { type ModalRef } from './../Modal'
 import NavBar from './../NavBarModal/NavBar'
+
+import type { FilterModalProps } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -11,21 +13,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { LocaleUtil, Page, NavBar } from 'lyrixi-mobile'
 测试使用-end */
-
-interface FilterModalProps {
-  open?: boolean
-  maskClosable?: boolean
-  safeArea?: boolean
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: ModalProps['portal']
-  children?: ReactNode
-  footerRender?: (params: { onClose?: ModalProps['onClose'] }) => ReactNode
-  onClose?: ModalProps['onClose']
-  onCancel?: () => void
-}
 
 // 侧边查询
 function FilterModal(
@@ -90,3 +77,6 @@ function FilterModal(
 }
 
 export default forwardRef(FilterModal)
+
+export type { FilterModalProps } from './types'
+

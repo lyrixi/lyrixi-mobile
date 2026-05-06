@@ -1,18 +1,6 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-interface OTPInputTextRef {
-  focus: (index: number) => void
-  blur: () => void
-}
-
-interface OTPInputTextProps {
-  values: string[]
-  disabled?: boolean
-  readOnly?: boolean
-  onChange: (index: number, value: string) => void
-  onKeyDown: (key: string, index: number) => void
-  onPaste?: React.ClipboardEventHandler<HTMLInputElement>
-}
+import type { OTPInputTextProps, OTPInputTextRef } from './types'
 
 const InputText = forwardRef<OTPInputTextRef, OTPInputTextProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {

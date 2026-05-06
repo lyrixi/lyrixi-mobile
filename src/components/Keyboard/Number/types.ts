@@ -1,6 +1,24 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 export type KeyboardAction = 'number' | 'dot' | 'minus' | 'delete'
+
+export interface KeyboardButtonActionProps {
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+  className?: string
+  children?: ReactNode
+}
+
+export interface KeyboardButtonNumberProps {
+  onClick?: (value: ReactNode) => void
+  className?: string
+  children?: ReactNode
+}
+
+export interface KeyboardButtonQuickProps {
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+  className?: string
+  children?: ReactNode
+}
 
 export interface KeyboardNumberRef {
   element: HTMLElement | null

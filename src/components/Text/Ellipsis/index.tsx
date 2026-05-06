@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 
+import type { TextEllipsisProps } from './../types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -10,23 +12,12 @@ import checkOverflow from './checkOverflow'
 import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface EllipsisConfig {
-  rows?: number
-  expandable?: boolean
-  defaultExpanded?: boolean
-}
-
-interface EllipsisProps {
-  ellipsis?: EllipsisConfig
-  children?: React.ReactNode
-}
-
 const Ellipsis = ({
   // Status
   ellipsis,
   // Element
   children
-}: EllipsisProps) => {
+}: TextEllipsisProps) => {
   const rootRef = useRef<HTMLDivElement>(null)
   // 展开和收缩
   const [expanded, setExpanded] = useState(ellipsis?.defaultExpanded || false)

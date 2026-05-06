@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { DistrictMainResultProps } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -11,18 +13,6 @@ import Page from './../../Page'
 /* 测试使用-start
 import { LocaleUtil, Button, Result, Page } from 'lyrixi-mobile'
 测试使用-end */
-
-interface ApiResult {
-  status?: string
-  message?: string
-}
-
-interface DistrictMainResultProps {
-  result?: ApiResult
-  onReload?: () => void
-  style?: React.CSSProperties
-  className?: string
-}
 
 const DistrictMainResult = ({ result, onReload, style, className }: DistrictMainResultProps) => {
   return (

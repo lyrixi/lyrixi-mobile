@@ -7,7 +7,7 @@ import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
 import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
-import type { CascaderMainProps, CascaderMainRef } from './types'
+import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -22,13 +22,6 @@ import TabBar from './../../TabBar'
 /* 测试使用-start
 import { ObjectUtil, LocaleUtil, ArrayUtil, IndexBar, Loading, Page, TabBar } from 'lyrixi-mobile'
 测试使用-end */
-
-interface ResultState {
-  status: string
-  list?: CascaderNode[]
-  message?: ReactNode
-  async?: boolean
-}
 
 // 主体
 const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
@@ -68,7 +61,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       (externalList ?? []) as unknown as Parameters<typeof ArrayUtil.updateDeepTreeParentId>[0]
     ) as CascaderNode[] | null
 
-    const [result, setResult] = useState<ResultState>(
+    const [result, setResult] = useState<CascaderMainResultState>(
       currentList
         ? { status: 'success', list: currentList }
         : {
@@ -171,7 +164,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     // 统一根据操作行为获取列表:
     // - clickItem/load: 优先查子级, 无子级则显示同级
     // - clickTab: 显示同级
-    async function getActionData(tabs: CascaderNode[], { action }: { action?: string } = {}): Promise<ResultState> {
+    async function getActionData(tabs: CascaderNode[], { action }: { action?: string } = {}): Promise<CascaderMainResultState> {
       if (!Array.isArray(tabs) || !tabs.length) {
         return { status: 'success', list: externalList }
       }
@@ -207,13 +200,13 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 
 
     // 获取同级列表
-    async function getSiblingData(tabs: CascaderNode[]): Promise<ResultState> {
+    async function getSiblingData(tabs: CascaderNode[]): Promise<CascaderMainResultState> {
       return await getChildrenData(tabs.slice(0, tabs.length - 1))
     }
 
 
     // 获取下级列表, 没有返回null
-    async function getChildrenData(tabs: CascaderNode[]): Promise<ResultState> {
+    async function getChildrenData(tabs: CascaderNode[]): Promise<CascaderMainResultState> {
       const lastTab = tabs?.[tabs?.length - 1]
 
       // externalList为空, 或者不合法, 需要重新获取
@@ -263,7 +256,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       }
 
       // 返回result
-      return newResult as ResultState
+      return newResult as CascaderMainResultState
     }
 
 

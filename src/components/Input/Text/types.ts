@@ -71,3 +71,16 @@ export interface InputTextProps {
   onCompositionUpdate?: CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
   onCompositionEnd?: CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
+
+export interface InputRenderClearParams {
+  clearRender?: (params: {
+    clearable: boolean
+    allowClear?: boolean
+    onClear: (e?: MouseEvent | TouchEvent) => void
+    onTouchStart?: (e?: TouchEvent) => void
+  }) => ReactNode | undefined
+  allowClear?: boolean
+  value?: string
+  onClear: (e?: MouseEvent | TouchEvent) => void
+  onTouchStart?: (e?: TouchEvent) => void
+}

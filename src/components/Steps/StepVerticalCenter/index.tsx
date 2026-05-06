@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { StepsNodeProps } from './../types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -7,15 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface StepProps {
-  iconChildren?: React.ReactNode
-  iconRender?: (params: { children: React.ReactNode; className: string; status?: string }) => React.ReactNode
-  status?: string
-  rail?: boolean
-  title?: React.ReactNode
-  description?: React.ReactNode
-}
 
 // 步骤条
 const Step = ({
@@ -26,7 +19,7 @@ const Step = ({
   rail,
   title,
   description
-}: StepProps) => {
+}: StepsNodeProps) => {
   // 获取图标节点
   function renderIcon() {
     if (typeof iconRender === 'function') {

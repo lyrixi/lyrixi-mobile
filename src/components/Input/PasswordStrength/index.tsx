@@ -1,4 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+
+import type { PasswordStrengthProps, PasswordStrengthRef } from './types'
+
 import getStrength from './getStrength'
 
 // 内库使用-start
@@ -9,18 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface PasswordStrengthRef {
-  element: HTMLUListElement | null
-  getElement: () => HTMLUListElement | null
-  getStrength: (newValue?: string) => number
-}
-
-interface PasswordStrengthProps {
-  value?: string
-  className?: string
-  style?: React.CSSProperties
-}
 
 const PasswordStrength = (
   {
@@ -83,3 +74,6 @@ const PasswordStrength = (
 }
 
 export default forwardRef(PasswordStrength)
+
+export type { PasswordStrengthProps, PasswordStrengthRef } from './types'
+

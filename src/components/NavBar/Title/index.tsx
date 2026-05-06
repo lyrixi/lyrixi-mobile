@@ -1,19 +1,10 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+
+import type { NavBarTitleProps, NavBarTitleRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
-interface NavBarTitleRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-interface NavBarTitleProps {
-  children?: ReactNode
-  className?: string
-  style?: CSSProperties
-}
 
 const NavBarTitle = forwardRef<NavBarTitleRef, NavBarTitleProps>(
   (
@@ -48,3 +39,6 @@ const NavBarTitle = forwardRef<NavBarTitleRef, NavBarTitleProps>(
 )
 
 export default NavBarTitle
+
+export type { NavBarTitleProps, NavBarTitleRef } from './types'
+

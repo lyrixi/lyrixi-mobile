@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react'
 
+import type { VirtualListProps } from './types'
+import type { RawItem } from './../../List/List/types'
+
 // 内库使用-start
-import List, { ListProps, ListRef } from './../../List/List'
+import List, { ListRef } from './../../List/List'
 // 内库使用-end
 
 /* 测试使用-start
@@ -13,12 +16,6 @@ const itemAbsoluteStyle = {
   position: 'absolute' as const,
   left: 0,
   right: 0
-}
-
-type RawItem = Record<string, unknown>
-
-interface VirtualListProps extends ListProps {
-  height?: number
 }
 
 // 普通列表

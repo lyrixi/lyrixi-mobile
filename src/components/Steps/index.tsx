@@ -1,4 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+
+import type { StepsListItem, StepsProps, StepsRef } from './types'
+
 import StepHorizontalCenter from './StepHorizontalCenter'
 import StepHorizontalLeft from './StepHorizontalLeft'
 import StepVerticalCenter from './StepVerticalCenter'
@@ -11,37 +14,6 @@ import DOMUtil from './../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface StepItem {
-  id?: string
-  icon?: React.ReactNode
-  status?: string
-  title?: React.ReactNode
-  description?: React.ReactNode
-}
-
-interface StepsValue {
-  index?: number
-  id?: string
-  status?: string
-  activeIndex?: number
-  icon?: React.ReactNode
-}
-
-interface StepsProps {
-  value?: StepsValue
-  list?: StepItem[]
-  style?: React.CSSProperties
-  className?: string
-  iconSize?: number
-  align?: string
-  direction?: string
-}
-
-interface StepsRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 // 步骤条
 const Steps = forwardRef<StepsRef, StepsProps>(
@@ -71,7 +43,7 @@ const Steps = forwardRef<StepsRef, StepsProps>(
     })
 
     // 获取每项的状态
-    function getItemStatus(item: StepItem, index: number): string {
+    function getItemStatus(item: StepsListItem, index: number): string {
       // 没有索引, 也没有id, 则没有选中项
       if (typeof value?.index !== 'number' && !value?.id) return 'wait'
 
@@ -100,7 +72,7 @@ const Steps = forwardRef<StepsRef, StepsProps>(
     }
 
     // 获取Step
-    function renderStep(item: StepItem, index: number, params: Record<string, unknown>) {
+    function renderStep(item: StepsListItem, index: number, params: Record<string, unknown>) {
       if (direction === 'vertical') {
         if (align === 'center') {
           return <StepVerticalCenter key={index} {...params} />
@@ -153,3 +125,6 @@ const Steps = forwardRef<StepsRef, StepsProps>(
 )
 
 export default Steps
+
+export type { StepsListItem, StepsNodeProps, StepsProps, StepsRef, StepsValue } from './types'
+

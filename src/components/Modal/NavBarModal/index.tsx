@@ -1,6 +1,8 @@
-import React, { forwardRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
-import Modal, { type ModalRef, type ModalProps } from '../Modal'
+import React, { forwardRef, type MouseEvent } from 'react'
+import Modal, { type ModalRef } from '../Modal'
 import NavBar from './NavBar'
+
+import type { NavBarModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,30 +11,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface NavBarModalProps {
-  open?: boolean
-  maskClosable?: boolean
-  safeArea?: boolean
-  navBarStyle?: CSSProperties
-  navBarClassName?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: ModalProps['portal']
-  title?: ReactNode
-  okNode?: ReactNode
-  okVisible?: boolean
-  okPosition?: 'left' | 'right'
-  cancelNode?: ReactNode
-  cancelVisible?: boolean
-  cancelPosition?: 'left' | 'right'
-  children?: ReactNode
-  onCancel?: () => void
-  onOk?: () => boolean | void | Promise<boolean | void>
-  onClose?: ModalProps['onClose']
-}
 
 // NavBarModal
 const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
@@ -127,3 +105,6 @@ const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
 )
 
 export default NavBarModal
+
+export type { NavBarModalProps } from './types'
+

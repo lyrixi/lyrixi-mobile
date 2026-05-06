@@ -1,4 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+
+import type { OTPInputRef, OTPProps, OTPRef } from './types'
+
 import InputText from './InputText'
 import InputNumber from './InputNumber'
 import formatValue from './formatValue'
@@ -10,30 +13,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface OTPRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  focus: (itemIndex?: number) => void
-  blur: () => void
-}
-
-interface OTPInputRef {
-  focus: (index: number) => void
-  blur: () => void
-}
-
-interface OTPProps {
-  type?: string
-  value?: unknown[]
-  disabled?: boolean
-  readOnly?: boolean
-  className?: string
-  style?: React.CSSProperties
-  maxLength?: number
-  onChange?: (value: string[]) => void
-  onComplete?: (value: string[]) => void
-}
 
 const InputOTP = forwardRef<OTPRef, OTPProps>(
   (
@@ -198,3 +177,14 @@ const InputOTP = forwardRef<OTPRef, OTPProps>(
 )
 
 export default InputOTP
+
+export type {
+  OTPInputNumberProps,
+  OTPInputNumberRef,
+  OTPInputRef,
+  OTPInputTextProps,
+  OTPInputTextRef,
+  OTPProps,
+  OTPRef
+} from './types'
+

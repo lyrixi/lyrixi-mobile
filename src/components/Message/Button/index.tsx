@@ -1,4 +1,6 @@
-import React, { useRef, forwardRef, useImperativeHandle, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+
+import type { MessageButtonProps, MessageButtonRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,22 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface MessageButtonRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-interface MessageButtonProps {
-  className?: string
-  style?: CSSProperties
-  /** 占满一行（与业务 less 搭配，示例用） */
-  block?: boolean
-  color?: string
-  backgroundColor?: string
-  children?: ReactNode
-  onClick?: MouseEventHandler<HTMLDivElement>
-}
 
 const Button = forwardRef<MessageButtonRef, MessageButtonProps>(
   (

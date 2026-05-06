@@ -1,4 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
+
+import type { TabBarItem } from './../types'
+import type { GroupProps, GroupRef } from './types'
+
 import renderContext from './../utils/renderContext'
 
 // 内库使用-start
@@ -8,36 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface TabBarItem {
-  id?: string | number
-  name?: React.ReactNode
-  description?: React.ReactNode
-  placeholder?: React.ReactNode
-  disabled?: boolean
-  iconRender?: (params: { checked: boolean }) => React.ReactNode
-  content?: React.ReactNode | ((params: Record<string, unknown>) => React.ReactNode)
-}
-
-interface TabBarValue {
-  id?: string | number
-}
-
-interface GroupProps {
-  separator?: React.ReactNode
-  value?: TabBarValue
-  list?: TabBarItem[]
-  className?: string
-  disabled?: boolean
-  descriptionPosition?: string
-  onChange?: (item: TabBarItem) => void
-  style?: React.CSSProperties
-}
-
-interface GroupRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const Group = forwardRef<GroupRef, GroupProps>(
   (
@@ -139,3 +113,6 @@ const Group = forwardRef<GroupRef, GroupProps>(
 )
 
 export default Group
+
+export type { GroupProps, GroupRef } from './types'
+

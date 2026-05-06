@@ -1,4 +1,6 @@
-import React, { type MouseEvent, type ReactNode } from 'react'
+import React, { type MouseEvent } from 'react'
+
+import type { NavBarModalCancelProps } from './types'
 
 // 内库使用-start
 import Icon from './../../../Icon'
@@ -9,12 +11,7 @@ import NavBar from './../../../NavBar'
 import { Icon, NavBar } from 'lyrixi-mobile'
 测试使用-end */
 
-interface CancelProps {
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void
-  children?: ReactNode
-}
-
-const Cancel = ({ onClick, children }: CancelProps) => {
+const Cancel = ({ onClick, children }: NavBarModalCancelProps) => {
   // 点击取消
   function handleClick(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation()

@@ -1,4 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
+
+import type { TabBarItem } from './../types'
+import type { TabsProps, TabsRef } from './types'
+
 import renderContext from './../utils/renderContext'
 
 // 内库使用-start
@@ -8,37 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface TabBarItem {
-  id?: string | number
-  name?: React.ReactNode
-  description?: React.ReactNode
-  placeholder?: React.ReactNode
-  disabled?: boolean
-  iconRender?: (params: Record<string, unknown>) => React.ReactNode
-  content?: React.ReactNode | ((params: Record<string, unknown>) => React.ReactNode)
-}
-
-interface TabBarValue {
-  id?: string | number
-}
-
-interface TabsProps {
-  value?: TabBarValue
-  list?: TabBarItem[]
-  separator?: React.ReactNode
-  gap?: string | number
-  style?: React.CSSProperties
-  className?: string
-  disabled?: boolean
-  descriptionPosition?: string
-  onChange?: (item: TabBarItem) => void
-}
-
-interface TabsRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const Tabs = forwardRef<TabsRef, TabsProps>(
   (
@@ -149,3 +122,6 @@ const Tabs = forwardRef<TabsRef, TabsProps>(
 )
 
 export default Tabs
+
+export type { TabsProps, TabsRef } from './types'
+

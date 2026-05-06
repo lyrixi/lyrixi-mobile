@@ -1,5 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
+import type { RateProps, RateRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -7,33 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface RateRef {
-  element: HTMLDivElement | null
-  inputElement: HTMLInputElement | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: () => HTMLInputElement | null
-}
-
-interface RateIconParams {
-  className: string
-  style?: React.CSSProperties
-}
-
-interface RateProps {
-  id?: string
-  name?: string
-  value?: number
-  readOnly?: boolean
-  disabled?: boolean
-  style?: React.CSSProperties
-  className?: string
-  iconRender?: (params: RateIconParams) => React.ReactNode
-  min?: number
-  max?: number
-  step?: number
-  onChange?: (value: number) => void
-}
 
 // 评分组件
 const Rate = forwardRef<RateRef, RateProps>(
@@ -174,3 +149,6 @@ const Rate = forwardRef<RateRef, RateProps>(
 )
 
 export default Rate
+
+export type { RateIconParams, RateProps, RateRef } from './types'
+

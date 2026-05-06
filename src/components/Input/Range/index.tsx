@@ -1,4 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+
+import type { RangeProps, RangeRef } from './types'
+
 import getPercent from './getPercent'
 import showTooltip from './showTooltip'
 import hideTooltip from './hideTooltip'
@@ -10,27 +13,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface RangeRef {
-  element: HTMLDivElement | null
-  inputElement: HTMLInputElement | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: () => HTMLInputElement | null
-}
-
-interface RangeProps {
-  id?: string
-  name?: string
-  value?: number
-  readOnly?: boolean
-  disabled?: boolean
-  className?: string
-  style?: React.CSSProperties
-  min?: number
-  max?: number
-  step?: number
-  onChange?: (value: number) => void
-}
 
 const Range = forwardRef<RangeRef, RangeProps>(
   (
@@ -178,3 +160,6 @@ const Range = forwardRef<RangeRef, RangeProps>(
 )
 
 export default Range
+
+export type { RangeProps, RangeRef } from './types'
+

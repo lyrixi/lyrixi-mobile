@@ -3,7 +3,7 @@ import TopContainer from './TopContainer'
 import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk'
 
-import type { PageMainProps, PageMainRef } from './types'
+import type { PageMainProps, PageMainRef, PageMainTouchesState } from './types'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
@@ -15,13 +15,6 @@ import SafeArea from './../../SafeArea'
 /* 测试使用-start
 import { Device, DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-interface TouchesState {
-  isTop: boolean
-  startY: number
-  currentY: number
-  diffY: number
-}
 
 function touchClientY(e: React.TouchEvent<HTMLElement>): number {
   return e.touches[0]?.clientY ?? e.changedTouches[0]?.clientY ?? 0
@@ -54,7 +47,7 @@ const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
     }
   })
 
-  const touchesRef = useRef<TouchesState>({
+  const touchesRef = useRef<PageMainTouchesState>({
     isTop: true,
     startY: 0,
     currentY: 0,

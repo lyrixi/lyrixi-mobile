@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react'
 
+import type { IconRightArrowProps } from './types'
+
 // 内库使用-start
 import Icon, { IconRef, IconProps } from './../../Icon'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -8,11 +10,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { Icon } from 'lyrixi-mobile'
 测试使用-end */
-
-interface IconRightArrowProps extends Omit<IconProps, 'className'> {
-  padding?: number
-  iconClassName?: string
-}
 
 const IconRightArrow = forwardRef<IconRef, IconRightArrowProps>(
   (

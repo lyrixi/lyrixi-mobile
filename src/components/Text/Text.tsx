@@ -1,4 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+
+import type { TextProps, TextRef } from './types'
+
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'
 import renderHighlight from './renderHighlight'
@@ -10,29 +13,6 @@ import DOMUtil from './../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface EllipsisConfig {
-  rows?: number
-  expandable?: boolean
-  defaultExpanded?: boolean
-}
-
-interface TextProps {
-  highlight?: string | string[]
-  ellipsis?: EllipsisConfig
-  color?: string
-  fontSize?: string | number
-  fontWeight?: string | number
-  style?: React.CSSProperties
-  className?: string
-  children?: React.ReactNode
-  onClick?: React.MouseEventHandler<HTMLDivElement>
-}
-
-interface TextRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 const Text = forwardRef<TextRef, TextProps>(
   (
@@ -98,3 +78,6 @@ const Text = forwardRef<TextRef, TextProps>(
 )
 
 export default Text
+
+export type { TextEllipsisConfig, TextProps, TextRef } from './types'
+

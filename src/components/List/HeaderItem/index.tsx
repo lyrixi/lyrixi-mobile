@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { HeaderItemProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import IndexBar from './../../IndexBar'
@@ -8,14 +10,6 @@ import IndexBar from './../../IndexBar'
 /* 测试使用-start
 import { DOMUtil, IndexBar } from 'lyrixi-mobile'
 测试使用-end */
-
-interface HeaderItemProps {
-  style?: React.CSSProperties
-  className?: string
-  anchor?: string
-  title?: React.ReactNode
-  description?: React.ReactNode
-}
 
 // 获取分组标题
 function HeaderItem({

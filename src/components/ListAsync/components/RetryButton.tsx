@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { ListAsyncRetryButtonProps } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Button from './../../Button'
@@ -9,15 +11,8 @@ import Button from './../../Button'
 import { LocaleUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
 
-interface RetryButtonProps {
-  status?: string
-  errorRetry?: boolean
-  emptyRetry?: boolean
-  onClick?: () => void
-}
-
 // 暂无数据或者错误
-const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: RetryButtonProps) => {
+const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: ListAsyncRetryButtonProps) => {
   if (status === 'error') {
     if (!errorRetry) {
       return null

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { TagProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
@@ -7,17 +9,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface TagProps {
-  style?: React.CSSProperties
-  className?: string
-  name?: string
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  onEdit?: () => void
-  onDelete?: () => void
-}
 
 // 标签
 const Tag = ({ style, className, name, readOnly, disabled, allowClear, onEdit, onDelete }: TagProps) => {

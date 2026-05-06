@@ -1,7 +1,9 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
-import Modal, { type ModalRef, type ModalProps } from './../Modal'
+import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
+import Modal, { type ModalRef } from './../Modal'
 import getAnimation from './getAnimation'
 import updatePositionByReferenceElement from './../../Tooltip/api/updatePositionByReferenceElement'
+
+import type { DropdownModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -10,23 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil, Tooltip } from 'lyrixi-mobile'
 测试使用-end */
-
-interface DropdownModalProps {
-  open?: boolean
-  maskClosable?: boolean
-  safeArea?: boolean
-  offset?: Record<string, number>
-  left?: string | number
-  right?: string | number
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties & { top?: string | number; bottom?: string | number; left?: string | number; right?: string | number }
-  maskClassName?: string
-  portal?: ModalProps['portal']
-  referenceElement?: HTMLElement | (() => HTMLElement) | null
-  children?: ReactNode
-  onClose?: ModalProps['onClose']
-}
 
 // DropdownModal
 const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
@@ -137,3 +122,6 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
 )
 
 export default DropdownModal
+
+export type { DropdownModalProps } from './types'
+

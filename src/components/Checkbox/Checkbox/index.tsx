@@ -74,4 +74,4 @@ const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
 
 export default Checkbox
 
-export type { CheckboxProps, CheckboxRef } from './types'
+export type { CheckboxIconProps, CheckboxProps, CheckboxRef } from './types'

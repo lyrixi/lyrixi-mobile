@@ -1,3 +1,7 @@
+import React from 'react'
+
+import type { CheckboxIconProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -6,12 +10,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface IconProps {
-  checked?: boolean
-  variant?: string
-}
-
-function Icon({ checked, variant = 'solid' }: IconProps) {
+function Icon({ checked, variant = 'solid' }: CheckboxIconProps) {
   return (
     <span
       className={DOMUtil.classNames(

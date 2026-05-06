@@ -21,3 +21,10 @@ export interface PageMainRef {
   element: HTMLElement | null
   getElement: () => HTMLElement | null
 }
+
+export interface PageMainTouchesState {
+  isTop: boolean
+  startY: number
+  currentY: number
+  diffY: number
+}

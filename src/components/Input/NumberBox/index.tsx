@@ -1,6 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import InputNumber from './../Number'
-import { InputTextRef, type InputTextProps } from './../Text'
+import { InputTextRef } from './../Text'
+
+import type { NumberBoxProps, NumberBoxRef } from './types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -10,51 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface NumberBoxRef {
-  element: HTMLDivElement | null
-  inputElement: InputTextRef | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: InputTextRef['getInputElement'] | undefined
-  getInputRef: () => React.RefObject<InputTextRef | null>
-}
-
-interface NumberBoxProps {
-  id?: string
-  name?: string
-  value?: string
-  placeholder?: string
-  formatter?: (value: string) => React.ReactNode
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  autoFocus?: boolean
-  autoSelect?: boolean
-  stepFocus?: boolean
-  className?: string
-  style?: React.CSSProperties
-  plusClassName?: string
-  plusStyle?: React.CSSProperties
-  minusClassName?: string
-  minusStyle?: React.CSSProperties
-  leftIconNode?: React.ReactNode
-  rightIconNode?: React.ReactNode
-  clearRender?: InputTextProps['clearRender']
-  children?: React.ReactNode
-  precision?: number
-  trim?: boolean
-  min?: number
-  max?: number
-  maxLength?: number
-  onClick?: (e: React.MouseEvent) => void
-  onChange?: (val: string) => void
-  onBlur?: (e: React.FocusEvent) => void
-  onFocus?: (e: React.FocusEvent) => void
-  onInput?: React.FormEventHandler<HTMLInputElement>
-  onCompositionStart?: React.CompositionEventHandler<HTMLInputElement>
-  onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement>
-  onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement>
-}
 
 // 数值框
 const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
@@ -301,3 +258,6 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
 )
 
 export default NumberBox
+
+export type { NumberBoxProps, NumberBoxRef } from './types'
+

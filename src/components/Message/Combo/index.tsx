@@ -1,4 +1,7 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+
+import type { MessageComboButton, MessageComboProps, MessageComboRef } from './types'
+
 import Modal from './../Modal'
 import Header from './../Header'
 import Main from './../Main'
@@ -14,30 +17,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface ComboButton {
-  id?: string
-  name?: ReactNode
-  style?: CSSProperties
-  className?: string
-  onClick?: (e: MouseEvent<HTMLDivElement>) => boolean | void | Promise<boolean | void>
-}
-
-interface MessageComboRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-interface MessageComboProps {
-  children?: ReactNode
-  iconRender?: () => ReactNode
-  title?: ReactNode
-  content?: ReactNode
-  buttons?: ComboButton[]
-  buttonsLayout?: string
-  className?: string
-  style?: CSSProperties
-}
 
 const MessageCombo = forwardRef<MessageComboRef, MessageComboProps>(
   (

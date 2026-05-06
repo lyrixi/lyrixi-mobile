@@ -1,4 +1,6 @@
-import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+
+import type { MessageMainProps, MessageMainRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,17 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface MessageMainRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
-
-interface MessageMainProps {
-  children?: ReactNode
-  className?: string
-  style?: CSSProperties
-}
 
 // 下拉刷新容器
 const Main = forwardRef<MessageMainRef, MessageMainProps>(

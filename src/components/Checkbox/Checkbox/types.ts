@@ -5,6 +5,11 @@ export interface CheckboxRef {
   getElement: () => HTMLDivElement | null
 }
 
+export interface CheckboxIconProps {
+  checked?: boolean
+  variant?: string
+}
+
 export interface CheckboxProps {
   checked?: boolean
   readOnly?: boolean

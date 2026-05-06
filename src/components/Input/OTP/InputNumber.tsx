@@ -1,4 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
+
+import type { OTPInputNumberProps, OTPInputNumberRef } from './types'
+
 import InputNode from './../Node'
 import Keyboard from './../../Keyboard'
 
@@ -9,20 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil, Keyboard } from 'lyrixi-mobile'
 测试使用-end */
-
-interface OTPInputNumberRef {
-  focus: (index: number) => void
-  blur: () => void
-}
-
-interface OTPInputNumberProps {
-  values: string[]
-  disabled?: boolean
-  readOnly?: boolean
-  onChange: (index: number, value: string) => void
-  onKeyDown: (key: string, index: number) => void
-  onPaste?: React.ClipboardEventHandler<HTMLDivElement>
-}
 
 const InputNumber = forwardRef<OTPInputNumberRef, OTPInputNumberProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {

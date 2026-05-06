@@ -1,26 +1,15 @@
-import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+
+import type { MessageModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Modal, { type ModalRef, type ModalProps } from './../../Modal'
+import Modal, { type ModalRef } from './../../Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 测试使用-end */
-
-interface MessageModalProps {
-  open?: boolean
-  maskClosable?: boolean
-  safeArea?: boolean
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: ModalProps['portal']
-  children?: ReactNode
-  onClose?: ModalProps['onClose']
-}
 
 // 对话框
 const Message = forwardRef<ModalRef, MessageModalProps>(

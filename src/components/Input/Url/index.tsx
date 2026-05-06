@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react'
-import InputText, { InputTextRef, InputTextProps } from './../Text'
+import InputText, { InputTextRef } from './../Text'
+
+import type { UrlProps } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -12,10 +14,6 @@ import Message from './../../Message'
 /* 测试使用-start
 import { LocaleUtil, Clipboard, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
-
-interface UrlProps extends InputTextProps {
-  onPreview?: (value: string) => Promise<boolean | undefined> | boolean | undefined
-}
 
 const Url = forwardRef<InputTextRef, UrlProps>(
   (
@@ -176,3 +174,6 @@ const Url = forwardRef<InputTextRef, UrlProps>(
 )
 
 export default Url
+
+export type { UrlProps } from './types'
+

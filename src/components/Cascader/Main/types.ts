@@ -2,6 +2,24 @@ import type { CSSProperties, ReactNode } from 'react'
 
 import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
 
+export interface CascaderMainResultState {
+  status: string
+  list?: CascaderNode[]
+  message?: ReactNode
+  async?: boolean
+}
+
+export interface CascaderMainViewProps {
+  result?: CascaderMainResultState
+  value?: CascaderNode[]
+  style?: CSSProperties
+  className?: string
+  itemStyle?: CSSProperties
+  itemClassName?: string
+  onReLoad?: () => void
+  onSelect: (item: CascaderNode) => void
+}
+
 export interface CascaderMainRef {
   mainElement: HTMLDivElement | null
   getMainElement: () => HTMLDivElement | null

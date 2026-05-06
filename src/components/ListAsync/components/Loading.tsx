@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { ListAsyncMainLoadingProps } from './types'
+
 // 内库使用-start
 import Skeleton from './../../Skeleton'
 import Loading from './../../Loading'
@@ -8,16 +10,6 @@ import Loading from './../../Loading'
 /* 测试使用-start
 import { Skeleton, Loading } from 'lyrixi-mobile'
 测试使用-end */
-
-interface MainLoadingProps {
-  type?: string
-  loadingRender?: (options: { action?: string }) => React.ReactNode
-  loadingModalStyle?: React.CSSProperties
-  loadingModalClassName?: string
-  loadingMaskStyle?: React.CSSProperties
-  loadingMaskClassName?: string
-  loadingPortal?: HTMLElement
-}
 
 // 暂无数据或者错误
 const MainLoading = ({
@@ -28,7 +20,7 @@ const MainLoading = ({
   loadingMaskStyle,
   loadingMaskClassName,
   loadingPortal
-}: MainLoadingProps) => {
+}: ListAsyncMainLoadingProps) => {
   if (typeof loadingRender === 'function') {
     return <>{loadingRender({ action: type })}</>
   }

@@ -1,4 +1,6 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+
+import type { MessageTitleProps, MessageTitleRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,17 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface MessageTitleRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-interface MessageTitleProps {
-  children?: ReactNode
-  className?: string
-  style?: CSSProperties
-}
 
 const ConfirmTitle = forwardRef<MessageTitleRef, MessageTitleProps>(
   (

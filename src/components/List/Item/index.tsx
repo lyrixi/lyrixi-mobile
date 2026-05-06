@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { ListItemProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Checkbox from './../../Checkbox'
@@ -8,31 +10,6 @@ import Checkbox from './../../Checkbox'
 /* 测试使用-start
 import { DOMUtil,Checkbox } from 'lyrixi-mobile'
 测试使用-end */
-
-type RawItem = Record<string, unknown>
-
-interface ItemProps {
-  _raw?: RawItem
-  checked?: boolean
-  disabled?: boolean
-  checkable?: boolean
-  style?: React.CSSProperties
-  className?: string
-  layout?: string
-  imageUrl?: string
-  imageRender?: (item: RawItem & { checked?: boolean }) => React.ReactNode
-  avatarUrl?: string
-  avatarRender?: (item: RawItem & { checked?: boolean }) => React.ReactNode
-  title?: React.ReactNode
-  description?: React.ReactNode
-  note?: React.ReactNode
-  content?: React.ReactNode
-  actionRender?: (item: RawItem & { checked?: boolean }) => React.ReactNode
-  checkboxVariant?: string
-  checkboxPosition?: string
-  onSelect?: (item: RawItem & { checked?: boolean }) => void
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-}
 
 const Item = ({
   // Value & Display Value
@@ -64,7 +41,7 @@ const Item = ({
   // Events
   onSelect,
   onClick
-}: ItemProps) => {
+}: ListItemProps) => {
   // 获取checkbox
   function renderCheckbox() {
     if (!checkable) return null

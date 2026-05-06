@@ -1,4 +1,6 @@
-import React, { type MouseEvent, type ReactNode } from 'react'
+import React, { type MouseEvent } from 'react'
+
+import type { NavBarModalOkProps } from './types'
 
 // 内库使用-start
 import NavBar from './../../../NavBar'
@@ -9,13 +11,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { NavBar, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface OkProps {
-  total?: number
-  children?: ReactNode
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void
-}
-
-const Ok = ({ total, children, onClick }: OkProps) => {
+const Ok = ({ total, children, onClick }: NavBarModalOkProps) => {
   // 点击确定
   function handleOkClick(e: MouseEvent<HTMLDivElement>) {
     e.stopPropagation()

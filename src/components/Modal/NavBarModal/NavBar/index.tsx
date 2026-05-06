@@ -1,4 +1,7 @@
-import React, { forwardRef, useImperativeHandle, useRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, type MouseEvent } from 'react'
+
+import type { NavBarModalNavBarProps, NavBarModalNavBarRef } from './types'
+
 import Cancel from './Cancel'
 import Ok from './Ok'
 
@@ -9,25 +12,6 @@ import NavBar from './../../../NavBar'
 /* 测试使用-start
 import { NavBar } from 'lyrixi-mobile'
 测试使用-end */
-
-interface NavBarModalNavBarRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-interface NavBarModalNavBarProps {
-  style?: CSSProperties
-  className?: string
-  title?: ReactNode
-  okNode?: ReactNode
-  okVisible?: boolean
-  okPosition?: 'left' | 'right'
-  cancelNode?: ReactNode
-  cancelVisible?: boolean
-  cancelPosition?: 'left' | 'right'
-  onOk?: (e: MouseEvent<HTMLDivElement>) => void
-  onCancel?: (e: MouseEvent<HTMLDivElement>) => void
-}
 
 const Head = forwardRef<NavBarModalNavBarRef, NavBarModalNavBarProps>(
   (
@@ -80,3 +64,6 @@ const Head = forwardRef<NavBarModalNavBarRef, NavBarModalNavBarProps>(
 )
 
 export default Head
+
+export type { NavBarModalNavBarProps, NavBarModalNavBarRef } from './types'
+
