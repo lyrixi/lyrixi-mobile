@@ -4,6 +4,8 @@ import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
 import type { CascaderNode } from './../cascaderTypes'
 
+import type { DistrictModalProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../Modal/NavBarModal'
@@ -13,39 +15,6 @@ import NavBarModal from './../../Modal/NavBarModal'
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
-
-type LoadCountriesFn = () => Promise<import('../DistrictMain/utils/loadBaseData').ApiResult>
-type LoadCountryRegionsFn = (id?: string | number) => Promise<import('../DistrictMain/utils/loadBaseData').ApiResult>
-type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<import('../DistrictMain/utils/loadBaseData').ApiResult>
-
-export interface DistrictModalProps {
-  value?: CascaderNode[] | null
-  type?: string
-  loadCountries?: LoadCountriesFn
-  loadCountryRegions?: LoadCountryRegionsFn
-  loadStreets?: LoadStreetsFn
-  open?: boolean
-  min?: string
-  maskClosable?: boolean
-  safeArea?: boolean
-  listStyle?: CSSProperties
-  listClassName?: string
-  itemStyle?: CSSProperties
-  itemClassName?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: string | boolean | HTMLElement | null
-  searchVisible?: boolean
-  title?: ReactNode
-  okNode?: ReactNode
-  cancelNode?: ReactNode
-  cancelVisible?: boolean
-  onClose?: () => void
-  onOk?: (value: CascaderNode[] | null | undefined) => boolean | Promise<unknown> | void
-  onChange?: (value: CascaderNode[]) => void
-}
 
 type DistrictMainHandle = { loadList: () => Promise<void>; list: unknown }
 
@@ -185,3 +154,5 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
 )
 
 export default DistrictModal
+
+export type { DistrictModalProps } from './types'

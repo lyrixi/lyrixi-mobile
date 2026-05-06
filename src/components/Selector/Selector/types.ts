@@ -31,3 +31,19 @@ export interface SelectorRef {
   instance: { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
   getInstance: () => { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
 }
+
+export interface SelectorItemProps {
+  children?: ReactNode
+  disabled?: boolean
+  checked?: boolean
+  className?: string
+  style?: CSSProperties
+  onChange?: (checked: boolean) => void
+}
+
+export type SelectorItemRef = {
+  element: HTMLDivElement | null
+  inputElement: HTMLInputElement | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: () => HTMLInputElement | null
+}

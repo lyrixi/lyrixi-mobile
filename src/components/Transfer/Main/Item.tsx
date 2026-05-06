@@ -1,11 +1,6 @@
-import React, { type ReactNode } from 'react'
+import React from 'react'
 
-export interface TransferItemProps {
-  children?: ReactNode
-  sortable?: boolean
-  onAdd?: () => void
-  onDelete?: () => void
-}
+import type { TransferItemProps } from './types'
 
 // 单项
 const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
@@ -40,3 +35,6 @@ const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
 }
 
 export default Item
+
+export type { TransferItemProps } from './types'
+

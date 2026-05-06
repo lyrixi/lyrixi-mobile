@@ -1,12 +1,11 @@
 import React, { forwardRef } from 'react'
+
+import type { FormItemsProps, FormItemsRef } from './Form'
+import type { EllipsisConfig } from './../ItemsContext'
+import type { ItemsProps } from './types'
+
 import CommonForm from './Form'
 import VirtualForm from './VirtualForm'
-import type { FormItemsRef, FormItemsProps } from './Form'
-import type { EllipsisConfig } from './../ItemsContext'
-
-export interface ItemsProps extends FormItemsProps {
-  virtual?: boolean
-}
 
 // layout: horizontal | vertical | inline
 const Form = forwardRef<FormItemsRef, ItemsProps>(
@@ -59,3 +58,6 @@ const Form = forwardRef<FormItemsRef, ItemsProps>(
 )
 
 export default Form
+
+export type { ItemsProps } from './types'
+

@@ -1,5 +1,8 @@
-import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
+
+import type { PopupProps, PopupRef } from './types'
+
 import getDataAnimation from './api/getDataAnimation'
 
 // 内库使用-start
@@ -11,26 +14,6 @@ import getClassNameByAnimation from './../Modal/api/getClassNameByAnimation'
 import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
-
-export interface PopupRef {
-  maskElement: HTMLDivElement | null
-  getMaskElement: () => HTMLDivElement | null
-  modalElement: HTMLDivElement | null
-  getModalElement: () => HTMLDivElement | null
-}
-
-export interface PopupProps {
-  open?: boolean
-  maskClosable?: boolean
-  animation?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: Element | null
-  children?: ReactNode
-  onClose?: () => void
-}
 
 const Popup = forwardRef<PopupRef, PopupProps>(function Popup(
   {
@@ -128,3 +111,6 @@ const Popup = forwardRef<PopupRef, PopupProps>(function Popup(
 })
 
 export default Popup
+
+export type { PopupProps, PopupRef } from './types'
+

@@ -4,7 +4,6 @@ import React, {
   useImperativeHandle,
   useRef,
   useState,
-  type CSSProperties,
   type Ref,
   type SyntheticEvent
 } from 'react'
@@ -26,6 +25,9 @@ import PreviewChoose from './PreviewChoose'
 import PreviewReload from './PreviewReload'
 import PreviewToolbar from './PreviewToolbar'
 
+import type { MediaListItem, FileImageCompressOptions, MediaComponentProps } from './../types'
+import type { PreviewMainProps, PreviewMainRef } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -39,8 +41,6 @@ import VideoPlayer from './../../VideoPlayer'
 import { LocaleUtil, DOMUtil, Device, SafeArea, Toast, VideoPlayer } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { MediaListItem, FileImageCompressOptions, MediaComponentProps } from './../types'
-
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
@@ -53,36 +53,6 @@ function itemMediaUrl(item: MediaListItem): string {
 function itemPosterUrl(item: MediaListItem): string {
   const raw = item?.localFile?.tempFileThumbnail ?? item?.fileThumbnail
   return raw == null || raw === '' ? '' : String(raw)
-}
-
-export interface PreviewMainProps {
-  list?: MediaListItem[]
-  index?: number
-  mediaType?: string | string[]
-  sourceType?: string[]
-  sizeType?: string[]
-  maxCount?: number
-  fileImageCompress?: FileImageCompressOptions
-  open?: boolean
-  closable?: boolean
-  allowChoose?: boolean
-  allowClear?: boolean | ((item: MediaListItem) => boolean)
-  async?: boolean
-  reUpload?: boolean
-  className?: string
-  style?: CSSProperties
-  safeArea?: boolean
-  onBeforeChoose?: MediaComponentProps['onBeforeChoose']
-  onChoose?: MediaComponentProps['onChoose']
-  onFileChange?: MediaComponentProps['onFileChange']
-  onUpload?: MediaComponentProps['onUpload']
-  onChange?: MediaComponentProps['onChange']
-  onClose?: () => void
-}
-
-export interface PreviewMainRef {
-  mainElement: SwiperRef | null
-  getMainElement: () => SwiperRef | null
 }
 
 const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function PreviewMain(
@@ -460,3 +430,5 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
 })
 
 export default PreviewMain
+
+export type { PreviewMainProps, PreviewMainRef } from './types'

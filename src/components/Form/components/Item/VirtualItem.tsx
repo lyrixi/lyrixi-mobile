@@ -1,13 +1,7 @@
-import React, {
-  useEffect,
-  useImperativeHandle,
-  forwardRef,
-  useRef,
-  useContext,
-  useState,
-  type CSSProperties,
-  type ReactNode
-} from 'react'
+import React, { useEffect, useImperativeHandle, forwardRef, useRef, useContext, useState } from 'react'
+
+import type { VirtualFormItemProps, VirtualFormItemRef } from './types'
+
 import ItemsContext from './../ItemsContext'
 
 // 内库使用-start
@@ -17,21 +11,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface VirtualFormItemRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface VirtualFormItemProps {
-  height?: number
-  id?: string
-  name?: string
-  style?: CSSProperties
-  className?: string
-  layout?: string
-  children?: ReactNode
-}
 
 const FormItem = forwardRef<VirtualFormItemRef, VirtualFormItemProps>(
   (

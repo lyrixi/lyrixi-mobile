@@ -1,11 +1,10 @@
-import React, { forwardRef, type CSSProperties, type ReactNode } from 'react'
-import DOMUtil from './../../../utils/DOMUtil'
+import React, { forwardRef } from 'react'
 
-export interface MediaMarkProps {
-  labels?: ReactNode[]
-  style?: CSSProperties
-  className?: string
-}
+import type { MediaMarkProps } from './types'
+
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
 
 // 照片标识
 const Mark = forwardRef<HTMLDivElement, MediaMarkProps>(function Mark(
@@ -40,3 +39,5 @@ const Mark = forwardRef<HTMLDivElement, MediaMarkProps>(function Mark(
 })
 
 export default Mark
+
+export type { MediaMarkProps } from './types'

@@ -1,4 +1,6 @@
-import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type MouseEvent } from 'react'
+
+import type { SelectorItemProps, SelectorItemRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,22 +9,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface SelectorItemProps {
-  children?: ReactNode
-  disabled?: boolean
-  checked?: boolean
-  className?: string
-  style?: CSSProperties
-  onChange?: (checked: boolean) => void
-}
-
-export type SelectorItemRef = {
-  element: HTMLDivElement | null
-  inputElement: HTMLInputElement | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: () => HTMLInputElement | null
-}
 
 // 按钮选择
 const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
@@ -91,3 +77,6 @@ const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
 )
 
 export default Item
+
+export type { SelectorItemProps, SelectorItemRef } from './types'
+

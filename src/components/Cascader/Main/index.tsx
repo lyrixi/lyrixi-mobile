@@ -7,6 +7,7 @@ import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
 import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+import type { CascaderMainProps, CascaderMainRef } from './types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -27,30 +28,6 @@ interface ResultState {
   list?: CascaderNode[]
   message?: ReactNode
   async?: boolean
-}
-
-export interface CascaderMainRef {
-  mainElement: HTMLDivElement | null
-  getMainElement: () => HTMLDivElement | null
-  update: (value: CascaderNode[] | null | undefined, opts?: { action?: string }) => void
-}
-
-interface CascaderMainProps {
-  value?: CascaderNode[]
-  list?: CascaderNode[]
-  loadData?: LoadDataFn
-  listStyle?: CSSProperties
-  listClassName?: string
-  itemStyle?: CSSProperties
-  itemClassName?: string
-  searchVisible?: boolean
-  tabbarRender?: (params: {
-    list: CascaderNode[]
-    value: CascaderNode | undefined
-    onChange: (tab: CascaderNode) => void
-  }) => ReactNode
-  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => unknown
-  onChange?: (value: CascaderNode[]) => void
 }
 
 // 主体
@@ -422,3 +399,5 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 )
 
 export default CascaderMain
+
+export type { CascaderMainProps, CascaderMainRef } from './types'

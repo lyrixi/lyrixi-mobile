@@ -1,7 +1,9 @@
-import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type ReactNode, type CSSProperties, type Ref } from 'react'
+import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type Ref } from 'react'
 import type { CascaderMainRef } from './../Main'
-import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+import type { CascaderNode } from './../cascaderTypes'
 import Main from './../Main'
+
+import type { CascaderModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -12,31 +14,6 @@ import NavBarModal from './../../Modal/NavBarModal'
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
-
-export interface CascaderModalProps {
-  value?: CascaderNode[] | null
-  list?: CascaderNode[] | null
-  loadData?: LoadDataFn
-  open?: boolean
-  maskClosable?: boolean
-  allowClear?: boolean
-  safeArea?: boolean
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: string | boolean | HTMLElement | null
-  searchVisible?: boolean
-  title?: ReactNode
-  okNode?: ReactNode
-  cancelNode?: ReactNode
-  okVisible?: boolean
-  cancelVisible?: boolean
-  onClose?: () => void
-  onOk?: (value: CascaderNode[] | null | undefined) => boolean | Promise<unknown> | void
-  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
-  onChange?: (value: CascaderNode[], meta?: unknown) => void
-}
 
 // Modal
 const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
@@ -151,3 +128,5 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
 )
 
 export default CascaderModal
+
+export type { CascaderModalProps } from './types'

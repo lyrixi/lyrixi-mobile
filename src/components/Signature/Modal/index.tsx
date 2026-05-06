@@ -1,5 +1,8 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { createPortal } from 'react-dom'
+
+import type { ModalProps, ModalRef } from './types'
+
 import Main from './../Main'
 
 // 内库使用-start
@@ -10,24 +13,6 @@ import Page, { type PageRef } from './../../Page'
 /* 测试使用-start
 import { DOMUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
-
-interface ModalProps {
-  value?: string
-  open?: boolean
-  modalClassName?: string
-  modalStyle?: React.CSSProperties
-  portal?: Element
-  color?: string
-  backgroundColor?: string
-  onChange?: (base64: string | null) => void
-  onOpen?: () => void
-  onClose?: () => void
-}
-
-export interface ModalRef {
-  modalElement: HTMLElement | null
-  getModalElement: () => HTMLElement | null
-}
 
 // Modal
 const Modal = forwardRef<ModalRef, ModalProps>(
@@ -96,3 +81,6 @@ const Modal = forwardRef<ModalRef, ModalProps>(
 )
 
 export default Modal
+
+export type { ModalProps, ModalRef } from './types'
+

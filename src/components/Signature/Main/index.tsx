@@ -1,5 +1,8 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import Signature, { SignatureRef } from './Signature'
+
+import type { SignatureMainProps, SignatureMainRef, SignatureRef } from './types'
+
+import Signature from './Signature'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,21 +11,6 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface MainProps {
-  style?: React.CSSProperties
-  color?: string
-  backgroundColor?: string
-  onChange?: (base64: string | null) => void
-  onCancel?: () => void
-}
-
-interface MainRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  getBase64?: (() => Promise<string | null>) | undefined
-  clear?: (() => void) | undefined
-}
 
 // 手写签名
 const Main = (
@@ -35,8 +23,8 @@ const Main = (
     // Events
     onChange,
     onCancel
-  }: MainProps,
-  ref: React.Ref<MainRef>
+  }: SignatureMainProps,
+  ref: React.Ref<SignatureMainRef>
 ) => {
   const rootRef = useRef<HTMLDivElement>(null)
   // 签名
@@ -107,4 +95,7 @@ const Main = (
   )
 }
 
-export default forwardRef<MainRef, MainProps>(Main)
+export default forwardRef<SignatureMainRef, SignatureMainProps>(Main)
+
+export type { SignatureMainProps, SignatureMainRef } from './types'
+

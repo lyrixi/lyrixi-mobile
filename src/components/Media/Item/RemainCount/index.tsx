@@ -1,8 +1,6 @@
 import React from 'react'
 
-export interface RemainCountProps {
-  count: number
-}
+import type { RemainCountProps } from './types'
 
 // 图片显示
 const RemainCount = ({
@@ -20,3 +18,5 @@ const RemainCount = ({
 }
 
 export default RemainCount
+
+export type { RemainCountProps } from './types'

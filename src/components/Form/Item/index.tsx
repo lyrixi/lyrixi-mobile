@@ -1,52 +1,13 @@
-import React, { forwardRef, type ReactNode, type CSSProperties } from 'react'
+import React, { forwardRef } from 'react'
 import { Field } from 'rc-field-form'
-import type { Rule, NamePath, Meta } from 'rc-field-form/lib/interface'
-import type { ShouldUpdate } from 'rc-field-form/lib/Field'
+import type { Meta } from 'rc-field-form/lib/interface'
+
+import type { FormItemProps } from './types'
+import type { FormItemRef } from './../components/Item/types'
+
 import Item from './../components/Item'
 import Label from './../components/ItemLabel'
 import Main from './../components/ItemMain'
-import type { FormItemRef } from './../components/Item/Item'
-
-export interface FormItemProps {
-  // Field properties
-  name?: NamePath
-  valuePropName?: string
-  shouldUpdate?: ShouldUpdate
-  initialValue?: unknown
-  validateTrigger?: string | string[]
-  rules?: Rule[]
-
-  // Value & Display Value
-  id?: string
-
-  // Status
-  labelEllipsis?: { rows?: number; [key: string]: unknown }
-  labelSpan?: number | string
-  mainSpan?: number | string
-  mainEllipsis?: { rows?: number; [key: string]: unknown }
-
-  // Style
-  style?: CSSProperties
-  className?: string
-  layout?: string
-  /** Row height for virtual list layout (see `components/Item`) */
-  height?: number
-  /** Demo / compatibility; apply max length on the input child in practice */
-  maxLength?: number
-  labelStyle?: CSSProperties
-  labelClassName?: string
-  mainStyle?: CSSProperties
-  mainClassName?: string
-
-  // Elements
-  label?: ReactNode
-  labelHelp?: ReactNode
-  inputExtraRender?: (opts: { errors: string[] }) => ReactNode
-  extraRender?: (opts: { errors: string[] }) => ReactNode
-  /** Renders below the main control; receives current field value (e.g. char count). */
-  extra?: (opts: { value: unknown }) => ReactNode
-  children?: ReactNode
-}
 
 const FormItem = forwardRef<FormItemRef, FormItemProps>(
   (
@@ -174,3 +135,6 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
 )
 
 export default FormItem
+
+export type { FormItemProps } from './types'
+

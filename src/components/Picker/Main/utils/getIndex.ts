@@ -1,4 +1,4 @@
-import type { PickerColumnItem } from './../Slots'
+import type { PickerColumnItem } from './../types'
 
 // 获取当前位置
 function getIndex(activeOption: PickerColumnItem, list: PickerColumnItem[]) {

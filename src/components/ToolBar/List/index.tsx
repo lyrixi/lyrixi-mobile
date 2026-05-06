@@ -91,7 +91,9 @@ function ToolBarList({
       }}
     >
       {/* comboChildren */}
-      {(children as ReactNode) || value?.name || placeholder}
+      {(children as ReactNode) ||
+        (!Array.isArray(value) ? (value as { name?: ReactNode } | null | undefined)?.name : null) ||
+        placeholder}
     </Dropdown>
   )
 }

@@ -1,8 +1,6 @@
-import React, { type MouseEvent } from 'react'
+import React from 'react'
 
-export interface MediaReloadProps {
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void
-}
+import type { MediaReloadProps } from './types'
 
 // 失败重传图标
 const Reload = ({
@@ -31,3 +29,5 @@ const Reload = ({
 }
 
 export default Reload
+
+export type { MediaReloadProps } from './types'

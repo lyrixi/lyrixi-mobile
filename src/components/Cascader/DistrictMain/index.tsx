@@ -1,10 +1,4 @@
-import React, {
-  useImperativeHandle,
-  forwardRef,
-  useEffect,
-  useState,
-  type CSSProperties
-} from 'react'
+import React, { useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 import {
   loadBaseData,
   loadData as _loadData,
@@ -19,6 +13,7 @@ import Main from './../Main'
 import DistrictMainResult from './Result'
 import DistrictMainLoading from './Loading'
 import type { CascaderNode, LoadDataResult } from './../cascaderTypes'
+import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from './types'
 
 // 内库使用-start
 import ObjectUtil from '../../../utils/ObjectUtil'
@@ -28,25 +23,6 @@ import ArrayUtil from '../../../utils/ArrayUtil'
 /* 测试使用-start
 import { ObjectUtil, LocaleUtil, ArrayUtil, Button, Result } from 'lyrixi-mobile'
 测试使用-end */
-
-type LoadCountriesFn = () => Promise<ApiResult>
-type LoadCountryRegionsFn = (id?: string | number) => Promise<ApiResult>
-type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<ApiResult>
-
-export interface DistrictMainProps {
-  open?: boolean
-  value?: CascaderNode[] | null
-  type?: string
-  loadCountries?: LoadCountriesFn
-  loadCountryRegions?: LoadCountryRegionsFn
-  loadStreets?: LoadStreetsFn
-  listStyle?: CSSProperties
-  listClassName?: string
-  itemStyle?: CSSProperties
-  itemClassName?: string
-  searchVisible?: boolean
-  onChange?: (v: CascaderNode[]) => void
-}
 
 // 地址选择
 const CascaderDistrictMain = forwardRef<
@@ -218,3 +194,10 @@ const CascaderDistrictMain = forwardRef<
 )
 
 export default CascaderDistrictMain
+
+export type {
+  DistrictMainProps,
+  LoadCountriesFn,
+  LoadCountryRegionsFn,
+  LoadStreetsFn
+} from './types'

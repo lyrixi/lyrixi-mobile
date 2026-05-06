@@ -1,4 +1,7 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+
+import type { SignatureProps, SignatureRef } from './types'
+
 import { CanvasUtil } from './utils'
 
 // 内库使用-start
@@ -10,22 +13,6 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 type ExtendedCanvas = HTMLCanvasElement & { ctx?: CanvasRenderingContext2D }
-
-interface SignatureProps {
-  suffix?: string
-  quality?: number
-  style?: React.CSSProperties
-  color?: string
-  backgroundColor?: string
-  lineWidth?: number
-}
-
-export interface SignatureRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  getBase64: () => Promise<string | null>
-  clear: () => void
-}
 
 // 手写签名
 const Signature = (
@@ -204,3 +191,6 @@ const Signature = (
 }
 
 export default forwardRef<SignatureRef, SignatureProps>(Signature)
+
+export type { SignatureProps, SignatureRef } from './types'
+

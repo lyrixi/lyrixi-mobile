@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import type { MediaImgProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
@@ -7,11 +9,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface MediaImgProps {
-  fileUrl?: string
-  reloadKey?: unknown
-}
 
 // 图片显示
 const Img = ({
@@ -54,3 +51,5 @@ const Img = ({
 }
 
 export default Img
+
+export type { MediaImgProps } from './types'

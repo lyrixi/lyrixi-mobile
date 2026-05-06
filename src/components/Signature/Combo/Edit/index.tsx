@@ -1,17 +1,8 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+import type { EditProps, EditRef } from './types'
+
 import Thumbnail from './Thumbnail'
-
-interface EditProps {
-  value?: string
-  onDelete?: (val: string) => void
-  onPreview?: (src: string) => Promise<boolean | string | void>
-}
-
-export interface EditRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 // 照片视频预览
 const Edit = forwardRef<EditRef, EditProps>(
@@ -66,3 +57,6 @@ const Edit = forwardRef<EditRef, EditProps>(
 )
 
 export default Edit
+
+export type { EditProps, EditRef } from './types'
+

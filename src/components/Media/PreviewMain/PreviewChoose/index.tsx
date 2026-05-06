@@ -1,16 +1,11 @@
 import React, { type ChangeEvent, type MouseEvent, type SyntheticEvent } from 'react'
 import Uploading from './../../Uploading'
-import DOMUtil from './../../../../utils/DOMUtil'
 
-export interface PreviewChooseProps {
-  mediaType?: string | string[]
-  sourceType: string[]
-  onBeforeChoose?: (
-    e: MouseEvent
-  ) => boolean | void | Promise<boolean | void>
-  onChoose?: (e?: SyntheticEvent) => void | Promise<unknown>
-  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
-}
+import type { PreviewChooseProps } from './types'
+
+// 内库使用-start
+import DOMUtil from './../../../../utils/DOMUtil'
+// 内库使用-end
 
 // 上传按钮
 const Choose = ({
@@ -95,3 +90,5 @@ const Choose = ({
 }
 
 export default Choose
+
+export type { PreviewChooseProps } from './types'

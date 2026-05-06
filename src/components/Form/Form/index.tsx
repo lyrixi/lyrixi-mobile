@@ -1,31 +1,10 @@
-import React, { forwardRef, type ReactNode } from 'react'
+import React, { forwardRef } from 'react'
 import Form from 'rc-field-form'
-import type { FormInstance, FormProps as RcFormProps } from 'rc-field-form'
-import type { Store, ValidateMessages } from 'rc-field-form/lib/interface'
-import Items from './../components/Items'
-import type { FormItemsRef } from './../components/Items/Form'
-import type { EllipsisConfig } from './../components/ItemsContext'
 
-export interface FormComponentProps {
-  // Global properties
-  layout?: string
-  labelSpan?: number
-  labelEllipsis?: EllipsisConfig | null
-  mainSpan?: number
-  mainEllipsis?: EllipsisConfig | null
-  // Own properties
-  virtual?: boolean
-  style?: React.CSSProperties
-  className?: string
-  children?: ReactNode
-  // Form properties
-  form?: FormInstance
-  name?: string
-  validateMessages?: ValidateMessages
-  initialValues?: Store
-  onFieldsChange?: RcFormProps['onFieldsChange']
-  onValuesChange?: RcFormProps['onValuesChange']
-}
+import type { FormComponentProps } from './types'
+import type { FormItemsRef } from './../components/Items/Form'
+
+import Items from './../components/Items'
 
 // layout: horizontal | vertical | inline
 const FormComponent = forwardRef<FormItemsRef, FormComponentProps>(
@@ -81,3 +60,6 @@ const FormComponent = forwardRef<FormItemsRef, FormComponentProps>(
 )
 
 export default FormComponent
+
+export type { FormComponentProps } from './types'
+

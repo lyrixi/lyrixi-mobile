@@ -1,19 +1,9 @@
 import React from 'react'
 import Item from './../Item'
 import isAllowClear from './../utils/isAllowClear'
-import type { MediaListItem } from './../types'
-import type { MediaUploadingProps } from './../Uploading'
 
-export interface MediaListComponentProps {
-  list: MediaListItem[]
-  ellipsis?: { count?: number }
-  allowClear?: boolean | ((item: MediaListItem) => boolean)
-  uploadingRender?: MediaUploadingProps['uploadingRender']
-  itemRender?: (item: MediaListItem) => React.ReactNode
-  onChange?: (list: MediaListItem[], meta: { action: string }) => void
-  onReUpload?: (item: MediaListItem, index: number) => void
-  onPreview?: (item: MediaListItem, index: number) => void
-}
+import type { MediaListComponentProps } from './types'
+import type { MediaListItem } from './../types'
 
 // 照片视频预览
 const List = ({
@@ -80,3 +70,5 @@ const List = ({
 }
 
 export default List
+
+export type { MediaListComponentProps } from './types'

@@ -1,4 +1,6 @@
-import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type MouseEventHandler, type ReactNode } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+
+import type { ComboProps, ComboRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,30 +11,6 @@ import type { ButtonRef } from './../../Button'
 /* 测试使用-start
 import { DOMUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface ComboRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-interface ComboProps {
-  open?: boolean | null
-  direction?: string
-  block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
-  size?: string | number | readonly string[]
-  sizeEqual?: boolean
-  fontSize?: string | number
-  radius?: string | number
-  style?: CSSProperties
-  className?: string
-  arrowRender?: (props: { open: boolean | null }) => ReactNode
-  children?: ReactNode
-  onClick?: MouseEventHandler<HTMLDivElement>
-}
 
 // 操作表下拉
 const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
@@ -110,3 +88,6 @@ const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
 })
 
 export default Combo
+
+export type { ComboProps, ComboRef } from './types'
+

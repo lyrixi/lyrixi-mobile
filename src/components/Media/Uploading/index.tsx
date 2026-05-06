@@ -1,22 +1,15 @@
-import React, { type ReactNode } from 'react'
+import React from 'react'
+
+import type { MediaUploadingProps } from './types'
 
 // 内库使用-start
 import Loading from './../../Loading'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-import type { MediaListItem } from './../types'
-
 /* 测试使用-start
 import { Loading, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface MediaUploadingProps {
-  uploadingType: string
-  item?: MediaListItem
-  className?: string
-  uploadingRender?: (ctx: MediaListItem & { uploadingType: string }) => ReactNode
-}
 
 // 上传中图标
 const Uploading = ({
@@ -47,3 +40,5 @@ const Uploading = ({
 }
 
 export default Uploading
+
+export type { MediaUploadingProps } from './types'

@@ -1,5 +1,7 @@
 import React, { type MouseEvent } from 'react'
 
+import type { MediaItemProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -9,19 +11,6 @@ import Uploading from './../Uploading'
 import Reload from './Reload'
 import Delete from './Delete'
 import RemainCount from './RemainCount'
-import type { MediaListItem } from './../types'
-import type { MediaUploadingProps } from './../Uploading'
-
-export interface MediaItemProps {
-  item: MediaListItem
-  index: number
-  remainCount?: number | null
-  uploadingRender?: MediaUploadingProps['uploadingRender']
-  itemRender?: (item: MediaListItem) => React.ReactNode
-  onDelete?: (item: MediaListItem, index: number) => void
-  onReUpload?: (item: MediaListItem, index: number) => void
-  onPreview?: (item: MediaListItem, index: number) => void
-}
 
 // 照片视频预览
 const Item = ({
@@ -93,3 +82,5 @@ const Item = ({
 }
 
 export default Item
+
+export type { MediaItemProps } from './types'

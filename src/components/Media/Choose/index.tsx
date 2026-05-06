@@ -1,19 +1,13 @@
 import React, { type ChangeEvent, type MouseEvent } from 'react'
 import Uploading from './../Uploading'
-import DOMUtil from './../../../utils/DOMUtil'
-import type { MediaListItem } from './../types'
-import type { MediaUploadingProps } from './../Uploading'
 
-export interface MediaChooseProps {
-  mediaType?: string[]
-  sourceType?: string[]
-  className?: string
-  uploadRender?: (ctx: { uploadType: string }) => React.ReactNode
-  uploadingRender?: MediaUploadingProps['uploadingRender']
-  onBeforeChoose?: (e: MouseEvent) => void | boolean | Promise<void | boolean>
-  onChoose?: (e?: MouseEvent) => void | Promise<unknown>
-  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
-}
+import type { MediaChooseProps } from './types'
+
+// 内库使用-start
+import DOMUtil from './../../../utils/DOMUtil'
+// 内库使用-end
+
+import type { MediaListItem } from './../types'
 
 // 上传按钮
 const Choose = ({
@@ -119,3 +113,5 @@ const Choose = ({
 }
 
 export default Choose
+
+export type { MediaChooseProps } from './types'

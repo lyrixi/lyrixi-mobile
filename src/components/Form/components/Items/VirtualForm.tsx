@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
+
+import type { VirtualFormProps, VirtualFormRef } from './types'
+
 import ItemsContext from './../ItemsContext'
-import type { EllipsisConfig } from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -9,22 +11,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface VirtualFormRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface VirtualFormProps {
-  style?: CSSProperties
-  className?: string
-  layout?: string
-  labelSpan?: number
-  labelEllipsis?: EllipsisConfig | null
-  mainSpan?: number
-  mainEllipsis?: EllipsisConfig | null
-  children?: ReactNode
-}
 
 // layout: horizontal | vertical | inline
 const VirtualForm = forwardRef<VirtualFormRef, VirtualFormProps>(

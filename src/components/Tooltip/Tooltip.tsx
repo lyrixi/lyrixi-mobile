@@ -1,14 +1,8 @@
-import React, {
-  forwardRef,
-  useRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-  type CSSProperties,
-  type ReactNode
-} from 'react'
+import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
+
+import type { PopupRef, TooltipProps } from './types'
+
 import Popup from './Popup'
-import type { PopupRef } from './Popup'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
 // 内库使用-start
@@ -19,29 +13,6 @@ import type { ComboRef } from './../Combo'
 /* 测试使用-start
 import { Combo } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface TooltipProps {
-  maskClosable?: boolean
-  style?: CSSProperties
-  className?: string
-  animation?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  children?: ReactNode
-  comboRender?: (ctx: {
-    comboRef: React.RefObject<ComboRef | null>
-    open: boolean | null
-    onClick: () => void
-  }) => ReactNode
-  modalRender?: (ctx: { open: boolean | null; onClose: () => void }) => ReactNode
-  referenceElement?: Element | null | (() => Element | null)
-  portal?: boolean | Element | null
-  onBeforeOpen?: () => boolean | void | Promise<boolean | void>
-  onOpen?: () => void
-  onClose?: () => void
-}
 
 const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Tooltip(
   {
@@ -203,3 +174,6 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 })
 
 export default Tooltip
+
+export type { TooltipProps } from './types'
+

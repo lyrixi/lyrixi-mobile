@@ -1,5 +1,9 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
-import Modal, { type ModalRef } from './../../Modal'
+
+import type { ComboAddProps, ComboAddRef } from './types'
+import type { ModalRef } from './../../Modal/types'
+
+import Modal from './../../Modal'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -9,25 +13,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface ComboAddProps {
-  value?: string
-
-  className?: string
-  style?: React.CSSProperties
-  modalClassName?: string
-  modalStyle?: React.CSSProperties
-
-  color?: string
-  backgroundColor?: string
-
-  onChange?: (base64: string | null) => void
-}
-
-export interface ComboAddRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
 
 // Combo
 const Combo = (
@@ -117,3 +102,6 @@ const Combo = (
 }
 
 export default forwardRef<ComboAddRef, ComboAddProps>(Combo)
+
+export type { ComboAddProps, ComboAddRef } from './types'
+

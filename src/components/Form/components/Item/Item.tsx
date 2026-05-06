@@ -1,4 +1,7 @@
-import React, { useImperativeHandle, forwardRef, useRef, useContext, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
+
+import type { FormItemProps, FormItemRef } from './types'
+
 import ItemsContext from './../ItemsContext'
 
 // 内库使用-start
@@ -8,20 +11,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface FormItemRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface FormItemProps {
-  id?: string
-  name?: string
-  style?: CSSProperties
-  className?: string
-  layout?: string
-  children?: ReactNode
-}
 
 const FormItem = forwardRef<FormItemRef, FormItemProps>(
   (
@@ -70,3 +59,6 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
 )
 
 export default FormItem
+
+export type { FormItemProps, FormItemRef } from './types'
+

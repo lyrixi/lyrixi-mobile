@@ -1,0 +1,18 @@
+import type { MapLoaderProps } from './../../../Map/components/MapLoader/types'
+import type { MapChooseProps, MapChooseValue } from './../../../Map/pages/MapChoose/types'
+
+export interface LocationChooseProps {
+  value?: MapChooseValue | null
+  cacheExpires?: number
+  readOnly?: boolean
+  autoLocation?: boolean
+  nearbyVisible?: boolean
+  mapConfig?: Record<string, unknown>
+  getLocation?: MapChooseProps['getLocation']
+  getAddress?: MapChooseProps['getAddress']
+  loadingNode?: MapLoaderProps['loadingNode']
+  loadingRender?: MapLoaderProps['loadingRender']
+  onChange?: (newValue: MapChooseValue | null) => void
+  onSuccess?: MapLoaderProps['onSuccess']
+  onError?: MapLoaderProps['onError']
+}

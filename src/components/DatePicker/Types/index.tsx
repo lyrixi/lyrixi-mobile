@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect, useImperativeHandle, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 
 import WeekCombo from './WeekCombo'
 import DateCombo from './DateCombo'
@@ -7,6 +7,8 @@ import type {
   DatePickerTypesRef,
   DatePickerTypesValue
 } from './../datePickerTypes'
+
+import type { DatePickerTypesProps } from './types'
 
 // 内库使用-start
 import TabBar from './../../TabBar'
@@ -17,24 +19,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { TabBar, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface DatePickerTypesProps {
-  value?: DatePickerTypesValue
-  list?: DatePickerTypeListItem[]
-  style?: CSSProperties
-  className?: string
-  pickerComboStyle?: CSSProperties
-  pickerComboClassName?: string
-  tabbarStyle?: CSSProperties
-  tabbarClassName?: string
-  min?: Date | null
-  max?: Date | null
-  pickerComboRender?: (
-    value: DatePickerTypesValue,
-    ctx: { onChange: (d: Date) => void }
-  ) => ReactNode
-  onChange?: (value: DatePickerTypesValue) => void
-}
 
 // 日期类型选择控件: 年月日季
 const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function DatePickerTypes(
@@ -178,3 +162,5 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
 })
 
 export default Types
+
+export type { DatePickerTypesProps } from './types'

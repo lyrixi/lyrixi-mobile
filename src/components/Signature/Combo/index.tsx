@@ -1,27 +1,9 @@
 import React, { forwardRef } from 'react'
-import Edit from './Edit'
+
+import type { ComboInstanceRef, ComboProps } from './types'
+
 import Add from './Add'
-
-import type { ComboAddRef } from './Add'
-import type { EditRef } from './Edit'
-
-export interface ComboProps {
-  value?: string
-  allowClear?: boolean
-  className?: string
-  style?: React.CSSProperties
-  modalClassName?: string
-  modalStyle?: React.CSSProperties
-  maskStyle?: React.CSSProperties
-  maskClassName?: string
-  portal?: Element
-  color?: string
-  backgroundColor?: string
-  onChange?: (base64: string | null) => void
-  onPreview?: (src: string) => Promise<boolean | string | void>
-}
-
-export type ComboInstanceRef = ComboAddRef | EditRef
+import Edit from './Edit'
 
 // Combo
 const Combo = (
@@ -86,3 +68,6 @@ const Combo = (
 }
 
 export default forwardRef<ComboInstanceRef, ComboProps>(Combo)
+
+export type { ComboInstanceRef, ComboProps } from './types'
+

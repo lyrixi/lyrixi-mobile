@@ -1,6 +1,8 @@
-import React, { useImperativeHandle, forwardRef, useRef, useContext, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
+
+import type { FormMainProps } from './types'
+
 import ItemsContext from './../ItemsContext'
-import type { EllipsisConfig } from './../ItemsContext'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -12,17 +14,6 @@ import Text from '../../../Text'
 /* 测试使用-start
 import { DOMUtil, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface FormMainProps {
-  ellipsis?: EllipsisConfig
-  span?: number | string
-  style?: CSSProperties
-  className?: string
-  errorMessage?: string
-  inputExtraNode?: ReactNode
-  extraNode?: ReactNode
-  children?: ReactNode
-}
 
 const FormMain = forwardRef<ColRef, FormMainProps>(
   (
@@ -87,3 +78,6 @@ const FormMain = forwardRef<ColRef, FormMainProps>(
 )
 
 export default FormMain
+
+export type { FormMainProps } from './types'
+

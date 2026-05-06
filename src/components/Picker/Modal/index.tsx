@@ -5,45 +5,23 @@ import React, {
   useRef,
   useImperativeHandle,
   type ReactNode,
-  type Ref,
-  type CSSProperties,
-  type MouseEvent
+  type Ref
 } from 'react'
 import Main, { type PickerMainRef, type PickerMainProps } from './../Main'
-import type { PickerColumnItem } from './../Main/Slots'
-import type { ModalRef, ModalProps } from './../../Modal/Modal'
+import type { PickerColumnItem } from './../Main/types'
+import type { ModalRef } from './../../Modal/Modal/types'
+
+import type { PickerModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import NavBarModal from './../../../components/Modal/NavBarModal'
+import NavBarModal from './../../Modal/NavBarModal'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
-
-export interface PickerModalProps {
-  value?: unknown
-  list?: unknown
-  open?: boolean
-  maskClosable?: boolean
-  allowClear?: boolean
-  safeArea?: boolean
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: ModalProps['portal']
-  title?: ReactNode
-  okNode?: ReactNode
-  cancelNode?: ReactNode
-  okVisible?: boolean
-  cancelVisible?: boolean
-  onClose?: (e?: MouseEvent<HTMLDivElement>) => void
-  onOk?: (value: unknown) => boolean | void | Date | Promise<boolean | void | Date>
-  onChange?: (value: unknown) => void
-}
 
 // Modal
 const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
@@ -168,3 +146,5 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
 )
 
 export default Modal
+
+export type { PickerModalProps } from './types'

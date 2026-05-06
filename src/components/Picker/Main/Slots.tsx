@@ -1,4 +1,7 @@
-import React, { useRef, forwardRef, useEffect, type Ref, type ReactNode, type MouseEvent, type TouchEvent } from 'react'
+import React, { useRef, forwardRef, useEffect, type Ref, type MouseEvent, type TouchEvent } from 'react'
+
+import type { PickerColumnItem, PickerSlotsProps } from './types'
+
 import getTranslateValue from './utils/getTranslateValue'
 
 // 内库使用-start
@@ -9,18 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export type PickerColumnItem = {
-  id?: string | number
-  name?: ReactNode
-  [key: string]: unknown
-}
-
-export interface PickerSlotsProps {
-  lists?: PickerColumnItem[][]
-  cellHeight?: number
-  onDragEnd?: (payload: { slotIndex: string | number; rowIndex: number }) => void
-}
 
 type TouchDragState = {
   startX: number
@@ -188,3 +179,6 @@ const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
 })
 
 export default Lists
+
+export type { PickerColumnItem, PickerSlotsProps } from './types'
+
