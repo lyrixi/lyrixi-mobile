@@ -19,7 +19,21 @@ toc: content
 
 ## 代码演示
 
+### Modal（基础）
+
 <code src="./demos/Modal/index.tsx"></code>
+
+### NavBarModal
+
+<code src="./demos/NavBarModal/index.tsx"></code>
+
+### DropdownModal
+
+<code src="./demos/DropdownModal/index.tsx"></code>
+
+### FilterModal
+
+<code src="./demos/FilterModal/index.tsx"></code>
 
 ## API
 

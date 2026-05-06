@@ -26,6 +26,8 @@ export default () => {
               <FooterBar>
                 <FooterBar.Button
                   style={{ padding: 0 }}
+                  direction="vertical"
+                  fontSize="12px"
                   onClick={() => {
                     console.log('setting')
                   }}

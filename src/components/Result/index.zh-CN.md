@@ -19,7 +19,13 @@ toc: content
 
 ## 代码演示
 
+### 空状态（empty）
+
 <code src="./demos/Result.tsx"></code>
+
+### 异常 / 500
+
+<code src="./demos/500.tsx"></code>
 
 ## API
 
