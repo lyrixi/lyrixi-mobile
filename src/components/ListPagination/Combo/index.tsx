@@ -1,30 +1,20 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import Modal, { ModalPaginationRef, ModalPaginationProps } from './../Modal'
+import Modal from './../Modal'
 
 // 内库使用-start
 import Input from './../../Input'
-import { ComboRef, ComboProps } from './../../Input/Select'
 // 内库使用-end
 
 /* 测试使用-start
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-type RawItem = Record<string, unknown>
+import type { ComboRef } from './../../Input/Select/types'
+import type { RawItem } from './../../List/List/types'
+import type { ModalPaginationRef } from './../Modal/types'
+import type { ComboPaginationProps, ComboPaginationRef } from './types'
+
 type ItemChangeArg = RawItem & { checked?: boolean }
-
-export interface ComboPaginationRef extends ComboRef, Partial<ModalPaginationRef> {
-  close: () => void
-  open: () => void
-}
-
-export interface ComboPaginationProps
-  extends Omit<ModalPaginationProps, 'onChange' | 'value'>,
-    Omit<ComboProps, 'onChange' | 'value'> {
-  value?: RawItem | RawItem[] | null
-  onChange?: (value: unknown) => void
-  onBeforeOpen?: () => Promise<boolean | undefined> | boolean | undefined
-}
 
 const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
   (
@@ -221,3 +211,5 @@ const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
 )
 
 export default Combo
+
+export type { ComboPaginationProps, ComboPaginationRef } from './types'

@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,22 +9,7 @@ import SafeArea from './../../SafeArea'
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
-export type PageLayout = 'horizontal' | 'vertical'
-
-export interface PageProps {
-  safeArea?: boolean
-  full?: boolean
-  layout?: PageLayout
-  animation?: string
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
-
-export interface PageRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
+import type { PageProps, PageRef } from './types'
 
 const Page = forwardRef<PageRef, PageProps>(function Page(
   { safeArea, full = true, layout, animation, style, className, children },
@@ -58,3 +43,5 @@ const Page = forwardRef<PageRef, PageProps>(function Page(
 })
 
 export default Page
+
+export type { PageLayout, PageProps, PageRef } from './types'

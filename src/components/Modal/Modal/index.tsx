@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import getClassNameByAnimation from './../api/getClassNameByAnimation'
 
@@ -11,26 +11,7 @@ import SafeArea from './../../SafeArea'
 import { DOMUtil, SafeArea, Tooltip } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface ModalRef {
-  maskElement: HTMLDivElement | null
-  getMaskElement: () => HTMLDivElement | null
-  modalElement: HTMLDivElement | null
-  getModalElement: () => HTMLDivElement | null
-}
-
-export interface ModalProps {
-  open?: boolean
-  maskClosable?: boolean
-  safeArea?: boolean
-  animation?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  portal?: HTMLElement | string | boolean | null
-  children?: ReactNode
-  onClose?: (e?: MouseEvent<HTMLDivElement>) => void
-}
+import type { ModalProps, ModalRef } from './types'
 
 const Modal = forwardRef<ModalRef, ModalProps>(
   (
@@ -130,3 +111,5 @@ const Modal = forwardRef<ModalRef, ModalProps>(
 )
 
 export default Modal
+
+export type { ModalProps, ModalRef } from './types'

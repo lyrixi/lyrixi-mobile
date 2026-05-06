@@ -4,17 +4,14 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
-  type CSSProperties,
-  type ReactNode,
   type MouseEvent
 } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import FilterModal from './../../Modal/FilterModal'
-import Button, { type ButtonRef, type ButtonProps } from './../../Button'
+import Button, { type ButtonRef } from './../../Button'
 import Icon from './../../Icon'
-import type { ModalProps } from './../../Modal/Modal'
 // 内库使用-end
 
 /* 测试使用-start
@@ -22,49 +19,7 @@ import { DOMUtil, Modal, Button, Icon } from 'lyrixi-mobile'
 const FilterModal = Modal.FilterModal
 测试使用-end */
 
-export interface ToolBarFilterRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  close: () => void
-  open: () => void
-}
-
-export interface ToolBarFilterProps {
-  direction?: ButtonProps['direction']
-  block?: boolean
-  style?: CSSProperties
-  className?: string
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
-  size?: ButtonProps['size']
-  sizeEqual?: boolean
-  fontSize?: string | number
-  radius?: string | number
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  children?: ReactNode
-  comboRender?: (params: {
-    comboRef: React.RefObject<ButtonRef | null>
-    open: boolean | null
-    onClick: (e: MouseEvent<HTMLDivElement>) => void
-  }) => ReactNode
-  modalRender?: (params: { open: boolean | null; onClose: () => void }) => ReactNode
-  portal?: ModalProps['portal']
-  footerRender?: (params: { onClose?: ModalProps['onClose'] }) => ReactNode
-  onCancel?: () => void
-  onOpen?: () => void
-  onClose?: () => void
-  /** 业务侧扩展（筛选项配置等） */
-  onConfig?: () => void
-  onReset?: () => void
-  onOk?: (ctx: { close: () => void }) => void
-  /** 未传 children 时，作为筛选按钮主图标 */
-  icon?: ReactNode
-}
+import type { ToolBarFilterProps, ToolBarFilterRef } from './types'
 
 const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
   {
@@ -219,3 +174,5 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
 ;(Filter as typeof Filter & { componentName?: string }).componentName = 'ToolBar.Filter'
 
 export default Filter
+
+export type { ToolBarFilterProps, ToolBarFilterRef } from './types'

@@ -10,41 +10,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface InputNodeRef {
-  element: HTMLDivElement | null
-  inputElement: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: () => HTMLDivElement | null
-  correctValue: (val: string | number) => string | number
-  focus: () => void
-  blur: () => void
-}
-
-export interface InputNodeProps {
-  id?: string
-  type?: string
-  value?: string
-  placeholder?: string
-  formatter?: (value: string) => React.ReactNode
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  cursor?: boolean | null
-  style?: React.CSSProperties
-  className?: string
-  leftIconNode?: React.ReactNode
-  rightIconNode?: React.ReactNode
-  clearRender?: (params: { clearable: boolean; allowClear?: boolean; onClear: (e?: React.MouseEvent | React.TouchEvent) => void; onTouchStart?: (e?: React.TouchEvent) => void }) => React.ReactNode | undefined
-  precision?: number
-  trim?: boolean
-  min?: number
-  max?: number
-  maxLength?: number
-  onChange?: (value: string, meta?: { action: string }) => void
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-  onFocus?: (e: { target: HTMLDivElement | null; currentTarget: HTMLDivElement | null }) => void
-  onBlur?: (e: { target: HTMLDivElement | null; currentTarget: HTMLDivElement | null }) => void
-}
+import type { InputNodeProps, InputNodeRef } from './types'
 
 // 内部显示div
 const InputNode = (
@@ -273,3 +239,5 @@ const InputNode = (
 }
 
 export default forwardRef(InputNode)
+
+export type { InputNodeProps, InputNodeRef } from './types'

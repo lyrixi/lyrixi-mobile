@@ -1,21 +1,11 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
 // 内库使用-end
 
-export interface PageHeaderProps {
-  safeArea?: boolean
-  className?: string
-  style?: CSSProperties
-  children?: ReactNode
-}
-
-export interface PageHeaderRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
+import type { PageHeaderProps, PageHeaderRef } from './types'
 
 const Header = forwardRef<PageHeaderRef, PageHeaderProps>(function Header(
   { safeArea, className, style, children },
@@ -39,3 +29,5 @@ const Header = forwardRef<PageHeaderRef, PageHeaderProps>(function Header(
 })
 
 export default Header
+
+export type { PageHeaderProps, PageHeaderRef } from './types'

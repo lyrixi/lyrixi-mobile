@@ -15,49 +15,8 @@ import List from './../List'
 import { DOMUtil, Result, List } from 'lyrixi-mobile'
 测试使用-end */
 
-type RawItem = Record<string, unknown>
-type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
-
-type LoadAction = 'load' | 'reload' | 'topRefresh' | 'bottomRefresh' | 'retry' | ''
-
-export interface ListAsyncRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-  getAnchors?: () => string[]
-  scrollToAnchor?: (anchor: string) => void
-  reload: (action?: string) => void
-  getResult: () => LoadResult | null
-}
-
-type SharedListProps = Omit<EntityListProps, 'formatViewList' | 'formatViewItem' | 'virtual'>
-
-export interface LoadResult {
-  status: string
-  message?: string
-  list?: ViewItem[]
-  scrollTop?: number
-  [key: string]: unknown
-}
-
-export interface ListAsyncProps extends SharedListProps {
-  value?: RawItem | RawItem[] | null
-  loadData?: (params: { previousResult: LoadResult | null; action: string }) => Promise<LoadResult>
-  formatViewList?: (rawList: ViewItem[], options: { result: LoadResult | null }) => ViewItem[]
-  formatViewItem?: (rawItem: ViewItem, options: { result: LoadResult | null; index: number }) => ViewItem
-  initialLoad?: boolean
-  errorRetry?: boolean
-  emptyRetry?: boolean
-  virtual?: VirtualOptions
-  disableTopRefresh?: boolean
-  disableBottomRefresh?: boolean
-  loadingModalStyle?: React.CSSProperties
-  loadingModalClassName?: string
-  loadingMaskStyle?: React.CSSProperties
-  loadingMaskClassName?: string
-  loadingPortal?: HTMLElement
-  loadingRender?: (options: { action?: string }) => React.ReactNode
-  onLoad?: (params: { result: LoadResult | null; action: LoadAction }) => void
-}
+import type { RawItem, ViewItem } from './../List/List/types'
+import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
 
 const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
   (
@@ -298,3 +257,5 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
 )
 
 export default Main
+
+export type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'

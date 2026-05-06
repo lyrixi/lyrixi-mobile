@@ -1,17 +1,9 @@
 import React, { useRef, type ReactNode } from 'react'
 
-import Dropdown, { type ToolBarDropdownProps, type ToolBarDropdownRef } from './../Dropdown'
+import Dropdown, { type ToolBarDropdownRef } from './../Dropdown'
 import List from './List'
-import type { ListProps } from './../../List/List'
 
-export interface ToolBarListProps extends ToolBarDropdownProps {
-  // Value & Display Value
-  value?: { name?: string; [key: string]: unknown } | null
-  placeholder?: string
-  list: NonNullable<ListProps['list']>
-  // Events
-  onChange?: (value: unknown) => void
-}
+import type { ToolBarListProps } from './types'
 
 // 列表下拉
 function ToolBarList({
@@ -108,3 +100,5 @@ function ToolBarList({
 ;(ToolBarList as typeof ToolBarList & { componentName?: string }).componentName = 'ToolBar.List'
 
 export default ToolBarList
+
+export type { ToolBarListProps } from './types'

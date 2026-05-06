@@ -11,40 +11,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type RawItem = Record<string, unknown>
-type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
-
-type ItemChangeArg = RawItem & { checked?: boolean }
-
-export interface ListRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface ListProps {
-  value?: RawItem | RawItem[] | null
-  multiple?: boolean
-  allowClear?: boolean
-  list?: ViewItem[]
-  formatViewList?: (list: ViewItem[]) => ViewItem[]
-  formatViewItem?: (item: ViewItem, options: { index: number }) => ViewItem
-  checkable?: boolean
-  style?: React.CSSProperties
-  className?: string
-  itemStyle?: React.CSSProperties
-  itemClassName?: string
-  itemLayout?: string
-  checkboxVariant?: string
-  checkboxPosition?: string
-  itemRender?: (
-    item: ViewItem,
-    options: { index: number; checked: boolean; onChange: (item: ItemChangeArg) => void }
-  ) => React.ReactNode
-  onChange?: (
-    newValue: RawItem | RawItem[] | null,
-    options: { checkedItem: ItemChangeArg }
-  ) => void
-}
+import type { ItemChangeArg, ListProps, ListRef, RawItem, ViewItem } from './types'
 
 // List
 const List = (
@@ -162,3 +129,5 @@ const List = (
 }
 
 export default forwardRef<ListRef, ListProps>(List)
+
+export type { ListProps, ListRef } from './types'

@@ -6,43 +6,19 @@ import List from './List'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
-import Page, { PageMainRef, PageMainProps } from './../../Page'
-import { ListProps } from './../../List/List'
+import Page from './../../Page'
+import type { ListProps, RawItem } from './../../List/List/types'
+import type { PageMainRef } from './../../Page/Main/types'
 // 内库使用-end
 
 /* 测试使用-start
 import { ObjectUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
 
-type RawItem = Record<string, unknown>
+import type { VirtualListProps, VirtualListRef } from './types'
+
 type VirtualData = { type?: string; height: number; top: number; index: number }
 type VirtualItem = RawItem & { virtualData: VirtualData }
-
-export interface VirtualOptions {
-  getItemHeight: (item: RawItem) => number
-}
-
-export interface VirtualListRef extends PageMainRef {
-  getAnchors: () => string[]
-  scrollToAnchor: (anchor: string) => void
-}
-
-export interface VirtualListProps extends ListProps {
-  height?: number
-  virtual?: VirtualOptions
-  threshold?: number
-  touchStopPropagation?: boolean
-  safeArea?: boolean
-  className?: string
-  style?: React.CSSProperties
-  prependRender?: (options: { list?: ListProps['list']; value?: ListProps['value']; onChange?: ListProps['onChange'] }) => React.ReactNode
-  appendRender?: (options: { list?: ListProps['list']; value?: ListProps['value']; onChange?: ListProps['onChange'] }) => React.ReactNode
-  children?: React.ReactNode
-  onScroll?: PageMainProps['onScroll']
-  onScrollEnd?: PageMainProps['onScrollEnd']
-  onTopRefresh?: PageMainProps['onTopRefresh']
-  onBottomRefresh?: PageMainProps['onBottomRefresh']
-}
 
 // 列表
 const VirtualList = (
@@ -239,3 +215,5 @@ const VirtualList = (
 }
 
 export default forwardRef<VirtualListRef, VirtualListProps>(VirtualList)
+
+export type { VirtualListProps, VirtualListRef, VirtualOptions } from './types'

@@ -18,32 +18,7 @@ import Icon from './../../Icon'
 import { LocaleUtil, DOMUtil, SafeArea, Page, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-type KeyboardAction = 'number' | 'dot' | 'minus' | 'delete'
-
-export interface KeyboardNumberRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
-
-export interface KeyboardNumberProps {
-  safeArea?: boolean
-  portal?: HTMLElement
-  value?: string
-  onChange?: (value: string, options: { action: KeyboardAction }) => void
-  dot?: boolean
-  minus?: boolean
-  okNode?: React.ReactNode
-  okVisible?: boolean
-  cancelNode?: React.ReactNode
-  cancelVisible?: boolean
-  onOk?: (value: string) => Promise<boolean | undefined> | boolean | undefined
-  onCancel?: () => void
-  modalStyle?: React.CSSProperties
-  modalClassName?: string
-  open?: boolean
-  onOpen?: () => void
-  onClose?: () => void
-}
+import type { KeyboardNumberProps, KeyboardNumberRef } from './types'
 
 const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
   (
@@ -281,3 +256,5 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
 )
 
 export default KeyboardNumber
+
+export type { KeyboardAction, KeyboardNumberProps, KeyboardNumberRef } from './types'

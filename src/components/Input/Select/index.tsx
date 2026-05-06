@@ -1,7 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getDisplayValue from './formatter'
 
-import InputText, { InputTextRef, InputTextProps } from './../Text'
+import InputText from './../Text'
+
+import type { InputTextProps, InputTextRef } from './../Text/types'
 import InputAutoSize from './../AutoSize'
 import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
@@ -15,31 +17,7 @@ import ObjectUtil from './../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface ComboRef {
-  displayValue: string
-  getDisplayValue: (newValue?: unknown) => string
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
-
-export interface ComboProps {
-  value?: unknown
-  placeholder?: string
-  autoSize?: boolean
-  mode?: string
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  style?: React.CSSProperties
-  className?: string
-  formatter?: (value: unknown, options?: { separator?: string }) => string
-  separator?: string
-  leftIconNode?: React.ReactNode
-  rightIconNode?: React.ReactNode
-  clearRender?: InputTextProps['clearRender']
-  onChange?: (value: unknown, meta?: { action: string }) => void
-  onClick?: (e: React.MouseEvent) => void
-}
+import type { ComboProps, ComboRef } from './types'
 
 // (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
 const Combo = forwardRef<ComboRef, ComboProps>(
@@ -183,3 +161,5 @@ const Combo = forwardRef<ComboRef, ComboProps>(
 )
 
 export default Combo
+
+export type { ComboProps, ComboRef } from './types'

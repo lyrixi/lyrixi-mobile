@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,19 +9,7 @@ import SafeArea from './../../SafeArea'
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface PageFooterProps {
-  safeArea?: boolean
-  className?: string
-  style?: CSSProperties
-  children?: ReactNode
-  buttons?: unknown
-  onChange?: (newValue: unknown) => void
-}
-
-export interface PageFooterRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
+import type { PageFooterProps, PageFooterRef } from './types'
 
 const Footer = forwardRef<PageFooterRef, PageFooterProps>(function Footer(
   { safeArea, className, style, children },
@@ -45,3 +33,5 @@ const Footer = forwardRef<PageFooterRef, PageFooterProps>(function Footer(
 })
 
 export default Footer
+
+export type { PageFooterProps, PageFooterRef } from './types'

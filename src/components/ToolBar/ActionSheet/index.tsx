@@ -1,4 +1,4 @@
-import React, { forwardRef, type ComponentProps, type CSSProperties, type MouseEvent, type ReactNode } from 'react'
+import React, { forwardRef, type MouseEvent } from 'react'
 import Combo from './../components/Combo'
 
 // 内库使用-start
@@ -9,25 +9,9 @@ import ActionSheet from './../../ActionSheet'
 import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
-type ASComboProps = ComponentProps<typeof ActionSheet.Combo>
-type ComboRenderParams = Parameters<NonNullable<ASComboProps['comboRender']>>[0]
+import type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'
 
-export interface ToolBarActionSheetStyleProps {
-  direction?: string
-  block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
-  size?: string | number | readonly string[]
-  sizeEqual?: boolean
-  radius?: string | number
-  style?: CSSProperties
-  className?: string
-  arrowRender?: (props: { open: boolean | null }) => ReactNode
-}
-
-type ToolBarActionSheetProps = ASComboProps & ToolBarActionSheetStyleProps
+type ComboRenderParams = Parameters<NonNullable<ToolBarActionSheetProps['comboRender']>>[0]
 
 // 操作表下拉
 const ToolBarActionSheet = forwardRef<
@@ -74,7 +58,7 @@ const ToolBarActionSheet = forwardRef<
   ref
 ) {
   // 修改
-  function handleChange(newValue: Parameters<NonNullable<ASComboProps['onChange']>>[0]) {
+  function handleChange(newValue: Parameters<NonNullable<ToolBarActionSheetProps['onChange']>>[0]) {
     onChange?.(newValue)
   }
 
@@ -147,3 +131,5 @@ const ToolBarActionSheet = forwardRef<
   'ToolBar.ActionSheet'
 
 export default ToolBarActionSheet
+
+export type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'

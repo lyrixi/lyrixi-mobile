@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, type CSSProperties, type ReactNode } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
 import Dropdown, { type ToolBarDropdownRef, type ToolBarDropdownProps } from './../Dropdown'
 import DateRange from './DateRange'
@@ -9,6 +9,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import DatePicker from './../../DatePicker'
 import FooterBar from './../../FooterBar'
 import type { DatePickerRangesMap, DatePickerRangeChangeMeta } from './../../DatePicker/datePickerTypes'
+import type { ToolBarDateRangeBarProps } from './types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -16,42 +17,6 @@ import { DateUtil, LocaleUtil, DatePicker, FooterBar } from 'lyrixi-mobile'
 测试使用-end */
 
 const getDefaultRanges = DatePicker.getDefaultRanges
-
-export interface ToolBarDateRangeBarProps {
-  value?: (Date | null)[] | null
-  rangeId?: string | null
-  type?: string
-  placeholder?: string
-  allowClear?: boolean
-  direction?: string
-  block?: boolean
-  color?: string
-  borderColor?: string
-  backgroundColor?: string
-  border?: string
-  size?: string | number | readonly string[]
-  sizeEqual?: boolean
-  fontSize?: string | number
-  radius?: string | number
-  style?: CSSProperties
-  className?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  comboRender?: ToolBarDropdownProps['comboRender']
-  children?: ReactNode
-  arrowRender?: ToolBarDropdownProps['arrowRender']
-  portal?: HTMLElement
-  min?: Date | null
-  max?: Date | null
-  ranges?: DatePickerRangesMap
-  onOk?: (
-    value: (Date | null)[] | null | undefined,
-    meta: { rangeId: string | null | undefined }
-  ) => void | boolean | (Date | null)[] | Promise<void | boolean | (Date | null)[]>
-  onChange?: (value: (Date | null)[] | null, meta: { rangeId: string | null | undefined }) => void
-}
 
 // 日期区间
 function DateRangeBar({
@@ -264,3 +229,5 @@ function DateRangeBar({
 ;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName = 'ToolBar.DateRange'
 
 export default DateRangeBar
+
+export type { ToolBarDateRangeBarProps } from './types'

@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,17 +9,7 @@ import SafeArea from './../../SafeArea'
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface PageAsideProps {
-  safeArea?: boolean
-  className?: string
-  style?: CSSProperties
-  children?: ReactNode
-}
-
-export interface PageAsideRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
-}
+import type { PageAsideProps, PageAsideRef } from './types'
 
 const Aside = forwardRef<PageAsideRef, PageAsideProps>(function Aside(
   { safeArea, className, style, children },
@@ -43,3 +33,5 @@ const Aside = forwardRef<PageAsideRef, PageAsideProps>(function Aside(
 })
 
 export default Aside
+
+export type { PageAsideProps, PageAsideRef } from './types'

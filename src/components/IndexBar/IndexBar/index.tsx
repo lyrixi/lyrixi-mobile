@@ -1,4 +1,4 @@
-import React, { Fragment, forwardRef, useRef, useImperativeHandle, useEffect, type CSSProperties } from 'react'
+import React, { Fragment, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import getAnchorByPoint from './getAnchorByPoint'
 import getAnchorByScroller from './getAnchorByScroller'
 import activeAnchor from './activeAnchor'
@@ -12,21 +12,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface IndexBarRef {
-  element: HTMLDivElement | null
-  tooltipElement: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  getTooltipElement: () => HTMLDivElement | null
-  scrollToAnchor: (anchor: string) => void
-}
-
-export interface IndexBarProps {
-  anchors?: string[]
-  getScrollerElement: () => Element | null
-  className?: string
-  style?: CSSProperties
-  scrollToAnchor?: (anchor: string, opts: { scrollerElement: Element | null }) => void
-}
+import type { IndexBarProps, IndexBarRef } from './types'
 
 const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
   (
@@ -199,3 +185,5 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
 )
 
 export default IndexBar
+
+export type { IndexBarProps, IndexBarRef } from './types'

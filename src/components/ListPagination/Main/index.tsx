@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react
 
 // 内库使用-start
 import Storage from './../../../utils/Storage'
-import ListAsync, { ListAsyncRef, ListAsyncProps, LoadResult } from './../../ListAsync'
+import ListAsync from './../../ListAsync'
 // 内库使用-end
 
 /* 测试使用-start
@@ -12,23 +12,9 @@ import { Storage, ListAsync } from 'lyrixi-mobile'
 
 import queryData from './queryData'
 
-type RawItem = Record<string, unknown>
-
-export interface ListPaginationRef extends ListAsyncRef {
-  updateCache: (extraCache?: Record<string, unknown>) => void
-  clearCache: () => unknown
-  getCache: () => unknown
-}
-
-export interface ListPaginationProps extends Omit<ListAsyncProps, 'loadData'> {
-  cacheName?: string
-  url?: string
-  headers?: Record<string, string>
-  payload?: Record<string, unknown>
-  pagination?: { rows?: number }
-  formatPayload?: (params: Record<string, unknown>) => Promise<Record<string, unknown>> | Record<string, unknown>
-  formatResult?: (result: unknown, options: { payload: Record<string, unknown> }) => Promise<LoadResult> | LoadResult
-}
+import type { ListAsyncRef, LoadResult } from './../../ListAsync/types'
+import type { RawItem } from './../../List/List/types'
+import type { ListPaginationProps, ListPaginationRef } from './types'
 
 // 简便的列表组件, 只需要传入url和formatPayload即可
 const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
@@ -208,3 +194,5 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
 )
 
 export default ListPagination
+
+export type { ListPaginationProps, ListPaginationRef } from './types'

@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
-import Checkbox, { CheckboxProps } from '../Checkbox'
+import Checkbox from '../Checkbox'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -7,32 +7,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 
 import formatValue from './formatValue'
 
-export interface CheckboxListItem {
-  id: string | number
-  name?: string
-  [key: string]: unknown
-}
-
-export interface CheckboxGroupRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface CheckboxGroupProps {
-  value?: unknown
-  list?: CheckboxListItem[]
-  /** Demos / Select-style API; group itself does not render a placeholder */
-  placeholder?: string
-  disabled?: boolean
-  readOnly?: boolean
-  allowClear?: boolean
-  multiple?: boolean
-  className?: string
-  style?: React.CSSProperties
-  iconRender?: CheckboxProps['iconRender']
-  iconPosition?: CheckboxProps['iconPosition']
-  onChange?: (value: CheckboxListItem | CheckboxListItem[] | null) => void
-}
+import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
 
 // Checkbox-Group
 const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
@@ -120,3 +95,5 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
 )
 
 export default CheckboxGroup
+
+export type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'

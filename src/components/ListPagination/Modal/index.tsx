@@ -1,10 +1,9 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
-import Main, { ListPaginationRef, ListPaginationProps } from './../Main'
+import Main from './../Main'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import NavBarModal from './../../../components/Modal/NavBarModal'
-import { ModalRef } from './../../../components/Modal/Modal'
+import NavBarModal from './../../Modal/NavBarModal'
 // 内库使用-end
 
 /* 测试使用-start
@@ -12,35 +11,12 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-type RawItem = Record<string, unknown>
+import type { RawItem } from './../../List/List/types'
+import type { ModalRef } from './../../Modal/Modal/types'
+import type { ListPaginationProps, ListPaginationRef } from './../Main/types'
+import type { ModalPaginationProps, ModalPaginationRef } from './types'
+
 type ItemChangeArg = RawItem & { checked?: boolean }
-
-export interface ModalPaginationRef extends ModalRef {
-  reload?: ListPaginationRef['reload']
-  getResult?: ListPaginationRef['getResult']
-  updateCache?: ListPaginationRef['updateCache']
-  clearCache?: ListPaginationRef['clearCache']
-  getCache?: ListPaginationRef['getCache']
-}
-
-export interface ModalPaginationProps extends ListPaginationProps {
-  // Modal-specific props
-  open?: boolean
-  maskClosable?: boolean
-  safeArea?: boolean
-  list?: RawItem[]
-  modalStyle?: React.CSSProperties
-  modalClassName?: string
-  maskStyle?: React.CSSProperties
-  maskClassName?: string
-  portal?: HTMLElement | string | boolean | null
-  title?: React.ReactNode
-  cancelNode?: React.ReactNode
-  cancelVisible?: boolean
-  headerRender?: (options: { open?: boolean; value?: unknown; list?: RawItem[] }) => React.ReactNode
-  onOk?: (value: unknown) => Promise<unknown | false> | unknown | false
-  onClose?: () => void
-}
 
 // Modal
 const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
@@ -221,3 +197,5 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
 )
 
 export default Modal
+
+export type { ModalPaginationProps, ModalPaginationRef } from './types'

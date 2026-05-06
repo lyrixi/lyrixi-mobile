@@ -16,67 +16,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type TextInputElement = (HTMLInputElement | HTMLTextAreaElement) & {
-  composing?: boolean
-  preventBlur?: boolean
-}
-
-export interface InputTextRef {
-  element: HTMLDivElement | null
-  inputElement: TextInputElement | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: () => TextInputElement | null
-  correctValue: (val: string | number) => string | number
-  focus: () => void
-  blur: () => void
-}
-
-export interface InputTextProps {
-  id?: string
-  name?: string
-  type?: string
-  value?: string
-  placeholder?: string
-  formatter?: (value: string) => React.ReactNode
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  autoFocus?: boolean
-  autoSelect?: boolean
-  enableCompositionEnd?: boolean
-  style?: React.CSSProperties
-  className?: string
-  inputRender?: (params: Record<string, unknown>) => React.ReactNode
-  leftIconNode?: React.ReactNode
-  rightIconNode?: React.ReactNode
-  clearRender?: (params: {
-    clearable: boolean
-    allowClear?: boolean
-    onClear: (e?: React.MouseEvent | React.TouchEvent) => void
-    onTouchStart?: (e?: React.TouchEvent) => void
-  }) => React.ReactNode | undefined
-  precision?: number
-  trim?: boolean
-  max?: number
-  min?: number
-  maxLength?: number
-  inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode']
-  enterKeyHint?: React.InputHTMLAttributes<HTMLInputElement>['enterKeyHint']
-  autoComplete?: string
-  autoCorrect?: string
-  spellCheck?: boolean | 'true' | 'false'
-  cursor?: boolean | null
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-  onChange?: (value: string, meta?: { action: string }) => void
-  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  onInput?: React.FormEventHandler<HTMLInputElement | HTMLTextAreaElement>
-  onCompositionStart?: React.CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
-  onCompositionUpdate?: React.CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
-  onCompositionEnd?: React.CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
-}
+import type { InputTextProps, InputTextRef, TextInputElement } from './types'
 
 const InputText = (
   {
@@ -561,3 +501,5 @@ const InputText = (
 }
 
 export default forwardRef(InputText)
+
+export type { InputTextProps, InputTextRef, TextInputElement } from './types'

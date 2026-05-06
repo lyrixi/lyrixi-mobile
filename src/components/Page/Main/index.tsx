@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type ReactNode, type UIEvent } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import TopContainer from './TopContainer'
 import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk'
@@ -14,33 +14,13 @@ import SafeArea from './../../SafeArea'
 import { Device, DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
+import type { PageMainProps, PageMainRef } from './types'
+
 interface TouchesState {
   isTop: boolean
   startY: number
   currentY: number
   diffY: number
-}
-
-export interface PageMainProps {
-  threshold?: number
-  safeArea?: boolean
-  touchStopPropagation?: boolean
-  className?: string
-  style?: CSSProperties
-  children?: ReactNode
-  onTopRefresh?: () =>
-    | boolean
-    | string
-    | undefined
-    | Promise<boolean | string | undefined>
-  onBottomRefresh?: () => void | Promise<void>
-  onScroll?: (e: UIEvent<HTMLElement>) => void
-  onScrollEnd?: (e: UIEvent<HTMLElement>) => void
-}
-
-export interface PageMainRef {
-  element: HTMLElement | null
-  getElement: () => HTMLElement | null
 }
 
 function touchClientY(e: React.TouchEvent<HTMLElement>): number {
@@ -192,3 +172,5 @@ const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
 })
 
 export default Main
+
+export type { PageMainProps, PageMainRef } from './types'

@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties } from 'react'
 import Item from './Item'
 
 // 内库使用-start
@@ -10,37 +10,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-/** 列表项 */
-export interface SelectorItem {
-  id?: string | number
-  name?: ReactNode
-}
-
-/** 超出条数时折叠为「更多」 */
-export interface SelectorEllipsis {
-  count: number
-}
-
-export interface SelectorProps {
-  value?: SelectorItem[]
-  list: SelectorItem[]
-  ellipsis?: SelectorEllipsis
-  disabled?: boolean
-  multiple?: boolean
-  allowClear?: boolean
-  className?: string
-  style?: CSSProperties
-  columns?: number
-  id?: string
-  onChange?: (value: SelectorItem[]) => void | Promise<void>
-}
-
-export interface SelectorRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  instance: { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
-  getInstance: () => { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
-}
+import type { SelectorItem, SelectorProps, SelectorRef } from './types'
 
 // 选择组
 const Selector = forwardRef<SelectorRef, SelectorProps>(
@@ -207,3 +177,5 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
 )
 
 export default Selector
+
+export type { SelectorEllipsis, SelectorItem, SelectorProps, SelectorRef } from './types'

@@ -1,15 +1,10 @@
-import React, { type CSSProperties, type ReactNode } from 'react'
+import React from 'react'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-export interface AnchorProps {
-  name?: string
-  children?: ReactNode
-  className?: string
-  style?: CSSProperties
-}
+import type { AnchorProps } from './types'
 
 // 序列控件的锚点
 const Anchor = ({
@@ -36,3 +31,5 @@ const Anchor = ({
 }
 
 export default Anchor
+
+export type { AnchorProps } from './types'

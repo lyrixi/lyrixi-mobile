@@ -9,23 +9,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface CheckboxRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface CheckboxProps {
-  checked?: boolean
-  readOnly?: boolean
-  disabled?: boolean
-  variant?: string
-  style?: React.CSSProperties
-  className?: string
-  children?: React.ReactNode
-  iconRender?: (props: { checked?: boolean }) => React.ReactNode
-  iconPosition?: 'left' | 'right'
-  onChange?: (checked: boolean) => void
-}
+import type { CheckboxProps, CheckboxRef } from './types'
 
 // 复选框
 const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
@@ -89,3 +73,5 @@ const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
 )
 
 export default Checkbox
+
+export type { CheckboxProps, CheckboxRef } from './types'
