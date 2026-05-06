@@ -86,8 +86,6 @@ const FormLabel = forwardRef<ColRef, FormLabelProps>(
     )
   }
 )
-
-export default FormLabel
-
 export type { FormLabelProps } from './types'
 
+export default FormLabel

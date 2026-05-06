@@ -87,8 +87,6 @@ const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
     </Button>
   )
 })
-
-export default Combo
-
 export type { ComboProps, ComboRef } from './types'
 
+export default Combo

@@ -26,7 +26,6 @@ window.addEventListener(
   false
 )
 
-export type { AppLoadResult, AppProps, InitBridgeConfig, MapConfig, ThemeConfig } from './types'
 
 // Cast Result to avoid missing required props errors from untyped component
 const ResultComponent = Result as React.ComponentType<{
@@ -146,4 +145,5 @@ function App({
   return <>{children}</>
 }
 
+export type { AppLoadResult, AppProps, InitBridgeConfig, MapConfig, ThemeConfig } from './types'
 export default App

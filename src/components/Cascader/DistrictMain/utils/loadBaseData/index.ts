@@ -1,5 +1,4 @@
 
-export type { ApiResult } from '../../api/types'
 
 import type { ApiResult, DistrictMainApiDistrictNode } from '../../api/types'
 
@@ -63,4 +62,5 @@ async function loadBaseData({
   }
 }
 
+export type { ApiResult } from '../../api/types'
 export default loadBaseData

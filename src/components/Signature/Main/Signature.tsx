@@ -190,8 +190,6 @@ const Signature = (
     </div>
   )
 }
-
-export default forwardRef<SignatureRef, SignatureProps>(Signature)
-
 export type { SignatureProps, SignatureRef } from './types'
 
+export default forwardRef<SignatureRef, SignatureProps>(Signature)

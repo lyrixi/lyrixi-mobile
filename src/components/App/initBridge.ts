@@ -9,7 +9,6 @@ import Bridge from './../../utils/Bridge'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { InitBridgeConfig, InitBridgeResult } from './types'
 
 /**
  * 初始化桥接：先加载 Bridge，再配置鉴权
@@ -69,4 +68,5 @@ function initBridge({
   })
 }
 
+export type { InitBridgeConfig, InitBridgeResult } from './types'
 export default initBridge

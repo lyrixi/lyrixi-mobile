@@ -8,7 +8,6 @@
 
 import type { GeoUtilType, Line, Point, Polygon } from './types'
 
-export type { GeoUtilType, Line, Point, Polygon } from './types'
 
 const GeoUtil = {} as GeoUtilType
 /**
@@ -466,4 +465,5 @@ GeoUtil.isInChina = function (point) {
   )
 }
 
+export type { GeoUtilType, Line, Point, Polygon } from './types'
 export default GeoUtil

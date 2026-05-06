@@ -50,7 +50,6 @@ const Img = ({
     />
   )
 }
+export type { MediaImgProps } from './types'
 
 export default Img
-
-export type { MediaImgProps } from './types'

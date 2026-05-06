@@ -1,7 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useEffect, useRef } from 'react'
 import type { IFrameProps, IFrameRef } from './types'
 
-export type { IFrameProps, IFrameRef } from './types'
 
 // 全屏iframe
 const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, style, className }, ref) {
@@ -44,4 +43,5 @@ const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, s
   )
 })
 
+export type { IFrameProps, IFrameRef } from './types'
 export default IFrame

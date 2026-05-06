@@ -8,7 +8,6 @@ import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewItem from './formatViewItem'
 
-export type { ListDemoMainProps } from './types'
 
 // 简便的列表组件, 只需要传入url和params即可
 const Main = (
@@ -37,4 +36,5 @@ const Main = (
   )
 }
 
+export type { ListDemoMainProps } from './types'
 export default forwardRef<ListPaginationRef, ListDemoMainProps>(Main)

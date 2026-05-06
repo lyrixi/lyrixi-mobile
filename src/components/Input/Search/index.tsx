@@ -114,7 +114,6 @@ const Search = forwardRef<InputTextRef, SearchProps>(
     )
   }
 )
+export type { SearchProps } from './types'
 
 export default Search
-
-export type { SearchProps } from './types'

@@ -177,8 +177,6 @@ const InputOTP = forwardRef<OTPRef, OTPProps>(
   }
 )
 
-export default InputOTP
-
 export type {
   OTPInputNumberProps,
   OTPInputNumberRef,
@@ -189,3 +187,4 @@ export type {
   OTPRef
 } from './types'
 
+export default InputOTP

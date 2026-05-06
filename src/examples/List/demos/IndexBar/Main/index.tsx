@@ -11,7 +11,6 @@ import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewList from './formatViewList'
 
-export type { IndexBarListMainProps } from './types'
 
 const Main = (
   { cacheName, virtual, queryParams, onLoad, onScrollEnd }: IndexBarListMainProps,
@@ -41,4 +40,5 @@ const Main = (
   )
 }
 
+export type { IndexBarListMainProps } from './types'
 export default forwardRef<ListPaginationRef, IndexBarListMainProps>(Main)

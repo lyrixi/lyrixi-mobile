@@ -14,7 +14,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { PolygonProps, PolygonRef } from './types'
 
 // 多边形
 const Polygon = forwardRef<PolygonRef | null, PolygonProps>(
@@ -95,4 +94,5 @@ const Polygon = forwardRef<PolygonRef | null, PolygonProps>(
   }
 )
 
+export type { PolygonProps, PolygonRef } from './types'
 export default Polygon

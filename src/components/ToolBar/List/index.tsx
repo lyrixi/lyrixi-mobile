@@ -100,7 +100,6 @@ function ToolBarList({
 
 // Component Name, for compact
 ;(ToolBarList as typeof ToolBarList & { componentName?: string }).componentName = 'ToolBar.List'
+export type { ToolBarListProps } from './types'
 
 export default ToolBarList
-
-export type { ToolBarListProps } from './types'

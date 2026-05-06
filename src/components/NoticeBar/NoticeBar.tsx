@@ -12,7 +12,6 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { NoticeBarProps, NoticeBarRef } from './types'
 
 // 通告栏
 const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
@@ -111,4 +110,5 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
   }
 )
 
+export type { NoticeBarProps, NoticeBarRef } from './types'
 export default NoticeBar

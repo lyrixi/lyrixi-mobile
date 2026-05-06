@@ -9,7 +9,6 @@ import Polyline from './../../components/Polyline'
 import type { LinePoint } from './../../components/Polyline/addPolyline'
 import type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from './types'
 
-export type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from './types'
 
 // 地图标注
 const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMarkers(
@@ -158,4 +157,5 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
   )
 })
 
+export type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from './types'
 export default MapMarkers

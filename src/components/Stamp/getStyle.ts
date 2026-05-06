@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { StampStyleInput } from './types'
 
 function getStyle({ color, style }: StampStyleInput) {
   // 判断颜色是否在枚举值中
@@ -32,4 +31,5 @@ function getStyle({ color, style }: StampStyleInput) {
   return { style: newStyle, className: newClassName }
 }
 
+export type { StampStyleInput } from './types'
 export default getStyle

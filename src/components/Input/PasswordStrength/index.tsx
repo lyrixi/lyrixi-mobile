@@ -73,8 +73,6 @@ const PasswordStrength = (
     </ul>
   )
 }
-
-export default forwardRef(PasswordStrength)
-
 export type { PasswordStrengthProps, PasswordStrengthRef } from './types'
 
+export default forwardRef(PasswordStrength)

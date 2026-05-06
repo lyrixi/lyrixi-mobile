@@ -148,8 +148,6 @@ const Rate = forwardRef<RateRef, RateProps>(
     )
   }
 )
-
-export default Rate
-
 export type { RateIconParams, RateProps, RateRef } from './types'
 
+export default Rate

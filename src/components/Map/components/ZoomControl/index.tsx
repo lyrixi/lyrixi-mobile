@@ -6,7 +6,6 @@ import type { ZoomControlProps, ZoomControlRef } from './types'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-export type { ZoomControlProps, ZoomControlRef } from './types'
 
 // 缩放控件
 const ZoomControl = forwardRef<ZoomControlRef, ZoomControlProps>(
@@ -53,4 +52,5 @@ const ZoomControl = forwardRef<ZoomControlRef, ZoomControlProps>(
   )
 })
 
+export type { ZoomControlProps, ZoomControlRef } from './types'
 export default ZoomControl

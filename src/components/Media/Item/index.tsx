@@ -81,7 +81,6 @@ const Item = ({
     </div>
   )
 }
+export type { MediaItemProps } from './types'
 
 export default Item
-
-export type { MediaItemProps } from './types'

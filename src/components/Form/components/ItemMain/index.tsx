@@ -77,8 +77,6 @@ const FormMain = forwardRef<ColRef, FormMainProps>(
     )
   }
 )
-
-export default FormMain
-
 export type { FormMainProps } from './types'
 
+export default FormMain

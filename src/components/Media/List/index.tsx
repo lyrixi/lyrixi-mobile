@@ -68,7 +68,6 @@ const List = ({
     </>
   )
 }
+export type { MediaListComponentProps } from './types'
 
 export default List
-
-export type { MediaListComponentProps } from './types'

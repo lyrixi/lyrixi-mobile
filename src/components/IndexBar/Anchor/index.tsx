@@ -30,7 +30,6 @@ const Anchor = ({
     </div>
   )
 }
+export type { AnchorProps } from './types'
 
 export default Anchor
-
-export type { AnchorProps } from './types'

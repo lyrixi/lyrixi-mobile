@@ -10,7 +10,6 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { NavigationProps } from './types'
 
 // 导航
 function Navigation({ type, longitude, latitude, name, address, map }: NavigationProps) {
@@ -38,4 +37,6 @@ function Navigation({ type, longitude, latitude, name, address, map }: Navigatio
     </span>
   )
 }
+
+export type { NavigationProps } from './types'
 export default Navigation

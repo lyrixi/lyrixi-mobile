@@ -173,8 +173,6 @@ const Url = forwardRef<InputTextRef, UrlProps>(
     )
   }
 )
-
-export default Url
-
 export type { UrlProps } from './types'
 
+export default Url

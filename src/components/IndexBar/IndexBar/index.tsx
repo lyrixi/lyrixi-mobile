@@ -184,7 +184,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
     return Node
   }
 )
+export type { IndexBarProps, IndexBarRef } from './types'
 
 export default IndexBar
-
-export type { IndexBarProps, IndexBarRef } from './types'

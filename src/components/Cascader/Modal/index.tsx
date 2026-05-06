@@ -127,7 +127,6 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
     )
   }
 )
+export type { CascaderModalProps } from './types'
 
 export default CascaderModal
-
-export type { CascaderModalProps } from './types'

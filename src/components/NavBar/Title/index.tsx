@@ -38,8 +38,6 @@ const NavBarTitle = forwardRef<NavBarTitleRef, NavBarTitleProps>(
     )
   }
 )
-
-export default NavBarTitle
-
 export type { NavBarTitleProps, NavBarTitleRef } from './types'
 
+export default NavBarTitle

@@ -164,7 +164,6 @@ const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
     </main>
   )
 })
+export type { PageMainProps, PageMainRef } from './types'
 
 export default Main
-
-export type { PageMainProps, PageMainRef } from './types'

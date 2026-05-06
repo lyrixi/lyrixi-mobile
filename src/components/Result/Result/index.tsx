@@ -7,7 +7,6 @@ import type { ResultProps } from './types'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-export type { ResultProps } from './types'
 
 // 结果页, status: empty|500|success|waiting|info|warning|error
 function Result({
@@ -71,4 +70,5 @@ function Result({
   )
 }
 
+export type { ResultProps } from './types'
 export default Result

@@ -15,7 +15,6 @@ import SafeArea from './../SafeArea'
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { FloatProps, FloatRef } from './types'
 
 type FloatElement = HTMLDivElement & { initialPosition?: boolean }
 
@@ -166,4 +165,5 @@ const Float = forwardRef<FloatRef, FloatProps>(function Float(
   return createPortal(Node, portal || document.getElementById('root') || document.body)
 })
 
+export type { FloatProps, FloatRef } from './types'
 export default Float

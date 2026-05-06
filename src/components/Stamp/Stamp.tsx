@@ -11,7 +11,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { StampProps, StampRef } from './types'
 
 // 印章控件
 const Stamp = forwardRef<StampRef, StampProps>(({
@@ -48,4 +47,5 @@ const Stamp = forwardRef<StampRef, StampProps>(({
   )
 })
 
+export type { StampProps, StampRef } from './types'
 export default Stamp

@@ -173,7 +173,6 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
 
 // Component Name, for compact
 ;(Filter as typeof Filter & { componentName?: string }).componentName = 'ToolBar.Filter'
+export type { ToolBarFilterProps, ToolBarFilterRef } from './types'
 
 export default Filter
-
-export type { ToolBarFilterProps, ToolBarFilterRef } from './types'

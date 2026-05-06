@@ -14,7 +14,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { PolylineProps, PolylineRef } from './types'
 
 // 批量折线
 const Polyline = forwardRef<PolylineRef | null, PolylineProps>(
@@ -85,4 +84,5 @@ const Polyline = forwardRef<PolylineRef | null, PolylineProps>(
   }
 )
 
+export type { PolylineProps, PolylineRef } from './types'
 export default Polyline

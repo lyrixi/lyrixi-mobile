@@ -14,7 +14,6 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
 
 // 卡片选择
 const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProps>(
@@ -198,4 +197,5 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
   }
 )
 
+export type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
 export default ActionSheetCombo

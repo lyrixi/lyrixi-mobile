@@ -33,8 +33,6 @@ const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
     </div>
   )
 }
-
-export default Item
-
 export type { TransferItemProps } from './types'
 
+export default Item

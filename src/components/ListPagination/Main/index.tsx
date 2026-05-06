@@ -193,7 +193,6 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
     )
   }
 )
+export type { ListPaginationProps, ListPaginationRef } from './types'
 
 export default ListPagination
-
-export type { ListPaginationProps, ListPaginationRef } from './types'

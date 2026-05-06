@@ -80,8 +80,6 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     )
   }
 )
-
-export default Modal
-
 export type { ModalProps, ModalRef } from './types'
 
+export default Modal

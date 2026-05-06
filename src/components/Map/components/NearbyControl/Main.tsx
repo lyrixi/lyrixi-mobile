@@ -11,7 +11,6 @@ import { Result } from 'lyrixi-mobile'
 测试使用-end */
 
 
-export type { MainProps } from './types'
 
 // 附近结果
 function Main({ result, onChange }: MainProps) {
@@ -52,4 +51,6 @@ function Main({ result, onChange }: MainProps) {
     </div>
   )
 }
+
+export type { MainProps } from './types'
 export default Main

@@ -23,7 +23,6 @@ function ListBar({ value, list, onChange }: ListBarProps) {
     />
   )
 }
-export default ListBar
-
 export type { ListBarProps } from './types'
 
+export default ListBar

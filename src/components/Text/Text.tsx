@@ -77,8 +77,6 @@ const Text = forwardRef<TextRef, TextProps>(
     )
   }
 )
-
-export default Text
-
 export type { TextEllipsisConfig, TextProps, TextRef } from './types'
 
+export default Text

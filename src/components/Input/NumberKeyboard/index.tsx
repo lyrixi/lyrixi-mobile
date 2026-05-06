@@ -150,8 +150,6 @@ const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
     )
   }
 )
-
-export default NumberKeyboard
-
 export type { NumberKeyboardProps, NumberKeyboardRef } from './types'
 
+export default NumberKeyboard

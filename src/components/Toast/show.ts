@@ -7,7 +7,6 @@ import type { ShowProps } from './types'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
-export type { ShowProps } from './types'
 
 type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
 
@@ -126,4 +125,5 @@ function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
   return render()
 }
 
+export type { ShowProps } from './types'
 export default show

@@ -112,8 +112,6 @@ const Group = forwardRef<GroupRef, GroupProps>(
     )
   }
 )
-
-export default Group
-
 export type { GroupProps, GroupRef } from './types'
 
+export default Group

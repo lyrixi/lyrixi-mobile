@@ -76,8 +76,6 @@ function FilterModal(
     </Modal>
   )
 }
-
-export default forwardRef(FilterModal)
-
 export type { FilterModalProps } from './types'
 
+export default forwardRef(FilterModal)

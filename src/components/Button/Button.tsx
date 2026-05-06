@@ -11,7 +11,6 @@ import Flex from './../Flex'
 import { Flex } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { ButtonProps, ButtonRef } from './types'
 
 const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
   {
@@ -76,4 +75,5 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
 type ButtonWithName = typeof Button & { componentName: string }
 ;(Button as ButtonWithName).componentName = 'Button'
 
+export type { ButtonProps, ButtonRef } from './types'
 export default Button as ButtonWithName

@@ -1,12 +1,18 @@
-# AI 开发规范
+# 功能说明
 
 ## rules 规则
 
-- **`develop-locale.mdc`**：定义了国际化规范
-- **`develop-name.mdc`**：生成代码的命名规范
-- **`develop-sequence.mdc`**：生成代码的顺序规范
+- **`lyrixi-develop-locale.mdc`**：定义了国际化规范
+- **`lyrixi-develop-name-file.mdc`**：定义了文件命名规范
+- **`lyrixi-develop-name.mdc`**：定义了方法变量的命名规范
+- **`lyrixi-develop-sequence-import.mdc`**：定义了代码导入和导出顺序规范
+- **`lyrixi-develop-sequence.mdc`**：定义了代码的顺序规范
 
-## DSL 生成生成级代码(用 DSL 提示词)
+## skills
+
+- **`lyrixi-base-page-dsl`**：用于生成新增、编辑、详情页面, 用户选择此 skill, 输入自定义`DSL.json`即可生成代码.
+
+## lyrixi-knowledge
 
 - **`lyrixi-knowledge/components`**：定义了组件的使用方法
 - **`lyrixi-knowledge/utils`**：定义了工具的使用方法

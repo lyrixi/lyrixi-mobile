@@ -104,8 +104,6 @@ const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
     )
   }
 )
-
-export default NavBarModal
-
 export type { NavBarModalProps } from './types'
 
+export default NavBarModal

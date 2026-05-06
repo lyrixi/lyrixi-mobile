@@ -1,6 +1,5 @@
 import type { HideOptions } from './types'
 
-export type { HideOptions } from './types'
 
 type ExtendedHTMLElement = HTMLElement & { timeout?: ReturnType<typeof setTimeout> }
 
@@ -18,4 +17,5 @@ function hide({ onClose }: HideOptions = {}) {
   }
 }
 
+export type { HideOptions } from './types'
 export default hide

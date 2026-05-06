@@ -25,7 +25,6 @@ import Result from './../../../Result'
 import { LocaleUtil, GeoUtil, Result } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { MapContainerAPI, MapContainerProps } from './types'
 
 const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   (
@@ -362,4 +361,5 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   }
 )
 
+export type { MapContainerAPI, MapContainerProps } from './types'
 export default MapContainer

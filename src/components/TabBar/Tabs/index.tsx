@@ -121,8 +121,6 @@ const Tabs = forwardRef<TabsRef, TabsProps>(
     )
   }
 )
-
-export default Tabs
-
 export type { TabsProps, TabsRef } from './types'
 
+export default Tabs

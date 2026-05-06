@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { RowProps, RowRef } from './types'
 
 const Row = forwardRef<RowRef, RowProps>(function Row({ style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -33,4 +32,5 @@ const Row = forwardRef<RowRef, RowProps>(function Row({ style, className, childr
   )
 })
 
+export type { RowProps, RowRef } from './types'
 export default Row

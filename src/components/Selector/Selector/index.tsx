@@ -176,7 +176,6 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     )
   }
 )
+export type { SelectorEllipsis, SelectorItem, SelectorProps, SelectorRef } from './types'
 
 export default Selector
-
-export type { SelectorEllipsis, SelectorItem, SelectorProps, SelectorRef } from './types'

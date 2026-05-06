@@ -32,7 +32,6 @@ const Aside = forwardRef<PageAsideRef, PageAsideProps>(function Aside(
     </aside>
   )
 })
+export type { PageAsideProps, PageAsideRef } from './types'
 
 export default Aside
-
-export type { PageAsideProps, PageAsideRef } from './types'

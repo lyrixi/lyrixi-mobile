@@ -11,7 +11,6 @@ import Compact from './Compact'
 import { DOMUtil, Flex } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { FlexAlign, FlexDirection, FlexJustify, FlexProps, FlexRef } from './types'
 
 function getStyle({ gap, justify, align, direction, wrap }: FlexStyleInput): CSSProperties {
   const gapStyle: CSSProperties = {}
@@ -93,4 +92,5 @@ type FlexWithCompact = typeof Flex & { Compact: typeof Compact }
 
 ;(Flex as FlexWithCompact).Compact = Compact
 
+export type { FlexAlign, FlexDirection, FlexJustify, FlexProps, FlexRef } from './types'
 export default Flex as FlexWithCompact

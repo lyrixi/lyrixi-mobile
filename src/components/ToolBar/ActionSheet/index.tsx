@@ -130,7 +130,6 @@ const ToolBarActionSheet = forwardRef<
 // Component Name, for compact
 ;(ToolBarActionSheet as typeof ToolBarActionSheet & { componentName?: string }).componentName =
   'ToolBar.ActionSheet'
+export type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'
 
 export default ToolBarActionSheet
-
-export type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'

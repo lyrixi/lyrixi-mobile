@@ -76,8 +76,6 @@ const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
     )
   }
 )
-
-export default Item
-
 export type { SelectorItemProps, SelectorItemRef } from './types'
 
+export default Item

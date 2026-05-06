@@ -14,7 +14,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { CirclesProps, CirclesRef } from './types'
 
 // 批量圈
 const Circles = forwardRef<CirclesRef | null, CirclesProps>(
@@ -83,4 +82,5 @@ const Circles = forwardRef<CirclesRef | null, CirclesProps>(
   }
 )
 
+export type { CirclesProps, CirclesRef } from './types'
 export default Circles

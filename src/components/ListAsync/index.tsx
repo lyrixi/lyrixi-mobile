@@ -256,7 +256,6 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
     )
   }
 )
+export type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
 
 export default Main
-
-export type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'

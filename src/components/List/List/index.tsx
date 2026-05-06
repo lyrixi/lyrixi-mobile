@@ -128,7 +128,6 @@ const List = (
     </div>
   )
 }
+export type { ListProps, ListRef } from './types'
 
 export default forwardRef<ListRef, ListProps>(List)
-
-export type { ListProps, ListRef } from './types'

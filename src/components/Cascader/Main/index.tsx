@@ -392,7 +392,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     )
   }
 )
+export type { CascaderMainProps, CascaderMainRef } from './types'
 
 export default CascaderMain
-
-export type { CascaderMainProps, CascaderMainRef } from './types'

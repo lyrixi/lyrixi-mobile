@@ -196,7 +196,6 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
     )
   }
 )
+export type { ModalPaginationProps, ModalPaginationRef } from './types'
 
 export default Modal
-
-export type { ModalPaginationProps, ModalPaginationRef } from './types'

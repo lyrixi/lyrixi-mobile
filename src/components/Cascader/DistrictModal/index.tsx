@@ -153,7 +153,6 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
     )
   }
 )
+export type { DistrictModalProps } from './types'
 
 export default DistrictModal
-
-export type { DistrictModalProps } from './types'

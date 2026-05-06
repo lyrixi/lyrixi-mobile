@@ -101,8 +101,6 @@ const Combo = (
     </>
   )
 }
-
-export default forwardRef<ComboAddRef, ComboAddProps>(Combo)
-
 export type { ComboAddProps, ComboAddRef } from './types'
 
+export default forwardRef<ComboAddRef, ComboAddProps>(Combo)

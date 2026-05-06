@@ -14,7 +14,6 @@ import Button from './../../Button'
 import { ActionSheet, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { FooterBarButtonProps, FooterBarButtonRef } from './types'
 
 const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
   (
@@ -128,4 +127,5 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
 type FooterBarButtonWithName = typeof FooterBarButton & { componentName: string }
 ;(FooterBarButton as FooterBarButtonWithName).componentName = 'FooterBar.Button'
 
+export type { FooterBarButtonProps, FooterBarButtonRef } from './types'
 export default FooterBarButton as FooterBarButtonWithName

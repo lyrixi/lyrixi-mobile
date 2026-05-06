@@ -194,11 +194,11 @@ const CascaderDistrictMain = forwardRef<
   }
 )
 
-export default CascaderDistrictMain
-
 export type {
   DistrictMainProps,
   LoadCountriesFn,
   LoadCountryRegionsFn,
   LoadStreetsFn
 } from './types'
+
+export default CascaderDistrictMain

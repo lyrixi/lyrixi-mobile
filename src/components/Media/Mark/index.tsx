@@ -38,7 +38,6 @@ const Mark = forwardRef<HTMLDivElement, MediaMarkProps>(function Mark(
     </div>
   )
 })
+export type { MediaMarkProps } from './types'
 
 export default Mark
-
-export type { MediaMarkProps } from './types'

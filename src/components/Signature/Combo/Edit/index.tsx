@@ -55,8 +55,6 @@ const Edit = forwardRef<EditRef, EditProps>(
     )
   }
 )
-
-export default Edit
-
 export type { EditProps, EditRef } from './types'
 
+export default Edit

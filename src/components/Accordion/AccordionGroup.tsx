@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { AccordionGroupProps, AccordionGroupRef } from './types'
 
 const AccordionGroup = forwardRef<AccordionGroupRef, AccordionGroupProps>(
   (
@@ -101,4 +100,5 @@ const AccordionGroup = forwardRef<AccordionGroupRef, AccordionGroupProps>(
   }
 )
 
+export type { AccordionGroupProps, AccordionGroupRef } from './types'
 export default AccordionGroup

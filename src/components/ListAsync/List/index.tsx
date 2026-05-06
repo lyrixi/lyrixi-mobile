@@ -101,7 +101,6 @@ const Main = forwardRef<MainRef, MainProps>(
     )
   }
 )
+export type { MainProps, MainRef } from './types'
 
 export default Main
-
-export type { MainProps, MainRef } from './types'

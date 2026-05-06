@@ -98,7 +98,6 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
     )
   }
 )
+export type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
 
 export default CheckboxGroup
-
-export type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'

@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { BadgeProps, BadgeRef } from './types'
 
 // 数值标
 const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
@@ -59,4 +58,5 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
   )
 })
 
+export type { BadgeProps, BadgeRef } from './types'
 export default Badge

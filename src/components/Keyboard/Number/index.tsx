@@ -255,7 +255,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
     return createPortal(KeyboardNode, portal || document.getElementById('root') || document.body)
   }
 )
+export type { KeyboardAction, KeyboardNumberProps, KeyboardNumberRef } from './types'
 
 export default KeyboardNumber
-
-export type { KeyboardAction, KeyboardNumberProps, KeyboardNumberRef } from './types'

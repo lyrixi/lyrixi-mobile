@@ -22,7 +22,6 @@ const Delete = ({
     </div>
   )
 }
+export type { MediaDeleteProps } from './types'
 
 export default Delete
-
-export type { MediaDeleteProps } from './types'

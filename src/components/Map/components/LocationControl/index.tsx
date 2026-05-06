@@ -25,7 +25,6 @@ function isErrorResult(
   )
 }
 
-export type { LocationControlProps, LocationControlRef } from './types'
 
 // 定位控件
 const LocationControl = forwardRef<LocationControlRef, LocationControlProps>(
@@ -91,4 +90,5 @@ const LocationControl = forwardRef<LocationControlRef, LocationControlProps>(
   )
 })
 
+export type { LocationControlProps, LocationControlRef } from './types'
 export default LocationControl

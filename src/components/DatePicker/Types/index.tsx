@@ -161,7 +161,6 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
     </div>
   )
 })
+export type { DatePickerTypesProps } from './types'
 
 export default Types
-
-export type { DatePickerTypesProps } from './types'

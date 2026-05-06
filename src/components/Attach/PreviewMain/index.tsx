@@ -24,7 +24,6 @@ import {
 } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { AttachPreviewMainProps, AttachPreviewMainRef } from './types'
 
 // 附件预览
 const AttachPreviewMain = forwardRef<AttachPreviewMainRef, AttachPreviewMainProps>(function AttachPreviewMain(
@@ -91,4 +90,5 @@ const AttachPreviewMain = forwardRef<AttachPreviewMainRef, AttachPreviewMainProp
   )
 })
 
+export type { AttachPreviewMainProps, AttachPreviewMainRef } from './types'
 export default AttachPreviewMain

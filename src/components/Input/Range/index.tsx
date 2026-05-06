@@ -159,8 +159,6 @@ const Range = forwardRef<RangeRef, RangeProps>(
     )
   }
 )
-
-export default Range
-
 export type { RangeProps, RangeRef } from './types'
 
+export default Range

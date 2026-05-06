@@ -27,7 +27,6 @@ const Reload = ({
     </div>
   )
 }
+export type { MediaReloadProps } from './types'
 
 export default Reload
-
-export type { MediaReloadProps } from './types'

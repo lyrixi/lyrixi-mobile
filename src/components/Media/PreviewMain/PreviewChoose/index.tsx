@@ -89,7 +89,6 @@ const Choose = ({
     </div>
   )
 }
+export type { PreviewChooseProps } from './types'
 
 export default Choose
-
-export type { PreviewChooseProps } from './types'

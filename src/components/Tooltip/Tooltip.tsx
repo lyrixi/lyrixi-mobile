@@ -173,8 +173,6 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
     </>
   )
 })
-
-export default Tooltip
-
 export type { TooltipProps } from './types'
 
+export default Tooltip

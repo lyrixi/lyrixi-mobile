@@ -2,7 +2,6 @@ import sortValue from './sortValue'
 import findDistrictLeafIndex from './findDistrictLeafIndex'
 
 
-export type { DistrictItem } from './types'
 
 import type { DistrictItem } from './types'
 
@@ -70,4 +69,5 @@ function formatDistrictValue(
   return value
 }
 
+export type { DistrictItem } from './types'
 export default formatDistrictValue

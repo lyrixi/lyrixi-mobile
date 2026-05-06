@@ -58,8 +58,6 @@ const FormComponent = forwardRef<FormItemsRef, FormComponentProps>(
     )
   }
 )
-
-export default FormComponent
-
 export type { FormComponentProps } from './types'
 
+export default FormComponent

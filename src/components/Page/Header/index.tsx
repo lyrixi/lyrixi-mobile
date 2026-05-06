@@ -28,7 +28,6 @@ const Header = forwardRef<PageHeaderRef, PageHeaderProps>(function Header(
     </header>
   )
 })
+export type { PageHeaderProps, PageHeaderRef } from './types'
 
 export default Header
-
-export type { PageHeaderProps, PageHeaderRef } from './types'

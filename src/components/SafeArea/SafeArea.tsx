@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { SafeAreaProps, SafeAreaRef, SafeAreaPosition, SafeAreaType } from './types'
 
 const SafeArea = forwardRef<SafeAreaRef, SafeAreaProps>(function SafeArea(
   { type = 'height', position = 'bottom', style, className },
@@ -34,4 +33,5 @@ const SafeArea = forwardRef<SafeAreaRef, SafeAreaProps>(function SafeArea(
   return <div ref={rootRef} style={style} className={mergedClassName} />
 })
 
+export type { SafeAreaProps, SafeAreaRef, SafeAreaPosition, SafeAreaType } from './types'
 export default SafeArea

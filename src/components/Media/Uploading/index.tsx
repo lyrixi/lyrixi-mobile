@@ -39,7 +39,6 @@ const Uploading = ({
     </div>
   )
 }
+export type { MediaUploadingProps } from './types'
 
 export default Uploading
-
-export type { MediaUploadingProps } from './types'

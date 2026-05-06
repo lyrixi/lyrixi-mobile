@@ -95,8 +95,6 @@ const Main = (
     </div>
   )
 }
-
-export default forwardRef<SignatureMainRef, SignatureMainProps>(Main)
-
 export type { SignatureMainProps, SignatureMainRef } from './types'
 
+export default forwardRef<SignatureMainRef, SignatureMainProps>(Main)

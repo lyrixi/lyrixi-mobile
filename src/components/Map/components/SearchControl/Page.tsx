@@ -24,7 +24,6 @@ function isQueryResult(v: unknown): v is SearchQueryNearbyResult {
   return typeof v === 'object' && v !== null
 }
 
-export type { SearchPageProps } from './types'
 
 // 搜索
 function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
@@ -113,4 +112,6 @@ function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
     </Page>
   )
 }
+
+export type { SearchPageProps } from './types'
 export default SearchPage

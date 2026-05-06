@@ -121,8 +121,6 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
     )
   }
 )
-
-export default DropdownModal
-
 export type { DropdownModalProps } from './types'
 
+export default DropdownModal

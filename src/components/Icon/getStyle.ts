@@ -11,7 +11,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { IconStyleInput } from './types'
 
 function getStyle({
   color,
@@ -64,4 +63,5 @@ function getStyle({
   return { style: newStyle, className: newClassName }
 }
 
+export type { IconStyleInput } from './types'
 export default getStyle

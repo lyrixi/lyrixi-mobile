@@ -257,8 +257,6 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
     )
   }
 )
-
-export default NumberBox
-
 export type { NumberBoxProps, NumberBoxRef } from './types'
 
+export default NumberBox

@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { CardProps, CardRef } from './types'
 
 const Card = forwardRef<CardRef, CardProps>(function Card({ style, className, children, onClick }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -34,4 +33,5 @@ const Card = forwardRef<CardRef, CardProps>(function Card({ style, className, ch
   )
 })
 
+export type { CardProps, CardRef } from './types'
 export default Card

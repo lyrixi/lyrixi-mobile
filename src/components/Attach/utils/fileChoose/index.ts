@@ -17,7 +17,6 @@ import Toast from './../../../Toast'
 import { ObjectUtil, LocaleUtil, Toast} from 'lyrixi-mobile'
 测试使用-end */
 
-export type { FileChooseOptions } from './types'
 
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
@@ -167,4 +166,5 @@ async function fileChoose({
   return uploaded ?? newList
 }
 
+export type { FileChooseOptions } from './types'
 export default fileChoose

@@ -10,7 +10,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { FooterBarProps, FooterBarRef } from './types'
 
 const FooterBar = forwardRef<FooterBarRef, FooterBarProps>(
   (
@@ -47,4 +46,5 @@ const FooterBar = forwardRef<FooterBarRef, FooterBarProps>(
   }
 )
 
+export type { FooterBarProps, FooterBarRef } from './types'
 export default FooterBar

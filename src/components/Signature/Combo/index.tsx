@@ -66,8 +66,6 @@ const Combo = (
     />
   )
 }
-
-export default forwardRef<ComboInstanceRef, ComboProps>(Combo)
-
 export type { ComboInstanceRef, ComboProps } from './types'
 
+export default forwardRef<ComboInstanceRef, ComboProps>(Combo)

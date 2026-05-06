@@ -11,7 +11,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { TabsProps } from './types'
 
 // 选项卡
 function Tabs({ tab, onChange }: TabsProps) {
@@ -37,4 +36,6 @@ function Tabs({ tab, onChange }: TabsProps) {
     </div>
   )
 }
+
+export type { TabsProps } from './types'
 export default Tabs

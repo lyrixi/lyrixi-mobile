@@ -11,7 +11,6 @@ import MathUtil from './../../../utils/MathUtil'
 import { DOMUtil, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { CompactContextValue, CompactProps } from './types'
 
 const Context = createContext<CompactContextValue | null>(null)
 
@@ -70,4 +69,5 @@ const Compact = CompactBase as CompactComponent
 Compact.Context = Context
 Compact.useContext = useCompactContext
 
+export type { CompactContextValue, CompactProps } from './types'
 export default Compact

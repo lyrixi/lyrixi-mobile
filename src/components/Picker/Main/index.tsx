@@ -129,7 +129,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     </div>
   )
 })
+export type { PickerMainProps, PickerMainRef } from './types'
 
 export default Main
-
-export type { PickerMainProps, PickerMainRef } from './types'

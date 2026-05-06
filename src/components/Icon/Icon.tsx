@@ -2,7 +2,6 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
 import type { IconProps, IconRef } from './types'
 
-export type { IconProps, IconRef } from './types'
 
 const Icon = forwardRef<IconRef, IconProps>(function Icon(
   {
@@ -51,4 +50,5 @@ const Icon = forwardRef<IconRef, IconProps>(function Icon(
   )
 })
 
+export type { IconProps, IconRef } from './types'
 export default Icon

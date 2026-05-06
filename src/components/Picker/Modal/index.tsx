@@ -145,7 +145,6 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
     )
   }
 )
+export type { PickerModalProps } from './types'
 
 export default Modal
-
-export type { PickerModalProps } from './types'

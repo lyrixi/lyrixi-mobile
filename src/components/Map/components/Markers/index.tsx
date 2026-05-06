@@ -17,7 +17,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { MarkersProps, MarkersHandle, MapPoint, MapCoord } from './types'
 
 // 批量标注
 const Markers = forwardRef<MarkersHandle, MarkersProps>(
@@ -143,4 +142,5 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
   }
 )
 
+export type { MarkersProps, MarkersHandle, MapPoint, MapCoord } from './types'
 export default Markers

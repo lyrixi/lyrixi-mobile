@@ -14,7 +14,6 @@ import { ToolBar } from 'lyrixi-mobile'
 
 const MapSearchBar = SearchBar as MapSearchBarExoticComponent
 
-export type { SearchControlProps } from './types'
 
 // 搜索
 const SearchControl = forwardRef<unknown, SearchControlProps>(({ map, onChange, style, className }, ref) => {
@@ -41,4 +40,6 @@ const SearchControl = forwardRef<unknown, SearchControlProps>(({ map, onChange, 
     </>
   )
 })
+
+export type { SearchControlProps } from './types'
 export default SearchControl

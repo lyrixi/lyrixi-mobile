@@ -210,7 +210,6 @@ const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
     )
   }
 )
+export type { ComboPaginationProps, ComboPaginationRef } from './types'
 
 export default Combo
-
-export type { ComboPaginationProps, ComboPaginationRef } from './types'

@@ -63,8 +63,6 @@ const Head = forwardRef<NavBarModalNavBarRef, NavBarModalNavBarProps>(
     )
   }
 )
-
-export default Head
-
 export type { NavBarModalNavBarProps, NavBarModalNavBarRef } from './types'
 
+export default Head

@@ -11,7 +11,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { VideoPlayerProps, VideoPlayerRef } from './types'
 
 // 视频预览
 const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
@@ -69,4 +68,5 @@ const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
 
 VideoPlayer.displayName = 'VideoPlayer'
 
+export type { VideoPlayerProps, VideoPlayerRef } from './types'
 export default VideoPlayer

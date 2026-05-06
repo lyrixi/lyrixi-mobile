@@ -12,7 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { UploadButtonProps, UploadButtonRef } from './types'
 
 // 上传按钮
 const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function UploadButton(
@@ -57,4 +56,5 @@ const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function Upl
   )
 })
 
+export type { UploadButtonProps, UploadButtonRef } from './types'
 export default UploadButton

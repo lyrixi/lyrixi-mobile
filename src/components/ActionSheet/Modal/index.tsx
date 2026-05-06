@@ -13,7 +13,6 @@ import Modal, { ModalRef } from './../../Modal/Modal'
 import { DOMUtil, LocaleUtil, Modal } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { ActionSheetItem, ActionSheetModalProps } from './types'
 
 const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
   (
@@ -144,4 +143,5 @@ const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
   }
 )
 
+export type { ActionSheetItem, ActionSheetModalProps } from './types'
 export default ActionSheetModal

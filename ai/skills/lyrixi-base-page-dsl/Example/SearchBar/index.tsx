@@ -5,8 +5,6 @@ import type { SearchBarProps } from './types'
 
 const locale = LocaleUtil.locale
 
-export type { SearchBarProps } from './types'
-
 const SearchBar: FC<SearchBarProps> = ({ queryParams, onQuery }) => {
   return (
     <ToolBar>
@@ -18,5 +16,7 @@ const SearchBar: FC<SearchBarProps> = ({ queryParams, onQuery }) => {
     </ToolBar>
   )
 }
+
+export type { SearchBarProps } from './types'
 
 export default SearchBar

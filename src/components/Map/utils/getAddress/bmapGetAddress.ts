@@ -11,7 +11,6 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 
-export type { AddressParams } from './types'
 
 // 百度地址逆解析
 function bmapGetAddress(params: AddressParams): Promise<unknown> {
@@ -57,4 +56,5 @@ function bmapGetAddress(params: AddressParams): Promise<unknown> {
   })
 }
 
+export type { AddressParams } from './types'
 export default bmapGetAddress

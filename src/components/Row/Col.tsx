@@ -6,7 +6,6 @@ import type { ColProps, ColRef } from './types'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
-export type { ColProps, ColRef } from './types'
 
 const Col = forwardRef<ColRef, ColProps>(function Col({ span, style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -33,4 +32,5 @@ const Col = forwardRef<ColRef, ColProps>(function Col({ span, style, className, 
   )
 })
 
+export type { ColProps, ColRef } from './types'
 export default Col

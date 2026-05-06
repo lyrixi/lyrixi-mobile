@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { DividerProps, DividerRef } from './types'
 
 const Divider = forwardRef<DividerRef, DividerProps>(function Divider({ style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -33,4 +32,5 @@ const Divider = forwardRef<DividerRef, DividerProps>(function Divider({ style, c
   )
 })
 
+export type { DividerProps, DividerRef } from './types'
 export default Divider

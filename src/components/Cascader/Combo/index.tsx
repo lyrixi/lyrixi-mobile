@@ -13,7 +13,6 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { CascaderComboProps, CascaderComboRef } from './types'
 
 // Cascader
 const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
@@ -133,4 +132,5 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
   }
 )
 
+export type { CascaderComboProps, CascaderComboRef } from './types'
 export default CascaderCombo

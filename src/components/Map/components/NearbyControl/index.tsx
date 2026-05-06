@@ -17,7 +17,6 @@ import Loading from './../../../Loading'
 import { LocaleUtil, Loading } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { NearbyControlProps, MapValue } from './types'
 
 // 附近推荐
 const Nearby = forwardRef<NearbyControlRef | null, NearbyControlProps>(
@@ -128,4 +127,6 @@ const Nearby = forwardRef<NearbyControlRef | null, NearbyControlProps>(
     </div>
   )
 })
+
+export type { NearbyControlProps, MapValue } from './types'
 export default Nearby

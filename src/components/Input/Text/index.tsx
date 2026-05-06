@@ -500,7 +500,6 @@ const InputText = (
     </div>
   )
 }
+export type { InputTextProps, InputTextRef, TextInputElement } from './types'
 
 export default forwardRef(InputText)
-
-export type { InputTextProps, InputTextRef, TextInputElement } from './types'

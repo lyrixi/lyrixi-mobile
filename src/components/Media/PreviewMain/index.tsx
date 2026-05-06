@@ -429,7 +429,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
       </Swiper>
   )
 })
+export type { PreviewMainProps, PreviewMainRef } from './types'
 
 export default PreviewMain
-
-export type { PreviewMainProps, PreviewMainRef } from './types'

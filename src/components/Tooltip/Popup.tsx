@@ -110,8 +110,6 @@ const Popup = forwardRef<PopupRef, PopupProps>(function Popup(
     portal ?? document.getElementById('root') ?? document.body
   )
 })
-
-export default Popup
-
 export type { PopupProps, PopupRef } from './types'
 
+export default Popup

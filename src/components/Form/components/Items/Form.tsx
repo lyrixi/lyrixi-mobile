@@ -66,8 +66,6 @@ const Form = forwardRef<FormItemsRef, FormItemsProps>(
     )
   }
 )
-
-export default Form
-
 export type { FormItemsProps, FormItemsRef } from './Form/types'
 
+export default Form

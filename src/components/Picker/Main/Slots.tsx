@@ -178,8 +178,6 @@ const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
     </div>
   )
 })
-
-export default Lists
-
 export type { PickerColumnItem, PickerSlotsProps } from './types'
 
+export default Lists

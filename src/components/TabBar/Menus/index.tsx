@@ -113,8 +113,6 @@ const Menus = forwardRef<MenusRef, MenusProps>(
     )
   }
 )
-
-export default Menus
-
 export type { MenusProps, MenusRef } from './types'
 
+export default Menus

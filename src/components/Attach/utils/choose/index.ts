@@ -17,7 +17,6 @@ import Toast from './../../../Toast'
 import { ObjectUtil, LocaleUtil, Toast} from 'lyrixi-mobile'
 测试使用-end */
 
-export type { AttachChooseOptions } from './types'
 
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
@@ -139,4 +138,5 @@ async function choose({
   return uploaded ?? newList
 }
 
+export type { AttachChooseOptions } from './types'
 export default choose

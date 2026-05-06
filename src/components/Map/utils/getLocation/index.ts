@@ -10,7 +10,6 @@ import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
 
-export type { GetLocationOptions } from './types'
 
 // 定位
 function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
@@ -44,4 +43,5 @@ function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
   })
 }
 
+export type { GetLocationOptions } from './types'
 export default getLocation

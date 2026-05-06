@@ -66,8 +66,6 @@ const NavBarButton = forwardRef<ButtonRef, NavBarButtonProps>(
     )
   }
 )
-
-export default NavBarButton
-
 export type { NavBarButtonProps } from './types'
 
+export default NavBarButton

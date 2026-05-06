@@ -238,7 +238,6 @@ const InputNode = (
     </div>
   )
 }
+export type { InputNodeProps, InputNodeRef } from './types'
 
 export default forwardRef(InputNode)
-
-export type { InputNodeProps, InputNodeRef } from './types'

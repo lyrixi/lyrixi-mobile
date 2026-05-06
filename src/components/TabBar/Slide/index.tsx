@@ -111,8 +111,6 @@ const Slide = forwardRef<SlideRef, SlideProps>(
     )
   }
 )
-
-export default Slide
-
 export type { SlideProps, SlideRef } from './types'
 
+export default Slide

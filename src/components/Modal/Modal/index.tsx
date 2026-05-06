@@ -110,7 +110,6 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     return createPortal(ModalNode, portalTarget)
   }
 )
+export type { ModalProps, ModalRef } from './types'
 
 export default Modal
-
-export type { ModalProps, ModalRef } from './types'

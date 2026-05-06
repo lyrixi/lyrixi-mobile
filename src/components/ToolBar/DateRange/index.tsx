@@ -229,7 +229,6 @@ function DateRangeBar({
 
 // Component Name, for compact
 ;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName = 'ToolBar.DateRange'
+export type { ToolBarDateRangeBarProps } from './types'
 
 export default DateRangeBar
-
-export type { ToolBarDateRangeBarProps } from './types'

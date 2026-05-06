@@ -42,7 +42,6 @@ const Page = forwardRef<PageRef, PageProps>(function Page(
     </section>
   )
 })
+export type { PageLayout, PageProps, PageRef } from './types'
 
 export default Page
-
-export type { PageLayout, PageProps, PageRef } from './types'

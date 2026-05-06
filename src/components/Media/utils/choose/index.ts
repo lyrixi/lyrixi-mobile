@@ -19,7 +19,6 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-export type { MediaChooseUtilOptions as ChooseOptions } from './types'
 
 // 选择文件
 async function choose({
@@ -77,4 +76,5 @@ async function choose({
   return uploaded ?? newList
 }
 
+export type { MediaChooseUtilOptions as ChooseOptions } from './types'
 export default choose

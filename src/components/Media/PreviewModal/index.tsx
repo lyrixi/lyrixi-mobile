@@ -104,7 +104,6 @@ const PreviewModal = forwardRef<PreviewMainRef, MediaPreviewModalProps>(function
     </NavBarModal>
   )
 })
+export type { MediaPreviewModalProps } from './types'
 
 export default PreviewModal
-
-export type { MediaPreviewModalProps } from './types'

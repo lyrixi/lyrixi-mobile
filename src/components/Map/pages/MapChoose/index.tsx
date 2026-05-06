@@ -26,7 +26,6 @@ function strLocale(node: string | React.ReactNode): string {
   return typeof node === 'string' ? node : '…'
 }
 
-export type { MapChooseProps, MapChooseValue } from './types'
 
 // 地图选点
 const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose(
@@ -315,4 +314,5 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
   )
 })
 
+export type { MapChooseProps, MapChooseValue } from './types'
 export default MapChoose

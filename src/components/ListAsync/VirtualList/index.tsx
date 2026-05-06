@@ -214,7 +214,6 @@ const VirtualList = (
     </Page.Main>
   )
 }
+export type { VirtualListProps, VirtualListRef, VirtualOptions } from './types'
 
 export default forwardRef<VirtualListRef, VirtualListProps>(VirtualList)
-
-export type { VirtualListProps, VirtualListRef, VirtualOptions } from './types'

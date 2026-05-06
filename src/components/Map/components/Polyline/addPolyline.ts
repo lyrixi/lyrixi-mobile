@@ -2,7 +2,6 @@ import type { L } from './../../leaflet.types'
 import coordsToFit from './../../utils/coordsToFit'
 import type { LinePoint, LineStyleOptions } from './types'
 
-export type { LinePoint, LineStyleOptions } from './types'
 
 // Polyline
 function addPolyline(
@@ -27,4 +26,5 @@ function addPolyline(
   polyline.addTo(layer)
 }
 
+export type { LinePoint, LineStyleOptions } from './types'
 export default addPolyline

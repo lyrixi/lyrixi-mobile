@@ -32,7 +32,6 @@ const Footer = forwardRef<PageFooterRef, PageFooterProps>(function Footer(
     </footer>
   )
 })
+export type { PageFooterProps, PageFooterRef } from './types'
 
 export default Footer
-
-export type { PageFooterProps, PageFooterRef } from './types'

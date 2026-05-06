@@ -14,7 +14,6 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { DistrictComboProps, DistrictComboRef } from './types'
 
 // 级联选择
 const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
@@ -143,4 +142,5 @@ const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
   }
 )
 
+export type { DistrictComboProps, DistrictComboRef } from './types'
 export default DistrictCombo

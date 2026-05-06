@@ -11,7 +11,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { AmountProps } from './types'
 
 // 金额
 function Amount({
@@ -63,4 +62,5 @@ function Amount({
   )
 }
 
+export type { AmountProps } from './types'
 export default Amount

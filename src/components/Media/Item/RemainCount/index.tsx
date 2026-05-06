@@ -16,7 +16,6 @@ const RemainCount = ({
     </div>
   )
 }
+export type { RemainCountProps } from './types'
 
 export default RemainCount
-
-export type { RemainCountProps } from './types'

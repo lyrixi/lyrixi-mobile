@@ -16,7 +16,6 @@ import { Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 
-export type { GetLocationOptions, GetSuperLocationOptions } from './types'
 
 async function getLocation({
   browser,
@@ -133,4 +132,5 @@ async function getSuperLocation({
   })
 }
 
+export type { GetLocationOptions, GetSuperLocationOptions } from './types'
 export default getSuperLocation

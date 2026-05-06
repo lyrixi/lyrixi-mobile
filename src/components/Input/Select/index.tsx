@@ -159,7 +159,6 @@ const Combo = forwardRef<ComboRef, ComboProps>(
     )
   }
 )
+export type { ComboProps, ComboRef } from './types'
 
 export default Combo
-
-export type { ComboProps, ComboRef } from './types'

@@ -14,7 +14,6 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { ChatListProps, ChatListRef, ChatRawItem, ChatViewItem } from './types'
 
 const List = (
   {
@@ -100,4 +99,5 @@ const List = (
   )
 }
 
+export type { ChatListProps, ChatListRef, ChatRawItem, ChatViewItem } from './types'
 export default forwardRef<ChatListRef, ChatListProps>(List)
