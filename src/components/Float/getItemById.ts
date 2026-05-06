@@ -1,11 +1,7 @@
-interface ListItem {
-  id: string
-  children?: ListItem[]
-  [key: string]: unknown
-}
+import type { FloatTreeListItem } from './types'
 
 // 有子项的菜单项，点击无效, 故不返回item
-function getItemById(list: ListItem[], id: string): ListItem | undefined {
+function getItemById(list: FloatTreeListItem[], id: string): FloatTreeListItem | undefined {
   for (const item of list) {
     if (id === item.id && !item?.children?.length) return item
 

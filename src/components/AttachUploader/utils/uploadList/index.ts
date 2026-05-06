@@ -7,6 +7,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 import type { AttachUploaderItem } from '../../types'
+import type { UploadListConfig } from './types'
 
 /* 测试使用-start
 import { ObjectUtil, Toast, LocaleUtil } from 'lyrixi-mobile'
@@ -17,21 +18,6 @@ let uploadItem: typeof defaultUploadItem = defaultUploadItem
 
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
-}
-
-type UploadListConfig = {
-  platform?: string
-  getUploadUrl?: (ctx: {
-    platform: string
-    uploadItem: AttachUploaderItem
-    result?: unknown
-  }) => string | Promise<string>
-  formatHeaders?: (
-    headers: Record<string, string>,
-    ctx: { platform: string }
-  ) => Record<string, string> | Promise<Record<string, string>>
-  formatPayload?: (payload: unknown, ctx: { platform: string }) => unknown
-  formatResponse?: (response: unknown, ctx: { platform: string }) => unknown
 }
 
 /**

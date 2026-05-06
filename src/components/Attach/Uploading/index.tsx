@@ -1,4 +1,5 @@
-import React, { type ReactNode } from 'react'
+import React from 'react'
+import type { UploadingProps } from './types'
 
 // 内库使用-start
 import Loading from './../../Loading'
@@ -9,11 +10,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface UploadingProps {
-  uploadingType: string
-  className?: string
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
-}
+export type { UploadingProps } from './types'
 
 // 上传中图标
 const Uploading = ({ uploadingType, className, uploadingRender }: UploadingProps) => {

@@ -6,12 +6,12 @@ import uploadList from './utils/uploadList'
 // 内部组件
 import Browser from './Browser'
 
-import type { AttachRef } from './../Attach/Attach'
+import type { AttachRef } from './../Attach/Attach/types'
 import type { AttachUploaderBaseProps } from './types'
 
 // 照片上传
-const AttachUploader = forwardRef<AttachRef, AttachUploaderBaseProps>(function AttachUploader(
-  {
+const AttachUploader = forwardRef<AttachRef, AttachUploaderBaseProps>(function AttachUploader(props, ref) {
+  const {
     list = [],
     maxCount,
     maxChooseCount,
@@ -35,13 +35,9 @@ const AttachUploader = forwardRef<AttachRef, AttachUploaderBaseProps>(function A
     formatPayload,
     formatResponse,
     onBeforeChoose,
-    onFileChange: _onFileChange,
-    onUpload,
     onChange,
     onPreview
-  },
-  ref
-) {
+  } = props
   const sourceType = sourceTypeProp ?? extension
   return (
     <Browser

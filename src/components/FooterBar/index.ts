@@ -6,5 +6,5 @@ type FooterBarWithButton = typeof FooterBar & { Button: typeof Button }
 ;(FooterBar as FooterBarWithButton).Button = Button
 
 export type { FooterBarRef, FooterBarProps } from './FooterBar/types'
-export type { FooterBarButtonRef, FooterBarButtonProps } from './Button'
+export type { FooterBarButtonRef, FooterBarButtonProps } from './Button/types'
 export default FooterBar as FooterBarWithButton

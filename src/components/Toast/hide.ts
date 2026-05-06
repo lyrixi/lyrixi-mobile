@@ -1,8 +1,8 @@
-type ExtendedHTMLElement = HTMLElement & { timeout?: ReturnType<typeof setTimeout> }
+import type { HideOptions } from './types'
 
-interface HideOptions {
-  onClose?: () => void
-}
+export type { HideOptions } from './types'
+
+type ExtendedHTMLElement = HTMLElement & { timeout?: ReturnType<typeof setTimeout> }
 
 // 移除Toast
 function hide({ onClose }: HideOptions = {}) {
@@ -13,7 +13,7 @@ function hide({ onClose }: HideOptions = {}) {
     if (mask.timeout) window.clearTimeout(mask.timeout)
     mask.timeout = setTimeout(() => {
       mask?.parentNode?.removeChild?.(mask)
-      onClose && onClose()
+      if (onClose) onClose()
     }, 300)
   }
 }

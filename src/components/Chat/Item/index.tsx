@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import type { ChatItemProps, ChatItemRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,33 +10,10 @@ import Checkbox from './../../Checkbox'
 import { DOMUtil, Checkbox } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface ChatItemRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface ChatItemProps {
-  id?: string | number
-  _raw?: Record<string, unknown>
-  checked?: boolean
-  checkable?: boolean
-  className?: string
-  position?: string
-  style?: React.CSSProperties
-  checkboxVariant?: string
-  checkboxPosition?: string
-  avatarUrl?: string
-  avatarRender?: (ctx: { checked?: boolean; [key: string]: unknown }) => React.ReactNode
-  avatarNode?: React.ReactNode
-  authorRender?: (ctx: { checked?: boolean; [key: string]: unknown }) => React.ReactNode
-  authorNode?: React.ReactNode
-  content?: React.ReactNode
-  onChange?: (checked: boolean) => void
-}
+export type { ChatItemProps, ChatItemRef } from './types'
 
 const Chat = (
   {
-    id,
     _raw,
     checked,
     checkable,

@@ -1,5 +1,9 @@
 import type { CSSProperties } from 'react'
 
+export interface HideOptions {
+  onClose?: () => void
+}
+
 export interface ShowProps {
   duration?: number
   maskClickable?: boolean

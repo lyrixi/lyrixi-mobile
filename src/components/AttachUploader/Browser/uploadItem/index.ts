@@ -6,20 +6,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 import type { AttachUploaderItem } from '../../types'
-
-type UploadDeps = {
-  getUploadUrl?: (ctx: {
-    platform: string
-    uploadItem: AttachUploaderItem
-    result?: unknown
-  }) => string | Promise<string>
-  formatHeaders?: (
-    headers: Record<string, string>,
-    ctx: { platform: string }
-  ) => Record<string, string> | Promise<Record<string, string>>
-  formatPayload?: (payload: unknown, ctx: { platform: string }) => unknown
-  formatResponse?: (response: unknown, ctx: { platform: string }) => unknown
-}
+import type { UploadDeps } from './types'
 
 function toMessage(m: string | import('react').ReactNode): string {
   return typeof m === 'string' ? m : String(m)

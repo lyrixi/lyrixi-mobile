@@ -1,6 +1,7 @@
 import React, { type ChangeEvent, type MouseEvent } from 'react'
 import getAccept from './../utils/getAccept'
 import Button from './Button'
+import type { AttachChooseProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -10,16 +11,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface AttachChooseProps {
-  sourceType: string[]
-  disabled?: boolean
-  className?: string
-  uploadRender?: (ctx: { uploadingType: string }) => React.ReactNode
-  uploadingRender?: (ctx: { uploadingType: string }) => React.ReactNode
-  onBeforeChoose?: (e: MouseEvent<HTMLDivElement>) => boolean | void | Promise<boolean | void>
-  onChoose?: (e: MouseEvent<HTMLDivElement>) => void | Promise<unknown>
-  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void
-}
+export type { AttachChooseProps } from './types'
 
 // 上传按钮
 const AttachChoose = ({

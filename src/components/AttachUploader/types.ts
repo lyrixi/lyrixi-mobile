@@ -1,5 +1,5 @@
-import type { CSSProperties, ReactNode, SyntheticEvent } from 'react'
-import type { AttachListItem, AttachRef } from '../Attach/Attach'
+import type { ReactNode, SyntheticEvent } from 'react'
+import type { AttachListItem } from '../Attach/Attach/types'
 import type { AttachNativeFilePayload } from '../Attach/types'
 
 export interface AttachUploaderItem extends AttachListItem {
@@ -53,4 +53,4 @@ export interface AttachUploaderBaseProps {
   onPreview?: (item: AttachUploaderItem, index: number) => unknown
 }
 
-export type { AttachRef }
+export type { AttachRef } from '../Attach/Attach/types'

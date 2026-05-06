@@ -1,9 +1,5 @@
 import ObjectUtil from './../../../utils/ObjectUtil'
-
-interface SpaceDatesResult {
-  isOverTime: boolean
-  dates: Date[]
-}
+import type { SpaceDatesResult } from './types'
 
 // 在现有时间集合中，增加超过timeSpace的时间
 function getSpaceDates(date: Date, dates: Date[], timeSpace: number): SpaceDatesResult {

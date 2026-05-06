@@ -1,5 +1,6 @@
 import React, { useRef, forwardRef, useImperativeHandle, type Ref } from 'react'
 import supportTypes from './../utils/supportTypes'
+import type { AttachPreviewMainProps, AttachPreviewMainRef } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -22,17 +23,7 @@ import {
 } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface AttachPreviewMainProps {
-  fileName?: string
-  previewServerUrl?: string
-  fileUrl?: string
-  previewServerSourceType?: string[]
-}
-
-export interface AttachPreviewMainRef {
-  mainElement: HTMLDivElement | null
-  getMainElement: () => HTMLDivElement | null
-}
+export type { AttachPreviewMainProps, AttachPreviewMainRef } from './types'
 
 // 附件预览
 const AttachPreviewMain = forwardRef<AttachPreviewMainRef, AttachPreviewMainProps>(function AttachPreviewMain(

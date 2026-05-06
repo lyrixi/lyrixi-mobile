@@ -1,5 +1,6 @@
-import React, { useRef, useImperativeHandle, forwardRef, type CSSProperties, type ReactNode } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import Uploading from './../Uploading'
+import type { UploadButtonProps, UploadButtonRef } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -10,17 +11,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface UploadButtonRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface UploadButtonProps {
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
-  style?: CSSProperties
-  className?: string
-  disabled?: boolean
-}
+export type { UploadButtonProps, UploadButtonRef } from './types'
 
 // 上传按钮
 const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function UploadButton(

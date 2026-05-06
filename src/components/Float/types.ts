@@ -16,3 +16,10 @@ export interface FloatProps {
   children?: ReactNode
   onDragEnd?: (data: { position: SnapPosition }) => void
 }
+
+/** 悬浮菜单树节点（getItemById） */
+export interface FloatTreeListItem {
+  id: string
+  children?: FloatTreeListItem[]
+  [key: string]: unknown
+}

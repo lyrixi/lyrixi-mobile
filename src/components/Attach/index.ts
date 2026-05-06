@@ -5,7 +5,7 @@ import List from './List'
 import Button from './Choose/Button'
 import Uploading from './Uploading'
 
-export type { AttachListItem, AttachRef, AttachProps } from './Attach'
+export type { AttachListItem, AttachRef, AttachProps } from './Attach/types'
 
 const AttachWithStatics = Attach as typeof Attach & {
   validateListStatus: typeof validateListStatus

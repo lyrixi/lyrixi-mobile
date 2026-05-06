@@ -5,7 +5,6 @@ import React, {
   useRef,
   useImperativeHandle,
   type ChangeEvent,
-  type CSSProperties,
   type SyntheticEvent
 } from 'react'
 import fileChoose from './../utils/fileChoose'
@@ -18,6 +17,7 @@ import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 import copyFileUrl from './copyFileUrl'
 import type { AttachNativeFilePayload } from './../types'
+import type { AttachListItem, AttachProps, AttachRef } from './types'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
@@ -30,53 +30,7 @@ import Toast from './../../Toast'
 import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
-export type AttachListItem = Record<string, unknown> & {
-  fileUrl?: string
-  fileName?: string
-  status?: string
-}
-
-export interface AttachProps {
-  list?: AttachListItem[]
-  maxCount?: number
-  sourceType?: string | string[]
-  disabled?: boolean
-  allowChoose?: boolean
-  allowClear?: boolean
-  async?: boolean
-  reUpload?: boolean
-  maxSize?: number
-  style?: CSSProperties
-  className?: string
-  uploadPosition?: 'start' | 'end'
-  children?: import('react').ReactNode
-  uploadRender?: (ctx: { uploadingType: string }) => React.ReactNode
-  uploadingRender?: (ctx: { uploadingType: string }) => React.ReactNode
-  itemRender?: (item: AttachListItem, index: number) => React.ReactNode
-  previewPortal?: boolean | HTMLElement | null
-  previewServerUrl?: string
-  previewServerSourceType?: string | string[]
-  onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>
-  onChoose?: (e?: SyntheticEvent) => unknown
-  onFileChange?: (e: ChangeEvent<HTMLInputElement> | AttachNativeFilePayload) => unknown
-  onUpload?: (item: AttachListItem) => unknown
-  onChange?: (list: AttachListItem[], meta?: { action?: string }) => void
-  onPreview?: (item: AttachListItem, index: number) => unknown
-}
-
-export interface AttachRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-  updateStatus: () => void
-  chooseFile: (e: SyntheticEvent) => Promise<unknown>
-  choose: (e: SyntheticEvent) => Promise<unknown>
-  uploadList: (
-    newList?: AttachListItem[] | null,
-    meta?: { action?: string }
-  ) => Promise<AttachListItem[]>
-  showLoading: (options?: { content?: string; index?: number }) => void
-  hideLoading: (options?: { failIndexes?: number[] }) => void
-}
+export type { AttachListItem, AttachProps, AttachRef } from './types'
 
 // 文件上传
 function Attach(
@@ -136,12 +90,12 @@ function Attach(
   const rootRef = useRef<HTMLDivElement | null>(null)
 
   const sourceTypeList = useMemo((): string[] => {
-    if (sourceType == null) return []
+    if (sourceType === null || sourceType === undefined) return []
     return Array.isArray(sourceType) ? sourceType : [sourceType]
   }, [sourceType])
 
   const previewSourceTypes = useMemo((): string[] => {
-    if (previewServerSourceType == null) {
+    if (previewServerSourceType === null || previewServerSourceType === undefined) {
       return ['image', 'video', 'audio', 'pdf']
     }
     return Array.isArray(previewServerSourceType)
@@ -166,21 +120,6 @@ function Attach(
   // eslint-disable-next-line
   const [updateStatus, setUpdateStatus] = useState(0)
 
-  useImperativeHandle(ref, () => {
-    return {
-      element: rootRef.current,
-      getElement: () => rootRef.current,
-      updateStatus: () => {
-        setUpdateStatus((s) => s + 1)
-      },
-      chooseFile: _choose,
-      choose: _choose,
-      uploadList: uploadList,
-      showLoading: _showLoading,
-      hideLoading: _hideLoading
-    } satisfies AttachRef
-  })
-
   // 显隐Loading
   function _showLoading(options?: { content?: string; index?: number }) {
     showLoading(rootRef.current, options ?? {})
@@ -188,39 +127,6 @@ function Attach(
 
   function _hideLoading(options?: { failIndexes?: number[] }) {
     hideLoading(rootRef.current, options ?? {})
-  }
-
-  // Expose manual choose
-  async function _choose(e: SyntheticEvent) {
-    if (!chooseVisible) {
-      Toast.show({
-        content: String(
-          LocaleUtil.locale(
-            '此控件无上传功能, 请勿调用拍照',
-            'lyrixi_c4b36524143372bf6821ce50ab843844'
-          )
-        )
-      })
-      return false
-    }
-    const root = rootRef.current
-    const uploadElement = root?.querySelector('.lyrixi-attach-choose')
-    if (!uploadElement) {
-      Toast.show({
-        content: String(
-          LocaleUtil.locale(
-            '未找到上传按钮, 调用上传失败',
-            'lyrixi_9e65d8453742238201afa78f9f37ff8c'
-          )
-        )
-      })
-      return false
-    }
-
-    if (e?.nativeEvent?.target) {
-      return handleFileChange(e as ChangeEvent<HTMLInputElement>)
-    }
-    return handleChoose(e)
   }
 
   // 上传
@@ -334,7 +240,8 @@ function Attach(
   }
 
   // 选择文件（相机/系统选择器，无 file input target 时）
-  async function handleChoose(_e?: SyntheticEvent) {
+  async function handleChoose(e?: SyntheticEvent) {
+    void e
     _showLoading()
     const chooseResult = await choose({
       async,
@@ -350,6 +257,53 @@ function Attach(
     _hideLoading()
     return chooseResult
   }
+
+  async function _choose(e: SyntheticEvent) {
+    if (!chooseVisible) {
+      Toast.show({
+        content: String(
+          LocaleUtil.locale(
+            '此控件无上传功能, 请勿调用拍照',
+            'lyrixi_c4b36524143372bf6821ce50ab843844'
+          )
+        )
+      })
+      return false
+    }
+    const root = rootRef.current
+    const uploadElement = root?.querySelector('.lyrixi-attach-choose')
+    if (!uploadElement) {
+      Toast.show({
+        content: String(
+          LocaleUtil.locale(
+            '未找到上传按钮, 调用上传失败',
+            'lyrixi_9e65d8453742238201afa78f9f37ff8c'
+          )
+        )
+      })
+      return false
+    }
+
+    if (e?.nativeEvent?.target) {
+      return handleFileChange(e as ChangeEvent<HTMLInputElement>)
+    }
+    return handleChoose(e)
+  }
+
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current,
+      updateStatus: () => {
+        setUpdateStatus((s) => s + 1)
+      },
+      chooseFile: _choose,
+      choose: _choose,
+      uploadList: uploadList,
+      showLoading: _showLoading,
+      hideLoading: _hideLoading
+    } satisfies AttachRef
+  })
 
   // 点击预览
   async function handlePreview(item: AttachListItem, index: number) {
@@ -445,7 +399,7 @@ function Attach(
       {uploadPosition === 'end' && (onChoose || onFileChange) && renderChoose()}
 
       {/* 预览 */}
-      {previewTypeRef.current === 'browser' && previewVisible != null && (
+      {previewTypeRef.current === 'browser' && previewVisible !== null && previewVisible !== undefined && (
         <PreviewModal
           // Value & Display Value
           fileName={list[previewVisible]?.fileName}

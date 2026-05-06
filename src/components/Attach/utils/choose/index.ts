@@ -10,28 +10,16 @@ import Toast from './../../../Toast'
 // 内库使用-end
 
 import type { AttachFileItem } from '../../types'
+import type { AttachChooseOptions } from './types'
 
 /* 测试使用-start
 import { ObjectUtil, LocaleUtil, Toast} from 'lyrixi-mobile'
 测试使用-end */
 
+export type { AttachChooseOptions } from './types'
+
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
-}
-
-export interface AttachChooseOptions {
-  async: boolean
-  maxSize?: number
-  maxCount?: number
-  sourceType: string[]
-  list?: AttachFileItem[]
-  uploadPosition: 'start' | 'end' | string
-  uploadList: (
-    newList: AttachFileItem[],
-    opts?: { action?: string }
-  ) => Promise<AttachFileItem[] | undefined>
-  onChoose?: () => unknown
-  onChange?: (list: AttachFileItem[], meta: { action: string }) => void
 }
 
 // 选择文件
@@ -141,7 +129,7 @@ async function choose({
 
   // 异步上传
   if (asyncMode) {
-    onChange && onChange(newList, { action: 'choose' })
+    if (onChange) onChange(newList, { action: 'choose' })
     return newList
   }
 

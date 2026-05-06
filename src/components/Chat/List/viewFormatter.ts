@@ -1,32 +1,11 @@
-export interface ChatRawItem {
-  id?: string | number
-  position?: string
-  avatarUrl?: string
-  avatarRender?: unknown
-  avatarNode?: unknown
-  authorRender?: unknown
-  authorNode?: unknown
-  content?: unknown
-  name?: string
-  time?: Date
-  _raw?: ChatRawItem
-  [key: string]: unknown
-}
+import type { ChatRawItem, ChatViewFormatterOptions, ChatViewItem } from './types'
 
-export interface ChatViewItem extends ChatRawItem {
-  _raw: ChatRawItem
-}
+export type { ChatRawItem, ChatViewItem } from './types'
 
 // 格式化列表数据为渲染数据, 用于渲染列表组件
 function viewFormatter(
   list: ChatRawItem[] | undefined,
-  {
-    formatViewItem,
-    formatViewList
-  }: {
-    formatViewItem?: (item: ChatRawItem, ctx: { index: number }) => ChatRawItem
-    formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
-  }
+  { formatViewItem, formatViewList }: ChatViewFormatterOptions
 ): ChatViewItem[] | undefined {
   if (typeof formatViewList === 'function') {
     const newList: ChatViewItem[] = (list ?? []).map((item) => {
@@ -43,7 +22,7 @@ function viewFormatter(
 
   return list?.map((item) => {
     if (!item._raw) {
-      return { ...item, _raw: item }
+      return { ...item, _raw: item } as ChatViewItem
     }
     return item as ChatViewItem
   })

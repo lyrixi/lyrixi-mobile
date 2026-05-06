@@ -1,7 +1,9 @@
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
-import viewFormatter, { type ChatRawItem, type ChatViewItem } from './viewFormatter'
+import viewFormatter from './viewFormatter'
 import getSpaceDates from './getSpaceDates'
-import Item, { ChatItemProps } from './../Item'
+import Item from './../Item'
+import type { ChatItemProps } from './../Item/types'
+import type { ChatListProps, ChatListRef, ChatListValue, ChatViewItem } from './types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -11,29 +13,7 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type ChatListItem = ChatRawItem
-
-interface ChatListValue {
-  id?: string | number
-  [key: string]: unknown
-}
-
-export interface ChatListRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface ChatListProps {
-  value?: ChatListValue[]
-  list?: ChatListItem[]
-  formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
-  formatViewItem?: (item: ChatRawItem, ctx: { index: number }) => ChatRawItem
-  checkable?: boolean
-  checkboxVariant?: string
-  checkboxPosition?: string
-  timeSpace?: number
-  onChange?: (value: ChatListValue[]) => void
-}
+export type { ChatListProps, ChatListRef, ChatRawItem, ChatViewItem } from './types'
 
 const List = (
   {
@@ -84,7 +64,7 @@ const List = (
           } else {
             newValue = [...(value ?? []), item]
           }
-          onChange && onChange(newValue)
+          if (onChange) onChange(newValue)
         }}
       />
     )

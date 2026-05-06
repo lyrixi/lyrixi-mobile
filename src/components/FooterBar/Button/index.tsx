@@ -1,38 +1,18 @@
-import { useRef, forwardRef, useImperativeHandle, useState, type CSSProperties } from 'react'
+import { useRef, forwardRef, useImperativeHandle, useState } from 'react'
+import type { FooterBarButtonProps, FooterBarButtonRef } from './types'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'
 import type { ModalRef } from './../../Modal/Modal'
 import Button from './../../Button'
-import type { ButtonRef, ButtonProps } from './../../Button/Button'
-import type { ActionSheetItem } from './../../ActionSheet/Modal'
+import type { ButtonRef } from './../../Button/types'
 // 内库使用-end
 
 /* 测试使用-start
 import { ActionSheet, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-export interface FooterBarButtonRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface FooterBarButtonProps extends Omit<ButtonProps, 'onClick'> {
-  // Modal: Value & Display Value
-  list?: ActionSheetItem[]
-
-  // Modal: Style
-  modalStyle?: CSSProperties
-  modalClassName?: string
-  maskStyle?: CSSProperties
-  maskClassName?: string
-
-  // Modal: Elements
-  portal?: boolean | HTMLElement
-
-  // Events
-  onClick?: ButtonProps['onClick']
-}
+export type { FooterBarButtonProps, FooterBarButtonRef } from './types'
 
 const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
   (
@@ -111,7 +91,7 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
           // Events
           onClick={(e) => {
             setOpen(true)
-            onClick && onClick(e)
+            if (onClick) onClick(e)
           }}
         >
           {children}

@@ -5,11 +5,12 @@ import _uploadItem from './uploadItem'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Attach from './../../Attach'
-import type { AttachRef, AttachListItem } from './../../Attach/Attach'
+import type { AttachRef, AttachListItem } from './../../Attach/Attach/types'
 // 内库使用-end
 
-import type { AttachUploaderItem, AttachUploaderBaseProps } from './../types'
+import type { AttachUploaderItem } from './../types'
 import type { AttachNativeFilePayload } from './../../Attach/types'
+import type { BrowserProps } from './types'
 
 /* 测试使用-start
 import { LocaleUtil, Toast, Attach } from 'lyrixi-mobile'
@@ -19,13 +20,11 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-type BrowserProps = Omit<AttachUploaderBaseProps, 'onFileChange' | 'onUpload'>
-
 const Browser = forwardRef<AttachRef, BrowserProps>(function Browser(
   {
     list = [],
     maxCount = 5,
-    maxChooseCount: _maxChooseCount = 1,
+    maxChooseCount = 1,
     sourceType: sourceTypeProp = ['album', 'camera'],
     maxSize,
     async = false,
@@ -50,10 +49,11 @@ const Browser = forwardRef<AttachRef, BrowserProps>(function Browser(
   },
   ref
 ) {
+  void maxChooseCount
   const attachRef = useRef<AttachRef | null>(null)
 
   const sourceTypeList = useMemo((): string[] => {
-    if (sourceTypeProp == null) return ['album', 'camera']
+    if (sourceTypeProp === null || sourceTypeProp === undefined) return ['album', 'camera']
     return Array.isArray(sourceTypeProp) ? sourceTypeProp : [sourceTypeProp]
   }, [sourceTypeProp])
 
@@ -102,7 +102,7 @@ const Browser = forwardRef<AttachRef, BrowserProps>(function Browser(
   function isNativePayload(
     a: import('react').ChangeEvent<HTMLInputElement> | AttachNativeFilePayload
   ): a is AttachNativeFilePayload {
-    return typeof a === 'object' && a != null && 'fileName' in a && 'status' in a
+    return typeof a === 'object' && a !== null && a !== undefined && 'fileName' in a && 'status' in a
   }
 
   async function handleFileOrNative(

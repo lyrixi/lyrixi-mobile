@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
+import type { StampProps, StampRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -9,18 +10,7 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface StampProps {
-  shape?: string
-  style?: React.CSSProperties
-  className?: string
-  color?: string
-  children?: React.ReactNode
-}
-
-interface StampRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+export type { StampProps, StampRef } from './types'
 
 // 印章控件
 const Stamp = forwardRef<StampRef, StampProps>(({

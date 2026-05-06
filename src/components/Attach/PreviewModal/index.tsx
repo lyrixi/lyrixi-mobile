@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import PreviewMain from './../PreviewMain'
+import type { AttachPreviewModalProps } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -7,7 +8,7 @@ import Clipboard from './../../../utils/Clipboard'
 import Message from './../../Message'
 import Toast from './../../Toast'
 import NavBarModal from './../../Modal/NavBarModal'
-import type { ModalProps, ModalRef } from './../../Modal'
+import type { ModalRef } from './../../Modal'
 // 内库使用-end
 
 /* 测试使用-start
@@ -19,15 +20,7 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-export interface AttachPreviewModalProps {
-  fileName?: string
-  previewServerUrl?: string
-  fileUrl?: string
-  previewServerSourceType?: string[]
-  open?: boolean
-  portal?: ModalProps['portal']
-  onClose?: ModalProps['onClose']
-}
+export type { AttachPreviewModalProps } from './types'
 
 // Modal
 const AttachPreviewModal = forwardRef<ModalRef, AttachPreviewModalProps>(function AttachPreviewModal(
