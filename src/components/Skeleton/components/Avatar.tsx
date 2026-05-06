@@ -1,17 +1,14 @@
 import React, { forwardRef } from 'react'
+
+import type { SkeletonAvatarProps } from './types'
+
 import Block from './Block'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-interface AvatarProps {
-  animated?: boolean
-  className?: string
-  style?: React.CSSProperties
-}
-
-const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+const Avatar = forwardRef<HTMLDivElement, SkeletonAvatarProps>(
   (
     {
       animated = true,

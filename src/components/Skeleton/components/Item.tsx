@@ -1,17 +1,14 @@
 import React, { forwardRef } from 'react'
+
+import type { SkeletonItemProps } from './types'
+
 import Block from './Block'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-interface ItemProps {
-  animated?: boolean
-  className?: string
-  style?: React.CSSProperties
-}
-
-const Item = forwardRef<HTMLDivElement, ItemProps>(
+const Item = forwardRef<HTMLDivElement, SkeletonItemProps>(
   (
     {
       animated = true,

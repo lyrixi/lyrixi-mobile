@@ -3,38 +3,14 @@ import Footer from './Choose/Footer'
 import Preview from './Preview'
 import Choose from './Choose'
 
+import type { LocationMainProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import type { MapContainerAPI, MapContainerProps } from './../../Map/components/MapContainer'
+import type { MapContainerAPI } from './../../Map/components/MapContainer'
 // 内库使用-end
 
-interface LocationValue {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  address?: string
-  value?: string
-  [key: string]: unknown
-}
-
-interface MainProps {
-  value?: LocationValue | null
-  cacheExpires?: number
-  open?: string
-  autoLocation?: boolean
-  nearbyVisible?: boolean
-  className?: string
-  style?: React.CSSProperties
-  id?: string
-  mapConfig?: Record<string, unknown>
-  getLocation?: MapContainerProps['getLocation']
-  getAddress?: MapContainerProps['getAddress']
-  onChange?: (newValue: LocationValue | null) => void
-  onOk?: ((value: LocationValue | null) => void) | null
-  onClear?: (() => void) | null
-}
-
-const Main = forwardRef<unknown, MainProps>(
+const Main = forwardRef<unknown, LocationMainProps>(
   (
     {
       value,

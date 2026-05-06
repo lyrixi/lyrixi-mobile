@@ -8,6 +8,9 @@ import React, {
 } from 'react'
 import Modal from './../Modal'
 
+import type { LocationValue } from './../types'
+import type { LocationComboProps, LocationComboRef } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -32,57 +35,12 @@ const {
   wgs84ToCoords
 } = Map
 
-interface LocationValue {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  address?: string
-  value?: string
-  nearbyVisible?: boolean
-  [key: string]: unknown
-}
-
-interface ComboProps {
-  value?: LocationValue | null
-  placeholder?: string
-  type?: string
-  getAddress?: ((...args: unknown[]) => unknown) | null
-  getLocation?: ((...args: unknown[]) => unknown) | null
-  cacheExpires?: number
-  mapConfig?: Record<string, unknown>
-  autoSize?: boolean
-  allowClear?: boolean
-  disabled?: boolean
-  editable?: boolean
-  autoLocation?: boolean
-  locationVisible?: boolean
-  chooseVisible?: boolean | { nearbyVisible?: boolean }
-  previewVisible?: boolean
-  clickAction?: string
-  className?: string
-  modalClassName?: string
-  modalStyle?: React.CSSProperties
-  portal?: HTMLElement | null
-  errorText?: string
-  loadingText?: string
-  onChange?: ((value: LocationValue | null) => void) | null
-  onOpen?: (() => void) | null
-  onClose?: (() => void) | null
-  onLocationStatusChange?: ((status: string) => void) | null
-  onError?: ((error: { status: string; message: string }) => void) | null
-}
-
-interface ComboRef {
-  element: unknown
-  getElement: () => unknown
-}
-
 type InputWithText = typeof Input & {
   Text: React.ComponentType<Record<string, unknown>>
 }
 const InputComp = Input as InputWithText
 
-const LocationCombo = forwardRef<ComboRef, ComboProps>(
+const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
   (
     {
       value,

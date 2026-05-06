@@ -1,21 +1,9 @@
 import React from 'react'
 
-import Page from './../../Page'
-import type { PageLayout } from './../../Page'
-import Paragraph from './../components/Paragraph'
+import type { SkeletonEditProps } from './types'
 
-interface EditProps {
-  listLength?: number
-  paragraphLength?: number
-  animated?: boolean
-  safeArea?: boolean
-  full?: boolean
-  className?: string
-  style?: React.CSSProperties
-  divider?: string
-  layout?: PageLayout
-  animation?: string
-}
+import Page from './../../Page'
+import Paragraph from './../components/Paragraph'
 
 const Edit = ({
   // Value & Display Value
@@ -33,7 +21,7 @@ const Edit = ({
   divider,
   layout,
   animation
-}: EditProps) => {
+}: SkeletonEditProps) => {
   return (
     <Page
       // Status

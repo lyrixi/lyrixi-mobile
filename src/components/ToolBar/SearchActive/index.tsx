@@ -2,10 +2,11 @@ import React, { forwardRef } from 'react'
 
 import Search from './../Search'
 
+import type { ToolBarSearchActiveProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import type { SearchProps } from './../../Input/Search'
 import type { InputTextRef } from './../../Input/Text'
 // 内库使用-end
 
@@ -13,9 +14,7 @@ import type { InputTextRef } from './../../Input/Text'
 import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type ToolBarSearchActiveProps = SearchProps & {
-  onCancel?: () => void
-}
+export type { ToolBarSearchActiveProps }
 
 const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(
   function SearchBar(props, ref) {

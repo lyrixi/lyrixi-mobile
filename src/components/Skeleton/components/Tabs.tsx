@@ -1,4 +1,7 @@
 import React, { forwardRef } from 'react'
+
+import type { SkeletonTabsProps } from './types'
+
 import Block from './Block'
 
 // 内库使用-start
@@ -9,16 +12,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface TabsProps {
-  length?: number
-  animated?: boolean
-  className?: string
-  style?: React.CSSProperties
-  tabClassName?: string
-  tabStyle?: React.CSSProperties
-}
-
-const Tabs = forwardRef<HTMLDivElement, TabsProps>(
+const Tabs = forwardRef<HTMLDivElement, SkeletonTabsProps>(
   (
     {
       // Value & Display Value

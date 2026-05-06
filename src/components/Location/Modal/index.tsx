@@ -1,49 +1,20 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
+import type { LocationValue } from './../types'
+import type { LocationModalProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import NavBarModal from './../../Modal/NavBarModal'
 import type { ModalRef, ModalProps } from './../../Modal/Modal'
-import type { MapContainerProps } from './../../Map/components/MapContainer'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, LocaleUtil, Modal, SafeArea } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
-
-interface LocationValue {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  address?: string
-  value?: string
-  [key: string]: unknown
-}
-
-interface LocationModalProps {
-  value?: LocationValue | null
-  cacheExpires?: number
-  open?: string
-  maskClosable?: boolean
-  safeArea?: boolean
-  allowClear?: boolean
-  multiple?: boolean
-  nearbyVisible?: boolean
-  modalClassName?: string
-  modalStyle?: React.CSSProperties
-  maskStyle?: React.CSSProperties
-  maskClassName?: string
-  portal?: Element | null
-  mapConfig?: Record<string, unknown>
-  getLocation?: MapContainerProps['getLocation']
-  getAddress?: MapContainerProps['getAddress']
-  onOk?: ((value: LocationValue | null) => unknown) | null
-  onChange?: ((value: LocationValue | null) => void) | null
-  onClose?: (() => void) | null
-}
 
 const LocationModal = forwardRef<unknown, LocationModalProps>(
   (

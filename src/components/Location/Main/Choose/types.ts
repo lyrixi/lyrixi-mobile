@@ -16,3 +16,8 @@ export interface LocationChooseProps {
   onSuccess?: MapLoaderProps['onSuccess']
   onError?: MapLoaderProps['onError']
 }
+
+export interface LocationChooseFooterProps {
+  onOk?: (() => void) | null
+  onClear?: (() => void) | null
+}

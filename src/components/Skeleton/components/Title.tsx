@@ -1,17 +1,14 @@
 import React, { forwardRef } from 'react'
+
+import type { SkeletonTitleProps } from './types'
+
 import Block from './Block'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-interface TitleProps {
-  animated?: boolean
-  className?: string
-  style?: React.CSSProperties
-}
-
-const Title = forwardRef<HTMLDivElement, TitleProps>(
+const Title = forwardRef<HTMLDivElement, SkeletonTitleProps>(
   (
     {
       animated = true,

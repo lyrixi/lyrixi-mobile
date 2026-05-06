@@ -1,7 +1,10 @@
 import React from 'react'
+
+import type { SkeletonParagraphProps } from './types'
+
 import Avatar from './Avatar'
-import Title from './Title'
 import Item from './Item'
+import Title from './Title'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -10,26 +13,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-interface ParagraphProps {
-  length?: number
-  divider?: string
-  animated?: boolean
-  className?: string
-  style?: React.CSSProperties
-  avatarVisible?: boolean
-  avatarClassName?: string
-  avatarStyle?: React.CSSProperties
-  titleVisible?: boolean
-  titleClassName?: string
-  titleStyle?: React.CSSProperties
-  itemClassName?: string
-  itemStyle?: React.CSSProperties
-  oddClassName?: string
-  oddStyle?: React.CSSProperties
-  evenClassName?: string
-  evenStyle?: React.CSSProperties
-}
 
 const Paragraph = ({
   // Value & Display Value
@@ -54,7 +37,7 @@ const Paragraph = ({
   oddStyle,
   evenClassName,
   evenStyle
-}: ParagraphProps) => {
+}: SkeletonParagraphProps) => {
   return (
     <div
       // Style

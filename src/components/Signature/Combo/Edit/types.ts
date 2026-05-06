@@ -8,3 +8,8 @@ export interface EditRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
+
+export interface SignatureThumbnailProps {
+  src?: string
+  onPreview?: (src: string) => Promise<boolean | string | void>
+}

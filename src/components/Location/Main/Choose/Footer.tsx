@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { LocationChooseFooterProps } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Page from './../../../Page'
@@ -16,12 +18,7 @@ type FooterBarWithButton = typeof FooterBar & {
 
 const FooterBarComp = FooterBar as FooterBarWithButton
 
-interface FootProps {
-  onOk?: (() => void) | null
-  onClear?: (() => void) | null
-}
-
-function Foot({ onOk, onClear }: FootProps) {
+function Foot({ onOk, onClear }: LocationChooseFooterProps) {
   return (
     <Page.Footer className="lyrixi-map-footer">
       <FooterBarComp>

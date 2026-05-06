@@ -1,4 +1,7 @@
 import React from 'react'
+
+import type { CompatibleToggleProps } from './types'
+
 import getList from './getList'
 
 // 内库使用-start
@@ -8,12 +11,6 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface CompatibleToggleProps {
-  compatible?: boolean | string
-  compatiblePlatform?: string
-  onCompatiblePlatformChange?: (platform: string) => void
-}
 
 function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }: CompatibleToggleProps) {
   const list = getList()
