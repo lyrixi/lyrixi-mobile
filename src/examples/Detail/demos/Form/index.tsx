@@ -6,6 +6,7 @@ import { LocaleUtil, Divider, Page, Result, Card, Text, Form, Toast } from 'lyri
 // 内部组件导入
 import { queryData, approveData } from './api'
 import Footer from './Footer'
+import type { DetailFormApproveResult, DetailFormQueryResultView } from './types'
 
 // 样式图片等资源文件导入
 
@@ -36,10 +37,7 @@ const FormDetail = () => {
   // 保存
   async function handleApprove() {
     // 保存表单数据
-    const res = (await approveData({ token: tokenRef.current })) as {
-      code?: string
-      message?: string
-    }
+    const res = (await approveData({ token: tokenRef.current })) as DetailFormApproveResult
     if (res.code === '1') {
       Toast.show({
         content: String(locale('审批通过!')),
@@ -68,11 +66,7 @@ const FormDetail = () => {
     }
   }
 
-  const resData = result as {
-    data?: Record<string, unknown>
-    status?: string
-    message?: string
-  } | null
+  const resData = result as DetailFormQueryResultView
 
   return (
     <Page>

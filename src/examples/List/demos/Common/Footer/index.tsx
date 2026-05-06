@@ -1,20 +1,12 @@
 import React from 'react'
 import { FooterBar, LocaleUtil, Page } from 'lyrixi-mobile'
 
+import type { ListDemoCommonFooterProps } from './types'
+
 const locale = LocaleUtil.locale
 
 // 底部
-function Footer({
-  ok,
-  cancel,
-  onOk,
-  onCancel
-}: {
-  ok?: string
-  cancel?: string
-  onOk?: () => void
-  onCancel?: () => void
-}) {
+function Footer({ ok, cancel, onOk, onCancel }: ListDemoCommonFooterProps) {
   return (
     <Page.Footer>
       <FooterBar>

@@ -10,6 +10,8 @@ import Header from './../Common/Header'
 import Main from './../Common/Main'
 import Footer from './../Common/Footer'
 
+import type { ListCacheStoredShape } from './types'
+
 // 样式图片等资源文件导入
 import './../Common/index.less'
 
@@ -26,7 +28,7 @@ const Cache = () => {
   //   Storage.clearCache(cacheName)
   // }
 
-  const cached = Storage.getCache(cacheName) as { queryParams?: Record<string, unknown> } | null | undefined
+  const cached = Storage.getCache(cacheName) as ListCacheStoredShape
   const [queryParams, setQueryParams] = useState<Record<string, unknown>>(cached?.queryParams || {})
 
   return (

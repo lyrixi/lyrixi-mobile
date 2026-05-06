@@ -3,6 +3,10 @@ import type { SyntheticEvent } from 'react'
 import type { LoadResult } from 'lyrixi-mobile/components/ListAsync'
 import type { VirtualOptions } from 'lyrixi-mobile/components/ListAsync/VirtualList'
 
+export type IndexBarListRowWithAnchor = {
+  anchor?: string
+}
+
 export type IndexBarListLoadContext = {
   result: LoadResult | null
   action: string

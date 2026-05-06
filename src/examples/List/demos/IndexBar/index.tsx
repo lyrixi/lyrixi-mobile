@@ -8,7 +8,7 @@ import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/
 // 内部组件导入
 import Header from './../Common/Header'
 import Main from './Main'
-import type { IndexBarListLoadContext } from './Main/types'
+import type { IndexBarListLoadContext, IndexBarListRowWithAnchor } from './Main/types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
@@ -43,7 +43,7 @@ const IndexBarList = () => {
           const list = result?.list
           if (Array.isArray(list)) {
             for (let i = 0; i < list.length; i++) {
-              const item = list[i] as { anchor?: string } | undefined
+              const item = list[i] as IndexBarListRowWithAnchor | undefined
               if (item?.anchor) {
                 newAnchors[item.anchor] = item.anchor
               }

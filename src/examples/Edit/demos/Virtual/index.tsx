@@ -24,6 +24,12 @@ import {
 // 内部组件导入
 import { queryData, validateData, saveData } from "./../Cache/api";
 import Footer from "./../Cache/Footer";
+import type {
+  EditDemoFormItemExtraParams,
+  EditDemoQueryDataResult,
+  EditDemoResultView,
+  EditDemoSaveResult,
+} from "./../Common/types";
 
 // 样式图片等资源文件导入
 const locale = LocaleUtil.locale;
@@ -53,10 +59,7 @@ const Edit = () => {
    */
   async function loadData() {
     // 加载详情数据
-    let data = (await queryData()) as {
-      formData?: unknown;
-      baseData?: unknown;
-    } | null;
+    let data = (await queryData()) as EditDemoQueryDataResult;
     setResult(data);
     baseDataRef.current = data?.baseData ?? null;
 
@@ -79,7 +82,7 @@ const Edit = () => {
       baseData: baseDataRef.current,
       data,
       token: tokenRef.current,
-    })) as { code?: string; message?: string };
+    })) as EditDemoSaveResult;
     if (saveResult.code === "1") {
       Toast.show({
         content: String(locale("提交成功!")),
@@ -108,6 +111,8 @@ const Edit = () => {
     }
   }
 
+  const resultView = result as EditDemoResultView;
+
   return (
     <Page>
       <Page.Main>
@@ -134,7 +139,7 @@ const Edit = () => {
               name="textarea"
               maxLength={150}
               label={String(locale("Textarea"))}
-              extra={({ value }: { value: unknown }) => {
+              extra={({ value }: EditDemoFormItemExtraParams) => {
                 const s = typeof value === "string" ? value : "";
                 return (
                   <div className="lyrixi-text-right">{`${s.length} / 150`}</div>
@@ -286,7 +291,7 @@ const Edit = () => {
               height={56}
               name="password"
               label={String(locale("Password"))}
-              extra={({ value }: { value: unknown }) => {
+              extra={({ value }: EditDemoFormItemExtraParams) => {
                 return (
                   <Input.PasswordStrength
                     value={typeof value === "string" ? value : undefined}
@@ -385,10 +390,10 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {(result as { message?: string; status?: string } | null)?.message && (
+      {resultView?.message && (
         <Result
-          status={String((result as { status?: string }).status ?? "empty")}
-          title={String((result as { message?: string }).message ?? "")}
+          status={String(resultView?.status ?? "empty")}
+          title={String(resultView?.message ?? "")}
         />
       )}
     </Page>

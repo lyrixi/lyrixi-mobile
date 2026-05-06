@@ -24,6 +24,13 @@ import {
 // 内部组件导入
 import { cacheConfig, queryData, validateData, saveData } from './api'
 import Footer from './Footer'
+import type { EditDemoFormItemExtraParams } from '../Common/types'
+import type {
+  EditCacheLoadedForSave,
+  EditCacheQueryDataResult,
+  EditCacheResultView,
+  EditCacheSaveResult
+} from './types'
 
 // 样式图片等资源文件导入
 const locale = LocaleUtil.locale
@@ -57,7 +64,7 @@ const Edit = () => {
    * @return {Object} {baseData: xx, formData: xx}
    */
   async function loadData() {
-    let data = (await queryData()) as { formData?: unknown } | null
+    let data = (await queryData()) as EditCacheQueryDataResult
     setResult(data)
 
     // Initialize form with data
@@ -72,13 +79,13 @@ const Edit = () => {
     let data = await validateData({ form })
     if (!data) return
 
-    const loaded = result as { baseData?: unknown } | null
+    const loaded = result as EditCacheLoadedForSave
     // 保存表单数据
     const saveResult = (await saveData({
       baseData: loaded?.baseData,
       data,
       token: tokenRef.current
-    })) as { code?: string; message?: string }
+    })) as EditCacheSaveResult
     if (saveResult.code === '1') {
       Toast.show({
         content: String(locale('提交成功!')),
@@ -106,6 +113,8 @@ const Edit = () => {
       })
     }
   }
+
+  const resultView = result as EditCacheResultView
 
   return (
     <Page>
@@ -153,7 +162,7 @@ const Edit = () => {
             name="textarea"
             maxLength={150}
             label={String(locale('Textarea'))}
-            extra={({ value }: { value: unknown }) => {
+            extra={({ value }: EditDemoFormItemExtraParams) => {
               const s = typeof value === 'string' ? value : ''
               return <div className="lyrixi-text-right">{`${s.length} / 150`}</div>
             }}
@@ -274,7 +283,7 @@ const Edit = () => {
             height={72}
             name="password"
             label={String(locale('Password'))}
-            extra={({ value }: { value: unknown }) => {
+            extra={({ value }: EditDemoFormItemExtraParams) => {
               return <Input.PasswordStrength value={typeof value === 'string' ? value : undefined} />
             }}
           >
@@ -330,10 +339,10 @@ const Edit = () => {
       <Footer onOk={handleSave} />
 
       {/* Error */}
-      {(result as { message?: string; status?: string } | null)?.message && (
+      {resultView?.message && (
         <Result
-          status={String((result as { status?: string }).status ?? 'empty')}
-          title={String((result as { message?: string }).message ?? '')}
+          status={String(resultView?.status ?? 'empty')}
+          title={String(resultView?.message ?? '')}
         />
       )}
     </Page>
