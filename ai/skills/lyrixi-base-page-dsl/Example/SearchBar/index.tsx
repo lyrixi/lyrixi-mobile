@@ -1,12 +1,11 @@
 import React, { type FC } from 'react'
 import { LocaleUtil, ToolBar } from 'lyrixi-mobile'
 
+import type { SearchBarProps } from './types'
+
 const locale = LocaleUtil.locale
 
-export type SearchBarProps = {
-  queryParams: Record<string, unknown> | null
-  onQuery: (p: Record<string, unknown>) => void
-}
+export type { SearchBarProps } from './types'
 
 const SearchBar: FC<SearchBarProps> = ({ queryParams, onQuery }) => {
   return (

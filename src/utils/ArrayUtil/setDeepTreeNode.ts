@@ -1,9 +1,10 @@
-interface DeepNode extends Record<string, unknown> {
-  id: string | number
-  children?: DeepNode[]
-}
+import type { ArrayUtilDeepTreeNode } from './types'
 
-function setDeepTreeNode(tree: DeepNode[], id: string | number, updateNode?: (node: DeepNode) => void): DeepNode[] {
+function setDeepTreeNode(
+  tree: ArrayUtilDeepTreeNode[],
+  id: string | number,
+  updateNode?: (node: ArrayUtilDeepTreeNode) => void
+): ArrayUtilDeepTreeNode[] {
   for (const node of tree) {
     if (node.id === id) {
       updateNode && updateNode(node)

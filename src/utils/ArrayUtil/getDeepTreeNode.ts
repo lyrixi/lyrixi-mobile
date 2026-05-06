@@ -1,10 +1,10 @@
-interface DeepNode extends Record<string, unknown> {
-  id: string | number
-  children?: DeepNode[]
-}
+import type { ArrayUtilDeepTreeNode } from './types'
 
 // 根据id, 取出此id节点的数据, 即{id: '', name: '', parentid: ''}
-function getDeepTreeNode(tree: DeepNode[], id: string | number): DeepNode | null {
+function getDeepTreeNode(
+  tree: ArrayUtilDeepTreeNode[],
+  id: string | number
+): ArrayUtilDeepTreeNode | null {
   for (const node of tree) {
     if (node.id === id) {
       return node

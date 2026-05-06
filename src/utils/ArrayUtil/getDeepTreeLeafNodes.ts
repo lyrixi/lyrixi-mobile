@@ -1,13 +1,10 @@
-interface DeepNode extends Record<string, unknown> {
-  id: string | number
-  children?: DeepNode[]
-}
+import type { ArrayUtilDeepTreeNode } from './types'
 
 // 获取末级节点
-function getDeepTreeLeafNodes(tree: DeepNode[]): DeepNode[] {
-  const leafNodes: DeepNode[] = []
+function getDeepTreeLeafNodes(tree: ArrayUtilDeepTreeNode[]): ArrayUtilDeepTreeNode[] {
+  const leafNodes: ArrayUtilDeepTreeNode[] = []
 
-  function traverse(nodes: DeepNode[]): void {
+  function traverse(nodes: ArrayUtilDeepTreeNode[]): void {
     for (const node of nodes) {
       if (Array.isArray(node.children) && node.children.length > 0) {
         traverse(node.children)

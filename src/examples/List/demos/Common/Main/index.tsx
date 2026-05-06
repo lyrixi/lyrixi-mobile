@@ -2,15 +2,13 @@ import React, { forwardRef, type Ref } from 'react'
 import { ListPagination } from 'lyrixi-mobile'
 import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
 
+import type { ListDemoMainProps } from './types'
+
 import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewItem from './formatViewItem'
 
-export type ListDemoMainProps = {
-  cacheName: string
-  virtual?: import('lyrixi-mobile/components/ListAsync/VirtualList').VirtualOptions
-  queryParams: Record<string, unknown>
-}
+export type { ListDemoMainProps } from './types'
 
 // 简便的列表组件, 只需要传入url和params即可
 const Main = (

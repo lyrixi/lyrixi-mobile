@@ -1,8 +1,8 @@
 import type {
   ExitFullscreenTarget,
   FullscreenDocument,
-  RequestFullscreenElement,
-} from './legacyFullscreen'
+  RequestFullscreenElement
+} from './types'
 
 // FullScreen
 const FullScreen = {

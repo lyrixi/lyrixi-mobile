@@ -1,3 +1,5 @@
+import type { BridgeOpenLocationCoord } from './../types'
+
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
 // 内库使用-end
@@ -6,16 +8,10 @@ import GeoUtil from './../../GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface OpenLocationCoord {
-  longitude: number
-  latitude: number
-  type: string
-  isInChina?: boolean
-  [key: string]: unknown
-}
-
 // 格式化openLocation参数, 坐标自动转换: 国内转gcj02, 国外转wgs84
-function formatOpenLocationCoord(coord: OpenLocationCoord | null | undefined): OpenLocationCoord | null | undefined {
+function formatOpenLocationCoord(
+  coord: BridgeOpenLocationCoord | null | undefined
+): BridgeOpenLocationCoord | null | undefined {
   // 参数不合法
   if (!coord?.longitude || !coord?.latitude || !coord?.type) {
     return coord

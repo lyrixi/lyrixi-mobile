@@ -1,14 +1,14 @@
-interface FlatNode extends Record<string, unknown> {
-  id: string | number
-  parentid?: string | number | null
-}
+import type { ArrayUtilFlatTreeNode } from './types'
 
 // 根据id, 取出此id的后代节点数据, 即[{id: '', name: '', parentid: ''}]
-function getFlatTreeDescendantNodes(tree: FlatNode[], id: string | number): FlatNode[] {
+function getFlatTreeDescendantNodes(
+  tree: ArrayUtilFlatTreeNode[],
+  id: string | number
+): ArrayUtilFlatTreeNode[] {
   const strId = String(id)
-  const descendants: FlatNode[] = []
+  const descendants: ArrayUtilFlatTreeNode[] = []
 
-  function buildDescendants(nodes: FlatNode[], parentId: string): void {
+  function buildDescendants(nodes: ArrayUtilFlatTreeNode[], parentId: string): void {
     for (const item of nodes) {
       if (parentId && String(item['parentid']) === parentId) {
         descendants.push(item)

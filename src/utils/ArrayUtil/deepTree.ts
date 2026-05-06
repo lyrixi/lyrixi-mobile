@@ -1,26 +1,17 @@
-interface FlatNode extends Record<string, unknown> {
-  id: string | number
-  parentid?: string | number | null
-}
-
-interface DeepNode extends Record<string, unknown> {
-  id: string | number
-  parentid?: string | number | null
-  children?: DeepNode[]
-}
+import type { ArrayUtilDeepTreeNodeWithParent, ArrayUtilFlatTreeNode } from './types'
 
 /* -----------------------------------------------------
   树数据深度化, 将树的parentid深度为children, 必须有id和parentid
   @格式 [{id: '', name: '', parentid: ''}, {id: '', name: '', parentid: ''}]
   @return [{id: '', name: '', children: {}}]
  ----------------------------------------------------- */
-function deepTree(flattenTree: FlatNode[]): DeepNode[] {
+function deepTree(flattenTree: ArrayUtilFlatTreeNode[]): ArrayUtilDeepTreeNodeWithParent[] {
   if (!Array.isArray(flattenTree) || !flattenTree.length) {
     return []
   }
 
-  const idMap: Record<string | number, DeepNode> = {}
-  const result: DeepNode[] = []
+  const idMap: Record<string | number, ArrayUtilDeepTreeNodeWithParent> = {}
+  const result: ArrayUtilDeepTreeNodeWithParent[] = []
 
   flattenTree.forEach((node) => {
     idMap[node.id] = { ...node }

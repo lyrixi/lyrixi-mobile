@@ -1,19 +1,12 @@
-interface DeepNode extends Record<string, unknown> {
-  id: string | number
-  name?: unknown
-  children?: DeepNode[]
-}
+import type { ArrayUtilFlattenTreeDeepNode, ArrayUtilFlattenTreeFlatNode } from './types'
 
-interface FlatNode {
-  id: string | number
-  name?: unknown
-  parentid: string | number | null
-}
+function flattenTree(deepTree: ArrayUtilFlattenTreeDeepNode[]): ArrayUtilFlattenTreeFlatNode[] {
+  const result: ArrayUtilFlattenTreeFlatNode[] = []
 
-function flattenTree(deepTree: DeepNode[]): FlatNode[] {
-  const result: FlatNode[] = []
-
-  function traverse(nodes: DeepNode[], parentId: string | number | null = null): void {
+  function traverse(
+    nodes: ArrayUtilFlattenTreeDeepNode[],
+    parentId: string | number | null = null
+  ): void {
     nodes.forEach((item) => {
       const { id, name, children = [] } = item
       result.push({ id, name, parentid: parentId })

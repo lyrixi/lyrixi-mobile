@@ -1,3 +1,12 @@
+/** openLocation 坐标入参（Bridge 内格式化用） */
+export interface BridgeOpenLocationCoord {
+  longitude: number
+  latitude: number
+  type: string
+  isInChina?: boolean
+  [key: string]: unknown
+}
+
 /** Raw SDK callback data shape (DingTalk / WeChat / Lark / Alipay etc.) */
 export type SDKResult = {
   errorCode?: string | number

@@ -1,19 +1,20 @@
-interface FlatNode extends Record<string, unknown> {
+import type { ArrayUtilFlatTreeNode } from './types'
+
+function getFlatTreePredecessorNodes(
+  tree: ArrayUtilFlatTreeNode[],
   id: string | number
-  parentid?: string | number | null
-}
+): ArrayUtilFlatTreeNode[] {
+  const result: ArrayUtilFlatTreeNode[] = []
 
-function getFlatTreePredecessorNodes(tree: FlatNode[], id: string | number): FlatNode[] {
-  const result: FlatNode[] = []
-
-  const nodeMap: Record<string | number, FlatNode> = {}
+  const nodeMap: Record<string | number, ArrayUtilFlatTreeNode> = {}
   tree.forEach((node) => {
     nodeMap[node.id] = node
   })
 
-  let currentNode: FlatNode | undefined = nodeMap[id]
+  let currentNode: ArrayUtilFlatTreeNode | undefined = nodeMap[id]
   while (currentNode && currentNode['parentid'] != null) {
-    const parentNode: FlatNode | undefined = nodeMap[currentNode['parentid'] as string | number]
+    const parentNode: ArrayUtilFlatTreeNode | undefined =
+      nodeMap[currentNode['parentid'] as string | number]
     if (parentNode) {
       result.unshift(parentNode)
       currentNode = parentNode

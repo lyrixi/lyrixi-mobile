@@ -1,10 +1,9 @@
-interface DeepNode extends Record<string, unknown> {
-  id: string | number
-  parentid?: string | number | null
-  children?: DeepNode[]
-}
+import type { ArrayUtilDeepTreeNodeWithParent } from './types'
 
-function updateDeepTreeParentId(tree: DeepNode[], parentid: string | number | null = null): DeepNode[] {
+function updateDeepTreeParentId(
+  tree: ArrayUtilDeepTreeNodeWithParent[],
+  parentid: string | number | null = null
+): ArrayUtilDeepTreeNodeWithParent[] {
   if (!Array.isArray(tree) || !tree.length) return tree
 
   for (const node of tree) {
