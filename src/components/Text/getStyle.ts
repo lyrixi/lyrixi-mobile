@@ -22,9 +22,10 @@ function getStyle({
   className?: string
 }) {
   // 判断颜色是否在枚举值中（含类名 token 的需与 design token 字符串比较）
-  const isColorClass = color != null && DOMUtil.variables.colors.includes(String(color))
-  const isFontSizeClass = fontSize != null && DOMUtil.variables.sizes.includes(String(fontSize))
-  const isFontWeightClass = fontWeight != null && DOMUtil.variables.sizes.includes(String(fontWeight))
+  const isColorClass = color !== null && DOMUtil.variables.colors.includes(String(color))
+  const isFontSizeClass = fontSize !== null && DOMUtil.variables.sizes.includes(String(fontSize))
+  const isFontWeightClass =
+    fontWeight !== null && DOMUtil.variables.sizes.includes(String(fontWeight))
 
   // 构建自定义样式
   const newStyle: CSSProperties = {

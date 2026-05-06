@@ -32,13 +32,11 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
   ) => {
     let [result, setResult] = useState<LoadResult | null>(null)
 
-
     const APIRef = useRef<MapLoaderRef>({
       // 下方 async function 声明在运行时已提升；满足 hooks → 内部工具 → effect
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       reload: loadData
     })
-
 
     useEffect(() => {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define -- loadData 声明在组件后部，与既有结构一致
@@ -46,11 +44,9 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
       // eslint-disable-next-line
     }, [])
 
-
     useImperativeHandle(ref, () => {
       return APIRef.current
     })
-
 
     async function loadData() {
       if (typeof getAddress === 'function') window.defaultGetAddress = getAddress
@@ -93,7 +89,6 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
       setResult(loadResult)
     }
 
-
     if (result === null) {
       if (loadingNode) {
         return <>{loadingNode}</>
@@ -104,13 +99,15 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
       return null
     }
 
-
     if (result.status === 'error' && typeof result.message === 'string') {
       return (
         <Result title={result.message} className="lyrixi-map-container-result" status={'500'}>
           <Button
-            className="lyrixi-result-button"
-            color="primary"
+            radius="l"
+            backgroundColor="primary"
+            border="none"
+            color="white"
+            style={{ margin: '10px 12px' }}
             onClick={() => {
               loadData()
             }}
@@ -121,16 +118,13 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
       )
     }
 
-
     if (result.message && React.isValidElement(result.message)) {
       return result.message as React.ReactElement
     }
 
-
     if (window.L) {
       canvasMarkers(window.L)
     }
-
 
     return <>{children}</>
   }

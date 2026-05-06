@@ -21,7 +21,12 @@ type PathNode = CascaderNode & { path?: CascaderNode[] }
 type SearchResult = {
   status: string
   message?: ReactNode
-  list: Array<{ path: CascaderNode[]; name?: ReactNode; id?: string | number; [key: string]: unknown }>
+  list: Array<{
+    path: CascaderNode[]
+    name?: ReactNode
+    id?: string | number
+    [key: string]: unknown
+  }>
 }
 
 // 搜索页面
@@ -32,10 +37,10 @@ const SearchPage = ({
   onClose
 }: {
   list: CascaderNode[]
-  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) =>
-    | void
-    | SearchResult
-    | Promise<SearchResult | void>
+  onSearch?: (
+    keyword: string,
+    ctx: { list: CascaderNode[] }
+  ) => void | SearchResult | Promise<SearchResult | void>
   onChange?: (v: CascaderNode[]) => void
   onClose?: () => void
 }) => {
@@ -46,7 +51,7 @@ const SearchPage = ({
     setKeyword(newKeyword)
     if (typeof onSearch === 'function') {
       const newResult = await onSearch(newKeyword, { list: externalList })
-      if (newResult != null) {
+      if (newResult !== null) {
         setResult(newResult)
       }
       return
@@ -65,10 +70,12 @@ const SearchPage = ({
         message: '',
         list: (currentList as PathNode[]).map((node) => {
           const { children, ...restNode } = node
-          const path = (ArrayUtil.getDeepTreePredecessorNodes(
-            externalList as never,
-            (node as CascaderNode).id
-          ) as CascaderNode[]).concat(node as CascaderNode)
+          const path = (
+            ArrayUtil.getDeepTreePredecessorNodes(
+              externalList as never,
+              (node as CascaderNode).id
+            ) as CascaderNode[]
+          ).concat(node as CascaderNode)
           return {
             ...restNode,
             path
@@ -91,7 +98,7 @@ const SearchPage = ({
   }
 
   function renderList() {
-    if (result != null && Array.isArray(result.list) && result.list.length > 0) {
+    if (result !== null && Array.isArray(result.list) && result.list.length > 0) {
       return (
         <List
           list={result.list.map((node) => {
@@ -106,7 +113,11 @@ const SearchPage = ({
             }
           })}
           onChange={(item) => {
-            if (item != null && !Array.isArray(item) && Array.isArray((item as { path?: CascaderNode[] }).path)) {
+            if (
+              item !== null &&
+              !Array.isArray(item) &&
+              Array.isArray((item as { path?: CascaderNode[] }).path)
+            ) {
               onChange?.((item as { path: CascaderNode[] }).path)
             }
           }}

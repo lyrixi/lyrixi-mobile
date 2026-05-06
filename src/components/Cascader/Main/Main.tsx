@@ -57,7 +57,14 @@ const Main = forwardRef<HTMLDivElement, CascaderMainViewProps>(
         {result?.status !== 'success' && (
           <CascaderResult title={result?.message} status={result?.status} full>
             {result?.status === 'error' && onReLoad ? (
-              <Button className="lyrixi-result-button" color="primary" onClick={onReLoad}>
+              <Button
+                radius="l"
+                backgroundColor="primary"
+                border="none"
+                color="white"
+                style={{ margin: '10px 12px' }}
+                onClick={onReLoad}
+              >
                 {LocaleUtil.locale('重新加载', 'lyrixi_64ca9bab920a2983bcf270320d850d00')}
               </Button>
             ) : null}

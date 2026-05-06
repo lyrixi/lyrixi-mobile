@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import type { ListAsyncRetryButtonProps } from './types'
 
 // 内库使用-start
@@ -20,9 +19,11 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: ListAsyncRetry
     }
     return (
       <Button
-        className="lyrixi-result-button"
-        color="white"
+        radius="l"
         backgroundColor="primary"
+        border="none"
+        color="white"
+        style={{ margin: '10px 12px' }}
         onClick={onClick}
       >
         {LocaleUtil.locale('重试', 'lyrixi_132c5cdcceb0f1f17c8c088a42959aa4')}
@@ -35,9 +36,11 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: ListAsyncRetry
     }
     return (
       <Button
-        className="lyrixi-result-button"
-        color="white"
+        radius="l"
         backgroundColor="primary"
+        border="none"
+        color="white"
+        style={{ margin: '10px 12px' }}
         onClick={onClick}
       >
         {LocaleUtil.locale('刷新', 'lyrixi_694fc5efa9e1d1c2c5eb6525e1c7fb29')}

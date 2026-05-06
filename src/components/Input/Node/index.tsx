@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react
 import { splitInputStyle, correctValue as _correctValue } from './../Text/utils'
 import renderClear from './../Text/renderClear'
 
-
 import type { InputNodeProps, InputNodeRef } from './types'
 
 // 内库使用-start
@@ -56,16 +55,13 @@ const InputNode = (
 ) => {
   let displayValue = typeof formatter === 'function' ? formatter(value || '') : null
 
-
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
-
 
   // Elements
   const rootRef = useRef<HTMLDivElement>(null)
 
   const inputRef = useRef<HTMLDivElement>(null)
-
 
   // Initialize
   useEffect(() => {
@@ -74,12 +70,11 @@ const InputNode = (
     // 矫正为正确的值
     let val = correctValue(value)
     // eslint-disable-next-line
-    if (val != value) {
+    if (val !== value) {
       onChange && onChange(String(val))
     }
     // eslint-disable-next-line
   }, [])
-
 
   // onFocus & onBlur
   useEffect(() => {
@@ -96,7 +91,6 @@ const InputNode = (
     }
     // eslint-disable-next-line
   }, [cursor])
-
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -118,7 +112,6 @@ const InputNode = (
       }
     }
   })
-
 
   function handleBlur() {
     if (readOnly || disabled) {
@@ -157,12 +150,10 @@ const InputNode = (
       })
   }
 
-
   // 矫正最大长度和小数位截取
   function correctValue(val: string | number): string | number {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
-
 
   // 点击清除
   async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
@@ -171,7 +162,6 @@ const InputNode = (
     // Callback
     typeof onChange === 'function' && onChange('', { action: 'clickClear' })
   }
-
 
   return (
     <div
@@ -227,11 +217,11 @@ const InputNode = (
       {disabled || !allowClear
         ? null
         : renderClear({
-          clearRender,
-          allowClear,
-          value,
-          onClear: handleClear
-        })}
+            clearRender,
+            allowClear,
+            value,
+            onClear: handleClear
+          })}
 
       {/* Element: Right Icon */}
       {rightIconNode}

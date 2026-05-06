@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties } from 'react'
 import Item from './Item'
 
-
 import type { SelectorItem, SelectorProps, SelectorRef } from './types'
 
 // 内库使用-start
@@ -120,9 +119,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     const hasEllipsis = Boolean(ellipsisCount && list.length > ellipsisCount)
     // 实际显示的列表
     const displayList =
-      hasEllipsis && !expanded && ellipsisCount != null
-        ? list.slice(0, ellipsisCount)
-        : list
+      hasEllipsis && !expanded && ellipsisCount !== null ? list.slice(0, ellipsisCount) : list
 
     return (
       <div

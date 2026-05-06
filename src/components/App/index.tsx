@@ -26,7 +26,6 @@ window.addEventListener(
   false
 )
 
-
 // Cast Result to avoid missing required props errors from untyped component
 const ResultComponent = Result as React.ComponentType<{
   status?: string
@@ -107,7 +106,14 @@ function App({
   if (result?.status === 'error') {
     return (
       <ResultComponent status="500" title={result?.message}>
-        <Button className="lyrixi-result-button" color="primary" onClick={() => void load()}>
+        <Button
+          radius="l"
+          backgroundColor="primary"
+          border="none"
+          color="white"
+          style={{ margin: '10px 12px' }}
+          onClick={() => void load()}
+        >
           {LocaleUtil.locale('重试', 'lyrixi_132c5cdcceb0f1f17c8c088a42959aa4')}
         </Button>
       </ResultComponent>
@@ -130,8 +136,8 @@ function App({
               typeof msg === 'string' || typeof msg === 'number'
                 ? String(msg)
                 : msg === null || msg === undefined
-                  ? undefined
-                  : '加载失败'
+                ? undefined
+                : '加载失败'
           })
         }}
       >

@@ -3,7 +3,6 @@ import Modal, { type ModalRef } from './../Modal'
 import getAnimation from './getAnimation'
 import updatePositionByReferenceElement from './../../Tooltip/api/updatePositionByReferenceElement'
 
-
 import type { DropdownModalProps } from './types'
 
 // 内库使用-start
@@ -45,9 +44,7 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
     // 构建动画
     const animation = getAnimation(left, right)
 
-
     const modalRef = useRef<ModalRef>(null)
-
 
     useEffect(() => {
       // 更新模态框位置对齐目标元素
@@ -55,10 +52,8 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
       // eslint-disable-next-line
     }, [open])
 
-
     // 继续向外暴露与 Modal 相同的实例能力
     useImperativeHandle(ref, () => modalRef.current!)
-
 
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
@@ -75,7 +70,7 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
       const bottomUnset = maskStyle?.bottom == null
       if (open && referenceElement && maskElement && topUnset && bottomUnset) {
         const parentEl =
-          portal != null && typeof portal === 'object' && portal instanceof HTMLElement
+          portal !== null && typeof portal === 'object' && portal instanceof HTMLElement
             ? portal
             : null
         updatePositionByReferenceElement(maskElement, {
@@ -89,7 +84,6 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
       }
     }
 
-
     return (
       <Modal
         ref={modalRef}
@@ -101,17 +95,21 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
         maskClosable={maskClosable}
         maskClassName={DOMUtil.classNames(
           maskClassName,
-          left != null || right != null ? 'lyrixi-mask-dropdown-side' : 'lyrixi-mask-dropdown-center'
+          left !== null || right !== null
+            ? 'lyrixi-mask-dropdown-side'
+            : 'lyrixi-mask-dropdown-center'
         )}
         maskStyle={{
           ...maskStyle,
-          ...(left != null ? { left: left } : {}),
-          ...(right != null ? { right: right } : {})
+          ...(left !== null ? { left: left } : {}),
+          ...(right !== null ? { right: right } : {})
         }}
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames(
           modalClassName,
-          left != null || right != null ? 'lyrixi-modal-dropdown-side' : 'lyrixi-modal-dropdown-center'
+          left !== null || right !== null
+            ? 'lyrixi-modal-dropdown-side'
+            : 'lyrixi-modal-dropdown-center'
         )}
         // Events
         onClose={onClose}

@@ -8,7 +8,7 @@ function getFlatTreeParentNode(
   id: string | number
 ): ArrayUtilFlatTreeNode | null {
   const parentId = getFlatTreeNode(tree, id)?.parentid
-  if (parentId != null) {
+  if (parentId !== null) {
     return getFlatTreeNode(tree, parentId as string | number)
   }
   return null

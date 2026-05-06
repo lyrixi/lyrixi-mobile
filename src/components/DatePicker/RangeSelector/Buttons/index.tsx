@@ -27,7 +27,7 @@ function Buttons({ value, onChange, rangeId, ranges = {}, allowClear }: ButtonsP
       <Selector
         columns={3}
         allowClear={allowClear}
-        value={rangeId != null && rangeId !== '' ? [{ id: rangeId }] : []}
+        value={rangeId !== null && rangeId !== '' ? [{ id: rangeId }] : []}
         list={getSelectorOptions(ranges)}
         onChange={(newRange: SelectorItem[]) => {
           if (ObjectUtil.isEmpty(newRange)) {

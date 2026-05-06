@@ -32,7 +32,7 @@ export default () => {
   }
 
   const handleRemoveLocalStorages = () => {
-    const success = Storage.removeLocalStorages((k) => k != null && k.startsWith('demo-'))
+    const success = Storage.removeLocalStorages((k) => k !== null && k.startsWith('demo-'))
     setResult(`批量删除成功: ${success}`)
   }
 
@@ -50,18 +50,10 @@ export default () => {
           <Divider>表单录入</Divider>
           <Form style={{ margin: '0 12px' }}>
             <Form.Item name="key" label="键名">
-              <Input.Text
-                placeholder="请输入键名"
-                value={key}
-                onChange={(v) => setKey(v)}
-              />
+              <Input.Text placeholder="请输入键名" value={key} onChange={(v) => setKey(v)} />
             </Form.Item>
             <Form.Item name="value" label="值">
-              <Input.Text
-                placeholder="请输入值"
-                value={value}
-                onChange={(v) => setValue(v)}
-              />
+              <Input.Text placeholder="请输入值" value={value} onChange={(v) => setValue(v)} />
             </Form.Item>
           </Form>
         </Card>

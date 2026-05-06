@@ -45,7 +45,7 @@ const SelectorPanel = forwardRef<Record<string, unknown> | null, DatePickerRange
         <Selector
           columns={5}
           allowClear={allowClear}
-          value={rangeId != null && rangeId !== '' ? [{ id: rangeId }] : []}
+          value={rangeId !== null && rangeId !== '' ? [{ id: rangeId }] : []}
           // 过滤自定义配置
           list={getSelectorOptions(ranges, (item) => {
             if (!Array.isArray(item?.value) || !item?.value.length) {

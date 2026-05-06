@@ -8,9 +8,11 @@ export default () => {
       <Page.Main>
         <Result status={'500'}>
           <Button
-            className="lyrixi-result-button"
-            color="primary"
-            style={{ marginTop: 77 }}
+            radius="l"
+            backgroundColor="primary"
+            border="none"
+            color="white"
+            style={{ margin: '77px 12px 0 12px' }}
             onClick={() => {
               window.location.reload()
             }}
@@ -18,7 +20,8 @@ export default () => {
             {LocaleUtil.locale('重试')}
           </Button>
           <Button
-            className="lyrixi-result-button lyrixi-bg-white"
+            radius="l"
+            style={{ margin: '12px 12px 0 12px' }}
             onClick={() => {
               Bridge.back()
             }}

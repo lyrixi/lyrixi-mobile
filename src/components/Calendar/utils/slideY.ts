@@ -46,8 +46,8 @@ function slideY(
   } else {
     const h = body.getAttribute('data-height')
     const t = bodyY.getAttribute('data-translateY')
-    height = h != null && h !== '' ? h : '0'
-    translateY = t != null && t !== '' ? t : 0
+    height = h !== null && h !== '' ? h : '0'
+    translateY = t !== null && t !== '' ? t : 0
   }
   body.style.height = (typeof height === 'number' ? String(height) : height) + 'px'
   bodyY.style.transform = 'translateY(' + translateY + 'px)'

@@ -12,7 +12,7 @@ function getFlatTreePredecessorNodes(
   })
 
   let currentNode: ArrayUtilFlatTreeNode | undefined = nodeMap[id]
-  while (currentNode && currentNode['parentid'] != null) {
+  while (currentNode && currentNode['parentid'] !== null) {
     const parentNode: ArrayUtilFlatTreeNode | undefined =
       nodeMap[currentNode['parentid'] as string | number]
     if (parentNode) {
