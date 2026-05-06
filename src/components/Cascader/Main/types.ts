@@ -1,6 +1,30 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties, MutableRefObject, ReactNode } from 'react'
 
 import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+
+export interface CascaderMainAnchorItem {
+  anchor?: string
+  [key: string]: unknown
+}
+
+export interface CascaderMainUpdateIsLeafTabItem {
+  id?: string | number
+  isLeaf?: boolean
+  [key: string]: unknown
+}
+
+export interface CascaderMainUpdateIsLeafParams {
+  currentValue?: CascaderMainUpdateIsLeafTabItem[]
+  value?: CascaderMainUpdateIsLeafTabItem[]
+  tabsRef: MutableRefObject<CascaderMainUpdateIsLeafTabItem[]>
+}
+
+export interface CascaderMainLoadChildrenResult {
+  async: boolean
+  status: 'success' | 'error' | 'empty'
+  list?: CascaderNode[]
+  message?: string
+}
 
 export interface CascaderMainResultState {
   status: string

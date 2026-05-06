@@ -1,5 +1,6 @@
+import type { MessageMaskElement, MessageUpdateAttributeParams } from './../types'
+
 import updateStyle from './updateStyle'
-import type { MessageMaskElement } from './showMask'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -8,26 +9,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface UpdateAttributeParams {
-  maskClosable?: boolean
-  onOpen?: () => void
-  onClose?: () => void
-  portal?: HTMLElement | string | boolean
-  maskClassName?: string
-  maskStyle?: Record<string, unknown>
-  icon?: string
-  title?: unknown
-  titleClassName?: string
-  titleStyle?: Record<string, unknown>
-  content?: unknown
-  contentClassName?: string
-  contentStyle?: Record<string, unknown>
-  footerClassName?: string
-  footerStyle?: Record<string, unknown>
-  buttonsLayout?: string
-  buttons?: Array<{ id?: string; name: string; className?: string; style?: Record<string, unknown>; onClick?: () => boolean | void }>
-}
 
 // 更新Message属性
 function updateAttribute(
@@ -64,7 +45,7 @@ function updateAttribute(
 
     // 按钮数组
     buttons = []
-  }: UpdateAttributeParams
+  }: MessageUpdateAttributeParams
 ) {
   // 更新遮罩
   updateStyle(mask, {

@@ -1,15 +1,9 @@
-type RawItem = Record<string, unknown>
-type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
-
-interface ViewFormatterOptions {
-  formatViewItem?: (item: ViewItem, options: { index: number }) => ViewItem
-  formatViewList?: (list: ViewItem[]) => ViewItem[]
-}
+import type { ListViewFormatterOptions, ViewItem } from './types'
 
 // 格式化列表数据为渲染数据, 用于渲染列表组件
 function viewFormatter(
   list: ViewItem[] | undefined,
-  { formatViewItem, formatViewList }: ViewFormatterOptions
+  { formatViewItem, formatViewList }: ListViewFormatterOptions
 ): ViewItem[] | undefined {
   // 格式化List显示数据, 但仍然需要保留原始数据list
   if (typeof formatViewList === 'function') {

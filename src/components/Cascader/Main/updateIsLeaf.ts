@@ -1,24 +1,9 @@
 import React from 'react'
 
-interface TabItem {
-  id?: string | number
-  isLeaf?: boolean
-  [key: string]: unknown
-}
+import type { CascaderMainUpdateIsLeafParams } from './types'
 
 // 设置叶子节点
-function updateIsLeaf(
-  id: string | number,
-  {
-    currentValue,
-    value,
-    tabsRef
-  }: {
-    currentValue?: TabItem[]
-    value?: TabItem[]
-    tabsRef: React.MutableRefObject<TabItem[]>
-  }
-): void {
+function updateIsLeaf(id: string | number, { currentValue, value, tabsRef }: CascaderMainUpdateIsLeafParams): void {
   for (const tab of currentValue || []) {
     if (tab && tab.id === id) {
       tab.isLeaf = true

@@ -1,21 +1,6 @@
 import constant from './constant'
 
-type VirtualData = {
-  type?: string
-  height: number
-  top: number
-  index: number
-}
-
-type VirtualItem = Record<string, unknown> & { virtualData: VirtualData }
-
-interface GetVisibleItemsOptions {
-  prependHeight: number
-  items: VirtualItem[]
-  itemHeights: number[]
-  scrollTop: number | undefined
-  containerHeight: number
-}
+import type { VirtualListGetVisibleItemsOptions, VirtualListVirtualItem } from './types'
 
 // 计算可见区域元素
 function getVisibleItems({
@@ -24,7 +9,7 @@ function getVisibleItems({
   itemHeights,
   scrollTop,
   containerHeight
-}: GetVisibleItemsOptions): VirtualItem[] {
+}: VirtualListGetVisibleItemsOptions): VirtualListVirtualItem[] {
   if (!Array.isArray(items) || !items.length) return []
   const scrollTopValue = scrollTop ?? 0
   // 计算每一项的 top 值和高度

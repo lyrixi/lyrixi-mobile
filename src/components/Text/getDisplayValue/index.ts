@@ -1,3 +1,5 @@
+import type { TextGetDisplayValueOptions } from './types'
+
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
@@ -6,13 +8,8 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface GetDisplayValueOptions {
-  maxCount?: number
-  precision?: number
-}
-
 // 获取显示名称
-function getDisplayValue(value: unknown, { maxCount, precision }: GetDisplayValueOptions = {}) {
+function getDisplayValue(value: unknown, { maxCount, precision }: TextGetDisplayValueOptions = {}) {
   // Date
   if (value instanceof Date) {
     return DateUtil.format(value, 'YYYY-MM-DD')

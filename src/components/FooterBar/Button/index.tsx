@@ -1,4 +1,4 @@
-import { useRef, forwardRef, useImperativeHandle, useState } from 'react'
+import React, { Fragment, useRef, forwardRef, useImperativeHandle, useState } from 'react'
 
 import type { ButtonRef } from './../../Button/types'
 import type { ModalRef } from './../../Modal/Modal/types'
@@ -70,7 +70,7 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
     })
 
     return (
-      <>
+      <Fragment>
         {/* Element: Button */}
         <Button
           ref={comboRef}
@@ -119,7 +119,7 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
             }}
           />
         ) : null}
-      </>
+      </Fragment>
     )
   }
 )

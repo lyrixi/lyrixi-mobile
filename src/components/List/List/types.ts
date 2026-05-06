@@ -5,6 +5,11 @@ export type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
 
 export type ItemChangeArg = RawItem & { checked?: boolean }
 
+export interface ListViewFormatterOptions {
+  formatViewItem?: (item: ViewItem, options: { index: number }) => ViewItem
+  formatViewList?: (list: ViewItem[]) => ViewItem[]
+}
+
 export interface ListRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null

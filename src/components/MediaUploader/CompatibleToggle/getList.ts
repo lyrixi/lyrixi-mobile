@@ -1,4 +1,4 @@
-import React from 'react'
+import type { CompatibleToggleListItem } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,15 +8,10 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ListItem {
-  id: string
-  name: React.ReactNode
-}
-
-function getList(): ListItem[]
-function getList(platform: string): ListItem
-function getList(platform?: string): ListItem | ListItem[] {
-  const list: ListItem[] = [
+function getList(): CompatibleToggleListItem[]
+function getList(platform: string): CompatibleToggleListItem
+function getList(platform?: string): CompatibleToggleListItem | CompatibleToggleListItem[] {
+  const list: CompatibleToggleListItem[] = [
     {
       id: 'wechatMiniProgram',
       name: LocaleUtil.locale('浏览器拍照', 'lyrixi_8aa7d6484388695501c2cd7f434b5de0')

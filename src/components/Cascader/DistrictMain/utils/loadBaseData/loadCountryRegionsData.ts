@@ -1,3 +1,5 @@
+import type { DistrictMainApiResult } from '../../api/types'
+
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'
 // 内库使用-end
@@ -6,20 +8,14 @@ import ArrayUtil from './../../../../../utils/ArrayUtil'
 import { ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ApiResult {
-  status: 'success' | 'error' | 'empty'
-  list?: unknown[]
-  message?: string
-}
-
 // 加载省市区
 async function loadCountryRegionsData({
   countryId,
   loadCountryRegions
 }: {
   countryId: string | number
-  loadCountryRegions: (id: string | number) => Promise<ApiResult>
-}): Promise<ApiResult> {
+  loadCountryRegions: (id: string | number) => Promise<DistrictMainApiResult>
+}): Promise<DistrictMainApiResult> {
   const countryRegionsData = await loadCountryRegions(countryId)
   if (countryRegionsData?.status === 'error') return countryRegionsData
 

@@ -1,10 +1,7 @@
-interface AnchorItem {
-  anchor?: string
-  [key: string]: unknown
-}
+import type { CascaderMainAnchorItem } from './types'
 
 // 获取IndexBar的anchors
-function getAnchors(list: AnchorItem[]): string[] {
+function getAnchors(list: CascaderMainAnchorItem[]): string[] {
   if (!Array.isArray(list) || list.length === 0) return []
   const anchors: string[] = []
   for (const item of list) {

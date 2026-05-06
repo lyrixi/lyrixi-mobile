@@ -3,6 +3,23 @@ import type { CSSProperties, ReactNode } from 'react'
 import type { ListProps, RawItem } from './../../List/List/types'
 import type { PageMainProps, PageMainRef } from './../../Page/Main/types'
 
+export interface VirtualListVirtualData {
+  type?: string
+  height: number
+  top: number
+  index: number
+}
+
+export type VirtualListVirtualItem = Record<string, unknown> & { virtualData: VirtualListVirtualData }
+
+export interface VirtualListGetVisibleItemsOptions {
+  prependHeight: number
+  items: VirtualListVirtualItem[]
+  itemHeights: number[]
+  scrollTop: number | undefined
+  containerHeight: number
+}
+
 export interface VirtualOptions {
   getItemHeight: (item: RawItem) => number
 }

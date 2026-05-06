@@ -1,3 +1,5 @@
+import type { DistrictMainApiResult } from './types'
+
 // 内库使用-start
 import Request from './../../../../utils/Request'
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -7,13 +9,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ApiResult {
-  status: 'success' | 'error' | 'empty'
-  list?: unknown[]
-  message?: string
-}
-
-function loadStreets(districtId: string | number): Promise<ApiResult> {
+function loadStreets(districtId: string | number): Promise<DistrictMainApiResult> {
   const districtKey = String(districtId)
   return new Promise((resolve) => {
     window.streets = window.streets || JSON.parse(window.sessionStorage.getItem('streets') || '{}') as Record<string, unknown>

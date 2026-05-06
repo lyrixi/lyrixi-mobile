@@ -1,3 +1,5 @@
+import type { WechatMiniProgramClearPhotosOptions, WechatMiniProgramClearPhotosResult } from './types'
+
 // 内库使用-start
 import Toast from './../../../Toast'
 import Request from './../../../../utils/Request'
@@ -8,12 +10,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Toast, Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ClearPhotosResult {
-  code?: string
-  message?: string
-}
-
-function clearPhotos(id: string, { url }: { url: string }): Promise<boolean> {
+function clearPhotos(id: string, { url }: WechatMiniProgramClearPhotosOptions): Promise<boolean> {
   return new Promise((resolve) => {
     console.log('清除照片:', url, id)
     Request.post(url, {
@@ -22,7 +19,7 @@ function clearPhotos(id: string, { url }: { url: string }): Promise<boolean> {
     })
       .then((result) => {
         console.log('照片清除成功:', result)
-        const res = result as ClearPhotosResult
+        const res = result as WechatMiniProgramClearPhotosResult
         if (res.code === '1') {
           resolve(true)
         } else {

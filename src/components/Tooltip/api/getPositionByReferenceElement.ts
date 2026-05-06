@@ -1,3 +1,5 @@
+import type { TooltipGetPositionByReferenceParams, TooltipPositionResult } from './types'
+
 // 内库使用-start
 import getClassNameByAnimation from './../../Modal/api/getClassNameByAnimation'
 // 内库使用-end
@@ -7,15 +9,11 @@ import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
-interface PositionResult {
-  bottom: number | null
-  top: number | null
-  left: number | null
-  right: number | null
-}
-
 // 根据源位置计算弹框位置
-function getPositionByReferenceElement({ referenceElement, animation }: { referenceElement: HTMLElement | null; animation: string }): PositionResult | null {
+function getPositionByReferenceElement({
+  referenceElement,
+  animation
+}: TooltipGetPositionByReferenceParams): TooltipPositionResult | null {
   if (
     !referenceElement ||
     Object.prototype.toString.call(referenceElement).indexOf('[object HTML') === -1

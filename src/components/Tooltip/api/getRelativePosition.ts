@@ -1,3 +1,5 @@
+import type { TooltipGetRelativePositionParams, TooltipPositionResult } from './types'
+
 // 内库使用-start
 import getClassNameByAnimation from './../../Modal/api/getClassNameByAnimation'
 // 内库使用-end
@@ -7,20 +9,17 @@ import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
-interface PositionResult {
-  bottom: number | null
-  top: number | null
-  left: number | null
-  right: number | null
-}
-
 /**
  * 计算目标元素相对于参考元素的坐标位置和尺寸
  * @param {HTMLElement} targetElement - 目标元素
  * @param {HTMLElement} parentElement - 参考元素（坐标系基准）
  * @returns {Object} 包含 left, top, width, height 的相对位置对象
  */
-function getRelativePosition({ targetElement, parentElement, animation }: { targetElement: HTMLElement; parentElement: HTMLElement; animation: string }): PositionResult {
+function getRelativePosition({
+  targetElement,
+  parentElement,
+  animation
+}: TooltipGetRelativePositionParams): TooltipPositionResult {
   // 获取元素在视口中的绝对位置和尺寸
   const targetRect = targetElement.getBoundingClientRect()
   const parentRect = parentElement.getBoundingClientRect()

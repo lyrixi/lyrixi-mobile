@@ -1,32 +1,15 @@
+import React from 'react'
+
+import type { ListPaginationQueryDataOptions, ListPaginationQueryResult } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Request from './../../../../utils/Request'
-import type { LoadResult } from './../../../ListAsync'
 // 内库使用-end
 
 /* 测试使用-start
 import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
-
-type RawItem = Record<string, unknown>
-
-interface QueryResult {
-  status: string
-  message?: string
-  list?: RawItem[]
-  totalPage?: number
-  totalRows?: number
-  [key: string]: unknown
-}
-
-interface QueryDataOptions {
-  rows?: number
-  pageRef: React.RefObject<number>
-  previousResult?: LoadResult | null
-  action?: string
-  formatPayload?: (params: Record<string, unknown>) => Promise<Record<string, unknown>> | Record<string, unknown>
-  formatResult?: (result: unknown, options: { payload: Record<string, unknown> }) => Promise<QueryResult> | QueryResult
-}
 
 // 兼容新 ListAsync 要求：外部仍返回数组，调用处已包装为新对象
 function queryData(
@@ -40,8 +23,8 @@ function queryData(
     action,
     formatPayload,
     formatResult
-  }: QueryDataOptions = {} as QueryDataOptions
-): Promise<QueryResult> {
+  }: ListPaginationQueryDataOptions = {} as ListPaginationQueryDataOptions
+): Promise<ListPaginationQueryResult> {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     if (action === 'bottomRefresh') {
@@ -66,9 +49,9 @@ function queryData(
       }
     })
       .then(async (result: unknown) => {
-        let newResult: QueryResult = formatResult
+        let newResult: ListPaginationQueryResult = formatResult
           ? await formatResult(result, { payload: queryParams })
-          : (result as QueryResult)
+          : (result as ListPaginationQueryResult)
         // 当前列表
         let currentList = pageRef.current === 1 ? [] : previousResult?.list
 

@@ -11,3 +11,11 @@ export interface GetPointsOptions {
   radius?: number
   count?: number
 }
+
+export interface DemoRandomMapPoint {
+  latitude: number
+  longitude: number
+  name: string
+  address: string
+  type: string
+}

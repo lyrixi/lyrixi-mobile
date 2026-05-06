@@ -1,3 +1,6 @@
+import type { CascaderMainLoadChildrenResult } from './types'
+import type { CascaderNode, LoadDataFn } from '../cascaderTypes'
+
 // 内库使用-start
 import ArrayUtil from '../../../utils/ArrayUtil'
 // 内库使用-end
@@ -5,15 +8,6 @@ import ArrayUtil from '../../../utils/ArrayUtil'
 /* 测试使用-start
 import { ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { CascaderNode, LoadDataFn } from '../cascaderTypes'
-
-interface LoadResult {
-  async: boolean
-  status: 'success' | 'error' | 'empty'
-  list?: CascaderNode[]
-  message?: string
-}
 
 async function loadChildren(
   tabs: CascaderNode[],
@@ -24,7 +18,7 @@ async function loadChildren(
     externalLoadData?: LoadDataFn
     externalList: CascaderNode[]
   }
-): Promise<LoadResult> {
+): Promise<CascaderMainLoadChildrenResult> {
   if (!Array.isArray(tabs) || !tabs.length) {
     return {
       async: false,
@@ -58,7 +52,7 @@ async function loadChildren(
   }
 
   const result = await externalLoadData(tabs, { list: externalList })
-  return { ...result, async: true } as LoadResult
+  return { ...result, async: true } as CascaderMainLoadChildrenResult
 }
 
 export default loadChildren

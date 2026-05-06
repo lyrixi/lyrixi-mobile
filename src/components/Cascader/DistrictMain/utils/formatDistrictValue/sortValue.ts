@@ -1,8 +1,4 @@
-interface DistrictItem {
-  id?: string | number
-  type?: string[]
-  [key: string]: unknown
-}
+import type { DistrictItem } from './types'
 
 /**
  * 按照行政区划类型顺序排序

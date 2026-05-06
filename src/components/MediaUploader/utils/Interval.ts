@@ -1,8 +1,6 @@
-interface IntervalTracker {
-  isTimeout(): boolean
-}
+import type { MediaUploaderIntervalTracker } from './intervalTypes'
 
-function Interval(interval: number): IntervalTracker {
+function Interval(interval: number): MediaUploaderIntervalTracker {
   let lastCallTime = 0
 
   return {

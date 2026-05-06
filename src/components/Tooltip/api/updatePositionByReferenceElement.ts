@@ -1,26 +1,21 @@
+import type { TooltipUpdatePositionOptions } from './types'
+
 import getPositionByReferenceElement from './getPositionByReferenceElement'
 import getRelativePosition from './getRelativePosition'
-
-interface UpdateOptions {
-  referenceElement?: HTMLElement | null
-  parentElement?: HTMLElement | null
-  animation?: string
-  bottom?: string | number | null
-  top?: string | number | null
-  left?: string | number | null
-  right?: string | number | null
-  offset?: {
-    top?: number
-    bottom?: number
-    left?: number
-    right?: number
-  }
-}
 
 // 修改元素位置相对于参考元素的定位
 function updatePositionByReferenceElement(
   current: HTMLElement,
-  { referenceElement, parentElement, animation = '', bottom, top, left, right, offset }: UpdateOptions = {}
+  {
+    referenceElement,
+    parentElement,
+    animation = '',
+    bottom,
+    top,
+    left,
+    right,
+    offset
+  }: TooltipUpdatePositionOptions = {}
 ) {
   // 自动计算位置
   let position =

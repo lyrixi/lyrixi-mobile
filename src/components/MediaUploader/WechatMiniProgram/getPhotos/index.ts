@@ -1,3 +1,8 @@
+import type {
+  WechatMiniProgramGetPhotosOptions,
+  WechatMiniProgramGetPhotosResponse
+} from './types'
+
 // 内库使用-start
 import Request from './../../../../utils/Request'
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -7,22 +12,12 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface GetPhotosResponse {
-  status: string
-  code?: string
-  message?: string
-  data?: unknown
-}
-
-function getPhotos(
-  id: string,
-  { url, formatResponse }: { url: string; formatResponse?: (r: GetPhotosResponse, ctx: { platform: string }) => GetPhotosResponse | Promise<GetPhotosResponse> }
-): Promise<unknown> {
+function getPhotos(id: string, { url, formatResponse }: WechatMiniProgramGetPhotosOptions): Promise<unknown> {
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
         console.log('服务器返回照片结果:', result)
-        let response: GetPhotosResponse = {
+        let response: WechatMiniProgramGetPhotosResponse = {
           status: 'success',
           code: '',
           message: '',

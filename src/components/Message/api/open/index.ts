@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
+
 import destroy from './../destroy'
-import showMask, { type MessageMaskElement } from './showMask'
+import type { MessageMaskElement } from './../types'
+import showMask from './showMask'
 import updateAttribute from './updateAttribute'
 
 export type MessageOpenButton = {

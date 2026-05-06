@@ -1,8 +1,6 @@
 import globalMessageId from './globalMessageId'
 
-interface MessageMaskElement extends HTMLElement {
-  timeout?: ReturnType<typeof setTimeout>
-}
+import type { MessageMaskElement } from './types'
 
 // 移除Message Modal
 function destroy(mask?: MessageMaskElement | null) {

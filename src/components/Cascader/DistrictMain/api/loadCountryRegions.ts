@@ -1,3 +1,5 @@
+import type { DistrictMainApiResult } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Request from './../../../../utils/Request'
@@ -7,13 +9,7 @@ import Request from './../../../../utils/Request'
 import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
-interface ApiResult {
-  status: 'success' | 'error'
-  list?: unknown[]
-  message?: string
-}
-
-function loadCountryRegions(countryId: string | number = '86'): Promise<ApiResult> {
+function loadCountryRegions(countryId: string | number = '86'): Promise<DistrictMainApiResult> {
   return new Promise((resolve) => {
     const language = LocaleUtil.getLanguage()
     const countryKey = String(countryId)

@@ -1,15 +1,14 @@
+import type { MessageUpdateStyleParams } from './../types'
+
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-interface UpdateStyleParams {
-  style?: Record<string, unknown>
-  className?: string
-  baseClassName: string
-}
-
 // 更新class和style
-function updateStyle(target: HTMLElement | null, { style, className, baseClassName }: UpdateStyleParams) {
+function updateStyle(
+  target: HTMLElement | null,
+  { style, className, baseClassName }: MessageUpdateStyleParams
+) {
   if (!target) return
 
   // 还原样式

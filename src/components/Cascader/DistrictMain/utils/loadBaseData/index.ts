@@ -1,3 +1,7 @@
+import type { ApiResult, DistrictMainApiDistrictNode } from '../../api/types'
+
+export type { ApiResult } from '../../api/types'
+
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -6,20 +10,6 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 /* 测试使用-start
 import { ArrayUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-interface DistrictNode {
-  id: string | number
-  name?: string
-  type?: string[]
-  children?: DistrictNode[]
-  [key: string]: unknown
-}
-
-export interface ApiResult {
-  status: 'success' | 'error' | 'empty'
-  list?: DistrictNode[]
-  message?: string
-}
 
 type LoadFn = (id?: string | number) => Promise<ApiResult>
 
@@ -39,7 +29,9 @@ async function loadBaseData({
     return countriesData
   }
 
-  const country = (countriesData.list ?? []).find((item) => item.id === countryId)
+  const country = ((countriesData.list ?? []) as DistrictMainApiDistrictNode[]).find(
+    (item) => item.id === countryId
+  )
   if (!country) {
     return {
       status: 'error',
@@ -58,13 +50,15 @@ async function loadBaseData({
 
   const countryRegionsData = await loadCountryRegions(countryId)
   if (countryRegionsData?.status === 'error') return countryRegionsData
-  if (countryRegionsData.list) country.children = countryRegionsData.list
+  if (countryRegionsData.list) {
+    country.children = countryRegionsData.list as DistrictMainApiDistrictNode[]
+  }
 
   return {
     ...countriesData,
     list: ArrayUtil.updateDeepTreeParentId(
       (countriesData?.list ?? []) as unknown as Parameters<typeof ArrayUtil.updateDeepTreeParentId>[0]
-    ) as DistrictNode[]
+    ) as DistrictMainApiDistrictNode[]
   }
 }
 

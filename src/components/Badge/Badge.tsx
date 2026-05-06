@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from 'react'
 import type { BadgeProps, BadgeRef } from './types'
 
 // 内库使用-start

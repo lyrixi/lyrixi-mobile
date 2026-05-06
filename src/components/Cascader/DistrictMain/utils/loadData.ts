@@ -1,3 +1,5 @@
+import type { DistrictMainLoadDataApiResult, DistrictMainLoadDataTab } from './loadData/types'
+
 // 内库使用-start
 import Loading from './../../../Loading'
 // 内库使用-end
@@ -8,24 +10,12 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 import loadCountryRegionsData from './loadBaseData/loadCountryRegionsData'
 
-interface DistrictTab {
-  id: string | number
-  type?: string[]
-  [key: string]: unknown
-}
-
-interface ApiResult {
-  status: 'success' | 'error' | 'empty'
-  list?: unknown[]
-  message?: string
-}
-
-type LoadCountryRegionsFn = (id: string | number) => Promise<ApiResult>
-type LoadStreetsFn = (id: string | number, ctx?: { value?: DistrictTab[] }) => Promise<ApiResult>
+type LoadCountryRegionsFn = (id: string | number) => Promise<DistrictMainLoadDataApiResult>
+type LoadStreetsFn = (id: string | number, ctx?: { value?: DistrictMainLoadDataTab[] }) => Promise<DistrictMainLoadDataApiResult>
 
 // 点击末级加载省市区或街道数据
 async function loadData(
-  tabs: DistrictTab[],
+  tabs: DistrictMainLoadDataTab[],
   {
     loadCountryRegions,
     loadStreets
@@ -33,7 +23,7 @@ async function loadData(
     loadCountryRegions: LoadCountryRegionsFn
     loadStreets: LoadStreetsFn
   }
-): Promise<ApiResult> {
+): Promise<DistrictMainLoadDataApiResult> {
   const lastTab = tabs?.[tabs?.length - 1]
 
   if (lastTab?.type?.includes('country')) {

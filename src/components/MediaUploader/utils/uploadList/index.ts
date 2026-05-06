@@ -3,6 +3,8 @@ import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
 import uploadCustom from './../../Custom/uploadItem'
 
+import type { MediaUploaderUploadListConfig } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
@@ -14,11 +16,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import { MediaItem, UploadItemConfig } from '../../types'
-
-interface UploadListConfig extends UploadItemConfig {
-  platform?: string
-}
+import type { MediaItem, UploadItemConfig } from '../../types'
 
 /**
  * 导出给外部使用的工具类: 异步上传图片
@@ -29,7 +27,7 @@ interface UploadListConfig extends UploadItemConfig {
 
 async function uploadList(
   pendingList: MediaItem | MediaItem[],
-  uploadConfig: UploadListConfig
+  uploadConfig: MediaUploaderUploadListConfig
 ): Promise<MediaItem | MediaItem[] | null> {
   // 根据平台选择上传方法
   let currentPlatform = uploadConfig?.platform || Device.platform

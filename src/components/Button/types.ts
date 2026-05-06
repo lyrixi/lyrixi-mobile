@@ -1,5 +1,9 @@
 import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 
+import type { IconProps } from './../Icon/types'
+
+export type ButtonIconProps = IconProps
+
 export interface ButtonProps {
   id?: string
   direction?: 'horizontal' | 'vertical' | string

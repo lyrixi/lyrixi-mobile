@@ -1,6 +1,10 @@
 import sortValue from './sortValue'
 import findDistrictLeafIndex from './findDistrictLeafIndex'
 
+import type { DistrictItem } from './types'
+
+export type { DistrictItem } from './types'
+
 // 内库使用-start
 import ObjectUtil from '../../../../../utils/ObjectUtil'
 import ArrayUtil from '../../../../../utils/ArrayUtil'
@@ -9,14 +13,6 @@ import ArrayUtil from '../../../../../utils/ArrayUtil'
 /* 测试使用-start
 import { ObjectUtil, ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export interface DistrictItem {
-  id?: string | number
-  parentid?: string | number
-  type?: string[]
-  isLeaf?: boolean
-  [key: string]: unknown
-}
 
 // 更新value的type
 function formatDistrictValue(

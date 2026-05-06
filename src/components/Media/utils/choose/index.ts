@@ -1,12 +1,14 @@
 import getRemainCount from './../../utils/getRemainCount'
 
+import type { MediaListItem } from '../../types'
+
+import type { MediaChooseUtilOptions } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
 // 内库使用-end
-
-import type { MediaListItem } from '../../types'
 
 /* 测试使用-start
 import { ObjectUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
@@ -16,21 +18,7 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-export interface ChooseOptions {
-  async: boolean
-  maxCount?: number
-  list?: MediaListItem[]
-  uploadPosition: 'start' | 'end' | string
-  uploadList: (
-    newList: MediaListItem[] | undefined,
-    opts?: { action?: string }
-  ) => Promise<MediaListItem[] | undefined>
-  onChoose?: () =>
-    | void
-    | MediaListItem[]
-    | Promise<MediaListItem[] | void | null | undefined | unknown>
-  onChange?: (list: MediaListItem[], meta: { action: string }) => void | Promise<unknown>
-}
+export type { MediaChooseUtilOptions as ChooseOptions } from './types'
 
 // 选择文件
 async function choose({
@@ -41,7 +29,7 @@ async function choose({
   uploadList,
   onChoose,
   onChange
-}: ChooseOptions) {
+}: MediaChooseUtilOptions) {
   // 大于总数禁止选择
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({

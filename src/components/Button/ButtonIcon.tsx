@@ -1,5 +1,9 @@
 import React, { forwardRef } from 'react'
 
+import type { ButtonIconProps } from './types'
+
+import type { IconRef } from './../Icon'
+
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 import Icon from './../Icon'
@@ -8,10 +12,6 @@ import Icon from './../Icon'
 /* 测试使用-start
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { IconProps, IconRef } from './../Icon'
-
-export type ButtonIconProps = IconProps
 
 const ButtonIcon = forwardRef<IconRef, ButtonIconProps>(function ButtonIcon(
   { color, backgroundColor, size = 'm', radius, style, className, children },

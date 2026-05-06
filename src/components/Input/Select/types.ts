@@ -2,6 +2,11 @@ import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import type { InputTextProps } from './../Text/types'
 
+export interface SelectFormatterValue {
+  name?: string
+  [key: string]: unknown
+}
+
 export interface ComboRef {
   displayValue: string
   getDisplayValue: (newValue?: unknown) => string

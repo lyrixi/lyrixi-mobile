@@ -1,8 +1,9 @@
+import type { AttachUploaderItem } from './../../types'
+import type { UploadOpts, UploadResponse } from './types'
+
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
 // 内库使用-end
-
-import type { UploadOpts, UploadResponse } from './types'
 
 /* 测试使用-start
 import { Bridge } from 'lyrixi-mobile'

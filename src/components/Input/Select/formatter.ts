@@ -1,3 +1,5 @@
+import type { SelectFormatterValue } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
 // 内库使用-end
@@ -6,11 +8,6 @@ import ObjectUtil from './../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-interface SelectValue {
-  name?: string
-  [key: string]: unknown
-}
-
 // 显示名称
 function getDisplayValue(value: unknown, { separator }: { separator?: string } = {}): string {
   if (typeof value !== 'object' || value === null) {
@@ -18,11 +15,11 @@ function getDisplayValue(value: unknown, { separator }: { separator?: string } =
   }
   // 纯对象
   if (ObjectUtil.isPlainObject(value)) {
-    return (value as SelectValue)?.name || ''
+    return (value as SelectFormatterValue)?.name || ''
   }
   // 数组
   else if (Array.isArray(value)) {
-    let displayValues = (value as SelectValue[]).map((item) => item?.name || '')
+    let displayValues = (value as SelectFormatterValue[]).map((item) => item?.name || '')
     displayValues = displayValues.filter((item) => item)
     return displayValues.join(separator && typeof separator === 'string' ? separator : ',')
   }

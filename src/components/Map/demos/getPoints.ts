@@ -1,4 +1,4 @@
-import type { GetPointsOptions } from './types'
+import type { DemoRandomMapPoint, GetPointsOptions } from './types'
 
 // 生成随机点
 /*
@@ -14,7 +14,7 @@ function getPoints({ center, radius = 1000, count = 110 }: GetPointsOptions = {}
   let latitude = center?.latitude || 31.990374883871525
   let longitude = center?.longitude || 118.73769931504451
 
-  const points = []
+  const points: DemoRandomMapPoint[] = []
 
   for (let i = 0; i < count; i++) {
     const angle = Math.random() * Math.PI * 2 // 随机角度

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { ApiResult } from './utils/loadBaseData'
+import type { ApiResult } from './api/types'
 import type { CascaderNode } from './../cascaderTypes'
 
 export type LoadCountriesFn = () => Promise<ApiResult>

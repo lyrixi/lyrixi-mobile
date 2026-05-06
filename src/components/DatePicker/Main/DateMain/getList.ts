@@ -26,7 +26,7 @@ function getList(
   }
 
   // Year
-  let years = []
+  let years: PickerListItem[] = []
   for (let item = new Date().getFullYear() - 120; item <= new Date().getFullYear() + 120; item++) {
     years.push({
       id: item,
@@ -35,7 +35,7 @@ function getList(
   }
 
   // Month
-  let months = []
+  let months: PickerListItem[] = []
   for (let item = 1; item <= 12; item++) {
     months.push({
       id: item,
@@ -44,7 +44,7 @@ function getList(
   }
 
   // Date
-  let dates = []
+  let dates: PickerListItem[] = []
   for (let item = 1; item <= DateUtil.getDaysInMonth(refDate); item++) {
     dates.push({
       id: item,
@@ -53,7 +53,7 @@ function getList(
   }
 
   // Hour
-  let hours = []
+  let hours: PickerListItem[] = []
   for (let item = 0; item <= 23; item += hourStep) {
     hours.push({
       id: item,
@@ -62,7 +62,7 @@ function getList(
   }
 
   // Minute
-  let minutes = []
+  let minutes: PickerListItem[] = []
   for (let item = 0; item <= 59; item += minuteStep) {
     minutes.push({
       id: item,
@@ -71,7 +71,7 @@ function getList(
   }
 
   // Quarter
-  let quarters = []
+  let quarters: PickerListItem[] = []
   for (let item = 1; item <= 4; item++) {
     quarters.push({
       id: item,

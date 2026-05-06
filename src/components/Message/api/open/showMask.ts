@@ -1,20 +1,9 @@
 import globalMessageId from './../globalMessageId'
 
-export interface MessageMaskElement extends HTMLElement {
-  timeout?: ReturnType<typeof setTimeout>
-  maskClosable?: boolean
-  onOpen?: () => void
-  onClose?: () => void
-  buttons?: Array<{ id?: string; name: string; className?: string; style?: Record<string, unknown>; onClick?: () => boolean | void }>
-}
-
-interface ShowMaskParams {
-  portal?: HTMLElement | string | boolean
-  onMaskClick: (e: MouseEvent) => void
-}
+import type { MessageMaskElement, MessageShowMaskParams } from './../types'
 
 // 渲染Message遮罩
-function showMask({ portal, onMaskClick }: ShowMaskParams): MessageMaskElement {
+function showMask({ portal, onMaskClick }: MessageShowMaskParams): MessageMaskElement {
   // 如果没生成成功, 则强制生成
   let mask = document.querySelector('#' + globalMessageId) as MessageMaskElement | null
   if (!mask) {
@@ -57,5 +46,7 @@ function showMask({ portal, onMaskClick }: ShowMaskParams): MessageMaskElement {
 
   return mask
 }
+
+export type { MessageMaskElement } from './../types'
 
 export default showMask

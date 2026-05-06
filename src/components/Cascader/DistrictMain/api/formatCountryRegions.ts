@@ -1,19 +1,12 @@
-interface DistrictNode {
-  id: string | number
-  name?: string
-  parentid?: string | number
-  nature?: number | string
-  type?: string[]
-  anchor?: string
-  isLeaf?: boolean
-  children?: DistrictNode[]
-  [key: string]: unknown
-}
+import type { DistrictFormatCountryRegionsNode } from './types'
 
 /**
  * 根据节点的 nature 字段为行政区划树设置类型标记
  */
-function formatCountryRegions(tree: DistrictNode[], countryId: string | number): DistrictNode[] {
+function formatCountryRegions(
+  tree: DistrictFormatCountryRegionsNode[],
+  countryId: string | number
+): DistrictFormatCountryRegionsNode[] {
   for (const item of tree) {
     item.parentid = countryId
   }
@@ -38,7 +31,7 @@ function formatCountryRegions(tree: DistrictNode[], countryId: string | number):
     return undefined
   }
 
-  function addNodeType(nodes: DistrictNode[]): DistrictNode[] {
+  function addNodeType(nodes: DistrictFormatCountryRegionsNode[]): DistrictFormatCountryRegionsNode[] {
     if (!Array.isArray(nodes)) return nodes
     return nodes.map((node) => {
       if ('anchor' in node) {

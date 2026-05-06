@@ -1,12 +1,12 @@
 import compareType from './compareType'
 
-interface TabItem {
-  type?: string[]
-  [key: string]: unknown
-}
+import type { DistrictModalUpdateOkVisibleTabItem } from './types'
 
 // 根据min判断是否显示确定按钮
-function updateOkVisible(tabs: TabItem[] | null | undefined, minType: string): boolean {
+function updateOkVisible(
+  tabs: DistrictModalUpdateOkVisibleTabItem[] | null | undefined,
+  minType: string
+): boolean {
   if (!Array.isArray(tabs) || !tabs.length || !minType) {
     return false
   }

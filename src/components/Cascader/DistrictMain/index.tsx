@@ -6,8 +6,8 @@ import {
   formatDistrictValue,
   searchByKeyword
 } from './utils/index'
-import type { DistrictItem } from './utils/formatDistrictValue'
-import type { ApiResult } from './utils/loadBaseData'
+import type { DistrictItem } from './utils/formatDistrictValue/types'
+import type { ApiResult } from './api/types'
 import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
