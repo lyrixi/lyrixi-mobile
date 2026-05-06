@@ -1,4 +1,4 @@
-import loadScript from './loadScript1'
+import loadScript from './loadScript'
 
 // 动态加载script的方法
 function loadRemoteJs(
