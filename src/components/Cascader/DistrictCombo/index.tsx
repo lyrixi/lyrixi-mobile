@@ -2,7 +2,7 @@ import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 import type { CascaderNode } from './../cascaderTypes'
-import type { ComboProps, ComboRef } from './../../Input/Select'
+import type { ComboRef } from './../../Input/Select'
 
 import type { DistrictComboProps, DistrictComboRef } from './types'
 
@@ -13,7 +13,6 @@ import Input from './../../Input'
 /* 测试使用-start
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
-
 
 // 级联选择
 const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(

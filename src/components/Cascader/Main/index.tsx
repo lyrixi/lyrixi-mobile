@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect, type CSSProperties, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
 import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'
 import formatValue from './../utils/formatValue'
@@ -6,7 +6,7 @@ import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
-import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+import type { CascaderNode } from './../cascaderTypes'
 
 import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState } from './types'
 import type { CascaderTab } from './../utils/types'
@@ -53,10 +53,8 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     // 全部tab
     const tabsRef = useRef<CascaderNode[]>([])
 
-
     // 选中tab
     const [activeTab, setActiveTab] = useState<CascaderNode | undefined>(undefined)
-
 
     // 选中列表, 文本则为错误
     const currentList = ArrayUtil.updateDeepTreeParentId(
@@ -67,15 +65,13 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       currentList
         ? { status: 'success', list: currentList }
         : {
-          status: 'empty',
-          message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
-        }
+            status: 'empty',
+            message: LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60')
+          }
     )
-
 
     // Expose
     const mainRef = useRef<HTMLDivElement>(null)
-
 
     // 初始化tabs、选中tab、列表
     useEffect(() => {
@@ -108,12 +104,15 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       }
     })
 
-
     // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
-    async function update(newValue: CascaderNode[] | null | undefined, { action }: { action?: string } = {}) {
+    async function update(
+      newValue: CascaderNode[] | null | undefined,
+      { action }: { action?: string } = {}
+    ) {
       // 更新tabs
       tabsRef.current = ObjectUtil.cloneDeep(
-        (formatValue(newValue as unknown as CascaderTab[] | null | undefined) ?? []) as CascaderNode[]
+        (formatValue(newValue as unknown as CascaderTab[] | null | undefined) ??
+          []) as CascaderNode[]
       )
 
       // 滚动条还原
@@ -162,11 +161,13 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       setResult(newResult)
     }
 
-
     // 统一根据操作行为获取列表:
     // - clickItem/load: 优先查子级, 无子级则显示同级
     // - clickTab: 显示同级
-    async function getActionData(tabs: CascaderNode[], { action }: { action?: string } = {}): Promise<CascaderMainResultState> {
+    async function getActionData(
+      tabs: CascaderNode[],
+      { action }: { action?: string } = {}
+    ): Promise<CascaderMainResultState> {
       if (!Array.isArray(tabs) || !tabs.length) {
         return { status: 'success', list: externalList }
       }
@@ -200,12 +201,10 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       return { status: 'success', list: externalList }
     }
 
-
     // 获取同级列表
     async function getSiblingData(tabs: CascaderNode[]): Promise<CascaderMainResultState> {
       return await getChildrenData(tabs.slice(0, tabs.length - 1))
     }
-
 
     // 获取下级列表, 没有返回null
     async function getChildrenData(tabs: CascaderNode[]): Promise<CascaderMainResultState> {
@@ -238,7 +237,9 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
             externalList as unknown as Parameters<typeof ArrayUtil.setDeepTreeNode>[0],
             lastTab.id,
             (node) => {
-              node.children = (newResult?.list ?? []) as unknown as NonNullable<typeof node.children>
+              node.children = (newResult?.list ?? []) as unknown as NonNullable<
+                typeof node.children
+              >
               node.isLeaf = true
             }
           )
@@ -251,7 +252,9 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
             externalList as unknown as Parameters<typeof ArrayUtil.setDeepTreeNode>[0],
             lastTab.id,
             (node) => {
-              node.children = (newResult?.list ?? []) as unknown as NonNullable<typeof node.children>
+              node.children = (newResult?.list ?? []) as unknown as NonNullable<
+                typeof node.children
+              >
             }
           )
         }
@@ -260,7 +263,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       // 返回result
       return newResult as CascaderMainResultState
     }
-
 
     // 点击选项, value不包含children
     function handleDrill({ children: _children, ...item }: CascaderNode) {
@@ -297,7 +299,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       }, 300)
     }
 
-
     // Tab 激活处理(点击tab时查同级)
     const handleClickTab = async (tab: CascaderNode) => {
       // 滚动条还原
@@ -312,7 +313,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       setActiveTab(tab)
       setResult(newResult)
     }
-
 
     function renderTabs() {
       if (result?.status !== 'success') return null
@@ -338,7 +338,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
         />
       )
     }
-
 
     return (
       <>
@@ -385,8 +384,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
             }}
             onSelect={(item: CascaderNode) => handleDrill(item)}
           />
-
-
         </Page>
       </>
     )

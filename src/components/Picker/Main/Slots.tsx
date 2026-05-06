@@ -1,9 +1,15 @@
-import React, { useRef, forwardRef, useEffect, type Ref, type MouseEvent, type TouchEvent } from 'react'
-
+import React, {
+  useRef,
+  forwardRef,
+  useEffect,
+  type Ref,
+  type MouseEvent,
+  type TouchEvent
+} from 'react'
 
 import getTranslateValue from './utils/getTranslateValue'
 
-import type { PickerColumnItem, PickerSlotsProps } from './types'
+import type { PickerSlotsProps } from './types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -178,6 +184,7 @@ const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
     </div>
   )
 })
+
 export type { PickerColumnItem, PickerSlotsProps } from './types'
 
 export default Lists

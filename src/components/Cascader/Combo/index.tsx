@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import type { CascaderNode } from './../cascaderTypes'
 import CascaderModal from './../Modal'
-import type { ComboProps, ComboRef } from './../../Input/Select'
+import type { ComboRef } from './../../Input/Select'
 
 import type { CascaderComboProps, CascaderComboRef } from './types'
 
@@ -12,7 +12,6 @@ import Input from './../../Input'
 /* 测试使用-start
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
-
 
 // Cascader
 const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(

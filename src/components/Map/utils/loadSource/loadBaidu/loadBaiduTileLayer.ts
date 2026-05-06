@@ -1,3 +1,5 @@
+import type { L } from '../../../leaflet.types'
+
 // Leaflet Baidu layer: class extend & internal TileLayer APIs are not representable in strict types.
 const mapUrl =
   'https://maponline{s}.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=2&udt='
@@ -54,7 +56,7 @@ function loadBaiduTileLayer() {
           maxNativeZoom: 18
         },
         options
-      )
+      ) as Record<string, unknown>
       TileLayerProto.prototype.initialize.call(this, mapUrl, options)
     },
     getTileUrl: function (this: { options: { getUrlArgs?: (c: { x: number; y: number; z: number }) => { x: number; y: number; z: number } }; _url: string; _getSubdomain: (c: { x: number; y: number; z: number }) => string }, coords: { x: number; y: number; z: number }) {
@@ -71,7 +73,7 @@ function loadBaiduTileLayer() {
         return window.L.TileLayer.prototype.getTileUrl.call(this, coords as never)
       }
     }
-  })
+  }) as new () => L.TileLayer
 
   // 出口样式
   window.L.tileLayer.currentTileLayer = function () {

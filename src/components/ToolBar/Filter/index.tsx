@@ -1,12 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-  type MouseEvent
-} from 'react'
-
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
 import type { ToolBarFilterProps, ToolBarFilterRef } from './types'
 
@@ -65,7 +57,6 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
 
   const [open, setOpen] = useState<boolean | null>(null)
 
-
   useEffect(() => {
     if (open === null) return
     if (open) {
@@ -75,7 +66,6 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     }
     // eslint-disable-next-line
   }, [open])
-
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -90,7 +80,6 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
       }
     }
   })
-
 
   // 获取标题节点
   function renderCombo() {
@@ -131,11 +120,9 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     )
   }
 
-
   const ComboNode = renderCombo()
 
   const modalOpen = open ?? false
-
 
   return (
     <>

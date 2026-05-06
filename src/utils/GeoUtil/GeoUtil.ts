@@ -6,8 +6,7 @@
  * @param {Line<Array>} 格式:[[latitude1, longitude1], [latitude2, longitude2]]
  */
 
-import type { GeoUtilType, Line, Point, Polygon } from './types'
-
+import type { GeoUtilType, Point } from './types'
 
 const GeoUtil = {} as GeoUtilType
 /**

@@ -2,12 +2,11 @@ import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } f
 import scrollToTop from './utils/scrollToTop'
 import Loading from './components/Loading'
 import EntityList, { MainRef as EntityListRef, MainProps as EntityListProps } from './List'
-import VirtualList, { VirtualListRef, VirtualListProps, VirtualOptions } from './VirtualList'
+import VirtualList, { VirtualListRef, VirtualListProps } from './VirtualList'
 import RetryButton from './components/RetryButton'
 
-
 import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
-import type { RawItem, ViewItem } from './../List/List/types'
+import type { ViewItem } from './../List/List/types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -60,13 +59,11 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
   ) => {
     const mainRef = useRef<EntityListRef | VirtualListRef | null>(null)
 
-
     const [result, setResult] = useState<LoadResult | null>(null)
 
     const [resultStatus, setResultStatus] = useState<string>('')
 
     const [loadAction, setLoadAction] = useState<LoadAction>('')
-
 
     useEffect(() => {
       if (!result) return
@@ -75,13 +72,11 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       // eslint-disable-next-line
     }, [result])
 
-
     useEffect(() => {
       if (!initialLoad) return
       init()
       // eslint-disable-next-line
     }, [])
-
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -90,7 +85,9 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
         element: mainRef.current?.element ?? null,
         getElement: () => mainRef.current?.element ?? null,
         getAnchors: vRef?.getAnchors ? () => vRef.getAnchors() : undefined,
-        scrollToAnchor: vRef?.scrollToAnchor ? (anchor: string) => vRef.scrollToAnchor(anchor) : undefined,
+        scrollToAnchor: vRef?.scrollToAnchor
+          ? (anchor: string) => vRef.scrollToAnchor(anchor)
+          : undefined,
         reload: (action?: string) => {
           if (action === 'load') {
             init()
@@ -102,11 +99,9 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       } as ListAsyncRef
     })
 
-
     function init() {
       loadPage('load')
     }
-
 
     async function loadPage(action: string) {
       if (typeof loadData !== 'function') return
@@ -142,9 +137,7 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       return true
     }
 
-
-    const useVirtual = !!(virtual?.getItemHeight)
-
+    const useVirtual = !!virtual?.getItemHeight
 
     const sharedProps = {
       value,
@@ -174,10 +167,9 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
       onChange,
       onScroll,
       onScrollEnd,
-      onTopRefresh: disableTopRefresh ? undefined : (() => loadPage('topRefresh')),
-      onBottomRefresh: disableBottomRefresh ? undefined : (() => loadPage('bottomRefresh'))
+      onTopRefresh: disableTopRefresh ? undefined : () => loadPage('topRefresh'),
+      onBottomRefresh: disableBottomRefresh ? undefined : () => loadPage('bottomRefresh')
     }
-
 
     return useVirtual ? (
       <VirtualList

@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle, type CSSProperties, type ReactNode, type Ref } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+  type Ref
+} from 'react'
 import { formatType } from './../DistrictMain/utils'
 import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
 import type { CascaderNode } from './../cascaderTypes'
-
 
 import type { DistrictModalProps } from './types'
 
@@ -53,25 +59,23 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
   ) => {
     const districtType = formatType(typeProp)
 
-
     const [okVisible, setOkVisible] = useState(false)
 
-    const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(value as CascaderNode[] | null | undefined)
+    const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(
+      value as CascaderNode[] | null | undefined
+    )
 
     const modalRef = useRef<unknown>(null)
 
     const mainRef = useRef<DistrictMainHandle | null>(null)
 
-
     useEffect(() => {
       setCurrentValue(value as CascaderNode[] | null | undefined)
     }, [value])
 
-
     useEffect(() => {
       setOkVisible(updateOkVisible(currentValue, min))
     }, [currentValue, min])
-
 
     useImperativeHandle(ref, () => {
       const a = (modalRef.current as Record<string, unknown> | null) ?? {}
@@ -79,11 +83,9 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
       return { ...a, ...b }
     })
 
-
     function handleDrillDown(tabs: CascaderNode[] | null | undefined) {
       setOkVisible(updateOkVisible(tabs, min))
     }
-
 
     async function handleOk() {
       if (onOk) {
@@ -96,7 +98,6 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
       onChange?.((currentValue ?? []) as CascaderNode[])
       onClose?.()
     }
-
 
     function handleChange(newValue: CascaderNode[]) {
       setCurrentValue(newValue)
@@ -111,7 +112,6 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
         onClose?.()
       }
     }
-
 
     return (
       <NavBarModal

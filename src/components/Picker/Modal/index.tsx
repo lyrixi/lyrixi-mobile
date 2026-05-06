@@ -4,11 +4,9 @@ import React, {
   useState,
   useRef,
   useImperativeHandle,
-  type ReactNode,
   type Ref
 } from 'react'
 import Main, { type PickerMainRef, type PickerMainProps } from './../Main'
-
 
 import type { ModalRef } from './../../Modal/Modal/types'
 import type { PickerColumnItem } from './../Main/types'
@@ -64,87 +62,79 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
 
   const mainRef = useRef<PickerMainRef | null>(null)
 
+  // 同步外部value到内部
+  useEffect(() => {
+    setCurrentValue(value)
+  }, [value])
 
-    // 同步外部value到内部
-    useEffect(() => {
-      setCurrentValue(value)
-    }, [value])
+  useImperativeHandle(ref, () => {
+    return {
+      ...((typeof modalRef.current === 'object' && modalRef.current !== null
+        ? modalRef.current
+        : {}) as ModalRef),
+      ...((typeof mainRef.current === 'object' && mainRef.current !== null
+        ? mainRef.current
+        : {}) as Record<string, unknown>)
+    } as ModalRef
+  }, [])
 
-
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        ...((typeof modalRef.current === 'object' && modalRef.current !== null
-          ? modalRef.current
-          : {}) as ModalRef),
-        ...((typeof mainRef.current === 'object' && mainRef.current !== null ? mainRef.current : {}) as Record<string, unknown>)
-      } as ModalRef
-    },
-    []
-  )
-
-
-    async function handleOk() {
-      // 触发 onOk
-      if (onOk) {
-        let goOn = await onOk(currentValue)
-        if (goOn === false) return false
-        if (goOn instanceof Date) {
-          currentValue = goOn
-        }
+  async function handleOk() {
+    // 触发 onOk
+    if (onOk) {
+      let goOn = await onOk(currentValue)
+      if (goOn === false) return false
+      if (goOn instanceof Date) {
+        currentValue = goOn
       }
-
-      onChange?.(currentValue)
-      onClose?.()
     }
 
+    onChange?.(currentValue)
+    onClose?.()
+  }
 
   function handleChange(newValue: PickerColumnItem[]) {
     setCurrentValue(newValue)
   }
 
-
-    return (
-      <NavBarModal
-        ref={modalRef}
-        // Status
+  return (
+    <NavBarModal
+      ref={modalRef}
+      // Status
+      open={open}
+      maskClosable={maskClosable}
+      // Style
+      safeArea={safeArea}
+      modalStyle={modalStyle}
+      modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
+      maskStyle={maskStyle}
+      maskClassName={maskClassName}
+      // Elements
+      portal={portal}
+      title={title}
+      okNode={okNode}
+      cancelNode={cancelNode}
+      okVisible={true}
+      cancelVisible={cancelVisible}
+      // Events
+      onClose={onClose}
+      onOk={handleOk}
+    >
+      {/* 弹窗打开时, 再渲染主页面, 主要为了重置鼠标拖动标识 */}
+      <Main
+        ref={mainRef}
+        // Modal: Status
         open={open}
-        maskClosable={maskClosable}
-        // Style
-        safeArea={safeArea}
-        modalStyle={modalStyle}
-        modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
-        maskStyle={maskStyle}
-        maskClassName={maskClassName}
-        // Elements
-        portal={portal}
-        title={title}
-        okNode={okNode}
-        cancelNode={cancelNode}
-        okVisible={true}
-        cancelVisible={cancelVisible}
+        // Value & Display Value
+        value={currentValue as PickerMainProps['value']}
+        list={list as PickerMainProps['list']}
+        // Status
+        allowClear={allowClear}
         // Events
-        onClose={onClose}
-        onOk={handleOk}
-      >
-        {/* 弹窗打开时, 再渲染主页面, 主要为了重置鼠标拖动标识 */}
-        <Main
-          ref={mainRef}
-          // Modal: Status
-          open={open}
-          // Value & Display Value
-          value={currentValue as PickerMainProps['value']}
-          list={list as PickerMainProps['list']}
-          // Status
-          allowClear={allowClear}
-          // Events
-          onChange={handleChange}
-        />
-      </NavBarModal>
-    )
-  }
-)
+        onChange={handleChange}
+      />
+    </NavBarModal>
+  )
+})
 export type { PickerModalProps } from './types'
 
 export default Modal

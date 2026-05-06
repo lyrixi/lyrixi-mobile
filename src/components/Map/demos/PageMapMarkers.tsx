@@ -5,11 +5,11 @@ import { Page, Map, Button } from 'lyrixi-mobile'
 import type { MapMarkersHandle } from '../pages/MapMarkers'
 import type { MarkersHandle } from '../components/Markers'
 import type { MapPoint } from '../utils/coordsToWgs84'
+import getPoints from './getPoints'
+import type { DemoMarkerClickPayload } from './types'
 
 // 生成随机点
 const { MapLoader, MapMarkers, LocationControl, coordsToWgs84 } = Map
-import getPoints from './getPoints'
-import type { DemoMarkerClickPayload } from './types'
 
 // 随机生成点, 用于测试性能
 const points = coordsToWgs84(

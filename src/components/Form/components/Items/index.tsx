@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { FormItemsProps, FormItemsRef } from './Form'
+import type { FormItemsRef } from './Form'
 import type { EllipsisConfig } from './../ItemsContext'
 import type { ItemsProps } from './types'
 

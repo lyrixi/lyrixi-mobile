@@ -25,8 +25,7 @@ import PreviewChoose from './PreviewChoose'
 import PreviewReload from './PreviewReload'
 import PreviewToolbar from './PreviewToolbar'
 
-
-import type { MediaListItem, FileImageCompressOptions, MediaComponentProps } from './../types'
+import type { MediaListItem, MediaComponentProps } from './../types'
 import type { PreviewMainProps, PreviewMainRef } from './types'
 
 // 内库使用-start
@@ -94,16 +93,13 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
 
   const [rotations, setRotations] = useState<Record<number, number>>({})
 
-
   const onFileChangeRef = useRef<MediaComponentProps['onFileChange'] | undefined>(undefined)
 
   onFileChangeRef.current = onFileChange
 
-
   const onChangeRef = useRef<MediaComponentProps['onChange'] | undefined>(undefined)
 
   onChangeRef.current = onChange
-
 
   // Judge wether to display choose button
   let chooseVisible = allowChoose
@@ -111,7 +107,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
   if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
     chooseVisible = false
   }
-
 
   const canClear = isAllowClear(allowClear, list?.[activeIndex])
 
@@ -123,7 +118,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     // eslint-disable-next-line
   }, [open])
 
-
   useImperativeHandle(ref, () => {
     return {
       mainElement: swiperRef.current,
@@ -131,35 +125,29 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     }
   })
 
-
   function _showLoading(options?: { content?: string; index?: number }) {
     showLoading(swiperRef.current as unknown as Element, options)
   }
-
 
   function _hideLoading(options?: { failIndexes?: number[] }) {
     hideLoading(swiperRef.current as unknown as Element, options)
   }
 
-
   function handleSwipe(swiper: SwiperClass) {
     setActiveIndex(swiper.activeIndex)
   }
-
 
   async function uploadList(
     newList: MediaListItem[] | undefined,
     { action }: { action?: string } = {}
   ) {
-      // eslint-disable-next-line
+    // eslint-disable-next-line
     if (!newList) newList = [...list]
     if (!newList) return
 
     let hasUploaded = false
     _showLoading({
-      content: toToastString(
-        LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1')
-      )
+      content: toToastString(LocaleUtil.locale('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1'))
     })
     for (let index = 0; index < newList.length; index++) {
       const item = newList[index]
@@ -205,7 +193,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     return newList
   }
 
-
   function handleDelete() {
     const delIndex = swiperRef.current?.swiper?.activeIndex
     if (typeof delIndex !== 'number') {
@@ -215,7 +202,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     const newListDel = list.filter((_photo, photoIndex) => photoIndex !== delIndex)
     onChangeRef.current?.(newListDel, { action: 'delete' })
   }
-
 
   async function handleFileChange(e: SyntheticEvent<HTMLInputElement>) {
     _showLoading({})
@@ -237,7 +223,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     return chooseResult
   }
 
-
   async function handleChoose() {
     _showLoading({})
     const chooseResult = await choose({
@@ -253,7 +238,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     onClose?.()
     return chooseResult
   }
-
 
   async function handleReUpload() {
     if (typeof onChange !== 'function') {
@@ -274,12 +258,9 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
       index: reIdx
     })
     newListRe[reIdx] = (await uploadItem(reItem, { onUpload })) as MediaListItem
-    _hideLoading(
-      newListRe[reIdx].status === 'error' ? { failIndexes: [reIdx] } : undefined
-    )
+    _hideLoading(newListRe[reIdx].status === 'error' ? { failIndexes: [reIdx] } : undefined)
     onChangeRef.current?.(newListRe, { action: 'reUpload' })
   }
-
 
   function handleTouchStart(_swiper: SwiperClass, e: globalThis.TouchEvent) {
     e.stopPropagation()
@@ -289,7 +270,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     t.addEventListener('touchmove', DOMUtil.preventDefault, false)
   }
 
-
   function handleRotateClockwise(e: React.MouseEvent) {
     e.stopPropagation()
     setRotations((prev) => ({
@@ -297,7 +277,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
       [activeIndex]: ((prev[activeIndex] ?? 0) + 90) % 360
     }))
   }
-
 
   function handleRotateAnticlockwise(e: React.MouseEvent) {
     e.stopPropagation()
@@ -307,91 +286,89 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     }))
   }
 
-
   function handleZoomIn(e: React.MouseEvent) {
     e.stopPropagation()
     void swiperRef.current?.swiper?.zoom?.in()
   }
-
 
   function handleZoomOut(e: React.MouseEvent) {
     e.stopPropagation()
     void swiperRef.current?.swiper?.zoom?.out()
   }
 
-
   return (
-      <Swiper
-        ref={swiperRef}
-        spaceBetween={0}
-        slidesPerView={1}
-        // initialSlide={activeIndex}
-        navigation={false}
-        zoom={list?.[activeIndex]?.fileType !== 'video' ? true : false}
-        // Bullet pagination
-        pagination={{
-          type: 'fraction',
-          className: 'lyrixi-media-preview-main-pagination'
-        }}
-        modules={[Zoom, Pagination]}
-        // Style
-        className={DOMUtil.classNames(
-          'lyrixi-media-preview-main',
-          className,
-          closable ? 'lyrixi-closable' : '',
-          chooseVisible ? 'lyrixi-choosable' : '',
-          allowClear ? 'lyrixi-clearable' : '',
-          open ? '' : 'lyrixi-hide'
-        )}
-        style={{
-          height: '100%',
-          backgroundColor: 'black',
-          ...style
-        }}
-        // fix touch move
-        touchMoveStopPropagation={true}
-        touchStartForcePreventDefault={true}
-        touchStartPreventDefault={true}
-        passiveListeners={true}
-        // Events
-        onSlideChange={handleSwipe}
-        onTouchStart={handleTouchStart}
-      >
-        {Array.isArray(list) &&
-          list
-            .filter((item) => {
-              return item?.localFile?.tempFileUrl || item?.fileUrl || false
-            })
-            .map((item, index) => {
-              return (
-                <SwiperSlide
-                  key={index}
-                  className={DOMUtil.classNames('lyrixi-media-preview-main-item', item.status)}
-                >
-                  <div className="swiper-zoom-container">
-                    {list?.[index]?.fileType !== 'video' && (<div className="lyrixi-media-preview-main-image-container" style={{ transform: `rotate(${rotations[index] ?? 0}deg)` }}>
-                      <img
-                        alt=""
-                        className="swiper-zoom-target"
-                        src={itemMediaUrl(item)}
-                      />
-                    </div>)}
-                    {list?.[index]?.fileType === 'video' && (
-                      <VideoPlayer
-                        poster={itemPosterUrl(item)}
-                        src={itemMediaUrl(item)}
-                        autoPlay={false}
-                      />
-                    )}
-                  </div>
-                  {/* ReUpload: Display while parentNode has fail class  */}
-                  <PreviewReload onReUpload={handleReUpload} />
-                </SwiperSlide>
-              )
-            })}
-        {/* 图片操作：旋转、放大缩小（仅当前为图片时显示） */}
-        {list?.[activeIndex]?.fileType !== 'video' &&
-          (Device as { device: string }).device === 'pc' && (
+    <Swiper
+      ref={swiperRef}
+      spaceBetween={0}
+      slidesPerView={1}
+      // initialSlide={activeIndex}
+      navigation={false}
+      zoom={list?.[activeIndex]?.fileType !== 'video' ? true : false}
+      // Bullet pagination
+      pagination={{
+        type: 'fraction',
+        className: 'lyrixi-media-preview-main-pagination'
+      }}
+      modules={[Zoom, Pagination]}
+      // Style
+      className={DOMUtil.classNames(
+        'lyrixi-media-preview-main',
+        className,
+        closable ? 'lyrixi-closable' : '',
+        chooseVisible ? 'lyrixi-choosable' : '',
+        allowClear ? 'lyrixi-clearable' : '',
+        open ? '' : 'lyrixi-hide'
+      )}
+      style={{
+        height: '100%',
+        backgroundColor: 'black',
+        ...style
+      }}
+      // fix touch move
+      touchMoveStopPropagation={true}
+      touchStartForcePreventDefault={true}
+      touchStartPreventDefault={true}
+      passiveListeners={true}
+      // Events
+      onSlideChange={handleSwipe}
+      onTouchStart={handleTouchStart}
+    >
+      {Array.isArray(list) &&
+        list
+          .filter((item) => {
+            return item?.localFile?.tempFileUrl || item?.fileUrl || false
+          })
+          .map((item, index) => {
+            return (
+              <SwiperSlide
+                key={index}
+                className={DOMUtil.classNames('lyrixi-media-preview-main-item', item.status)}
+              >
+                <div className="swiper-zoom-container">
+                  {list?.[index]?.fileType !== 'video' && (
+                    <div
+                      className="lyrixi-media-preview-main-image-container"
+                      style={{ transform: `rotate(${rotations[index] ?? 0}deg)` }}
+                    >
+                      <img alt="" className="swiper-zoom-target" src={itemMediaUrl(item)} />
+                    </div>
+                  )}
+                  {list?.[index]?.fileType === 'video' && (
+                    <VideoPlayer
+                      poster={itemPosterUrl(item)}
+                      src={itemMediaUrl(item)}
+                      autoPlay={false}
+                    />
+                  )}
+                </div>
+                {/* ReUpload: Display while parentNode has fail class  */}
+                <PreviewReload onReUpload={handleReUpload} />
+              </SwiperSlide>
+            )
+          })}
+      {/* 图片操作：旋转、放大缩小（仅当前为图片时显示） */}
+      {list?.[activeIndex]?.fileType !== 'video' &&
+        (Device as { device: string }).device === 'pc' && (
           <PreviewToolbar
             onRotateAnticlockwise={handleRotateAnticlockwise}
             onRotateClockwise={handleRotateClockwise}
@@ -399,34 +376,34 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
             onZoomIn={handleZoomIn}
           />
         )}
-        {/* Close */}
-        {closable && <PreviewClose onClose={onClose} />}
-        {/* Delete */}
-        {canClear ? <PreviewDelete onDelete={handleDelete} /> : null}
-        {/* Choose */}
-        {chooseVisible ? (
-          <PreviewChoose
-            // Value & Display Value
-            sourceType={sourceType}
-            mediaType={mediaType}
-            // Events
-            onChoose={onChoose ? () => void handleChoose() : undefined}
-            onFileChange={onFileChange ? handleFileChange : undefined}
-            // File框不支持onBeforeChoose
-            onBeforeChoose={
-              typeof onBeforeChoose === 'function'
-                ? async (e: Parameters<NonNullable<typeof onBeforeChoose>>[0]) => {
-                    _showLoading({})
-                    const isOk = await onBeforeChoose(e)
-                    _hideLoading()
-                    return isOk
-                  }
-                : undefined
-            }
-          />
-        ) : null}
-        {safeArea === true && <SafeArea />}
-      </Swiper>
+      {/* Close */}
+      {closable && <PreviewClose onClose={onClose} />}
+      {/* Delete */}
+      {canClear ? <PreviewDelete onDelete={handleDelete} /> : null}
+      {/* Choose */}
+      {chooseVisible ? (
+        <PreviewChoose
+          // Value & Display Value
+          sourceType={sourceType}
+          mediaType={mediaType}
+          // Events
+          onChoose={onChoose ? () => void handleChoose() : undefined}
+          onFileChange={onFileChange ? handleFileChange : undefined}
+          // File框不支持onBeforeChoose
+          onBeforeChoose={
+            typeof onBeforeChoose === 'function'
+              ? async (e: Parameters<NonNullable<typeof onBeforeChoose>>[0]) => {
+                  _showLoading({})
+                  const isOk = await onBeforeChoose(e)
+                  _hideLoading()
+                  return isOk
+                }
+              : undefined
+          }
+        />
+      ) : null}
+      {safeArea === true && <SafeArea />}
+    </Swiper>
   )
 })
 export type { PreviewMainProps, PreviewMainRef } from './types'

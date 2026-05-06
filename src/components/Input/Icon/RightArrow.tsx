@@ -1,10 +1,9 @@
 import React, { forwardRef } from 'react'
 
-
 import type { IconRightArrowProps } from './types'
 
 // 内库使用-start
-import Icon, { IconRef, IconProps } from './../../Icon'
+import Icon, { IconRef } from './../../Icon'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 

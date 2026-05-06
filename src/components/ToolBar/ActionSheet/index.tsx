@@ -1,10 +1,7 @@
 import React, { forwardRef, type MouseEvent } from 'react'
 import Combo from './../components/Combo'
 
-
-type ComboRenderParams = Parameters<NonNullable<ToolBarActionSheetProps['comboRender']>>[0]
-
-import type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'
+import type { ToolBarActionSheetProps } from './types'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'
@@ -13,6 +10,8 @@ import ActionSheet from './../../ActionSheet'
 /* 测试使用-start
 import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
+
+type ComboRenderParams = Parameters<NonNullable<ToolBarActionSheetProps['comboRender']>>[0]
 
 // 操作表下拉
 const ToolBarActionSheet = forwardRef<

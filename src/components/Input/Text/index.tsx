@@ -8,7 +8,6 @@ import {
 } from './utils'
 import renderClear from './renderClear'
 
-
 import type { InputTextProps, InputTextRef, TextInputElement } from './types'
 
 // 内库使用-start
@@ -75,16 +74,13 @@ const InputText = (
   // 输入框展示值
   const displayValue = typeof formatter === 'function' ? formatter(value) : null
 
-
   // Elements
   const rootRef = useRef<HTMLDivElement>(null)
 
   const inputRef = useRef<TextInputElement | null>(null)
 
-
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
-
 
   useEffect(() => {
     if (!inputRef.current) return
@@ -104,8 +100,8 @@ const InputText = (
     if (val && value && String(val) !== String(value)) {
       onChange && onChange(val, { action: 'load' })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
- // eslint-disable-line
 
   // enableCompositionEnd 时为非受控，父组件 value 变化（如表单重置）时需同步到 input
   useEffect(() => {
@@ -116,7 +112,6 @@ const InputText = (
     }
     // eslint-disable-next-line
   }, [value, enableCompositionEnd])
-
 
   useImperativeHandle(ref, () => {
     return {
@@ -136,12 +131,10 @@ const InputText = (
     }
   })
 
-
   // 矫正最大长度和小数位截取
   function correctValue(val: string | number): string | number {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
-
 
   // 获取焦点
   function focus() {
@@ -165,7 +158,6 @@ const InputText = (
     }
   }
 
-
   // 获取焦点时, 如果readOnly或者disabled时, 需要立即失去焦点, 解决ios会出现底栏的问题
   function handleFocus(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
     if (readOnly || disabled) {
@@ -174,7 +166,6 @@ const InputText = (
     }
     if (onFocus) onFocus(e)
   }
-
 
   // 修改值
   async function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -205,7 +196,6 @@ const InputText = (
     if (onChange) onChange(val, { action: 'change' })
   }
 
-
   // enableCompositionEnd输入完成触发onChange: 输入法开始组合（如拼音未选字）
   function handleCompositionStart(
     e: React.CompositionEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -213,13 +203,11 @@ const InputText = (
     ;(e.target as TextInputElement).composing = true
   }
 
-
   // enableCompositionEnd输入完成触发onChange: 输入法结束组合（选字/回车落字后）, 再触发 onChange
   function handleCompositionEnd(e: React.CompositionEvent<HTMLInputElement | HTMLTextAreaElement>) {
     ;(e.target as TextInputElement).composing = false
     handleChange(e as unknown as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
   }
-
 
   // 数值框失去焦点, 校验最大值和最小值
   function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -260,7 +248,6 @@ const InputText = (
     }
   }
 
-
   // 点击清除(blur生效)
   async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
     e && (e as React.SyntheticEvent)?.stopPropagation?.()
@@ -277,7 +264,6 @@ const InputText = (
     typeof onChange === 'function' && onChange('', { action: 'clickClear' })
   }
 
-
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) {
     onKeyDown && onKeyDown(e)
     if (typeof onPressEnter !== 'function') return
@@ -293,7 +279,6 @@ const InputText = (
       onPressEnter(e)
     }
   }
-
 
   // render
   function renderInput() {
@@ -433,7 +418,6 @@ const InputText = (
       />
     )
   }
-
 
   return (
     <div

@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 
-
 import Popup from './Popup'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
@@ -42,7 +41,6 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 
   const comboRef = useRef<ComboRef | null>(null)
 
-
   useEffect(() => {
     if (open) {
       updatePosition()
@@ -53,8 +51,8 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
     } else {
       if (typeof onClose === 'function') onClose()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
-
 
   useImperativeHandle(ref, () => {
     return {
@@ -66,7 +64,6 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
         : {})
     }
   })
-
 
   function updatePosition(targetReferenceElement?: HTMLElement | null) {
     let referenceElement: HTMLElement | null | undefined =
@@ -100,7 +97,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
       }
     }
   }
- // eslint-disable-line
+  // eslint-disable-line
 
   async function handleOpen() {
     if (open !== true) {
@@ -118,7 +115,6 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
     setOpen((prev) => !prev)
   }
 
-
   function renderCombo() {
     if (typeof comboRender === 'function') {
       return comboRender({
@@ -130,12 +126,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 
     if (children) {
       return (
-        <Combo
-          ref={comboRef}
-          style={style}
-          className={className}
-          onClick={handleOpen}
-        >
+        <Combo ref={comboRef} style={style} className={className} onClick={handleOpen}>
           {children}
         </Combo>
       )
@@ -143,7 +134,6 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 
     return null
   }
-
 
   return (
     <>

@@ -1,6 +1,5 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 
-
 import Modal from './../Modal'
 import Header from './../Header'
 import Main from './../Main'
@@ -9,7 +8,7 @@ import Icon from './../Icon'
 import Title from './../Title'
 import Button from './../Button'
 
-import type { MessageComboButton, MessageComboProps, MessageComboRef } from './types'
+import type { MessageComboProps, MessageComboRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -44,7 +43,7 @@ const MessageCombo = forwardRef<MessageComboRef, MessageComboProps>(
       return {
         element: comboRef.current,
         getElement: () => comboRef.current,
-        ...(modalRef.current as object | null ?? {}),
+        ...((modalRef.current as object | null) ?? {}),
         close: () => {
           setOpen(false)
         },

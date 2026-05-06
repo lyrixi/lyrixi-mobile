@@ -1,9 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
-import Dropdown, { type ToolBarDropdownRef, type ToolBarDropdownProps } from './../Dropdown'
+import Dropdown, { type ToolBarDropdownRef } from './../Dropdown'
 import DateRange from './DateRange'
 
-import type { DatePickerRangesMap, DatePickerRangeChangeMeta } from './../../DatePicker/datePickerTypes'
+import type {
+  DatePickerRangesMap,
+  DatePickerRangeChangeMeta
+} from './../../DatePicker/datePickerTypes'
 
 import type { ToolBarDateRangeBarProps } from './types'
 
@@ -85,9 +88,7 @@ function DateRangeBar({
     if (a == null && b == null) return true
     if (!a || !b || a.length !== 2 || b.length !== 2) return false
     if (!a[0] || !a[1] || !b[0] || !b[1]) return false
-    return (
-      DateUtil.compareRange(a as [Date, Date], b as [Date, Date], type) === 0
-    )
+    return DateUtil.compareRange(a as [Date, Date], b as [Date, Date], type) === 0
   }
 
   // 初始化
@@ -97,12 +98,7 @@ function DateRangeBar({
     if (!externalRangeId && externalValue) {
       const ext = externalValue
       const rangeForId =
-        ext &&
-        ext[0] &&
-        ext[1] &&
-        rangeId &&
-        ranges &&
-        (ranges as Record<string, unknown>)[rangeId]
+        ext && ext[0] && ext[1] && rangeId && ranges && (ranges as Record<string, unknown>)[rangeId]
       // 如果有rangeId, 判断日期是否一致, 一致则使用rangeId
       if (
         rangeForId &&
@@ -129,10 +125,7 @@ function DateRangeBar({
   }
 
   // 修改
-  function handleChange(
-    newValue: (Date | null)[] | null,
-    meta?: DatePickerRangeChangeMeta
-  ) {
+  function handleChange(newValue: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) {
     if (meta?.rangeId !== undefined) {
       setRangeId(meta.rangeId)
     }
@@ -222,13 +215,16 @@ function DateRangeBar({
       onClose={handleClose}
     >
       {/* comboChildren */}
-      {children || getDisplayValue({ value, type, rangeId, ranges, separator: ' ~ ' }) || placeholder}
+      {children ||
+        getDisplayValue({ value, type, rangeId, ranges, separator: ' ~ ' }) ||
+        placeholder}
     </Dropdown>
   )
 }
 
 // Component Name, for compact
-;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName = 'ToolBar.DateRange'
+;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName =
+  'ToolBar.DateRange'
 export type { ToolBarDateRangeBarProps } from './types'
 
 export default DateRangeBar

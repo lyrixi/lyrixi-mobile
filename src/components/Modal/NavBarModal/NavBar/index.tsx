@@ -1,5 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, type MouseEvent } from 'react'
-
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
 import Cancel from './Cancel'
 import Ok from './Ok'

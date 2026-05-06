@@ -8,7 +8,6 @@ import type {
   DatePickerTypesValue
 } from './../datePickerTypes'
 
-
 import type { DatePickerTypesProps } from './types'
 
 // 内库使用-start
@@ -71,7 +70,6 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
 ) {
   const rootRef = useRef<HTMLDivElement | null>(null)
 
-
   useEffect(() => {
     // 如果默认没有值, 则默认为当天
     if (!value) {
@@ -81,6 +79,7 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
       }
       handleChange(newValue)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useImperativeHandle(ref, () => {
@@ -89,28 +88,28 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
       getElement: () => rootRef?.current
     }
   })
- // eslint-disable-line
+  // eslint-disable-line
 
   // 统一的修改方法
   function handleChange(newValue: DatePickerTypesValue) {
     onChange?.(newValue)
   }
 
-
   // 点击Tab
   function handleTabs(newValue: DatePickerTypeListItem) {
     if (!newValue.type) return
-    const next: DatePickerTypesValue = { ...newValue, value: newValue.value ?? value?.value ?? new Date() }
+    const next: DatePickerTypesValue = {
+      ...newValue,
+      value: newValue.value ?? value?.value ?? new Date()
+    }
     handleChange(next)
   }
-
 
   // 选择日期
   function handleDate(date: Date) {
     if (!value) return
     handleChange({ ...value, value: date })
   }
-
 
   // 获取选择控件的node
   function renderPickerCombo() {

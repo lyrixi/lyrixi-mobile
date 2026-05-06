@@ -15,7 +15,8 @@ function createCenterMarkerIcon(icon?: CenterMarkerIconOptions | null): L.Icon |
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   if (icon && (icon instanceof window.L.Icon || icon instanceof window.L.DivIcon)) {
-    return icon as L.Icon | L.DivIcon
+    // Runtime: Leaflet instance; static type is still CenterMarkerIconOptions (no structural overlap with Icon/DivIcon).
+    return icon as unknown as L.Icon | L.DivIcon
   }
 
   const {
