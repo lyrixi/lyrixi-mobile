@@ -1,7 +1,8 @@
 import bmapQueryNearby from './bmapQueryNearby'
-import type { QueryNearbyParams } from './types'
 import googleQueryNearby from './googleQueryNearby'
 import overpassQueryNearby from './overpassQueryNearby'
+
+import type { QueryNearbyParams } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

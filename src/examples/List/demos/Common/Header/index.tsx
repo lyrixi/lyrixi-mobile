@@ -3,8 +3,8 @@ import { LocaleUtil, Page, ToolBar } from 'lyrixi-mobile'
 import SearchBar from '../../../../../components/ToolBar/Search'
 import SearchActive from '../../../../../components/ToolBar/SearchActive'
 
-import Filter from './Filter'
 import type { HeaderProps, SearchActiveProps, SearchBarProps } from './types'
+import Filter from './Filter'
 
 const locale = LocaleUtil.locale
 

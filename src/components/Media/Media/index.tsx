@@ -16,6 +16,8 @@ import List from './../List'
 import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 
+import type { MediaComponentProps, MediaListItem } from './../types'
+
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
 import Device from './../../../utils/Device'
@@ -24,7 +26,6 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 // 内库使用-end
 
-import type { MediaComponentProps, MediaListItem } from './../types'
 
 /* 测试使用-start
 import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'

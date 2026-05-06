@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
+
 import type { StampProps, StampRef } from './types'
 
 // 内库使用-start

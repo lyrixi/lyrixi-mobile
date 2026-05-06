@@ -1,9 +1,10 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 
-import type { PopupProps, PopupRef } from './types'
 
 import getDataAnimation from './api/getDataAnimation'
+
+import type { PopupProps, PopupRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

@@ -2,6 +2,8 @@ import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } f
 import formatValue from './formatValue'
 import Main from './../Main'
 
+import type { TransferItem, TransferModalProps } from './../types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../Modal/NavBarModal'
@@ -13,7 +15,6 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-import type { TransferItem, TransferModalProps } from './../types'
 
 // Modal
 const Modal = forwardRef<unknown, TransferModalProps>(function TransferModal(

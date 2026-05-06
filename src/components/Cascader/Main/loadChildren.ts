@@ -1,5 +1,6 @@
-import type { CascaderMainLoadChildrenResult } from './types'
 import type { CascaderNode, LoadDataFn } from '../cascaderTypes'
+
+import type { CascaderMainLoadChildrenResult } from './types'
 
 // 内库使用-start
 import ArrayUtil from '../../../utils/ArrayUtil'

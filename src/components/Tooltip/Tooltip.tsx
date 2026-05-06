@@ -1,9 +1,10 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 
-import type { PopupRef, TooltipProps } from './types'
 
 import Popup from './Popup'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
+
+import type { PopupRef, TooltipProps } from './types'
 
 // 内库使用-start
 import Combo from './../Combo'

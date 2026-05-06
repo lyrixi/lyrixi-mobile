@@ -5,6 +5,7 @@ import WeChat from './WeChat'
 import Alipay from './Alipay'
 import DingTalk from './DingTalk'
 import Lark from './Lark'
+
 import type { SuccessCallback, ErrorCallback, CancelCallback } from './types'
 
 // 内库使用-start

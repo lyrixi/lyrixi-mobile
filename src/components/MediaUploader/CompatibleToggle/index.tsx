@@ -1,8 +1,9 @@
 import React from 'react'
 
-import type { CompatibleToggleProps } from './types'
 
 import getList from './getList'
+
+import type { CompatibleToggleProps } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

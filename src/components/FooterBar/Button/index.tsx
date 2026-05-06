@@ -1,8 +1,9 @@
 import React, { Fragment, useRef, forwardRef, useImperativeHandle, useState } from 'react'
 
+
 import type { ButtonRef } from './../../Button/types'
-import type { ModalRef } from './../../Modal/Modal/types'
 import type { FooterBarButtonProps, FooterBarButtonRef } from './types'
+import type { ModalRef } from './../../Modal/Modal/types'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'

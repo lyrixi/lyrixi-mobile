@@ -3,6 +3,8 @@ import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
 import uploadCustom from './../../Custom/uploadItem'
 
+
+import type { MediaItem, UploadItemConfig } from '../../types'
 import type { MediaUploaderUploadListConfig } from './types'
 
 // 内库使用-start
@@ -16,7 +18,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { MediaItem, UploadItemConfig } from '../../types'
 
 /**
  * 导出给外部使用的工具类: 异步上传图片

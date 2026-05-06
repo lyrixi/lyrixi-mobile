@@ -1,9 +1,10 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
 
-import type { OTPInputNumberProps, OTPInputNumberRef } from './types'
 
 import InputNode from './../Node'
 import Keyboard from './../../Keyboard'
+
+import type { OTPInputNumberProps, OTPInputNumberRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
 import { createPortal } from 'react-dom'
+
 import type { VideoPlayerProps, VideoPlayerRef } from './types'
 
 // 内库使用-start

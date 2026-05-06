@@ -1,3 +1,5 @@
+import type { CalendarCellDate } from '../types'
+
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
@@ -6,7 +8,6 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CalendarCellDate } from '../types'
 
 // 判断绘制日期是否在当前显示的页当中
 function isCurrentDate(

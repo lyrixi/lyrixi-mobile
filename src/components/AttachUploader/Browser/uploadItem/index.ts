@@ -1,12 +1,13 @@
 import uploadLocalFile from './uploadLocalFile'
 
+import type { AttachUploaderItem } from '../../types'
+import type { UploadDeps } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
-import type { AttachUploaderItem } from '../../types'
-import type { UploadDeps } from './types'
 
 function toMessage(m: string | import('react').ReactNode): string {
   return typeof m === 'string' ? m : String(m)

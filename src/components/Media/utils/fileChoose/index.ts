@@ -1,7 +1,8 @@
 import getRemainCount from './../getRemainCount'
-import type { MediaListItem } from '../../types'
 import compressImage from './compressImage'
+
 import type { MediaFileChooseOptions } from './types'
+import type { MediaListItem } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'

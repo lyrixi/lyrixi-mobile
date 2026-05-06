@@ -1,5 +1,6 @@
 import type { L } from './../../../leaflet.types'
 import defaultMarkerIcons from './../../../utils/markerIcons'
+
 import type { MarkerIconConfig } from './types'
 
 // 内库使用-start

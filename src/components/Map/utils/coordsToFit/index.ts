@@ -1,3 +1,5 @@
+import type { CoordInput } from './types'
+
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'
 // 内库使用-end
@@ -6,7 +8,6 @@ import GeoUtil from './../../../../utils/GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CoordInput } from './types'
 
 function isCoordRecord(v: unknown): v is CoordInput {
   return typeof v === 'object' && v !== null

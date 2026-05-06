@@ -1,6 +1,7 @@
-import type { ApiResult, DistrictMainApiDistrictNode } from '../../api/types'
 
 export type { ApiResult } from '../../api/types'
+
+import type { ApiResult, DistrictMainApiDistrictNode } from '../../api/types'
 
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'

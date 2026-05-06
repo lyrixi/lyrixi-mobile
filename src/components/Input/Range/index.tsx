@@ -1,10 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 
-import type { RangeProps, RangeRef } from './types'
 
 import getPercent from './getPercent'
 import showTooltip from './showTooltip'
 import hideTooltip from './hideTooltip'
+
+import type { RangeProps, RangeRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

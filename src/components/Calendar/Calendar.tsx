@@ -1,5 +1,4 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import type { CalendarRef, CalendarProps, CalendarCellDate, CalendarType } from './types'
 import {
   getTitle,
   formatDrawDate,
@@ -13,6 +12,8 @@ import {
 } from './utils'
 import Header from './Header'
 import Body from './Body'
+
+import type { CalendarRef, CalendarProps, CalendarCellDate, CalendarType } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

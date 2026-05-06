@@ -1,9 +1,10 @@
 import sortValue from './sortValue'
 import findDistrictLeafIndex from './findDistrictLeafIndex'
 
-import type { DistrictItem } from './types'
 
 export type { DistrictItem } from './types'
+
+import type { DistrictItem } from './types'
 
 // 内库使用-start
 import ObjectUtil from '../../../../../utils/ObjectUtil'

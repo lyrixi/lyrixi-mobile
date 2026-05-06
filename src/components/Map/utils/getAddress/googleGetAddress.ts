@@ -1,5 +1,7 @@
 import coordsToFit from './../coordsToFit'
 
+import type { AddressParams } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
@@ -8,7 +10,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { AddressParams } from './types'
 
 // 地址逆解析
 function googleGetAddress(params: AddressParams): Promise<unknown> {

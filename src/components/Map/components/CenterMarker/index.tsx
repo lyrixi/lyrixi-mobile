@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import type { L } from './../../leaflet.types'
 import type { MapContainerAPI } from './../MapContainer'
-import type { CenterMarkerProps, CenterMarkerRef } from './types'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import createCenterMarkerIcon from './createCenterMarkerIcon'
 import addCenterMarker from './addCenterMarker'
 import clearCenterMarker from './clearCenterMarker'
+
+import type { CenterMarkerProps, CenterMarkerRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

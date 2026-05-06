@@ -1,6 +1,7 @@
-import type { MessageMaskElement, MessageUpdateAttributeParams } from './../types'
 
 import updateStyle from './updateStyle'
+
+import type { MessageMaskElement, MessageUpdateAttributeParams } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

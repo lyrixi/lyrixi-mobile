@@ -2,8 +2,9 @@ import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 import type { CascaderNode } from './../cascaderTypes'
-import type { DistrictComboProps, DistrictComboRef } from './types'
 import type { ComboProps, ComboRef } from './../../Input/Select'
+
+import type { DistrictComboProps, DistrictComboRef } from './types'
 
 // 内库使用-start
 import Input from './../../Input'

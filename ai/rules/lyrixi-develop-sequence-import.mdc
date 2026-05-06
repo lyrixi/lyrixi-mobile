@@ -1,5 +1,5 @@
 ---
-description: 业务项目开发规范（import顺序）
+description: 业务项目开发规范（import和export顺序）
 globs:
   - '**/*.{js,jsx,ts,tsx}'
 alwaysApply: true
@@ -51,3 +51,10 @@ import Arrow from './Arrow'
 
 import './index.less'
 ```
+
+# export 顺序
+
+export 一律放到文件代码末尾
+
+1. export（具名导出）
+2. export default（默认导出）

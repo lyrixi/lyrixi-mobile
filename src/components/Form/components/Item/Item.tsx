@@ -1,8 +1,9 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 
-import type { FormItemProps, FormItemRef } from './types'
 
 import ItemsContext from './../ItemsContext'
+
+import type { FormItemProps, FormItemRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

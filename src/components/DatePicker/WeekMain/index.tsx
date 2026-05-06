@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import type { CalendarProps, CalendarRef, CalendarValue, WeekStart } from './../../Calendar/types'
 import type { DatePickerWeekMainProps } from './../datePickerTypes'
+
+import type { CalendarProps, CalendarRef, CalendarValue, WeekStart } from './../../Calendar/types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'

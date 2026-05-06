@@ -4,6 +4,7 @@ import getAnchorByScroller from './getAnchorByScroller'
 import activeAnchor from './activeAnchor'
 import scrollToAnchor from './scrollToAnchor'
 
+
 import type { IndexBarProps, IndexBarRef } from './types'
 
 // 内库使用-start

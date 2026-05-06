@@ -1,9 +1,10 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
-import type { TabBarItem } from './../types'
-import type { SlideProps, SlideRef } from './types'
 
 import renderContext from './../utils/renderContext'
+
+import type { SlideProps, SlideRef } from './types'
+import type { TabBarItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

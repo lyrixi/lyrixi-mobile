@@ -8,8 +8,9 @@ import React, {
 } from 'react'
 import Modal from './../Modal'
 
-import type { LocationValue } from './../types'
+
 import type { LocationComboProps, LocationComboRef } from './types'
+import type { LocationValue } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'

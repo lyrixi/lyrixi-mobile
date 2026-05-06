@@ -5,8 +5,9 @@ import EntityList, { MainRef as EntityListRef, MainProps as EntityListProps } fr
 import VirtualList, { VirtualListRef, VirtualListProps, VirtualOptions } from './VirtualList'
 import RetryButton from './components/RetryButton'
 
-import type { RawItem, ViewItem } from './../List/List/types'
+
 import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
+import type { RawItem, ViewItem } from './../List/List/types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

@@ -1,10 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
-import type { OTPInputRef, OTPProps, OTPRef } from './types'
 
 import InputText from './InputText'
 import InputNumber from './InputNumber'
 import formatValue from './formatValue'
+
+import type { OTPInputRef, OTPProps, OTPRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

@@ -3,12 +3,13 @@
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 
+import type { SuccessCallback, ErrorCallback, CancelCallback } from '../types'
+
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
 import LocaleUtil from './../../LocaleUtil'
 import AssetUtil from './../../AssetUtil'
 import Device from './../../Device'
-import type { SuccessCallback, ErrorCallback, CancelCallback } from '../types'
 // 内库使用-end
 
 /* 测试使用-start

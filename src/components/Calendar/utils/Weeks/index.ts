@@ -1,5 +1,7 @@
 import getWeekNames from './getWeekNames'
 
+import type { CalendarCellDate } from '../../types'
+
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
 // 内库使用-end
@@ -8,7 +10,6 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CalendarCellDate } from '../../types'
 
 // 获得上周日历
 function getPreviousWeekDates(currentDate: Date, weekStart: string) {

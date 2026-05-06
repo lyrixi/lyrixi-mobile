@@ -1,5 +1,7 @@
 import CacheKeyPrefix from './CacheKeyPrefix'
 
+import type { LocCacheData } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import GeoUtil from './../../../../utils/GeoUtil'
@@ -10,7 +12,6 @@ import Storage from './../../../../utils/Storage'
 import { ObjectUtil, GeoUtil, Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { LocCacheData } from './types'
 
 // 设置缓存
 async function setLocationCache(

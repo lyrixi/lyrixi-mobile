@@ -1,3 +1,5 @@
+import type { GetLocationOptions } from './types'
+
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
 import normalizeLocationResult from './../normalizeLocationResult'
@@ -7,7 +9,6 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { GetLocationOptions } from './types'
 
 export type { GetLocationOptions } from './types'
 

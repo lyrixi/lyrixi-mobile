@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react'
 
-import type { ButtonIconProps } from './types'
 
 import type { IconRef } from './../Icon'
+
+import type { ButtonIconProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

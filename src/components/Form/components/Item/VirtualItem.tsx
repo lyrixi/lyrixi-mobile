@@ -1,8 +1,9 @@
 import React, { useEffect, useImperativeHandle, forwardRef, useRef, useContext, useState } from 'react'
 
-import type { VirtualFormItemProps, VirtualFormItemRef } from './types'
 
 import ItemsContext from './../ItemsContext'
+
+import type { VirtualFormItemProps, VirtualFormItemRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

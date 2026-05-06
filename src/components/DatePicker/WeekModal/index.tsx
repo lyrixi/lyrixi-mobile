@@ -1,9 +1,10 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
 import WeekMain from './../WeekMain'
-import type { CalendarRef } from '../../Calendar/types'
 import type { DatePickerModalRef, DatePickerWeekModalProps } from './../datePickerTypes'
 import type { ModalRef } from './../../Modal/Modal'
+
+import type { CalendarRef } from '../../Calendar/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

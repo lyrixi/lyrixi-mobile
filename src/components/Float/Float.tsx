@@ -2,6 +2,7 @@ import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
+
 import type { FloatProps, FloatRef } from './types'
 import type { SnapPosition } from './AssistiveTouch/types'
 

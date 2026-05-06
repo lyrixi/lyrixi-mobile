@@ -1,10 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { maxLengthFormatter, minMaxFormatter, precisionFormatter } from './../Text/utils'
 
-import type { NumberKeyboardProps, NumberKeyboardRef } from './types'
 
 import InputNode, { InputNodeRef } from './../Node'
 import correctInputNumber from './correctInputNumber'
+
+import type { NumberKeyboardProps, NumberKeyboardRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

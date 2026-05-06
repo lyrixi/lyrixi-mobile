@@ -1,6 +1,8 @@
 import getDateRowIndex from './getDateRowIndex'
 import paginateMonths from './paginateMonths'
 
+import type { CalendarCellDate } from '../../types'
+
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
 // 内库使用-end
@@ -9,7 +11,6 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CalendarCellDate } from '../../types'
 
 // 获得上月日历
 function getPrevMonthData(currentDate: Date, weekStart: string) {

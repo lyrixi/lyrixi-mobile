@@ -1,10 +1,11 @@
 import React from 'react'
 
-import type { SkeletonParagraphProps } from './types'
 
 import Avatar from './Avatar'
 import Item from './Item'
 import Title from './Title'
+
+import type { SkeletonParagraphProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

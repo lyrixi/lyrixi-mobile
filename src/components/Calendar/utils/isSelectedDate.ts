@@ -1,3 +1,5 @@
+import type { CalendarSelectionMode, CalendarValue } from '../types'
+
 // 内库使用-start
 import DateUtil from '../../../utils/DateUtil'
 // 内库使用-end
@@ -6,7 +8,6 @@ import DateUtil from '../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CalendarSelectionMode, CalendarValue } from '../types'
 
 // 当前日期是否选中, 空:未选中 数组:[selected:选中 selected-start:开始 selected-end:结束]
 function isSelectedDate(

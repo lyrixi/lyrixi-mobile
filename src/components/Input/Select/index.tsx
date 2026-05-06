@@ -3,12 +3,13 @@ import getDisplayValue from './formatter'
 
 import InputText from './../Text'
 
-import type { InputTextProps, InputTextRef } from './../Text/types'
-import type { ComboProps, ComboRef } from './types'
 import InputAutoSize from './../AutoSize'
 import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
 import Tags from './Tags'
+
+import type { ComboProps, ComboRef } from './types'
+import type { InputTextProps, InputTextRef } from './../Text/types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'

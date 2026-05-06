@@ -1,8 +1,9 @@
 import React, { useRef, forwardRef, useEffect, type Ref, type MouseEvent, type TouchEvent } from 'react'
 
-import type { PickerColumnItem, PickerSlotsProps } from './types'
 
 import getTranslateValue from './utils/getTranslateValue'
+
+import type { PickerColumnItem, PickerSlotsProps } from './types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'

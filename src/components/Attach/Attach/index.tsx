@@ -16,8 +16,9 @@ import List from './../List'
 import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 import copyFileUrl from './copyFileUrl'
-import type { AttachNativeFilePayload } from './../types'
+
 import type { AttachListItem, AttachProps, AttachRef } from './types'
+import type { AttachNativeFilePayload } from './../types'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'

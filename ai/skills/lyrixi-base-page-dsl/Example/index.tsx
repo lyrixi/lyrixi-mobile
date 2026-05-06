@@ -4,8 +4,8 @@ import { Page, Result, Skeleton, Loading } from 'lyrixi-mobile'
 
 import { queryData } from './api'
 import { type QueryResult } from './types'
-import SearchBar from './SearchBar'
 import Content from './Content'
+import SearchBar from './SearchBar'
 
 // 页面名称: types业务侧根据各自的业务自行修改
 const Example: FC = () => {

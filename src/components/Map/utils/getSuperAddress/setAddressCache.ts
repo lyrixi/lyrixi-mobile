@@ -1,5 +1,7 @@
 import CacheKey from './CacheKey'
 
+import type { SetAddressCacheParams } from './types'
+
 // 内库使用-start
 import Storage from './../../../../utils/Storage'
 // 内库使用-end
@@ -8,7 +10,6 @@ import Storage from './../../../../utils/Storage'
 import {Storage} from 'lyrixi-mobile'
 测试使用-end */
 
-import type { SetAddressCacheParams } from './types'
 
 /**
  * 设置地址缓存

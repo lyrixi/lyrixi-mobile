@@ -1,6 +1,5 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { MessageComboButton, MessageComboProps, MessageComboRef } from './types'
 
 import Modal from './../Modal'
 import Header from './../Header'
@@ -9,6 +8,8 @@ import Footer from './../Footer'
 import Icon from './../Icon'
 import Title from './../Title'
 import Button from './../Button'
+
+import type { MessageComboButton, MessageComboProps, MessageComboRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

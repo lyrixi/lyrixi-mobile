@@ -2,9 +2,10 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import dimensionalArray from './utils/dimensionalArray'
 import formatValue from './utils/formatValue'
 import getIndex from './utils/getIndex'
-import type { PickerColumnItem, PickerMainProps, PickerMainRef } from './types'
 
 import Slots from './Slots'
+
+import type { PickerColumnItem, PickerMainProps, PickerMainRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

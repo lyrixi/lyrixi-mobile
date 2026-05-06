@@ -1,11 +1,12 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { StepsListItem, StepsProps, StepsRef } from './types'
 
 import StepHorizontalCenter from './StepHorizontalCenter'
 import StepHorizontalLeft from './StepHorizontalLeft'
 import StepVerticalCenter from './StepVerticalCenter'
 import StepVerticalLeft from './StepVerticalLeft'
+
+import type { StepsListItem, StepsProps, StepsRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

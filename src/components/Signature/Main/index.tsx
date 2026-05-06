@@ -1,8 +1,9 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { SignatureMainProps, SignatureMainRef, SignatureRef } from './types'
 
 import Signature from './Signature'
+
+import type { SignatureMainProps, SignatureMainRef, SignatureRef } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

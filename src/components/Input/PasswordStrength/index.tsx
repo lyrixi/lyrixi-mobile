@@ -1,8 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-import type { PasswordStrengthProps, PasswordStrengthRef } from './types'
 
 import getStrength from './getStrength'
+
+import type { PasswordStrengthProps, PasswordStrengthRef } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

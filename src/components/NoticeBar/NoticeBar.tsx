@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, type ReactNode } from 'react'
 import getDefaultIconClassName from './getDefaultIconClassName'
+
 import type { NoticeBarProps, NoticeBarRef } from './types'
 
 // 内库使用-start

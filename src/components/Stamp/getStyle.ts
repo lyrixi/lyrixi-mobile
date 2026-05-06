@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+
 import type { StampStyleInput } from './types'
 
 // 内库使用-start

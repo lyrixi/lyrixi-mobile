@@ -5,6 +5,7 @@ import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
+
 import type { SuccessCallback, ErrorCallback, CancelCallback, SDKResult } from '../types'
 
 // 内库使用-start

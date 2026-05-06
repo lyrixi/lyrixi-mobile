@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { MainProps } from './types'
+
 // 内库使用-start
 import Result from './../../../Result'
 // 内库使用-end
@@ -8,7 +10,6 @@ import Result from './../../../Result'
 import { Result } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { MainProps } from './types'
 
 export type { MainProps } from './types'
 

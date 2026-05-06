@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import initBridge from './initBridge'
+
 import type { AppLoadResult, AppProps } from './types'
 
 // 内库使用-start

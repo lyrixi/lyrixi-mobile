@@ -1,9 +1,10 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
 
-import type { ComboAddProps, ComboAddRef } from './types'
-import type { ModalRef } from './../../Modal/types'
 
 import Modal from './../../Modal'
+
+import type { ComboAddProps, ComboAddRef } from './types'
+import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

@@ -1,6 +1,7 @@
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import osmGetAddress from './osmGetAddress'
+
 import type { GetAddressParams, GetAddressResultShape } from './types'
 
 // 内库使用-start

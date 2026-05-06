@@ -4,6 +4,8 @@ import clearLocationCache from './clearLocationCache'
 import defaultGetLocation from './../getLocation'
 import getBrowserLocation from './getBrowserLocation'
 
+import type { GetLocationOptions, LocResult, GetSuperLocationOptions } from './types'
+
 // 内库使用-start
 import Device from './../../../../utils/Device'
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -13,7 +15,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { GetLocationOptions, LocResult, GetSuperLocationOptions } from './types'
 
 export type { GetLocationOptions, GetSuperLocationOptions } from './types'
 

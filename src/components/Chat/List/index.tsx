@@ -2,6 +2,7 @@ import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
 import viewFormatter from './viewFormatter'
 import getSpaceDates from './getSpaceDates'
 import Item from './../Item'
+
 import type { ChatItemProps } from './../Item/types'
 import type { ChatListProps, ChatListRef, ChatListValue, ChatViewItem } from './types'
 

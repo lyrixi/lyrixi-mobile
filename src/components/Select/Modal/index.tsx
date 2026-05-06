@@ -1,8 +1,9 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
-import type { SelectModalRootProps, SelectMainRef } from './../types'
 import type { ListProps } from './../../List/List'
 import type { ModalRef } from './../../../components/Modal/Modal'
+
+import type { SelectModalRootProps, SelectMainRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

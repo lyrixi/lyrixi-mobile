@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-import type { SignatureProps, SignatureRef } from './types'
 
 import { CanvasUtil } from './utils'
+
+import type { SignatureProps, SignatureRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

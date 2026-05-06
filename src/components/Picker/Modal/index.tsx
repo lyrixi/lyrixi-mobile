@@ -8,9 +8,10 @@ import React, {
   type Ref
 } from 'react'
 import Main, { type PickerMainRef, type PickerMainProps } from './../Main'
-import type { PickerColumnItem } from './../Main/types'
-import type { ModalRef } from './../../Modal/Modal/types'
 
+
+import type { ModalRef } from './../../Modal/Modal/types'
+import type { PickerColumnItem } from './../Main/types'
 import type { PickerModalProps } from './types'
 
 // 内库使用-start

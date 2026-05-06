@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react'
 
-import type { SkeletonAvatarProps } from './types'
 
 import Block from './Block'
+
+import type { SkeletonAvatarProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

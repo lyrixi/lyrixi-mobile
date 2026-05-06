@@ -3,13 +3,14 @@ import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } f
 import coordsToWgs84, { type MapPoint as WgsMapPoint } from './../../utils/coordsToWgs84'
 
 import MapContainer, { type MapContainerAPI } from './../../components/MapContainer'
-import type { MapChooseProps, MapChooseValue } from './types'
 import ZoomControl from './../../components/ZoomControl'
 import SearchControl from './../../components/SearchControl'
 import CenterMarker from './../../components/CenterMarker'
 import LocationControl from './../../components/LocationControl'
 import NearbyControl from './../../components/NearbyControl'
 import Markers from './../../components/Markers'
+
+import type { MapChooseProps, MapChooseValue } from './types'
 
 // 内库使用-start
 import Toast from './../../../Toast'

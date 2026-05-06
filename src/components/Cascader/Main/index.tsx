@@ -2,13 +2,14 @@ import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect, ty
 import sliceArray from './sliceArray'
 import loadChildren from './loadChildren'
 import formatValue from './../utils/formatValue'
-import type { CascaderTab } from './../utils/types'
 import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
 import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+
 import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState } from './types'
+import type { CascaderTab } from './../utils/types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'

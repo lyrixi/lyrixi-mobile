@@ -1,6 +1,8 @@
 import CacheKeyPrefix from './CacheKeyPrefix'
 import setLocationCache from './setLocationCache'
 
+import type { LocCacheData, LocationStorageCache } from './types'
+
 // 内库使用-start
 import Storage from './../../../../utils/Storage'
 import normalizeLocationResult from './../normalizeLocationResult'
@@ -10,7 +12,6 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import {Storage } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { LocCacheData, LocationStorageCache } from './types'
 
 // 读取缓存
 async function getLocationCache(

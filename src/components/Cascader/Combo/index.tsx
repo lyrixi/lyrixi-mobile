@@ -1,8 +1,9 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import type { CascaderNode } from './../cascaderTypes'
 import CascaderModal from './../Modal'
-import type { CascaderComboProps, CascaderComboRef } from './types'
 import type { ComboProps, ComboRef } from './../../Input/Select'
+
+import type { CascaderComboProps, CascaderComboRef } from './types'
 
 // 内库使用-start
 import Input from './../../Input'

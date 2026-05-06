@@ -3,6 +3,7 @@ import Checkbox from '../Checkbox'
 
 import formatValue from './formatValue'
 
+
 import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
 
 // 内库使用-start

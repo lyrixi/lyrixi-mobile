@@ -1,3 +1,4 @@
+
 import type { BridgeResultPayload, InitBridgeConfig, InitBridgeResult } from './types'
 
 // 内库使用-start

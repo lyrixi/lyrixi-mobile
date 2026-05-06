@@ -1,3 +1,5 @@
+import type { LoadLeafletOptions } from './types'
+
 // 内库使用-start
 import AssetUtil from '../../../../utils/AssetUtil'
 // 内库使用-end
@@ -6,7 +8,6 @@ import AssetUtil from '../../../../utils/AssetUtil'
 import { AssetUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { LoadLeafletOptions } from './types'
 
 function pickResult(r: unknown): Record<string, unknown> {
   return typeof r === 'object' && r !== null ? { ...(r as Record<string, unknown>) } : {}

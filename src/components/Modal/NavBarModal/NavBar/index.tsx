@@ -1,9 +1,10 @@
 import React, { forwardRef, useImperativeHandle, useRef, type MouseEvent } from 'react'
 
-import type { NavBarModalNavBarProps, NavBarModalNavBarRef } from './types'
 
 import Cancel from './Cancel'
 import Ok from './Ok'
+
+import type { NavBarModalNavBarProps, NavBarModalNavBarRef } from './types'
 
 // 内库使用-start
 import NavBar from './../../../NavBar'

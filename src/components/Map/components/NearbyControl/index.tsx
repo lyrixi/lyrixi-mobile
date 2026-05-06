@@ -1,11 +1,12 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 
 import getTabs from './utils/getTabs'
-import type { QueryNearbyResult, NearbyControlProps, NearbyControlRef, NearbyTabItem } from './types'
 import Current from './Current'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
+
+import type { QueryNearbyResult, NearbyControlProps, NearbyControlRef, NearbyTabItem } from './types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

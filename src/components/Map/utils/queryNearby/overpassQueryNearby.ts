@@ -1,5 +1,6 @@
-// 内库使用-start
 import type { QueryNearbyParams, OverpassNode } from './types'
+
+// 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 

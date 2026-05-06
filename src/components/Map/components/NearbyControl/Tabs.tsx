@@ -1,5 +1,6 @@
 import React from 'react'
 import getTabs from './utils/getTabs'
+
 import type { TabsProps } from './types'
 
 // 内库使用-start

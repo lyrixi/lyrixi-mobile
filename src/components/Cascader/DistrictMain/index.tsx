@@ -6,13 +6,14 @@ import {
   formatDistrictValue,
   searchByKeyword
 } from './utils/index'
-import type { DistrictItem } from './utils/formatDistrictValue/types'
-import type { ApiResult } from './api/types'
 import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
 import DistrictMainLoading from './Loading'
 import type { CascaderNode, LoadDataResult } from './../cascaderTypes'
+
+import type { ApiResult } from './api/types'
+import type { DistrictItem } from './utils/formatDistrictValue/types'
 import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from './types'
 
 // 内库使用-start

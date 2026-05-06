@@ -1,9 +1,10 @@
 // 与Attach.uploadItem共用
 
+import type { MediaListItem } from './../../types'
+
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
-import type { MediaListItem } from './../../types'
 // 内库使用-end
 
 /* 测试使用-start

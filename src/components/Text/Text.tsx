@@ -1,10 +1,11 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { TextProps, TextRef } from './types'
 
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'
 import renderHighlight from './renderHighlight'
+
+import type { TextProps, TextRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

@@ -6,6 +6,7 @@ import filterCoords from './../../utils/filterCoords'
 import isSamePoint from './../../utils/isSamePoint'
 import addMarkers from './addMarkers'
 import clearMarkers from './clearMarkers'
+
 import type { MapCoord, MarkersProps, MarkersHandle, MapPoint, CanvasMarkerLayer } from './types'
 
 // 内库使用-start

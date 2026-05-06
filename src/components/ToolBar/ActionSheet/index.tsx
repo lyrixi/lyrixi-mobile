@@ -1,9 +1,10 @@
 import React, { forwardRef, type MouseEvent } from 'react'
 import Combo from './../components/Combo'
 
-import type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'
 
 type ComboRenderParams = Parameters<NonNullable<ToolBarActionSheetProps['comboRender']>>[0]
+
+import type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './types'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'

@@ -1,10 +1,11 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
-import type { RawItem } from './../../List/List/types'
-import type { ModalRef } from './../../Modal/Modal/types'
+
 import type { ListPaginationProps, ListPaginationRef } from './../Main/types'
 import type { ModalPaginationProps, ModalPaginationRef } from './types'
+import type { ModalRef } from './../../Modal/Modal/types'
+import type { RawItem } from './../../List/List/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
