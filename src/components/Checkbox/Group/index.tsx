@@ -1,13 +1,17 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import Checkbox from '../Checkbox'
 
+import formatValue from './formatValue'
+
+import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-import formatValue from './formatValue'
-
-import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
+/* 测试使用-start
+import { DOMUtil } from 'lyrixi-mobile'
+测试使用-end */
 
 // Checkbox-Group
 const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(

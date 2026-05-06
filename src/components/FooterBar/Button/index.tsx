@@ -1,11 +1,12 @@
 import { useRef, forwardRef, useImperativeHandle, useState } from 'react'
+
+import type { ButtonRef } from './../../Button/types'
+import type { ModalRef } from './../../Modal/Modal/types'
 import type { FooterBarButtonProps, FooterBarButtonRef } from './types'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'
-import type { ModalRef } from './../../Modal/Modal'
 import Button from './../../Button'
-import type { ButtonRef } from './../../Button/types'
 // 内库使用-end
 
 /* 测试使用-start

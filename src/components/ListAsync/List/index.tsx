@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react'
 import List from './List'
 
+import type { MainProps, MainRef } from './types'
+
 // 内库使用-start
 import Page from './../../Page'
 // 内库使用-end
@@ -8,8 +10,6 @@ import Page from './../../Page'
 /* 测试使用-start
 import { Page } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { MainProps, MainRef } from './types'
 
 // 列表
 const Main = forwardRef<MainRef, MainProps>(

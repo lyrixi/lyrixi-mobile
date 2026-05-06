@@ -1,6 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties } from 'react'
 import Item from './Item'
 
+import type { SelectorItem, SelectorProps, SelectorRef } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -9,8 +11,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { SelectorItem, SelectorProps, SelectorRef } from './types'
 
 // 选择组
 const Selector = forwardRef<SelectorRef, SelectorProps>(

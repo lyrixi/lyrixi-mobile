@@ -29,6 +29,8 @@ alwaysApply: true
    - types
    - components
 
+**lyrixi-mobile 组件库约定：**凡 `import type …` 且来源为 `types`（含 `./types`、`./…/types`、`*/*/types` 等类型模块），须放在 **`// 内库使用-start` 之前**，不得写在 `// 内库使用-start` 与 `// 内库使用-end` 之间。
+
 5. 样式文件（放最后）  
    例如：./index.less、./style.scss
 

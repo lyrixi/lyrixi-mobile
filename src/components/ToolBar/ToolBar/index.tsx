@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
 
+import type { ToolBarProps } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
-import type { ToolBarProps } from './types'
 
 const ToolBar = forwardRef<HTMLDivElement, ToolBarProps>(function ToolBar(
   {

@@ -1,6 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Icon from './Icon'
 
+import type { CheckboxProps, CheckboxRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -8,8 +10,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { CheckboxProps, CheckboxRef } from './types'
 
 // 复选框
 const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(

@@ -1,11 +1,11 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+import type { PageHeaderProps, PageHeaderRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
 // 内库使用-end
-
-import type { PageHeaderProps, PageHeaderRef } from './types'
 
 const Header = forwardRef<PageHeaderRef, PageHeaderProps>(function Header(
   { safeArea, className, style, children },

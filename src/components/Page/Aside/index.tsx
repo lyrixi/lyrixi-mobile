@@ -1,5 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+import type { PageAsideProps, PageAsideRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
@@ -8,8 +10,6 @@ import SafeArea from './../../SafeArea'
 /* 测试使用-start
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { PageAsideProps, PageAsideRef } from './types'
 
 const Aside = forwardRef<PageAsideRef, PageAsideProps>(function Aside(
   { safeArea, className, style, children },

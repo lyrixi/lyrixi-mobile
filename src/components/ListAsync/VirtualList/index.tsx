@@ -4,18 +4,18 @@ import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
 import List from './List'
 
+import type { ListProps, RawItem } from './../../List/List/types'
+import type { PageMainRef } from './../../Page/Main/types'
+import type { VirtualListProps, VirtualListRef } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
 import Page from './../../Page'
-import type { ListProps, RawItem } from './../../List/List/types'
-import type { PageMainRef } from './../../Page/Main/types'
 // 内库使用-end
 
 /* 测试使用-start
 import { ObjectUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { VirtualListProps, VirtualListRef } from './types'
 
 type VirtualData = { type?: string; height: number; top: number; index: number }
 type VirtualItem = RawItem & { virtualData: VirtualData }

@@ -7,6 +7,8 @@ import React, {
   type MouseEvent
 } from 'react'
 
+import type { ToolBarFilterProps, ToolBarFilterRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import FilterModal from './../../Modal/FilterModal'
@@ -18,8 +20,6 @@ import Icon from './../../Icon'
 import { DOMUtil, Modal, Button, Icon } from 'lyrixi-mobile'
 const FilterModal = Modal.FilterModal
 测试使用-end */
-
-import type { ToolBarFilterProps, ToolBarFilterRef } from './types'
 
 const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
   {

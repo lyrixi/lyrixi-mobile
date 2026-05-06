@@ -9,6 +9,8 @@ import React, {
 import closeAllDropdown from './../utils/closeAllDropdown'
 import Combo, { type ComboRef } from './../components/Combo'
 
+import type { ToolBarDropdownProps, ToolBarDropdownRef } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -19,8 +21,6 @@ import DropdownModal from './../../Modal/DropdownModal'
 import { ObjectUtil, DOMUtil, Modal } from 'lyrixi-mobile'
 const DropdownModal = Modal.DropdownModal
 测试使用-end */
-
-import type { ToolBarDropdownProps, ToolBarDropdownRef } from './types'
 
 const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function Dropdown(
   {

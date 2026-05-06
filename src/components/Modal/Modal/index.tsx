@@ -2,6 +2,8 @@ import React, { useImperativeHandle, useRef, forwardRef, type MouseEvent } from 
 import { createPortal } from 'react-dom'
 import getClassNameByAnimation from './../api/getClassNameByAnimation'
 
+import type { ModalProps, ModalRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
@@ -10,8 +12,6 @@ import SafeArea from './../../SafeArea'
 /* 测试使用-start
 import { DOMUtil, SafeArea, Tooltip } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { ModalProps, ModalRef } from './types'
 
 const Modal = forwardRef<ModalRef, ModalProps>(
   (

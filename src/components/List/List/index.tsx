@@ -3,6 +3,8 @@ import viewFormatter from './viewFormatter'
 import HeaderItem from './../HeaderItem'
 import Item from './../Item'
 
+import type { ItemChangeArg, ListProps, ListRef, RawItem, ViewItem } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -10,8 +12,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { ItemChangeArg, ListProps, ListRef, RawItem, ViewItem } from './types'
 
 // List
 const List = (

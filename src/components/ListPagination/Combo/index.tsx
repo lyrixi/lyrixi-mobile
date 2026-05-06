@@ -1,6 +1,11 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 
+import type { ComboRef } from './../../Input/Select/types'
+import type { RawItem } from './../../List/List/types'
+import type { ModalPaginationRef } from './../Modal/types'
+import type { ComboPaginationProps, ComboPaginationRef } from './types'
+
 // 内库使用-start
 import Input from './../../Input'
 // 内库使用-end
@@ -8,11 +13,6 @@ import Input from './../../Input'
 /* 测试使用-start
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { ComboRef } from './../../Input/Select/types'
-import type { RawItem } from './../../List/List/types'
-import type { ModalPaginationRef } from './../Modal/types'
-import type { ComboPaginationProps, ComboPaginationRef } from './types'
 
 type ItemChangeArg = RawItem & { checked?: boolean }
 

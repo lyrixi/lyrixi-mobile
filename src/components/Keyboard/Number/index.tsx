@@ -6,6 +6,8 @@ import ButtonNumber from './ButtonNumber'
 import ButtonAction from './ButtonAction'
 import ButtonQuick from './ButtonQuick'
 
+import type { KeyboardNumberProps, KeyboardNumberRef } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -17,8 +19,6 @@ import Icon from './../../Icon'
 /* 测试使用-start
 import { LocaleUtil, DOMUtil, SafeArea, Page, Icon } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { KeyboardNumberProps, KeyboardNumberRef } from './types'
 
 const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
   (

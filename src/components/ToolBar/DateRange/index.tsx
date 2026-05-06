@@ -3,13 +3,14 @@ import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
 import Dropdown, { type ToolBarDropdownRef, type ToolBarDropdownProps } from './../Dropdown'
 import DateRange from './DateRange'
 
+import type { DatePickerRangesMap, DatePickerRangeChangeMeta } from './../../DatePicker/datePickerTypes'
+import type { ToolBarDateRangeBarProps } from './types'
+
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DatePicker from './../../DatePicker'
 import FooterBar from './../../FooterBar'
-import type { DatePickerRangesMap, DatePickerRangeChangeMeta } from './../../DatePicker/datePickerTypes'
-import type { ToolBarDateRangeBarProps } from './types'
 // 内库使用-end
 
 /* 测试使用-start

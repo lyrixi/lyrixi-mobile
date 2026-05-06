@@ -3,6 +3,8 @@ import TopContainer from './TopContainer'
 import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk'
 
+import type { PageMainProps, PageMainRef } from './types'
+
 // 内库使用-start
 import Device from './../../../utils/Device'
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,8 +15,6 @@ import SafeArea from './../../SafeArea'
 /* 测试使用-start
 import { Device, DOMUtil, LocaleUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { PageMainProps, PageMainRef } from './types'
 
 interface TouchesState {
   isTop: boolean

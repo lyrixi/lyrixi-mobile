@@ -1,16 +1,16 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import _uploadItem from './uploadItem'
 
+import type { AttachNativeFilePayload } from './../../Attach/types'
+import type { AttachRef, AttachListItem } from './../../Attach/Attach/types'
+import type { AttachUploaderItem } from './../types'
+import type { BrowserProps } from './types'
+
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Attach from './../../Attach'
-import type { AttachRef, AttachListItem } from './../../Attach/Attach/types'
 // 内库使用-end
-
-import type { AttachUploaderItem } from './../types'
-import type { AttachNativeFilePayload } from './../../Attach/types'
-import type { BrowserProps } from './types'
 
 /* 测试使用-start
 import { LocaleUtil, Toast, Attach } from 'lyrixi-mobile'

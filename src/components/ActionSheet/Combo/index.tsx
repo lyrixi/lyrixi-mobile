@@ -3,10 +3,10 @@ import Modal from './../Modal'
 import Combo, { ComboRef } from './../../Combo'
 import type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
 import type { ActionSheetItem } from './../Modal/types'
+import type { ComboRef as InputSelectComboRef } from './../../Input/Select/types'
 
 // 内库使用-start
 import Input from './../../Input'
-import type { ComboRef as InputSelectComboRef } from './../../Input/Select'
 // 内库使用-end
 
 /* 测试使用-start

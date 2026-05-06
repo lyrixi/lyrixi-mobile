@@ -1,13 +1,13 @@
 import defaultUploadItem from './../../Browser/uploadItem'
 
+import type { AttachUploaderItem } from '../../types'
+import type { UploadListConfig } from './types'
+
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
-
-import type { AttachUploaderItem } from '../../types'
-import type { UploadListConfig } from './types'
 
 /* 测试使用-start
 import { ObjectUtil, Toast, LocaleUtil } from 'lyrixi-mobile'

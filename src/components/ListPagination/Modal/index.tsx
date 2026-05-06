@@ -1,6 +1,11 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
+import type { RawItem } from './../../List/List/types'
+import type { ModalRef } from './../../Modal/Modal/types'
+import type { ListPaginationProps, ListPaginationRef } from './../Main/types'
+import type { ModalPaginationProps, ModalPaginationRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../Modal/NavBarModal'
@@ -10,11 +15,6 @@ import NavBarModal from './../../Modal/NavBarModal'
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
-
-import type { RawItem } from './../../List/List/types'
-import type { ModalRef } from './../../Modal/Modal/types'
-import type { ListPaginationProps, ListPaginationRef } from './../Main/types'
-import type { ModalPaginationProps, ModalPaginationRef } from './types'
 
 type ItemChangeArg = RawItem & { checked?: boolean }
 

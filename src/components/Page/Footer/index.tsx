@@ -1,5 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+import type { PageFooterProps, PageFooterRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
@@ -8,8 +10,6 @@ import SafeArea from './../../SafeArea'
 /* 测试使用-start
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { PageFooterProps, PageFooterRef } from './types'
 
 const Footer = forwardRef<PageFooterRef, PageFooterProps>(function Footer(
   { safeArea, className, style, children },

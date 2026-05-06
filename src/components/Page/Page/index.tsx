@@ -1,5 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+import type { PageProps, PageRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
@@ -8,8 +10,6 @@ import SafeArea from './../../SafeArea'
 /* 测试使用-start
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { PageProps, PageRef } from './types'
 
 const Page = forwardRef<PageRef, PageProps>(function Page(
   { safeArea, full = true, layout, animation, style, className, children },

@@ -4,6 +4,8 @@ import getAnchorByScroller from './getAnchorByScroller'
 import activeAnchor from './activeAnchor'
 import scrollToAnchor from './scrollToAnchor'
 
+import type { IndexBarProps, IndexBarRef } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -11,8 +13,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { IndexBarProps, IndexBarRef } from './types'
 
 const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
   (

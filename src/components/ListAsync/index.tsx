@@ -5,6 +5,9 @@ import EntityList, { MainRef as EntityListRef, MainProps as EntityListProps } fr
 import VirtualList, { VirtualListRef, VirtualListProps, VirtualOptions } from './VirtualList'
 import RetryButton from './components/RetryButton'
 
+import type { RawItem, ViewItem } from './../List/List/types'
+import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 import Result from './../Result'
@@ -14,9 +17,6 @@ import List from './../List'
 /* 测试使用-start
 import { DOMUtil, Result, List } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { RawItem, ViewItem } from './../List/List/types'
-import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
 
 const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
   (

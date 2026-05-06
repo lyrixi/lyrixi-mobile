@@ -8,6 +8,8 @@ import {
 } from './utils'
 import renderClear from './renderClear'
 
+import type { InputTextProps, InputTextRef, TextInputElement } from './types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -15,8 +17,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import type { InputTextProps, InputTextRef, TextInputElement } from './types'
 
 const InputText = (
   {
