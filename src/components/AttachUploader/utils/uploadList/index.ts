@@ -1,8 +1,7 @@
 import defaultUploadItem from './../../Browser/uploadItem'
 
 
-import type { AttachUploaderItem } from '../../types'
-import type { UploadListConfig } from './types'
+import type { AttachUploaderItem, UploadListConfig } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'

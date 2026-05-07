@@ -1,4 +1,4 @@
-import type { AttachFileItem } from './../../types'
+import type { AttachFileItem } from './Attach.shared.types'
 
 export interface AttachChooseOptions {
   async: boolean

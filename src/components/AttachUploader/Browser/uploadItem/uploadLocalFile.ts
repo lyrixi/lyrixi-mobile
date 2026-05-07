@@ -1,6 +1,5 @@
 
-import type { AttachUploaderItem } from './../../types'
-import type { UploadOpts, UploadResponse } from './types'
+import type { AttachUploaderItem, UploadOpts, UploadResponse } from './../../types'
 
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'

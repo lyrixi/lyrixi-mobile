@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { UploadingProps } from './types'
+import type { UploadingProps } from '../types'
 
 // 内库使用-start
 import Loading from './../../Loading'
@@ -33,5 +33,5 @@ const Uploading = ({ uploadingType, className, uploadingRender }: UploadingProps
   )
 }
 
-export type { UploadingProps } from './types'
+export type { UploadingProps } from '../types'
 export default Uploading

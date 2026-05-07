@@ -2,7 +2,7 @@ import React, { type ChangeEvent, type MouseEvent } from 'react'
 import getAccept from './../utils/getAccept'
 import Button from './Button'
 
-import type { AttachChooseProps } from './types'
+import type { AttachChooseProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -100,5 +100,5 @@ const AttachChoose = ({
   )
 }
 
-export type { AttachChooseProps } from './types'
+export type { AttachChooseProps } from '../types'
 export default AttachChoose

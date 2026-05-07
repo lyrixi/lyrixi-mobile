@@ -6,7 +6,7 @@ import uploadList from './utils/uploadList'
 // 内部组件
 import Browser from './Browser'
 
-import type { AttachRef } from './../Attach/Attach/types'
+import type { AttachRef } from './../Attach/types'
 import type { AttachUploaderBaseProps } from './types'
 
 // 照片上传

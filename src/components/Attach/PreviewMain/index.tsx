@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle, type Ref } from 'react'
 import supportTypes from './../utils/supportTypes'
 
-import type { AttachPreviewMainProps, AttachPreviewMainRef } from './types'
+import type { AttachPreviewMainProps, AttachPreviewMainRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -90,5 +90,5 @@ const AttachPreviewMain = forwardRef<AttachPreviewMainRef, AttachPreviewMainProp
   )
 })
 
-export type { AttachPreviewMainProps, AttachPreviewMainRef } from './types'
+export type { AttachPreviewMainProps, AttachPreviewMainRef } from '../types'
 export default AttachPreviewMain

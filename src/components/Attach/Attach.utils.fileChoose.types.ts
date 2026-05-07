@@ -1,4 +1,4 @@
-import type { AttachFileItem, AttachNativeFilePayload } from './../../types'
+import type { AttachFileItem, AttachNativeFilePayload } from './Attach.shared.types'
 
 export interface FileChooseOptions {
   file: HTMLInputElement

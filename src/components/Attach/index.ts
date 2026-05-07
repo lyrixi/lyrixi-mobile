@@ -20,5 +20,5 @@ AttachWithStatics.List = List
 AttachWithStatics.Button = Button
 AttachWithStatics.Uploading = Uploading
 
-export type { AttachListItem, AttachProps, AttachRef } from './types'
+export type * from './types'
 export default AttachWithStatics

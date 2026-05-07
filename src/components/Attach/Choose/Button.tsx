@@ -1,7 +1,7 @@
 import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import Uploading from './../Uploading'
 
-import type { UploadButtonProps, UploadButtonRef } from './types'
+import type { UploadButtonProps, UploadButtonRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -56,5 +56,5 @@ const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function Upl
   )
 })
 
-export type { UploadButtonProps, UploadButtonRef } from './types'
+export type { UploadButtonProps, UploadButtonRef } from '../types'
 export default UploadButton

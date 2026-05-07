@@ -1,4 +1,4 @@
-import type { AttachUploaderItem } from '../../types'
+import type { AttachUploaderItem } from './AttachUploader.main.types'
 
 export type UploadListConfig = {
   platform?: string

@@ -1,7 +1,6 @@
 import uploadLocalFile from './uploadLocalFile'
 
-import type { AttachUploaderItem } from '../../types'
-import type { UploadDeps } from './types'
+import type { AttachUploaderItem, UploadDeps } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'

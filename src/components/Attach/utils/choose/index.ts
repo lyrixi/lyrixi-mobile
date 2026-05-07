@@ -3,8 +3,7 @@ import convertBytes from './../../utils/convertBytes'
 import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 
-import type { AttachChooseOptions } from './types'
-import type { AttachFileItem } from '../../types'
+import type { AttachChooseOptions, AttachFileItem } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -138,5 +137,5 @@ async function choose({
   return uploaded ?? newList
 }
 
-export type { AttachChooseOptions } from './types'
+export type { AttachChooseOptions } from '../../types'
 export default choose

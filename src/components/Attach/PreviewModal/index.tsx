@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import PreviewMain from './../PreviewMain'
 
-import type { AttachPreviewModalProps } from './types'
+import type { AttachPreviewModalProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -83,5 +83,5 @@ const AttachPreviewModal = forwardRef<ModalRef, AttachPreviewModalProps>(functio
   )
 })
 
-export type { AttachPreviewModalProps } from './types'
+export type { AttachPreviewModalProps } from '../types'
 export default AttachPreviewModal

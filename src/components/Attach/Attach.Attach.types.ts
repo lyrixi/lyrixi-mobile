@@ -1,5 +1,6 @@
 import type { ChangeEvent, CSSProperties, ReactNode, SyntheticEvent } from 'react'
-import type { AttachNativeFilePayload } from './../types'
+
+import type { AttachNativeFilePayload } from './Attach.shared.types'
 
 export type AttachListItem = Record<string, unknown> & {
   fileUrl?: string
