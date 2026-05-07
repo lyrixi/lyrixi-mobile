@@ -1,9 +1,9 @@
-import type { ComboProps, ComboRef } from '../Input/Select'
+import type { InputSelectComboProps, InputSelectComboRef } from '../Input/Select'
 import type { ModalRef } from '../Modal/Modal'
 import type { PickerModalProps } from './Modal'
 
 /** 选择器 Input.Select + 弹层，合并两套 props（共用 value / onChange / allowClear） */
-export type PickerComboProps = ComboProps &
+export type PickerComboProps = InputSelectComboProps &
   Pick<
     PickerModalProps,
     | 'list'
@@ -23,7 +23,7 @@ export type PickerComboProps = ComboProps &
     onBeforeOpen?: () => boolean | void | Promise<boolean | void>
   }
 
-export type PickerComboRef = ComboRef &
+export type PickerComboRef = InputSelectComboRef &
   ModalRef & {
     close: () => void
     open: () => void

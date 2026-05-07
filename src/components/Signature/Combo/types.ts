@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react'
 import type { ComboAddRef } from './Add/types'
 import type { EditRef } from './Edit/types'
 
-export interface ComboProps {
+export interface SignatureComboProps {
   value?: string
   allowClear?: boolean
   className?: string
@@ -19,4 +19,4 @@ export interface ComboProps {
   onPreview?: (src: string) => Promise<boolean | string | void>
 }
 
-export type ComboInstanceRef = ComboAddRef | EditRef
+export type SignatureComboRef = ComboAddRef | EditRef

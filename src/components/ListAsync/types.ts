@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 
 import type { RawItem, ViewItem } from './../List/List/types'
-import type { MainProps as EntityListProps } from './List/types'
+import type { ListAsyncListMainProps as EntityListProps } from './List/types'
 import type { VirtualOptions } from './VirtualList/types'
 
 export type LoadAction = 'load' | 'reload' | 'topRefresh' | 'bottomRefresh' | 'retry' | ''

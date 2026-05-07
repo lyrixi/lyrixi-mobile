@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, type Ref } from 'react'
 import Modal from './../Modal'
-import type { ComboRef } from './../../Input/Select'
+import type { InputSelectComboRef } from './../../Input/Select'
 import type { ModalRef } from './../../Modal/Modal'
 
 import type { PickerComboProps, PickerComboRef } from '../types'
@@ -62,14 +62,14 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
   ref: Ref<PickerComboRef>
 ) {
   const [open, setOpen] = useState(false)
-  const comboRef = useRef<ComboRef | null>(null)
+  const comboRef = useRef<InputSelectComboRef | null>(null)
   const modalRef = useRef<ModalRef | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
       ...((typeof comboRef.current === 'object' && comboRef.current !== null
         ? comboRef.current
-        : {}) as ComboRef),
+        : {}) as InputSelectComboRef),
       ...((typeof modalRef.current === 'object' && modalRef.current !== null ? modalRef.current : {}) as ModalRef),
       close: () => setOpen(false),
       open: () => setOpen(true)

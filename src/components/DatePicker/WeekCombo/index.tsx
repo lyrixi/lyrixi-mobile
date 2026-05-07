@@ -3,7 +3,7 @@ import getDateDefaultValue from './../utils/getDateDefaultValue'
 import WeekModal from './../WeekModal'
 import type { DatePickerComboProps, DatePickerModalProps, DatePickerModalRef } from './../datePickerTypes'
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo'
-import type { ComboRef as InputComboSelectRef, ComboProps } from './../../Input/Select'
+import type { InputSelectComboRef as InputComboSelectRef, InputSelectComboProps } from './../../Input/Select'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -140,7 +140,7 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
         rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Events
-        onChange={onChange as ComboProps['onChange']}
+        onChange={onChange as InputSelectComboProps['onChange']}
         onClick={handleOpen}
       />
     )

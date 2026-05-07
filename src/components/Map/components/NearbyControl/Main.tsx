@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { MainProps } from './types'
+import type { NearbyControlMainProps } from './types'
 
 // 内库使用-start
 import Result from './../../../Result'
@@ -13,7 +13,7 @@ import { Result } from 'lyrixi-mobile'
 
 
 // 附近结果
-function Main({ result, onChange }: MainProps) {
+function Main({ result, onChange }: NearbyControlMainProps) {
   if (!result) {
     return null
   }
@@ -52,5 +52,5 @@ function Main({ result, onChange }: MainProps) {
   )
 }
 
-export type { MainProps } from './types'
+export type { NearbyControlMainProps } from './types'
 export default Main

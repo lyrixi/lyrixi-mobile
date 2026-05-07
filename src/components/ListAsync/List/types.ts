@@ -3,9 +3,9 @@ import type { CSSProperties, ReactNode } from 'react'
 import type { ListProps } from './../../List/List/types'
 import type { PageMainProps, PageMainRef } from './../../Page/Main/types'
 
-export type MainRef = PageMainRef
+export type ListAsyncListMainRef = PageMainRef
 
-export interface MainProps extends ListProps {
+export interface ListAsyncListMainProps extends ListProps {
   virtual?: boolean
   className?: string
   style?: CSSProperties

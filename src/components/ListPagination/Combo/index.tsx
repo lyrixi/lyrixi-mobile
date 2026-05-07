@@ -3,7 +3,7 @@ import Modal from './../Modal'
 
 
 import type { ComboPaginationProps, ComboPaginationRef } from './types'
-import type { ComboRef } from './../../Input/Select/types'
+import type { InputSelectComboRef } from './../../Input/Select/types'
 import type { ModalPaginationRef } from './../Modal/types'
 import type { RawItem } from './../../List/List/types'
 
@@ -94,12 +94,12 @@ const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
     ref
   ) => {
     const [open, setOpen] = useState(false)
-    const comboRef = useRef<ComboRef | null>(null)
+    const comboRef = useRef<InputSelectComboRef | null>(null)
     const modalRef = useRef<ModalPaginationRef | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
-        ...(comboRef.current as ComboRef),
+        ...(comboRef.current as InputSelectComboRef),
         ...(modalRef.current as ModalPaginationRef),
         close: () => setOpen(false),
         open: () => setOpen(true)

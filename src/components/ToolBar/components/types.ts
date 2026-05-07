@@ -1,11 +1,11 @@
 import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 
-export interface ComboRef {
+export interface ToolBarComboRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface ComboProps {
+export interface ToolBarComboProps {
   open?: boolean | null
   direction?: string
   block?: boolean

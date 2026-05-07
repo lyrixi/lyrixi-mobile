@@ -1,7 +1,7 @@
 import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../WeekCombo'
 import Combo from './Combo'
-import type { ComboProps } from './../../../Input/Select'
+import type { InputSelectComboProps } from './../../../Input/Select'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -61,7 +61,7 @@ const Week = forwardRef<unknown, WeekComboLocalProps>(function TypesWeekCombo(
         value={value}
         min={min}
         max={max}
-        onChange={((v) => v instanceof Date && onChange && onChange(v)) as ComboProps['onChange']}
+        onChange={((v) => v instanceof Date && onChange && onChange(v)) as InputSelectComboProps['onChange']}
         comboRender={({ comboRef, onClick }) => {
           return (
             <Combo

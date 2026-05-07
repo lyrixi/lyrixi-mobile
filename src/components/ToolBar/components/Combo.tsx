@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 
 
-import type { ComboProps, ComboRef } from './types'
+import type { ToolBarComboProps, ToolBarComboRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -14,7 +14,7 @@ import { DOMUtil, Button } from 'lyrixi-mobile'
 测试使用-end */
 
 // 操作表下拉
-const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
+const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
   {
     // Status
     open,
@@ -87,6 +87,6 @@ const Combo = forwardRef<ComboRef, ComboProps>(function Combo(
     </Button>
   )
 })
-export type { ComboProps, ComboRef } from './types'
+export type { ToolBarComboProps, ToolBarComboRef } from './types'
 
 export default Combo

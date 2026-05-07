@@ -1,7 +1,10 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import scrollToTop from './utils/scrollToTop'
 import Loading from './components/Loading'
-import EntityList, { MainRef as EntityListRef, MainProps as EntityListProps } from './List'
+import EntityList, {
+  ListAsyncListMainRef as EntityListRef,
+  ListAsyncListMainProps as EntityListProps
+} from './List'
 import VirtualList, { VirtualListRef, VirtualListProps } from './VirtualList'
 import RetryButton from './components/RetryButton'
 

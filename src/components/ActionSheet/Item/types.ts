@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-export interface ItemProps {
+export interface ActionSheetItemProps {
   checked?: boolean
   disabled?: boolean
   style?: CSSProperties

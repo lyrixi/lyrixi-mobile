@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { ComboProps } from './../Input/Select'
+import type { InputSelectComboProps } from './../Input/Select'
 import type { ListProps } from './../List/List/index'
 
 /** Select 弹层与列表相关（与 Modal 内 Main 一致） */
@@ -30,7 +30,7 @@ export interface SelectModalFieldProps {
   onBeforeOpen?: () => boolean | void | Promise<boolean | void>
 }
 
-export type SelectComboProps = ComboProps & SelectModalFieldProps
+export type SelectComboProps = InputSelectComboProps & SelectModalFieldProps
 
 /** Select.Modal 根组件 props */
 export interface SelectModalRootProps extends SelectModalFieldProps {

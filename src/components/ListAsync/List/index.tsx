@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import List from './List'
 
 
-import type { MainProps, MainRef } from './types'
+import type { ListAsyncListMainProps, ListAsyncListMainRef } from './types'
 
 // 内库使用-start
 import Page from './../../Page'
@@ -13,7 +13,7 @@ import { Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // 列表
-const Main = forwardRef<MainRef, MainProps>(
+const Main = forwardRef<ListAsyncListMainRef, ListAsyncListMainProps>(
   (
     {
       // Value & Display Value
@@ -101,6 +101,6 @@ const Main = forwardRef<MainRef, MainProps>(
     )
   }
 )
-export type { MainProps, MainRef } from './types'
+export type { ListAsyncListMainProps, ListAsyncListMainRef } from './types'
 
 export default Main

@@ -7,14 +7,14 @@ export interface SelectFormatterValue {
   [key: string]: unknown
 }
 
-export interface ComboRef {
+export interface InputSelectComboRef {
   displayValue: string
   getDisplayValue: (newValue?: unknown) => string
   element: HTMLElement | null
   getElement: () => HTMLElement | null
 }
 
-export interface ComboProps {
+export interface InputSelectComboProps {
   value?: unknown
   placeholder?: string
   autoSize?: boolean

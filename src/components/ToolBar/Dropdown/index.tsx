@@ -7,7 +7,7 @@ import React, {
   type MouseEvent
 } from 'react'
 import closeAllDropdown from './../utils/closeAllDropdown'
-import Combo, { type ComboRef } from './../components/Combo'
+import Combo, { type ToolBarComboRef } from './../components/Combo'
 
 
 import type { ToolBarDropdownProps, ToolBarDropdownRef } from './types'
@@ -68,7 +68,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
 ) {
   const [open, setOpen] = useState<boolean | null>(null)
 
-  const comboRef = useRef<ComboRef | null>(null)
+  const comboRef = useRef<ToolBarComboRef | null>(null)
 
   // 唯一id，用于关闭时排除其他dropdown
   const idRef = useRef<string>(ObjectUtil.randomUUID())

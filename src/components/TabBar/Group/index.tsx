@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
 import renderContext from './../utils/renderContext'
 
-import type { GroupProps, GroupRef } from './types'
+import type { TabBarGroupProps, TabBarGroupRef } from './types'
 import type { TabBarItem } from './../types'
 
 // 内库使用-start
@@ -14,7 +14,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Group = forwardRef<GroupRef, GroupProps>(
+const Group = forwardRef<TabBarGroupRef, TabBarGroupProps>(
   (
     {
       separator,
@@ -112,6 +112,6 @@ const Group = forwardRef<GroupRef, GroupProps>(
     )
   }
 )
-export type { GroupProps, GroupRef } from './types'
+export type { TabBarGroupProps, TabBarGroupRef } from './types'
 
 export default Group

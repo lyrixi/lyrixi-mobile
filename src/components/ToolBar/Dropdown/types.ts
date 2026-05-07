@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode, RefObject } from 'react'
 
-import type { ComboRef } from './../components/Combo'
+import type { ToolBarComboRef } from './../components/Combo'
 
 export interface ToolBarDropdownRef {
   element?: HTMLDivElement | null
@@ -24,7 +24,7 @@ export interface ToolBarDropdownProps {
   className?: string
   children?: ReactNode
   comboRender?: (params: {
-    comboRef: RefObject<ComboRef | null>
+    comboRef: RefObject<ToolBarComboRef | null>
     open: boolean | null
     onClick: (e: MouseEvent) => void | Promise<void>
   }) => ReactNode

@@ -11,11 +11,8 @@ export interface FormItemProps {
   style?: CSSProperties
   className?: string
   layout?: string
-  children?: ReactNode
-}
-
-export interface ItemProps extends FormItemProps {
   height?: number
+  children?: ReactNode
 }
 
 export interface VirtualFormItemRef {
@@ -23,12 +20,4 @@ export interface VirtualFormItemRef {
   getElement: () => HTMLDivElement | null
 }
 
-export interface VirtualFormItemProps {
-  height?: number
-  id?: string
-  name?: string
-  style?: CSSProperties
-  className?: string
-  layout?: string
-  children?: ReactNode
-}
+export type VirtualFormItemProps = FormItemProps

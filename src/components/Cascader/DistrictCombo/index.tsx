@@ -2,7 +2,7 @@ import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 import type { CascaderNode } from './../cascaderTypes'
-import type { ComboRef } from './../../Input/Select'
+import type { InputSelectComboRef } from './../../Input/Select'
 
 import type { DistrictComboProps, DistrictComboRef } from './types'
 
@@ -60,7 +60,7 @@ const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
     const districtType = formatType(typeProp)
 
     const [open, setOpen] = useState(false)
-    const comboRef = useRef<ComboRef | null>(null)
+    const comboRef = useRef<InputSelectComboRef | null>(null)
     const modalRef = useRef<Record<string, unknown> | null>(null)
 
     useImperativeHandle(ref, () => {

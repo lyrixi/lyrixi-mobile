@@ -68,12 +68,12 @@ export interface CalendarProps {
   onError?: OnErrorHandler
 }
 
-export interface BodyRef {
+export interface CalendarBodyRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface BodyProps {
+export interface CalendarBodyProps {
   open?: boolean
   value?: CalendarValue
   selectionMode?: CalendarSelectionMode
@@ -93,12 +93,12 @@ export interface BodyProps {
   onToggle?: (e: React.MouseEvent) => void
 }
 
-export interface HeaderRef {
+export interface CalendarHeaderRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface HeaderProps {
+export interface CalendarHeaderProps {
   className?: string
   style?: CSSProperties
   onPreviousMonth?: (e?: React.MouseEvent) => void

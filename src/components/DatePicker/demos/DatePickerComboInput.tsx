@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Card, DatePicker, Page } from 'lyrixi-mobile'
 
-import type { ComboProps } from '../../Input/Select'
+import type { InputSelectComboProps } from '../../Input/Select'
 
 export default () => {
   const [value, setValue] = useState<Date | null>(null)
@@ -16,7 +16,7 @@ export default () => {
               type="date"
               placeholder="请选择日期"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>

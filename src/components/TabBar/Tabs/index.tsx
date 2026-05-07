@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 import renderContext from './../utils/renderContext'
 
 import type { TabBarItem } from './../types'
-import type { TabsProps, TabsRef } from './types'
+import type { TabBarTabsProps, TabBarTabsRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Tabs = forwardRef<TabsRef, TabsProps>(
+const Tabs = forwardRef<TabBarTabsRef, TabBarTabsProps>(
   (
     {
       // Value
@@ -124,6 +124,6 @@ const Tabs = forwardRef<TabsRef, TabsProps>(
     )
   }
 )
-export type { TabsProps, TabsRef } from './types'
+export type { TabBarTabsProps, TabBarTabsRef } from './types'
 
 export default Tabs

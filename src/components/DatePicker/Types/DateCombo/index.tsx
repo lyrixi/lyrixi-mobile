@@ -2,7 +2,7 @@ import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../Combo'
 import Combo from './Combo'
 import type { DatePickerComboProps } from './../../datePickerTypes'
-import type { ComboProps } from './../../../Input/Select'
+import type { InputSelectComboProps } from './../../../Input/Select'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -87,7 +87,7 @@ const DateCombo = forwardRef<unknown, DateComboPropsLocal>(function TypesDateCom
         type={type as DatePickerComboProps['type']}
         min={min}
         max={max}
-        onChange={((v) => onChange && v instanceof Date && onChange(v)) as ComboProps['onChange']}
+        onChange={((v) => onChange && v instanceof Date && onChange(v)) as InputSelectComboProps['onChange']}
         comboRender={({ comboRef, onClick }) => {
           return (
             <Combo

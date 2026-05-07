@@ -34,7 +34,7 @@ export interface NearbyControlRef {
   reload: () => void
 }
 
-export interface MainProps {
+export interface NearbyControlMainProps {
   result: Record<string, unknown> | null
   value?: unknown
   onChange?: (item: Record<string, unknown>) => void
@@ -42,7 +42,7 @@ export interface MainProps {
 
 export type NearbyTabItem = ReturnType<typeof getTabs>[number]
 
-export interface TabsProps {
+export interface NearbyControlTabsProps {
   tab: NearbyTabItem
   onChange: (t: NearbyTabItem) => void
 }

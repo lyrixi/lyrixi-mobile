@@ -9,10 +9,14 @@ import serverParams from './serverParams'
 import formatResult from './formatResult'
 import formatViewItem from './formatViewItem'
 
-type MainProps = { cacheName?: string; virtual?: VirtualOptions; queryParams?: Record<string, unknown> }
+type ListPaginationDemoMainProps = {
+  cacheName?: string
+  virtual?: VirtualOptions
+  queryParams?: Record<string, unknown>
+}
 
 // 简便的列表组件, 只需要传入 url 和 payload 即可
-const Main = forwardRef<ListPaginationRef, MainProps>(function Main(
+const Main = forwardRef<ListPaginationRef, ListPaginationDemoMainProps>(function Main(
   { cacheName, virtual, queryParams },
   ref: Ref<ListPaginationRef>
 ) {

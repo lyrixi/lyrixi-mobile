@@ -8,7 +8,7 @@ import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
 import Tags from './Tags'
 
-import type { ComboProps, ComboRef } from './types'
+import type { InputSelectComboProps, InputSelectComboRef } from './types'
 import type { InputTextProps, InputTextRef } from './../Text/types'
 
 // 内库使用-start
@@ -20,7 +20,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
-const Combo = forwardRef<ComboRef, ComboProps>(
+const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
   (
     {
       // Value & Display Value
@@ -159,6 +159,6 @@ const Combo = forwardRef<ComboRef, ComboProps>(
     )
   }
 )
-export type { ComboProps, ComboRef } from './types'
+export type { InputSelectComboProps, InputSelectComboRef } from './types'
 
 export default Combo

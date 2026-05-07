@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 
 import Main from './../Main'
 
-import type { ModalProps, ModalRef } from './types'
+import type { SignatureModalProps, SignatureModalRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -16,7 +16,7 @@ import { DOMUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // Modal
-const Modal = forwardRef<ModalRef, ModalProps>(
+const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
   (
     {
       // Value & Display Value
@@ -80,6 +80,6 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     )
   }
 )
-export type { ModalProps, ModalRef } from './types'
+export type { SignatureModalProps, SignatureModalRef } from './types'
 
 export default Modal

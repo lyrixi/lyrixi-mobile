@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import { isSelectedDate, isDisabledDate, getTranslateValue } from './../utils'
 import Toggle from './../Toggle'
 
-import type { BodyProps, BodyRef, CalendarCellDate } from './../types'
+import type { CalendarBodyProps, CalendarBodyRef, CalendarCellDate } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -18,7 +18,7 @@ const threshold = 50
 type TouchDirection = 0 | 'horizontal' | 'vertical' | null
 
 // 日历
-const Body = forwardRef<BodyRef, BodyProps>(
+const Body = forwardRef<CalendarBodyRef, CalendarBodyProps>(
   (
     {
       open,

@@ -15,7 +15,6 @@ import SafeArea from './../SafeArea'
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
 
-
 type FloatElement = HTMLDivElement & { initialPosition?: boolean }
 
 // 悬浮按钮
@@ -129,8 +128,8 @@ const Float = forwardRef<FloatRef, FloatProps>(function Float(
       onChange:
         typeof onDragEnd === 'function'
           ? (pos: SnapPosition) => {
-            onDragEnd({ position: pos })
-          }
+              onDragEnd({ position: pos })
+            }
           : undefined
     })
   }
@@ -140,19 +139,22 @@ const Float = forwardRef<FloatRef, FloatProps>(function Float(
     <div
       ref={rootRef}
       style={style}
-      className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-float-container', className)}
+      className={(DOMUtil.classNames as (...args: unknown[]) => string)(
+        'lyrixi-float-container',
+        className
+      )}
       onTouchStart={draggable ? handleTouchStart : undefined}
       onTouchMove={draggable ? handleTouchMove : undefined}
       onTouchEnd={draggable ? handleTouchEnd : undefined}
-    // onTouchMove里已经阻止的点击事件, 所以这里就不需要加了
-    // onClickCapture={(e) => {
-    //   console.log('click', touchesRef.current.isDragging)
-    //   if (touchesRef.current.isDragging) {
-    //     console.log('click')
-    //     e.stopPropagation()
-    //     e.preventDefault()
-    //   }
-    // }}
+      // onTouchMove里已经阻止的点击事件, 所以这里就不需要加了
+      // onClickCapture={(e) => {
+      //   console.log('click', touchesRef.current.isDragging)
+      //   if (touchesRef.current.isDragging) {
+      //     console.log('click')
+      //     e.stopPropagation()
+      //     e.preventDefault()
+      //   }
+      // }}
     >
       {children}
       {safeArea === true && <SafeArea />}

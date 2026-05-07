@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { ItemProps } from './types'
+import type { ActionSheetItemProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -10,7 +10,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Item = ({ checked, disabled, style, className, onClick, children }: ItemProps) => {
+const Item = ({ checked, disabled, style, className, onClick, children }: ActionSheetItemProps) => {
   return (
     <div
       style={style}

@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
-import type { ComboRef } from './../../Input/Select'
+import type { InputSelectComboRef } from './../../Input/Select'
 
 import type { TransferComboProps, TransferItem } from './../types'
 
@@ -62,7 +62,7 @@ const TransferCombo = forwardRef<unknown, TransferComboProps>(function TransferC
   ref
 ) {
   const [open, setOpen] = useState(false)
-  const comboRef = useRef<ComboRef | null>(null)
+  const comboRef = useRef<InputSelectComboRef | null>(null)
   const modalRef = useRef<unknown>(null)
 
   useImperativeHandle(ref, () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Page, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
-import type { ComboProps } from '../../Input/Select'
+import type { InputSelectComboProps } from '../../Input/Select'
 
 export default () => {
   const [value, setValue] = useState<Date | null>(null)
@@ -10,7 +10,7 @@ export default () => {
         <Card>
           <Card.Header>Year</Card.Header>
           <Card.Main>
-            <DatePicker.Combo type="year" placeholder="Year" value={value} onChange={setValue as ComboProps['onChange']} />
+            <DatePicker.Combo type="year" placeholder="Year" value={value} onChange={setValue as InputSelectComboProps['onChange']} />
           </Card.Main>
         </Card>
 
@@ -21,7 +21,7 @@ export default () => {
               type="month"
               placeholder="Month"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -34,7 +34,7 @@ export default () => {
               type="date"
               placeholder="Date"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -47,7 +47,7 @@ export default () => {
               type="time"
               placeholder="Time"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -60,7 +60,7 @@ export default () => {
               type="datetime"
               placeholder="Datetime"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -73,7 +73,7 @@ export default () => {
               type="week"
               placeholder="Week"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -89,7 +89,7 @@ export default () => {
                 return DatePicker.getTitle(value, 'YYYY年MM月DD日 周ddd')
               }}
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -104,7 +104,7 @@ export default () => {
               hourStep={5}
               minuteStep={5}
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -118,7 +118,7 @@ export default () => {
               max={DateUtil.add(new Date(), 30)}
               placeholder="min & max"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               allowClear
             />
           </Card.Main>
@@ -130,7 +130,7 @@ export default () => {
             <DatePicker.Combo
               placeholder="onOk"
               value={value}
-              onChange={setValue as ComboProps['onChange']}
+              onChange={setValue as InputSelectComboProps['onChange']}
               onOk={(newValue) => {
                 Toast.show({ content: 'Use onOk to stop' })
                 return false

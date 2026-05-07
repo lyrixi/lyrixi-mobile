@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-import type { HeaderProps, HeaderRef } from './types'
+import type { CalendarHeaderProps, CalendarHeaderRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -12,7 +12,7 @@ import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日历头部
-const Header = forwardRef<HeaderRef, HeaderProps>(
+const Header = forwardRef<CalendarHeaderRef, CalendarHeaderProps>(
   (
     { className, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear, children, style },
     ref

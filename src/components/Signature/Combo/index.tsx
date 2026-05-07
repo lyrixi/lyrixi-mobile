@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { ComboInstanceRef, ComboProps } from './types'
+import type { SignatureComboRef, SignatureComboProps } from './types'
 
 import Add from './Add'
 import Edit from './Edit'
@@ -30,8 +30,8 @@ const Combo = (
     // Events
     onChange,
     onPreview
-  }: ComboProps,
-  ref: React.Ref<ComboInstanceRef>
+  }: SignatureComboProps,
+  ref: React.Ref<SignatureComboRef>
 ) => {
   // 已签显示图片
   if (value && typeof value === 'string') {
@@ -66,6 +66,6 @@ const Combo = (
     />
   )
 }
-export type { ComboInstanceRef, ComboProps } from './types'
+export type { SignatureComboRef, SignatureComboProps } from './types'
 
-export default forwardRef<ComboInstanceRef, ComboProps>(Combo)
+export default forwardRef<SignatureComboRef, SignatureComboProps>(Combo)

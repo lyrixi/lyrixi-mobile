@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode, RefObject, ReactElement } from 'react'
-import type { ComboProps } from './../Input/Select'
+import type { InputSelectComboProps } from './../Input/Select'
 import type { ModalRef } from './../Modal/Modal'
 
 export type DatePickerPickerType = 'year' | 'quarter' | 'month' | 'date' | 'time' | 'datetime' | 'week'
@@ -112,7 +112,7 @@ export interface DatePickerRangePickerMainProps {
 }
 
 /** 单日期 DatePicker 的 Combo + Modal 组合 props */
-export interface DatePickerComboProps extends ComboProps {
+export interface DatePickerComboProps extends InputSelectComboProps {
   type?: DatePickerPickerType
   min?: Date | null
   max?: Date | null

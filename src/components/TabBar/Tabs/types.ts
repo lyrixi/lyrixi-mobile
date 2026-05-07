@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 import type { TabBarItem, TabBarValue } from './../types'
 
-export interface TabsProps {
+export interface TabBarTabsProps {
   value?: TabBarValue
   list?: TabBarItem[]
   separator?: ReactNode
@@ -14,7 +14,7 @@ export interface TabsProps {
   onChange?: (item: TabBarItem) => void
 }
 
-export interface TabsRef {
+export interface TabBarTabsRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

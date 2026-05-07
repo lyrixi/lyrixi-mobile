@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-export interface ModalProps {
+export interface SignatureModalProps {
   value?: string
   open?: boolean
   modalClassName?: string
@@ -13,7 +13,7 @@ export interface ModalProps {
   onClose?: () => void
 }
 
-export interface ModalRef {
+export interface SignatureModalRef {
   modalElement: HTMLElement | null
   getModalElement: () => HTMLElement | null
 }

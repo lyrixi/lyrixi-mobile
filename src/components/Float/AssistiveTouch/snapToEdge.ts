@@ -7,26 +7,30 @@ const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): 
   const screenHeight = window.innerHeight
   const elementWidth = rect.width
   const elementHeight = rect.height
+  // 最大高距(已贴底)
+  const maxTop = screenHeight - elementHeight
+  // 最大左距(已贴右)
+  const maxLeft = screenWidth - elementWidth
 
   // 横向边界处理
   let finalLeft = rect.left
   if (rect.left < 0) {
     finalLeft = 0
   } else if (rect.right > screenWidth) {
-    finalLeft = screenWidth - elementWidth
+    finalLeft = maxLeft
   }
 
-  // 纵向边界处理（新增）
+  // 纵向边界处理(越界处理)
   let finalTop = rect.top
   if (rect.top < 0) {
     finalTop = 0
   } else if (rect.bottom > screenHeight) {
-    finalTop = screenHeight - elementHeight
+    finalTop = maxTop
   }
 
-  // 横向自动贴边（仅当未越界时）
-  if (finalLeft >= 0 && finalLeft <= screenWidth - elementWidth) {
-    finalLeft = finalLeft < screenWidth / 2 ? 0 : screenWidth - elementWidth
+  // 横向自动贴边(未越界时, 贴边处理)
+  if (finalLeft >= 0 && finalLeft <= maxLeft) {
+    finalLeft = finalLeft < screenWidth / 2 ? 0 : maxLeft
   }
 
   // 应用最终位置
@@ -41,12 +45,18 @@ const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): 
     target.style.left = 'auto'
   }
 
+  console.log('最小高度:')
+
   // 纵向定位（修复点：应用修正后的top）
   let top = 0
-  if (finalTop === 0) {
-    top = finalTop + (gap?.top || 0)
-  } else {
-    top = finalTop - (gap?.bottom || 0)
+  // 上半区
+  if (finalTop < screenHeight / 2) {
+    top = finalTop < (gap?.top || 0) ? gap?.top || 0 : finalTop
+  }
+  // 下半区
+  else {
+    // top = finalTop
+    top = finalTop > maxTop - (gap?.bottom || 0) ? maxTop - (gap?.bottom || 0) : finalTop
   }
   target.style.top = `${top}px`
   target.style.bottom = 'auto' // 清除底部定位
