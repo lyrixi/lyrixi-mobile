@@ -8,7 +8,7 @@ alwaysApply: true
 # 类型文件位置及命名规范
 
 - 类型文件统一命名为 `types.ts`
-- 类型文件放置到组件或工具文件一级与`index.ts`同级,
+- 一个组件只保留一个 `types.ts`, 与 `index.ts`同级,
 
 示例:
 
