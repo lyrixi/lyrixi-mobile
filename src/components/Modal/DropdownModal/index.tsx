@@ -95,19 +95,19 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
         maskClosable={maskClosable}
         maskClassName={DOMUtil.classNames(
           maskClassName,
-          left !== null || right !== null
+          (left !== undefined && left !== null) || (right !== undefined && right !== null)
             ? 'lyrixi-mask-dropdown-side'
             : 'lyrixi-mask-dropdown-center'
         )}
         maskStyle={{
           ...maskStyle,
-          ...(left !== null ? { left: left } : {}),
-          ...(right !== null ? { right: right } : {})
+          ...(left !== undefined && left !== null ? { left: left } : {}),
+          ...(right !== undefined && right !== null ? { right: right } : {})
         }}
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames(
           modalClassName,
-          left !== null || right !== null
+          (left !== undefined && left !== null) || (right !== undefined && right !== null)
             ? 'lyrixi-modal-dropdown-side'
             : 'lyrixi-modal-dropdown-center'
         )}
