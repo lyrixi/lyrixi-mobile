@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+export type { AttachListItem, AttachRef, AttachProps } from './Attach/types'
+
 /** fileChoose 在选中本地文件后传给 onFileChange 的载荷（与 input 的 change 二选一由业务处理） */
 export interface AttachNativeFilePayload {
   fileName: string

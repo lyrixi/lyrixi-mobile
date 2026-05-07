@@ -3,6 +3,14 @@ import Compact from './Compact'
 
 Flex.Compact = Compact
 
-export type { FlexProps, FlexRef, FlexJustify, FlexAlign, FlexDirection } from './types'
-export type { CompactProps, CompactContextValue, CompactRef } from './Compact/types'
+export type {
+  CompactContextValue,
+  CompactProps,
+  CompactRef,
+  FlexAlign,
+  FlexDirection,
+  FlexJustify,
+  FlexProps,
+  FlexRef
+} from './types'
 export default Flex

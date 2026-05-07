@@ -21,3 +21,5 @@ export interface FlexRef {
 }
 
 export type FlexStyleInput = Pick<FlexProps, 'gap' | 'justify' | 'align' | 'direction' | 'wrap'>
+
+export type { CompactProps, CompactContextValue, CompactRef } from './Compact/types'

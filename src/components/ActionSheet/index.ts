@@ -8,4 +8,5 @@ const ActionSheet = {
   Item: Item
 }
 
+export type * from './types'
 export default ActionSheet

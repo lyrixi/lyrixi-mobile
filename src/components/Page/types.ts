@@ -1,0 +1,5 @@
+export type { PageProps, PageRef, PageLayout } from './Page/types'
+export type { PageHeaderProps, PageHeaderRef } from './Header/types'
+export type { PageAsideProps, PageAsideRef } from './Aside/types'
+export type { PageMainProps, PageMainRef } from './Main/types'
+export type { PageFooterProps, PageFooterRef } from './Footer/types'

@@ -13,6 +13,5 @@ type FormWithExtensions = typeof Form & {
 ;(Form as FormWithExtensions).useForm = useForm
 ;(Form as FormWithExtensions).useWatch = useRcWatch
 
-export type { FormComponentProps } from './Form'
-export type { FormItemProps } from './Item'
+export type { FormComponentProps, FormItemProps } from './types'
 export default Form as FormWithExtensions

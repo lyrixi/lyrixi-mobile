@@ -17,9 +17,17 @@ type PageWithParts = typeof Page & {
 ;(Page as PageWithParts).Main = Main
 ;(Page as PageWithParts).Footer = Footer
 
-export type { PageProps, PageRef, PageLayout } from './Page'
-export type { PageHeaderProps, PageHeaderRef } from './Header'
-export type { PageAsideProps, PageAsideRef } from './Aside'
-export type { PageMainProps, PageMainRef } from './Main'
-export type { PageFooterProps, PageFooterRef } from './Footer'
+export type {
+  PageAsideProps,
+  PageAsideRef,
+  PageFooterProps,
+  PageFooterRef,
+  PageHeaderProps,
+  PageHeaderRef,
+  PageLayout,
+  PageMainProps,
+  PageMainRef,
+  PageProps,
+  PageRef
+} from './types'
 export default Page as PageWithParts

@@ -25,5 +25,5 @@ type ModalWithParts = typeof Modal & {
 // Js Api
 ;(Modal as ModalWithParts).getClassNameByAnimation = getClassNameByAnimation
 
-export type { ModalRef, ModalProps } from './Modal'
+export type { ModalProps, ModalRef } from './types'
 export default Modal as ModalWithParts
