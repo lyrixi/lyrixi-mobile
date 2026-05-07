@@ -27,3 +27,8 @@ export interface TextEllipsisProps {
   ellipsis?: TextEllipsisConfig
   children?: ReactNode
 }
+
+export interface TextGetDisplayValueOptions {
+  maxCount?: number
+  precision?: number
+}

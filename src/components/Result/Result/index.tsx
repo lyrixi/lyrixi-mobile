@@ -1,7 +1,7 @@
 import React from 'react'
 import getStatusDefault from './getStatusDefault'
 
-import type { ResultProps } from './types'
+import type { ResultProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -70,5 +70,5 @@ function Result({
   )
 }
 
-export type { ResultProps } from './types'
+export type { ResultProps } from './../types'
 export default Result

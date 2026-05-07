@@ -1,4 +1,4 @@
-import type { TooltipUpdatePositionOptions } from './types'
+import type { TooltipUpdatePositionOptions } from './../types'
 
 import getPositionByReferenceElement from './getPositionByReferenceElement'
 import getRelativePosition from './getRelativePosition'

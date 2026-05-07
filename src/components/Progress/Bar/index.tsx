@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, type Ref } from 'react'
 
-import type { ProgressBarProps, ProgressBarRef } from './types'
+import type { ProgressBarProps, ProgressBarRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

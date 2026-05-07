@@ -1,5 +1,5 @@
 
-import type { TooltipGetRelativePositionParams, TooltipPositionResult } from './types'
+import type { TooltipGetRelativePositionParams, TooltipPositionResult } from './../types'
 
 // 内库使用-start
 import getClassNameByAnimation from './../../Modal/api/getClassNameByAnimation'

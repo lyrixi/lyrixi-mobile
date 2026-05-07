@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { TransferItemProps } from './types'
+import type { TransferItemProps } from './../types'
 
 // 单项
 const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
@@ -33,6 +33,6 @@ const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
     </div>
   )
 }
-export type { TransferItemProps } from './types'
+export type { TransferItemProps } from './../types'
 
 export default Item

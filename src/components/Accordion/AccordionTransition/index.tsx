@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import getAnimationStyle from './getAnimationStyle'
 
-import type { AccordionTransitionProps } from './types'
+import type { AccordionTransitionProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

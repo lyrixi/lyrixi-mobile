@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { KeyboardButtonActionProps } from './types'
+import type { KeyboardButtonActionProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from '../../../utils/DOMUtil'

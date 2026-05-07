@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState, type CSSProperties } from 'react'
 import Item from './Item'
 
-import type { SelectorItem, SelectorProps, SelectorRef } from './types'
+import type { SelectorItem, SelectorProps, SelectorRef } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -165,6 +165,6 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     )
   }
 )
-export type { SelectorEllipsis, SelectorItem, SelectorProps, SelectorRef } from './types'
+export type { SelectorEllipsis, SelectorItem, SelectorProps, SelectorRef } from './../types'
 
 export default Selector

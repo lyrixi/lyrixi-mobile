@@ -1,4 +1,4 @@
-import type { SnapToEdgeOptions } from './types'
+import type { SnapToEdgeOptions } from './../types'
 
 // 贴边逻辑（修复纵向越界）
 const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): void => {
@@ -70,6 +70,6 @@ const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): 
     })
   }
 }
-export type { GapOption, SnapToEdgeOptions, SnapPosition } from './types'
+export type { GapOption, SnapToEdgeOptions, SnapPosition } from './../types'
 
 export default snapToEdge

@@ -60,3 +60,10 @@ export type TransferComboProps = TransferComboField &
     onChange?: (value: TransferItem[]) => void
     onBeforeOpen?: () => boolean | void | Promise<boolean | void>
   }
+
+export interface TransferItemProps {
+  children?: ReactNode
+  sortable?: boolean
+  onAdd?: () => void
+  onDelete?: () => void
+}

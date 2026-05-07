@@ -1,4 +1,4 @@
-import type { CheckboxListItem } from './types'
+import type { CheckboxListItem } from './../types'
 
 /**
  * formatValue - 将传入的 value 规范化为标准对象格式

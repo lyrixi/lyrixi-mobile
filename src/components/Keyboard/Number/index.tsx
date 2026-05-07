@@ -7,7 +7,7 @@ import ButtonAction from './ButtonAction'
 import ButtonQuick from './ButtonQuick'
 
 
-import type { KeyboardNumberProps, KeyboardNumberRef } from './types'
+import type { KeyboardNumberProps, KeyboardNumberRef } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -255,6 +255,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
     return createPortal(KeyboardNode, portal || document.getElementById('root') || document.body)
   }
 )
-export type { KeyboardAction, KeyboardNumberProps, KeyboardNumberRef } from './types'
+export type { KeyboardAction, KeyboardNumberProps, KeyboardNumberRef } from './../types'
 
 export default KeyboardNumber

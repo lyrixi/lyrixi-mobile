@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, type CSSProperties, type Ref } from 'react'
 
-import type { ProgressCircleProps, ProgressCircleRef } from './types'
+import type { ProgressCircleProps, ProgressCircleRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

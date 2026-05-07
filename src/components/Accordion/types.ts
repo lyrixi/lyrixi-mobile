@@ -39,3 +39,9 @@ export interface AccordionGroupProps {
   children?: React.ReactNode
   onChange?: (index: number | null) => void
 }
+
+export interface AccordionTransitionProps {
+  open: boolean
+  children?: React.ReactNode
+  minHeight?: number
+}

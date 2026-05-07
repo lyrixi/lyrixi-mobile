@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { ActionSheetItemProps } from './types'
+import type { ActionSheetItemProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

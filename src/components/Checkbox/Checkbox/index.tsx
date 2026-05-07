@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Icon from './Icon'
 
 
-import type { CheckboxProps, CheckboxRef } from './types'
+import type { CheckboxProps, CheckboxRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -72,6 +72,6 @@ const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
     )
   }
 )
-export type { CheckboxIconProps, CheckboxProps, CheckboxRef } from './types'
+export type { CheckboxIconProps, CheckboxProps, CheckboxRef } from './../types'
 
 export default Checkbox

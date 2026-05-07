@@ -2,7 +2,7 @@ import React, { Fragment, useRef, forwardRef, useImperativeHandle, useState } fr
 
 
 import type { ButtonRef } from './../../Button/types'
-import type { FooterBarButtonProps, FooterBarButtonRef } from './types'
+import type { FooterBarButtonProps, FooterBarButtonRef } from './../types'
 import type { ModalRef } from './../../Modal/Modal/types'
 
 // 内库使用-start
@@ -127,5 +127,5 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
 type FooterBarButtonWithName = typeof FooterBarButton & { componentName: string }
 ;(FooterBarButton as FooterBarButtonWithName).componentName = 'FooterBar.Button'
 
-export type { FooterBarButtonProps, FooterBarButtonRef } from './types'
+export type { FooterBarButtonProps, FooterBarButtonRef } from './../types'
 export default FooterBarButton as FooterBarButtonWithName

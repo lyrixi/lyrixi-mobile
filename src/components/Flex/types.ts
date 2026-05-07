@@ -22,4 +22,31 @@ export interface FlexRef {
 
 export type FlexStyleInput = Pick<FlexProps, 'gap' | 'justify' | 'align' | 'direction' | 'wrap'>
 
-export type { CompactProps, CompactContextValue, CompactRef } from './Compact/types'
+export type CompactDirection = 'horizontal' | 'vertical'
+
+export type CompactSizeToken = 's' | 'm' | 'l'
+
+export interface CompactContextValue {
+  block?: boolean
+  size?: CompactSizeToken | string
+  direction?: CompactDirection | string
+}
+
+export interface CompactRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface CompactProps {
+  style?: CSSProperties
+  className?: string
+  children?: ReactNode
+  /** 在子节点之间插入的分隔节点 */
+  separator?: ReactNode
+  separatorStyle?: CSSProperties
+  separatorClassName?: string
+  block?: boolean
+  size?: CompactSizeToken | string
+  direction?: CompactDirection | string
+  radius?: CompactSizeToken | string
+}

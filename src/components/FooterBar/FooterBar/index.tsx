@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { FooterBarProps, FooterBarRef } from './types'
+import type { FooterBarProps, FooterBarRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -46,5 +46,5 @@ const FooterBar = forwardRef<FooterBarRef, FooterBarProps>(
   }
 )
 
-export type { FooterBarProps, FooterBarRef } from './types'
+export type { FooterBarProps, FooterBarRef } from './../types'
 export default FooterBar

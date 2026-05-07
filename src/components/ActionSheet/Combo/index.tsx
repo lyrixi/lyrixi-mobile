@@ -2,8 +2,7 @@ import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } f
 import Modal from './../Modal'
 import Combo, { ComboRef } from './../../Combo'
 
-import type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
-import type { ActionSheetItem } from './../Modal/types'
+import type { ActionSheetComboHandle, ActionSheetComboProps, ActionSheetItem } from './../types'
 import type { InputSelectComboRef } from './../../Input/Select/types'
 
 // 内库使用-start
@@ -197,5 +196,5 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
   }
 )
 
-export type { ActionSheetComboHandle, ActionSheetComboProps } from './types'
+export type { ActionSheetComboHandle, ActionSheetComboProps } from './../types'
 export default ActionSheetCombo

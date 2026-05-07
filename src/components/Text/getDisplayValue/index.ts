@@ -1,5 +1,5 @@
 
-import type { TextGetDisplayValueOptions } from './types'
+import type { TextGetDisplayValueOptions } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'

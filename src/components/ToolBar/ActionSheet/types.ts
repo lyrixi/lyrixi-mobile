@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { ActionSheetComboProps } from './../../ActionSheet/Combo/types'
+import type { ActionSheetComboProps } from './../../ActionSheet/types'
 
 export interface ToolBarActionSheetStyleProps {
   direction?: string

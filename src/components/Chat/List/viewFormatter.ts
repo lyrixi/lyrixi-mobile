@@ -1,4 +1,4 @@
-import type { ChatRawItem, ChatViewFormatterOptions, ChatViewItem } from './types'
+import type { ChatRawItem, ChatViewFormatterOptions, ChatViewItem } from './../types'
 
 
 // 格式化列表数据为渲染数据, 用于渲染列表组件
@@ -27,5 +27,5 @@ function viewFormatter(
   })
 }
 
-export type { ChatRawItem, ChatViewItem } from './types'
+export type { ChatRawItem, ChatViewItem } from './../types'
 export default viewFormatter

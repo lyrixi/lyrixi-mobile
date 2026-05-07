@@ -4,7 +4,7 @@ import Checkbox from '../Checkbox'
 import formatValue from './formatValue'
 
 
-import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
+import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -98,6 +98,6 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
     )
   }
 )
-export type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './types'
+export type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './../types'
 
 export default CheckboxGroup

@@ -3,8 +3,7 @@ import viewFormatter from './viewFormatter'
 import getSpaceDates from './getSpaceDates'
 import Item from './../Item'
 
-import type { ChatItemProps } from './../Item/types'
-import type { ChatListProps, ChatListRef, ChatListValue, ChatViewItem } from './types'
+import type { ChatItemProps, ChatListProps, ChatListRef, ChatListValue, ChatViewItem } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -99,5 +98,5 @@ const List = (
   )
 }
 
-export type { ChatListProps, ChatListRef, ChatRawItem, ChatViewItem } from './types'
+export type { ChatListProps, ChatListRef, ChatRawItem, ChatViewItem } from './../types'
 export default forwardRef<ChatListRef, ChatListProps>(List)

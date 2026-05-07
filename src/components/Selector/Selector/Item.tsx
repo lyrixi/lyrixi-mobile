@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, type MouseEvent } from 'react'
 
 
-import type { SelectorItemProps, SelectorItemRef } from './types'
+import type { SelectorItemProps, SelectorItemRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -76,6 +76,6 @@ const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
     )
   }
 )
-export type { SelectorItemProps, SelectorItemRef } from './types'
+export type { SelectorItemProps, SelectorItemRef } from './../types'
 
 export default Item

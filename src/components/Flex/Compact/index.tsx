@@ -12,7 +12,7 @@ import React, {
   type RefAttributes
 } from 'react'
 
-import type { CompactContextValue, CompactProps, CompactRef } from './types'
+import type { CompactContextValue, CompactProps, CompactRef } from './../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -138,6 +138,6 @@ const Compact = Object.assign(CompactRoot, {
   useContext: (): CompactContextValue | null => useContext(Context)
 }) as CompactWithStatics
 
-export type { CompactContextValue, CompactProps, CompactRef } from './types'
+export type { CompactContextValue, CompactProps, CompactRef } from './../types'
 
 export default Compact

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Item from './../Item'
 
-import type { ActionSheetItem, ActionSheetModalProps } from './types'
+import type { ActionSheetItem, ActionSheetModalProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -143,5 +143,5 @@ const ActionSheetModal = forwardRef<ModalRef, ActionSheetModalProps>(
   }
 )
 
-export type { ActionSheetItem, ActionSheetModalProps } from './types'
+export type { ActionSheetItem, ActionSheetModalProps } from './../types'
 export default ActionSheetModal

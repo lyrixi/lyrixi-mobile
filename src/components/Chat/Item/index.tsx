@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-import type { ChatItemProps, ChatItemRef } from './types'
+import type { ChatItemProps, ChatItemRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -112,5 +112,5 @@ const Chat = (
   )
 }
 
-export type { ChatItemProps, ChatItemRef } from './types'
+export type { ChatItemProps, ChatItemRef } from './../types'
 export default forwardRef<ChatItemRef, ChatItemProps>(Chat)
