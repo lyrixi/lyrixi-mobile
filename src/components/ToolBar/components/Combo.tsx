@@ -2,15 +2,15 @@ import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 
 
 import type { ToolBarComboProps, ToolBarComboRef } from './../types'
-import type { ButtonRef } from './../../Button/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Button from './../../Button'
+import type { ButtonRef } from './../../Button/types'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Button } from 'lyrixi-mobile'
+import { DOMUtil, Button, type ButtonRef } from 'lyrixi-mobile'
 测试使用-end */
 
 // 操作表下拉

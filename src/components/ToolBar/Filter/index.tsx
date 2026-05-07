@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
 import type { ToolBarFilterProps, ToolBarFilterRef } from './../types'
-import type { ButtonRef } from './../../Button/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import FilterModal from './../../Modal/FilterModal'
 import Button from './../../Button'
+import type { ButtonRef } from './../../Button/types'
 import Icon from './../../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Modal, Button, Icon } from 'lyrixi-mobile'
+import { DOMUtil, Modal, Button, Icon, type ButtonRef } from 'lyrixi-mobile'
 const FilterModal = Modal.FilterModal
 测试使用-end */
 

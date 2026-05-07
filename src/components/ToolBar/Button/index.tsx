@@ -1,14 +1,13 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { ButtonProps, ButtonRef } from './../../Button/types'
-
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Button from './../../Button'
+import type { ButtonProps, ButtonRef } from './../../Button/types'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Button } from 'lyrixi-mobile'
+import { DOMUtil, Button, type ButtonProps, type ButtonRef } from 'lyrixi-mobile'
 测试使用-end */
 
 const ToolBarButton = forwardRef<ButtonRef, ButtonProps>(function ToolBarButton(
