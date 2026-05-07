@@ -1,6 +1,6 @@
 import { Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
-import type { QueryDataResponse, QueryDataState } from '../../types'
+import type { QueryDataOptions, QueryDataResponse, ResultState } from '../../types'
 import toData from './toData'
 import toServerParams from './toServerParams'
 
@@ -10,8 +10,8 @@ const locale = LocaleUtil.locale
  * 加载数据
  */
 function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
-  queryParams: Record<string, unknown> | null | undefined
-): Promise<QueryDataState<T>> {
+  queryParams: QueryDataOptions
+): Promise<ResultState<T>> {
   return new Promise((resolve) => {
     // payload.id插槽值: 开始
     const id = `payload.id插槽值`
@@ -33,7 +33,7 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
         id: id,
         // payload.id插槽值: 结束
         // payload.queryParams插槽值: 开始
-        ...toServerParams(queryParams as Record<string, unknown>)
+        ...toServerParams(queryParams)
         // payload.queryParams插槽值: 结束
       },
       {

@@ -1,4 +1,6 @@
+import type { QueryParamsState } from '../types'
+
 export type SearchBarProps = {
-  queryParams: Record<string, unknown> | null
-  onQuery: (p: Record<string, unknown>) => void
+  queryParams: QueryParamsState
+  onQuery: (params: Record<string, unknown>) => void
 }

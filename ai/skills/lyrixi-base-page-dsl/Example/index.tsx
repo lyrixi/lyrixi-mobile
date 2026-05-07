@@ -3,14 +3,14 @@ import React, { useEffect, useState, type FC } from 'react'
 import { Page, Result, Skeleton, Loading } from 'lyrixi-mobile'
 
 import { queryData } from './api'
-import { type QueryDataResponse, type QueryDataState } from './types'
+import { type QueryParamsState, type QueryDataResponse, type ResultState } from './types'
 import Content from './Content'
 import SearchBar from './SearchBar'
 
 // 页面名称: types业务侧根据各自的业务自行修改
 const Example: FC = () => {
-  const [queryParams, setQueryParams] = useState<Record<string, unknown> | null>(null)
-  const [result, setResult] = useState<QueryDataState<Record<string, unknown>> | null>(null)
+  const [queryParams, setQueryParams] = useState<QueryParamsState>(null)
+  const [result, setResult] = useState<ResultState<Record<string, unknown>> | null>(null)
 
   async function loadData(): Promise<void> {
     Loading.show()

@@ -8,9 +8,18 @@ export type QueryDataResponse<T = Record<string, unknown>> = Readonly<{
   data: T | undefined
 }>
 
-/** `queryData` 处理后的统一返回结构 */
-export type QueryDataState<T = Record<string, unknown>> = Readonly<{
+/** `queryData` 处理后的统一结构（页面侧 `useState` 等使用） */
+export type ResultState<T = Record<string, unknown>> = Readonly<{
   status: 'success' | 'error'
   message: string
   data: T | undefined
 }>
+
+/** 示例页查询参数（`[queryParams, setQueryParams]`） */
+export type QueryParamsState = Record<string, unknown> | null
+
+/**
+ * `queryData` 入参（查询条件；允许 `undefined` 以便调用方省略参数）
+ * `toServerParams` 等工具若透传同一入参，复用本类型而非另起 `*Options`。
+ */
+export type QueryDataOptions = QueryParamsState | undefined

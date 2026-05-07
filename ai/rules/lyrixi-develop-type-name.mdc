@@ -25,14 +25,14 @@ type ListPaginationProps = {
 }
 ```
 
-- props 属性命名优先使用通用业务语义命名, 若为集合类型则拆解为最小业务单元, 示例:
+- props 属性命名优先使用通用业务语义命名, 若为集合类型则拆解为最小业务单元, 示例(`${componentName}语义名`):
 
 ```ts
-type Item = {}
+type ListItem = {}
 
 type ListProps = {
-  value: Item | Item[]
-  list: Item[]
+  value: ListItem | ListItem[]
+  list: ListItem[]
 }
 ```
 
@@ -50,7 +50,7 @@ type ListPaginationRef = {
 
 ## state 规则
 
-组件内部状态类型必须以 `State` 结尾, 示例(`${StateName}State`):
+组件内部状态类型必须以 `State` 结尾, 因为 State 通常是私有类型, 无需增加 componentName, 示例(`${StateName}State`):
 
 ```ts
 const [result, setResult] = useState<ResultState | null>(null)
@@ -88,7 +88,9 @@ type ListPaginationComponents = {
 
 ## 工具方法入参
 
-工具方法入参类型统一使用 `Options` 结尾, 若透传已有类型的入参, 则不需要加`Options`, 例如: `QueryParamsState`, 则直接使用`QueryParamsState`, 若传入组装的数据类型, 则使用`Options`, 示例(`${FunctionName}Options`):
+若入参已有类型, 则跳过此节, 无需执行此节的内容, 例如: `QueryParamsState`等已定义的类型.
+
+若传入组装的数据类型, 入参类型统一使用 `Options` 结尾, 示例(`${FunctionName}Options`):
 
 ```ts
 type OpenWindowOptions = {
