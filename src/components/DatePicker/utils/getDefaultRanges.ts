@@ -2,7 +2,7 @@
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
-import type { DatePickerRangesMap } from './../datePickerTypes'
+import type { DatePickerRangesMap } from './../common/types'
 
 /* 测试使用-start
 import { LocaleUtil, DateUtil } from 'lyrixi-mobile'

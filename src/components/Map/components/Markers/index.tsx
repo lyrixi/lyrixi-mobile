@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import createMarkerIcon from './createMarkerIcon'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import filterCoords from './../../utils/filterCoords'

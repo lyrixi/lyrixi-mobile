@@ -11,7 +11,7 @@ import type {
   DatePickerMultipleValue,
   DatePickerMultipleTab,
   DatePickerRangePickerMainProps
-} from './../datePickerTypes'
+} from './../common/types'
 
 // 内库使用-start
 import LocaleUtil from '../../../utils/LocaleUtil'

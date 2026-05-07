@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode } from 'react'
 import type {
   DatePickerTypeListItem,
   DatePickerTypesValue
-} from './../datePickerTypes'
+} from './../common/types'
 
 export interface DatePickerTypesProps {
   value?: DatePickerTypesValue

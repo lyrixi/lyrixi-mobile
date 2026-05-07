@@ -1,4 +1,4 @@
-import type { L } from './../../../leaflet.types'
+import type { L } from './../../../leaflet/types'
 import defaultMarkerIcons from './../../../utils/markerIcons'
 
 import type { CenterMarkerIconOptions } from './types'

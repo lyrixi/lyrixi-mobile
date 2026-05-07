@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 
 /** 地图容器内使用的坐标点（与 createLeafletMap / panTo 等一致） */
 export interface MapPoint {

@@ -2,7 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef, forwardRef, useState } f
 import { getTitle, getDefaultRanges, updateRangeValue } from './../utils'
 import formatValue from './../RangeMain/formatValue'
 import RangeMain from './../RangeMain'
-import type { DatePickerModalRef, DatePickerRangeModalProps } from './../datePickerTypes'
+import type { DatePickerModalRef, DatePickerRangeModalProps } from './../common/types'
 import type { ModalRef } from './../../Modal/Modal'
 
 // 内库使用-start

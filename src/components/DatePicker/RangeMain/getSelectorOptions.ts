@@ -1,4 +1,4 @@
-import type { DatePickerRangesMap } from './../datePickerTypes'
+import type { DatePickerRangesMap } from './../common/types'
 
 // 将{key: value}转为[{id: key, name: value}]
 function getSelectorOptions(

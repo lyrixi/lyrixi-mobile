@@ -6,7 +6,7 @@ import type {
   DatePickerTypeListItem,
   DatePickerTypesRef,
   DatePickerTypesValue
-} from './../datePickerTypes'
+} from './../common/types'
 
 import type { DatePickerTypesProps } from './types'
 

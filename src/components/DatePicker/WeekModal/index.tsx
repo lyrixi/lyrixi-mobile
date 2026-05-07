@@ -1,7 +1,7 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
 import WeekMain from './../WeekMain'
-import type { DatePickerModalRef, DatePickerWeekModalProps } from './../datePickerTypes'
+import type { DatePickerModalRef, DatePickerWeekModalProps } from './../common/types'
 import type { ModalRef } from './../../Modal/Modal'
 
 import type { CalendarRef } from '../../Calendar/types'

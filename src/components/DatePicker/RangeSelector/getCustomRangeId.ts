@@ -1,4 +1,4 @@
-import type { DatePickerRangesMap } from './../datePickerTypes'
+import type { DatePickerRangesMap } from './../common/types'
 
 // 获取自定义key
 function getCustomRangeId(ranges: DatePickerRangesMap) {

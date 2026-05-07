@@ -5,8 +5,8 @@ export interface DistrictMainApiResult {
   message?: string
 }
 
-/** 与历史命名兼容 */
-export type ApiResult = DistrictMainApiResult
+/** 地区数据加载结果状态（与 `DistrictMainApiResult` 同形） */
+export type DistrictResultState = DistrictMainApiResult
 
 /** api/index 聚合层使用的树节点 */
 export interface DistrictMainApiDistrictNode {

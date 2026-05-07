@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import filterCoords from './../../utils/filterCoords'
 import addPolyline, { type LinePoint, type LineStyleOptions } from './addPolyline'
 import clearPolyline from './clearPolyline'

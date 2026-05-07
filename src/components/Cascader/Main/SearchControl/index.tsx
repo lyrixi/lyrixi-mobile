@@ -11,7 +11,7 @@ import SearchBar from './../../../ToolBar/Search'
 import { Page, ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CascaderNode } from './../../cascaderTypes'
+import type { CascaderNode } from './../../types'
 
 type SearchBarFieldProps = ComponentProps<typeof SearchBar>
 

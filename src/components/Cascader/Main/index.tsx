@@ -6,7 +6,7 @@ import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
-import type { CascaderNode } from './../cascaderTypes'
+import type { CascaderNode } from './../types'
 
 import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState } from './types'
 import type { CascaderTab } from './../utils/types'

@@ -1,4 +1,4 @@
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import coordsToFit from './../../utils/coordsToFit'
 import type { MapPoint, AddMarkersIconOptions, AddMarkersLayersOptions } from './types'
 import createMarkerIcon from './createMarkerIcon'

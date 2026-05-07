@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import type { MapContainerAPI } from './../MapContainer'
 
 export interface MapPoint {

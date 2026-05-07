@@ -1,4 +1,4 @@
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import type { MapPoint, CanvasMarkerLayer } from './types'
 
 // 点击canvas绘制的marker

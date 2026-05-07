@@ -6,7 +6,7 @@ import DateRange from './DateRange'
 import type {
   DatePickerRangesMap,
   DatePickerRangeChangeMeta
-} from './../../DatePicker/datePickerTypes'
+} from './../../DatePicker'
 
 import type { ToolBarDateRangeBarProps } from './types'
 

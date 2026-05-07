@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import type { L } from './../leaflet.types'
+import type { L } from './../leaflet/types'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
 import type { MapMarkersHandle } from '../pages/MapMarkers'

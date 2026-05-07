@@ -1,4 +1,4 @@
-import type { CascaderNode, LoadDataFn } from '../cascaderTypes'
+import type { CascaderNode, LoadDataFn } from '../types'
 
 import type { CascaderMainLoadChildrenResult } from './types'
 

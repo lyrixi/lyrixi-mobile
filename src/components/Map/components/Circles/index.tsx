@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import filterCoords from './../../utils/filterCoords'
 import addCircles, { type CirclePoint } from './addCircles'
 import clearCircles from './clearCircles'

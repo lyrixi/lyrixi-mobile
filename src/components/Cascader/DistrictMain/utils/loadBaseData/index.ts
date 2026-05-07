@@ -1,6 +1,6 @@
 
 
-import type { ApiResult, DistrictMainApiDistrictNode } from '../../api/types'
+import type { DistrictMainApiDistrictNode, DistrictResultState } from '../../api/types'
 
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'
@@ -11,7 +11,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { ArrayUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type LoadFn = (id?: string | number) => Promise<ApiResult>
+type LoadFn = (id?: string | number) => Promise<DistrictResultState>
 
 // 获取国家省市区, 返回数据格式为{ status: 'success' | 'error', message: string, list: [] }
 async function loadBaseData({
@@ -20,9 +20,9 @@ async function loadBaseData({
   loadCountryRegions
 }: {
   countryId?: string | number
-  loadCountries: () => Promise<ApiResult>
+  loadCountries: () => Promise<DistrictResultState>
   loadCountryRegions: LoadFn
-}): Promise<ApiResult> {
+}): Promise<DistrictResultState> {
   const countriesData = await loadCountries()
 
   if (!countryId || countriesData.status === 'error') {
@@ -62,5 +62,5 @@ async function loadBaseData({
   }
 }
 
-export type { ApiResult } from '../../api/types'
+export type { DistrictResultState } from '../../api/types'
 export default loadBaseData

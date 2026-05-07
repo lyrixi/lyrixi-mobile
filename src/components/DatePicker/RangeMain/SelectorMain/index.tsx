@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getSelectorOptions from './../getSelectorOptions'
-import type { DatePickerRangeSelectorPanelProps } from '../../datePickerTypes'
+import type { DatePickerRangeSelectorPanelProps } from '../../common/types'
 
 // 内库使用-start
 import Selector, { type SelectorItem } from './../../../Selector/Selector'

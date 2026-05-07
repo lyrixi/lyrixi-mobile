@@ -9,7 +9,7 @@ import React, {
 import { formatType } from './../DistrictMain/utils'
 import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
-import type { CascaderNode } from './../cascaderTypes'
+import type { CascaderNode } from './../types'
 
 import type { DistrictModalProps } from './types'
 

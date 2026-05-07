@@ -1,4 +1,4 @@
-import type { L } from '../../../leaflet.types'
+import type { L } from '../../../leaflet/types'
 
 // Leaflet Baidu layer: class extend & internal TileLayer APIs are not representable in strict types.
 const mapUrl =

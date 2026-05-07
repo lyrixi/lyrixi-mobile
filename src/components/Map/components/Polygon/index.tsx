@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import filterCoords from './../../utils/filterCoords'
 import addPolygon, { type PolyPoint, type PolyStyleOptions } from './addPolygon'
 import clearPolygon from './clearPolygon'

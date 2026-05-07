@@ -7,12 +7,24 @@ alwaysApply: true
 
 # 类型定义 state 命名规范
 
-组件内部状态类型必须以 `State` 结尾, 因为 State 通常是私有类型, 无需增加 componentName, 示例(`${StateName}State`):
+- 组件内部状态类型必须以 `State` 结尾, 示例(`${StateName}State`):
 
 ```ts
 const [result, setResult] = useState<ResultState | null>(null)
 
 type ResultState = {
+  status: 'success' | 'error'
+  message: string
+  data: T | undefined
+}
+```
+
+- 若暴露给外部使用, 则需要加上组件名称, 示例(`${ComponentName}${StateName}State`):
+
+```ts
+const [result, setResult] = useState<DistrictResultState | null>(null)
+
+type DistrictResultState = {
   status: 'success' | 'error'
   message: string
   data: T | undefined

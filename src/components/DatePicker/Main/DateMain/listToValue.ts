@@ -1,4 +1,4 @@
-import type { DatePickerPickerType, PickerValueList } from './../../datePickerTypes'
+import type { DatePickerPickerType, PickerValueList } from './../../common/types'
 
 // 获取合法
 function getValidDate(year: number, month: number, date: number): number {

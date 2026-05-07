@@ -1,4 +1,4 @@
-import type { DatePickerMultipleValue, DatePickerPickerType } from './../datePickerTypes'
+import type { DatePickerMultipleValue, DatePickerPickerType } from './../common/types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'

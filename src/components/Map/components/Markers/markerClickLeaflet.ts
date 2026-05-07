@@ -1,4 +1,4 @@
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import type { MapPoint } from './types'
 
 // 公共点击leaflet点

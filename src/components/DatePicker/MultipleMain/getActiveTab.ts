@@ -1,4 +1,4 @@
-import type { DatePickerMultipleTab } from './../datePickerTypes'
+import type { DatePickerMultipleTab } from './../common/types'
 
 // Get default tab to active
 function getActiveTab(tabs: DatePickerMultipleTab[] | null) {

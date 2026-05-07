@@ -7,7 +7,7 @@ import DateUtil from './../../../../utils/DateUtil'
 import { LocaleUtil, DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { DatePickerPickerType, PickerListItem } from './../../datePickerTypes'
+import type { DatePickerPickerType, PickerListItem } from './../../common/types'
 
 // 数据
 function getList(

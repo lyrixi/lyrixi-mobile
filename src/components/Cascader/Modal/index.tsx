@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type Ref } from 'react'
 import type { CascaderMainRef } from './../Main'
-import type { CascaderNode } from './../cascaderTypes'
+import type { CascaderNode } from './../types'
 import Main from './../Main'
 
 

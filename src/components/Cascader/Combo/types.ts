@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { CascaderNode, LoadDataFn } from './../cascaderTypes'
+import type { CascaderNode, LoadDataFn } from './../types'
 import type { InputSelectComboProps, InputSelectComboRef } from './../../Input/Select/types'
 
 export type CascaderComboRef = InputSelectComboRef & {

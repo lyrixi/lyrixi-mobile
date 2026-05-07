@@ -1,4 +1,4 @@
-import type { MediaUploaderIntervalTracker } from './intervalTypes'
+import type { MediaUploaderIntervalTracker } from './interval/types'
 
 function Interval(interval: number): MediaUploaderIntervalTracker {
   let lastCallTime = 0

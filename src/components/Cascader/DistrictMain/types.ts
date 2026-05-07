@@ -1,11 +1,11 @@
 import type { CSSProperties } from 'react'
 
-import type { ApiResult } from './api/types'
-import type { CascaderNode } from './../cascaderTypes'
+import type { DistrictResultState } from './api/types'
+import type { CascaderNode } from './../types'
 
-export type LoadCountriesFn = () => Promise<ApiResult>
-export type LoadCountryRegionsFn = (id?: string | number) => Promise<ApiResult>
-export type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<ApiResult>
+export type LoadCountriesFn = () => Promise<DistrictResultState>
+export type LoadCountryRegionsFn = (id?: string | number) => Promise<DistrictResultState>
+export type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<DistrictResultState>
 
 export interface DistrictMainLoadingProps {
   result?: unknown
@@ -15,7 +15,7 @@ export interface DistrictMainLoadingProps {
 }
 
 export interface DistrictMainResultProps {
-  result?: ApiResult
+  result?: DistrictResultState
   onReload?: () => void
   style?: CSSProperties
   className?: string

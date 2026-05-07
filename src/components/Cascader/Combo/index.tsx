@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import type { CascaderNode } from './../cascaderTypes'
+import type { CascaderNode } from './../types'
 import CascaderModal from './../Modal'
 import type { InputSelectComboRef } from './../../Input/Select'
 

@@ -1,5 +1,5 @@
 import React, { useState, type ReactNode, type ComponentProps } from 'react'
-import type { CascaderNode } from './../../cascaderTypes'
+import type { CascaderNode } from './../../types'
 // 内库使用-start
 import ArrayUtil from './../../../../utils/ArrayUtil'
 import LocaleUtil from '../../../../utils/LocaleUtil'

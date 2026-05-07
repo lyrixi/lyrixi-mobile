@@ -10,9 +10,9 @@ import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
 import DistrictMainLoading from './Loading'
-import type { CascaderNode, LoadDataResult } from './../cascaderTypes'
+import type { CascaderNode, LoadDataResult } from './../types'
 
-import type { ApiResult } from './api/types'
+import type { DistrictResultState } from './api/types'
 import type { DistrictItem } from './utils/formatDistrictValue/types'
 import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from './types'
 
@@ -50,7 +50,7 @@ const CascaderDistrictMain = forwardRef<
     const maxType = formatType(typeProp ?? 'street')
 
 
-    const [result, setResult] = useState<ApiResult | null>(null)
+    const [result, setResult] = useState<DistrictResultState | null>(null)
 
     const [fullValue, setFullValue] = useState<CascaderNode[] | null>(null)
 
@@ -75,7 +75,7 @@ const CascaderDistrictMain = forwardRef<
       const baseData = await loadBaseData({
         countryId: value?.[0]?.id,
         loadCountries,
-        loadCountryRegions: loadCountryRegions as (id?: string | number) => Promise<ApiResult>
+        loadCountryRegions: loadCountryRegions as (id?: string | number) => Promise<DistrictResultState>
       })
 
       if (baseData?.status === 'error') {

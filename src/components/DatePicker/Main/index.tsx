@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import WeekMain from './../WeekMain'
 import DateMain from './DateMain'
-import type { DatePickerMainSectionProps } from './../datePickerTypes'
+import type { DatePickerMainSectionProps } from './../common/types'
 import type { CalendarRef } from '../../Calendar/types'
 import type { PickerMainRef } from './../../Picker/Main'
 

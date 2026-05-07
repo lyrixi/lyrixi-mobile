@@ -1,4 +1,4 @@
-import type { L } from './../../leaflet.types'
+import type { L } from './../../leaflet/types'
 import type { CanvasMarkerLayer } from './types'
 
 // Clear all marker

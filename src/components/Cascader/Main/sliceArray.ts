@@ -1,4 +1,4 @@
-import type { CascaderNode } from '../cascaderTypes'
+import type { CascaderNode } from '../types'
 
 // 截取此id前面的array
 function sliceArray(arr: CascaderNode[], id: string | number): CascaderNode[] {

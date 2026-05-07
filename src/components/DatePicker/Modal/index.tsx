@@ -1,7 +1,7 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
 import Main from './../Main'
-import type { DatePickerModalProps, DatePickerModalRef } from './../datePickerTypes'
+import type { DatePickerModalProps, DatePickerModalRef } from './../common/types'
 import type { ModalRef } from './../../Modal/Modal'
 
 // 内库使用-start
