@@ -1,0 +1,18 @@
+---
+description: 类型定义Ref命名规范
+globs:
+  - '**/*.{js,jsx,ts,tsx}'
+alwaysApply: true
+---
+
+# 类型定义 Ref 命名规范
+
+Ref 类型必须以 `Ref` 结尾, 示例(`${ComponentName}Ref`):
+
+```ts
+type InputRef = HTMLInputElement
+
+type ListPaginationRef = {
+  scrollToTop: () => void
+}
+```

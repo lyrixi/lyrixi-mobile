@@ -1,0 +1,31 @@
+---
+description: 类型定义组件属性props命名规范
+globs:
+  - '**/*.{js,jsx,ts,tsx}'
+alwaysApply: true
+---
+
+# 类型定义组件属性 props 命名规范
+
+- 组件 Props 必须以 `Props` 结尾, 示例(`${ComponentName}Props`):
+
+```ts
+type ButtonProps = {
+  disabled: boolean
+}
+
+type ListPaginationProps = {
+  pageSize: number
+}
+```
+
+- props 属性命名优先使用通用业务语义命名, 若为集合类型则拆解为最小业务单元, 示例(`${componentName}语义名`):
+
+```ts
+type ListItem = {}
+
+type ListProps = {
+  value: ListItem | ListItem[]
+  list: ListItem[]
+}
+```

@@ -41,33 +41,30 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
     },
     ref
   ) => {
-    // 构建动画
-    const animation = getAnimation(left, right)
+    // 1. props（见上方参数解构）
 
+    // 2. refs
     const modalRef = useRef<ModalRef>(null)
 
-    useEffect(() => {
-      // 更新模态框位置对齐目标元素
-      updateModalPosition()
-      // eslint-disable-next-line
-    }, [open])
+    // 3. state（无）
 
-    // 继续向外暴露与 Modal 相同的实例能力
-    useImperativeHandle(ref, () => modalRef.current!)
+    // 4. derived values / memo
+    const animation = getAnimation(left, right)
+    const mergedDropdownSide =
+      (left !== undefined && left !== null) || (right !== undefined && right !== null)
 
-    // 受控显隐时, 需要更新容器位置
+    // 5. internal helpers
     function updateModalPosition() {
-      let maskElement = modalRef?.current?.maskElement
+      const maskElement = modalRef?.current?.maskElement
 
-      // 参考元素
-      let referenceElement =
+      const referenceElement =
         typeof externalReferenceElement === 'function'
           ? externalReferenceElement()
           : externalReferenceElement
 
       if (!referenceElement || !maskElement) return
-      const topUnset = maskStyle?.top == null
-      const bottomUnset = maskStyle?.bottom == null
+      const topUnset = maskStyle?.top === undefined || maskStyle?.top === null
+      const bottomUnset = maskStyle?.bottom === undefined || maskStyle?.bottom === null
       if (open && referenceElement && maskElement && topUnset && bottomUnset) {
         const parentEl =
           portal !== null && typeof portal === 'object' && portal instanceof HTMLElement
@@ -84,6 +81,20 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
       }
     }
 
+    // 6. effects
+    useEffect(() => {
+      updateModalPosition()
+      // eslint-disable-next-line
+    }, [open])
+
+    // 7. expose / imperative handle
+    useImperativeHandle(ref, () => modalRef.current!)
+
+    // 8. event handlers（无）
+
+    // 9. render helpers（无）
+
+    // 10. return
     return (
       <Modal
         ref={modalRef}
@@ -95,9 +106,7 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
         maskClosable={maskClosable}
         maskClassName={DOMUtil.classNames(
           maskClassName,
-          (left !== undefined && left !== null) || (right !== undefined && right !== null)
-            ? 'lyrixi-mask-dropdown-side'
-            : 'lyrixi-mask-dropdown-center'
+          mergedDropdownSide ? 'lyrixi-mask-dropdown-side' : 'lyrixi-mask-dropdown-center'
         )}
         maskStyle={{
           ...maskStyle,
@@ -107,9 +116,7 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames(
           modalClassName,
-          (left !== undefined && left !== null) || (right !== undefined && right !== null)
-            ? 'lyrixi-modal-dropdown-side'
-            : 'lyrixi-modal-dropdown-center'
+          mergedDropdownSide ? 'lyrixi-modal-dropdown-side' : 'lyrixi-modal-dropdown-center'
         )}
         // Events
         onClose={onClose}
