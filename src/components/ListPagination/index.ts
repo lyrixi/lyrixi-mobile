@@ -2,9 +2,10 @@ import Combo from './Combo'
 import Modal from './Modal'
 import Main from './Main'
 
-// eslint-disable-next-line
-export default {
-  Combo: Combo,
-  Modal: Modal,
-  Main: Main
+const ListPagination = {
+  Combo,
+  Modal,
+  Main
 }
+
+export default ListPagination

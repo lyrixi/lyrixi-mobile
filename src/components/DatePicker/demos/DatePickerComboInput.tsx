@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
-import Card from 'lyrixi-mobile/components/Card'
-import DatePicker from 'lyrixi-mobile/components/DatePicker'
-import Page from 'lyrixi-mobile/components/Page'
+import { Card, DatePicker, Page } from 'lyrixi-mobile'
 
 import type { ComboProps } from '../../Input/Select'
 

@@ -1,7 +1,7 @@
 // 第三方库导入
-import React, { forwardRef, type Ref } from 'react'
+import React, { forwardRef, type ComponentRef, type Ref } from 'react'
+
 import { ListPagination } from 'lyrixi-mobile'
-import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
 
 import type { IndexBarListMainProps, ListDemoFormatPayloadParams } from './types'
 
@@ -11,6 +11,7 @@ import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewList from './formatViewList'
 
+type ListPaginationRef = ComponentRef<typeof ListPagination.Main>
 
 const Main = (
   { cacheName, virtual, queryParams, onLoad, onScrollEnd }: IndexBarListMainProps,

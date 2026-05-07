@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'lyrixi-mobile/components/Page'
+import { Page } from 'lyrixi-mobile'
 
 export default () => {
   return (

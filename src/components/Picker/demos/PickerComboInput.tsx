@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Page from 'lyrixi-mobile/components/Page'
-import Picker from 'lyrixi-mobile/components/Picker'
-import Card from 'lyrixi-mobile/components/Card'
+import { Card, Page, Picker } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<unknown>(null)

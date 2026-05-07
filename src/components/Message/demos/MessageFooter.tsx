@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Page from 'lyrixi-mobile/components/Page'
-import Message from 'lyrixi-mobile/components/Message'
-import Button from 'lyrixi-mobile/components/Button'
+import { Button, Message, Page } from 'lyrixi-mobile'
 
 export default () => {
   const [open, setOpen] = useState(false)

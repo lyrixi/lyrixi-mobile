@@ -1,4 +1,4 @@
-import type { VirtualOptions } from 'lyrixi-mobile/components/ListAsync/VirtualList'
+import type { VirtualOptions } from 'lyrixi-mobile'
 
 export type ListDemoFormatPayloadParams = {
   page?: number

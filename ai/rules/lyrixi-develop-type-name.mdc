@@ -1,0 +1,97 @@
+---
+description: type定义命名规范
+globs:
+  - '**/*.{js,jsx,ts,tsx}'
+alwaysApply: true
+---
+
+# type 定义命名规范
+
+名词说明:
+
+- `ComponentName`: 组件名, 若有子组件且类型不能复用, 则加上子组件名称, 例如: `${ComponentName}${SubComponentName}`; 同一组件类型可复用, 则不需要加上子组件名称
+
+## props 规则
+
+- 组件 Props 必须以 `Props` 结尾, 示例(`${ComponentName}Props`):
+
+```ts
+type ButtonProps = {
+  disabled: boolean
+}
+
+type ListPaginationProps = {
+  pageSize: number
+}
+```
+
+- props 属性命名优先使用通用业务语义命名, 若为集合类型则拆解为最小业务单元, 示例:
+
+```ts
+type Item = {}
+
+type ListProps = {
+  value: Item | Item[]
+  list: Item[]
+}
+```
+
+## refs 规则
+
+Ref 类型必须以 `Ref` 结尾, 示例(`${ComponentName}Ref`):
+
+```ts
+type InputRef = HTMLInputElement
+
+type ListPaginationRef = {
+  scrollToTop: () => void
+}
+```
+
+## state 规则
+
+组件内部状态类型必须以 `State` 结尾, 示例(`${StateName}State`):
+
+```ts
+const [result, setResult] = useState<ResultState | null>(null)
+
+type ResultState = {
+  status: 'success' | 'error'
+  message: string
+  data: T | undefined
+}
+```
+
+## API / 接口返回
+
+接口返回类型统一以 `Response` 结尾, 示例(`${FunctionName}Response`):
+
+```ts
+type QueryDataResponse = {
+  code: '1' | '0'
+  message: string
+  data: T | undefined
+}
+```
+
+## 组件集合 / Namespace 类型
+
+组件聚合类型统一使用 `Components` 结尾（禁止使用 Namespace 作为后缀）, 示例(`${ComponentName}Components`):
+
+```ts
+type ListPaginationComponents = {
+  Combo: React.FC
+  Modal: React.FC
+  Main: React.FC
+}
+```
+
+## 工具方法入参
+
+工具方法入参类型统一使用 `Options` 结尾, 示例(`${FunctionName}Options`):
+
+```ts
+type OpenWindowOptions = {
+  url: string
+}
+```

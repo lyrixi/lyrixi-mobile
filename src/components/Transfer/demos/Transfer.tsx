@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Page from 'lyrixi-mobile/components/Page'
-import Transfer from 'lyrixi-mobile/components/Transfer'
-import Card from 'lyrixi-mobile/components/Card'
+import { Card, Page, Transfer } from 'lyrixi-mobile'
 import type { TransferItem } from './../types'
 
 export default () => {

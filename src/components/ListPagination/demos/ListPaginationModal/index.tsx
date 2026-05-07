@@ -1,9 +1,6 @@
 // 第三方库导入
 import React, { useState } from 'react'
-import ListPagination from 'lyrixi-mobile/components/ListPagination'
-import Page from 'lyrixi-mobile/components/Page'
-import Card from 'lyrixi-mobile/components/Card'
-import Button from 'lyrixi-mobile/components/Button'
+import { Button, Card, ListPagination, Page } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 import formatResult from '../ListPaginationMain/formatResult'

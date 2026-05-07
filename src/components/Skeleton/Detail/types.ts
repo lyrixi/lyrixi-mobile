@@ -4,7 +4,7 @@ import type { PageLayout } from './../../Page'
 
 export interface SkeletonDetailProps {
   listLength?: number
-  paragraphLength?: number
+  itemLength?: number
   animated?: boolean
   safeArea?: boolean
   full?: boolean

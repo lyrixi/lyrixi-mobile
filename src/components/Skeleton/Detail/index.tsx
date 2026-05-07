@@ -9,7 +9,7 @@ import Tabs from './../components/Tabs'
 const Detail = ({
   // Value & Display Value
   listLength = 2,
-  paragraphLength = 10,
+  itemLength = 10,
 
   // Status
   animated,
@@ -47,7 +47,7 @@ const Detail = ({
           <Paragraph
             divider={divider}
             key={index}
-            length={paragraphLength}
+            length={itemLength}
             animated={animated}
             oddStyle={{ width: '73px' }}
           />

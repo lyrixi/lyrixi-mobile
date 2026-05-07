@@ -1,6 +1,5 @@
 import React from 'react'
-import Page from 'lyrixi-mobile/components/Page'
-import Skeleton from 'lyrixi-mobile/components/Skeleton'
+import { Page, Skeleton } from 'lyrixi-mobile'
 
 export default () => {
   return (

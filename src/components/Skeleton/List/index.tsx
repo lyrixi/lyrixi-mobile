@@ -8,7 +8,7 @@ import Paragraph from './../components/Paragraph'
 const List = ({
   // Value & Display Value
   listLength = 8,
-  paragraphLength = 2,
+  itemLength = 2,
 
   // Status
   animated,
@@ -35,7 +35,7 @@ const List = ({
     >
       <Page.Main className="lyrixi-overflow-hidden">
         {Array.from({ length: listLength }).map((_, index) => (
-          <Paragraph divider={divider} key={index} length={paragraphLength} animated={animated} />
+          <Paragraph divider={divider} key={index} length={itemLength} animated={animated} />
         ))}
       </Page.Main>
     </Page>

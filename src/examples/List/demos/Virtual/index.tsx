@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState, type ComponentRef } from 'react'
+
 // 第三方库导入
-import { Page } from 'lyrixi-mobile'
-import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
+import { ListPagination, Page } from 'lyrixi-mobile'
 
 // 公共组件导入
 
@@ -12,6 +12,8 @@ import type { VirtualDemoItemHeightRow } from './types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
+
+type ListPaginationRef = ComponentRef<typeof ListPagination.Main>
 
 // 虚拟滚动列表
 const Virtual = () => {

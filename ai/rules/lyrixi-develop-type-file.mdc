@@ -1,0 +1,19 @@
+---
+description: 类型文件位置及命名规范
+globs:
+  - '**/*.{js,jsx,ts,tsx}'
+alwaysApply: true
+---
+
+# 类型文件位置及命名规范
+
+- 文件名称: 类型文件统一命名为 `types.ts`
+- 文件位置: 类型文件与组件或工具文件保持同级, 示例:
+
+`Bridge/index.ts` 里的 types 定义在 `Bridge/types.ts`, `Bridge/DingTalk/index.ts` 里的 types 定义在 `Bridge/DingTalk/types.ts`
+
+# export 导出
+
+- 对外暴露的组件或工具类型，必须通过 `index.ts` 统一导出
+- 组件或工具内部使用、但未对外暴露的类型，可仅保留在本地 `types.ts`
+- 禁止外部直接引用内部 `types.ts`

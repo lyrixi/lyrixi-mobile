@@ -1,7 +1,6 @@
 import type { SyntheticEvent } from 'react'
 
-import type { LoadResult } from 'lyrixi-mobile/components/ListAsync'
-import type { VirtualOptions } from 'lyrixi-mobile/components/ListAsync/VirtualList'
+import type { LoadResult, VirtualOptions } from 'lyrixi-mobile'
 
 export type IndexBarListRowWithAnchor = {
   anchor?: string

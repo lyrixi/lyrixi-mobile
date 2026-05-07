@@ -1,6 +1,6 @@
 // 第三方库导入
 import React, { forwardRef, type Ref } from 'react'
-import ListPagination from 'lyrixi-mobile/components/ListPagination'
+import { ListPagination } from 'lyrixi-mobile'
 import type { ListPaginationRef } from '../../Main'
 import type { VirtualOptions } from '../../../ListAsync/VirtualList'
 

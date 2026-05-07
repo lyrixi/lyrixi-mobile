@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState, type ComponentRef } from 'react'
+
 // 第三方库导入
-import { LocaleUtil, Storage, Page } from 'lyrixi-mobile'
-import type { ListPaginationRef } from 'lyrixi-mobile/components/ListPagination/Main'
+import { ListPagination, LocaleUtil, Page, Storage } from 'lyrixi-mobile'
 
 // 公共组件导入
 
@@ -14,6 +14,8 @@ import type { ListCacheStoredShape } from './types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
+
+type ListPaginationRef = ComponentRef<typeof ListPagination.Main>
 
 const locale = LocaleUtil.locale
 

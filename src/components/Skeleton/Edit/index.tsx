@@ -8,7 +8,7 @@ import Paragraph from './../components/Paragraph'
 const Edit = ({
   // Value & Display Value
   listLength = 8,
-  paragraphLength = 6,
+  itemLength = 6,
 
   // Status
   animated,
@@ -38,7 +38,7 @@ const Edit = ({
           <Paragraph
             key={index}
             divider={divider}
-            length={paragraphLength}
+            length={itemLength}
             animated={animated}
             titleStyle={{
               width: '75px'
