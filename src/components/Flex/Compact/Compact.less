@@ -1,72 +1,72 @@
-.lyrixi-compact {
+.lyrixi-flex-compact {
   display: inline-flex;
   width: auto;
 }
 
 // 全宽布局
-.lyrixi-compact-block {
+.lyrixi-flex-compact-block {
   display: flex;
   flex: 1;
 
-  .lyrixi-compact-item {
+  .lyrixi-flex-compact-item {
     display: flex;
     flex: 1;
   }
 }
 
-// .lyrixi-compact-item {
+// .lyrixi-flex-compact-item {
 //   display: inline-flex;
 //   position: relative;
 // }
 
 /* 水平方向 */
-.lyrixi-compact-horizontal {
+.lyrixi-flex-compact-horizontal {
   flex-direction: row;
 
-  .lyrixi-compact-item:not(:last-child) {
+  .lyrixi-flex-compact-item:not(:last-child) {
     margin-right: -1px;
   }
 
   // 中间元素圆角
-  .lyrixi-compact-item>* {
+  .lyrixi-flex-compact-item>* {
     border-radius: 0;
   }
 
   // 第一个元素圆角
-  .lyrixi-compact-item-first>* {
-    border-top-left-radius: var(--lyrixi-compact-radius);
-    border-bottom-left-radius: var(--lyrixi-compact-radius);
+  .lyrixi-flex-compact-item-first>* {
+    border-top-left-radius: var(--lyrixi-flex-compact-radius);
+    border-bottom-left-radius: var(--lyrixi-flex-compact-radius);
   }
 
   // 最后一个元素圆角
-  .lyrixi-compact-item-last>* {
-    border-top-right-radius: var(--lyrixi-compact-radius);
-    border-bottom-right-radius: var(--lyrixi-compact-radius);
+  .lyrixi-flex-compact-item-last>* {
+    border-top-right-radius: var(--lyrixi-flex-compact-radius);
+    border-bottom-right-radius: var(--lyrixi-flex-compact-radius);
   }
 }
 
 /* 垂直方向 */
-.lyrixi-compact-vertical {
+.lyrixi-flex-compact-vertical {
   flex-direction: column;
 
-  .lyrixi-compact-item:not(:last-child) {
+  .lyrixi-flex-compact-item:not(:last-child) {
     margin-bottom: -1px;
   }
 
   // 中间元素圆角
-  .lyrixi-compact-item>* {
+  .lyrixi-flex-compact-item>* {
     border-radius: 0;
   }
 
   // 第一个元素圆角
-  .lyrixi-compact-item-first>* {
-    border-top-left-radius: var(--lyrixi-compact-radius);
-    border-top-right-radius: var(--lyrixi-compact-radius);
+  .lyrixi-flex-compact-item-first>* {
+    border-top-left-radius: var(--lyrixi-flex-compact-radius);
+    border-top-right-radius: var(--lyrixi-flex-compact-radius);
   }
 
   // 最后一个元素圆角
-  .lyrixi-compact-item-last>* {
-    border-bottom-left-radius: var(--lyrixi-compact-radius);
-    border-bottom-right-radius: var(--lyrixi-compact-radius);
+  .lyrixi-flex-compact-item-last>* {
+    border-bottom-left-radius: var(--lyrixi-flex-compact-radius);
+    border-bottom-right-radius: var(--lyrixi-flex-compact-radius);
   }
 }

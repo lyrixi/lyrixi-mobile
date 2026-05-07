@@ -1,73 +1,143 @@
-import React, { useContext, createContext, Children, Fragment, type CSSProperties, type ReactNode } from 'react'
+import React, {
+  Children,
+  Fragment,
+  forwardRef,
+  isValidElement,
+  useContext,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  type CSSProperties,
+  type ForwardRefExoticComponent,
+  type RefAttributes
+} from 'react'
 
-import type { CompactContextValue, CompactProps } from './types'
+import type { CompactContextValue, CompactProps, CompactRef } from './types'
 
 // 内库使用-start
-import DOMUtil from './../../../utils/DOMUtil'
 import MathUtil from './../../../utils/MathUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, MathUtil } from 'lyrixi-mobile'
+import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+const Context = React.createContext<CompactContextValue | null>(null)
 
-const Context = createContext<CompactContextValue | null>(null)
-
-function useCompactContext() {
-  return useContext(Context)
-}
-
-function interleaveChildren(children: ReactNode, separator: ReactNode): ReactNode {
-  const arr = Children.toArray(children)
-  if (arr.length <= 1) return children
-  return arr.reduce<ReactNode[]>((acc, child, i) => {
-    if (i > 0) acc.push(<Fragment key={`sep-${i}`}>{separator}</Fragment>)
-    acc.push(<Fragment key={`item-${i}`}>{child}</Fragment>)
-    return acc
-  }, [])
-}
-
-function CompactBase({ style, className, children, separator, block, size, direction, radius }: CompactProps) {
-  const parentContext = useCompactContext()
-
-  const gap = size !== null && size !== undefined ? MathUtil.variableSize(size, undefined) : ''
-  const radiusSize = radius !== null && radius !== undefined ? MathUtil.variableSize(radius, undefined) : ''
-
-  const gapStyle = {
-    '--lyrixi-flex-compact-gap': gap,
-    '--lyrixi-flex-compact-radius': radiusSize
-  } as CSSProperties
-
-  return (
-    <Context.Provider value={{ block, size, direction }}>
-      <div
-        style={{ ...gapStyle, ...style }}
-        className={(DOMUtil.classNames as (...args: unknown[]) => string)(
-          'lyrixi-flex-compact',
-          {
-            'lyrixi-flex-compact-block': block,
-            'lyrixi-flex-compact-vertical': direction === 'vertical',
-            'lyrixi-flex-compact-horizontal': direction !== 'vertical',
-            'lyrixi-flex-compact-has-parent': parentContext
-          },
-          className
-        )}
-      >
-        {separator !== null && separator !== undefined ? interleaveChildren(children, separator) : children}
-      </div>
-    </Context.Provider>
-  )
-}
-
-type CompactComponent = typeof CompactBase & {
+type CompactWithStatics = ForwardRefExoticComponent<CompactProps & RefAttributes<CompactRef>> & {
   Context: typeof Context
-  useContext: typeof useCompactContext
+  useContext: () => CompactContextValue | null
 }
 
-const Compact = CompactBase as CompactComponent
-Compact.Context = Context
-Compact.useContext = useCompactContext
+const CompactRoot = forwardRef<CompactRef, CompactProps>(
+  (
+    {
+      className,
+      style,
+      direction = 'horizontal',
+      block = false,
+      size = 'm',
+      radius = 'm',
+      separatorStyle,
+      separatorClassName,
+      separator,
+      children
+    },
+    ref
+  ) => {
+    const rootRef = useRef<HTMLDivElement | null>(null)
 
-export type { CompactContextValue, CompactProps } from './types'
+    const childNodes = useMemo(() => {
+      const nodes: React.ReactNode[] = []
+      Children.forEach(children, (child) => {
+        if (child !== null && child !== undefined && child !== false) {
+          nodes.push(child)
+        }
+      })
+      return nodes
+    }, [children])
+
+    useImperativeHandle(ref, () => {
+      return {
+        element: rootRef.current,
+        getElement: () => rootRef.current
+      }
+    })
+
+    const contextValue = useMemo(() => ({ block, size, direction }), [block, size, direction])
+
+    if (childNodes.length === 0) {
+      return null
+    }
+
+    return (
+      <Context.Provider value={contextValue}>
+        <div
+          style={
+            {
+              ...style,
+              '--lyrixi-flex-compact-radius': MathUtil.variableSize(radius, 'radius')
+            } as CSSProperties
+          }
+          className={DOMUtil.classNames(
+            'lyrixi-flex-compact',
+            `lyrixi-flex-compact-${direction}`,
+            {
+              [`lyrixi-flex-compact-block`]: block
+            },
+            className
+          )}
+          ref={rootRef}
+        >
+          {childNodes.map((child, index) => {
+            const key =
+              isValidElement(child) &&
+              child.key !== null &&
+              child.key !== undefined &&
+              child.key !== ''
+                ? child.key
+                : `lyrixi-flex-compact-item-${index}`
+            const isLast = index === childNodes.length - 1
+            return (
+              <Fragment key={key}>
+                <div
+                  className={DOMUtil.classNames(
+                    `lyrixi-flex-compact-item`,
+                    `lyrixi-flex-compact-item-${direction}`,
+                    {
+                      [`lyrixi-flex-compact-item-first`]: index === 0,
+                      [`lyrixi-flex-compact-item-last`]: isLast
+                    }
+                  )}
+                >
+                  {child}
+                </div>
+                {separator && !isLast ? (
+                  <div
+                    className={DOMUtil.classNames(
+                      `lyrixi-space-item-separator`,
+                      separatorClassName
+                    )}
+                    style={separatorStyle}
+                  >
+                    {separator}
+                  </div>
+                ) : null}
+              </Fragment>
+            )
+          })}
+        </div>
+      </Context.Provider>
+    )
+  }
+)
+
+const Compact = Object.assign(CompactRoot, {
+  Context,
+  useContext: (): CompactContextValue | null => useContext(Context)
+}) as CompactWithStatics
+
+export type { CompactContextValue, CompactProps, CompactRef } from './types'
+
 export default Compact

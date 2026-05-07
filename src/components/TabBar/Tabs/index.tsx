@@ -112,7 +112,11 @@ const Tabs = forwardRef<TabsRef, TabsProps>(
     return (
       <div
         style={style}
-        className={DOMUtil.classNames('lyrixi-tabbar-tabs', className, gap ? 'lyrixi-compact' : '')}
+        className={DOMUtil.classNames(
+          'lyrixi-tabbar-tabs',
+          className,
+          gap ? 'lyrixi-flex-compact' : ''
+        )}
         ref={rootRef}
       >
         {getTabs()}
