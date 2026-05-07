@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, type CSSProperties } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, useState, type CSSProperties } from 'react'
 import Item from './Item'
 
 import type { SelectorItem, SelectorProps, SelectorRef } from './types'
@@ -39,20 +39,42 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     },
     ref
   ) => {
-    // 过滤非法数据
+    const rootRef = useRef<HTMLDivElement | null>(null)
+    const instance = useRef({
+      equalsItem(item1: SelectorItem, item2: SelectorItem) {
+        if (item1.id && item2.id) {
+          return item1.id === item2.id
+        } else if (item1.name && item2.name) {
+          return item1.name === item2.name
+        } else {
+          return false
+        }
+      }
+    })
+
+    const [expanded, setExpanded] = useState(false)
+
     const list = listProp.filter((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
     })
 
-    // 展开/收起状态
-    const [expanded, setExpanded] = useState(false)
+    const ellipsisCount = ellipsis?.count
+    const hasEllipsis = Boolean(ellipsisCount && list.length > ellipsisCount)
+    const displayList =
+      hasEllipsis && !expanded && ellipsisCount !== null ? list.slice(0, ellipsisCount) : list
 
-    // 节点
-    const rootRef = useRef<HTMLDivElement | null>(null)
-    const instance = useRef({
-      equalsItem: equals
-    })
+    function getIsActive(item: SelectorItem) {
+      if (!Array.isArray(value) || !value.length) {
+        return false
+      }
+      for (let activeItem of value) {
+        if (instance.current.equalsItem(item, activeItem)) return true
+        continue
+      }
+      return false
+    }
+
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
@@ -62,29 +84,6 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
       }
     })
 
-    // 判断是否相同
-    function equals(item1: SelectorItem, item2: SelectorItem) {
-      if (item1.id && item2.id) {
-        return item1.id === item2.id
-      } else if (item1.name && item2.name) {
-        return item1.name === item2.name
-      } else {
-        return false
-      }
-    }
-    // 根据value判断此项是否为选中状态
-    function getIsActive(item: SelectorItem) {
-      if (!Array.isArray(value) || !value.length) {
-        return false
-      }
-      for (let activeItem of value) {
-        if (equals(item, activeItem)) return true
-        continue
-      }
-      return false
-    }
-
-    // 修改回调
     async function handleChange(checked: boolean, currentItem: SelectorItem) {
       let newValue: SelectorItem[] = []
       if (!multiple) {
@@ -100,7 +99,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
           newValue = [...prev, currentItem]
         } else {
           newValue = prev.filter((activeItem) => {
-            if (equals(currentItem, activeItem)) return false
+            if (instance.current.equalsItem(currentItem, activeItem)) return false
             return true
           })
         }
@@ -113,13 +112,6 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     const handleToggleExpand = () => {
       setExpanded(!expanded)
     }
-
-    // 判断是否需要显示省略按钮
-    const ellipsisCount = ellipsis?.count
-    const hasEllipsis = Boolean(ellipsisCount && list.length > ellipsisCount)
-    // 实际显示的列表
-    const displayList =
-      hasEllipsis && !expanded && ellipsisCount !== null ? list.slice(0, ellipsisCount) : list
 
     return (
       <div

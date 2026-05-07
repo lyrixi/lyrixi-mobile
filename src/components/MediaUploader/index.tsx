@@ -93,11 +93,11 @@ function MediaUploader(
     async = false
   }
 
-  // 间隔追踪器状态
-  const [compatiblePlatform, setCompatiblePlatform] = useState(platform)
-
   // 5秒间隔自动切成浏览器定位
   const intervalRef = useRef(Interval(5000))
+
+  // 间隔追踪器状态
+  const [compatiblePlatform, setCompatiblePlatform] = useState(platform)
 
   useEffect(() => {
     if (['browser', 'wechatMiniProgram'].includes(platform ?? '')) {

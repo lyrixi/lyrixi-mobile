@@ -88,6 +88,16 @@ function Attach(
   ref: React.ForwardedRef<AttachRef>
 ) {
   const rootRef = useRef<HTMLDivElement | null>(null)
+  const onChangeRef = useRef<AttachProps['onChange']>(undefined)
+  onChangeRef.current = onChange
+
+  const previewTypeRef = useRef<unknown>(null)
+
+  const [previewVisible, setPreviewVisible] = useState<number | null>(null)
+
+  // Refresh state
+  // eslint-disable-next-line
+  const [updateStatus, setUpdateStatus] = useState(0)
 
   const sourceTypeList = useMemo((): string[] => {
     if (sourceType === null || sourceType === undefined) return []
@@ -103,22 +113,11 @@ function Attach(
       : [previewServerSourceType]
   }, [previewServerSourceType])
 
-  const onChangeRef = useRef<AttachProps['onChange']>(undefined)
-  onChangeRef.current = onChange
-
   // Judge wether to display choose button
   let chooseVisible = allowChoose
   if (typeof maxCount === 'number' && (list || []).length >= maxCount) {
     chooseVisible = false
   }
-
-  // 预览类型: browser|native
-  const previewTypeRef = useRef<unknown>(null)
-  const [previewVisible, setPreviewVisible] = useState<number | null>(null)
-
-  // Refresh state
-  // eslint-disable-next-line
-  const [updateStatus, setUpdateStatus] = useState(0)
 
   // 显隐Loading
   function _showLoading(options?: { content?: string; index?: number }) {

@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import Main from './../Main'
 
 
@@ -42,24 +42,12 @@ const LocationModal = forwardRef<unknown, LocationModalProps>(
     },
     ref
   ) => {
-    let [currentValue, setCurrentValue] = useState<LocationValue | null>(value ?? null)
     const modalRef = useRef<ModalRef | null>(null)
     const mainRef = useRef<Record<string, unknown> | null>(null)
 
+    let [currentValue, setCurrentValue] = useState<LocationValue | null>(value ?? null)
+
     const modalOpen = open === 'choose' || open === 'preview'
-
-    useImperativeHandle(ref, () => {
-      return {
-        ...(modalRef.current || {}),
-        ...(mainRef.current || {})
-      }
-    })
-
-    React.useEffect(() => {
-      if (open) {
-        setCurrentValue(value ?? null)
-      }
-    }, [open, value])
 
     async function handleOk() {
       if (onOk) {
@@ -88,6 +76,19 @@ const LocationModal = forwardRef<unknown, LocationModalProps>(
         onClose?.()
       }
     }
+
+    useEffect(() => {
+      if (open) {
+        setCurrentValue(value ?? null)
+      }
+    }, [open, value])
+
+    useImperativeHandle(ref, () => {
+      return {
+        ...(modalRef.current || {}),
+        ...(mainRef.current || {})
+      }
+    })
 
     return (
       <NavBarModal
