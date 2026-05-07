@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import getList from './getList'
 import valueToList from './valueToList'
 import listToValue from './listToValue'
-import type { DatePickerMainSectionProps, PickerValueList } from './../../common/types'
+import type { DatePickerMainSectionProps, PickerValueList } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'

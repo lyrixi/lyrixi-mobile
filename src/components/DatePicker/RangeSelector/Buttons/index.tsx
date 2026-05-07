@@ -1,6 +1,6 @@
 import React from 'react'
 import getSelectorOptions from './../../RangeMain/getSelectorOptions'
-import type { DatePickerRangesMap } from './../../common/types'
+import type { DatePickerRangesMap } from './../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'

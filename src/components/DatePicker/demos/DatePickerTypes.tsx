@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Page, Card, DatePicker, LocaleUtil } from 'lyrixi-mobile'
-import type { DatePickerTypesValue } from '../common/types'
+import type { DatePickerTypesValue } from '../types'
 
 const quickSelectList = [
   {

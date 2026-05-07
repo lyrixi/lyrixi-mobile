@@ -1,4 +1,4 @@
-import type { MediaListItem } from '../../types'
+import type { MediaListItem } from './Media.Media.types'
 
 export interface MediaChooseUtilOptions {
   async: boolean

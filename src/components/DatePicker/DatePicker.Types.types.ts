@@ -1,9 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type {
-  DatePickerTypeListItem,
-  DatePickerTypesValue
-} from './../common/types'
+import type { DatePickerTypeListItem, DatePickerTypesValue } from './DatePicker.common.types'
 
 export interface DatePickerTypesProps {
   value?: DatePickerTypesValue

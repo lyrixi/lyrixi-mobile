@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 
-import type { MediaMarkProps } from './types'
+import type { MediaMarkProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -38,6 +38,6 @@ const Mark = forwardRef<HTMLDivElement, MediaMarkProps>(function Mark(
     </div>
   )
 })
-export type { MediaMarkProps } from './types'
+export type { MediaMarkProps } from '../types'
 
 export default Mark

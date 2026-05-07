@@ -1,4 +1,4 @@
-import type { DatePickerPickerType } from './../common/types'
+import type { DatePickerPickerType } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'

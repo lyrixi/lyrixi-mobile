@@ -2,8 +2,7 @@ import getRemainCount from './../../utils/getRemainCount'
 
 
 
-import type { MediaChooseUtilOptions } from './types'
-import type { MediaListItem } from '../../types'
+import type { MediaChooseUtilOptions, MediaListItem } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -76,5 +75,5 @@ async function choose({
   return uploaded ?? newList
 }
 
-export type { MediaChooseUtilOptions as ChooseOptions } from './types'
+export type { MediaChooseUtilOptions as ChooseOptions } from '../../types'
 export default choose

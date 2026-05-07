@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { MediaDeleteProps } from './types'
+import type { MediaDeleteProps } from '../../types'
 
 // 照片视频预览
 const Delete = ({
@@ -22,6 +22,6 @@ const Delete = ({
     </div>
   )
 }
-export type { MediaDeleteProps } from './types'
+export type { MediaDeleteProps } from '../../types'
 
 export default Delete

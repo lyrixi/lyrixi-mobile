@@ -1,11 +1,7 @@
 import type { CSSProperties } from 'react'
 
-import type { ModalProps } from './../../Modal/Modal/types'
-import type {
-  FileImageCompressOptions,
-  MediaComponentProps,
-  MediaListItem
-} from './../types'
+import type { ModalProps } from '../Modal/types'
+import type { FileImageCompressOptions, MediaComponentProps, MediaListItem } from './Media.Media.types'
 
 export interface MediaPreviewModalProps {
   list?: MediaListItem[]

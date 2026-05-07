@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { SwiperRef } from 'swiper/react'
 
-import type { FileImageCompressOptions, MediaComponentProps, MediaListItem } from './../types'
+import type { FileImageCompressOptions, MediaComponentProps, MediaListItem } from './Media.Media.types'
 
 export interface PreviewMainProps {
   list?: MediaListItem[]

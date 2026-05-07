@@ -5,7 +5,7 @@ import type {
   DatePickerModalRef,
   DatePickerMultipleModalProps,
   DatePickerMultipleValue
-} from './../common/types'
+} from './../types'
 import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start

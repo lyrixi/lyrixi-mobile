@@ -25,8 +25,12 @@ import PreviewChoose from './PreviewChoose'
 import PreviewReload from './PreviewReload'
 import PreviewToolbar from './PreviewToolbar'
 
-import type { MediaListItem, MediaComponentProps } from './../types'
-import type { PreviewMainProps, PreviewMainRef } from './types'
+import type {
+  MediaListItem,
+  MediaComponentProps,
+  PreviewMainProps,
+  PreviewMainRef
+} from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -406,6 +410,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     </Swiper>
   )
 })
-export type { PreviewMainProps, PreviewMainRef } from './types'
+export type { PreviewMainProps, PreviewMainRef } from './../types'
 
 export default PreviewMain

@@ -3,7 +3,7 @@ import { getRangeDefaultValue, getDefaultRanges } from './../utils'
 import getDisplayValue from './getDisplayValue'
 import formatValue from './../RangeMain/formatValue'
 import RangeModal from './../RangeModal'
-import type { DatePickerModalRef, DatePickerRangeChangeMeta, DatePickerRangeComboProps } from './../common/types'
+import type { DatePickerModalRef, DatePickerRangeChangeMeta, DatePickerRangeComboProps } from './../types'
 
 // 内库使用-start
 import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { DatePicker, Toast } from 'lyrixi-mobile'
-import type { DatePickerMultipleValue } from '../common/types'
+import type { DatePickerMultipleValue } from '../types'
 
 export default () => {
   const [mulValue, setMulValue] = useState<DatePickerMultipleValue>([

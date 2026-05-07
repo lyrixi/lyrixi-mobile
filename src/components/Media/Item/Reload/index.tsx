@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { MediaReloadProps } from './types'
+import type { MediaReloadProps } from '../../types'
 
 // 失败重传图标
 const Reload = ({
@@ -27,6 +27,6 @@ const Reload = ({
     </div>
   )
 }
-export type { MediaReloadProps } from './types'
+export type { MediaReloadProps } from '../../types'
 
 export default Reload

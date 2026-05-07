@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 
 // 内库使用-start
 import DatePicker from './../../DatePicker'
-import type { DatePickerRangeSelectorRootProps } from './../../DatePicker/common/types'
+import type { DatePickerRangeSelectorRootProps } from './../../DatePicker/types'
 // 内库使用-end
 
 /* 测试使用-start

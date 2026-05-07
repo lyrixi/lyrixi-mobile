@@ -1,5 +1,5 @@
 import getTitleByType from './getTitleByType'
-import type { GetTitleOptions } from './../../common/types'
+import type { GetTitleOptions } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'

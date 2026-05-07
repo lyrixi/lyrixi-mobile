@@ -3,7 +3,7 @@ import { updateRangeValue, getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import getCustomRangeId from './getCustomRangeId'
 import getDefaultRangeId from './getDefaultRangeId'
-import type { DatePickerPickerType, DatePickerRangeSelectorRootProps } from './../common/types'
+import type { DatePickerPickerType, DatePickerRangeSelectorRootProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

@@ -6,9 +6,9 @@ import type {
   DatePickerTypeListItem,
   DatePickerTypesRef,
   DatePickerTypesValue
-} from './../common/types'
+} from './../types'
 
-import type { DatePickerTypesProps } from './types'
+import type { DatePickerTypesProps } from '../types'
 
 // 内库使用-start
 import TabBar from './../../TabBar'
@@ -160,6 +160,6 @@ const Types = forwardRef<DatePickerTypesRef, DatePickerTypesProps>(function Date
     </div>
   )
 })
-export type { DatePickerTypesProps } from './types'
+export type { DatePickerTypesProps } from '../types'
 
 export default Types

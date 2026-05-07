@@ -3,7 +3,7 @@ import { getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import SelectorMain from './SelectorMain'
 import PickerMain from './PickerMain'
-import type { DatePickerRangeMainProps } from './../common/types'
+import type { DatePickerRangeMainProps } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

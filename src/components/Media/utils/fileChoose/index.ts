@@ -1,8 +1,7 @@
 import getRemainCount from './../getRemainCount'
 import compressImage from './compressImage'
 
-import type { MediaFileChooseOptions } from './types'
-import type { MediaListItem } from '../../types'
+import type { MediaFileChooseOptions, MediaListItem } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -123,5 +122,5 @@ async function fileChoose({
   return uploaded ?? newList
 }
 
-export type { MediaFileChooseChangePayload, MediaFileChooseOptions } from './types'
+export type { MediaFileChooseChangePayload, MediaFileChooseOptions } from '../../types'
 export default fileChoose

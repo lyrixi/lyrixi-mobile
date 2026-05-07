@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { PreviewToolbarProps } from './types'
+import type { PreviewToolbarProps } from '../../types'
 
 const PreviewToolbar = ({
   onRotateAnticlockwise,

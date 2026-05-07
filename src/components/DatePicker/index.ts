@@ -1,6 +1,6 @@
 import { getTitle, getDefaultRanges, getRangeId } from './utils'
 
-export type * from './library/types'
+export type * from './types'
 
 import Combo from './Combo'
 import Modal from './Modal'
@@ -15,7 +15,7 @@ import RangeSelector from './RangeSelector'
 import WeekCombo from './WeekCombo'
 import WeekModal from './WeekModal'
 import WeekMain from './WeekMain'
-import Types from './Types'
+import Types from './PickerTypes'
 
 // eslint-disable-next-line
 export default {

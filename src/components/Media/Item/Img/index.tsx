@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 
-import type { MediaImgProps } from './types'
+import type { MediaImgProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -50,6 +50,6 @@ const Img = ({
     />
   )
 }
-export type { MediaImgProps } from './types'
+export type { MediaImgProps } from '../../types'
 
 export default Img

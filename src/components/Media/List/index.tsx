@@ -2,8 +2,7 @@ import React from 'react'
 import Item from './../Item'
 import isAllowClear from './../utils/isAllowClear'
 
-import type { MediaListComponentProps } from './types'
-import type { MediaListItem } from './../types'
+import type { MediaListComponentProps, MediaListItem } from '../types'
 
 // 照片视频预览
 const List = ({
@@ -68,6 +67,6 @@ const List = ({
     </>
   )
 }
-export type { MediaListComponentProps } from './types'
+export type { MediaListComponentProps } from '../types'
 
 export default List

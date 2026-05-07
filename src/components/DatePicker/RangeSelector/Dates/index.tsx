@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from 'react'
 import RangeCombo from './../../RangeCombo'
-import type { DatePickerRangeComboProps } from './../../common/types'
+import type { DatePickerRangeComboProps } from './../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

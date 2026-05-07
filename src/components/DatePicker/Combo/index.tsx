@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import getDateDefaultValue from './../utils/getDateDefaultValue'
 import Modal from './../Modal'
-import type { DatePickerComboProps, DatePickerModalRef } from '../common/types'
+import type { DatePickerComboProps, DatePickerModalRef } from '../types'
 
 // 内库使用-start
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
