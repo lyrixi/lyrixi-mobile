@@ -9,7 +9,7 @@ alwaysApply: true
 
 名词说明:
 
-- `ComponentName`: 组件名, 若有子组件且类型不能复用, 则加上子组件名称, 例如: `${ComponentName}${SubComponentName}`; 同一组件类型可复用, 则不需要加上子组件名称
+- `ComponentName`: 组件名, 若存在子组件, 则追加子组件名称, 例如: `${ComponentName}${SubComponentName}`
 
 ## props 规则
 
@@ -88,7 +88,7 @@ type ListPaginationComponents = {
 
 ## 工具方法入参
 
-工具方法入参类型统一使用 `Options` 结尾, 示例(`${FunctionName}Options`):
+工具方法入参类型统一使用 `Options` 结尾, 若透传已有类型的入参, 则不需要加`Options`, 例如: `QueryParamsState`, 则直接使用`QueryParamsState`, 若传入组装的数据类型, 则使用`Options`, 示例(`${FunctionName}Options`):
 
 ```ts
 type OpenWindowOptions = {
