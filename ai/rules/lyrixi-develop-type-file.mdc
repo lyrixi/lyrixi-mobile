@@ -14,6 +14,7 @@ alwaysApply: true
 
 # export 导出
 
-- 对外暴露的组件或工具类型，必须通过 `index.ts` 统一导出
+- 对外暴露的组件或工具类型，必须通过 `${Component}/index.ts` 统一导出, 若有子组件, 子组件的类型也通过父组件的`index.ts`导出
+- 最终在`src/index.ts`导出所有组件对外暴露的类型
 - 组件或工具内部使用、但未对外暴露的类型，可仅保留在本地 `types.ts`
 - 禁止外部直接引用内部 `types.ts`
