@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
 
-import type { OuroborosProps, OuroborosRef } from './types'
+import type { OuroborosProps, OuroborosRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

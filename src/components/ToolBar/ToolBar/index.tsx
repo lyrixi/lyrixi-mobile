@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 
-import type { ToolBarProps } from './types'
+import type { ToolBarProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -35,6 +35,6 @@ const ToolBar = forwardRef<HTMLDivElement, ToolBarProps>(function ToolBar(
       </div>
     )
 })
-export type { ToolBarProps } from './types'
+export type { ToolBarProps } from './../types'
 
 export default ToolBar

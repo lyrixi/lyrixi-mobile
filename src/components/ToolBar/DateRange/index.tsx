@@ -8,7 +8,7 @@ import type {
   DatePickerRangeChangeMeta
 } from './../../DatePicker'
 
-import type { ToolBarDateRangeBarProps } from './types'
+import type { ToolBarDateRangeBarProps } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -225,6 +225,6 @@ function DateRangeBar({
 // Component Name, for compact
 ;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName =
   'ToolBar.DateRange'
-export type { ToolBarDateRangeBarProps } from './types'
+export type { ToolBarDateRangeBarProps } from './../types'
 
 export default DateRangeBar

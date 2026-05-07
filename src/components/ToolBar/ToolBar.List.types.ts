@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
-import type { ToolBarDropdownProps } from './../Dropdown/types'
-import type { ListProps } from './../../List/List/types'
+import type { ToolBarDropdownProps } from './ToolBar.Dropdown.types'
+import type { ListProps } from './../List/types'
 
 export interface ListBarProps {
   value?: ListProps['value']

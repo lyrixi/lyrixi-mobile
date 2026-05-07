@@ -5,9 +5,9 @@ import getVisibleItems from './getVisibleItems'
 import List from './List'
 
 
-import type { ListProps, RawItem } from './../../List/List/types'
-import type { PageMainRef } from './../../Page/Main/types'
-import type { VirtualListProps, VirtualListRef } from './types'
+import type { ListProps, RawItem } from './../../List/types'
+import type { PageMainRef } from './../../Page/types'
+import type { VirtualListProps, VirtualListRef } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -214,6 +214,6 @@ const VirtualList = (
     </Page.Main>
   )
 }
-export type { VirtualListProps, VirtualListRef, VirtualOptions } from './types'
+export type { VirtualListProps, VirtualListRef, VirtualOptions } from './../types'
 
 export default forwardRef<VirtualListRef, VirtualListProps>(VirtualList)

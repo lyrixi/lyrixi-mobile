@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { ListProps, RawItem } from './../../List/List/types'
-import type { PageMainProps, PageMainRef } from './../../Page/Main/types'
+import type { ListProps, RawItem } from './../List/types'
+import type { PageMainProps, PageMainRef } from './../Page/types'
 
 export interface VirtualListVirtualData {
   type?: string

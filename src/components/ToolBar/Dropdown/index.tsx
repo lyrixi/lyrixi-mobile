@@ -10,7 +10,7 @@ import closeAllDropdown from './../utils/closeAllDropdown'
 import Combo, { type ToolBarComboRef } from './../components/Combo'
 
 
-import type { ToolBarDropdownProps, ToolBarDropdownRef } from './types'
+import type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -215,6 +215,6 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
 
 // Component Name, for compact
 ;(Dropdown as typeof Dropdown & { componentName?: string }).componentName = 'ToolBar.Dropdown'
-export type { ToolBarDropdownProps, ToolBarDropdownRef } from './types'
+export type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
 
 export default Dropdown

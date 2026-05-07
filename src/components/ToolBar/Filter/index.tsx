@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { ToolBarFilterProps, ToolBarFilterRef } from './types'
+import type { ToolBarFilterProps, ToolBarFilterRef } from './../types'
+import type { ButtonRef } from './../../Button/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import FilterModal from './../../Modal/FilterModal'
-import Button, { type ButtonRef } from './../../Button'
+import Button from './../../Button'
 import Icon from './../../Icon'
 // 内库使用-end
 
@@ -160,6 +161,6 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
 
 // Component Name, for compact
 ;(Filter as typeof Filter & { componentName?: string }).componentName = 'ToolBar.Filter'
-export type { ToolBarFilterProps, ToolBarFilterRef } from './types'
+export type { ToolBarFilterProps, ToolBarFilterRef } from './../types'
 
 export default Filter

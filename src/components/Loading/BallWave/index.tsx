@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
 
-import type { BallWaveProps, BallWaveRef } from './types'
+import type { BallWaveProps, BallWaveRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

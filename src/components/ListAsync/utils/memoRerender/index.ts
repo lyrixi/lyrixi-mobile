@@ -1,7 +1,7 @@
 import flattenList from './flattenList'
 import equalItems from './equalItems'
 
-import type { MemoRerenderListProps, MemoRerenderRawItem } from './types'
+import type { MemoRerenderListProps, MemoRerenderRawItem } from './../../types'
 
 // 暂时不使用, 会导致children里的Loading以及错误信息等不更新
 // Rerender if value or list changes

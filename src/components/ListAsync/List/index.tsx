@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import List from './List'
 
 
-import type { ListAsyncListMainProps, ListAsyncListMainRef } from './types'
+import type { ListAsyncListMainProps, ListAsyncListMainRef } from './../types'
 
 // 内库使用-start
 import Page from './../../Page'
@@ -101,6 +101,6 @@ const Main = forwardRef<ListAsyncListMainRef, ListAsyncListMainProps>(
     )
   }
 )
-export type { ListAsyncListMainProps, ListAsyncListMainRef } from './types'
+export type { ListAsyncListMainProps, ListAsyncListMainRef } from './../types'
 
 export default Main

@@ -2,10 +2,14 @@ import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } f
 import Main from './../Main'
 
 
-import type { ListPaginationProps, ListPaginationRef } from './../Main/types'
-import type { ModalPaginationProps, ModalPaginationRef } from './types'
-import type { ModalRef } from './../../Modal/Modal/types'
-import type { RawItem } from './../../List/List/types'
+import type {
+  ListPaginationProps,
+  ListPaginationRef,
+  ModalPaginationProps,
+  ModalPaginationRef
+} from './../types'
+import type { ModalRef } from './../../Modal/types'
+import type { RawItem } from './../../List/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -196,6 +200,6 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
     )
   }
 )
-export type { ModalPaginationProps, ModalPaginationRef } from './types'
+export type { ModalPaginationProps, ModalPaginationRef } from './../types'
 
 export default Modal

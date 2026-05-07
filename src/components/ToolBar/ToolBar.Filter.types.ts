@@ -1,7 +1,7 @@
 import type { CSSProperties, MouseEvent, ReactNode, RefObject } from 'react'
 
-import type { ButtonProps, ButtonRef } from './../../Button/types'
-import type { ModalProps } from './../../Modal/Modal/types'
+import type { ButtonProps, ButtonRef } from './../Button/types'
+import type { ModalProps } from './../Modal/types'
 
 export interface ToolBarFilterRef {
   element: HTMLDivElement | null

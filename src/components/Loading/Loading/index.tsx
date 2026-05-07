@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 import SpinFade from './../SpinFade'
 
-import type { LoadingProps, LoadingRef } from './types'
+import type { LoadingProps, LoadingRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

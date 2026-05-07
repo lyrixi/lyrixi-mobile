@@ -3,7 +3,7 @@ import React, { useRef, type ReactNode } from 'react'
 import Dropdown, { type ToolBarDropdownRef } from './../Dropdown'
 import List from './List'
 
-import type { ToolBarListProps } from './types'
+import type { ToolBarListProps } from './../types'
 
 // 列表下拉
 function ToolBarList({
@@ -100,6 +100,6 @@ function ToolBarList({
 
 // Component Name, for compact
 ;(ToolBarList as typeof ToolBarList & { componentName?: string }).componentName = 'ToolBar.List'
-export type { ToolBarListProps } from './types'
+export type { ToolBarListProps } from './../types'
 
 export default ToolBarList

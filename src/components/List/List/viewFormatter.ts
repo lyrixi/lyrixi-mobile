@@ -1,4 +1,4 @@
-import type { ListViewFormatterOptions, ViewItem } from './types'
+import type { ListViewFormatterOptions, ViewItem } from './../types'
 
 // 格式化列表数据为渲染数据, 用于渲染列表组件
 function viewFormatter(

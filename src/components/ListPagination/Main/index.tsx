@@ -3,8 +3,8 @@ import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react
 
 
 import type { ListAsyncRef, LoadResult } from './../../ListAsync/types'
-import type { ListPaginationProps, ListPaginationRef } from './types'
-import type { RawItem } from './../../List/List/types'
+import type { ListPaginationProps, ListPaginationRef } from './../types'
+import type { RawItem } from './../../List/types'
 
 // 内库使用-start
 import Storage from './../../../utils/Storage'
@@ -193,6 +193,6 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
     )
   }
 )
-export type { ListPaginationProps, ListPaginationRef } from './types'
+export type { ListPaginationProps, ListPaginationRef } from './../types'
 
 export default ListPagination

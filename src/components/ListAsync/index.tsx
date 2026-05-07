@@ -9,7 +9,7 @@ import VirtualList, { VirtualListRef, VirtualListProps } from './VirtualList'
 import RetryButton from './components/RetryButton'
 
 import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
-import type { ViewItem } from './../List/List/types'
+import type { ViewItem } from './../List/types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'

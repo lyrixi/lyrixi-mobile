@@ -1,6 +1,6 @@
 import constant from './constant'
 
-import type { VirtualListGetVisibleItemsOptions, VirtualListVirtualItem } from './types'
+import type { VirtualListGetVisibleItemsOptions, VirtualListVirtualItem } from './../types'
 
 // 计算可见区域元素
 function getVisibleItems({

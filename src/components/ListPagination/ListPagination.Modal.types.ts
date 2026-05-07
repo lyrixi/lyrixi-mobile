@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { ModalRef } from './../../Modal/Modal/types'
-import type { ListPaginationProps, ListPaginationRef } from './../Main/types'
+import type { ModalRef } from './../Modal/types'
+import type { ListPaginationProps, ListPaginationRef } from './ListPagination.Main.types'
 
 type RawItem = Record<string, unknown>
 

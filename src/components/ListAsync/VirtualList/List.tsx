@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react'
 
 
-import type { RawItem } from './../../List/List/types'
-import type { VirtualListProps } from './types'
+import type { RawItem } from './../../List/types'
+import type { VirtualListProps } from './../types'
 
 // 内库使用-start
 import List, { ListRef } from './../../List/List'

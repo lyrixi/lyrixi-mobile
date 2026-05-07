@@ -8,12 +8,12 @@ alwaysApply: true
 # 类型文件位置及命名规范
 
 - 类型文件统一命名为 `types.ts`
-- 一个组件只保留一个 `types.ts`, 与 `index.ts`同级,
+- 一个组件在根目录只保留一个聚合用的 `types.ts`，与 `index.ts` 同级；**体量较大**时，可在同目录增加若干分片文件，命名 `${组件名或工具名}.types.ts`（示例：`ActionSheet.Modal.types.ts`、`Map.MapLoader.types.ts`），由根目录 `types.ts` 统一 `export type * from './…'` 或具名再导出。
 
 示例:
 
-- `Bridge/index.ts` 的类型定义放在 `Bridge/types.ts`
-- `Bridge/DingTalk/index.ts` 的类型定义也放在 `Bridge/types.ts`
+- `Bridge/index.ts` 的类型定义放在 `Bridge/types.ts`（可拆为 `Bridge.xxx.types.ts` 后由 `types.ts` 聚合）
+- `Bridge/DingTalk/index.ts` 的类型定义也汇总进 `Bridge/types.ts`（或对应 `Bridge.DingTalk.types.ts` 分片）
 
 ---
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { ListBarProps } from './types'
+import type { ListBarProps } from './../types'
 
 // 内库使用-start
 import List from './../../List'
@@ -23,6 +23,6 @@ function ListBar({ value, list, onChange }: ListBarProps) {
     />
   )
 }
-export type { ListBarProps } from './types'
+export type { ListBarProps } from './../types'
 
 export default ListBar

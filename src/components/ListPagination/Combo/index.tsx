@@ -2,10 +2,9 @@ import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 
 
-import type { ComboPaginationProps, ComboPaginationRef } from './types'
+import type { ComboPaginationProps, ComboPaginationRef, ModalPaginationRef } from './../types'
 import type { InputSelectComboRef } from './../../Input/Select/types'
-import type { ModalPaginationRef } from './../Modal/types'
-import type { RawItem } from './../../List/List/types'
+import type { RawItem } from './../../List/types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -210,6 +209,6 @@ const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
     )
   }
 )
-export type { ComboPaginationProps, ComboPaginationRef } from './types'
+export type { ComboPaginationProps, ComboPaginationRef } from './../types'
 
 export default Combo

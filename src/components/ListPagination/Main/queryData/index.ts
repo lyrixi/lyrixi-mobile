@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { ListPaginationQueryDataOptions, ListPaginationQueryResult } from './types'
+import type { ListPaginationQueryDataOptions, ListPaginationQueryResult } from './../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

@@ -4,7 +4,7 @@ import HeaderItem from './../HeaderItem'
 import Item from './../Item'
 
 
-import type { ItemChangeArg, ListProps, ListRef, RawItem, ViewItem } from './types'
+import type { ItemChangeArg, ListProps, ListRef, RawItem, ViewItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -128,6 +128,6 @@ const List = (
     </div>
   )
 }
-export type { ListProps, ListRef } from './types'
+export type { ListProps, ListRef } from './../types'
 
 export default forwardRef<ListRef, ListProps>(List)

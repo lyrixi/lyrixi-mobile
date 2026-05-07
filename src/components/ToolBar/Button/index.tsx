@@ -1,8 +1,10 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
+import type { ButtonProps, ButtonRef } from './../../Button/types'
+
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Button, { type ButtonProps, type ButtonRef } from './../../Button'
+import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { ListAsyncMainLoadingProps } from './types'
+import type { ListAsyncMainLoadingProps } from './../types'
 
 // 内库使用-start
 import Skeleton from './../../Skeleton'

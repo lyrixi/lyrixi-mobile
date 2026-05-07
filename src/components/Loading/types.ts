@@ -1,10 +1,5 @@
-export interface LoadingShowProps {
-  portal?: HTMLElement | null
-  id?: string
-  maskClassName?: string
-  maskStyle?: Record<string, string>
-  className?: string
-  style?: Record<string, string>
-  content?: string
-  onOpen?: () => void
-}
+export type * from './Loading.Loading.types'
+export type * from './Loading.BallWave.types'
+export type * from './Loading.Ouroboros.types'
+export type * from './Loading.SpinFade.types'
+export type * from './Loading.show.types'

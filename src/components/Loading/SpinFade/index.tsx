@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
 
-import type { SpinFadeProps, SpinFadeRef } from './types'
+import type { SpinFadeProps, SpinFadeRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-import type { RawItem } from './../List/types'
+import type { RawItem } from './List.List.types'
 
 export interface ListItemProps {
   _raw?: RawItem

@@ -1,4 +1,4 @@
-import type { ListAsyncProps, ListAsyncRef, LoadResult } from './../../ListAsync/types'
+import type { ListAsyncProps, ListAsyncRef, LoadResult } from './../ListAsync/types'
 
 export interface ListPaginationRef extends ListAsyncRef {
   updateCache: (extraCache?: Record<string, unknown>) => void

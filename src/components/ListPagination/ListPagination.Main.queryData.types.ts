@@ -1,6 +1,6 @@
 import type { RefObject } from 'react'
 
-import type { LoadResult } from './../../../ListAsync'
+import type { LoadResult } from './../ListAsync/types'
 
 export type ListPaginationQueryRawItem = Record<string, unknown>
 
