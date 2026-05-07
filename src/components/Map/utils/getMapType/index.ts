@@ -1,4 +1,4 @@
-import type { MapEngineKind } from './types'
+import type { MapEngineKind } from '../../types'
 
 // Get map render type
 function getMapType(): MapEngineKind {

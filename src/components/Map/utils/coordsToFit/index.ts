@@ -1,4 +1,4 @@
-import type { CoordInput } from './types'
+import type { CoordInput } from '../../types'
 
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'

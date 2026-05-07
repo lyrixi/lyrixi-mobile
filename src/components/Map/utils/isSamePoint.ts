@@ -1,4 +1,4 @@
-import type { MapPointLike } from './isSamePoint/types'
+import type { MapPointLike } from '../types'
 
 // 比较两个点是否相同
 const isSamePoint = (point1: MapPointLike, point2: MapPointLike): boolean => {

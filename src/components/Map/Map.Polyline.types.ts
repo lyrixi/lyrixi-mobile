@@ -1,4 +1,4 @@
-import type { MapContainerAPI } from './../MapContainer/types'
+import type { MapContainerAPI } from './Map.MapContainer.types'
 
 export interface PolylineRef {
   redraw: () => void

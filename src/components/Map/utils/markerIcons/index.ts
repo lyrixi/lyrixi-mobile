@@ -1,4 +1,4 @@
-import type { MarkerIconsConfig } from './types'
+import type { MarkerIconsConfig } from '../../types'
 
 const markerIcons: MarkerIconsConfig = {
   centerMarkerIcon: {

@@ -1,4 +1,4 @@
-import type { DemoRandomMapPoint, GetPointsOptions } from './types'
+import type { DemoRandomMapPoint, GetPointsOptions } from '../types'
 
 // 生成随机点
 /*

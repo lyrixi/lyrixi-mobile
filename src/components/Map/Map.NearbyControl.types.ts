@@ -1,5 +1,5 @@
-import type { MapContainerAPI } from './../MapContainer/types'
-import getTabs from './utils/getTabs'
+import type { MapContainerAPI } from './Map.MapContainer.types'
+import getTabs from './components/NearbyControl/utils/getTabs'
 
 export interface MapValue {
   name?: string

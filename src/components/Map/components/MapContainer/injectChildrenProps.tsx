@@ -1,5 +1,5 @@
 import React from 'react'
-import type { MapContainerChildInjectProps } from './types'
+import type { MapContainerChildInjectProps } from '../../types'
 
 const injectChildrenProps = (children: React.ReactNode, props: MapContainerChildInjectProps): React.ReactNode => {
   return React.Children.map(children, (child) => {

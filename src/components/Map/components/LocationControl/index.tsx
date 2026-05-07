@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import type { MapContainerAPI } from './../MapContainer/types'
+import type { MapContainerAPI } from '../../types'
 
-import type { LocationControlProps, LocationControlRef } from './types'
+import type { LocationControlProps, LocationControlRef } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -90,5 +90,5 @@ const LocationControl = forwardRef<LocationControlRef, LocationControlProps>(
   )
 })
 
-export type { LocationControlProps, LocationControlRef } from './types'
+export type { LocationControlProps, LocationControlRef } from '../../types'
 export default LocationControl

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { MapContainerProps } from './../../Map/components/MapContainer/types'
+import type { MapContainerProps } from './../../Map/types'
 
 import type { LocationValue } from './../types'
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 import createMarkerIcon from './createMarkerIcon'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import filterCoords from './../../utils/filterCoords'
@@ -7,7 +7,7 @@ import isSamePoint from './../../utils/isSamePoint'
 import addMarkers from './addMarkers'
 import clearMarkers from './clearMarkers'
 
-import type { MapCoord, MarkersProps, MarkersHandle, MapPoint, CanvasMarkerLayer } from './types'
+import type { MapCoord, MarkersProps, MarkersHandle, MapPoint, CanvasMarkerLayer } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -142,5 +142,5 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
   }
 )
 
-export type { MarkersProps, MarkersHandle, MapPoint, MapCoord } from './types'
+export type { MarkersProps, MarkersHandle, MapPoint, MapCoord } from '../../types'
 export default Markers

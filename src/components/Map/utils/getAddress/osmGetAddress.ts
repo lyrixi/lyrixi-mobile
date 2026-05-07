@@ -1,4 +1,4 @@
-import type { AddressParams } from './types'
+import type { AddressParams } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

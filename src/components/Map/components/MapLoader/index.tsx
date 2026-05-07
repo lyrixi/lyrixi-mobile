@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } f
 import loadSource from './../../utils/loadSource'
 import canvasMarkers from './leaflet.canvas-markers'
 
-import type { LoadResult, MapLoaderProps, MapLoaderRef } from './types'
+import type { MapLoaderLoadResult as LoadResult, MapLoaderProps, MapLoaderRef } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

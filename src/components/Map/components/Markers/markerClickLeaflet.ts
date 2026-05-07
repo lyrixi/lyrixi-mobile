@@ -1,5 +1,5 @@
-import type { L } from './../../leaflet/types'
-import type { MapPoint } from './types'
+import type { L } from '../../types'
+import type { MapPoint } from '../../types'
 
 // 公共点击leaflet点
 function markerClickLeaflet({

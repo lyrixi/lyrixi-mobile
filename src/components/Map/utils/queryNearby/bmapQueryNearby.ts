@@ -1,6 +1,6 @@
 import coordsToFit from './../coordsToFit'
 
-import type { QueryNearbyParams, FitCoord } from './types'
+import type { QueryNearbyParams, FitCoord } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -102,5 +102,5 @@ function bmapQueryNearby({
   })
 }
 
-export type { QueryNearbyParams } from './types'
+export type { QueryNearbyParams } from '../../types'
 export default bmapQueryNearby

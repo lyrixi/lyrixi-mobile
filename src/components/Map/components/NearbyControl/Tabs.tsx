@@ -1,7 +1,7 @@
 import React from 'react'
 import getTabs from './utils/getTabs'
 
-import type { NearbyControlTabsProps } from './types'
+import type { NearbyControlTabsProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -37,5 +37,5 @@ function Tabs({ tab, onChange }: NearbyControlTabsProps) {
   )
 }
 
-export type { NearbyControlTabsProps } from './types'
+export type { NearbyControlTabsProps } from '../../types'
 export default Tabs

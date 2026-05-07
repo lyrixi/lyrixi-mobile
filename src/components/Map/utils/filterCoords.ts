@@ -1,4 +1,4 @@
-import type { MapCoord } from './filterCoords/types'
+import type { MapCoord } from '../types'
 
 // 过滤不合法的坐标数据
 function filterCoords(coords: unknown): MapCoord[] {

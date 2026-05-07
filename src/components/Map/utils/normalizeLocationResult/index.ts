@@ -1,4 +1,4 @@
-import type { NormalizeLocationInput } from './types'
+import type { NormalizeLocationInput } from '../../types'
 
 /** 将 Bridge 定位成功结构 { status, code, message, data } 与顶层经纬度合并，兼容旧代码读取 result.longitude */
 export default function normalizeLocationResult(r: NormalizeLocationInput): unknown {

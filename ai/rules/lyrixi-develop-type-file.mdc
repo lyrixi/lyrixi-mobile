@@ -22,3 +22,7 @@ alwaysApply: true
 - 对外暴露的组件或工具类型，必须通过 `${ComponentName}/types.ts` 统一导出, 示例: `Bridge/types.ts`
 
 - 所有公共类型最终统一通过 `src/index.ts` 导出, 它导出所有`${ComponentName}/types.ts`, 让业务可以直接通过 index 引入类型
+
+# import 导入
+
+- 组件内部导入类型, 一律从最外层的`types.ts`导入

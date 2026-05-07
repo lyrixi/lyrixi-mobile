@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Navigation from './Navigation'
 
-import type { CurrentProps } from './types'
+import type { CurrentProps } from '../../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -49,5 +49,5 @@ const Current = forwardRef<HTMLDivElement, CurrentProps>(({ value, readOnly, map
   )
 })
 
-export type { CurrentProps, MapValue } from './types'
+export type { CurrentProps, MapValue } from '../../../types'
 export default Current

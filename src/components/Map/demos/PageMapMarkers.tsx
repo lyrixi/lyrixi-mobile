@@ -1,12 +1,12 @@
 import React, { useRef } from 'react'
-import type { L } from './../leaflet/types'
+import type { L } from '../types'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
-import type { MapMarkersHandle } from '../pages/MapMarkers/types'
-import type { MarkersHandle } from '../components/Markers/types'
-import type { MapPoint } from '../utils/coordsToWgs84/types'
+import type { MapMarkersHandle } from '../types'
+import type { MarkersHandle } from '../types'
+import type { MapPoint } from '../types'
 import getPoints from './getPoints'
-import type { DemoMarkerClickPayload } from './types'
+import type { DemoMarkerClickPayload } from '../types'
 
 // 生成随机点
 const { MapLoader, MapMarkers, LocationControl, coordsToWgs84 } = Map

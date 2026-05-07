@@ -1,7 +1,7 @@
-import type { MapContainerAPI } from './../../MapContainer/types'
-import type { MapValue } from '../types'
+import type { MapContainerAPI } from './Map.MapContainer.types'
+import type { MapValue } from './Map.NearbyControl.types'
 
-export type { MapValue } from '../types'
+export type { MapValue } from './Map.NearbyControl.types'
 
 export interface CurrentProps {
   value?: MapValue

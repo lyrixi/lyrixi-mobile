@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { NearbyControlMainProps } from './types'
+import type { NearbyControlMainProps } from '../../types'
 
 // 内库使用-start
 import Result from './../../../Result'
@@ -52,5 +52,5 @@ function Main({ result, onChange }: NearbyControlMainProps) {
   )
 }
 
-export type { NearbyControlMainProps } from './types'
+export type { NearbyControlMainProps } from '../../types'
 export default Main

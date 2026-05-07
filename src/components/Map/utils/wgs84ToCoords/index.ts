@@ -1,4 +1,4 @@
-import type { MapPoint } from './types'
+import type { MapPoint } from '../../types'
 
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'
@@ -52,5 +52,5 @@ function wgs84ToCoords(
   return null
 }
 
-export type { MapPoint } from './types'
+export type { MapPoint } from '../../types'
 export default wgs84ToCoords

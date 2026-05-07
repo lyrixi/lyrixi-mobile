@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { NavigationProps } from './types'
+import type { NavigationProps } from '../../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -38,5 +38,5 @@ function Navigation({ type, longitude, latitude, name, address, map }: Navigatio
   )
 }
 
-export type { NavigationProps } from './types'
+export type { NavigationProps } from '../../../types'
 export default Navigation

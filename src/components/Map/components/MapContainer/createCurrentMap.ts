@@ -1,4 +1,4 @@
-import type { CreateCurrentMapOptions } from './types'
+import type { CreateCurrentMapOptions } from '../../types'
 
 function createCurrentMap(container: HTMLElement, { center }: CreateCurrentMapOptions = {}): unknown {
   let wgs84Center: { longitude: number | string; latitude: number | string } | null = null

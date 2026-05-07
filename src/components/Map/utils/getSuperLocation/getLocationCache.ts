@@ -1,7 +1,7 @@
 import CacheKeyPrefix from './CacheKeyPrefix'
 import setLocationCache from './setLocationCache'
 
-import type { LocCacheData, LocationStorageCache } from './types'
+import type { LocCacheData, LocationStorageCache } from '../../types'
 
 // 内库使用-start
 import Storage from './../../../../utils/Storage'

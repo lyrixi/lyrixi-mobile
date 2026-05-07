@@ -2,7 +2,7 @@ import CacheKey from './CacheKey'
 import setAddressCache from './setAddressCache'
 import clearAddressCache from './clearAddressCache'
 
-import type { AddressCachePayload } from './types'
+import type { AddressCachePayload } from '../../types'
 
 // 内库使用-start
 import Storage from './../../../../utils/Storage'

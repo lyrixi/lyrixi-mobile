@@ -1,5 +1,5 @@
 import type { CSSProperties, FC, ForwardRefExoticComponent, RefAttributes } from 'react'
-import type { MapContainerAPI } from './../MapContainer/types'
+import type { MapContainerAPI } from './Map.MapContainer.types'
 
 export interface SearchControlProps {
   style?: CSSProperties

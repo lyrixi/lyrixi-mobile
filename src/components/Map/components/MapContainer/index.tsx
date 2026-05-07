@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 
 import getMapType from './../../utils/getMapType'
 import createLeafletMap from './createLeafletMap'
@@ -12,7 +12,7 @@ import defaultGetLocation from './../../utils/getLocation'
 import defaultGetSuperLocation from './../../utils/getSuperLocation'
 import defaultQueryNearby from './../../utils/queryNearby'
 
-import type { MapPoint, GetAddressFn, GetLocationFn, QueryNearbyFn, MapContainerAPI, MapContainerProps } from './types'
+import type { MapPoint, GetAddressFn, GetLocationFn, QueryNearbyFn, MapContainerAPI, MapContainerProps } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -361,5 +361,5 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   }
 )
 
-export type { MapContainerAPI, MapContainerProps } from './types'
+export type { MapContainerAPI, MapContainerProps } from '../../types'
 export default MapContainer

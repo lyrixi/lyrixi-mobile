@@ -1,6 +1,6 @@
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { MapPoint, AddMarkersIconOptions, AddMarkersLayersOptions } from './types'
+import type { MapPoint, AddMarkersIconOptions, AddMarkersLayersOptions } from '../../types'
 import createMarkerIcon from './createMarkerIcon'
 import clearMarkers from './clearMarkers'
 import markerClickLeaflet from './markerClickLeaflet'
@@ -69,5 +69,5 @@ function addMarkers(
   }
 }
 
-export type { MapPoint } from './types'
+export type { MapPoint } from '../../types'
 export default addMarkers

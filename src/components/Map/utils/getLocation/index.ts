@@ -1,4 +1,4 @@
-import type { GetLocationOptions } from './types'
+import type { GetLocationOptions } from '../../types'
 
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
@@ -43,5 +43,5 @@ function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
   })
 }
 
-export type { GetLocationOptions } from './types'
+export type { GetLocationOptions } from '../../types'
 export default getLocation

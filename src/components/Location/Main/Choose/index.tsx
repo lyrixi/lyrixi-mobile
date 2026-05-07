@@ -1,9 +1,8 @@
 import React, { forwardRef } from 'react'
 
-import type { MapContainerAPI } from './../../../Map/components/MapContainer/types'
+import type { MapContainerAPI, MapChooseValue } from './../../../Map/types'
 
 import type { LocationChooseProps } from './types'
-import type { MapChooseValue } from './../../../Map/pages/MapChoose/types'
 
 // 内库使用-start
 import Map from './../../../Map'

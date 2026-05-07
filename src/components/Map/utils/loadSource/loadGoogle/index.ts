@@ -1,6 +1,6 @@
 import loadGoogleMap from './loadGoogleMap'
 import loadGoogleTileLayer from './loadGoogleTileLayer'
-import type { LoadStatus } from '../types'
+import type { LoadStatus } from '../../../types'
 
 async function loadGoogle(key: string | undefined): Promise<unknown> {
   const result: unknown = await loadGoogleMap(key)

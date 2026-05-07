@@ -1,7 +1,7 @@
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
 import createMarkerIcon from './../Markers/createMarkerIcon'
-import type { MapPoint, AddCenterMarkerOptions } from './types'
+import type { MapPoint, AddCenterMarkerOptions } from '../../types'
 
 function addCenterMarker(
   point: MapPoint,

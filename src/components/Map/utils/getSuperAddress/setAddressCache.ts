@@ -1,6 +1,6 @@
 import CacheKey from './CacheKey'
 
-import type { SetAddressCacheParams } from './types'
+import type { SetAddressCacheParams } from '../../types'
 
 // 内库使用-start
 import Storage from './../../../../utils/Storage'

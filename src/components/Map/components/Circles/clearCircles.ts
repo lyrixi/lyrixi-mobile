@@ -1,4 +1,4 @@
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 
 function clearCircles(layer: L.LayerGroup | null): void {
   if (!layer) return

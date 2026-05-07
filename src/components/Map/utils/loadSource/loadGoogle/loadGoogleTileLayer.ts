@@ -1,4 +1,4 @@
-import type { L } from '../../../leaflet/types'
+import type { L } from '../../../types'
 
 // 加载google地图leaflet插件
 function loadGoogleTileLayer() {

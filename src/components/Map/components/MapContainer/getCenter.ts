@@ -1,6 +1,6 @@
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 
-import type { CenterResult } from './types'
+import type { CenterResult } from '../../types'
 
 // 内库使用-start
 import GeoUtil from './../../../../utils/GeoUtil'

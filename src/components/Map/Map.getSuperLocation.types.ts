@@ -1,4 +1,5 @@
-export interface GetLocationOptions {
+/** getSuperLocation 内部调用的定位参数（与 utils/getLocation 的 GetLocationOptions 区分） */
+export interface GetSuperLocationCallOptions {
   browser?: boolean
   cacheExpiresContinue?: boolean
   cacheExpires?: number | null

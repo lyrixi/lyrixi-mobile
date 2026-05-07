@@ -6,7 +6,7 @@ import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
 
-import type { QueryNearbyResult, NearbyControlProps, NearbyControlRef, NearbyTabItem } from './types'
+import type { QueryNearbyResult, NearbyControlProps, NearbyControlRef, NearbyTabItem } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -128,5 +128,5 @@ const Nearby = forwardRef<NearbyControlRef | null, NearbyControlProps>(
   )
 })
 
-export type { NearbyControlProps, MapValue } from './types'
+export type { NearbyControlProps, MapValue } from '../../types'
 export default Nearby

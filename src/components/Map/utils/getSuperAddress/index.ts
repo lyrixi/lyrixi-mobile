@@ -1,7 +1,7 @@
 import setAddressCache from './setAddressCache'
 import getAddressCache from './getAddressCache'
 import defaultGetAddress from './../getAddress'
-import type { GetSuperAddressParams } from './types'
+import type { GetSuperAddressParams } from '../../types'
 
 
 /**
@@ -37,5 +37,5 @@ async function getSuperAddress({
   return result
 }
 
-export type { GetSuperAddressParams } from './types'
+export type { GetSuperAddressParams } from '../../types'
 export default getSuperAddress

@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { ZoomControlProps, ZoomControlRef } from './types'
+import type { ZoomControlProps, ZoomControlRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -52,5 +52,5 @@ const ZoomControl = forwardRef<ZoomControlRef, ZoomControlProps>(
   )
 })
 
-export type { ZoomControlProps, ZoomControlRef } from './types'
+export type { ZoomControlProps, ZoomControlRef } from '../../types'
 export default ZoomControl

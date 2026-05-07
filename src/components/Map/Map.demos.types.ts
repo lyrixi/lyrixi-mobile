@@ -1,5 +1,5 @@
-import type { L } from './../leaflet/types'
-import type { MapPoint } from '../utils/coordsToWgs84/types'
+import type { L } from './Map.leaflet.types'
+import type { MapPoint } from './Map.coordsToWgs84.types'
 
 /** Markers onClick 示例里用到的 payload（演示 setIcon） */
 export interface DemoMarkerClickPayload {

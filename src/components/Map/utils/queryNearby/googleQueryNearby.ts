@@ -1,6 +1,6 @@
 import coordsToFit from './../coordsToFit'
 
-import type { QueryNearbyParams, GooglePlacesApi, GooglePlaceLatLngCallable } from './types'
+import type { QueryNearbyParams, GooglePlacesApi, GooglePlaceLatLngCallable } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

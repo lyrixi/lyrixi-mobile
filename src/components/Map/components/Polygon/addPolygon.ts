@@ -1,6 +1,6 @@
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { PolyPoint, PolyStyleOptions } from './types'
+import type { PolyPoint, PolyStyleOptions } from '../../types'
 
 
 // Polygon
@@ -29,5 +29,5 @@ function addPolygon(
   polygon.addTo(layer)
 }
 
-export type { PolyPoint, PolyStyleOptions } from './types'
+export type { PolyPoint, PolyStyleOptions } from '../../types'
 export default addPolygon

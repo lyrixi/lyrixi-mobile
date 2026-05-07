@@ -3,7 +3,7 @@ import type {
   SearchPageProps,
   SearchQueryNearbyResult,
   MapSearchActiveListComponent
-} from './types'
+} from '../../types'
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
@@ -113,5 +113,5 @@ function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
   )
 }
 
-export type { SearchPageProps } from './types'
+export type { SearchPageProps } from '../../types'
 export default SearchPage

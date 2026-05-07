@@ -4,7 +4,7 @@ import clearLocationCache from './clearLocationCache'
 import defaultGetLocation from './../getLocation'
 import getBrowserLocation from './getBrowserLocation'
 
-import type { GetLocationOptions, LocResult, GetSuperLocationOptions } from './types'
+import type { GetSuperLocationCallOptions, LocResult, GetSuperLocationOptions } from '../../types'
 
 // 内库使用-start
 import Device from './../../../../utils/Device'
@@ -23,7 +23,7 @@ async function getLocation({
   cacheExpires,
   timeout,
   type
-}: GetLocationOptions): Promise<unknown> {
+}: GetSuperLocationCallOptions): Promise<unknown> {
   return new Promise((resolve) => {
     console.log('定位方式:', type)
 
@@ -132,5 +132,5 @@ async function getSuperLocation({
   })
 }
 
-export type { GetLocationOptions, GetSuperLocationOptions } from './types'
+export type { GetSuperLocationCallOptions, GetSuperLocationOptions } from '../../types'
 export default getSuperLocation

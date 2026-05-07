@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
-import type { MapContainerAPI } from '../components/MapContainer/types'
-import type { MapPoint } from '../utils/coordsToWgs84/types'
+import type { MapContainerAPI } from '../types'
+import type { MapPoint } from '../types'
 
 const { MapLoader, MapContainer, coordsToWgs84 } = Map
 

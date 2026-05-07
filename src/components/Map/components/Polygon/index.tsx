@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
-import type { L } from './../../leaflet/types'
+import type { L } from '../../types'
 import filterCoords from './../../utils/filterCoords'
 import addPolygon, { type PolyPoint, type PolyStyleOptions } from './addPolygon'
 import clearPolygon from './clearPolygon'
 
-import type { PolygonProps, PolygonRef } from './types'
+import type { PolygonProps, PolygonRef } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -94,5 +94,5 @@ const Polygon = forwardRef<PolygonRef | null, PolygonProps>(
   }
 )
 
-export type { PolygonProps, PolygonRef } from './types'
+export type { PolygonProps, PolygonRef } from '../../types'
 export default Polygon

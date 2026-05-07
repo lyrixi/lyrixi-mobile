@@ -1,4 +1,4 @@
-import type { LoadLeafletOptions } from './types'
+import type { LoadLeafletOptions } from '../../types'
 
 // 内库使用-start
 import AssetUtil from '../../../../utils/AssetUtil'

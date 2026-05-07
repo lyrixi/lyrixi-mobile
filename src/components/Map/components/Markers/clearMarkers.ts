@@ -1,5 +1,5 @@
-import type { L } from './../../leaflet/types'
-import type { CanvasMarkerLayer } from './types'
+import type { L } from '../../types'
+import type { CanvasMarkerLayer } from '../../types'
 
 // Clear all marker
 function clearMarkers(layers: {

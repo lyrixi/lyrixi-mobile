@@ -10,7 +10,7 @@ import LocationControl from './../../components/LocationControl'
 import NearbyControl from './../../components/NearbyControl'
 import Markers from './../../components/Markers'
 
-import type { MapChooseProps, MapChooseValue } from './types'
+import type { MapChooseProps, MapChooseValue } from '../../types'
 
 // 内库使用-start
 import Toast from './../../../Toast'
@@ -314,5 +314,5 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
   )
 })
 
-export type { MapChooseProps, MapChooseValue } from './types'
+export type { MapChooseProps, MapChooseValue } from '../../types'
 export default MapChoose

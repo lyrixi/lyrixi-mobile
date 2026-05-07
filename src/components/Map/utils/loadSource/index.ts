@@ -2,9 +2,9 @@ import loadLeaflet from './loadLeaflet'
 import loadGoogle from './loadGoogle'
 import loadBaidu from './loadBaidu'
 import loadOpenstreet from './loadOpenstreet'
-import type { MapLoaderSourceConfig, LoadSourceResult } from './types'
+import type { MapLoaderSourceConfig, LoadSourceResult } from '../../types'
 
-export type { MapLoaderSourceConfig } from './types'
+export type { MapLoaderSourceConfig } from '../../types'
 
 // Load leaflet map source
 async function loadSource(

@@ -18,8 +18,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import Map from './../../Map'
 import Input from './../../Input'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import type { MapContainerProps } from './../../Map/components/MapContainer/types'
-import type { MapPoint } from './../../Map/utils/coordsToWgs84/types'
+import type { MapContainerProps, MapPoint } from './../../Map/types'
 import type { InputTextRef } from './../../Input/Text/types'
 // 内库使用-end
 
