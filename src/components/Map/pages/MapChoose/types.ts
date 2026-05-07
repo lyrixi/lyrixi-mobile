@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { MapContainerProps } from './../../components/MapContainer'
-import type { MapPoint as WgsMapPoint } from './../../utils/coordsToWgs84'
+import type { MapContainerProps } from './../../components/MapContainer/types'
+import type { MapPoint as WgsMapPoint } from './../../utils/coordsToWgs84/types'
 
 export interface MapChooseValue {
   latitude?: number | string

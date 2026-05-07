@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { InputSelectComboProps } from './../Input/Select'
+import type { InputSelectComboProps } from './../Input/Select/types'
 
 type TransferComboField = Omit<InputSelectComboProps, 'onChange' | 'value'>
 

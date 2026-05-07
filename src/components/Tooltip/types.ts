@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode, RefObject } from 'react'
 
-import type { ComboRef } from './../Combo'
+import type { ComboRef } from './../Combo/types'
 
 export interface PopupRef {
   maskElement: HTMLDivElement | null

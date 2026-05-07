@@ -8,11 +8,12 @@ import type { SignatureModalProps, SignatureModalRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Page, { type PageRef } from './../../Page'
+import Page from './../../Page'
+import type { PageRef } from './../../Page/types'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Page } from 'lyrixi-mobile'
+import { DOMUtil, Page, type PageRef } from 'lyrixi-mobile'
 测试使用-end */
 
 // Modal

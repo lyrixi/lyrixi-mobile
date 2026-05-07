@@ -3,7 +3,7 @@ import { getTitle, getDefaultRanges, updateRangeValue } from './../utils'
 import formatValue from './../RangeMain/formatValue'
 import RangeMain from './../RangeMain'
 import type { DatePickerModalRef, DatePickerRangeModalProps } from './../common/types'
-import type { ModalRef } from './../../Modal/Modal'
+import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

@@ -3,7 +3,7 @@ import WeekMain from './../WeekMain'
 import DateMain from './DateMain'
 import type { DatePickerMainSectionProps } from './../common/types'
 import type { CalendarRef } from '../../Calendar/types'
-import type { PickerMainRef } from './../../Picker/Main'
+import type { PickerMainRef } from './../../Picker/Main/types'
 
 // 日期选择
 const Main = forwardRef<unknown, DatePickerMainSectionProps>(function DatePickerMain(

@@ -1,11 +1,10 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
-import type { ListProps } from './../../List/List'
-import type { ModalRef } from './../../../components/Modal/Modal'
-
 import type { SelectModalRootProps, SelectMainRef } from './../types'
 
 // 内库使用-start
+import type { ListProps } from './../../List/types'
+import type { ModalRef } from './../../Modal/types'
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../../components/Modal/NavBarModal'
 // 内库使用-end

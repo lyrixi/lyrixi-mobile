@@ -1,7 +1,7 @@
 import type { CSSProperties, MutableRefObject, ReactNode } from 'react'
-import type { MapContainerAPI, MapContainerProps } from './../../components/MapContainer'
-import type { MarkersHandle } from './../../components/Markers'
-import type { ZoomControlRef } from './../../components/ZoomControl'
+import type { MapContainerAPI, MapContainerProps } from './../../components/MapContainer/types'
+import type { MarkersHandle } from './../../components/Markers/types'
+import type { ZoomControlRef } from './../../components/ZoomControl/types'
 import type { PolylineRef } from './../../components/Polyline/types'
 import type { CirclesRef } from './../../components/Circles/types'
 

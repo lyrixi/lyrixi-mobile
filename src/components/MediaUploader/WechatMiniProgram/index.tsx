@@ -18,7 +18,7 @@ import Toast from './../../Toast'
 import Media from './../../Media'
 import Loading from './../../Loading'
 import ActionSheet from './../../ActionSheet'
-import type { ActionSheetItem } from './../../ActionSheet/Modal'
+import type { ActionSheetItem } from './../../ActionSheet/types'
 // 内库使用-end
 
 /* 测试使用-start

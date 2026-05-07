@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 
-import type { IconRef } from './../Icon'
+import type { IconRef } from './../Icon/types'
 
 import type { ButtonIconProps } from './types'
 

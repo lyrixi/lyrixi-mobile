@@ -7,8 +7,7 @@ import type { DatePickerMainSectionProps, PickerValueList } from './../../common
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
 import Picker from './../../../Picker'
-import type { PickerMainRef } from './../../../Picker/Main'
-import type { PickerColumnItem } from './../../../Picker/Main/Slots'
+import type { PickerColumnItem, PickerMainRef } from './../../../Picker/Main/types'
 // 内库使用-end
 
 /* 测试使用-start

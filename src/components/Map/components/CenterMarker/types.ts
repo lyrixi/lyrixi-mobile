@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import type { L } from './../../leaflet/types'
-import type { MapContainerAPI } from './../MapContainer'
+import type { MapContainerAPI } from './../MapContainer/types'
 
 export interface MapPoint {
   latitude?: number | string

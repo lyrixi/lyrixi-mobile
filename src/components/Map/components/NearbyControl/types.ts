@@ -1,4 +1,4 @@
-import type { MapContainerAPI } from './../MapContainer'
+import type { MapContainerAPI } from './../MapContainer/types'
 import getTabs from './utils/getTabs'
 
 export interface MapValue {

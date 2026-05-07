@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import type { MapContainerAPI } from './../MapContainer'
+import type { MapContainerAPI } from './../MapContainer/types'
 
 import type { LocationControlProps, LocationControlRef } from './types'
 

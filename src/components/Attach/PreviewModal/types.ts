@@ -1,4 +1,4 @@
-import type { ModalProps } from './../../Modal'
+import type { ModalProps } from './../../Modal/types'
 
 export interface AttachPreviewModalProps {
   fileName?: string

@@ -5,7 +5,8 @@ import type { MessageModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import Modal, { type ModalRef } from './../../Modal'
+import Modal from './../../Modal'
+import type { ModalRef } from './../../Modal/types'
 // 内库使用-end
 
 /* 测试使用-start

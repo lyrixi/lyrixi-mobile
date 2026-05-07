@@ -6,7 +6,8 @@ import type { ActionSheetItem, ActionSheetModalProps } from './../types'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import Modal, { ModalRef } from './../../Modal/Modal'
+import Modal from './../../Modal/Modal'
+import type { ModalRef } from './../../Modal/types'
 // 内库使用-end
 
 /* 测试使用-start

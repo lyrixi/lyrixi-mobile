@@ -4,9 +4,9 @@ import getDisplayValue from './getDisplayValue'
 import formatValue from './../RangeMain/formatValue'
 import RangeModal from './../RangeModal'
 import type { DatePickerModalRef, DatePickerRangeChangeMeta, DatePickerRangeComboProps } from './../common/types'
-import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/Select'
 
 // 内库使用-start
+import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/Select/types'
 import DOMUtil from '../../../utils/DOMUtil'
 import Input from './../../Input'
 // 内库使用-end

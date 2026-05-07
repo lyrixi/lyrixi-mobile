@@ -2,9 +2,9 @@ import React, { useRef } from 'react'
 import type { L } from './../leaflet/types'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
-import type { MapMarkersHandle } from '../pages/MapMarkers'
-import type { MarkersHandle } from '../components/Markers'
-import type { MapPoint } from '../utils/coordsToWgs84'
+import type { MapMarkersHandle } from '../pages/MapMarkers/types'
+import type { MarkersHandle } from '../components/Markers/types'
+import type { MapPoint } from '../utils/coordsToWgs84/types'
 import getPoints from './getPoints'
 import type { DemoMarkerClickPayload } from './types'
 

@@ -5,8 +5,8 @@ import { Page, Loading } from 'lyrixi-mobile'
 import MapLoader from '../components/MapLoader'
 import MapChoose from '../pages/MapChoose'
 import coordsToWgs84 from '../utils/coordsToWgs84'
-import type { MapContainerAPI } from '../components/MapContainer'
-import type { MapChooseProps, MapChooseValue } from '../pages/MapChoose'
+import type { MapContainerAPI } from '../components/MapContainer/types'
+import type { MapChooseProps, MapChooseValue } from '../pages/MapChoose/types'
 import type { DemoMarkerClickPayload } from './types'
 
 // 生成随机点

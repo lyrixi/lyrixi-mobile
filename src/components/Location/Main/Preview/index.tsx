@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import Choose from './../Choose'
-import type { MapContainerAPI } from './../../../Map/components/MapContainer'
+import type { MapContainerAPI } from './../../../Map/components/MapContainer/types'
 import type { LocationChooseProps } from './../Choose'
 
 type LocationPreviewProps = Omit<LocationChooseProps, 'readOnly'>

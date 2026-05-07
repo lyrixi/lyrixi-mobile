@@ -7,7 +7,7 @@ import type { TransferItem, TransferModalProps } from './../types'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../Modal/NavBarModal'
-import type { ModalRef } from './../../Modal/Modal'
+import type { ModalRef } from './../../Modal/types'
 // 内库使用-end
 
 /* 测试使用-start

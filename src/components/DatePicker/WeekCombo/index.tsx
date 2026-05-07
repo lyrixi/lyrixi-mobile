@@ -2,10 +2,10 @@ import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import getDateDefaultValue from './../utils/getDateDefaultValue'
 import WeekModal from './../WeekModal'
 import type { DatePickerComboProps, DatePickerModalProps, DatePickerModalRef } from './../common/types'
-import type { ComboRef as BasicComboWrapperRef } from './../../Combo'
-import type { InputSelectComboRef as InputComboSelectRef, InputSelectComboProps } from './../../Input/Select'
 
 // 内库使用-start
+import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
+import type { InputSelectComboRef as InputComboSelectRef, InputSelectComboProps } from './../../Input/Select/types'
 import DateUtil from './../../../utils/DateUtil'
 import Combo from './../../Combo'
 import Input from './../../Input'

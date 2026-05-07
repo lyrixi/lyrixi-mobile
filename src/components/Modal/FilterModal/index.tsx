@@ -1,5 +1,6 @@
 import React, { forwardRef, type MouseEvent } from 'react'
-import Modal, { type ModalRef } from './../Modal'
+import Modal from './../Modal'
+import type { ModalRef } from './../Modal/types'
 import NavBar from './../NavBarModal/NavBar'
 
 

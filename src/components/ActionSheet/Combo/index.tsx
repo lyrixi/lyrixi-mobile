@@ -1,11 +1,12 @@
 import React, { useEffect, forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
-import Combo, { ComboRef } from './../../Combo'
+import Combo from './../../Combo'
 
 import type { ActionSheetComboHandle, ActionSheetComboProps, ActionSheetItem } from './../types'
-import type { InputSelectComboRef } from './../../Input/Select/types'
 
 // 内库使用-start
+import type { ComboRef } from './../../Combo/types'
+import type { InputSelectComboRef } from './../../Input/Select/types'
 import Input from './../../Input'
 // 内库使用-end
 

@@ -1,4 +1,4 @@
-import type { MapContainerAPI } from './../../MapContainer'
+import type { MapContainerAPI } from './../../MapContainer/types'
 import type { MapValue } from '../types'
 
 export type { MapValue } from '../types'

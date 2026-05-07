@@ -2,9 +2,9 @@ import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import MultipleModal from './../MultipleModal'
 import getDisplayValue from './getDisplayValue'
 import type { DatePickerModalRef, DatePickerMultipleComboProps } from './../common/types'
-import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/Select'
 
 // 内库使用-start
+import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/Select/types'
 import Input from './../../Input'
 // 内库使用-end
 

@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { InputSelectComboProps } from './../Input/Select'
-import type { ListProps } from './../List/List/index'
+import type { InputSelectComboProps } from './../Input/Select/types'
+import type { ListProps } from './../List/types'
 
 /** Select 弹层与列表相关（与 Modal 内 Main 一致） */
 export interface SelectModalFieldProps {

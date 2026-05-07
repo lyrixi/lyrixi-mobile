@@ -8,7 +8,7 @@ import type { LocationMainProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
-import type { MapContainerAPI } from './../../Map/components/MapContainer'
+import type { MapContainerAPI } from './../../Map/components/MapContainer/types'
 // 内库使用-end
 
 const Main = forwardRef<unknown, LocationMainProps>(

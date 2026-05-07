@@ -9,7 +9,7 @@ import type { LocationValue } from './../types'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import NavBarModal from './../../Modal/NavBarModal'
-import type { ModalRef, ModalProps } from './../../Modal/Modal'
+import type { ModalRef, ModalProps } from './../../Modal/types'
 // 内库使用-end
 
 /* 测试使用-start

@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
-import Modal, { type ModalRef } from './../Modal'
+import Modal from './../Modal'
+import type { ModalRef } from './../Modal/types'
 import getAnimation from './getAnimation'
 import updatePositionByReferenceElement from './../../Tooltip/api/updatePositionByReferenceElement'
 

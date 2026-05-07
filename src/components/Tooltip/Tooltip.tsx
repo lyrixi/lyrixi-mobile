@@ -7,11 +7,11 @@ import type { PopupRef, TooltipProps } from './types'
 
 // 内库使用-start
 import Combo from './../Combo'
-import type { ComboRef } from './../Combo'
+import type { ComboRef } from './../Combo/types'
 // 内库使用-end
 
 /* 测试使用-start
-import { Combo } from 'lyrixi-mobile'
+import { Combo, type ComboRef } from 'lyrixi-mobile'
 测试使用-end */
 
 const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Tooltip(

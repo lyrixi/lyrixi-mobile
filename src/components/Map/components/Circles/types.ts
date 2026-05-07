@@ -1,4 +1,4 @@
-import type { MapContainerAPI } from './../MapContainer'
+import type { MapContainerAPI } from './../MapContainer/types'
 
 export interface CirclesRef {
   redraw: () => void

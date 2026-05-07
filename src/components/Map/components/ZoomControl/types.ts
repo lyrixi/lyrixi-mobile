@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import type { MapContainerAPI } from './../MapContainer'
+import type { MapContainerAPI } from './../MapContainer/types'
 
 export interface ZoomControlProps {
   style?: CSSProperties

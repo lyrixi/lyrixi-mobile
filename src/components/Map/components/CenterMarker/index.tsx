@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import type { L } from './../../leaflet/types'
-import type { MapContainerAPI } from './../MapContainer'
+import type { MapContainerAPI } from './../MapContainer/types'
 import defaultMarkerIcons from './../../utils/markerIcons'
 import createCenterMarkerIcon from './createCenterMarkerIcon'
 import addCenterMarker from './addCenterMarker'

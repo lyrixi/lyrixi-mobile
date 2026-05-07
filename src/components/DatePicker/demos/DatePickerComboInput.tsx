@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Card, DatePicker, Page } from 'lyrixi-mobile'
 
-import type { InputSelectComboProps } from '../../Input/Select'
+import type { InputSelectComboProps } from '../../Input/Select/types'
 
 export default () => {
   const [value, setValue] = useState<Date | null>(null)
