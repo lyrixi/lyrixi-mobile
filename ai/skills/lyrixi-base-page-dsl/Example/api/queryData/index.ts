@@ -1,6 +1,6 @@
-import { Device, Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
+import { Loading, LocaleUtil, ObjectUtil, Request } from 'lyrixi-mobile'
 
-import type { QueryResult, RawResult } from '../../types'
+import type { QueryDataResponse, QueryDataState } from '../../types'
 import toData from './toData'
 import toServerParams from './toServerParams'
 
@@ -11,7 +11,7 @@ const locale = LocaleUtil.locale
  */
 function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
   queryParams: Record<string, unknown> | null | undefined
-): Promise<QueryResult<T>> {
+): Promise<QueryDataState<T>> {
   return new Promise((resolve) => {
     // payload.id插槽值: 开始
     const id = `payload.id插槽值`
@@ -43,7 +43,7 @@ function queryData<T extends Record<string, unknown> = Record<string, unknown>>(
       .then((raw: unknown) => {
         Loading.hide()
         // 不要修改response, data变量名称(生成代码时删除此注释)
-        const response: RawResult<Record<string, unknown>> = raw as RawResult<
+        const response: QueryDataResponse<Record<string, unknown>> = raw as QueryDataResponse<
           Record<string, unknown>
         >
         // 不要重新定义SUCCESS_CODE, 直接使用['status服务器插槽字段']的值作为成功值, 例如:"code:result.status": "1:成功;其它:失败", 就生成: response.code === '1'(生成代码时删除此注释)

@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import type { StepsNodeProps } from './../types'
 
 // 内库使用-start
@@ -35,7 +34,12 @@ const Step = ({
   const IconNode = renderIcon()
 
   return (
-    <div className={DOMUtil.classNames('lyrixi-steps-item lyrixi-vertical lyrixi-center', status)}>
+    <div
+      className={DOMUtil.classNames(
+        'lyrixi-steps-item lyrixi-vertical lyrixi-center',
+        status ? `lyrixi-${status}` : ''
+      )}
+    >
       {/* Icon */}
       <div className="lyrixi-steps-item-icon">{IconNode}</div>
 
