@@ -19,9 +19,8 @@ alwaysApply: true
 
 # export 导出
 
-- 对外暴露的组件或工具类型，必须通过 `${ComponentName}/index.ts` 统一导出
-- 若存在子组件，子组件对外暴露的类型也必须通过父组件 `index.ts` 导出
-- 所有公共类型最终统一通过 `src/index.ts` 导出
-- 内部使用但未对外暴露的类型，可仅保留在本地 `types.ts`
-- 禁止外部直接引用内部 `types.ts`
-- 对外暴露的类型名称必须保持稳定，避免随意修改
+- 对外暴露的组件或工具类型，必须通过 `${ComponentName}/types.ts` 统一导出, 示例: `Bridge/types.ts`导出除了`Bridge/types.ts`自身的类型外, 还会导出子组件类型`Bridge/DingTalk/types.ts`
+
+- 所有公共类型最终统一通过 `src/index.ts` 导出, 它导出所有`${ComponentName}/types.ts`, 让业务可以直接通过 index 引入类型
+
+- 内部私有类型，可仅保留在本地 `types.ts`
