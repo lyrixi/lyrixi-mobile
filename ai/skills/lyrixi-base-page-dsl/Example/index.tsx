@@ -3,7 +3,7 @@ import React, { useEffect, useState, type FC } from 'react'
 import { Page, Result, Skeleton, Loading } from 'lyrixi-mobile'
 
 import { queryData } from './api'
-import { type QueryParamsState, type QueryDataResponse, type ResultState } from './types'
+import { type QueryParamsState, type ResultState } from './types'
 import Content from './Content'
 import SearchBar from './SearchBar'
 
@@ -14,9 +14,9 @@ const Example: FC = () => {
 
   async function loadData(): Promise<void> {
     Loading.show()
-    const newResult: QueryDataResponse<Record<string, unknown>> = await queryData<
+    const newResult: ResultState<Record<string, unknown>> = await queryData<
       Record<string, unknown>
-    >(queryParams ?? {})
+    >(queryParams)
     setResult(newResult)
     Loading.hide()
   }

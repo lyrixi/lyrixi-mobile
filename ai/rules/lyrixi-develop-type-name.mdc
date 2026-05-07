@@ -11,6 +11,10 @@ alwaysApply: true
 
 - `ComponentName`: 组件名, 若存在子组件, 则追加子组件名称, 例如: `${ComponentName}${SubComponentName}`
 
+- `StateName`: 定义的状态名
+
+- `FunctionName`: 定义的方法名
+
 ## props 规则
 
 - 组件 Props 必须以 `Props` 结尾, 示例(`${ComponentName}Props`):
@@ -64,7 +68,7 @@ type ResultState = {
 
 ## API / 接口返回
 
-接口返回类型统一以 `Response` 结尾, 示例(`${FunctionName}Response`):
+- 出参: 接口返回类型统一以 `Response` 结尾, 示例(`${FunctionName}Response`):
 
 ```ts
 type QueryDataResponse = {
@@ -73,6 +77,8 @@ type QueryDataResponse = {
   data: T | undefined
 }
 ```
+
+- 入参: 调用接口时将本地数据转成服务器数据, 以`ServerParams`结尾, 示例(`${FunctionName}ServerParams`):
 
 ## 组件集合 / Namespace 类型
 
