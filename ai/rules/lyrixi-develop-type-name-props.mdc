@@ -19,6 +19,14 @@ type ListPaginationProps = {
 }
 ```
 
+- 子组件的 Props 需要补充子组件名称, 示例(`${ComponentName}${SubComponentName}Props`):
+
+```ts
+type ListItemProps = {
+  disabled: boolean
+}
+```
+
 - props 属性命名优先使用通用业务语义命名, 若为集合类型则拆解为最小业务单元, 示例(`${componentName}语义名`):
 
 ```ts
