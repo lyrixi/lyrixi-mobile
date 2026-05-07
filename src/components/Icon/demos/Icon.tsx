@@ -1,8 +1,5 @@
 import React from 'react'
-import Page from 'lyrixi-mobile/components/Page'
-import Row from 'lyrixi-mobile/components/Row'
-import Icon from 'lyrixi-mobile/components/Icon'
-import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
+import { Page, Row, Icon, DOMUtil } from 'lyrixi-mobile'
 
 // 与 src/assets/global/icon.less 中的 .lyrixi-iconfont-* 一一对应
 const iconList = [
