@@ -8,19 +8,17 @@ alwaysApply: true
 # 类型文件位置及命名规范
 
 - 类型文件统一命名为 `types.ts`
-- 类型文件与组件或工具文件保持同级
+- 类型文件放置到组件或工具文件一级与`index.ts`同级,
 
 示例:
 
 - `Bridge/index.ts` 的类型定义放在 `Bridge/types.ts`
-- `Bridge/DingTalk/index.ts` 的类型定义放在 `Bridge/DingTalk/types.ts`
+- `Bridge/DingTalk/index.ts` 的类型定义也放在 `Bridge/types.ts`
 
 ---
 
 # export 导出
 
-- 对外暴露的组件或工具类型，必须通过 `${ComponentName}/types.ts` 统一导出, 示例: `Bridge/types.ts`导出除了`Bridge/types.ts`自身的类型外, 还会导出子组件类型`Bridge/DingTalk/types.ts`
+- 对外暴露的组件或工具类型，必须通过 `${ComponentName}/types.ts` 统一导出, 示例: `Bridge/types.ts`
 
 - 所有公共类型最终统一通过 `src/index.ts` 导出, 它导出所有`${ComponentName}/types.ts`, 让业务可以直接通过 index 引入类型
-
-- 内部私有类型，可仅保留在本地 `types.ts`
