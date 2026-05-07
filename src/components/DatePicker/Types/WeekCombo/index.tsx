@@ -1,7 +1,7 @@
 import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../WeekCombo'
 import Combo from './Combo'
-import type { InputSelectComboProps } from './../../../Input/Select/types'
+import type { InputSelectComboProps } from './../../../Input/types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'

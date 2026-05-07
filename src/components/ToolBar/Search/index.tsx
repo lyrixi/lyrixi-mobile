@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import InputSearch, { type SearchProps } from './../../Input/Search'
-import type { InputTextRef } from './../../Input/Text/types'
+import type { InputTextRef } from './../../Input/types'
 // 内库使用-end
 
 /* 测试使用-start

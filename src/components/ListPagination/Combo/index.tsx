@@ -3,7 +3,7 @@ import Modal from './../Modal'
 
 
 import type { ComboPaginationProps, ComboPaginationRef, ModalPaginationRef } from './../types'
-import type { InputSelectComboRef } from './../../Input/Select/types'
+import type { InputSelectComboRef } from './../../Input/types'
 import type { RawItem } from './../../List/types'
 
 // 内库使用-start

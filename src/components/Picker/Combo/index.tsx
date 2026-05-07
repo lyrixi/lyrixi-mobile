@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, type Ref } from 'react'
 import Modal from './../Modal'
-import type { InputSelectComboRef } from './../../Input/Select/types'
+import type { InputSelectComboRef } from './../../Input/types'
 import type { ModalRef } from './../../Modal/types'
 
 import type { PickerComboProps, PickerComboRef } from '../types'

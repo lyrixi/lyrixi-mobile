@@ -6,7 +6,7 @@ import type { ActionSheetComboHandle, ActionSheetComboProps, ActionSheetItem } f
 
 // 内库使用-start
 import type { ComboRef } from './../../Combo/types'
-import type { InputSelectComboRef } from './../../Input/Select/types'
+import type { InputSelectComboRef } from './../../Input/types'
 import Input from './../../Input'
 // 内库使用-end
 

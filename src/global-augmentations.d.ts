@@ -1,5 +1,5 @@
 /** 运行时代码挂载到 window 的扩展（Locale 等） */
-import type { LeafletWithPlugins as LeafletWindowL } from './components/Map/leaflet/types'
+import type { LeafletWithPlugins as LeafletWindowL } from './components/Map/Map.leaflet.types'
 
 export {}
 

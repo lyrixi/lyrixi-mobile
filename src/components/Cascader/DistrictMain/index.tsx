@@ -13,7 +13,7 @@ import DistrictMainLoading from './Loading'
 import type { CascaderNode, LoadDataResult } from './../types'
 
 import type { DistrictResultState } from './api/types'
-import type { DistrictItem } from './utils/formatDistrictValue/types'
+import type { DistrictItem } from './../types'
 import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from './types'
 
 // 内库使用-start

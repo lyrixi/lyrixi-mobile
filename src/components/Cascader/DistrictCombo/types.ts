@@ -1,5 +1,5 @@
 import type { DistrictModalProps } from './../DistrictModal/types'
-import type { InputSelectComboProps, InputSelectComboRef } from './../../Input/Select/types'
+import type { InputSelectComboProps, InputSelectComboRef } from './../../Input/types'
 
 export type DistrictComboRef = InputSelectComboRef & {
   open: () => void

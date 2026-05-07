@@ -2,7 +2,7 @@
  * Leaflet 与 CDN 注入的 `window.L` 对齐的最小类型（不依赖 npm `leaflet` / `@types/leaflet`）。
  * 仅覆盖本库 Map 相关实现用到的 API；完整定义见 https://leafletjs.com/reference.html
  *
- * 与业务子组件类型解耦，单独置于 `Map/leaflet/types.ts`。
+ * 与业务子组件类型解耦，分片为 `Map.leaflet.types.ts`（由 `Map/types.ts` 聚合导出）。
  */
 
 export namespace L {

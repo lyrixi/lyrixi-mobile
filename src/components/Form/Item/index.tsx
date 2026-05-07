@@ -2,8 +2,7 @@ import React, { forwardRef } from 'react'
 import { Field } from 'rc-field-form'
 import type { Meta } from 'rc-field-form/lib/interface'
 
-import type { FormItemProps } from './types'
-import type { FormItemRef } from './../components/Item/types'
+import type { FormItemProps, FormItemRef } from '../types'
 
 import Item from './../components/Item'
 import Label from './../components/ItemLabel'

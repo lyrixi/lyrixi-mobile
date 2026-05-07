@@ -1,4 +1,4 @@
-import type { DistrictItem } from './types'
+import type { DistrictItem } from '../../../types'
 
 // 判断value中是否有某一项为末级，返回该项的索引（0开始），没有则返回-1
 function findDistrictLeafIndex(value: DistrictItem | DistrictItem[], maxType: string): number {

@@ -1,6 +1,6 @@
 /** 与 `Types/` 子组件目录区分，避免在大小写不敏感文件系统上与 `types.ts` 路径冲突。 */
 import type { CSSProperties, ReactNode, RefObject, ReactElement } from 'react'
-import type { InputSelectComboProps } from './../../Input/Select/types'
+import type { InputSelectComboProps } from './../../Input/types'
 import type { ModalRef } from './../../Modal/types'
 
 export type DatePickerPickerType = 'year' | 'quarter' | 'month' | 'date' | 'time' | 'datetime' | 'week'

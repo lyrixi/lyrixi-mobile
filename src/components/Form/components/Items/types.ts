@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 
 import type { FormItemsProps } from './Form/types'
-import type { EllipsisConfig } from '../ItemsContext/types'
+import type { EllipsisConfig } from '../../types'
 
 export interface ItemsProps extends FormItemsProps {
   virtual?: boolean

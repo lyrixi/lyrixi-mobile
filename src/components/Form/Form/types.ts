@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type { FormInstance, FormProps as RcFormProps } from 'rc-field-form'
 import type { Store, ValidateMessages } from 'rc-field-form/lib/interface'
 
-import type { EllipsisConfig } from '../components/ItemsContext/types'
+import type { EllipsisConfig } from '../Form.ItemsContext.types'
 
 export interface FormComponentProps {
   layout?: string

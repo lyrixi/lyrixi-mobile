@@ -1,4 +1,4 @@
-import type { InputSelectComboProps, InputSelectComboRef } from './../Input/Select/types'
+import type { InputSelectComboProps, InputSelectComboRef } from './../Input/types'
 import type { ModalPaginationProps, ModalPaginationRef } from './ListPagination.Modal.types'
 
 type RawItem = Record<string, unknown>

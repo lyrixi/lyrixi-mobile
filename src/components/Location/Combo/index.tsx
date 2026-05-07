@@ -19,7 +19,7 @@ import Map from './../../Map'
 import Input from './../../Input'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import type { MapContainerProps, MapPoint } from './../../Map/types'
-import type { InputTextRef } from './../../Input/Text/types'
+import type { InputTextRef } from './../../Input/types'
 // 内库使用-end
 
 /* 测试使用-start

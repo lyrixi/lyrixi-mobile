@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 import type { FormItemsRef } from './Form/types'
-import type { EllipsisConfig } from './../ItemsContext/types'
+import type { EllipsisConfig } from '../../types'
 import type { ItemsProps } from './types'
 
 import CommonForm from './Form'

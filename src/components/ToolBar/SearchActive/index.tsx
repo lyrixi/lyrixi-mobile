@@ -8,7 +8,7 @@ import type { ToolBarSearchActiveProps } from './../types'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import type { InputTextRef } from './../../Input/Text/types'
+import type { InputTextRef } from './../../Input/types'
 // 内库使用-end
 
 /* 测试使用-start

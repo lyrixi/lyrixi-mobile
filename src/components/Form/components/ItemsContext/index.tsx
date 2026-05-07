@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import type { ItemsContextType } from './types'
+import type { ItemsContextType } from '../../types'
 
 const ItemsContext = createContext<ItemsContextType>({
   layout: 'horizontal',
@@ -9,6 +9,6 @@ const ItemsContext = createContext<ItemsContextType>({
   mainSpan: 20,
   mainEllipsis: null
 })
-export type { EllipsisConfig, ItemsContextType, VirtualContext } from './types'
+export type { EllipsisConfig, ItemsContextType, VirtualContext } from '../../types'
 
 export default ItemsContext

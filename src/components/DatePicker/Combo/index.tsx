@@ -5,7 +5,7 @@ import type { DatePickerComboProps, DatePickerModalRef } from '../common/types'
 
 // 内库使用-start
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
-import type { InputSelectComboRef as InputComboSelectRef } from './../../Input/Select/types'
+import type { InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
 import DateUtil from './../../../utils/DateUtil'
 
 import Combo from './../../Combo'

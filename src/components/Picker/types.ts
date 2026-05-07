@@ -1,4 +1,4 @@
-import type { InputSelectComboProps, InputSelectComboRef } from '../Input/Select/types'
+import type { InputSelectComboProps, InputSelectComboRef } from '../Input/types'
 import type { ModalRef } from '../Modal/types'
 import type { PickerModalProps } from './Modal'
 

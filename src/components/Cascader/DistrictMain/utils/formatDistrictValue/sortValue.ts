@@ -1,4 +1,4 @@
-import type { DistrictItem } from './types'
+import type { DistrictItem } from '../../../types'
 
 /**
  * 按照行政区划类型顺序排序

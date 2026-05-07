@@ -20,3 +20,5 @@ export type LoadDataResult = {
 }
 
 export type LoadDataFn = (tabs: CascaderNode[], ctx: { list: CascaderNode[] }) => Promise<LoadDataResult>
+
+export type { DistrictItem } from './Cascader.DistrictMain.formatDistrictValue.types'
