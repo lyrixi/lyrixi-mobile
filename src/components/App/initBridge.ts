@@ -1,5 +1,5 @@
 
-import type { BridgeResultPayload, InitBridgeConfig, InitBridgeResult } from './types'
+import type { AppBridgeResultPayload, AppInitBridgeConfig, AppInitBridgeResult } from './types'
 
 // 内库使用-start
 import Bridge from './../../utils/Bridge'
@@ -21,7 +21,7 @@ function initBridge({
   formatHeaders,
   formatPayload,
   formatResponse
-}: InitBridgeConfig = {}): Promise<InitBridgeResult> {
+}: AppInitBridgeConfig = {}): Promise<AppInitBridgeResult> {
   return new Promise((resolve) => {
     // 先调用 Bridge.load
     // eslint-disable-next-line
@@ -37,14 +37,14 @@ function initBridge({
               formatHeaders,
               formatPayload,
               formatResponse,
-              onSuccess: (result: BridgeResultPayload) => {
+              onSuccess: (result: AppBridgeResultPayload) => {
                 // 鉴权成功
                 resolve({
                   status: 'success',
                   message: result?.message
                 })
               },
-              onError: (error: BridgeResultPayload) => {
+              onError: (error: AppBridgeResultPayload) => {
                 // 鉴权失败
                 resolve({
                   status: 'error',
@@ -55,7 +55,7 @@ function initBridge({
             undefined
           )
         },
-        onError: (error: BridgeResultPayload) => {
+        onError: (error: AppBridgeResultPayload) => {
           // Bridge.load 失败
           resolve({
             status: 'error',
@@ -68,5 +68,5 @@ function initBridge({
   })
 }
 
-export type { InitBridgeConfig, InitBridgeResult } from './types'
+export type { AppInitBridgeConfig, AppInitBridgeResult } from './types'
 export default initBridge

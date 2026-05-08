@@ -1,8 +1,8 @@
 import ObjectUtil from './../../../utils/ObjectUtil'
-import type { SpaceDatesResult } from './../types'
+import type { ChatSpaceDatesResult } from './../types'
 
 // 在现有时间集合中，增加超过timeSpace的时间
-function getSpaceDates(date: Date, dates: Date[], timeSpace: number): SpaceDatesResult {
+function getSpaceDates(date: Date, dates: Date[], timeSpace: number): ChatSpaceDatesResult {
   if (date instanceof Date === false) {
     return {
       isOverTime: false,

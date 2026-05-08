@@ -1,8 +1,8 @@
 import loadScript from './loadScript'
-import type { LoadRemoteJsOptions } from './types'
+import type { AssetUtilLoadRemoteJsOptions } from '../types'
 
 // 动态加载script的方法
-function loadRemoteJs(src: string, opts?: LoadRemoteJsOptions) {
+function loadRemoteJs(src: string, opts?: AssetUtilLoadRemoteJsOptions) {
   const {
     async,
     charset,

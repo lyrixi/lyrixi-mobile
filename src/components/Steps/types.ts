@@ -1,41 +1,6 @@
-import type { CSSProperties, ReactNode } from 'react'
-
-export interface StepsListItem {
-  id?: string
-  icon?: ReactNode
-  status?: string
-  title?: ReactNode
-  description?: ReactNode
-}
-
-export interface StepsValue {
-  index?: number
-  id?: string
-  status?: string
-  activeIndex?: number
-  icon?: ReactNode
-}
-
-export interface StepsProps {
-  value?: StepsValue
-  list?: StepsListItem[]
-  style?: CSSProperties
-  className?: string
-  iconSize?: number
-  align?: string
-  direction?: string
-}
-
-export interface StepsRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface StepsNodeProps {
-  iconChildren?: ReactNode
-  iconRender?: (params: { children: ReactNode; className: string; status?: string }) => ReactNode
-  status?: string
-  rail?: boolean
-  title?: ReactNode
-  description?: ReactNode
-}
+/**
+ * Steps 类型聚合：分片为 Steps.*.types.ts（见 ai/rules/lyrixi-develop-type-file.mdc）
+ */
+export type * from './Steps.core.types'
+export type * from './Steps.Steps.types'
+export type * from './Steps.Node.types'

@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import type { DatePickerWeekMainProps } from './../types'
 
-import type { CalendarProps, CalendarRef, CalendarValue, WeekStart } from './../../Calendar/types'
+import type { CalendarProps, CalendarRef, CalendarValue, CalendarWeekStart } from './../../Calendar/types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -64,7 +64,7 @@ const WeekMain = forwardRef<CalendarRef, DatePickerWeekMainProps>(function WeekM
       min={min ?? undefined}
       max={max ?? undefined}
       draggable={['horizontal']}
-      weekStart={weekStart as WeekStart}
+      weekStart={weekStart as CalendarWeekStart}
       type="week"
       selectionMode="range"
       allowClear={allowClear}

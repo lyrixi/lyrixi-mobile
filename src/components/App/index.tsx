@@ -151,5 +151,5 @@ function App({
   return <>{children}</>
 }
 
-export type { AppLoadResult, AppProps, InitBridgeConfig, MapConfig, ThemeConfig } from './types'
+export type { AppInitBridgeConfig, AppLoadResult, AppMapConfig, AppProps, AppThemeConfig } from './types'
 export default App

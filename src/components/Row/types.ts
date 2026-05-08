@@ -1,24 +1,5 @@
-import type { CSSProperties, ReactNode } from 'react'
-
-export interface RowProps {
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
-
-export interface RowRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
-export interface RowColProps {
-  span?: number | string
-  style?: CSSProperties
-  className?: string
-  children?: ReactNode
-}
-
-export interface RowColRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
+/**
+ * Row 类型聚合：分片为 Row.*.types.ts（见 ai/rules/lyrixi-develop-type-file.mdc）
+ */
+export type * from './Row.Row.types'
+export type * from './Row.Col.types'
