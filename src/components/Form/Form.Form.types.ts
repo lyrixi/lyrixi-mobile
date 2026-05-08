@@ -4,7 +4,7 @@ import type { Store, ValidateMessages } from 'rc-field-form/lib/interface'
 
 import type { EllipsisConfig } from './Form.ItemsContext.types'
 
-export interface FormComponentProps {
+export interface FormProps {
   layout?: string
   labelSpan?: number
   labelEllipsis?: EllipsisConfig | null

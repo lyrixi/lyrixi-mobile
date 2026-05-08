@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { ListBarProps } from './../types'
+import type { ToolBarListBarProps } from './../types'
 
 // 内库使用-start
 import List from './../../List'
@@ -11,7 +11,7 @@ import List from './../../List'
 import { List } from 'lyrixi-mobile'
 测试使用-end */
 
-function ListBar({ value, list, onChange }: ListBarProps) {
+function ListBar({ value, list, onChange }: ToolBarListBarProps) {
   return (
     <List
       value={value}
@@ -23,6 +23,6 @@ function ListBar({ value, list, onChange }: ListBarProps) {
     />
   )
 }
-export type { ListBarProps } from './../types'
+export type { ToolBarListBarProps } from './../types'
 
 export default ListBar

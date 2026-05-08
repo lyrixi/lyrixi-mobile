@@ -7,7 +7,7 @@ import List from './List'
 
 import type { ListProps, RawItem } from './../../List/types'
 import type { PageMainRef } from './../../Page/types'
-import type { VirtualListProps, VirtualListRef } from './../types'
+import type { ListAsyncVirtualListProps, ListAsyncVirtualListRef } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -51,8 +51,8 @@ const VirtualList = (
     onScrollEnd,
     onTopRefresh,
     onBottomRefresh
-  }: VirtualListProps,
-  ref: React.Ref<VirtualListRef>
+  }: ListAsyncVirtualListProps,
+  ref: React.Ref<ListAsyncVirtualListRef>
 ) => {
   const rootRef = useRef<PageMainRef | null>(null)
 
@@ -214,6 +214,6 @@ const VirtualList = (
     </Page.Main>
   )
 }
-export type { VirtualListProps, VirtualListRef, VirtualOptions } from './../types'
+export type { ListAsyncVirtualListProps, ListAsyncVirtualListRef, ListAsyncVirtualOptions } from './../types'
 
-export default forwardRef<VirtualListRef, VirtualListProps>(VirtualList)
+export default forwardRef<ListAsyncVirtualListRef, ListAsyncVirtualListProps>(VirtualList)

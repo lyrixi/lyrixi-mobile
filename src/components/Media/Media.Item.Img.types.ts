@@ -1,4 +1,4 @@
-export interface MediaImgProps {
+export interface MediaItemImgProps {
   fileUrl?: string
   reloadKey?: unknown
 }

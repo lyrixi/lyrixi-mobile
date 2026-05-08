@@ -1,12 +1,12 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
 
-import type { SpinFadeProps, SpinFadeRef } from './../types'
+import type { LoadingSpinFadeProps, LoadingSpinFadeRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const SpinFade = forwardRef<SpinFadeRef, SpinFadeProps>(
+const SpinFade = forwardRef<LoadingSpinFadeRef, LoadingSpinFadeProps>(
   ({ color, size, style, className }, ref) => {
     const rootRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {

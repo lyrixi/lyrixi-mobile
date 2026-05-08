@@ -1,12 +1,12 @@
 import React from 'react'
 
-import type { MediaDeleteProps } from '../../types'
+import type { MediaItemDeleteProps } from '../../types'
 
 // 照片视频预览
 const Delete = ({
   // Events
   onClick
-}: MediaDeleteProps) => {
+}: MediaItemDeleteProps) => {
   return (
     <div
       // Style
@@ -22,6 +22,6 @@ const Delete = ({
     </div>
   )
 }
-export type { MediaDeleteProps } from '../../types'
+export type { MediaItemDeleteProps } from '../../types'
 
 export default Delete

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { InfiniteScrollProps } from './../types'
+import type { ListInfiniteScrollProps } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -19,7 +19,7 @@ const InfiniteScroll = ({
 
   // Elements
   content
-}: InfiniteScrollProps) => {
+}: ListInfiniteScrollProps) => {
   function renderStatus() {
     if (!status || typeof status !== 'string') return null
 

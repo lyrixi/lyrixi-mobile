@@ -1,6 +1,6 @@
 import constant from './constant'
 
-import type { VirtualListGetVisibleItemsOptions, VirtualListVirtualItem } from './../types'
+import type { ListAsyncVirtualListGetVisibleItemsOptions, ListAsyncVirtualListVirtualItem } from './../types'
 
 // 计算可见区域元素
 function getVisibleItems({
@@ -9,7 +9,7 @@ function getVisibleItems({
   itemHeights,
   scrollTop,
   containerHeight
-}: VirtualListGetVisibleItemsOptions): VirtualListVirtualItem[] {
+}: ListAsyncVirtualListGetVisibleItemsOptions): ListAsyncVirtualListVirtualItem[] {
   if (!Array.isArray(items) || !items.length) return []
   const scrollTopValue = scrollTop ?? 0
   // 计算每一项的 top 值和高度

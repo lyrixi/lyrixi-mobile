@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'reac
 
 import ItemsContext from './../ItemsContext'
 
-import type { FormLabelProps } from '../../types'
+import type { FormItemLabelProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -17,7 +17,7 @@ import Text from '../../../Text'
 import { DOMUtil, Toast, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormLabel = forwardRef<ColRef, FormLabelProps>(
+const FormLabel = forwardRef<ColRef, FormItemLabelProps>(
   (
     {
       // Status
@@ -86,6 +86,6 @@ const FormLabel = forwardRef<ColRef, FormLabelProps>(
     )
   }
 )
-export type { FormLabelProps } from '../../types'
+export type { FormItemLabelProps } from '../../types'
 
 export default FormLabel

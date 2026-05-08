@@ -5,8 +5,8 @@ import Main from './../Main'
 import type {
   ListPaginationProps,
   ListPaginationRef,
-  ModalPaginationProps,
-  ModalPaginationRef
+  ListPaginationModalProps,
+  ListPaginationModalRef
 } from './../types'
 import type { ModalRef } from './../../Modal/types'
 import type { RawItem } from './../../List/types'
@@ -24,7 +24,7 @@ const NavBarModal = Modal.NavBarModal
 type ItemChangeArg = RawItem & { checked?: boolean }
 
 // Modal
-const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
+const Modal = forwardRef<ListPaginationModalRef, ListPaginationModalProps>(
   (
     {
       // Value & Display Value
@@ -101,7 +101,7 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
       return {
         ...(modalRef.current as ModalRef),
         ...(mainRef.current as ListPaginationRef)
-      } as ModalPaginationRef
+      } as ListPaginationModalRef
     })
 
     async function handleOk() {
@@ -200,6 +200,6 @@ const Modal = forwardRef<ModalPaginationRef, ModalPaginationProps>(
     )
   }
 )
-export type { ModalPaginationProps, ModalPaginationRef } from './../types'
+export type { ListPaginationModalProps, ListPaginationModalRef } from './../types'
 
 export default Modal

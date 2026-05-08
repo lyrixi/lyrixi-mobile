@@ -3,7 +3,7 @@ import _uploadItem from './uploadItem'
 
 
 import type { AttachListItem, AttachNativeFilePayload, AttachRef } from './../../Attach/types'
-import type { AttachUploaderItem, BrowserProps } from './../types'
+import type { AttachUploaderBrowserProps, AttachUploaderItem } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -19,7 +19,7 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-const Browser = forwardRef<AttachRef, BrowserProps>(function Browser(
+const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Browser(
   {
     list = [],
     maxCount = 5,

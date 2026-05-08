@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import type { ToolBarDropdownProps } from './ToolBar.Dropdown.types'
 import type { ListProps } from './../List/types'
 
-export interface ListBarProps {
+export interface ToolBarListBarProps {
   value?: ListProps['value']
   list: NonNullable<ListProps['list']>
   onChange?: ListProps['onChange']

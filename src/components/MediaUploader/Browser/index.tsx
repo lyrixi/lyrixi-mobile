@@ -11,7 +11,7 @@ import Media from './../../Media'
 import { LocaleUtil, Toast, Media } from 'lyrixi-mobile'
 测试使用-end */
 
-import { CommonUploaderProps, MediaHandle, MediaItem } from '../types'
+import { MediaHandle, MediaItem, MediaUploaderCommonProps } from '../types'
 import type {
   FileImageCompressOptions,
   MediaListItem,
@@ -72,7 +72,7 @@ function Browser(
     onBeforeChoose,
     onChange,
     onPreview
-  }: CommonUploaderProps,
+  }: MediaUploaderCommonProps,
   ref: React.ForwardedRef<MediaHandle>
 ) {
   const mediaRef = useRef<MediaHandle | null>(null)

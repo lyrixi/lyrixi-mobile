@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { DistrictMainResultProps } from '../types'
+import type { CascaderDistrictMainResultProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -14,7 +14,7 @@ import Page from './../../Page'
 import { LocaleUtil, Button, Result, Page } from 'lyrixi-mobile'
 测试使用-end */
 
-const DistrictMainResult = ({ result, onReload, style, className }: DistrictMainResultProps) => {
+const DistrictMainResult = ({ result, onReload, style, className }: CascaderDistrictMainResultProps) => {
   return (
     <Page full={false} className="lyrixi-cascader-page">
       <div style={style} className={DOMUtil.classNames('lyrixi-cascader-main', className)}>

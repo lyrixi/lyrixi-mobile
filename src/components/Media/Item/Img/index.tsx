@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 
-import type { MediaImgProps } from '../../types'
+import type { MediaItemImgProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -17,7 +17,7 @@ const Img = ({
   fileUrl = '',
   // 重新加载的key
   reloadKey
-}: MediaImgProps) => {
+}: MediaItemImgProps) => {
   const [loadStatus, setLoadStatus] = useState('loading') // 'loading' | 'success' | 'error'
 
   useEffect(() => {
@@ -50,6 +50,6 @@ const Img = ({
     />
   )
 }
-export type { MediaImgProps } from '../../types'
+export type { MediaItemImgProps } from '../../types'
 
 export default Img

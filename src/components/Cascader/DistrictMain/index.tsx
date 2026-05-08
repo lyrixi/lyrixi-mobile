@@ -14,7 +14,7 @@ import type { CascaderNode, LoadDataResult } from './../types'
 
 import type { DistrictResultState } from '../types'
 import type { DistrictItem } from './../types'
-import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from '../types'
+import type { CascaderDistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from '../types'
 
 // 内库使用-start
 import ObjectUtil from '../../../utils/ObjectUtil'
@@ -28,7 +28,7 @@ import { ObjectUtil, LocaleUtil, ArrayUtil, Button, Result } from 'lyrixi-mobile
 // 地址选择
 const CascaderDistrictMain = forwardRef<
   { loadList: () => Promise<void>; list: unknown },
-  DistrictMainProps
+  CascaderDistrictMainProps
 >(
   (
     {
@@ -195,7 +195,7 @@ const CascaderDistrictMain = forwardRef<
 )
 
 export type {
-  DistrictMainProps,
+  CascaderDistrictMainProps,
   LoadCountriesFn,
   LoadCountryRegionsFn,
   LoadStreetsFn

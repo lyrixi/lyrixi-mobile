@@ -2,7 +2,7 @@ import React from 'react'
 import Item from './../Item'
 import isAllowClear from './../utils/isAllowClear'
 
-import type { MediaListComponentProps, MediaListItem } from '../types'
+import type { MediaListItem, MediaListMainProps } from '../types'
 
 // 照片视频预览
 const List = ({
@@ -21,7 +21,7 @@ const List = ({
   onChange,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}: MediaListComponentProps) => {
+}: MediaListMainProps) => {
   // Delete
   function handleDelete(item: MediaListItem, index: number) {
     const newList = list.filter((_photo, photoIndex) => {
@@ -67,6 +67,6 @@ const List = ({
     </>
   )
 }
-export type { MediaListComponentProps } from '../types'
+export type { MediaListMainProps } from '../types'
 
 export default List

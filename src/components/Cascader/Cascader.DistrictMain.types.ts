@@ -7,21 +7,21 @@ export type LoadCountriesFn = () => Promise<DistrictResultState>
 export type LoadCountryRegionsFn = (id?: string | number) => Promise<DistrictResultState>
 export type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderNode[] }) => Promise<DistrictResultState>
 
-export interface DistrictMainLoadingProps {
+export interface CascaderDistrictMainLoadingProps {
   result?: unknown
   onReload?: () => void
   style?: CSSProperties
   className?: string
 }
 
-export interface DistrictMainResultProps {
+export interface CascaderDistrictMainResultProps {
   result?: DistrictResultState
   onReload?: () => void
   style?: CSSProperties
   className?: string
 }
 
-export interface DistrictMainProps {
+export interface CascaderDistrictMainProps {
   open?: boolean
   value?: CascaderNode[] | null
   type?: string

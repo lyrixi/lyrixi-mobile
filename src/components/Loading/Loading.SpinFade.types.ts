@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'react'
 
-export interface SpinFadeProps {
+export interface LoadingSpinFadeProps {
   color?: string
   size?: string | number
   style?: CSSProperties
   className?: string
 }
 
-export interface SpinFadeRef {
+export interface LoadingSpinFadeRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

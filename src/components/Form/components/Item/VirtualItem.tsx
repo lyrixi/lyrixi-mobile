@@ -3,7 +3,7 @@ import React, { useEffect, useImperativeHandle, forwardRef, useRef, useContext, 
 
 import ItemsContext from './../ItemsContext'
 
-import type { VirtualFormItemProps, VirtualFormItemRef } from '../../types'
+import type { FormVirtualFormItemProps, FormVirtualFormItemRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormItem = forwardRef<VirtualFormItemRef, VirtualFormItemProps>(
+const FormItem = forwardRef<FormVirtualFormItemRef, FormVirtualFormItemProps>(
   (
     {
       // 用于计算虚拟列表的高度

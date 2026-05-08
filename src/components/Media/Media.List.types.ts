@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import type { MediaListItem } from './Media.Media.types'
 import type { MediaUploadingProps } from './Media.Uploading.types'
 
-export interface MediaListComponentProps {
+export interface MediaListMainProps {
   list: MediaListItem[]
   ellipsis?: { count?: number }
   allowClear?: boolean | ((item: MediaListItem) => boolean)

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-export interface InfiniteScrollProps {
+export interface ListInfiniteScrollProps {
   status?: string
   content?: ReactNode
 }

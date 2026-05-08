@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { UploadingProps } from '../types'
+import type { AttachUploadingProps } from '../types'
 
 // 内库使用-start
 import Loading from './../../Loading'
@@ -13,7 +13,7 @@ import { Loading } from 'lyrixi-mobile'
 
 
 // 上传中图标
-const Uploading = ({ uploadingType, className, uploadingRender }: UploadingProps) => {
+const Uploading = ({ uploadingType, className, uploadingRender }: AttachUploadingProps) => {
   // 上传中node
   function renderUploading() {
     if (typeof uploadingRender === 'function') {
@@ -33,5 +33,5 @@ const Uploading = ({ uploadingType, className, uploadingRender }: UploadingProps
   )
 }
 
-export type { UploadingProps } from '../types'
+export type { AttachUploadingProps } from '../types'
 export default Uploading

@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
 
-export interface CompatibleToggleListItem {
+export interface MediaUploaderCompatibleToggleListItem {
   id: string
   name: ReactNode
 }
 
-export interface CompatibleToggleProps {
+export interface MediaUploaderCompatibleToggleProps {
   compatible?: boolean | string
   compatiblePlatform?: string
   onCompatiblePlatformChange?: (platform: string) => void

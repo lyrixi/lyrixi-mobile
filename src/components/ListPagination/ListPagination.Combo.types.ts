@@ -1,15 +1,15 @@
 import type { InputSelectComboProps, InputSelectComboRef } from './../Input/types'
-import type { ModalPaginationProps, ModalPaginationRef } from './ListPagination.Modal.types'
+import type { ListPaginationModalProps, ListPaginationModalRef } from './ListPagination.Modal.types'
 
 type RawItem = Record<string, unknown>
 
-export interface ComboPaginationRef extends InputSelectComboRef, Partial<ModalPaginationRef> {
+export interface ListPaginationComboRef extends InputSelectComboRef, Partial<ListPaginationModalRef> {
   close: () => void
   open: () => void
 }
 
-export interface ComboPaginationProps
-  extends Omit<ModalPaginationProps, 'onChange' | 'value'>,
+export interface ListPaginationComboProps
+  extends Omit<ListPaginationModalProps, 'onChange' | 'value'>,
     Omit<InputSelectComboProps, 'onChange' | 'value'> {
   value?: RawItem | RawItem[] | null
   onChange?: (value: unknown) => void

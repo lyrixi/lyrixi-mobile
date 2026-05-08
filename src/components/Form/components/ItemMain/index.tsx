@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'reac
 
 import ItemsContext from './../ItemsContext'
 
-import type { FormMainProps } from '../../types'
+import type { FormItemMainProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -16,7 +16,7 @@ import Text from '../../../Text'
 import { DOMUtil, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormMain = forwardRef<ColRef, FormMainProps>(
+const FormMain = forwardRef<ColRef, FormItemMainProps>(
   (
     {
       // Status
@@ -77,6 +77,6 @@ const FormMain = forwardRef<ColRef, FormMainProps>(
     )
   }
 )
-export type { FormMainProps } from '../../types'
+export type { FormItemMainProps } from '../../types'
 
 export default FormMain

@@ -1,12 +1,12 @@
 import React from 'react'
 
-import type { MediaReloadProps } from '../../types'
+import type { MediaItemReloadProps } from '../../types'
 
 // 失败重传图标
 const Reload = ({
   // Events
   onClick
-}: MediaReloadProps) => {
+}: MediaItemReloadProps) => {
   return (
     <div
       // Style
@@ -27,6 +27,6 @@ const Reload = ({
     </div>
   )
 }
-export type { MediaReloadProps } from '../../types'
+export type { MediaItemReloadProps } from '../../types'
 
 export default Reload

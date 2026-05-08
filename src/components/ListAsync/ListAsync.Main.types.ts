@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 import type { RawItem, ViewItem } from './../List/types'
 import type { ListAsyncListMainProps as EntityListProps } from './ListAsync.List.types'
-import type { VirtualOptions } from './ListAsync.VirtualList.types'
+import type { ListAsyncVirtualOptions } from './ListAsync.VirtualList.types'
 
 export type LoadAction = 'load' | 'reload' | 'topRefresh' | 'bottomRefresh' | 'retry' | ''
 
@@ -33,7 +33,7 @@ export interface ListAsyncProps extends SharedListProps {
   initialLoad?: boolean
   errorRetry?: boolean
   emptyRetry?: boolean
-  virtual?: VirtualOptions
+  virtual?: ListAsyncVirtualOptions
   disableTopRefresh?: boolean
   disableBottomRefresh?: boolean
   loadingModalStyle?: CSSProperties

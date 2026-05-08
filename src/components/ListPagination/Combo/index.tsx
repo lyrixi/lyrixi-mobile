@@ -2,7 +2,7 @@ import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 
 
-import type { ComboPaginationProps, ComboPaginationRef, ModalPaginationRef } from './../types'
+import type { ListPaginationComboProps, ListPaginationComboRef, ListPaginationModalRef } from './../types'
 import type { InputSelectComboRef } from './../../Input/types'
 import type { RawItem } from './../../List/types'
 
@@ -16,7 +16,7 @@ import { Input } from 'lyrixi-mobile'
 
 type ItemChangeArg = RawItem & { checked?: boolean }
 
-const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
+const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
   (
     {
       // Combo
@@ -94,15 +94,15 @@ const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
   ) => {
     const [open, setOpen] = useState(false)
     const comboRef = useRef<InputSelectComboRef | null>(null)
-    const modalRef = useRef<ModalPaginationRef | null>(null)
+    const modalRef = useRef<ListPaginationModalRef | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
         ...(comboRef.current as InputSelectComboRef),
-        ...(modalRef.current as ModalPaginationRef),
+        ...(modalRef.current as ListPaginationModalRef),
         close: () => setOpen(false),
         open: () => setOpen(true)
-      } as ComboPaginationRef
+      } as ListPaginationComboRef
     })
 
     async function handleOpen() {
@@ -209,6 +209,6 @@ const Combo = forwardRef<ComboPaginationRef, ComboPaginationProps>(
     )
   }
 )
-export type { ComboPaginationProps, ComboPaginationRef } from './../types'
+export type { ListPaginationComboProps, ListPaginationComboRef } from './../types'
 
 export default Combo

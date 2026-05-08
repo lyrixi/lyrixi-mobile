@@ -3,7 +3,7 @@ import React from 'react'
 
 import getList from './getList'
 
-import type { CompatibleToggleProps } from '../types'
+import type { MediaUploaderCompatibleToggleProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -13,7 +13,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }: CompatibleToggleProps) {
+function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }: MediaUploaderCompatibleToggleProps) {
   const list = getList()
 
   const currentItem = getList(compatiblePlatform || 'browser')

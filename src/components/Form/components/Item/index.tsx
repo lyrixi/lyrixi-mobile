@@ -1,13 +1,13 @@
 import React, { forwardRef, useContext } from 'react'
 
-import type { FormItemRef, FormLayoutItemProps } from '../../types'
+import type { FormItemRef, FormItemLayoutProps } from '../../types'
 
 import ItemsContext from './../ItemsContext'
 import CommonItem from './Item'
 import VirtualItem from './VirtualItem'
 
 // layout: horizontal | vertical | inline
-const Item = forwardRef<FormItemRef, FormLayoutItemProps>(
+const Item = forwardRef<FormItemRef, FormItemLayoutProps>(
   (
     {
       id,
@@ -48,6 +48,6 @@ const Item = forwardRef<FormItemRef, FormLayoutItemProps>(
     )
   }
 )
-export type { FormLayoutItemProps as FormItemProps } from '../../types'
+export type { FormItemLayoutProps as FormItemProps } from '../../types'
 
 export default Item

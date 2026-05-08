@@ -3,35 +3,37 @@ import type { CSSProperties, ReactNode } from 'react'
 import type { ListProps, RawItem } from './../List/types'
 import type { PageMainProps, PageMainRef } from './../Page/types'
 
-export interface VirtualListVirtualData {
+export interface ListAsyncVirtualListVirtualData {
   type?: string
   height: number
   top: number
   index: number
 }
 
-export type VirtualListVirtualItem = Record<string, unknown> & { virtualData: VirtualListVirtualData }
+export type ListAsyncVirtualListVirtualItem = Record<string, unknown> & {
+  virtualData: ListAsyncVirtualListVirtualData
+}
 
-export interface VirtualListGetVisibleItemsOptions {
+export interface ListAsyncVirtualListGetVisibleItemsOptions {
   prependHeight: number
-  items: VirtualListVirtualItem[]
+  items: ListAsyncVirtualListVirtualItem[]
   itemHeights: number[]
   scrollTop: number | undefined
   containerHeight: number
 }
 
-export interface VirtualOptions {
+export interface ListAsyncVirtualOptions {
   getItemHeight: (item: RawItem) => number
 }
 
-export interface VirtualListRef extends PageMainRef {
+export interface ListAsyncVirtualListRef extends PageMainRef {
   getAnchors: () => string[]
   scrollToAnchor: (anchor: string) => void
 }
 
-export interface VirtualListProps extends ListProps {
+export interface ListAsyncVirtualListProps extends ListProps {
   height?: number
-  virtual?: VirtualOptions
+  virtual?: ListAsyncVirtualOptions
   threshold?: number
   touchStopPropagation?: boolean
   safeArea?: boolean

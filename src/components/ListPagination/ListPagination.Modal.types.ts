@@ -5,7 +5,7 @@ import type { ListPaginationProps, ListPaginationRef } from './ListPagination.Ma
 
 type RawItem = Record<string, unknown>
 
-export interface ModalPaginationRef extends ModalRef {
+export interface ListPaginationModalRef extends ModalRef {
   reload?: ListPaginationRef['reload']
   getResult?: ListPaginationRef['getResult']
   updateCache?: ListPaginationRef['updateCache']
@@ -13,7 +13,7 @@ export interface ModalPaginationRef extends ModalRef {
   getCache?: ListPaginationRef['getCache']
 }
 
-export interface ModalPaginationProps extends ListPaginationProps {
+export interface ListPaginationModalProps extends ListPaginationProps {
   open?: boolean
   maskClosable?: boolean
   safeArea?: boolean

@@ -1,4 +1,4 @@
-import type { VirtualOptions } from 'lyrixi-mobile'
+import type { ListAsyncVirtualOptions } from 'lyrixi-mobile'
 
 export type ListDemoFormatPayloadParams = {
   page?: number
@@ -6,6 +6,6 @@ export type ListDemoFormatPayloadParams = {
 
 export type ListDemoMainProps = {
   cacheName: string
-  virtual?: VirtualOptions
+  virtual?: ListAsyncVirtualOptions
   queryParams: Record<string, unknown>
 }

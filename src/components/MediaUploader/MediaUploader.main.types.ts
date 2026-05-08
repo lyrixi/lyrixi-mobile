@@ -66,7 +66,7 @@ export interface UploadLocalFileParams {
   item: MediaItem
 }
 
-export interface CommonUploaderProps extends UploadItemConfig {
+export interface MediaUploaderCommonProps extends UploadItemConfig {
   list?: MediaItem[]
   maxUploadCount?: number
   maxChooseCount?: number
@@ -112,7 +112,7 @@ export interface CommonUploaderProps extends UploadItemConfig {
   onPreview?: (item: MediaItem, index: number) => Promise<unknown>
 }
 
-export interface MediaUploaderProps extends CommonUploaderProps {
+export interface MediaUploaderProps extends MediaUploaderCommonProps {
   platform?: string
   compatible?: boolean | string
   timeout?: number
@@ -120,7 +120,7 @@ export interface MediaUploaderProps extends CommonUploaderProps {
   onNavigateTo?: (params: Record<string, unknown>) => Promise<boolean | void>
 }
 
-export interface WechatMiniProgramUploaderProps extends CommonUploaderProps {
+export interface MediaUploaderWechatMiniProgramProps extends MediaUploaderCommonProps {
   chooseExtraParams?: Record<string, unknown>
   onNavigateTo?: (params: Record<string, unknown>) => Promise<boolean | void>
 }

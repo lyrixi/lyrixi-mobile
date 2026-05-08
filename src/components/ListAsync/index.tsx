@@ -5,7 +5,7 @@ import EntityList, {
   ListAsyncListMainRef as EntityListRef,
   ListAsyncListMainProps as EntityListProps
 } from './List'
-import VirtualList, { VirtualListRef, VirtualListProps } from './VirtualList'
+import VirtualList, { ListAsyncVirtualListRef, ListAsyncVirtualListProps } from './VirtualList'
 import RetryButton from './components/RetryButton'
 
 import type { ListAsyncProps, ListAsyncRef, LoadAction, LoadResult } from './types'
@@ -60,7 +60,7 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
     },
     ref
   ) => {
-    const mainRef = useRef<EntityListRef | VirtualListRef | null>(null)
+    const mainRef = useRef<EntityListRef | ListAsyncVirtualListRef | null>(null)
 
     const [result, setResult] = useState<LoadResult | null>(null)
 
@@ -83,7 +83,7 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
 
     // Expose
     useImperativeHandle(ref, () => {
-      const vRef = mainRef.current as VirtualListRef | null
+      const vRef = mainRef.current as ListAsyncVirtualListRef | null
       return {
         element: mainRef.current?.element ?? null,
         getElement: () => mainRef.current?.element ?? null,
@@ -176,8 +176,8 @@ const Main = forwardRef<ListAsyncRef, ListAsyncProps>(
 
     return useVirtual ? (
       <VirtualList
-        ref={mainRef as React.Ref<VirtualListRef>}
-        {...(sharedProps as VirtualListProps)}
+        ref={mainRef as React.Ref<ListAsyncVirtualListRef>}
+        {...(sharedProps as ListAsyncVirtualListProps)}
         virtual={virtual}
       >
         {!disableBottomRefresh && ['noMore', 'loading', 'moreError'].includes(resultStatus) ? (

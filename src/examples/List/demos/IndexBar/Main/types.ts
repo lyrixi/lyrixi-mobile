@@ -1,6 +1,6 @@
 import type { SyntheticEvent } from 'react'
 
-import type { LoadResult, VirtualOptions } from 'lyrixi-mobile'
+import type { ListAsyncVirtualOptions, LoadResult } from 'lyrixi-mobile'
 
 export type IndexBarListRowWithAnchor = {
   anchor?: string
@@ -17,7 +17,7 @@ export type ListDemoFormatPayloadParams = {
 
 export type IndexBarListMainProps = {
   cacheName: string
-  virtual?: VirtualOptions
+  virtual?: ListAsyncVirtualOptions
   queryParams: Record<string, unknown>
   onLoad?: (ctx: IndexBarListLoadContext) => void
   onScrollEnd?: (e: SyntheticEvent) => void

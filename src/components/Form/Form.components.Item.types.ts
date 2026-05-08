@@ -6,7 +6,7 @@ export interface FormItemRef {
 }
 
 /** 内层布局项（与 Field 包一层的 `FormItemProps` 区分） */
-export interface FormLayoutItemProps {
+export interface FormItemLayoutProps {
   id?: string
   name?: string
   style?: CSSProperties
@@ -16,9 +16,9 @@ export interface FormLayoutItemProps {
   children?: ReactNode
 }
 
-export interface VirtualFormItemRef {
+export interface FormVirtualFormItemRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export type VirtualFormItemProps = FormLayoutItemProps
+export type FormVirtualFormItemProps = FormItemLayoutProps

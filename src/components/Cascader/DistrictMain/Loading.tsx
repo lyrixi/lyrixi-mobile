@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { DistrictMainLoadingProps } from '../types'
+import type { CascaderDistrictMainLoadingProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import Skeleton from './../../Skeleton'
 import { LocaleUtil, Page, Skeleton } from 'lyrixi-mobile'
 测试使用-end */
 
-const DistrictMainLoading = ({ result: _result, onReload: _onReload, style, className }: DistrictMainLoadingProps) => {
+const DistrictMainLoading = ({ result: _result, onReload: _onReload, style, className }: CascaderDistrictMainLoadingProps) => {
   return (
     <Page full={false} className="lyrixi-cascader-page">
       <div style={style} className={DOMUtil.classNames('lyrixi-cascader-main', className)}>

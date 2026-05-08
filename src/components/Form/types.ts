@@ -3,10 +3,10 @@
  */
 export type { EllipsisConfig, ItemsContextType, VirtualContext } from './Form.ItemsContext.types'
 
-export type { FormComponentProps } from './Form.Form.types'
+export type { FormProps } from './Form.Form.types'
 export type { FormItemProps } from './Form.Item.types'
 
-export type { FormItemRef, FormLayoutItemProps, VirtualFormItemRef, VirtualFormItemProps } from './Form.components.Item.types'
+export type { FormItemRef, FormItemLayoutProps, FormVirtualFormItemRef, FormVirtualFormItemProps } from './Form.components.Item.types'
 
 export type * from './Form.components.Items.Form.types'
 export type * from './Form.components.Items.types'

@@ -2,7 +2,7 @@
 import React, { forwardRef, type Ref } from 'react'
 import { ListPagination } from 'lyrixi-mobile'
 import type { ListPaginationRef } from '../../Main'
-import type { VirtualOptions } from '../../../ListAsync/VirtualList'
+import type { ListAsyncVirtualOptions } from '../../../ListAsync/VirtualList'
 
 // 项目内部模块导入
 import serverParams from './serverParams'
@@ -11,7 +11,7 @@ import formatViewItem from './formatViewItem'
 
 type ListPaginationDemoMainProps = {
   cacheName?: string
-  virtual?: VirtualOptions
+  virtual?: ListAsyncVirtualOptions
   queryParams?: Record<string, unknown>
 }
 

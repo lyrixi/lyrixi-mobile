@@ -25,7 +25,7 @@ import type { ActionSheetItem } from './../../ActionSheet/types'
 import { Toast, LocaleUtil, Media, Loading, ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
-import { WechatMiniProgramUploaderProps, MediaHandle, MediaItem } from '../types'
+import { MediaHandle, MediaItem, MediaUploaderWechatMiniProgramProps } from '../types'
 import type {
   FileImageCompressOptions,
   MediaListItem,
@@ -86,7 +86,7 @@ function WechatMiniProgram(
     onChange,
     onPreview,
     onNavigateTo
-  }: WechatMiniProgramUploaderProps,
+  }: MediaUploaderWechatMiniProgramProps,
   ref: React.ForwardedRef<MediaHandle>
 ) {
   // 返回{saveMediaUrl, getMediaUrl}
