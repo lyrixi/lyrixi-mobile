@@ -1,1 +1,5 @@
-export type { ModalProps, ModalRef } from './Modal/types'
+export type * from './Modal.DropdownModal.types'
+export type * from './Modal.FilterModal.types'
+export type * from './Modal.Modal.types'
+export type * from './Modal.NavBarModal.NavBar.types'
+export type * from './Modal.NavBarModal.types'

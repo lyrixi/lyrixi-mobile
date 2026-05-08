@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-import type { InputTextProps } from './../Text/types'
+import type { InputTextProps } from './Input.Text.types'
 
 export interface SelectFormatterValue {
   name?: string

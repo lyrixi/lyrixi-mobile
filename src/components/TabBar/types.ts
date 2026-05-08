@@ -1,15 +1,5 @@
-import type { ReactNode } from 'react'
-
-export interface TabBarItem {
-  id?: string | number
-  name?: ReactNode
-  description?: ReactNode
-  placeholder?: ReactNode
-  disabled?: boolean
-  iconRender?: (params: Record<string, unknown>) => ReactNode
-  content?: ReactNode | ((params: Record<string, unknown>) => ReactNode)
-}
-
-export interface TabBarValue {
-  id?: string | number
-}
+export type * from './TabBar.base.types'
+export type * from './TabBar.Group.types'
+export type * from './TabBar.Menus.types'
+export type * from './TabBar.Slide.types'
+export type * from './TabBar.Tabs.types'

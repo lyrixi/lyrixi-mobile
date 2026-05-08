@@ -1,4 +1,4 @@
-import type { MapLoaderProps, MapChooseProps, MapChooseValue } from './../../../Map/types'
+import type { MapLoaderProps, MapChooseProps, MapChooseValue } from '../Map/types'
 
 export interface LocationChooseProps {
   value?: MapChooseValue | null

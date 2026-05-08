@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 
 import type { MapContainerAPI, MapChooseValue } from './../../../Map/types'
 
-import type { LocationChooseProps } from './types'
+import type { LocationChooseProps } from '../../types'
 
 // 内库使用-start
 import Map from './../../../Map'
@@ -58,6 +58,6 @@ const LocationChoose = forwardRef<MapContainerAPI, LocationChooseProps>(function
     </MapLoaderComponent>
   )
 })
-export type { LocationChooseProps } from './types'
+export type { LocationChooseProps } from '../../types'
 
 export default LocationChoose

@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 
-import type { PageAsideProps, PageAsideRef } from './types'
+import type { PageAsideProps, PageAsideRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -32,6 +32,6 @@ const Aside = forwardRef<PageAsideRef, PageAsideProps>(function Aside(
     </aside>
   )
 })
-export type { PageAsideProps, PageAsideRef } from './types'
+export type { PageAsideProps, PageAsideRef } from '../types'
 
 export default Aside

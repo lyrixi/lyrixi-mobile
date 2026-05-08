@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-import type { ModalProps } from './../../Modal/Modal/types'
+import type { ModalProps } from '../Modal/types'
 
 export interface PickerModalProps {
   value?: unknown

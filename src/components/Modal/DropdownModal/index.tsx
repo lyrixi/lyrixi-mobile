@@ -1,10 +1,9 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
-import type { ModalRef } from './../Modal/types'
 import getAnimation from './getAnimation'
 import updatePositionByReferenceElement from './../../Tooltip/api/updatePositionByReferenceElement'
 
-import type { DropdownModalProps } from './types'
+import type { ModalRef, DropdownModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -127,6 +126,6 @@ const DropdownModal = forwardRef<ModalRef, DropdownModalProps>(
     )
   }
 )
-export type { DropdownModalProps } from './types'
+export type { DropdownModalProps } from '../types'
 
 export default DropdownModal

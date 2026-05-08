@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { NavBarProps } from './types'
+import type { NavBarProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -37,5 +37,5 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
   }
 )
 
-export type { NavBarProps } from './types'
+export type { NavBarProps } from '../types'
 export default NavBar

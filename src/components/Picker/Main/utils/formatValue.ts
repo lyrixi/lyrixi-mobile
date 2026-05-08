@@ -1,5 +1,5 @@
 import ObjectUtil from './../../../../utils/ObjectUtil'
-import type { PickerColumnItem } from './../types'
+import type { PickerColumnItem } from '../../types'
 
 // 格式化值
 function formatValue(

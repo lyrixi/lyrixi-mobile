@@ -4,7 +4,7 @@ import Preview from './Preview'
 import Choose from './Choose'
 
 
-import type { LocationMainProps } from './types'
+import type { LocationMainProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

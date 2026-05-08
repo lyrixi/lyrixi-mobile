@@ -5,7 +5,7 @@ import getIndex from './utils/getIndex'
 
 import Slots from './Slots'
 
-import type { PickerColumnItem, PickerMainProps, PickerMainRef } from './types'
+import type { PickerColumnItem, PickerMainProps, PickerMainRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -129,6 +129,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     </div>
   )
 })
-export type { PickerMainProps, PickerMainRef } from './types'
+export type { PickerMainProps, PickerMainRef } from '../types'
 
 export default Main

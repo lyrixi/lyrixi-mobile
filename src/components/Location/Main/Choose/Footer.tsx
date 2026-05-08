@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { LocationChooseFooterProps } from './types'
+import type { LocationChooseFooterProps } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'

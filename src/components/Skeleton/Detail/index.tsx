@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { SkeletonDetailProps } from './types'
+import type { SkeletonDetailProps } from '../types'
 
 import Page from './../../Page'
 import Paragraph from './../components/Paragraph'

@@ -1,2 +1,2 @@
-export type { IndexBarProps, IndexBarRef } from './IndexBar/types'
-export type { AnchorProps } from './Anchor/types'
+export type * from './IndexBar.Anchor.types'
+export type * from './IndexBar.IndexBar.types'

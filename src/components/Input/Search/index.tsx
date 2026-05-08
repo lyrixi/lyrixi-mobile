@@ -1,8 +1,7 @@
 import React, { forwardRef, useState, useEffect } from 'react'
 import InputText from './../Text'
 
-import type { InputTextRef } from './../Text/types'
-import type { SearchProps } from './types'
+import type { InputTextRef, SearchProps } from '../types'
 
 const Search = forwardRef<InputTextRef, SearchProps>(
   (
@@ -114,6 +113,6 @@ const Search = forwardRef<InputTextRef, SearchProps>(
     )
   }
 )
-export type { SearchProps } from './types'
+export type { SearchProps } from '../types'
 
 export default Search

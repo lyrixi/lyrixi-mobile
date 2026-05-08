@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react
 import { splitInputStyle, correctValue as _correctValue } from './../Text/utils'
 import renderClear from './../Text/renderClear'
 
-import type { InputNodeProps, InputNodeRef } from './types'
+import type { InputNodeProps, InputNodeRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -228,6 +228,6 @@ const InputNode = (
     </div>
   )
 }
-export type { InputNodeProps, InputNodeRef } from './types'
+export type { InputNodeProps, InputNodeRef } from '../types'
 
 export default forwardRef(InputNode)

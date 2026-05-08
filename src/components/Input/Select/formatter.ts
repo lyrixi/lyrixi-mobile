@@ -1,5 +1,5 @@
 
-import type { SelectFormatterValue } from './types'
+import type { SelectFormatterValue } from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'

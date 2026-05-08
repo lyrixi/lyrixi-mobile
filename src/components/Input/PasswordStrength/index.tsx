@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 import getStrength from './getStrength'
 
-import type { PasswordStrengthProps, PasswordStrengthRef } from './types'
+import type { PasswordStrengthProps, PasswordStrengthRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -73,6 +73,6 @@ const PasswordStrength = (
     </ul>
   )
 }
-export type { PasswordStrengthProps, PasswordStrengthRef } from './types'
+export type { PasswordStrengthProps, PasswordStrengthRef } from '../types'
 
 export default forwardRef(PasswordStrength)

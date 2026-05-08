@@ -3,7 +3,7 @@ import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react
 
 import { CanvasUtil } from './utils'
 
-import type { SignatureProps, SignatureRef } from './types'
+import type { SignatureProps, SignatureRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -190,6 +190,6 @@ const Signature = (
     </div>
   )
 }
-export type { SignatureProps, SignatureRef } from './types'
+export type { SignatureProps, SignatureRef } from '../types'
 
 export default forwardRef<SignatureRef, SignatureProps>(Signature)

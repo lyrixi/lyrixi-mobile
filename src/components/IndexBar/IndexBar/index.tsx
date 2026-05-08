@@ -5,7 +5,7 @@ import activeAnchor from './activeAnchor'
 import scrollToAnchor from './scrollToAnchor'
 
 
-import type { IndexBarProps, IndexBarRef } from './types'
+import type { IndexBarProps, IndexBarRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -184,6 +184,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
     return Node
   }
 )
-export type { IndexBarProps, IndexBarRef } from './types'
+export type { IndexBarProps, IndexBarRef } from '../types'
 
 export default IndexBar

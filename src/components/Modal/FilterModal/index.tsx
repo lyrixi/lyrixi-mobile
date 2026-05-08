@@ -1,10 +1,8 @@
 import React, { forwardRef, type MouseEvent } from 'react'
 import Modal from './../Modal'
-import type { ModalRef } from './../Modal/types'
 import NavBar from './../NavBarModal/NavBar'
 
-
-import type { FilterModalProps } from './types'
+import type { ModalRef, FilterModalProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -77,6 +75,6 @@ function FilterModal(
     </Modal>
   )
 }
-export type { FilterModalProps } from './types'
+export type { FilterModalProps } from '../types'
 
 export default forwardRef(FilterModal)

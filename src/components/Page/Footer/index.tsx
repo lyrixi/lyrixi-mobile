@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 
-import type { PageFooterProps, PageFooterRef } from './types'
+import type { PageFooterProps, PageFooterRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -32,6 +32,6 @@ const Footer = forwardRef<PageFooterRef, PageFooterProps>(function Footer(
     </footer>
   )
 })
-export type { PageFooterProps, PageFooterRef } from './types'
+export type { PageFooterProps, PageFooterRef } from '../types'
 
 export default Footer

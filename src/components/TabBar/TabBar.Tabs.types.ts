@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { TabBarItem, TabBarValue } from './../types'
+import type { TabBarItem, TabBarValue } from './TabBar.base.types'
 
 export interface TabBarTabsProps {
   value?: TabBarValue

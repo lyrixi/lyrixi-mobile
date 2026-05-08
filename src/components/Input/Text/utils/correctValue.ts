@@ -3,7 +3,7 @@ import minMaxFormatter from './minMaxFormatter'
 import precisionFormatter from './precisionFormatter'
 
 
-import type { InputTextCorrectValueOptions } from './types'
+import type { InputTextCorrectValueOptions } from '../../types'
 
 // 内库使用-start
 import MathUtil from '../../../../utils/MathUtil'

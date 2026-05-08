@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react'
 
 import Block from './Block'
 
-import type { SkeletonTitleProps } from './types'
+import type { SkeletonTitleProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

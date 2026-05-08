@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import InputText, { InputTextRef } from './../Text'
 
 
-import type { UrlProps } from './types'
+import type { UrlProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -173,6 +173,6 @@ const Url = forwardRef<InputTextRef, UrlProps>(
     )
   }
 )
-export type { UrlProps } from './types'
+export type { UrlProps } from '../types'
 
 export default Url

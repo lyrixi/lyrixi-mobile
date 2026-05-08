@@ -5,7 +5,7 @@ import getPercent from './getPercent'
 import showTooltip from './showTooltip'
 import hideTooltip from './hideTooltip'
 
-import type { RangeProps, RangeRef } from './types'
+import type { RangeProps, RangeRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -159,6 +159,6 @@ const Range = forwardRef<RangeRef, RangeProps>(
     )
   }
 )
-export type { RangeProps, RangeRef } from './types'
+export type { RangeProps, RangeRef } from '../types'
 
 export default Range

@@ -3,7 +3,7 @@ import Modal, { type ModalRef } from '../Modal'
 import NavBar from './NavBar'
 
 
-import type { NavBarModalProps } from './types'
+import type { NavBarModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -104,6 +104,6 @@ const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
     )
   }
 )
-export type { NavBarModalProps } from './types'
+export type { NavBarModalProps } from '../types'
 
 export default NavBarModal

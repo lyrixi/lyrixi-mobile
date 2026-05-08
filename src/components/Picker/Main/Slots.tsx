@@ -9,7 +9,7 @@ import React, {
 
 import getTranslateValue from './utils/getTranslateValue'
 
-import type { PickerSlotsProps } from './types'
+import type { PickerSlotsProps } from '../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -185,6 +185,6 @@ const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
   )
 })
 
-export type { PickerColumnItem, PickerSlotsProps } from './types'
+export type { PickerColumnItem, PickerSlotsProps } from '../types'
 
 export default Lists

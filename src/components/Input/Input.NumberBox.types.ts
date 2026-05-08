@@ -8,7 +8,7 @@ import type {
   RefObject
 } from 'react'
 
-import type { InputTextProps, InputTextRef } from './../Text/types'
+import type { InputTextProps, InputTextRef } from './Input.Text.types'
 
 export interface NumberBoxRef {
   element: HTMLDivElement | null

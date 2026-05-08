@@ -4,7 +4,7 @@ import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk'
 
 
-import type { PageMainProps, PageMainRef, PageMainTouchesState } from './types'
+import type { PageMainProps, PageMainRef, PageMainTouchesState } from '../types'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
@@ -164,6 +164,6 @@ const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
     </main>
   )
 })
-export type { PageMainProps, PageMainRef } from './types'
+export type { PageMainProps, PageMainRef } from '../types'
 
 export default Main

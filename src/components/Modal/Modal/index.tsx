@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import getClassNameByAnimation from './../api/getClassNameByAnimation'
 
 
-import type { ModalProps, ModalRef } from './types'
+import type { ModalProps, ModalRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -110,6 +110,6 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     return createPortal(ModalNode, portalTarget)
   }
 )
-export type { ModalProps, ModalRef } from './types'
+export type { ModalProps, ModalRef } from '../types'
 
 export default Modal

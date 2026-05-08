@@ -1,4 +1,4 @@
-import type { IconProps } from './../../Icon/types'
+import type { IconProps } from '../Icon/types'
 
 export interface IconClearProps extends Omit<IconProps, 'className'> {
   iconClassName?: string

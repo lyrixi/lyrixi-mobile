@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 
-import type { PageHeaderProps, PageHeaderRef } from './types'
+import type { PageHeaderProps, PageHeaderRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -28,6 +28,6 @@ const Header = forwardRef<PageHeaderRef, PageHeaderProps>(function Header(
     </header>
   )
 })
-export type { PageHeaderProps, PageHeaderRef } from './types'
+export type { PageHeaderProps, PageHeaderRef } from '../types'
 
 export default Header

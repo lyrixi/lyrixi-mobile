@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-import type { InputNodeProps } from './../../Node/types'
+import type { InputNodeProps } from './Input.Node.types'
 
 export interface TagItem {
   id?: string | number

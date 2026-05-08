@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { LocationValue } from './../types'
+import type { LocationValue } from './Location.Value.types'
 
 export interface LocationComboProps {
   value?: LocationValue | null

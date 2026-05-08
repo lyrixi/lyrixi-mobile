@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { TagProps } from './types'
+import type { TagProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { SkeletonEditProps } from './types'
+import type { SkeletonEditProps } from '../types'
 
 import Page from './../../Page'
 import Paragraph from './../components/Paragraph'

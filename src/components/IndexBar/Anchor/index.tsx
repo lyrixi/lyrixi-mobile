@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { AnchorProps } from './types'
+import type { AnchorProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -30,6 +30,6 @@ const Anchor = ({
     </div>
   )
 }
-export type { AnchorProps } from './types'
+export type { AnchorProps } from '../types'
 
 export default Anchor

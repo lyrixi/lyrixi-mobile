@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { ModalProps } from './../Modal/types'
+import type { ModalProps } from './Modal.Modal.types'
 
 export interface FilterModalProps {
   open?: boolean

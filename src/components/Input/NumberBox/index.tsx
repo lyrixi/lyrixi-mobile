@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import InputNumber from './../Number'
 import { InputTextRef } from './../Text'
 
-import type { NumberBoxProps, NumberBoxRef } from './types'
+import type { NumberBoxProps, NumberBoxRef } from '../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -249,6 +249,6 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
     )
   }
 )
-export type { NumberBoxProps, NumberBoxRef } from './types'
+export type { NumberBoxProps, NumberBoxRef } from '../types'
 
 export default NumberBox

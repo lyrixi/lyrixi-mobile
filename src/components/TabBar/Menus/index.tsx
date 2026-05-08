@@ -3,8 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
 import renderContext from './../utils/renderContext'
 
-import type { MenusProps, MenusRef } from './types'
-import type { TabBarItem } from './../types'
+import type { MenusProps, MenusRef, TabBarItem } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -113,6 +112,6 @@ const Menus = forwardRef<MenusRef, MenusProps>(
     )
   }
 )
-export type { MenusProps, MenusRef } from './types'
+export type { MenusProps, MenusRef } from '../types'
 
 export default Menus

@@ -1,9 +1,5 @@
-export interface LocationValue {
-  latitude?: number | string
-  longitude?: number | string
-  type?: string
-  address?: string
-  value?: string
-  nearbyVisible?: boolean
-  [key: string]: unknown
-}
+export type * from './Location.Combo.types'
+export type * from './Location.Main.Choose.types'
+export type * from './Location.Main.types'
+export type * from './Location.Modal.types'
+export type * from './Location.Value.types'

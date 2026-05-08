@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 
 import Main from './../Main'
 
-import type { SignatureModalProps, SignatureModalRef } from './types'
+import type { SignatureModalProps, SignatureModalRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -81,6 +81,6 @@ const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
     )
   }
 )
-export type { SignatureModalProps, SignatureModalRef } from './types'
+export type { SignatureModalProps, SignatureModalRef } from '../types'
 
 export default Modal

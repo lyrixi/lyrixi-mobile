@@ -8,7 +8,7 @@ import {
 } from './utils'
 import renderClear from './renderClear'
 
-import type { InputTextProps, InputTextRef, TextInputElement } from './types'
+import type { InputTextProps, InputTextRef, TextInputElement } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -484,6 +484,6 @@ const InputText = (
     </div>
   )
 }
-export type { InputTextProps, InputTextRef, TextInputElement } from './types'
+export type { InputTextProps, InputTextRef, TextInputElement } from '../types'
 
 export default forwardRef(InputText)

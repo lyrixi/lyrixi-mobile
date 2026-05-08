@@ -8,8 +8,12 @@ import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
 import Tags from './Tags'
 
-import type { InputSelectComboProps, InputSelectComboRef } from './types'
-import type { InputTextProps, InputTextRef } from './../Text/types'
+import type {
+  InputSelectComboProps,
+  InputSelectComboRef,
+  InputTextProps,
+  InputTextRef
+} from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -159,6 +163,6 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
     )
   }
 )
-export type { InputSelectComboProps, InputSelectComboRef } from './types'
+export type { InputSelectComboProps, InputSelectComboRef } from '../types'
 
 export default Combo

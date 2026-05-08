@@ -2,8 +2,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } f
 import Main from './../Main'
 
 
-import type { LocationModalProps } from './types'
-import type { LocationValue } from './../types'
+import type { LocationModalProps, LocationValue } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

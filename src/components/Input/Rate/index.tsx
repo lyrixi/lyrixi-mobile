@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 
-import type { RateProps, RateRef } from './types'
+import type { RateProps, RateRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -148,6 +148,6 @@ const Rate = forwardRef<RateRef, RateProps>(
     )
   }
 )
-export type { RateIconParams, RateProps, RateRef } from './types'
+export type { RateIconParams, RateProps, RateRef } from '../types'
 
 export default Rate

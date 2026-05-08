@@ -3,7 +3,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 import Signature from './Signature'
 
-import type { SignatureMainProps, SignatureMainRef, SignatureRef } from './types'
+import type { SignatureMainProps, SignatureMainRef, SignatureRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -95,6 +95,6 @@ const Main = (
     </div>
   )
 }
-export type { SignatureMainProps, SignatureMainRef } from './types'
+export type { SignatureMainProps, SignatureMainRef } from '../types'
 
 export default forwardRef<SignatureMainRef, SignatureMainProps>(Main)

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 
-import type { SignatureThumbnailProps } from './types'
+import type { SignatureThumbnailProps } from '../../types'
 
 // 内库使用-start
 import Media from './../../../Media'

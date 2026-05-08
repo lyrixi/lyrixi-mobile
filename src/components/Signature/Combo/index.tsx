@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { SignatureComboRef, SignatureComboProps } from './types'
+import type { SignatureComboRef, SignatureComboProps } from '../types'
 
 import Add from './Add'
 import Edit from './Edit'
@@ -66,6 +66,6 @@ const Combo = (
     />
   )
 }
-export type { SignatureComboRef, SignatureComboProps } from './types'
+export type { SignatureComboRef, SignatureComboProps } from '../types'
 
 export default forwardRef<SignatureComboRef, SignatureComboProps>(Combo)

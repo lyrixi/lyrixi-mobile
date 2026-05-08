@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-import type { InputNodeProps, InputNodeRef } from './../Node/types'
+import type { InputNodeProps, InputNodeRef } from './Input.Node.types'
 
 export interface NumberKeyboardRef extends InputNodeRef {
   focus: () => void

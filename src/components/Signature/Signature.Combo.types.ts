@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
-import type { ComboAddRef } from './Add/types'
-import type { EditRef } from './Edit/types'
+import type { ComboAddRef } from './Signature.Combo.Add.types'
+import type { EditRef } from './Signature.Combo.Edit.types'
 
 export interface SignatureComboProps {
   value?: string

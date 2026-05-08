@@ -2,8 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
 import renderContext from './../utils/renderContext'
 
-import type { TabBarItem } from './../types'
-import type { TabBarTabsProps, TabBarTabsRef } from './types'
+import type { TabBarItem, TabBarTabsProps, TabBarTabsRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -124,6 +123,6 @@ const Tabs = forwardRef<TabBarTabsRef, TabBarTabsProps>(
     )
   }
 )
-export type { TabBarTabsProps, TabBarTabsRef } from './types'
+export type { TabBarTabsProps, TabBarTabsRef } from '../types'
 
 export default Tabs

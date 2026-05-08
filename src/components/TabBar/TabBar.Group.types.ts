@@ -1,8 +1,8 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { TabBarItem, TabBarValue } from './../types'
+import type { TabBarItem, TabBarValue } from './TabBar.base.types'
 
-export interface SlideProps {
+export interface TabBarGroupProps {
   separator?: ReactNode
   value?: TabBarValue
   list?: TabBarItem[]
@@ -13,7 +13,7 @@ export interface SlideProps {
   style?: CSSProperties
 }
 
-export interface SlideRef {
+export interface TabBarGroupRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

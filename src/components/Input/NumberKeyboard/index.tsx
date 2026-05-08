@@ -5,7 +5,7 @@ import { maxLengthFormatter, minMaxFormatter, precisionFormatter } from './../Te
 import InputNode, { InputNodeRef } from './../Node'
 import correctInputNumber from './correctInputNumber'
 
-import type { NumberKeyboardProps, NumberKeyboardRef } from './types'
+import type { NumberKeyboardProps, NumberKeyboardRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -150,6 +150,6 @@ const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
     )
   }
 )
-export type { NumberKeyboardProps, NumberKeyboardRef } from './types'
+export type { NumberKeyboardProps, NumberKeyboardRef } from '../types'
 
 export default NumberKeyboard

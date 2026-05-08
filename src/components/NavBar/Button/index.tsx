@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 
-import type { NavBarButtonProps } from './types'
+import type { NavBarButtonProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -66,6 +66,6 @@ const NavBarButton = forwardRef<ButtonRef, NavBarButtonProps>(
     )
   }
 )
-export type { NavBarButtonProps } from './types'
+export type { NavBarButtonProps } from '../types'
 
 export default NavBarButton

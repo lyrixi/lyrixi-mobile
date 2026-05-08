@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { EditProps, EditRef } from './types'
+import type { EditProps, EditRef } from '../../types'
 
 import Thumbnail from './Thumbnail'
 
@@ -55,6 +55,6 @@ const Edit = forwardRef<EditRef, EditProps>(
     )
   }
 )
-export type { EditProps, EditRef } from './types'
+export type { EditProps, EditRef } from '../../types'
 
 export default Edit

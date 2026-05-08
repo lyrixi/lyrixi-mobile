@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 
-import type { TagItem, TagsProps } from './types'
+import type { InputNodeProps, TagItem, TagsProps } from '../../types'
 
-import type { InputNodeProps } from './../../Node/types'
 
 import Tag from './Tag'
 import InputNode from './../../Node'

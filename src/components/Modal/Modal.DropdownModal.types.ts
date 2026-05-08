@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { ModalProps } from './../Modal/types'
+import type { ModalProps } from './Modal.Modal.types'
 
 export interface DropdownModalProps {
   open?: boolean
@@ -11,7 +11,12 @@ export interface DropdownModalProps {
   right?: string | number
   modalStyle?: CSSProperties
   modalClassName?: string
-  maskStyle?: CSSProperties & { top?: string | number; bottom?: string | number; left?: string | number; right?: string | number }
+  maskStyle?: CSSProperties & {
+    top?: string | number
+    bottom?: string | number
+    left?: string | number
+    right?: string | number
+  }
   maskClassName?: string
   portal?: ModalProps['portal']
   referenceElement?: HTMLElement | (() => HTMLElement) | null

@@ -1,8 +1,8 @@
 import type { CSSProperties } from 'react'
 
-import type { PageLayout } from './../../Page/types'
+import type { PageLayout } from '../Page/types'
 
-export interface SkeletonEditProps {
+export interface SkeletonListProps {
   listLength?: number
   itemLength?: number
   animated?: boolean
