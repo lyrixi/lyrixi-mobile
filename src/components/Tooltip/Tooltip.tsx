@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } f
 import Popup from './Popup'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
-import type { PopupRef, TooltipProps } from './types'
+import type { TooltipPopupRef, TooltipProps } from './types'
 
 // 内库使用-start
 import Combo from './../Combo'
@@ -37,7 +37,7 @@ const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Toolt
 ) {
   const [open, setOpen] = useState<boolean | null>(null)
 
-  const modalRef = useRef<PopupRef | null>(null)
+  const modalRef = useRef<TooltipPopupRef | null>(null)
 
   const comboRef = useRef<ComboRef | null>(null)
 

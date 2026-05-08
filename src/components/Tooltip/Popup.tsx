@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 
 import getDataAnimation from './api/getDataAnimation'
 
-import type { PopupProps, PopupRef } from './types'
+import type { TooltipPopupProps, TooltipPopupRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -16,7 +16,7 @@ import { Modal } from 'lyrixi-mobile'
 const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
-const Popup = forwardRef<PopupRef, PopupProps>(function Popup(
+const Popup = forwardRef<TooltipPopupRef, TooltipPopupProps>(function Popup(
   {
     open,
     maskClosable = true,
@@ -110,6 +110,6 @@ const Popup = forwardRef<PopupRef, PopupProps>(function Popup(
     portal ?? document.getElementById('root') ?? document.body
   )
 })
-export type { PopupProps, PopupRef } from './types'
+export type { TooltipPopupProps, TooltipPopupRef } from './types'
 
 export default Popup

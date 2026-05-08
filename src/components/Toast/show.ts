@@ -1,7 +1,7 @@
 import hide from './hide'
 import type { CSSProperties } from 'react'
 
-import type { ShowProps } from './types'
+import type { ToastShowProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -11,8 +11,8 @@ type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTi
 
 // 显示Toast
 // eslint-disable-next-line
-function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
-  const context = this as { defaultProps?: ShowProps } | undefined
+function show(this: { defaultProps?: ToastShowProps } | void, props?: ToastShowProps) {
+  const context = this as { defaultProps?: ToastShowProps } | undefined
   const {
     // Visible duration
     duration,
@@ -124,5 +124,5 @@ function show(this: { defaultProps?: ShowProps } | void, props?: ShowProps) {
   return render()
 }
 
-export type { ShowProps } from './types'
+export type { ToastShowProps } from './types'
 export default show

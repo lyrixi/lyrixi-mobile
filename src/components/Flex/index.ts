@@ -4,10 +4,10 @@ import Compact from './Compact'
 Flex.Compact = Compact
 
 export type {
-  CompactContextValue,
-  CompactProps,
-  CompactRef,
   FlexAlign,
+  FlexCompactContextValue,
+  FlexCompactProps,
+  FlexCompactRef,
   FlexDirection,
   FlexJustify,
   FlexProps,

@@ -19,7 +19,7 @@ export type CalendarErrorObject = {
 
 export type OnErrorHandler = (error: CalendarErrorObject) => void | boolean
 
-export interface HeaderRenderParams {
+export interface CalendarHeaderRenderParams {
   drawDate: Date | null
   onPreviousMonth: (e?: React.MouseEvent) => void | Promise<void>
   onNextMonth: (e?: React.MouseEvent) => void | Promise<void>
@@ -52,7 +52,7 @@ export interface CalendarProps {
   allowClear?: boolean
   draggable?: DraggableAxis[]
   titleRender?: (date: Date | null, ctx: { type: CalendarType | null }) => ReactNode
-  headerRender?: (params: HeaderRenderParams) => ReactNode
+  headerRender?: (params: CalendarHeaderRenderParams) => ReactNode
   dateRender?: (
     date: CalendarCellDate,
     ctx: { isSelected: string[] | null; isDisabled: false | CalendarErrorObject; isCurrent?: boolean }

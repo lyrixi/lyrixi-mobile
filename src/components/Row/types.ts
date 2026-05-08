@@ -11,14 +11,14 @@ export interface RowRef {
   getElement: () => HTMLDivElement | null
 }
 
-export interface ColProps {
+export interface RowColProps {
   span?: number | string
   style?: CSSProperties
   className?: string
   children?: ReactNode
 }
 
-export interface ColRef {
+export interface RowColRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

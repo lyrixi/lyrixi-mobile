@@ -8,7 +8,7 @@ import type { FormItemMainProps } from '../../types'
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 import Row from '../../../Row'
-import type { ColRef } from '../../../Row'
+import type { RowColRef } from '../../../Row'
 import Text from '../../../Text'
 // 内库使用-end
 
@@ -16,7 +16,7 @@ import Text from '../../../Text'
 import { DOMUtil, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormMain = forwardRef<ColRef, FormItemMainProps>(
+const FormMain = forwardRef<RowColRef, FormItemMainProps>(
   (
     {
       // Status
@@ -38,7 +38,7 @@ const FormMain = forwardRef<ColRef, FormItemMainProps>(
     // 获取全局配置
     const { layout, mainSpan, mainEllipsis } = useContext(ItemsContext)
 
-    const rootRef = useRef<ColRef>(null)
+    const rootRef = useRef<RowColRef>(null)
 
     // Expose
     useImperativeHandle(ref, () => {

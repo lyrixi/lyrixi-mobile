@@ -1,13 +1,13 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { ColProps, ColRef } from './types'
+import type { RowColProps, RowColRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 
-const Col = forwardRef<ColRef, ColProps>(function Col({ span, style, className, children }, ref) {
+const Col = forwardRef<RowColRef, RowColProps>(function Col({ span, style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useImperativeHandle(ref, () => {
@@ -32,5 +32,5 @@ const Col = forwardRef<ColRef, ColProps>(function Col({ span, style, className, 
   )
 })
 
-export type { ColProps, ColRef } from './types'
+export type { RowColProps, RowColRef } from './types'
 export default Col

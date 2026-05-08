@@ -12,7 +12,7 @@ import React, {
   type RefAttributes
 } from 'react'
 
-import type { CompactContextValue, CompactProps, CompactRef } from './../types'
+import type { FlexCompactContextValue, FlexCompactProps, FlexCompactRef } from './../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -23,14 +23,14 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Context = React.createContext<CompactContextValue | null>(null)
+const Context = React.createContext<FlexCompactContextValue | null>(null)
 
-type CompactWithStatics = ForwardRefExoticComponent<CompactProps & RefAttributes<CompactRef>> & {
+type CompactWithStatics = ForwardRefExoticComponent<FlexCompactProps & RefAttributes<FlexCompactRef>> & {
   Context: typeof Context
-  useContext: () => CompactContextValue | null
+  useContext: () => FlexCompactContextValue | null
 }
 
-const CompactRoot = forwardRef<CompactRef, CompactProps>(
+const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
   (
     {
       className,
@@ -135,9 +135,9 @@ const CompactRoot = forwardRef<CompactRef, CompactProps>(
 
 const Compact = Object.assign(CompactRoot, {
   Context,
-  useContext: (): CompactContextValue | null => useContext(Context)
+  useContext: (): FlexCompactContextValue | null => useContext(Context)
 }) as CompactWithStatics
 
-export type { CompactContextValue, CompactProps, CompactRef } from './../types'
+export type { FlexCompactContextValue, FlexCompactProps, FlexCompactRef } from './../types'
 
 export default Compact

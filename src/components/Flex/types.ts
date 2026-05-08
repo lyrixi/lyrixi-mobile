@@ -22,22 +22,22 @@ export interface FlexRef {
 
 export type FlexStyleInput = Pick<FlexProps, 'gap' | 'justify' | 'align' | 'direction' | 'wrap'>
 
-export type CompactDirection = 'horizontal' | 'vertical'
+export type FlexCompactDirection = 'horizontal' | 'vertical'
 
-export type CompactSizeToken = 's' | 'm' | 'l'
+export type FlexCompactSizeToken = 's' | 'm' | 'l'
 
-export interface CompactContextValue {
+export interface FlexCompactContextValue {
   block?: boolean
-  size?: CompactSizeToken | string
-  direction?: CompactDirection | string
+  size?: FlexCompactSizeToken | string
+  direction?: FlexCompactDirection | string
 }
 
-export interface CompactRef {
+export interface FlexCompactRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface CompactProps {
+export interface FlexCompactProps {
   style?: CSSProperties
   className?: string
   children?: ReactNode
@@ -46,7 +46,7 @@ export interface CompactProps {
   separatorStyle?: CSSProperties
   separatorClassName?: string
   block?: boolean
-  size?: CompactSizeToken | string
-  direction?: CompactDirection | string
-  radius?: CompactSizeToken | string
+  size?: FlexCompactSizeToken | string
+  direction?: FlexCompactDirection | string
+  radius?: FlexCompactSizeToken | string
 }

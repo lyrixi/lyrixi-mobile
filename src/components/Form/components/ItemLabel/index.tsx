@@ -9,7 +9,7 @@ import type { FormItemLabelProps } from '../../types'
 import DOMUtil from './../../../../utils/DOMUtil'
 import Toast from './../../../Toast'
 import Row from '../../../Row'
-import type { ColRef } from '../../../Row'
+import type { RowColRef } from '../../../Row'
 import Text from '../../../Text'
 // 内库使用-end
 
@@ -17,7 +17,7 @@ import Text from '../../../Text'
 import { DOMUtil, Toast, Row, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormLabel = forwardRef<ColRef, FormItemLabelProps>(
+const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
   (
     {
       // Status
@@ -40,7 +40,7 @@ const FormLabel = forwardRef<ColRef, FormItemLabelProps>(
     // 获取全局配置
     const { layout, labelSpan, labelEllipsis } = useContext(ItemsContext)
 
-    const rootRef = useRef<ColRef>(null)
+    const rootRef = useRef<RowColRef>(null)
 
     // Expose
     useImperativeHandle(ref, () => {

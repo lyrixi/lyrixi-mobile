@@ -2,14 +2,14 @@ import type { CSSProperties, ReactNode, RefObject } from 'react'
 
 import type { ComboRef } from './../Combo/types'
 
-export interface PopupRef {
+export interface TooltipPopupRef {
   maskElement: HTMLDivElement | null
   getMaskElement: () => HTMLDivElement | null
   modalElement: HTMLDivElement | null
   getModalElement: () => HTMLDivElement | null
 }
 
-export interface PopupProps {
+export interface TooltipPopupProps {
   open?: boolean
   maskClosable?: boolean
   animation?: string

@@ -1,10 +1,10 @@
 import type { CSSProperties } from 'react'
 
-export interface HideOptions {
+export interface ToastHideOptions {
   onClose?: () => void
 }
 
-export interface ShowProps {
+export interface ToastShowProps {
   duration?: number
   maskClickable?: boolean
   position?: string
