@@ -4,7 +4,7 @@ import filterCoords from './../../utils/filterCoords'
 import addPolyline, { type LinePoint, type LineStyleOptions } from './addPolyline'
 import clearPolyline from './clearPolyline'
 
-import type { PolylineProps, PolylineRef } from '../../types'
+import type { MapPolylineProps, MapPolylineRef } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -16,7 +16,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 
 
 // 批量折线
-const Polyline = forwardRef<PolylineRef | null, PolylineProps>(
+const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
   (
     {
       points: pointsProp,
@@ -84,5 +84,5 @@ const Polyline = forwardRef<PolylineRef | null, PolylineProps>(
   }
 )
 
-export type { PolylineProps, PolylineRef } from '../../types'
+export type { MapPolylineProps, MapPolylineRef } from '../../types'
 export default Polyline

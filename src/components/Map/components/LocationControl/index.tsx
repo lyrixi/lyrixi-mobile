@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import type { MapContainerAPI } from '../../types'
 
-import type { LocationControlProps, LocationControlRef } from '../../types'
+import type { MapLocationControlProps, MapLocationControlRef } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -27,7 +27,7 @@ function isErrorResult(
 
 
 // 定位控件
-const LocationControl = forwardRef<LocationControlRef, LocationControlProps>(
+const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProps>(
   ({ style, className, map, onChange }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -90,5 +90,5 @@ const LocationControl = forwardRef<LocationControlRef, LocationControlProps>(
   )
 })
 
-export type { LocationControlProps, LocationControlRef } from '../../types'
+export type { MapLocationControlProps, MapLocationControlRef } from '../../types'
 export default LocationControl

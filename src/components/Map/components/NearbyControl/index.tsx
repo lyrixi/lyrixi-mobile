@@ -6,7 +6,7 @@ import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
 
-import type { QueryNearbyResult, NearbyControlProps, NearbyControlRef, NearbyTabItem } from '../../types'
+import type { QueryNearbyResult, MapNearbyControlProps, MapNearbyControlRef, MapNearbyTabItem } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -19,14 +19,14 @@ import { LocaleUtil, Loading } from 'lyrixi-mobile'
 
 
 // 附近推荐
-const Nearby = forwardRef<NearbyControlRef | null, NearbyControlProps>(
+const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
   ({ value, radius, readOnly, nearbyVisible = true, map, onChange, onSuccess, onError }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
 
   const [result, setResult] = useState<QueryNearbyResult | null>(null)
 
-  const [tab, setTab] = useState<NearbyTabItem>(getTabs()[0])
+  const [tab, setTab] = useState<MapNearbyTabItem>(getTabs()[0])
 
   /* eslint-disable @typescript-eslint/no-use-before-define -- loadData 声明在下方，与既有结构一致 */
 
@@ -128,5 +128,5 @@ const Nearby = forwardRef<NearbyControlRef | null, NearbyControlProps>(
   )
 })
 
-export type { NearbyControlProps, MapValue } from '../../types'
+export type { MapNearbyControlProps, MapValue } from '../../types'
 export default Nearby

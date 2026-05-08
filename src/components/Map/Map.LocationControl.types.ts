@@ -1,14 +1,14 @@
 import type { CSSProperties } from 'react'
 import type { MapContainerAPI } from './Map.MapContainer.types'
 
-export interface LocationControlProps {
+export interface MapLocationControlProps {
   style?: CSSProperties
   className?: string
   map?: MapContainerAPI
   onChange?: (result: unknown) => void
 }
 
-export interface LocationControlRef {
+export interface MapLocationControlRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
   update: () => Promise<unknown>

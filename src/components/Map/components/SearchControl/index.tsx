@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Page from './Page'
 
-import type { SearchControlProps, MapSearchBarExoticComponent } from '../../types'
+import type { MapSearchControlProps, MapSearchBarExoticComponent } from '../../types'
 
 // 内库使用-start
 import SearchBar from './../../../ToolBar/Search'
@@ -16,7 +16,7 @@ const MapSearchBar = SearchBar as MapSearchBarExoticComponent
 
 
 // 搜索
-const SearchControl = forwardRef<unknown, SearchControlProps>(({ map, onChange, style, className }, ref) => {
+const SearchControl = forwardRef<unknown, MapSearchControlProps>(({ map, onChange, style, className }, ref) => {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -41,5 +41,5 @@ const SearchControl = forwardRef<unknown, SearchControlProps>(({ map, onChange, 
   )
 })
 
-export type { SearchControlProps } from '../../types'
+export type { MapSearchControlProps } from '../../types'
 export default SearchControl

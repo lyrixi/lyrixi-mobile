@@ -7,7 +7,7 @@ import isSamePoint from './../../utils/isSamePoint'
 import addMarkers from './addMarkers'
 import clearMarkers from './clearMarkers'
 
-import type { MapCoord, MarkersProps, MarkersHandle, MapPoint, CanvasMarkerLayer } from '../../types'
+import type { CanvasMarkerLayer, MapCoord, MapMarkersLayerHandle, MapMarkersLayerProps, MapPoint } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -19,7 +19,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 
 
 // 批量标注
-const Markers = forwardRef<MarkersHandle, MarkersProps>(
+const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
   (
     {
       points: pointsProp,
@@ -142,5 +142,5 @@ const Markers = forwardRef<MarkersHandle, MarkersProps>(
   }
 )
 
-export type { MarkersProps, MarkersHandle, MapPoint, MapCoord } from '../../types'
+export type { MapCoord, MapMarkersLayerHandle, MapMarkersLayerProps, MapPoint } from '../../types'
 export default Markers

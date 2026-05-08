@@ -1,10 +1,10 @@
 import type { MapContainerAPI } from './Map.MapContainer.types'
 
-export interface CirclesRef {
+export interface MapCirclesRef {
   redraw: () => void
 }
 
-export interface CirclesProps {
+export interface MapCirclesProps {
   points?: unknown
   color?: string
   radius?: number

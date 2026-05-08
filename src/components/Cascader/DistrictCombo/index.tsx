@@ -4,7 +4,7 @@ import DistrictModal from './../DistrictModal'
 import type { CascaderNode } from './../types'
 import type { InputSelectComboRef } from './../../Input/types'
 
-import type { DistrictComboProps, DistrictComboRef } from '../types'
+import type { CascaderDistrictComboProps, CascaderDistrictComboRef } from '../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -15,7 +15,7 @@ import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // 级联选择
-const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
+const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictComboProps>(
   (
     {
       value,
@@ -71,7 +71,7 @@ const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
         ...m,
         close: () => setOpen(false),
         open: () => setOpen(true)
-      } as DistrictComboRef
+      } as CascaderDistrictComboRef
     })
 
     async function handleOpen() {
@@ -141,5 +141,5 @@ const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
   }
 )
 
-export type { DistrictComboProps, DistrictComboRef } from '../types'
+export type { CascaderDistrictComboProps, CascaderDistrictComboRef } from '../types'
 export default DistrictCombo

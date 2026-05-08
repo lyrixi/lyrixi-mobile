@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 import type { ModalProps } from './Modal.Modal.types'
 
-export interface DropdownModalProps {
+export interface ModalDropdownModalProps {
   open?: boolean
   maskClosable?: boolean
   safeArea?: boolean

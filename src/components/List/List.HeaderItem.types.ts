@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-export interface HeaderItemProps {
+export interface ListHeaderItemProps {
   style?: CSSProperties
   className?: string
   anchor?: string

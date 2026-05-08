@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
 import renderContext from './../utils/renderContext'
 
-import type { SlideProps, SlideRef, TabBarItem } from '../types'
+import type { TabBarItem, TabBarSlideProps, TabBarSlideRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Slide = forwardRef<SlideRef, SlideProps>(
+const Slide = forwardRef<TabBarSlideRef, TabBarSlideProps>(
   (
     {
       separator,
@@ -110,6 +110,6 @@ const Slide = forwardRef<SlideRef, SlideProps>(
     )
   }
 )
-export type { SlideProps, SlideRef } from '../types'
+export type { TabBarSlideProps, TabBarSlideRef } from '../types'
 
 export default Slide

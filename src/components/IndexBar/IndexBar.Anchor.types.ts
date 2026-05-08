@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-export interface AnchorProps {
+export interface IndexBarAnchorProps {
   name?: string
   children?: ReactNode
   className?: string

@@ -1,7 +1,7 @@
 import type { CSSProperties, FC, ForwardRefExoticComponent, RefAttributes } from 'react'
 import type { MapContainerAPI } from './Map.MapContainer.types'
 
-export interface SearchControlProps {
+export interface MapSearchControlProps {
   style?: CSSProperties
   className?: string
   map?: MapContainerAPI
@@ -16,7 +16,7 @@ export interface SearchQueryNearbyResult {
   [key: string]: unknown
 }
 
-export interface SearchPageProps {
+export interface MapSearchPageProps {
   open: boolean
   map?: MapContainerAPI
   onClose?: () => void

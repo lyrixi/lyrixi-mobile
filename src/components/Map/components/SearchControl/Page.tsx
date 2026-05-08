@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type {
-  SearchPageProps,
+  MapSearchPageProps,
   SearchQueryNearbyResult,
   MapSearchActiveListComponent
 } from '../../types'
@@ -26,7 +26,7 @@ function isQueryResult(v: unknown): v is SearchQueryNearbyResult {
 
 
 // 搜索
-function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
+function SearchPage({ open, map, onClose, onChange }: MapSearchPageProps) {
   const [result, setResult] = useState<SearchQueryNearbyResult | null>(null)
   const [keyword, setKeyword] = useState('')
 
@@ -113,5 +113,5 @@ function SearchPage({ open, map, onClose, onChange }: SearchPageProps) {
   )
 }
 
-export type { SearchPageProps } from '../../types'
+export type { MapSearchPageProps } from '../../types'
 export default SearchPage

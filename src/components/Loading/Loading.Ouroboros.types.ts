@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'react'
 
-export interface OuroborosProps {
+export interface LoadingOuroborosProps {
   color?: string
   size?: string | number
   style?: CSSProperties
   className?: string
 }
 
-export interface OuroborosRef {
+export interface LoadingOuroborosRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

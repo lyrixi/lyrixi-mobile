@@ -1,11 +1,11 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { EditProps, EditRef } from '../../types'
+import type { SignatureComboEditProps, SignatureComboEditRef } from '../../types'
 
 import Thumbnail from './Thumbnail'
 
 // 照片视频预览
-const Edit = forwardRef<EditRef, EditProps>(
+const Edit = forwardRef<SignatureComboEditRef, SignatureComboEditProps>(
   (
     {
       // Value & Display Value
@@ -55,6 +55,6 @@ const Edit = forwardRef<EditRef, EditProps>(
     )
   }
 )
-export type { EditProps, EditRef } from '../../types'
+export type { SignatureComboEditProps, SignatureComboEditRef } from '../../types'
 
 export default Edit

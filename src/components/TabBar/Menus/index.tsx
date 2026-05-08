@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
 import renderContext from './../utils/renderContext'
 
-import type { MenusProps, MenusRef, TabBarItem } from '../types'
+import type { TabBarItem, TabBarMenusProps, TabBarMenusRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Menus = forwardRef<MenusRef, MenusProps>(
+const Menus = forwardRef<TabBarMenusRef, TabBarMenusProps>(
   (
     {
       separator,
@@ -112,6 +112,6 @@ const Menus = forwardRef<MenusRef, MenusProps>(
     )
   }
 )
-export type { MenusProps, MenusRef } from '../types'
+export type { TabBarMenusProps, TabBarMenusRef } from '../types'
 
 export default Menus

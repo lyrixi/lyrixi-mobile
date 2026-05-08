@@ -17,7 +17,7 @@ export interface QueryNearbyResult {
   [key: string]: unknown
 }
 
-export interface NearbyControlProps {
+export interface MapNearbyControlProps {
   value?: MapValue
   radius?: number
   readOnly?: boolean
@@ -28,21 +28,21 @@ export interface NearbyControlProps {
   onError?: (result: unknown) => void
 }
 
-export interface NearbyControlRef {
+export interface MapNearbyControlRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
   reload: () => void
 }
 
-export interface NearbyControlMainProps {
+export interface MapNearbyControlMainProps {
   result: Record<string, unknown> | null
   value?: unknown
   onChange?: (item: Record<string, unknown>) => void
 }
 
-export type NearbyTabItem = ReturnType<typeof getTabs>[number]
+export type MapNearbyTabItem = ReturnType<typeof getTabs>[number]
 
-export interface NearbyControlTabsProps {
-  tab: NearbyTabItem
-  onChange: (t: NearbyTabItem) => void
+export interface MapNearbyControlTabsProps {
+  tab: MapNearbyTabItem
+  onChange: (t: MapNearbyTabItem) => void
 }

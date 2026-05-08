@@ -3,7 +3,7 @@ import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import Cancel from './Cancel'
 import Ok from './Ok'
 
-import type { NavBarModalNavBarProps, NavBarModalNavBarRef } from '../../types'
+import type { ModalNavBarModalNavBarProps, ModalNavBarModalNavBarRef } from '../../types'
 
 // 内库使用-start
 import NavBar from './../../../NavBar'
@@ -13,7 +13,7 @@ import NavBar from './../../../NavBar'
 import { NavBar } from 'lyrixi-mobile'
 测试使用-end */
 
-const Head = forwardRef<NavBarModalNavBarRef, NavBarModalNavBarProps>(
+const Head = forwardRef<ModalNavBarModalNavBarRef, ModalNavBarModalNavBarProps>(
   (
     {
       // Style
@@ -62,6 +62,6 @@ const Head = forwardRef<NavBarModalNavBarRef, NavBarModalNavBarProps>(
     )
   }
 )
-export type { NavBarModalNavBarProps, NavBarModalNavBarRef } from '../../types'
+export type { ModalNavBarModalNavBarProps, ModalNavBarModalNavBarRef } from '../../types'
 
 export default Head

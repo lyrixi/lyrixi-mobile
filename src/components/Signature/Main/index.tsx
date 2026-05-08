@@ -3,7 +3,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 import Signature from './Signature'
 
-import type { SignatureMainProps, SignatureMainRef, SignatureRef } from '../types'
+import type { SignatureMainDrawRef, SignatureMainProps, SignatureMainRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -29,7 +29,7 @@ const Main = (
 ) => {
   const rootRef = useRef<HTMLDivElement>(null)
   // 签名
-  const signatureRef = useRef<SignatureRef>(null)
+  const signatureRef = useRef<SignatureMainDrawRef>(null)
 
   // 外部调用
   useImperativeHandle(ref, () => {

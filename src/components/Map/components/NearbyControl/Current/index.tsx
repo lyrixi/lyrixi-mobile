@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Navigation from './Navigation'
 
-import type { CurrentProps } from '../../../types'
+import type { MapNearbyControlCurrentProps } from '../../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -13,7 +13,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 
 // 当前位置
-const Current = forwardRef<HTMLDivElement, CurrentProps>(({ value, readOnly, map, onChange }, ref) => {
+const Current = forwardRef<HTMLDivElement, MapNearbyControlCurrentProps>(({ value, readOnly, map, onChange }, ref) => {
   return (
     <div
       ref={ref}
@@ -49,5 +49,5 @@ const Current = forwardRef<HTMLDivElement, CurrentProps>(({ value, readOnly, map
   )
 })
 
-export type { CurrentProps, MapValue } from '../../../types'
+export type { MapNearbyControlCurrentProps, MapValue } from '../../../types'
 export default Current

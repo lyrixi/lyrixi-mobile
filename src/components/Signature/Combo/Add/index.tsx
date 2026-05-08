@@ -3,7 +3,7 @@ import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
 
 import Modal from './../../Modal'
 
-import type { ComboAddProps, ComboAddRef, SignatureModalRef } from '../../types'
+import type { SignatureComboAddProps, SignatureComboAddRef, SignatureModalRef } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -32,8 +32,8 @@ const Combo = (
 
     // Events
     onChange
-  }: ComboAddProps,
-  ref: React.Ref<ComboAddRef>
+  }: SignatureComboAddProps,
+  ref: React.Ref<SignatureComboAddRef>
 ) => {
   const [open, setOpen] = useState(false)
 
@@ -100,6 +100,6 @@ const Combo = (
     </>
   )
 }
-export type { ComboAddProps, ComboAddRef } from '../../types'
+export type { SignatureComboAddProps, SignatureComboAddRef } from '../../types'
 
-export default forwardRef<ComboAddRef, ComboAddProps>(Combo)
+export default forwardRef<SignatureComboAddRef, SignatureComboAddProps>(Combo)

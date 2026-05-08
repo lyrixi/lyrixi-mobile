@@ -4,7 +4,7 @@ import filterCoords from './../../utils/filterCoords'
 import addCircles, { type CirclePoint } from './addCircles'
 import clearCircles from './clearCircles'
 
-import type { CirclesProps, CirclesRef } from '../../types'
+import type { MapCirclesProps, MapCirclesRef } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -16,7 +16,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 
 
 // 批量圈
-const Circles = forwardRef<CirclesRef | null, CirclesProps>(
+const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
   (
     {
       points: pointsProp,
@@ -82,5 +82,5 @@ const Circles = forwardRef<CirclesRef | null, CirclesProps>(
   }
 )
 
-export type { CirclesProps, CirclesRef } from '../../types'
+export type { MapCirclesProps, MapCirclesRef } from '../../types'
 export default Circles

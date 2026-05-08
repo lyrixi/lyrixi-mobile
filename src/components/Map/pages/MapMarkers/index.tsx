@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
 import MapContainer, { type MapContainerAPI } from './../../components/MapContainer'
-import ZoomControl, { type ZoomControlRef } from './../../components/ZoomControl'
-import Markers, { type MarkersHandle } from './../../components/Markers'
+import ZoomControl, { type MapZoomControlRef } from './../../components/ZoomControl'
+import Markers, { type MapMarkersLayerHandle } from './../../components/Markers'
 import Circles from './../../components/Circles'
 import type { CirclePoint } from './../../components/Circles/addCircles'
 import Polyline from './../../components/Polyline'
 import type { LinePoint } from './../../components/Polyline/addPolyline'
-import type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from '../../types'
+import type { MapMapMarkersHandle, MapMapMarkersProps, MapCirclesRef, MapPolylineRef } from '../../types'
 
 
 // 地图标注
-const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMarkers(
+const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function MapMarkers(
   {
     markers,
     minZoom,
@@ -47,13 +47,13 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
 ) {
   const mapRef = useRef<MapContainerAPI | null>(null)
 
-  const markersRef = useRef<MarkersHandle | null>(null)
+  const markersRef = useRef<MapMarkersLayerHandle | null>(null)
 
-  const circlesRef = useRef<CirclesRef | null>(null)
+  const circlesRef = useRef<MapCirclesRef | null>(null)
 
-  const polylineRef = useRef<PolylineRef | null>(null)
+  const polylineRef = useRef<MapPolylineRef | null>(null)
 
-  const zoomRef = useRef<ZoomControlRef | null>(null)
+  const zoomRef = useRef<MapZoomControlRef | null>(null)
 
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
 
 
   // Ref handle extends MapContainerAPI with map refs; may be null before map is ready. React ref typings expect the non-null branch for useImperativeHandle.
-  // @ts-expect-error MapMarkersHandle includes null; TS useImperativeHandle infers the non-null handle shape only
+  // @ts-expect-error MapMapMarkersHandle includes null; TS useImperativeHandle infers the non-null handle shape only
   useImperativeHandle(ref, () => {
     const m = mapRef.current
     if (!m) {
@@ -77,7 +77,7 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
       polylineRef,
       circlesRef,
       zoomRef
-    } as MapMarkersHandle
+    } as MapMapMarkersHandle
   })
 
 
@@ -157,5 +157,5 @@ const MapMarkers = forwardRef<MapMarkersHandle, MapMarkersProps>(function MapMar
   )
 })
 
-export type { MapMarkersProps, MapMarkersHandle, PolylineRef, CirclesRef } from '../../types'
+export type { MapMapMarkersHandle, MapMapMarkersProps, MapCirclesRef, MapPolylineRef } from '../../types'
 export default MapMarkers

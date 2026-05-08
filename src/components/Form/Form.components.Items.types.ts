@@ -3,16 +3,16 @@ import type { CSSProperties, ReactNode } from 'react'
 import type { FormItemsProps } from './Form.components.Items.Form.types'
 import type { EllipsisConfig } from './Form.ItemsContext.types'
 
-export interface ItemsProps extends FormItemsProps {
+export interface FormItemsLayoutProps extends FormItemsProps {
   virtual?: boolean
 }
 
-export interface VirtualFormRef {
+export interface FormVirtualFormRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface VirtualFormProps {
+export interface FormVirtualFormProps {
   style?: CSSProperties
   className?: string
   layout?: string

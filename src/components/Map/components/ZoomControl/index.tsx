@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { ZoomControlProps, ZoomControlRef } from '../../types'
+import type { MapZoomControlProps, MapZoomControlRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -8,7 +8,7 @@ import DOMUtil from './../../../../utils/DOMUtil'
 
 
 // 缩放控件
-const ZoomControl = forwardRef<ZoomControlRef, ZoomControlProps>(
+const ZoomControl = forwardRef<MapZoomControlRef, MapZoomControlProps>(
   ({ style, className, map, onZoomIn, onZoomOut }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -52,5 +52,5 @@ const ZoomControl = forwardRef<ZoomControlRef, ZoomControlProps>(
   )
 })
 
-export type { ZoomControlProps, ZoomControlRef } from '../../types'
+export type { MapZoomControlProps, MapZoomControlRef } from '../../types'
 export default ZoomControl

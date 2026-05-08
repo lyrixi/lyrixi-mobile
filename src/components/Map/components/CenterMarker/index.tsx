@@ -6,13 +6,13 @@ import createCenterMarkerIcon from './createCenterMarkerIcon'
 import addCenterMarker from './addCenterMarker'
 import clearCenterMarker from './clearCenterMarker'
 
-import type { CenterMarkerProps, CenterMarkerRef } from '../../types'
+import type { MapCenterMarkerProps, MapCenterMarkerRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-const CenterMarker = forwardRef<CenterMarkerRef, CenterMarkerProps>(
+const CenterMarker = forwardRef<MapCenterMarkerRef, MapCenterMarkerProps>(
   (
     {
       value,

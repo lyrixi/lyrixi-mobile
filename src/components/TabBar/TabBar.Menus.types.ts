@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 import type { TabBarItem, TabBarValue } from './TabBar.base.types'
 
-export interface MenusProps {
+export interface TabBarMenusProps {
   separator?: ReactNode
   value?: TabBarValue
   list?: TabBarItem[]
@@ -13,7 +13,7 @@ export interface MenusProps {
   style?: CSSProperties
 }
 
-export interface MenusRef {
+export interface TabBarMenusRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

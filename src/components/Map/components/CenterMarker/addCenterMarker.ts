@@ -1,11 +1,11 @@
 import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
 import createMarkerIcon from './../Markers/createMarkerIcon'
-import type { MapPoint, AddCenterMarkerOptions } from '../../types'
+import type { MapPoint, MapCenterMarkerAddOptions } from '../../types'
 
 function addCenterMarker(
   point: MapPoint,
-  { onClick, icon }: AddCenterMarkerOptions = {},
+  { onClick, icon }: MapCenterMarkerAddOptions = {},
   layer: L.LayerGroup | null
 ): L.Marker | null {
   if (!layer) return null

@@ -3,7 +3,7 @@ import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react
 
 import { CanvasUtil } from './utils'
 
-import type { SignatureProps, SignatureRef } from '../types'
+import type { SignatureMainDrawProps, SignatureMainDrawRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -27,8 +27,8 @@ const Signature = (
     color = '#000', // 绘画配置: 画笔颜色
     backgroundColor = '#fff', // 绘画配置: 背景颜色
     lineWidth = 3 // 绘画配置: 线条宽度
-  }: SignatureProps,
-  ref: React.Ref<SignatureRef>
+  }: SignatureMainDrawProps,
+  ref: React.Ref<SignatureMainDrawRef>
 ) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -190,6 +190,6 @@ const Signature = (
     </div>
   )
 }
-export type { SignatureProps, SignatureRef } from '../types'
+export type { SignatureMainDrawProps, SignatureMainDrawRef } from '../types'
 
-export default forwardRef<SignatureRef, SignatureProps>(Signature)
+export default forwardRef<SignatureMainDrawRef, SignatureMainDrawProps>(Signature)

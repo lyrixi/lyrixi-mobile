@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'react'
 
-export interface BallWaveProps {
+export interface LoadingBallWaveProps {
   color?: string
   size?: string | number
   style?: CSSProperties
   className?: string
 }
 
-export interface BallWaveRef {
+export interface LoadingBallWaveRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

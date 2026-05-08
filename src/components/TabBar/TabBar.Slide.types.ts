@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 import type { TabBarItem, TabBarValue } from './TabBar.base.types'
 
-export interface SlideProps {
+export interface TabBarSlideProps {
   separator?: ReactNode
   value?: TabBarValue
   list?: TabBarItem[]
@@ -13,7 +13,7 @@ export interface SlideProps {
   style?: CSSProperties
 }
 
-export interface SlideRef {
+export interface TabBarSlideRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

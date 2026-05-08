@@ -11,7 +11,7 @@ import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
 import type { CascaderNode } from './../types'
 
-import type { DistrictModalProps } from '../types'
+import type { CascaderDistrictModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -25,7 +25,7 @@ const NavBarModal = Modal.NavBarModal
 
 type DistrictMainHandle = { loadList: () => Promise<void>; list: unknown }
 
-const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
+const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalProps>(
   (
     {
       value,
@@ -153,6 +153,6 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
     )
   }
 )
-export type { DistrictModalProps } from '../types'
+export type { CascaderDistrictModalProps } from '../types'
 
 export default DistrictModal

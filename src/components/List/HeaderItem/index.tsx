@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { HeaderItemProps } from './../types'
+import type { ListHeaderItemProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -22,7 +22,7 @@ function HeaderItem({
   anchor,
   title,
   description
-}: HeaderItemProps) {
+}: ListHeaderItemProps) {
   let TitleNode = (
     <>
       {title && <div className="lyrixi-list-title">{title}</div>}

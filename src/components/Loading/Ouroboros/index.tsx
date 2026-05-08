@@ -1,12 +1,12 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties } from 'react'
 
-import type { OuroborosProps, OuroborosRef } from './../types'
+import type { LoadingOuroborosProps, LoadingOuroborosRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
-const Ouroboros = forwardRef<OuroborosRef, OuroborosProps>(
+const Ouroboros = forwardRef<LoadingOuroborosRef, LoadingOuroborosProps>(
   ({ color, size, style, className }, ref) => {
     const rootRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {

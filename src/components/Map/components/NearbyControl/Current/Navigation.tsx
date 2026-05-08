@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { NavigationProps } from '../../../types'
+import type { MapNearbyControlNavigationProps } from '../../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
@@ -12,7 +12,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 
 // 导航
-function Navigation({ type, longitude, latitude, name, address, map }: NavigationProps) {
+function Navigation({ type, longitude, latitude, name, address, map }: MapNearbyControlNavigationProps) {
   if (!longitude || !latitude) return null
   const open = map?.openLocation
   if (typeof open !== 'function') return null
@@ -38,5 +38,5 @@ function Navigation({ type, longitude, latitude, name, address, map }: Navigatio
   )
 }
 
-export type { NavigationProps } from '../../../types'
+export type { MapNearbyControlNavigationProps } from '../../../types'
 export default Navigation

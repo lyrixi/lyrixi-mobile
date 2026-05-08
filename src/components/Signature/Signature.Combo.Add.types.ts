@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-export interface ComboAddProps {
+export interface SignatureComboAddProps {
   value?: string
   className?: string
   style?: CSSProperties
@@ -11,7 +11,7 @@ export interface ComboAddProps {
   onChange?: (base64: string | null) => void
 }
 
-export interface ComboAddRef {
+export interface SignatureComboAddRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }

@@ -5,5 +5,5 @@ type IndexBarWithAnchor = typeof IndexBar & { Anchor: typeof Anchor }
 
 ;(IndexBar as IndexBarWithAnchor).Anchor = Anchor
 
-export type { AnchorProps, IndexBarProps, IndexBarRef } from './types'
+export type { IndexBarAnchorProps, IndexBarProps, IndexBarRef } from './types'
 export default IndexBar as IndexBarWithAnchor

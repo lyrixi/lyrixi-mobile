@@ -11,7 +11,7 @@ export interface MapPoint {
   [key: string]: unknown
 }
 
-export interface CenterMarkerProps {
+export interface MapCenterMarkerProps {
   value?: MapPoint | null
   style?: CSSProperties
   className?: string
@@ -22,12 +22,12 @@ export interface CenterMarkerProps {
   onDragEnd?: ((map: MapContainerAPI) => void) | null
 }
 
-export interface CenterMarkerRef {
+export interface MapCenterMarkerRef {
   element: HTMLSpanElement | null
   getElement: () => HTMLSpanElement | null
 }
 
-export interface AddCenterMarkerOptions {
+export interface MapCenterMarkerAddOptions {
   onClick?: ((info: MapPoint & { setIcon?: unknown }) => void) | null
   icon?: L.Icon | L.DivIcon | null
 }

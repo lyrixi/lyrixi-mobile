@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 
-import type { SignatureThumbnailProps } from '../../types'
+import type { SignatureComboEditThumbnailProps } from '../../types'
 
 // 内库使用-start
 import Media from './../../../Media'
@@ -12,7 +12,7 @@ import { Media } from 'lyrixi-mobile'
 测试使用-end */
 
 // 预览
-function Thumbnail({ src, onPreview }: SignatureThumbnailProps) {
+function Thumbnail({ src, onPreview }: SignatureComboEditThumbnailProps) {
   const previewTypeRef = useRef<string | null>('browser')
   const [previewCurrent, setPreviewCurrent] = useState<number | null>(null)
 

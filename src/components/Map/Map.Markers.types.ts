@@ -35,7 +35,7 @@ export interface AddMarkersLayersOptions {
   canvasLayer: CanvasMarkerLayer
 }
 
-export interface MarkersProps {
+export interface MapMarkersLayerProps {
   points?: unknown
   map?: MapContainerAPI
   icon?: unknown
@@ -44,7 +44,7 @@ export interface MarkersProps {
   onClick?: (payload: unknown) => void
 }
 
-export interface MarkersHandle {
+export interface MapMarkersLayerHandle {
   redraw: () => void
   focus: (point: MapCoord) => void
   blur: () => void

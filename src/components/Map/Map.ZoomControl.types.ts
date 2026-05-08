@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { MapContainerAPI } from './Map.MapContainer.types'
 
-export interface ZoomControlProps {
+export interface MapZoomControlProps {
   style?: CSSProperties
   className?: string
   map?: MapContainerAPI
@@ -9,7 +9,7 @@ export interface ZoomControlProps {
   onZoomOut?: (map: MapContainerAPI) => void
 }
 
-export interface ZoomControlRef {
+export interface MapZoomControlRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
   zoomOut: () => void

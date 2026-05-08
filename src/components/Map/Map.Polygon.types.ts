@@ -1,10 +1,10 @@
 import type { MapContainerAPI } from './Map.MapContainer.types'
 
-export interface PolygonRef {
+export interface MapPolygonRef {
   redraw: () => void
 }
 
-export interface PolygonProps {
+export interface MapPolygonProps {
   points?: unknown
   color?: string
   fillColor?: string

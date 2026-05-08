@@ -2,8 +2,7 @@ import React, { useRef } from 'react'
 import type { L } from '../types'
 import { Page, Map, Button } from 'lyrixi-mobile'
 
-import type { MapMarkersHandle } from '../types'
-import type { MarkersHandle } from '../types'
+import type { MapMapMarkersHandle, MapMarkersLayerHandle } from '../types'
 import type { MapPoint } from '../types'
 import getPoints from './getPoints'
 import type { DemoMarkerClickPayload } from '../types'
@@ -82,13 +81,13 @@ const points = coordsToWgs84(
 // ])
 
 export default () => {
-  const mapRef = useRef<MapMarkersHandle | null>(null)
+  const mapRef = useRef<MapMapMarkersHandle | null>(null)
 
   function handleFocusPoint() {
     const handle = mapRef.current?.markersRef.current
     const p0 = points[0]
     if (handle && p0 !== null && p0 !== undefined) {
-      handle.focus(p0 as Parameters<MarkersHandle['focus']>[0])
+      handle.focus(p0 as Parameters<MapMarkersLayerHandle['focus']>[0])
     }
   }
 
@@ -142,7 +141,7 @@ export default () => {
               markers={points}
               // 折线
               // polyline={points}
-              // PolylineProps={{
+              // MapPolylineProps={{
               //   color: '#ff8800'
               // }}
               // 圆圈
@@ -155,7 +154,7 @@ export default () => {
               //     // color: '#ff8800'
               //   }
               // ]}
-              // CirclesProps={{
+              // MapCirclesProps={{
               //   color: '#ff8800'
               // }}
               onMarkerClick={(e) => {

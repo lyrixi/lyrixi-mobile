@@ -3,14 +3,14 @@ import type { MapValue } from './Map.NearbyControl.types'
 
 export type { MapValue } from './Map.NearbyControl.types'
 
-export interface CurrentProps {
+export interface MapNearbyControlCurrentProps {
   value?: MapValue
   readOnly?: boolean
   map?: MapContainerAPI
   onChange?: (item: unknown) => void
 }
 
-export interface NavigationProps {
+export interface MapNearbyControlNavigationProps {
   type?: string
   longitude?: number | string
   latitude?: number | string

@@ -1,13 +1,13 @@
 import type { CSSProperties, MutableRefObject, ReactNode } from 'react'
 import type { MapContainerAPI, MapContainerProps } from './Map.MapContainer.types'
-import type { MarkersHandle } from './Map.Markers.types'
-import type { ZoomControlRef } from './Map.ZoomControl.types'
-import type { PolylineRef } from './Map.Polyline.types'
-import type { CirclesRef } from './Map.Circles.types'
+import type { MapMarkersLayerHandle } from './Map.Markers.types'
+import type { MapZoomControlRef } from './Map.ZoomControl.types'
+import type { MapPolylineRef } from './Map.Polyline.types'
+import type { MapCirclesRef } from './Map.Circles.types'
 
-export type { PolylineRef, CirclesRef }
+export type { MapPolylineRef, MapCirclesRef }
 
-export interface MapMarkersProps {
+export interface MapMapMarkersProps {
   markers?: unknown
   minZoom?: number
   maxZoom?: number
@@ -39,11 +39,11 @@ export interface MapMarkersProps {
   onDragEnd?: MapContainerProps['onDragEnd']
 }
 
-export type MapMarkersHandle =
+export type MapMapMarkersHandle =
   | (MapContainerAPI & {
-      markersRef: MutableRefObject<MarkersHandle | null>
-      polylineRef: MutableRefObject<PolylineRef | null>
-      circlesRef: MutableRefObject<CirclesRef | null>
-      zoomRef: MutableRefObject<ZoomControlRef | null>
+      markersRef: MutableRefObject<MapMarkersLayerHandle | null>
+      polylineRef: MutableRefObject<MapPolylineRef | null>
+      circlesRef: MutableRefObject<MapCirclesRef | null>
+      zoomRef: MutableRefObject<MapZoomControlRef | null>
     })
   | null

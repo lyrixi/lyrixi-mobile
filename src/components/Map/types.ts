@@ -4,25 +4,25 @@
  */
 export type * from './Map.CenterMarker.createCenterMarkerIcon.types'
 export type {
-  CenterMarkerProps,
-  CenterMarkerRef,
-  AddCenterMarkerOptions
+  MapCenterMarkerProps,
+  MapCenterMarkerRef,
+  MapCenterMarkerAddOptions
 } from './Map.CenterMarker.types'
 export type * from './Map.Circles.types'
 export type * from './Map.LocationControl.types'
 export type * from './Map.MapChoose.types'
 export type * from './Map.MapContainer.types'
 export type { LoadResult as MapLoaderLoadResult, MapLoaderProps, MapLoaderRef } from './Map.MapLoader.types'
-export type * from './Map.MapMarkers.types'
 export type * from './Map.Markers.createMarkerIcon.types'
 export type {
   MapCoord,
   CanvasMarkerLayer,
   AddMarkersIconOptions,
   AddMarkersLayersOptions,
-  MarkersProps,
-  MarkersHandle
+  MapMarkersLayerProps,
+  MapMarkersLayerHandle
 } from './Map.Markers.types'
+export type { MapMapMarkersProps, MapMapMarkersHandle } from './Map.MapMarkers.types'
 export type * from './Map.NearbyControl.Current.types'
 export type * from './Map.NearbyControl.types'
 export type * from './Map.Polygon.types'

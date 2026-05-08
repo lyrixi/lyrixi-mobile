@@ -1,11 +1,11 @@
 import type { ChangeEvent, CSSProperties, MouseEvent, ReactNode } from 'react'
 
-export interface UploadButtonRef {
+export interface AttachChooseUploadButtonRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface UploadButtonProps {
+export interface AttachChooseUploadButtonProps {
   uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
   style?: CSSProperties
   className?: string

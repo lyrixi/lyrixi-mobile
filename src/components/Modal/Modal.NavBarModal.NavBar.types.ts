@@ -1,11 +1,11 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-export interface NavBarModalNavBarRef {
+export interface ModalNavBarModalNavBarRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
 
-export interface NavBarModalNavBarProps {
+export interface ModalNavBarModalNavBarProps {
   style?: CSSProperties
   className?: string
   title?: ReactNode
@@ -19,13 +19,13 @@ export interface NavBarModalNavBarProps {
   onCancel?: (e: MouseEvent<HTMLDivElement>) => void
 }
 
-export interface NavBarModalOkProps {
+export interface ModalNavBarModalOkProps {
   total?: number
   children?: ReactNode
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
 }
 
-export interface NavBarModalCancelProps {
+export interface ModalNavBarModalCancelProps {
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
   children?: ReactNode
 }

@@ -7,7 +7,7 @@ import type {
   LoadStreetsFn
 } from './Cascader.DistrictMain.types'
 
-export interface DistrictModalProps {
+export interface CascaderDistrictModalProps {
   value?: CascaderNode[] | null
   type?: string
   loadCountries?: LoadCountriesFn

@@ -1,7 +1,7 @@
 import React from 'react'
 import getTabs from './utils/getTabs'
 
-import type { NearbyControlTabsProps } from '../../types'
+import type { MapNearbyControlTabsProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 
 // 选项卡
-function Tabs({ tab, onChange }: NearbyControlTabsProps) {
+function Tabs({ tab, onChange }: MapNearbyControlTabsProps) {
   const tabs = getTabs()
   return (
     <div className="lyrixi-map-nearbyControl-tabs">
@@ -37,5 +37,5 @@ function Tabs({ tab, onChange }: NearbyControlTabsProps) {
   )
 }
 
-export type { NearbyControlTabsProps } from '../../types'
+export type { MapNearbyControlTabsProps } from '../../types'
 export default Tabs

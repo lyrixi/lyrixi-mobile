@@ -3,7 +3,7 @@ import Modal, { type ModalRef } from '../Modal'
 import NavBar from './NavBar'
 
 
-import type { NavBarModalProps } from '../types'
+import type { ModalNavBarModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -14,7 +14,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // NavBarModal
-const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
+const NavBarModal = forwardRef<ModalRef, ModalNavBarModalProps>(
   (
     {
       // Status
@@ -104,6 +104,6 @@ const NavBarModal = forwardRef<ModalRef, NavBarModalProps>(
     )
   }
 )
-export type { NavBarModalProps } from '../types'
+export type { ModalNavBarModalProps } from '../types'
 
 export default NavBarModal

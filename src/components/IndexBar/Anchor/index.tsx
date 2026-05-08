@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { AnchorProps } from '../types'
+import type { IndexBarAnchorProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -15,7 +15,7 @@ const Anchor = ({
   // Style
   className,
   style
-}: AnchorProps) => {
+}: IndexBarAnchorProps) => {
   if (!name) {
     return <>{children}</>
   }
@@ -30,6 +30,6 @@ const Anchor = ({
     </div>
   )
 }
-export type { AnchorProps } from '../types'
+export type { IndexBarAnchorProps } from '../types'
 
 export default Anchor

@@ -1,7 +1,7 @@
 import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import Uploading from './../Uploading'
 
-import type { UploadButtonProps, UploadButtonRef } from '../types'
+import type { AttachChooseUploadButtonProps, AttachChooseUploadButtonRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -14,7 +14,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 
 
 // 上传按钮
-const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function UploadButton(
+const UploadButton = forwardRef<AttachChooseUploadButtonRef, AttachChooseUploadButtonProps>(function UploadButton(
   { uploadingRender, style, className, disabled },
   ref
 ) {
@@ -56,5 +56,5 @@ const UploadButton = forwardRef<UploadButtonRef, UploadButtonProps>(function Upl
   )
 })
 
-export type { UploadButtonProps, UploadButtonRef } from '../types'
+export type { AttachChooseUploadButtonProps, AttachChooseUploadButtonRef } from '../types'
 export default UploadButton

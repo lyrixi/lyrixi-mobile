@@ -3,7 +3,7 @@ import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } f
 
 import ItemsContext from './../ItemsContext'
 
-import type { VirtualFormProps, VirtualFormRef } from '../../types'
+import type { FormVirtualFormProps, FormVirtualFormRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -14,7 +14,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // layout: horizontal | vertical | inline
-const VirtualForm = forwardRef<VirtualFormRef, VirtualFormProps>(
+const VirtualForm = forwardRef<FormVirtualFormRef, FormVirtualFormProps>(
   (
     {
       // Value & Display Value

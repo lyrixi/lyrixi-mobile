@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-export interface SignatureProps {
+export interface SignatureMainDrawProps {
   suffix?: string
   quality?: number
   style?: CSSProperties
@@ -9,7 +9,7 @@ export interface SignatureProps {
   lineWidth?: number
 }
 
-export interface SignatureRef {
+export interface SignatureMainDrawRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
   getBase64: () => Promise<string | null>
