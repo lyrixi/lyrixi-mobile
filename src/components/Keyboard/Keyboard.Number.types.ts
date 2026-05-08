@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { KeyboardAction } from './Keyboard.core.types'
+import type { KeyboardAction } from './Keyboard.common.types'
 
 export interface KeyboardNumberRef {
   element: HTMLElement | null

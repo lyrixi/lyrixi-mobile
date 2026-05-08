@@ -1,7 +1,7 @@
 /**
  * Media 类型聚合：分片为 Media.*.types.ts（见 ai/rules/lyrixi-develop-type-file.mdc）
  */
-export type * from './Media.Media.types'
+export type * from './Media.types'
 export type * from './Media.Uploading.types'
 export type * from './Media.utils.fileChoose.types'
 export type * from './Media.utils.choose.types'

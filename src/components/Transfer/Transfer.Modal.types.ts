@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { TransferItem, TransferTitlesInput } from './Transfer.core.types'
+import type { TransferItem, TransferTitlesInput } from './Transfer.common.types'
 
 export interface TransferModalProps {
   value?: TransferItem[]

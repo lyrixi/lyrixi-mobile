@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { CascaderNode } from './Cascader.core.types'
+import type { CascaderNode } from './Cascader.common.types'
 import type {
   LoadCountriesFn,
   LoadCountryRegionsFn,

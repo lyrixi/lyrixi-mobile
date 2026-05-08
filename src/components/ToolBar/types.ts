@@ -1,5 +1,5 @@
 export type * from './ToolBar.components.types'
-export type * from './ToolBar.ToolBar.types'
+export type * from './ToolBar.types'
 export type * from './ToolBar.Dropdown.types'
 export type * from './ToolBar.List.types'
 export type * from './ToolBar.DateRange.types'

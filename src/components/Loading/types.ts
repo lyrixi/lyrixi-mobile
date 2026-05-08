@@ -1,4 +1,4 @@
-export type * from './Loading.Loading.types'
+export type * from './Loading.types'
 export type * from './Loading.BallWave.types'
 export type * from './Loading.Ouroboros.types'
 export type * from './Loading.SpinFade.types'

@@ -1,4 +1,4 @@
-import type { ChatListItem, ChatListValue, ChatRawItem, ChatViewItem } from './Chat.core.types'
+import type { ChatListItem, ChatListValue, ChatRawItem, ChatViewItem } from './Chat.common.types'
 
 export interface ChatListRef {
   element: HTMLDivElement | null

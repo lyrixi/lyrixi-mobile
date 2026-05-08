@@ -5,8 +5,8 @@ import type {
   CalendarDraggableAxis,
   CalendarSelectionMode,
   CalendarValue
-} from './Calendar.core.types'
-import type { CalendarProps } from './Calendar.Calendar.types'
+} from './Calendar.common.types'
+import type { CalendarProps } from './Calendar.types'
 
 export interface CalendarBodyRef {
   element: HTMLDivElement | null

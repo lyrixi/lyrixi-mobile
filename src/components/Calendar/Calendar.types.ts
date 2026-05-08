@@ -10,7 +10,7 @@ import type {
   CalendarType,
   CalendarValue,
   CalendarWeekStart
-} from './Calendar.core.types'
+} from './Calendar.common.types'
 
 export interface CalendarRef {
   element: HTMLDivElement | null

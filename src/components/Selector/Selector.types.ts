@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { SelectorEllipsis, SelectorItem } from './Selector.core.types'
+import type { SelectorEllipsis, SelectorItem } from './Selector.common.types'
 
 export interface SelectorProps {
   value?: SelectorItem[]

@@ -1,4 +1,4 @@
-import type { MediaListItem } from './Media.Media.types'
+import type { MediaListItem } from './Media.types'
 
 export interface MediaFileChooseChangePayload {
   fileName: string

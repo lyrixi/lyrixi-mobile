@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { StepsListItem, StepsValue } from './Steps.core.types'
+import type { StepsListItem, StepsValue } from './Steps.common.types'
 
 export interface StepsProps {
   value?: StepsValue

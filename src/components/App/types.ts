@@ -3,4 +3,4 @@
  */
 export type * from './App.bridge.types'
 export type * from './App.config.types'
-export type * from './App.App.types'
+export type * from './App.types'

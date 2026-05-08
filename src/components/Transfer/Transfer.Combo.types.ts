@@ -1,6 +1,6 @@
 import type { InputSelectComboProps } from './../Input/types'
 
-import type { TransferItem } from './Transfer.core.types'
+import type { TransferItem } from './Transfer.common.types'
 import type { TransferModalProps } from './Transfer.Modal.types'
 
 type TransferComboField = Omit<InputSelectComboProps, 'onChange' | 'value'>

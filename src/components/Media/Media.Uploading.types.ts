@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import type { MediaListItem } from './Media.Media.types'
+import type { MediaListItem } from './Media.types'
 
 export interface MediaUploadingProps {
   uploadingType: string
