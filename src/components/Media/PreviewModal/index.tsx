@@ -1,5 +1,5 @@
 import React, { useEffect, forwardRef } from 'react'
-import PreviewMain, { type PreviewMainRef } from './../PreviewMain'
+import PreviewMain, { type MediaPreviewMainRef } from './../PreviewMain'
 
 
 import type { MediaPreviewModalProps } from '../types'
@@ -15,7 +15,7 @@ import { Page, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-const PreviewModal = forwardRef<PreviewMainRef, MediaPreviewModalProps>(function PreviewModal(
+const PreviewModal = forwardRef<MediaPreviewMainRef, MediaPreviewModalProps>(function PreviewModal(
   {
     list,
     index: indexProp,

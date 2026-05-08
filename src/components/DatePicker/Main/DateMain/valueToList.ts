@@ -6,13 +6,13 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { DatePickerPickerType, PickerValueList } from './../../types'
+import type { DatePickerPickerType, DatePickerPickerValueList } from './../../types'
 
 // 日期转列表
 function valueToList(
   value: Date | null | undefined,
   type: DatePickerPickerType
-): PickerValueList | null {
+): DatePickerPickerValueList | null {
   const currentDate: Date = value instanceof Date ? value : new Date()
 
   let year = currentDate.getFullYear()

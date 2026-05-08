@@ -1,6 +1,6 @@
 import type { ChangeEvent, MouseEvent, SyntheticEvent } from 'react'
 
-export interface PreviewChooseProps {
+export interface MediaPreviewChooseProps {
   mediaType?: string | string[]
   sourceType: string[]
   onBeforeChoose?: (e: MouseEvent) => boolean | void | Promise<boolean | void>

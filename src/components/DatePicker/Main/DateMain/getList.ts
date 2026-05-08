@@ -7,14 +7,14 @@ import DateUtil from './../../../../utils/DateUtil'
 import { LocaleUtil, DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { DatePickerPickerType, PickerListItem } from './../../types'
+import type { DatePickerPickerListItem, DatePickerPickerType } from './../../types'
 
 // 数据
 function getList(
   value: Date | null | undefined,
   type: DatePickerPickerType,
   { hourStep, minuteStep }: { hourStep?: number; minuteStep?: number }
-): PickerListItem[][] | null {
+): DatePickerPickerListItem[][] | null {
   const refDate = value instanceof Date ? value : new Date()
   if (!hourStep || typeof hourStep !== 'number') {
     // eslint-disable-next-line
@@ -26,7 +26,7 @@ function getList(
   }
 
   // Year
-  let years: PickerListItem[] = []
+  let years: DatePickerPickerListItem[] = []
   for (let item = new Date().getFullYear() - 120; item <= new Date().getFullYear() + 120; item++) {
     years.push({
       id: item,
@@ -35,7 +35,7 @@ function getList(
   }
 
   // Month
-  let months: PickerListItem[] = []
+  let months: DatePickerPickerListItem[] = []
   for (let item = 1; item <= 12; item++) {
     months.push({
       id: item,
@@ -44,7 +44,7 @@ function getList(
   }
 
   // Date
-  let dates: PickerListItem[] = []
+  let dates: DatePickerPickerListItem[] = []
   for (let item = 1; item <= DateUtil.getDaysInMonth(refDate); item++) {
     dates.push({
       id: item,
@@ -53,7 +53,7 @@ function getList(
   }
 
   // Hour
-  let hours: PickerListItem[] = []
+  let hours: DatePickerPickerListItem[] = []
   for (let item = 0; item <= 23; item += hourStep) {
     hours.push({
       id: item,
@@ -62,7 +62,7 @@ function getList(
   }
 
   // Minute
-  let minutes: PickerListItem[] = []
+  let minutes: DatePickerPickerListItem[] = []
   for (let item = 0; item <= 59; item += minuteStep) {
     minutes.push({
       id: item,
@@ -71,7 +71,7 @@ function getList(
   }
 
   // Quarter
-  let quarters: PickerListItem[] = []
+  let quarters: DatePickerPickerListItem[] = []
   for (let item = 1; item <= 4; item++) {
     quarters.push({
       id: item,

@@ -1,13 +1,13 @@
 import React from 'react'
 
-import type { PreviewToolbarProps } from '../../types'
+import type { MediaPreviewToolbarProps } from '../../types'
 
 const PreviewToolbar = ({
   onRotateAnticlockwise,
   onRotateClockwise,
   onZoomOut,
   onZoomIn
-}: PreviewToolbarProps) => {
+}: MediaPreviewToolbarProps) => {
   return (
     <div className="lyrixi-media-preview-main-toolbar">
       <div

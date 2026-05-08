@@ -1,12 +1,12 @@
 import React from 'react'
 
-import type { RemainCountProps } from '../../types'
+import type { MediaRemainCountProps } from '../../types'
 
 // 图片显示
 const RemainCount = ({
   // Value & Display Value
   count
-}: RemainCountProps) => {
+}: MediaRemainCountProps) => {
   return (
     <div
       // Style
@@ -16,6 +16,6 @@ const RemainCount = ({
     </div>
   )
 }
-export type { RemainCountProps } from '../../types'
+export type { MediaRemainCountProps } from '../../types'
 
 export default RemainCount

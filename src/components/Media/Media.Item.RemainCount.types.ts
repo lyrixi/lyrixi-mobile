@@ -1,3 +1,3 @@
-export interface RemainCountProps {
+export interface MediaRemainCountProps {
   count: number
 }

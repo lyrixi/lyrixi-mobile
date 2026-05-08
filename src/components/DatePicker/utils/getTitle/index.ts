@@ -1,5 +1,5 @@
 import getTitleByType from './getTitleByType'
-import type { GetTitleOptions } from './../../types'
+import type { DatePickerGetTitleOptions } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -13,7 +13,7 @@ type MultiTab = { value?: Date | null; [k: string]: unknown }
 
 function getTitle(
   value: Date | (Date | null)[] | MultiTab[] | null | undefined,
-  optionsOrFormat?: GetTitleOptions | string
+  optionsOrFormat?: DatePickerGetTitleOptions | string
 ): string | ReturnType<typeof getTitleByType> {
   if (typeof optionsOrFormat === 'string') {
     const pattern = optionsOrFormat

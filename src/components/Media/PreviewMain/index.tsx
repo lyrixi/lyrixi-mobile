@@ -28,8 +28,8 @@ import PreviewToolbar from './PreviewToolbar'
 import type {
   MediaListItem,
   MediaComponentProps,
-  PreviewMainProps,
-  PreviewMainRef
+  MediaPreviewMainProps,
+  MediaPreviewMainRef
 } from './../types'
 
 // 内库使用-start
@@ -59,7 +59,7 @@ function itemPosterUrl(item: MediaListItem): string {
   return raw == null || raw === '' ? '' : String(raw)
 }
 
-const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function PreviewMain(
+const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(function PreviewMain(
   {
     list: listProp = [],
     index,
@@ -87,7 +87,7 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     onChange,
     onClose
   },
-  ref: Ref<PreviewMainRef>
+  ref: Ref<MediaPreviewMainRef>
 ) {
   const list: MediaListItem[] = listProp
 
@@ -410,6 +410,6 @@ const PreviewMain = forwardRef<PreviewMainRef, PreviewMainProps>(function Previe
     </Swiper>
   )
 })
-export type { PreviewMainProps, PreviewMainRef } from './../types'
+export type { MediaPreviewMainProps, MediaPreviewMainRef } from './../types'
 
 export default PreviewMain

@@ -1,7 +1,7 @@
 import React, { type MouseEvent } from 'react'
 import Uploading from './../../Uploading'
 
-import type { PreviewChooseProps } from '../../types'
+import type { MediaPreviewChooseProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -14,7 +14,7 @@ const Choose = ({
   onBeforeChoose,
   onChoose,
   onFileChange
-}: PreviewChooseProps) => {
+}: MediaPreviewChooseProps) => {
   // 点击选择框
   async function handleUploadClick(e: MouseEvent<HTMLDivElement>) {
     // Fix react 16 sync events lost issues
@@ -88,6 +88,6 @@ const Choose = ({
     </div>
   )
 }
-export type { PreviewChooseProps } from '../../types'
+export type { MediaPreviewChooseProps } from '../../types'
 
 export default Choose

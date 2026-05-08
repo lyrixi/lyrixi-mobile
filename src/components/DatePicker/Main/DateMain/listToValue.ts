@@ -1,4 +1,4 @@
-import type { DatePickerPickerType, PickerValueList } from './../../types'
+import type { DatePickerPickerType, DatePickerPickerValueList } from './../../types'
 
 // 获取合法
 function getValidDate(year: number, month: number, date: number): number {
@@ -10,7 +10,7 @@ function getValidDate(year: number, month: number, date: number): number {
 }
 
 // 列表转日期
-function listToValue(list: PickerValueList, type: DatePickerPickerType): Date | null {
+function listToValue(list: DatePickerPickerValueList, type: DatePickerPickerType): Date | null {
   if (type === 'year') {
     let year = list[0].id
 

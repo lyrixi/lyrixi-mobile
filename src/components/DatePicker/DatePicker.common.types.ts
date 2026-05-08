@@ -145,14 +145,14 @@ export interface DatePickerComboProps extends InputSelectComboProps {
   children?: ReactNode
 }
 
-/** Picker 单列选项 */
-export interface PickerListItem {
+/** DatePicker 内联 Picker 单列选项 */
+export interface DatePickerPickerListItem {
   id: number
   /** LocaleUtil.locale 可能返回 string 或带占位节点 */
   name: number | string | ReactNode | ReactElement
 }
 
-export type PickerValueList = PickerListItem[]
+export type DatePickerPickerValueList = DatePickerPickerListItem[]
 
 export interface DatePickerMainSectionProps {
   open?: boolean
@@ -241,7 +241,7 @@ export interface DatePickerRangeModalProps
 }
 
 /** getTitle 第二参 */
-export interface GetTitleOptions {
+export interface DatePickerGetTitleOptions {
   type?: DatePickerPickerType | string
   separator?: string
 }

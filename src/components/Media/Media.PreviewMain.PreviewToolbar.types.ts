@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react'
 
-export interface PreviewToolbarProps {
+export interface MediaPreviewToolbarProps {
   onRotateAnticlockwise?: (e: MouseEvent) => void
   onRotateClockwise?: (e: MouseEvent) => void
   onZoomOut?: (e: MouseEvent) => void

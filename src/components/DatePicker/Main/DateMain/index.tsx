@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import getList from './getList'
 import valueToList from './valueToList'
 import listToValue from './listToValue'
-import type { DatePickerMainSectionProps, PickerValueList } from './../../types'
+import type { DatePickerMainSectionProps, DatePickerPickerValueList } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -44,7 +44,7 @@ const Main = forwardRef<PickerMainRef, DateMainProps>(function DateMain(
 ) {
   const pickerType = type
 
-  function handleChange(list: PickerValueList) {
+  function handleChange(list: DatePickerPickerValueList) {
     let newValue = listToValue(list, pickerType)
     if (!newValue) return
 
@@ -66,7 +66,7 @@ const Main = forwardRef<PickerMainRef, DateMainProps>(function DateMain(
       value={valueToList(value, pickerType) as PickerColumnItem[] | null}
       list={getList(value, pickerType, { hourStep, minuteStep }) as PickerColumnItem[][]}
       // Events
-      onChange={(v) => handleChange(v as PickerValueList)}
+      onChange={(v) => handleChange(v as DatePickerPickerValueList)}
     />
   )
 })

@@ -3,7 +3,7 @@ import type { SwiperRef } from 'swiper/react'
 
 import type { FileImageCompressOptions, MediaComponentProps, MediaListItem } from './Media.Media.types'
 
-export interface PreviewMainProps {
+export interface MediaPreviewMainProps {
   list?: MediaListItem[]
   index?: number
   mediaType?: string | string[]
@@ -28,7 +28,7 @@ export interface PreviewMainProps {
   onClose?: () => void
 }
 
-export interface PreviewMainRef {
+export interface MediaPreviewMainRef {
   mainElement: SwiperRef | null
   getMainElement: () => SwiperRef | null
 }
