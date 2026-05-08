@@ -1,13 +1,17 @@
 import React, { useRef, useState } from 'react'
-import type { L } from '../types'
-import { Page, Loading } from 'lyrixi-mobile'
+import {
+  Page,
+  Loading,
+  type DemoMarkerClickPayload,
+  type L,
+  type MapChooseProps,
+  type MapChooseValue,
+  type MapContainerAPI
+} from 'lyrixi-mobile'
 
 import MapLoader from '../components/MapLoader'
 import MapChoose from '../pages/MapChoose'
 import coordsToWgs84 from '../utils/coordsToWgs84'
-import type { MapContainerAPI } from '../types'
-import type { MapChooseProps, MapChooseValue } from '../types'
-import type { DemoMarkerClickPayload } from '../types'
 
 // 生成随机点
 // import getPoints from './getPoints'

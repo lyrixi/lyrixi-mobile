@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
-import { MediaUploader, Page, Toast } from 'lyrixi-mobile'
-import type { MediaItem, MediaHandle } from './../../types'
+import { MediaUploader, Page, Toast, type MediaHandle, type MediaItem } from 'lyrixi-mobile'
 import uploadListUtil from './../../utils/uploadList'
 
 new vconsole()

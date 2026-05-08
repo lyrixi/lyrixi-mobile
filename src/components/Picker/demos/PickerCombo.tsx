@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Picker, Page } from 'lyrixi-mobile'
-import type { PickerComboRef } from './../types'
+import { Picker, Page, type PickerComboRef } from 'lyrixi-mobile'
 
 type PickerRow = { id: string; name: string }
 

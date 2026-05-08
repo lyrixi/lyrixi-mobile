@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, type CSSProperties } from 'react'
-import { Toast, Page, Divider, Bridge, Media } from 'lyrixi-mobile'
+import { Toast, Page, Divider, Bridge, Media, type MediaComponentProps, type MediaImperativeRef, type MediaListItem } from 'lyrixi-mobile'
 import HistoryUtil from './../../../utils/HistoryUtil/HistoryUtil'
-import type { MediaListItem, MediaComponentProps, MediaImperativeRef } from './../types'
 // import VConsole from 'vconsole'
 // new VConsole()
 

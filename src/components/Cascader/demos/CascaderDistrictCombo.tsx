@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Divider, Page, Cascader, ObjectUtil } from 'lyrixi-mobile'
-import type { CascaderNode } from './../types'
+import { Card, Divider, Page, Cascader, ObjectUtil, type CascaderNode } from 'lyrixi-mobile'
 
 export default () => {
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错

@@ -1,8 +1,6 @@
 // 第三方库导入
 import React, { forwardRef, type Ref } from 'react'
-import { ListPagination } from 'lyrixi-mobile'
-import type { ListPaginationRef } from '../../Main'
-import type { ListAsyncVirtualOptions } from '../../../ListAsync/VirtualList'
+import { ListPagination, type ListAsyncVirtualOptions, type ListPaginationRef } from 'lyrixi-mobile'
 
 // 项目内部模块导入
 import serverParams from './serverParams'

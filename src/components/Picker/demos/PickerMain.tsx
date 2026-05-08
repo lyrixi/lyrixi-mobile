@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Picker, Page } from 'lyrixi-mobile'
-import type { PickerColumnItem } from '../types'
+import { Picker, Page, type PickerColumnItem } from 'lyrixi-mobile'
 
 export default () => {
   const list: PickerColumnItem[] = [

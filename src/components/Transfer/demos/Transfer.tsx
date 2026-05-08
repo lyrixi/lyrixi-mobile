@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Page, Transfer } from 'lyrixi-mobile'
-import type { TransferItem } from './../types'
+import { Card, Page, Transfer, type TransferItem } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<TransferItem[]>([{ id: '1', name: '选项1' }])

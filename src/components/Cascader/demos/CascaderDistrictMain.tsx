@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Cascader } from 'lyrixi-mobile'
-import type { CascaderNode } from './../types'
+import { Page, Cascader, type CascaderNode } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<CascaderNode[] | null>(null)

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Checkbox } from 'lyrixi-mobile'
-import type { CheckboxListItem } from './../types'
+import { Checkbox, type CheckboxListItem } from 'lyrixi-mobile'
 
 export default () => {
   const checkboxRef = useRef(null)

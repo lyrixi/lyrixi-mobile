@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar } from 'lyrixi-mobile'
-import type { ToolBarDropdownRef } from '../Dropdown'
-import type { ToolBarFilterRef } from '../Filter'
+import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar, type ToolBarDropdownRef, type ToolBarFilterRef } from 'lyrixi-mobile'
 
 type ToolbarListItem = { id: string; name: string; disabled?: boolean }
 

@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Page, Button } from 'lyrixi-mobile'
-import { Transfer } from 'lyrixi-mobile'
-import type { TransferItem } from './../../types'
+import { Page, Button, Transfer, type TransferItem } from 'lyrixi-mobile'
 
 export default () => {
   const transferRef = useRef(null)

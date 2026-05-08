@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Page, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
-import type { InputSelectComboProps } from '../../Input/types'
+import { Page, DatePicker, DateUtil, Card, Toast, type InputSelectComboProps } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<Date | null>(null)

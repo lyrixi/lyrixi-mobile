@@ -1,11 +1,16 @@
 import React, { useRef } from 'react'
-import type { L } from '../types'
-import { Page, Map, Button } from 'lyrixi-mobile'
+import {
+  Page,
+  Map,
+  Button,
+  type DemoMarkerClickPayload,
+  type L,
+  type MapMapMarkersHandle,
+  type MapMarkersLayerHandle,
+  type MapPoint
+} from 'lyrixi-mobile'
 
-import type { MapMapMarkersHandle, MapMarkersLayerHandle } from '../types'
-import type { MapPoint } from '../types'
 import getPoints from './getPoints'
-import type { DemoMarkerClickPayload } from '../types'
 
 // 生成随机点
 const { MapLoader, MapMarkers, LocationControl, coordsToWgs84 } = Map

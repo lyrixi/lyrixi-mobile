@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { Page } from 'lyrixi-mobile'
-import { Transfer } from 'lyrixi-mobile'
-import type { TransferItem } from './../../types'
+import { Page, Transfer, type TransferItem } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<TransferItem[]>([

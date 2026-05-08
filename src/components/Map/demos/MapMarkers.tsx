@@ -1,7 +1,5 @@
 import React, { useRef } from 'react'
-import { Page, Map, Button } from 'lyrixi-mobile'
-
-import type { MapMarkersLayerHandle } from '../components/Markers'
+import { Page, Map, Button, type MapMarkersLayerHandle } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, Markers, coordsToWgs84 } = Map
 

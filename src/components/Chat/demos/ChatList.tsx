@@ -1,6 +1,5 @@
 import React from 'react'
-import { Page, Chat } from 'lyrixi-mobile'
-import type { ChatRawItem } from './../types'
+import { Page, Chat, type ChatRawItem } from 'lyrixi-mobile'
 
 export default () => {
   const list = [

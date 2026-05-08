@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Cascader, Loading } from 'lyrixi-mobile'
-import type { CascaderNode, LoadDataResult } from './../types'
+import { Page, Cascader, Loading, type CascaderNode, type LoadDataResult } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<CascaderNode[]>([

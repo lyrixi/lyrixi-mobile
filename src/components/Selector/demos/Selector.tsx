@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Page, Selector, Divider } from "lyrixi-mobile";
-import type { SelectorItem } from "../Selector";
+import { Page, Selector, Divider, type SelectorItem } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState<SelectorItem[]>([

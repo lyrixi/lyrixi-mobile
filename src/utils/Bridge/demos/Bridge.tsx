@@ -1,8 +1,7 @@
 import React, { useRef } from 'react'
 import vconsole from 'vconsole'
 
-import { Loading, Button, Bridge, Page, Divider, Card } from 'lyrixi-mobile'
-import type { SDKResult } from '../types'
+import { Loading, Button, Bridge, Page, Divider, Card, type SDKResult } from 'lyrixi-mobile'
 
 new vconsole()
 

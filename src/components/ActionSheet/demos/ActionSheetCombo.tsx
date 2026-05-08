@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Page, Device, ActionSheet, SafeArea } from 'lyrixi-mobile'
-import type { ActionSheetItem } from './../types'
+import { Page, Device, ActionSheet, SafeArea, type ActionSheetItem } from 'lyrixi-mobile'
 
 export default () => {
   const list = [

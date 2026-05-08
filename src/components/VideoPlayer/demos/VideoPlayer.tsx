@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
-import { Page, VideoPlayer, Button } from 'lyrixi-mobile'
-import type { VideoPlayerRef } from './..'
+import { Page, VideoPlayer, Button, type VideoPlayerRef } from 'lyrixi-mobile'
 
 export default () => {
   const videoPlayerRef = useRef<VideoPlayerRef | null>(null)

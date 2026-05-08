@@ -1,4 +1,4 @@
-import type { LoadResult } from '../../../ListAsync'
+import type { LoadResult } from 'lyrixi-mobile'
 import mockResult from './mockResult'
 
 // 转换 API 返回数据为页面所需格式
