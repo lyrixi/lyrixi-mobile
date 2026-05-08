@@ -1,6 +1,6 @@
 import compareType from './compareType'
 
-import type { DistrictModalUpdateOkVisibleTabItem } from './types'
+import type { DistrictModalUpdateOkVisibleTabItem } from '../../types'
 
 // 根据min判断是否显示确定按钮
 function updateOkVisible(

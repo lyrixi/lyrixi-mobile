@@ -6,10 +6,7 @@ import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
-import type { CascaderNode } from './../types'
-
-import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState } from './types'
-import type { CascaderTab } from './../utils/types'
+import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState, CascaderNode, CascaderTab } from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -389,6 +386,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     )
   }
 )
-export type { CascaderMainProps, CascaderMainRef } from './types'
+export type { CascaderMainProps, CascaderMainRef } from '../types'
 
 export default CascaderMain

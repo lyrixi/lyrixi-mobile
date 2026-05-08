@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { DistrictMainResultProps } from './types'
+import type { DistrictMainResultProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

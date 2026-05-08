@@ -1,4 +1,4 @@
-import type { DistrictFormatCountryRegionsNode } from './types'
+import type { DistrictFormatCountryRegionsNode } from '../../types'
 
 /**
  * 根据节点的 nature 字段为行政区划树设置类型标记

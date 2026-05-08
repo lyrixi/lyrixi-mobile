@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { DistrictMainLoadingProps } from './types'
+import type { DistrictMainLoadingProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

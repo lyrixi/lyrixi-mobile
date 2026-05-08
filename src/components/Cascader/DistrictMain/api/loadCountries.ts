@@ -1,5 +1,5 @@
 
-import type { DistrictMainApiResult } from './types'
+import type { DistrictMainApiResult } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from '../../../../utils/ObjectUtil'

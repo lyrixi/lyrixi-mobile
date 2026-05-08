@@ -1,7 +1,7 @@
 import hasIntersection from './hasIntersection'
 
 
-import type { DistrictSearchByKeywordNode, DistrictSearchByKeywordResult } from './types'
+import type { DistrictSearchByKeywordNode, DistrictSearchByKeywordResult } from '../../../types'
 
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'

@@ -11,7 +11,7 @@ import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
 import type { CascaderNode } from './../types'
 
-import type { DistrictModalProps } from './types'
+import type { DistrictModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -153,6 +153,6 @@ const DistrictModal = forwardRef<Record<string, unknown>, DistrictModalProps>(
     )
   }
 )
-export type { DistrictModalProps } from './types'
+export type { DistrictModalProps } from '../types'
 
 export default DistrictModal

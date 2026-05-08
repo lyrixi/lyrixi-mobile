@@ -1,4 +1,4 @@
-import type { CascaderMainAnchorItem } from './types'
+import type { CascaderMainAnchorItem } from '../types'
 
 // 获取IndexBar的anchors
 function getAnchors(list: CascaderMainAnchorItem[]): string[] {

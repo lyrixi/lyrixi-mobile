@@ -3,7 +3,7 @@ import loadCountryRegions from './loadCountryRegions'
 import loadStreets from './loadStreets'
 import formatCountryRegions from './formatCountryRegions'
 
-import type { DistrictFormatCountryRegionsNode, DistrictMainApiDistrictNode, DistrictResultState } from './types'
+import type { DistrictFormatCountryRegionsNode, DistrictMainApiDistrictNode, DistrictResultState } from '../../types'
 
 const api = {
   loadCountries: async function (): Promise<DistrictResultState> {

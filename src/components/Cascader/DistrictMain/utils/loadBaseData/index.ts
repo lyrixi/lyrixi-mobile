@@ -1,6 +1,6 @@
 
 
-import type { DistrictMainApiDistrictNode, DistrictResultState } from '../../api/types'
+import type { DistrictMainApiDistrictNode, DistrictResultState } from '../../../types'
 
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'
@@ -62,5 +62,5 @@ async function loadBaseData({
   }
 }
 
-export type { DistrictResultState } from '../../api/types'
+export type { DistrictResultState } from '../../../types'
 export default loadBaseData

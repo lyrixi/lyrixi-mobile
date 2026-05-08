@@ -1,24 +1,16 @@
-import type { ReactNode } from 'react'
-
-/** Node used across Cascader Main / loadChildren / Modals. */
-export interface CascaderNode {
-  id: string | number
-  name?: ReactNode
-  anchor?: string
-  isLeaf?: boolean
-  isChoose?: boolean
-  parentid?: string | number | null
-  children?: CascaderNode[]
-  [key: string]: unknown
-}
-
-export type LoadDataResult = {
-  status: string
-  list?: CascaderNode[]
-  message?: string
-  async?: boolean
-}
-
-export type LoadDataFn = (tabs: CascaderNode[], ctx: { list: CascaderNode[] }) => Promise<LoadDataResult>
-
+/**
+ * Cascader 类型聚合：分片为 Cascader.*.types.ts（见 ai/rules/lyrixi-develop-type-file.mdc）
+ */
+export type * from './Cascader.core.types'
 export type { DistrictItem } from './Cascader.DistrictMain.formatDistrictValue.types'
+export type * from './Cascader.utils.types'
+export type * from './Cascader.Main.types'
+export type * from './Cascader.Combo.types'
+export type * from './Cascader.Modal.types'
+export type * from './Cascader.DistrictMain.api.types'
+export type * from './Cascader.DistrictMain.types'
+export type * from './Cascader.DistrictModal.types'
+export type * from './Cascader.DistrictCombo.types'
+export type * from './Cascader.DistrictModal.updateOkVisible.types'
+export type * from './Cascader.DistrictMain.utils.searchByKeyword.types'
+export type * from './Cascader.DistrictMain.utils.loadData.types'

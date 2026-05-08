@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
-import type { DistrictResultState } from './api/types'
-import type { CascaderNode } from './../types'
+import type { DistrictResultState } from './Cascader.DistrictMain.api.types'
+import type { CascaderNode } from './Cascader.core.types'
 
 export type LoadCountriesFn = () => Promise<DistrictResultState>
 export type LoadCountryRegionsFn = (id?: string | number) => Promise<DistrictResultState>

@@ -1,10 +1,6 @@
 import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type Ref } from 'react'
-import type { CascaderMainRef } from './../Main/types'
-import type { CascaderNode } from './../types'
+import type { CascaderMainRef, CascaderModalProps, CascaderNode } from '../types'
 import Main from './../Main'
-
-
-import type { CascaderModalProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -127,6 +123,6 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
     )
   }
 )
-export type { CascaderModalProps } from './types'
+export type { CascaderModalProps } from '../types'
 
 export default CascaderModal

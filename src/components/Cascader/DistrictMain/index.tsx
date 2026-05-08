@@ -12,9 +12,9 @@ import DistrictMainResult from './Result'
 import DistrictMainLoading from './Loading'
 import type { CascaderNode, LoadDataResult } from './../types'
 
-import type { DistrictResultState } from './api/types'
+import type { DistrictResultState } from '../types'
 import type { DistrictItem } from './../types'
-import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from './types'
+import type { DistrictMainProps, LoadCountryRegionsFn, LoadStreetsFn } from '../types'
 
 // 内库使用-start
 import ObjectUtil from '../../../utils/ObjectUtil'
@@ -199,6 +199,6 @@ export type {
   LoadCountriesFn,
   LoadCountryRegionsFn,
   LoadStreetsFn
-} from './types'
+} from '../types'
 
 export default CascaderDistrictMain

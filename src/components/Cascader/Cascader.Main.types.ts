@@ -1,6 +1,6 @@
 import type { CSSProperties, MutableRefObject, ReactNode } from 'react'
 
-import type { CascaderNode, LoadDataFn } from './../types'
+import type { CascaderNode, LoadDataFn } from './Cascader.core.types'
 
 export interface CascaderMainAnchorItem {
   anchor?: string

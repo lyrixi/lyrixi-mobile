@@ -1,4 +1,4 @@
-import type { CascaderTab } from './types'
+import type { CascaderTab } from '../types'
 
 // 格式化选中项, 补充parentid
 function formatValue(value: CascaderTab[] | null | undefined): CascaderTab[] | null {

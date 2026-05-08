@@ -1,15 +1,26 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { CascaderNode, LoadDataFn } from './../types'
+import type { CascaderNode } from './Cascader.core.types'
+import type {
+  LoadCountriesFn,
+  LoadCountryRegionsFn,
+  LoadStreetsFn
+} from './Cascader.DistrictMain.types'
 
-export interface CascaderModalProps {
+export interface DistrictModalProps {
   value?: CascaderNode[] | null
-  list?: CascaderNode[] | null
-  loadData?: LoadDataFn
+  type?: string
+  loadCountries?: LoadCountriesFn
+  loadCountryRegions?: LoadCountryRegionsFn
+  loadStreets?: LoadStreetsFn
   open?: boolean
+  min?: string
   maskClosable?: boolean
-  allowClear?: boolean
   safeArea?: boolean
+  listStyle?: CSSProperties
+  listClassName?: string
+  itemStyle?: CSSProperties
+  itemClassName?: string
   modalStyle?: CSSProperties
   modalClassName?: string
   maskStyle?: CSSProperties
@@ -19,10 +30,8 @@ export interface CascaderModalProps {
   title?: ReactNode
   okNode?: ReactNode
   cancelNode?: ReactNode
-  okVisible?: boolean
   cancelVisible?: boolean
   onClose?: () => void
   onOk?: (value: CascaderNode[] | null | undefined) => boolean | Promise<unknown> | void
-  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
-  onChange?: (value: CascaderNode[], meta?: unknown) => void
+  onChange?: (value: CascaderNode[]) => void
 }

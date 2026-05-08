@@ -4,7 +4,7 @@ import DistrictModal from './../DistrictModal'
 import type { CascaderNode } from './../types'
 import type { InputSelectComboRef } from './../../Input/types'
 
-import type { DistrictComboProps, DistrictComboRef } from './types'
+import type { DistrictComboProps, DistrictComboRef } from '../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -141,5 +141,5 @@ const DistrictCombo = forwardRef<DistrictComboRef, DistrictComboProps>(
   }
 )
 
-export type { DistrictComboProps, DistrictComboRef } from './types'
+export type { DistrictComboProps, DistrictComboRef } from '../types'
 export default DistrictCombo

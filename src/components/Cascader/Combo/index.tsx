@@ -3,7 +3,7 @@ import type { CascaderNode } from './../types'
 import CascaderModal from './../Modal'
 import type { InputSelectComboRef } from './../../Input/types'
 
-import type { CascaderComboProps, CascaderComboRef } from './types'
+import type { CascaderComboProps, CascaderComboRef } from '../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -131,5 +131,5 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
   }
 )
 
-export type { CascaderComboProps, CascaderComboRef } from './types'
+export type { CascaderComboProps, CascaderComboRef } from '../types'
 export default CascaderCombo

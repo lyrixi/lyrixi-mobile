@@ -1,5 +1,5 @@
 
-import type { DistrictMainLoadDataApiResult, DistrictMainLoadDataTab } from './loadData/types'
+import type { DistrictMainLoadDataApiResult, DistrictMainLoadDataTab } from '../../types'
 
 // 内库使用-start
 import Loading from './../../../Loading'

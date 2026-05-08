@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { CascaderMainUpdateIsLeafParams } from './types'
+import type { CascaderMainUpdateIsLeafParams } from '../types'
 
 // 设置叶子节点
 function updateIsLeaf(id: string | number, { currentValue, value, tabsRef }: CascaderMainUpdateIsLeafParams): void {
