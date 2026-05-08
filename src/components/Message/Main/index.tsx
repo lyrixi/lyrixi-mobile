@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 
-import type { MessageMainProps, MessageMainRef } from './types'
+import type { MessageMainProps, MessageMainRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

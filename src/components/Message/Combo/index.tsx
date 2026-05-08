@@ -8,7 +8,7 @@ import Icon from './../Icon'
 import Title from './../Title'
 import Button from './../Button'
 
-import type { MessageComboProps, MessageComboRef } from './types'
+import type { MessageComboProps, MessageComboRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

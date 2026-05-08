@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'reac
 
 import ItemsContext from './../ItemsContext'
 
-import type { FormLabelProps } from './types'
+import type { FormLabelProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -86,6 +86,6 @@ const FormLabel = forwardRef<ColRef, FormLabelProps>(
     )
   }
 )
-export type { FormLabelProps } from './types'
+export type { FormLabelProps } from '../../types'
 
 export default FormLabel

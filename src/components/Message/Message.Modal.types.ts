@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { ModalProps } from './../../Modal/Modal/types'
+import type { ModalProps } from '../Modal/types'
 
 export interface MessageModalProps {
   open?: boolean

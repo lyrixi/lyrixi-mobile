@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { EllipsisConfig } from '../../types'
+import type { EllipsisConfig } from './Form.ItemsContext.types'
 
 export interface FormMainProps {
   ellipsis?: EllipsisConfig

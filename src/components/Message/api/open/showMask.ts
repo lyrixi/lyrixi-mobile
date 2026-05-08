@@ -1,6 +1,6 @@
 import globalMessageId from './../globalMessageId'
 
-import type { MessageMaskElement, MessageShowMaskParams } from './../types'
+import type { MessageMaskElement, MessageShowMaskParams } from '../../types'
 
 // 渲染Message遮罩
 function showMask({ portal, onMaskClick }: MessageShowMaskParams): MessageMaskElement {
@@ -47,6 +47,6 @@ function showMask({ portal, onMaskClick }: MessageShowMaskParams): MessageMaskEl
   return mask
 }
 
-export type { MessageMaskElement } from './../types'
+export type { MessageMaskElement } from '../../types'
 
 export default showMask

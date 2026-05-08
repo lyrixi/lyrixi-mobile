@@ -8,7 +8,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { AssetUtil, Bridge, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import { UploadLocalFileParams, UploadResponse } from '../../types'
+import { UploadLocalFileParams, MediaUploaderUploadResponse } from '../../types'
 
 // 上传localFile
 function uploadLocalFile({
@@ -28,7 +28,7 @@ function uploadLocalFile({
         formatHeaders,
         formatPayload,
         formatResponse,
-        onSuccess: async function (response: UploadResponse) {
+        onSuccess: async function (response: MediaUploaderUploadResponse) {
           if (response.status === 'error') {
             resolve({
               ...item,

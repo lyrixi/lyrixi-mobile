@@ -1,10 +1,9 @@
 import destroy from './../destroy'
-import type { MessageMaskElement } from './../types'
+import type { MessageMaskElement, MessageOpenButton, MessageOpenProps } from '../../types'
 import showMask from './showMask'
-import type { MessageOpenProps } from './types'
 import updateAttribute from './updateAttribute'
 
-export type { MessageOpenButton, MessageOpenProps } from './types'
+export type { MessageOpenButton, MessageOpenProps }
 
 // 弹出Message对话框
 export default function open({

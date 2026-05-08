@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm as useRcForm } from 'rc-field-form'
 import type { FormInstance } from 'rc-field-form'
 
-import type { ScrollToFieldOptions, WrappedFormInstance } from './types'
+import type { ScrollToFieldOptions, WrappedFormInstance } from '../types'
 
 function useForm(form?: FormInstance): [WrappedFormInstance] {
   const [rcForm] = useRcForm()
@@ -26,6 +26,6 @@ function useForm(form?: FormInstance): [WrappedFormInstance] {
 
   return [wrapForm]
 }
-export type { ScrollToFieldOptions, WrappedFormInstance } from './types'
+export type { ScrollToFieldOptions, WrappedFormInstance } from '../types'
 
 export default useForm

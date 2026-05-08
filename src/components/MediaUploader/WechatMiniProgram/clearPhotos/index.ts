@@ -1,5 +1,5 @@
 
-import type { WechatMiniProgramClearPhotosOptions, WechatMiniProgramClearPhotosResult } from './types'
+import type { WechatMiniProgramClearPhotosOptions, WechatMiniProgramClearPhotosResult } from '../../types'
 
 // 内库使用-start
 import Toast from './../../../Toast'

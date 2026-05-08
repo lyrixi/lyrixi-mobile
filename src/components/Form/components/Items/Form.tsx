@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 import ItemsContext from './../ItemsContext'
 
-import type { FormItemsProps, FormItemsRef } from './Form/types'
+import type { FormItemsProps, FormItemsRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -66,6 +66,6 @@ const Form = forwardRef<FormItemsRef, FormItemsProps>(
     )
   }
 )
-export type { FormItemsProps, FormItemsRef } from './Form/types'
+export type { FormItemsProps, FormItemsRef } from '../../types'
 
 export default Form

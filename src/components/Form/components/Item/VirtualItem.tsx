@@ -3,7 +3,7 @@ import React, { useEffect, useImperativeHandle, forwardRef, useRef, useContext, 
 
 import ItemsContext from './../ItemsContext'
 
-import type { VirtualFormItemProps, VirtualFormItemRef } from './types'
+import type { VirtualFormItemProps, VirtualFormItemRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'reac
 
 import ItemsContext from './../ItemsContext'
 
-import type { FormItemProps, FormItemRef } from './types'
+import type { FormLayoutItemProps, FormItemRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const FormItem = forwardRef<FormItemRef, FormItemProps>(
+const FormItem = forwardRef<FormItemRef, FormLayoutItemProps>(
   (
     {
       id,
@@ -58,6 +58,6 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
     )
   }
 )
-export type { FormItemProps, FormItemRef } from './types'
+export type { FormLayoutItemProps as FormItemProps, FormItemRef } from '../../types'
 
 export default FormItem

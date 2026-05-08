@@ -1,5 +1,5 @@
 
-import type { MessageUpdateStyleParams } from './../types'
+import type { MessageUpdateStyleParams } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

@@ -1,6 +1,6 @@
 import globalMessageId from './globalMessageId'
 
-import type { MessageMaskElement } from './types'
+import type { MessageMaskElement } from '../types'
 
 // 移除Message Modal
 function destroy(mask?: MessageMaskElement | null) {

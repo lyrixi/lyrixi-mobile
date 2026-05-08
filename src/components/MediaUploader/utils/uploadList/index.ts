@@ -4,8 +4,7 @@ import uploadFile from './../../Browser/uploadItem'
 import uploadCustom from './../../Custom/uploadItem'
 
 
-import type { MediaItem, UploadItemConfig } from '../../types'
-import type { MediaUploaderUploadListConfig } from './types'
+import type { MediaItem, MediaUploaderUploadListConfig, UploadItemConfig } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'

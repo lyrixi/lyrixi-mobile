@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Form from 'rc-field-form'
 
-import type { FormComponentProps } from './types'
+import type { FormComponentProps } from '../types'
 import type { FormItemsRef } from './../components/Items/Form'
 
 import Items from './../components/Items'
@@ -58,6 +58,6 @@ const FormComponent = forwardRef<FormItemsRef, FormComponentProps>(
     )
   }
 )
-export type { FormComponentProps } from './types'
+export type { FormComponentProps } from '../types'
 
 export default FormComponent
