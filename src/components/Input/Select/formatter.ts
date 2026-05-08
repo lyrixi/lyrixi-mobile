@@ -1,5 +1,5 @@
 
-import type { SelectFormatterValue } from '../types'
+import type { InputSelectFormatterValue } from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -16,11 +16,11 @@ function getDisplayValue(value: unknown, { separator }: { separator?: string } =
   }
   // 纯对象
   if (ObjectUtil.isPlainObject(value)) {
-    return (value as SelectFormatterValue)?.name || ''
+    return (value as InputSelectFormatterValue)?.name || ''
   }
   // 数组
   else if (Array.isArray(value)) {
-    let displayValues = (value as SelectFormatterValue[]).map((item) => item?.name || '')
+    let displayValues = (value as InputSelectFormatterValue[]).map((item) => item?.name || '')
     displayValues = displayValues.filter((item) => item)
     return displayValues.join(separator && typeof separator === 'string' ? separator : ',')
   }

@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 
-import type { RateProps, RateRef } from '../types'
+import type { InputRateProps, InputRateRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -12,7 +12,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 评分组件
-const Rate = forwardRef<RateRef, RateProps>(
+const Rate = forwardRef<InputRateRef, InputRateProps>(
   (
     {
       id,
@@ -148,6 +148,6 @@ const Rate = forwardRef<RateRef, RateProps>(
     )
   }
 )
-export type { RateIconParams, RateProps, RateRef } from '../types'
+export type { InputRateIconParams, InputRateProps, InputRateRef } from '../types'
 
 export default Rate

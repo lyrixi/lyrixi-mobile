@@ -2,12 +2,12 @@ import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import type { InputNodeProps, InputNodeRef } from './Input.Node.types'
 
-export interface NumberKeyboardRef extends InputNodeRef {
+export interface InputNumberKeyboardRef extends InputNodeRef {
   focus: () => void
   blur: () => void
 }
 
-export interface NumberKeyboardProps {
+export interface InputNumberKeyboardProps {
   ok?: ReactNode | null
   id?: string
   value?: string

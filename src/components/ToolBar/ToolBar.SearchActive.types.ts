@@ -1,5 +1,5 @@
-import type { SearchProps } from './../Input/types'
+import type { InputSearchProps } from './../Input/types'
 
-export type ToolBarSearchActiveProps = SearchProps & {
+export type ToolBarSearchActiveProps = InputSearchProps & {
   onCancel?: () => void
 }

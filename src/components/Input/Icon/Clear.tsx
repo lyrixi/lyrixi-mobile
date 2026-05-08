@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { IconClearProps } from '../types'
+import type { InputIconClearProps } from '../types'
 
 // 内库使用-start
 import Icon, { IconRef } from './../../Icon'
@@ -11,7 +11,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const IconClear = forwardRef<IconRef, IconClearProps>(
+const IconClear = forwardRef<IconRef, InputIconClearProps>(
   (
     {
       // Status

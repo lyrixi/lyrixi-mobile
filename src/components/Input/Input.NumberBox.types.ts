@@ -10,7 +10,7 @@ import type {
 
 import type { InputTextProps, InputTextRef } from './Input.Text.types'
 
-export interface NumberBoxRef {
+export interface InputNumberBoxRef {
   element: HTMLDivElement | null
   inputElement: InputTextRef | null
   getElement: () => HTMLDivElement | null
@@ -18,7 +18,7 @@ export interface NumberBoxRef {
   getInputRef: () => RefObject<InputTextRef | null>
 }
 
-export interface NumberBoxProps {
+export interface InputNumberBoxProps {
   id?: string
   name?: string
   value?: string

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { IconRightArrowProps } from '../types'
+import type { InputIconRightArrowProps } from '../types'
 
 // 内库使用-start
 import Icon, { IconRef } from './../../Icon'
@@ -11,7 +11,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const IconRightArrow = forwardRef<IconRef, IconRightArrowProps>(
+const IconRightArrow = forwardRef<IconRef, InputIconRightArrowProps>(
   (
     {
       // Status

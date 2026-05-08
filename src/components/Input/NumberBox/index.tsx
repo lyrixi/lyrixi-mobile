@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import InputNumber from './../Number'
 import { InputTextRef } from './../Text'
 
-import type { NumberBoxProps, NumberBoxRef } from '../types'
+import type { InputNumberBoxProps, InputNumberBoxRef } from '../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -14,7 +14,7 @@ import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 数值框
-const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
+const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
   (
     {
       id,
@@ -249,6 +249,6 @@ const NumberBox = forwardRef<NumberBoxRef, NumberBoxProps>(
     )
   }
 )
-export type { NumberBoxProps, NumberBoxRef } from '../types'
+export type { InputNumberBoxProps, InputNumberBoxRef } from '../types'
 
 export default NumberBox

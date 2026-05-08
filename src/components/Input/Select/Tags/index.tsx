@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import type { InputNodeProps, TagItem, TagsProps } from '../../types'
+import type { InputNodeProps, InputSelectTagItem, InputSelectTagsProps } from '../../types'
 
 
 import Tag from './Tag'
@@ -24,7 +24,7 @@ const Tags = ({
   onAdd,
   onEdit,
   onChange
-}: TagsProps) => {
+}: InputSelectTagsProps) => {
   return (
     <InputNode
       leftIconNode={leftIconNode}
@@ -55,7 +55,7 @@ const Tags = ({
                     onEdit && onEdit(item)
                   }}
                   onDelete={() => {
-                    let currentValue = (value as TagItem[]).filter((valueItem) => valueItem.id !== item.id)
+                    let currentValue = (value as InputSelectTagItem[]).filter((valueItem) => valueItem.id !== item.id)
                     onChange && onChange(currentValue, { action: 'clickDelete' })
                   }}
                 />

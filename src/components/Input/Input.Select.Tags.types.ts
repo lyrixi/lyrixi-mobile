@@ -2,7 +2,7 @@ import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import type { InputNodeProps } from './Input.Node.types'
 
-export interface TagItem {
+export interface InputSelectTagItem {
   id?: string | number
   name?: string
   className?: string
@@ -13,7 +13,7 @@ export interface TagItem {
   [key: string]: unknown
 }
 
-export interface TagsProps {
+export interface InputSelectTagsProps {
   separator?: string
   leftIconNode?: ReactNode
   rightIconNode?: ReactNode
@@ -24,13 +24,13 @@ export interface TagsProps {
   readOnly?: boolean
   disabled?: boolean
   allowClear?: boolean
-  value?: TagItem | TagItem[]
+  value?: InputSelectTagItem | InputSelectTagItem[]
   onAdd?: (e: MouseEvent<HTMLDivElement>) => void
-  onEdit?: (item: TagItem) => void
-  onChange?: (value: TagItem[], meta?: { action: string }) => void
+  onEdit?: (item: InputSelectTagItem) => void
+  onChange?: (value: InputSelectTagItem[], meta?: { action: string }) => void
 }
 
-export interface TagProps {
+export interface InputSelectTagProps {
   style?: CSSProperties
   className?: string
   name?: string

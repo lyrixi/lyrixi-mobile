@@ -10,16 +10,16 @@ import type {
   TouchEvent
 } from 'react'
 
-export type TextInputElement = (HTMLInputElement | HTMLTextAreaElement) & {
+export type InputTextElement = (HTMLInputElement | HTMLTextAreaElement) & {
   composing?: boolean
   preventBlur?: boolean
 }
 
 export interface InputTextRef {
   element: HTMLDivElement | null
-  inputElement: TextInputElement | null
+  inputElement: InputTextElement | null
   getElement: () => HTMLDivElement | null
-  getInputElement: () => TextInputElement | null
+  getInputElement: () => InputTextElement | null
   correctValue: (val: string | number) => string | number
   focus: () => void
   blur: () => void
@@ -72,7 +72,7 @@ export interface InputTextProps {
   onCompositionEnd?: CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
-export interface InputRenderClearParams {
+export interface InputTextRenderClearParams {
   clearRender?: (params: {
     clearable: boolean
     allowClear?: boolean

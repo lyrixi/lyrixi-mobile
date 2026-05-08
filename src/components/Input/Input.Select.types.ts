@@ -2,7 +2,7 @@ import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import type { InputTextProps } from './Input.Text.types'
 
-export interface SelectFormatterValue {
+export interface InputSelectFormatterValue {
   name?: string
   [key: string]: unknown
 }

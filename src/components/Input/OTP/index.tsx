@@ -5,7 +5,7 @@ import InputText from './InputText'
 import InputNumber from './InputNumber'
 import formatValue from './formatValue'
 
-import type { OTPInputRef, OTPProps, OTPRef } from '../types'
+import type { InputOTPInputRef, InputOTPProps, InputOTPRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -15,7 +15,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const InputOTP = forwardRef<OTPRef, OTPProps>(
+const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
   (
     {
       type = 'number', // 'text' 或 'number'
@@ -43,7 +43,7 @@ const InputOTP = forwardRef<OTPRef, OTPProps>(
     const formattedValue: string[] = formatValue(value, maxLength)
 
     const rootRef = useRef<HTMLDivElement>(null)
-    const inputRef = useRef<OTPInputRef | null>(null)
+    const inputRef = useRef<InputOTPInputRef | null>(null)
 
     // Expose
     useImperativeHandle(ref, () => ({
@@ -178,13 +178,13 @@ const InputOTP = forwardRef<OTPRef, OTPProps>(
 )
 
 export type {
-  OTPInputNumberProps,
-  OTPInputNumberRef,
-  OTPInputRef,
-  OTPInputTextProps,
-  OTPInputTextRef,
-  OTPProps,
-  OTPRef
+  InputOTPInputNumberProps,
+  InputOTPInputNumberRef,
+  InputOTPInputRef,
+  InputOTPInputTextProps,
+  InputOTPInputTextRef,
+  InputOTPProps,
+  InputOTPRef
 } from '../types'
 
 export default InputOTP

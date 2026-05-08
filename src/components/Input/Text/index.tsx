@@ -8,7 +8,7 @@ import {
 } from './utils'
 import renderClear from './renderClear'
 
-import type { InputTextProps, InputTextRef, TextInputElement } from '../types'
+import type { InputTextElement, InputTextProps, InputTextRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -77,7 +77,7 @@ const InputText = (
   // Elements
   const rootRef = useRef<HTMLDivElement>(null)
 
-  const inputRef = useRef<TextInputElement | null>(null)
+  const inputRef = useRef<InputTextElement | null>(null)
 
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
@@ -169,7 +169,7 @@ const InputText = (
 
   // 修改值
   async function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const target = e.target as TextInputElement
+    const target = e.target as InputTextElement
     // enableCompositionEnd 时，组合中不触发 onChange（由 handleCompositionEnd 落字后触发）
     if (enableCompositionEnd && target?.composing) {
       return
@@ -200,12 +200,12 @@ const InputText = (
   function handleCompositionStart(
     e: React.CompositionEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    ;(e.target as TextInputElement).composing = true
+    ;(e.target as InputTextElement).composing = true
   }
 
   // enableCompositionEnd输入完成触发onChange: 输入法结束组合（选字/回车落字后）, 再触发 onChange
   function handleCompositionEnd(e: React.CompositionEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    ;(e.target as TextInputElement).composing = false
+    ;(e.target as InputTextElement).composing = false
     handleChange(e as unknown as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
   }
 
@@ -484,6 +484,6 @@ const InputText = (
     </div>
   )
 }
-export type { InputTextProps, InputTextRef, TextInputElement } from '../types'
+export type { InputTextElement, InputTextProps, InputTextRef } from '../types'
 
 export default forwardRef(InputText)

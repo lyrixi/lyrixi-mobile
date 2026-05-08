@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useEffect } from 'react'
 import InputText from './../Text'
 
-import type { InputTextRef, SearchProps } from '../types'
+import type { InputSearchProps, InputTextRef } from '../types'
 
-const Search = forwardRef<InputTextRef, SearchProps>(
+const Search = forwardRef<InputTextRef, InputSearchProps>(
   (
     {
       id,
@@ -113,6 +113,6 @@ const Search = forwardRef<InputTextRef, SearchProps>(
     )
   }
 )
-export type { SearchProps } from '../types'
+export type { InputSearchProps } from '../types'
 
 export default Search

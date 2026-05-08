@@ -5,7 +5,7 @@ import { maxLengthFormatter, minMaxFormatter, precisionFormatter } from './../Te
 import InputNode, { InputNodeRef } from './../Node'
 import correctInputNumber from './correctInputNumber'
 
-import type { NumberKeyboardProps, NumberKeyboardRef } from '../types'
+import type { InputNumberKeyboardProps, InputNumberKeyboardRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -17,7 +17,7 @@ import MathUtil from '../../../utils/MathUtil'
 import { DOMUtil, Keyboard, MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
+const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardProps>(
   (
     {
       // Modal
@@ -150,6 +150,6 @@ const NumberKeyboard = forwardRef<NumberKeyboardRef, NumberKeyboardProps>(
     )
   }
 )
-export type { NumberKeyboardProps, NumberKeyboardRef } from '../types'
+export type { InputNumberKeyboardProps, InputNumberKeyboardRef } from '../types'
 
 export default NumberKeyboard

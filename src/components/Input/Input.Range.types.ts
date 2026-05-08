@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'react'
 
-export interface RangeRef {
+export interface InputRangeRef {
   element: HTMLDivElement | null
   inputElement: HTMLInputElement | null
   getElement: () => HTMLDivElement | null
   getInputElement: () => HTMLInputElement | null
 }
 
-export interface RangeProps {
+export interface InputRangeProps {
   id?: string
   name?: string
   value?: number

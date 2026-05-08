@@ -1,8 +1,8 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { OTPInputTextProps, OTPInputTextRef } from '../types'
+import type { InputOTPInputTextProps, InputOTPInputTextRef } from '../types'
 
-const InputText = forwardRef<OTPInputTextRef, OTPInputTextProps>(
+const InputText = forwardRef<InputOTPInputTextRef, InputOTPInputTextProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {
     const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 

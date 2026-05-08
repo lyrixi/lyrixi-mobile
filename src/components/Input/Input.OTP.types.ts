@@ -1,18 +1,18 @@
 import type { ClipboardEventHandler, CSSProperties, ReactNode } from 'react'
 
-export interface OTPRef {
+export interface InputOTPRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
   focus: (itemIndex?: number) => void
   blur: () => void
 }
 
-export interface OTPInputRef {
+export interface InputOTPInputRef {
   focus: (index: number) => void
   blur: () => void
 }
 
-export interface OTPProps {
+export interface InputOTPProps {
   type?: string
   value?: unknown[]
   disabled?: boolean
@@ -24,12 +24,12 @@ export interface OTPProps {
   onComplete?: (value: string[]) => void
 }
 
-export interface OTPInputTextRef {
+export interface InputOTPInputTextRef {
   focus: (index: number) => void
   blur: () => void
 }
 
-export interface OTPInputTextProps {
+export interface InputOTPInputTextProps {
   values: string[]
   disabled?: boolean
   readOnly?: boolean
@@ -38,12 +38,12 @@ export interface OTPInputTextProps {
   onPaste?: ClipboardEventHandler<HTMLInputElement>
 }
 
-export interface OTPInputNumberRef {
+export interface InputOTPInputNumberRef {
   focus: (index: number) => void
   blur: () => void
 }
 
-export interface OTPInputNumberProps {
+export interface InputOTPInputNumberProps {
   values: string[]
   disabled?: boolean
   readOnly?: boolean

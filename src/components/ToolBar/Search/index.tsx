@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import InputSearch, { type SearchProps } from './../../Input/Search'
+import InputSearch, { type InputSearchProps } from './../../Input/Search'
 import type { InputTextRef } from './../../Input/types'
 // 内库使用-end
 
@@ -11,7 +11,7 @@ import type { InputTextRef } from './../../Input/types'
 import { DOMUtil, LocaleUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const Search = forwardRef<InputTextRef, SearchProps>(function Search(props, ref) {
+const Search = forwardRef<InputTextRef, InputSearchProps>(function Search(props, ref) {
   const {
     id,
     name,

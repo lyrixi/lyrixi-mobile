@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import InputText, { InputTextRef } from './../Text'
 
 
-import type { UrlProps } from '../types'
+import type { InputUrlProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -16,7 +16,7 @@ import Message from './../../Message'
 import { LocaleUtil, Clipboard, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
 
-const Url = forwardRef<InputTextRef, UrlProps>(
+const Url = forwardRef<InputTextRef, InputUrlProps>(
   (
     {
       id,
@@ -173,6 +173,6 @@ const Url = forwardRef<InputTextRef, UrlProps>(
     )
   }
 )
-export type { UrlProps } from '../types'
+export type { InputUrlProps } from '../types'
 
 export default Url

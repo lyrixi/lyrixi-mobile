@@ -4,7 +4,7 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import InputNode from './../Node'
 import Keyboard from './../../Keyboard'
 
-import type { OTPInputNumberProps, OTPInputNumberRef } from '../types'
+import type { InputOTPInputNumberProps, InputOTPInputNumberRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -14,7 +14,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil, Keyboard } from 'lyrixi-mobile'
 测试使用-end */
 
-const InputNumber = forwardRef<OTPInputNumberRef, OTPInputNumberProps>(
+const InputNumber = forwardRef<InputOTPInputNumberRef, InputOTPInputNumberProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [keyboardOpen, setKeyboardOpen] = useState(false)

@@ -5,7 +5,7 @@ import getPercent from './getPercent'
 import showTooltip from './showTooltip'
 import hideTooltip from './hideTooltip'
 
-import type { RangeProps, RangeRef } from '../types'
+import type { InputRangeProps, InputRangeRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -15,7 +15,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Range = forwardRef<RangeRef, RangeProps>(
+const Range = forwardRef<InputRangeRef, InputRangeProps>(
   (
     {
       id,
@@ -159,6 +159,6 @@ const Range = forwardRef<RangeRef, RangeProps>(
     )
   }
 )
-export type { RangeProps, RangeRef } from '../types'
+export type { InputRangeProps, InputRangeRef } from '../types'
 
 export default Range

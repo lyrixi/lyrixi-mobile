@@ -1,18 +1,18 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-export interface RateRef {
+export interface InputRateRef {
   element: HTMLDivElement | null
   inputElement: HTMLInputElement | null
   getElement: () => HTMLDivElement | null
   getInputElement: () => HTMLInputElement | null
 }
 
-export interface RateIconParams {
+export interface InputRateIconParams {
   className: string
   style?: CSSProperties
 }
 
-export interface RateProps {
+export interface InputRateProps {
   id?: string
   name?: string
   value?: number
@@ -20,7 +20,7 @@ export interface RateProps {
   disabled?: boolean
   style?: CSSProperties
   className?: string
-  iconRender?: (params: RateIconParams) => ReactNode
+  iconRender?: (params: InputRateIconParams) => ReactNode
   min?: number
   max?: number
   step?: number
