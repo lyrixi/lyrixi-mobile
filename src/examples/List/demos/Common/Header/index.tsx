@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { LocaleUtil, Page, ToolBar } from 'lyrixi-mobile'
-import SearchBar from '../../../../../components/ToolBar/Search'
-import SearchActive from '../../../../../components/ToolBar/SearchActive'
 
 import type { HeaderProps, SearchActiveProps, SearchBarProps } from './types'
 import Filter from './Filter'
@@ -38,7 +36,7 @@ const Header = ({ queryParams, onSearch }: HeaderProps) => {
     <Page.Header>
       <ToolBar>
         {/* 搜索 — ToolBar subcomponents are structurally untyped; narrow at call site */}
-        <SearchBar
+        <ToolBar.Search
           {...({
             placeholder: String(locale('按名称/拼音/拼音首字母查询')),
             value: String(queryParams?.keyword ?? ''),
@@ -47,7 +45,7 @@ const Header = ({ queryParams, onSearch }: HeaderProps) => {
           } as unknown as SearchBarProps)}
         />
         {searchActive && (
-          <SearchActive
+          <ToolBar.SearchActive
             {...({
               placeholder: String(locale('按名称/拼音/拼音首字母查询')),
               allowClear: true,

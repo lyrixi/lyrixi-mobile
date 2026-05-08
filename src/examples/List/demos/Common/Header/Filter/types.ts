@@ -1,8 +1,8 @@
-import type { ComponentProps, MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
 
-import ToolBarFilter from '../../../../../../components/ToolBar/Filter'
+import type { ToolBarFilterProps } from 'lyrixi-mobile'
 
-export type ToolBarFilterProps = ComponentProps<typeof ToolBarFilter>
+export type { ToolBarFilterProps }
 
 export type FilterHeaderProps = {
   queryParams?: Record<string, unknown>

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Form, Input, LocaleUtil } from 'lyrixi-mobile'
-import ToolBarFilter from '../../../../../../components/ToolBar/Filter'
+import { Form, Input, LocaleUtil, ToolBar } from 'lyrixi-mobile'
 
 import type { FilterHeaderProps, ToolBarFilterOkParams, ToolBarFilterProps } from './types'
 
@@ -81,7 +80,7 @@ function Filter({ queryParams, onSearch }: FilterHeaderProps) {
     }
   } as unknown as ToolBarFilterProps
 
-  return <ToolBarFilter {...filterProps} />
+  return <ToolBar.Filter {...filterProps} />
 }
 
 export default Filter

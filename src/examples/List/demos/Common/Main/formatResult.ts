@@ -1,5 +1,6 @@
+import type { LoadResult } from 'lyrixi-mobile'
+
 import mockResult from './mockResult'
-import type { LoadResult } from '../../../../../components/ListAsync'
 
 // 转换 API 返回数据为页面所需格式
 function localData(result: unknown, _options: { payload: Record<string, unknown> }): LoadResult {

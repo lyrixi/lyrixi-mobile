@@ -1,8 +1,6 @@
-import type { ComponentProps } from 'react'
+import type { ToolBarFilterProps } from 'lyrixi-mobile'
 
-import ToolBarFilter from '../../../../../../components/ToolBar/Filter'
-
-export type ToolBarFilterProps = ComponentProps<typeof ToolBarFilter>
+export type { ToolBarFilterProps }
 
 export type FilterHeaderProps = {
   queryParams?: Record<string, unknown>

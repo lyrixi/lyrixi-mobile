@@ -1,11 +1,7 @@
 import React, { forwardRef, type Ref } from 'react'
-// 第三方库导入
-import { ListAsync } from 'lyrixi-mobile'
-import type { ListAsyncRef } from '../../../../../components/ListAsync'
 
-// 公共组件导入
+import { ListAsync, type ListAsyncRef } from 'lyrixi-mobile'
 
-// 内部组件导入
 import mainLoadingRender from './mainLoadingRender'
 import type { MainProps } from './types'
 

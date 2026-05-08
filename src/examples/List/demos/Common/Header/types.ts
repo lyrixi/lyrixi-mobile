@@ -1,10 +1,7 @@
-import type { ComponentProps } from 'react'
+import type { InputSearchProps, ToolBarSearchActiveProps } from 'lyrixi-mobile'
 
-import SearchBar from '../../../../../components/ToolBar/Search'
-import SearchActive from '../../../../../components/ToolBar/SearchActive'
-
-export type SearchBarProps = ComponentProps<typeof SearchBar>
-export type SearchActiveProps = ComponentProps<typeof SearchActive>
+export type SearchBarProps = InputSearchProps
+export type SearchActiveProps = ToolBarSearchActiveProps
 
 export type HeaderProps = {
   queryParams: Record<string, unknown>

@@ -1,11 +1,7 @@
 import React, { useState, useRef } from 'react'
-// 第三方库导入
-import { Page } from 'lyrixi-mobile'
-import type { ListAsyncRef, LoadResult } from '../../../../components/ListAsync'
 
-// 公共组件导入
+import { Page, type ListAsyncRef, type LoadResult } from 'lyrixi-mobile'
 
-// 内部组件导入
 import { queryData } from './api'
 import Header from './Header'
 import Main from './Main'

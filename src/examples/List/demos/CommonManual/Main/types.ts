@@ -1,5 +1,4 @@
-import type { LoadResult } from '../../../../../components/ListAsync'
-import type { ListAsyncVirtualOptions } from '../../../../../components/ListAsync/VirtualList'
+import type { ListAsyncVirtualOptions, LoadResult } from 'lyrixi-mobile'
 
 export type MainProps = {
   virtual?: ListAsyncVirtualOptions
