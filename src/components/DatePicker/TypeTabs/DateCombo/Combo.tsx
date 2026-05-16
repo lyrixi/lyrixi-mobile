@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
-
-import type { DatePickerPickerTypesWeekComboComboProps } from './../../DatePicker.PickerTypes.WeekCombo.types'
+import type { DatePickerPickerTypesDateComboComboProps } from './../../DatePicker.TypeTabs.DateCombo.types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -11,11 +10,12 @@ import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 用于自定义渲染Combo, 按照要求返回comboElement
-const Combo = forwardRef<Record<string, unknown> | null, DatePickerPickerTypesWeekComboComboProps>(
-  function TypesWeekCombo(
+const Combo = forwardRef<Record<string, unknown> | null, DatePickerPickerTypesDateComboComboProps>(
+  function TypesDateCombo(
   {
     // Value & Display Value
     value,
+    type,
 
     // Style
     style,
@@ -41,7 +41,7 @@ const Combo = forwardRef<Record<string, unknown> | null, DatePickerPickerTypesWe
 
   return (
     <div ref={comboRef} style={style} className={className} onClick={onClick}>
-      {value instanceof Date ? DateUtil.format(value, 'week') : null}
+      {value instanceof Date ? DateUtil.format(value, type as string) : null}
     </div>
   )
 })

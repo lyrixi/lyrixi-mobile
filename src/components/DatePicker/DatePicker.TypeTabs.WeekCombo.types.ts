@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent } from 'react'
 
-/** PickerTypes/WeekCombo/Combo 展示层 */
+/** TypeTabs/WeekCombo/Combo 展示层 */
 export type DatePickerPickerTypesWeekComboComboProps = {
   value?: Date | null
   style?: CSSProperties
@@ -9,7 +9,7 @@ export type DatePickerPickerTypesWeekComboComboProps = {
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
 }
 
-/** PickerTypes/WeekCombo/index 外层字段 props */
+/** TypeTabs/WeekCombo/index 外层字段 props */
 export type DatePickerPickerTypesWeekComboProps = {
   value?: Date | null
   min?: Date | null

@@ -2,7 +2,7 @@ import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import type { DatePickerPickerType } from './DatePicker.common.types'
 
-/** PickerTypes/DateCombo/Combo 展示层 */
+/** TypeTabs/DateCombo/Combo 展示层 */
 export type DatePickerPickerTypesDateComboComboProps = {
   value?: Date | null
   type?: DatePickerPickerType | string
@@ -12,7 +12,7 @@ export type DatePickerPickerTypesDateComboComboProps = {
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
 }
 
-/** PickerTypes/DateCombo/index 外层字段 props */
+/** TypeTabs/DateCombo/index 外层字段 props */
 export type DatePickerPickerTypesDateComboProps = {
   value?: Date | null
   type: string

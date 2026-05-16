@@ -13,7 +13,7 @@ import RangeSelector from './RangeSelector'
 import WeekCombo from './WeekCombo'
 import WeekModal from './WeekModal'
 import WeekMain from './WeekMain'
-import Types from './PickerTypes'
+import Types from './TypeTabs'
 
 // eslint-disable-next-line
 export default {
