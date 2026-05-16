@@ -1,9 +1,7 @@
 import destroy from './../destroy'
-import type { MessageMaskElement, MessageOpenButton, MessageOpenProps } from '../../types'
+import type { MessageMaskElement, MessageOpenProps } from '../../types'
 import showMask from './showMask'
 import updateAttribute from './updateAttribute'
-
-export type { MessageOpenButton, MessageOpenProps }
 
 // 弹出Message对话框
 export default function open({
@@ -80,12 +78,20 @@ export default function open({
       if (result !== false) {
         const currentOnClose = mask?.onClose
         if (currentOnClose) currentOnClose()
-        destroy((e.currentTarget as HTMLElement).closest('.lyrixi-mask-message') as MessageMaskElement | null)
+        destroy(
+          (e.currentTarget as HTMLElement).closest(
+            '.lyrixi-mask-message'
+          ) as MessageMaskElement | null
+        )
       }
     } else {
       const currentOnClose = mask?.onClose
       if (currentOnClose) currentOnClose()
-      destroy((e.currentTarget as HTMLElement).closest('.lyrixi-mask-message') as MessageMaskElement | null)
+      destroy(
+        (e.currentTarget as HTMLElement).closest(
+          '.lyrixi-mask-message'
+        ) as MessageMaskElement | null
+      )
     }
     e.stopPropagation()
   }

@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react
 import { splitInputStyle, correctValue as _correctValue } from './../Text/utils'
 import renderClear from './../Text/renderClear'
 
-import type { InputNodeProps, InputNodeRef } from '../types'
+import type { InputNodeProps, InputNodeRef, InputNodeValue } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -53,7 +53,8 @@ const InputNode = (
   }: InputNodeProps,
   ref: React.Ref<InputNodeRef>
 ) => {
-  let displayValue = typeof formatter === 'function' ? formatter(value || '') : null
+  const textValue = String(value ?? '')
+  let displayValue = typeof formatter === 'function' ? formatter((value ?? null) as InputNodeValue) : null
 
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
@@ -65,13 +66,13 @@ const InputNode = (
 
   // Initialize
   useEffect(() => {
-    if (!value) return
+    if (!textValue) return
 
     // 矫正为正确的值
-    let val = correctValue(value)
+    let val = correctValue(textValue)
     // eslint-disable-next-line
-    if (val !== value) {
-      onChange && onChange(String(val))
+    if (val != textValue) {
+      onChange && onChange(String(val), { action: 'load' })
     }
     // eslint-disable-next-line
   }, [])
@@ -81,11 +82,10 @@ const InputNode = (
     if (typeof cursor !== 'boolean') return
 
     if (cursor) {
-      onFocus &&
-        onFocus({
-          target: inputRef.current,
-          currentTarget: inputRef.current
-        })
+      onFocus?.({
+        target: inputRef.current,
+        currentTarget: inputRef.current
+      } as React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>)
     } else {
       handleBlur()
     }
@@ -110,7 +110,7 @@ const InputNode = (
       blur: () => {
         console.log('Input.Node please config setCursor to hide cursor')
       }
-    }
+    } as InputNodeRef
   })
 
   function handleBlur() {
@@ -118,7 +118,7 @@ const InputNode = (
       return
     }
 
-    let val: string = value || ''
+    let val: string = textValue
 
     // trim
     if (trim && val && typeof val === 'string' && val.trim() !== val) {
@@ -139,7 +139,7 @@ const InputNode = (
     }
 
     // 修改完回调
-    if (val !== value) {
+    if (val !== textValue) {
       if (onChange) onChange(val, { action: 'blur' })
     }
 
@@ -147,7 +147,7 @@ const InputNode = (
       onBlur({
         target: inputRef.current,
         currentTarget: inputRef.current
-      })
+      } as React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>)
   }
 
   // 矫正最大长度和小数位截取
@@ -202,11 +202,11 @@ const InputNode = (
           className={DOMUtil.classNames(
             'lyrixi-input-text',
             // 无值且没有聚焦时, 显示placeholder
-            !value && placeholder && !cursor ? 'lyrixi-input-placeholder' : '',
+            !textValue && placeholder && !cursor ? 'lyrixi-input-placeholder' : '',
             cursor ? 'lyrixi-input-focus' : ''
           )}
         >
-          {typeof value === 'object' || !value ? placeholder : value}
+          {(typeof value === 'object' && value !== null) || !value ? placeholder : textValue}
         </div>
 
         {/* Value & Display Value: Formatter Display */}
@@ -219,7 +219,7 @@ const InputNode = (
         : renderClear({
             clearRender,
             allowClear,
-            value,
+            value: textValue,
             onClear: handleClear
           })}
 
@@ -228,6 +228,4 @@ const InputNode = (
     </div>
   )
 }
-export type { InputNodeProps, InputNodeRef } from '../types'
-
-export default forwardRef(InputNode)
+export default forwardRef<InputNodeRef, InputNodeProps>(InputNode)

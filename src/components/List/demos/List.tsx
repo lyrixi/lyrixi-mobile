@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
+import type { RawItem, ViewItem } from 'lyrixi-mobile'
 import listAllData from './listAllData'
 import listData from './listData'
 
-type Raw = Record<string, unknown>
+import type { ListDemoRawRow } from './List.demos.types'
 
-export default () => {
-  const [singleValue, setSingleValue] = useState<Raw | Raw[] | null>(null)
-  const [multipleValue, setMultipleValue] = useState<Raw[]>([])
+const ListDemo = () => {
+  const [singleValue, setSingleValue] = useState<ListDemoRawRow | ListDemoRawRow[] | null>(null)
+  const [multipleValue, setMultipleValue] = useState<ListDemoRawRow[]>([])
 
   return (
     <Page>
@@ -18,12 +19,14 @@ export default () => {
           <Card.Main>
             <List
               list={listAllData}
-              formatViewItem={(item) => ({
-                ...item,
-                actionRender: () => {
-                  return <Button size="s">actionRender</Button>
-                }
-              })}
+              formatViewItem={(item: RawItem): ViewItem => {
+                return {
+                  ...item,
+                  actionRender: () => {
+                    return <Button size="s">actionRender</Button>
+                  }
+                } as ViewItem
+              }}
               value={singleValue}
               onChange={(newSingleValue) => {
                 console.log('newSingleValue:', newSingleValue)
@@ -38,12 +41,16 @@ export default () => {
             <List
               list={listAllData}
               itemLayout="vertical"
-              formatViewItem={(item) => ({
-                ...item,
-                actionRender: () => {
-                  return <Button size="s">actionRender</Button>
-                }
-              })}
+              formatViewItem={(item: RawItem): ViewItem => {
+                return {
+                  ...item,
+                  _raw: item,
+                  id: item.id,
+                  actionRender: () => {
+                    return <Button size="s">actionRender</Button>
+                  }
+                } as ViewItem
+              }}
               value={singleValue}
               onChange={(newSingleValue) => {
                 console.log('newSingleValue:', newSingleValue)
@@ -66,7 +73,9 @@ export default () => {
                 if (newMultipleValue == null) {
                   setMultipleValue([])
                 } else {
-                  setMultipleValue(Array.isArray(newMultipleValue) ? newMultipleValue : [newMultipleValue])
+                  setMultipleValue(
+                    Array.isArray(newMultipleValue) ? newMultipleValue : [newMultipleValue]
+                  )
                 }
               }}
               checkable
@@ -77,7 +86,9 @@ export default () => {
         </Card>
 
         <Card>
-          <Card.Header>List 项布局（itemLayout=vertical）、复选框在右（checkboxPosition=right）</Card.Header>
+          <Card.Header>
+            List 项布局（itemLayout=vertical）、复选框在右（checkboxPosition=right）
+          </Card.Header>
           <Card.Main>
             <List
               list={listData.slice(0, 3)}
@@ -100,15 +111,19 @@ export default () => {
               onChange={setSingleValue}
               checkable
               allowClear
-              formatViewItem={(item, { index }) => ({
-                ...item,
-                title: (
-                  <div>
-                    <span style={{ color: '#999' }}>{index}: </span>
-                    <span>{String((item as { name?: unknown }).name ?? '')}</span>
-                  </div>
-                )
-              })}
+              formatViewItem={(item: RawItem, { index }): ViewItem => {
+                return {
+                  ...item,
+                  _raw: item,
+                  id: item.id ?? index,
+                  title: (
+                    <div>
+                      <span style={{ color: '#999' }}>{index}: </span>
+                      <span>{String((item as { name?: unknown }).name ?? '')}</span>
+                    </div>
+                  )
+                } as ViewItem
+              }}
             />
           </Card.Main>
         </Card>
@@ -124,8 +139,12 @@ export default () => {
               allowClear
               itemRender={(item, { checked, onChange: onSelect, index }) => (
                 <List.Item
-                  _raw={item._raw as Raw}
-                  key={String((item._raw as { id?: unknown } | undefined)?.id ?? (item as { id?: unknown }).id ?? index)}
+                  _raw={item._raw as ListDemoRawRow}
+                  key={String(
+                    (item._raw as { id?: unknown } | undefined)?.id ??
+                      (item as { id?: unknown }).id ??
+                      index
+                  )}
                   checked={checked}
                   checkable
                   onSelect={onSelect}
@@ -169,3 +188,5 @@ export default () => {
     </Page>
   )
 }
+
+export default ListDemo

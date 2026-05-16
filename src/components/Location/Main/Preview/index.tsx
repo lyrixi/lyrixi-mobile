@@ -1,12 +1,10 @@
 import React, { forwardRef } from 'react'
 import Choose from './../Choose'
 import type { MapContainerAPI } from './../../../Map/types'
-import type { LocationChooseProps } from './../Choose'
-
-type LocationPreviewProps = Omit<LocationChooseProps, 'readOnly'>
+import type { LocationMainPreviewProps } from './../../types'
 
 // 查看
-const Preview = forwardRef<MapContainerAPI, LocationPreviewProps>(function LocationPreview(
+const Preview = forwardRef<MapContainerAPI, LocationMainPreviewProps>(function LocationPreview(
   {
     value,
     autoLocation,

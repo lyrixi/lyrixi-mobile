@@ -1,8 +1,11 @@
-import type { ListAsyncVirtualOptions, LoadResult } from 'lyrixi-mobile'
+import type { ListAsyncLoadResult, ListAsyncVirtualProp } from 'lyrixi-mobile'
 
 export type MainProps = {
-  virtual?: ListAsyncVirtualOptions
-  onLoad?: (ctx: { result: LoadResult | null; action: string }) => void
+  virtual?: ListAsyncVirtualProp
+  onLoad?: (ctx: { result: ListAsyncLoadResult | null; action: string }) => void
   onChange?: (value: unknown) => void
-  loadData: (ctx: { previousResult: LoadResult | null; action: string }) => Promise<LoadResult>
+  loadData: (ctx: {
+    previousResult: ListAsyncLoadResult | null
+    action: string
+  }) => Promise<ListAsyncLoadResult>
 }

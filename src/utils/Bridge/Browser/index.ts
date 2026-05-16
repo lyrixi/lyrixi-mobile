@@ -1,11 +1,24 @@
 import uploadFile from './uploadFile'
 import back from './../utils/back'
 import type {
-  SuccessCallback,
-  ErrorCallback,
-  CancelCallback,
-  SuccessResult,
-  ErrorResult
+  BridgeLoadParams,
+  BridgeConfigParams,
+  BridgeCloseWindowParams,
+  BridgeSetTitleParams,
+  BridgeOpenWindowParams,
+  BridgeTelParams,
+  BridgeOpenLocationParams,
+  BridgeGetLocationParams,
+  BridgeGetLocationResultData,
+  BridgeGetBrowserLocationParams,
+  BridgeScanCodeParams,
+  BridgeUploadFileParams,
+  BridgeUploadLocalFile,
+  BridgePreviewMediaParams,
+  BridgePreviewFileParams,
+  BridgeShareParams,
+  BridgeSuccessResult,
+  BridgeErrorResult
 } from '../types'
 
 // 内库使用-start
@@ -23,14 +36,14 @@ import { LocaleUtil, Clipboard, GeoUtil, Device, Toast } from 'lyrixi-mobile'
 let Browser = {
   /** 调试开关：为 true 时 getBrowserLocation / scanCode 等走模拟逻辑 */
   debug: false,
-  load: function (params?: { onSuccess?: SuccessCallback }) {
+  load: function (params?: BridgeLoadParams) {
     const { onSuccess } = params || {}
     onSuccess?.({
       status: 'success',
       data: undefined
     })
   },
-  config: async function (params?: { onSuccess?: SuccessCallback }) {
+  config: async function (params?: BridgeConfigParams) {
     const { onSuccess } = params || {}
     onSuccess?.({
       status: 'success',
@@ -40,7 +53,7 @@ let Browser = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
+  closeWindow: function (params?: BridgeCloseWindowParams) {
     const { onSuccess } = params || {}
     window.history.go(-1)
     onSuccess?.({ status: 'success', data: undefined })
@@ -53,17 +66,13 @@ let Browser = {
       )} onBack`
     })
   },
-  setTitle: function (params?: {
-    title?: string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  setTitle: function (params?: BridgeSetTitleParams) {
     const { title, onSuccess } = params || {}
     const topWin = window.top ?? window
     topWin.document.title = title ?? ''
     onSuccess?.({ status: 'success', data: undefined })
   },
-  openWindow: function (params?: { url?: string; target?: string }) {
+  openWindow: function (params?: BridgeOpenWindowParams) {
     const { url, target } = params || {}
     if (target === '_self') {
       if (url) window.location.replace(url)
@@ -78,11 +87,7 @@ let Browser = {
   goHome: function () {
     window.history.go(-1)
   },
-  tel: function (params?: {
-    number?: string | number
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  tel: function (params?: BridgeTelParams) {
     const { number, onSuccess, onError } = params || {}
     if (Device.device === 'pc') {
       Toast.show({
@@ -106,16 +111,7 @@ let Browser = {
     window.location.href = 'tel:' + number
     onSuccess?.({ status: 'success', data: undefined })
   },
-  openLocation: function (params?: {
-    latitude?: number
-    longitude?: number
-    type?: string
-    name?: string
-    address?: string
-    scale?: number
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  openLocation: function (params?: BridgeOpenLocationParams) {
     const { latitude, longitude, type, onError } = params || {}
     if (!latitude || !longitude || !type) return
     let message = `Browser ${LocaleUtil.locale(
@@ -129,39 +125,27 @@ let Browser = {
     })
     onError?.({ status: 'error', message: message })
   },
-  getLocation: function (params?: {
-    type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-  }) {
+  getLocation: function (params?: BridgeGetLocationParams) {
     this.getBrowserLocation(params)
   },
-  getBrowserLocation: function (params?: {
-    type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-  }) {
+  getBrowserLocation: function (params?: BridgeGetBrowserLocationParams) {
     const { type, onSuccess, onError } = params || {}
     if (this.debug) {
       console.log('模拟浏览器定位...', type)
       setTimeout(() => {
-        const data =
+        const data: BridgeGetLocationResultData =
           type === 'gcj02'
             ? {
-                message: '',
-                speed: '0.0',
-                accuracy: '3.0.0',
                 type: type || 'wgs84',
                 latitude: 39.909187,
-                longitude: 116.397451
+                longitude: 116.397451,
+                accuracy: 3
               }
             : {
-                message: '',
-                speed: '0.0',
-                accuracy: '3.0.0',
                 type: type || 'wgs84',
                 latitude: 39.907783490367706,
-                longitude: 116.39120737493609
+                longitude: 116.39120737493609,
+                accuracy: 3
               }
         onSuccess?.({
           status: 'success',
@@ -203,12 +187,10 @@ let Browser = {
             code: '',
             message: '',
             data: {
-              message: '',
-              speed: position.coords.speed,
-              accuracy: position.coords.accuracy,
-              longitude: longitude,
-              latitude: latitude,
-              type: type || 'wgs84'
+              longitude,
+              latitude,
+              type: type || 'wgs84',
+              accuracy: position.coords.accuracy ?? undefined
             }
           })
         },
@@ -275,7 +257,7 @@ let Browser = {
                 'lyrixi_9831baf6b76c1da7b69b463033b924cc'
               )}`
           }
-          let res: ErrorResult = { status: 'error', code: code, message: message }
+          let res: BridgeErrorResult = { status: 'error', code: code, message: message }
           console.log('调用浏览器定位失败', res)
           onError?.(res)
         },
@@ -286,7 +268,7 @@ let Browser = {
         }
       )
     } else {
-      let res: ErrorResult = {
+      let res: BridgeErrorResult = {
         status: 'error',
         code: 'LOCATION_NOT_SUPPORTED_ERROR',
         message: `Browser ${LocaleUtil.locale(
@@ -298,12 +280,7 @@ let Browser = {
     }
     return
   },
-  scanCode: function (params?: {
-    scanType?: string[]
-    onSuccess?: SuccessCallback<{ content: string }>
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  scanCode: function (params?: BridgeScanCodeParams) {
     const {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       scanType,
@@ -346,23 +323,9 @@ let Browser = {
       content: message
     })
   },
-  uploadFile: async function (params?: {
-    localFile?: { filePath?: string; fileType?: string }
-    getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
-    formatHeaders?: (
-      h: Record<string, string>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, string>>
-    formatPayload?: (
-      p: Record<string, unknown>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, unknown>>
-    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-  }) {
+  uploadFile: async function (params?: BridgeUploadFileParams) {
     const {
-      localFile,
+      localFile: rawLocalFile,
       getUploadUrl,
       formatHeaders,
       formatPayload,
@@ -370,7 +333,11 @@ let Browser = {
       onSuccess,
       onError
     } = params || {}
-    let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
+    const localFile = rawLocalFile as BridgeUploadLocalFile | undefined
+    const getUploadUrlFn = getUploadUrl as
+      | ((ctx: { platform: string }) => Promise<string | undefined>)
+      | undefined
+    let url = (await getUploadUrlFn?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
       onError?.({
         status: 'error',
@@ -391,7 +358,7 @@ let Browser = {
     }
     let headers: Record<string, string> = { 'Content-Type': 'multipart/form-data' }
     if (typeof formatHeaders === 'function') {
-      headers = await formatHeaders(headers, { platform: 'browser' })
+      headers = (await formatHeaders(headers, { platform: 'browser' })) as Record<string, string>
     }
 
     let response = (await uploadFile({
@@ -405,18 +372,12 @@ let Browser = {
     }
 
     if (response.status === 'success') {
-      onSuccess?.(response as SuccessResult<Record<string, unknown>>)
+      onSuccess?.(response as BridgeSuccessResult<Record<string, unknown>>)
     } else {
-      onError?.(response as ErrorResult)
+      onError?.(response as BridgeErrorResult)
     }
   },
-  previewMedia: function (params?: {
-    index?: number
-    sources?: unknown[]
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  previewMedia: function (params?: BridgePreviewMediaParams) {
     const { onError } = params || {}
     onError?.({
       status: 'error',
@@ -426,11 +387,7 @@ let Browser = {
       )} previewMedia`
     })
   },
-  previewFile: function (params?: {
-    fileUrl?: string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  previewFile: function (params?: BridgePreviewFileParams) {
     const { onError } = params || {}
     let message = `Browser ${LocaleUtil.locale(
       '此平台不支持',
@@ -441,14 +398,7 @@ let Browser = {
     })
     onError?.({ status: 'error', message: message })
   },
-  share(params?: {
-    title?: string
-    description?: string
-    url?: string
-    imageUrl?: string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  share(params?: BridgeShareParams) {
     const { url, onSuccess } = params || {}
     Clipboard.copyText(url || '')
     onSuccess?.({

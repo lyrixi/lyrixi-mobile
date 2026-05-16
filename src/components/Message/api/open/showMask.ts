@@ -47,6 +47,4 @@ function showMask({ portal, onMaskClick }: MessageShowMaskParams): MessageMaskEl
   return mask
 }
 
-export type { MessageMaskElement } from '../../types'
-
 export default showMask

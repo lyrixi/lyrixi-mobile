@@ -1,34 +1,39 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-import type { InputTextProps } from './Input.Text.types'
+import type { InputNodeProps, InputNodeValue, InputSelectItem } from './Input.Node.types'
 
-export interface InputSelectFormatterValue {
-  name?: string
-  [key: string]: unknown
-}
+export type { InputSelectItem } from './Input.Node.types'
+
+/** 与 `InputNodeValue` 对齐：选择类控件受控值。 */
+export type InputSelectValue = InputNodeValue
 
 export interface InputSelectComboRef {
   displayValue: string
-  getDisplayValue: (newValue?: unknown) => string
+  getDisplayValue: (newValue?: InputSelectValue) => string
   element: HTMLElement | null
   getElement: () => HTMLElement | null
 }
 
-export interface InputSelectComboProps {
-  value?: unknown
-  placeholder?: string
-  autoSize?: boolean
+/**
+ * Select.Combo / Tags 等：继承 `InputNodeProps` 并补充 name、组合展示等；
+ * `formatter` / `onChange` / `value` 按选择场景收窄。
+ */
+export interface InputSelectProps extends Omit<InputNodeProps, 'value' | 'formatter' | 'onChange'> {
+  name?: string
+  value?: InputSelectValue
+  formatter?: (value: InputSelectValue, options?: { separator?: string }) => string
+  onChange?: (value: InputSelectValue, meta?: unknown) => void
+  autoFocus?: boolean
+  autoSelect?: boolean
+  enableCompositionEnd?: boolean
+  inputRender?: (params: Record<string, unknown>) => ReactNode
+  onPreview?: (value: string) => Promise<boolean | undefined> | boolean | undefined
+  onSearch?: (value: string) => void
+  step?: number
+  iconRender?: (params: { className: string; style?: CSSProperties }) => ReactNode
   mode?: string
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  style?: CSSProperties
-  className?: string
-  formatter?: (value: unknown, options?: { separator?: string }) => string
+  autoSize?: boolean
   separator?: string
-  leftIconNode?: ReactNode
-  rightIconNode?: ReactNode
-  clearRender?: InputTextProps['clearRender']
-  onChange?: (value: unknown, meta?: { action: string }) => void
-  onClick?: (e: MouseEvent) => void
+  onAdd?: (e: MouseEvent<HTMLDivElement>) => void
+  onEdit?: (item: InputSelectItem) => void
 }

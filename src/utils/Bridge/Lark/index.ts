@@ -6,7 +6,23 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
 
-import type { SuccessCallback, ErrorCallback, CancelCallback, SDKResult } from '../types'
+import type { BridgePlatformErrorResponse } from '../Bridge.platform.types'
+import type {
+  BridgeLarkGetLocationSuccessResponse,
+  BridgeLarkScanCodeSuccessResponse
+} from '../Bridge.Lark.types'
+import type {
+  BridgeCloseWindowParams,
+  BridgeConfigParams,
+  BridgeGetLocationParams,
+  BridgeGetLocationResultData,
+  BridgeLoadParams,
+  BridgeOpenLocationParams,
+  BridgePreviewMediaParams,
+  BridgePreviewMediaSource,
+  BridgeScanCodeParams,
+  BridgeShareParams
+} from '../types'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -19,11 +35,7 @@ import { GeoUtil, Clipboard, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (params?: {
-    getScriptSrc?: (ctx: { platform: string }) => string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  load: function (params?: BridgeLoadParams) {
     const { getScriptSrc, onSuccess, onError } = params || {}
     const top = window.top ?? window
     if (top.tt && top.h5sdk) {
@@ -64,20 +76,7 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  config: async function (params?: {
-    getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
-    formatHeaders?: (
-      h: Record<string, string>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, string>>
-    formatPayload?: (
-      p: Record<string, unknown>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, unknown>>
-    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
-  }) {
+  config: async function (params?: BridgeConfigParams) {
     const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
       params || {}
     // 获取配置url
@@ -93,7 +92,7 @@ let Bridge = {
     // 构建header
     let headers: Record<string, string> = { 'Content-Type': 'application/json' }
     if (typeof formatHeaders === 'function') {
-      headers = await formatHeaders(headers, { platform: 'lark' })
+      headers = (await formatHeaders(headers, { platform: 'lark' })) as Record<string, string>
     }
 
     config({ url, headers, payload, formatResponse, onSuccess, onError })
@@ -104,13 +103,13 @@ let Bridge = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
+  closeWindow: function (params?: BridgeCloseWindowParams) {
     const { onSuccess, onError } = params || {}
     ;(window.top ?? window).tt?.closeWindow?.({
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -123,16 +122,7 @@ let Bridge = {
   onBack: function () {
     console.log('飞书不支持监听物理返回')
   },
-  openLocation: function (params?: {
-    latitude?: number
-    longitude?: number
-    type?: string
-    name?: string
-    address?: string
-    scale?: number
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  openLocation: function (params?: BridgeOpenLocationParams) {
     const {
       latitude,
       longitude,
@@ -163,7 +153,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -173,23 +163,19 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (params?: {
-    type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-  }) {
+  getLocation: function (params?: BridgeGetLocationParams) {
     const { type, onSuccess, onError } = params || {}
     let targetType = type || 'gcj02'
     console.log('调用飞书定位...', type)
     ;(window.top ?? window).tt?.getLocation?.({
       type: targetType,
-      success: (res: SDKResult) => {
+      success: (res: BridgeLarkGetLocationSuccessResponse) => {
         console.error('飞书定位成功', res)
 
-        let data: Record<string, unknown> = {
-          longitude: res.longitude,
-          latitude: res.latitude,
-          type: res.type,
+        let data: BridgeGetLocationResultData = {
+          longitude: res.longitude ?? 0,
+          latitude: res.latitude ?? 0,
+          type: (res.type as string) || targetType,
           accuracy: res.accuracy
         }
 
@@ -217,7 +203,7 @@ let Bridge = {
           data
         })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         console.error('飞书定位失败', error)
         onError?.({
           status: 'error',
@@ -228,17 +214,12 @@ let Bridge = {
       }
     })
   },
-  scanCode: function (params?: {
-    scanType?: string[]
-    onSuccess?: SuccessCallback<{ content: string }>
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  scanCode: function (params?: BridgeScanCodeParams) {
     const { scanType, onSuccess, onError, onCancel } = params || {}
     ;(window.top ?? window).tt?.scanCode?.({
       scanType: scanType,
       barCodeInput: true,
-      success: (res: SDKResult) => {
+      success: (res: BridgeLarkScanCodeSuccessResponse) => {
         onSuccess?.({
           status: 'success',
           code: '',
@@ -246,10 +227,10 @@ let Bridge = {
           data: { content: res.resultStr || '' }
         })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error: SDKResult) => {
+      cancel: (error: BridgePlatformErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -260,21 +241,12 @@ let Bridge = {
   uploadFile: function () {
     console.log('调用飞书上传文件暂未实现')
   },
-  previewMedia: function (params?: {
-    index?: number
-    sources?: Array<
-      Record<string, unknown> & {
-        localFile?: { tempFileUrl?: string }
-        fileUrl?: string
-        fileType?: string
-      }
-    >
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  previewMedia: function (params?: BridgePreviewMediaParams) {
     const { index, sources, onSuccess, onError, onCancel } = params || {}
-    const srcList = sources || []
+    type LarkPreviewSource = BridgePreviewMediaSource & {
+      localFile?: { tempFileUrl?: string }
+    }
+    const srcList = (sources || []) as LarkPreviewSource[]
     let urls = srcList.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
     let current = index !== undefined ? srcList[index] : undefined
 
@@ -294,7 +266,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         console.log('飞书previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -306,14 +278,7 @@ let Bridge = {
       onCancel: onCancel
     })
   },
-  share(params?: {
-    title?: string
-    description?: string
-    url?: string
-    imageUrl?: string
-    onSuccess?: () => void
-    onError?: ErrorCallback
-  }) {
+  share(params?: BridgeShareParams) {
     const { title, description, url, imageUrl, onSuccess, onError } = params || {}
     ;(window.top ?? window).tt?.share?.({
       channelType: ['wx', 'wx_timeline', 'system'],
@@ -323,9 +288,9 @@ let Bridge = {
       url: url,
       image: imageUrl,
       success() {
-        onSuccess?.()
+        onSuccess?.({ status: 'success', data: undefined })
       },
-      fail(err: SDKResult) {
+      fail(err: BridgePlatformErrorResponse) {
         console.log('Lark Share onError:', err)
 
         onError?.({

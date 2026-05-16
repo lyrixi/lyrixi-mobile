@@ -35,3 +35,6 @@ export interface CascaderDistrictModalProps {
   onOk?: (value: CascaderNode[] | null | undefined) => boolean | Promise<unknown> | void
   onChange?: (value: CascaderNode[]) => void
 }
+
+/** DistrictMain ref 上供 Modal 使用的窄化句柄 */
+export type CascaderDistrictModalMainHandle = { loadList: () => Promise<void>; list: unknown }

@@ -1,6 +1,5 @@
 import React, { type MouseEvent } from 'react'
 
-
 import type { MediaItemProps } from '../types'
 
 // 内库使用-start
@@ -81,6 +80,4 @@ const Item = ({
     </div>
   )
 }
-export type { MediaItemProps } from '../types'
-
 export default Item

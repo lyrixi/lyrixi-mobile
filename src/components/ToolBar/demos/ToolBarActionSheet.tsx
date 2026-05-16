@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Page, ToolBar } from 'lyrixi-mobile'
 
-type Item = { id: string; name: string; disabled?: boolean }
+import type { ToolBarDemoListItem } from './ToolBar.demos.types'
 
 export default function ToolBarActionSheetDemo() {
-  const [item, setItem] = useState<Item | null>({
+  const [item, setItem] = useState<ToolBarDemoListItem | null>({
     disabled: true,
     id: '',
     name: 'Disabled'
@@ -15,7 +15,7 @@ export default function ToolBarActionSheetDemo() {
       <Page.Main>
         <ToolBar.ActionSheet
           value={item}
-          onChange={(v) => setItem((v as Item) ?? null)}
+          onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
           list={[
             {
               disabled: true,

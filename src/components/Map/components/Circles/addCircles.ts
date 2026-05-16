@@ -2,7 +2,6 @@ import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
 import type { CirclePoint, CircleOptions } from '../../types'
 
-
 function addCircles(
   points: CirclePoint[] | null | undefined,
   options: CircleOptions,
@@ -26,5 +25,4 @@ function addCircles(
   }
 }
 
-export type { CirclePoint } from '../../types'
 export default addCircles

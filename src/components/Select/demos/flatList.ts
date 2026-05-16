@@ -1,3 +1,5 @@
+import type { RawItem } from '../../List/types'
+
 export default [
   {
     allowClear: true,
@@ -64,4 +66,4 @@ export default [
     id: '15',
     name: 'Option15'
   }
-]
+] as RawItem[]

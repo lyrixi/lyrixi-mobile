@@ -47,18 +47,15 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
 
     const mainRef = useRef<CascaderMainRef | null>(null)
 
-
     useEffect(() => {
       setCurrentValue(value)
     }, [value])
-
 
     useImperativeHandle(ref, () => {
       const a = (modalRef.current as Record<string, unknown> | null) ?? {}
       const b = (mainRef.current as CascaderMainRef | null) ?? ({} as CascaderMainRef)
       return { ...a, ...b } as Record<string, unknown>
     })
-
 
     async function handleOk() {
       if (onOk) {
@@ -77,7 +74,6 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
       onClose?.()
     }
 
-
     function handleChange(newValue: CascaderNode[], _newArguments?: unknown) {
       setCurrentValue(newValue)
 
@@ -87,7 +83,6 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
         onClose?.()
       }
     }
-
 
     return (
       <NavBarModal
@@ -123,6 +118,4 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
     )
   }
 )
-export type { CascaderModalProps } from '../types'
-
 export default CascaderModal

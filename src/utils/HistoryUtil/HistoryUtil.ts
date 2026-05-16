@@ -1,4 +1,4 @@
-type OnBack = (() => void) | null | undefined
+import type { HistoryUtilOnBack } from './types'
 
 const HistoryUtil = {
   urlParameter: undefined as string | undefined,
@@ -19,7 +19,7 @@ const HistoryUtil = {
       HistoryUtil.onBack()
     }
   },
-  onBack: null as OnBack,
+  onBack: null as HistoryUtilOnBack,
   // 增加一条新的历史记录并且支持回调(此方法为新方法，不依赖History实例)
   /*
     HistoryUtil.navigate(`nestedRoute=true`, {

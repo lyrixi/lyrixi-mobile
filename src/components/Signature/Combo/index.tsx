@@ -66,6 +66,4 @@ const Combo = (
     />
   )
 }
-export type { SignatureComboRef, SignatureComboProps } from '../types'
-
 export default forwardRef<SignatureComboRef, SignatureComboProps>(Combo)

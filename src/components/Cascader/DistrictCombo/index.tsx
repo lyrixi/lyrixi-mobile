@@ -141,5 +141,4 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
   }
 )
 
-export type { CascaderDistrictComboProps, CascaderDistrictComboRef } from '../types'
 export default DistrictCombo

@@ -1,11 +1,7 @@
 // Clipboard 剪贴板
 import LocaleUtil from './../LocaleUtil' // 国际化数据
 
-type CopyParams = {
-  onSuccess?: (payload: { status: string; message: unknown }) => void
-  onError?: (payload: { status: string; message: unknown }) => void
-  errorMsg?: string
-}
+import type { ClipboardCopyParams } from './Clipboard.types'
 
 const Clipboard = {
   // 选择元素的内容
@@ -36,7 +32,7 @@ const Clipboard = {
     return forExecElement
   },
   // 复制到剪贴板
-  copy: function (input: string, params: CopyParams = {}) {
+  copy: function (input: string, params: ClipboardCopyParams = {}) {
     let textToClipboard = input
 
     let success = true

@@ -1,29 +1,10 @@
 import Months from './Months'
-import type { CalendarCellDate } from '../types'
 
-type SlideYOp = 'expand' | 'collapse' | ''
+import type { CalendarUtilsSlideYOp, CalendarUtilsSlideYOptions } from '../types'
 
 // 上下拉动
-function slideY(
-  op: SlideYOp,
-  {
-    duration,
-    currentPage,
-    drawDate,
-    cellHeight,
-    bodyHeight,
-    body,
-    bodyY
-  }: {
-    duration: number
-    currentPage: CalendarCellDate[][] | undefined
-    drawDate: Date | null
-    cellHeight: number
-    bodyHeight: number
-    body: HTMLDivElement | null
-    bodyY: HTMLDivElement | null
-  }
-) {
+function slideY(op: CalendarUtilsSlideYOp, options: CalendarUtilsSlideYOptions) {
+  const { duration, currentPage, drawDate, cellHeight, bodyHeight, body, bodyY } = options
   if (!body || !bodyY) {
     return
   }

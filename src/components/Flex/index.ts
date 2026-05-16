@@ -1,16 +1,8 @@
 import Flex from './Flex'
 import Compact from './Compact'
 
-Flex.Compact = Compact
+import type { FlexComponents } from './Flex.Components.types'
 
-export type {
-  FlexAlign,
-  FlexCompactContextValue,
-  FlexCompactProps,
-  FlexCompactRef,
-  FlexDirection,
-  FlexJustify,
-  FlexProps,
-  FlexRef
-} from './types'
-export default Flex
+;(Flex as FlexComponents).Compact = Compact
+
+export default Flex as FlexComponents

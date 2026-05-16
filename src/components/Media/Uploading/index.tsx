@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import type { MediaUploadingProps } from '../types'
 
 // 内库使用-start
@@ -39,6 +38,4 @@ const Uploading = ({
     </div>
   )
 }
-export type { MediaUploadingProps } from '../types'
-
 export default Uploading

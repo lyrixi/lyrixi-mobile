@@ -1,4 +1,4 @@
-import type { SuccessCallback, ErrorCallback } from '../types'
+import type { BridgeWeChatWechatConfigOptions } from './../Bridge.WeChat.types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'
@@ -9,21 +9,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type WechatPayload = { appId?: string } & Record<string, unknown>
-
-type WechatConfigOptions = {
-  url?: string
-  headers?: Record<string, string>
-  payload?: WechatPayload
-  formatResponse?: (
-    response: unknown,
-    ctx: { platform: string }
-  ) => Promise<unknown> | unknown
-  onSuccess?: SuccessCallback
-  onError?: ErrorCallback
-}
-
-function wechatConfig(params?: WechatConfigOptions) {
+function wechatConfig(params?: BridgeWeChatWechatConfigOptions) {
   const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload?.appId) {
     onError?.({

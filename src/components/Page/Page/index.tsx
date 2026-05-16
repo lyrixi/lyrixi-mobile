@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-
 import type { PageProps, PageRef } from '../types'
 
 // 内库使用-start
@@ -42,6 +41,4 @@ const Page = forwardRef<PageRef, PageProps>(function Page(
     </section>
   )
 })
-export type { PageLayout, PageProps, PageRef } from '../types'
-
 export default Page

@@ -46,7 +46,7 @@ export default () => {
           <Input.Text
             placeholder="格式化显示"
             value={value3}
-            formatter={(currentValue) => {
+            formatter={(currentValue: string) => {
               return currentValue ? '$' + currentValue : ''
             }}
             onChange={setValue3}
@@ -138,8 +138,8 @@ export default () => {
         <Card style={{ marginTop: '20px' }}>
           <Divider>操作按钮</Divider>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-            <Button onClick={() => inputTextRef.current?.focus()}>聚焦输入框</Button>
-            <Button onClick={() => inputTextRef.current?.blur()}>失焦输入框</Button>
+            <Button onClick={() => inputTextRef.current?.focus?.()}>聚焦输入框</Button>
+            <Button onClick={() => inputTextRef.current?.blur?.()}>失焦输入框</Button>
             <Button onClick={() => setValue('')}>清空所有值</Button>
           </div>
         </Card>

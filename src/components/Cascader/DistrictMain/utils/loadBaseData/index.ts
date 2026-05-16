@@ -1,6 +1,8 @@
-
-
-import type { DistrictMainApiDistrictNode, DistrictResultState } from '../../../types'
+import type {
+  CascaderDistrictMainLoadBaseDataParams,
+  DistrictMainApiDistrictNode,
+  DistrictResultState
+} from '../../../types'
 
 // 内库使用-start
 import ArrayUtil from './../../../../../utils/ArrayUtil'
@@ -11,18 +13,12 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { ArrayUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type LoadFn = (id?: string | number) => Promise<DistrictResultState>
-
 // 获取国家省市区, 返回数据格式为{ status: 'success' | 'error', message: string, list: [] }
 async function loadBaseData({
   countryId,
   loadCountries,
   loadCountryRegions
-}: {
-  countryId?: string | number
-  loadCountries: () => Promise<DistrictResultState>
-  loadCountryRegions: LoadFn
-}): Promise<DistrictResultState> {
+}: CascaderDistrictMainLoadBaseDataParams): Promise<DistrictResultState> {
   const countriesData = await loadCountries()
 
   if (!countryId || countriesData.status === 'error') {
@@ -62,5 +58,4 @@ async function loadBaseData({
   }
 }
 
-export type { DistrictResultState } from '../../../types'
 export default loadBaseData

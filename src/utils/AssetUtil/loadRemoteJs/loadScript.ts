@@ -1,9 +1,5 @@
 // https://github.com/eldargab/load-script
-/** IE8 等旧环境下 script 上存在 readystate / onreadystatechange（DOM 类型未完整收录） */
-type LegacyIEScript = HTMLScriptElement & {
-  onreadystatechange?: ((this: LegacyIEScript, ev: Event) => void) | null
-  readyState?: string
-}
+import type { AssetUtilLoadScriptLegacyIEScript } from './../AssetUtil.loadRemoteJs.loadScript.types'
 
 function setAttributes(script: HTMLScriptElement, attrs: Record<string, string>) {
   // eslint-disable-next-line
@@ -53,7 +49,7 @@ function ieOnEnd(
     onError,
     onSuccess
   } = opts || {}
-  const s = script as LegacyIEScript
+  const s = script as AssetUtilLoadScriptLegacyIEScript
   s.onreadystatechange = function () {
     if (this.readyState !== 'complete' && this.readyState !== 'loaded') return
     this.onreadystatechange = null

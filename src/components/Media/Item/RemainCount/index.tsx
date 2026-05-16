@@ -16,6 +16,4 @@ const RemainCount = ({
     </div>
   )
 }
-export type { MediaRemainCountProps } from '../../types'
-
 export default RemainCount

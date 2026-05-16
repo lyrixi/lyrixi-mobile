@@ -1,0 +1,13 @@
+import type { CalendarCellDate } from './Calendar.common.types'
+
+export type CalendarUtilsSlideYOp = 'expand' | 'collapse' | ''
+
+export interface CalendarUtilsSlideYOptions {
+  duration: number
+  currentPage: CalendarCellDate[][] | undefined
+  drawDate: Date | null
+  cellHeight: number
+  bodyHeight: number
+  body: HTMLDivElement | null
+  bodyY: HTMLDivElement | null
+}

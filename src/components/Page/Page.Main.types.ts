@@ -7,12 +7,8 @@ export interface PageMainProps {
   className?: string
   style?: CSSProperties
   children?: ReactNode
-  onTopRefresh?: () =>
-    | boolean
-    | string
-    | undefined
-    | Promise<boolean | string | undefined>
-  onBottomRefresh?: () => void | Promise<void>
+  onTopRefresh?: () => undefined | Promise<boolean | string | undefined>
+  onBottomRefresh?: () => void | Promise<boolean | string | undefined | void>
   onScroll?: (e: UIEvent<HTMLElement>) => void
   onScrollEnd?: (e: UIEvent<HTMLElement>) => void
 }

@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
-import InputText, { InputTextRef, InputTextProps } from './../Text'
+import InputText from './../Text'
+import type { InputPasswordProps, InputPasswordRef, InputTextProps, InputTextRef } from './../types'
 
-const InputPassword = forwardRef<InputTextRef, InputTextProps>(
+const InputPassword = forwardRef<InputPasswordRef, InputPasswordProps>(
   (
     {
       id,
@@ -55,12 +56,12 @@ const InputPassword = forwardRef<InputTextRef, InputTextProps>(
   ) => {
     return (
       <InputText
-        ref={ref}
+        ref={ref as React.Ref<InputTextRef>}
         id={id}
         name={name}
         type="password"
         // Value & Display Value
-        value={value}
+        value={value as string}
         placeholder={placeholder}
         formatter={formatter}
         // Status
@@ -91,7 +92,7 @@ const InputPassword = forwardRef<InputTextRef, InputTextProps>(
         spellCheck={spellCheck}
         // Events
         onClick={onClick}
-        onChange={onChange}
+        onChange={onChange as InputTextProps['onChange']}
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}

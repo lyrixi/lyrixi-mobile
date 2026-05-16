@@ -1,9 +1,9 @@
 import { Device, Request, DateUtil } from 'lyrixi-mobile'
 
-type LogUploadPayload = { date: Date; content: unknown }
+import type { LoggerDemoLogUploadPayload } from './../Logger.demos.types'
 
 function upload(data: unknown): Promise<boolean> {
-  const { date, content } = data as LogUploadPayload
+  const { date, content } = data as LoggerDemoLogUploadPayload
   // 调用上报接口
   return new Promise((resolve) => {
     // 生成文件名: ${YYYYMMDD}_${Device.platform}_${username}_${userId}_${hhmmss}.txt

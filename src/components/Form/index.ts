@@ -3,15 +3,10 @@ import Form from './Form'
 import Item from './Item'
 import useForm from './useForm'
 
-type FormWithExtensions = typeof Form & {
-  Item: typeof Item
-  useForm: typeof useForm
-  useWatch: typeof useRcWatch
-}
+import type { FormComponents } from './Form.Components.types'
 
-;(Form as FormWithExtensions).Item = Item
-;(Form as FormWithExtensions).useForm = useForm
-;(Form as FormWithExtensions).useWatch = useRcWatch
+;(Form as FormComponents).Item = Item
+;(Form as FormComponents).useForm = useForm
+;(Form as FormComponents).useWatch = useRcWatch
 
-export type { FormProps, FormItemProps } from './types'
-export default Form as FormWithExtensions
+export default Form as FormComponents

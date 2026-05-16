@@ -7,7 +7,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 const Ouroboros = forwardRef<LoadingOuroborosRef, LoadingOuroborosProps>(
-  ({ color, size, style, className }, ref) => {
+  ({ color = 'var(--lyrixi-font-color-tertiary)', size, style, className }, ref) => {
     const rootRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => {
       return {

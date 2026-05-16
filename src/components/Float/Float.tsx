@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import getPosition from './AssistiveTouch/getPosition'
 import snapToEdge from './AssistiveTouch/snapToEdge'
 
-import type { FloatProps, FloatRef, SnapPosition } from './types'
+import type { FloatElement, FloatProps, FloatRef, SnapPosition } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -13,8 +13,6 @@ import SafeArea from './../SafeArea'
 /* 测试使用-start
 import { DOMUtil, SafeArea } from 'lyrixi-mobile'
 测试使用-end */
-
-type FloatElement = HTMLDivElement & { initialPosition?: boolean }
 
 // 悬浮按钮
 const Float = forwardRef<FloatRef, FloatProps>(function Float(
@@ -166,5 +164,4 @@ const Float = forwardRef<FloatRef, FloatProps>(function Float(
   return createPortal(Node, portal || document.getElementById('root') || document.body)
 })
 
-export type { FloatProps, FloatRef } from './types'
 export default Float

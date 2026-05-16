@@ -1,6 +1,6 @@
 /** DatePicker 公共类型分片（由根目录 `types.ts` 聚合导出，见 ai/rules/lyrixi-develop-type-file.mdc） */
 import type { CSSProperties, ReactNode, RefObject, ReactElement } from 'react'
-import type { InputSelectComboProps } from '../Input/types'
+import type { InputSelectProps } from '../Input/types'
 import type { ModalRef } from '../Modal/types'
 
 export type DatePickerPickerType = 'year' | 'quarter' | 'month' | 'date' | 'time' | 'datetime' | 'week'
@@ -113,7 +113,7 @@ export interface DatePickerRangePickerMainProps {
 }
 
 /** 单日期 DatePicker 的 Combo + Modal 组合 props */
-export interface DatePickerComboProps extends InputSelectComboProps {
+export interface DatePickerComboProps extends Omit<InputSelectProps, 'min' | 'max'> {
   type?: DatePickerPickerType
   min?: Date | null
   max?: Date | null

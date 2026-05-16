@@ -8,8 +8,8 @@ export type { FormItemProps } from './Form.Item.types'
 
 export type { FormItemRef, FormItemLayoutProps, FormVirtualFormItemRef, FormVirtualFormItemProps } from './Form.components.Item.types'
 
-export type * from './Form.components.Items.Form.types'
-export type * from './Form.components.Items.types'
-export type * from './Form.components.ItemLabel.types'
-export type * from './Form.components.ItemMain.types'
-export type * from './Form.useForm.types'
+export * from './Form.components.Items.Form.types'
+export * from './Form.components.Items.types'
+export * from './Form.components.ItemLabel.types'
+export * from './Form.components.ItemMain.types'
+export * from './Form.useForm.types'

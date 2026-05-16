@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 
-
 import ItemsContext from './../ItemsContext'
 
 import type { FormItemMainProps } from '../../types'
@@ -8,7 +7,7 @@ import type { FormItemMainProps } from '../../types'
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
 import Row from '../../../Row'
-import type { RowColRef } from '../../../Row'
+import type { RowColRef } from '../../../Row/types'
 import Text from '../../../Text'
 // 内库使用-end
 
@@ -77,6 +76,4 @@ const FormMain = forwardRef<RowColRef, FormItemMainProps>(
     )
   }
 )
-export type { FormItemMainProps } from '../../types'
-
 export default FormMain

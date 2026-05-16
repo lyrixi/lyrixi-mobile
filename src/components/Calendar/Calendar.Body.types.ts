@@ -13,6 +13,8 @@ export interface CalendarBodyRef {
   getElement: () => HTMLDivElement | null
 }
 
+export type CalendarBodyTouchDirection = 0 | 'horizontal' | 'vertical' | null
+
 export interface CalendarBodyProps {
   open?: boolean
   value?: CalendarValue

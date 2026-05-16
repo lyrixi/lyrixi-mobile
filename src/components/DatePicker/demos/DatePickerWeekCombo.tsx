@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
 import { DatePicker } from 'lyrixi-mobile'
 
-type ComboRef = { close?: () => void; open?: () => void }
+import type { DatePickerDemoWeekComboRef } from './DatePicker.demos.types'
 
 export default () => {
-  const date1Ref = useRef<ComboRef | null>(null)
-  const date2Ref = useRef<ComboRef | null>(null)
+  const date1Ref = useRef<DatePickerDemoWeekComboRef | null>(null)
+  const date2Ref = useRef<DatePickerDemoWeekComboRef | null>(null)
   const [value, setValue] = useState<Date | null>(null)
 
   return (

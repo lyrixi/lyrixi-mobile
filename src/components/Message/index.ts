@@ -1,5 +1,3 @@
-export type * from './types'
-
 import Combo from './Combo'
 import Modal from './Modal'
 

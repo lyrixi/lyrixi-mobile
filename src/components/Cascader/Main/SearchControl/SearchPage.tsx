@@ -1,5 +1,11 @@
-import React, { useState, type ReactNode, type ComponentProps } from 'react'
-import type { CascaderNode } from './../../types'
+import React, { useState, type ReactNode } from 'react'
+import type {
+  CascaderMainSearchPagePathNode,
+  CascaderMainSearchPageProps,
+  CascaderMainSearchPageSearchActiveBarProps,
+  CascaderMainSearchPageSearchResult,
+  CascaderNode
+} from './../../types'
 // 内库使用-start
 import ArrayUtil from './../../../../utils/ArrayUtil'
 import LocaleUtil from '../../../../utils/LocaleUtil'
@@ -15,43 +21,21 @@ import Text from './../../../Text'
 import { LocaleUtil, ArrayUtil, Page, ToolBar, Result, List, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-type SearchActiveBarProps = ComponentProps<typeof SearchActive>
-
-type PathNode = CascaderNode & { path?: CascaderNode[] }
-type SearchResult = {
-  status: string
-  message?: ReactNode
-  list: Array<{
-    path: CascaderNode[]
-    name?: ReactNode
-    id?: string | number
-    [key: string]: unknown
-  }>
-}
-
 // 搜索页面
 const SearchPage = ({
   list: externalList,
   onSearch,
   onChange,
   onClose
-}: {
-  list: CascaderNode[]
-  onSearch?: (
-    keyword: string,
-    ctx: { list: CascaderNode[] }
-  ) => void | SearchResult | Promise<SearchResult | void>
-  onChange?: (v: CascaderNode[]) => void
-  onClose?: () => void
-}) => {
-  const [result, setResult] = useState<SearchResult | null>(null)
+}: CascaderMainSearchPageProps) => {
+  const [result, setResult] = useState<CascaderMainSearchPageSearchResult | null>(null)
   const [keyword, setKeyword] = useState('')
 
   async function handleSearch(newKeyword: string) {
     setKeyword(newKeyword)
     if (typeof onSearch === 'function') {
       const newResult = await onSearch(newKeyword, { list: externalList })
-      if (newResult !== null) {
+      if (newResult != null) {
         setResult(newResult)
       }
       return
@@ -68,7 +52,7 @@ const SearchPage = ({
       setResult({
         status: 'success',
         message: '',
-        list: (currentList as PathNode[]).map((node) => {
+        list: (currentList as CascaderMainSearchPagePathNode[]).map((node) => {
           const { children, ...restNode } = node
           const path = (
             ArrayUtil.getDeepTreePredecessorNodes(
@@ -153,7 +137,7 @@ const SearchPage = ({
               onCancel: () => {
                 onClose?.()
               }
-            } as unknown as SearchActiveBarProps)}
+            } as unknown as CascaderMainSearchPageSearchActiveBarProps)}
           />
         </ToolBar>
       </Page.Header>

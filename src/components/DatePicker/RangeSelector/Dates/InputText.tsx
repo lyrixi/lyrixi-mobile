@@ -1,5 +1,7 @@
 import React from 'react'
 
+import type { DatePickerRangeSelectorDatesInputTextProps } from './../../DatePicker.RangeSelector.Dates.types'
+
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
 import Input from './../../../Input'
@@ -8,14 +10,6 @@ import Input from './../../../Input'
 /* 测试使用-start
 import { DateUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
-
-type InputTextProps = {
-  value?: (Date | null)[] | null
-  displayValue?: string
-  type?: string
-  separator?: string
-  onChange?: (value: (Date | null)[] | null) => void
-}
 
 // Custom Input
 const InputText = ({
@@ -28,7 +22,7 @@ const InputText = ({
   separator,
   // Events
   onChange
-}: InputTextProps) => {
+}: DatePickerRangeSelectorDatesInputTextProps) => {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
   let endDate = Array.isArray(value) && value[1] instanceof Date ? value[1] : null

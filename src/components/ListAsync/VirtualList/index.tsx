@@ -4,10 +4,10 @@ import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
 import List from './List'
 
-
-import type { ListProps, RawItem } from './../../List/types'
+import type { ListProps, ListRef, RawItem } from './../../List/types'
 import type { PageMainRef } from './../../Page/types'
-import type { ListAsyncVirtualListProps, ListAsyncVirtualListRef } from './../types'
+import type { ListAsyncRef, ListAsyncProps } from './../types'
+import type { ListAsyncVirtualListVirtualItem } from './ListAsync.VirtualList.types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -18,68 +18,74 @@ import Page from './../../Page'
 import { ObjectUtil, Page } from 'lyrixi-mobile'
 测试使用-end */
 
-type VirtualData = { type?: string; height: number; top: number; index: number }
-type VirtualItem = RawItem & { virtualData: VirtualData }
-
 // 列表
 const VirtualList = (
   {
-    value,
+    // 子组件特定属性属性
     list,
+    children,
+
+    // Value & Display Value
+    value,
     formatViewList,
     formatViewItem,
-    virtual,
+
+    // Status
     multiple,
     allowClear,
     checkable,
-    threshold = 50,
-    touchStopPropagation = true,
+    virtual,
+    threshold,
+    touchStopPropagation,
+
+    // Style
     safeArea,
-    className,
     style,
+    className,
     itemStyle,
     itemClassName,
     itemLayout,
     checkboxVariant,
     checkboxPosition,
+
+    // Elements
     itemRender,
     prependRender,
     appendRender,
-    children,
+
+    // Events
     onChange,
     onScroll,
     onScrollEnd,
     onTopRefresh,
     onBottomRefresh
-  }: ListAsyncVirtualListProps,
-  ref: React.Ref<ListAsyncVirtualListRef>
+  }: ListAsyncProps,
+  ref: React.Ref<ListAsyncRef>
 ) => {
   const rootRef = useRef<PageMainRef | null>(null)
 
   const listRef = useRef<HTMLDivElement | null>(null)
 
-
-  // 拉平数据, And set virtualData.type
-  const items = useMemo(() => flattenList(list as RawItem[] | undefined) as VirtualItem[], [list])
-
+  // 拉平数据children, 并增加virtualData
+  const items = useMemo(
+    () => flattenList(list as RawItem[] | undefined) as ListAsyncVirtualListVirtualItem[],
+    [list]
+  )
 
   // 计算每一项的高度并缓存
   const itemHeights = useMemo(() => {
     if (Array.isArray(items) && items.length && virtual?.getItemHeight) {
-      return items.map(virtual.getItemHeight)
+      return items.map((item) => virtual.getItemHeight(item as RawItem))
     }
     return []
     // eslint-disable-next-line
   }, [list])
 
-
   // 计算总高度
   const totalHeight = itemHeights.reduce((sum, h) => sum + h, 0)
 
-
   // Visible Items and set virtualData style
-  const [visibleItems, setVisibleItems] = useState<VirtualItem[] | null>(null)
-
+  const [visibleItems, setVisibleItems] = useState<ListAsyncVirtualListVirtualItem[] | null>(null)
 
   // 初始化完成时更新显示容器
   useEffect(() => {
@@ -102,7 +108,6 @@ const VirtualList = (
     }
     // eslint-disable-next-line
   }, [list])
-
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -139,7 +144,6 @@ const VirtualList = (
     }
   })
 
-
   // 更新显示容器
   function updateVisibleItems() {
     if (!rootRef.current?.element) return
@@ -157,13 +161,11 @@ const VirtualList = (
     })
   }
 
-
   // 滚动
   function handleScroll(e: React.UIEvent<HTMLElement>) {
     updateVisibleItems()
     onScroll && onScroll(e)
   }
-
 
   return (
     <Page.Main
@@ -183,7 +185,7 @@ const VirtualList = (
 
       {/* Elements: List */}
       <List
-        ref={listRef as React.Ref<import('./../../List/List').ListRef>}
+        ref={listRef as React.Ref<ListRef>}
         // Value & Display Value
         height={totalHeight}
         value={value}
@@ -214,6 +216,4 @@ const VirtualList = (
     </Page.Main>
   )
 }
-export type { ListAsyncVirtualListProps, ListAsyncVirtualListRef, ListAsyncVirtualOptions } from './../types'
-
-export default forwardRef<ListAsyncVirtualListRef, ListAsyncVirtualListProps>(VirtualList)
+export default forwardRef<ListAsyncRef, ListAsyncProps>(VirtualList)

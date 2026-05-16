@@ -1,13 +1,14 @@
-import React, { useState, useRef, type CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
 import { Page, Select, Card, ToolBar, Text, ObjectUtil } from 'lyrixi-mobile'
+import type { RawItem } from '../../List/types'
 import flatList from './flatList'
 import groupList from './groupList'
 
-export default () => {
+const SelectCombo = () => {
   const [keyword, setKeyword] = useState('')
-  const [singleValue, setSingleValue] = useState<unknown>(null)
+  const [singleValue, setSingleValue] = useState<RawItem | null>(null)
 
-  const [multipleValue, setMultipleValue] = useState<unknown[]>([
+  const [multipleValue, setMultipleValue] = useState<RawItem[]>([
     {
       allowClear: true,
       id: '1',
@@ -42,7 +43,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v)}
+              onChange={(v) => setSingleValue(v as RawItem | null)}
             />
           </Card.Main>
         </Card>
@@ -57,7 +58,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
+              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -73,7 +74,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
+              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -89,7 +90,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v)}
+              onChange={(v) => setSingleValue(v as RawItem | null)}
             />
           </Card.Main>
         </Card>
@@ -106,7 +107,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
+              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -124,7 +125,7 @@ export default () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as unknown[]) ?? [])}
+              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
             />
           </Card.Main>
         </Card>
@@ -138,7 +139,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v)}
+              onChange={(v) => setSingleValue(v as RawItem | null)}
               checkable
               checkboxPosition="left"
             />
@@ -154,7 +155,7 @@ export default () => {
               allowClear
               value={singleValue}
               list={groupList}
-              onChange={(v) => setSingleValue(v)}
+              onChange={(v) => setSingleValue(v as RawItem | null)}
             />
           </Card.Main>
         </Card>
@@ -168,7 +169,7 @@ export default () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v)}
+              onChange={(v) => setSingleValue(v as RawItem | null)}
               modalStyle={{ height: '300px' }}
               modalClassName="custom"
             />
@@ -193,9 +194,13 @@ export default () => {
                       // }}
                       enableCompositionEnd={true}
                       onChange={(newKeyword) => {
-                        ObjectUtil.debounce(() => {
-                          setKeyword(newKeyword)
-                        }, 1000, 'searchDebounce')
+                        ObjectUtil.debounce(
+                          () => {
+                            setKeyword(newKeyword)
+                          },
+                          1000,
+                          'searchDebounce'
+                        )
                       }}
                     />
                   </ToolBar>
@@ -203,8 +208,8 @@ export default () => {
               }}
               value={singleValue}
               // List filter by keyword
-              list={flatList?.filter?.((item) => item.name.includes(keyword)) || []}
-              // Keyword hightlight 
+              list={flatList?.filter?.((item) => String(item.name ?? '').includes(keyword)) || []}
+              // Keyword hightlight
               formatViewItem={(item) => {
                 return {
                   title: (
@@ -216,7 +221,7 @@ export default () => {
               }}
               onChange={(newValue) => {
                 console.log('onChange:', newValue)
-                setSingleValue(newValue)
+                setSingleValue(newValue as RawItem | null)
               }}
             />
           </Card.Main>
@@ -225,3 +230,5 @@ export default () => {
     </Page>
   )
 }
+
+export default SelectCombo

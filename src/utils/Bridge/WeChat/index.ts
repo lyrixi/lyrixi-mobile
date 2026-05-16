@@ -7,13 +7,32 @@ import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 import wechatConfig from './wechatConfig'
 import wecomAgentConfig from './wecomAgentConfig'
+import type { BridgePlatformErrorResponse } from '../Bridge.platform.types'
 import type {
-  SuccessCallback,
-  ErrorCallback,
-  CancelCallback,
-  SuccessResult,
-  ErrorResult,
-  SDKResult
+  BridgeWechatChooseImageSuccessResponse,
+  BridgeWechatGetLocationSuccessResponse,
+  BridgeWechatScanCodeSuccessResponse,
+  BridgeWechatUploadImageSuccessResponse
+} from '../Bridge.WeChat.types'
+import type {
+  BridgeChooseMediaParams,
+  // BridgeChooseMediaResultData,
+  BridgeCloseWindowParams,
+  BridgeConfigParams,
+  BridgeGetLocationParams,
+  // BridgeGetLocationResultData,
+  BridgeLoadParams,
+  BridgeOnBackParams,
+  BridgeOpenLocationParams,
+  BridgePreviewFileParams,
+  BridgePreviewMediaParams,
+  BridgePreviewMediaSource,
+  BridgeScanCodeParams,
+  BridgeShareParams,
+  BridgeUploadFileParams,
+  BridgeUploadLocalFile,
+  BridgeSuccessResult,
+  BridgeErrorResult
 } from '../types'
 
 // 内库使用-start
@@ -28,11 +47,7 @@ import { LocaleUtil, Clipboard, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (params?: {
-    getScriptSrc?: (ctx: { platform: string }) => string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  load: function (params?: BridgeLoadParams) {
     const { getScriptSrc, onSuccess, onError } = params || {}
     const platform = Device.platform
     if ((window.top ?? window).wx) {
@@ -80,20 +95,7 @@ let Bridge = {
 
     if (script.src) document.body.appendChild(script)
   },
-  config: async function (params?: {
-    getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
-    formatHeaders?: (
-      h: Record<string, string>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, string>>
-    formatPayload?: (
-      p: Record<string, unknown>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, unknown>>
-    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: (r: unknown) => void
-    onError?: (r: unknown) => void
-  }) {
+  config: async function (params?: BridgeConfigParams) {
     const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
       params || {}
     let platform = Device.platform
@@ -111,7 +113,7 @@ let Bridge = {
     // 构建header
     let headers: Record<string, string> = { 'Content-Type': 'application/json' }
     if (typeof formatHeaders === 'function') {
-      headers = await formatHeaders(headers, { platform })
+      headers = (await formatHeaders(headers, { platform })) as Record<string, string>
     }
 
     const cfg = { url, headers, payload, formatResponse, onSuccess, onError }
@@ -127,7 +129,7 @@ let Bridge = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
+  closeWindow: function (params?: BridgeCloseWindowParams) {
     const { onSuccess } = params || {}
     if (['wechatMiniProgram', 'wecomMiniProgram'].includes(Device.platform || '')) {
       ;(window.top ?? window).wx?.miniProgram?.navigateBack?.({})
@@ -136,10 +138,7 @@ let Bridge = {
     }
     onSuccess?.({ status: 'success', data: undefined })
   },
-  onBack: function (params?: {
-    onError?: ErrorCallback
-    onSuccess?: (r: SuccessResult<undefined>) => boolean | void | Promise<boolean | void>
-  }) {
+  onBack: function (params?: BridgeOnBackParams) {
     const { onError, onSuccess } = params || {}
     ;(window.top ?? window).wx?.onHistoryBack?.(() => {
       const back = async () => {
@@ -158,16 +157,7 @@ let Bridge = {
       return false
     })
   },
-  openLocation: function (params?: {
-    latitude?: number
-    longitude?: number
-    type?: string
-    name?: string
-    address?: string
-    scale?: number
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  openLocation: function (params?: BridgeOpenLocationParams) {
     const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
     if (Device.device === 'pc' || Device.platform === 'wechat') {
@@ -195,7 +185,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -205,12 +195,7 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (params?: {
-    type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  getLocation: function (params?: BridgeGetLocationParams) {
     const { type, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
       console.log('PC端微信不支持定位...', type)
@@ -220,36 +205,31 @@ let Bridge = {
     console.log('调用微信定位...', type)
     ;(window.top ?? window).wx?.getLocation?.({
       type: type,
-      success: (res: SDKResult) => {
+      success: (res: BridgeWechatGetLocationSuccessResponse) => {
         console.error('微信定位成功', res)
         onSuccess?.({
           status: 'success',
           code: '',
           message: '',
           data: {
-            longitude: res.longitude,
-            latitude: res.latitude,
+            longitude: res.longitude ?? 0,
+            latitude: res.latitude ?? 0,
             type: type || 'gcj02',
             accuracy: res.accuracy
           }
         })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         console.error('微信定位失败', error)
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error: SDKResult) => {
+      cancel: (error: BridgePlatformErrorResponse) => {
         console.error('拒绝微信定位', error)
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
   },
-  scanCode: function (params?: {
-    scanType?: string[]
-    onSuccess?: SuccessCallback<{ content: string }>
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  scanCode: function (params?: BridgeScanCodeParams) {
     const { scanType, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
       Toast.show({
@@ -273,7 +253,7 @@ let Bridge = {
       needResult: 1,
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc.join('/'),
-      success: (res: SDKResult) => {
+      success: (res: BridgeWechatScanCodeSuccessResponse) => {
         const rawResultStr = res.resultStr ?? ''
         let resultStr: string = rawResultStr
         if (rawResultStr.indexOf('QR,') >= 0) {
@@ -320,24 +300,15 @@ let Bridge = {
           data: { content: resultStr }
         })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error: SDKResult) => {
+      cancel: (error: BridgePlatformErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
   },
-  chooseMedia: function (params?: {
-    count?: number
-    sourceType?: string[]
-    sizeType?: string[]
-    mediaType?: string[]
-    maxDuration?: number
-    onSuccess?: SuccessCallback<{ localFiles: unknown[] }>
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  chooseMedia: function (params?: BridgeChooseMediaParams) {
     const {
       count,
       sourceType,
@@ -362,7 +333,7 @@ let Bridge = {
       return
     }
 
-    const handleSuccess = async function (res: SDKResult) {
+    const handleSuccess = async function (res: BridgeWechatChooseImageSuccessResponse) {
       // res.localIds 为数组，每一项是本地临时图片ID
       let localFiles: Array<Record<string, unknown>> = []
       // 先展开为变量，避免 Babel 对 for-of 右侧复杂类型表达式报错
@@ -387,7 +358,7 @@ let Bridge = {
         }
       })
     }
-    const handleError = function (error: SDKResult) {
+    const handleError = function (error: BridgePlatformErrorResponse) {
       onError?.({ status: 'error', message: error?.errMsg || '' })
     }
 
@@ -397,7 +368,7 @@ let Bridge = {
       sizeType,
       success: handleSuccess,
       fail: handleError,
-      cancel: (error: SDKResult) => {
+      cancel: (error: BridgePlatformErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     }
@@ -427,23 +398,9 @@ let Bridge = {
     //   })
     // }, 1000)
   },
-  uploadFile: async function (params?: {
-    localFile?: { filePath?: string; fileType?: string; [key: string]: unknown }
-    getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined>
-    formatHeaders?: (
-      h: Record<string, string>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, string>>
-    formatPayload?: (
-      p: Record<string, unknown>,
-      ctx: { platform: string }
-    ) => Promise<Record<string, unknown>>
-    formatResponse?: (r: unknown, ctx: { platform: string }) => Promise<unknown>
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-  }) {
+  uploadFile: async function (params?: BridgeUploadFileParams) {
     const {
-      localFile,
+      localFile: rawLocalFile,
       getUploadUrl,
       formatHeaders,
       formatPayload,
@@ -451,6 +408,10 @@ let Bridge = {
       onSuccess,
       onError
     } = params || {}
+    const localFile = rawLocalFile as BridgeUploadLocalFile | undefined
+    const getUploadUrlFn = getUploadUrl as
+      | ((ctx: { platform: string }) => Promise<string | undefined>)
+      | undefined
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -463,7 +424,7 @@ let Bridge = {
       return
     }
 
-    let url = (await getUploadUrl?.({ platform: 'wechat' })) || ''
+    let url = (await getUploadUrlFn?.({ platform: 'wechat' })) || ''
     if (!url || typeof url !== 'string') {
       onError?.({
         status: 'error',
@@ -481,7 +442,7 @@ let Bridge = {
     wx.uploadImage({
       localId: localFile?.filePath,
       isShowProgressTips: 0,
-      success: async function (res: SDKResult) {
+      success: async function (res: BridgeWechatUploadImageSuccessResponse) {
         let serverId = res.serverId
         if (!localFile) return
         let payload: Record<string, unknown> = {
@@ -497,7 +458,7 @@ let Bridge = {
         }
         let headers: Record<string, string> = { 'Content-Type': 'multipart/form-data' }
         if (typeof formatHeaders === 'function') {
-          headers = await formatHeaders(headers, { platform: 'wechat' })
+          headers = (await formatHeaders(headers, { platform: 'wechat' })) as Record<string, string>
         }
 
         console.log('调用微信uploadServerId:', {
@@ -519,32 +480,17 @@ let Bridge = {
         }
 
         if (response.status === 'success') {
-          onSuccess?.(response as SuccessResult<Record<string, unknown>>)
+          onSuccess?.(response as BridgeSuccessResult<Record<string, unknown>>)
         } else {
-          onError?.(response as ErrorResult)
+          onError?.(response as BridgeErrorResult)
         }
       },
-      fail: function (error: SDKResult) {
+      fail: function (error: BridgePlatformErrorResponse) {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       }
     })
   },
-  previewMedia: function (params?: {
-    index?: number
-    sources?: Array<
-      Record<string, unknown> & {
-        localFile?: { tempFileUrl?: string }
-        fileUrl?: string
-        fileName?: string
-        fileSize?: number
-        filePath?: string
-        fileType?: string
-      }
-    >
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  previewMedia: function (params?: BridgePreviewMediaParams) {
     const { index, sources, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
       Toast.show({
@@ -555,7 +501,13 @@ let Bridge = {
       })
       return
     }
-    const srcList = sources || []
+    type WeChatPreviewSource = BridgePreviewMediaSource & {
+      localFile?: { tempFileUrl?: string }
+      fileName?: string
+      fileSize?: number
+      filePath?: string
+    }
+    const srcList = (sources || []) as WeChatPreviewSource[]
     let urls = srcList.map((item) => item?.localFile?.tempFileUrl || item?.fileUrl)
     let current = index !== undefined ? srcList[index] : undefined
 
@@ -583,7 +535,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         console.log('微信previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -592,16 +544,12 @@ let Bridge = {
             `WeChat ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: (error: SDKResult) => {
+      cancel: (error: BridgePlatformErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
   },
-  previewFile: function (params?: {
-    fileUrl?: string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  previewFile: function (params?: BridgePreviewFileParams) {
     const { fileUrl, onSuccess, onError } = params || {}
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
@@ -622,7 +570,7 @@ let Bridge = {
       onSuccess: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: SDKResult) => {
+      fail: (error: BridgePlatformErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -632,14 +580,7 @@ let Bridge = {
       }
     })
   },
-  share(params?: {
-    title?: string
-    description?: string
-    url?: string
-    imageUrl?: string
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  share(params?: BridgeShareParams) {
     const { title, description, url, imageUrl, onSuccess, onError } = params || {}
     // 微信服务号中分享
     if (Device.platform === 'wechat') {
@@ -651,7 +592,7 @@ let Bridge = {
         onSuccess: function () {
           onSuccess?.({ status: 'success', data: undefined })
         },
-        onError: function (err: SDKResult) {
+        onError: function (err: BridgePlatformErrorResponse) {
           console.log('WeChat Share onError:', err)
           Toast.show({
             content:

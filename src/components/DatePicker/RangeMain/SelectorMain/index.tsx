@@ -3,7 +3,8 @@ import getSelectorOptions from './../getSelectorOptions'
 import type { DatePickerRangeSelectorPanelProps } from '../../types'
 
 // 内库使用-start
-import Selector, { type SelectorItem } from './../../../Selector/Selector'
+import Selector from './../../../Selector/Selector'
+import type { SelectorItem } from './../../../Selector/types'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 

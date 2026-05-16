@@ -1,6 +1,6 @@
 import Compressor from 'compressorjs'
 
-type CompressOpts = { quality?: number; maxWidth?: number }
+import type { MediaCompressImageOpts } from '../../types'
 
 /**
  * 图片压缩
@@ -8,7 +8,7 @@ type CompressOpts = { quality?: number; maxWidth?: number }
 export default function compressImage(
   image: File,
   resultType: 'blob' | 'file' | 'base64' | undefined,
-  { quality, maxWidth }: CompressOpts
+  { quality, maxWidth }: MediaCompressImageOpts
 ): Promise<Blob | File | string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
     new Compressor(image, {

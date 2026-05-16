@@ -21,7 +21,7 @@ export default () => {
         <Divider>Formatter</Divider>
         <Input.AutoSize
           placeholder="AutoSize"
-          formatter={(newValue) => {
+          formatter={(newValue: string) => {
             return '$' + newValue
           }}
           style={{ backgroundColor: '#f8f8f8' }}

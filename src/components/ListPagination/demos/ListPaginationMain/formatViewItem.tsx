@@ -1,17 +1,10 @@
 import React from 'react'
 
-type Row = Record<string, unknown> & {
-  id?: string | number
-  name?: string
-  imageUrl?: string
-  avatarUrl?: string
-  introduce?: string
-  note?: string
-  content?: string
-}
+import type { RawItem, ViewItem, ViewItemBase } from 'lyrixi-mobile'
 
-function formatViewItem(item: Row, { index = 0 }: { index: number } = { index: 0 }) {
+function formatViewItem(item: RawItem, { index = 0 }: { index: number } = { index: 0 }): ViewItem {
   return {
+    _raw: item,
     id: item.id ?? index,
     // 左侧图片
     imageUrl: item.imageUrl || '',
@@ -26,8 +19,8 @@ function formatViewItem(item: Row, { index = 0 }: { index: number } = { index: 0
     // vertical: 第三行文字, horizontal: 右侧操作文字
     content: item.content,
     // vertical:第四行操作按钮, horizontal: 右侧操作按钮
-    actionRender: (row: Row) => {
-      return <div>Click {row.name}</div>
+    actionRender: (row: ViewItemBase & { checked?: boolean }) => {
+      return <div>Click {String(row.name ?? '')}</div>
     }
   }
 }

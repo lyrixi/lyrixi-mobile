@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
-import MapContainer, { type MapContainerAPI } from './../../components/MapContainer'
-import ZoomControl, { type MapZoomControlRef } from './../../components/ZoomControl'
-import Markers, { type MapMarkersLayerHandle } from './../../components/Markers'
+import MapContainer from './../../components/MapContainer'
+import ZoomControl from './../../components/ZoomControl'
+import Markers from './../../components/Markers'
 import Circles from './../../components/Circles'
-import type { CirclePoint } from './../../components/Circles/addCircles'
 import Polyline from './../../components/Polyline'
-import type { LinePoint } from './../../components/Polyline/addPolyline'
-import type { MapMapMarkersHandle, MapMapMarkersProps, MapCirclesRef, MapPolylineRef } from '../../types'
-
+import type {
+  CirclePoint,
+  LinePoint,
+  MapCirclesRef,
+  MapContainerAPI,
+  MapMapMarkersHandle,
+  MapMapMarkersProps,
+  MapMarkersLayerHandle,
+  MapPolylineRef,
+  MapZoomControlRef
+} from '../../types'
 
 // 地图标注
 const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function MapMarkers(
@@ -55,14 +62,12 @@ const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function 
 
   const zoomRef = useRef<MapZoomControlRef | null>(null)
 
-
   useEffect(() => {
     if (!markers) return
     const target = markers as unknown as Parameters<MapContainerAPI['panTo']>[0]
     mapRef.current?.panTo?.(target)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(markers)])
-
 
   // Ref handle extends MapContainerAPI with map refs; may be null before map is ready. React ref typings expect the non-null branch for useImperativeHandle.
   // @ts-expect-error MapMapMarkersHandle includes null; TS useImperativeHandle infers the non-null handle shape only
@@ -79,7 +84,6 @@ const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function 
       zoomRef
     } as MapMapMarkersHandle
   })
-
 
   return (
     <MapContainer
@@ -157,5 +161,4 @@ const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function 
   )
 })
 
-export type { MapMapMarkersHandle, MapMapMarkersProps, MapCirclesRef, MapPolylineRef } from '../../types'
 export default MapMarkers

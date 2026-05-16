@@ -1,6 +1,6 @@
 import isGroups from './../utils/isGroups'
 
-type RawItem = Record<string, unknown>
+import type { RawItem } from '../../List/types'
 
 function flattenList(list: RawItem[] | undefined | null): RawItem[] {
   if (isGroups(list) === false) {

@@ -14,7 +14,6 @@ import { ToolBar } from 'lyrixi-mobile'
 
 const MapSearchBar = SearchBar as MapSearchBarExoticComponent
 
-
 // 搜索
 const SearchControl = forwardRef<unknown, MapSearchControlProps>(({ map, onChange, style, className }, ref) => {
   const [open, setOpen] = React.useState(false)
@@ -41,5 +40,4 @@ const SearchControl = forwardRef<unknown, MapSearchControlProps>(({ map, onChang
   )
 })
 
-export type { MapSearchControlProps } from '../../types'
 export default SearchControl

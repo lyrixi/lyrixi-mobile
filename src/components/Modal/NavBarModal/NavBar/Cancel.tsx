@@ -1,7 +1,6 @@
 import React, { type MouseEvent } from 'react'
 
-
-import type { ModalNavBarModalCancelProps } from '../../types'
+import type { ModalNavBarModalCancelProps } from './Modal.NavBarModal.NavBar.types'
 
 // 内库使用-start
 import Icon from './../../../Icon'

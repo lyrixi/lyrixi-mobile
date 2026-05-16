@@ -1,8 +1,6 @@
 import sortValue from './sortValue'
 import findDistrictLeafIndex from './findDistrictLeafIndex'
 
-
-
 import type { DistrictItem } from '../../../types'
 
 // 内库使用-start
@@ -69,5 +67,4 @@ function formatDistrictValue(
   return value
 }
 
-export type { DistrictItem } from '../../../types'
 export default formatDistrictValue

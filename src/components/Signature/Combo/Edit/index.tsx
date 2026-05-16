@@ -55,6 +55,4 @@ const Edit = forwardRef<SignatureComboEditRef, SignatureComboEditProps>(
     )
   }
 )
-export type { SignatureComboEditProps, SignatureComboEditRef } from '../../types'
-
 export default Edit

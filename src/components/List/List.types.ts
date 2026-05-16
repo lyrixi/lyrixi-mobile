@@ -1,13 +1,47 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-export type RawItem = Record<string, unknown>
-export type ViewItem = RawItem & { _raw?: RawItem; children?: ViewItem[] }
+// 内库使用-start
+import type { InputSelectItem } from '../Input/Input.Select.types'
+// 内库使用-end
 
-export type ItemChangeArg = RawItem & { checked?: boolean }
+/* 测试使用-start
+import { InputSelectItem } from 'lyrixi-mobile'
+测试使用-end */
 
+// 原始数据
+export type RawItem = InputSelectItem & {
+  children?: InputSelectItem[]
+  /** 虚拟列表等内部使用的布局元数据 */
+  virtualData?: { type?: string; top?: number; height?: number; index?: number }
+}
+
+// 转换后的渲染数据
+export type ViewItemBase = {
+  _raw?: RawItem // 原始数据存到_raw中
+  id?: unknown
+  disabled?: boolean
+  style?: CSSProperties
+  className?: string
+  anchor?: string
+  imageUrl?: unknown
+  imageRender?: (item: ViewItemBase & { checked?: boolean }) => ReactNode
+  avatarUrl?: unknown
+  avatarRender?: (item: ViewItemBase & { checked?: boolean }) => ReactNode
+  title?: unknown
+  name?: unknown
+  description?: unknown
+  note?: unknown
+  content?: unknown
+  actionRender?: (item: ViewItemBase & { checked?: boolean }) => ReactNode
+}
+export type ViewItem = ViewItemBase & {
+  children?: ViewItemBase[]
+}
+
+// 格式化原始数据为渲染数据
 export interface ListViewFormatterOptions {
-  formatViewItem?: (item: ViewItem, options: { index: number }) => ViewItem
-  formatViewList?: (list: ViewItem[]) => ViewItem[]
+  formatViewItem?: (item: RawItem, options: { index: number }) => ViewItem
+  formatViewList?: (list: RawItem[]) => ViewItem[]
 }
 
 export interface ListRef {
@@ -19,9 +53,10 @@ export interface ListProps {
   value?: RawItem | RawItem[] | null
   multiple?: boolean
   allowClear?: boolean
-  list?: ViewItem[]
-  formatViewList?: (list: ViewItem[]) => ViewItem[]
-  formatViewItem?: (item: ViewItem, options: { index: number }) => ViewItem
+  /** 接口返回的原始列表，展示用结构由 `formatViewItem` / `formatViewList` 与内部 `viewFormatter` 生成 */
+  list?: RawItem[]
+  formatViewList?: (list: RawItem[]) => ViewItem[]
+  formatViewItem?: (item: RawItem, options: { index: number }) => ViewItem
   checkable?: boolean
   style?: CSSProperties
   className?: string
@@ -32,10 +67,10 @@ export interface ListProps {
   checkboxPosition?: string
   itemRender?: (
     item: ViewItem,
-    options: { index: number; checked: boolean; onChange: (item: ItemChangeArg) => void }
+    options: { index: number; checked: boolean; onChange: (item: RawItem) => void }
   ) => ReactNode
   onChange?: (
     newValue: RawItem | RawItem[] | null,
-    options: { checkedItem: ItemChangeArg }
+    options?: { action?: string; checkedItem: RawItem }
   ) => void
 }

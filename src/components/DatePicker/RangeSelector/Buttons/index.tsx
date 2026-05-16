@@ -1,26 +1,19 @@
 import React from 'react'
 import getSelectorOptions from './../../RangeMain/getSelectorOptions'
-import type { DatePickerRangesMap } from './../../types'
+import type { DatePickerRangeSelectorButtonsProps } from './../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
-import Selector, { type SelectorItem } from './../../../Selector/Selector'
+import Selector from './../../../Selector/Selector'
+import type { SelectorItem } from './../../../Selector/types'
 // 内库使用-end
 
 /* 测试使用-start
 import { ObjectUtil, Selector } from 'lyrixi-mobile'
 测试使用-end */
 
-type ButtonsProps = {
-  value?: (Date | null)[] | null
-  onChange?: (value: (Date | null)[] | null, meta?: { rangeId?: string | null }) => void
-  rangeId?: string | null
-  ranges?: DatePickerRangesMap
-  allowClear?: boolean
-}
-
 // 日期快捷选择
-function Buttons({ value, onChange, rangeId, ranges = {}, allowClear }: ButtonsProps) {
+function Buttons({ value, onChange, rangeId, ranges = {}, allowClear }: DatePickerRangeSelectorButtonsProps) {
   return (
     <>
       {/* 快捷选择 */}

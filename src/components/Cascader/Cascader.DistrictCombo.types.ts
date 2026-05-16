@@ -1,12 +1,12 @@
 import type { CascaderDistrictModalProps } from './Cascader.DistrictModal.types'
-import type { InputSelectComboProps, InputSelectComboRef } from '../Input/types'
+import type { InputSelectProps, InputSelectComboRef } from '../Input/types'
 
 export type CascaderDistrictComboRef = InputSelectComboRef & {
   open: () => void
   close: () => void
 } & Record<string, unknown>
 
-export type CascaderDistrictComboProps = InputSelectComboProps &
+export type CascaderDistrictComboProps = Omit<InputSelectProps, 'min' | 'max'> &
   Pick<
     CascaderDistrictModalProps,
     | 'loadCountries'

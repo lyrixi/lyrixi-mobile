@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useEffect } from 'react'
 import InputText from './../Text'
 
-import type { InputSearchProps, InputTextRef } from '../types'
+import type { InputSearchProps, InputSearchRef, InputTextProps, InputTextRef } from '../types'
 
-const Search = forwardRef<InputTextRef, InputSearchProps>(
+const Search = forwardRef<InputSearchRef, InputSearchProps>(
   (
     {
       id,
@@ -54,21 +54,21 @@ const Search = forwardRef<InputTextRef, InputSearchProps>(
     ref
   ) => {
     // No onChange, use keyword
-    const [keyword, setKeyword] = useState(value)
+    const [keyword, setKeyword] = useState(value as string)
 
     useEffect(() => {
-      setKeyword(value)
+      setKeyword(value as string)
       // eslint-disable-next-line
     }, [value])
 
     return (
       <InputText
-        ref={ref}
+        ref={ref as React.Ref<InputTextRef>}
         id={id}
         name={name}
         type="search"
         // Value & Display Value
-        value={typeof onChange === 'function' ? value : keyword}
+        value={typeof onChange === 'function' ? (value as string) : (keyword as string)}
         placeholder={placeholder}
         formatter={formatter}
         // Status
@@ -100,19 +100,21 @@ const Search = forwardRef<InputTextRef, InputSearchProps>(
         spellCheck="false"
         // Events
         onClick={onClick}
-        onChange={typeof onChange === 'function' ? onChange : setKeyword}
+        onChange={
+          (typeof onChange === 'function'
+            ? onChange
+            : setKeyword) as InputTextProps['onChange']
+        }
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}
         onPressEnter={(e) => {
           onPressEnter && onPressEnter(e)
           e?.currentTarget?.blur?.()
-          onSearch && onSearch(typeof onChange === 'function' ? value : keyword)
+          onSearch && onSearch(typeof onChange === 'function' ? (value as string) : keyword)
         }}
       />
     )
   }
 )
-export type { InputSearchProps } from '../types'
-
 export default Search

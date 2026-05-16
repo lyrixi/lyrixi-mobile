@@ -124,6 +124,5 @@ const Steps = forwardRef<StepsRef, StepsProps>(
     )
   }
 )
-export type { StepsListItem, StepsNodeProps, StepsProps, StepsRef, StepsValue } from './types'
 
 export default Steps

@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 
-
 import ItemsContext from './../ItemsContext'
 
 import type { FormItemLayoutProps, FormItemRef } from '../../types'
@@ -58,6 +57,4 @@ const FormItem = forwardRef<FormItemRef, FormItemLayoutProps>(
     )
   }
 )
-export type { FormItemLayoutProps as FormItemProps, FormItemRef } from '../../types'
-
 export default FormItem

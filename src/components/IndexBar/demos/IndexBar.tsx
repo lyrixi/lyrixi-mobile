@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useMemo, useState, useRef } from 'react'
 import { Page, IndexBar } from 'lyrixi-mobile'
 
-type IndexRow = { letter: string; name: string }
+import type { IndexBarDemoRow } from './IndexBar.demos.types'
 
 const LETTERS_AZ = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
 export default () => {
   const scrollerRef = useRef<HTMLDivElement | null>(null)
-  const [list, setList] = useState<IndexRow[]>([])
+  const [list, setList] = useState<IndexBarDemoRow[]>([])
 
   const anchors = useMemo(() => {
     const fromData = Array.from(new Set(list.map((i) => i.letter))).filter(Boolean)
@@ -25,8 +25,8 @@ export default () => {
   }, [])
 
   // 获取A-Z
-  function queryList(letter: string[]): IndexRow[] {
-    const newList: IndexRow[] = []
+  function queryList(letter: string[]): IndexBarDemoRow[] {
+    const newList: IndexBarDemoRow[] = []
     for (let i = 0; i < letter.length; i++) {
       for (let j = 0; j < 15; j++) {
         newList.push({

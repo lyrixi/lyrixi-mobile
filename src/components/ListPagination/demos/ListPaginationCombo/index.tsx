@@ -7,12 +7,12 @@ import formatResult from '../ListPaginationMain/formatResult'
 import formatViewItem from '../ListPaginationMain/formatViewItem'
 import Header from './Header'
 
-type Row = Record<string, unknown>
+import type { ListPaginationDemoRow } from './../ListPagination.demos.types'
 
 // ListPagination.Combo：触发器 + 弹窗内分页列表选择（不支持传 list，使用 url + formatResult/formatViewItem）
-export default () => {
-  const [singleValue, setSingleValue] = useState<Row | null>(null)
-  const [multipleValue, setMultipleValue] = useState<Row[]>([])
+const ListPaginationComboDemo = () => {
+  const [singleValue, setSingleValue] = useState<ListPaginationDemoRow | null>(null)
+  const [multipleValue, setMultipleValue] = useState<ListPaginationDemoRow[]>([])
   const [keyword, setKeyword] = useState('')
 
   return (
@@ -31,7 +31,7 @@ export default () => {
               value={singleValue}
               onChange={(v) => {
                 console.log('onChange:', v)
-                setSingleValue((v as Row) || null)
+                setSingleValue((v as ListPaginationDemoRow) || null)
               }}
             />
           </Card.Main>
@@ -51,7 +51,7 @@ export default () => {
               value={multipleValue}
               onChange={(v) => {
                 console.log('onChange:', v)
-                setMultipleValue(Array.isArray(v) ? (v as Row[]) : [])
+                setMultipleValue(Array.isArray(v) ? (v as ListPaginationDemoRow[]) : [])
               }}
             />
           </Card.Main>
@@ -76,15 +76,14 @@ export default () => {
               formatResult={formatResult}
               formatViewItem={formatViewItem}
               value={singleValue}
-              onChange={(v) => setSingleValue((v as Row) || null)}
-              headerRender={() => (
-                <Header onSearch={setKeyword} />
-              )}
+              onChange={(v) => setSingleValue((v as ListPaginationDemoRow) || null)}
+              headerRender={() => <Header onSearch={setKeyword} />}
             />
           </Card.Main>
         </Card>
-
       </Page.Main>
     </Page>
   )
 }
+
+export default ListPaginationComboDemo

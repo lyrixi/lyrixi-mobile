@@ -1,4 +1,4 @@
-import type { SuccessCallback, ErrorCallback } from '../types'
+import type { BridgeWeChatWecomAgentConfigOptions } from './../Bridge.WeChat.types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'
@@ -9,22 +9,8 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type WecomPayload = { appId?: string } & Record<string, unknown>
-
-type WecomAgentConfigOptions = {
-  url?: string
-  headers?: Record<string, string>
-  payload?: WecomPayload
-  formatResponse?: (
-    response: unknown,
-    ctx: { platform: string }
-  ) => Promise<unknown> | unknown
-  onSuccess?: SuccessCallback
-  onError?: ErrorCallback
-}
-
 // 企业微信自建应用和SASS应用鉴权
-function wecomAgentConfig(params?: WecomAgentConfigOptions) {
+function wecomAgentConfig(params?: BridgeWeChatWecomAgentConfigOptions) {
   const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload?.appId) {
     onError?.({

@@ -1,7 +1,13 @@
 import React from 'react'
 
-function formatViewItem(item: Record<string, unknown>) {
+import type { ListAsyncLoadResult, RawItem, ViewItem, ViewItemBase } from 'lyrixi-mobile'
+
+function formatViewItem(
+  item: RawItem,
+  _options: { index: number; result?: ListAsyncLoadResult | null }
+): ViewItem {
   return {
+    _raw: item,
     id: item.id,
     // 左侧图片
     imageUrl: (item.imageUrl as string | undefined) || '',
@@ -16,7 +22,7 @@ function formatViewItem(item: Record<string, unknown>) {
     // 第三行文字
     content: item.content,
     // 右侧操作按钮
-    actionRender: (it: Record<string, unknown>) => {
+    actionRender: (it: ViewItemBase & { checked?: boolean }) => {
       return <div>Click {String(it.name ?? '')}</div>
     }
   }

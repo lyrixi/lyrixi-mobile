@@ -1,16 +1,15 @@
 import React from 'react'
 
+import type { RawItem, ViewItem, ViewItemBase } from 'lyrixi-mobile'
+
 // 将列表数据按照 anchor 字段分组
-function formatViewList(list: unknown[]) {
+function formatViewList(list: RawItem[]): ViewItem[] {
   if (!Array.isArray(list) || list.length === 0) {
     return []
   }
 
-  // 使用 Map 来按 anchor 分组
-  const groupMap = new Map<
-    string,
-    { title: string; anchor: string; children: Record<string, unknown>[] }
-  >()
+  // 使用 Map 来按 anchor 分组（分组头也是 ViewItem：必含 _raw、id）
+  const groupMap = new Map<string, ViewItem>()
 
   list.forEach((raw) => {
     const item = raw as Record<string, unknown>
@@ -18,22 +17,24 @@ function formatViewList(list: unknown[]) {
     if (anchor) {
       if (!groupMap.has(anchor)) {
         groupMap.set(anchor, {
+          _raw: {} as RawItem,
+          id: anchor,
           title: anchor,
           anchor: anchor,
           children: []
         })
       }
       const group = groupMap.get(anchor)
-      if (!group) return
+      if (!group?.children) return
       group.children.push({
-        // 原始数据(必传, ListAsync会自动增加_raw字段存储list入参的item的原始数据)
-        _raw: item._raw,
+        // 原始行引用（与 `list` 中项对应；分组后顺序变化时由业务保证 _raw）
+        _raw: item,
         // 唯一标识(必传)
         id: item.id,
         // 左侧图片
-        imageUrl: item.imageUrl || '',
+        imageUrl: String(item.imageUrl ?? ''),
         // 头像
-        avatarUrl: item.avatarUrl || '',
+        avatarUrl: String(item.avatarUrl ?? ''),
         // 第一行文字
         title: item.name,
         // 第二行文字
@@ -43,8 +44,9 @@ function formatViewList(list: unknown[]) {
         // 第三行文字
         content: item.content,
         // 右侧操作按钮
-        actionRender: (row: { name?: unknown }) => {
-          return <div>Click {row.name as React.ReactNode}</div>
+        actionRender: (row: ViewItemBase & { checked?: boolean }) => {
+          const name = row.name
+          return <div>Click {name as React.ReactNode}</div>
         }
       })
     }
@@ -53,7 +55,7 @@ function formatViewList(list: unknown[]) {
   console.log(groupMap)
   // 将 Map 转换为数组，并按 anchor 字母顺序排序
   return Array.from(groupMap.values()).sort((a, b) => {
-    return a.anchor.localeCompare(b.anchor)
+    return String(a.anchor ?? '').localeCompare(String(b.anchor ?? ''))
   })
 }
 

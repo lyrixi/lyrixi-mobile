@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Chat, type ChatRawItem } from 'lyrixi-mobile'
 
-export default () => {
+const ChatListDemo = () => {
   const list = [
     {
       id: '1',
@@ -46,3 +46,5 @@ export default () => {
     </Page>
   )
 }
+
+export default ChatListDemo

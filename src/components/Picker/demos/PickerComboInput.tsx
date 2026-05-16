@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Card, Page, Picker } from 'lyrixi-mobile'
 
+import type { InputSelectValue } from '../../Input/types'
+
 export default () => {
   const [value, setValue] = useState<unknown>(null)
   const list = [
@@ -16,7 +18,7 @@ export default () => {
           <Card.Main>
             <Picker.Combo
               list={list}
-              value={value}
+              value={value as InputSelectValue}
               onChange={(v) => setValue(v)}
               placeholder="请选择"
               allowClear

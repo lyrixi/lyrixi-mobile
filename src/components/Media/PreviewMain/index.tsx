@@ -11,7 +11,7 @@ import React, {
 // import 'core-js/es/array/flat'
 import { Swiper, SwiperSlide, type SwiperClass, type SwiperRef } from 'swiper/react'
 import { Zoom, Pagination } from 'swiper/modules'
-import fileChoose, { type MediaFileChooseOptions } from './../utils/fileChoose'
+import fileChoose from './../utils/fileChoose'
 import choose from './../utils/choose'
 import uploadItem from './../utils/uploadItem'
 import showLoading from './../utils/showLoading'
@@ -26,8 +26,9 @@ import PreviewReload from './PreviewReload'
 import PreviewToolbar from './PreviewToolbar'
 
 import type {
-  MediaListItem,
   MediaComponentProps,
+  MediaFileChooseOptions,
+  MediaListItem,
   MediaPreviewMainProps,
   MediaPreviewMainRef
 } from './../types'
@@ -410,6 +411,4 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     </Swiper>
   )
 })
-export type { MediaPreviewMainProps, MediaPreviewMainRef } from './../types'
-
 export default PreviewMain

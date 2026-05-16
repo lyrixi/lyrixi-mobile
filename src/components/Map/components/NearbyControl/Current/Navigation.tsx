@@ -10,7 +10,6 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 导航
 function Navigation({ type, longitude, latitude, name, address, map }: MapNearbyControlNavigationProps) {
   if (!longitude || !latitude) return null
@@ -38,5 +37,4 @@ function Navigation({ type, longitude, latitude, name, address, map }: MapNearby
   )
 }
 
-export type { MapNearbyControlNavigationProps } from '../../../types'
 export default Navigation

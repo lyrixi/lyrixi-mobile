@@ -2,7 +2,12 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import { isSelectedDate, isDisabledDate, getTranslateValue } from './../utils'
 import Toggle from './../Toggle'
 
-import type { CalendarBodyProps, CalendarBodyRef, CalendarCellDate } from './../types'
+import type {
+  CalendarBodyProps,
+  CalendarBodyRef,
+  CalendarBodyTouchDirection,
+  CalendarCellDate
+} from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -14,8 +19,6 @@ import { DateUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const threshold = 50
-
-type TouchDirection = 0 | 'horizontal' | 'vertical' | null
 
 // 日历
 const Body = forwardRef<CalendarBodyRef, CalendarBodyProps>(
@@ -53,7 +56,7 @@ const Body = forwardRef<CalendarBodyRef, CalendarBodyProps>(
     const touchesRef = useRef({
       startX: 0,
       startY: 0,
-      direction: 0 as TouchDirection
+      direction: 0 as CalendarBodyTouchDirection
     })
 
 
@@ -111,7 +114,7 @@ const Body = forwardRef<CalendarBodyRef, CalendarBodyProps>(
       const diffY = touchesRef.current.startY - currentY
 
       if (touchesRef.current.direction === 0) {
-        touchesRef.current.direction = (Math.abs(diffX) > Math.abs(diffY) ? 'horizontal' : 'vertical') as TouchDirection
+        touchesRef.current.direction = (Math.abs(diffX) > Math.abs(diffY) ? 'horizontal' : 'vertical') as CalendarBodyTouchDirection
       }
       if (draggable?.includes('horizontal') === false && touchesRef.current.direction === 'horizontal') {
         touchesRef.current.direction = null

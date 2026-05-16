@@ -1,4 +1,4 @@
-import React, { useState, type ComponentProps } from 'react'
+import React, { useState } from 'react'
 import SearchPage from './SearchPage'
 
 // 内库使用-start
@@ -11,20 +11,13 @@ import SearchBar from './../../../ToolBar/Search'
 import { Page, ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
-import type { CascaderNode } from './../../types'
-
-type SearchBarFieldProps = ComponentProps<typeof SearchBar>
+import type {
+  CascaderMainSearchControlProps,
+  CascaderMainSearchControlSearchBarFieldProps
+} from './../../types'
 
 // 搜索
-function SearchControl({
-  list,
-  onSearch,
-  onChange
-}: {
-  list: CascaderNode[]
-  onSearch?: (keyword: string, ctx: { list: CascaderNode[] }) => void
-  onChange?: (v: CascaderNode[]) => void
-}) {
+function SearchControl({ list, onSearch, onChange }: CascaderMainSearchControlProps) {
   // 搜索结果页面显隐
   const [open, setOpen] = useState(false)
 
@@ -39,7 +32,7 @@ function SearchControl({
               onClick: () => {
                 setOpen(!open)
               }
-            } as unknown as SearchBarFieldProps)}
+            } as unknown as CascaderMainSearchControlSearchBarFieldProps)}
           />
         </ToolBar>
       </Page.Header>

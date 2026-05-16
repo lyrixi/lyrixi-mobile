@@ -6,12 +6,12 @@ import { Button, Card, ListPagination, Page } from 'lyrixi-mobile'
 import formatResult from '../ListPaginationMain/formatResult'
 import formatViewItem from '../ListPaginationMain/formatViewItem'
 
-type Row = Record<string, unknown>
+import type { ListPaginationDemoRow } from './../ListPagination.demos.types'
 
 // ListPagination.Modal：受控弹窗内分页列表选择
 export default () => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState<Row | Row[] | null>(null)
+  const [value, setValue] = useState<ListPaginationDemoRow | ListPaginationDemoRow[] | null>(null)
 
   return (
     <Page>

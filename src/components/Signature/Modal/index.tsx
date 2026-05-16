@@ -1,7 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
-
 import Main from './../Main'
 
 import type { SignatureModalProps, SignatureModalRef } from '../types'
@@ -81,6 +80,4 @@ const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
     )
   }
 )
-export type { SignatureModalProps, SignatureModalRef } from '../types'
-
 export default Modal

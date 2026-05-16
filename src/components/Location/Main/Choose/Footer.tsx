@@ -1,23 +1,17 @@
-import React from 'react'
-
-
 import type { LocationChooseFooterProps } from '../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Page from './../../../Page'
 import FooterBar from './../../../FooterBar'
+import type { FooterBarComponents } from './../../../FooterBar/FooterBar.Components.types'
 // 内库使用-end
 
 /* 测试使用-start
 import { LocaleUtil, Page, FooterBar } from 'lyrixi-mobile'
 测试使用-end */
 
-type FooterBarWithButton = typeof FooterBar & {
-  Button: React.ComponentType<Record<string, unknown>>
-}
-
-const FooterBarComp = FooterBar as FooterBarWithButton
+const FooterBarComp = FooterBar as FooterBarComponents
 
 function Foot({ onOk, onClear }: LocationChooseFooterProps) {
   return (

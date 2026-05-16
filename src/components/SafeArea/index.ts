@@ -1,13 +1,9 @@
 import SafeArea from './SafeArea'
 
-function debug() {
-  document.documentElement.style.setProperty('--lyrixi-safe-area-inset-top', '44px')
-  document.documentElement.style.setProperty('--lyrixi-safe-area-inset-bottom', '34px')
-}
+import { safeAreaDebug } from './SafeArea.debug'
 
-type SafeAreaWithDebug = typeof SafeArea & { debug: typeof debug }
+import type { SafeAreaComponents } from './SafeArea.Components.types'
 
-;(SafeArea as SafeAreaWithDebug).debug = debug
+;(SafeArea as SafeAreaComponents).debug = safeAreaDebug
 
-export type { SafeAreaProps, SafeAreaRef, SafeAreaType, SafeAreaPosition } from './types'
-export default SafeArea as SafeAreaWithDebug
+export default SafeArea as SafeAreaComponents

@@ -1,6 +1,9 @@
 import constant from './constant'
 
-import type { ListAsyncVirtualListGetVisibleItemsOptions, ListAsyncVirtualListVirtualItem } from './../types'
+import type {
+  ListAsyncVirtualListGetVisibleItemsOptions,
+  ListAsyncVirtualListVirtualItem
+} from './ListAsync.VirtualList.types'
 
 // 计算可见区域元素
 function getVisibleItems({
@@ -17,9 +20,7 @@ function getVisibleItems({
     const item = items[index]
     const itemHeight = itemHeights[index]
     const top =
-      index === 0
-        ? 0
-        : items[index - 1].virtualData.top + items[index - 1].virtualData.height
+      index === 0 ? 0 : items[index - 1].virtualData.top + items[index - 1].virtualData.height
     item.virtualData = {
       type: item.virtualData?.type || undefined,
       height: itemHeight,

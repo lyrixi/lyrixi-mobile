@@ -11,7 +11,6 @@ import Checkbox from './../../Checkbox'
 import { DOMUtil, Checkbox } from 'lyrixi-mobile'
 测试使用-end */
 
-
 const Chat = (
   {
     _raw,
@@ -112,5 +111,4 @@ const Chat = (
   )
 }
 
-export type { ChatItemProps, ChatItemRef } from './../types'
 export default forwardRef<ChatItemRef, ChatItemProps>(Chat)

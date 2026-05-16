@@ -1,9 +1,7 @@
-import React, { useState, type ComponentProps } from 'react'
+import React, { useState } from 'react'
 import { Page, Divider, TabBar } from 'lyrixi-mobile'
 
-type TabBarItemArg = Parameters<
-  NonNullable<ComponentProps<typeof TabBar.Menus>['onChange']>
->[0]
+import type { TabBarDemoMenusItemArg } from './TabBar.demos.types'
 
 export default () => {
   const list = [
@@ -14,9 +12,9 @@ export default () => {
     { id: 'Vegetable', name: 'Vegetable' },
     { id: 'Animal', name: 'Animal' }
   ]
-  const [value, setValue] = useState<TabBarItemArg>({ name: 'Vegetable', id: 'Vegetable' })
+  const [value, setValue] = useState<TabBarDemoMenusItemArg>({ name: 'Vegetable', id: 'Vegetable' })
 
-  function handleChange(next: TabBarItemArg) {
+  function handleChange(next: TabBarDemoMenusItemArg) {
     setValue(next)
   }
   return (

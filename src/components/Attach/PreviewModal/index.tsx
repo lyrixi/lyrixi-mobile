@@ -21,7 +21,6 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-
 // Modal
 const AttachPreviewModal = forwardRef<ModalRef, AttachPreviewModalProps>(function AttachPreviewModal(
   { fileName, previewServerUrl, fileUrl, previewServerSourceType, open, portal, onClose },
@@ -83,5 +82,4 @@ const AttachPreviewModal = forwardRef<ModalRef, AttachPreviewModalProps>(functio
   )
 })
 
-export type { AttachPreviewModalProps } from '../types'
 export default AttachPreviewModal

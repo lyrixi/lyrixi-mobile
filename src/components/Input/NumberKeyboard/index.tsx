@@ -1,11 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { maxLengthFormatter, minMaxFormatter, precisionFormatter } from './../Text/utils'
 
+import InputNode from './../Node'
 
-import InputNode, { InputNodeRef } from './../Node'
 import correctInputNumber from './correctInputNumber'
 
-import type { InputNumberKeyboardProps, InputNumberKeyboardRef } from '../types'
+import type { InputNodeRef, InputNumberKeyboardProps, InputNumberKeyboardRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -61,19 +61,19 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
     },
     ref
   ) => {
-    const inputRef = useRef<InputNodeRef>(null)
+    const inputRef = useRef<InputNodeRef | null>(null)
     const [keyboardOpen, setKeyboardOpen] = useState<boolean | undefined>(undefined)
 
     // Expose
     useImperativeHandle(ref, () => ({
-      ...(inputRef.current as InputNodeRef),
+      ...(inputRef.current as object),
       focus: () => {
         setKeyboardOpen(true)
       },
       blur: () => {
         setKeyboardOpen(false)
       }
-    }))
+    }) as InputNumberKeyboardRef)
 
     // 处理输入框点击
     const handleInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -104,7 +104,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           id={id}
           type="number"
           // Input: Value & Display Value
-          value={value}
+          value={value as string}
           placeholder={placeholder}
           formatter={formatter}
           // Input: Status
@@ -126,7 +126,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           max={max}
           maxLength={maxLength}
           // Events
-          onChange={onChange}
+          onChange={(v) => handleChange(String(v ?? ''))}
           onClick={handleInputClick}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -137,7 +137,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           // Modal: Element
           okNode={ok}
           // Input: Value & Display Value
-          value={value}
+          value={value as string}
           // Modal: Status
           open={keyboardOpen}
           dot={precision === 0 ? undefined : true}
@@ -150,6 +150,4 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
     )
   }
 )
-export type { InputNumberKeyboardProps, InputNumberKeyboardRef } from '../types'
-
 export default NumberKeyboard

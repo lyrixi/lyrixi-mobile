@@ -6,7 +6,27 @@ import Alipay from './Alipay'
 import DingTalk from './DingTalk'
 import Lark from './Lark'
 
-import type { SuccessCallback, ErrorCallback, CancelCallback } from './types'
+import type {
+  BridgeAdapter,
+  BridgeChooseMediaParams,
+  BridgeCloseWindowParams,
+  BridgeConfigParams,
+  BridgeDetectFaceParams,
+  BridgeGetBrowserLocationParams,
+  BridgeGetLocationParams,
+  BridgeGoHomeParams,
+  BridgeLoadParams,
+  BridgeOnBackParams,
+  BridgeOpenLocationParams,
+  BridgeOpenWindowParams,
+  BridgePreviewFileParams,
+  BridgePreviewMediaParams,
+  BridgeScanCodeParams,
+  BridgeSetTitleParams,
+  BridgeShareParams,
+  BridgeTelParams,
+  BridgeUploadFileParams
+} from './types'
 
 // 内库使用-start
 import Device from './../Device'
@@ -28,12 +48,12 @@ let Bridge = {
     this._customBridges[platform] = customBridge
   },
   // 内部方法：获取当前 Bridge
-  _getCurrentBridge(currentPlatform?: string) {
+  _getCurrentBridge(currentPlatform?: string): BridgeAdapter {
     const platform = currentPlatform || Device.platform
 
     // 1. 先检查自定义 Bridge
     if (this._customBridges?.[platform]) {
-      return { ...Browser, ...this._customBridges[platform] } as typeof Browser
+      return { ...Browser, ...this._customBridges[platform] } as BridgeAdapter
     }
 
     // 2. 再使用默认 Bridge 选择逻辑
@@ -43,15 +63,15 @@ let Bridge = {
       platform === 'wechatMiniProgram' ||
       platform === 'wecomMiniProgram'
     ) {
-      return { ...Browser, ...WeChat }
+      return { ...Browser, ...WeChat } as BridgeAdapter
     } else if (platform === 'alipay' || platform === 'alipayMiniProgram') {
-      return { ...Browser, ...Alipay }
+      return { ...Browser, ...Alipay } as BridgeAdapter
     } else if (platform === 'dingtalk') {
-      return { ...Browser, ...DingTalk }
+      return { ...Browser, ...DingTalk } as BridgeAdapter
     } else if (platform === 'lark') {
-      return { ...Browser, ...Lark }
+      return { ...Browser, ...Lark } as BridgeAdapter
     } else {
-      return Browser
+      return Browser as BridgeAdapter
     }
   },
 
@@ -64,7 +84,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  load(params: Record<string, unknown>, platform?: string) {
+  load(params?: BridgeLoadParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.load(params)
   },
@@ -79,7 +99,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  config(params: Record<string, unknown>, platform?: string) {
+  config(params?: BridgeConfigParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.config(params)
   },
@@ -103,7 +123,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  closeWindow(params?: Record<string, unknown>, platform?: string) {
+  closeWindow(params?: BridgeCloseWindowParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.closeWindow(params)
   },
@@ -114,7 +134,7 @@ let Bridge = {
    * @param {Function} params.onError - 阻止返回失败回调
    * @returns {void}
    */
-  onBack(params?: Record<string, unknown>, platform?: string) {
+  onBack(params?: BridgeOnBackParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     return bridge.onBack(params)
   },
@@ -126,7 +146,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  setTitle(params?: Record<string, unknown>, platform?: string) {
+  setTitle(params?: BridgeSetTitleParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.setTitle) {
       return bridge.setTitle(params)
@@ -141,7 +161,7 @@ let Bridge = {
    * @param {String} params.target - 打开方式，'_self' 表示当前窗口
    * @returns {void}
    */
-  openWindow(params?: Record<string, unknown>, platform?: string) {
+  openWindow(params?: BridgeOpenWindowParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.openWindow) {
       return bridge.openWindow(params)
@@ -155,10 +175,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  goHome(params?: Record<string, unknown>, platform?: string) {
+  goHome(params?: BridgeGoHomeParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.goHome) {
-      return (bridge.goHome as (p?: Record<string, unknown>) => unknown)(params)
+      return bridge.goHome(params)
     }
     return undefined
   },
@@ -170,7 +190,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  tel(params?: Record<string, unknown>, platform?: string) {
+  tel(params?: BridgeTelParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.tel) {
       return bridge.tel(params)
@@ -190,19 +210,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  openLocation(
-    params?: {
-      latitude?: number
-      longitude?: number
-      type?: string
-      name?: string
-      address?: string
-      scale?: number
-      onSuccess?: SuccessCallback
-      onError?: ErrorCallback
-    },
-    platform?: string
-  ) {
+  openLocation(params?: BridgeOpenLocationParams, platform?: string) {
     const { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = params || {}
     return this._getCurrentBridge(platform).openLocation({
       latitude,
@@ -224,15 +232,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调，返回 {status: 'cancel', code: String, message: String}
    * @returns {void}
    */
-  getLocation(
-    params?: {
-      type?: string
-      onSuccess?: SuccessCallback<Record<string, unknown>>
-      onError?: ErrorCallback
-      onCancel?: CancelCallback
-    },
-    platform?: string
-  ) {
+  getLocation(params?: BridgeGetLocationParams, platform?: string) {
     const { type = 'wgs84', onSuccess, onError, onCancel } = params || {}
     return this._getCurrentBridge(platform).getLocation({ type, onSuccess, onError, onCancel })
   },
@@ -244,15 +244,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调，返回 {status: 'error', code: String, message: String}
    * @returns {void}
    */
-  getBrowserLocation(
-    params?: {
-      type?: string
-      onSuccess?: SuccessCallback<Record<string, unknown>>
-      onError?: ErrorCallback
-      [key: string]: unknown
-    },
-    platform?: string
-  ) {
+  getBrowserLocation(params?: BridgeGetBrowserLocationParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.getBrowserLocation) {
       return bridge.getBrowserLocation(params)
@@ -268,7 +260,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  scanCode(params?: Record<string, unknown>, platform?: string) {
+  scanCode(params?: BridgeScanCodeParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.scanCode) {
       return bridge.scanCode(params)
@@ -288,7 +280,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  chooseMedia(params?: Record<string, unknown>, platform?: string) {
+  chooseMedia(params?: BridgeChooseMediaParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.chooseMedia) {
       return bridge.chooseMedia(params)
@@ -308,7 +300,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  uploadFile(params?: Record<string, unknown>, platform?: string) {
+  uploadFile(params?: BridgeUploadFileParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.uploadFile) {
       return bridge.uploadFile(params)
@@ -325,7 +317,7 @@ let Bridge = {
    * @param {Function} params.onCancel - 取消回调
    * @returns {void}
    */
-  previewMedia(params?: Record<string, unknown>, platform?: string) {
+  previewMedia(params?: BridgePreviewMediaParams, platform?: string) {
     return this._getCurrentBridge(platform).previewMedia(params)
   },
   /**
@@ -338,7 +330,7 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  previewFile(params?: Record<string, unknown>, platform?: string) {
+  previewFile(params?: BridgePreviewFileParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.previewFile) {
       return bridge.previewFile(params)
@@ -357,7 +349,7 @@ let Bridge = {
    * @param {Function} params.onError - 分享失败回调
    * @returns {void}
    */
-  share(params?: Record<string, unknown>, platform?: string) {
+  share(params?: BridgeShareParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.share) {
       return bridge.share(params)
@@ -372,17 +364,10 @@ let Bridge = {
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
-  detectFace(
-    params?: {
-      getConfig?: (ctx: { platform: string }) => Promise<Record<string, unknown>> | Record<string, unknown>
-      onSuccess?: SuccessCallback<{ match: boolean, confidence: number | undefined }>
-      onError?: ErrorCallback
-    },
-    platform?: string
-  ) {
-    const bridge = this._getCurrentBridge(platform) as Record<string, unknown>
+  detectFace(params?: BridgeDetectFaceParams, platform?: string) {
+    const bridge = this._getCurrentBridge(platform)
     if (typeof bridge.detectFace === 'function') {
-      return (bridge.detectFace as (p: typeof params) => unknown)(params)
+      return bridge.detectFace(params)
     }
     return undefined
   },
@@ -393,12 +378,4 @@ let Bridge = {
   }
 }
 
-export type {
-  SuccessResult,
-  ErrorResult,
-  CancelResult,
-  SuccessCallback,
-  ErrorCallback,
-  CancelCallback
-} from './types'
 export default Bridge

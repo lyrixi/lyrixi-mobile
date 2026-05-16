@@ -1,4 +1,6 @@
-import React, { useImperativeHandle, useRef, forwardRef, type CSSProperties, type MouseEvent } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+
+import type { DatePickerPickerTypesWeekComboComboProps } from './../../DatePicker.PickerTypes.WeekCombo.types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -8,16 +10,9 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type TypesWeekComboProps = {
-  value?: Date | null
-  style?: CSSProperties
-  className?: string
-  children?: React.ReactNode
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void
-}
-
 // 用于自定义渲染Combo, 按照要求返回comboElement
-const Combo = forwardRef<Record<string, unknown> | null, TypesWeekComboProps>(function TypesWeekCombo(
+const Combo = forwardRef<Record<string, unknown> | null, DatePickerPickerTypesWeekComboComboProps>(
+  function TypesWeekCombo(
   {
     // Value & Display Value
     value,

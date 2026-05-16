@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 const ButtonText = forwardRef<ButtonTextRef, ButtonTextProps>(function ButtonText(
   { style, className, children },
   ref
@@ -35,5 +34,4 @@ const ButtonText = forwardRef<ButtonTextRef, ButtonTextProps>(function ButtonTex
   )
 })
 
-export type { ButtonTextProps, ButtonTextRef } from './types'
 export default ButtonText

@@ -1,11 +1,10 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
-
 import InputText from './InputText'
 import InputNumber from './InputNumber'
 import formatValue from './formatValue'
 
-import type { InputOTPInputRef, InputOTPProps, InputOTPRef } from '../types'
+import type { InputOTPInputRef, InputOTPProps, InputOTPRef } from './Input.OTP.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -40,18 +39,24 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     ref
   ) => {
     // eslint-disable-next-line
-    const formattedValue: string[] = formatValue(value, maxLength)
+    const formattedValue: string[] = formatValue(
+      Array.isArray(value) ? (value as unknown[]) : [],
+      maxLength
+    )
 
     const rootRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<InputOTPInputRef | null>(null)
 
     // Expose
-    useImperativeHandle(ref, () => ({
-      element: rootRef.current,
-      getElement: () => rootRef.current,
-      focus: focus,
-      blur: blur
-    }))
+    useImperativeHandle(
+      ref,
+      () => ({
+        element: rootRef.current,
+        getElement: () => rootRef.current,
+        focus: focus,
+        blur: blur
+      })
+    )
 
     // 获焦
     function focus(itemIndex?: number) {
@@ -176,15 +181,5 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     )
   }
 )
-
-export type {
-  InputOTPInputNumberProps,
-  InputOTPInputNumberRef,
-  InputOTPInputRef,
-  InputOTPInputTextProps,
-  InputOTPInputTextRef,
-  InputOTPProps,
-  InputOTPRef
-} from '../types'
 
 export default InputOTP

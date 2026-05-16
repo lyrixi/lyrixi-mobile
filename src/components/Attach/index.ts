@@ -1,3 +1,4 @@
+import type { AttachComponents } from './Attach.Components.types'
 import Attach from './Attach'
 import validateListStatus from './../Media/utils/validateListStatus'
 import supportTypes from './utils/supportTypes'
@@ -5,20 +6,12 @@ import List from './List'
 import Button from './Choose/Button'
 import Uploading from './Uploading'
 
+const AttachExport = Attach as AttachComponents
 
-const AttachWithStatics = Attach as typeof Attach & {
-  validateListStatus: typeof validateListStatus
-  supportTypes: typeof supportTypes
-  List: typeof List
-  Button: typeof Button
-  Uploading: typeof Uploading
-}
+AttachExport.validateListStatus = validateListStatus
+AttachExport.supportTypes = supportTypes
+AttachExport.List = List
+AttachExport.Button = Button
+AttachExport.Uploading = Uploading
 
-AttachWithStatics.validateListStatus = validateListStatus
-AttachWithStatics.supportTypes = supportTypes
-AttachWithStatics.List = List
-AttachWithStatics.Button = Button
-AttachWithStatics.Uploading = Uploading
-
-export type * from './types'
-export default AttachWithStatics
+export default AttachExport

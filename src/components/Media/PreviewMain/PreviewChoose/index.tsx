@@ -88,6 +88,4 @@ const Choose = ({
     </div>
   )
 }
-export type { MediaPreviewChooseProps } from '../../types'
-
 export default Choose

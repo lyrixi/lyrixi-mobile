@@ -15,8 +15,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
-
 async function getLocation({
   browser,
   cacheExpiresContinue,
@@ -132,5 +130,4 @@ async function getSuperLocation({
   })
 }
 
-export type { GetSuperLocationCallOptions, GetSuperLocationOptions } from '../../types'
 export default getSuperLocation

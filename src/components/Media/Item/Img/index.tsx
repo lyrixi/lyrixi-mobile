@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-
 import type { MediaItemImgProps } from '../../types'
 
 // 内库使用-start
@@ -50,6 +49,4 @@ const Img = ({
     />
   )
 }
-export type { MediaItemImgProps } from '../../types'
-
 export default Img

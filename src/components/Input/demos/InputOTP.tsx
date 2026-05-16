@@ -91,10 +91,10 @@ export default () => {
       </Page.Main>
       <Page.Footer>
         <FooterBar>
-          <FooterBar.Button onClick={() => inputRef.current?.focus()}>
+          <FooterBar.Button onClick={() => inputRef.current?.focus?.()}>
             聚焦第一个输入框
           </FooterBar.Button>
-          <FooterBar.Button onClick={() => inputRef.current?.blur()}>
+          <FooterBar.Button onClick={() => inputRef.current?.blur?.()}>
             失焦所有输入框
           </FooterBar.Button>
         </FooterBar>

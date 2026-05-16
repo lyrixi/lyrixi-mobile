@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
 
-
 import type { ToolBarProps } from './../types'
 
 // 内库使用-start
@@ -35,6 +34,4 @@ const ToolBar = forwardRef<HTMLDivElement, ToolBarProps>(function ToolBar(
       </div>
     )
 })
-export type { ToolBarProps } from './../types'
-
 export default ToolBar

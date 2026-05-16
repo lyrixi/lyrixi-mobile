@@ -10,7 +10,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
   (
     {
@@ -37,5 +36,4 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
   }
 )
 
-export type { NavBarProps } from '../types'
 export default NavBar

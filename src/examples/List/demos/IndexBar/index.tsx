@@ -1,4 +1,4 @@
-import React, { useRef, useState, type ComponentRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 // 第三方库导入
 import { IndexBar, ListPagination, Page } from 'lyrixi-mobile'
@@ -8,16 +8,15 @@ import { IndexBar, ListPagination, Page } from 'lyrixi-mobile'
 // 内部组件导入
 import Header from './../Common/Header'
 import Main from './Main'
+import type { ListExamplesDemoListPaginationRef } from './../ListExamples.demos.types'
 import type { IndexBarListLoadContext, IndexBarListRowWithAnchor } from './Main/types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
 
-type ListPaginationRef = ComponentRef<typeof ListPagination.Main>
-
 // IndexBar列表示例
 const IndexBarList = () => {
-  const mainRef = useRef<ListPaginationRef | null>(null)
+  const mainRef = useRef<ListExamplesDemoListPaginationRef | null>(null)
   const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
   // IndexBar anchors
@@ -30,7 +29,7 @@ const IndexBarList = () => {
         queryParams={queryParams}
         onSearch={(newQueryParams: Record<string, unknown>) => {
           setQueryParams(newQueryParams)
-          mainRef.current?.reload('reload')
+          mainRef.current?.reload?.('reload')
         }}
       />
 

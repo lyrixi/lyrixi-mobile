@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { Page, type ListAsyncRef, type LoadResult } from 'lyrixi-mobile'
+import { Page, type ListAsyncLoadResult, type ListAsyncRef } from 'lyrixi-mobile'
 
 import { queryData } from './api'
 import Header from './Header'
@@ -22,7 +22,7 @@ const Common = () => {
         queryParams={queryParams}
         onSearch={(newQueryParams: Record<string, unknown>) => {
           setQueryParams(newQueryParams)
-          mainRef.current?.reload('reload')
+          mainRef.current?.reload?.('reload')
         }}
       />
 
@@ -45,7 +45,7 @@ const Common = () => {
             status: result.status,
             message: result.message,
             list: newList ?? undefined
-          } as LoadResult
+          } as ListAsyncLoadResult
         }}
         onChange={() => {
           console.log('onChange')

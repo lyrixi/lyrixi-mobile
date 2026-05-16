@@ -1,5 +1,6 @@
-import React, { type CSSProperties } from 'react'
+import React from 'react'
 import RangeCombo from './../../RangeCombo'
+import type { DatePickerRangeSelectorCustomDatesProps } from './../../DatePicker.RangeSelector.Dates.types'
 import type { DatePickerRangeComboProps } from './../../types'
 
 // 内库使用-start
@@ -10,27 +11,6 @@ import Input from './../../../Input'
 /* 测试使用-start
 import { LocaleUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
-
-type CustomDatesProps = Pick<
-  DatePickerRangeComboProps,
-  | 'value'
-  | 'type'
-  | 'min'
-  | 'max'
-  | 'hourStep'
-  | 'minuteStep'
-  | 'startDisabled'
-  | 'endDisabled'
-  | 'allowClear'
-  | 'portal'
-  | 'onChange'
-  | 'onOk'
-> & {
-  maskClassName?: string
-  maskStyle?: CSSProperties
-  modalClassName?: string
-  modalStyle?: CSSProperties
-}
 
 // 自定义日期选择弹窗: 两框选择
 export default function CustomDates({
@@ -55,7 +35,7 @@ export default function CustomDates({
   // Events
   onChange,
   onOk
-}: CustomDatesProps) {
+}: DatePickerRangeSelectorCustomDatesProps) {
   return (
     <div className="lyrixi-datepicker-rangeselector-date">
       <RangeCombo

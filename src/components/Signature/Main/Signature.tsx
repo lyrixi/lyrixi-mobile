@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-
 import { CanvasUtil } from './utils'
 
-import type { SignatureMainDrawProps, SignatureMainDrawRef } from '../types'
+import type { SignatureMainDrawProps, SignatureMainDrawRef, SignatureMainExtendedCanvas } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -12,8 +11,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-type ExtendedCanvas = HTMLCanvasElement & { ctx?: CanvasRenderingContext2D }
 
 // 手写签名
 const Signature = (
@@ -32,7 +29,7 @@ const Signature = (
 ) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
-  const canvasRef = useRef<ExtendedCanvas>(null)
+  const canvasRef = useRef<SignatureMainExtendedCanvas>(null)
 
   const isDrewRef = useRef(false)
 
@@ -50,7 +47,6 @@ const Signature = (
     endY: 0
   })
 
-
   useEffect(() => {
     updateContainer()
     if (canvasRef.current) {
@@ -58,7 +54,6 @@ const Signature = (
     }
     // eslint-disable-next-line
   }, [])
-
 
   useImperativeHandle(ref, () => {
     return {
@@ -82,7 +77,6 @@ const Signature = (
     }
   })
 
-
   function updateContainer() {
     if (!rootRef.current || !canvasRef.current) return
     let width = rootRef.current.clientWidth
@@ -92,7 +86,6 @@ const Signature = (
       canvasRef.current.height = height
     }
   }
-
 
   function handleStart(e: React.TouchEvent<HTMLCanvasElement> | React.MouseEvent<HTMLCanvasElement>) {
     e.stopPropagation()
@@ -125,7 +118,6 @@ const Signature = (
     touchesRef.current.beginY = pos.clientY - clientRectRef.current.top
   }
 
-
   function handleMove(e: React.TouchEvent<HTMLCanvasElement> | React.MouseEvent<HTMLCanvasElement>) {
     // 鼠标移动时，如果没有开始绘制，则不处理
     if (!isDrawingRef.current) {
@@ -146,7 +138,6 @@ const Signature = (
     isDrewRef.current = true
   }
 
-
   function handleEnd(e: React.TouchEvent<HTMLCanvasElement> | React.MouseEvent<HTMLCanvasElement>) {
     // 鼠标结束绘制
     isDrawingRef.current = false
@@ -157,7 +148,6 @@ const Signature = (
     }
   }
 
-
   // 不能使用style制定宽高,canvas用style的width|height会导致绘图位置不正确
   const safeStyle = style ? { ...style } : undefined
 
@@ -165,7 +155,6 @@ const Signature = (
     delete safeStyle.width
     delete safeStyle.height
   }
-
 
   return (
     <div
@@ -190,6 +179,4 @@ const Signature = (
     </div>
   )
 }
-export type { SignatureMainDrawProps, SignatureMainDrawRef } from '../types'
-
 export default forwardRef<SignatureMainDrawRef, SignatureMainDrawProps>(Signature)

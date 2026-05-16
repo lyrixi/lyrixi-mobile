@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 开关控件
 const Switch = forwardRef<SwitchRef, SwitchProps>(
   (
@@ -78,5 +77,4 @@ const Switch = forwardRef<SwitchRef, SwitchProps>(
   }
 )
 
-export type { SwitchProps, SwitchRef } from './types'
 export default Switch

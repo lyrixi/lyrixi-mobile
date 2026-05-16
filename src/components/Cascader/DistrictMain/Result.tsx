@@ -14,13 +14,18 @@ import Page from './../../Page'
 import { LocaleUtil, Button, Result, Page } from 'lyrixi-mobile'
 测试使用-end */
 
-const DistrictMainResult = ({ result, onReload, style, className }: CascaderDistrictMainResultProps) => {
+const DistrictMainResult = ({
+  result,
+  onReload,
+  style,
+  className
+}: CascaderDistrictMainResultProps) => {
   return (
     <Page full={false} className="lyrixi-cascader-page">
       <div style={style} className={DOMUtil.classNames('lyrixi-cascader-main', className)}>
         <Result
-          title={result?.message !== null ? String(result.message) : ''}
-          status={result?.status !== null ? String(result.status) : 'empty'}
+          title={result?.message !== null ? String(result?.message) : ''}
+          status={result?.status !== null ? String(result?.status) : 'empty'}
           full
           description={undefined}
           style={undefined}

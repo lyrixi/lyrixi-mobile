@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 
-
 import getPercent from './getPercent'
 import showTooltip from './showTooltip'
 import hideTooltip from './hideTooltip'
@@ -52,13 +51,11 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
 
     const railRef = useRef<HTMLDivElement>(null)
 
-
     useEffect(() => {
       updateContainer()
       if (tooltipRef.current) hideTooltip(tooltipRef.current)
       // eslint-disable-next-line
     }, [])
-
 
     useImperativeHandle(ref, () => {
       return {
@@ -66,9 +63,8 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
         inputElement: inputRef.current,
         getElement: () => rootRef.current,
         getInputElement: () => inputRef.current
-      }
+      } as InputRangeRef
     })
-
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       if (disabled || readOnly) return
@@ -83,28 +79,25 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
       updateContainer(newValue as number)
     }
 
-
     // 显示tooltip
     function handleTouchStart() {
       updateContainer()
       if (tooltipRef.current) showTooltip(tooltipRef.current)
     }
 
-
     function handleTouchEnd() {
       if (tooltipRef.current) hideTooltip(tooltipRef.current)
     }
 
-
     function updateContainer(newValue?: number) {
-      let currentValue = newValue ?? value ?? 0
+      const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
+      let currentValue = newValue ?? numericValue ?? 0
       let percent = getPercent({ min, max, value: currentValue })
       if (handleRef.current) handleRef.current.style.left = `calc(${percent}% - 8px)`
       if (tooltipRef.current) tooltipRef.current.style.left = `calc(${percent}% - 12px)`
       if (railRef.current) railRef.current.style.width = `${percent}%`
       if (tooltipRef.current) tooltipRef.current.innerHTML = String(currentValue)
     }
-
 
     return (
       <div
@@ -129,7 +122,7 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
           type="range"
           className="lyrixi-input-range-input"
           // Value & Display Value
-          value={value}
+          value={typeof value === 'number' ? value : Number(value ?? 0)}
           // Status
           readOnly={readOnly}
           disabled={disabled}
@@ -153,12 +146,10 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
 
         {/* Element: Tooltip */}
         <div ref={tooltipRef} className="lyrixi-input-range-tooltip">
-          {value}
+          {typeof value === 'number' ? value : Number(value ?? 0)}
         </div>
       </div>
     )
   }
 )
-export type { InputRangeProps, InputRangeRef } from '../types'
-
 export default Range

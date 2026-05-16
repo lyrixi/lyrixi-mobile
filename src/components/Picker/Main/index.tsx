@@ -41,7 +41,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
 
   let listCount = 0
 
-
   const rawList = list
 
   const dimensional = dimensionalArray(rawList)
@@ -57,7 +56,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     lists = null
   }
 
-
   // 节点
   const mainRef = useRef<HTMLDivElement | null>(null)
 
@@ -67,12 +65,10 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
 
   valueRef.current = formatValue(value, { lists, listCount })
 
-
   useEffect(() => {
     update()
     // eslint-disable-next-line
   }, [value])
-
 
   useImperativeHandle(ref, () => {
     return {
@@ -86,7 +82,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     }
   })
 
-
   // 更新视图
   function update() {
     const root = slotsRef.current
@@ -99,7 +94,6 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
       slot.style.transform = `translateY(${y}px)`
     }
   }
-
 
   return (
     <div
@@ -129,6 +123,4 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
     </div>
   )
 })
-export type { PickerMainProps, PickerMainRef } from '../types'
-
 export default Main

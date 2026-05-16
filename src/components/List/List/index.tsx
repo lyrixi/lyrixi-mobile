@@ -3,8 +3,7 @@ import viewFormatter from './viewFormatter'
 import HeaderItem from './../HeaderItem'
 import Item from './../Item'
 
-
-import type { ItemChangeArg, ListProps, ListRef, RawItem, ViewItem } from './../types'
+import type { ListProps, ListRef, RawItem, ViewItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -46,7 +45,7 @@ const List = (
     }
   })
 
-  function handleChange(_raw: ItemChangeArg) {
+  function handleChange(_raw: RawItem) {
     let newValue: RawItem | RawItem[] | null = null
     if (multiple) {
       const multipleValue = (value as RawItem[] | undefined) || []
@@ -80,7 +79,7 @@ const List = (
     return (
       <Item
         key={String(item.id ?? item._raw?.id ?? index)}
-        _raw={item._raw ?? { id: item.id ?? index }}
+        _raw={(item._raw ?? { id: item.id ?? index }) as RawItem}
         checked={checked}
         disabled={item.disabled as boolean | undefined}
         checkable={checkable}
@@ -90,14 +89,26 @@ const List = (
         checkboxVariant={checkboxVariant}
         checkboxPosition={checkboxPosition}
         imageUrl={item.imageUrl as string | undefined}
-        imageRender={item.imageRender as ((item: RawItem & { checked?: boolean }) => React.ReactNode) | undefined}
+        imageRender={
+          item.imageRender as
+            | ((item: RawItem & { checked?: boolean }) => React.ReactNode)
+            | undefined
+        }
         avatarUrl={item.avatarUrl as string | undefined}
-        avatarRender={item.avatarRender as ((item: RawItem & { checked?: boolean }) => React.ReactNode) | undefined}
+        avatarRender={
+          item.avatarRender as
+            | ((item: RawItem & { checked?: boolean }) => React.ReactNode)
+            | undefined
+        }
         title={(item.title ?? item.name) as React.ReactNode}
         description={item.description as React.ReactNode | undefined}
         note={item.note as React.ReactNode | undefined}
         content={item.content as React.ReactNode | undefined}
-        actionRender={item.actionRender as ((item: RawItem & { checked?: boolean }) => React.ReactNode) | undefined}
+        actionRender={
+          item.actionRender as
+            | ((item: RawItem & { checked?: boolean }) => React.ReactNode)
+            | undefined
+        }
         onSelect={handleChange}
       />
     )
@@ -128,6 +139,4 @@ const List = (
     </div>
   )
 }
-export type { ListProps, ListRef } from './../types'
-
 export default forwardRef<ListRef, ListProps>(List)

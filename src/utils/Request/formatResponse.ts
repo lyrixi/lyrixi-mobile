@@ -1,6 +1,6 @@
-type AxiosLikeResponse = { config?: unknown; data?: unknown; [key: string]: unknown }
+import type { RequestAxiosLikeResponse } from './Request.format.types'
 
-function formatResponse(response: AxiosLikeResponse): unknown {
+function formatResponse(response: RequestAxiosLikeResponse): unknown {
   let result: unknown = response
   if (response.config && response.data !== undefined) {
     result = response.data

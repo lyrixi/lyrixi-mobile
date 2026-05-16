@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { IsDisabledError } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -8,12 +8,6 @@ import DateUtil from './../../../utils/DateUtil'
 /* 测试使用-start
 import { LocaleUtil, DateUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-export type IsDisabledError = {
-  code: string
-  message: ReactNode
-  date: Date
-}
 
 // 是否为禁用日期
 function isDisabledDate(

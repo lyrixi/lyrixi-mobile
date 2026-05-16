@@ -1,19 +1,18 @@
-import React, { forwardRef, type ComponentRef, type Ref } from 'react'
+import React, { forwardRef, type Ref } from 'react'
 
 import { ListPagination } from 'lyrixi-mobile'
 
+import type { ListExamplesDemoListPaginationRef } from './../../ListExamples.demos.types'
 import type { ListDemoFormatPayloadParams, ListDemoMainProps } from './types'
 
 import formatPayload from './formatPayload'
 import formatResult from './formatResult'
 import formatViewItem from './formatViewItem'
 
-type ListPaginationRef = ComponentRef<typeof ListPagination.Main>
-
 // 简便的列表组件, 只需要传入url和params即可
 const Main = (
   { cacheName, virtual, queryParams }: ListDemoMainProps,
-  ref: Ref<ListPaginationRef>
+  ref: Ref<ListExamplesDemoListPaginationRef>
 ) => {
   return (
     <ListPagination.Main
@@ -38,4 +37,4 @@ const Main = (
 }
 
 export type { ListDemoMainProps } from './types'
-export default forwardRef<ListPaginationRef, ListDemoMainProps>(Main)
+export default forwardRef<ListExamplesDemoListPaginationRef, ListDemoMainProps>(Main)

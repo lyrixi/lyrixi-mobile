@@ -1,7 +1,20 @@
 import React, { useRef } from 'react'
 import vconsole from 'vconsole'
 
-import { Loading, Button, Bridge, Page, Divider, Card, type SDKResult } from 'lyrixi-mobile'
+import {
+  Loading,
+  Button,
+  Bridge,
+  Page,
+  Divider,
+  Card,
+  type BridgeSuccessResult,
+  type BridgeErrorResult,
+  type BridgeCancelResult,
+  type BridgeScanCodeResultData,
+  type BridgeChooseMediaResultData,
+  type BridgeGetLocationResultData
+} from 'lyrixi-mobile'
 
 new vconsole()
 
@@ -70,7 +83,7 @@ export default () => {
               radius="m"
               onClick={() => {
                 Bridge.onBack({
-                  success: () => {
+                  onSuccess: () => {
                     console.log('阻止返回')
                     alert('阻止返回')
                   }
@@ -143,11 +156,11 @@ export default () => {
               onClick={() => {
                 Bridge.scanCode({
                   scanType: ['barCode'],
-                  onSuccess: (res: SDKResult) => {
+                  onSuccess: (res: BridgeSuccessResult<BridgeScanCodeResultData>) => {
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
-                  onError: (error: SDKResult) => {
+                  onError: (error: BridgeErrorResult) => {
                     console.log(error)
                     alert(JSON.stringify(error))
                   }
@@ -170,17 +183,16 @@ export default () => {
                 Bridge.chooseMedia({
                   sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                   sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-                  onSuccess: (res: SDKResult) => {
+                  onSuccess: (res: BridgeSuccessResult<BridgeChooseMediaResultData>) => {
                     console.log(res)
                     alert(JSON.stringify(res))
-                    const data = res?.data as { localFiles?: unknown[] } | undefined
-                    imageLocalFiles.current = data?.localFiles ?? null
+                    imageLocalFiles.current = res.data?.localFiles ?? null
                   },
-                  onError: (error: SDKResult) => {
+                  onError: (error: BridgeErrorResult) => {
                     console.log(error)
                     alert(JSON.stringify(error))
                   },
-                  onCancel: (res: SDKResult) => {
+                  onCancel: (res: BridgeCancelResult) => {
                     console.log(res)
                     alert(JSON.stringify(res))
                   }
@@ -218,17 +230,17 @@ export default () => {
                     uploadDir: 'test'
                   },
                   localFile: imageLocalFiles.current[0],
-                  onSuccess: function (res: SDKResult) {
+                  onSuccess: function (res: BridgeSuccessResult<Record<string, unknown>>) {
                     console.log(res)
                     alert(JSON.stringify(res))
                     Loading.hide()
                   },
-                  onError: function (error: SDKResult) {
+                  onError: function (error: BridgeErrorResult) {
                     console.log(error)
                     alert(JSON.stringify(error))
                     Loading.hide()
                   },
-                  onCancel: function (res: SDKResult) {
+                  onCancel: function (res: BridgeCancelResult) {
                     console.log(res)
                     alert(JSON.stringify(res))
                     Loading.hide()
@@ -324,12 +336,12 @@ export default () => {
                 })
                 Bridge.getLocation({
                   type: 'gcj02',
-                  onSuccess: (res: SDKResult) => {
+                  onSuccess: (res: BridgeSuccessResult<BridgeGetLocationResultData>) => {
                     Loading.hide()
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
-                  onError: (error: SDKResult) => {
+                  onError: (error: BridgeErrorResult) => {
                     Loading.hide()
                     console.log(error)
                     alert(JSON.stringify(error))
@@ -350,12 +362,12 @@ export default () => {
                 })
                 Bridge.getLocation({
                   type: 'wgs84',
-                  onSuccess: (res: SDKResult) => {
+                  onSuccess: (res: BridgeSuccessResult<BridgeGetLocationResultData>) => {
                     Loading.hide()
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
-                  onError: (error: SDKResult) => {
+                  onError: (error: BridgeErrorResult) => {
                     Loading.hide()
                     console.log(error)
                     alert(JSON.stringify(error))

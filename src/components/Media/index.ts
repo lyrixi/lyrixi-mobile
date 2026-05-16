@@ -1,5 +1,3 @@
-export type * from './types'
-
 import validateListStatus from './utils/validateListStatus'
 import isAllowClear from './utils/isAllowClear'
 import MediaBase from './Media'

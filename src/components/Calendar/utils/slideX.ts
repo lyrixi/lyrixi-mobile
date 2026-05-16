@@ -1,8 +1,13 @@
 import isDisabledDate from './isDisabledDate'
 import Months from './Months'
-import type { IsDisabledError } from './isDisabledDate'
 
-import type { CalendarCellDate, CalendarOnErrorHandler, CalendarType } from '../types'
+import type {
+  CalendarCellDate,
+  CalendarOnErrorHandler,
+  CalendarType,
+  CalendarUtilsSlideXOp,
+  IsDisabledError
+} from '../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -12,11 +17,9 @@ import DateUtil from './../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type SlideXOp = 'previous' | 'next' | ''
-
 // 左右滑动
 function slideX(
-  op: SlideXOp,
+  op: CalendarUtilsSlideXOp,
   {
     type,
     min,

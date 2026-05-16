@@ -12,7 +12,6 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // Accordion组件
 const Accordion = forwardRef<AccordionRef, AccordionProps>(
   (
@@ -177,5 +176,4 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
   }
 )
 
-export type { AccordionProps, AccordionRef } from './types'
 export default Accordion

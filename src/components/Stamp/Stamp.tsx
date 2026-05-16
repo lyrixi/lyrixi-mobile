@@ -11,7 +11,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 印章控件
 const Stamp = forwardRef<StampRef, StampProps>(({
   shape = 'round', // 类型: round, rect
@@ -47,5 +46,4 @@ const Stamp = forwardRef<StampRef, StampProps>(({
   )
 })
 
-export type { StampProps, StampRef } from './types'
 export default Stamp

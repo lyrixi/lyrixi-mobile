@@ -1,15 +1,11 @@
 import { LocaleUtil, Request, Loading, Toast } from 'lyrixi-mobile'
 
-type OcrItem = {
-  fileUrl?: string
-  ocrResult?: unknown
-  ocrErrMsg?: string
-} & Record<string, unknown>
+import type { MediaUploaderDemoOcrItem } from './../MediaUploader.demos.ocr.types'
 
 // 新的OCR识别：单个照片识别
-function recognizeItem(item: OcrItem | null) {
+function recognizeItem(item: MediaUploaderDemoOcrItem | null) {
   // eslint-disable-next-line
-  return new Promise<OcrItem | null>(async (resolve) => {
+  return new Promise<MediaUploaderDemoOcrItem | null>(async (resolve) => {
     // 识别完成
     if (!item) {
       resolve(item)

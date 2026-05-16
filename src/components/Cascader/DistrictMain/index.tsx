@@ -49,17 +49,14 @@ const CascaderDistrictMain = forwardRef<
   ) => {
     const maxType = formatType(typeProp ?? 'street')
 
-
     const [result, setResult] = useState<DistrictResultState | null>(null)
 
     const [fullValue, setFullValue] = useState<CascaderNode[] | null>(null)
-
 
     useEffect(() => {
       void initList()
       // eslint-disable-next-line
     }, [value])
-
 
     useImperativeHandle(ref, () => {
       return {
@@ -67,7 +64,6 @@ const CascaderDistrictMain = forwardRef<
         list: result?.list
       }
     })
-
 
     async function initList() {
       setResult(null)
@@ -143,7 +139,6 @@ const CascaderDistrictMain = forwardRef<
       }
     }
 
-
     async function loadData(
       tabs: CascaderNode[],
       _ctx: { list: CascaderNode[] }
@@ -154,7 +149,6 @@ const CascaderDistrictMain = forwardRef<
       })
       return childrenData as LoadDataResult
     }
-
 
     return (
       <>
@@ -193,12 +187,5 @@ const CascaderDistrictMain = forwardRef<
     )
   }
 )
-
-export type {
-  CascaderDistrictMainProps,
-  LoadCountriesFn,
-  LoadCountryRegionsFn,
-  LoadStreetsFn
-} from '../types'
 
 export default CascaderDistrictMain

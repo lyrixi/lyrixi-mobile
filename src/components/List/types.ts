@@ -1,4 +1,4 @@
-export type * from './List.types'
-export type * from './List.Item.types'
-export type * from './List.HeaderItem.types'
-export type * from './List.InfiniteScroll.types'
+export * from './List.types'
+export * from './List.Item.types'
+export * from './List.HeaderItem.types'
+export * from './List.InfiniteScroll.types'

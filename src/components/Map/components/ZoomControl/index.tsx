@@ -6,7 +6,6 @@ import type { MapZoomControlProps, MapZoomControlRef } from '../../types'
 import DOMUtil from './../../../../utils/DOMUtil'
 // 内库使用-end
 
-
 // 缩放控件
 const ZoomControl = forwardRef<MapZoomControlRef, MapZoomControlProps>(
   ({ style, className, map, onZoomIn, onZoomOut }, ref) => {
@@ -52,5 +51,4 @@ const ZoomControl = forwardRef<MapZoomControlRef, MapZoomControlProps>(
   )
 })
 
-export type { MapZoomControlProps, MapZoomControlRef } from '../../types'
 export default ZoomControl

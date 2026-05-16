@@ -11,7 +11,7 @@ import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
 import type { CascaderNode } from './../types'
 
-import type { CascaderDistrictModalProps } from '../types'
+import type { CascaderDistrictModalMainHandle, CascaderDistrictModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -22,8 +22,6 @@ import NavBarModal from './../../Modal/NavBarModal'
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
-
-type DistrictMainHandle = { loadList: () => Promise<void>; list: unknown }
 
 const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalProps>(
   (
@@ -67,7 +65,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
 
     const modalRef = useRef<unknown>(null)
 
-    const mainRef = useRef<DistrictMainHandle | null>(null)
+    const mainRef = useRef<CascaderDistrictModalMainHandle | null>(null)
 
     useEffect(() => {
       setCurrentValue(value as CascaderNode[] | null | undefined)
@@ -134,7 +132,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
       >
         {open && (
           <DistrictMain
-            ref={mainRef as Ref<DistrictMainHandle> as never}
+            ref={mainRef as Ref<CascaderDistrictModalMainHandle> as never}
             open={open}
             value={currentValue}
             type={districtType}
@@ -153,6 +151,4 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
     )
   }
 )
-export type { CascaderDistrictModalProps } from '../types'
-
 export default DistrictModal

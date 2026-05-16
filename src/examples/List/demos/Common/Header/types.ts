@@ -1,6 +1,6 @@
-import type { InputSearchProps, ToolBarSearchActiveProps } from 'lyrixi-mobile'
+import type { InputTextProps, ToolBarSearchActiveProps } from 'lyrixi-mobile'
 
-export type SearchBarProps = InputSearchProps
+export type SearchBarProps = InputTextProps
 export type SearchActiveProps = ToolBarSearchActiveProps
 
 export type HeaderProps = {

@@ -25,7 +25,6 @@ function isErrorResult(
   )
 }
 
-
 // 定位控件
 const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProps>(
   ({ style, className, map, onChange }, ref) => {
@@ -90,5 +89,4 @@ const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProp
   )
 })
 
-export type { MapLocationControlProps, MapLocationControlRef } from '../../types'
 export default LocationControl

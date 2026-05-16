@@ -1,3 +1,4 @@
-export type * from './Picker.Combo.types'
-export type * from './Picker.Main.types'
-export type * from './Picker.Modal.types'
+export * from './Picker.Combo.types'
+export * from './Picker.Main.types'
+export * from './Picker.Main.Slots.types'
+export * from './Picker.Modal.types'

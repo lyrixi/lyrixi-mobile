@@ -8,8 +8,6 @@ import GeoUtil from './../../../../utils/GeoUtil'
 import { GeoUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
-
 // 单个点转换
 function getPoint(point: MapPoint, type: string | undefined): MapPoint | null {
   if (!point?.longitude || !point?.latitude) {
@@ -49,5 +47,4 @@ function coordsToWgs84(points: MapPoint | MapPoint[] | null | undefined, type?: 
   return null
 }
 
-export type { MapPoint } from '../../types'
 export default coordsToWgs84

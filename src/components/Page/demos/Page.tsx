@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Page } from 'lyrixi-mobile'
 
-type Row = { id: number; name: string }
+import type { PageDemoRow } from './Page.demos.types'
 
-const list: Row[] = []
+const list: PageDemoRow[] = []
 for (let i = 0; i < 100; i++) {
   list.push({
     id: i,

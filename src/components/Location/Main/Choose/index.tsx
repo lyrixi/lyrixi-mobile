@@ -58,6 +58,4 @@ const LocationChoose = forwardRef<MapContainerAPI, LocationChooseProps>(function
     </MapLoaderComponent>
   )
 })
-export type { LocationChooseProps } from '../../types'
-
 export default LocationChoose

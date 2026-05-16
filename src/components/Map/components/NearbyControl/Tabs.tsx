@@ -11,7 +11,6 @@ import DOMUtil from './../../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 选项卡
 function Tabs({ tab, onChange }: MapNearbyControlTabsProps) {
   const tabs = getTabs()
@@ -37,5 +36,4 @@ function Tabs({ tab, onChange }: MapNearbyControlTabsProps) {
   )
 }
 
-export type { MapNearbyControlTabsProps } from '../../types'
 export default Tabs

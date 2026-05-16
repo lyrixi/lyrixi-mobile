@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { DatePickerRangesMap } from './../DatePicker'
+import type { DatePickerRangesMap } from './../DatePicker/types'
 import type { ToolBarDropdownProps } from './ToolBar.Dropdown.types'
 
 export interface ToolBarDateRangeBarProps {

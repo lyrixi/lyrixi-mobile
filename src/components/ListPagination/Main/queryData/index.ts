@@ -1,7 +1,9 @@
 import React from 'react'
 
-
-import type { ListPaginationQueryDataOptions, ListPaginationQueryResult } from './../../types'
+import type {
+  ListPaginationQueryDataOptions,
+  ListPaginationQueryResult
+} from './ListPagination.Main.queryData.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -30,10 +32,10 @@ function queryData(
   return new Promise(async (resolve) => {
     if (action === 'bottomRefresh') {
       if (pageRef.current !== null) {
-        (pageRef as React.MutableRefObject<number>).current++
+        ;(pageRef as React.MutableRefObject<number>).current++
       }
     } else {
-      (pageRef as React.MutableRefObject<number>).current = 1
+      ;(pageRef as React.MutableRefObject<number>).current = 1
     }
 
     const baseParams: Record<string, unknown> = {
@@ -98,12 +100,13 @@ function queryData(
         resolve(newResult)
       })
       .catch((err: { data?: { message?: string } }) => {
-        const fallback = LocaleUtil.locale('获取数据异常！', 'lyrixi_a085fb7c5cb81143dcec0f299fff709a')
+        const fallback = LocaleUtil.locale(
+          '获取数据异常！',
+          'lyrixi_a085fb7c5cb81143dcec0f299fff709a'
+        )
         resolve({
           status: 'error',
-          message: String(
-            (typeof err?.data?.message === 'string' && err.data.message) || fallback
-          ),
+          message: String((typeof err?.data?.message === 'string' && err.data.message) || fallback),
           list: undefined
         })
       })

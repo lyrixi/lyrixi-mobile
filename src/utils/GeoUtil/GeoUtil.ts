@@ -464,5 +464,4 @@ GeoUtil.isInChina = function (point) {
   )
 }
 
-export type { GeoUtilType, Line, Point, Polygon } from './types'
 export default GeoUtil

@@ -1,56 +1,18 @@
-import type {
-  CompositionEventHandler,
-  CSSProperties,
-  FocusEvent,
-  FormEventHandler,
-  MouseEvent,
-  ReactNode,
-  RefObject
-} from 'react'
+import type { RefObject } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 import type { InputTextProps, InputTextRef } from './Input.Text.types'
 
-export interface InputNumberBoxRef {
-  element: HTMLDivElement | null
-  inputElement: InputTextRef | null
-  getElement: () => HTMLDivElement | null
-  getInputElement: InputTextRef['getInputElement'] | undefined
-  getInputRef: () => RefObject<InputTextRef | null>
-}
-
-export interface InputNumberBoxProps {
-  id?: string
-  name?: string
-  value?: string
-  placeholder?: string
-  formatter?: (value: string) => ReactNode
-  readOnly?: boolean
-  disabled?: boolean
-  allowClear?: boolean
-  autoFocus?: boolean
-  autoSelect?: boolean
+/** 数值步进框：在 `Input.Text` 上增加加减区与步进焦点等。 */
+export interface InputNumberBoxProps extends InputTextProps {
   stepFocus?: boolean
-  className?: string
-  style?: CSSProperties
   plusClassName?: string
   plusStyle?: CSSProperties
   minusClassName?: string
   minusStyle?: CSSProperties
-  leftIconNode?: ReactNode
-  rightIconNode?: ReactNode
-  clearRender?: InputTextProps['clearRender']
   children?: ReactNode
-  precision?: number
-  trim?: boolean
-  min?: number
-  max?: number
-  maxLength?: number
-  onClick?: (e: MouseEvent) => void
-  onChange?: (val: string) => void
-  onBlur?: (e: FocusEvent) => void
-  onFocus?: (e: FocusEvent) => void
-  onInput?: FormEventHandler<HTMLInputElement>
-  onCompositionStart?: CompositionEventHandler<HTMLInputElement>
-  onCompositionUpdate?: CompositionEventHandler<HTMLInputElement>
-  onCompositionEnd?: CompositionEventHandler<HTMLInputElement>
+}
+
+export interface InputNumberBoxRef extends InputTextRef {
+  getInputRef: () => RefObject<InputTextRef | null>
 }

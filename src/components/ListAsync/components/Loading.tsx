@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-import type { ListAsyncMainLoadingProps } from './../types'
+import type { ListAsyncMainLoadingProps } from './ListAsync.components.types'
 
 // 内库使用-start
 import Skeleton from './../../Skeleton'
@@ -26,19 +25,23 @@ const MainLoading = ({
     return <>{loadingRender({ action: type })}</>
   }
 
-  const LoadingNode = <Loading
-    portal={loadingPortal || document.getElementById('root') || document.body}
-    modalStyle={loadingModalStyle}
-    modalClassName={loadingModalClassName}
-    maskStyle={loadingMaskStyle}
-    maskClassName={loadingMaskClassName}
-  />
+  const LoadingNode = (
+    <Loading
+      portal={loadingPortal || document.getElementById('root') || document.body}
+      modalStyle={loadingModalStyle}
+      modalClassName={loadingModalClassName}
+      maskStyle={loadingMaskStyle}
+      maskClassName={loadingMaskClassName}
+    />
+  )
 
   if (type === 'load' || type === 'retry') {
-    return <>
-      {LoadingNode}
-      <Skeleton.List animated={false} />
-    </>
+    return (
+      <>
+        {LoadingNode}
+        <Skeleton.List animated={false} />
+      </>
+    )
   }
   if (type === 'reload') {
     return LoadingNode

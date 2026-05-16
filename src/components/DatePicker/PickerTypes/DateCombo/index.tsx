@@ -1,8 +1,9 @@
 import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../Combo'
 import Combo from './Combo'
+import type { DatePickerPickerTypesDateComboProps } from './../../DatePicker.PickerTypes.DateCombo.types'
 import type { DatePickerComboProps } from './../../types'
-import type { InputSelectComboProps } from './../../../Input/types'
+import type { InputSelectProps } from './../../../Input/types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -14,18 +15,8 @@ import Input from './../../../Input'
 import { DateUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
-type DateComboPropsLocal = {
-  value?: Date | null
-  type: string
-  min?: Date | null
-  max?: Date | null
-  style?: React.CSSProperties
-  className?: string
-  onChange?: (value: Date) => void
-}
-
 // 日期类型选择控件: 年月日季
-const DateCombo = forwardRef<unknown, DateComboPropsLocal>(function TypesDateCombo(
+const DateCombo = forwardRef<unknown, DatePickerPickerTypesDateComboProps>(function TypesDateCombo(
   {
     // Value & Display Value
     value,
@@ -87,7 +78,7 @@ const DateCombo = forwardRef<unknown, DateComboPropsLocal>(function TypesDateCom
         type={type as DatePickerComboProps['type']}
         min={min}
         max={max}
-        onChange={((v) => onChange && v instanceof Date && onChange(v)) as InputSelectComboProps['onChange']}
+        onChange={((v) => onChange && v instanceof Date && onChange(v)) as InputSelectProps['onChange']}
         comboRender={({ comboRef, onClick }) => {
           return (
             <Combo

@@ -12,7 +12,6 @@ import Icon from './../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 通告栏
 const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
   (
@@ -28,6 +27,9 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
       // Style
       style,
       className,
+      iconStyle,
+      titleStyle,
+      descriptionStyle,
 
       // Elements
       iconRender,
@@ -91,12 +93,24 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
         )}
       >
         {/* 图标 */}
-        {IconNode ? <div className="lyrixi-noticebar-icon">{IconNode}</div> : null}
+        {IconNode ? (
+          <div className="lyrixi-noticebar-icon" style={iconStyle}>
+            {IconNode}
+          </div>
+        ) : null}
 
         {/* 内容 */}
         <div className="lyrixi-noticebar-content">
-          {title && <div className="lyrixi-noticebar-title">{title}</div>}
-          {description && <div className="lyrixi-noticebar-description">{description}</div>}
+          {title && (
+            <div className="lyrixi-noticebar-title" style={titleStyle}>
+              {title}
+            </div>
+          )}
+          {description && (
+            <div className="lyrixi-noticebar-description" style={descriptionStyle}>
+              {description}
+            </div>
+          )}
         </div>
 
         {/* 关闭按钮 */}
@@ -110,5 +124,4 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
   }
 )
 
-export type { NoticeBarProps, NoticeBarRef } from './types'
 export default NoticeBar

@@ -1,54 +1,52 @@
-/** openLocation 坐标入参（Bridge 内格式化用） */
-export interface BridgeOpenLocationCoord {
-  longitude: number
-  latitude: number
-  type: string
-  isInChina?: boolean
-  [key: string]: unknown
+/**
+ * Bridge 类型唯一出口：业务与其它模块请从此文件引入类型（适配层 `BridgeSuccessResult` / 入参等）。
+ */
+
+import type {
+  BridgeChooseMediaParams,
+  BridgeCloseWindowParams,
+  BridgeConfigParams,
+  BridgeDetectFaceParams,
+  BridgeGetBrowserLocationParams,
+  BridgeGetLocationParams,
+  BridgeGoHomeParams,
+  BridgeLoadParams,
+  BridgeOnBackParams,
+  BridgeOpenLocationParams,
+  BridgeOpenWindowParams,
+  BridgePreviewFileParams,
+  BridgePreviewMediaParams,
+  BridgeScanCodeParams,
+  BridgeSetTitleParams,
+  BridgeShareParams,
+  BridgeTelParams,
+  BridgeUploadFileParams
+} from './Bridge.params.types'
+
+/**
+ * `_getCurrentBridge` Bridge实例类型
+ */
+export interface BridgeAdapter {
+  load: (params?: BridgeLoadParams) => void
+  config: (params?: BridgeConfigParams) => void | Promise<void>
+  back: (delta?: number) => void
+  closeWindow: (params?: BridgeCloseWindowParams) => void
+  onBack: (params?: BridgeOnBackParams) => void
+  setTitle?: (params?: BridgeSetTitleParams) => void
+  openWindow?: (params?: BridgeOpenWindowParams) => void
+  goHome?: (params?: BridgeGoHomeParams) => void
+  tel?: (params?: BridgeTelParams) => void
+  openLocation: (params?: BridgeOpenLocationParams) => void
+  getLocation: (params?: BridgeGetLocationParams) => void
+  getBrowserLocation?: (params?: BridgeGetBrowserLocationParams) => void
+  scanCode?: (params?: BridgeScanCodeParams) => void
+  chooseMedia?: (params?: BridgeChooseMediaParams) => void
+  uploadFile?: (params?: BridgeUploadFileParams) => void
+  previewMedia: (params?: BridgePreviewMediaParams) => void
+  previewFile?: (params?: BridgePreviewFileParams) => void
+  share?: (params?: BridgeShareParams) => void
+  detectFace?: (params?: BridgeDetectFaceParams) => void
 }
 
-/** Raw SDK callback data shape (DingTalk / WeChat / Lark / Alipay etc.) */
-export type SDKResult = {
-  errorCode?: string | number
-  errorMessage?: string
-  errMsg?: string
-  message?: string
-  photoStatus?: number
-  latitude?: number
-  longitude?: number
-  accuracy?: number
-  type?: string
-  statusCode?: number
-  data?: unknown
-  resultStr?: string
-  text?: string
-  [key: string]: unknown
-}
-
-/** 成功结果固定形状；无业务载荷时 `T` 为 `undefined`，`data` 为 `undefined`。 */
-export type SuccessResult<T = undefined> = {
-  status: 'success'
-  code?: string
-  message?: string
-  data: T
-}
-
-/** 失败：固定结构 */
-export type ErrorResult = {
-  status: 'error'
-  code?: string
-  message?: string
-}
-
-/** 取消：固定结构 */
-export type CancelResult = {
-  status: 'cancel'
-  code?: string
-  message?: string
-}
-
-export type SuccessCallback<T = undefined> = (result: SuccessResult<T>) => void
-
-export type ErrorCallback = (result: ErrorResult) => void
-
-export type CancelCallback = (result: CancelResult) => void
+export * from './Bridge.params.types'
+export * from './Bridge.callbacks.types'

@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-
 import getStrength from './getStrength'
 
 import type { InputPasswordStrengthProps, InputPasswordStrengthRef } from '../types'
@@ -25,7 +24,7 @@ const PasswordStrength = (
   }: InputPasswordStrengthProps,
   ref: React.Ref<InputPasswordStrengthRef>
 ) => {
-  let strength = getStrength(value)
+  let strength = getStrength(String(value ?? ''))
 
   const rootRef = useRef<HTMLUListElement>(null)
   // Expose
@@ -36,7 +35,7 @@ const PasswordStrength = (
         return rootRef.current
       },
       getStrength: (newValue?: string) => {
-        return getStrength(newValue || value)
+        return getStrength(newValue || String(value ?? ''))
       }
     }
   })
@@ -73,6 +72,4 @@ const PasswordStrength = (
     </ul>
   )
 }
-export type { InputPasswordStrengthProps, InputPasswordStrengthRef } from '../types'
-
-export default forwardRef(PasswordStrength)
+export default forwardRef<InputPasswordStrengthRef, InputPasswordStrengthProps>(PasswordStrength)

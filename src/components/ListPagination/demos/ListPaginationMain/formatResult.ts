@@ -1,25 +1,22 @@
-import type { LoadResult } from 'lyrixi-mobile'
+import type { ListAsyncLoadResult } from 'lyrixi-mobile'
+
+import type { ListPaginationDemoApiResult } from './../ListPagination.demos.types'
+
 import mockResult from './mockResult'
 
 // 转换 API 返回数据为页面所需格式
-type ApiResult = {
-  code?: string
-  message?: string
-  data?: { list?: unknown[]; totalPage?: number }
-}
-
 function formatResult(
   _result: unknown,
   _options: { payload: Record<string, unknown> }
-): LoadResult {
+): ListAsyncLoadResult {
   // 测试数据
   // eslint-disable-next-line
-  const result: ApiResult = mockResult as ApiResult
+  const result: ListPaginationDemoApiResult = mockResult as ListPaginationDemoApiResult
   if (result.code === '1') {
     const list = result?.data?.list
     return {
       status: 'success',
-      list: list as LoadResult['list'],
+      list: list as ListAsyncLoadResult['list'],
       totalPage: result?.data?.totalPage
     }
   }

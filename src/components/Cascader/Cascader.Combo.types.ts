@@ -1,14 +1,14 @@
 import type { CSSProperties, ReactNode } from 'react'
 
 import type { CascaderNode, LoadDataFn } from './Cascader.common.types'
-import type { InputSelectComboProps, InputSelectComboRef } from '../Input/types'
+import type { InputSelectProps, InputSelectComboRef } from '../Input/types'
 
 export type CascaderComboRef = InputSelectComboRef & {
   open: () => void
   close: () => void
 } & Record<string, unknown>
 
-export type CascaderComboProps = InputSelectComboProps & {
+export type CascaderComboProps = Omit<InputSelectProps, 'onSearch'> & {
   list?: CascaderNode[]
   loadData?: LoadDataFn
   maskClosable?: boolean

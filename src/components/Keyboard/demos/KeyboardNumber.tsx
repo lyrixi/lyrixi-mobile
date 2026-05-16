@@ -26,7 +26,7 @@ export default () => {
             value={valueFull}
             placeholder="点击输入，展示完整键盘"
             onClick={() => setOpenFull(true)}
-            onChange={setValueFull}
+            onChange={(v) => setValueFull(String(v ?? ''))}
           />
           <Keyboard.Number
             open={openFull}
@@ -51,7 +51,7 @@ export default () => {
             value={value1}
             placeholder="点击输入"
             onClick={() => setOpen1(true)}
-            onChange={setValue1}
+            onChange={(v) => setValue1(String(v ?? ''))}
           />
           <Keyboard.Number
             open={open1}
@@ -67,7 +67,7 @@ export default () => {
             value={value2}
             placeholder="带小数点的数字"
             onClick={() => setOpen2(true)}
-            onChange={setValue2}
+            onChange={(v) => setValue2(String(v ?? ''))}
           />
           <Keyboard.Number
             open={open2}
@@ -84,7 +84,7 @@ export default () => {
             value={value3}
             placeholder="可输入负数"
             onClick={() => setOpen3(true)}
-            onChange={setValue3}
+            onChange={(v) => setValue3(String(v ?? ''))}
           />
           <Keyboard.Number
             open={open3}
@@ -101,7 +101,7 @@ export default () => {
             value={value4}
             placeholder="带确认按钮"
             onClick={() => setOpen4(true)}
-            onChange={setValue4}
+            onChange={(v) => setValue4(String(v ?? ''))}
           />
           <Keyboard.Number
             open={open4}
@@ -123,7 +123,7 @@ export default () => {
             value={value5}
             placeholder="带取消按钮"
             onClick={() => setOpen5(true)}
-            onChange={setValue5}
+            onChange={(v) => setValue5(String(v ?? ''))}
           />
           <Keyboard.Number
             open={open5}
@@ -142,7 +142,7 @@ export default () => {
             value={value6}
             placeholder="自定义样式与事件"
             onClick={() => setOpen6(true)}
-            onChange={setValue6}
+            onChange={(v) => setValue6(String(v ?? ''))}
           />
           <Keyboard.Number
             open={open6}

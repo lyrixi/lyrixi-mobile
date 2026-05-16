@@ -1,6 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-
 import Signature from './Signature'
 
 import type { SignatureMainDrawRef, SignatureMainProps, SignatureMainRef } from '../types'
@@ -95,6 +94,4 @@ const Main = (
     </div>
   )
 }
-export type { SignatureMainProps, SignatureMainRef } from '../types'
-
 export default forwardRef<SignatureMainRef, SignatureMainProps>(Main)

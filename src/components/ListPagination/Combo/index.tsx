@@ -1,9 +1,11 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 
-
-import type { ListPaginationComboProps, ListPaginationComboRef, ListPaginationModalRef } from './../types'
-import type { InputSelectComboRef } from './../../Input/types'
+import type {
+  ListPaginationProps,
+  ListPaginationRef
+} from './../types'
+import type { InputSelectProps, InputSelectComboRef } from './../../Input/types'
 import type { RawItem } from './../../List/types'
 
 // 内库使用-start
@@ -14,9 +16,7 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-type ItemChangeArg = RawItem & { checked?: boolean }
-
-const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
+const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
   (
     {
       // Combo
@@ -94,15 +94,15 @@ const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
   ) => {
     const [open, setOpen] = useState(false)
     const comboRef = useRef<InputSelectComboRef | null>(null)
-    const modalRef = useRef<ListPaginationModalRef | null>(null)
+    const modalRef = useRef<ListPaginationRef | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
-        ...(comboRef.current as InputSelectComboRef),
-        ...(modalRef.current as ListPaginationModalRef),
+        ...(comboRef.current as unknown as ListPaginationRef),
+        ...(modalRef.current as unknown as ListPaginationRef),
         close: () => setOpen(false),
         open: () => setOpen(true)
-      } as ListPaginationComboRef
+      } as ListPaginationRef
     })
 
     async function handleOpen() {
@@ -119,9 +119,12 @@ const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
 
     function handleChange(
       newValue: RawItem | RawItem[] | null,
-      _options: { checkedItem: ItemChangeArg }
+      _options?: { checkedItem?: RawItem; action?: string }
     ) {
-      onChange?.(newValue)
+      const checkedItem =
+        _options?.checkedItem ??
+        ((Array.isArray(newValue) ? newValue[0] : newValue) as RawItem)
+      onChange?.(newValue, { ..._options, checkedItem })
       setOpen(false)
     }
 
@@ -148,7 +151,7 @@ const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
           rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
-          onChange={onChange}
+          onChange={onChange as InputSelectProps['onChange']}
           onClick={handleOpen}
         />
         <Modal
@@ -209,6 +212,4 @@ const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
     )
   }
 )
-export type { ListPaginationComboProps, ListPaginationComboRef } from './../types'
-
 export default Combo

@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 
-
 import type { ToolBarComboProps, ToolBarComboRef } from './../types'
 
 // 内库使用-start
@@ -87,6 +86,4 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     </Button>
   )
 })
-export type { ToolBarComboProps, ToolBarComboRef } from './../types'
-
 export default Combo

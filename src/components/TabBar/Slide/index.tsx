@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
-
 import renderContext from './../utils/renderContext'
 
 import type { TabBarItem, TabBarSlideProps, TabBarSlideRef } from '../types'
@@ -110,6 +109,4 @@ const Slide = forwardRef<TabBarSlideRef, TabBarSlideProps>(
     )
   }
 )
-export type { TabBarSlideProps, TabBarSlideRef } from '../types'
-
 export default Slide

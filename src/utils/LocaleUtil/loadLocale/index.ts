@@ -1,11 +1,11 @@
+import type { LocaleUtilLoadLocaleResult } from './../LocaleUtil.loadLocale.types'
+
 import loadDayjsLanguage from './loadDayjsLanguage'
 import loadLyrixiLanguage from './loadLyrixiLanguage'
 
-type LoadLocaleResult = { status: string; message: string; data?: unknown }
-
 // 加载国际化文件
 async function loadLocale(language: string, { dayjs = true }: { dayjs?: boolean } = {}) {
-  let result: LoadLocaleResult = {
+  let result: LocaleUtilLoadLocaleResult = {
     status: 'error',
     message: 'language is null'
   }
@@ -15,7 +15,7 @@ async function loadLocale(language: string, { dayjs = true }: { dayjs?: boolean 
 
   // 加载dayjs国际化语言文件
   if (dayjs) {
-    result = (await loadDayjsLanguage(language)) as LoadLocaleResult
+    result = (await loadDayjsLanguage(language)) as LocaleUtilLoadLocaleResult
     if (result.status === 'error') {
       return result
     }

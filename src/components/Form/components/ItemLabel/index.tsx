@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 
-
 import ItemsContext from './../ItemsContext'
 
 import type { FormItemLabelProps } from '../../types'
@@ -9,7 +8,7 @@ import type { FormItemLabelProps } from '../../types'
 import DOMUtil from './../../../../utils/DOMUtil'
 import Toast from './../../../Toast'
 import Row from '../../../Row'
-import type { RowColRef } from '../../../Row'
+import type { RowColRef } from '../../../Row/types'
 import Text from '../../../Text'
 // 内库使用-end
 
@@ -86,6 +85,4 @@ const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
     )
   }
 )
-export type { FormItemLabelProps } from '../../types'
-
 export default FormLabel

@@ -1,4 +1,5 @@
 import getTitleByType from './getTitleByType'
+import type { DatePickerUtilsGetTitleMultiTab } from './../../DatePicker.utils.getTitle.types'
 import type { DatePickerGetTitleOptions } from './../../types'
 
 // 内库使用-start
@@ -9,10 +10,8 @@ import DateUtil from './../../../../utils/DateUtil'
 import { DateUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type MultiTab = { value?: Date | null; [k: string]: unknown }
-
 function getTitle(
-  value: Date | (Date | null)[] | MultiTab[] | null | undefined,
+  value: Date | (Date | null)[] | DatePickerUtilsGetTitleMultiTab[] | null | undefined,
   optionsOrFormat?: DatePickerGetTitleOptions | string
 ): string | ReturnType<typeof getTitleByType> {
   if (typeof optionsOrFormat === 'string') {
@@ -23,7 +22,7 @@ function getTitle(
           if (!item) return ''
           if (item instanceof Date) return DateUtil.format(item, pattern)
           if (typeof item === 'object' && item !== null && 'value' in item) {
-            const v = (item as MultiTab).value
+            const v = (item as DatePickerUtilsGetTitleMultiTab).value
             return v ? DateUtil.format(v, pattern) : ''
           }
           return ''
@@ -41,7 +40,7 @@ function getTitle(
   // Multiple Date
   if (Array.isArray(value)) {
     if (value.length && value[0] && typeof value[0] === 'object' && value[0] !== null && 'value' in value[0]) {
-      return (value as MultiTab[])
+      return (value as DatePickerUtilsGetTitleMultiTab[])
         .map((t) => (t.value ? DateUtil.format(t.value, type ?? 'date') : ''))
         .filter(Boolean)
         .join(separator || ' ~ ')

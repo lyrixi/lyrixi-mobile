@@ -71,8 +71,10 @@ const InputText = (
   }: InputTextProps,
   ref: React.Ref<InputTextRef>
 ) => {
+  const textValue = String(value ?? '')
+
   // 输入框展示值
-  const displayValue = typeof formatter === 'function' ? formatter(value) : null
+  const displayValue = typeof formatter === 'function' ? formatter(value ?? '') : null
 
   // Elements
   const rootRef = useRef<HTMLDivElement>(null)
@@ -89,15 +91,15 @@ const InputText = (
       focus()
     }
 
-    if (!value) return
+    if (!textValue) return
 
     let val = ''
 
     // 矫正为正确的值
-    val = String(correctValue(value))
+    val = String(correctValue(value ?? ''))
 
     // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
-    if (val && value && String(val) !== String(value)) {
+    if (val && textValue && String(val) !== textValue) {
       onChange && onChange(val, { action: 'load' })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,8 +109,8 @@ const InputText = (
   useEffect(() => {
     if (!enableCompositionEnd || !inputRef.current) return
     if (inputRef.current.composing) return
-    if (inputRef.current.value !== value) {
-      inputRef.current.value = value
+    if (inputRef.current.value !== textValue) {
+      inputRef.current.value = textValue
     }
     // eslint-disable-next-line
   }, [value, enableCompositionEnd])
@@ -128,7 +130,7 @@ const InputText = (
       blur: () => {
         inputRef.current?.blur?.()
       }
-    }
+    } as InputTextRef
   })
 
   // 矫正最大长度和小数位截取
@@ -174,7 +176,7 @@ const InputText = (
     if (enableCompositionEnd && target?.composing) {
       return
     }
-    if (target.value === value) {
+    if (target.value === textValue) {
       return
     }
 
@@ -238,7 +240,7 @@ const InputText = (
     }
 
     // 修改完回调
-    if (val !== value) {
+    if (val !== textValue) {
       if (onChange) onChange(val, { action: 'blur' })
     }
 
@@ -293,7 +295,7 @@ const InputText = (
         autoCorrect,
         spellCheck,
         autoFocus,
-        ...(enableCompositionEnd ? { defaultValue: value } : { value }),
+        ...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue }),
         maxLength,
         readOnly,
         disabled,
@@ -315,7 +317,7 @@ const InputText = (
             ref={inputRef as React.RefObject<HTMLTextAreaElement>}
             name={name}
             // Value & Display Value
-            {...(enableCompositionEnd ? { defaultValue: value } : { value })}
+            {...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue })}
             placeholder={placeholder}
             // Status
             readOnly={readOnly}
@@ -341,7 +343,7 @@ const InputText = (
             onCompositionEnd={enableCompositionEnd ? handleCompositionEnd : undefined}
           ></textarea>
           <pre className="lyrixi-input-autoSize-pre" style={inputStyle}>
-            <span>{value}</span>
+            <span>{textValue}</span>
           </pre>
         </div>
       )
@@ -354,7 +356,7 @@ const InputText = (
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           name={name}
           // Value & Display Value
-          {...(enableCompositionEnd ? { defaultValue: value } : { value })}
+          {...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue })}
           placeholder={placeholder}
           // Status
           readOnly={readOnly}
@@ -389,7 +391,7 @@ const InputText = (
         name={name}
         type={type} // number类型需要text，否则focus无法设置光标到末尾
         // Value & Display Value
-        {...(enableCompositionEnd ? { defaultValue: value } : { value })}
+        {...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue })}
         placeholder={placeholder}
         // Status
         readOnly={readOnly}
@@ -470,7 +472,7 @@ const InputText = (
         : renderClear({
             clearRender,
             allowClear,
-            value,
+            value: textValue,
             onClear: handleClear,
             onTouchStart: () => {
               if (inputRef.current) {
@@ -484,6 +486,4 @@ const InputText = (
     </div>
   )
 }
-export type { InputTextElement, InputTextProps, InputTextRef } from '../types'
-
-export default forwardRef(InputText)
+export default forwardRef<InputTextRef, InputTextProps>(InputText)

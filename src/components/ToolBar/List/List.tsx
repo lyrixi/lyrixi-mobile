@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import type { ToolBarListBarProps } from './../types'
 
 // 内库使用-start
@@ -23,6 +22,4 @@ function ListBar({ value, list, onChange }: ToolBarListBarProps) {
     />
   )
 }
-export type { ToolBarListBarProps } from './../types'
-
 export default ListBar

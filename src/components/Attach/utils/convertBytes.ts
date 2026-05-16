@@ -1,20 +1,12 @@
-const UNITS = {
-  B: 1,
-  KB: 1024,
-  MB: 1024 ** 2,
-  GB: 1024 ** 3,
-  TB: 1024 ** 4
-} as const
-
-type Unit = keyof typeof UNITS
+import { ATTACH_CONVERT_BYTES_UNITS, type AttachConvertBytesUnit } from '../types'
 
 function convertBytes(bytes: number, targetUnit = 'MB') {
-  const key = targetUnit.toUpperCase() as Unit
-  if (!(key in UNITS) || typeof bytes !== 'number') {
+  const key = targetUnit.toUpperCase() as AttachConvertBytesUnit
+  if (!(key in ATTACH_CONVERT_BYTES_UNITS) || typeof bytes !== 'number') {
     return 0
   }
 
-  return bytes / UNITS[key]
+  return bytes / ATTACH_CONVERT_BYTES_UNITS[key]
 }
 
 export default convertBytes

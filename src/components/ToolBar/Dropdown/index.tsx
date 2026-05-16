@@ -7,10 +7,9 @@ import React, {
   type MouseEvent
 } from 'react'
 import closeAllDropdown from './../utils/closeAllDropdown'
-import Combo, { type ToolBarComboRef } from './../components/Combo'
+import Combo from './../components/Combo'
 
-
-import type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
+import type { ToolBarComboRef, ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -73,7 +72,6 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
   // 唯一id，用于关闭时排除其他dropdown
   const idRef = useRef<string>(ObjectUtil.randomUUID())
 
-
   // 注册当前实例到全局集合
   useEffect(() => {
     if (!window.dropdowns) {
@@ -93,7 +91,6 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     // eslint-disable-next-line
   }, [])
 
-
   useEffect(() => {
     if (open === null) return
     // 打开前先关闭其他所有 dropdown
@@ -105,7 +102,6 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     }
     // eslint-disable-next-line
   }, [open])
-
 
   // Expose
   useImperativeHandle(ref, () => {
@@ -121,7 +117,6 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     }
   })
 
-
   async function handleClick(e: MouseEvent) {
     let newOpen = !open
     if (!newOpen) {
@@ -136,7 +131,6 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
 
     setOpen(true)
   }
-
 
   // 获取标题节点
   function renderCombo() {
@@ -175,11 +169,9 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     )
   }
 
-
   const ComboNode = renderCombo()
 
   const modalOpen = open ?? false
-
 
   return (
     <>
@@ -215,6 +207,4 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
 
 // Component Name, for compact
 ;(Dropdown as typeof Dropdown & { componentName?: string }).componentName = 'ToolBar.Dropdown'
-export type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
-
 export default Dropdown

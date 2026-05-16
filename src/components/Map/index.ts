@@ -55,5 +55,4 @@ const Map = {
   MapMarkers
 }
 
-export type * from './types'
 export default Map

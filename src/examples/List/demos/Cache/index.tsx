@@ -1,4 +1,4 @@
-import React, { useRef, useState, type ComponentRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 // 第三方库导入
 import { ListPagination, LocaleUtil, Page, Storage } from 'lyrixi-mobile'
@@ -10,12 +10,11 @@ import Header from './../Common/Header'
 import Main from './../Common/Main'
 import Footer from './../Common/Footer'
 
+import type { ListExamplesDemoListPaginationRef } from './../ListExamples.demos.types'
 import type { ListCacheStoredShape } from './types'
 
 // 样式图片等资源文件导入
 import './../Common/index.less'
-
-type ListPaginationRef = ComponentRef<typeof ListPagination.Main>
 
 const locale = LocaleUtil.locale
 
@@ -23,7 +22,7 @@ const cacheName = 'pageName_cache'
 
 // 缓存列表
 const Cache = () => {
-  const mainRef = useRef<ListPaginationRef | null>(null)
+  const mainRef = useRef<ListExamplesDemoListPaginationRef | null>(null)
   // 前进需要清除缓存
   // const history = useHistory()
   // if (Storage.getCache(cacheName) && history.action !== 'POP') {
@@ -52,7 +51,7 @@ const Cache = () => {
         onOk={() => {
           console.log(mainRef.current)
           // 离开页面时，更新缓存
-          mainRef.current?.updateCache({ queryParams })
+          mainRef.current?.updateCache?.({ queryParams })
           console.log('Save cache success!')
         }}
         cancel={String(locale('Clear cache'))}

@@ -8,12 +8,7 @@ import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
 import Tags from './Tags'
 
-import type {
-  InputSelectComboProps,
-  InputSelectComboRef,
-  InputTextProps,
-  InputTextRef
-} from '../types'
+import type { InputSelectComboRef, InputSelectProps, InputTextProps, InputTextRef } from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -24,7 +19,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
-const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
+const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
   (
     {
       // Value & Display Value
@@ -56,11 +51,24 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
     ref
   ) => {
     // 显示文本格式化
-    let displayFormatter = typeof formatter !== 'function' ? getDisplayValue : formatter
-    let displayValue = displayFormatter(value, { separator })
+    // let displayValue: string
+    // if (typeof formatter !== 'function') {
+    //   displayValue = getDisplayValue(value, { separator })
+    // } else {
+    //   const f = formatter as (v: unknown, opts?: { separator?: string }) => unknown
+    //   const out = f.length >= 2 ? f(value, { separator }) : f(value)
+    //   displayValue = typeof out === 'string' ? out : String(out ?? '')
+    // }
+
+    // 显示文本格式化
+    if (typeof formatter !== 'function') {
+      // eslint-disable-next-line
+      formatter = getDisplayValue
+    }
+    let displayValue = formatter(value, { separator: separator })
 
     // Expose methods
-    const comboRef = useRef<InputTextRef>(null)
+    const comboRef = useRef<InputTextRef | null>(null)
     useImperativeHandle(ref, () => {
       return {
         // 显示文本
@@ -78,7 +86,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
           }
           return element
         }
-      }
+      } as InputSelectComboRef
     })
 
     // 点击文本框
@@ -89,7 +97,13 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
     }
 
     // 渲染清空按钮
-    function clearRender({ clearable, onClear }: { clearable: boolean; onClear: (e?: React.MouseEvent | React.TouchEvent) => void }): React.ReactNode {
+    function clearRender({
+      clearable,
+      onClear
+    }: {
+      clearable: boolean
+      onClear: (e?: React.MouseEvent | React.TouchEvent) => void
+    }): React.ReactNode {
       // 只读不显示清空按钮
       if (readOnly || disabled) {
         return null
@@ -163,6 +177,4 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectComboProps>(
     )
   }
 )
-export type { InputSelectComboProps, InputSelectComboRef } from '../types'
-
 export default Combo

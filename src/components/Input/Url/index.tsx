@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react'
-import InputText, { InputTextRef } from './../Text'
+import InputText from './../Text'
 
-
-import type { InputUrlProps } from '../types'
+import type { InputTextProps, InputTextRef, InputUrlProps, InputUrlRef } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -16,7 +15,7 @@ import Message from './../../Message'
 import { LocaleUtil, Clipboard, Toast, Message } from 'lyrixi-mobile'
 测试使用-end */
 
-const Url = forwardRef<InputTextRef, InputUrlProps>(
+const Url = forwardRef<InputUrlRef, InputUrlProps>(
   (
     {
       id,
@@ -128,12 +127,12 @@ const Url = forwardRef<InputTextRef, InputUrlProps>(
 
     return (
       <InputText
-        ref={ref}
+        ref={ref as React.Ref<InputTextRef>}
         id={id}
         name={name}
         type="url"
         // Value & Display Value
-        value={value}
+        value={value as string}
         placeholder={placeholder}
         formatter={formatter}
         // Status
@@ -164,7 +163,7 @@ const Url = forwardRef<InputTextRef, InputUrlProps>(
         spellCheck={spellCheck}
         // Events
         onClick={handleClick}
-        onChange={onChange}
+        onChange={onChange as InputTextProps['onChange']}
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}
@@ -173,6 +172,4 @@ const Url = forwardRef<InputTextRef, InputUrlProps>(
     )
   }
 )
-export type { InputUrlProps } from '../types'
-
 export default Url

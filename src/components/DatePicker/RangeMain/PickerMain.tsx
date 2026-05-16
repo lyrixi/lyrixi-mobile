@@ -1,12 +1,6 @@
-import React, {
-  forwardRef,
-  useRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-  type ReactNode
-} from 'react'
+import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import MultipleMain from './../MultipleMain'
+import type { DatePickerRangeMainPickerTab } from './../DatePicker.RangeMain.PickerMain.types'
 import type {
   DatePickerMultipleValue,
   DatePickerMultipleTab,
@@ -20,13 +14,6 @@ import LocaleUtil from '../../../utils/LocaleUtil'
 /* 测试使用-start
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-type PickerTab = DatePickerMultipleTab & {
-  id: string
-  description: ReactNode
-  value: Date | null
-  disabled?: boolean
-}
 
 // 日期区间弹窗
 const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePickerMainProps>(
@@ -87,7 +74,7 @@ const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePic
     })
 
 
-    const [multipleDate, setMultipleDate] = useState<PickerTab[] | null>(null)
+    const [multipleDate, setMultipleDate] = useState<DatePickerRangeMainPickerTab[] | null>(null)
  // eslint-disable-line
 
     function handleChange(tabs: DatePickerMultipleValue) {

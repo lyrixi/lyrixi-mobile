@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Page, List, Card } from 'lyrixi-mobile'
 import listData from './listData'
 
-type Row = Record<string, unknown>
+import type { ListDemoHeaderItemRow } from './List.demos.types'
 
 export default () => {
-  const [singleValue, setSingleValue] = useState<Row | Row[] | null>(null)
+  const [singleValue, setSingleValue] = useState<ListDemoHeaderItemRow | ListDemoHeaderItemRow[] | null>(null)
 
   return (
     <Page>

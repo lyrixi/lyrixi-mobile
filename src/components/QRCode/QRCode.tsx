@@ -18,7 +18,6 @@ function cssSizeToNumber(value: string | number | undefined, fallback: number): 
   return Number.isFinite(n) && n > 0 ? n : fallback
 }
 
-
 // 生成二维码
 const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
   { style, text, children, className },
@@ -28,7 +27,6 @@ const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
   const rootRef = useRef<HTMLSpanElement | null>(null)
 
   const instance = useRef<QRLib | null>(null)
-
 
     useEffect(() => {
       if (!text || typeof text !== 'string') return
@@ -64,7 +62,6 @@ const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
       }
     })
 
-
   if (!text) return null
 
   return (
@@ -74,5 +71,4 @@ const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
   )
 })
 
-export type { QRCodeProps, QRCodeRef } from './types'
 export default QRCode

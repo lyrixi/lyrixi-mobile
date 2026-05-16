@@ -6,16 +6,9 @@ import show from './show'
 import hide from './hide'
 import exists from './exists'
 
-type LoadingWithStatics = typeof Loading & {
-  SpinFade: typeof SpinFade
-  Ouroboros: typeof Ouroboros
-  BallWave: typeof BallWave
-  show: typeof show
-  hide: typeof hide
-  exists: typeof exists
-}
+import type { LoadingComponents } from './Loading.Components.types'
 
-const LoadingExport = Loading as LoadingWithStatics
+const LoadingExport = Loading as LoadingComponents
 LoadingExport.SpinFade = SpinFade
 LoadingExport.Ouroboros = Ouroboros
 LoadingExport.BallWave = BallWave

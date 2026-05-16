@@ -3,14 +3,10 @@ import HeaderItem from './HeaderItem'
 import Item from './Item'
 import List from './List'
 
-type ListWithParts = typeof List & {
-  HeaderItem: typeof HeaderItem
-  InfiniteScroll: typeof InfiniteScroll
-  Item: typeof Item
-}
+import type { ListComponents } from './List.Components.types'
 
-;(List as ListWithParts).HeaderItem = HeaderItem
-;(List as ListWithParts).InfiniteScroll = InfiniteScroll
-;(List as ListWithParts).Item = Item
+;(List as ListComponents).HeaderItem = HeaderItem
+;(List as ListComponents).InfiniteScroll = InfiniteScroll
+;(List as ListComponents).Item = Item
 
-export default List as ListWithParts
+export default List as ListComponents

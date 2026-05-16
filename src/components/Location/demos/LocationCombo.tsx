@@ -1,18 +1,18 @@
-import React, { useRef, useState, type ComponentProps } from 'react'
+import React, { useRef, useState } from 'react'
 import { Page, Location, Card, Button } from 'lyrixi-mobile'
 
-type Loc = Exclude<ComponentProps<typeof Location.Combo>['value'], undefined>
+import type { LocationDemoComboValue } from './Location.demos.types'
 
 export default () => {
-  const [value1, setValue1] = useState<Loc | null>({
+  const [value1, setValue1] = useState<LocationDemoComboValue | null>({
     latitude: 31.990374883871525,
     longitude: 118.73769931504451,
     type: 'gcj02',
     address: '南京烽火科技'
   })
 
-  const [value2, setValue2] = useState<Loc | null>(null)
-  const [value3, setValue3] = useState<Loc>({
+  const [value2, setValue2] = useState<LocationDemoComboValue | null>(null)
+  const [value3, setValue3] = useState<LocationDemoComboValue>({
     latitude: 39.909187,
     longitude: 116.397451,
     type: 'gcj02',

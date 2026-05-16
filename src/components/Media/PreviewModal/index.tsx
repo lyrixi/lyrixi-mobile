@@ -1,8 +1,7 @@
 import React, { useEffect, forwardRef } from 'react'
-import PreviewMain, { type MediaPreviewMainRef } from './../PreviewMain'
+import PreviewMain from './../PreviewMain'
 
-
-import type { MediaPreviewModalProps } from '../types'
+import type { MediaPreviewMainRef, MediaPreviewModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -104,6 +103,4 @@ const PreviewModal = forwardRef<MediaPreviewMainRef, MediaPreviewModalProps>(fun
     </NavBarModal>
   )
 })
-export type { MediaPreviewModalProps } from '../types'
-
 export default PreviewModal

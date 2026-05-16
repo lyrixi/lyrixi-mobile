@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Picker, Page } from 'lyrixi-mobile'
 
-type Row = { name: string; id: string }
+import type { PickerDemoRow } from './Picker.demos.types'
 
 export default () => {
-  const [list, setList] = useState<Row[]>([])
+  const [list, setList] = useState<PickerDemoRow[]>([])
   const [value, setValue] = useState<unknown>(null)
 
   useEffect(() => {

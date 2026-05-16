@@ -18,3 +18,7 @@ export interface ToolBarActionSheetStyleProps {
 }
 
 export type ToolBarActionSheetProps = ActionSheetComboProps & ToolBarActionSheetStyleProps
+
+export type ToolBarActionSheetComboRenderParams = Parameters<
+  NonNullable<ToolBarActionSheetProps['comboRender']>
+>[0]

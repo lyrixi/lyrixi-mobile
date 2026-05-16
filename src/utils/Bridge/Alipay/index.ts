@@ -3,7 +3,13 @@
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 
-import type { SuccessCallback, ErrorCallback, CancelCallback } from '../types'
+import type {
+  BridgeLoadParams,
+  BridgeCloseWindowParams,
+  BridgeOpenLocationParams,
+  BridgeGetLocationParams,
+  BridgeScanCodeParams
+} from '../types'
 
 // 内库使用-start
 import GeoUtil from './../../GeoUtil'
@@ -17,11 +23,7 @@ import { GeoUtil, LocaleUtil, AssetUtil, Device } from 'lyrixi-mobile'
 测试使用-end */
 
 let Bridge = {
-  load: function (params?: {
-    getScriptSrc?: (ctx: { platform: string }) => string | undefined
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  load: function (params?: BridgeLoadParams) {
     const { getScriptSrc, onSuccess, onError } = params || {}
     const topWin = window.top ?? window
     if (topWin.ap) {
@@ -85,7 +87,7 @@ let Bridge = {
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
   },
-  closeWindow: function (params?: { onSuccess?: SuccessCallback; onError?: ErrorCallback }) {
+  closeWindow: function (params?: BridgeCloseWindowParams) {
     const { onSuccess } = params || {}
     ;(window.top ?? window).ap?.popWindow?.()
     onSuccess?.({ status: 'success', data: undefined })
@@ -93,16 +95,7 @@ let Bridge = {
   onBack: function () {
     console.log('支付宝不支持监听物理返回')
   },
-  openLocation: function (params?: {
-    latitude?: number
-    longitude?: number
-    type?: string
-    name?: string
-    address?: string
-    scale?: number
-    onSuccess?: SuccessCallback
-    onError?: ErrorCallback
-  }) {
+  openLocation: function (params?: BridgeOpenLocationParams) {
     const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
     if (!latitude || !longitude || !type) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
@@ -128,11 +121,7 @@ let Bridge = {
       }
     })
   },
-  getLocation: function (params?: {
-    type?: string
-    onSuccess?: SuccessCallback<Record<string, unknown>>
-    onError?: ErrorCallback
-  }) {
+  getLocation: function (params?: BridgeGetLocationParams) {
     const { type, onSuccess, onError } = params || {}
     console.log('调用支付宝定位...', type)
     ;(window.top ?? window).ap?.getLocation?.({
@@ -175,12 +164,7 @@ let Bridge = {
       }
     })
   },
-  scanCode: function (params?: {
-    scanType?: string[]
-    onSuccess?: SuccessCallback<{ content: string }>
-    onError?: ErrorCallback
-    onCancel?: CancelCallback
-  }) {
+  scanCode: function (params?: BridgeScanCodeParams) {
     const { scanType, onSuccess, onError, onCancel } = params || {}
     let type = ''
     if (scanType && scanType.length === 1) {

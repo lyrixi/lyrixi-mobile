@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import type { L } from '../../types'
 import filterCoords from './../../utils/filterCoords'
-import addPolyline, { type LinePoint, type LineStyleOptions } from './addPolyline'
+import addPolyline from './addPolyline'
+import type { LinePoint, LineStyleOptions } from '../../types'
 import clearPolyline from './clearPolyline'
 
 import type { MapPolylineProps, MapPolylineRef } from '../../types'
@@ -13,7 +14,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 /* 测试使用-start
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
-
 
 // 批量折线
 const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
@@ -29,9 +29,7 @@ const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
 
     const polylineLayerRef = useRef<L.LayerGroup | null>(null)
 
-
     points = filterCoords(points)
-
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -58,7 +56,6 @@ const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
-
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -66,7 +63,6 @@ const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
         }
       }
     })
-
 
     function draw() {
       if (ObjectUtil.isEmpty(points)) {
@@ -84,5 +80,4 @@ const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
   }
 )
 
-export type { MapPolylineProps, MapPolylineRef } from '../../types'
 export default Polyline

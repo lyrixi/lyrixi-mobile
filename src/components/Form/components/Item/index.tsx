@@ -48,6 +48,4 @@ const Item = forwardRef<FormItemRef, FormItemLayoutProps>(
     )
   }
 )
-export type { FormItemLayoutProps as FormItemProps } from '../../types'
-
 export default Item

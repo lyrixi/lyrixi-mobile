@@ -1,14 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react'
 import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
-import Dropdown, { type ToolBarDropdownRef } from './../Dropdown'
+import Dropdown from './../Dropdown'
 import DateRange from './DateRange'
 
 import type {
   DatePickerRangesMap,
   DatePickerRangeChangeMeta
-} from './../../DatePicker'
+} from './../../DatePicker/types'
 
-import type { ToolBarDateRangeBarProps } from './../types'
+import type { ToolBarDateRangeBarProps, ToolBarDropdownRef } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -225,6 +225,4 @@ function DateRangeBar({
 // Component Name, for compact
 ;(DateRangeBar as typeof DateRangeBar & { componentName?: string }).componentName =
   'ToolBar.DateRange'
-export type { ToolBarDateRangeBarProps } from './../types'
-
 export default DateRangeBar

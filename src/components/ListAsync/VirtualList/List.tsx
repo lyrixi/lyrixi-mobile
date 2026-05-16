@@ -2,10 +2,11 @@ import React, { forwardRef } from 'react'
 
 
 import type { RawItem } from './../../List/types'
-import type { ListAsyncVirtualListProps } from './../types'
+import type { ListAsyncProps } from './../types'
 
 // 内库使用-start
-import List, { ListRef } from './../../List/List'
+import List from './../../List/List'
+import type { ListRef } from './../../List/types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -40,7 +41,7 @@ const VirtualList = (
     itemRender,
     // Events
     onChange
-  }: ListAsyncVirtualListProps,
+  }: ListAsyncProps,
   ref: React.Ref<ListRef>
 ) => {
   return (
@@ -83,4 +84,4 @@ const VirtualList = (
   )
 }
 
-export default forwardRef<ListRef, ListAsyncVirtualListProps>(VirtualList)
+export default forwardRef<ListRef, ListAsyncProps>(VirtualList)

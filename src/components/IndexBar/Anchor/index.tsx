@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import type { IndexBarAnchorProps } from '../types'
 
 // 内库使用-start
@@ -30,6 +29,4 @@ const Anchor = ({
     </div>
   )
 }
-export type { IndexBarAnchorProps } from '../types'
-
 export default Anchor

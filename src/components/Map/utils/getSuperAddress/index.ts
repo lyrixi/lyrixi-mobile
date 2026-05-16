@@ -3,7 +3,6 @@ import getAddressCache from './getAddressCache'
 import defaultGetAddress from './../getAddress'
 import type { GetSuperAddressParams } from '../../types'
 
-
 /**
  * 获取地址（带缓存）
  */
@@ -37,5 +36,4 @@ async function getSuperAddress({
   return result
 }
 
-export type { GetSuperAddressParams } from '../../types'
 export default getSuperAddress

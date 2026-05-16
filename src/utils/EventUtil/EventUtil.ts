@@ -1,8 +1,8 @@
-type EventFn = (...args: unknown[]) => unknown
+import type { EventUtilEventFn } from './EventUtil.types'
 
 const Observer = {
-  events: {} as Record<string, EventFn[]>,
-  on: function (eventName: string, fn: EventFn): void {
+  events: {} as Record<string, EventUtilEventFn[]>,
+  on: function (eventName: string, fn: EventUtilEventFn): void {
     if (!this.events[eventName]) {
       this.events[eventName] = []
     }
@@ -12,12 +12,12 @@ const Observer = {
     const fns = this.events[eventName]
     if (!Array.isArray(fns) || !fns.length) return false
     // eslint-disable-next-line
-    for (let i = 0, fn: EventFn | undefined; (fn = fns[i++]); ) {
+    for (let i = 0, fn: EventUtilEventFn | undefined; (fn = fns[i++]); ) {
       fn.apply(this, args)
     }
     return true
   },
-  off: function (eventName: string, fn: EventFn): boolean {
+  off: function (eventName: string, fn: EventUtilEventFn): boolean {
     let fns = this.events[eventName]
     if (!Array.isArray(fns) || !fns.length) return false
     for (let i = 0; i < fns.length; i++) {

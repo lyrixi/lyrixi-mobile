@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-
 import type { InputRateProps, InputRateRef } from '../types'
 
 // 内库使用-start
@@ -44,13 +43,14 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
   ) => {
     const rootRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement>(null)
+    const numericValue = typeof value === 'number' ? value : Number(value ?? 0)
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
         inputElement: inputRef.current,
         getElement: () => rootRef.current,
         getInputElement: () => inputRef.current
-      }
+      } as InputRateRef
     })
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -65,12 +65,12 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
 
     function getItemActiveWidth(itemValue: number): string {
       // 当前项位于整数位
-      if (itemValue <= value) {
+      if (itemValue <= numericValue) {
         return '100%'
       }
       // 当前项位于小数位
-      if (itemValue === Math.ceil(value)) {
-        return `${(value - Math.floor(value)) * 100}%`
+      if (itemValue === Math.ceil(numericValue)) {
+        return `${(numericValue - Math.floor(numericValue)) * 100}%`
       }
       // 当前项超出
       return '0%'
@@ -120,7 +120,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
           type="range"
           className="lyrixi-input-rate-input"
           // Value & Display Value
-          value={value}
+          value={numericValue}
           // Status
           readOnly={readOnly}
           disabled={disabled}
@@ -148,6 +148,4 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
     )
   }
 )
-export type { InputRateIconParams, InputRateProps, InputRateRef } from '../types'
-
 export default Rate

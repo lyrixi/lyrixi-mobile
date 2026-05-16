@@ -1,12 +1,9 @@
-import type { ToastHideOptions } from './types'
-
-
-type ExtendedHTMLElement = HTMLElement & { timeout?: ReturnType<typeof setTimeout> }
+import type { ToastHideExtendedHTMLElement, ToastHideOptions } from './types'
 
 // 移除Toast
 function hide({ onClose }: ToastHideOptions = {}) {
   let toastId = '__lyrixi_toast_el__'
-  let mask = document.getElementById(toastId) as ExtendedHTMLElement | null
+  let mask = document.getElementById(toastId) as ToastHideExtendedHTMLElement | null
 
   if (mask) {
     if (mask.timeout) window.clearTimeout(mask.timeout)
@@ -17,5 +14,4 @@ function hide({ onClose }: ToastHideOptions = {}) {
   }
 }
 
-export type { ToastHideOptions } from './types'
 export default hide

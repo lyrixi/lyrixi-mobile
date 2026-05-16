@@ -3,9 +3,9 @@ import { Page, List } from 'lyrixi-mobile'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
 
-type Row = { id: number; name: string }
+import type { PageDemoRow } from './Page.demos.types'
 
-const list: Row[] = []
+const list: PageDemoRow[] = []
 for (let i = 0; i < 100; i++) {
   list.push({
     id: i,

@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
-import InputText, { InputTextRef, InputTextProps } from './../Text'
+import InputText from './../Text'
+import type { InputNumberProps, InputNumberRef, InputTextProps, InputTextRef } from './../types'
 
-const Number = forwardRef<InputTextRef, InputTextProps>(
+const Number = forwardRef<InputNumberRef, InputNumberProps>(
   (
     {
       id,
@@ -55,12 +56,12 @@ const Number = forwardRef<InputTextRef, InputTextProps>(
   ) => {
     return (
       <InputText
-        ref={ref}
+        ref={ref as React.Ref<InputTextRef>}
         id={id}
         name={name}
         type="number"
         // Value & Display Value
-        value={value}
+        value={value as string}
         placeholder={placeholder}
         formatter={formatter}
         // Status
@@ -91,7 +92,7 @@ const Number = forwardRef<InputTextRef, InputTextProps>(
         spellCheck={spellCheck}
         // Events
         onClick={onClick}
-        onChange={onChange}
+        onChange={onChange as InputTextProps['onChange']}
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}

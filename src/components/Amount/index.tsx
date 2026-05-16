@@ -62,5 +62,4 @@ function Amount({
   )
 }
 
-export type { AmountProps } from './types'
 export default Amount

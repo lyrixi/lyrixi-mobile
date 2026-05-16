@@ -25,7 +25,6 @@ import Result from './../../../Result'
 import { LocaleUtil, GeoUtil, Result } from 'lyrixi-mobile'
 测试使用-end */
 
-
 const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   (
     {
@@ -61,7 +60,6 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
           ? (defaultGetSuperAddress as GetAddressFn)
           : (defaultGetAddress as GetAddressFn)
 
-
     let getLocation: GetLocationFn =
       typeof getLocationProp === 'function'
         ? getLocationProp
@@ -69,14 +67,11 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
           ? (defaultGetSuperLocation as GetLocationFn)
           : (defaultGetLocation as GetLocationFn)
 
-
     const openLocation: ((...args: unknown[]) => unknown) | undefined =
       typeof openLocationProp === 'function' ? openLocationProp : window?.defaultOpenLocation
 
-
     let queryNearby: QueryNearbyFn =
       typeof queryNearbyProp === 'function' ? queryNearbyProp : (defaultQueryNearby as QueryNearbyFn)
-
 
     let center: MapPoint
 
@@ -99,11 +94,9 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       center = centerObj
     }
 
-
     const rootRef = useRef<HTMLDivElement>(null)
 
     let [leafletMap, setLeafletMap] = useState<L.Map | string | null>(null)
-
 
     const APIRef = useRef<MapContainerAPI>({
       element: rootRef.current,
@@ -200,7 +193,6 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       }
     })
 
-
     useEffect(() => {
       APIRef.current.element = rootRef.current
       // eslint-disable-next-line @typescript-eslint/no-use-before-define -- loadData 声明在组件后部，与既有结构一致
@@ -208,16 +200,13 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       // eslint-disable-next-line
     }, [])
 
-
     useImperativeHandle(ref, () => {
       return APIRef.current
     })
 
-
     function localeToErrorString(node: string | React.ReactNode): string {
       return typeof node === 'string' ? node : 'Error'
     }
-
 
     function events() {
       /* 短路与回调，与既有写法一致 */
@@ -263,7 +252,6 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       })
       /* eslint-enable @typescript-eslint/no-unused-expressions */
     }
-
 
     async function loadData() {
       if (!rootRef.current?.querySelector) {
@@ -331,7 +319,6 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       })
     }
 
-
     let newChildren = null
 
     if (!leafletMap) {
@@ -345,7 +332,6 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
         map: APIRef.current
       })
     }
-
 
     return (
       <div
@@ -361,5 +347,4 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   }
 )
 
-export type { MapContainerAPI, MapContainerProps } from '../../types'
 export default MapContainer

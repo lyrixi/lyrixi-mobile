@@ -2,12 +2,9 @@ import NavBar from './NavBar'
 import Title from './Title'
 import Button from './Button'
 
-type NavBarWithParts = typeof NavBar & {
-  Title: typeof Title
-  Button: typeof Button
-}
+import type { NavBarComponents } from './NavBar.Components.types'
 
-;(NavBar as NavBarWithParts).Title = Title
-;(NavBar as NavBarWithParts).Button = Button
+;(NavBar as NavBarComponents).Title = Title
+;(NavBar as NavBarComponents).Button = Button
 
-export default NavBar as NavBarWithParts
+export default NavBar as NavBarComponents

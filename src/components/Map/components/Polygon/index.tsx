@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import type { L } from '../../types'
 import filterCoords from './../../utils/filterCoords'
-import addPolygon, { type PolyPoint, type PolyStyleOptions } from './addPolygon'
+import addPolygon from './addPolygon'
+import type { PolyPoint, PolyStyleOptions } from '../../types'
 import clearPolygon from './clearPolygon'
 
 import type { MapPolygonProps, MapPolygonRef } from '../../types'
@@ -13,7 +14,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 /* 测试使用-start
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
-
 
 // 多边形
 const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
@@ -32,9 +32,7 @@ const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
 
     const polygonLayerRef = useRef<L.LayerGroup | null>(null)
 
-
     points = filterCoords(points)
-
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -62,7 +60,6 @@ const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
-
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -70,7 +67,6 @@ const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
         }
       }
     })
-
 
     function draw() {
       const arr = points as PolyPoint[]
@@ -94,5 +90,4 @@ const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
   }
 )
 
-export type { MapPolygonProps, MapPolygonRef } from '../../types'
 export default Polygon

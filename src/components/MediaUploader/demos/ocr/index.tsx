@@ -4,17 +4,13 @@ import { Page, MediaUploader } from 'lyrixi-mobile'
 import Ocr from './Ocr'
 import Bridge from './../../../../utils/Bridge'
 
-type DemoItem = {
-  fileThumbnail?: string
-  fileUrl?: string
-  filePath?: string
-} & Record<string, unknown>
+import type { MediaUploaderDemoOcrListItem } from '../MediaUploader.demos.ocr.types'
 
 Bridge.load({})
 
 new vconsole()
 export default () => {
-  const [list, setList] = useState<DemoItem[]>([
+  const [list, setList] = useState<MediaUploaderDemoOcrListItem[]>([
     {
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
@@ -22,7 +18,7 @@ export default () => {
     }
   ])
 
-  function handlePhotoChange(newList: DemoItem[]) {
+  function handlePhotoChange(newList: MediaUploaderDemoOcrListItem[]) {
     // setList(
     //   newList.map((item) => {
     //     if (item.ocrResult) item.ocr_result = item.ocrResult

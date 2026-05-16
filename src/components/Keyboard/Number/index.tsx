@@ -6,14 +6,14 @@ import ButtonNumber from './ButtonNumber'
 import ButtonAction from './ButtonAction'
 import ButtonQuick from './ButtonQuick'
 
-
 import type { KeyboardNumberProps, KeyboardNumberRef } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
-import Page, { PageRef } from '../../Page'
+import Page from '../../Page'
+import type { PageRef } from '../../Page/types'
 import Icon from './../../Icon'
 // 内库使用-end
 
@@ -48,14 +48,12 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
 
     const rootRef = useRef<PageRef | null>(null)
 
-
     useEffect(() => {
       if (open && onOpen) {
         onOpen()
       }
       // eslint-disable-next-line
     }, [open, onOpen])
-
 
     useEffect(() => {
       if (!open) return
@@ -77,12 +75,10 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }, [open, onClose])
 
-
     useImperativeHandle(ref, () => ({
       element: rootRef.current?.element ?? null,
       getElement: () => rootRef.current?.element ?? null
     }))
-
 
     const handleNumber = (num: React.ReactNode) => {
       let newValue = value + String(num ?? '')
@@ -90,7 +86,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         onChange(newValue, { action: 'number' })
       }
     }
-
 
     const handleDot = () => {
       const currentValue = value || ''
@@ -100,7 +95,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }
 
-
     const handleMinus = () => {
       const currentValue = value || ''
       const newValue = currentValue + '-'
@@ -108,7 +102,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         onChange(newValue, { action: 'minus' })
       }
     }
-
 
     const handleDelete = () => {
       let newValue = ''
@@ -120,7 +113,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
     }
 
-
     const handleOk = async () => {
       if (onOk) {
         let goOn = await onOk(value)
@@ -128,7 +120,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       }
       onClose?.()
     }
-
 
     const handleCancel = () => {
       if (onCancel) {
@@ -138,7 +129,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         onClose()
       }
     }
-
 
     function renderOperateRow() {
       isDeleteInMainRef.current = true
@@ -183,7 +173,6 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         </>
       )
     }
-
 
     const KeyboardNode = (
       <Page
@@ -251,10 +240,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       </Page>
     )
 
-
     return createPortal(KeyboardNode, portal || document.getElementById('root') || document.body)
   }
 )
-export type { KeyboardAction, KeyboardNumberProps, KeyboardNumberRef } from './../types'
-
 export default KeyboardNumber

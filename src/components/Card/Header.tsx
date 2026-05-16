@@ -10,7 +10,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 const Header = forwardRef<CardHeaderRef, CardHeaderProps>(function Header(
   { style, className, children },
   ref
@@ -35,5 +34,4 @@ const Header = forwardRef<CardHeaderRef, CardHeaderProps>(function Header(
   )
 })
 
-export type { CardHeaderProps, CardHeaderRef } from './types'
 export default Header

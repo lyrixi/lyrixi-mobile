@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react'
 import List from './List'
 
-
-import type { ListAsyncListMainProps, ListAsyncListMainRef } from './../types'
+import type { ListAsyncRef, ListAsyncProps } from './../types'
 
 // 内库使用-start
 import Page from './../../Page'
@@ -13,24 +12,30 @@ import { Page } from 'lyrixi-mobile'
 测试使用-end */
 
 // 列表
-const Main = forwardRef<ListAsyncListMainRef, ListAsyncListMainProps>(
+const EntityList = forwardRef<ListAsyncRef, ListAsyncProps>(
   (
     {
+      // 子组件特定属性属性
+      list,
+      children,
+
       // Value & Display Value
       value,
-      list,
       formatViewList,
       formatViewItem,
 
       // Status
-      virtual,
       multiple,
       allowClear,
       checkable,
+      virtual,
+      threshold,
+      touchStopPropagation,
 
       // Style
-      className,
+      safeArea,
       style,
+      className,
       itemStyle,
       itemClassName,
       itemLayout,
@@ -41,7 +46,6 @@ const Main = forwardRef<ListAsyncListMainRef, ListAsyncListMainProps>(
       itemRender,
       prependRender,
       appendRender,
-      children,
 
       // Events
       onChange,
@@ -55,7 +59,11 @@ const Main = forwardRef<ListAsyncListMainRef, ListAsyncListMainProps>(
     return (
       <Page.Main
         ref={ref}
+        // Status
+        threshold={threshold}
+        touchStopPropagation={touchStopPropagation}
         // Style
+        safeArea={safeArea}
         className={className}
         style={style}
         // Events
@@ -101,6 +109,4 @@ const Main = forwardRef<ListAsyncListMainRef, ListAsyncListMainProps>(
     )
   }
 )
-export type { ListAsyncListMainProps, ListAsyncListMainRef } from './../types'
-
-export default Main
+export default EntityList

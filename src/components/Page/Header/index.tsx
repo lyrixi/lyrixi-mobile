@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-
 import type { PageHeaderProps, PageHeaderRef } from '../types'
 
 // 内库使用-start
@@ -28,6 +27,4 @@ const Header = forwardRef<PageHeaderRef, PageHeaderProps>(function Header(
     </header>
   )
 })
-export type { PageHeaderProps, PageHeaderRef } from '../types'
-
 export default Header

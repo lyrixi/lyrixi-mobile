@@ -1,10 +1,11 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
-import type { SelectModalRootProps, SelectMainRef } from './../types'
+
+import type { ListProps, RawItem } from './../../List/types'
+import type { SelectProps, SelectRef } from './../types'
+import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start
-import type { ListProps } from './../../List/types'
-import type { ModalRef } from './../../Modal/types'
 import DOMUtil from './../../../utils/DOMUtil'
 import NavBarModal from './../../../components/Modal/NavBarModal'
 // 内库使用-end
@@ -14,7 +15,7 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function SelectModal(
+const Modal = forwardRef<SelectRef, SelectProps>(function SelectModal(
   {
     value,
     list,
@@ -48,7 +49,7 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
 ) {
   const [currentValue, setCurrentValue] = useState<unknown>(value)
   const modalRef = useRef<ModalRef | null>(null)
-  const mainRef = useRef<SelectMainRef | null>(null)
+  const mainRef = useRef<SelectRef | null>(null)
 
   useEffect(() => {
     if (open) {
@@ -59,10 +60,10 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
   useImperativeHandle(ref, () => {
     return {
       ...(typeof modalRef.current === 'object' && modalRef.current !== null
-        ? (modalRef.current as unknown as Record<string, unknown>)
+        ? (modalRef.current as unknown as SelectRef)
         : {}),
       ...(typeof mainRef.current === 'object' && mainRef.current !== null
-        ? (mainRef.current as unknown as Record<string, unknown>)
+        ? (mainRef.current as unknown as SelectRef)
         : {})
     }
   })
@@ -80,14 +81,14 @@ const Modal = forwardRef<Record<string, unknown>, SelectModalRootProps>(function
         setCurrentValue(goOn)
       }
     }
-    onChange?.(next)
+    onChange?.(next as RawItem | RawItem[] | null, undefined)
     onClose?.()
   }
 
   function handleChange(newValue: unknown) {
     setCurrentValue(newValue)
     if (!multiple) {
-      onChange?.(newValue)
+      onChange?.(newValue as RawItem | RawItem[] | null, undefined)
       onClose?.()
     }
   }

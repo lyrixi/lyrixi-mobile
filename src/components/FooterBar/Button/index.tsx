@@ -1,8 +1,8 @@
 import React, { Fragment, useRef, forwardRef, useImperativeHandle, useState } from 'react'
 
-
 import type { ButtonRef } from './../../Button/types'
 import type { FooterBarButtonProps, FooterBarButtonRef } from './../types'
+import type { FooterBarButtonComponents } from '../FooterBar.Button.Components.types'
 import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start
@@ -13,7 +13,6 @@ import Button from './../../Button'
 /* 测试使用-start
 import { ActionSheet, Icon } from 'lyrixi-mobile'
 测试使用-end */
-
 
 const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
   (
@@ -124,8 +123,6 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
   }
 )
 
-type FooterBarButtonWithName = typeof FooterBarButton & { componentName: string }
-;(FooterBarButton as FooterBarButtonWithName).componentName = 'FooterBar.Button'
+;(FooterBarButton as FooterBarButtonComponents).componentName = 'FooterBar.Button'
 
-export type { FooterBarButtonProps, FooterBarButtonRef } from './../types'
-export default FooterBarButton as FooterBarButtonWithName
+export default FooterBarButton as FooterBarButtonComponents

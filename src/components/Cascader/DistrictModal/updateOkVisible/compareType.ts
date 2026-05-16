@@ -1,4 +1,4 @@
-import { DistrictType } from '../../DistrictMain/utils/formatType'
+import type { DistrictType } from '../../Cascader.DistrictMain.utils.formatType.types'
 
 // 比较类型, 大于等于返回1, 小于返回-1, 等于返回0
 function compareType(type1: DistrictType | string, type2: DistrictType | string): number | null {

@@ -46,3 +46,5 @@ export interface FloatTreeListItem {
   children?: FloatTreeListItem[]
   [key: string]: unknown
 }
+
+export type FloatElement = HTMLDivElement & { initialPosition?: boolean }

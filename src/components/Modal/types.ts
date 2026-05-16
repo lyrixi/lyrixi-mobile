@@ -1,5 +1,1 @@
-export type * from './Modal.DropdownModal.types'
-export type * from './Modal.FilterModal.types'
-export type * from './Modal.types'
-export type * from './Modal.NavBarModal.NavBar.types'
-export type * from './Modal.NavBarModal.types'
+export * from './Modal.types'

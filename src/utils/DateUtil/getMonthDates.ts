@@ -1,9 +1,9 @@
+import type { DateUtilGetMonthDatesMonthCell } from './DateUtil.getMonthDates.types'
+
 // const minuteMillisecond = 60 * 1000
 // const hourMillisecond = 60 * 60 * 1000
 const dayMillisecond = 24 * 60 * 60 * 1000
 // const weekMillisecond = 7 * 24 * 60 * 60 * 1000
-
-type MonthCell = Date & { isCurrent?: boolean }
 
 // 月数据, 当前月isCurrent为true, 返回6行7列二维数组(服务日历控件)
 function getMonthDates(currentDate: Date | number | string, weekStart?: string) {
@@ -30,8 +30,8 @@ function getMonthDates(currentDate: Date | number | string, weekStart?: string) 
   let startMillisecond = date.getTime() - dayMillisecond * firstDayIndex
 
   // 生成月
-  const rows: MonthCell[][] = []
-  const data: MonthCell[] = []
+  const rows: DateUtilGetMonthDatesMonthCell[][] = []
+  const data: DateUtilGetMonthDatesMonthCell[] = []
   for (let i = 0; i < 42; i++) {
     // 设置日期
     data.push(new Date())

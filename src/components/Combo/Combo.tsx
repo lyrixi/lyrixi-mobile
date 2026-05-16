@@ -1,7 +1,6 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 import type { ComboProps, ComboRef } from './types'
 
-
 const Combo = forwardRef<ComboRef, ComboProps>(function Combo({ style, className, children, onClick }, ref) {
   const comboRef = useRef<HTMLDivElement>(null)
   useImperativeHandle(ref, () => {
@@ -18,5 +17,4 @@ const Combo = forwardRef<ComboRef, ComboProps>(function Combo({ style, className
   )
 })
 
-export type { ComboProps, ComboRef } from './types'
 export default Combo

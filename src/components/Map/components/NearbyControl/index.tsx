@@ -17,12 +17,10 @@ import Loading from './../../../Loading'
 import { LocaleUtil, Loading } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 附近推荐
 const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
   ({ value, radius, readOnly, nearbyVisible = true, map, onChange, onSuccess, onError }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)
-
 
   const [result, setResult] = useState<QueryNearbyResult | null>(null)
 
@@ -45,7 +43,6 @@ const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
     // eslint-disable-next-line
   }, [JSON.stringify(tab), JSON.stringify(value)])
 
-
   useImperativeHandle(ref, () => {
     return {
       element: rootRef.current,
@@ -53,7 +50,6 @@ const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
       reload: loadData
     }
   })
-
 
   async function loadData() {
     if (!map) return
@@ -128,5 +124,4 @@ const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
   )
 })
 
-export type { MapNearbyControlProps, MapValue } from '../../types'
 export default Nearby

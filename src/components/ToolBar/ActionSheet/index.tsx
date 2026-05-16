@@ -1,7 +1,7 @@
 import React, { forwardRef, type MouseEvent } from 'react'
 import Combo from './../components/Combo'
 
-import type { ToolBarActionSheetProps } from './../types'
+import type { ToolBarActionSheetComboRenderParams, ToolBarActionSheetProps } from './../types'
 
 // 内库使用-start
 import ActionSheet from './../../ActionSheet'
@@ -10,8 +10,6 @@ import ActionSheet from './../../ActionSheet'
 /* 测试使用-start
 import { ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
-
-type ComboRenderParams = Parameters<NonNullable<ToolBarActionSheetProps['comboRender']>>[0]
 
 // 操作表下拉
 const ToolBarActionSheet = forwardRef<
@@ -63,7 +61,7 @@ const ToolBarActionSheet = forwardRef<
   }
 
   // 获取标题节点
-  function renderCombo({ comboRef, open, onClick }: ComboRenderParams) {
+  function renderCombo({ comboRef, open, onClick }: ToolBarActionSheetComboRenderParams) {
     if (typeof comboRender === 'function') {
       return comboRender({
         comboRef,
@@ -129,6 +127,4 @@ const ToolBarActionSheet = forwardRef<
 // Component Name, for compact
 ;(ToolBarActionSheet as typeof ToolBarActionSheet & { componentName?: string }).componentName =
   'ToolBar.ActionSheet'
-export type { ToolBarActionSheetProps, ToolBarActionSheetStyleProps } from './../types'
-
 export default ToolBarActionSheet

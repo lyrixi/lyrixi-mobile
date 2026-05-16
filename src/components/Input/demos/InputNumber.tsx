@@ -40,7 +40,7 @@ export default () => {
         <Input.Number
           value={value}
           onChange={setValue}
-          formatter={(currentValue) => {
+          formatter={(currentValue: string) => {
             return '$' + MathUtil.thousands(currentValue)
           }}
         />

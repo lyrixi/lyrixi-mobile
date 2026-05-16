@@ -9,7 +9,7 @@ import React, {
 
 import getTranslateValue from './utils/getTranslateValue'
 
-import type { PickerSlotsProps } from '../types'
+import type { PickerMainSlotsSlotDragState, PickerMainSlotsTouchDragState, PickerSlotsProps } from '../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -20,35 +20,13 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-type TouchDragState = {
-  startX: number
-  startY: number
-  currentX: number
-  currentY: number
-  endX: number
-  endY: number
-  startTimeStamp: number
-  duration: number
-  diffX: number
-  diffY: number
-  posY: number
-  currentPosY: number
-  direction: string | null
-}
-
-type SlotDragState = {
-  slotElement: HTMLUListElement | null
-  slotIndex: string | null
-  slotHeight: number
-}
-
 const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
   { lists = [], cellHeight = 44, onDragEnd },
   ref: Ref<HTMLDivElement>
 ) {
   const isDragRef = useRef(false)
 
-  const touchesRef = useRef<TouchDragState>({
+  const touchesRef = useRef<PickerMainSlotsTouchDragState>({
     startX: 0,
     startY: 0,
     currentX: 0,
@@ -64,7 +42,7 @@ const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
     direction: null
   })
 
-  const slotRef = useRef<SlotDragState>({
+  const slotRef = useRef<PickerMainSlotsSlotDragState>({
     slotElement: null,
     slotIndex: null,
     slotHeight: 0
@@ -184,7 +162,5 @@ const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
     </div>
   )
 })
-
-export type { PickerColumnItem, PickerSlotsProps } from '../types'
 
 export default Lists

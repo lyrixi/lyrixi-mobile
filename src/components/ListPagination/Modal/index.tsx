@@ -1,12 +1,9 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
-
 import type {
   ListPaginationProps,
-  ListPaginationRef,
-  ListPaginationModalProps,
-  ListPaginationModalRef
+  ListPaginationRef
 } from './../types'
 import type { ModalRef } from './../../Modal/types'
 import type { RawItem } from './../../List/types'
@@ -21,10 +18,8 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-type ItemChangeArg = RawItem & { checked?: boolean }
-
 // Modal
-const Modal = forwardRef<ListPaginationModalRef, ListPaginationModalProps>(
+const Modal = forwardRef<ListPaginationRef, ListPaginationProps>(
   (
     {
       // Value & Display Value
@@ -99,9 +94,9 @@ const Modal = forwardRef<ListPaginationModalRef, ListPaginationModalProps>(
 
     useImperativeHandle(ref, () => {
       return {
-        ...(modalRef.current as ModalRef),
+        ...(modalRef.current as ListPaginationRef),
         ...(mainRef.current as ListPaginationRef)
-      } as ListPaginationModalRef
+      } as ListPaginationRef
     })
 
     async function handleOk() {
@@ -112,18 +107,21 @@ const Modal = forwardRef<ListPaginationModalRef, ListPaginationModalProps>(
           currentValue = goOn as RawItem | RawItem[]
         }
       }
-      const checked = (Array.isArray(currentValue) ? currentValue[0] : currentValue) as ItemChangeArg
+      const checked = (Array.isArray(currentValue) ? currentValue[0] : currentValue) as RawItem
       onChange?.(currentValue, { checkedItem: checked })
       onClose?.()
     }
 
     function handleChange(
       newValue: RawItem | RawItem[] | null,
-      options: { checkedItem: ItemChangeArg }
+      options?: { checkedItem?: RawItem; action?: string }
     ) {
       setCurrentValue(newValue)
       if (!multiple) {
-        onChange?.(newValue, options)
+        const checkedItem =
+          options?.checkedItem ??
+          ((Array.isArray(newValue) ? newValue[0] : newValue) as RawItem)
+        onChange?.(newValue, { ...options, checkedItem })
         onClose?.()
       }
     }
@@ -200,6 +198,4 @@ const Modal = forwardRef<ListPaginationModalRef, ListPaginationModalProps>(
     )
   }
 )
-export type { ListPaginationModalProps, ListPaginationModalRef } from './../types'
-
 export default Modal

@@ -1,4 +1,2 @@
-export type * from './ListPagination.Main.types'
-export type * from './ListPagination.Main.queryData.types'
-export type * from './ListPagination.Modal.types'
-export type * from './ListPagination.Combo.types'
+export * from './ListPagination.ListPagination.types'
+export * from './Main/queryData/ListPagination.Main.queryData.types'

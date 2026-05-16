@@ -2,7 +2,6 @@ import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
 import type { PolyPoint, PolyStyleOptions } from '../../types'
 
-
 // Polygon
 function addPolygon(
   points: PolyPoint[] | null | undefined,
@@ -29,5 +28,4 @@ function addPolygon(
   polygon.addTo(layer)
 }
 
-export type { PolyPoint, PolyStyleOptions } from '../../types'
 export default addPolygon

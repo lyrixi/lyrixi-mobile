@@ -30,7 +30,6 @@ import Toast from './../../Toast'
 import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 文件上传
 function Attach(
   {
@@ -418,5 +417,4 @@ function Attach(
   )
 }
 
-export type { AttachListItem, AttachProps, AttachRef } from '../types'
 export default forwardRef<AttachRef, AttachProps>(Attach)

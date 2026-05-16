@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
-
 import renderContext from './../utils/renderContext'
 
 import type { TabBarGroupProps, TabBarGroupRef, TabBarItem } from '../types'
@@ -111,6 +110,4 @@ const Group = forwardRef<TabBarGroupRef, TabBarGroupProps>(
     )
   }
 )
-export type { TabBarGroupProps, TabBarGroupRef } from '../types'
-
 export default Group

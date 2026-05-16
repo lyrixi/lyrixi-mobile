@@ -11,7 +11,6 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { Loading } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 上传中图标
 const Uploading = ({ uploadingType, className, uploadingRender }: AttachUploadingProps) => {
   // 上传中node
@@ -33,5 +32,4 @@ const Uploading = ({ uploadingType, className, uploadingRender }: AttachUploadin
   )
 }
 
-export type { AttachUploadingProps } from '../types'
 export default Uploading

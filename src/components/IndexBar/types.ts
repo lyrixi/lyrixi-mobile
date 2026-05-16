@@ -1,2 +1,2 @@
-export type * from './IndexBar.Anchor.types'
-export type * from './IndexBar.types'
+export * from './IndexBar.Anchor.types'
+export * from './IndexBar.types'

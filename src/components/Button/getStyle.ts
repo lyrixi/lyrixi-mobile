@@ -11,8 +11,6 @@ import DOMUtil from './../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { GetStyleParams } from './types'
-
 export default function getStyle({
   direction,
   block,

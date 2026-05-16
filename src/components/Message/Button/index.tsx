@@ -1,6 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 
+import type { MessageButtonComponents } from '../Message.Button.Components.types'
 import type { MessageButtonProps, MessageButtonRef } from '../types'
 
 // 内库使用-start
@@ -55,7 +56,6 @@ const Button = forwardRef<MessageButtonRef, MessageButtonProps>(
   }
 )
 
-type ButtonWithName = typeof Button & { componentName: string }
-;(Button as ButtonWithName).componentName = 'ToolBar.Button'
+;(Button as MessageButtonComponents).componentName = 'ToolBar.Button'
 
-export default Button as ButtonWithName
+export default Button as MessageButtonComponents

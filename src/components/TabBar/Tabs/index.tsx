@@ -123,6 +123,4 @@ const Tabs = forwardRef<TabBarTabsRef, TabBarTabsProps>(
     )
   }
 )
-export type { TabBarTabsProps, TabBarTabsRef } from '../types'
-
 export default Tabs

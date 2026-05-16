@@ -6,14 +6,13 @@ import type { ActionSheetComboHandle, ActionSheetComboProps, ActionSheetItem } f
 
 // 内库使用-start
 import type { ComboRef } from './../../Combo/types'
-import type { InputSelectComboRef } from './../../Input/types'
+import type { InputSelectComboRef, InputSelectValue } from './../../Input/types'
 import Input from './../../Input'
 // 内库使用-end
 
 /* 测试使用-start
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
-
 
 // 卡片选择
 const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProps>(
@@ -64,7 +63,6 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
 
     const comboRef = useRef<ComboRef | null>(null)
 
-
     useEffect(() => {
       if (open === null) return
       if (open) {
@@ -75,12 +73,10 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       // eslint-disable-next-line
     }, [open])
 
-
     useImperativeHandle(ref, () => ({
       close: () => setOpen(false),
       open: () => setOpen(true)
     }))
-
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
@@ -96,11 +92,9 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       setOpen(true)
     }
 
-
     function handleClose() {
       setOpen(false)
     }
-
 
     function handleChange(newValue: ActionSheetItem | null) {
       if (onChange) {
@@ -108,7 +102,6 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       }
       setOpen(false)
     }
-
 
     // 获取 Combo 节点
     function renderCombo() {
@@ -134,7 +127,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
         <Input.Select
           ref={comboRef as React.Ref<InputSelectComboRef>}
           // Combo: Value & Display Value
-          value={value}
+          value={value as unknown as InputSelectValue}
           placeholder={placeholder}
           formatter={formatter}
           autoSize={autoSize}
@@ -163,7 +156,6 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
         />
       )
     }
-
 
     return (
       <>
@@ -197,5 +189,4 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
   }
 )
 
-export type { ActionSheetComboHandle, ActionSheetComboProps } from './../types'
 export default ActionSheetCombo

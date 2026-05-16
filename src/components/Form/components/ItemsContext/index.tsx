@@ -9,6 +9,4 @@ const ItemsContext = createContext<ItemsContextType>({
   mainSpan: 20,
   mainEllipsis: null
 })
-export type { EllipsisConfig, ItemsContextType, VirtualContext } from '../../types'
-
 export default ItemsContext

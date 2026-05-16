@@ -2,14 +2,14 @@ import React, { useState, useRef } from 'react'
 
 import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar, type ToolBarDropdownRef, type ToolBarFilterRef } from 'lyrixi-mobile'
 
-type ToolbarListItem = { id: string; name: string; disabled?: boolean }
+import type { ToolBarDemoListItem } from './ToolBar.demos.types'
 
 export default function ToolBarDemo() {
   const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
   const filterRef = useRef<ToolBarFilterRef | null>(null)
   const [, setMainElement] = useState<HTMLElement | null>(null)
   const [dateRange, setDateRange] = useState<(Date | null)[] | null>(null)
-  const [item, setItem] = useState<ToolbarListItem | null>(null)
+  const [item, setItem] = useState<ToolBarDemoListItem | null>(null)
   const [search, setSearch] = useState('')
   const [searchActive, setSearchActive] = useState(false)
   const [filledSearchActive, setFilledSearchActive] = useState(false)
@@ -131,7 +131,7 @@ export default function ToolBarDemo() {
                 left={12}
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
+                onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -151,7 +151,7 @@ export default function ToolBarDemo() {
               <ToolBar.List
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
+                onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -179,7 +179,7 @@ export default function ToolBarDemo() {
               <ToolBar.ActionSheet
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
+                onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -219,7 +219,7 @@ export default function ToolBarDemo() {
                     zIndex: 99
                   }}
                   value={item}
-                  onChange={(v) => setItem((v as ToolbarListItem) ?? null)}
+                  onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
                   list={[
                     {
                       id: 'desc',

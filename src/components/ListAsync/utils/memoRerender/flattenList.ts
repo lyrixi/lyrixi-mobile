@@ -1,4 +1,4 @@
-type RawItem = Record<string, unknown>
+import type { RawItem } from '../../../List/types'
 
 // 获取当前项在列表中的索引
 const flattenList = (list: RawItem[] | null | undefined): RawItem[] => {

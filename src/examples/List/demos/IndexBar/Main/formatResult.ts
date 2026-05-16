@@ -1,9 +1,9 @@
-import type { LoadResult } from 'lyrixi-mobile'
+import type { ListAsyncLoadResult } from 'lyrixi-mobile'
 
 import mockResult from './../../Common/Main/mockResult'
 
 // 转换 API 返回数据为页面所需格式
-function localData(result: unknown, _options: { payload: Record<string, unknown> }): LoadResult {
+function localData(result: unknown, _options: { payload: Record<string, unknown> }): ListAsyncLoadResult {
   // 测试数据
   // eslint-disable-next-line
   result = mockResult
@@ -12,7 +12,7 @@ function localData(result: unknown, _options: { payload: Record<string, unknown>
     const list = r.data?.list
     return {
       status: 'success',
-      list: list as LoadResult['list'],
+      list: list as ListAsyncLoadResult['list'],
       totalPage: r.data?.totalPage
     }
   } else {

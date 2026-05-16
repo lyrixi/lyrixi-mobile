@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-
 import getStyle from './getStyle'
 import Ellipsis from './Ellipsis'
 import renderHighlight from './renderHighlight'
@@ -59,7 +58,6 @@ const Text = forwardRef<TextRef, TextProps>(
       }
     })
 
-
     // 处理高亮
     const content = highlight ? renderHighlight(children, highlight) : children
 
@@ -77,6 +75,4 @@ const Text = forwardRef<TextRef, TextProps>(
     )
   }
 )
-export type { TextEllipsisConfig, TextProps, TextRef } from './types'
-
 export default Text

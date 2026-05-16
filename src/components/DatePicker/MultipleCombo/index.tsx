@@ -4,7 +4,7 @@ import getDisplayValue from './getDisplayValue'
 import type { DatePickerModalRef, DatePickerMultipleComboProps } from './../types'
 
 // 内库使用-start
-import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
+import type { InputSelectProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
 import Input from './../../Input'
 // 内库使用-end
 
@@ -124,7 +124,7 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
         rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Events
-        onChange={onChange as InputSelectComboProps['onChange']}
+        onChange={onChange as InputSelectProps['onChange']}
         onClick={handleOpen}
       />
       <MultipleModal

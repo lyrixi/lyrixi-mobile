@@ -70,6 +70,4 @@ const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): 
     })
   }
 }
-export type { GapOption, SnapToEdgeOptions, SnapPosition } from './../types'
-
 export default snapToEdge

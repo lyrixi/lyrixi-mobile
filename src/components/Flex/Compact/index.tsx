@@ -8,11 +8,14 @@ import React, {
   useMemo,
   useRef,
   type CSSProperties,
-  type ForwardRefExoticComponent,
-  type RefAttributes
 } from 'react'
 
-import type { FlexCompactContextValue, FlexCompactProps, FlexCompactRef } from './../types'
+import type {
+  FlexCompactContextValue,
+  FlexCompactProps,
+  FlexCompactRef,
+  FlexCompactComponents
+} from './../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -24,11 +27,6 @@ import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const Context = React.createContext<FlexCompactContextValue | null>(null)
-
-type CompactWithStatics = ForwardRefExoticComponent<FlexCompactProps & RefAttributes<FlexCompactRef>> & {
-  Context: typeof Context
-  useContext: () => FlexCompactContextValue | null
-}
 
 const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
   (
@@ -136,8 +134,6 @@ const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
 const Compact = Object.assign(CompactRoot, {
   Context,
   useContext: (): FlexCompactContextValue | null => useContext(Context)
-}) as CompactWithStatics
-
-export type { FlexCompactContextValue, FlexCompactProps, FlexCompactRef } from './../types'
+}) as FlexCompactComponents
 
 export default Compact

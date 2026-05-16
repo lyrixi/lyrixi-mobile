@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect, type ComponentProps } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Page, Location } from 'lyrixi-mobile'
 
-type MainVal = ComponentProps<typeof Location.Main>['value']
+import type { LocationDemoMainValue } from './Location.demos.types'
 
 export default () => {
   const mainRef = useRef<React.ComponentRef<typeof Location.Main> | null>(null)
-  const [value, setValue] = useState<MainVal>(null)
+  const [value, setValue] = useState<LocationDemoMainValue>(null)
 
   useEffect(() => {
     // 延迟设置值

@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-
 import type { NavBarTitleProps, NavBarTitleRef } from '../types'
 
 // 内库使用-start
@@ -38,6 +37,4 @@ const NavBarTitle = forwardRef<NavBarTitleRef, NavBarTitleProps>(
     )
   }
 )
-export type { NavBarTitleProps, NavBarTitleRef } from '../types'
-
 export default NavBarTitle

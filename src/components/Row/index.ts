@@ -1,9 +1,8 @@
 import Row from './Row'
 import Col from './Col'
 
-type RowWithCol = typeof Row & { Col: typeof Col }
+import type { RowComponents } from './Row.Components.types'
 
-;(Row as RowWithCol).Col = Col
+;(Row as RowComponents).Col = Col
 
-export type { RowColProps, RowColRef, RowProps, RowRef } from './types'
-export default Row as RowWithCol
+export default Row as RowComponents

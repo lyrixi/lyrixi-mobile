@@ -1,13 +1,13 @@
-import React, { useState, type ComponentProps } from 'react'
+import React, { useState } from 'react'
 import vconsole from 'vconsole'
 import { Page, AttachUploader } from 'lyrixi-mobile'
 
+import type { AttachUploaderDemoList } from './AttachUploader.demos.types'
+
 new vconsole()
 
-type UploaderList = NonNullable<ComponentProps<typeof AttachUploader>['list']>
-
 export default () => {
-  const [list, setList] = useState<UploaderList>([
+  const [list, setList] = useState<AttachUploaderDemoList>([
     {
       fileName: '1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg'
@@ -21,7 +21,7 @@ export default () => {
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.pdf'
     }
   ])
-  function handlePhotoChange(newList: UploaderList) {
+  function handlePhotoChange(newList: AttachUploaderDemoList) {
     console.log(newList)
     setList(newList)
   }

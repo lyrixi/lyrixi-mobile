@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import type { L } from '../../types'
 import filterCoords from './../../utils/filterCoords'
-import addCircles, { type CirclePoint } from './addCircles'
+import addCircles from './addCircles'
+import type { CirclePoint } from '../../types'
 import clearCircles from './clearCircles'
 
 import type { MapCirclesProps, MapCirclesRef } from '../../types'
@@ -13,7 +14,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 /* 测试使用-start
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
-
 
 // 批量圈
 const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
@@ -30,9 +30,7 @@ const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
 
     const circlesLayerRef = useRef<L.LayerGroup | null>(null)
 
-
     points = filterCoords(points)
-
 
     useEffect(() => {
       const lf = map?.leafletMap
@@ -57,7 +55,6 @@ const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
 
-
     useImperativeHandle(ref, () => {
       return {
         redraw: () => {
@@ -65,7 +62,6 @@ const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
         }
       }
     })
-
 
     function draw() {
       if (ObjectUtil.isEmpty(points)) {
@@ -82,5 +78,4 @@ const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
   }
 )
 
-export type { MapCirclesProps, MapCirclesRef } from '../../types'
 export default Circles

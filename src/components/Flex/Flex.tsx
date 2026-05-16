@@ -4,13 +4,11 @@ import type { FlexAlign, FlexJustify, FlexProps, FlexRef, FlexStyleInput } from 
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
-import Compact from './Compact'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Flex } from 'lyrixi-mobile'
 测试使用-end */
-
 
 function getStyle({ gap, justify, align, direction, wrap }: FlexStyleInput): CSSProperties {
   const gapStyle: CSSProperties = {}
@@ -88,9 +86,4 @@ const Flex = forwardRef<FlexRef, FlexProps>(function Flex(
   )
 })
 
-type FlexWithCompact = typeof Flex & { Compact: typeof Compact }
-
-;(Flex as FlexWithCompact).Compact = Compact
-
-export type { FlexAlign, FlexDirection, FlexJustify, FlexProps, FlexRef } from './types'
-export default Flex as FlexWithCompact
+export default Flex

@@ -10,8 +10,6 @@ import Result from './../../../Result'
 import { Result } from 'lyrixi-mobile'
 测试使用-end */
 
-
-
 // 附近结果
 function Main({ result, onChange }: MapNearbyControlMainProps) {
   if (!result) {
@@ -52,5 +50,4 @@ function Main({ result, onChange }: MapNearbyControlMainProps) {
   )
 }
 
-export type { MapNearbyControlMainProps } from '../../types'
 export default Main

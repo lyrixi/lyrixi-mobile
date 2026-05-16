@@ -1,7 +1,7 @@
-type AxiosLikeError = { config?: unknown; response?: Record<string, unknown>; [key: string]: unknown }
+import type { RequestAxiosLikeError } from './Request.format.types'
 
-function formatError(response: AxiosLikeError): AxiosLikeError {
-  let result: AxiosLikeError = response
+function formatError(response: RequestAxiosLikeError): RequestAxiosLikeError {
+  let result: RequestAxiosLikeError = response
   if (response.config && response.response) {
     result = response.response
   }

@@ -1,7 +1,5 @@
 import { getTitle, getDefaultRanges, getRangeId } from './utils'
 
-export type * from './types'
-
 import Combo from './Combo'
 import Modal from './Modal'
 import Main from './Main'

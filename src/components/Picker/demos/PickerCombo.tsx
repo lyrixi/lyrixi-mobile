@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Picker, Page, type PickerComboRef } from 'lyrixi-mobile'
 
-type PickerRow = { id: string; name: string }
+import type { InputSelectValue } from '../../Input/types'
+import type { PickerDemoRow } from './Picker.demos.types'
 
 export default () => {
   const pickerRef = useRef<PickerComboRef | null>(null)
-  const [list, setList] = useState<PickerRow[]>([])
+  const [list, setList] = useState<PickerDemoRow[]>([])
   const [value, setValue] = useState<unknown>(null)
   useEffect(() => {
     setTimeout(() => {
@@ -36,7 +37,7 @@ export default () => {
           cancelNode={null}
           okNode=""
           placeholder="Please select"
-          value={value}
+          value={value as InputSelectValue}
           list={list}
           onChange={(newValue) => {
             console.log('onChange:', newValue)

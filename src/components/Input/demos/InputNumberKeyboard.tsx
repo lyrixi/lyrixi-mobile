@@ -71,7 +71,8 @@ export default () => {
             placeholder="千分位格式化"
             value={value}
             formatter={(currentValue) => {
-              return currentValue ? MathUtil.thousands(currentValue) : ''
+              const s = typeof currentValue === 'string' ? currentValue : ''
+              return s ? MathUtil.thousands(s) : ''
             }}
             onChange={(val) => {
               console.log('得到的值:', val)

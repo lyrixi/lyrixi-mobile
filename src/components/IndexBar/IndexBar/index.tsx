@@ -4,7 +4,6 @@ import getAnchorByScroller from './getAnchorByScroller'
 import activeAnchor from './activeAnchor'
 import scrollToAnchor from './scrollToAnchor'
 
-
 import type { IndexBarProps, IndexBarRef } from '../types'
 
 // 内库使用-start
@@ -41,12 +40,10 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
 
     const tooltipRef = useRef<HTMLDivElement>(null)
 
-
     // Touches
     const touchesRef = useRef({
       startX: 0
     })
-
 
     // 监听滚动事件(有滚动容器时才监听，用 getElement 以便初始化后 ref 挂载也能拿到)
     useEffect(() => {
@@ -60,7 +57,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       // eslint-disable-next-line
     }, [])
 
-
     useImperativeHandle(ref, () => {
       return {
         element: sidebarRef.current,
@@ -70,7 +66,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
         scrollToAnchor: goAnchor
       }
     })
-
 
     // 滚动事件(有滚动容器时才监听)
     function handleScroll(e: Event): void {
@@ -85,7 +80,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
         scrollDebounceRef.current = null
       }, 300)
     }
-
 
     // 触摸时滚动至anchor
     function goAnchor(currentAnchor: string): void {
@@ -112,7 +106,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       })
     }
 
-
     // Sidebar touch move to position Anchor
     function handleTouchStart(e: React.TouchEvent<HTMLDivElement>): void {
       e.stopPropagation()
@@ -132,7 +125,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       goAnchor(currentAnchor)
     }
 
-
     function handleTouchMove(e: React.TouchEvent<HTMLDivElement>): void {
       e.stopPropagation()
 
@@ -145,7 +137,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       goAnchor(currentAnchor)
     }
 
-
     function handleTouchEnd(e: React.TouchEvent<HTMLDivElement>): void {
       e.stopPropagation()
       // 解除对move时的弹性对当前div的锁定
@@ -153,7 +144,6 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
 
       sidebarRef.current?.classList.remove('lyrixi-active')
     }
-
 
     const Node = (
       <Fragment>
@@ -184,6 +174,4 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
     return Node
   }
 )
-export type { IndexBarProps, IndexBarRef } from '../types'
-
 export default IndexBar

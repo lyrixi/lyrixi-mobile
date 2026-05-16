@@ -3,8 +3,8 @@ import React, { forwardRef } from 'react'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
-import InputSearch, { type InputSearchProps } from './../../Input/Search'
-import type { InputTextRef } from './../../Input/types'
+import InputSearch from './../../Input/Search'
+import type { InputSearchProps, InputTextRef } from './../../Input/types'
 // 内库使用-end
 
 /* 测试使用-start

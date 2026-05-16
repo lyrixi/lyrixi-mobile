@@ -48,7 +48,7 @@ export default () => {
             min={0.1}
             trim={true}
             allowClear
-            formatter={(num) => {
+            formatter={(num: string) => {
               return '$' + MathUtil.thousands(Number(num).toFixed(2))
             }}
           // onChange={(val) => {

@@ -5,7 +5,7 @@ import type { DatePickerComboProps, DatePickerModalRef } from '../types'
 
 // 内库使用-start
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
-import type { InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
+import type { InputSelectComboRef as InputComboSelectRef, InputSelectValue } from './../../Input/types'
 import DateUtil from './../../../utils/DateUtil'
 
 import Combo from './../../Combo'
@@ -125,7 +125,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
           // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
-          formatter={formatter || ((v: unknown) => DateUtil.format(v as Date, type))}
+          formatter={formatter || ((v: InputSelectValue) => DateUtil.format(v as Date, type))}
           autoSize={autoSize}
           separator={separator}
           // Combo: Status
@@ -179,7 +179,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
           maskClassName={maskClassName}
           // Events
           onClose={handleClose}
-          onChange={onChange}
+          onChange={onChange ? (v: unknown) => onChange(v as InputSelectValue) : undefined}
           onOk={onOk}
         />
       </>

@@ -26,6 +26,4 @@ function useForm(form?: FormInstance): [WrappedFormInstance] {
 
   return [wrapForm]
 }
-export type { ScrollToFieldOptions, WrappedFormInstance } from '../types'
-
 export default useForm

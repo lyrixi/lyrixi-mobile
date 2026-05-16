@@ -18,9 +18,10 @@ function deepTree(flattenTree: ArrayUtilFlatTreeNode[]): ArrayUtilDeepTreeNodeWi
   })
 
   flattenTree.forEach((node) => {
-    if (node.parentid !== null && idMap[node.parentid]) {
-      if (!idMap[node.parentid].children) idMap[node.parentid].children = []
-      idMap[node.parentid].children!.push(idMap[node.id])
+    const parentId = node.parentid
+    if (parentId != null && idMap[parentId]) {
+      if (!idMap[parentId].children) idMap[parentId].children = []
+      idMap[parentId].children!.push(idMap[node.id])
     } else {
       result.push(idMap[node.id])
     }

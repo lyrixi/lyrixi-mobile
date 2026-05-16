@@ -10,8 +10,6 @@ import LocaleUtil from './../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { LoadingShowProps } from './types'
-
 // 显示Loading
 export default function showLoading(props?: LoadingShowProps): HTMLElement | null {
   const { portal, id, maskClassName, maskStyle, className, style, content, onOpen } = props || {}

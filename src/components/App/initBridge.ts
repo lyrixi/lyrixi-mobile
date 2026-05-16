@@ -9,7 +9,6 @@ import Bridge from './../../utils/Bridge'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-
 /**
  * 初始化桥接：先加载 Bridge，再配置鉴权
  * @param bridgeConfig - 桥接配置参数
@@ -37,18 +36,18 @@ function initBridge({
               formatHeaders,
               formatPayload,
               formatResponse,
-              onSuccess: (result: AppBridgeResultPayload) => {
-                // 鉴权成功
+              onSuccess: (result: unknown) => {
+                const r = result as AppBridgeResultPayload
                 resolve({
                   status: 'success',
-                  message: result?.message
+                  message: r?.message
                 })
               },
-              onError: (error: AppBridgeResultPayload) => {
-                // 鉴权失败
+              onError: (error: unknown) => {
+                const e = error as AppBridgeResultPayload
                 resolve({
                   status: 'error',
-                  message: error?.message
+                  message: e?.message
                 })
               }
             },
@@ -68,5 +67,4 @@ function initBridge({
   })
 }
 
-export type { AppInitBridgeConfig, AppInitBridgeResult } from './types'
 export default initBridge

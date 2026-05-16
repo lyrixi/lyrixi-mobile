@@ -1,7 +1,5 @@
 import getRemainCount from './../../utils/getRemainCount'
 
-
-
 import type { MediaChooseUtilOptions, MediaListItem } from '../../types'
 
 // 内库使用-start
@@ -17,7 +15,6 @@ import { ObjectUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
-
 
 // 选择文件
 async function choose({
@@ -75,5 +72,4 @@ async function choose({
   return uploaded ?? newList
 }
 
-export type { MediaChooseUtilOptions as ChooseOptions } from '../../types'
 export default choose

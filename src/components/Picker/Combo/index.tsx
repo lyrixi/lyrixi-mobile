@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, type Ref } from 'react'
 import Modal from './../Modal'
-import type { InputSelectComboRef } from './../../Input/types'
+import type { InputSelectComboRef, InputSelectValue } from './../../Input/types'
 import type { ModalRef } from './../../Modal/types'
 
 import type { PickerComboProps, PickerComboRef } from '../types'
@@ -138,7 +138,7 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
           maskClassName={maskClassName}
           // Events
           onClose={handleClose}
-          onChange={onChange}
+          onChange={onChange ? (v: unknown) => onChange(v as InputSelectValue) : undefined}
         />
       </>
     )

@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import type React from 'react'
 
 /** A calendar grid cell: a Date plus optional flags from getMonthDates. */

@@ -2,7 +2,6 @@ import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
 import type { LinePoint, LineStyleOptions } from '../../types'
 
-
 // Polyline
 function addPolyline(
   points: LinePoint[] | null | undefined,
@@ -26,5 +25,4 @@ function addPolyline(
   polyline.addTo(layer)
 }
 
-export type { LinePoint, LineStyleOptions } from '../../types'
 export default addPolyline

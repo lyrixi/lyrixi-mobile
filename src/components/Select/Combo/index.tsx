@@ -1,8 +1,9 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
-import type { InputSelectComboRef } from './../../Input/types'
+import type { InputSelectComboRef, InputSelectProps } from './../../Input/types'
+import type { RawItem } from './../../List/types'
 
-import type { SelectComboProps } from './../types'
+import type { SelectProps, SelectRef } from './../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -12,7 +13,7 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const SelectCombo = forwardRef<Record<string, unknown>, SelectComboProps>(function SelectCombo(
+const SelectCombo = forwardRef<SelectRef, SelectProps>(function SelectCombo(
   {
     value,
     placeholder,
@@ -58,15 +59,15 @@ const SelectCombo = forwardRef<Record<string, unknown>, SelectComboProps>(functi
 ) {
   const [open, setOpen] = useState(false)
   const comboRef = useRef<InputSelectComboRef | null>(null)
-  const modalRef = useRef<Record<string, unknown> | null>(null)
+  const modalRef = useRef<SelectRef | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
       ...(typeof comboRef.current === 'object' && comboRef.current !== null
-        ? (comboRef.current as unknown as Record<string, unknown>)
+        ? (comboRef.current as unknown as SelectRef)
         : {}),
       ...(typeof modalRef.current === 'object' && modalRef.current !== null
-        ? (modalRef.current as unknown as Record<string, unknown>)
+        ? (modalRef.current as unknown as SelectRef)
         : {}),
       close: () => setOpen(false),
       open: () => setOpen(true)
@@ -86,7 +87,7 @@ const SelectCombo = forwardRef<Record<string, unknown>, SelectComboProps>(functi
   }
 
   function handleChange(newValue: unknown) {
-    onChange?.(newValue)
+    onChange?.(newValue as RawItem | RawItem[] | null, undefined)
     setOpen(false)
   }
 
@@ -108,7 +109,7 @@ const SelectCombo = forwardRef<Record<string, unknown>, SelectComboProps>(functi
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}
-        onChange={onChange}
+        onChange={onChange as InputSelectProps['onChange']}
         onClick={handleOpen}
       />
       <Modal

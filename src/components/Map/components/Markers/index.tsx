@@ -17,7 +17,6 @@ import ObjectUtil from './../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 批量标注
 const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
   (
@@ -37,18 +36,14 @@ const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
 
     let points = pointsProp as MapCoord[]
 
-
     const layersRef = useRef<{
       canvasLayer: CanvasMarkerLayer
       layer: L.LayerGroup
     } | null>(null)
 
-
     const focusedPointRef = useRef<MapCoord | null>(null)
 
-
     const markerIcons = window?.MapLoaderConfig?.markerIcons || defaultMarkerIcons
-
 
     points = filterCoords(points)
 
@@ -77,7 +72,6 @@ const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
       }
     }, [map])
 
-
     useEffect(() => {
       if (ObjectUtil.isEmpty(points)) {
         if (layersRef.current) {
@@ -88,7 +82,6 @@ const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
       draw()
       // eslint-disable-next-line
     }, [JSON.stringify(points)])
-
 
     useImperativeHandle(ref, () => {
       return {
@@ -105,12 +98,10 @@ const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
       draw()
     }
 
-
     function blur() {
       focusedPointRef.current = null
       draw()
     }
-
 
     function draw() {
       if (ObjectUtil.isEmpty(points)) {
@@ -142,5 +133,4 @@ const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
   }
 )
 
-export type { MapCoord, MapMarkersLayerHandle, MapMarkersLayerProps, MapPoint } from '../../types'
 export default Markers

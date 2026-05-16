@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
 
-
 import type { MediaMarkProps } from '../types'
 
 // 内库使用-start
@@ -38,6 +37,4 @@ const Mark = forwardRef<HTMLDivElement, MediaMarkProps>(function Mark(
     </div>
   )
 })
-export type { MediaMarkProps } from '../types'
-
 export default Mark

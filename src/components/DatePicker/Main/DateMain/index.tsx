@@ -2,7 +2,10 @@ import React, { forwardRef } from 'react'
 import getList from './getList'
 import valueToList from './valueToList'
 import listToValue from './listToValue'
-import type { DatePickerMainSectionProps, DatePickerPickerValueList } from './../../types'
+import type {
+  DatePickerMainSectionProps,
+  DatePickerPickerValueList
+} from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -14,10 +17,8 @@ import type { PickerColumnItem, PickerMainRef } from './../../../Picker/types'
 import { DateUtil, Picker } from 'lyrixi-mobile'
 测试使用-end */
 
-type DateMainProps = DatePickerMainSectionProps
-
 // 日期选择
-const Main = forwardRef<PickerMainRef, DateMainProps>(function DateMain(
+const Main = forwardRef<PickerMainRef, DatePickerMainSectionProps>(function DateMain(
   {
     // Modal: Status
     open,

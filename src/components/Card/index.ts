@@ -2,10 +2,9 @@ import Card from './Card'
 import Header from './Header'
 import Main from './Main'
 
-type CardWithParts = typeof Card & { Header: typeof Header; Main: typeof Main }
+import type { CardComponents } from './Card.Components.types'
 
-;(Card as CardWithParts).Header = Header
-;(Card as CardWithParts).Main = Main
+;(Card as CardComponents).Header = Header
+;(Card as CardComponents).Main = Main
 
-export type { CardProps, CardRef, CardHeaderProps, CardHeaderRef, CardMainProps, CardMainRef } from './types'
-export default Card as CardWithParts
+export default Card as CardComponents

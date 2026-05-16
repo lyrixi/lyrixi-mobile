@@ -1,4 +1,4 @@
-import type { SuccessCallback, ErrorCallback } from '../types'
+import type { BridgeSuccessCallback, BridgeErrorCallback } from '../types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'
@@ -14,8 +14,8 @@ function config(params?: {
   headers?: Record<string, string>
   payload?: Record<string, unknown>
   formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
-  onSuccess?: SuccessCallback
-  onError?: ErrorCallback
+  onSuccess?: BridgeSuccessCallback
+  onError?: BridgeErrorCallback
 }) {
   const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload) return

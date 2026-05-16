@@ -9,11 +9,8 @@ import React, {
 import Modal from './../Modal'
 
 
-import type {
-  LocationComboProps,
-  LocationComboRef,
-  LocationValue
-} from '../types'
+import type { LocationComboInputWithText } from '../Location.Combo.Input.types'
+import type { LocationComboProps, LocationComboRef, LocationValue } from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -38,10 +35,7 @@ const {
   wgs84ToCoords
 } = Map
 
-type InputWithText = typeof Input & {
-  Text: React.ComponentType<Record<string, unknown>>
-}
-const InputComp = Input as InputWithText
+const InputComp = Input as LocationComboInputWithText
 
 const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
   (

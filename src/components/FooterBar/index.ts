@@ -1,9 +1,8 @@
 import FooterBar from './FooterBar'
 import Button from './Button'
 
-type FooterBarWithButton = typeof FooterBar & { Button: typeof Button }
+import type { FooterBarComponents } from './FooterBar.Components.types'
 
-;(FooterBar as FooterBarWithButton).Button = Button
+;(FooterBar as FooterBarComponents).Button = Button
 
-export type { FooterBarButtonProps, FooterBarButtonRef, FooterBarProps, FooterBarRef } from './types'
-export default FooterBar as FooterBarWithButton
+export default FooterBar as FooterBarComponents

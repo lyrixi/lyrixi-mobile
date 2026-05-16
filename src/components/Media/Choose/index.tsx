@@ -1,13 +1,11 @@
 import React, { type ChangeEvent, type MouseEvent } from 'react'
 import Uploading from './../Uploading'
 
-
 import type { MediaChooseProps, MediaListItem } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
-
 
 // 上传按钮
 const Choose = ({
@@ -111,6 +109,4 @@ const Choose = ({
     </div>
   )
 }
-export type { MediaChooseProps } from '../types'
-
 export default Choose

@@ -11,7 +11,6 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 当前位置
 const Current = forwardRef<HTMLDivElement, MapNearbyControlCurrentProps>(({ value, readOnly, map, onChange }, ref) => {
   return (
@@ -49,5 +48,4 @@ const Current = forwardRef<HTMLDivElement, MapNearbyControlCurrentProps>(({ valu
   )
 })
 
-export type { MapNearbyControlCurrentProps, MapValue } from '../../../types'
 export default Current

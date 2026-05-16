@@ -3,7 +3,10 @@ import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import Cancel from './Cancel'
 import Ok from './Ok'
 
-import type { ModalNavBarModalNavBarProps, ModalNavBarModalNavBarRef } from '../../types'
+import type {
+  ModalNavBarModalNavBarProps,
+  ModalNavBarModalNavBarRef
+} from './Modal.NavBarModal.NavBar.types'
 
 // 内库使用-start
 import NavBar from './../../../NavBar'
@@ -62,6 +65,4 @@ const Head = forwardRef<ModalNavBarModalNavBarRef, ModalNavBarModalNavBarProps>(
     )
   }
 )
-export type { ModalNavBarModalNavBarProps, ModalNavBarModalNavBarRef } from '../../types'
-
 export default Head

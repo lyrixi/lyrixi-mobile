@@ -2,14 +2,11 @@ import Button from './Button'
 import Text from './ButtonText'
 import Icon from './ButtonIcon'
 
-type ButtonWithParts = typeof Button & {
-  Icon: typeof Icon
-  Text: typeof Text
-}
+import type { ButtonComponents } from './Button.Components.types'
 
-;(Button as ButtonWithParts).Icon = Icon
-;(Button as ButtonWithParts).Text = Text
+const Btn = Button as ButtonComponents
+Btn.Icon = Icon
+Btn.Text = Text
+Btn.componentName = 'Button'
 
-export type { ButtonProps, ButtonRef, ButtonTextProps, ButtonTextRef } from './types'
-export type { ButtonIconProps } from './types'
-export default Button as ButtonWithParts
+export default Btn

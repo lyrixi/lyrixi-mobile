@@ -9,8 +9,6 @@ import normalizeLocationResult from './../normalizeLocationResult'
 import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
-
-
 // 定位
 function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
   const t = options?.type || 'wgs84'
@@ -43,5 +41,4 @@ function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
   })
 }
 
-export type { GetLocationOptions } from '../../types'
 export default getLocation

@@ -1,4 +1,4 @@
-type ExtendedCanvas = HTMLCanvasElement & { ctx?: CanvasRenderingContext2D }
+import type { SignatureMainUtilsCanvasUtilExtendedCanvas } from './../../Signature.Main.utils.CanvasUtil.types'
 
 const CanvasUtil = {
   toBase64: function (canvas: HTMLCanvasElement, { suffix = 'image/png', quality = 0.92 }: { suffix?: string; quality?: number }) {
@@ -11,7 +11,7 @@ const CanvasUtil = {
     if (canvas.toDataURL() === blank.toDataURL()) return true
     return false
   },
-  clear: function (canvas: ExtendedCanvas) {
+  clear: function (canvas: SignatureMainUtilsCanvasUtilExtendedCanvas) {
     let width = canvas.width
     let height = canvas.height
     let ctx = canvas?.ctx ? canvas.ctx : canvas.getContext('2d')

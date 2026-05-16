@@ -43,5 +43,4 @@ const IFrame = forwardRef<IFrameRef, IFrameProps>(function IFrame({ src, data, s
   )
 })
 
-export type { IFrameProps, IFrameRef } from './types'
 export default IFrame

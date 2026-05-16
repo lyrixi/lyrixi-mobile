@@ -15,8 +15,6 @@ import type { InputTextRef } from './../../Input/types'
 import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-export type { ToolBarSearchActiveProps }
-
 const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(
   function SearchBar(props, ref) {
     const {

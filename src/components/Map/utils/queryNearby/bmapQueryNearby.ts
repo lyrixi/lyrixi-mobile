@@ -10,7 +10,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 // 搜索附近, keyword:搜索关键词
 function bmapQueryNearby({
   map,
@@ -102,5 +101,4 @@ function bmapQueryNearby({
   })
 }
 
-export type { QueryNearbyParams } from '../../types'
 export default bmapQueryNearby

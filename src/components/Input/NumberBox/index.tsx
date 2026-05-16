@@ -1,8 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import InputNumber from './../Number'
-import { InputTextRef } from './../Text'
 
-import type { InputNumberBoxProps, InputNumberBoxRef } from '../types'
+import type { InputNumberBoxProps, InputNumberBoxRef, InputTextRef } from '../types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -60,7 +59,6 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       onChange,
       onBlur,
       onFocus,
-      onInput,
       onCompositionStart, // 输入开始时
       onCompositionUpdate, // 输入进行中
       onCompositionEnd // 输入完成时
@@ -73,7 +71,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
 
     useEffect(() => {
       let inputElement = _getInputElement()
-      let val = (inputElement?.value ? inputElement.value : value) || ''
+      let val = (inputElement?.value ? inputElement.value : String(value ?? '')) || ''
       updateState(val)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value])
@@ -89,7 +87,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
         getInputRef: () => {
           return inputRef
         }
-      }
+      } as InputNumberBoxRef
     })
     // eslint-disable-line
 
@@ -175,7 +173,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Value & Display Value
-          value={value}
+          value={value as string}
           placeholder={placeholder}
           formatter={formatter}
           // Status
@@ -249,6 +247,4 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
     )
   }
 )
-export type { InputNumberBoxProps, InputNumberBoxRef } from '../types'
-
 export default NumberBox

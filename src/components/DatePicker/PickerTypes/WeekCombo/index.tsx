@@ -1,7 +1,8 @@
 import React, { forwardRef, type MouseEvent, type Ref } from 'react'
 import DatePickerCombo from './../../WeekCombo'
 import Combo from './Combo'
-import type { InputSelectComboProps } from './../../../Input/types'
+import type { DatePickerPickerTypesWeekComboProps } from './../../DatePicker.PickerTypes.WeekCombo.types'
+import type { InputSelectProps } from './../../../Input/types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -13,17 +14,8 @@ import Input from './../../../Input'
 import { DateUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
-type WeekComboLocalProps = {
-  value?: Date | null
-  min?: Date | null
-  max?: Date | null
-  style?: React.CSSProperties
-  className?: string
-  onChange?: (value: Date) => void
-}
-
 // 周选择
-const Week = forwardRef<unknown, WeekComboLocalProps>(function TypesWeekCombo(
+const Week = forwardRef<unknown, DatePickerPickerTypesWeekComboProps>(function TypesWeekCombo(
   {
     // Value & Display Value
     value,
@@ -61,7 +53,7 @@ const Week = forwardRef<unknown, WeekComboLocalProps>(function TypesWeekCombo(
         value={value}
         min={min}
         max={max}
-        onChange={((v) => v instanceof Date && onChange && onChange(v)) as InputSelectComboProps['onChange']}
+        onChange={((v) => v instanceof Date && onChange && onChange(v)) as InputSelectProps['onChange']}
         comboRender={({ comboRef, onClick }) => {
           return (
             <Combo

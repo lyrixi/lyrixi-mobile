@@ -7,3 +7,17 @@ export interface DistrictMainLoadDataTab {
 }
 
 export type DistrictMainLoadDataApiResult = DistrictMainApiResult
+
+export type DistrictMainLoadCountryRegionsFn = (
+  id: string | number
+) => Promise<DistrictMainLoadDataApiResult>
+
+export type DistrictMainLoadStreetsFn = (
+  id: string | number,
+  ctx?: { value?: DistrictMainLoadDataTab[] }
+) => Promise<DistrictMainLoadDataApiResult>
+
+export interface DistrictMainLoadDataRunnerParams {
+  loadCountryRegions: DistrictMainLoadCountryRegionsFn
+  loadStreets: DistrictMainLoadStreetsFn
+}

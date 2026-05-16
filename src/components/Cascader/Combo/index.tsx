@@ -131,5 +131,4 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
   }
 )
 
-export type { CascaderComboProps, CascaderComboRef } from '../types'
 export default CascaderCombo

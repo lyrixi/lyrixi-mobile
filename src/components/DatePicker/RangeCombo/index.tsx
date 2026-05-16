@@ -6,7 +6,7 @@ import RangeModal from './../RangeModal'
 import type { DatePickerModalRef, DatePickerRangeChangeMeta, DatePickerRangeComboProps } from './../types'
 
 // 内库使用-start
-import type { InputSelectComboProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
+import type { InputSelectProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
 import DOMUtil from '../../../utils/DOMUtil'
 import Input from './../../Input'
 // 内库使用-end
@@ -114,7 +114,7 @@ const RangeCombo = forwardRef<unknown, DatePickerRangeComboProps>(function DateP
     onChange && onChange(newValue as (Date | null)[] | null, { rangeId: meta?.rangeId, ranges: meta?.ranges ?? ranges })
   }
 
-  const handleInputChange: InputSelectComboProps['onChange'] = (v, m) => handleChange(v, m as { rangeId?: string | null; ranges?: DatePickerRangeChangeMeta['ranges'] })
+  const handleInputChange: InputSelectProps['onChange'] = (v, m) => handleChange(v, m as { rangeId?: string | null; ranges?: DatePickerRangeChangeMeta['ranges'] })
 
   const fmt = formatValue(value)
   const displayArgs = {

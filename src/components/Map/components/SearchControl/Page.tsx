@@ -9,6 +9,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 import SearchActive from './../../../ToolBar/SearchActive'
 import List from './../../../List'
+import type { RawItem, ViewItem } from './../../../List/types'
 import Page from './../../../Page'
 import Result from './../../../Result'
 import Text from './../../../Text'
@@ -23,7 +24,6 @@ const MapSearchActive = SearchActive as unknown as MapSearchActiveListComponent
 function isQueryResult(v: unknown): v is SearchQueryNearbyResult {
   return typeof v === 'object' && v !== null
 }
-
 
 // 搜索
 function SearchPage({ open, map, onClose, onChange }: MapSearchPageProps) {
@@ -89,14 +89,14 @@ function SearchPage({ open, map, onClose, onChange }: MapSearchPageProps) {
           <List
             list={list}
             onChange={handleClick}
-            formatViewItem={(item: Record<string, unknown>) => {
+            formatViewItem={(item: RawItem): ViewItem => {
               const name = typeof item.name === 'string' ? item.name : ''
               const address = typeof item.address === 'string' ? item.address : undefined
               return {
                 ...item,
                 title: <Text highlight={keyword || ''}>{name}</Text>,
                 description: address
-              }
+              } as ViewItem
             }}
           />
         ) : null}
@@ -113,5 +113,4 @@ function SearchPage({ open, map, onClose, onChange }: MapSearchPageProps) {
   )
 }
 
-export type { MapSearchPageProps } from '../../types'
 export default SearchPage

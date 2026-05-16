@@ -1,13 +1,11 @@
 import hide from './hide'
 import type { CSSProperties } from 'react'
 
-import type { ToastShowProps } from './types'
+import type { ToastShowExtendedHTMLElement, ToastShowProps } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
-
-type ExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
 
 // 显示Toast
 // eslint-disable-next-line
@@ -38,10 +36,10 @@ function show(this: { defaultProps?: ToastShowProps } | void, props?: ToastShowP
   function render() {
     let toastId = id || '__lyrixi_toast_el__'
     // 如果没生成成功, 则强制生成
-    let mask = document.getElementById(toastId) as ExtendedHTMLElement | null
+    let mask = document.getElementById(toastId) as ToastShowExtendedHTMLElement | null
     if (!mask) {
       // Create mask
-      mask = document.createElement('div') as ExtendedHTMLElement
+      mask = document.createElement('div') as ToastShowExtendedHTMLElement
 
       mask.innerHTML = `<div class="lyrixi-toast">
         <div class="lyrixi-toast-wrapper">
@@ -124,5 +122,4 @@ function show(this: { defaultProps?: ToastShowProps } | void, props?: ToastShowP
   return render()
 }
 
-export type { ToastShowProps } from './types'
 export default show

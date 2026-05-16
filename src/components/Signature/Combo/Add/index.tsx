@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
 
-
 import Modal from './../../Modal'
 
 import type { SignatureComboAddProps, SignatureComboAddRef, SignatureModalRef } from '../../types'
@@ -100,6 +99,4 @@ const Combo = (
     </>
   )
 }
-export type { SignatureComboAddProps, SignatureComboAddRef } from '../../types'
-
 export default forwardRef<SignatureComboAddRef, SignatureComboAddProps>(Combo)

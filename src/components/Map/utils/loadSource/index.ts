@@ -4,8 +4,6 @@ import loadBaidu from './loadBaidu'
 import loadOpenstreet from './loadOpenstreet'
 import type { MapLoaderSourceConfig, LoadSourceResult } from '../../types'
 
-export type { MapLoaderSourceConfig } from '../../types'
-
 // Load leaflet map source
 async function loadSource(
   options: MapLoaderSourceConfig = {

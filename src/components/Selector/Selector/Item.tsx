@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, type MouseEvent } from 'react'
 
-
 import type { SelectorItemProps, SelectorItemRef } from './../types'
 
 // 内库使用-start
@@ -76,6 +75,4 @@ const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
     )
   }
 )
-export type { SelectorItemProps, SelectorItemRef } from './../types'
-
 export default Item

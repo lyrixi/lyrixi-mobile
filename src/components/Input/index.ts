@@ -13,13 +13,11 @@ import Node from './Node'
 import Search from './Search'
 import Select from './Select'
 import Textarea from './Textarea'
-
 import Url from './Url'
+
 import IconClear from './Icon/Clear'
 import IconRightArrow from './Icon/RightArrow'
 import IconLeftArrow from './Icon/LeftArrow'
-
-export type * from './types'
 
 // eslint-disable-next-line
 export default {

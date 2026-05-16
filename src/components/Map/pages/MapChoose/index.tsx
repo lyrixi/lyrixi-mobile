@@ -1,8 +1,8 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } from 'react'
 
-import coordsToWgs84, { type MapPoint as WgsMapPoint } from './../../utils/coordsToWgs84'
+import coordsToWgs84 from './../../utils/coordsToWgs84'
 
-import MapContainer, { type MapContainerAPI } from './../../components/MapContainer'
+import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
 import SearchControl from './../../components/SearchControl'
 import CenterMarker from './../../components/CenterMarker'
@@ -10,7 +10,7 @@ import LocationControl from './../../components/LocationControl'
 import NearbyControl from './../../components/NearbyControl'
 import Markers from './../../components/Markers'
 
-import type { MapChooseProps, MapChooseValue } from '../../types'
+import type { MapChooseProps, MapChooseValue, MapContainerAPI, MapPoint as WgsMapPoint } from '../../types'
 
 // 内库使用-start
 import Toast from './../../../Toast'
@@ -25,7 +25,6 @@ import { Loading, Toast, LocaleUtil } from 'lyrixi-mobile'
 function strLocale(node: string | React.ReactNode): string {
   return typeof node === 'string' ? node : '…'
 }
-
 
 // 地图选点
 const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose(
@@ -101,7 +100,6 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(value)])
-
 
   // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current == null.
   useImperativeHandle(ref, () => mapRef.current as MapContainerAPI)
@@ -314,5 +312,4 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
   )
 })
 
-export type { MapChooseProps, MapChooseValue } from '../../types'
 export default MapChoose

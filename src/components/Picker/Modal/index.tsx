@@ -6,10 +6,10 @@ import React, {
   useImperativeHandle,
   type Ref
 } from 'react'
-import Main, { type PickerMainRef } from './../Main'
+import Main from './../Main'
 
 import type { ModalRef } from '../../Modal/types'
-import type { PickerColumnItem, PickerMainProps, PickerModalProps } from '../types'
+import type { PickerColumnItem, PickerMainProps, PickerMainRef, PickerModalProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -134,6 +134,4 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
     </NavBarModal>
   )
 })
-export type { PickerModalProps } from '../types'
-
 export default Modal

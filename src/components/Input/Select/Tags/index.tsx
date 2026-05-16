@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 
-import type { InputNodeProps, InputSelectTagItem, InputSelectTagsProps } from '../../types'
-
-
+import type { InputNodeProps, InputSelectItem } from '../../types'
+import type { InputSelectTagsProps } from './Input.Select.Tags.types'
 import Tag from './Tag'
 import InputNode from './../../Node'
 
@@ -47,7 +46,7 @@ const Tags = ({
                 <Tag
                   className={item.className}
                   style={item.style}
-                  name={item.name}
+                  name={item.name as React.ReactNode}
                   readOnly={item.readOnly}
                   disabled={item.disabled}
                   allowClear={item.allowClear}
@@ -55,7 +54,9 @@ const Tags = ({
                     onEdit && onEdit(item)
                   }}
                   onDelete={() => {
-                    let currentValue = (value as InputSelectTagItem[]).filter((valueItem) => valueItem.id !== item.id)
+                    let currentValue = (value as InputSelectItem[]).filter(
+                      (valueItem) => valueItem.id !== item.id
+                    )
                     onChange && onChange(currentValue, { action: 'clickDelete' })
                   }}
                 />

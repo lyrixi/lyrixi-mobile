@@ -6,7 +6,6 @@ import clearMarkers from './clearMarkers'
 import markerClickLeaflet from './markerClickLeaflet'
 import markerClickCanvas from './markerClickCanvas'
 
-
 // Marker
 function addMarkers(
   points: MapPoint[] | null | undefined,
@@ -69,5 +68,4 @@ function addMarkers(
   }
 }
 
-export type { MapPoint } from '../../types'
 export default addMarkers

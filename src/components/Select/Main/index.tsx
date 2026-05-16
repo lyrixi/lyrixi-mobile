@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-import type { SelectMainProps, SelectMainRef } from './../types'
+import type { ListProps } from './../../List/types'
+import type { SelectProps, SelectRef } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -13,7 +14,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { ObjectUtil, Result, List } from 'lyrixi-mobile'
 测试使用-end */
 
-const Main = forwardRef<SelectMainRef, SelectMainProps>(function SelectMain(
+const Main = forwardRef<SelectRef, SelectProps>(function SelectMain(
   {
     value,
     list,
@@ -63,7 +64,7 @@ const Main = forwardRef<SelectMainRef, SelectMainProps>(function SelectMain(
         checkboxVariant={checkboxVariant}
         checkboxPosition={checkboxPosition}
         itemRender={itemRender}
-        onChange={onChange}
+        onChange={onChange as ListProps['onChange']}
       />
     </div>
   )

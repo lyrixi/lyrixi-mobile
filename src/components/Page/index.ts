@@ -1,33 +1,15 @@
 import Page from './Page'
 
-import Header from './Header'
 import Aside from './Aside'
-import Main from './Main'
 import Footer from './Footer'
+import Header from './Header'
+import Main from './Main'
 
-type PageWithParts = typeof Page & {
-  Header: typeof Header
-  Aside: typeof Aside
-  Main: typeof Main
-  Footer: typeof Footer
-}
+import type { PageComponents } from './Page.Components.types'
 
-;(Page as PageWithParts).Header = Header
-;(Page as PageWithParts).Aside = Aside
-;(Page as PageWithParts).Main = Main
-;(Page as PageWithParts).Footer = Footer
+;(Page as PageComponents).Header = Header
+;(Page as PageComponents).Aside = Aside
+;(Page as PageComponents).Main = Main
+;(Page as PageComponents).Footer = Footer
 
-export type {
-  PageAsideProps,
-  PageAsideRef,
-  PageFooterProps,
-  PageFooterRef,
-  PageHeaderProps,
-  PageHeaderRef,
-  PageLayout,
-  PageMainProps,
-  PageMainRef,
-  PageProps,
-  PageRef
-} from './types'
-export default Page as PageWithParts
+export default Page as PageComponents

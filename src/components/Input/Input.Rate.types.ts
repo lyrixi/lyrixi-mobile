@@ -7,11 +7,6 @@ export interface InputRateRef {
   getInputElement: () => HTMLInputElement | null
 }
 
-export interface InputRateIconParams {
-  className: string
-  style?: CSSProperties
-}
-
 export interface InputRateProps {
   id?: string
   name?: string
@@ -20,7 +15,7 @@ export interface InputRateProps {
   disabled?: boolean
   style?: CSSProperties
   className?: string
-  iconRender?: (params: InputRateIconParams) => ReactNode
+  iconRender?: (params: { className: string; style?: CSSProperties }) => ReactNode
   min?: number
   max?: number
   step?: number

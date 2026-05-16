@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment } from 'react'
 
-
 import renderContext from './../utils/renderContext'
 
 import type { TabBarItem, TabBarMenusProps, TabBarMenusRef } from '../types'
@@ -112,6 +111,4 @@ const Menus = forwardRef<TabBarMenusRef, TabBarMenusProps>(
     )
   }
 )
-export type { TabBarMenusProps, TabBarMenusRef } from '../types'
-
 export default Menus

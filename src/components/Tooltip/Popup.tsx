@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, type CSSProperties, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 
-
 import getDataAnimation from './api/getDataAnimation'
 
 import type { TooltipPopupProps, TooltipPopupRef } from './types'
@@ -110,6 +109,4 @@ const Popup = forwardRef<TooltipPopupRef, TooltipPopupProps>(function Popup(
     portal ?? document.getElementById('root') ?? document.body
   )
 })
-export type { TooltipPopupProps, TooltipPopupRef } from './types'
-
 export default Popup

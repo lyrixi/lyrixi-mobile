@@ -6,7 +6,6 @@ import type { RowColProps, RowColRef } from './types'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
-
 const Col = forwardRef<RowColRef, RowColProps>(function Col({ span, style, className, children }, ref) {
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -32,5 +31,4 @@ const Col = forwardRef<RowColRef, RowColProps>(function Col({ span, style, class
   )
 })
 
-export type { RowColProps, RowColRef } from './types'
 export default Col

@@ -8,7 +8,7 @@ export default () => {
       <Input.Textarea
         value={value}
         allowClear
-        formatter={(newValue) => {
+        formatter={(newValue: string) => {
           return '$' + newValue
         }}
         style={{ backgroundColor: '#f8f8f8' }}

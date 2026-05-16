@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
-import InputText, { InputTextRef, InputTextProps } from './../Text'
+import InputText from './../Text'
+import type { InputAutoSizeProps, InputAutoSizeRef, InputTextProps, InputTextRef } from './../types'
 
-const AutoSize = forwardRef<InputTextRef, InputTextProps>(
+const AutoSize = forwardRef<InputAutoSizeRef, InputAutoSizeProps>(
   (
     {
       id,
@@ -55,12 +56,12 @@ const AutoSize = forwardRef<InputTextRef, InputTextProps>(
   ) => {
     return (
       <InputText
-        ref={ref}
+        ref={ref as React.Ref<InputTextRef>}
         id={id}
         name={name}
         type="autoSize"
         // Value & Display Value
-        value={value}
+        value={value as string}
         placeholder={placeholder}
         formatter={formatter}
         // Status
@@ -91,7 +92,7 @@ const AutoSize = forwardRef<InputTextRef, InputTextProps>(
         spellCheck={spellCheck}
         // Events
         onClick={onClick}
-        onChange={onChange}
+        onChange={onChange as InputTextProps['onChange']}
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}

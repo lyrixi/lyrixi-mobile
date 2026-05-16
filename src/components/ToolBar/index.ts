@@ -28,5 +28,4 @@ const ToolBar = Object.assign(ToolBarBase, {
   Filter: typeof Filter
 }
 
-export type * from './types'
 export default ToolBar

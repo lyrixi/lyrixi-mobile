@@ -1,3 +1,5 @@
+import type { RawItem } from '../../List/types'
+
 export default [
   {
     avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
@@ -102,4 +104,4 @@ export default [
     id: '21',
     name: 'Option21'
   }
-]
+] as RawItem[]

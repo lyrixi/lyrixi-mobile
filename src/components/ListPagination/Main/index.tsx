@@ -1,10 +1,9 @@
 // 第三方库导入
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 
-
-import type { ListAsyncRef, LoadResult } from './../../ListAsync/types'
+import type { ListAsyncLoadResult, ListAsyncRef } from './../../ListAsync/types'
 import type { ListPaginationProps, ListPaginationRef } from './../types'
-import type { RawItem } from './../../List/types'
+import type { ListProps, RawItem } from './../../List/types'
 
 // 内库使用-start
 import Storage from './../../../utils/Storage'
@@ -18,7 +17,7 @@ import { Storage, ListAsync } from 'lyrixi-mobile'
 import queryData from './queryData'
 
 // 简便的列表组件, 只需要传入url和formatPayload即可
-const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
+const ListMainPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
   (
     {
       cacheName,
@@ -77,17 +76,15 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
 
     const pageRef = useRef(1)
 
-
     useEffect(() => {
       if (isFirstLoad.current) {
         isFirstLoad.current = false
-        mainRef.current?.reload('load')
+        mainRef.current?.reload?.('load')
         return
       }
-      mainRef.current?.reload()
+      mainRef.current?.reload?.()
       // eslint-disable-next-line
     }, [url, JSON.stringify(payload)])
-
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -95,7 +92,9 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
         ...(mainRef.current as ListAsyncRef),
         updateCache: (extraCache: Record<string, unknown> = {}) => {
           if (!cacheName) return
-          let lastResult = mainRef.current?.getResult() as (LoadResult & Record<string, unknown>) | null
+          let lastResult = mainRef.current?.getResult?.() as
+            | (ListAsyncLoadResult & Record<string, unknown>)
+            | null
           if (!lastResult) return
           if (lastResult?.status === 'error') return
           let scrollTop = mainRef.current?.element?.scrollTop
@@ -114,7 +113,6 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
       }
     })
 
-
     return (
       <ListAsync
         ref={mainRef}
@@ -125,7 +123,7 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
           if (action === 'load' && cacheName) {
             let cacheResult = Storage.getCache(cacheName)
             if (cacheResult) {
-              return cacheResult as LoadResult
+              return cacheResult as ListAsyncLoadResult
             }
           }
 
@@ -144,13 +142,13 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
             newList =
               action === 'bottomRefresh'
                 ? prevList.concat((result.list || []) as RawItem[])
-                : (result.list || []) as RawItem[]
+                : ((result.list || []) as RawItem[])
           }
 
           return {
             ...result,
             list: newList || undefined
-          } as LoadResult
+          } as ListAsyncLoadResult
         }}
         initialLoad={false}
         errorRetry={errorRetry}
@@ -177,7 +175,7 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
         loadingRender={loadingRender}
         prependRender={prependRender}
         appendRender={appendRender}
-        onChange={onChange}
+        onChange={onChange as ListProps['onChange']}
         onScroll={onScroll}
         onScrollEnd={onScrollEnd}
         onLoad={({ result, action }) => {
@@ -193,6 +191,4 @@ const ListPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
     )
   }
 )
-export type { ListPaginationProps, ListPaginationRef } from './../types'
-
-export default ListPagination
+export default ListMainPagination
