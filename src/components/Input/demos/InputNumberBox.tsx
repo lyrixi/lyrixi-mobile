@@ -3,6 +3,7 @@ import { Page, MathUtil, Divider, Card, Input } from 'lyrixi-mobile'
 
 export default () => {
   const [value, setValue] = useState('2.10')
+  const [stepValue, setStepValue] = useState('1.0')
   return (
     <Page>
       <Page.Main>
@@ -83,6 +84,20 @@ export default () => {
             precision={2}
             maxLength={8}
             min={0.1}
+            trim={true}
+            allowClear
+          />
+        </Card>
+
+        <Divider>Step</Divider>
+        <Card className="lyrixi-padding-horizontal-l lyrixi-padding-vertical-l">
+          <Input.NumberBox
+            placeholder="step 0.1"
+            value={stepValue}
+            onChange={setStepValue}
+            step={0.1}
+            precision={1}
+            min={0}
             trim={true}
             allowClear
           />
