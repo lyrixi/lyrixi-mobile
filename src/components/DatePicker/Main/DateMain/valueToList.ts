@@ -8,10 +8,26 @@ import { DateUtil } from 'lyrixi-mobile'
 
 import type { DatePickerPickerType, DatePickerPickerValueList } from './../../types'
 
+/** 将 currentValue 取到 step 网格上最近的合法值（与 getList 中选项一致） */
+function getValueStepTime(currentValue, step, maxValue) {
+  if (!step || typeof step !== 'number') {
+    return currentValue
+  }
+  let rounded = Math.round(currentValue / step) * step
+  if (rounded > maxValue) {
+    rounded = Math.floor(maxValue / step) * step
+  }
+  if (rounded < 0) {
+    rounded = 0
+  }
+  return rounded
+}
+
 // 日期转列表
 function valueToList(
   value: Date | null | undefined,
-  type: DatePickerPickerType
+  type: DatePickerPickerType,
+  options: { hourStep?: number; minuteStep?: number }
 ): DatePickerPickerValueList | null {
   const currentDate: Date = value instanceof Date ? value : new Date()
 
@@ -21,6 +37,9 @@ function valueToList(
   let hour = currentDate.getHours()
   let minute = currentDate.getMinutes()
   let quarter = DateUtil.quarter(currentDate) ?? 1
+
+  hour = getValueStepTime(hour, options?.hourStep, 23)
+  minute = getValueStepTime(minute, options?.minuteStep, 59)
 
   if (type === 'year') {
     return [{ id: year, name: year }]

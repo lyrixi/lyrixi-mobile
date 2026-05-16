@@ -1,5 +1,6 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { getTitle } from './../utils'
+import formatValue from './formatValue'
 import Main from './../Main'
 import type { DatePickerModalProps, DatePickerModalRef } from './../types'
 import type { ModalRef } from './../../Modal/types'
@@ -57,12 +58,10 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
 
   const mainRef = useRef<Record<string, unknown> | null>(null)
 
-
-    // 同步外部value到内部currentValue
-    useEffect(() => {
-      setCurrentValue(value)
-    }, [value])
-
+  // 同步外部value到内部currentValue
+  useEffect(() => {
+    setCurrentValue(formatValue(value, type, { hourStep, minuteStep }))
+  }, [value])
 
   useImperativeHandle(ref, () => {
     return {
@@ -72,7 +71,6 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
       ...(typeof mainRef.current === 'object' && mainRef.current !== null ? mainRef.current : {})
     } as DatePickerModalRef
   })
-
 
   async function handleOk() {
     // 触发 onOk
@@ -88,15 +86,12 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
     onClose?.()
   }
 
-
   function handleChange(newValue: Date | null) {
     setCurrentValue(newValue)
   }
 
-
   // 自定义标题节点
   const titleNode = titleRender?.(currentValue, { type: type ?? 'date' }) ?? null
-
 
   return (
     <NavBarModal

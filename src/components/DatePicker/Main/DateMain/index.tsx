@@ -2,10 +2,7 @@ import React, { forwardRef } from 'react'
 import getList from './getList'
 import valueToList from './valueToList'
 import listToValue from './listToValue'
-import type {
-  DatePickerMainSectionProps,
-  DatePickerPickerValueList
-} from './../../types'
+import type { DatePickerMainSectionProps, DatePickerPickerValueList } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -64,7 +61,7 @@ const Main = forwardRef<PickerMainRef, DatePickerMainSectionProps>(function Date
       // Modal: Status
       open={open}
       // Value & Display Value
-      value={valueToList(value, pickerType) as PickerColumnItem[] | null}
+      value={valueToList(value, pickerType, { hourStep, minuteStep }) as PickerColumnItem[] | null}
       list={getList(value, pickerType, { hourStep, minuteStep }) as PickerColumnItem[][]}
       // Events
       onChange={(v) => handleChange(v as DatePickerPickerValueList)}
