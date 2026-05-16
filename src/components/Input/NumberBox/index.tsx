@@ -21,6 +21,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
 
       // Value & Display Value
       value,
+      step = 1,
       placeholder,
       formatter,
 
@@ -41,11 +42,9 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       minusStyle,
 
       // Element
-
       leftIconNode,
       rightIconNode,
       clearRender,
-      children,
 
       // Validate
       precision, // 小数精度, 只有数值框才生效
@@ -58,10 +57,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       onClick,
       onChange,
       onBlur,
-      onFocus,
-      onCompositionStart, // 输入开始时
-      onCompositionUpdate, // 输入进行中
-      onCompositionEnd // 输入完成时
+      onFocus
     },
     ref
   ) => {
@@ -116,7 +112,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
     }
 
     // 修改值回调
-    function handleChange(val: string) {
+    function handleChange(val: string, options?: { action: 'minus' | 'plus' }) {
       if (disabled) return
       let inputElement = _getInputElement()
       if (!inputElement) return
@@ -126,7 +122,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
         inputElement.value = val
         updateState(val)
       }
-      if (onChange) onChange(val)
+      if (onChange) onChange(val, options)
     }
 
     // 点击减
@@ -138,7 +134,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       if (!inputElement) return
       let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) - 1))
       // Callback
-      handleChange(String(val ?? ''))
+      handleChange(String(val ?? ''), { action: 'minus' })
       if (stepFocus) {
         inputElement.focus()
       }
@@ -154,7 +150,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       if (isNaN(Number(inputElement?.value))) return
       let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) + 1))
       // Callback
-      handleChange(String(val ?? ''))
+      handleChange(String(val ?? ''), { action: 'minus' })
       if (stepFocus) {
         inputElement.focus()
       }

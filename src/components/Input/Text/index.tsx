@@ -100,7 +100,7 @@ const InputText = (
 
     // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
     if (val && textValue && String(val) !== textValue) {
-      onChange && onChange(val, { action: 'load' })
+      onChange?.(val, { action: 'load' })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -263,11 +263,11 @@ const InputText = (
     focus()
 
     // Callback
-    typeof onChange === 'function' && onChange('', { action: 'clickClear' })
+    onChange?.('', { action: 'clickClear' })
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    onKeyDown && onKeyDown(e)
+    onKeyDown?.(e)
     if (typeof onPressEnter !== 'function') return
     // 监听 Enter 键（keyCode 13 或 'Enter'）
     if (e.key === 'Enter' || e.keyCode === 13) {

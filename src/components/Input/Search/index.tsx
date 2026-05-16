@@ -101,17 +101,15 @@ const Search = forwardRef<InputSearchRef, InputSearchProps>(
         // Events
         onClick={onClick}
         onChange={
-          (typeof onChange === 'function'
-            ? onChange
-            : setKeyword) as InputTextProps['onChange']
+          (typeof onChange === 'function' ? onChange : setKeyword) as InputTextProps['onChange']
         }
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}
         onPressEnter={(e) => {
-          onPressEnter && onPressEnter(e)
+          onPressEnter?.(e)
           e?.currentTarget?.blur?.()
-          onSearch && onSearch(typeof onChange === 'function' ? (value as string) : keyword)
+          onSearch?.(typeof onChange === 'function' ? (value as string) : keyword)
         }}
       />
     )
