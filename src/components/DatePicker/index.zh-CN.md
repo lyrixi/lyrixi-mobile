@@ -200,7 +200,7 @@ toc: content
 
 同 DatePicker 组件 Ref。
 
-## DatePicker.Types
+## DatePicker.TypeTabs
 
 日期类型选择器组件。
 

@@ -13,7 +13,7 @@ import RangeSelector from './RangeSelector'
 import WeekCombo from './WeekCombo'
 import WeekModal from './WeekModal'
 import WeekMain from './WeekMain'
-import Types from './TypeTabs'
+import TypeTabs from './TypeTabs'
 
 // eslint-disable-next-line
 export default {
@@ -35,5 +35,5 @@ export default {
   WeekCombo: WeekCombo,
   WeekModal: WeekModal,
   WeekMain: WeekMain,
-  Types: Types
+  TypeTabs: TypeTabs
 }

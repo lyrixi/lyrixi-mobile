@@ -32,7 +32,7 @@ export default () => {
         <Card>
           <Card.Header>日期类型切换（日/月/季/年/周）</Card.Header>
           <Card.Main>
-            <DatePicker.Types
+            <DatePicker.TypeTabs
               value={value as DatePickerTypesValue | undefined}
               list={[
                 {
@@ -73,7 +73,7 @@ export default () => {
         <Card>
           <Card.Header>快捷选择（昨/今/明）</Card.Header>
           <Card.Main>
-            <DatePicker.Types
+            <DatePicker.TypeTabs
               value={quickValue as DatePickerTypesValue | undefined}
               list={quickSelectList}
               onChange={(newValue: unknown) => {
