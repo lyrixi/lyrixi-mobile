@@ -132,7 +132,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
 
       let inputElement = _getInputElement()
       if (!inputElement) return
-      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) - 1))
+      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) - step))
       // Callback
       handleChange(String(val ?? ''), { action: 'minus' })
       if (stepFocus) {
@@ -148,7 +148,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       let inputElement = _getInputElement()
       if (!inputElement) return
       if (isNaN(Number(inputElement?.value))) return
-      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) + 1))
+      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) + step))
       // Callback
       handleChange(String(val ?? ''), { action: 'minus' })
       if (stepFocus) {
