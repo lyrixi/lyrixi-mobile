@@ -1,11 +1,7 @@
 import variables from './variables'
 
 function getFontSizeClass(size: unknown): string {
-  const value = String(size)
-  if (!variables.fontSizes.includes(value)) {
-    return ''
-  }
-  return `lyrixi-font-size-${value}`
+  return variables.getClassName(size, variables.fontSizes)
 }
 
 export default getFontSizeClass

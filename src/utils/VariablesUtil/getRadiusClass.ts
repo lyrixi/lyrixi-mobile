@@ -1,11 +1,7 @@
 import variables from './variables'
 
 function getRadiusClass(value: unknown): string {
-  const radius = String(value)
-  if (!variables.radius.includes(radius)) {
-    return ''
-  }
-  return `lyrixi-radius-${radius}`
+  return variables.getClassName(value, variables.radius)
 }
 
 export default getRadiusClass
