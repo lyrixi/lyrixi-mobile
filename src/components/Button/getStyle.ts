@@ -25,26 +25,12 @@ export default function getStyle({
   style,
   className
 }: ButtonGetStyleParams): { style: CSSProperties; className: string } {
-  const colorClass =
-    color !== null && color !== undefined && color !== '' ? VariablesUtil.getColorClass(color) : ''
-  const borderColorClass =
-    borderColor !== null && borderColor !== undefined && borderColor !== ''
-      ? VariablesUtil.getBorderColorClass(borderColor)
-      : ''
-  const backgroundColorClass =
-    backgroundColor !== null && backgroundColor !== undefined && backgroundColor !== ''
-      ? VariablesUtil.getBgColorClass(backgroundColor)
-      : ''
-  const sizeClass =
-    size !== null && size !== undefined && size !== '' ? VariablesUtil.getHeightClass(size) : ''
-  const radiusClass =
-    radius !== null && radius !== undefined && radius !== ''
-      ? VariablesUtil.getRadiusClass(radius)
-      : ''
-  const fontSizeClass =
-    fontSize !== null && fontSize !== undefined && fontSize !== ''
-      ? VariablesUtil.getFontSizeClass(fontSize)
-      : ''
+  const colorClass = color ? VariablesUtil.getColorClass(color) : ''
+  const borderColorClass = borderColor ? VariablesUtil.getBorderColorClass(borderColor) : ''
+  const backgroundColorClass = backgroundColor ? VariablesUtil.getBgColorClass(backgroundColor) : ''
+  const sizeClass = size ? VariablesUtil.getHeightClass(size) : ''
+  const radiusClass = radius ? VariablesUtil.getRadiusClass(radius) : ''
+  const fontSizeClass = fontSize ? VariablesUtil.getFontSizeClass(fontSize) : ''
 
   const newStyle = {
     ...(!colorClass && color ? { color } : {}),

@@ -7,7 +7,7 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-  type CSSProperties,
+  type CSSProperties
 } from 'react'
 
 import type {
@@ -74,13 +74,15 @@ const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
       return null
     }
 
+    let radiusValue = VariablesUtil.getRadiusValue(radius)
+
     return (
       <Context.Provider value={contextValue}>
         <div
           style={
             {
               ...style,
-              '--lyrixi-flex-compact-radius': VariablesUtil.variableSize(radius, 'radius')
+              '--lyrixi-flex-compact-radius': radiusValue ? radiusValue : radius
             } as CSSProperties
           }
           className={DOMUtil.classNames(
