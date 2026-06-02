@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getFontSizeClass(size: unknown): string {
-  return variables.getClassName(size, variables.fontSizes)
+function getFontSizeClass(name: string): string {
+  return variables.getClassName(name, variables.fontSizes)
 }
 
 export default getFontSizeClass

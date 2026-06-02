@@ -1,4 +1,4 @@
-import type { DemoRandomMapPoint, GetPointsOptions } from 'lyrixi-mobile'
+import type { DemoRandomMapPoint, GetPointsOptions } from './Map.demos.types'
 
 // 生成随机点
 /*

@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getBgColorClass(color: unknown): string {
-  return variables.getClassName(color, variables.bgColors)
+function getBgColorClass(name: string): string {
+  return variables.getClassName(name, variables.bgColors)
 }
 
 export default getBgColorClass

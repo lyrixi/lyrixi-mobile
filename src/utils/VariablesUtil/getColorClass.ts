@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getColorClass(color: unknown): string {
-  return variables.getClassName(color, variables.fontColors)
+function getColorClass(name: string): string {
+  return variables.getClassName(name, variables.fontColors)
 }
 
 export default getColorClass

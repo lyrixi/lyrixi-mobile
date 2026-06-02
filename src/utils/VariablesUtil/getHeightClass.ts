@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getHeightClass(height: unknown): string {
-  return variables.getClassName(height, variables.heights)
+function getHeightClass(name: string): string {
+  return variables.getClassName(name, variables.heights)
 }
 
 export default getHeightClass

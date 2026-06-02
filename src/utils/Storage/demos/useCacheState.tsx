@@ -1,6 +1,6 @@
 import { Storage, Page, Button } from 'lyrixi-mobile'
 
-import type { StorageDemoCacheState } from '../types/Storage.demos.types'
+import type { StorageDemoCacheState } from './Storage.demos.types'
 
 export default function UseCacheStateDemo() {
   const [data, setData] = Storage.useCacheState<StorageDemoCacheState>(null, {

@@ -1,6 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { MessageComboButton } from './Message.common.types'
 import type { MessageModalProps } from './Message.Modal.types'
 
 export type { MessageComboButton } from './Message.common.types'

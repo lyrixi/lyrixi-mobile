@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getFontWeightValue(weight: unknown): string {
-  return variables.getValue(weight, variables.fontWeights)
+function getFontWeightValue(name: string): string {
+  return variables.getValue(name, variables.fontWeights)
 }
 
 export default getFontWeightValue

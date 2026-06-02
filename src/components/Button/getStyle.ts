@@ -11,6 +11,15 @@ import DOMUtil from './../../utils/DOMUtil'
 import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+const sizes = {
+  xs: { className: 'lyrixi-size-xs' },
+  s: { className: 'lyrixi-size-s' },
+  m: { className: 'lyrixi-size-m' },
+  l: { className: 'lyrixi-size-l' },
+  xl: { className: 'lyrixi-size-xl' },
+  xxl: { className: 'lyrixi-size-xxl' }
+}
+
 export default function getStyle({
   direction,
   block,
@@ -28,9 +37,16 @@ export default function getStyle({
   const colorClass = color ? VariablesUtil.getColorClass(color) : ''
   const borderColorClass = borderColor ? VariablesUtil.getBorderColorClass(borderColor) : ''
   const backgroundColorClass = backgroundColor ? VariablesUtil.getBgColorClass(backgroundColor) : ''
-  const sizeClass = size ? VariablesUtil.getHeightClass(size) : ''
-  const radiusClass = radius ? VariablesUtil.getRadiusClass(radius) : ''
-  const fontSizeClass = fontSize ? VariablesUtil.getFontSizeClass(fontSize) : ''
+  const sizeClass =
+    typeof size === 'string' && size in sizes ? sizes[size as keyof typeof sizes].className : ''
+  const radiusClass =
+    typeof radius === 'string' || typeof radius === 'number'
+      ? VariablesUtil.getRadiusClass(String(radius))
+      : ''
+  const fontSizeClass =
+    typeof fontSize === 'string' || typeof fontSize === 'number'
+      ? VariablesUtil.getFontSizeClass(String(fontSize))
+      : ''
 
   const newStyle = {
     ...(!colorClass && color ? { color } : {}),

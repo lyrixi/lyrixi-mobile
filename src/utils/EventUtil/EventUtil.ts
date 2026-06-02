@@ -1,4 +1,4 @@
-import type { EventUtilEventFn } from './types/EventUtil.types'
+import type { EventUtilEventFn } from './EventUtil.types'
 
 const Observer = {
   events: {} as Record<string, EventUtilEventFn[]>,

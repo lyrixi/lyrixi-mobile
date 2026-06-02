@@ -1,4 +1,4 @@
-import type { LocaleUtilLoadLocaleResult } from '../types/LocaleUtil.loadLocale.types'
+import type { LocaleUtilLoadLocaleResult } from './loadLocale.types'
 
 import loadDayjsLanguage from './loadDayjsLanguage'
 import loadLyrixiLanguage from './loadLyrixiLanguage'

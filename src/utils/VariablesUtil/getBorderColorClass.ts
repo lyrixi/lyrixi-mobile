@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getBorderColorClass(color: unknown): string {
-  return variables.getClassName(color, variables.borderColors)
+function getBorderColorClass(name: string): string {
+  return variables.getClassName(name, variables.borderColors)
 }
 
 export default getBorderColorClass

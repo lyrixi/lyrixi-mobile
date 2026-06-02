@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getBorderColorValue(color: unknown): string {
-  return variables.getValue(color, variables.borderColors)
+function getBorderColorValue(name: string): string {
+  return variables.getValue(name, variables.borderColors)
 }
 
 export default getBorderColorValue

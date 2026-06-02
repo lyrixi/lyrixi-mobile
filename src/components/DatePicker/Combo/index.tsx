@@ -5,7 +5,7 @@ import type { DatePickerComboProps, DatePickerComboRef, DatePickerModalRef } fro
 
 // 内库使用-start
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
-import type { InputSelectRef as InputComboSelectRef, InputSelectProps, InputSelectValue } from './../../Input/types'
+import type { InputSelectRef as InputComboSelectRef, InputSelectProps } from './../../Input/types'
 import DateUtil from './../../../utils/DateUtil'
 
 import Combo from './../../Combo'
@@ -17,75 +17,76 @@ import { DateUtil, Combo, Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // DatePicker
-const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(function DatePickerCombo(
-  {
-    // Combo
-    // Combo: Value & Display Value
-    value,
-    placeholder,
-    formatter,
-    autoSize,
-    separator,
-    // Combo: Status
-    readOnly,
-    disabled,
-    allowClear,
-    // Combo: Style
-    style,
-    className,
-    // Combo: Elements
-    comboRender,
-    children,
-    leftIconNode,
-    rightIconNode,
-    clearRender,
+const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(
+  function DatePickerCombo(
+    {
+      // Combo
+      // Combo: Value & Display Value
+      value,
+      placeholder,
+      formatter,
+      autoSize,
+      separator,
+      // Combo: Status
+      readOnly,
+      disabled,
+      allowClear,
+      // Combo: Style
+      style,
+      className,
+      // Combo: Elements
+      comboRender,
+      children,
+      leftIconNode,
+      rightIconNode,
+      clearRender,
 
-    // Modal
-    // Modal: Value & Display Value
-    type = 'date', // year | quarter | month | date | time | datetime | week
-    min,
-    max,
-    hourStep,
-    minuteStep,
-    // Modal: Status
-    maskClosable,
-    // Modal: Style
-    safeArea,
-    modalStyle,
-    modalClassName,
-    maskStyle,
-    maskClassName,
-    // Modal: Elements
-    portal,
-    titleRender,
-    okNode,
-    cancelNode,
-    okVisible,
-    cancelVisible,
+      // Modal
+      // Modal: Value & Display Value
+      type = 'date', // year | quarter | month | date | time | datetime | week
+      min,
+      max,
+      hourStep,
+      minuteStep,
+      // Modal: Status
+      maskClosable,
+      // Modal: Style
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+      // Modal: Elements
+      portal,
+      titleRender,
+      okNode,
+      cancelNode,
+      okVisible,
+      cancelVisible,
 
-    // Events
-    onChange,
-    onBeforeOpen,
-    onOk
-  },
-  ref
-) {
-  const [open, setOpen] = useState(false)
-  const comboRef = useRef<BasicComboWrapperRef | InputComboSelectRef | null>(null)
-  const modalRef = useRef<DatePickerModalRef | null>(null)
+      // Events
+      onChange,
+      onBeforeOpen,
+      onOk
+    },
+    ref
+  ) {
+    const [open, setOpen] = useState(false)
+    const comboRef = useRef<BasicComboWrapperRef | InputComboSelectRef | null>(null)
+    const modalRef = useRef<DatePickerModalRef | null>(null)
 
-  useImperativeHandle(ref, () => {
-    return {
-      ...(typeof comboRef.current === 'object' && comboRef.current !== null
-        ? (comboRef.current as unknown as Record<string, unknown>)
-        : {}),
-      ...(typeof modalRef.current === 'object' && modalRef.current !== null
-        ? (modalRef.current as unknown as Record<string, unknown>)
-        : {} as Record<string, unknown>),
-      close: () => setOpen(false),
-      open: () => setOpen(true)
-    } as DatePickerComboRef
-  })
+    useImperativeHandle(ref, () => {
+      return {
+        ...(typeof comboRef.current === 'object' && comboRef.current !== null
+          ? (comboRef.current as unknown as Record<string, unknown>)
+          : {}),
+        ...(typeof modalRef.current === 'object' && modalRef.current !== null
+          ? (modalRef.current as unknown as Record<string, unknown>)
+          : ({} as Record<string, unknown>)),
+        close: () => setOpen(false),
+        open: () => setOpen(true)
+      } as DatePickerComboRef
+    })
 
     async function handleOpen() {
       if (typeof onBeforeOpen === 'function') {
@@ -124,7 +125,12 @@ const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(fun
       // comboChildren
       if (children) {
         return (
-          <Combo ref={comboRef as React.Ref<BasicComboWrapperRef>} style={style} className={className} onClick={handleOpen}>
+          <Combo
+            ref={comboRef as React.Ref<BasicComboWrapperRef>}
+            style={style}
+            className={className}
+            onClick={handleOpen}
+          >
             {children}
           </Combo>
         )

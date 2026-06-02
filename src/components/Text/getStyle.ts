@@ -23,12 +23,15 @@ function getStyle({
   className?: string
 }) {
   // 判断颜色是否在枚举值中（含类名 token 的需与 design token 字符串比较）
-  const colorClass =
-    color !== null && color !== undefined ? VariablesUtil.getColorClass(color) : ''
+  const colorClass = color ? VariablesUtil.getColorClass(color) : ''
   const fontSizeClass =
-    fontSize !== null && fontSize !== undefined ? VariablesUtil.getFontSizeClass(fontSize) : ''
+    typeof fontSize === 'string' || typeof fontSize === 'number'
+      ? VariablesUtil.getFontSizeClass(String(fontSize))
+      : ''
   const fontWeightClass =
-    fontWeight !== null && fontWeight !== undefined ? VariablesUtil.getFontWeightClass(fontWeight) : ''
+    typeof fontWeight === 'string' || typeof fontWeight === 'number'
+      ? VariablesUtil.getFontWeightClass(String(fontWeight))
+      : ''
 
   // 构建自定义样式
   const newStyle: CSSProperties = {
@@ -38,12 +41,7 @@ function getStyle({
     ...style
   }
 
-  const newClassName = DOMUtil.classNames(
-    colorClass,
-    fontSizeClass,
-    fontWeightClass,
-    className
-  )
+  const newClassName = DOMUtil.classNames(colorClass, fontSizeClass, fontWeightClass, className)
 
   return { style: newStyle, className: newClassName }
 }

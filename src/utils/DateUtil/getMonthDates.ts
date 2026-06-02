@@ -1,4 +1,4 @@
-import type { DateUtilGetMonthDatesMonthCell } from './types/DateUtil.getMonthDates.types'
+import type { DateUtilGetMonthDatesMonthCell } from './getMonthDates.types'
 
 // const minuteMillisecond = 60 * 1000
 // const hourMillisecond = 60 * 60 * 1000

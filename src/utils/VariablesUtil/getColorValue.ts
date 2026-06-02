@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getColorValue(color: unknown): string {
-  return variables.getValue(color, variables.fontColors)
+function getColorValue(name: string): string {
+  return variables.getValue(name, variables.fontColors)
 }
 
 export default getColorValue

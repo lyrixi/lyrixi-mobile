@@ -5,6 +5,7 @@ import getBorderColorClass from './getBorderColorClass'
 import getFontSizeClass from './getFontSizeClass'
 import getFontWeightClass from './getFontWeightClass'
 import getHeightClass from './getHeightClass'
+import getWidthClass from './getWidthClass'
 import getRadiusClass from './getRadiusClass'
 import getColorValue from './getColorValue'
 import getBgColorValue from './getBgColorValue'
@@ -22,6 +23,7 @@ const VariablesUtil = {
   getFontSizeClass,
   getFontWeightClass,
   getHeightClass,
+  getWidthClass,
   getRadiusClass,
   getColorValue,
   getBgColorValue,

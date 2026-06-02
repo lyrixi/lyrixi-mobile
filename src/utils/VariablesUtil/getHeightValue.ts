@@ -1,7 +1,7 @@
 import variables from './variables'
 
-function getHeightValue(height: unknown): string {
-  return variables.getValue(height, variables.heights)
+function getHeightValue(name: string): string {
+  return variables.getValue(name, variables.heights)
 }
 
 export default getHeightValue

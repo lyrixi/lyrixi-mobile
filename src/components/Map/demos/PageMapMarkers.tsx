@@ -4,12 +4,13 @@ import {
   Page,
   Map,
   Button,
-  type DemoMarkerClickPayload,
   type L,
   type MapMapMarkersHandle,
   type MapMarkersLayerHandle,
   type MapPoint
 } from 'lyrixi-mobile'
+
+import type { DemoMarkerClickPayload } from './Map.demos.types'
 
 import getPoints from './getPoints'
 

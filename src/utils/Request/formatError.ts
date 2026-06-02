@@ -1,4 +1,4 @@
-import type { RequestAxiosLikeError } from './types/Request.format.types'
+import type { RequestAxiosLikeError } from './Request.format.types'
 
 function formatError(response: RequestAxiosLikeError): RequestAxiosLikeError {
   let result: RequestAxiosLikeError = response

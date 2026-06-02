@@ -4,7 +4,7 @@ import clearCache from './useCacheState/clearCache'
 import setCache from './useCacheState/setCache'
 import getCache from './useCacheState/getCache'
 
-import type { StorageComponents } from './types/Storage.modules.types'
+import type { StorageComponents } from './Storage.modules.types'
 
 const Storage = StorageCore as StorageComponents
 Storage.useCacheState = useCacheState

@@ -1,4 +1,4 @@
-import type { RequestAxiosLikeResponse } from './types/Request.format.types'
+import type { RequestAxiosLikeResponse } from './Request.format.types'
 
 function formatResponse(response: RequestAxiosLikeResponse): unknown {
   let result: unknown = response

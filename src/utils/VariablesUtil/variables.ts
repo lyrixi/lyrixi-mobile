@@ -1,11 +1,6 @@
 // 组件标准变量枚举值，与 color.less / size.less 一致
 
-export type Variable = {
-  className: string
-  value: string
-}
-
-export type VariableMap = Record<string, Variable>
+import type { VariableMap } from './types'
 
 // 文字颜色（color.less）
 const fontColors: VariableMap = {
@@ -91,14 +86,24 @@ const fontWeights: VariableMap = {
   s: { className: 'lyrixi-font-weight-s', value: 'var(--lyrixi-font-weight-s)' }
 }
 
-// 高度（size.less，Button 使用 lyrixi-size-* 类名）
+// 高度（size.less，Button 使用 lyrixi-height-* 类名）
 const heights: VariableMap = {
-  xs: { className: 'lyrixi-size-xs', value: 'var(--lyrixi-height-xs)' },
-  s: { className: 'lyrixi-size-s', value: 'var(--lyrixi-height-s)' },
-  m: { className: 'lyrixi-size-m', value: 'var(--lyrixi-height-m)' },
-  l: { className: 'lyrixi-size-l', value: 'var(--lyrixi-height-l)' },
-  xl: { className: 'lyrixi-size-xl', value: 'var(--lyrixi-height-xl)' },
-  xxl: { className: 'lyrixi-size-xxl', value: 'var(--lyrixi-height-xxl)' }
+  xs: { className: 'lyrixi-height-xs', value: 'var(--lyrixi-height-xs)' },
+  s: { className: 'lyrixi-height-s', value: 'var(--lyrixi-height-s)' },
+  m: { className: 'lyrixi-height-m', value: 'var(--lyrixi-height-m)' },
+  l: { className: 'lyrixi-height-l', value: 'var(--lyrixi-height-l)' },
+  xl: { className: 'lyrixi-height-xl', value: 'var(--lyrixi-height-xl)' },
+  xxl: { className: 'lyrixi-height-xxl', value: 'var(--lyrixi-height-xxl)' }
+}
+
+// 宽度（size.less，与高度共用 --lyrixi-height-* 尺寸变量）
+const widths: VariableMap = {
+  xs: { className: 'lyrixi-width-xs', value: 'var(--lyrixi-height-xs)' },
+  s: { className: 'lyrixi-width-s', value: 'var(--lyrixi-height-s)' },
+  m: { className: 'lyrixi-width-m', value: 'var(--lyrixi-height-m)' },
+  l: { className: 'lyrixi-width-l', value: 'var(--lyrixi-height-l)' },
+  xl: { className: 'lyrixi-width-xl', value: 'var(--lyrixi-height-xl)' },
+  xxl: { className: 'lyrixi-width-xxl', value: 'var(--lyrixi-height-xxl)' }
 }
 
 // 圆角（size.less）
@@ -126,6 +131,7 @@ const variables = {
   fontSizes,
   fontWeights,
   heights,
+  widths,
   radius,
   getClassName,
   getValue

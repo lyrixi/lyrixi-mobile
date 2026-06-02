@@ -1,4 +1,4 @@
-import type { LocaleUtilLoadLyrixiLanguageResult } from '../types/LocaleUtil.loadLocale.types'
+import type { LocaleUtilLoadLyrixiLanguageResult } from './loadLocale.types'
 
 // 设置lyrixi语言
 async function loadLyrixiLanguage(language: string) {

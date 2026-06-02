@@ -23,8 +23,8 @@ const Ouroboros = forwardRef<LoadingOuroborosRef, LoadingOuroborosProps>(
     if (color) {
       newStyle.color = VariablesUtil.getColorValue(color) || color
     }
-    if (size) {
-      const resolvedSize = VariablesUtil.getHeightValue(size) || size
+    if (typeof size === 'string' || typeof size === 'number') {
+      const resolvedSize = VariablesUtil.getHeightValue(String(size)) || size
       newStyle.width = resolvedSize
       newStyle.height = resolvedSize
     }
