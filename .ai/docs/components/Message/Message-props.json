@@ -1,0 +1,90 @@
+{
+  "Message.Modal": {
+    "open": "`boolean` — 是否显示，默认 `false`",
+    "maskClosable": "`boolean` — 点击遮罩关闭，默认 `true`",
+    "safeArea": "`boolean` — 是否启用安全区",
+    "modalStyle": "`CSSProperties` — 模态框样式",
+    "modalClassName": "`string` — 模态框类名",
+    "maskStyle": "`CSSProperties` — 遮罩样式",
+    "maskClassName": "`string` — 遮罩类名",
+    "portal": "`HTMLElement \\ | null \\ | false` — 挂载节点",
+    "children": "`ReactNode` — 自定义内容",
+    "onClose": "`() => void` — 关闭事件",
+    "iconRender": "`() => ReactNode` — 图标区域渲染",
+    "title": "`ReactNode` — 标题",
+    "content": "`ReactNode` — 正文",
+    "buttonsLayout": "`'vertical' \\ | 'horizontal'` — 底部按钮布局",
+    "buttons": "`MessageComboButton[]` — 底部按钮配置",
+    "titleClassName": "`string` — 标题类名",
+    "titleStyle": "`CSSProperties` — 标题样式",
+    "contentClassName": "`string` — 正文类名",
+    "contentStyle": "`CSSProperties` — 正文样式",
+    "footerClassName": "`string` — 底部类名",
+    "footerStyle": "`CSSProperties` — 底部样式"
+  },
+  "Message.Main": {
+    "iconRender": "`() => ReactNode` — 图标区域渲染",
+    "title": "`ReactNode` — 标题",
+    "content": "`ReactNode` — 正文",
+    "buttonsLayout": "`'vertical' \\ | 'horizontal'` — 底部按钮布局，默认 `'horizontal'`",
+    "buttons": "`MessageComboButton[]` — 底部按钮配置",
+    "titleClassName": "`string` — 标题类名",
+    "titleStyle": "`CSSProperties` — 标题样式",
+    "contentClassName": "`string` — 正文类名",
+    "contentStyle": "`CSSProperties` — 正文样式",
+    "footerClassName": "`string` — 底部类名",
+    "footerStyle": "`CSSProperties` — 底部样式",
+    "className": "`string` — 根节点类名",
+    "style": "`CSSProperties` — 根节点样式",
+    "children": "`ReactNode` — 自定义主体内容",
+    "onButtonClick": "`(button: MessageComboButton, e: MouseEvent) => boolean \\ | void \\ | Promise<...>` — 按钮点击"
+  },
+  "Message.Header": {
+    "className": "`string` — 类名",
+    "style": "`CSSProperties` — 样式",
+    "children": "`ReactNode` — 头部内容"
+  },
+  "Message.Footer": {
+    "layout": "`string` — 按钮布局",
+    "className": "`string` — 类名",
+    "style": "`CSSProperties` — 样式",
+    "children": "`ReactNode` — 底部内容"
+  },
+  "Message.Icon": {
+    "className": "`string` — 类名",
+    "style": "`CSSProperties` — 样式",
+    "children": "`ReactNode` — 图标内容"
+  },
+  "Message.Title": {
+    "className": "`string` — 类名",
+    "style": "`CSSProperties` — 样式",
+    "children": "`ReactNode` — 标题内容"
+  },
+  "Message.Button": {
+    "block": "`boolean` — 块级按钮",
+    "color": "`string` — 文字颜色",
+    "backgroundColor": "`string` — 背景颜色",
+    "className": "`string` — 类名",
+    "style": "`CSSProperties` — 样式",
+    "children": "`ReactNode` — 按钮文案",
+    "onClick": "`(e: MouseEvent<HTMLDivElement>) => void` — 点击事件"
+  },
+  "Message.Combo.ref": {
+    "element": "`HTMLDivElement \\ | null` — 触发区域根元素",
+    "getElement": "`() => HTMLDivElement \\ | null` — 获取触发区域",
+    "open": "`() => void` — 打开对话框",
+    "close": "`() => void` — 关闭对话框"
+  },
+  "Message.Main.ref": {
+    "element": "`HTMLElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLElement \\ | null` — 获取根元素"
+  },
+  "Message.Header.ref": {
+    "element": "`HTMLElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLElement \\ | null` — 获取根元素"
+  },
+  "Message.Icon.ref": {
+    "element": "`HTMLDivElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLDivElement \\ | null` — 获取根元素"
+  }
+}

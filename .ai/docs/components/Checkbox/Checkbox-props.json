@@ -1,0 +1,36 @@
+{
+  "Checkbox": {
+    "checked": "`boolean` — 是否选中",
+    "readOnly": "`boolean` — 是否只读",
+    "disabled": "`boolean` — 是否禁用",
+    "variant": "`'solid' \\ | 'text' \\ | 'outlined' \\ | 'filled'` — 样式变体",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 复选框内容",
+    "iconRender": "`(props: {checked: boolean}) => ReactNode` — 自定义图标渲染",
+    "iconPosition": "`'left' \\ | 'right'` — 图标位置，默认 `'left'`",
+    "onChange": "`(checked: boolean) => void` — 变化事件"
+  },
+  "Checkbox.Group": {
+    "value": "`unknown` — 选中的值",
+    "list": "`Array<{id: string \\ | number, [key: string]: any}>` — 选项列表",
+    "placeholder": "`string` — 占位符",
+    "disabled": "`boolean` — 是否禁用",
+    "readOnly": "`boolean` — 是否只读",
+    "allowClear": "`boolean` — 允许清除",
+    "multiple": "`boolean` — 是否多选",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "iconRender": "`(props: {checked: boolean}) => ReactNode` — 自定义图标渲染",
+    "iconPosition": "`'left' \\ | 'right'` — 图标位置，默认 `'left'`",
+    "onChange": "`(value: object \\ | object[] \\ | null) => void` — 变化事件"
+  },
+  "Checkbox.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  },
+  "Checkbox.Group.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

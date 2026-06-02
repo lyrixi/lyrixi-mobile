@@ -1,0 +1,24 @@
+{
+  "Accordion": {
+    "open": "`boolean` — 是否展开，默认 `false`",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "minHeight": "`number` — 最小高度",
+    "title": "`ReactNode` — 标题",
+    "headerRender": "`() => ReactNode` — 自定义头部渲染",
+    "ellipsis": "`{expandText: string, collapseText: string}` — 省略配置",
+    "ellipsisRender": "`(props: {open: boolean}) => ReactNode` — 自定义省略渲染",
+    "arrowClassName": "`string` — 箭头容器类名（布局用，不用于选图标）",
+    "arrowPosition": "`'left' \\ | 'right'` — 箭头位置，默认 `'right'`",
+    "arrowRender": "`(props: {open: boolean}) => ReactNode` — 自定义箭头渲染",
+    "children": "`ReactNode` — 内容",
+    "onOpen": "`() => void` — 展开事件",
+    "onClose": "`() => void` — 收起事件"
+  },
+  "Accordion.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素",
+    "open": "`() => void` — 展开",
+    "close": "`() => void` — 收起"
+  }
+}

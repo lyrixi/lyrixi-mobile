@@ -1,0 +1,13 @@
+{
+  "Badge": {
+    "children": "`string \\ | number \\ | ReactNode` — 徽标内容，默认 `'0'`",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "maxLength": "`number` — 最大长度，默认 `2`",
+    "ellipsis": "`string` — 省略符，默认 `'+'`"
+  },
+  "Badge.ref": {
+    "element": "`HtmlSpanElement` — 根元素",
+    "getElement": "() => `HtmlSpanElement` — 获取根元素"
+  }
+}

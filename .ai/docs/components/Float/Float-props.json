@@ -1,0 +1,16 @@
+{
+  "Float": {
+    "draggable": "`boolean` — 是否可拖动",
+    "gap": "`{top: number, right: number, bottom: number, left: number}` — 边距，默认 `{top: 8, right: 8, bottom: 8, left: 8}`",
+    "safeArea": "`boolean` — 是否安全区，默认 `true`",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "portal": "`HTMLElement` — 挂载节点",
+    "children": "`ReactNode` — 悬浮按钮内容",
+    "onDragEnd": "`(position: {left: number, top: number}) => void` — 拖动结束事件"
+  },
+  "Float.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

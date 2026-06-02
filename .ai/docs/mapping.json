@@ -1,18 +1,403 @@
 {
   "components": [
     {
-      "keywords": "Page|页面",
+      "keywords": "Accordion",
+      "name": "Accordion",
+      "props": ".ai/docs/components/Accordion/Accordion-props.json",
+      "rule": ".ai/docs/components/Accordion/Accordion-rules.md",
+      "example": ".ai/docs/components/Accordion/Accordion-example.md"
+    },
+    {
+      "keywords": "ActionSheet",
+      "name": "ActionSheet",
+      "props": ".ai/docs/components/ActionSheet/ActionSheet-props.json",
+      "rule": ".ai/docs/components/ActionSheet/ActionSheet-rules.md",
+      "example": ".ai/docs/components/ActionSheet/ActionSheet-example.md"
+    },
+    {
+      "keywords": "App",
+      "name": "App",
+      "props": ".ai/docs/components/App/App-props.json",
+      "rule": ".ai/docs/components/App/App-rules.md",
+      "example": ".ai/docs/components/App/App-example.md"
+    },
+    {
+      "keywords": "Attach",
+      "name": "Attach",
+      "props": ".ai/docs/components/Attach/Attach-props.json",
+      "rule": ".ai/docs/components/Attach/Attach-rules.md",
+      "example": ".ai/docs/components/Attach/Attach-example.md"
+    },
+    {
+      "keywords": "AttachUploader",
+      "name": "AttachUploader",
+      "props": ".ai/docs/components/AttachUploader/AttachUploader-props.json",
+      "rule": ".ai/docs/components/AttachUploader/AttachUploader-rules.md",
+      "example": ".ai/docs/components/AttachUploader/AttachUploader-example.md"
+    },
+    {
+      "keywords": "Badge",
+      "name": "Badge",
+      "props": ".ai/docs/components/Badge/Badge-props.json",
+      "rule": ".ai/docs/components/Badge/Badge-rules.md",
+      "example": ".ai/docs/components/Badge/Badge-example.md"
+    },
+    {
+      "keywords": "Button",
+      "name": "Button",
+      "props": ".ai/docs/components/Button/Button-props.json",
+      "rule": ".ai/docs/components/Button/Button-rules.md",
+      "example": ".ai/docs/components/Button/Button-example.md"
+    },
+    {
+      "keywords": "Calendar",
+      "name": "Calendar",
+      "props": ".ai/docs/components/Calendar/Calendar-props.json",
+      "rule": ".ai/docs/components/Calendar/Calendar-rules.md",
+      "example": ".ai/docs/components/Calendar/Calendar-example.md"
+    },
+    {
+      "keywords": "Card",
+      "name": "Card",
+      "props": ".ai/docs/components/Card/Card-props.json",
+      "rule": ".ai/docs/components/Card/Card-rules.md",
+      "example": ".ai/docs/components/Card/Card-example.md"
+    },
+    {
+      "keywords": "Cascader",
+      "name": "Cascader",
+      "props": ".ai/docs/components/Cascader/Cascader-props.json",
+      "rule": ".ai/docs/components/Cascader/Cascader-rules.md",
+      "example": ".ai/docs/components/Cascader/Cascader-example.md"
+    },
+    {
+      "keywords": "Chat",
+      "name": "Chat",
+      "props": ".ai/docs/components/Chat/Chat-props.json",
+      "rule": ".ai/docs/components/Chat/Chat-rules.md",
+      "example": ".ai/docs/components/Chat/Chat-example.md"
+    },
+    {
+      "keywords": "Checkbox",
+      "name": "Checkbox",
+      "props": ".ai/docs/components/Checkbox/Checkbox-props.json",
+      "rule": ".ai/docs/components/Checkbox/Checkbox-rules.md",
+      "example": ".ai/docs/components/Checkbox/Checkbox-example.md"
+    },
+    {
+      "keywords": "Combo",
+      "name": "Combo",
+      "props": ".ai/docs/components/Combo/Combo-props.json",
+      "rule": ".ai/docs/components/Combo/Combo-rules.md",
+      "example": ".ai/docs/components/Combo/Combo-example.md"
+    },
+    {
+      "keywords": "DatePicker",
+      "name": "DatePicker",
+      "props": ".ai/docs/components/DatePicker/DatePicker-props.json",
+      "rule": ".ai/docs/components/DatePicker/DatePicker-rules.md",
+      "example": ".ai/docs/components/DatePicker/DatePicker-example.md"
+    },
+    {
+      "keywords": "Divider",
+      "name": "Divider",
+      "props": ".ai/docs/components/Divider/Divider-props.json",
+      "rule": ".ai/docs/components/Divider/Divider-rules.md",
+      "example": ".ai/docs/components/Divider/Divider-example.md"
+    },
+    {
+      "keywords": "Flex",
+      "name": "Flex",
+      "props": ".ai/docs/components/Flex/Flex-props.json",
+      "rule": ".ai/docs/components/Flex/Flex-rules.md",
+      "example": ".ai/docs/components/Flex/Flex-example.md"
+    },
+    {
+      "keywords": "Float",
+      "name": "Float",
+      "props": ".ai/docs/components/Float/Float-props.json",
+      "rule": ".ai/docs/components/Float/Float-rules.md",
+      "example": ".ai/docs/components/Float/Float-example.md"
+    },
+    {
+      "keywords": "FooterBar",
+      "name": "FooterBar",
+      "props": ".ai/docs/components/FooterBar/FooterBar-props.json",
+      "rule": ".ai/docs/components/FooterBar/FooterBar-rules.md",
+      "example": ".ai/docs/components/FooterBar/FooterBar-example.md"
+    },
+    {
+      "keywords": "Form",
+      "name": "Form",
+      "props": ".ai/docs/components/Form/Form-props.json",
+      "rule": ".ai/docs/components/Form/Form-rules.md",
+      "example": ".ai/docs/components/Form/Form-example.md"
+    },
+    {
+      "keywords": "IFrame",
+      "name": "IFrame",
+      "props": ".ai/docs/components/IFrame/IFrame-props.json",
+      "rule": ".ai/docs/components/IFrame/IFrame-rules.md",
+      "example": ".ai/docs/components/IFrame/IFrame-example.md"
+    },
+    {
+      "keywords": "Icon",
+      "name": "Icon",
+      "props": ".ai/docs/components/Icon/Icon-props.json",
+      "rule": ".ai/docs/components/Icon/Icon-rules.md",
+      "example": ".ai/docs/components/Icon/Icon-example.md"
+    },
+    {
+      "keywords": "IndexBar",
+      "name": "IndexBar",
+      "props": ".ai/docs/components/IndexBar/IndexBar-props.json",
+      "rule": ".ai/docs/components/IndexBar/IndexBar-rules.md",
+      "example": ".ai/docs/components/IndexBar/IndexBar-example.md"
+    },
+    {
+      "keywords": "Input",
+      "name": "Input",
+      "props": ".ai/docs/components/Input/Input-props.json",
+      "rule": ".ai/docs/components/Input/Input-rules.md",
+      "example": ".ai/docs/components/Input/Input-example.md"
+    },
+    {
+      "keywords": "Keyboard",
+      "name": "Keyboard",
+      "props": ".ai/docs/components/Keyboard/Keyboard-props.json",
+      "rule": ".ai/docs/components/Keyboard/Keyboard-rules.md",
+      "example": ".ai/docs/components/Keyboard/Keyboard-example.md"
+    },
+    {
+      "keywords": "List",
+      "name": "List",
+      "props": ".ai/docs/components/List/List-props.json",
+      "rule": ".ai/docs/components/List/List-rules.md",
+      "example": ".ai/docs/components/List/List-example.md"
+    },
+    {
+      "keywords": "ListAsync",
+      "name": "ListAsync",
+      "props": ".ai/docs/components/ListAsync/ListAsync-props.json",
+      "rule": ".ai/docs/components/ListAsync/ListAsync-rules.md",
+      "example": ".ai/docs/components/ListAsync/ListAsync-example.md"
+    },
+    {
+      "keywords": "ListPagination",
+      "name": "ListPagination",
+      "props": ".ai/docs/components/ListPagination/ListPagination-props.json",
+      "rule": ".ai/docs/components/ListPagination/ListPagination-rules.md",
+      "example": ".ai/docs/components/ListPagination/ListPagination-example.md"
+    },
+    {
+      "keywords": "Loading",
+      "name": "Loading",
+      "props": ".ai/docs/components/Loading/Loading-props.json",
+      "rule": ".ai/docs/components/Loading/Loading-rules.md",
+      "example": ".ai/docs/components/Loading/Loading-example.md"
+    },
+    {
+      "keywords": "Location",
+      "name": "Location",
+      "props": ".ai/docs/components/Location/Location-props.json",
+      "rule": ".ai/docs/components/Location/Location-rules.md",
+      "example": ".ai/docs/components/Location/Location-example.md"
+    },
+    {
+      "keywords": "Map",
+      "name": "Map",
+      "props": ".ai/docs/components/Map/Map-props.json",
+      "rule": ".ai/docs/components/Map/Map-rules.md",
+      "example": ".ai/docs/components/Map/Map-example.md"
+    },
+    {
+      "keywords": "Media",
+      "name": "Media",
+      "props": ".ai/docs/components/Media/Media-props.json",
+      "rule": ".ai/docs/components/Media/Media-rules.md",
+      "example": ".ai/docs/components/Media/Media-example.md"
+    },
+    {
+      "keywords": "MediaUploader",
+      "name": "MediaUploader",
+      "props": ".ai/docs/components/MediaUploader/MediaUploader-props.json",
+      "rule": ".ai/docs/components/MediaUploader/MediaUploader-rules.md",
+      "example": ".ai/docs/components/MediaUploader/MediaUploader-example.md"
+    },
+    {
+      "keywords": "Message",
+      "name": "Message",
+      "props": ".ai/docs/components/Message/Message-props.json",
+      "rule": ".ai/docs/components/Message/Message-rules.md",
+      "example": ".ai/docs/components/Message/Message-example.md"
+    },
+    {
+      "keywords": "Modal",
+      "name": "Modal",
+      "props": ".ai/docs/components/Modal/Modal-props.json",
+      "rule": ".ai/docs/components/Modal/Modal-rules.md",
+      "example": ".ai/docs/components/Modal/Modal-example.md"
+    },
+    {
+      "keywords": "NavBar",
+      "name": "NavBar",
+      "props": ".ai/docs/components/NavBar/NavBar-props.json",
+      "rule": ".ai/docs/components/NavBar/NavBar-rules.md",
+      "example": ".ai/docs/components/NavBar/NavBar-example.md"
+    },
+    {
+      "keywords": "NoticeBar",
+      "name": "NoticeBar",
+      "props": ".ai/docs/components/NoticeBar/NoticeBar-props.json",
+      "rule": ".ai/docs/components/NoticeBar/NoticeBar-rules.md",
+      "example": ".ai/docs/components/NoticeBar/NoticeBar-example.md"
+    },
+    {
+      "keywords": "Page",
       "name": "Page",
       "props": ".ai/docs/components/Page/Page-props.json",
       "rule": ".ai/docs/components/Page/Page-rules.md",
       "example": ".ai/docs/components/Page/Page-example.md"
     },
     {
-      "keywords": "FooterBar|底部栏",
-      "name": "FooterBar",
-      "props": ".ai/docs/components/FooterBar/FooterBar-props.json",
-      "rule": ".ai/docs/components/FooterBar/FooterBar-rules.md",
-      "example": ".ai/docs/components/FooterBar/FooterBar-example.md"
+      "keywords": "Picker",
+      "name": "Picker",
+      "props": ".ai/docs/components/Picker/Picker-props.json",
+      "rule": ".ai/docs/components/Picker/Picker-rules.md",
+      "example": ".ai/docs/components/Picker/Picker-example.md"
+    },
+    {
+      "keywords": "Progress",
+      "name": "Progress",
+      "props": ".ai/docs/components/Progress/Progress-props.json",
+      "rule": ".ai/docs/components/Progress/Progress-rules.md",
+      "example": ".ai/docs/components/Progress/Progress-example.md"
+    },
+    {
+      "keywords": "QRCode",
+      "name": "QRCode",
+      "props": ".ai/docs/components/QRCode/QRCode-props.json",
+      "rule": ".ai/docs/components/QRCode/QRCode-rules.md",
+      "example": ".ai/docs/components/QRCode/QRCode-example.md"
+    },
+    {
+      "keywords": "Result",
+      "name": "Result",
+      "props": ".ai/docs/components/Result/Result-props.json",
+      "rule": ".ai/docs/components/Result/Result-rules.md",
+      "example": ".ai/docs/components/Result/Result-example.md"
+    },
+    {
+      "keywords": "Row",
+      "name": "Row",
+      "props": ".ai/docs/components/Row/Row-props.json",
+      "rule": ".ai/docs/components/Row/Row-rules.md",
+      "example": ".ai/docs/components/Row/Row-example.md"
+    },
+    {
+      "keywords": "SafeArea",
+      "name": "SafeArea",
+      "props": ".ai/docs/components/SafeArea/SafeArea-props.json",
+      "rule": ".ai/docs/components/SafeArea/SafeArea-rules.md",
+      "example": ".ai/docs/components/SafeArea/SafeArea-example.md"
+    },
+    {
+      "keywords": "Select",
+      "name": "Select",
+      "props": ".ai/docs/components/Select/Select-props.json",
+      "rule": ".ai/docs/components/Select/Select-rules.md",
+      "example": ".ai/docs/components/Select/Select-example.md"
+    },
+    {
+      "keywords": "Selector",
+      "name": "Selector",
+      "props": ".ai/docs/components/Selector/Selector-props.json",
+      "rule": ".ai/docs/components/Selector/Selector-rules.md",
+      "example": ".ai/docs/components/Selector/Selector-example.md"
+    },
+    {
+      "keywords": "Signature",
+      "name": "Signature",
+      "props": ".ai/docs/components/Signature/Signature-props.json",
+      "rule": ".ai/docs/components/Signature/Signature-rules.md",
+      "example": ".ai/docs/components/Signature/Signature-example.md"
+    },
+    {
+      "keywords": "Skeleton",
+      "name": "Skeleton",
+      "props": ".ai/docs/components/Skeleton/Skeleton-props.json",
+      "rule": ".ai/docs/components/Skeleton/Skeleton-rules.md",
+      "example": ".ai/docs/components/Skeleton/Skeleton-example.md"
+    },
+    {
+      "keywords": "Stamp",
+      "name": "Stamp",
+      "props": ".ai/docs/components/Stamp/Stamp-props.json",
+      "rule": ".ai/docs/components/Stamp/Stamp-rules.md",
+      "example": ".ai/docs/components/Stamp/Stamp-example.md"
+    },
+    {
+      "keywords": "Steps",
+      "name": "Steps",
+      "props": ".ai/docs/components/Steps/Steps-props.json",
+      "rule": ".ai/docs/components/Steps/Steps-rules.md",
+      "example": ".ai/docs/components/Steps/Steps-example.md"
+    },
+    {
+      "keywords": "Switch",
+      "name": "Switch",
+      "props": ".ai/docs/components/Switch/Switch-props.json",
+      "rule": ".ai/docs/components/Switch/Switch-rules.md",
+      "example": ".ai/docs/components/Switch/Switch-example.md"
+    },
+    {
+      "keywords": "TabBar",
+      "name": "TabBar",
+      "props": ".ai/docs/components/TabBar/TabBar-props.json",
+      "rule": ".ai/docs/components/TabBar/TabBar-rules.md",
+      "example": ".ai/docs/components/TabBar/TabBar-example.md"
+    },
+    {
+      "keywords": "Text",
+      "name": "Text",
+      "props": ".ai/docs/components/Text/Text-props.json",
+      "rule": ".ai/docs/components/Text/Text-rules.md",
+      "example": ".ai/docs/components/Text/Text-example.md"
+    },
+    {
+      "keywords": "Toast",
+      "name": "Toast",
+      "props": ".ai/docs/components/Toast/Toast-props.json",
+      "rule": ".ai/docs/components/Toast/Toast-rules.md",
+      "example": ".ai/docs/components/Toast/Toast-example.md"
+    },
+    {
+      "keywords": "ToolBar",
+      "name": "ToolBar",
+      "props": ".ai/docs/components/ToolBar/ToolBar-props.json",
+      "rule": ".ai/docs/components/ToolBar/ToolBar-rules.md",
+      "example": ".ai/docs/components/ToolBar/ToolBar-example.md"
+    },
+    {
+      "keywords": "Tooltip",
+      "name": "Tooltip",
+      "props": ".ai/docs/components/Tooltip/Tooltip-props.json",
+      "rule": ".ai/docs/components/Tooltip/Tooltip-rules.md",
+      "example": ".ai/docs/components/Tooltip/Tooltip-example.md"
+    },
+    {
+      "keywords": "Transfer",
+      "name": "Transfer",
+      "props": ".ai/docs/components/Transfer/Transfer-props.json",
+      "rule": ".ai/docs/components/Transfer/Transfer-rules.md",
+      "example": ".ai/docs/components/Transfer/Transfer-example.md"
+    },
+    {
+      "keywords": "VideoPlayer",
+      "name": "VideoPlayer",
+      "props": ".ai/docs/components/VideoPlayer/VideoPlayer-props.json",
+      "rule": ".ai/docs/components/VideoPlayer/VideoPlayer-rules.md",
+      "example": ".ai/docs/components/VideoPlayer/VideoPlayer-example.md"
     }
   ],
   "utils": [

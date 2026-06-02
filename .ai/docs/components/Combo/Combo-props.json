@@ -1,0 +1,12 @@
+{
+  "Combo": {
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 组合内容",
+    "onClick": "`(e: Event) => void` — 点击事件"
+  },
+  "Combo.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

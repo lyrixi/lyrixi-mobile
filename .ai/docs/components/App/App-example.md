@@ -1,0 +1,7 @@
+# App Example
+
+以下示例位于本目录 `demos/`（由 `src/components/App/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+
+业务代码引入：`import { App } from 'lyrixi-mobile'`
+
+_暂无 demo 文件，请查阅 `-rules.md` 与 `-props.json`。_

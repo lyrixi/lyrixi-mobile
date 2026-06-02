@@ -1,0 +1,13 @@
+import { Page, NavBar } from 'lyrixi-mobile'
+
+export default function NavBarTitleDemo() {
+  return (
+    <Page>
+      <Page.Main>
+        <NavBar.Title>
+          {/* NavBar.Title 示例内容 */}
+        </NavBar.Title>
+      </Page.Main>
+    </Page>
+  )
+}

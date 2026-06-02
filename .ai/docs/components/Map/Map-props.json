@@ -1,0 +1,185 @@
+{
+  "Map.MapContainer": {
+    "center": "`MapPoint \\ | Array<MapPoint>` — 地图中心点",
+    "zoom": "`number` — 缩放级别",
+    "minZoom": "`number` — 最小缩放级别",
+    "maxZoom": "`number` — 最大缩放级别",
+    "cacheExpires": "`number` — 缓存过期时间",
+    "getAddress": "`(...args) => Promise<Record<string, unknown>>` — 获取地址函数",
+    "getLocation": "`(...args) => Promise<MapPoint \\ | null>` — 获取位置函数",
+    "openLocation": "`(...args) => unknown` — 打开位置函数",
+    "queryNearby": "`(...args) => unknown` — 查询附近函数",
+    "style": "`CSSProperties` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 地图内容",
+    "onLoad": "`(result: {status: string, message?: string, map?: MapContainerAPI}) => void` — 加载完成事件",
+    "onZoomStart": "`(map: MapContainerAPI) => void` — 缩放开始事件",
+    "onZoom": "`(map: MapContainerAPI) => void` — 缩放事件",
+    "onZoomEnd": "`(map: MapContainerAPI) => void` — 缩放结束事件",
+    "onMoveStart": "`(map: MapContainerAPI) => void` — 移动开始事件",
+    "onMove": "`(map: MapContainerAPI) => void` — 移动事件",
+    "onMoveEnd": "`(map: MapContainerAPI) => void` — 移动结束事件",
+    "onDragStart": "`(map: MapContainerAPI) => void` — 拖动开始事件",
+    "onDrag": "`(map: MapContainerAPI) => void` — 拖动事件",
+    "onDragEnd": "`(map: MapContainerAPI) => void` — 拖动结束事件"
+  },
+  "Map.ZoomControl": {
+    "map": "`MapContainerAPI` — 地图实例 API",
+    "style": "`CSSProperties` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "onZoomIn": "`(map: MapContainerAPI) => void` — 放大事件",
+    "onZoomOut": "`(map: MapContainerAPI) => void` — 缩小事件"
+  },
+  "Map.SearchControl": {
+    "map": "`MapContainerAPI` — 地图实例 API",
+    "style": "`CSSProperties` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "onChange": "`(item: unknown) => void` — 选中变化事件"
+  },
+  "Map.CenterMarker": {
+    "value": "`MapCenterMarkerPoint \\ | null` — 中心点坐标",
+    "map": "`MapContainerAPI` — 地图实例 API",
+    "icon": "`L.Icon \\ | L.DivIcon \\ | null` — 标记图标",
+    "style": "`CSSProperties` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "onClick": "`(info: MapPoint) => void` — 点击事件",
+    "onDragStart": "`(map: MapContainerAPI) => void` — 拖动开始事件",
+    "onDragEnd": "`(map: MapContainerAPI) => void` — 拖动结束事件"
+  },
+  "Map.Markers": {
+    "points": "`unknown` — 标记点列表",
+    "map": "`MapContainerAPI` — 地图实例 API",
+    "icon": "`unknown` — 标记图标",
+    "style": "`CSSProperties` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "onClick": "`(payload: unknown) => void` — 点击事件"
+  },
+  "Map.Circles": {
+    "points": "`unknown` — 圆形点列表",
+    "color": "`string` — 描边颜色",
+    "radius": "`number` — 默认半径",
+    "map": "`MapContainerAPI` — 地图实例 API"
+  },
+  "Map.Polyline": {
+    "points": "`unknown` — 折线顶点列表",
+    "color": "`string` — 线条颜色",
+    "map": "`MapContainerAPI` — 地图实例 API"
+  },
+  "Map.Polygon": {
+    "points": "`unknown` — 顶点坐标列表",
+    "color": "`string` — 描边颜色，默认 `'#3388ff'`",
+    "fillColor": "`string` — 填充颜色，默认 同 color",
+    "fillOpacity": "`number` — 填充透明度，默认 `0.2`",
+    "weight": "`number` — 描边宽度，默认 `2`",
+    "map": "`MapContainerAPI` — 地图实例 API"
+  },
+  "Map.LocationControl": {
+    "map": "`MapContainerAPI` — 地图实例 API",
+    "style": "`CSSProperties` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "onChange": "`(result: unknown) => void` — 定位变化事件"
+  },
+  "Map.NearbyControl": {
+    "value": "`MapValue` — 当前选中位置",
+    "radius": "`number` — 附近搜索半径",
+    "map": "`MapContainerAPI` — 地图实例 API",
+    "readOnly": "`boolean` — 是否只读",
+    "nearbyVisible": "`boolean` — 是否显示附近",
+    "onChange": "`(item: unknown) => void` — 选中变化事件",
+    "onSuccess": "`(result: unknown) => void` — 查询成功事件",
+    "onError": "`(result: unknown) => void` — 查询失败事件"
+  },
+  "Map.MapChoose": {
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 页面内容"
+  },
+  "Map.MapMarkers": {
+    "markers": "`unknown` — 标记点数据",
+    "minZoom": "`number` — 最小缩放级别",
+    "maxZoom": "`number` — 最大缩放级别",
+    "polyline": "`unknown` — 折线数据",
+    "circles": "`unknown` — 圆形数据",
+    "getAddress": "`(coord: object) => Promise<string>` — 获取地址函数",
+    "getLocation": "`() => Promise<object>` — 获取位置函数",
+    "queryNearby": "`(location: object) => Promise<Array>` — 查询附近函数",
+    "openLocation": "`(location: object) => void` — 打开位置函数",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "polylineStyle": "`object` — 折线样式",
+    "polylineClassName": "`string` — 折线类名",
+    "circlesStyle": "`object` — 圆形样式",
+    "circlesClassName": "`string` — 圆形类名",
+    "zoomControlStyle": "`object` — 缩放控件样式",
+    "zoomControlClassName": "`string` — 缩放控件类名",
+    "children": "`ReactNode` — 页面内容",
+    "onLoad": "`(result: object) => void` — 加载完成事件",
+    "onMarkerClick": "`(e: unknown) => void` — 标记点击事件",
+    "onZoomStart": "`(map: MapContainerAPI) => void` — 缩放开始事件",
+    "onZoom": "`(map: MapContainerAPI) => void` — 缩放事件",
+    "onZoomEnd": "`(map: MapContainerAPI) => void` — 缩放结束事件",
+    "onMoveStart": "`(map: MapContainerAPI) => void` — 移动开始事件",
+    "onMove": "`(map: MapContainerAPI) => void` — 移动事件",
+    "onMoveEnd": "`(map: MapContainerAPI) => void` — 移动结束事件",
+    "onDragStart": "`(map: MapContainerAPI) => void` — 拖动开始事件",
+    "onDrag": "`(map: MapContainerAPI) => void` — 拖动事件",
+    "onDragEnd": "`(map: MapContainerAPI) => void` — 拖动结束事件"
+  },
+  "Map.MapContainer.ref": {
+    "element": "`HTMLDivElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLDivElement \\ | null` — 获取根元素",
+    "type": "`string` — 地图类型",
+    "currentMap": "`unknown` — 当前地图实例",
+    "leafletMap": "`L.Map \\ | null` — Leaflet 地图实例",
+    "openLocation": "`(opts: Record<string, unknown>) => void` — 打开位置",
+    "getAddress": "`(coord: MapPoint) => Promise<Record<string, unknown> \\ | {status: string, message: string}>` — 获取地址",
+    "getLocation": "`(params: Record<string, unknown>) => Promise<MapPoint \\ | null>` — 获取位置",
+    "queryNearby": "`(...args) => unknown` — 查询附近",
+    "center": "`MapPoint` — 当前中心点",
+    "setView": "`(...params) => void` — 设置视图",
+    "panTo": "`(coords: MapPoint \\ | MapPoint[]) => void` — 平移至坐标",
+    "getCenter": "`() => {latitude: number, longitude: number, type?: string}` — 获取中心点",
+    "zoomIn": "`() => void` — 放大",
+    "zoomOut": "`() => void` — 缩小",
+    "getZoom": "`() => number \\ | null` — 获取缩放级别",
+    "setZoom": "`(zoom: number) => unknown` — 设置缩放级别"
+  },
+  "Map.ZoomControl.ref": {
+    "element": "`HTMLDivElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLDivElement \\ | null` — 获取根元素",
+    "zoomIn": "`() => void` — 放大",
+    "zoomOut": "`() => void` — 缩小"
+  },
+  "Map.CenterMarker.ref": {
+    "element": "`HTMLSpanElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLSpanElement \\ | null` — 获取根元素"
+  },
+  "Map.Markers.ref": {
+    "redraw": "`() => void` — 重新绘制标记层",
+    "focus": "`(point: MapCoord) => void` — 聚焦指定点",
+    "blur": "`() => void` — 取消聚焦"
+  },
+  "Map.Circles.ref": {
+    "redraw": "`() => void` — 重新绘制圆形层"
+  },
+  "Map.Polyline.ref": {
+    "redraw": "`() => void` — 重新绘制折线层"
+  },
+  "Map.Polygon.ref": {
+    "redraw": "`() => void` — 重新绘制多边形"
+  },
+  "Map.LocationControl.ref": {
+    "element": "`HTMLDivElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLDivElement \\ | null` — 获取根元素",
+    "update": "`() => Promise<unknown>` — 更新当前位置"
+  },
+  "Map.NearbyControl.ref": {
+    "element": "`HTMLDivElement \\ | null` — 根元素",
+    "getElement": "`() => HTMLDivElement \\ | null` — 获取根元素",
+    "reload": "`() => void` — 重新加载"
+  },
+  "Map.MapChoose.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

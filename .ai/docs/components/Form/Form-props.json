@@ -1,0 +1,54 @@
+{
+  "Form": {
+    "layout": "`'horizontal' \\ | 'vertical' \\ | 'inline'` — 布局方式，默认 `'horizontal'`",
+    "labelCol": "`object` — 标签列配置",
+    "mainCol": "`object` — 内容列配置",
+    "scrollerElement": "`HTMLElement` — 滚动容器元素",
+    "virtual": "`boolean` — 是否虚拟滚动",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 表单内容",
+    "form": "`FormInstance` — 表单实例",
+    "name": "`string` — 表单名称",
+    "validateMessages": "`object` — 校验提示信息",
+    "initialValues": "`object` — 初始值",
+    "onFieldsChange": "`(changedFields, allFields) => void` — 字段变化事件",
+    "onValuesChange": "`(changedValues, allValues) => void` — 值变化事件"
+  },
+  "Form.Item": {
+    "name": "`NamePath` — 字段名",
+    "valuePropName": "`string` — 值属性名",
+    "shouldUpdate": "`boolean \\ | (prevValues, currentValues) => boolean` — 是否更新",
+    "initialValue": "`unknown` — 初始值",
+    "validateTrigger": "`string \\ | string[]` — 校验触发时机",
+    "rules": "`Rule[]` — 校验规则",
+    "id": "`string` — 表单项 ID",
+    "labelEllipsis": "`object` — 标签省略配置",
+    "labelSpan": "`number \\ | string` — 标签栅格占位",
+    "mainSpan": "`number \\ | string` — 内容栅格占位",
+    "mainEllipsis": "`object` — 内容省略配置",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "layout": "`string` — 布局方式",
+    "height": "`number` — 高度",
+    "maxLength": "`number` — 最大长度",
+    "labelStyle": "`object` — 标签样式",
+    "labelClassName": "`string` — 标签类名",
+    "mainStyle": "`object` — 内容区样式",
+    "mainClassName": "`string` — 内容区类名",
+    "label": "`ReactNode` — 标签",
+    "labelHelp": "`ReactNode` — 标签帮助",
+    "inputExtraRender": "`(opts: { errors: string[] }) => ReactNode` — 输入框额外渲染",
+    "extraRender": "`(opts: { errors: string[] }) => ReactNode` — 额外渲染",
+    "extra": "`(opts: { value: unknown }) => ReactNode` — 额外信息",
+    "children": "`ReactNode` — 表单项内容"
+  },
+  "Form.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  },
+  "Form.Item.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

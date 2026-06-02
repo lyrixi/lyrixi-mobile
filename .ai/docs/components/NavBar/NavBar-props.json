@@ -1,0 +1,37 @@
+{
+  "NavBar": {
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 导航栏内容"
+  },
+  "NavBar.Title": {
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 标题内容"
+  },
+  "NavBar.Button": {
+    "direction": "`string` — 方向",
+    "block": "`boolean` — 块级按钮",
+    "color": "`string` — 文字颜色",
+    "backgroundColor": "`string` — 背景颜色",
+    "borderColor": "`string` — 边框颜色",
+    "border": "`string` — 边框样式",
+    "size": "`string \\ | number \\ | string[]` — 尺寸",
+    "sizeEqual": "`boolean` — 等宽高",
+    "fontSize": "`string \\ | number` — 字体大小",
+    "radius": "`string \\ | number` — 圆角",
+    "disabled": "`boolean` — 是否禁用",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 按钮内容",
+    "onClick": "`(e: MouseEvent) => void` — 点击事件"
+  },
+  "NavBar.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  },
+  "NavBar.Title.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

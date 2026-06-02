@@ -1,0 +1,46 @@
+{
+  "Signature.Combo": {
+    "value": "`string` — 签名值",
+    "allowClear": "`boolean` — 允许清除，默认 `true`",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "modalClassName": "`string` — 模态框类名",
+    "modalStyle": "`object` — 模态框样式",
+    "maskStyle": "`object` — 遮罩样式",
+    "maskClassName": "`string` — 遮罩类名",
+    "portal": "`HTMLElement` — 挂载节点",
+    "color": "`string` — 画笔颜色，默认 `'#000'`",
+    "backgroundColor": "`string` — 背景颜色，默认 `'#fff'`",
+    "onChange": "`(base64: string \\ | null) => void` — 变化事件",
+    "onPreview": "`(src: string) => Promise<boolean \\ | string \\ | void>` — 预览事件"
+  },
+  "Signature.Modal": {
+    "value": "`string` — 签名值",
+    "open": "`boolean` — 是否显示",
+    "modalClassName": "`string` — 模态框类名",
+    "modalStyle": "`object` — 模态框样式",
+    "portal": "`HTMLElement` — 挂载节点",
+    "color": "`string` — 画笔颜色，默认 `'#000'`",
+    "backgroundColor": "`string` — 背景颜色，默认 `'#fff'`",
+    "onChange": "`(base64: string \\ | null) => void` — 变化事件",
+    "onOpen": "`() => void` — 打开事件",
+    "onClose": "`() => void` — 关闭事件"
+  },
+  "Signature.Main": {
+    "style": "`object` — 自定义样式",
+    "color": "`string` — 画笔颜色，默认 `'#000'`",
+    "backgroundColor": "`string` — 背景颜色，默认 `'#fff'`",
+    "onChange": "`(value: string) => void` — 变化事件",
+    "onCancel": "`() => void` — 取消事件"
+  },
+  "Signature.Modal.ref": {
+    "modalElement": "`HTMLDivElement` — 模态框元素",
+    "getModalElement": "() => `HTMLDivElement` — 获取模态框元素"
+  },
+  "Signature.Main.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素",
+    "getBase64": "`() => Promise<string \\ | null>` — 获取 Base64",
+    "clear": "`() => void` — 清除签名"
+  }
+}

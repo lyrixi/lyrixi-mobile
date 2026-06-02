@@ -1,0 +1,6 @@
+{
+  "Skeleton.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

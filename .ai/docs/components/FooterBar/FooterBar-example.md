@@ -1,32 +1,161 @@
 # FooterBar Example
 
-底部操作条容器。列表页筛选弹层、页面底部固定动作区都适合使用：
+以下示例位于本目录 `demos/`（由 `src/components/FooterBar/demos` 同步，运行 `npm run build:ai-docs` 更新）。
 
-- `FooterBar`
-- `FooterBar.Button`
+业务代码引入：`import { FooterBar } from 'lyrixi-mobile'`
 
-## 只有按钮
-
-```tsx
-<FooterBar>
-  <FooterBar.Button block backgroundColor="default" onClick={onClose}>
-    取消
-  </FooterBar.Button>
-  <FooterBar.Button block color="white" backgroundColor="primary" onClick={onConfirm}>
-    确定
-  </FooterBar.Button>
-</FooterBar>
-```
-
-## 按钮列表
+## demos/FooterBarButton.tsx
 
 ```tsx
-<FooterBar>
-  <FooterBar.Button block backgroundColor="default" onClick={onClose}>
-    取消
-  </FooterBar.Button>
-  <FooterBar.Button block color="white" backgroundColor="primary" onClick={onConfirm}>
-    确定
-  </FooterBar.Button>
-</FooterBar>
+import { Icon, Page, Divider, FooterBar, Button, Icons } from 'lyrixi-mobile'
+
+export default function FooterBarButtonDemo() {
+  return (
+    <Page safeArea>
+      <Page.Main>
+        <Divider>Text Button</Divider>
+        <FooterBar>
+          <FooterBar.Button
+            block
+            list={[
+              {
+                id: 'option1',
+                name: 'Option 1',
+                onClick: (e) => {
+                  console.log(e)
+                }
+              },
+              {
+                id: 'option2',
+                name: 'Option 2',
+                onClick: (e) => {
+                  console.log(e)
+                }
+              }
+            ]}
+          >
+            <Icon svg={Icons.ThreeDots} size="xl" />
+          </FooterBar.Button>
+
+          <FooterBar.Button
+            block
+            onClick={(e) => {
+              console.log(e)
+            }}
+          >
+            <Icon svg={Icons.Config} size="xl" />
+          </FooterBar.Button>
+
+          <FooterBar.Button
+            block
+            color="primary"
+            onClick={(e) => {
+              console.log(e)
+            }}
+          >
+            Ok
+          </FooterBar.Button>
+
+          <FooterBar.Button
+            block
+            size="s"
+            onClick={(e) => {
+              console.log(e)
+            }}
+          >
+            Cancel
+          </FooterBar.Button>
+        </FooterBar>
+
+        <Divider>Text Button disabled</Divider>
+        <FooterBar>
+          <FooterBar.Button
+            disabled
+            block
+            list={[
+              {
+                id: 'option1',
+                name: 'Option 1',
+                onClick: (e) => {
+                  console.log(e)
+                }
+              },
+              {
+                id: 'option2',
+                name: 'Option 2',
+                onClick: (e) => {
+                  console.log(e)
+                }
+              }
+            ]}
+          >
+            <Icon svg={Icons.ThreeDots} size="xl" />
+          </FooterBar.Button>
+
+          <FooterBar.Button
+            disabled
+            block
+            onClick={(e) => {
+              console.log(e)
+            }}
+          >
+            <Icon svg={Icons.Config} size="xl" />
+          </FooterBar.Button>
+
+          <FooterBar.Button
+            disabled
+            block
+            color="primary"
+            size="s"
+            onClick={(e) => {
+              console.log(e)
+            }}
+          >
+            Ok
+          </FooterBar.Button>
+
+          <FooterBar.Button
+            disabled
+            block
+            size="s"
+            onClick={(e) => {
+              console.log(e)
+            }}
+          >
+            Cancel
+          </FooterBar.Button>
+        </FooterBar>
+
+        <Divider>Button</Divider>
+        <FooterBar>
+          <FooterBar.Button
+            direction="vertical"
+            fontSize="12px"
+            list={[
+              {
+                id: 'option1',
+                name: 'Option 1',
+                onClick: (e) => {
+                  console.log(e)
+                }
+              },
+              {
+                id: 'option2',
+                name: 'Option 2',
+                onClick: (e) => {
+                  console.log(e)
+                }
+              }
+            ]}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
+          >
+            <Button.Icon svg={Icons.ThreeDots} size="xl" />
+            <Button.Text>More</Button.Text>
+          </FooterBar.Button>
+          <FooterBar.Button
+            direction="vertical"
+            fontSize="12px"
+            onClick={(e) => {
+              console.log(e)
+// ... 其余见 demos/FooterBarButton.tsx 全文
 ```

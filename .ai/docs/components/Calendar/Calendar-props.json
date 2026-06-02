@@ -1,0 +1,42 @@
+{
+  "Calendar": {
+    "open": "`boolean` — 是否显示",
+    "value": "`Date \\ | Date[]` — 选中的值",
+    "selectionMode": "`'single' \\ | 'multiple' \\ | 'range'` — 选择模式",
+    "type": "`'week' \\ | 'month'` — 日历类型，默认 `'month'`",
+    "weekStart": "`'Monday' \\ | 'Sunday'` — 周起始日，默认 `'Monday'`",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "min": "`Date` — 最小日期",
+    "max": "`Date` — 最大日期",
+    "allowClear": "`boolean` — 允许清除，默认 `true`",
+    "draggable": "`boolean \\ | Array<'horizontal' \\ | 'vertical'>` — 是否可拖动，默认 `['horizontal', 'vertical']`",
+    "titleRender": "`() => ReactNode` — 标题渲染",
+    "headerRender": "`() => ReactNode` — 头部渲染",
+    "dateRender": "`(date: Date, props: object) => ReactNode` — 日期渲染",
+    "onChange": "`(value: Date \\ | Date[]) => void` — 变化事件",
+    "onPageChange": "`(date: Date) => void` — 页面变化事件",
+    "onError": "`(error: Error) => void` — 错误事件"
+  },
+  "Calendar.Header": {
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 头部内容",
+    "onPreviousMonth": "`(e?: MouseEvent) => void` — 上一月",
+    "onNextMonth": "`(e?: MouseEvent) => void` — 下一月",
+    "onPreviousYear": "`(e?: MouseEvent) => void` — 上一年",
+    "onNextYear": "`(e?: MouseEvent) => void` — 下一年"
+  },
+  "Calendar.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素",
+    "slideCollapse": "`() => Promise<void>` — 收起",
+    "slideExpand": "`() => Promise<void>` — 展开",
+    "slidePrevious": "`() => Promise<void>` — 上一页",
+    "slideNext": "`() => Promise<void>` — 下一页"
+  },
+  "Calendar.Header.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

@@ -1,0 +1,34 @@
+import { Page, Result, Button, LocaleUtil } from 'lyrixi-mobile'
+import Bridge from './../../../utils/Bridge'
+
+export default function Result500Demo() {
+  return (
+    <Page>
+      <Page.Main>
+        <Result status={'500'}>
+          <Button
+            radius="l"
+            backgroundColor="primary"
+            border="none"
+            color="white"
+            style={{ margin: '77px 12px 0 12px' }}
+            onClick={() => {
+              window.location.reload()
+            }}
+          >
+            {LocaleUtil.locale('重试')}
+          </Button>
+          <Button
+            radius="l"
+            style={{ margin: '12px 12px 0 12px' }}
+            onClick={() => {
+              Bridge.back()
+            }}
+          >
+            {LocaleUtil.locale('返回')}
+          </Button>
+        </Result>
+      </Page.Main>
+    </Page>
+  )
+}

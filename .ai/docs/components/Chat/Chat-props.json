@@ -1,0 +1,39 @@
+{
+  "Chat.List": {
+    "timeSpace": "`number` — 时间间隔，默认 `60000`",
+    "value": "`Array<object>` — 选中的值",
+    "list": "`Array<{id: string, position: 'left' \\ | 'right', avatarUrl?: string, name: string, avatarRender?: (props: object) => ReactNode, avatarNode?: ReactNode, authorRender?: (props: object) => ReactNode, authorNode?: ReactNode, content: ReactNode, time: Date}>` — 消息列表",
+    "formatViewList": "`(list: Array<{...item, _raw: item}>) => Array<object>` — 格式化列表",
+    "formatViewItem": "`(item: object, index: number) => object` — 格式化项",
+    "checkable": "`boolean` — 是否可选",
+    "checkboxVariant": "`(item: object) => ReactNode` — 复选框渲染",
+    "checkboxPosition": "`left/right` — 复选框位置",
+    "onChange": "`(value: Array<object>) => void` — 变化事件"
+  },
+  "Chat.Item": {
+    "id": "`string \\ | number` — 消息唯一标识",
+    "_raw": "`Record<string, unknown>` — 原始消息数据",
+    "checked": "`boolean` — 是否选中",
+    "checkable": "`boolean` — 是否可选",
+    "className": "`string` — 自定义类名",
+    "position": "`string` — 气泡位置",
+    "style": "`CSSProperties` — 自定义样式",
+    "checkboxVariant": "`string` — 复选框样式变体",
+    "checkboxPosition": "`string` — 复选框位置",
+    "avatarUrl": "`string` — 头像地址",
+    "avatarRender": "`(ctx: {checked?: boolean, ...}) => ReactNode` — 头像渲染",
+    "avatarNode": "`ReactNode` — 头像节点",
+    "authorRender": "`(ctx: {checked?: boolean, ...}) => ReactNode` — 作者渲染",
+    "authorNode": "`ReactNode` — 作者节点",
+    "content": "`ReactNode` — 消息内容",
+    "onChange": "`(checked: boolean) => void` — 选中变化事件"
+  },
+  "Chat.List.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  },
+  "Chat.Item.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

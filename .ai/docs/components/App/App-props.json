@@ -1,0 +1,11 @@
+{
+  "App": {
+    "enableLogger": "`boolean` — 启用日志，默认 `true`",
+    "bridgeConfig": "`object` — 桥接配置，默认 `null`",
+    "backdoor": "`HTMLElement` — 后门元素，默认 `null`",
+    "preload": "`() => Promise<boolean \\ | string>` — 预加载函数，默认 `null`",
+    "loadingRender": "`() => ReactNode` — 加载中渲染",
+    "map": "`{onSuccess: function, onError: function, [key: string]: any}` — 地图配置，默认 `{}`",
+    "children": "`ReactNode` — 应用内容"
+  }
+}

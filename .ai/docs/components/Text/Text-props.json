@@ -1,0 +1,15 @@
+{
+  "Text": {
+    "highlight": "`string \\ | Array<string>` — 高亮文本",
+    "ellipsis": "`{rows: number, expandable: boolean, defaultExpanded: boolean}` — 省略配置",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "children": "`ReactNode` — 文本内容"
+  },
+  "Text.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素",
+    "toggleEllipsis": "`() => boolean` — 切换省略",
+    "hasEllipsis": "`() => boolean` — 是否有省略"
+  }
+}

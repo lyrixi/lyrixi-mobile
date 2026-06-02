@@ -1,0 +1,21 @@
+{
+  "NoticeBar": {
+    "title": "`ReactNode` — 通知标题",
+    "description": "`ReactNode` — 通知描述",
+    "type": "`'success' \\ | 'info' \\ | 'warning' \\ | 'error'` — 通知类型，默认 `'info'`",
+    "closable": "`boolean` — 是否可关闭",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "iconRender": "`() => ReactNode` — 自定义图标渲染",
+    "iconClassName": "`string` — 图标类名",
+    "iconColor": "`string` — 图标颜色",
+    "iconBackgroundColor": "`string` — 图标背景颜色",
+    "iconSize": "`'xxs' \\ | 'xs' \\ | 's' \\ | 'm' \\ | 'l' \\ | 'xl'` — 图标大小，默认 `'m'`"
+  },
+  "NoticeBar.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素",
+    "close": "`() => void` — 关闭通告栏",
+    "open": "`() => void` — 打开通告栏"
+  }
+}

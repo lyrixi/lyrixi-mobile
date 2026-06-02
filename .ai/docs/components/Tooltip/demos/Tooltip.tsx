@@ -1,0 +1,21 @@
+import { Tooltip } from 'lyrixi-mobile'
+
+export default function TooltipDemo() {
+  return (
+    <>
+      <Tooltip
+        onOpen={() => {
+          console.log('open:', true)
+        }}
+        onClose={() => {
+          console.log('open:', false)
+        }}
+        modalRender={() => {
+          return <div style={{ margin: 100 }}>Modal Content</div>
+        }}
+      >
+        <div style={{ margin: 100 }}>Combo</div>
+      </Tooltip>
+    </>
+  )
+}

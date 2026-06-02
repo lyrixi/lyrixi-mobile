@@ -13,17 +13,18 @@
 
 ### `components/` — 组件文档
 
-包含**组件用法示例**，以及 **Props、使用规则** 等属性说明，便于选对组件、写对参数。
+与 `src/components/` **一一对应**（当前 57 个组件），供 AI 查阅 Props、规则与示例，减少生成代码时的幻觉。
 
-典型文件（以 `Page` 为例）：
+| 文件 / 目录 | 用途 |
+|-------------|------|
+| `{Name}-props.json` | Props / Ref（由站点文档 API 表生成） |
+| `{Name}-rules.md` | 何时使用、子组件、必须用库组件 |
+| `{Name}-example.md` | 示例说明与代码摘录 |
+| `demos/` | 与 `src/components/{Name}/demos` 同步的示例源码 |
 
-| 文件 | 用途 |
-|------|------|
-| `*-props.json` | Props 字段、类型、说明 |
-| `*-rules.md` | 使用规则与约束 |
-| `*-example.md` | 示例代码片段 |
+修改组件文档或 demo 后，在仓库根目录执行 `npm run build:ai-docs` 重新生成。
 
-索引：[`mapping.json`](mapping.json) 中的 `components` 条目。
+索引：[`mapping.json`](mapping.json) 的 `components`；目录说明：[`components/README.md`](components/README.md)。
 
 ### `utils/` — 工具文档
 
@@ -37,4 +38,5 @@
 
 1. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
 2. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
-3. 扩展文档：在 `components/` 或 `utils/` 下新建目录，补齐 props、rules、example，并登记到 `mapping.json`。
+3. 扩展组件文档：改 `src/components/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
+4. 扩展工具文档：在 `utils/` 下手工维护或后续补充生成脚本。

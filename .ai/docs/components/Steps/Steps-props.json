@@ -1,0 +1,15 @@
+{
+  "Steps": {
+    "value": "`{index: number, id: string, status: string}` — 当前步骤",
+    "list": "`Array<{id: string, title: string, description: string, [key: string]: any}>` — 步骤列表",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "iconSize": "`number` — 图标大小，默认 `8`",
+    "align": "`'center' \\ | 'left'` — 对齐方式，默认 `'center'`",
+    "direction": "`'vertical' \\ | 'horizontal'` — 方向，默认 `'vertical'`"
+  },
+  "Steps.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}

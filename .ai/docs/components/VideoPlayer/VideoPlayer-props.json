@@ -1,0 +1,18 @@
+{
+  "VideoPlayer": {
+    "src": "`string` — 视频地址",
+    "autoPlay": "`boolean` — 自动播放，默认 `false`",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "portal": "`HTMLElement` — 挂载节点",
+    "poster": "`string` — 封面图，默认 `''`",
+    "children": "`ReactNode` — 子元素",
+    "onError": "`(error: object) => void` — 错误事件"
+  },
+  "VideoPlayer.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素",
+    "pause": "`() => void` — 暂停播放",
+    "play": "`() => void` — 开始播放"
+  }
+}

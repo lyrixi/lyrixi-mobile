@@ -1,0 +1,23 @@
+{
+  "List": {
+    "value": "`any \\ | any[]` — 选中的值",
+    "multiple": "`boolean` — 是否多选",
+    "allowClear": "`boolean` — 允许清除",
+    "list": "`Array<object>` — 列表数据",
+    "formatViewList": "`(list: Array) => Array` — 格式化列表",
+    "formatViewItem": "`(item: object) => object` — 格式化项",
+    "checkable": "`boolean` — 是否可选",
+    "style": "`object` — 自定义样式",
+    "className": "`string` — 自定义类名",
+    "itemStyle": "`object` — 项样式",
+    "itemClassName": "`string` — 项类名",
+    "itemLayout": "`string` — 项布局",
+    "itemRender": "`(item: object) => ReactNode` — 自定义项渲染",
+    "checkboxVariant": "`(item: object) => ReactNode` — 自定义复选框渲染",
+    "onChange": "`(value: any \\ | any[], options: object) => void` — 变化事件"
+  },
+  "List.ref": {
+    "element": "`HTMLDivElement` — 根元素",
+    "getElement": "() => `HTMLDivElement` — 获取根元素"
+  }
+}
