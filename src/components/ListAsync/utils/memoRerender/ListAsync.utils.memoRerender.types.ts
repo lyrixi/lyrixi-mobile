@@ -1,6 +1,6 @@
-export type ListAsyncMemoRerenderRawItem = Record<string, unknown>
+export type ListAsyncMemoRerenderListItem = Record<string, unknown>
 
 export interface ListAsyncMemoRerenderListProps {
-  value?: ListAsyncMemoRerenderRawItem | ListAsyncMemoRerenderRawItem[] | null
-  list?: ListAsyncMemoRerenderRawItem[]
+  value?: ListAsyncMemoRerenderListItem | ListAsyncMemoRerenderListItem[] | null
+  list?: ListAsyncMemoRerenderListItem[]
 }

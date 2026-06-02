@@ -1,9 +1,10 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
+
 import { Page, Map, Button, type MapContainerAPI, type MapPoint } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, coordsToWgs84 } = Map
 
-export default () => {
+export default function MapMapContainerDemo() {
   const mapRef = useRef<MapContainerAPI | null>(null)
 
   const center = coordsToWgs84({

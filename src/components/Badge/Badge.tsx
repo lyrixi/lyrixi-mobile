@@ -20,8 +20,7 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
     style,
     className,
 
-    // Validate
-    maxLength = 2,
+        maxLength = 2,
     ellipsis = '+' // 有maxLength属性时ellipsis才生效
   },
   ref

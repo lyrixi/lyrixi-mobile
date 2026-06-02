@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react'
-import { DatePicker } from 'lyrixi-mobile'
+import { useRef, useState } from 'react'
 
-import type { DatePickerDemoWeekComboRef } from './DatePicker.demos.types'
+import { DatePicker, type DatePickerWeekComboRef } from 'lyrixi-mobile'
 
-export default () => {
-  const date1Ref = useRef<DatePickerDemoWeekComboRef | null>(null)
-  const date2Ref = useRef<DatePickerDemoWeekComboRef | null>(null)
+export default function DatePickerWeekComboDemo() {
+  const date1Ref = useRef<DatePickerWeekComboRef | null>(null)
+  const date2Ref = useRef<DatePickerWeekComboRef | null>(null)
   const [value, setValue] = useState<Date | null>(null)
 
   return (
@@ -28,7 +27,7 @@ export default () => {
           zIndex: 999
         }}
         onChange={(newValue) => {
-          setValue(newValue as Date | null)
+          setValue(newValue ?? null)
         }}
         value={value}
       />

@@ -9,7 +9,7 @@ import {
 import renderClear from './renderClear'
 
 import type { InputTextElement, InputTextProps, InputTextRef } from '../types'
-
+import type { InputTextRenderClearOptions } from './Input.Text.renderClear.types'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
@@ -41,14 +41,13 @@ const InputText = (
     style: externalStyle,
     className,
 
-    // Element
+    // Elements
     inputRender,
     leftIconNode,
     rightIconNode,
     clearRender,
 
-    // Validate
-    precision, // 小数精度, 只有数值框才生效
+        precision, // 小数精度, 只有数值框才生效
     trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
     max,
     min,
@@ -71,8 +70,6 @@ const InputText = (
   }: InputTextProps,
   ref: React.Ref<InputTextRef>
 ) => {
-  const textValue = String(value ?? '')
-
   // 输入框展示值
   const displayValue = typeof formatter === 'function' ? formatter(value ?? '') : null
 
@@ -91,7 +88,7 @@ const InputText = (
       focus()
     }
 
-    if (!textValue) return
+    if (!value) return
 
     let val = ''
 
@@ -99,7 +96,7 @@ const InputText = (
     val = String(correctValue(value ?? ''))
 
     // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
-    if (val && textValue && String(val) !== textValue) {
+    if (val && value && String(val) !== value) {
       onChange?.(val, { action: 'load' })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -109,8 +106,8 @@ const InputText = (
   useEffect(() => {
     if (!enableCompositionEnd || !inputRef.current) return
     if (inputRef.current.composing) return
-    if (inputRef.current.value !== textValue) {
-      inputRef.current.value = textValue
+    if (inputRef.current.value !== value) {
+      inputRef.current.value = value
     }
     // eslint-disable-next-line
   }, [value, enableCompositionEnd])
@@ -134,7 +131,7 @@ const InputText = (
   })
 
   // 矫正最大长度和小数位截取
-  function correctValue(val: string | number): string | number {
+  function correctValue(val: string): string {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
 
@@ -176,7 +173,7 @@ const InputText = (
     if (enableCompositionEnd && target?.composing) {
       return
     }
-    if (target.value === textValue) {
+    if (target.value === value) {
       return
     }
 
@@ -240,7 +237,7 @@ const InputText = (
     }
 
     // 修改完回调
-    if (val !== textValue) {
+    if (val !== value) {
       if (onChange) onChange(val, { action: 'blur' })
     }
 
@@ -295,7 +292,7 @@ const InputText = (
         autoCorrect,
         spellCheck,
         autoFocus,
-        ...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue }),
+        ...(enableCompositionEnd ? { defaultValue: value } : { value: value }),
         maxLength,
         readOnly,
         disabled,
@@ -317,7 +314,7 @@ const InputText = (
             ref={inputRef as React.RefObject<HTMLTextAreaElement>}
             name={name}
             // Value & Display Value
-            {...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue })}
+            {...(enableCompositionEnd ? { defaultValue: value } : { value: value })}
             placeholder={placeholder}
             // Status
             readOnly={readOnly}
@@ -326,8 +323,7 @@ const InputText = (
             // Style
             style={inputStyle}
             className="lyrixi-input-autoSize-textarea"
-            // Validate
-            maxLength={maxLength}
+                        maxLength={maxLength}
             // Other
             inputMode={inputMode}
             enterKeyHint={enterKeyHint}
@@ -343,7 +339,7 @@ const InputText = (
             onCompositionEnd={enableCompositionEnd ? handleCompositionEnd : undefined}
           ></textarea>
           <pre className="lyrixi-input-autoSize-pre" style={inputStyle}>
-            <span>{textValue}</span>
+            <span>{value}</span>
           </pre>
         </div>
       )
@@ -356,7 +352,7 @@ const InputText = (
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           name={name}
           // Value & Display Value
-          {...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue })}
+          {...(enableCompositionEnd ? { defaultValue: value } : { value: value })}
           placeholder={placeholder}
           // Status
           readOnly={readOnly}
@@ -365,8 +361,7 @@ const InputText = (
           // Style
           style={inputStyle}
           className="lyrixi-input-textarea"
-          // Validate
-          maxLength={maxLength}
+                    maxLength={maxLength}
           // Other
           inputMode={inputMode}
           enterKeyHint={enterKeyHint}
@@ -391,7 +386,7 @@ const InputText = (
         name={name}
         type={type} // number类型需要text，否则focus无法设置光标到末尾
         // Value & Display Value
-        {...(enableCompositionEnd ? { defaultValue: textValue } : { value: textValue })}
+        {...(enableCompositionEnd ? { defaultValue: value } : { value: value })}
         placeholder={placeholder}
         // Status
         readOnly={readOnly}
@@ -400,8 +395,7 @@ const InputText = (
         // Style
         style={inputStyle}
         className="lyrixi-input-text"
-        // Validate
-        min={typeof min === 'number' ? min : ''}
+                min={typeof min === 'number' ? min : ''}
         max={typeof max === 'number' ? max : ''}
         maxLength={maxLength}
         // Other
@@ -424,7 +418,7 @@ const InputText = (
   return (
     <div
       ref={rootRef}
-      // Element
+      // Elements
       id={id}
       // Style
       style={style}
@@ -472,14 +466,14 @@ const InputText = (
         : renderClear({
             clearRender,
             allowClear,
-            value: textValue,
+            clearable: value ? true : false,
             onClear: handleClear,
             onTouchStart: () => {
               if (inputRef.current) {
                 inputRef.current.preventBlur = true
               }
             }
-          })}
+          } as InputTextRenderClearOptions)}
 
       {/* Right */}
       {rightIconNode}

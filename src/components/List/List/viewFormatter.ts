@@ -1,12 +1,12 @@
-import type { ListViewFormatterOptions, RawItem, ViewItem } from './../types'
+import type { ListViewFormatterOptions, ListItem, ViewItem } from './../types'
 
-// 将接口返回的 RawItem[] 转为带 `_raw` 的 ViewItem[]，供列表渲染
+// 将接口返回的 ListItem[] 转为带 `_raw` 的 ViewItem[]，供列表渲染
 function viewFormatter(
-  list: RawItem[] | undefined,
+  list: ListItem[] | undefined,
   { formatViewItem, formatViewList }: ListViewFormatterOptions
 ): ViewItem[] | undefined {
   // 增加_raw字段，用于存储原始数据
-  let rawList = list?.map((item: RawItem) => {
+  let rawList = list?.map((item: ListItem) => {
     // 格式化子项
     if (item?.children?.length) {
       item.children = item.children.map((child) => {
@@ -19,7 +19,7 @@ function viewFormatter(
 
   // 格式化列表
   if (typeof formatViewList === 'function') {
-    return formatViewList(rawList as RawItem[])
+    return formatViewList(rawList as ListItem[])
   }
 
   // 格式化单项

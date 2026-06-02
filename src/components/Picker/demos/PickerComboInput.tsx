@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { Card, Page, Picker } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-import type { InputSelectValue } from '../../Input/types'
+import { Card, Page, Picker, type PickerItem } from 'lyrixi-mobile'
 
-export default () => {
-  const [value, setValue] = useState<unknown>(null)
-  const list = [
+export default function PickerComboInputDemo() {
+  const [value, setValue] = useState<PickerItem[] | null>(null)
+  const list: PickerItem[] = [
     { id: '1', name: '选项1' },
     { id: '2', name: '选项2' },
     { id: '3', name: '选项3' }
@@ -18,7 +17,7 @@ export default () => {
           <Card.Main>
             <Picker.Combo
               list={list}
-              value={value as InputSelectValue}
+              value={value}
               onChange={(v) => setValue(v)}
               placeholder="请选择"
               allowClear

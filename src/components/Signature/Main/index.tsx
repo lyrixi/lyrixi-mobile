@@ -2,7 +2,8 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 import Signature from './Signature'
 
-import type { SignatureMainDrawRef, SignatureMainProps, SignatureMainRef } from '../types'
+import type { SignatureMainProps, SignatureMainRef } from '../types'
+import type { SignatureMainDrawRef } from './Signature.Main.Signature.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -47,7 +48,7 @@ const Main = (
       style={style}
       className="lyrixi-signature-main"
     >
-      {/* Element: Signature Canvas */}
+      {/* Elements: Signature Canvas */}
       <Signature
         ref={signatureRef}
         style={style}
@@ -55,9 +56,9 @@ const Main = (
         backgroundColor={backgroundColor} // 绘画配置: 背景颜色
       />
 
-      {/* Element: Buttons */}
+      {/* Elements: Buttons */}
       <div className="lyrixi-signature-main-buttons">
-        {/* Element: Cancel Button */}
+        {/* Elements: Cancel Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-cancel"
           // Events
@@ -68,7 +69,7 @@ const Main = (
 
         <div className="lyrixi-flex-1"></div>
 
-        {/* Element: Clear Button */}
+        {/* Elements: Clear Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-clear"
           // Events
@@ -79,7 +80,7 @@ const Main = (
           <p>{LocaleUtil.locale('清除', 'lyrixi_4403fca0c0117e8321811bb48222a926')}</p>
         </div>
 
-        {/* Element: OK Button */}
+        {/* Elements: OK Button */}
         <div
           className="lyrixi-signature-main-button lyrixi-signature-main-button-ok"
           // Events

@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Form } from 'lyrixi-mobile'
 
-export default () => {
+export default function FormItemDemo() {
   return (
     <Page>
       <Page.Main>

@@ -1,4 +1,4 @@
-import type { SignatureMainUtilsCanvasUtilExtendedCanvas } from './../../Signature.Main.utils.CanvasUtil.types'
+import type { SignatureMainUtilsCanvasUtilExtendedCanvas } from '../../types/Signature.Main.utils.CanvasUtil.types'
 
 const CanvasUtil = {
   toBase64: function (canvas: HTMLCanvasElement, { suffix = 'image/png', quality = 0.92 }: { suffix?: string; quality?: number }) {

@@ -1,11 +1,11 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import getDateDefaultValue from './../utils/getDateDefaultValue'
 import Modal from './../Modal'
-import type { DatePickerComboProps, DatePickerModalRef } from '../types'
+import type { DatePickerComboProps, DatePickerComboRef, DatePickerModalRef } from '../types'
 
 // 内库使用-start
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
-import type { InputSelectComboRef as InputComboSelectRef, InputSelectValue } from './../../Input/types'
+import type { InputSelectRef as InputComboSelectRef, InputSelectProps, InputSelectValue } from './../../Input/types'
 import DateUtil from './../../../utils/DateUtil'
 
 import Combo from './../../Combo'
@@ -17,7 +17,7 @@ import { DateUtil, Combo, Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // DatePicker
-const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerCombo(
+const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(function DatePickerCombo(
   {
     // Combo
     // Combo: Value & Display Value
@@ -33,7 +33,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
     // Combo: Style
     style,
     className,
-    // Combo: Element
+    // Combo: Elements
     comboRender,
     children,
     leftIconNode,
@@ -84,7 +84,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
         : {} as Record<string, unknown>),
       close: () => setOpen(false),
       open: () => setOpen(true)
-    }
+    } as DatePickerComboRef
   })
 
     async function handleOpen() {
@@ -97,6 +97,18 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
 
     function handleClose() {
       setOpen(false)
+    }
+
+    const handleInputChange: InputSelectProps['onChange'] = (v, meta) => {
+      if (v instanceof Date || v === null) {
+        onChange?.(v, meta)
+      }
+    }
+
+    const handleFormatter: InputSelectProps['formatter'] = (v, options) => {
+      const dateVal = v instanceof Date || v === null ? v : null
+      if (formatter) return formatter(dateVal, options)
+      return DateUtil.format(v as Date, type)
     }
 
     // 获取 Combo 节点
@@ -125,7 +137,7 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
           // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
-          formatter={formatter || ((v: InputSelectValue) => DateUtil.format(v as Date, type))}
+          formatter={handleFormatter}
           autoSize={autoSize}
           separator={separator}
           // Combo: Status
@@ -135,12 +147,12 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
           // Combo: Style
           style={style}
           className={className}
-          // Combo: Element
+          // Combo: Elements
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
-          onChange={onChange}
+          onChange={handleInputChange}
           onClick={handleOpen}
         />
       )
@@ -179,7 +191,13 @@ const DatePickerCombo = forwardRef<unknown, DatePickerComboProps>(function DateP
           maskClassName={maskClassName}
           // Events
           onClose={handleClose}
-          onChange={onChange ? (v: unknown) => onChange(v as InputSelectValue) : undefined}
+          onChange={
+            onChange
+              ? (v) => {
+                  onChange(v instanceof Date || v === null ? v : null)
+                }
+              : undefined
+          }
           onOk={onOk}
         />
       </>

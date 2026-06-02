@@ -37,14 +37,13 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
       style,
       className,
 
-      // Element
+      // Elements
       inputRender,
       leftIconNode,
       rightIconNode,
       clearRender,
 
-      // Validate
-      precision, // 小数精度, 只有数值框才生效
+            precision, // 小数精度, 只有数值框才生效
       trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
       max,
       min,
@@ -144,13 +143,12 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
         // Style
         style={style}
         className={className}
-        // Element
+        // Elements
         inputRender={inputRender}
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}
-        // Validate
-        precision={precision}
+                precision={precision}
         trim={trim}
         max={max}
         min={min}

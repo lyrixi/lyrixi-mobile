@@ -14,8 +14,9 @@ import { DOMUtil } from 'lyrixi-mobile'
 const ConfirmIcon = forwardRef<MessageIconRef, MessageIconProps>(
   (
     {
+      // Elements
       children,
-      // 其它属性
+      // Style
       className,
       style
     },

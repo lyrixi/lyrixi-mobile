@@ -1,5 +1,5 @@
 // https://github.com/eldargab/load-script
-import type { AssetUtilLoadScriptLegacyIEScript } from './../AssetUtil.loadRemoteJs.loadScript.types'
+import type { AssetUtilLoadScriptLegacyIEScript } from '../types/AssetUtil.loadRemoteJs.loadScript.types'
 
 function setAttributes(script: HTMLScriptElement, attrs: Record<string, string>) {
   // eslint-disable-next-line

@@ -1,8 +1,6 @@
-import React from 'react'
-
 import { Page, Divider } from 'lyrixi-mobile'
 
-export default () => {
+export default function DividerDemo() {
   return (
     <Page>
       <Page.Main>

@@ -2,14 +2,18 @@ import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react
 import { splitInputStyle, correctValue as _correctValue } from './../Text/utils'
 import renderClear from './../Text/renderClear'
 
-import type { InputNodeProps, InputNodeRef, InputNodeValue } from '../types'
+import type { InputNodeProps, InputNodeRef } from '../types'
+import getClearedValue from './getClearedValue'
+import getStringValue from './getStringValue'
 
 // 内库使用-start
+import ObjectUtil from './../../../utils/ObjectUtil'
+import MathUtil from './../../../utils/MathUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { ObjectUtil, MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 内部显示div
@@ -33,13 +37,12 @@ const InputNode = (
     style: externalStyle,
     className,
 
-    // Element
+    // Elements
     leftIconNode,
     rightIconNode,
     clearRender,
 
-    // Validate
-    precision,
+        precision,
     trim,
     min,
     max,
@@ -53,8 +56,7 @@ const InputNode = (
   }: InputNodeProps,
   ref: React.Ref<InputNodeRef>
 ) => {
-  const textValue = String(value ?? '')
-  let displayValue = typeof formatter === 'function' ? formatter((value ?? null) as InputNodeValue) : null
+  const displayValue = typeof formatter === 'function' ? formatter(value ?? null) : null
 
   // InputStyle
   const { style, inputStyle } = splitInputStyle(externalStyle)
@@ -64,15 +66,13 @@ const InputNode = (
 
   const inputRef = useRef<HTMLDivElement>(null)
 
-  // Initialize
+  // Initialize：数值类型做 correctValue 矫正
   useEffect(() => {
-    if (!textValue) return
+    if (!MathUtil.isNumber(value) || type !== 'number') return
 
-    // 矫正为正确的值
-    let val = correctValue(textValue)
-    // eslint-disable-next-line
-    if (val != textValue) {
-      onChange && onChange(String(val), { action: 'load' })
+    const val = correctValue(String(value))
+    if (val !== String(value)) {
+      onChange?.(val, { action: 'load' })
     }
     // eslint-disable-next-line
   }, [])
@@ -118,57 +118,57 @@ const InputNode = (
       return
     }
 
-    let val: string = textValue
+    if (typeof value !== 'string') {
+      if (onBlur) {
+        onBlur({
+          target: inputRef.current,
+          currentTarget: inputRef.current
+        } as React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>)
+      }
+      return
+    }
 
-    // trim
-    if (trim && val && typeof val === 'string' && val.trim() !== val) {
+    let val = value
+    if (typeof val === 'string' && trim && val.trim() !== val) {
       val = val.trim()
     }
 
-    // 数值框失焦时需要矫正数值
     if (type === 'number') {
-      // 正常输入：矫正最大最小值、小数点、最大长度
-      if (val && !isNaN(Number(val))) {
-        // 纠正数字
-        val = String(correctValue(val))
-      }
-      // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
-      else {
+      if (MathUtil.isNumber(val)) {
+        val = String(correctValue(String(val)))
+      } else {
         val = ''
       }
     }
 
-    // 修改完回调
-    if (val !== textValue) {
-      if (onChange) onChange(val, { action: 'blur' })
+    if (val !== value) {
+      onChange?.(val, { action: 'blur' })
     }
 
-    if (onBlur)
+    if (onBlur) {
       onBlur({
         target: inputRef.current,
         currentTarget: inputRef.current
       } as React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>)
+    }
   }
 
-  // 矫正最大长度和小数位截取
-  function correctValue(val: string | number): string | number {
+  function correctValue(val: string): string {
     return _correctValue(val, { type, min, max, maxLength, trim, precision })
   }
 
-  // 点击清除
   async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
     e && (e as React.SyntheticEvent)?.stopPropagation?.()
 
-    // Callback
-    typeof onChange === 'function' && onChange('', { action: 'clickClear' })
+    onChange?.(getClearedValue(value), { action: 'clickClear' })
   }
+
+  const stringValue = getStringValue(value)
 
   return (
     <div
       ref={rootRef}
-      // Element
       id={id}
-      // Style
       style={style}
       className={DOMUtil.classNames(
         `lyrixi-input`,
@@ -177,16 +177,13 @@ const InputNode = (
         disabled ? 'lyrixi-input-disabled' : '',
         readOnly ? 'lyrixi-input-readOnly' : ''
       )}
-      // Events
       onClick={(e) => {
         if (disabled) return
-        onClick && onClick(e)
+        onClick?.(e)
       }}
     >
-      {/* Element: Left Icon */}
       {leftIconNode}
 
-      {/* Element: Main */}
       <div
         className={DOMUtil.classNames(
           'lyrixi-input-node',
@@ -194,36 +191,30 @@ const InputNode = (
           readOnly ? 'lyrixi-input-readOnly' : ''
         )}
       >
-        {/* Element: Input Text */}
         <div
           ref={inputRef}
-          // Style
           style={inputStyle}
-          className={DOMUtil.classNames(
-            'lyrixi-input-text',
-            // 无值且没有聚焦时, 显示placeholder
-            !textValue && placeholder && !cursor ? 'lyrixi-input-placeholder' : '',
-            cursor ? 'lyrixi-input-focus' : ''
-          )}
+          className={DOMUtil.classNames('lyrixi-input-text', cursor ? 'lyrixi-input-focus' : '')}
         >
-          {(typeof value === 'object' && value !== null) || !value ? placeholder : textValue}
+          {stringValue ? (
+            stringValue
+          ) : (
+            <div className="lyrixi-input-placeholder">{placeholder}</div>
+          )}
         </div>
 
-        {/* Value & Display Value: Formatter Display */}
         {displayValue ? <div className="lyrixi-input-formatter">{displayValue}</div> : null}
       </div>
 
-      {/* Element: Clear Icon */}
       {disabled || !allowClear
         ? null
         : renderClear({
             clearRender,
             allowClear,
-            value: textValue,
+            clearable: ObjectUtil.isEmpty(value),
             onClear: handleClear
           })}
 
-      {/* Element: Right Icon */}
       {rightIconNode}
     </div>
   )

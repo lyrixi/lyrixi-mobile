@@ -1,15 +1,16 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, type ReactNode } from 'react'
-import getDefaultIconClassName from './getDefaultIconClassName'
+import getDefaultIconSvg from './getDefaultIconSvg'
 
 import type { NoticeBarProps, NoticeBarRef } from './types'
 
 // 内库使用-start
+import Icons from '../../icons'
 import DOMUtil from './../../utils/DOMUtil'
 import Icon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Icon } from 'lyrixi-mobile'
+import { DOMUtil, Icon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
 // 通告栏
@@ -64,11 +65,12 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
       }
 
       // 默认图标
-      const resolvedIconClassName = iconClassName || getDefaultIconClassName(type)
-      if (resolvedIconClassName) {
+      const resolvedIconSvg = getDefaultIconSvg(type)
+      if (resolvedIconSvg) {
         return (
           <Icon
-            className={resolvedIconClassName}
+            svg={resolvedIconSvg}
+            className={iconClassName}
             size={iconSize !== null && iconSize !== undefined ? String(iconSize) : undefined}
             color={iconColor}
             backgroundColor={iconBackgroundColor}
@@ -116,7 +118,7 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
         {/* 关闭按钮 */}
         {closable && (
           <div className="lyrixi-noticebar-close-icon">
-            <Icon className="lyrixi-iconfont-close" size="xs" onClick={() => setVisible(false)} />
+            <Icon svg={Icons.Close} size="xs" onClick={() => setVisible(false)} />
           </div>
         )}
       </div>

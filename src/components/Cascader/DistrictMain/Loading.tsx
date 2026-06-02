@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { CascaderDistrictMainLoadingProps } from '../types'
+import type { CascaderDistrictMainLoadingProps } from './Cascader.DistrictMain.Loading.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

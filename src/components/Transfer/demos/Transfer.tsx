@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Card, Page, Transfer, type TransferItem } from 'lyrixi-mobile'
 
-export default () => {
+export default function TransferDemo() {
   const [value, setValue] = useState<TransferItem[]>([{ id: '1', name: '选项1' }])
   const list = [
     { id: '1', name: '选项1' },

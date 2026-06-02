@@ -6,7 +6,7 @@ import RangeModal from './../RangeModal'
 import type { DatePickerModalRef, DatePickerRangeChangeMeta, DatePickerRangeComboProps } from './../types'
 
 // 内库使用-start
-import type { InputSelectProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
+import type { InputSelectProps, InputSelectRef as InputComboSelectRef } from './../../Input/types'
 import DOMUtil from '../../../utils/DOMUtil'
 import Input from './../../Input'
 // 内库使用-end
@@ -32,7 +32,7 @@ const RangeCombo = forwardRef<unknown, DatePickerRangeComboProps>(function DateP
     // Combo: Style
     style,
     className,
-    // Combo: Element
+    // Combo: Elements
     leftIconNode,
     rightIconNode,
     clearRender,
@@ -125,6 +125,13 @@ const RangeCombo = forwardRef<unknown, DatePickerRangeComboProps>(function DateP
     separator: separator
   }
 
+  const handleFormatter: InputSelectProps['formatter'] = (_v, options) => {
+    if (formatter) {
+      return formatter(undefined, options)
+    }
+    return getDisplayValue(displayArgs)
+  }
+
   return (
     <>
       <Input.Select
@@ -132,7 +139,7 @@ const RangeCombo = forwardRef<unknown, DatePickerRangeComboProps>(function DateP
         // Combo: Value & Display Value
         value={fmt}
         placeholder={placeholder}
-        formatter={formatter || (() => getDisplayValue(displayArgs))}
+        formatter={handleFormatter}
         autoSize={autoSize}
         separator={separator}
         // Combo: Status
@@ -142,7 +149,7 @@ const RangeCombo = forwardRef<unknown, DatePickerRangeComboProps>(function DateP
         // Combo: Style
         style={style}
         className={DOMUtil.classNames('lyrixi-datepicker-rangecombo', className)}
-        // Combo: Element
+        // Combo: Elements
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}

@@ -1,7 +1,9 @@
-import NoticeBar from './NoticeBar'
+import _NoticeBar from './NoticeBar'
 
-import type { NoticeBarComponents } from './NoticeBar.Components.types'
+import type { NoticeBarComponents } from './types/NoticeBar.modules.types'
 
-;(NoticeBar as NoticeBarComponents).componentName = 'NoticeBar'
+const NoticeBar = _NoticeBar as NoticeBarComponents
 
-export default NoticeBar as NoticeBarComponents
+NoticeBar.componentName = 'NoticeBar'
+
+export default NoticeBar

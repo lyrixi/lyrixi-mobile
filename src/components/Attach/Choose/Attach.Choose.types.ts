@@ -1,0 +1,17 @@
+import type { ChangeEvent, CSSProperties, MouseEvent, ReactNode } from 'react'
+
+export interface AttachChooseProps {
+  // Value & Display Value
+  sourceType: string[]
+  // Status
+  disabled?: boolean
+  // Style
+  className?: string
+  // Elements
+  uploadRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  // Events
+  onBeforeChoose?: (e: MouseEvent<HTMLDivElement>) => boolean | void | Promise<boolean | void>
+  onChoose?: (e: MouseEvent<HTMLDivElement>) => void | Promise<unknown>
+  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void
+}

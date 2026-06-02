@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react'
-import { Icon, Page, Modal, FooterBar, Button } from 'lyrixi-mobile'
+import { useState, useRef } from 'react'
 
-export default () => {
-  const referenceRef = useRef(null)
+import { Icon, Page, Modal, FooterBar, Icons } from 'lyrixi-mobile'
+
+export default function ModalFilterModalDemo() {
   const modalRef = useRef(null)
   const [open, setOpen] = useState(false)
 
@@ -32,7 +32,7 @@ export default () => {
                     console.log('setting')
                   }}
                 >
-                  <Icon className="lyrixi-iconfont-config" />
+                  <Icon svg={Icons.Config} />
                   Setting
                 </FooterBar.Button>
                 <FooterBar.Button

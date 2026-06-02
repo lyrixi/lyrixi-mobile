@@ -5,6 +5,8 @@ import type { MediaPreviewChooseProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
 // 内库使用-end
 
 // 上传按钮
@@ -64,11 +66,11 @@ const Choose = ({
       data-type="upload"
       onClick={handleUploadClick}
     >
-      <i
-        className={DOMUtil.classNames(
-          'lyrixi-media-preview-main-choose-icon',
-          mediaType?.includes?.('video') ? 'lyrixi-video' : null
-        )}
+      <Icon
+        svg={mediaType?.includes?.('video') ? Icons.VideoFill : Icons.Plus}
+        size="m"
+        color="white"
+        className="lyrixi-media-preview-main-choose-icon"
       />
       <input
         type="file"

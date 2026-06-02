@@ -23,7 +23,7 @@ function Amount({
   className,
   noStyle,
 
-  // Element
+  // Elements
   children
 }: AmountProps) {
   if (isNaN(Number(children))) {

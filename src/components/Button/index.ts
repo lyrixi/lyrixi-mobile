@@ -1,12 +1,12 @@
-import Button from './Button'
+import _Button from './Button'
 import Text from './ButtonText'
 import Icon from './ButtonIcon'
 
-import type { ButtonComponents } from './Button.Components.types'
+import type { ButtonComponents } from './types/Button.modules.types'
 
-const Btn = Button as ButtonComponents
-Btn.Icon = Icon
-Btn.Text = Text
-Btn.componentName = 'Button'
+const Button = _Button as ButtonComponents
+Button.Icon = Icon
+Button.Text = Text
+Button.componentName = 'Button'
 
-export default Btn
+export default Button

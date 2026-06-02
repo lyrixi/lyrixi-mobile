@@ -3,7 +3,7 @@ import Checkbox from '../Checkbox'
 
 import formatValue from './formatValue'
 
-import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxListItem } from './../types'
+import type { CheckboxGroupProps, CheckboxGroupRef, CheckboxItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -17,17 +17,24 @@ import { DOMUtil } from 'lyrixi-mobile'
 const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
   (
     {
+      // Value & Display Value
       value,
       list,
       placeholder: _placeholder,
+      // Status
       disabled,
       readOnly,
       allowClear,
+      // Value & Display Value
       multiple,
+      // Style
       className,
       style,
+      // Elements
       iconRender,
+      // Value & Display Value
       iconPosition = 'left',
+      // Events
       onChange
     },
     ref
@@ -70,7 +77,7 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
                 iconRender={iconRender}
                 iconPosition={iconPosition}
                 onChange={(checked) => {
-                  let newValue: CheckboxListItem | CheckboxListItem[] | null = null
+                  let newValue: CheckboxItem | CheckboxItem[] | null = null
                   if (multiple) {
                     const currentArr = Array.isArray(formattedValue) ? formattedValue : []
                     if (!checked) {

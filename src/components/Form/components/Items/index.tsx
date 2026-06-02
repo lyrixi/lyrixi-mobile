@@ -9,13 +9,16 @@ import VirtualForm from './VirtualForm'
 const Form = forwardRef<FormItemsRef, FormItemsLayoutProps>(
   (
     {
+      // Value & Display Value
       virtual,
       layout = 'horizontal',
       labelSpan,
       labelEllipsis,
       mainSpan,
       mainEllipsis,
+      // Elements
       children,
+      // Style
       className,
       style
     },

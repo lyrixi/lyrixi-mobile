@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getSelectorOptions from './../getSelectorOptions'
-import type { DatePickerRangeSelectorPanelProps } from '../../types'
+import type { DatePickerRangeMainSelectorMainProps } from './DatePicker.RangeMain.SelectorMain.types'
 
 // 内库使用-start
 import Selector from './../../../Selector/Selector'
@@ -13,17 +13,21 @@ import { Selector } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日期快捷选择
-const SelectorPanel = forwardRef<Record<string, unknown> | null, DatePickerRangeSelectorPanelProps>(
+const SelectorPanel = forwardRef<Record<string, unknown> | null, DatePickerRangeMainSelectorMainProps>(
   function DatePickerRangeSelectorPanel(
     {
+      // Style
       className,
-      // Main properties
+      // Value & Display Value
       value,
+      // Status
       allowClear,
+      // Events
       onChange,
-
+      // Value & Display Value
       rangeId,
       ranges = {},
+      // Style
       style
     },
     ref

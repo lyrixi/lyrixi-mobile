@@ -31,15 +31,20 @@ const Context = React.createContext<FlexCompactContextValue | null>(null)
 const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
   (
     {
+      // Style
       className,
       style,
+      // Value & Display Value
       direction = 'horizontal',
       block = false,
       size = 'm',
       radius = 'm',
+      // Style
       separatorStyle,
       separatorClassName,
+      // Value & Display Value
       separator,
+      // Elements
       children
     },
     ref

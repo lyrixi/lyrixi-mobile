@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
+
 import { Page, MathUtil, Input } from 'lyrixi-mobile'
 // import VConsole from 'vconsole'
 
 // const vConsole = new VConsole()
 
-export default () => {
+export default function InputNumberDemo() {
   const inputNumberRef = useRef(null)
   const [value, setValue] = useState('1a')
 

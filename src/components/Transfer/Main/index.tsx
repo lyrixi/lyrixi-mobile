@@ -20,13 +20,17 @@ function normalizeTitles(
 // 穿梭框
 const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
   {
+    // Value & Display Value
     value,
     list,
     titles: titlesProp,
+    // Status
     open: _open,
     allowClear: _allowClear,
+    // Style
     className,
     style,
+    // Events
     onChange
   },
   ref
@@ -77,10 +81,10 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
       style={style}
       className={DOMUtil.classNames('lyrixi-transfer-main', className)}
     >
-      {/* Element: Selected List */}
+      {/* Elements: Selected List */}
       {value?.length ? (
         <>
-          {/* Element: Selected Title */}
+          {/* Elements: Selected Title */}
           <div className="lyrixi-transfer-title">
             <div className="lyrixi-transfer-title-content">
               {titles?.selected ||
@@ -89,7 +93,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
             {`${value.length}/${list?.length || 0}`}
           </div>
 
-          {/* Element: Sortable List */}
+          {/* Elements: Sortable List */}
           <ReactSortable
             className="lyrixi-card lyrixi-transfer-card"
             // Value & Display Value
@@ -122,10 +126,10 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
         </>
       ) : null}
 
-      {/* Element: Unselected List */}
+      {/* Elements: Unselected List */}
       {unSelectedList?.length ? (
         <>
-          {/* Element: Unselected Title */}
+          {/* Elements: Unselected Title */}
           <div className="lyrixi-transfer-title">
             <div className="lyrixi-transfer-title-content">
               {titles?.unSelected ||
@@ -134,7 +138,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
             {`${unSelectedList.length}/${list?.length || 0}`}
           </div>
 
-          {/* Element: Card */}
+          {/* Elements: Card */}
           <Card className="lyrixi-transfer-card">
             {unSelectedList.map((item, index) => {
               return (

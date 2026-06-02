@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Storage, Page, Button, Input, Card, Divider, Form } from 'lyrixi-mobile'
 
 function errMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error)
 }
 
-export default () => {
+export default function StorageDemo() {
   const [key, setKey] = useState('demo-storage-key')
   const [value, setValue] = useState('demo-storage-value')
   const [result, setResult] = useState('')

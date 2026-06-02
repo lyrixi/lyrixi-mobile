@@ -27,7 +27,7 @@ const Form = forwardRef<FormItemsRef, FormItemsProps>(
       mainSpan,
       mainEllipsis,
 
-      // Element
+      // Elements
       children
     },
     ref
@@ -58,7 +58,7 @@ const Form = forwardRef<FormItemsRef, FormItemsProps>(
           style={style}
           className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-form-items', className)}
         >
-          {/* Element: Children */}
+          {/* Elements: Children */}
           {children}
         </div>
       </ItemsContext.Provider>

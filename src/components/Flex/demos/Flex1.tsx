@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Card, Flex, Button, Checkbox, Input } from 'lyrixi-mobile'
 
 const buttons = Array.from({ length: 6 }).map((_, index) => <Button key={index}>Button {index + 1}</Button>)
 
-export default () => {
+export default function Flex1Demo() {
   const [gap, setGap] = useState<string | number>('s')
   const [mode, setMode] = useState('l')
 

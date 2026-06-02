@@ -1,10 +1,12 @@
-import NavBar from './NavBar'
+import _NavBar from './NavBar'
 import Title from './Title'
 import Button from './Button'
 
-import type { NavBarComponents } from './NavBar.Components.types'
+import type { NavBarComponents } from './types/NavBar.modules.types'
 
-;(NavBar as NavBarComponents).Title = Title
-;(NavBar as NavBarComponents).Button = Button
+const NavBar = _NavBar as NavBarComponents
 
-export default NavBar as NavBarComponents
+NavBar.Title = Title
+NavBar.Button = Button
+
+export default NavBar

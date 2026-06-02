@@ -1,8 +1,8 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
-import type { ListProps, RawItem } from './../../List/types'
-import type { SelectProps, SelectRef } from './../types'
+import type { ListProps, ListItem } from './../../List/types'
+import type { SelectItem, SelectMainRef, SelectModalProps, SelectModalRef } from './../types'
 import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start
@@ -15,41 +15,64 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-const Modal = forwardRef<SelectRef, SelectProps>(function SelectModal(
+const Modal = forwardRef<SelectModalRef, SelectModalProps>(function SelectModal(
   {
+    // Value & Display Value
     value,
+
+    // Main
+    // Main: Value & Display Value
     list,
     formatViewList,
     formatViewItem,
-    open,
-    maskClosable,
-    safeArea,
     multiple,
     checkable,
+    itemLayout,
+    checkboxVariant,
+    checkboxPosition,
+
+    // Status
+    open,
+
+    // Modal
+    // Modal: Status
+    maskClosable,
+    safeArea,
+
+    // Main: Style
+    itemStyle,
+    itemClassName,
+
+    // Modal: Style
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
-    itemStyle,
-    itemClassName,
-    itemLayout,
-    checkboxVariant,
-    checkboxPosition,
+
+    // Main: Elements
+    headerRender,
+    itemRender,
+
+    // Modal: Elements
     portal,
     title,
     cancelNode,
+
+    // Modal: Status
     cancelVisible,
-    headerRender,
-    itemRender,
+
+    // Events
     onOk,
     onChange,
     onClose
   },
   ref
 ) {
-  const [currentValue, setCurrentValue] = useState<unknown>(value)
+  const [currentValue, setCurrentValue] = useState<SelectItem | SelectItem[] | null | undefined>(
+    value
+  )
   const modalRef = useRef<ModalRef | null>(null)
-  const mainRef = useRef<SelectRef | null>(null)
+  const mainRef = useRef<SelectMainRef | null>(null)
 
   useEffect(() => {
     if (open) {
@@ -59,36 +82,39 @@ const Modal = forwardRef<SelectRef, SelectProps>(function SelectModal(
 
   useImperativeHandle(ref, () => {
     return {
-      ...(typeof modalRef.current === 'object' && modalRef.current !== null
-        ? (modalRef.current as unknown as SelectRef)
-        : {}),
-      ...(typeof mainRef.current === 'object' && mainRef.current !== null
-        ? (mainRef.current as unknown as SelectRef)
-        : {})
-    }
+      ...(modalRef.current ?? {}),
+      ...(mainRef.current ?? {})
+    } as SelectModalRef
   })
 
   async function handleConfirm() {
-    let next: unknown = currentValue
+    let next: SelectItem | SelectItem[] | null | undefined = currentValue
     if (typeof onOk === 'function') {
-      const goOn = await onOk(currentValue)
+      const goOn = await onOk(currentValue ?? null)
       if (goOn === false) return false
       if (
         goOn instanceof Array ||
-        (goOn !== null && goOn !== undefined && typeof goOn === 'object' && 'id' in (goOn as object))
+        (goOn !== null && goOn !== undefined && typeof goOn === 'object' && 'id' in goOn)
       ) {
-        next = goOn
-        setCurrentValue(goOn)
+        next = goOn as SelectItem | SelectItem[] | null
+        setCurrentValue(next)
       }
     }
-    onChange?.(next as RawItem | RawItem[] | null, undefined)
+    onChange?.(next ?? null, undefined)
     onClose?.()
   }
 
-  function handleChange(newValue: unknown) {
-    setCurrentValue(newValue)
+  function handleChange(
+    newValue: ListItem | ListItem[] | null,
+    options?: { action?: string; checkedItem: ListItem }
+  ) {
+    const nextValue = newValue as SelectItem | SelectItem[] | null
+    setCurrentValue(nextValue)
     if (!multiple) {
-      onChange?.(newValue as RawItem | RawItem[] | null, undefined)
+      onChange?.(
+        nextValue,
+        options ? { ...options, checkedItem: options.checkedItem as SelectItem } : undefined
+      )
       onClose?.()
     }
   }

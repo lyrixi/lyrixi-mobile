@@ -2,7 +2,7 @@ import React, { type ChangeEvent, type MouseEvent } from 'react'
 import getAccept from './../utils/getAccept'
 import Button from './Button'
 
-import type { AttachChooseProps } from '../types'
+import type { AttachChooseProps } from './Attach.Choose.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

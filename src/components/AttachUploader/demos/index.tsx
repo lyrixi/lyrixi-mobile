@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-import vconsole from 'vconsole'
-import { Page, AttachUploader } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-import type { AttachUploaderDemoList } from './AttachUploader.demos.types'
+import vconsole from 'vconsole'
+import { Page, AttachUploader, type AttachUploaderItem } from 'lyrixi-mobile'
 
 new vconsole()
 
-export default () => {
-  const [list, setList] = useState<AttachUploaderDemoList>([
+export default function AttachUploaderDemo() {
+  const [list, setList] = useState<AttachUploaderItem[]>([
     {
       fileName: '1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg'
@@ -21,7 +20,7 @@ export default () => {
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.pdf'
     }
   ])
-  function handlePhotoChange(newList: AttachUploaderDemoList) {
+  function handlePhotoChange(newList: AttachUploaderItem[]) {
     console.log(newList)
     setList(newList)
   }

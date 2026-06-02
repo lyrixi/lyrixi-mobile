@@ -28,6 +28,7 @@ import { LocaleUtil, GeoUtil, Result } from 'lyrixi-mobile'
 const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
   (
     {
+      // Value & Display Value
       center: centerProp,
       zoom,
       minZoom,
@@ -37,9 +38,12 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       getLocation: getLocationProp,
       openLocation: openLocationProp,
       queryNearby: queryNearbyProp,
+      // Style
       style,
       className,
+      // Elements
       children,
+      // Events
       onLoad,
       onZoomStart,
       onZoom,

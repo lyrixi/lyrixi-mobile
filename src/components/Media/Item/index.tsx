@@ -19,7 +19,7 @@ const Item = ({
   index,
   remainCount,
 
-  // Element
+  // Elements
   uploadingRender,
   itemRender,
 
@@ -30,7 +30,7 @@ const Item = ({
 }: MediaItemProps) => {
   return (
     <div
-      // Element
+      // Elements
       data-index={index}
       // Style, 状态status: choose|uploading|error|success
       className={DOMUtil.classNames(

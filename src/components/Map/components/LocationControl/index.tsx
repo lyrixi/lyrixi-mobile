@@ -8,6 +8,8 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import DOMUtil from './../../../../utils/DOMUtil'
 import Loading from './../../../Loading'
 import Toast from './../../../Toast'
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -84,7 +86,7 @@ const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProp
       className={DOMUtil.classNames('lyrixi-map-locationControl', className)}
       onClick={handleLocation}
     >
-      <div className="lyrixi-map-locationControl-icon"></div>
+      <Icon svg={Icons.Location} size="m" className="lyrixi-map-locationControl-icon" />
     </div>
   )
 })

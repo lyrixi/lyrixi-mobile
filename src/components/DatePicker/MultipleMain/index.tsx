@@ -4,7 +4,7 @@ import formatValue from './formatValue'
 import getActiveTab from './getActiveTab'
 import type {
   DatePickerMultipleMainProps,
-  DatePickerMultipleTab,
+  DatePickerMultipleItem,
   DatePickerPickerType
 } from './../types'
 
@@ -40,11 +40,11 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
     },
     ref
   ) {
-    const tabsRef = useRef<DatePickerMultipleTab[] | null>(null)
+    const tabsRef = useRef<DatePickerMultipleItem[] | null>(null)
 
     tabsRef.current = formatValue(value, type)
 
-    const [activeTab, setActiveTab] = useState<DatePickerMultipleTab | undefined>(undefined)
+    const [activeTab, setActiveTab] = useState<DatePickerMultipleItem | undefined>(undefined)
 
 
     // Expose tools
@@ -81,7 +81,7 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
               descriptionPosition="top"
               list={tabs}
               value={activeTab ? { id: activeTab.id } : undefined}
-              onChange={(item) => setActiveTab(item as DatePickerMultipleTab)}
+              onChange={(item) => setActiveTab(item as DatePickerMultipleItem)}
             />
 
             {tabs.map((tab, index) => {

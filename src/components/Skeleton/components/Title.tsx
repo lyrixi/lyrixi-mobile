@@ -12,7 +12,9 @@ import DOMUtil from './../../../utils/DOMUtil'
 const Title = forwardRef<HTMLDivElement, SkeletonTitleProps>(
   (
     {
+      // Value & Display Value
       animated = true,
+      // Style
       className,
       style
     },

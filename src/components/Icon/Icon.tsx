@@ -4,20 +4,25 @@ import type { IconProps, IconRef } from './types'
 
 const Icon = forwardRef<IconRef, IconProps>(function Icon(
   {
+    // Value & Display Value
+    svg: Svg,
+    // Status
     disabled,
+    // Value & Display Value
     color,
     backgroundColor,
     size = 'm',
     radius,
+    // Style
     style,
     className,
-    children,
+    // Events
     onClick,
     onTouchStart
   },
   ref
 ) {
-  const rootRef = useRef<HTMLElement>(null)
+  const rootRef = useRef<HTMLElement | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
@@ -35,17 +40,18 @@ const Icon = forwardRef<IconRef, IconProps>(function Icon(
     className
   })
 
-    return (
-    <i
+  return (
+    <span
       ref={rootRef}
+      role="img"
       {...({ disabled } as React.HTMLAttributes<HTMLElement>)}
       style={newStyle}
       className={newClassName}
       onClick={onClick}
       onTouchStart={onTouchStart}
     >
-      {children}
-    </i>
+      <Svg className="lyrixi-icon-svg" aria-hidden focusable="false" />
+    </span>
   )
 })
 

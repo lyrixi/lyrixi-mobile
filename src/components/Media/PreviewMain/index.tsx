@@ -26,9 +26,9 @@ import PreviewReload from './PreviewReload'
 import PreviewToolbar from './PreviewToolbar'
 
 import type {
-  MediaComponentProps,
+  MediaProps,
   MediaFileChooseOptions,
-  MediaListItem,
+  MediaItem,
   MediaPreviewMainProps,
   MediaPreviewMainRef
 } from './../types'
@@ -50,18 +50,19 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-function itemMediaUrl(item: MediaListItem): string {
+function itemMediaUrl(item: MediaItem): string {
   const raw = item?.localFile?.tempFileUrl ?? item?.fileUrl
   return raw == null || raw === '' ? '' : String(raw)
 }
 
-function itemPosterUrl(item: MediaListItem): string {
+function itemPosterUrl(item: MediaItem): string {
   const raw = item?.localFile?.tempFileThumbnail ?? item?.fileThumbnail
   return raw == null || raw === '' ? '' : String(raw)
 }
 
 const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(function PreviewMain(
   {
+    // Value & Display Value
     list: listProp = [],
     index,
     mediaType,
@@ -69,18 +70,22 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     sizeType = ['compressed'],
     maxCount,
     fileImageCompress,
-
+    // Status
     open = true,
+    // Value & Display Value
     closable = false,
     allowChoose = false,
+    // Status
     allowClear = false,
+    // Value & Display Value
     async: asyncUpload = false,
     reUpload = true,
-
+    // Style
     className,
     style,
+    // Status
     safeArea,
-
+    // Events
     onBeforeChoose,
     onChoose,
     onFileChange,
@@ -90,7 +95,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
   },
   ref: Ref<MediaPreviewMainRef>
 ) {
-  const list: MediaListItem[] = listProp
+  const list: MediaItem[] = listProp
 
   const swiperRef = useRef<SwiperRef | null>(null)
 
@@ -98,11 +103,11 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
 
   const [rotations, setRotations] = useState<Record<number, number>>({})
 
-  const onFileChangeRef = useRef<MediaComponentProps['onFileChange'] | undefined>(undefined)
+  const onFileChangeRef = useRef<MediaProps['onFileChange'] | undefined>(undefined)
 
   onFileChangeRef.current = onFileChange
 
-  const onChangeRef = useRef<MediaComponentProps['onChange'] | undefined>(undefined)
+  const onChangeRef = useRef<MediaProps['onChange'] | undefined>(undefined)
 
   onChangeRef.current = onChange
 
@@ -143,7 +148,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
   }
 
   async function uploadList(
-    newList: MediaListItem[] | undefined,
+    newList: MediaItem[] | undefined,
     { action }: { action?: string } = {}
   ) {
     // eslint-disable-next-line
@@ -157,7 +162,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     for (let index = 0; index < newList.length; index++) {
       const item = newList[index]
       if (item.status === 'choose' || item.status === 'error') {
-        newList[index] = (await uploadItem(item, { onUpload })) as MediaListItem
+        newList[index] = (await uploadItem(item, { onUpload })) as MediaItem
         hasUploaded = true
       }
     }
@@ -262,7 +267,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
       ),
       index: reIdx
     })
-    newListRe[reIdx] = (await uploadItem(reItem, { onUpload })) as MediaListItem
+    newListRe[reIdx] = (await uploadItem(reItem, { onUpload })) as MediaItem
     _hideLoading(newListRe[reIdx].status === 'error' ? { failIndexes: [reIdx] } : undefined)
     onChangeRef.current?.(newListRe, { action: 'reUpload' })
   }

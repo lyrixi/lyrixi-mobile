@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Page, Input, ObjectUtil } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Page, Input } from 'lyrixi-mobile'
+
+export default function InputSearchDemo() {
   const [value, setValue] = useState('keyword')
 
   return (

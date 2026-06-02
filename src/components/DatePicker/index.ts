@@ -13,27 +13,28 @@ import RangeSelector from './RangeSelector'
 import WeekCombo from './WeekCombo'
 import WeekModal from './WeekModal'
 import WeekMain from './WeekMain'
-import TypeTabs from './TypeTabs'
+import TypeSwitcher from './TypeSwitcher'
 
-// eslint-disable-next-line
-export default {
-  // Utils
-  getTitle: getTitle,
-  getDefaultRanges: getDefaultRanges,
-  getRangeId: getRangeId,
-  // Components
-  Combo: Combo,
-  Modal: Modal,
-  Main: Main,
-  MultipleCombo: MultipleCombo,
-  MultipleModal: MultipleModal,
-  MultipleMain: MultipleMain,
-  RangeCombo: RangeCombo,
-  RangeModal: RangeModal,
-  RangeMain: RangeMain,
-  RangeSelector: RangeSelector,
-  WeekCombo: WeekCombo,
-  WeekModal: WeekModal,
-  WeekMain: WeekMain,
-  TypeTabs: TypeTabs
-}
+import type { DatePickerComponents } from './types/DatePicker.modules.types'
+
+const DatePicker = {} as DatePickerComponents
+
+DatePicker.getTitle = getTitle
+DatePicker.getDefaultRanges = getDefaultRanges
+DatePicker.getRangeId = getRangeId
+DatePicker.Combo = Combo
+DatePicker.Modal = Modal
+DatePicker.Main = Main
+DatePicker.MultipleCombo = MultipleCombo
+DatePicker.MultipleModal = MultipleModal
+DatePicker.MultipleMain = MultipleMain
+DatePicker.RangeCombo = RangeCombo
+DatePicker.RangeModal = RangeModal
+DatePicker.RangeMain = RangeMain
+DatePicker.RangeSelector = RangeSelector
+DatePicker.WeekCombo = WeekCombo
+DatePicker.WeekModal = WeekModal
+DatePicker.WeekMain = WeekMain
+DatePicker.TypeSwitcher = TypeSwitcher
+
+export default DatePicker

@@ -29,30 +29,29 @@ import NearbyControl from './components/NearbyControl'
 import MapChoose from './pages/MapChoose'
 import MapMarkers from './pages/MapMarkers'
 
-const Map = {
-  // utils
-  coordsToWgs84,
-  wgs84ToCoords,
-  getSuperAddress,
-  getSuperLocation,
-  getAddress,
-  getLocation,
-  queryNearby,
-  // components
-  MapLoader,
-  MapContainer,
-  ZoomControl,
-  SearchControl,
-  CenterMarker,
-  Markers,
-  Circles,
-  Polyline,
-  Polygon,
-  LocationControl,
-  NearbyControl,
-  // Pages
-  MapChoose,
-  MapMarkers
-}
+import type { MapComponents } from './types/Map.modules.types'
+
+const Map = {} as MapComponents
+
+Map.coordsToWgs84 = coordsToWgs84
+Map.wgs84ToCoords = wgs84ToCoords
+Map.getSuperAddress = getSuperAddress
+Map.getSuperLocation = getSuperLocation
+Map.getAddress = getAddress
+Map.getLocation = getLocation
+Map.queryNearby = queryNearby
+Map.MapLoader = MapLoader
+Map.MapContainer = MapContainer
+Map.ZoomControl = ZoomControl
+Map.SearchControl = SearchControl
+Map.CenterMarker = CenterMarker
+Map.Markers = Markers
+Map.Circles = Circles
+Map.Polyline = Polyline
+Map.Polygon = Polygon
+Map.LocationControl = LocationControl
+Map.NearbyControl = NearbyControl
+Map.MapChoose = MapChoose
+Map.MapMarkers = MapMarkers
 
 export default Map

@@ -1,7 +1,8 @@
-import React from 'react'
+import { type FC } from 'react'
+
 import { Skeleton, Loading } from 'lyrixi-mobile'
 
-const LoadingView = Loading as unknown as React.FC<Record<string, unknown>>
+const LoadingView = Loading as unknown as FC<Record<string, unknown>>
 
 // Loading样式
 const mainLoadingRender = ({ action }: { action?: string }) => {

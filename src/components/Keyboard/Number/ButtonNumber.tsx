@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { KeyboardButtonNumberProps } from './../types'
+import type { KeyboardNumberButtonNumberProps } from './Keyboard.Number.ButtonNumber.types'
 
 // 内库使用-start
 import DOMUtil from '../../../utils/DOMUtil'
@@ -10,7 +10,7 @@ import DOMUtil from '../../../utils/DOMUtil'
 /* 测试使用-start
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
-const ButtonNumber = ({ children, onClick, className = '' }: KeyboardButtonNumberProps) => {
+const ButtonNumber = ({ children, onClick, className = '' }: KeyboardNumberButtonNumberProps) => {
   const handleClick = (e: React.TouchEvent<HTMLDivElement>) => {
     e.stopPropagation()
     if (onClick) {

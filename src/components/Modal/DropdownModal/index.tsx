@@ -3,7 +3,7 @@ import Modal from './../Modal'
 import getAnimation from './getAnimation'
 import updatePositionByReferenceElement from './../../Tooltip/api/updatePositionByReferenceElement'
 
-import type { ModalProps, ModalRef } from '../types'
+import type { ModalDropdownModalProps, ModalDropdownModalRef, ModalRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -14,7 +14,7 @@ import { DOMUtil, Tooltip } from 'lyrixi-mobile'
 测试使用-end */
 
 // DropdownModal
-const DropdownModal = forwardRef<ModalRef, ModalProps>(
+const DropdownModal = forwardRef<ModalDropdownModalRef, ModalDropdownModalProps>(
   (
     {
       // Status
@@ -31,7 +31,7 @@ const DropdownModal = forwardRef<ModalRef, ModalProps>(
       maskStyle,
       maskClassName,
 
-      // Element
+      // Elements
       portal,
       referenceElement: externalReferenceElement,
       children,

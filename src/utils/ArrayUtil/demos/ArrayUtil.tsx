@@ -1,7 +1,6 @@
-import React from 'react'
 import { Clipboard, Toast } from 'lyrixi-mobile'
 
-export default () => {
+export default function ArrayUtilDemo() {
   function handleClick() {
     Clipboard.copy('https://lyrixi.github.io/lyrixi-mobile', {
       onSuccess: () => {

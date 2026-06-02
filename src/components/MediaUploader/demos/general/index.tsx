@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+
 import vconsole from 'vconsole'
 import { MediaUploader, Page, Toast, type MediaHandle, type MediaItem } from 'lyrixi-mobile'
 import uploadListUtil from './../../utils/uploadList'
@@ -12,7 +13,7 @@ function normalizeList(
   return Array.isArray(r) ? r : [r]
 }
 
-export default () => {
+export default function MediaUploaderGeneralDemo() {
   const imageUploaderRef = useRef<MediaHandle | null>(null)
   const [list, setList] = useState<MediaItem[]>([
     {

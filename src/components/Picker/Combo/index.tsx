@@ -1,9 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, type Ref } from 'react'
 import Modal from './../Modal'
-import type { InputSelectComboRef, InputSelectValue } from './../../Input/types'
-import type { ModalRef } from './../../Modal/types'
-
-import type { PickerComboProps, PickerComboRef } from '../types'
+import type { InputSelectProps, InputSelectRef } from './../../Input/types'
+import type { PickerComboProps, PickerComboRef, PickerItem, PickerModalRef } from '../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -31,7 +29,7 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
     // Combo: Style
     style,
     className,
-    // Combo: Element
+    // Combo: Elements
     leftIconNode,
     rightIconNode,
     clearRender,
@@ -62,15 +60,13 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
   ref: Ref<PickerComboRef>
 ) {
   const [open, setOpen] = useState(false)
-  const comboRef = useRef<InputSelectComboRef | null>(null)
-  const modalRef = useRef<ModalRef | null>(null)
+  const comboRef = useRef<InputSelectRef | null>(null)
+  const modalRef = useRef<PickerModalRef | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...((typeof comboRef.current === 'object' && comboRef.current !== null
-        ? comboRef.current
-        : {}) as InputSelectComboRef),
-      ...((typeof modalRef.current === 'object' && modalRef.current !== null ? modalRef.current : {}) as ModalRef),
+      ...(comboRef.current ?? {}),
+      ...(modalRef.current ?? {}),
       close: () => setOpen(false),
       open: () => setOpen(true)
     } as PickerComboRef
@@ -88,6 +84,10 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
       setOpen(false)
     }
 
+    const handleInputChange: InputSelectProps['onChange'] = (newValue) => {
+      onChange?.(newValue as PickerItem[])
+    }
+
     return (
       <>
         <Input.Select
@@ -95,7 +95,7 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
           // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
-          formatter={formatter}
+          formatter={formatter as InputSelectProps['formatter']}
           autoSize={autoSize}
           separator={separator}
           mode={mode}
@@ -106,12 +106,12 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
           // Combo: Style
           style={style}
           className={className}
-          // Combo: Element
+          // Combo: Elements
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
-          onChange={onChange}
+          onChange={handleInputChange}
           onClick={handleOpen}
         />
         <Modal
@@ -138,7 +138,7 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
           maskClassName={maskClassName}
           // Events
           onClose={handleClose}
-          onChange={onChange ? (v: unknown) => onChange(v as InputSelectValue) : undefined}
+          onChange={onChange}
         />
       </>
     )

@@ -1,9 +1,8 @@
-import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, Polyline, coordsToWgs84 } = Map
 
-export default () => {
+export default function MapPolylineDemo() {
   // 折线示例：多段拐折的路径，避免共线看起来像直线
   const points = coordsToWgs84([
     { latitude: 39.909187, longitude: 116.397451, type: 'gcj02' },

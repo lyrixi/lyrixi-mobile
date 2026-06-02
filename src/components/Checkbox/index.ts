@@ -1,5 +1,9 @@
-import Checkbox from './Checkbox'
+import _Checkbox from './Checkbox'
 import Group from './Group'
 
-const CheckboxWithGroup = Object.assign(Checkbox, { Group })
-export default CheckboxWithGroup
+import type { CheckboxComponents } from './types/Checkbox.modules.types'
+
+const Checkbox = _Checkbox as CheckboxComponents
+Checkbox.Group = Group
+
+export default Checkbox

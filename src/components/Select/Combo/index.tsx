@@ -1,9 +1,10 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
-import type { InputSelectComboRef, InputSelectProps } from './../../Input/types'
-import type { RawItem } from './../../List/types'
+import type { InputSelectRef, InputSelectProps } from './../../Input/types'
+import type { ListProps } from './../../List/types'
 
-import type { SelectProps, SelectRef } from './../types'
+import type { SelectComboProps, SelectComboRef, SelectItem } from './../types'
+import type { SelectModalRef } from './../types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -13,44 +14,71 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const SelectCombo = forwardRef<SelectRef, SelectProps>(function SelectCombo(
+const SelectCombo = forwardRef<SelectComboRef, SelectComboProps>(function SelectCombo(
   {
+    // Combo
+    // Combo: Value & Display Value
     value,
     placeholder,
     formatter,
     autoSize,
     separator,
     mode,
+    // Combo: Status
     readOnly,
     disabled,
     allowClear,
+    // Combo: Value & Display Value
     multiple,
+    // Combo: Style
     style,
     className,
+    // Combo: Elements
     leftIconNode,
     rightIconNode,
     clearRender,
+    // Modal
+    // Modal: Value & Display Value
     list,
+    // Combo
+    // Combo: Value & Display Value
     formatViewList,
     formatViewItem,
+    // Modal
+    // Modal: Status
     maskClosable,
+    // Combo
+    // Combo: Value & Display Value
     checkable,
+    // Modal
+    // Modal: Status
     safeArea,
+    // Modal: Style
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
+    // Combo
+    // Combo: Value & Display Value
     checkboxVariant,
     checkboxPosition,
+    // Combo: Style
     itemStyle,
     itemClassName,
+    // Combo: Value & Display Value
     itemLayout,
+    // Modal
+    // Modal: Elements
     portal,
     title,
     cancelNode,
+    // Modal: Status
     cancelVisible,
+    // Combo
+    // Combo: Elements
     headerRender,
     itemRender,
+    // Events
     onOk,
     onChange,
     onBeforeOpen
@@ -58,20 +86,16 @@ const SelectCombo = forwardRef<SelectRef, SelectProps>(function SelectCombo(
   ref
 ) {
   const [open, setOpen] = useState(false)
-  const comboRef = useRef<InputSelectComboRef | null>(null)
-  const modalRef = useRef<SelectRef | null>(null)
+  const comboRef = useRef<InputSelectRef | null>(null)
+  const modalRef = useRef<SelectModalRef | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
-      ...(typeof comboRef.current === 'object' && comboRef.current !== null
-        ? (comboRef.current as unknown as SelectRef)
-        : {}),
-      ...(typeof modalRef.current === 'object' && modalRef.current !== null
-        ? (modalRef.current as unknown as SelectRef)
-        : {}),
+      ...(comboRef.current ?? {}),
+      ...(modalRef.current ?? {}),
       close: () => setOpen(false),
       open: () => setOpen(true)
-    }
+    } as SelectComboRef
   })
 
   async function handleOpen() {
@@ -86,9 +110,16 @@ const SelectCombo = forwardRef<SelectRef, SelectProps>(function SelectCombo(
     setOpen(false)
   }
 
-  function handleChange(newValue: unknown) {
-    onChange?.(newValue as RawItem | RawItem[] | null, undefined)
+  function handleChange(newValue: SelectItem | SelectItem[] | null) {
+    onChange?.(newValue, undefined)
     setOpen(false)
+  }
+
+  const handleInputChange: InputSelectProps['onChange'] = (value, meta) => {
+    onChange?.(
+      value as SelectItem | SelectItem[] | null,
+      meta as { action?: string; checkedItem: SelectItem } | undefined
+    )
   }
 
   return (
@@ -109,12 +140,12 @@ const SelectCombo = forwardRef<SelectRef, SelectProps>(function SelectCombo(
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}
-        onChange={onChange as InputSelectProps['onChange']}
+        onChange={handleInputChange}
         onClick={handleOpen}
       />
       <Modal
         ref={modalRef}
-        value={value}
+        value={value as ListProps['value']}
         list={list}
         formatViewList={formatViewList}
         formatViewItem={formatViewItem}

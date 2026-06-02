@@ -143,7 +143,7 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(fun
       modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
       maskStyle={maskStyle}
       maskClassName={maskClassName}
-      // Element
+      // Elements
       portal={portal}
       title={titleNode || getTitle(currentValue, { type, separator })}
       okNode={okNode}
@@ -158,7 +158,7 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(fun
         ref={mainRef}
         // Modal: Status
         open={open}
-        // Value & display value
+        // Value & Display Value
         value={currentValue}
         autoSwapValue={autoSwapValue}
         rangeId={currentRangeId}

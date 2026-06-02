@@ -35,7 +35,7 @@ toc: content
 | headerRender   | 自定义头部渲染 | `() => ReactNode`                            | -                            |
 | ellipsis       | 省略配置       | `{expandText: string, collapseText: string}` | -                            |
 | ellipsisRender | 自定义省略渲染 | `(props: {open: boolean}) => ReactNode`      | -                            |
-| arrowClassName | 箭头类名       | `string`                                     | `'lyrixi-iconfont-arrow-up'` |
+| arrowClassName | 箭头容器类名（布局用，不用于选图标） | `string`                                     | - |
 | arrowPosition  | 箭头位置       | `'left' \| 'right'`                          | `'right'`                    |
 | arrowRender    | 自定义箭头渲染 | `(props: {open: boolean}) => ReactNode`      | -                            |
 | children       | 内容           | `ReactNode`                                  | -                            |

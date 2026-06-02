@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 
-import type { SignatureComboEditThumbnailProps } from '../../types'
+import type { SignatureComboEditThumbnailProps } from './Signature.Combo.Edit.Thumbnail.types'
 
 // 内库使用-start
 import Media from './../../../Media'

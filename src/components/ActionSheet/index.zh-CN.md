@@ -30,9 +30,9 @@ toc: content
 
 | 属性           | 说明           | 类型                           | 默认值 |
 | -------------- | -------------- | ------------------------------ | ------ |
-| value          | 选中的值       | `any`                          | -      |
+| value          | 选中的值       | `ActionSheetItem \| null`      | -      |
 | placeholder    | 占位符         | `string`                       | -      |
-| formatter      | 格式化函数     | `(value: any) => string`       | -      |
+| formatter      | 格式化函数     | `(...args: unknown[]) => string` | -    |
 | autoSize       | 自动调整大小   | `boolean`                      | -      |
 | separator      | 分隔符         | `string`                       | -      |
 | mode           | 模式           | `string`                       | -      |
@@ -45,8 +45,8 @@ toc: content
 | children       | 子元素         | `ReactNode`                    | -      |
 | leftIconNode   | 左侧图标       | `ReactNode`                    | -      |
 | rightIconNode  | 右侧图标       | `ReactNode`                    | -      |
-| clearRender    | 清除按钮渲染   | `(props: object) => ReactNode` | -      |
-| list           | 选项列表       | `Array<object>`                | -      |
+| clearRender    | 清除按钮渲染   | `() => ReactNode`              | -      |
+| list           | 选项列表       | `ActionSheetItem[]`            | -      |
 | maskClosable   | 点击遮罩关闭   | `boolean`                      | -      |
 | safeArea       | 是否安全区     | `boolean`                      | -      |
 | modalStyle     | 模态框样式     | `object`                       | -      |
@@ -57,21 +57,19 @@ toc: content
 | title          | 标题           | `ReactNode`                    | -      |
 | cancelNode     | 取消按钮       | `ReactNode`                    | -      |
 | cancelVisible  | 取消按钮可见   | `boolean`                      | -      |
-| itemRender     | 项渲染         | `(item: object) => ReactNode`  | -      |
-| onBeforeOpen   | 打开前事件     | `() => Promise<boolean>`       | -      |
+| itemRender     | 项渲染         | `(item, helpers: { onChange }) => ReactNode` | -      |
+| onBeforeOpen   | 打开前事件     | `() => Promise<boolean \| void>`             | -      |
 | onOpen         | 打开事件       | `() => void`                   | -      |
 | onClose        | 关闭事件       | `() => void`                   | -      |
-| onClick        | 点击事件       | `(e: Event) => void`           | -      |
-| onChange       | 变化事件       | `(value: any) => void`         | -      |
+| onClick        | 点击事件       | `() => void`                   | -      |
+| onChange       | 变化事件       | `(value: ActionSheetItem \| null) => void`   | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-| close      | 关闭面板   | `() => void`           |
-| open       | 打开面板   | `() => void`           |
+| 属性  | 说明     | 类型         |
+| ----- | -------- | ------------ |
+| close | 关闭面板 | `() => void` |
+| open  | 打开面板 | `() => void` |
 
 ## ActionSheet.Modal
 
@@ -92,8 +90,8 @@ toc: content
 
 | 属性           | 说明         | 类型                           | 默认值  |
 | -------------- | ------------ | ------------------------------ | ------- |
-| value          | 选中的值     | `any`                          | -       |
-| list           | 选项列表     | `Array<object>`                | -       |
+| value          | 选中的值     | `ActionSheetItem \| null`      | -       |
+| list           | 选项列表     | `ActionSheetItem[]`            | -       |
 | open           | 是否显示     | `boolean`                      | `false` |
 | maskClosable   | 点击遮罩关闭 | `boolean`                      | `true`  |
 | allowClear     | 允许清除     | `boolean`                      | -       |
@@ -110,19 +108,14 @@ toc: content
 | title          | 标题         | `ReactNode`                    | -       |
 | cancelNode     | 取消按钮     | `ReactNode`                    | -       |
 | cancelVisible  | 取消按钮可见 | `boolean`                      | -       |
-| itemRender     | 项渲染       | `(item: object) => ReactNode`  | -       |
-| onChange       | 变化事件     | `(value: any) => void`         | -       |
+| itemRender     | 项渲染       | `(item, helpers: { onChange }) => ReactNode` | -       |
+| onChange       | 变化事件     | `(value: ActionSheetItem \| null) => void`   | -       |
 | onCancel       | 取消事件     | `() => void`                   | -       |
 | onClose        | 关闭事件     | `() => void`                   | -       |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-| close      | 关闭面板   | `() => void`           |
-| open       | 打开面板   | `() => void`           |
+同 Modal 组件 Ref。
 
 ## ActionSheet.Item
 
@@ -148,11 +141,4 @@ toc: content
 | style     | 自定义样式 | `object`             | -      |
 | className | 自定义类名 | `string`             | -      |
 | children  | 项内容     | `ReactNode`          | -      |
-| onClick   | 点击事件   | `(e: Event) => void` | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| onClick   | 点击事件   | `(e: MouseEvent<HTMLDivElement>) => void` | -      |

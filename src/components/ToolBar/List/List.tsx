@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { ToolBarListBarProps } from './../types'
+import type { ToolBarListBarProps } from './ToolBar.List.Bar.types'
 
 // 内库使用-start
 import List from './../../List'

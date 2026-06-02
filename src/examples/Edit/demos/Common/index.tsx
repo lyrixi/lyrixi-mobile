@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState, type ComponentType } from 'react'
+import { useEffect, useRef, useState, type ComponentType } from 'react'
+
 import {
   Attach,
   Card,
@@ -38,7 +39,7 @@ const locale = LocaleUtil.locale
 const AttachUntyped = Attach as unknown as ComponentType<Record<string, unknown>>
 const MediaUntyped = Media as unknown as ComponentType<Record<string, unknown>>
 
-// 表单编辑页面
+// 表单控件展示（编辑页）
 const Edit = () => {
   // 表单
   const [form] = Form.useForm()
@@ -339,7 +340,7 @@ const Edit = () => {
                 chooseVisible
               />
             </Form.Item>
-            <Form.Item name="signature" label={String(locale('Signature'))}>
+            <Form.Item name="signatureVertical" label={String(locale('Signature'))}>
               <Signature.Combo />
             </Form.Item>
             <Form.Item name="attach" label={String(locale('Attach'))}>
@@ -363,17 +364,8 @@ const Edit = () => {
                   ] as EditDemoAttachListItem[]
                 }
                 count={9}
-                onFileChange={async ({
-                  fileName,
-                  fileSize,
-                  fileURL,
-                  fileData
-                }: EditDemoUntypedFileChangePayload) => {
-                  console.log({ fileName, fileSize, fileURL, fileData })
-                }}
-                onChange={(newList: unknown) => {
-                  console.log('修改:', newList)
-                }}
+                onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
+                onChange={(_newList: unknown) => {}}
               />
             </Form.Item>
             <Form.Item name="image" label={String(locale('Media'))}>
@@ -406,17 +398,8 @@ const Edit = () => {
                   }
                 ]}
                 count={9}
-                onFileChange={async ({
-                  fileName,
-                  fileSize,
-                  fileURL,
-                  fileData
-                }: EditDemoUntypedFileChangePayload) => {
-                  console.log({ fileName, fileSize, fileURL, fileData })
-                }}
-                onChange={(newList: unknown) => {
-                  console.log('修改:', newList)
-                }}
+                onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
+                onChange={(_newList: unknown) => {}}
               />
             </Form.Item>
           </Form>

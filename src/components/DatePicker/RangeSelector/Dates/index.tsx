@@ -1,6 +1,6 @@
 import React from 'react'
 import RangeCombo from './../../RangeCombo'
-import type { DatePickerRangeSelectorCustomDatesProps } from './../../DatePicker.RangeSelector.Dates.types'
+import type { DatePickerRangeSelectorCustomDatesProps } from '../../types/DatePicker.RangeSelector.Dates.types'
 import type { DatePickerRangeComboProps } from './../../types'
 
 // 内库使用-start

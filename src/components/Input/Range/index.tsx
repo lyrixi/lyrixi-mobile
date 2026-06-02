@@ -8,6 +8,8 @@ import type { InputRangeProps, InputRangeRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -31,8 +33,7 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
       className,
       style,
 
-      // Validate
-      min = 0,
+            min = 0,
       max = 100,
       step = 1,
 
@@ -68,11 +69,10 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
       if (disabled || readOnly) return
-      let newValue: string | number = e.currentTarget.value
+      let newValue: number = Number(e.currentTarget.value || 0)
 
-      if (newValue) newValue = Number(newValue || 0)
       if (onChange) {
-        onChange(newValue as number)
+        onChange(newValue)
       }
 
       // 更新位置
@@ -115,7 +115,7 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Element: Input */}
+        {/* Elements: Input */}
         <input
           ref={inputRef}
           name={name}
@@ -126,25 +126,28 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
           // Status
           readOnly={readOnly}
           disabled={disabled}
-          // Validate
-          min={min}
+                    min={min}
           max={max}
           step={step}
           // Events
           onChange={handleChange}
         />
 
-        {/* Element: Rail */}
+        {/* Elements: Rail */}
         <div className="lyrixi-input-range-rail">
           <div className="lyrixi-input-range-rail-active" ref={railRef}></div>
         </div>
 
-        {/* Element: Handle */}
+        {/* Elements: Handle */}
         <div ref={handleRef} className="lyrixi-input-range-handle">
-          <div className="lyrixi-input-range-handle-icon"></div>
+          <Icon
+            svg={Icons.Adjuster}
+            size="xxs"
+            className="lyrixi-input-range-handle-icon"
+          />
         </div>
 
-        {/* Element: Tooltip */}
+        {/* Elements: Tooltip */}
         <div ref={tooltipRef} className="lyrixi-input-range-tooltip">
           {typeof value === 'number' ? value : Number(value ?? 0)}
         </div>

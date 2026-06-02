@@ -4,7 +4,8 @@ import InputText from './InputText'
 import InputNumber from './InputNumber'
 import formatValue from './formatValue'
 
-import type { InputOTPInputRef, InputOTPProps, InputOTPRef } from './Input.OTP.types'
+import type { InputOTPProps, InputOTPRef } from '../types/Input.OTP.types'
+import type { InputOTPInputRef } from './Input.OTP.internal.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -29,8 +30,7 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
       className,
       style,
 
-      // Validate
-      maxLength = 6,
+            maxLength = 6,
 
       // Events
       onChange,
@@ -48,15 +48,12 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     const inputRef = useRef<InputOTPInputRef | null>(null)
 
     // Expose
-    useImperativeHandle(
-      ref,
-      () => ({
-        element: rootRef.current,
-        getElement: () => rootRef.current,
-        focus: focus,
-        blur: blur
-      })
-    )
+    useImperativeHandle(ref, () => ({
+      element: rootRef.current,
+      getElement: () => rootRef.current,
+      focus: focus,
+      blur: blur
+    }))
 
     // 获焦
     function focus(itemIndex?: number) {
@@ -69,11 +66,7 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     }
 
     // 粘贴值, 更新数组值
-    function textToValue(text: string | number) {
-      if (typeof text === 'number') {
-        // eslint-disable-next-line
-        text = text.toString()
-      }
+    function textToValue(text: string) {
       if (!text) return
 
       const newValue: string[] = Array(maxLength).fill('')
@@ -110,7 +103,6 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
 
     // 处理输入变化
     const handleChange = (itemIndex: number, newItemValue: string) => {
-      console.log('handleChange', itemIndex, newItemValue)
       if (disabled || readOnly) return
 
       // 更新分割值和完整值

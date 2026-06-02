@@ -1,6 +1,6 @@
 import React, { Fragment, forwardRef } from 'react'
 
-import type { CascaderMainViewProps } from '../types'
+import type { CascaderMainViewProps } from './Cascader.Main.Main.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

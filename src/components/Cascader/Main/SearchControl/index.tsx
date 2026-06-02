@@ -23,7 +23,7 @@ function SearchControl({ list, onSearch, onChange }: CascaderMainSearchControlPr
 
   return (
     <>
-      {/* Element: Search Bar */}
+      {/* Elements: Search Bar */}
       <Page.Header className="lyrixi-cascader-search-header">
         <ToolBar variant="filled">
           <SearchBar
@@ -37,9 +37,9 @@ function SearchControl({ list, onSearch, onChange }: CascaderMainSearchControlPr
         </ToolBar>
       </Page.Header>
 
-      {/* Element: Search Page */}
+      {/* Elements: Search Page */}
       {open && <SearchPage
-        // Element
+        // Elements
         list={list}
         // Events
         onSearch={onSearch}

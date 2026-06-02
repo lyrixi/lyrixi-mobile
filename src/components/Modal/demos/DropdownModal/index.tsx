@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react'
-import { Page, Modal, Button } from 'lyrixi-mobile'
+import { useState, useRef } from 'react'
 
-export default () => {
+import { Page, Modal } from 'lyrixi-mobile'
+
+export default function ModalDropdownModalDemo() {
   const referenceRef = useRef(null)
   const [open, setOpen] = useState(false)
 

@@ -1,5 +1,10 @@
 import React from 'react'
 
+// 内库使用-start
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
+// 内库使用-end
+
 const PreviewDelete = ({ onDelete }: { onDelete?: () => void }) => {
   return (
     <div
@@ -8,7 +13,9 @@ const PreviewDelete = ({ onDelete }: { onDelete?: () => void }) => {
         e.stopPropagation()
         onDelete?.()
       }}
-    ></div>
+    >
+      <Icon svg={Icons.Trash} size="m" color="white" />
+    </div>
   )
 }
 

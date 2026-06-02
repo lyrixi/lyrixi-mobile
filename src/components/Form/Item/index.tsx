@@ -79,9 +79,8 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
                 style={labelStyle}
                 className={labelClassName}
                 span={labelSpan}
-                // Validate
-                required={(rules || []).some((rule) => typeof rule === 'object' && !('validator' in rule) ? rule.required : false)}
-                // Element
+                                required={(rules || []).some((rule) => typeof rule === 'object' && !('validator' in rule) ? rule.required : false)}
+                // Elements
                 help={labelHelp}
               >
                 {label}
@@ -93,7 +92,7 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
                 // Style
                 style={mainStyle}
                 className={mainClassName}
-                // Element
+                // Elements
                 errorMessage={renderMeta?.errors?.[0] || ''}
                 inputExtraNode={inputExtraRender?.({ errors: renderMeta?.errors ?? [] })}
                 extraNode={

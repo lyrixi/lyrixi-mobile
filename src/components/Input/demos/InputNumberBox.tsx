@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, MathUtil, Divider, Card, Input } from 'lyrixi-mobile'
 
-export default () => {
+export default function InputNumberBoxDemo() {
   const [value, setValue] = useState('2.10')
   const [stepValue, setStepValue] = useState('1.0')
   return (

@@ -1,5 +1,6 @@
 // 第三方库导入
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
+
 import { LocaleUtil, Divider, Page, Result, Card, Text, Form, Toast } from 'lyrixi-mobile'
 // 公共组件导入
 
@@ -12,7 +13,7 @@ import type { DetailFormApproveResult, DetailFormQueryResultView } from './types
 
 const locale = LocaleUtil.locale
 
-// 表单编辑页面
+// 只读详情示例
 const FormDetail = () => {
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())

@@ -2,11 +2,12 @@ import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } f
 import Main from './../Main'
 
 import type {
-  ListPaginationProps,
-  ListPaginationRef
+  ListPaginationItem,
+  ListPaginationMainRef,
+  ListPaginationModalProps,
+  ListPaginationModalRef
 } from './../types'
 import type { ModalRef } from './../../Modal/types'
-import type { RawItem } from './../../List/types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -19,7 +20,7 @@ const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
 // Modal
-const Modal = forwardRef<ListPaginationRef, ListPaginationProps>(
+const Modal = forwardRef<ListPaginationModalRef, ListPaginationModalProps>(
   (
     {
       // Value & Display Value
@@ -81,9 +82,11 @@ const Modal = forwardRef<ListPaginationRef, ListPaginationProps>(
     },
     ref
   ) => {
-    let [currentValue, setCurrentValue] = useState<RawItem | RawItem[] | null>(() => value ?? null)
+    let [currentValue, setCurrentValue] = useState<
+      ListPaginationItem | ListPaginationItem[] | null
+    >(() => value ?? null)
     const modalRef = useRef<ModalRef | null>(null)
-    const mainRef = useRef<ListPaginationRef | null>(null)
+    const mainRef = useRef<ListPaginationMainRef | null>(null)
 
     // 同步外部value到内部
     useEffect(() => {
@@ -94,33 +97,35 @@ const Modal = forwardRef<ListPaginationRef, ListPaginationProps>(
 
     useImperativeHandle(ref, () => {
       return {
-        ...(modalRef.current as ListPaginationRef),
-        ...(mainRef.current as ListPaginationRef)
-      } as ListPaginationRef
+        ...(modalRef.current ?? {}),
+        ...(mainRef.current ?? {})
+      } as ListPaginationModalRef
     })
 
     async function handleOk() {
       if (onOk) {
         let goOn = await onOk(currentValue)
         if (goOn === false) return false
-        if (Array.isArray(goOn) || (goOn as RawItem)?.id) {
-          currentValue = goOn as RawItem | RawItem[]
+        if (Array.isArray(goOn) || (goOn as ListPaginationItem)?.id) {
+          currentValue = goOn as ListPaginationItem | ListPaginationItem[]
         }
       }
-      const checked = (Array.isArray(currentValue) ? currentValue[0] : currentValue) as RawItem
+      const checked = (
+        Array.isArray(currentValue) ? currentValue[0] : currentValue
+      ) as ListPaginationItem
       onChange?.(currentValue, { checkedItem: checked })
       onClose?.()
     }
 
     function handleChange(
-      newValue: RawItem | RawItem[] | null,
-      options?: { checkedItem?: RawItem; action?: string }
+      newValue: ListPaginationItem | ListPaginationItem[] | null,
+      options?: { checkedItem?: ListPaginationItem; action?: string }
     ) {
       setCurrentValue(newValue)
       if (!multiple) {
         const checkedItem =
           options?.checkedItem ??
-          ((Array.isArray(newValue) ? newValue[0] : newValue) as RawItem)
+          ((Array.isArray(newValue) ? newValue[0] : newValue) as ListPaginationItem)
         onChange?.(newValue, { ...options, checkedItem })
         onClose?.()
       }
@@ -160,7 +165,7 @@ const Modal = forwardRef<ListPaginationRef, ListPaginationProps>(
         {open && (
           <Main
             ref={mainRef}
-            value={currentValue as ListPaginationProps['value']}
+            value={currentValue as ListPaginationModalProps['value']}
             url={url}
             headers={headers}
             payload={payload}

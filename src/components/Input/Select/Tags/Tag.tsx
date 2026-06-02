@@ -1,9 +1,11 @@
 import React from 'react'
 
-import type { InputSelectTagProps } from './Input.Select.Tags.types'
+import type { InputSelectTagProps } from './Input.Select.Tags.Tag.types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
+import Icon from './../../../Icon'
+import Icons from '../../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -36,13 +38,15 @@ const Tag = ({
     >
       {name}
       {readOnly || disabled || !allowClear ? null : (
-        <i
+        <Icon
+          svg={Icons.Close}
+          size="xs"
           className="lyrixi-select-tags-item-clear"
           onClick={(e) => {
             onDelete?.()
             e.stopPropagation()
           }}
-        ></i>
+        />
       )}
     </div>
   )

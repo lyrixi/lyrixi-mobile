@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import dayjs from 'dayjs'
 import { Page, LocaleUtil, Card, Button } from 'lyrixi-mobile'
 
-export default () => {
+export default function LocaleUtilDemo() {
   const [currentLanguage, setCurrentLanguage] = useState<string | null>(null)
 
   useEffect(() => {

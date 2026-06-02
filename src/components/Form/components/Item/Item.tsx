@@ -24,7 +24,7 @@ const FormItem = forwardRef<FormItemRef, FormItemLayoutProps>(
       className,
       layout,
 
-      // Element
+      // Elements
       children
     },
     ref

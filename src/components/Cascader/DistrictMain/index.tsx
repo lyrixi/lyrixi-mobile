@@ -10,7 +10,7 @@ import api from './api'
 import Main from './../Main'
 import DistrictMainResult from './Result'
 import DistrictMainLoading from './Loading'
-import type { CascaderNode, LoadDataResult } from './../types'
+import type { CascaderItem, LoadDataResult } from './../types'
 
 import type { DistrictResultState } from '../types'
 import type { DistrictItem } from './../types'
@@ -32,17 +32,21 @@ const CascaderDistrictMain = forwardRef<
 >(
   (
     {
-      open = true,
+      // Value & Display Value
       value,
       type: typeProp,
       loadCountries = api.loadCountries,
       loadCountryRegions = api.loadCountryRegions,
       loadStreets = api.loadStreets,
+      // Status
+      open = true,
+      searchVisible = true,
+      // Style
       listStyle,
       listClassName,
       itemStyle,
       itemClassName,
-      searchVisible = true,
+      // Events
       onChange
     },
     ref
@@ -51,7 +55,7 @@ const CascaderDistrictMain = forwardRef<
 
     const [result, setResult] = useState<DistrictResultState | null>(null)
 
-    const [fullValue, setFullValue] = useState<CascaderNode[] | null>(null)
+    const [fullValue, setFullValue] = useState<CascaderItem[] | null>(null)
 
     useEffect(() => {
       void initList()
@@ -85,7 +89,7 @@ const CascaderDistrictMain = forwardRef<
           list: baseData.list as DistrictItem[],
           maxType
         })
-        newValue = (formatted ?? value) as CascaderNode[]
+        newValue = (formatted ?? value) as CascaderItem[]
       }
 
       const lastTab = newValue?.[newValue.length - 1]
@@ -140,8 +144,8 @@ const CascaderDistrictMain = forwardRef<
     }
 
     async function loadData(
-      tabs: CascaderNode[],
-      _ctx: { list: CascaderNode[] }
+      tabs: CascaderItem[],
+      _ctx: { list: CascaderItem[] }
     ): Promise<LoadDataResult> {
       const childrenData = await _loadData(tabs, {
         loadCountryRegions: loadCountryRegions as LoadCountryRegionsFn,
@@ -164,7 +168,7 @@ const CascaderDistrictMain = forwardRef<
         {result?.status === 'success' && (
           <Main
             value={fullValue ?? undefined}
-            list={result?.list as CascaderNode[] | undefined}
+            list={result?.list as CascaderItem[] | undefined}
             loadData={loadData}
             listStyle={listStyle}
             listClassName={listClassName}

@@ -6,13 +6,16 @@ import type { LocationMainPreviewProps } from './../../types'
 // 查看
 const Preview = forwardRef<MapContainerAPI, LocationMainPreviewProps>(function LocationPreview(
   {
+    // Value & Display Value
     value,
     autoLocation,
     mapConfig,
     getLocation,
     getAddress,
+    // Elements
     loadingNode,
     loadingRender,
+    // Events
     onChange,
     onSuccess,
     onError
@@ -27,7 +30,7 @@ const Preview = forwardRef<MapContainerAPI, LocationMainPreviewProps>(function L
       // Status
       readOnly={true}
       autoLocation={autoLocation}
-      // Element
+      // Elements
       mapConfig={mapConfig}
       getLocation={getLocation}
       getAddress={getAddress}

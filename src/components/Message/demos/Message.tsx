@@ -1,19 +1,18 @@
-import React from 'react'
-import { Page, Message, Button } from 'lyrixi-mobile'
+import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
 
-export default () => {
+export default function MessageDemo() {
   const handleOpenMessage = () => {
     Message.open({
-      icon: 'lyrixi-iconfont-config color-primary',
+      iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,
       title: 'Title',
-      content: '<div>Content</div>',
+      content: <div>Content</div>,
       buttonsLayout: 'vertical',
       buttons: [
         {
           name: 'Button 1',
           onClick: () => {
             console.log('Button 1 clicked')
-            return true // Close the message
+            return true
           }
         },
         {
@@ -21,7 +20,7 @@ export default () => {
           className: 'lyrixi-primary',
           onClick: () => {
             console.log('Button 2 clicked')
-            return true // Close the message
+            return true
           }
         }
       ]
@@ -30,9 +29,9 @@ export default () => {
 
   const handleOpenHorizontalMessage = () => {
     Message.open({
-      icon: 'lyrixi-iconfont-config color-primary',
+      iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,
       title: 'Horizontal Layout',
-      content: '<div>This message uses horizontal button layout</div>',
+      content: <div>This message uses horizontal button layout</div>,
       buttonsLayout: 'horizontal',
       buttons: [
         {
@@ -57,7 +56,7 @@ export default () => {
   const handleOpenSimpleMessage = () => {
     Message.open({
       title: 'Simple Message',
-      content: '<div>This is a simple message without icon</div>',
+      content: <div>This is a simple message without icon</div>,
       buttons: [
         {
           name: 'OK',
@@ -73,6 +72,38 @@ export default () => {
 
   const handleCloseMessage = () => {
     Message.close()
+  }
+
+  const handleOpenMultipleMessages = () => {
+    Message.open({
+      title: 'First Message',
+      content: <div>This message will be replaced in 3 seconds</div>,
+      buttons: [
+        {
+          name: 'OK',
+          className: 'lyrixi-primary',
+          onClick: () => true
+        }
+      ]
+    })
+
+    setTimeout(() => {
+      Message.open({
+        title: 'Second Message',
+        content: <div>This message will close in 3 seconds</div>,
+        buttons: [
+          {
+            name: 'OK',
+            className: 'lyrixi-primary',
+            onClick: () => true
+          }
+        ]
+      })
+    }, 3000)
+
+    setTimeout(() => {
+      Message.close()
+    }, 6000)
   }
 
   return (
@@ -93,6 +124,10 @@ export default () => {
 
           <Button className="lyrixi-flex" color="danger" onClick={handleCloseMessage}>
             Close Current Message
+          </Button>
+
+          <Button className="lyrixi-flex" color="warning" onClick={handleOpenMultipleMessages}>
+            Open Multiple Messages (3s replace, 3s close)
           </Button>
         </div>
       </Page.Main>

@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+
 import { Page, ListAsync } from 'lyrixi-mobile'
 import listData from './listData'
 
-export default () => {
+export default function ListAsyncListDemo() {
   const mainRef = useRef(null)
   const [value, setValue] = useState<Record<string, unknown> | Record<string, unknown>[] | null>(null)
 

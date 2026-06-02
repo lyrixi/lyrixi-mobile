@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { useState, type ReactNode } from 'react'
+
 import { Page, List, Card, Button } from 'lyrixi-mobile'
-import type { RawItem, ViewItem } from 'lyrixi-mobile'
+import type { ListItem, ViewItem } from 'lyrixi-mobile'
 import listAllData from './listAllData'
 import listData from './listData'
 
@@ -19,7 +20,7 @@ const ListDemo = () => {
           <Card.Main>
             <List
               list={listAllData}
-              formatViewItem={(item: RawItem): ViewItem => {
+              formatViewItem={(item: ListItem): ViewItem => {
                 return {
                   ...item,
                   actionRender: () => {
@@ -41,7 +42,7 @@ const ListDemo = () => {
             <List
               list={listAllData}
               itemLayout="vertical"
-              formatViewItem={(item: RawItem): ViewItem => {
+              formatViewItem={(item: ListItem): ViewItem => {
                 return {
                   ...item,
                   _raw: item,
@@ -111,7 +112,7 @@ const ListDemo = () => {
               onChange={setSingleValue}
               checkable
               allowClear
-              formatViewItem={(item: RawItem, { index }): ViewItem => {
+              formatViewItem={(item: ListItem, { index }): ViewItem => {
                 return {
                   ...item,
                   _raw: item,
@@ -148,8 +149,8 @@ const ListDemo = () => {
                   checked={checked}
                   checkable
                   onSelect={onSelect}
-                  title={item.name as React.ReactNode}
-                  description={item.description as React.ReactNode}
+                  title={item.name as ReactNode}
+                  description={item.description as ReactNode}
                   note={'note'}
                   actionRender={() => <Button size="s">操作</Button>}
                 />

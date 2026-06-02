@@ -1,6 +1,4 @@
-import React from 'react'
-
-import { Page, Divider, Steps, Icon, Card } from 'lyrixi-mobile'
+import { Page, Divider, Steps, Icon, Card, Icons } from 'lyrixi-mobile'
 
 const list = [
   {
@@ -20,7 +18,7 @@ const list = [
   }
 ]
 
-export default () => {
+export default function ActiveDemo() {
   return (
     <Page>
       <Page.Main>
@@ -50,7 +48,7 @@ export default () => {
             value={{
               id: 'progress',
               status: 'error',
-              icon: <Icon className="lyrixi-iconfont lyrixi-iconfont-signature"></Icon>
+              icon: <Icon svg={Icons.Signature} />
             }}
             list={list}
             align="left"

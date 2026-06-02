@@ -9,7 +9,11 @@ import React, {
 
 import getTranslateValue from './utils/getTranslateValue'
 
-import type { PickerMainSlotsSlotDragState, PickerMainSlotsTouchDragState, PickerSlotsProps } from '../types'
+import type {
+  PickerMainSlotsProps,
+  PickerMainSlotsSlotDragState,
+  PickerMainSlotsTouchDragState
+} from './Picker.Main.Slots.types'
 
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
@@ -20,7 +24,7 @@ import DOMUtil from './../../../utils/DOMUtil'
 import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const Lists = forwardRef<HTMLDivElement, PickerSlotsProps>(function Lists(
+const Lists = forwardRef<HTMLDivElement, PickerMainSlotsProps>(function Lists(
   { lists = [], cellHeight = 44, onDragEnd },
   ref: Ref<HTMLDivElement>
 ) {

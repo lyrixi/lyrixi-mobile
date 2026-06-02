@@ -1,6 +1,6 @@
 // 与Attach.uploadItem共用
 
-import type { MediaListItem } from './../../types'
+import type { MediaItem } from './../../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -13,13 +13,13 @@ import { LocaleUtil, Toast } from 'lyrixi-mobile'
 
 // 上传文件
 async function uploadItem(
-  item: MediaListItem,
+  item: MediaItem,
   {
     onUpload
   }: {
     onUpload?: (
-      item: MediaListItem
-    ) => void | MediaListItem | unknown | Promise<MediaListItem | void | unknown>
+      item: MediaItem
+    ) => void | MediaItem | unknown | Promise<MediaItem | void | unknown>
   }
 ) {
   if (typeof onUpload !== 'function') {
@@ -47,7 +47,7 @@ async function uploadItem(
   if (raw === undefined || raw === null) {
     return { ...item, status: 'success' }
   }
-  const newItem = raw as MediaListItem
+  const newItem = raw as MediaItem
 
   // 上传失败
   if (newItem.status === 'error') {

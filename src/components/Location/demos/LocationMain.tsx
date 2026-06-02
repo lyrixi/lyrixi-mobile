@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, type ComponentRef } from 'react'
+
 import { Page, Location } from 'lyrixi-mobile'
 
 import type { LocationDemoMainValue } from './Location.demos.types'
 
-export default () => {
-  const mainRef = useRef<React.ComponentRef<typeof Location.Main> | null>(null)
+export default function LocationMainDemo() {
+  const mainRef = useRef<ComponentRef<typeof Location.Main> | null>(null)
   const [value, setValue] = useState<LocationDemoMainValue>(null)
 
   useEffect(() => {

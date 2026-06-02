@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Transfer, type TransferItem } from 'lyrixi-mobile'
 
-export default () => {
+export default function TransferModalDemo() {
   const [value, setValue] = useState<TransferItem[]>([
     { id: '1', name: '1' },
     { id: '2', name: '2' }

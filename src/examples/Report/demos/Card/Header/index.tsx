@@ -1,5 +1,4 @@
 // 第三方库导入
-import React from 'react'
 import { ToolBar, TabBar } from 'lyrixi-mobile'
 
 // 公共组件导入

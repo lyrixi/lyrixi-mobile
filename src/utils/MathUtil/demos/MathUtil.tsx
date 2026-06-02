@@ -1,4 +1,3 @@
-import React from 'react'
 import vconsole from 'vconsole'
 
 import { MathUtil } from 'lyrixi-mobile'
@@ -13,7 +12,7 @@ import { Page } from 'lyrixi-mobile'
 
 new vconsole()
 
-export default () => {
+export default function MathUtilDemo() {
   return (
     <Page>
       <Page.Main>

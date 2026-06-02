@@ -1,4 +1,4 @@
-export default [
+const mapDemoPoints = [
   {
     area: '建邺区',
     uid: 'bac0886bab065861c03644a0',
@@ -7181,3 +7181,5 @@ export default [
     }
   }
 ]
+
+export default mapDemoPoints

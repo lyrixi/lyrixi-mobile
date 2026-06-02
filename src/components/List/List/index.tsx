@@ -3,7 +3,7 @@ import viewFormatter from './viewFormatter'
 import HeaderItem from './../HeaderItem'
 import Item from './../Item'
 
-import type { ListProps, ListRef, RawItem, ViewItem } from './../types'
+import type { ListProps, ListRef, ListItem, ViewItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -16,21 +16,26 @@ import { DOMUtil } from 'lyrixi-mobile'
 // List
 const List = (
   {
+    // Value & Display Value
     value,
-    multiple,
-    allowClear,
     list,
     formatViewList,
     formatViewItem,
+    multiple,
+    // Status
+    allowClear,
     checkable,
+    checkboxVariant,
+    checkboxPosition,
+    // Style
     style,
     className,
     itemStyle,
     itemClassName,
     itemLayout,
-    checkboxVariant,
-    checkboxPosition,
+    // Elements
     itemRender,
+    // Events
     onChange
   }: ListProps,
   ref: React.Ref<ListRef>
@@ -45,10 +50,10 @@ const List = (
     }
   })
 
-  function handleChange(_raw: RawItem) {
-    let newValue: RawItem | RawItem[] | null = null
+  function handleChange(_raw: ListItem) {
+    let newValue: ListItem | ListItem[] | null = null
     if (multiple) {
-      const multipleValue = (value as RawItem[] | undefined) || []
+      const multipleValue = (value as ListItem[] | undefined) || []
       if (!_raw.checked) {
         newValue = multipleValue.filter((valueItem) => valueItem?.id !== _raw.id)
       } else {
@@ -68,18 +73,22 @@ const List = (
     let checked = false
     if (value) {
       checked = multiple
-        ? (value as RawItem[])?.findIndex?.((valueItem) => valueItem?.id === item?._raw?.id) >= 0
-        : (value as RawItem)?.id === item?._raw?.id
+        ? (value as ListItem[])?.findIndex?.((valueItem) => valueItem?.id === item?._raw?.id) >= 0
+        : (value as ListItem)?.id === item?._raw?.id
     }
 
     if (typeof itemRender === 'function') {
-      return itemRender(item, { index, checked, onChange: handleChange })
+      return itemRender(item._raw as ListItem, {
+        index,
+        checked,
+        onChange: handleChange
+      })
     }
 
     return (
       <Item
         key={String(item.id ?? item._raw?.id ?? index)}
-        _raw={(item._raw ?? { id: item.id ?? index }) as RawItem}
+        _raw={(item._raw ?? { id: item.id ?? index }) as ListItem}
         checked={checked}
         disabled={item.disabled as boolean | undefined}
         checkable={checkable}
@@ -91,13 +100,13 @@ const List = (
         imageUrl={item.imageUrl as string | undefined}
         imageRender={
           item.imageRender as
-            | ((item: RawItem & { checked?: boolean }) => React.ReactNode)
+            | ((item: ListItem & { checked?: boolean }) => React.ReactNode)
             | undefined
         }
         avatarUrl={item.avatarUrl as string | undefined}
         avatarRender={
           item.avatarRender as
-            | ((item: RawItem & { checked?: boolean }) => React.ReactNode)
+            | ((item: ListItem & { checked?: boolean }) => React.ReactNode)
             | undefined
         }
         title={(item.title ?? item.name) as React.ReactNode}
@@ -106,7 +115,7 @@ const List = (
         content={item.content as React.ReactNode | undefined}
         actionRender={
           item.actionRender as
-            | ((item: RawItem & { checked?: boolean }) => React.ReactNode)
+            | ((item: ListItem & { checked?: boolean }) => React.ReactNode)
             | undefined
         }
         onSelect={handleChange}

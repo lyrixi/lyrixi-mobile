@@ -1,11 +1,12 @@
-import React, { Fragment, useEffect, useMemo, useState, useRef } from 'react'
+import { Fragment, useEffect, useMemo, useState, useRef } from 'react'
+
 import { Page, IndexBar } from 'lyrixi-mobile'
 
 import type { IndexBarDemoRow } from './IndexBar.demos.types'
 
 const LETTERS_AZ = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-export default () => {
+export default function IndexBarDemo() {
   const scrollerRef = useRef<HTMLDivElement | null>(null)
   const [list, setList] = useState<IndexBarDemoRow[]>([])
 

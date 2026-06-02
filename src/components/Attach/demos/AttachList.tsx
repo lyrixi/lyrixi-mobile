@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Attach } from 'lyrixi-mobile'
 
-export default () => {
+export default function AttachListDemo() {
   return (
     <Page>
       <Page.Main>

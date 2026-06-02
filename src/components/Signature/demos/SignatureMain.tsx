@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react'
 import { Signature, Page } from 'lyrixi-mobile'
 
-export default () => {
+export default function SignatureMainDemo() {
   return (
     <Page>
       <Page.Header className="lyrixi-text-center">手写签名</Page.Header>

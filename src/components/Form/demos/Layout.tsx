@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Form, Divider, Select, Input, FooterBar, LocaleUtil } from 'lyrixi-mobile'
 
-export default () => {
+export default function LayoutDemo() {
   // 表单
   const [form] = Form.useForm()
 

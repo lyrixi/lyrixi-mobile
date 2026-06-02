@@ -16,6 +16,7 @@ const NavBarModal = Modal.NavBarModal
 
 const PreviewModal = forwardRef<MediaPreviewMainRef, MediaPreviewModalProps>(function PreviewModal(
   {
+    // Value & Display Value
     list,
     index: indexProp,
     current,
@@ -24,20 +25,29 @@ const PreviewModal = forwardRef<MediaPreviewMainRef, MediaPreviewModalProps>(fun
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'],
     fileImageCompress,
+    // Status
     open,
+    // Value & Display Value
     allowChoose = false,
+    // Status
     allowClear = false,
+    // Style
     mainStyle,
     mainClassName,
+    // Status
     safeArea,
+    // Style
     navBarStyle,
     navBarClassName,
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
+    // Elements
     portal,
+    // Value & Display Value
     cancelPosition = 'right',
+    // Events
     onBeforeChoose,
     onChoose,
     onFileChange,

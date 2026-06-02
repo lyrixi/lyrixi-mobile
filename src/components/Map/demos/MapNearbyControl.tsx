@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, NearbyControl, coordsToWgs84 } = Map
 
-export default () => {
+export default function MapNearbyControlDemo() {
   const [value, setValue] = useState({
     latitude: 39.909187,
     longitude: 116.397451,

@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+
 import { Input } from 'lyrixi-mobile'
 
-export default () => {
+export default function InputUrlDemo() {
   const inputUrlRef = useRef(null)
 
   useEffect(() => {

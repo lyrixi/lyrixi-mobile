@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
+
 import vconsole from 'vconsole'
 
 import {
@@ -18,7 +19,7 @@ import {
 
 new vconsole()
 
-export default () => {
+export default function BridgeDemo() {
   const imageLocalFiles = useRef<unknown[] | null>(null)
 
   return (

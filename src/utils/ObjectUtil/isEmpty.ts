@@ -1,6 +1,14 @@
 import _isEmpty from 'lodash/isEmpty'
 
 function isEmpty(value: unknown): boolean {
+  // 处理数值的情况
+  if (typeof value === 'number') {
+    return false
+  }
+  // 处理Boolean的情况
+  if (typeof value === 'boolean') {
+    return false
+  }
   // 处理 Date 类型：检查是否为无效日期
   if (value instanceof Date) {
     return isNaN(value.getTime())

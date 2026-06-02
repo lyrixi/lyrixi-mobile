@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Signature, Page, Toast, Device, Bridge } from 'lyrixi-mobile'
+import { useEffect, useState } from 'react'
+
+import { Signature, Page, Bridge } from 'lyrixi-mobile'
 
 // Test safe area
 // import { SafeArea } from 'lyrixi-mobile'
 // SafeArea.debug()
 
-export default () => {
+export default function SignatureComboDemo() {
   const [value, setValue] = useState<string | null>(
     'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
   )

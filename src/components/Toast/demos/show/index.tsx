@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Toast, Button } from 'lyrixi-mobile'
 
-export default () => {
+export default function ToastShowDemo() {
   function handleToggle() {
     let toast = Toast.show({
       style: { backgroundColor: 'blue', color: 'green' },

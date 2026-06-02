@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Button, Message, Page } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Button, Icon, Icons, Message, Page } from 'lyrixi-mobile'
+
+export default function MessageIconDemo() {
   const [open, setOpen] = useState(false)
   return (
     <>
@@ -14,7 +15,9 @@ export default () => {
       </Page>
       <Message.Modal open={open} onClose={() => setOpen(false)}>
         <Message.Header>
-          <Message.Icon className="lyrixi-iconfont-config lyrixi-color-primary" />
+          <Message.Icon>
+            <Icon svg={Icons.Config} size="80" color="primary" />
+          </Message.Icon>
           <Message.Title>标题</Message.Title>
         </Message.Header>
         <Message.Main>内容</Message.Main>

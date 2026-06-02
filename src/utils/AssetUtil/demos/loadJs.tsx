@@ -1,7 +1,6 @@
-import React from 'react'
 import { AssetUtil } from 'lyrixi-mobile'
 
-export default () => {
+export default function LoadJsDemo() {
   function handleLoadJsByCallback() {
     void AssetUtil.loadRemoteJs('https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js', {
       id: 'leaflet-js',

@@ -1,6 +1,9 @@
-import Text from './Text'
+import _Text from './Text'
 import getDisplayValue from './getDisplayValue'
 
-const TextWithUtils = Object.assign(Text, { getDisplayValue })
+import type { TextComponents } from './types/Text.modules.types'
 
-export default TextWithUtils
+const Text = _Text as TextComponents
+Text.getDisplayValue = getDisplayValue
+
+export default Text

@@ -6,7 +6,13 @@ import Main from './Main'
 import SearchControl from './SearchControl'
 import updateIsLeaf from './updateIsLeaf'
 import getAnchors from './getAnchors'
-import type { CascaderMainProps, CascaderMainRef, CascaderMainResultState, CascaderNode, CascaderTab } from '../types'
+import type {
+  CascaderMainProps,
+  CascaderMainRef,
+  CascaderMainResultState,
+  CascaderItem,
+  CascaderTab
+} from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -48,15 +54,15 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     ref
   ) => {
     // 全部tab
-    const tabsRef = useRef<CascaderNode[]>([])
+    const tabsRef = useRef<CascaderItem[]>([])
 
     // 选中tab
-    const [activeTab, setActiveTab] = useState<CascaderNode | undefined>(undefined)
+    const [activeTab, setActiveTab] = useState<CascaderItem | undefined>(undefined)
 
     // 选中列表, 文本则为错误
     const currentList = ArrayUtil.updateDeepTreeParentId(
       (externalList ?? []) as unknown as Parameters<typeof ArrayUtil.updateDeepTreeParentId>[0]
-    ) as CascaderNode[] | null
+    ) as CascaderItem[] | null
 
     const [result, setResult] = useState<CascaderMainResultState>(
       currentList
@@ -103,13 +109,13 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 
     // 初始化tabs、选中tab、列表, action: 'clickItem' | 'load' | 'clickTab'
     async function update(
-      newValue: CascaderNode[] | null | undefined,
+      newValue: CascaderItem[] | null | undefined,
       { action }: { action?: string } = {}
     ) {
       // 更新tabs
       tabsRef.current = ObjectUtil.cloneDeep(
         (formatValue(newValue as unknown as CascaderTab[] | null | undefined) ??
-          []) as CascaderNode[]
+          []) as CascaderItem[]
       )
 
       // 滚动条还原
@@ -149,7 +155,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
           isChoose: true,
           parentid: newValue[newValue.length - 1].id,
           id: '',
-          name: LocaleUtil.locale('请选择', 'lyrixi_708c9d6d2ad108ab2c560530810deae9')
+          name: String(LocaleUtil.locale('请选择', 'lyrixi_708c9d6d2ad108ab2c560530810deae9'))
         })
       }
 
@@ -162,7 +168,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     // - clickItem/load: 优先查子级, 无子级则显示同级
     // - clickTab: 显示同级
     async function getActionData(
-      tabs: CascaderNode[],
+      tabs: CascaderItem[],
       { action }: { action?: string } = {}
     ): Promise<CascaderMainResultState> {
       if (!Array.isArray(tabs) || !tabs.length) {
@@ -199,12 +205,12 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     }
 
     // 获取同级列表
-    async function getSiblingData(tabs: CascaderNode[]): Promise<CascaderMainResultState> {
+    async function getSiblingData(tabs: CascaderItem[]): Promise<CascaderMainResultState> {
       return await getChildrenData(tabs.slice(0, tabs.length - 1))
     }
 
     // 获取下级列表, 没有返回null
-    async function getChildrenData(tabs: CascaderNode[]): Promise<CascaderMainResultState> {
+    async function getChildrenData(tabs: CascaderItem[]): Promise<CascaderMainResultState> {
       const lastTab = tabs?.[tabs?.length - 1]
 
       // externalList为空, 或者不合法, 需要重新获取
@@ -218,7 +224,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       // 渲染子级, 返回{status: 'success|error|empty', message: '', list:[]}
       const newResult = await loadChildren(tabs, {
         externalLoadData,
-        externalList: externalList as CascaderNode[]
+        externalList: externalList as CascaderItem[]
       })
 
       // 异步获取的数据, 无值则为叶子节点
@@ -262,7 +268,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     }
 
     // 点击选项, value不包含children
-    function handleDrill({ children: _children, ...item }: CascaderNode) {
+    function handleDrill({ children: _children, ...item }: CascaderItem) {
       // 防止用户快速点击多次触发
       Loading.show({
         id: '__lyrixi_loading_cascader_drill_mask__',
@@ -272,7 +278,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
         }
       })
 
-      let newValue = ObjectUtil.cloneDeep(value) as CascaderNode[] | null | undefined
+      let newValue = ObjectUtil.cloneDeep(value) as CascaderItem[] | null | undefined
 
       // 点击项的父级为选中项
       const parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)
@@ -297,7 +303,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     }
 
     // Tab 激活处理(点击tab时查同级)
-    const handleClickTab = async (tab: CascaderNode) => {
+    const handleClickTab = async (tab: CascaderItem) => {
       // 滚动条还原
       if (mainRef.current) {
         mainRef.current.scrollTop = 0
@@ -319,7 +325,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
           list: tabsRef.current,
           value: activeTab,
           onChange: (item) => {
-            void handleClickTab(item as CascaderNode)
+            void handleClickTab(item as CascaderItem)
           }
         })
       }
@@ -330,7 +336,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
           list={tabsRef.current}
           value={activeTab}
           onChange={(item) => {
-            void handleClickTab(item as CascaderNode)
+            void handleClickTab(item as CascaderItem)
           }}
         />
       )
@@ -352,7 +358,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
             <SearchControl
               list={externalList}
               onSearch={onSearch}
-              onChange={(newValue: CascaderNode[]) => {
+              onChange={(newValue: CascaderItem[]) => {
                 const lastItem = newValue[newValue.length - 1]
                 newValue.length = newValue.length - 1
 
@@ -379,7 +385,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
             onReLoad={async () => {
               update(value, { action: 'load' })
             }}
-            onSelect={(item: CascaderNode) => handleDrill(item)}
+            onSelect={(item: CascaderItem) => handleDrill(item)}
           />
         </Page>
       </>

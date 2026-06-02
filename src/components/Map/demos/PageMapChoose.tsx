@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+
 import {
   Page,
   Loading,
@@ -17,7 +18,7 @@ import coordsToWgs84 from '../utils/coordsToWgs84'
 // import getPoints from './getPoints'
 // const points = getPoints()
 
-export default () => {
+export default function PageMapChooseDemo() {
   const mapRef = useRef<MapContainerAPI>(null)
   // Bridge.debug = true
   let [value, setValue] = useState<MapChooseValue>({

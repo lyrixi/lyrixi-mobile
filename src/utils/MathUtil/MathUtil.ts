@@ -25,8 +25,8 @@ function isNumber(str: unknown, validValues: unknown[] = []) {
 }
 
 // 提取数值, 不能在输入中使用, 因为在部分机型中会忽略小数点
-function extractNumber(str: unknown): string | unknown {
-  if (isNumber(str)) return str
+function extractNumber(str: unknown): string {
+  if (isNumber(str)) return String(str)
   // 匹配包含小数点的连续数值
   const match = String(str).match(/-?\d+(?:\.\d+)?/)
   return match ? match[0] : ''
@@ -103,7 +103,21 @@ function antiThousands(number: number | string): string {
  * @param {Number} maxPosition 最大位置
  * @returns
  */
-function inertia({ cellSize, distance, duration, currentPosition, minPosition, maxPosition }: { cellSize: number; distance: number; duration: number; currentPosition: number; minPosition: number; maxPosition: number }) {
+function inertia({
+  cellSize,
+  distance,
+  duration,
+  currentPosition,
+  minPosition,
+  maxPosition
+}: {
+  cellSize: number
+  distance: number
+  duration: number
+  currentPosition: number
+  minPosition: number
+  maxPosition: number
+}) {
   // 摩擦力
   let friction = 0.002
 

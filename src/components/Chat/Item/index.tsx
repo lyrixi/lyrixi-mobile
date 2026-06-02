@@ -13,20 +13,23 @@ import { DOMUtil, Checkbox } from 'lyrixi-mobile'
 
 const Chat = (
   {
+    // Value & Display Value
     _raw,
+    content,
     checked,
     checkable,
-    className,
     position,
-    style,
     checkboxVariant,
     checkboxPosition,
+    // Style
+    className,
+    style,
+    // Elements
     avatarUrl,
     avatarRender,
     avatarNode,
     authorRender,
-    authorNode,
-    content
+    authorNode
   }: ChatItemProps,
   ref: React.ForwardedRef<ChatItemRef>
 ) => {

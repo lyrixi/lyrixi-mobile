@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import type { CascaderNode } from './../types'
+import type { CascaderItem } from './../types'
 import CascaderModal from './../Modal'
-import type { InputSelectComboRef } from './../../Input/types'
+import type { InputSelectRef, InputSelectProps } from './../../Input/types'
 
 import type { CascaderComboProps, CascaderComboRef } from '../types'
 
@@ -17,35 +17,47 @@ import { Input } from 'lyrixi-mobile'
 const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
   (
     {
+      // Combo
+      // Combo: Value & Display Value
       value,
       placeholder,
       formatter,
       autoSize,
       separator,
       mode,
+      // Combo: Status
       readOnly,
       disabled,
       allowClear,
+      // Combo: Style
       style,
       className,
+      // Combo: Elements
       leftIconNode,
       rightIconNode,
       clearRender,
+      // Modal
+      // Modal: Value & Display Value
       list,
       loadData,
+      // Modal: Status
       maskClosable,
       safeArea,
+      // Modal: Style
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+      // Modal: Elements
       portal,
       title,
       okNode,
       cancelNode,
+      // Modal: Status
       okVisible,
       cancelVisible,
       searchVisible,
+      // Events
       onSearch,
       onChange,
       onBeforeOpen
@@ -53,7 +65,7 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
     ref
   ) => {
     const [open, setOpen] = useState(false)
-    const comboRef = useRef<InputSelectComboRef | null>(null)
+    const comboRef = useRef<InputSelectRef | null>(null)
     const modalRef = useRef<Record<string, unknown> | null>(null)
 
     useImperativeHandle(ref, () => {
@@ -81,6 +93,10 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
       setOpen(false)
     }
 
+    const handleInputChange: InputSelectProps['onChange'] = (newValue) => {
+      onChange?.(newValue as CascaderItem[])
+    }
+
     return (
       <>
         <Input.Select
@@ -99,12 +115,12 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
-          onChange={onChange}
+          onChange={handleInputChange}
           onClick={handleOpen}
         />
         <CascaderModal
           ref={modalRef}
-          value={value as CascaderNode[]}
+          value={value as CascaderItem[]}
           list={list}
           loadData={loadData}
           open={open}
@@ -124,7 +140,7 @@ const CascaderCombo = forwardRef<CascaderComboRef, CascaderComboProps>(
           maskClassName={maskClassName}
           onSearch={onSearch}
           onClose={handleClose}
-          onChange={onChange as (v: CascaderNode[]) => void}
+          onChange={onChange as (v: CascaderItem[]) => void}
         />
       </>
     )

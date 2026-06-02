@@ -4,6 +4,8 @@ import type { MapZoomControlProps, MapZoomControlRef } from '../../types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
 // 内库使用-end
 
 // 缩放控件
@@ -41,11 +43,11 @@ const ZoomControl = forwardRef<MapZoomControlRef, MapZoomControlProps>(
       className={DOMUtil.classNames('lyrixi-map-zoomControl', className)}
     >
       <div className="lyrixi-map-zoomControl-in" onClick={zoomIn}>
-        <div className="lyrixi-map-zoomControl-icon"></div>
+        <Icon svg={Icons.Plus} size="m" className="lyrixi-map-zoomControl-icon" />
       </div>
 
       <div className="lyrixi-map-zoomControl-out" onClick={zoomOut}>
-        <div className="lyrixi-map-zoomControl-icon"></div>
+        <Icon svg={Icons.Minus} size="m" className="lyrixi-map-zoomControl-icon" />
       </div>
     </div>
   )

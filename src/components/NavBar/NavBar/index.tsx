@@ -17,7 +17,7 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
       style,
       className,
 
-      // Element
+      // Elements
       children
     },
     ref
@@ -29,7 +29,7 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-navbar', className)}
       >
-        {/* Element: Children */}
+        {/* Elements: Children */}
         {children}
       </div>
     )

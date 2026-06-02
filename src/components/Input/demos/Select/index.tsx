@@ -1,8 +1,9 @@
-import React from 'react'
+import { useRef } from 'react'
+
 import { Page, Input, Card, Divider } from 'lyrixi-mobile'
 
-export default () => {
-  const selectRef = React.useRef(null)
+export default function InputSelectDemo() {
+  const selectRef = useRef(null)
   console.log('selectRef', selectRef)
   return (
     <Page>

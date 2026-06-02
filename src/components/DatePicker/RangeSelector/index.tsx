@@ -3,7 +3,7 @@ import { updateRangeValue, getDefaultRanges } from './../utils'
 import getDisplayValue from '../RangeCombo/getDisplayValue'
 import getCustomRangeId from './getCustomRangeId'
 import getDefaultRangeId from './getDefaultRangeId'
-import type { DatePickerPickerType, DatePickerRangeSelectorRootProps } from './../types'
+import type { DatePickerPickerType, DatePickerRangeSelectorProps } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import Buttons from './Buttons'
 import Dates from './Dates'
 
 // 日期快捷选择
-const RangeSelector = forwardRef<Record<string, unknown> | null, DatePickerRangeSelectorRootProps>(
+const RangeSelector = forwardRef<Record<string, unknown> | null, DatePickerRangeSelectorProps>(
   function DatePickerRangeSelector(
     {
       // Value & Display Value

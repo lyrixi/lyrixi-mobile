@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Loading, Button, Toast } from 'lyrixi-mobile'
 
-export default () => {
+export default function LoadingExistsDemo() {
   const [exists, setExists] = useState(false)
 
   function handleShow() {

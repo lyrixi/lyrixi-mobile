@@ -1,4 +1,4 @@
-import type { DistrictType } from '../../Cascader.DistrictMain.utils.formatType.types'
+import type { DistrictType } from '../../types/Cascader.DistrictMain.utils.formatType.types'
 
 function formatType(type: string): DistrictType {
   if (['country', 'province', 'city', 'district', 'street'].includes(type)) {

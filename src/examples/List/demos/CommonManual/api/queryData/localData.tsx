@@ -1,4 +1,4 @@
-import React from 'react'
+import { type ReactNode } from 'react'
 
 // 转换 API 返回数据为页面所需格式
 function localData(result: unknown) {
@@ -22,7 +22,7 @@ function localData(result: unknown) {
       content: item.content,
       // 右侧操作按钮
       actionRender: ({ item: row }: { item: Record<string, unknown> }) => {
-        return <div>Click {row.name as React.ReactNode}</div>
+        return <div>Click {row.name as ReactNode}</div>
       },
       // 原始数据
       item: item

@@ -20,11 +20,13 @@ import type {
 // 地图标注
 const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function MapMarkers(
   {
+    // Value & Display Value
     markers,
     minZoom,
     maxZoom,
     polyline,
     circles,
+    // Style
     style,
     className,
     polylineStyle,
@@ -33,11 +35,14 @@ const MapMarkers = forwardRef<MapMapMarkersHandle, MapMapMarkersProps>(function 
     circlesClassName,
     zoomControlStyle,
     zoomControlClassName,
+    // Value & Display Value
     getAddress,
     getLocation,
     queryNearby,
     openLocation,
+    // Elements
     children,
+    // Events
     onLoad,
     onMarkerClick,
     onZoomStart,

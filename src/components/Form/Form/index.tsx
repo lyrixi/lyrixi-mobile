@@ -9,22 +9,24 @@ import Items from './../components/Items'
 const FormComponent = forwardRef<FormItemsRef, FormProps>(
   (
     {
-      // Global properties
+      // Value & Display Value
       layout = 'horizontal',
       labelSpan,
       labelEllipsis,
       mainSpan,
       mainEllipsis,
-      // Own properties
       virtual,
+      // Style
       style,
       className,
+      // Elements
       children,
-      // Form properties
+      // Value & Display Value
       form,
       name,
       validateMessages,
       initialValues,
+      // Events
       onFieldsChange,
       onValuesChange
     },

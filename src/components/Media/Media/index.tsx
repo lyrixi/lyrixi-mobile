@@ -16,7 +16,7 @@ import List from './../List'
 import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 
-import type { MediaComponentProps, MediaListItem } from './../types'
+import type { MediaProps, MediaItem } from './../types'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
@@ -68,7 +68,7 @@ const Media = forwardRef(function Media(
     previewMaskStyle,
     previewMaskClassName,
 
-    // Element
+    // Elements
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
     itemRender,
@@ -82,7 +82,7 @@ const Media = forwardRef(function Media(
     onUpload,
     onChange,
     onPreview
-  }: MediaComponentProps,
+  }: MediaProps,
   ref
 ) {
   const rootRef = useRef<HTMLDivElement | null>(null)
@@ -162,8 +162,8 @@ const Media = forwardRef(function Media(
   }
 
   // 上传
-  async function uploadList(newList?: MediaListItem[], { action }: { action?: string } = {}) {
-    let workList: MediaListItem[] = newList ? [...newList] : [...list]
+  async function uploadList(newList?: MediaItem[], { action }: { action?: string } = {}) {
+    let workList: MediaItem[] = newList ? [...newList] : [...list]
     if (!workList) return
 
     let hasUploaded = false
@@ -175,7 +175,7 @@ const Media = forwardRef(function Media(
       const el = workList[idx]
       // 只上传未上传或上传失败的照片
       if (el.status === 'choose' || el.status === 'error') {
-        workList[idx] = (await uploadItem(el, { onUpload })) as MediaListItem
+        workList[idx] = (await uploadItem(el, { onUpload })) as MediaItem
         hasUploaded = true
       }
     }
@@ -257,25 +257,25 @@ const Media = forwardRef(function Media(
   }
 
   // 重新上传
-  async function handleReUpload(item: MediaListItem, index: number) {
+  async function handleReUpload(item: MediaItem, index: number) {
     if (typeof onChange !== 'function') {
       console.warn('Media: onChange is not a function')
       return
     }
-    const newList: MediaListItem[] = [...list]
+    const newList: MediaItem[] = [...list]
     // 开始上传
     _showLoading({
       content: localeToastContent('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1'),
       index: index
     })
-    newList[index] = (await uploadItem(item, { onUpload })) as MediaListItem
+    newList[index] = (await uploadItem(item, { onUpload })) as MediaItem
     _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
 
     onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
   }
 
   // 点击预览
-  async function handlePreview(item: MediaListItem, index: number) {
+  async function handlePreview(item: MediaItem, index: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
       const goOn = await onPreview(item, index)
@@ -312,7 +312,7 @@ const Media = forwardRef(function Media(
         // Value & Display Value
         mediaType={mediaType}
         sourceType={sourceType}
-        // Element
+        // Elements
         uploadRender={uploadRender}
         uploadingRender={uploadingRender}
         // Events
@@ -340,17 +340,17 @@ const Media = forwardRef(function Media(
       style={style as CSSProperties}
       className={DOMUtil.classNames('lyrixi-media', className)}
     >
-      {/* Element: 图片上传按钮(start) */}
+      {/* Elements: 图片上传按钮(start) */}
       {uploadPosition === 'start' && renderChoose()}
 
-      {/* Element: 图片列表 */}
+      {/* Elements: 图片列表 */}
       <List
         // Value & Display Value
-        list={list as MediaListItem[]}
+        list={list as MediaItem[]}
         ellipsis={ellipsis}
         // Status
         allowClear={allowClear}
-        // Element
+        // Elements
         uploadingRender={uploadingRender}
         itemRender={itemRender}
         // Events
@@ -359,14 +359,14 @@ const Media = forwardRef(function Media(
         onPreview={handlePreview}
       />
 
-      {/* Element: 图片上传按钮(end) */}
+      {/* Elements: 图片上传按钮(end) */}
       {uploadPosition === 'end' && renderChoose()}
 
-      {/* Element: 预览 */}
+      {/* Elements: 预览 */}
       {previewTypeRef.current === 'browser' && (
         <PreviewModal
           // Value & Display Value
-          list={list as MediaListItem[]}
+          list={list as MediaItem[]}
           index={previewVisible ?? undefined}
           mediaType={mediaType}
           maxCount={maxCount}

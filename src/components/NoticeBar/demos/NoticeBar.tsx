@@ -1,7 +1,6 @@
-import React from 'react'
-import { Icon, Page, NoticeBar } from 'lyrixi-mobile'
+import { Icon, Page, NoticeBar, Icons } from 'lyrixi-mobile'
 
-export default () => {
+export default function NoticeBarDemo() {
   return (
     <Page>
       <Page.Main>
@@ -30,7 +29,7 @@ export default () => {
         <NoticeBar
           type="info"
           title="自定义图标"
-          iconRender={() => <Icon className="lyrixi-iconfont-circle-ok-fill" />}
+          iconRender={() => <Icon svg={Icons.CircleOkFill} />}
         />
 
         {/* 无图标 */}

@@ -1,7 +1,6 @@
-import React from 'react'
-import { Icon, Page, Divider, FooterBar, Button } from 'lyrixi-mobile'
+import { Icon, Page, Divider, FooterBar, Button, Icons } from 'lyrixi-mobile'
 
-export default () => {
+export default function FooterBarDemo() {
   return (
     <Page safeArea>
       <Page.Main>
@@ -26,7 +25,7 @@ export default () => {
               }
             ]}
           >
-            <Icon className="lyrixi-iconfont-three-dots" size="xl" />
+            <Icon svg={Icons.ThreeDots} size="xl" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -35,7 +34,7 @@ export default () => {
               console.log(e)
             }}
           >
-            <Icon className="lyrixi-iconfont-config" size="xl" />
+            <Icon svg={Icons.Config} size="xl" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -81,7 +80,7 @@ export default () => {
               }
             ]}
           >
-            <Icon className="lyrixi-iconfont-three-dots" size="xl" />
+            <Icon svg={Icons.ThreeDots} size="xl" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -91,7 +90,7 @@ export default () => {
               console.log(e)
             }}
           >
-            <Icon className="lyrixi-iconfont-config" size="xl" />
+            <Icon svg={Icons.Config} size="xl" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -141,7 +140,7 @@ export default () => {
             ]}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            <Button.Icon className="lyrixi-iconfont-three-dots" size="xl" />
+            <Button.Icon svg={Icons.ThreeDots} size="xl" />
             <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
@@ -152,8 +151,8 @@ export default () => {
             }}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            <Button.Icon className="lyrixi-iconfont-config" />
-            <Button.Text>Config</Button.Text>
+            <Button.Icon svg={Icons.Config} />
+            <Button.Text>Icons.Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             block
@@ -200,7 +199,7 @@ export default () => {
               }
             ]}
           >
-            <Button.Icon className="lyrixi-iconfont-three-dots" size="xl" />
+            <Button.Icon svg={Icons.ThreeDots} size="xl" />
             <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
@@ -211,8 +210,8 @@ export default () => {
               console.log(e)
             }}
           >
-            <Button.Icon className="lyrixi-iconfont-config" />
-            <Button.Text>Config</Button.Text>
+            <Button.Icon svg={Icons.Config} />
+            <Button.Text>Icons.Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             disabled

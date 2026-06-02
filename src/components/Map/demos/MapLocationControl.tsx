@@ -1,9 +1,8 @@
-import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, LocationControl } = Map
 
-export default () => {
+export default function MapLocationControlDemo() {
   return (
     <Page>
       <Page.Main>

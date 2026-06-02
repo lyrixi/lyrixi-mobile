@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Row } from 'lyrixi-mobile'
 
-export default () => {
+export default function RowColDemo() {
   return (
     <Page>
       <Page.Main>

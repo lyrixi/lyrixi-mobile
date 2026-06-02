@@ -4,12 +4,14 @@ import AccordionTransition from './AccordionTransition'
 import type { AccordionProps, AccordionRef } from './types'
 
 // 内库使用-start
+import Icons from '../../icons'
 import DOMUtil from './../../utils/DOMUtil'
 import Icon from './../Icon'
+
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Icon } from 'lyrixi-mobile'
+import { DOMUtil, Icon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
 // Accordion组件
@@ -31,7 +33,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
       headerRender,
       ellipsis, // {expandText, collapseText}
       ellipsisRender,
-      arrowClassName = 'lyrixi-iconfont-arrow-up',
+      arrowClassName,
       arrowPosition = 'right',
       arrowRender,
       children,
@@ -101,7 +103,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
 
       return (
         <div className="lyrixi-accordion-arrow">
-          <Icon className={arrowClassName} size="xs" />
+          <Icon svg={Icons.ArrowUp} className={arrowClassName} size="xs" />
         </div>
       )
     }
@@ -161,15 +163,15 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-accordion', className, open ? 'lyrixi-active' : '')}
       >
-        {/* Element: Header */}
+        {/* Elements: Header */}
         {renderHeader()}
 
-        {/* Element: Main */}
+        {/* Elements: Main */}
         <AccordionTransition open={open} minHeight={minHeight}>
           <div className="lyrixi-accordion-main">{children}</div>
         </AccordionTransition>
 
-        {/* Element: Footer */}
+        {/* Elements: Footer */}
         {renderEllipsis()}
       </div>
     )

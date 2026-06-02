@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, ToolBar, Card } from 'lyrixi-mobile'
 
-export default () => {
+export default function ToolBarSearchActiveDemo() {
   const [keyword, setKeyword] = useState('')
   const [keywordComposition, setKeywordComposition] = useState('')
 

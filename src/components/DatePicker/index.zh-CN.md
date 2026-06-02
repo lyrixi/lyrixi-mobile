@@ -200,7 +200,7 @@ toc: content
 
 同 DatePicker 组件 Ref。
 
-## DatePicker.TypeTabs
+## DatePicker.TypeSwitcher
 
 日期类型选择器组件。
 
@@ -210,17 +210,28 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/DatePickerTypes.tsx"></code>
+<code src="./demos/DatePickerTypeSwitcher.tsx"></code>
 
 ### API
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 类型内容   | `ReactNode` | -      |
+| 属性                | 说明           | 类型                                      | 默认值 |
+| ------------------- | -------------- | ----------------------------------------- | ------ |
+| value               | 当前选中项     | `object`                                  | -      |
+| types               | 类型列表       | `Array<object>`                           | -      |
+| switcherType        | 切换方式       | `'tabbar' \| 'dropdown'`                  | -      |
+| dropdownPortal      | 下拉挂载节点   | `HTMLElement`                             | -      |
+| style               | 自定义样式     | `object`                                  | -      |
+| className           | 自定义类名     | `string`                                  | -      |
+| pickerComboStyle    | 选择器组合样式 | `object`                                  | -      |
+| pickerComboClassName | 选择器组合类名 | `string`                                 | -      |
+| tabbarStyle         | Tab 栏样式     | `object`                                  | -      |
+| tabbarClassName     | Tab 栏类名     | `string`                                  | -      |
+| min                 | 最小日期       | `Date \| null`                            | -      |
+| max                 | 最大日期       | `Date \| null`                            | -      |
+| pickerComboRender   | 选择器组合渲染 | `(value: object, ctx: object) => ReactNode` | -    |
+| onChange            | 变化事件       | `(value: object) => void`                 | -      |
 
 #### Ref
 
@@ -248,7 +259,7 @@ toc: content
 
 | 属性          | 说明           | 类型                                                               | 默认值   |
 | ------------- | -------------- | ------------------------------------------------------------------ | -------- |
-| value         | 选中的值       | `Date[]`                                                           | -        |
+| value         | 选中的值       | `(Date \| null)[] \| null`                                         | -        |
 | autoSwapValue | 自动交换值     | `boolean`                                                          | `true`   |
 | type          | 日期类型       | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime'` | `'date'` |
 | rangeId       | 当前选中的范围 | `string`                                                           | -        |
@@ -263,12 +274,5 @@ toc: content
 | style         | 自定义样式     | `object`                                                           | -        |
 | className     | 自定义类名     | `string`                                                           | -        |
 | portal        | 挂载节点       | `HTMLElement`                                                      | -        |
-| onChange      | 变化事件       | `(value: Date[], { rangeId, ranges, displayValue }) => void`       | -        |
-| onOk          | 确认事件       | `(value: Date[], { rangeId, ranges, displayValue }) => void`       | -        |
-
-#### Ref
-
-| 属性           | 说明       | 类型                   |
-| -------------- | ---------- | ---------------------- |
-| mainElement    | 主元素     | `HTMLDivElement`       |
-| getMainElement | 获取主元素 | () => `HTMLDivElement` |
+| onChange      | 变化事件       | `(value: (Date \| null)[] \| null, meta?: object) => void` | -        |
+| onOk          | 确认事件       | `(value: (Date \| null)[] \| null) => void`                  | -        |

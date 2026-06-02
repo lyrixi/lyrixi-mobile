@@ -1,11 +1,13 @@
 import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import Uploading from './../Uploading'
 
-import type { AttachChooseUploadButtonProps, AttachChooseUploadButtonRef } from '../types'
+import type { AttachButtonProps, AttachButtonRef } from '../types/Attach.Button.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -13,7 +15,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传按钮
-const UploadButton = forwardRef<AttachChooseUploadButtonRef, AttachChooseUploadButtonProps>(function UploadButton(
+const UploadButton = forwardRef<AttachButtonRef, AttachButtonProps>(function UploadButton(
   { uploadingRender, style, className, disabled },
   ref
 ) {
@@ -38,7 +40,7 @@ const UploadButton = forwardRef<AttachChooseUploadButtonRef, AttachChooseUploadB
       )}
       aria-disabled={disabled}
     >
-      <i className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add"></i>
+      <Icon svg={Icons.Plus} size="l" className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add" />
 
       {/* Loading图标 */}
       <Uploading

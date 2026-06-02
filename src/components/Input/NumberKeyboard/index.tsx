@@ -31,6 +31,11 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
       value,
       placeholder,
       formatter,
+      precision,
+      trim,
+      min,
+      max,
+      maxLength,
 
       // Input: Status
       readOnly,
@@ -41,17 +46,10 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
       style,
       className,
 
-      // Input: Element
+      // Input: Elements
       leftIconNode,
       rightIconNode,
       clearRender,
-
-      // Input: Validate
-      precision,
-      trim,
-      min,
-      max,
-      maxLength,
 
       // Input: Events
       onChange,
@@ -65,15 +63,19 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
     const [keyboardOpen, setKeyboardOpen] = useState<boolean | undefined>(undefined)
 
     // Expose
-    useImperativeHandle(ref, () => ({
-      ...(inputRef.current as object),
-      focus: () => {
-        setKeyboardOpen(true)
-      },
-      blur: () => {
-        setKeyboardOpen(false)
-      }
-    }) as InputNumberKeyboardRef)
+    useImperativeHandle(
+      ref,
+      () =>
+        ({
+          ...(inputRef.current as object),
+          focus: () => {
+            setKeyboardOpen(true)
+          },
+          blur: () => {
+            setKeyboardOpen(false)
+          }
+        }) as InputNumberKeyboardRef
+    )
 
     // 处理输入框点击
     const handleInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -104,9 +106,14 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           id={id}
           type="number"
           // Input: Value & Display Value
-          value={value as string}
+          value={value}
           placeholder={placeholder}
           formatter={formatter}
+          precision={precision}
+          trim={trim}
+          min={min}
+          max={max}
+          maxLength={maxLength}
           // Input: Status
           readOnly={readOnly}
           disabled={disabled}
@@ -115,18 +122,12 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           // Input: Style
           style={style}
           className={DOMUtil.classNames('lyrixi-input-numberkeyboard', className)}
-          // Input: Element
+          // Input: Elements
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
-          // Input: Validate
-          precision={precision}
-          trim={trim}
-          min={min}
-          max={max}
-          maxLength={maxLength}
-          // Events
-          onChange={(v) => handleChange(String(v ?? ''))}
+          // Input: Events
+          onChange={(v) => handleChange(typeof v === 'string' ? v : '')}
           onClick={handleInputClick}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -134,14 +135,14 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
 
         {/* Modal */}
         <Keyboard.Number
-          // Modal: Element
-          okNode={ok}
-          // Input: Value & Display Value
+          // Modal: Value & Display Value
           value={value as string}
-          // Modal: Status
-          open={keyboardOpen}
           dot={precision === 0 ? undefined : true}
           minus={min !== undefined && min >= 0 ? undefined : true}
+          // Modal: Status
+          open={keyboardOpen}
+          // Modal: Elements
+          okNode={ok}
           // Events
           onChange={handleChange}
           onClose={handleClose}

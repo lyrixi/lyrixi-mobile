@@ -1,15 +1,15 @@
-import React from 'react'
+import { type ReactNode } from 'react'
 
-import type { RawItem, ViewItem, ViewItemBase } from 'lyrixi-mobile'
+import type { ListPaginationItem, ListPaginationViewItem } from 'lyrixi-mobile'
 
 // 将列表数据按照 anchor 字段分组
-function formatViewList(list: RawItem[]): ViewItem[] {
+function formatViewList(list: ListPaginationItem[]): ListPaginationViewItem[] {
   if (!Array.isArray(list) || list.length === 0) {
     return []
   }
 
   // 使用 Map 来按 anchor 分组（分组头也是 ViewItem：必含 _raw、id）
-  const groupMap = new Map<string, ViewItem>()
+  const groupMap = new Map<string, ListPaginationViewItem>()
 
   list.forEach((raw) => {
     const item = raw as Record<string, unknown>
@@ -17,7 +17,7 @@ function formatViewList(list: RawItem[]): ViewItem[] {
     if (anchor) {
       if (!groupMap.has(anchor)) {
         groupMap.set(anchor, {
-          _raw: {} as RawItem,
+          _raw: {} as ListPaginationItem,
           id: anchor,
           title: anchor,
           anchor: anchor,
@@ -44,15 +44,14 @@ function formatViewList(list: RawItem[]): ViewItem[] {
         // 第三行文字
         content: item.content,
         // 右侧操作按钮
-        actionRender: (row: ViewItemBase & { checked?: boolean }) => {
+        actionRender: (row: ListPaginationItem & { checked?: boolean }) => {
           const name = row.name
-          return <div>Click {name as React.ReactNode}</div>
+          return <div>Click {name as ReactNode}</div>
         }
       })
     }
   })
 
-  console.log(groupMap)
   // 将 Map 转换为数组，并按 anchor 字母顺序排序
   return Array.from(groupMap.values()).sort((a, b) => {
     return String(a.anchor ?? '').localeCompare(String(b.anchor ?? ''))

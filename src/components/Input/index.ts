@@ -19,26 +19,28 @@ import IconClear from './Icon/Clear'
 import IconRightArrow from './Icon/RightArrow'
 import IconLeftArrow from './Icon/LeftArrow'
 
-// eslint-disable-next-line
-export default {
-  AutoSize: AutoSize,
-  Number: Number,
-  NumberBox: NumberBox,
-  NumberKeyboard: NumberKeyboard,
-  OTP: OTP,
-  Password: Password,
-  PasswordStrength: PasswordStrength,
-  Range: Range,
-  Rate: Rate,
-  Tel: Tel,
-  Text: Text,
-  Node: Node,
-  Search: Search,
-  // (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
-  Select: Select,
-  Textarea: Textarea,
-  Url: Url,
-  IconClear: IconClear,
-  IconRightArrow: IconRightArrow,
-  IconLeftArrow: IconLeftArrow
-}
+import type { InputComponents } from './types/Input.modules.types'
+
+const Input = {} as InputComponents
+Input.AutoSize = AutoSize
+Input.Number = Number
+Input.NumberBox = NumberBox
+Input.NumberKeyboard = NumberKeyboard
+Input.OTP = OTP
+Input.Password = Password
+Input.PasswordStrength = PasswordStrength
+Input.Range = Range
+Input.Rate = Rate
+Input.Tel = Tel
+Input.Text = Text
+Input.Node = Node
+Input.Search = Search
+// 库内基础 Select（入口仍对外暴露，类型见 types/Input.Select.types.ts）
+Input.Select = Select
+Input.Textarea = Textarea
+Input.Url = Url
+Input.IconClear = IconClear
+Input.IconRightArrow = IconRightArrow
+Input.IconLeftArrow = IconLeftArrow
+
+export default Input

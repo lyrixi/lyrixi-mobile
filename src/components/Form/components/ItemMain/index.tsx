@@ -26,7 +26,7 @@ const FormMain = forwardRef<RowColRef, FormItemMainProps>(
       style,
       className,
 
-      // Element
+      // Elements
       errorMessage,
       inputExtraNode,
       extraNode,
@@ -56,20 +56,20 @@ const FormMain = forwardRef<RowColRef, FormItemMainProps>(
       >
         <>
           <div className="lyrixi-form-item-main-input">
-            {/* Element: Children */}
+            {/* Elements: Children */}
             {activeEllipsis?.rows ? (
               <Text ellipsis={activeEllipsis}>{children}</Text>
             ) : (
               children
             )}
-            {/* Element: Input extra */}
+            {/* Elements: Input extra */}
             {inputExtraNode && (
               <div className="lyrixi-form-item-main-input-extra">{inputExtraNode}</div>
             )}
           </div>
           {/* Value & Display Value: Error */}
           {errorMessage && <div className="lyrixi-form-item-main-error">{errorMessage}</div>}
-          {/* Element: Main extra */}
+          {/* Elements: Main extra */}
           {extraNode && <div className="lyrixi-form-item-main-extra">{extraNode}</div>}
         </>
       </Row.Col>

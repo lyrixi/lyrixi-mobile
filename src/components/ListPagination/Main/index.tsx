@@ -2,8 +2,8 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 
 import type { ListAsyncLoadResult, ListAsyncRef } from './../../ListAsync/types'
-import type { ListPaginationProps, ListPaginationRef } from './../types'
-import type { ListProps, RawItem } from './../../List/types'
+import type { ListPaginationMainProps, ListPaginationMainRef } from './../types'
+import type { ListProps, ListItem } from './../../List/types'
 
 // 内库使用-start
 import Storage from './../../../utils/Storage'
@@ -17,7 +17,7 @@ import { Storage, ListAsync } from 'lyrixi-mobile'
 import queryData from './queryData'
 
 // 简便的列表组件, 只需要传入url和formatPayload即可
-const ListMainPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
+const ListMainPagination = forwardRef<ListPaginationMainRef, ListPaginationMainProps>(
   (
     {
       cacheName,
@@ -110,7 +110,7 @@ const ListMainPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
         getCache: () => {
           return Storage.getCache(cacheName!)
         }
-      }
+      } as ListPaginationMainRef
     })
 
     return (
@@ -136,13 +136,13 @@ const ListMainPagination = forwardRef<ListPaginationRef, ListPaginationProps>(
             formatResult
           })
 
-          let newList: RawItem[] | null = null
+          let newList: ListItem[] | null = null
           if (result.status !== 'error') {
-            const prevList = (previousResult?.list || []) as RawItem[]
+            const prevList = (previousResult?.list || []) as ListItem[]
             newList =
               action === 'bottomRefresh'
-                ? prevList.concat((result.list || []) as RawItem[])
-                : ((result.list || []) as RawItem[])
+                ? prevList.concat((result.list || []) as ListItem[])
+                : ((result.list || []) as ListItem[])
           }
 
           return {

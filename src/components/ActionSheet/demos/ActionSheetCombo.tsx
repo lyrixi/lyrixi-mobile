@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Page, Device, ActionSheet, SafeArea, type ActionSheetItem } from 'lyrixi-mobile'
+import { useEffect, useState } from 'react'
 
-export default () => {
+import { Page, Device, ActionSheet, type ActionSheetItem } from 'lyrixi-mobile'
+
+export default function ActionSheetComboDemo() {
   const list = [
     { id: '1', name: '测试Node' },
     { id: '2', name: '测试1' },

@@ -7,9 +7,9 @@ import type { ToastShowExtendedHTMLElement, ToastShowProps } from './types'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
-// 显示Toast
+// 显示Toast（作为 Toast.show 调用时 this 为复合 export，含 show/hide 等挂载项）
 // eslint-disable-next-line
-function show(this: { defaultProps?: ToastShowProps } | void, props?: ToastShowProps) {
+function show(this: ({ defaultProps?: ToastShowProps } & Record<string, unknown>) | void, props?: ToastShowProps) {
   const context = this as { defaultProps?: ToastShowProps } | undefined
   const {
     // Visible duration

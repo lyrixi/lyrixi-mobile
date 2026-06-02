@@ -26,7 +26,7 @@ const Switch = forwardRef<SwitchRef, SwitchProps>(
       style,
       className,
 
-      // Element
+      // Elements
       on,
       off,
 
@@ -64,10 +64,10 @@ const Switch = forwardRef<SwitchRef, SwitchProps>(
           e.stopPropagation()
         }}
       >
-        {/* Element: Handle */}
+        {/* Elements: Handle */}
         <div className="lyrixi-switch-handle"></div>
 
-        {/* Element: Inner */}
+        {/* Elements: Inner */}
         <div className="lyrixi-switch-inner">
           <div className="lyrixi-switch-on">{on}</div>
           <div className="lyrixi-switch-off">{off}</div>

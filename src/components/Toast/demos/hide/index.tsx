@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Toast } from 'lyrixi-mobile'
 
-export default () => {
+export default function ToastHideDemo() {
   function handleToggle() {
     Toast.show({
       duration: 1000000,

@@ -9,7 +9,7 @@ import React, {
 import { formatType } from './../DistrictMain/utils'
 import updateOkVisible from './updateOkVisible'
 import DistrictMain from './../DistrictMain'
-import type { CascaderNode } from './../types'
+import type { CascaderItem } from './../types'
 
 import type { CascaderDistrictModalMainHandle, CascaderDistrictModalProps } from '../types'
 
@@ -26,29 +26,50 @@ const NavBarModal = Modal.NavBarModal
 const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalProps>(
   (
     {
+      // Value & Display Value
       value,
+
+      // Main
+      // Main: Value & Display Value
       type: typeProp = 'street',
       loadCountries,
       loadCountryRegions,
       loadStreets,
-      open,
       min = '',
+
+      // Status
+      open,
+
+      // Modal
+      // Modal: Status
       maskClosable,
       safeArea,
+
+      // Main: Style
       listStyle,
       listClassName,
       itemStyle,
       itemClassName,
+
+      // Modal: Style
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+
+      // Modal: Elements
       portal,
-      searchVisible,
       title,
       okNode,
       cancelNode,
+
+      // Main: Status
+      searchVisible,
+
+      // Modal: Status
       cancelVisible,
+
+      // Events
       onClose,
       onOk,
       onChange
@@ -59,8 +80,8 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
 
     const [okVisible, setOkVisible] = useState(false)
 
-    const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(
-      value as CascaderNode[] | null | undefined
+    const [currentValue, setCurrentValue] = useState<CascaderItem[] | null | undefined>(
+      value as CascaderItem[] | null | undefined
     )
 
     const modalRef = useRef<unknown>(null)
@@ -68,7 +89,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
     const mainRef = useRef<CascaderDistrictModalMainHandle | null>(null)
 
     useEffect(() => {
-      setCurrentValue(value as CascaderNode[] | null | undefined)
+      setCurrentValue(value as CascaderItem[] | null | undefined)
     }, [value])
 
     useEffect(() => {
@@ -81,7 +102,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
       return { ...a, ...b }
     })
 
-    function handleDrillDown(tabs: CascaderNode[] | null | undefined) {
+    function handleDrillDown(tabs: CascaderItem[] | null | undefined) {
       setOkVisible(updateOkVisible(tabs, min))
     }
 
@@ -93,11 +114,11 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
         }
       }
 
-      onChange?.((currentValue ?? []) as CascaderNode[])
+      onChange?.((currentValue ?? []) as CascaderItem[])
       onClose?.()
     }
 
-    function handleChange(newValue: CascaderNode[]) {
+    function handleChange(newValue: CascaderItem[]) {
       setCurrentValue(newValue)
       handleDrillDown(newValue)
 

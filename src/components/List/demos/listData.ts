@@ -1,4 +1,4 @@
-export default [{
+const listData = [{
   id: '1',
   name: 'name',
   description: 'description',
@@ -19,3 +19,5 @@ export default [{
   description: 'description',
 }
 ]
+
+export default listData

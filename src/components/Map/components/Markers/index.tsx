@@ -21,11 +21,14 @@ import { ObjectUtil } from 'lyrixi-mobile'
 const Markers = forwardRef<MapMarkersLayerHandle, MapMarkersLayerProps>(
   (
     {
+      // Value & Display Value
       points: pointsProp,
       map,
       icon,
+      // Style
       style,
       className,
+      // Events
       onClick
     },
     ref

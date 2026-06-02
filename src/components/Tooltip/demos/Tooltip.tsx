@@ -1,7 +1,6 @@
-import React from 'react'
 import { Tooltip } from 'lyrixi-mobile'
 
-export default () => {
+export default function TooltipDemo() {
   return (
     <>
       <Tooltip

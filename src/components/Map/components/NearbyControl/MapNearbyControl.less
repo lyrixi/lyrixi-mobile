@@ -1,7 +1,7 @@
 // 附近推荐
 .lyrixi-map-nearbyControl {
-  .lyrixi-flex;
-  .lyrixi-flex-vertical;
+  .lyrixi-flex();
+  .lyrixi-flex-vertical();
   position: absolute;
   right: 12px;
   left: 12px;
@@ -19,9 +19,9 @@
     // 显示附近推荐
     .lyrixi-map-nearbyControl-body {
       overflow: auto;
-      .lyrixi-flex;
-      .lyrixi-flex-vertical;
-      .lyrixi-flex-1;
+      .lyrixi-flex();
+      .lyrixi-flex-vertical();
+      .lyrixi-flex-1();
     }
 
     // 箭头翻转
@@ -42,12 +42,7 @@
 .lyrixi-map-nearbyControl-toggle-arrow {
   width: 8px;
   height: 8px;
-  font-size: 8px;
-  line-height: 8px;
-  font-family: 'lyrixi-iconfont';
-  &:extend(.lyrixi-iconfont-triangle-up-fill all);
   transform: rotate(180deg);
-
   margin-left: 8px;
   transition: all 0.2s ease;
   color: var(--lyrixi-primary);
@@ -88,7 +83,7 @@
 // 附近推荐-结果
 .lyrixi-map-nearbyControl-main {
   display: block;
-  .lyrixi-flex-1;
+  .lyrixi-flex-1();
   position: relative;
   overflow: auto;
 }
@@ -99,7 +94,7 @@
   gap: 8px;
   margin: 0 12px;
   background-color: white;
-  .lyrixi-border-b;
+  .lyrixi-border-b();
 }
 
 .lyrixi-map-nearbyControl-item-content {
@@ -108,8 +103,8 @@
 }
 
 .lyrixi-map-nearbyControl-item-content-title {
-  .lyrixi-flex;
-  .lyrixi-flex-align-center;
+  .lyrixi-flex();
+  .lyrixi-flex-align-center();
   font-size: 16px;
   color: #1a1c1f;
   letter-spacing: 0;
@@ -118,8 +113,8 @@
 }
 
 .lyrixi-map-nearbyControl-item-content-description {
-  .lyrixi-flex;
-  .lyrixi-flex-align-center;
+  .lyrixi-flex();
+  .lyrixi-flex-align-center();
   color: #77818c;
   margin-top: 6px;
 }
@@ -131,9 +126,4 @@
   font-size: 14px;
   line-height: 21px;
 
-  .lyrixi-map-nearbyControl-icon {
-    font-family: 'lyrixi-iconfont';
-    font-size: 14px;
-    &:extend(.lyrixi-iconfont-navigation all);
-  }
 }

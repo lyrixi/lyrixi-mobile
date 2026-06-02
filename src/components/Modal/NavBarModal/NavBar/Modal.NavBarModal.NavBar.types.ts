@@ -6,26 +6,20 @@ export interface ModalNavBarModalNavBarRef {
 }
 
 export interface ModalNavBarModalNavBarProps {
+  // Value & Display Value
+  okPosition?: 'left' | 'right'
+  cancelPosition?: 'left' | 'right'
+  // Status
+  okVisible?: boolean
+  cancelVisible?: boolean
+  // Style
   style?: CSSProperties
   className?: string
+  // Elements
   title?: ReactNode
   okNode?: ReactNode
-  okVisible?: boolean
-  okPosition?: 'left' | 'right'
   cancelNode?: ReactNode
-  cancelVisible?: boolean
-  cancelPosition?: 'left' | 'right'
+  // Events
   onOk?: (e: MouseEvent<HTMLDivElement>) => void
   onCancel?: (e: MouseEvent<HTMLDivElement>) => void
-}
-
-export interface ModalNavBarModalOkProps {
-  total?: number
-  children?: ReactNode
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void
-}
-
-export interface ModalNavBarModalCancelProps {
-  onClick?: (e: MouseEvent<HTMLDivElement>) => void
-  children?: ReactNode
 }

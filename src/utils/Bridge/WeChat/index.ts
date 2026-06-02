@@ -7,13 +7,13 @@ import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 import wechatConfig from './wechatConfig'
 import wecomAgentConfig from './wecomAgentConfig'
-import type { BridgePlatformErrorResponse } from '../Bridge.platform.types'
+import type { BridgePlatformErrorResponse } from '../types/Bridge.platform.types'
 import type {
   BridgeWechatChooseImageSuccessResponse,
   BridgeWechatGetLocationSuccessResponse,
   BridgeWechatScanCodeSuccessResponse,
   BridgeWechatUploadImageSuccessResponse
-} from '../Bridge.WeChat.types'
+} from '../types/Bridge.WeChat.types'
 import type {
   BridgeChooseMediaParams,
   // BridgeChooseMediaResultData,

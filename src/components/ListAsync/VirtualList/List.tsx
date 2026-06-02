@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 
-import type { RawItem } from './../../List/types'
+import type { ListItem } from './../../List/types'
 import type { ListAsyncProps } from './../types'
 
 // 内库使用-start
@@ -53,7 +53,7 @@ const VirtualList = (
       allowClear={allowClear}
       list={list?.map((item) => {
         // 虚拟滚动条需要用绝对定位
-        const virtualData = (item as RawItem & { virtualData?: { top?: number } }).virtualData
+        const virtualData = (item as ListItem & { virtualData?: { top?: number } }).virtualData
         return {
           ...item,
           style: {

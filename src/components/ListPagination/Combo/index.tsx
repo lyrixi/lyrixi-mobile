@@ -2,11 +2,12 @@ import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import Modal from './../Modal'
 
 import type {
-  ListPaginationProps,
-  ListPaginationRef
+  ListPaginationComboProps,
+  ListPaginationComboRef,
+  ListPaginationItem,
+  ListPaginationModalRef
 } from './../types'
-import type { InputSelectProps, InputSelectComboRef } from './../../Input/types'
-import type { RawItem } from './../../List/types'
+import type { InputSelectProps, InputSelectRef } from './../../Input/types'
 
 // 内库使用-start
 import Input from './../../Input'
@@ -16,7 +17,7 @@ import Input from './../../Input'
 import { Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
+const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
   (
     {
       // Combo
@@ -34,7 +35,7 @@ const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
       // Combo: Style
       style,
       className,
-      // Combo: Element
+      // Combo: Elements
       leftIconNode,
       rightIconNode,
       clearRender,
@@ -93,16 +94,16 @@ const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
     ref
   ) => {
     const [open, setOpen] = useState(false)
-    const comboRef = useRef<InputSelectComboRef | null>(null)
-    const modalRef = useRef<ListPaginationRef | null>(null)
+    const comboRef = useRef<InputSelectRef | null>(null)
+    const modalRef = useRef<ListPaginationModalRef | null>(null)
 
     useImperativeHandle(ref, () => {
       return {
-        ...(comboRef.current as unknown as ListPaginationRef),
-        ...(modalRef.current as unknown as ListPaginationRef),
+        ...(comboRef.current ?? {}),
+        ...(modalRef.current ?? {}),
         close: () => setOpen(false),
         open: () => setOpen(true)
-      } as ListPaginationRef
+      } as ListPaginationComboRef
     })
 
     async function handleOpen() {
@@ -118,14 +119,18 @@ const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
     }
 
     function handleChange(
-      newValue: RawItem | RawItem[] | null,
-      _options?: { checkedItem?: RawItem; action?: string }
+      newValue: ListPaginationItem | ListPaginationItem[] | null,
+      _options?: { checkedItem?: ListPaginationItem; action?: string }
     ) {
       const checkedItem =
         _options?.checkedItem ??
-        ((Array.isArray(newValue) ? newValue[0] : newValue) as RawItem)
+        ((Array.isArray(newValue) ? newValue[0] : newValue) as ListPaginationItem)
       onChange?.(newValue, { ..._options, checkedItem })
       setOpen(false)
+    }
+
+    const handleInputChange: InputSelectProps['onChange'] = (newValue) => {
+      onChange?.(newValue as ListPaginationItem | ListPaginationItem[] | null)
     }
 
     return (
@@ -135,7 +140,7 @@ const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
           // Combo: Value & Display Value
           value={value}
           placeholder={placeholder}
-          formatter={formatter}
+          formatter={formatter as InputSelectProps['formatter']}
           autoSize={autoSize}
           separator={separator}
           mode={mode}
@@ -146,12 +151,12 @@ const Combo = forwardRef<ListPaginationRef, ListPaginationProps>(
           // Combo: Style
           style={style}
           className={className}
-          // Combo: Element
+          // Combo: Elements
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
           // Events
-          onChange={onChange as InputSelectProps['onChange']}
+          onChange={handleInputChange}
           onClick={handleOpen}
         />
         <Modal

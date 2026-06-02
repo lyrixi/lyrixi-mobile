@@ -1,7 +1,7 @@
 // Clipboard 剪贴板
 import LocaleUtil from './../LocaleUtil' // 国际化数据
 
-import type { ClipboardCopyParams } from './Clipboard.types'
+import type { ClipboardCopyParams } from './types/Clipboard.types'
 
 const Clipboard = {
   // 选择元素的内容

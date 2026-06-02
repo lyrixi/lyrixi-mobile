@@ -9,7 +9,7 @@ import { DateUtil } from 'lyrixi-mobile'
 import type { DatePickerPickerType, DatePickerPickerValueList } from './../../types'
 
 /** 将 currentValue 取到 step 网格上最近的合法值（与 getList 中选项一致） */
-function getValueStepTime(currentValue, step, maxValue) {
+function getValueStepTime(currentValue: number, step: number, maxValue: number): number {
   if (!step || typeof step !== 'number') {
     return currentValue
   }
@@ -38,8 +38,8 @@ function valueToList(
   let minute = currentDate.getMinutes()
   let quarter = DateUtil.quarter(currentDate) ?? 1
 
-  hour = getValueStepTime(hour, options?.hourStep, 23)
-  minute = getValueStepTime(minute, options?.minuteStep, 59)
+  hour = getValueStepTime(hour, options?.hourStep ?? 1, 23)
+  minute = getValueStepTime(minute, options?.minuteStep ?? 1, 59)
 
   if (type === 'year') {
     return [{ id: year, name: year }]

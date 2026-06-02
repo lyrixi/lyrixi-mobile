@@ -1,8 +1,10 @@
-import IndexBar from './IndexBar'
+import _IndexBar from './IndexBar'
 import Anchor from './Anchor'
 
-import type { IndexBarComponents } from './IndexBar.Components.types'
+import type { IndexBarComponents } from './types/IndexBar.modules.types'
 
-;(IndexBar as IndexBarComponents).Anchor = Anchor
+const IndexBar = _IndexBar as IndexBarComponents
 
-export default IndexBar as IndexBarComponents
+IndexBar.Anchor = Anchor
+
+export default IndexBar

@@ -5,14 +5,14 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import compressImage from './compressImage'
 import config from './config'
-import type { BridgePlatformErrorResponse } from '../Bridge.platform.types'
+import type { BridgePlatformErrorResponse } from '../types/Bridge.platform.types'
 import type {
   BridgeDingTalkChooseImageSuccessResponse,
   BridgeDingTalkFaceDetectSuccessResponse,
   BridgeDingTalkGetLocationSuccessResponse,
   BridgeDingTalkScanCodeSuccessResponse,
   BridgeDingTalkUploadFileSuccessResponse
-} from '../Bridge.DingTalk.types'
+} from '../types/Bridge.DingTalk.types'
 import type {
   BridgeChooseMediaParams,
   // BridgeChooseMediaResultData,

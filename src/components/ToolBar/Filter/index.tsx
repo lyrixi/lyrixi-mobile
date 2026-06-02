@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-
 import type { ToolBarFilterProps, ToolBarFilterRef } from './../types'
 
 // 内库使用-start
+import Icons from '../../../icons'
 import DOMUtil from './../../../utils/DOMUtil'
 import FilterModal from './../../Modal/FilterModal'
 import Button from './../../Button'
 import type { ButtonRef } from './../../Button/types'
 import Icon from './../../Icon'
+
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, Modal, Button, Icon, type ButtonRef } from 'lyrixi-mobile'
+import { DOMUtil, Modal, Button, Icon, Icons, type ButtonRef } from 'lyrixi-mobile'
 const FilterModal = Modal.FilterModal
 测试使用-end */
 
@@ -116,7 +117,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
         }}
       >
         {/* comboChildren */}
-        {children || icon || <Icon className="lyrixi-iconfont-filter-menu" />}
+        {children || icon || <Icon svg={Icons.FilterMenu} />}
       </Button>
     )
   }
@@ -139,7 +140,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
         maskClassName={maskClassName}
         modalStyle={modalStyle}
         modalClassName={modalClassName}
-        // Element
+        // Elements
         portal={portal}
         footerRender={footerRender}
         // Events

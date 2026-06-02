@@ -9,8 +9,9 @@ import DOMUtil from './../../../utils/DOMUtil'
 const NavBarTitle = forwardRef<NavBarTitleRef, NavBarTitleProps>(
   (
     {
+      // Elements
       children,
-      // 其它属性
+      // Style
       className,
       style
     },

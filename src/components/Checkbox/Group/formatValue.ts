@@ -1,13 +1,13 @@
-import type { CheckboxListItem } from './../types'
+import type { CheckboxItem } from './../types'
 
 /**
  * formatValue - 将传入的 value 规范化为标准对象格式
  */
 export default function formatValue(
   value: unknown,
-  list: CheckboxListItem[],
+  list: CheckboxItem[],
   multiple: boolean
-): CheckboxListItem | CheckboxListItem[] | null {
+): CheckboxItem | CheckboxItem[] | null {
   if (!Array.isArray(list)) {
     return multiple ? [] : null
   }
@@ -19,19 +19,19 @@ export default function formatValue(
 
     return (value as unknown[])
       .map((item) => {
-        if (item && typeof item === 'object' && (item as CheckboxListItem).id) {
-          return item as CheckboxListItem
+        if (item && typeof item === 'object' && (item as CheckboxItem).id) {
+          return item as CheckboxItem
         }
         if (typeof item === 'string' || typeof item === 'number') {
           return list.find((listItem) => listItem.id === item) ?? null
         }
         return null
       })
-      .filter((item): item is CheckboxListItem => item !== null)
+      .filter((item): item is CheckboxItem => item !== null)
   }
 
-  if (value && typeof value === 'object' && (value as CheckboxListItem).id) {
-    return value as CheckboxListItem
+  if (value && typeof value === 'object' && (value as CheckboxItem).id) {
+    return value as CheckboxItem
   }
 
   if (typeof value === 'string' || typeof value === 'number') {

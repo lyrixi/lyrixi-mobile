@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react'
 import WeekMain from './../WeekMain'
 import DateMain from './DateMain'
-import type { DatePickerMainSectionProps } from './../types'
+import type { DatePickerMainProps } from './../types'
 import type { CalendarRef } from '../../Calendar/types'
 import type { PickerMainRef } from './../../Picker/types'
 
 // 日期选择
-const Main = forwardRef<unknown, DatePickerMainSectionProps>(function DatePickerMain(
+const Main = forwardRef<unknown, DatePickerMainProps>(function DatePickerMain(
   {
     // Modal: Status
     open,

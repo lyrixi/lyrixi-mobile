@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef, type ComponentRef } from 'react'
+
 import { Page, Input, Card, Divider, FooterBar } from 'lyrixi-mobile'
 
-export default () => {
-  const inputRef = useRef<React.ComponentRef<typeof Input.OTP> | null>(null)
+export default function InputOTPDemo() {
+  const inputRef = useRef<ComponentRef<typeof Input.OTP> | null>(null)
   const [value, setValue] = useState(['1', '2', '3', '4', '5', '6'])
 
   const handleComplete = (completedValue: string[]) => {

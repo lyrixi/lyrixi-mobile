@@ -1,9 +1,9 @@
-import Tooltip from './Tooltip'
+import _Tooltip from './Tooltip'
 import updatePositionByReferenceElement from './api/updatePositionByReferenceElement'
 
-const TooltipWithApi = Tooltip as typeof Tooltip & {
-  updatePositionByReferenceElement: typeof updatePositionByReferenceElement
-}
-TooltipWithApi.updatePositionByReferenceElement = updatePositionByReferenceElement
+import type { TooltipComponents } from './types/Tooltip.modules.types'
 
-export default TooltipWithApi
+const Tooltip = _Tooltip as TooltipComponents
+Tooltip.updatePositionByReferenceElement = updatePositionByReferenceElement
+
+export default Tooltip

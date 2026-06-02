@@ -59,29 +59,11 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明           | 类型                                                                                                 | 默认值   |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------------------- | -------- |
-| direction       | 方向           | `'horizontal' \| 'vertical'`                                                                         | -        |
-| block           | 是否为块级元素 | `boolean`                                                                                            | -        |
-| color           | 颜色           | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | -        |
-| backgroundColor | 背景颜色       | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | -        |
-| borderColor     | 边框颜色       | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | -        |
-| border          | 边框样式       | `'none' \| 'dotted' \| 'dashed' \| 'solid'`                                                          | `'none'` |
-| size            | 高度尺寸       | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| [number, number]`                                     | -        |
-| sizeEqual       | 是否为等宽高   | `boolean`                                                                                            | -        |
-| fontSize        | 字体大小       | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | -        |
-| radius          | 圆角           | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | `'m'`    |
-| style           | 自定义样式     | `object`                                                                                             | -        |
-| className       | 自定义类名     | `string`                                                                                             | -        |
-| children        | 按钮内容       | `ReactNode`                                                                                          | -        |
-| onClick         | 点击事件       | `(e: Event) => void`                                                                                 | -        |
+继承 [Button](/components/button) 的 `ButtonProps`，属性与 Button 一致。
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+同 Button 组件 Ref。
 
 ## ToolBar.Dropdown
 
@@ -118,12 +100,12 @@ toc: content
 | modalClassName  | 模态框类名       | `string`                                                                                             | -           |
 | maskStyle       | 遮罩样式         | `object`                                                                                             | -           |
 | maskClassName   | 遮罩类名         | `string`                                                                                             | -           |
-| offset          | 偏移量           | `{top: number, left?: number, right?: number}`                                                       | `{top: 6}`  |
-| left            | 左侧偏移         | `number`                                                                                             | -           |
-| right           | 右侧偏移         | `number`                                                                                             | -           |
-| portal          | 挂载节点         | `HTMLElement \| null \| false`                                                                       | -           |
-| modalRender     | 自定义模态框渲染 | `() => ReactNode`                                                                                    | -           |
-| onBeforeOpen    | 打开前事件       | `() => Promise<boolean>`                                                                             | -           |
+| offset          | 偏移量           | `{ top?: number; bottom?: number; left?: number; right?: number }`                                   | -           |
+| left            | 左侧偏移         | `string \| number`                                                                                   | -           |
+| right           | 右侧偏移         | `string \| number`                                                                                   | -           |
+| portal          | 挂载节点         | `HTMLElement`                                                                                        | -           |
+| modalRender     | 自定义模态框渲染 | `(ctx: { open: boolean \| null; onClose: () => void }) => ReactNode`                                 | -           |
+| onBeforeOpen    | 打开前事件       | `() => boolean \| void \| Promise<boolean \| void>`                                                  | -           |
 | onOpen          | 打开事件         | `() => void`                                                                                         | -           |
 | onClose         | 关闭事件         | `() => void`                                                                                         | -           |
 
@@ -152,44 +134,11 @@ toc: content
 
 #### 属性
 
-| 属性          | 说明             | 类型                             | 默认值 |
-| ------------- | ---------------- | -------------------------------- | ------ |
-| id            | 搜索框 ID        | `string`                         | -      |
-| name          | 搜索框名称       | `string`                         | -      |
-| value         | 输入值           | `string \| number`               | `''`   |
-| placeholder   | 占位符           | `string`                         | -      |
-| formatter     | 格式化函数       | `(value: any) => string`         | -      |
-| readOnly      | 是否只读         | `boolean`                        | -      |
-| disabled      | 是否禁用         | `boolean`                        | -      |
-| allowClear    | 允许清除         | `boolean`                        | -      |
-| autoFocus     | 自动获取焦点     | `boolean`                        | -      |
-| autoSelect    | 自动选中         | `boolean`                        | -      |
-| style         | 自定义样式       | `object`                         | -      |
-| className     | 自定义类名       | `string`                         | -      |
-| inputRender   | 自定义输入框渲染 | `(props: object) => ReactNode`   | -      |
-| leftIconNode  | 左侧图标         | `ReactNode`                      | -      |
-| rightIconNode | 右侧图标         | `ReactNode`                      | -      |
-| clearRender   | 清除按钮渲染     | `(props: object) => ReactNode`   | -      |
-| precision     | 小数精度         | `number`                         | -      |
-| trim          | 是否去除空格     | `boolean`                        | -      |
-| max           | 最大值           | `number`                         | -      |
-| min           | 最小值           | `number`                         | -      |
-| maxLength     | 最大长度         | `number`                         | -      |
-| inputMode     | 输入模式         | `string`                         | -      |
-| onClick       | 点击事件         | `(e: Event) => void`             | -      |
-| onChange      | 值变化事件       | `(value: any, e: Event) => void` | -      |
-| onBlur        | 失焦事件         | `(e: Event) => void`             | -      |
-| onFocus       | 聚焦事件         | `(e: Event) => void`             | -      |
-| onKeyDown     | 按键事件         | `(e: Event) => void`             | -      |
-| onPressEnter  | 回车事件         | `(e: Event) => void`             | -      |
-| onSearch      | 搜索事件         | `(value: any) => void`           | -      |
+继承 [Input.Search](/components/input#inputsearch) 的 `InputSearchProps`，属性与 Input.Search 一致。
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+同 Input.Search 组件 Ref。
 
 ## ToolBar.SearchActive
 
@@ -207,11 +156,15 @@ toc: content
 
 #### 属性
 
-同 ToolBar.Search 组件属性。
+同 Input.Search 组件属性，以及：
+
+| 属性     | 说明     | 类型         | 默认值 |
+| -------- | -------- | ------------ | ------ |
+| onCancel | 取消事件 | `() => void` | -      |
 
 #### Ref
 
-同 ToolBar.Search 组件 Ref。
+同 Input.Search 组件 Ref。
 
 ## ToolBar.DateRange
 
@@ -286,18 +239,14 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 列表内容   | `ReactNode` | -      |
+同 ToolBar.Dropdown 组件属性，以及：
 
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性        | 说明     | 类型                                                       | 默认值 |
+| ----------- | -------- | ---------------------------------------------------------- | ------ |
+| value       | 选中值   | `ToolBarItem \| ToolBarItem[] \| null`                     | -      |
+| placeholder | 占位符   | `string`                                                   | -      |
+| list        | 列表数据 | `ToolBarItem[]`                                            | -      |
+| onChange    | 变化事件 | `(value: ToolBarItem \| ToolBarItem[] \| null) => void`    | -      |
 
 ## ToolBar.ActionSheet
 
@@ -315,11 +264,27 @@ toc: content
 
 #### 属性
 
-同 ActionSheet 组件属性。
+同 ActionSheet.Combo 组件属性，以及：
+
+| 属性            | 说明         | 类型                                      | 默认值      |
+| --------------- | ------------ | ----------------------------------------- | ----------- |
+| direction       | 方向         | `string`                                  | -           |
+| block           | 块级         | `boolean`                                 | -           |
+| color           | 颜色         | `string`                                  | `'default'` |
+| backgroundColor | 背景颜色     | `string`                                  | -           |
+| borderColor     | 边框颜色     | `string`                                  | -           |
+| border          | 边框样式     | `string`                                  | `'none'`    |
+| size            | 尺寸         | `string \| number \| readonly string[]`   | -           |
+| sizeEqual       | 等宽高       | `boolean`                                 | -           |
+| radius          | 圆角         | `string \| number`                        | `'m'`       |
+| arrowRender     | 箭头渲染     | `(props: { open: boolean \| null }) => ReactNode` | -   |
 
 #### Ref
 
-同 ActionSheet 组件 Ref。
+| 属性  | 说明     | 类型         |
+| ----- | -------- | ------------ |
+| close | 关闭面板 | `() => void` |
+| open  | 打开面板 | `() => void` |
 
 ## ToolBar.Filter
 
@@ -337,11 +302,36 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 筛选内容   | `ReactNode` | -      |
+| 属性            | 说明           | 类型                                                                                                      | 默认值 |
+| --------------- | -------------- | --------------------------------------------------------------------------------------------------------- | ------ |
+| direction       | 方向           | `ButtonProps['direction']`                                                                                | -      |
+| block           | 块级           | `boolean`                                                                                                 | -      |
+| style           | 自定义样式     | `object`                                                                                                  | -      |
+| className       | 自定义类名     | `string`                                                                                                  | -      |
+| color           | 颜色           | `string`                                                                                                  | -      |
+| backgroundColor | 背景颜色       | `string`                                                                                                  | -      |
+| borderColor     | 边框颜色       | `string`                                                                                                  | -      |
+| border          | 边框样式       | `string`                                                                                                  | -      |
+| size            | 尺寸           | `ButtonProps['size']`                                                                                     | -      |
+| sizeEqual       | 等宽高         | `boolean`                                                                                                 | -      |
+| fontSize        | 字体大小       | `string \| number`                                                                                        | -      |
+| radius          | 圆角           | `string \| number`                                                                                        | -      |
+| maskStyle       | 遮罩样式       | `object`                                                                                                  | -      |
+| maskClassName   | 遮罩类名       | `string`                                                                                                  | -      |
+| modalStyle      | 模态框样式     | `object`                                                                                                  | -      |
+| modalClassName  | 模态框类名     | `string`                                                                                                  | -      |
+| children        | 筛选内容       | `ReactNode`                                                                                               | -      |
+| comboRender     | 组合区渲染     | `(params: { comboRef; open; onClick }) => ReactNode`                                                      | -      |
+| modalRender     | 模态内容渲染   | `(params: { open; onClose }) => ReactNode`                                                                | -      |
+| portal          | 挂载节点       | `ModalProps['portal']`                                                                                    | -      |
+| footerRender    | 底部渲染       | `(params: { onClose }) => ReactNode`                                                                      | -      |
+| icon            | 图标           | `ReactNode`                                                                                               | -      |
+| onCancel        | 取消事件       | `() => void`                                                                                              | -      |
+| onOpen          | 打开事件       | `() => void`                                                                                              | -      |
+| onClose         | 关闭事件       | `() => void`                                                                                              | -      |
+| onConfig        | 配置事件       | `() => void`                                                                                              | -      |
+| onReset         | 重置事件       | `() => void`                                                                                              | -      |
+| onOk            | 确认事件       | `(ctx: { close: () => void }) => void`                                                                    | -      |
 
 #### Ref
 
@@ -349,3 +339,5 @@ toc: content
 | ---------- | ---------- | ---------------------- |
 | element    | 根元素     | `HTMLDivElement`       |
 | getElement | 获取根元素 | () => `HTMLDivElement` |
+| close      | 关闭筛选   | `() => void`           |
+| open       | 打开筛选   | `() => void`           |

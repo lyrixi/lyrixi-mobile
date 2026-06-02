@@ -1,6 +1,8 @@
 // 第三方库导入
-import React, { forwardRef, type Ref } from 'react'
-import { ListPagination, type ListPaginationRef } from 'lyrixi-mobile'
+import { forwardRef, type Ref } from 'react'
+
+import { ListPagination } from 'lyrixi-mobile'
+import type { ListPaginationMainRef } from '../../types'
 
 // 项目内部模块导入
 import serverParams from './serverParams'
@@ -10,9 +12,9 @@ import formatViewItem from './formatViewItem'
 import type { ListPaginationDemoMainProps } from './../ListPagination.demos.types'
 
 // 简便的列表组件, 只需要传入 url 和 payload 即可
-const Main = forwardRef<ListPaginationRef, ListPaginationDemoMainProps>(function Main(
+const Main = forwardRef<ListPaginationMainRef, ListPaginationDemoMainProps>(function Main(
   { cacheName, virtual, queryParams },
-  ref: Ref<ListPaginationRef>
+  ref: Ref<ListPaginationMainRef>
 ) {
   return (
     <ListPagination.Main

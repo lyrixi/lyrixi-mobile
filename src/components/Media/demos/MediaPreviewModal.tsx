@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Media } from 'lyrixi-mobile'
 
-export default () => {
+export default function MediaPreviewModalDemo() {
   return (
     <Page>
       <Page.Main>

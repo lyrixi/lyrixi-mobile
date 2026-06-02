@@ -1,7 +1,7 @@
-import type { PickerColumnItem } from '../../types'
+import type { PickerItem } from '../../types'
 
 // 获取当前位置
-function getIndex(activeOption: PickerColumnItem, list: PickerColumnItem[]) {
+function getIndex(activeOption: PickerItem, list: PickerItem[]) {
   if (!activeOption?.id || !Array.isArray(list) || !list.length) return 0
   let activeIndex = list.findIndex((item) => item.id === activeOption.id)
   // 未找到匹配项, 默认选中第一项

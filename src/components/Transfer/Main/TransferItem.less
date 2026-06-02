@@ -6,14 +6,11 @@
   font-size: 16px;
 
   height: 48px;
-  // transition: 0.3s;
 
   padding-left: 12px;
 }
 
 .lyrixi-transfer-item:not(:last-child) {
-
-  // 底线
   &::after {
     content: '';
     position: absolute;
@@ -25,7 +22,6 @@
   }
 }
 
-// 操作按钮: 添加和删除
 .lyrixi-transfer-item-operate {
   display: flex;
   align-items: center;
@@ -36,21 +32,16 @@
   display: block;
   width: 16px;
   height: 16px;
-  font-size: 16px;
-  font-family: 'lyrixi-iconfont';
 
   &.lyrixi-add {
-    &:extend(.lyrixi-iconfont-circle-plus all);
     color: #fb8d38;
   }
 
   &.lyrixi-delete {
-    &:extend(.lyrixi-iconfont-circle-minus all);
     color: #f94f57;
   }
 }
 
-// 拖拽按钮
 .lyrixi-transfer-item-drop {
   display: flex;
   align-items: center;
@@ -67,13 +58,9 @@
 .lyrixi-transfer-item-drop-icon {
   width: 20px;
   height: 20px;
-  font-size: 20px;
   color: #919ba5;
-  font-family: 'lyrixi-iconfont';
-  &:extend(.lyrixi-iconfont-transfer-drop all);
 }
 
-// 内容
 .lyrixi-transfer-item-content {
   flex: 1;
   margin-left: 12px;

@@ -20,7 +20,7 @@ const List = ({
   // Status
   allowClear,
 
-  // Element
+  // Elements
   uploadingRender,
   itemRender,
 

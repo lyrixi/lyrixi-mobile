@@ -12,7 +12,9 @@ import DOMUtil from './../../../utils/DOMUtil'
 const Item = forwardRef<HTMLDivElement, SkeletonItemProps>(
   (
     {
+      // Value & Display Value
       animated = true,
+      // Style
       className,
       style
     },

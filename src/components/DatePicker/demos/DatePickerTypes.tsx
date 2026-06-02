@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Page, Card, DatePicker, LocaleUtil, type DatePickerTypesValue } from 'lyrixi-mobile'
+import { useState } from 'react'
+
+import { Page, Card, DatePicker, LocaleUtil, type DatePickerTypeSwitcherValue } from 'lyrixi-mobile'
 
 const quickSelectList = [
   {
@@ -22,7 +23,7 @@ const quickSelectList = [
   }
 ]
 
-export default () => {
+export default function DatePickerTypeSwitcherDemo() {
   const [value, setValue] = useState<unknown>(undefined)
   const [quickValue, setQuickValue] = useState<unknown>(undefined)
 
@@ -32,9 +33,9 @@ export default () => {
         <Card>
           <Card.Header>日期类型切换（日/月/季/年/周）</Card.Header>
           <Card.Main>
-            <DatePicker.TypeTabs
-              value={value as DatePickerTypesValue | undefined}
-              list={[
+            <DatePicker.TypeSwitcher
+              value={value as DatePickerTypeSwitcherValue | undefined}
+              types={[
                 {
                   type: 'date',
                   id: 'date',
@@ -73,9 +74,9 @@ export default () => {
         <Card>
           <Card.Header>快捷选择（昨/今/明）</Card.Header>
           <Card.Main>
-            <DatePicker.TypeTabs
-              value={quickValue as DatePickerTypesValue | undefined}
-              list={quickSelectList}
+            <DatePicker.TypeSwitcher
+              value={quickValue as DatePickerTypeSwitcherValue | undefined}
+              types={quickSelectList}
               onChange={(newValue: unknown) => {
                 console.log('快捷选择:', newValue)
                 setQuickValue(newValue)

@@ -22,12 +22,18 @@ function touchClientY(e: React.TouchEvent<HTMLElement>): number {
 
 const Main = forwardRef<PageMainRef, PageMainProps>(function Main(
   {
+    // Value & Display Value
     threshold = 50,
+    // Status
     safeArea,
+    // Value & Display Value
     touchStopPropagation = true,
+    // Style
     className,
     style,
+    // Elements
     children,
+    // Events
     onTopRefresh,
     onBottomRefresh,
     onScroll,

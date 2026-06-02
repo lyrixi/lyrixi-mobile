@@ -1,9 +1,8 @@
-import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, Circles, coordsToWgs84 } = Map
 
-export default () => {
+export default function MapCirclesDemo() {
   const points = coordsToWgs84([
     {
       latitude: 39.909187,

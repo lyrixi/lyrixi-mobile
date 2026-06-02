@@ -1,4 +1,3 @@
-import React from 'react'
 import { Page, List } from 'lyrixi-mobile'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
@@ -13,7 +12,7 @@ for (let i = 0; i < 100; i++) {
   })
 }
 
-export default () => {
+export default function RefreshDemo() {
   function handleTopRefresh() {
     console.log('onTopRefresh')
     return new Promise<string>((resolve) => {

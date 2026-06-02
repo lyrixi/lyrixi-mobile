@@ -62,11 +62,23 @@ toc: content
 
 #### 属性
 
-同 TabBar.Tabs 组件属性。
+| 属性                | 说明       | 类型                                                                                                                  | 默认值     |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------- |
+| value               | 选中的值   | `object`                                                                                                              | -          |
+| list                | 标签列表   | `Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>` | `[]`       |
+| separator           | 分隔符     | `ReactNode`                                                                                                           | -          |
+| style               | 自定义样式 | `object`                                                                                                              | -          |
+| className           | 自定义类名 | `string`                                                                                                              | -          |
+| disabled            | 是否禁用   | `boolean`                                                                                                             | -          |
+| descriptionPosition | 描述位置   | `'top' \| 'bottom'`                                                                                                   | `'bottom'` |
+| onChange            | 变化事件   | `(value: object) => void`                                                                                             | -          |
 
 #### Ref
 
-同 TabBar.Tabs 组件 Ref。
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## TabBar.Menus
 
@@ -84,11 +96,23 @@ toc: content
 
 #### 属性
 
-同 TabBar.Tabs 组件属性。
+| 属性                | 说明       | 类型                                                                                                                  | 默认值     |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------- |
+| value               | 选中的值   | `object`                                                                                                              | -          |
+| list                | 标签列表   | `Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>` | `[]`       |
+| separator           | 分隔符     | `ReactNode`                                                                                                           | -          |
+| style               | 自定义样式 | `object`                                                                                                              | -          |
+| className           | 自定义类名 | `string`                                                                                                              | -          |
+| disabled            | 是否禁用   | `boolean`                                                                                                             | -          |
+| descriptionPosition | 描述位置   | `'top' \| 'bottom'`                                                                                                   | `'bottom'` |
+| onChange            | 变化事件   | `(value: object) => void`                                                                                             | -          |
 
 #### Ref
 
-同 TabBar.Tabs 组件 Ref。
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |
 
 ## TabBar.Group
 
@@ -106,8 +130,20 @@ toc: content
 
 #### 属性
 
-同 TabBar.Tabs 组件属性。
+| 属性                | 说明       | 类型                                                                                                                  | 默认值     |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------- |
+| value               | 选中的值   | `object`                                                                                                              | -          |
+| list                | 标签列表   | `Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>` | `[]`       |
+| separator           | 分隔符     | `ReactNode`                                                                                                           | -          |
+| style               | 自定义样式 | `object`                                                                                                              | -          |
+| className           | 自定义类名 | `string`                                                                                                              | -          |
+| disabled            | 是否禁用   | `boolean`                                                                                                             | -          |
+| descriptionPosition | 描述位置   | `'top' \| 'bottom'`                                                                                                   | `'bottom'` |
+| onChange            | 变化事件   | `(value: object) => void`                                                                                             | -          |
 
 #### Ref
 
-同 TabBar.Tabs 组件 Ref。
+| 属性       | 说明       | 类型                   |
+| ---------- | ---------- | ---------------------- |
+| element    | 根元素     | `HTMLDivElement`       |
+| getElement | 获取根元素 | () => `HTMLDivElement` |

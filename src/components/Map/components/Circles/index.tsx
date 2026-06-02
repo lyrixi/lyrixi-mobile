@@ -19,9 +19,11 @@ import { ObjectUtil } from 'lyrixi-mobile'
 const Circles = forwardRef<MapCirclesRef | null, MapCirclesProps>(
   (
     {
+      // Value & Display Value
       points: pointsProp,
       color,
       radius,
+      // Elements
       map
     },
     ref

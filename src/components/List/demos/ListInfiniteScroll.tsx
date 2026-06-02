@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, List, Card, Button, Flex } from 'lyrixi-mobile'
 
-export default () => {
+export default function ListInfiniteScrollDemo() {
   const [status, setStatus] = useState('loading')
 
   return (

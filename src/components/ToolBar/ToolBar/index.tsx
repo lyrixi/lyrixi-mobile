@@ -13,7 +13,7 @@ const ToolBar = forwardRef<HTMLDivElement, ToolBarProps>(function ToolBar(
     className,
     style,
 
-    // Element
+    // Elements
     children
   },
   ref
@@ -29,7 +29,7 @@ const ToolBar = forwardRef<HTMLDivElement, ToolBarProps>(function ToolBar(
           className
         )}
       >
-        {/* Element: Children */}
+        {/* Elements: Children */}
         {children}
       </div>
     )

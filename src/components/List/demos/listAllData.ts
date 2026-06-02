@@ -1,4 +1,4 @@
-export default [
+const listAllData = [
   {
     imageUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
     avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
@@ -9,3 +9,5 @@ export default [
     content: 'content',
   }
 ]
+
+export default listAllData

@@ -1,8 +1,11 @@
 import Circle from './Circle'
 import Bar from './Bar'
 
-// eslint-disable-next-line
-export default {
-  Circle: Circle,
-  Bar: Bar
-}
+import type { ProgressComponents } from './types/Progress.modules.types'
+
+const Progress = {} as ProgressComponents
+
+Progress.Circle = Circle
+Progress.Bar = Bar
+
+export default Progress

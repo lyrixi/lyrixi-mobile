@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react'
-import { Page, Button, Transfer, type TransferItem } from 'lyrixi-mobile'
+import { useRef, useState } from 'react'
 
-export default () => {
+import { Page, Transfer, type TransferItem } from 'lyrixi-mobile'
+
+export default function TransferComboDemo() {
   const transferRef = useRef(null)
   const [value, setValue] = useState<TransferItem[]>([
     { id: '1', name: '1' },

@@ -61,6 +61,7 @@ const Modal = forwardRef<DatePickerModalRef, DatePickerModalProps>(function Date
   // 同步外部value到内部currentValue
   useEffect(() => {
     setCurrentValue(formatValue(value, type, { hourStep, minuteStep }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
   useImperativeHandle(ref, () => {

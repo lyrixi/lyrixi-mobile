@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 // 第三方库导入
-import { ListPagination, Page } from 'lyrixi-mobile'
+import { Page } from 'lyrixi-mobile'
 
 // 公共组件导入
 
 // 内部组件导入
 import Header from './../Common/Header'
 import Main from './../Common/Main'
-import type { ListExamplesDemoListPaginationRef } from './../ListExamples.demos.types'
+import type { ListPaginationMainRef } from 'lyrixi-mobile'
 import type { VirtualDemoItemHeightRow } from './types'
 
 // 样式图片等资源文件导入
@@ -18,7 +18,7 @@ import './../Common/index.less'
 const Virtual = () => {
   const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
-  const mainRef = useRef<ListExamplesDemoListPaginationRef | null>(null)
+  const mainRef = useRef<ListPaginationMainRef | null>(null)
 
   return (
     <Page>

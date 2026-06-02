@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react'
 import getList from './getList'
 import valueToList from './valueToList'
 import listToValue from './listToValue'
-import type { DatePickerMainSectionProps, DatePickerPickerValueList } from './../../types'
+import type { DatePickerMainProps, DatePickerPickerValueList } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
 import Picker from './../../../Picker'
-import type { PickerColumnItem, PickerMainRef } from './../../../Picker/types'
+import type { PickerItem, PickerMainRef } from './../../../Picker/types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -15,12 +15,12 @@ import { DateUtil, Picker } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日期选择
-const Main = forwardRef<PickerMainRef, DatePickerMainSectionProps>(function DateMain(
+const Main = forwardRef<PickerMainRef, DatePickerMainProps>(function DateMain(
   {
     // Modal: Status
     open,
 
-    // Value & display value
+    // Value & Display Value
     value,
 
     // Status
@@ -61,8 +61,8 @@ const Main = forwardRef<PickerMainRef, DatePickerMainSectionProps>(function Date
       // Modal: Status
       open={open}
       // Value & Display Value
-      value={valueToList(value, pickerType, { hourStep, minuteStep }) as PickerColumnItem[] | null}
-      list={getList(value, pickerType, { hourStep, minuteStep }) as PickerColumnItem[][]}
+      value={valueToList(value, pickerType, { hourStep, minuteStep }) as PickerItem[] | null}
+      list={getList(value, pickerType, { hourStep, minuteStep }) as PickerItem[][]}
       // Events
       onChange={(v) => handleChange(v as DatePickerPickerValueList)}
     />

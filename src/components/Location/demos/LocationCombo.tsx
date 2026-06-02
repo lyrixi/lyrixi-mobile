@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState, type ComponentRef } from 'react'
+
 import { Page, Location, Card, Button } from 'lyrixi-mobile'
 
 import type { LocationDemoComboValue } from './Location.demos.types'
 
-export default () => {
+export default function LocationComboDemo() {
   const [value1, setValue1] = useState<LocationDemoComboValue | null>({
     latitude: 31.990374883871525,
     longitude: 118.73769931504451,
@@ -19,7 +20,7 @@ export default () => {
     address: '天安门'
   })
 
-  const comboRef = useRef<React.ComponentRef<typeof Location.Combo> | null>(null)
+  const comboRef = useRef<ComponentRef<typeof Location.Combo> | null>(null)
 
   return (
     <Page>

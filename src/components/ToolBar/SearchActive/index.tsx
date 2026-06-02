@@ -9,6 +9,8 @@ import type { ToolBarSearchActiveProps } from './../types'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import type { InputTextRef } from './../../Input/types'
+import Icon from '../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -38,14 +40,13 @@ const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(
       style,
       className,
 
-      // Element
+      // Elements
       inputRender,
       leftIconNode,
       rightIconNode,
       clearRender,
 
-      // Validate
-      precision, // 小数精度, 只有数值框才生效
+            precision, // 小数精度, 只有数值框才生效
       trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
       max,
       min,
@@ -71,10 +72,10 @@ const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-toolbar-search-bar-active', className)}
       >
-        {/* Element: Search */}
+        {/* Elements: Search */}
         <Search
           ref={ref}
-          // Element
+          // Elements
           id={id}
           name={name}
           // Value & Display Value
@@ -93,13 +94,16 @@ const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(
           // Style
           style={style}
           className={DOMUtil.classNames('lyrixi-active', className)}
-          // Element
+          // Elements
           inputRender={inputRender}
-          leftIconNode={leftIconNode || <i className="lyrixi-toolbar-search-input-left-icon" />}
+          leftIconNode={
+            leftIconNode || (
+              <Icon svg={Icons.Search} size="s" className="lyrixi-toolbar-search-input-left-icon" />
+            )
+          }
           rightIconNode={rightIconNode}
           clearRender={clearRender}
-          // Validate
-          precision={precision}
+                    precision={precision}
           trim={trim}
           max={max}
           min={min}
@@ -116,7 +120,7 @@ const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(
           onSearch={onSearch}
         />
 
-        {/* Element: Cancel Button */}
+        {/* Elements: Cancel Button */}
         <span
           className="lyrixi-toolbar-search-button-cancel"
           // Events

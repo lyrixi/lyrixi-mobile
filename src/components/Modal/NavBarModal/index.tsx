@@ -2,7 +2,7 @@ import React, { forwardRef, type MouseEvent } from 'react'
 import Modal from '../Modal'
 import NavBar from './NavBar'
 
-import type { ModalProps, ModalRef } from '../types'
+import type { ModalNavBarModalProps, ModalNavBarModalRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +13,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // NavBarModal
-const NavBarModal = forwardRef<ModalRef, ModalProps>(
+const NavBarModal = forwardRef<ModalNavBarModalRef, ModalNavBarModalProps>(
   (
     {
       // Status

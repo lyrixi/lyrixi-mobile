@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { Page, ToolBar } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-import type { ToolBarDemoListItem } from './ToolBar.demos.types'
+import { Page, ToolBar, type ActionSheetItem } from 'lyrixi-mobile'
 
 export default function ToolBarActionSheetDemo() {
-  const [item, setItem] = useState<ToolBarDemoListItem | null>({
+  const [item, setItem] = useState<ActionSheetItem | null>({
     disabled: true,
     id: '',
     name: 'Disabled'
@@ -15,7 +14,7 @@ export default function ToolBarActionSheetDemo() {
       <Page.Main>
         <ToolBar.ActionSheet
           value={item}
-          onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
+          onChange={(v) => setItem(v ?? null)}
           list={[
             {
               disabled: true,

@@ -1,9 +1,8 @@
-import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, ZoomControl } = Map
 
-export default () => {
+export default function MapZoomControlDemo() {
   return (
     <Page>
       <Page.Main>

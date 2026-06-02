@@ -4,7 +4,7 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import InputNode from './../Node'
 import Keyboard from './../../Keyboard'
 
-import type { InputOTPInputNumberProps, InputOTPInputNumberRef } from './Input.OTP.types'
+import type { InputOTPInputNumberProps, InputOTPInputNumberRef } from './Input.OTP.InputNumber.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

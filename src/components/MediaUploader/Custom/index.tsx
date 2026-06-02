@@ -15,11 +15,7 @@ import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
 测试使用-end */
 
 import { MediaHandle, MediaItem, MediaUploaderCommonProps } from '../types'
-import type {
-  FileImageCompressOptions,
-  MediaListItem,
-  MediaComponentProps
-} from './../../Media/types'
+import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
 
 // 照片上传
 function MediaUploader(
@@ -56,7 +52,7 @@ function MediaUploader(
     previewMaskStyle,
     previewMaskClassName,
 
-    // Element
+    // Elements
     uploadRender,
     uploadingRender,
     itemRender,
@@ -206,17 +202,17 @@ function MediaUploader(
     uploadingRender == null
       ? undefined
       : typeof uploadingRender === 'function'
-        ? (uploadingRender as (ctx: MediaListItem & { uploadingType: string }) => ReactNode)
-        : (ctx: MediaListItem & { uploadingType: string }) => uploadingRender
+        ? (uploadingRender as (ctx: MediaItem & { uploadingType: string }) => ReactNode)
+        : (ctx: MediaItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
     itemRender == null
       ? undefined
       : typeof itemRender === 'function'
-        ? (itemRender as (item: MediaListItem) => ReactNode)
-        : (_item: MediaListItem) => itemRender as ReactNode
+        ? (itemRender as (item: MediaItem) => ReactNode)
+        : (_item: MediaItem) => itemRender as ReactNode
 
-  const onBeforeChooseForMedia: MediaComponentProps['onBeforeChoose'] =
+  const onBeforeChooseForMedia: MediaProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'
       ? (e) => {
           void e
@@ -253,7 +249,7 @@ function MediaUploader(
       previewModalClassName={previewModalClassName}
       previewMaskStyle={previewMaskStyle}
       previewMaskClassName={previewMaskClassName}
-      // Element
+      // Elements
       uploadRender={uploadRenderFn}
       uploadingRender={uploadingRenderFn}
       itemRender={itemRenderFn}

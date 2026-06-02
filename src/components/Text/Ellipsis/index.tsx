@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 
-import type { TextEllipsisProps } from './../types'
+import type { TextEllipsisProps } from './Text.Ellipsis.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -16,7 +16,7 @@ import { LocaleUtil, DOMUtil } from 'lyrixi-mobile'
 const Ellipsis = ({
   // Status
   ellipsis,
-  // Element
+  // Elements
   children
 }: TextEllipsisProps) => {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -66,7 +66,7 @@ const Ellipsis = ({
       )}
       style={style as React.CSSProperties}
     >
-      {/* Element: 展开和收缩按钮 */}
+      {/* Elements: 展开和收缩按钮 */}
       {isOverflow && (
         <div
           className="lyrixi-text-ellipsis-toggle"
@@ -80,7 +80,7 @@ const Ellipsis = ({
             : LocaleUtil.locale('展开', 'lyrixi_e2edde5adbdf33f6dce59a299cbf5fad')}
         </div>
       )}
-      {/* Element: 内容 */}
+      {/* Elements: 内容 */}
       {children}
     </div>
   )

@@ -16,11 +16,14 @@ import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 const Loading = forwardRef<LoadingRef, LoadingProps>(
   (
     {
+      // Value & Display Value
       content,
+      // Style
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+      // Elements
       portal,
       iconRender,
       children

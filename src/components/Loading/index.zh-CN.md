@@ -96,10 +96,16 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+| 属性           | 说明       | 类型        | 默认值 |
+| -------------- | ---------- | ----------- | ------ |
+| content        | 提示内容   | `ReactNode` | -      |
+| modalStyle     | 内容区样式 | `object`    | -      |
+| modalClassName | 内容区类名 | `string`    | -      |
+| maskStyle      | 遮罩样式   | `object`    | -      |
+| maskClassName  | 遮罩类名   | `string`    | -      |
+| portal         | 挂载节点   | `Element \| DocumentFragment` | - |
+| iconRender     | 图标渲染   | `() => ReactNode` | -      |
+| children       | 子元素     | `ReactNode` | -      |
 
 #### Ref
 
@@ -156,7 +162,9 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+| 属性      | 说明       | 类型               | 默认值 |
+| --------- | ---------- | ------------------ | ------ |
+| color     | 颜色       | `string`           | -      |
+| size      | 尺寸       | `string \| number` | -      |
+| style     | 自定义样式 | `object`           | -      |
+| className | 自定义类名 | `string`           | -      |

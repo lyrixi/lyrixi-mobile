@@ -1,4 +1,4 @@
-import type { BridgeWeChatWecomAgentConfigOptions } from './../Bridge.WeChat.types'
+import type { BridgeWeChatWecomAgentConfigOptions } from '../types/Bridge.WeChat.types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'

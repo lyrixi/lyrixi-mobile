@@ -1,15 +1,16 @@
-import Page from './Page'
-
+import _Page from './Page'
 import Aside from './Aside'
 import Footer from './Footer'
 import Header from './Header'
 import Main from './Main'
 
-import type { PageComponents } from './Page.Components.types'
+import type { PageComponents } from './types/Page.modules.types'
 
-;(Page as PageComponents).Header = Header
-;(Page as PageComponents).Aside = Aside
-;(Page as PageComponents).Main = Main
-;(Page as PageComponents).Footer = Footer
+const Page = _Page as PageComponents
 
-export default Page as PageComponents
+Page.Header = Header
+Page.Aside = Aside
+Page.Main = Main
+Page.Footer = Footer
+
+export default Page

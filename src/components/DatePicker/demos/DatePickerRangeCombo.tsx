@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, DatePicker, DateUtil, Card, Toast, type DatePickerRangeComboProps } from 'lyrixi-mobile'
 
-export default () => {
+export default function DatePickerRangeComboDemo() {
   const [value, setValue] = useState<(Date | null)[] | null>(null)
   return (
     <Page>

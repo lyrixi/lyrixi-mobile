@@ -1,20 +1,20 @@
 import isGroups from './../utils/isGroups'
 
-import type { RawItem } from '../../List/types'
+import type { ListItem } from '../../List/types'
 
-function flattenList(list: RawItem[] | undefined | null): RawItem[] {
+function flattenList(list: ListItem[] | undefined | null): ListItem[] {
   if (isGroups(list) === false) {
     return list || []
   }
 
-  let flatList: RawItem[] = []
+  let flatList: ListItem[] = []
   for (let group of list!) {
     let { children, ...groupItem } = group
     groupItem.virtualData = {
       type: 'group'
     }
     flatList.push(groupItem)
-    flatList.push(...(children as RawItem[]))
+    flatList.push(...(children as ListItem[]))
   }
   return flatList
 }

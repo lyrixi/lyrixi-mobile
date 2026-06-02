@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, IndexBar } from 'lyrixi-mobile'
 
-export default () => {
+export default function IndexBarAnchorDemo() {
   return (
     <Page>
       <Page.Main>

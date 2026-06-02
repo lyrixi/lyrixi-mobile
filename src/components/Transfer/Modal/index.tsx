@@ -19,23 +19,38 @@ const NavBarModal = Modal.NavBarModal
 // Modal
 const Modal = forwardRef<unknown, TransferModalProps>(function TransferModal(
   {
+    // Value & Display Value
     value,
+
+    // Main
+    // Main: Value & Display Value
     list,
     titles,
+
+    // Status
     open,
+
+    // Modal
+    // Modal: Status
     maskClosable,
-    allowClear,
     safeArea,
+
+    // Main: Status
+    allowClear,
+    // Modal: Style
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
+    // Modal: Elements
     portal,
     title,
     okNode,
     cancelNode,
+    // Modal: Status
     okVisible,
     cancelVisible,
+    // Events
     onClose,
     onOk,
     onChange

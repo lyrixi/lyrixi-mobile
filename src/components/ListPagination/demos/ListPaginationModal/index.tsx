@@ -1,5 +1,6 @@
 // 第三方库导入
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Button, Card, ListPagination, Page } from 'lyrixi-mobile'
 
 // 项目内部模块导入
@@ -9,7 +10,7 @@ import formatViewItem from '../ListPaginationMain/formatViewItem'
 import type { ListPaginationDemoRow } from './../ListPagination.demos.types'
 
 // ListPagination.Modal：受控弹窗内分页列表选择
-export default () => {
+export default function ListPaginationModalDemo() {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState<ListPaginationDemoRow | ListPaginationDemoRow[] | null>(null)
 

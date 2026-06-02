@@ -21,6 +21,7 @@ function toToastString(s: string | import('react').ReactNode): string {
 
 const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Browser(
   {
+    // Value & Display Value
     list = [],
     maxCount = 5,
     maxChooseCount = 1,
@@ -28,13 +29,8 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
     maxSize,
     async = false,
     reUpload = true,
-    allowClear = true,
     allowChoose = true,
-    className,
     uploadPosition,
-    uploadRender,
-    uploadingRender,
-    itemRender,
     previewPortal,
     previewServerUrl,
     previewServerSourceType,
@@ -42,6 +38,15 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
     formatHeaders,
     formatPayload,
     formatResponse,
+    // Status
+    allowClear = true,
+    // Style
+    className,
+    // Elements
+    uploadRender,
+    uploadingRender,
+    itemRender,
+    // Events
     onBeforeChoose,
     onChange,
     onPreview

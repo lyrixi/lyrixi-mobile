@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Card } from 'lyrixi-mobile'
 
-export default () => {
+export default function CardDemo() {
   return (
     <Page>
       <Page.Main>

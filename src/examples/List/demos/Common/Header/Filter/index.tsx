@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
 import { FooterBar, Form, Input, LocaleUtil, ToolBar } from 'lyrixi-mobile'
 
 import type {

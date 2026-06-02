@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { KeyboardButtonQuickProps } from './../types'
+import type { KeyboardNumberButtonQuickProps } from './Keyboard.Number.ButtonQuick.types'
 
 // 内库使用-start
 import DOMUtil from '../../../utils/DOMUtil'
@@ -11,7 +11,7 @@ import DOMUtil from '../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const ButtonQuick = ({ onClick, className = '', children }: KeyboardButtonQuickProps) => {
+const ButtonQuick = ({ onClick, className = '', children }: KeyboardNumberButtonQuickProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     if (onClick) {

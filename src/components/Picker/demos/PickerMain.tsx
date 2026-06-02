@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { Picker, Page, type PickerColumnItem } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
-  const list: PickerColumnItem[] = [
+import { Picker, Page, type PickerItem } from 'lyrixi-mobile'
+
+export default function PickerMainDemo() {
+  const list: PickerItem[] = [
     { id: '1', name: '1' },
     { id: '2', name: '2' }
   ]
-  const [value, setValue] = useState<PickerColumnItem[] | null>(null)
+  const [value, setValue] = useState<PickerItem[] | null>(null)
   return (
     <Page>
       <Page.Main>

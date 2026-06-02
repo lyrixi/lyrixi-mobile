@@ -7,10 +7,10 @@ import uploadList from './utils/uploadList'
 import Browser from './Browser'
 
 import type { AttachRef } from './../Attach/types'
-import type { AttachUploaderBaseProps } from './types'
+import type { AttachUploaderProps } from './types'
 
 // 照片上传
-const AttachUploader = forwardRef<AttachRef, AttachUploaderBaseProps>(function AttachUploader(props, ref) {
+const AttachUploader = forwardRef<AttachRef, AttachUploaderProps>(function AttachUploader(props, ref) {
   const {
     list = [],
     maxCount,

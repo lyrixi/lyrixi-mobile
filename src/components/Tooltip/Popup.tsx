@@ -17,15 +17,20 @@ const getClassNameByAnimation = Modal.getClassNameByAnimation
 
 const Popup = forwardRef<TooltipPopupRef, TooltipPopupProps>(function Popup(
   {
+    // Status
     open,
     maskClosable = true,
+    // Value & Display Value
     animation,
+    // Style
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
+    // Elements
     portal,
     children,
+    // Events
     onClose
   },
   ref

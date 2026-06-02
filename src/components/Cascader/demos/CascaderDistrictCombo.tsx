@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { Card, Divider, Page, Cascader, ObjectUtil, type CascaderNode } from 'lyrixi-mobile'
+import { useState, useEffect } from 'react'
 
-export default () => {
+import { Card, Divider, Page, Cascader, type CascaderItem } from 'lyrixi-mobile'
+
+export default function CascaderDistrictComboDemo() {
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
-  const [value1, setValue1] = useState<CascaderNode[]>([])
-  const [value2, setValue2] = useState<CascaderNode[]>([])
-  const [value3, setValue3] = useState<CascaderNode[]>([])
-  const [value4, setValue4] = useState<CascaderNode[]>([])
-  const [value5, setValue5] = useState<CascaderNode[]>([])
-  const [value6, setValue6] = useState<CascaderNode[]>([])
-  const [value7, setValue7] = useState<CascaderNode[]>([])
-  const [value8, setValue8] = useState<CascaderNode[]>([])
-  const [value9, setValue9] = useState<CascaderNode[]>([])
+  const [value1, setValue1] = useState<CascaderItem[]>([])
+  const [value2, setValue2] = useState<CascaderItem[]>([])
+  const [value3, setValue3] = useState<CascaderItem[]>([])
+  const [value4, setValue4] = useState<CascaderItem[]>([])
+  const [value5, setValue5] = useState<CascaderItem[]>([])
+  const [value6, setValue6] = useState<CascaderItem[]>([])
+  const [value7, setValue7] = useState<CascaderItem[]>([])
+  const [value8, setValue8] = useState<CascaderItem[]>([])
+  const [value9, setValue9] = useState<CascaderItem[]>([])
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,7 +44,7 @@ export default () => {
           <Cascader.DistrictCombo
             // type={'country'}
             formatter={(value: unknown) => {
-              const v = value as CascaderNode[] | undefined
+              const v = value as CascaderItem[] | undefined
               if (!v?.length) {
                 return ''
               }
@@ -59,7 +60,7 @@ export default () => {
             value={value1}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue1(newValue as CascaderNode[])
+              setValue1(newValue as CascaderItem[])
             }}
             placeholder={'country'}
             allowClear
@@ -73,7 +74,7 @@ export default () => {
             value={value2}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue2(newValue as CascaderNode[])
+              setValue2(newValue as CascaderItem[])
             }}
             placeholder={'province'}
             allowClear
@@ -87,7 +88,7 @@ export default () => {
             value={value3}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue3(newValue as CascaderNode[])
+              setValue3(newValue as CascaderItem[])
             }}
             placeholder={'city'}
             allowClear
@@ -101,7 +102,7 @@ export default () => {
             value={value4}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue4(newValue as CascaderNode[])
+              setValue4(newValue as CascaderItem[])
             }}
             placeholder={'district'}
             allowClear
@@ -115,7 +116,7 @@ export default () => {
             value={value5}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue5(newValue as CascaderNode[])
+              setValue5(newValue as CascaderItem[])
             }}
             placeholder={'street'}
             allowClear
@@ -130,7 +131,7 @@ export default () => {
             value={value6}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue6(newValue as CascaderNode[])
+              setValue6(newValue as CascaderItem[])
             }}
             placeholder={'searchVisible'}
             allowClear
@@ -143,7 +144,7 @@ export default () => {
             value={value7}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue7(newValue as CascaderNode[])
+              setValue7(newValue as CascaderItem[])
             }}
             placeholder={'disabled'}
             allowClear
@@ -156,7 +157,7 @@ export default () => {
             value={value8}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue8(newValue as CascaderNode[])
+              setValue8(newValue as CascaderItem[])
             }}
             placeholder={'min'}
             allowClear
@@ -168,7 +169,7 @@ export default () => {
             value={value9}
             onChange={(newValue) => {
               console.log('修改: ', newValue)
-              setValue9(newValue as CascaderNode[])
+              setValue9(newValue as CascaderItem[])
             }}
             placeholder={'zIndex'}
             allowClear

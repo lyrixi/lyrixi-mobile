@@ -16,19 +16,27 @@ import { Combo, type ComboRef } from 'lyrixi-mobile'
 
 const Tooltip = forwardRef<Record<string, unknown>, TooltipProps>(function Tooltip(
   {
+    // Status
     maskClosable = true,
+    // Style
     style,
     className,
+    // Value & Display Value
     animation = 'slideDownLeft',
+    // Style
     modalStyle,
     modalClassName,
     maskStyle,
     maskClassName,
+    // Elements
     children,
     comboRender,
     modalRender,
+    // Value & Display Value
     referenceElement: externalReferenceElement,
+    // Elements
     portal,
+    // Events
     onBeforeOpen,
     onOpen,
     onClose

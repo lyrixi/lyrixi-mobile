@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Card, Divider, Input, Keyboard } from 'lyrixi-mobile'
 
-export default () => {
+export default function KeyboardNumberDemo() {
   const [open1, setOpen1] = useState(false)
   const [value1, setValue1] = useState('')
   const [open2, setOpen2] = useState(false)

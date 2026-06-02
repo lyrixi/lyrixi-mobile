@@ -27,7 +27,7 @@ const FormItem = forwardRef<FormVirtualFormItemRef, FormVirtualFormItemProps>(
       className,
       layout,
 
-      // Element
+      // Elements
       children
     },
     ref

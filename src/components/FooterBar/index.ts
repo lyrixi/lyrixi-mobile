@@ -1,8 +1,10 @@
-import FooterBar from './FooterBar'
+import _FooterBar from './FooterBar'
 import Button from './Button'
 
-import type { FooterBarComponents } from './FooterBar.Components.types'
+import type { FooterBarComponents } from './types/FooterBar.modules.types'
 
-;(FooterBar as FooterBarComponents).Button = Button
+const FooterBar = _FooterBar as FooterBarComponents
 
-export default FooterBar as FooterBarComponents
+FooterBar.Button = Button
+
+export default FooterBar

@@ -1,6 +1,6 @@
 import React, { type MouseEvent } from 'react'
 
-import type { ModalNavBarModalOkProps } from './Modal.NavBarModal.NavBar.types'
+import type { ModalNavBarModalOkProps } from './Modal.NavBarModal.Ok.types'
 
 // 内库使用-start
 import NavBar from './../../../NavBar'

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Divider, Page, Card, Button, Accordion } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Divider, Page, Card, Button, Accordion, Icon, Icons } from 'lyrixi-mobile'
+
+export default function AccordionGroupDemo() {
   const [value, setValue] = useState<number | null>(null)
 
   return (
@@ -168,7 +169,7 @@ export default () => {
           <Divider>Custom Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
             <Accordion
-              arrowRender={({ open }) => <i className="lyrixi-icon lyrixi-iconfont-star-fill" />}
+              arrowRender={() => <Icon svg={Icons.StarFill} size="s" color="warning" />}
               title="Arrow ClassName"
             >
               <div
@@ -180,17 +181,7 @@ export default () => {
             </Accordion>
             <Accordion
               open={false}
-              arrowRender={({ open }) => {
-                return (
-                  <i
-                    className="lyrixi-iconfont-star-fill"
-                    style={{
-                      fontSize: '14px',
-                      color: '#f90'
-                    }}
-                  ></i>
-                )
-              }}
+              arrowRender={() => <Icon svg={Icons.StarFill} size="s" style={{ color: '#f90' }} />}
               title="Arrow Node"
             >
               <div

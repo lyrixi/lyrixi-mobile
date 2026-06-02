@@ -29,7 +29,7 @@ const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
       modalClassName,
       modalStyle,
 
-      // Element
+      // Elements
       portal,
       color, // 绘画配置: 画笔颜色
       backgroundColor, // 绘画配置: 背景颜色
@@ -62,7 +62,7 @@ const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
           open === true ? '' : 'lyrixi-hide'
         )}
       >
-        {/* Element: Main */}
+        {/* Elements: Main */}
         {open && (
           <Main
             // Style

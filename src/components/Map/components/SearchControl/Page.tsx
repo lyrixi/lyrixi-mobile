@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
+import type { MapSearchControlPageActiveListComponent } from './Map.SearchControl.Page.ActiveList.types'
 import type {
-  MapSearchPageProps,
-  SearchQueryNearbyResult,
-  MapSearchActiveListComponent
-} from '../../types'
+  MapSearchControlPageProps,
+  MapSearchControlSearchQueryNearbyResult
+} from './Map.SearchControl.Page.types'
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 import SearchActive from './../../../ToolBar/SearchActive'
 import List from './../../../List'
-import type { RawItem, ViewItem } from './../../../List/types'
+import type { ListItem, ViewItem } from './../../../List/types'
 import Page from './../../../Page'
 import Result from './../../../Result'
 import Text from './../../../Text'
@@ -19,15 +19,15 @@ import Text from './../../../Text'
 import { LocaleUtil, Loading, ToolBar, List, Page, Result, Text } from 'lyrixi-mobile'
 测试使用-end */
 
-const MapSearchActive = SearchActive as unknown as MapSearchActiveListComponent
+const MapSearchActive = SearchActive as unknown as MapSearchControlPageActiveListComponent
 
-function isQueryResult(v: unknown): v is SearchQueryNearbyResult {
+function isQueryResult(v: unknown): v is MapSearchControlSearchQueryNearbyResult {
   return typeof v === 'object' && v !== null
 }
 
 // 搜索
-function SearchPage({ open, map, onClose, onChange }: MapSearchPageProps) {
-  const [result, setResult] = useState<SearchQueryNearbyResult | null>(null)
+function SearchPage({ open, map, onClose, onChange }: MapSearchControlPageProps) {
+  const [result, setResult] = useState<MapSearchControlSearchQueryNearbyResult | null>(null)
   const [keyword, setKeyword] = useState('')
 
   function handleBack() {
@@ -89,7 +89,7 @@ function SearchPage({ open, map, onClose, onChange }: MapSearchPageProps) {
           <List
             list={list}
             onChange={handleClick}
-            formatViewItem={(item: RawItem): ViewItem => {
+            formatViewItem={(item: ListItem): ViewItem => {
               const name = typeof item.name === 'string' ? item.name : ''
               const address = typeof item.address === 'string' ? item.address : undefined
               return {

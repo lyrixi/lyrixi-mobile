@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page } from 'lyrixi-mobile'
 
 import Header from './Header'

@@ -28,7 +28,7 @@ const Modal = forwardRef<ModalRef, ModalProps>(
       maskStyle,
       maskClassName,
 
-      // Element
+      // Elements
       portal,
       children,
 
@@ -68,16 +68,13 @@ const Modal = forwardRef<ModalRef, ModalProps>(
       e.stopPropagation()
     }
 
-    // 获取激活状态样式
-    function getActiveClass() {
-      return open ? 'lyrixi-active' : ''
-    }
+    const activeClass = open ? 'lyrixi-active' : ''
 
     let ModalNode = (
       <div
         data-animation={animation}
         style={maskStyle}
-        className={DOMUtil.classNames('lyrixi-mask', maskClassName, getActiveClass())}
+        className={DOMUtil.classNames('lyrixi-mask', maskClassName, activeClass)}
         onClick={handleMaskClick}
         ref={maskRef}
       >
@@ -86,7 +83,7 @@ const Modal = forwardRef<ModalRef, ModalProps>(
             'lyrixi-modal-animation',
             animationClassName ? ' ' + animationClassName : '',
             modalClassName,
-            getActiveClass()
+            activeClass
           )}
           style={modalStyle}
           data-animation={animation}

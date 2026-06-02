@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Divider, Switch } from 'lyrixi-mobile'
 
-export default () => {
+export default function SwitchDemo() {
   const [checked, setChecked] = useState(false)
   return (
     <Page>

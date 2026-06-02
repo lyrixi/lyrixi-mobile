@@ -1,14 +1,13 @@
 import { useState, type CSSProperties } from 'react'
-import { Page, Select, Card, ToolBar, Text, ObjectUtil } from 'lyrixi-mobile'
-import type { RawItem } from '../../List/types'
+import { Page, Select, Card, ToolBar, Text, ObjectUtil, type SelectItem } from 'lyrixi-mobile'
 import flatList from './flatList'
 import groupList from './groupList'
 
 const SelectCombo = () => {
   const [keyword, setKeyword] = useState('')
-  const [singleValue, setSingleValue] = useState<RawItem | null>(null)
+  const [singleValue, setSingleValue] = useState<SelectItem | null>(null)
 
-  const [multipleValue, setMultipleValue] = useState<RawItem[]>([
+  const [multipleValue, setMultipleValue] = useState<SelectItem[]>([
     {
       allowClear: true,
       id: '1',
@@ -43,7 +42,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v as RawItem | null)}
+              onChange={(v) => setSingleValue(Array.isArray(v) ? (v[0] ?? null) : v)}
             />
           </Card.Main>
         </Card>
@@ -58,7 +57,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
+              onChange={(v) => setMultipleValue(Array.isArray(v) ? v : [])}
             />
           </Card.Main>
         </Card>
@@ -74,7 +73,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
+              onChange={(v) => setMultipleValue(Array.isArray(v) ? v : [])}
             />
           </Card.Main>
         </Card>
@@ -90,7 +89,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v as RawItem | null)}
+              onChange={(v) => setSingleValue(Array.isArray(v) ? (v[0] ?? null) : v)}
             />
           </Card.Main>
         </Card>
@@ -107,7 +106,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
+              onChange={(v) => setMultipleValue(Array.isArray(v) ? v : [])}
             />
           </Card.Main>
         </Card>
@@ -125,7 +124,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={multipleValue}
-              onChange={(v) => setMultipleValue((v as RawItem[]) ?? [])}
+              onChange={(v) => setMultipleValue(Array.isArray(v) ? v : [])}
             />
           </Card.Main>
         </Card>
@@ -139,7 +138,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v as RawItem | null)}
+              onChange={(v) => setSingleValue(Array.isArray(v) ? (v[0] ?? null) : v)}
               checkable
               checkboxPosition="left"
             />
@@ -155,7 +154,7 @@ const SelectCombo = () => {
               allowClear
               value={singleValue}
               list={groupList}
-              onChange={(v) => setSingleValue(v as RawItem | null)}
+              onChange={(v) => setSingleValue(Array.isArray(v) ? (v[0] ?? null) : v)}
             />
           </Card.Main>
         </Card>
@@ -169,7 +168,7 @@ const SelectCombo = () => {
               allowClear
               list={flatList}
               value={singleValue}
-              onChange={(v) => setSingleValue(v as RawItem | null)}
+              onChange={(v) => setSingleValue(Array.isArray(v) ? (v[0] ?? null) : v)}
               modalStyle={{ height: '300px' }}
               modalClassName="custom"
             />
@@ -221,7 +220,7 @@ const SelectCombo = () => {
               }}
               onChange={(newValue) => {
                 console.log('onChange:', newValue)
-                setSingleValue(newValue as RawItem | null)
+                setSingleValue(Array.isArray(newValue) ? (newValue[0] ?? null) : newValue)
               }}
             />
           </Card.Main>

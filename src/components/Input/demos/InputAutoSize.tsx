@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Divider, Input } from 'lyrixi-mobile'
 
-export default () => {
+export default function InputAutoSizeDemo() {
   const [value, setValue] = useState('')
   return (
     <Page>

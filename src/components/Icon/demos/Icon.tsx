@@ -1,92 +1,119 @@
-import React from 'react'
-import { Page, Row, Icon, DOMUtil } from 'lyrixi-mobile'
+import { Page, Divider, Icon, Icons } from 'lyrixi-mobile'
 
-// 与 src/assets/global/icon.less 中的 .lyrixi-iconfont-* 一一对应
-const iconList = [
-  'circle-close',
-  'video',
-  'undo',
-  'redo',
-  'reload',
-  'reloadtime',
-  'circle-ok',
-  'circle-info',
-  'circle-warning',
-  'circle-info-fill',
-  'circle-warning-fill',
-  'circle-minus-fill',
-  'circle-ok-fill',
-  'circle-plus-fill',
-  'circle-question-fill',
-  'circle-tel-fill',
-  'three-dots',
-  'circle-close-fill',
-  'keyboard-delete',
-  'pic-error',
-  'minus',
-  'close',
-  'navigation',
-  'video-fill',
-  'trash',
-  'file-audio',
-  'file-text',
-  'file-excel',
-  'file-pack',
-  'file-pdf',
-  'file-video',
-  'file-image',
-  'file-word',
-  'file-ppt',
-  'file-unknow',
-  'update',
-  'location',
-  'search',
-  'filter-menu',
-  'ok',
-  'transfer-drop',
-  'circle-minus',
-  'circle-plus',
-  'plus',
-  'barcode',
-  'signature',
-  'circle-question',
-  'arrow-right',
-  'arrow-left',
-  'arrow-down',
-  'arrow-up',
-  'adjuster',
-  'star-fill',
-  'config',
-  'triangle-up-fill'
-]
+const iconStyle = {
+  margin: 'var(--lyrixi-space-m)'
+}
 
-export default () => {
+const iconWithBgStyle = {
+  ...iconStyle,
+  padding: '4px'
+}
+
+const sizeSamples = ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
+const colorSamples = ['primary', 'info', 'danger', 'success', 'warning']
+
+const builtinIconEntries = Object.entries(Icons) as Array<
+  [string, (typeof Icons)[keyof typeof Icons]]
+>
+
+const builtinIconGridStyle = {
+  marginTop: 'var(--lyrixi-space-l)',
+  display: 'flex',
+  flexWrap: 'wrap' as const
+}
+
+const builtinIconItemStyle = {
+  display: 'inline-flex',
+  flexDirection: 'column' as const,
+  alignItems: 'center',
+  width: '80px',
+  margin: 'var(--lyrixi-space-s)'
+}
+
+export default function IconDemo() {
   return (
-    <Page>
-      <Page.Main className="lyrixi-padding-horizontal-m lyrixi-padding-vertical-m">
-        <Row className={DOMUtil.classNames('lyrixi-flex', 'lyrixi-flex-wrap')}>
-          {iconList.map((name) => (
-            <Row.Col
-              key={name}
-              span={6}
-              className={DOMUtil.classNames(
-                'lyrixi-flex',
-                'lyrixi-flex-vertical',
-                'lyrixi-flex-middlecenter',
-                'lyrixi-padding-vertical-s',
-                'lyrixi-padding-horizontal-xs'
-              )}
-            >
-              <Icon
-                className={DOMUtil.classNames('lyrixi-iconfont', `lyrixi-iconfont-${name}`)}
-                size="l"
-              />
-              <span className="lyrixi-font-size-xs lyrixi-color-auxiliary lyrixi-nowrap lyrixi-margin-vertical-xxxs">
-                {name}
-              </span>
-            </Row.Col>
+    <Page style={{ backgroundColor: 'white' }}>
+      <Page.Main>
+        <Divider>Icon 基础用法</Divider>
+        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
+          <Icon svg={Icons.Close} size="l" color="primary" style={iconStyle} />
+          <Icon svg={Icons.Search} size="l" color="primary" style={iconStyle} />
+          <Icon svg={Icons.Ok} size="l" color="success" style={iconStyle} />
+          <Icon svg={Icons.Trash} size="l" color="danger" style={iconStyle} />
+          <Icon svg={Icons.Config} size="l" color="default" style={iconStyle} />
+        </div>
+
+        <Divider>Icon 不同尺寸</Divider>
+        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
+          {sizeSamples.map((size) => (
+            <Icon key={size} svg={Icons.Close} size={size} color="primary" style={iconStyle} />
           ))}
-        </Row>
+        </div>
+
+        <Divider>Icon 带背景与圆角</Divider>
+        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
+          <Icon
+            svg={Icons.Ok}
+            size="l"
+            color="white"
+            backgroundColor="primary"
+            radius="m"
+            style={iconWithBgStyle}
+          />
+          <Icon
+            svg={Icons.Search}
+            size="xl"
+            color="white"
+            backgroundColor="primary"
+            radius="100%"
+            style={iconWithBgStyle}
+          />
+          <Icon
+            svg={Icons.Config}
+            size="xl"
+            color="white"
+            backgroundColor="info"
+            radius="100%"
+            style={iconWithBgStyle}
+          />
+          <Icon
+            svg={Icons.Plus}
+            size="xl"
+            color="white"
+            backgroundColor="success"
+            radius="100%"
+            style={iconWithBgStyle}
+          />
+        </div>
+
+        <Divider>Icon 不同颜色</Divider>
+        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
+          {colorSamples.map((color) => (
+            <Icon key={color} svg={Icons.Close} size="xl" color={color} style={iconStyle} />
+          ))}
+        </div>
+
+        <Divider>Icon 可点击与禁用</Divider>
+        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
+          <Icon
+            svg={Icons.Reload}
+            size="l"
+            color="primary"
+            style={iconStyle}
+            onClick={() => console.log('icon clicked')}
+          />
+          <Icon svg={Icons.Reload} size="l" color="primary" disabled style={iconStyle} />
+        </div>
+
+        <Divider>Icon 内置 Icons</Divider>
+        <div style={builtinIconGridStyle}>
+          {builtinIconEntries.map(([name, svg]) => (
+            <div key={name} style={builtinIconItemStyle}>
+              <Icon svg={svg} size="l" color="primary" />
+              <span className="lyrixi-font-size-xs lyrixi-color-auxiliary">{name}</span>
+            </div>
+          ))}
+        </div>
       </Page.Main>
     </Page>
   )

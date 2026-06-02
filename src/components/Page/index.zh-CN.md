@@ -60,6 +60,7 @@ toc: content
 
 | 属性      | 说明       | 类型        | 默认值 |
 | --------- | ---------- | ----------- | ------ |
+| safeArea  | 是否安全区 | `boolean`   | -      |
 | style     | 自定义样式 | `object`    | -      |
 | className | 自定义类名 | `string`    | -      |
 | children  | 头部内容   | `ReactNode` | -      |
@@ -87,11 +88,18 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 主体内容   | `ReactNode` | -      |
+| 属性                 | 说明         | 类型                                                         | 默认值 |
+| -------------------- | ------------ | ------------------------------------------------------------ | ------ |
+| threshold            | 触发阈值     | `number`                                                     | -      |
+| touchStopPropagation | 触摸阻止冒泡 | `boolean`                                                    | -      |
+| safeArea             | 是否安全区   | `boolean`                                                    | -      |
+| style                | 自定义样式   | `object`                                                     | -      |
+| className            | 自定义类名   | `string`                                                     | -      |
+| children             | 主体内容     | `ReactNode`                                                  | -      |
+| onTopRefresh         | 顶部刷新     | `() => void \| Promise<boolean \| string \| undefined>`      | -      |
+| onBottomRefresh      | 底部刷新     | `() => void \| Promise<boolean \| string \| undefined \| void>` | -   |
+| onScroll             | 滚动事件     | `(e: UIEvent) => void`                                       | -      |
+| onScrollEnd          | 滚动结束     | `(e: UIEvent) => void`                                       | -      |
 
 #### Ref
 
@@ -116,11 +124,14 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 底部内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型                      | 默认值 |
+| --------- | ---------- | ------------------------- | ------ |
+| buttons   | 按钮配置   | `unknown`                 | -      |
+| safeArea  | 是否安全区 | `boolean`                 | -      |
+| style     | 自定义样式 | `object`                  | -      |
+| className | 自定义类名 | `string`                  | -      |
+| children  | 底部内容   | `ReactNode`               | -      |
+| onChange  | 变化事件   | `(newValue: unknown) => void` | -  |
 
 #### Ref
 

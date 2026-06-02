@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState, type ReactNode } from 'react'
+
 import { App, Page, Calendar, DateUtil, Card, Divider, Button } from 'lyrixi-mobile'
 
-export default () => {
+export default function CalendarDemo() {
   const [singleValue, setSingleValue] = useState<Date | null>(null)
   const [multipleValue, setMultipleValue] = useState<Date[]>([])
   const [rangeValue, setRangeValue] = useState<Date | null>(null)
@@ -127,7 +128,7 @@ export default () => {
                   onNextMonth,
                   onPreviousYear,
                   onNextYear
-                }): React.ReactNode => {
+                }): ReactNode => {
                   return (
                     <div
                       style={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}

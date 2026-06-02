@@ -1,7 +1,0 @@
-export * from './Location.Combo.types'
-export * from './Location.Combo.Input.types'
-export * from './Location.Main.Choose.types'
-export * from './Location.Main.types'
-export * from './Location.Modal.types'
-export * from './Location.Value.types'
-export * from './Location.Main.Preview.types'

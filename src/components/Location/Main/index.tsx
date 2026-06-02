@@ -14,17 +14,24 @@ import type { MapContainerAPI } from './../../Map/types'
 const Main = forwardRef<unknown, LocationMainProps>(
   (
     {
+      // Value & Display Value
       value,
       cacheExpires,
+      // Status
       open,
+      // Value & Display Value
       autoLocation = true,
+      // Status
       nearbyVisible,
+      // Style
       className,
       style,
+      // Value & Display Value
       id,
       mapConfig,
       getLocation,
       getAddress,
+      // Events
       onChange,
       onOk,
       onClear

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { CascaderDistrictMainResultProps } from '../types'
+import type { CascaderDistrictMainResultProps } from './Cascader.DistrictMain.Result.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

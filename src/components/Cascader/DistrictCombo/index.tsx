@@ -1,8 +1,8 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { formatType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
-import type { CascaderNode } from './../types'
-import type { InputSelectComboRef } from './../../Input/types'
+import type { CascaderItem } from './../types'
+import type { InputSelectProps, InputSelectRef } from './../../Input/types'
 
 import type { CascaderDistrictComboProps, CascaderDistrictComboRef } from '../types'
 
@@ -18,40 +18,59 @@ import { Input } from 'lyrixi-mobile'
 const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictComboProps>(
   (
     {
+      // Combo
+      // Combo: Value & Display Value
       value,
       placeholder,
       autoSize,
       mode,
+      // Combo: Status
       readOnly,
       disabled,
       allowClear,
+      // Combo: Style
       style,
       className,
+      // Combo: Value & Display Value
       formatter,
       separator,
+      // Combo: Elements
       leftIconNode,
       rightIconNode,
       clearRender,
+      // Modal
+      // Modal: Value & Display Value
       type: typeProp = 'street',
+      // Combo
+      // Combo: Value & Display Value
       loadCountries,
       loadCountryRegions,
       loadStreets,
       min = '',
+      // Modal
+      // Modal: Status
       maskClosable,
+      // Combo
+      // Combo: Style
       listStyle,
       listClassName,
       itemStyle,
       itemClassName,
+      // Modal
+      // Modal: Style
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+      // Modal: Elements
       portal,
       title,
       okNode,
       cancelNode,
+      // Modal: Status
       cancelVisible,
       searchVisible,
+      // Events
       onChange,
       onBeforeOpen
     },
@@ -60,7 +79,7 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
     const districtType = formatType(typeProp)
 
     const [open, setOpen] = useState(false)
-    const comboRef = useRef<InputSelectComboRef | null>(null)
+    const comboRef = useRef<InputSelectRef | null>(null)
     const modalRef = useRef<Record<string, unknown> | null>(null)
 
     useImperativeHandle(ref, () => {
@@ -88,6 +107,10 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
       setOpen(false)
     }
 
+    const handleInputChange: InputSelectProps['onChange'] = (newValue) => {
+      onChange?.(newValue as CascaderItem[])
+    }
+
     return (
       <>
         <Input.Select
@@ -101,17 +124,17 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
           allowClear={allowClear}
           style={style}
           className={className}
-          formatter={formatter}
+          formatter={formatter as InputSelectProps['formatter']}
           separator={separator}
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
-          onChange={onChange}
+          onChange={handleInputChange}
           onClick={handleOpen}
         />
         <DistrictModal
           ref={modalRef}
-          value={value as CascaderNode[] | null}
+          value={value as CascaderItem[] | null}
           type={districtType}
           loadCountries={loadCountries}
           loadCountryRegions={loadCountryRegions}
@@ -133,7 +156,7 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
           cancelNode={cancelNode}
           cancelVisible={cancelVisible}
           searchVisible={searchVisible}
-          onChange={onChange as (v: CascaderNode[]) => void}
+          onChange={onChange as (v: CascaderItem[]) => void}
           onClose={handleClose}
         />
       </>

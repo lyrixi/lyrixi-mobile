@@ -1,13 +1,15 @@
 import React from 'react'
 
-import type { MapNearbyControlNavigationProps } from '../../../types'
+import type { MapNearbyControlNavigationProps } from './Map.NearbyControl.Navigation.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
+import Icon from '../../../../Icon'
+import Icons from '../../../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil, Icon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
 // 导航
@@ -29,7 +31,7 @@ function Navigation({ type, longitude, latitude, name, address, map }: MapNearby
         } as Record<string, unknown>)
       }
     >
-      <i className="lyrixi-map-navigation-button-icon"></i>
+      <Icon svg={Icons.Navigation} size="s" className="lyrixi-map-navigation-button-icon" />
       <span className="lyrixi-map-navigation-button-text">
         {LocaleUtil.locale('导航', 'lyrixi_056f2d7df6e6b64625c3a2d27ce07b05')}
       </span>

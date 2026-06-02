@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { LocaleUtil, Page, ToolBar } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-import type { HeaderProps, SearchActiveProps, SearchBarProps } from './types'
+import { LocaleUtil, Page, ToolBar, type InputTextProps, type ToolBarSearchActiveProps } from 'lyrixi-mobile'
+
+import type { HeaderProps } from './types'
 import Filter from './Filter'
 
 const locale = LocaleUtil.locale
@@ -42,7 +43,7 @@ const Header = ({ queryParams, onSearch }: HeaderProps) => {
             value: String(queryParams?.keyword ?? ''),
             readOnly: true,
             onClick: handleSearchBarClick
-          } as unknown as SearchBarProps)}
+          } as unknown as InputTextProps)}
         />
         {searchActive && (
           <ToolBar.SearchActive
@@ -54,7 +55,7 @@ const Header = ({ queryParams, onSearch }: HeaderProps) => {
               onSearch: handleSearch,
               onCancel: handleSearchCancel,
               onBlur: handleSearchBlur
-            } as unknown as SearchActiveProps)}
+            } as unknown as ToolBarSearchActiveProps)}
           />
         )}
         {/* 筛选弹窗 */}

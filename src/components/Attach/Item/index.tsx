@@ -1,17 +1,24 @@
 import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
-import type { AttachFileItem, AttachItemProps } from './../types'
+import type { AttachFileItem } from './../types/Attach.common.types'
+import type { AttachItemProps } from './Attach.Item.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Clipboard from './../../../utils/Clipboard'
-import AssetUtil from './../../../utils/AssetUtil'
 import Device from './../../../utils/Device'
 import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
 import Message from './../../Message'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
+import {
+  getAttachFileIconColor,
+  getAttachFileIconSvg,
+  getAttachFileIconType
+} from './getAttachFileIconSvg'
 // 内库使用-end
 
 /* 测试使用-start
@@ -28,7 +35,7 @@ const Item = ({
   item,
   index,
 
-  // Element
+  // Elements
   uploadingRender,
   itemRender,
 
@@ -116,38 +123,7 @@ const Item = ({
   }
 
   // 获取附件类型图标
-  function getIcon(src: string | undefined) {
-    let suffix = typeof src === 'string' ? AssetUtil.getFileExtension(src) : null
-    if (!suffix) return 'unknown'
-    if (suffix.indexOf('?') !== -1) {
-      suffix = suffix.substring(0, suffix.indexOf('?'))
-    }
-    if ('RM,RMVB,MP4,3GP,AVI,MKV,WMV,MPG,VOB,FLV'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'video'
-    }
-    if ('WAVE,MPEG,MP3,MPEG-4,MIDI,WMA,VQF,AMR,APE,FLAC,AAC'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'audio'
-    }
-    if ('JPG,JPEG,WEBP,GIF,PNG,TIF,BMP'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'image'
-    }
-    if ('RAR,ZIP'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'pack'
-    }
-    if ('DOC,DOCX'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'word'
-    }
-    if ('XSL,EXCEL'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'excel'
-    }
-    if ('PPT'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'ppt'
-    }
-    if ('PDF'.indexOf(suffix.toUpperCase()) !== -1) {
-      return 'pdf'
-    }
-    return 'unknown'
-  }
+  const fileIconType = getAttachFileIconType(item.fileUrl)
 
   return (
     <div
@@ -162,13 +138,12 @@ const Item = ({
       }}
     >
       {/* 文件图标 */}
-      <i
-        className={DOMUtil.classNames(
-          'lyrixi-icon',
-          'lyrixi-attach-item-type',
-          `lyrixi-${getIcon(item.fileUrl)}`
-        )}
-      ></i>
+      <Icon
+        svg={getAttachFileIconSvg(fileIconType)}
+        size={fileIconType === 'word' || fileIconType === 'excel' || fileIconType === 'ppt' ? 'm' : 'l'}
+        color={getAttachFileIconColor(fileIconType)}
+        className={DOMUtil.classNames('lyrixi-attach-item-type', `lyrixi-${fileIconType}`)}
+      />
       {/* 文件名称 */}
       <div className="lyrixi-attach-item-main">
         <div className="lyrixi-attach-item-title">{item.fileName || item.fileUrl}</div>
@@ -181,7 +156,9 @@ const Item = ({
 
               onReUpload(item, index)
             }}
-          ></div>
+          >
+            <Icon svg={Icons.Update} size="xs" />
+          </div>
         )}
 
         {/* 删除按钮 */}
@@ -193,7 +170,9 @@ const Item = ({
 
               onDelete(item, index)
             }}
-          ></div>
+          >
+            <Icon svg={Icons.Close} size="xs" />
+          </div>
         )}
 
         {/* 转圈 */}

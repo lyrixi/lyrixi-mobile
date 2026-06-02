@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Input } from 'lyrixi-mobile'
 
-export default () => {
+export default function InputPasswordStrengthDemo() {
   const [value] = useState('abcdefgAbcd$')
   return (
     <>

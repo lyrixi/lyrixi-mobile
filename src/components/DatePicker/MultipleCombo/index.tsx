@@ -1,10 +1,11 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import MultipleModal from './../MultipleModal'
 import getDisplayValue from './getDisplayValue'
+import type { DatePickerMultipleValue } from './../types'
 import type { DatePickerModalRef, DatePickerMultipleComboProps } from './../types'
 
 // 内库使用-start
-import type { InputSelectProps, InputSelectComboRef as InputComboSelectRef } from './../../Input/types'
+import type { InputSelectProps, InputSelectRef as InputComboSelectRef } from './../../Input/types'
 import Input from './../../Input'
 // 内库使用-end
 
@@ -29,7 +30,7 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
     // Combo: Style
     style,
     className,
-    // Combo: Element
+    // Combo: Elements
     leftIconNode,
     rightIconNode,
     clearRender,
@@ -93,6 +94,21 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
     setOpen(false)
   }
 
+  const handleInputChange: InputSelectProps['onChange'] = (v, meta) => {
+    onChange?.(v as DatePickerMultipleValue, meta as { action: string })
+  }
+
+  const handleFormatter: InputSelectProps['formatter'] = (_v, options) => {
+    const display = formatter
+      ? formatter(undefined, options)
+      : getDisplayValue({
+          type: type,
+          value: value,
+          separator: separator
+        })
+    return display ?? ''
+  }
+
   return (
     <>
       <Input.Select
@@ -100,16 +116,7 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
         // Combo: Value & Display Value
         value={value}
         placeholder={placeholder}
-        formatter={
-          formatter ||
-          (() => {
-            return getDisplayValue({
-              type: type,
-              value: value,
-              separator: separator
-            })
-          })
-        }
+        formatter={handleFormatter}
         autoSize={autoSize}
         separator={separator}
         // Combo: Status
@@ -119,12 +126,12 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
         // Combo: Style
         style={style}
         className={className}
-        // Combo: Element
+        // Combo: Elements
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Events
-        onChange={onChange as InputSelectProps['onChange']}
+        onChange={handleInputChange}
         onClick={handleOpen}
       />
       <MultipleModal

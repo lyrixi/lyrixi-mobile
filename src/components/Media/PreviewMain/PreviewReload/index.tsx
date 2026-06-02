@@ -1,5 +1,10 @@
 import React from 'react'
 
+// 内库使用-start
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
+// 内库使用-end
+
 const PreviewReload = ({ onReUpload }: { onReUpload?: () => void }) => {
   return (
     <div
@@ -10,7 +15,7 @@ const PreviewReload = ({ onReUpload }: { onReUpload?: () => void }) => {
       }}
     >
       <div className="lyrixi-media-preview-main-reload-icon">
-        <div className="lyrixi-media-preview-main-reload-icon-error"></div>
+        <Icon svg={Icons.Redo} size="m" color="primary" />
       </div>
     </div>
   )

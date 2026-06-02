@@ -1,9 +1,8 @@
-import React from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, Polygon, coordsToWgs84 } = Map
 
-export default () => {
+export default function MapPolygonDemo() {
   // 多边形示例：至少 3 个点，首尾自动闭合
   const points = coordsToWgs84([
     { latitude: 39.909187, longitude: 116.397451, type: 'gcj02' },

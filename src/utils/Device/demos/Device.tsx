@@ -1,8 +1,6 @@
-import React from 'react'
-
 import { Page, Device, Card } from 'lyrixi-mobile'
 
-export default () => {
+export default function DeviceDemo() {
   return (
     <Page>
       <Page.Main>

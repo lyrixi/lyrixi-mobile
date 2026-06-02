@@ -1,11 +1,12 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 
-import type { ToolBarComboProps, ToolBarComboRef } from './../types'
+import type { ToolBarComboProps, ToolBarComboRef } from './ToolBar.Combo.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Button from './../../Button'
 import type { ButtonRef } from './../../Button/types'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -32,8 +33,12 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     style,
     className,
 
-    // Element
-    arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>,
+    // Elements
+    arrowRender = () => (
+      <Button.Icon
+        svg={Icons.TriangleUpFill}
+      />
+    ),
     children,
 
     // Events
@@ -81,7 +86,11 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
       onClick={onClick}
     >
       {/* 有箭头左右对齐, 没有箭头居中对齐 */}
-      {ArrowNode ? <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span> : children}
+      {ArrowNode ? (
+        <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span>
+      ) : (
+        children
+      )}
       {renderArrow()}
     </Button>
   )

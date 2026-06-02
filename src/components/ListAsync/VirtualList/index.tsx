@@ -4,7 +4,7 @@ import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
 import List from './List'
 
-import type { ListProps, ListRef, RawItem } from './../../List/types'
+import type { ListProps, ListRef, ListItem } from './../../List/types'
 import type { PageMainRef } from './../../Page/types'
 import type { ListAsyncRef, ListAsyncProps } from './../types'
 import type { ListAsyncVirtualListVirtualItem } from './ListAsync.VirtualList.types'
@@ -68,14 +68,14 @@ const VirtualList = (
 
   // 拉平数据children, 并增加virtualData
   const items = useMemo(
-    () => flattenList(list as RawItem[] | undefined) as ListAsyncVirtualListVirtualItem[],
+    () => flattenList(list as ListItem[] | undefined) as ListAsyncVirtualListVirtualItem[],
     [list]
   )
 
   // 计算每一项的高度并缓存
   const itemHeights = useMemo(() => {
     if (Array.isArray(items) && items.length && virtual?.getItemHeight) {
-      return items.map((item) => virtual.getItemHeight(item as RawItem))
+      return items.map((item) => virtual.getItemHeight(item as ListItem))
     }
     return []
     // eslint-disable-next-line

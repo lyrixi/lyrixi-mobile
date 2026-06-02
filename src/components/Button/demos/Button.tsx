@@ -1,12 +1,10 @@
-import React from 'react'
-
-import { Page, Divider, Button, Icon } from 'lyrixi-mobile'
+import { Page, Divider, Button, Icon, Icons } from 'lyrixi-mobile'
 
 const buttonStyle = {
   margin: 'var(--lyrixi-space-m)'
 }
 
-export default () => {
+export default function ButtonDemo() {
   return (
     <Page style={{ backgroundColor: 'white' }}>
       <Page.Main>
@@ -426,10 +424,10 @@ export default () => {
             R
           </Button>
           <Button sizeEqual radius="100%" size="m" borderColor="default" style={buttonStyle}>
-            <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+            <Icon svg={Icons.Barcode} />
           </Button>
           <Button sizeEqual size="l" radius="l" borderColor="default" style={buttonStyle}>
-            <Icon size="xl" className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+            <Icon size="xl" svg={Icons.Barcode} />
           </Button>
           <br />
 

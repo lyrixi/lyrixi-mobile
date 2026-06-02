@@ -3,7 +3,7 @@
   padding: 0 8px;
 
   .lyrixi-list-item {
-    .lyrixi-border-none;
+    .lyrixi-border-none();
   }
 }
 
@@ -13,7 +13,7 @@
   align-items: center;
   padding: 12px 4px;
   gap: 8px;
-  .lyrixi-border-b;
+  .lyrixi-border-b();
 
   // 竖向布局
   &.lyrixi-vertical {
@@ -93,7 +93,7 @@
 
 // 元数据-Image
 .lyrixi-list-item-meta-image {
-  &:extend(.bg-image-default all);
+  &:extend(.lyrixi-bg-image-default all);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +108,7 @@
 
 // 元数据-Avatar
 .lyrixi-list-item-meta-avatar {
-  .lyrixi-bg-avatar-default;
+  .lyrixi-bg-avatar-default();
   width: 40px;
   height: 40px;
   border-radius: 100%;

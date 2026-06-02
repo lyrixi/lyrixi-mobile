@@ -29,19 +29,25 @@ function strLocale(node: string | React.ReactNode): string {
 // 地图选点
 const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose(
   {
+    // Value & Display Value
     value,
     center,
     zoom: zoomProp,
     minZoom,
     maxZoom,
     cacheExpires,
+    // Status
     readOnly,
+    // Value & Display Value
     autoLocation = true,
+    // Status
     nearbyVisible,
+    // Value & Display Value
     getAddress,
     getLocation,
     queryNearby,
     openLocation,
+    // Style
     style,
     className,
     searchControlStyle,
@@ -56,7 +62,9 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     locationControlClassName,
     nearbyControlStyle,
     nearbyControlClassName,
+    // Elements
     children,
+    // Events
     onLoad,
     onChange,
     onMarkerClick,

@@ -1,15 +1,14 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 
-import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar, type ToolBarDropdownRef, type ToolBarFilterRef } from 'lyrixi-mobile'
-
-import type { ToolBarDemoListItem } from './ToolBar.demos.types'
+import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar, type ActionSheetItem, type ToolBarDropdownRef, type ToolBarFilterRef, type ToolBarItem, Icons } from 'lyrixi-mobile'
 
 export default function ToolBarDemo() {
   const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
   const filterRef = useRef<ToolBarFilterRef | null>(null)
   const [, setMainElement] = useState<HTMLElement | null>(null)
   const [dateRange, setDateRange] = useState<(Date | null)[] | null>(null)
-  const [item, setItem] = useState<ToolBarDemoListItem | null>(null)
+  const [item, setItem] = useState<ToolBarItem | null>(null)
+  const [actionSheetItem, setActionSheetItem] = useState<ActionSheetItem | null>(null)
   const [search, setSearch] = useState('')
   const [searchActive, setSearchActive] = useState(false)
   const [filledSearchActive, setFilledSearchActive] = useState(false)
@@ -131,7 +130,7 @@ export default function ToolBarDemo() {
                 left={12}
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
+                onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
                 list={[
                   {
                     disabled: true,
@@ -151,7 +150,7 @@ export default function ToolBarDemo() {
               <ToolBar.List
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
+                onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
                 list={[
                   {
                     disabled: true,
@@ -178,8 +177,8 @@ export default function ToolBarDemo() {
             <ToolBar>
               <ToolBar.ActionSheet
                 placeholder="List"
-                value={item}
-                onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
+                value={actionSheetItem}
+                onChange={(v) => setActionSheetItem(v ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -205,7 +204,7 @@ export default function ToolBarDemo() {
           <Card.Main>
             <ToolBar>
               <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                <Icon svg={Icons.Barcode} />
               </ToolBar.Button>
               <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button>1</ToolBar.Button>
@@ -219,7 +218,7 @@ export default function ToolBarDemo() {
                     zIndex: 99
                   }}
                   value={item}
-                  onChange={(v) => setItem((v as ToolBarDemoListItem) ?? null)}
+                  onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
                   list={[
                     {
                       id: 'desc',
@@ -231,11 +230,11 @@ export default function ToolBarDemo() {
                     }
                   ]}
                 >
-                  <Icon className="lyrixi-iconfont lyrixi-iconfont-three-dots"></Icon>
+                  <Icon svg={Icons.ThreeDots} />
                 </ToolBar.List>
 
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                  <Icon svg={Icons.Barcode} />
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
@@ -262,7 +261,7 @@ export default function ToolBarDemo() {
               <ToolBar.Filter
                 color="primary"
                 sizeEqual
-                icon={<Icon className="lyrixi-iconfont-search" />}
+                icon={<Icon svg={Icons.Search} />}
                 onReset={() => {
                   console.log('reset')
                 }}
@@ -302,7 +301,7 @@ export default function ToolBarDemo() {
               />
               <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                  <Icon svg={Icons.Barcode} />
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
@@ -342,7 +341,7 @@ export default function ToolBarDemo() {
                   />
                   <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                     <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                      <Icon svg={Icons.Barcode} />
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
@@ -384,7 +383,7 @@ export default function ToolBarDemo() {
                   />
                   <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                     <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon className="lyrixi-iconfont lyrixi-iconfont-barcode"></Icon>
+                      <Icon svg={Icons.Barcode} />
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual

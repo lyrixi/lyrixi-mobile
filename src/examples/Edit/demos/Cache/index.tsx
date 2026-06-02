@@ -1,5 +1,6 @@
 // 第三方库导入
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
+
 import {
   Storage,
   LocaleUtil,
@@ -24,18 +25,18 @@ import {
 // 内部组件导入
 import { cacheConfig, queryData, validateData, saveData } from './api'
 import Footer from './Footer'
-import type { EditDemoFormItemExtraParams } from '../Common/types'
 import type {
   EditCacheLoadedForSave,
   EditCacheQueryDataResult,
   EditCacheResultView,
-  EditCacheSaveResult
+  EditCacheSaveResult,
+  EditDemoFormItemExtraParams
 } from './types'
 
 // 样式图片等资源文件导入
 const locale = LocaleUtil.locale
 
-// 表单编辑页面
+// 带缓存的表单编辑示例
 const Edit = () => {
   // 表单
   const [form] = Form.useForm()
@@ -138,7 +139,7 @@ const Edit = () => {
               window.clearTimeout(window.formCacheTimeout)
             }
             window.formCacheTimeout = setTimeout(() => {
-              Storage.setCache(`${cacheConfig.name}:data}`, formData, {
+              Storage.setCache(`${cacheConfig.name}:data`, formData, {
                 persist: cacheConfig.persist
               })
             }, 1000)

@@ -72,11 +72,15 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 头部内容   | `ReactNode` | -      |
+| 属性             | 说明       | 类型                      | 默认值 |
+| ---------------- | ---------- | ------------------------- | ------ |
+| style            | 自定义样式 | `object`                  | -      |
+| className        | 自定义类名 | `string`                  | -      |
+| children         | 头部内容   | `ReactNode`               | -      |
+| onPreviousMonth  | 上一月     | `(e?: MouseEvent) => void` | -    |
+| onNextMonth      | 下一月     | `(e?: MouseEvent) => void` | -    |
+| onPreviousYear   | 上一年     | `(e?: MouseEvent) => void` | -    |
+| onNextYear       | 下一年     | `(e?: MouseEvent) => void` | -    |
 
 #### Ref
 

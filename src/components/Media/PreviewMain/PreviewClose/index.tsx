@@ -1,5 +1,10 @@
 import React from 'react'
 
+// 内库使用-start
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
+// 内库使用-end
+
 const PreviewClose = ({ onClose }: { onClose?: () => void }) => {
   return (
     <div
@@ -8,7 +13,9 @@ const PreviewClose = ({ onClose }: { onClose?: () => void }) => {
         e.stopPropagation()
         onClose?.()
       }}
-    ></div>
+    >
+      <Icon svg={Icons.Close} size="m" color="white" />
+    </div>
   )
 }
 

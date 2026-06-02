@@ -38,14 +38,7 @@ function getStyle({
   const newStyle: CSSProperties = {
     ...(!isColorClass && color ? { color } : {}),
     ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!isSizeClass && resolvedSize
-      ? {
-          width: resolvedSize,
-          height: resolvedSize,
-          fontSize: resolvedSize,
-          lineHeight: resolvedSize
-        }
-      : {}),
+    ...(!isSizeClass && resolvedSize ? { width: resolvedSize, height: resolvedSize } : {}),
     ...(!isRadiusClass && resolvedRadius ? { borderRadius: resolvedRadius } : {}),
     ...style
   }

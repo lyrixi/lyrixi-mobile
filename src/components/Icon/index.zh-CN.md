@@ -1,3 +1,4 @@
+import { Icon, Icons } from 'lyrixi-mobile'
 ---
 group:
   title: 通用
@@ -25,22 +26,37 @@ toc: content
 
 ### 属性
 
-| 属性            | 说明         | 类型                                                                                                 | 默认值 |
-| --------------- | ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
-| disabled        | 是否禁用     | `boolean`                                                                                            | -      |
-| color           | 颜色         | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | -      |
-| backgroundColor | 背景颜色     | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | -      |
-| size            | 尺寸         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | `'m'`  |
-| radius          | 圆角         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | -      |
-| style           | 自定义样式   | `object`                                                                                             | -      |
-| className       | 自定义类名   | `string`                                                                                             | -      |
-| children        | 图标内容     | `ReactNode`                                                                                          | -      |
-| onClick         | 点击事件     | `(e: Event) => void`                                                                                 | -      |
-| onTouchStart    | 触摸开始事件 | `(e: Event) => void`                                                                                 | -      |
+| svg | SVG 图标（SVGR 组件） | `IconSVGElement` | - |
+| disabled | 是否禁用 | `boolean` | - |
+| color | 颜色；SVG 需 currentColor | 主题 token 或自定义 | - |
+| backgroundColor | 背景颜色 | 主题 token 或自定义 | - |
+| size | 尺寸；SVG 模式为容器宽高 | `'xxs' \| 'xs' \| ...` | `'m'` |
+| radius | 圆角 | 尺寸 token | - |
+| style | 自定义样式 | `CSSProperties` | - |
+| className | 附加类名（不用于选字形） | `string` | - |
+| onClick | 点击 | `MouseEventHandler` | - |
+| onTouchStart | 触摸开始 | `TouchEventHandler` | - |
+
+> `svg` 为必填。详见 [ICON-SVG-MIGRATION.zh-CN.md](./ICON-SVG-MIGRATION.zh-CN.md)。
 
 ### Ref
 
-| 属性       | 说明       | 类型                 |
-| ---------- | ---------- | -------------------- |
-| element    | 根元素     | `HtmlIElement`       |
-| getElement | 获取根元素 | () => `HtmlIElement` |
+| 属性 | 说明 | 类型 |
+|------|------|------|
+| element | 根元素 | `HTMLElement \| null`（svg 模式为 span，兼容模式为 i） |
+| getElement | 获取根元素 | () => `HTMLElement \| null` |
+
+### 图标资源
+
+从主包 `Icons` 取用：
+
+通过 `Icon` 传入 `Icons` 上的 SVGR 组件（推荐，可设 size、color 等）：
+
+```tsx
+import { Icon, Icons } from 'lyrixi-mobile'
+
+<Icon svg={Icons.Close} />
+```
+
+源文件位于 `src/icons/`，由 `src/icons/index.ts` 统一导出。
+

@@ -54,4 +54,6 @@ function recognizeItem(item: MediaUploaderDemoOcrItem | null) {
   })
 }
 
-export default { recognizeItem }
+const ocr = { recognizeItem }
+
+export default ocr

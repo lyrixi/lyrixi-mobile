@@ -9,36 +9,43 @@ import ButtonQuick from './ButtonQuick'
 import type { KeyboardNumberProps, KeyboardNumberRef } from './../types'
 
 // 内库使用-start
+import Icons from '../../../icons'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import SafeArea from './../../SafeArea'
 import Page from '../../Page'
 import type { PageRef } from '../../Page/types'
 import Icon from './../../Icon'
+
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, DOMUtil, SafeArea, Page, Icon } from 'lyrixi-mobile'
+import { LocaleUtil, DOMUtil, SafeArea, Page, Icon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
 const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
   (
     {
-      safeArea = true,
-      portal,
+      // Value & Display Value
       value = '',
-      onChange,
       dot,
       minus,
-      okNode,
+      // Status
+      safeArea = true,
       okVisible,
-      cancelNode,
       cancelVisible,
-      onOk,
-      onCancel,
+      open,
+      // Style
       modalStyle,
       modalClassName,
-      open,
+      // Elements
+      portal,
+      okNode,
+      cancelNode,
+      // Events
+      onChange,
+      onOk,
+      onCancel,
       onOpen,
       onClose
     },
@@ -138,7 +145,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
             <ButtonNumber className="lyrixi-keyboard-empty">{/* 空位 */}</ButtonNumber>
             <ButtonNumber onClick={handleNumber}>0</ButtonNumber>
             <ButtonNumber onClick={handleDelete}>
-              <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
+              <Icon svg={Icons.KeyboardDelete} className="lyrixi-keyboard-icon" />
             </ButtonNumber>
           </>
         )
@@ -150,7 +157,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
             {minus && <ButtonNumber onClick={handleMinus}>-</ButtonNumber>}
             <ButtonNumber onClick={handleNumber}>0</ButtonNumber>
             <ButtonNumber onClick={handleDelete}>
-              <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
+              <Icon svg={Icons.KeyboardDelete} className="lyrixi-keyboard-icon" />
             </ButtonNumber>
           </>
         )
@@ -191,7 +198,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
           {cancelVisible && (
             <ButtonQuick onClick={handleCancel}>
               {!cancelNode ? (
-                <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-arrow-down" />
+                <Icon svg={Icons.ArrowDown} className="lyrixi-keyboard-icon" />
               ) : (
                 cancelNode
               )}
@@ -225,7 +232,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
           <Page.Aside className="lyrixi-flex lyrixi-flex-vertical">
             {isDeleteInMainRef.current === false && (
               <ButtonAction className="lyrixi-delete" onClick={handleDelete}>
-                <Icon className="lyrixi-keyboard-icon lyrixi-iconfont-keyboard-delete" />
+                <Icon svg={Icons.KeyboardDelete} className="lyrixi-keyboard-icon" />
               </ButtonAction>
             )}
 

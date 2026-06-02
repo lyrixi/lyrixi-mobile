@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Checkbox, type CheckboxListItem } from 'lyrixi-mobile'
+import { useRef, useState } from 'react'
 
-export default () => {
+import { Checkbox, type CheckboxItem } from 'lyrixi-mobile'
+
+export default function CheckboxGroupDemo() {
   const checkboxRef = useRef(null)
-  const [list, setList] = useState([
+  const [list] = useState([
     { id: '1', name: '1' },
     { id: '2', name: '2' },
     { id: '3', name: '3' },
@@ -15,7 +16,7 @@ export default () => {
     { id: '9', name: '9' },
     { id: '10', name: '10' }
   ])
-  const [value, setValue] = useState<CheckboxListItem | CheckboxListItem[] | null>(null)
+  const [value, setValue] = useState<CheckboxItem | CheckboxItem[] | null>(null)
 
   return (
     <>

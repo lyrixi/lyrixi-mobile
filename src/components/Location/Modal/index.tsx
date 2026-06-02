@@ -19,22 +19,39 @@ const NavBarModal = Modal.NavBarModal
 const LocationModal = forwardRef<unknown, LocationModalProps>(
   (
     {
+      // Value & Display Value
       value,
-      cacheExpires,
+
+      // Status
       open,
+
+      // Modal
+      // Modal: Status
       maskClosable,
       safeArea,
-      allowClear,
-      multiple,
-      nearbyVisible,
+
+      // Modal: Style
       modalClassName,
       modalStyle,
       maskStyle,
       maskClassName,
+
+      // Modal: Elements
       portal,
+
+      // Main
+      // Main: Value & Display Value
+      cacheExpires,
+      multiple,
       mapConfig,
       getLocation,
       getAddress,
+
+      // Main: Status
+      allowClear,
+      nearbyVisible,
+
+      // Events
       onOk,
       onChange,
       onClose

@@ -1,10 +1,12 @@
-import Card from './Card'
+import _Card from './Card'
 import Header from './Header'
 import Main from './Main'
 
-import type { CardComponents } from './Card.Components.types'
+import type { CardComponents } from './types/Card.modules.types'
 
-;(Card as CardComponents).Header = Header
-;(Card as CardComponents).Main = Main
+const Card = _Card as CardComponents
 
-export default Card as CardComponents
+Card.Header = Header
+Card.Main = Main
+
+export default Card

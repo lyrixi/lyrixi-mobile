@@ -15,9 +15,12 @@ import { LocaleUtil } from 'lyrixi-mobile'
 const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(
   (
     {
+      // Value & Display Value
       autoPlay = false,
+      // Style
       style,
       className,
+      // Elements
       portal,
       children,
       headerRender

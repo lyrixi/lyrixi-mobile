@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { ListAsyncRetryButtonProps } from './ListAsync.components.types'
+import type { ListAsyncRetryButtonProps } from './ListAsync.modules.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'

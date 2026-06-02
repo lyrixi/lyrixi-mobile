@@ -15,13 +15,19 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Menus = forwardRef<TabBarMenusRef, TabBarMenusProps>(
   (
     {
+      // Value & Display Value
       separator,
       value,
       list = [],
+      // Style
       className,
+      // Status
       disabled,
+      // Value & Display Value
       descriptionPosition,
+      // Events
       onChange,
+      // Style
       style
     },
     ref

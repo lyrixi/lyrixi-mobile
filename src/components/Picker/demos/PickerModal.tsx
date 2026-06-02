@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Picker, Page } from 'lyrixi-mobile'
+import { useEffect, useState } from 'react'
 
-import type { PickerDemoRow } from './Picker.demos.types'
+import { Picker, Page, type PickerItem } from 'lyrixi-mobile'
 
-export default () => {
-  const [list, setList] = useState<PickerDemoRow[]>([])
-  const [value, setValue] = useState<unknown>(null)
+export default function PickerModalDemo() {
+  const [list, setList] = useState<PickerItem[]>([])
+  const [value, setValue] = useState<PickerItem[] | null>([
+    { id: '8571532967972181136', name: '0507-打印' }
+  ])
 
   useEffect(() => {
     setTimeout(() => {
@@ -26,7 +27,7 @@ export default () => {
       <Page.Main>
         <Picker.Modal
           open
-          value="8571532967972181136"
+          value={value}
           list={list}
           onChange={(newValue) => {
             console.log('onChange:', newValue)

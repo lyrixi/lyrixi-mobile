@@ -9,7 +9,7 @@ import React, {
 import Modal from './../Modal'
 
 
-import type { LocationComboInputWithText } from '../Location.Combo.Input.types'
+import type { LocationComboInputWithText } from '../types/Location.Combo.Input.types'
 import type { LocationComboProps, LocationComboRef, LocationValue } from '../types'
 
 // 内库使用-start
@@ -20,6 +20,8 @@ import Input from './../../Input'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import type { MapContainerProps, MapPoint } from './../../Map/types'
 import type { InputTextRef } from './../../Input/types'
+import Icon from '../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -40,6 +42,7 @@ const InputComp = Input as LocationComboInputWithText
 const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
   (
     {
+      // Combo: Value & Display Value
       value,
       placeholder,
       type = 'gcj02',
@@ -48,6 +51,12 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
       cacheExpires,
       mapConfig,
       autoSize,
+      errorText = LocaleUtil.locale(
+        '定位失败, 请检查定位权限是否开启',
+        'lyrixi_a96a3989d602067144139bf31bf27121'
+      ),
+      loadingText = LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd'),
+      // Combo: Status
       allowClear,
       disabled = false,
       editable = false,
@@ -56,15 +65,14 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
       chooseVisible = false,
       previewVisible = false,
       clickAction,
+      // Combo: Style
       className,
+      // Modal: Style
       modalClassName,
       modalStyle,
+      // Modal: Elements
       portal = document.getElementById('root') || document.body,
-      errorText = LocaleUtil.locale(
-        '定位失败, 请检查定位权限是否开启',
-        'lyrixi_a96a3989d602067144139bf31bf27121'
-      ),
-      loadingText = LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd'),
+      // Events
       onChange,
       onOpen,
       onClose,
@@ -325,8 +333,10 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
 
       if (locationVisible) {
         rightIconNode.push(
-          <i
+          <Icon
             key="location"
+            svg={Icons.Update}
+            size="s"
             className={DOMUtil.classNames(
               'lyrixi-location-combo-icon',
               'lyrixi-location-combo-icon-location',
@@ -336,7 +346,7 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
               e.stopPropagation()
               handleLocation('clickIcon')
             }}
-          ></i>
+          />
         )
       }
       return rightIconNode

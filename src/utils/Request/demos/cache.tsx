@@ -1,7 +1,6 @@
-import React from 'react'
-import { Request, Toast } from 'lyrixi-mobile'
+import { Request } from 'lyrixi-mobile'
 
-export default () => {
+export default function RequestCacheDemo() {
   async function handleClick() {
     let response = await Request.get(
       'https://lyrixi.github.io/lyrixi-mobile/assets/district/en_US/86.json',

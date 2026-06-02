@@ -19,6 +19,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
   (
     {
+      // Value & Display Value
       points: pointsProp,
       color,
       fillColor,

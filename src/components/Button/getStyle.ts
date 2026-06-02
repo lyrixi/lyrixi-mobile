@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { GetStyleParams } from './types'
+import type { ButtonGetStyleParams } from './getStyle.types'
 
 // 内库使用-start
 import MathUtil from './../../utils/MathUtil'
@@ -24,7 +24,7 @@ export default function getStyle({
   radius,
   style,
   className
-}: GetStyleParams): { style: CSSProperties; className: string } {
+}: ButtonGetStyleParams): { style: CSSProperties; className: string } {
   let fontSizeResolved: string | number | undefined
   if (fontSize !== null && fontSize !== undefined && (typeof fontSize === 'string' || typeof fontSize === 'number')) {
     fontSizeResolved = (MathUtil.variableSize(fontSize, '') as string) || fontSize

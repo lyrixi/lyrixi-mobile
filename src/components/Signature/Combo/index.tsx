@@ -22,7 +22,7 @@ const Combo = (
     maskStyle,
     maskClassName,
 
-    // Element
+    // Elements
     portal,
     color, // 绘画配置: 画笔颜色
     backgroundColor, // 绘画配置: 背景颜色
@@ -58,7 +58,7 @@ const Combo = (
       style={style}
       modalClassName={modalClassName}
       modalStyle={modalStyle}
-      // Element
+      // Elements
       color={color} // 绘画配置: 画笔颜色
       backgroundColor={backgroundColor} // 绘画配置: 背景颜色
       // Events

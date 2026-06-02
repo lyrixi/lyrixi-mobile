@@ -1,12 +1,6 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 
 import Modal from './../Modal'
-import Header from './../Header'
-import Main from './../Main'
-import Footer from './../Footer'
-import Icon from './../Icon'
-import Title from './../Title'
-import Button from './../Button'
 
 import type { MessageComboProps, MessageComboRef } from '../types'
 
@@ -21,49 +15,73 @@ import { DOMUtil } from 'lyrixi-mobile'
 const MessageCombo = forwardRef<MessageComboRef, MessageComboProps>(
   (
     {
-      children,
+      // Events
+      onOpen,
+      onClose,
+      // Modal
+      // Modal: Elements
+      portal,
+      // Modal: Style
+      maskClassName,
+      maskStyle,
+      // Modal: Status
+      maskClosable = true,
+      // Combo
+      // Combo: Elements
       iconRender,
+      // Modal
+      // Modal: Elements
       title,
+      // Combo
+      // Combo: Style
+      titleClassName,
+      titleStyle,
+      // Combo: Value & Display Value
       content,
+      // Combo: Style
+      contentClassName,
+      contentStyle,
+      footerClassName,
+      footerStyle,
+      // Combo: Value & Display Value
+      buttonsLayout = 'horizontal',
       buttons,
-      buttonsLayout = '', // vertical
-
-      // 其它属性
+      // Modal
+      // Modal: Status
+      safeArea = false,
+      // Combo
+      // Combo: Style
       className,
-      style
+      style,
+      // Combo: Elements
+      children
     },
     ref
   ) => {
-    // 控制Modal显隐
     const [open, setOpen] = useState<boolean | null>(null)
 
     const comboRef = useRef<HTMLDivElement>(null)
     const modalRef = useRef(null)
+
+    function handleModalClose() {
+      setOpen(false)
+      onClose?.()
+    }
+
+    function handleModalOpen() {
+      setOpen(true)
+      onOpen?.()
+    }
+
     useImperativeHandle(ref, () => {
       return {
         element: comboRef.current,
         getElement: () => comboRef.current,
         ...((modalRef.current as object | null) ?? {}),
-        close: () => {
-          setOpen(false)
-        },
-        open: () => {
-          setOpen(true)
-        }
+        close: handleModalClose,
+        open: handleModalOpen
       }
     })
-
-    function handleClick() {
-      setOpen(true)
-    }
-
-    // 获取图标节点
-    function renderIcon() {
-      if (typeof iconRender !== 'function') return null
-
-      return <Icon>{iconRender()}</Icon>
-    }
-    const IconNode = renderIcon()
 
     return (
       <>
@@ -71,41 +89,31 @@ const MessageCombo = forwardRef<MessageComboRef, MessageComboProps>(
           ref={comboRef}
           style={style}
           className={DOMUtil.classNames('lyrixi-message-combo', className)}
-          onClick={handleClick}
+          onClick={handleModalOpen}
         >
           {children}
         </div>
-        <Modal open={open ?? false} onClose={() => setOpen(false)}>
-          {(IconNode || title) && (
-            <Header>
-              {IconNode}
-              {title && <Title>{title}</Title>}
-            </Header>
-          )}
-          <Main>{content}</Main>
-          {Array.isArray(buttons) && buttons.length && (
-            <Footer layout={buttonsLayout}>
-              {buttons.map((button, index) => {
-                const { name, style, className, onClick } = button
-                return (
-                  <Button
-                    key={button?.id ?? index}
-                    style={style}
-                    className={className}
-                    onClick={async (e) => {
-                      let newVisible = onClick ? await onClick(e) : undefined
-                      if (typeof newVisible === 'boolean') {
-                        setOpen(!newVisible)
-                      }
-                    }}
-                  >
-                    {name}
-                  </Button>
-                )
-              })}
-            </Footer>
-          )}
-        </Modal>
+        <Modal
+          ref={modalRef}
+          safeArea={safeArea}
+          portal={portal}
+          open={open ?? false}
+          maskClosable={maskClosable}
+          maskClassName={maskClassName}
+          maskStyle={maskStyle}
+          iconRender={iconRender}
+          title={title}
+          titleClassName={titleClassName}
+          titleStyle={titleStyle}
+          content={content}
+          contentClassName={contentClassName}
+          contentStyle={contentStyle}
+          footerClassName={footerClassName}
+          footerStyle={footerStyle}
+          buttonsLayout={buttonsLayout}
+          buttons={buttons}
+          onClose={handleModalClose}
+        />
       </>
     )
   }

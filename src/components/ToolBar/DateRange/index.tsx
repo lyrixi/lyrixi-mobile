@@ -53,7 +53,7 @@ function DateRangeBar({
   modalStyle,
   modalClassName,
 
-  // Element
+  // Elements
   comboRender,
   children,
   arrowRender,
@@ -174,13 +174,13 @@ function DateRangeBar({
       maskClassName={maskClassName}
       modalStyle={modalStyle}
       modalClassName={modalClassName}
-      // Element
+      // Elements
       comboRender={comboRender}
       arrowRender={arrowRender}
       modalRender={() => {
         return (
           <div className="lyrixi-modal-toolbar-daterange">
-            {/* Element: Body */}
+            {/* Elements: Body */}
             <div className="lyrixi-modal-toolbar-daterange-body">
               <DateRange
                 // Value & Display Value
@@ -188,7 +188,7 @@ function DateRangeBar({
                 rangeId={rangeId}
                 // Status
                 allowClear={allowClear}
-                // Element
+                // Elements
                 type={type}
                 min={min}
                 max={max}
@@ -198,7 +198,7 @@ function DateRangeBar({
               />
             </div>
 
-            {/* Element: Footer */}
+            {/* Elements: Footer */}
             <FooterBar>
               <FooterBar.Button block backgroundColor="default" onClick={handleCancel}>
                 {LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c')}

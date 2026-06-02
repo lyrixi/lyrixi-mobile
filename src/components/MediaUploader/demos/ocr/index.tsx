@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import vconsole from 'vconsole'
 import { Page, MediaUploader } from 'lyrixi-mobile'
-import Ocr from './Ocr'
 import Bridge from './../../../../utils/Bridge'
 
 import type { MediaUploaderDemoOcrListItem } from '../MediaUploader.demos.ocr.types'
@@ -9,7 +9,7 @@ import type { MediaUploaderDemoOcrListItem } from '../MediaUploader.demos.ocr.ty
 Bridge.load({})
 
 new vconsole()
-export default () => {
+export default function MediaUploaderOcrDemo() {
   const [list, setList] = useState<MediaUploaderDemoOcrListItem[]>([
     {
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',

@@ -1,7 +1,6 @@
-import React from 'react'
-import { Page, Text, Card, Divider } from 'lyrixi-mobile'
+import { Page, Text, Card } from 'lyrixi-mobile'
 
-export default () => {
+export default function TextDemo() {
   const longText =
     '这是一段很长的文本内容，用来演示省略功能。这是一段很长的文本内容，用来演示省略功能。这是一段很长的文本内容，用来演示省略功能。这是一段很长的文本内容，用来演示省略功能。这是一段很长的文本内容，用来演示省略功能。这是一段很长的文本内容，用来演示省略功能。'
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Divider, Page, Card, Button, Accordion } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Divider, Page, Card, Button, Accordion, Icon, Icons } from 'lyrixi-mobile'
+
+export default function AccordionDemo() {
   const [value, setValue] = useState<number | null>(null)
 
   return (
@@ -147,9 +148,10 @@ export default () => {
                     }}
                     onClick={onClick}
                   >
-                    <i
-                      className="lyrixi-iconfont-star-fill"
-                      style={{ fontSize: '14px', marginRight: '4px' }}
+                    <Icon
+                      svg={Icons.StarFill}
+                      size="s"
+                      style={{ marginRight: '4px', color: '#f90' }}
                     />
                     {open ? 'Hide Content' : 'Show Content'}
                   </div>

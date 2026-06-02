@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { DatePickerRangeSelectorDatesInputTextProps } from './../../DatePicker.RangeSelector.Dates.types'
+import type { DatePickerRangeSelectorDatesInputTextProps } from '../../types/DatePicker.RangeSelector.Dates.types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'

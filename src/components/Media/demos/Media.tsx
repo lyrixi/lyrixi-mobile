@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useRef, type CSSProperties } from 'react'
-import { Toast, Page, Divider, Bridge, Media, type MediaComponentProps, type MediaImperativeRef, type MediaListItem } from 'lyrixi-mobile'
+import { useEffect, useState, useRef, type CSSProperties } from 'react'
+
+import { Page, Divider, Bridge, Media, type MediaProps, type MediaRef, type MediaItem } from 'lyrixi-mobile'
 import HistoryUtil from './../../../utils/HistoryUtil/HistoryUtil'
 // import VConsole from 'vconsole'
 // new VConsole()
 
-export default () => {
-  const imageUploaderRef = useRef<MediaImperativeRef | null>(null)
+export default function MediaDemo() {
+  const imageUploaderRef = useRef<MediaRef | null>(null)
 
-  const [list, setList] = useState<MediaListItem[]>([
+  const [list, setList] = useState<MediaItem[]>([
     {
       id: '1',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=1',
@@ -126,7 +127,7 @@ export default () => {
                 fileType: (localFile as { fileType?: string }).fileType
               }
             ]
-          }) as unknown as MediaComponentProps['onFileChange']}
+          }) as unknown as MediaProps['onFileChange']}
           onChange={(newList) => {
             console.log('修改:', newList)
             setList(newList)

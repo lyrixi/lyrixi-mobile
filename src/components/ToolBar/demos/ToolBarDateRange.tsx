@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, ToolBar } from 'lyrixi-mobile'
 
 export default function ToolBarDateRangeDemo() {

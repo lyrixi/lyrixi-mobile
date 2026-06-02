@@ -3,14 +3,15 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import Button from './../../Button'
-import type { ButtonProps, ButtonRef } from './../../Button/types'
+import type { ButtonRef } from './../../Button/types'
+import type { ToolBarButtonProps } from '../types/ToolBar.Button.types'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, Button, type ButtonProps, type ButtonRef } from 'lyrixi-mobile'
 测试使用-end */
 
-const ToolBarButton = forwardRef<ButtonRef, ButtonProps>(function ToolBarButton(
+const ToolBarButton = forwardRef<ButtonRef, ToolBarButtonProps>(function ToolBarButton(
   {
     // Style
     direction,
@@ -26,7 +27,7 @@ const ToolBarButton = forwardRef<ButtonRef, ButtonProps>(function ToolBarButton(
     style,
     className,
 
-    // Element
+    // Elements
     children,
 
     // Events
@@ -62,7 +63,7 @@ const ToolBarButton = forwardRef<ButtonRef, ButtonProps>(function ToolBarButton(
         // Events
         onClick={onClick}
       >
-        {/* Element: Children */}
+        {/* Elements: Children */}
         {children}
       </Button>
     )

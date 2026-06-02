@@ -8,7 +8,7 @@ import IconRightArrow from './../Icon/RightArrow'
 import IconClear from './../Icon/Clear'
 import Tags from './Tags'
 
-import type { InputSelectComboRef, InputSelectProps, InputTextProps, InputTextRef } from '../types'
+import type { InputSelectProps, InputSelectRef, InputTextProps, InputTextRef } from '../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
@@ -19,7 +19,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // (内部组件, 不对外开放)仅渲染Input, 用于列表相关选择控件的基础组件, 不可单独使用
-const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
+const Combo = forwardRef<InputSelectRef, InputSelectProps>(
   (
     {
       // Value & Display Value
@@ -37,7 +37,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
       style,
       className,
 
-      // Element
+      // Elements
       formatter,
       separator,
       leftIconNode,
@@ -65,7 +65,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
       // eslint-disable-next-line
       formatter = getDisplayValue
     }
-    let displayValue = formatter(value, { separator: separator })
+    let displayValue = formatter(value ?? null, { separator: separator })
 
     // Expose methods
     const comboRef = useRef<InputTextRef | null>(null)
@@ -86,7 +86,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
           }
           return element
         }
-      } as InputSelectComboRef
+      } as InputSelectRef
     })
 
     // 点击文本框
@@ -102,7 +102,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
       onClear
     }: {
       clearable: boolean
-      onClear: (e?: React.MouseEvent | React.TouchEvent) => void
+      onClear: (e?: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => void
     }): React.ReactNode {
       // 只读不显示清空按钮
       if (readOnly || disabled) {
@@ -117,12 +117,12 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
       return ObjectUtil.isEmpty(value) || !allowClear ? (
         <IconRightArrow />
       ) : (
-        <IconClear onClick={onClear as React.MouseEventHandler<HTMLElement>} />
+        <IconClear onClick={onClear} />
       )
     }
 
     // 文本框
-    let InputNode: typeof InputText = InputText
+    let InputNode = InputText
     if (autoSize) {
       InputNode = InputAutoSize
     }
@@ -141,7 +141,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
           // Style
           style={style}
           className={className}
-          // Element
+          // Elements
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}
@@ -166,7 +166,7 @@ const Combo = forwardRef<InputSelectComboRef, InputSelectProps>(
         // Style
         style={style}
         className={className}
-        // Element
+        // Elements
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}

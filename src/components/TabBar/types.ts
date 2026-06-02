@@ -1,5 +1,0 @@
-export * from './TabBar.base.types'
-export * from './TabBar.Group.types'
-export * from './TabBar.Menus.types'
-export * from './TabBar.Slide.types'
-export * from './TabBar.Tabs.types'

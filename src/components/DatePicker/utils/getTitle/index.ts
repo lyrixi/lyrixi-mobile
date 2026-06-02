@@ -1,5 +1,5 @@
 import getTitleByType from './getTitleByType'
-import type { DatePickerUtilsGetTitleMultiTab } from './../../DatePicker.utils.getTitle.types'
+import type { DatePickerUtilsGetTitleMultiTab } from '../../types/DatePicker.utils.getTitle.types'
 import type { DatePickerGetTitleOptions } from './../../types'
 
 // 内库使用-start

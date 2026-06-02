@@ -45,7 +45,7 @@ const Paragraph = ({
       style={style}
       className={DOMUtil.classNames('lyrixi-skeleton-paragraph', divider, className)}
     >
-      {/* Element: Avatar */}
+      {/* Elements: Avatar */}
       {(avatarVisible || avatarClassName || avatarStyle) && (
         <Avatar
           animated={animated}
@@ -54,9 +54,9 @@ const Paragraph = ({
         />
       )}
 
-      {/* Element: Content */}
+      {/* Elements: Content */}
       <div className="lyrixi-skeleton-paragraph-content">
-        {/* Element: Title */}
+        {/* Elements: Title */}
         {(titleVisible || titleClassName || titleStyle) && (
           <Title
             animated={animated}
@@ -65,7 +65,7 @@ const Paragraph = ({
           />
         )}
 
-        {/* Element: Items */}
+        {/* Elements: Items */}
         {Array.from({ length: length ?? 2 }).map((_, index) => {
           const isEven = (index + 1) % 2 === 0
           const currentItemClassName = [itemClassName, isEven ? evenClassName : oddClassName]

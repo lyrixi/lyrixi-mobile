@@ -15,11 +15,15 @@ import DOMUtil from './../../../../utils/DOMUtil'
 const CenterMarker = forwardRef<MapCenterMarkerRef, MapCenterMarkerProps>(
   (
     {
+      // Value & Display Value
       value,
+      // Style
       style,
       className,
+      // Value & Display Value
       map,
       icon,
+      // Events
       onClick,
       onDragStart,
       onDragEnd

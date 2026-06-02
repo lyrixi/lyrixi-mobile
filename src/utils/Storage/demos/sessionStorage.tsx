@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Storage, Page, Button, Input, Card, Divider, Form } from 'lyrixi-mobile'
 
-export default () => {
+export default function SessionStorageDemo() {
   const [key, setKey] = useState('demo-session-key')
   const [value, setValue] = useState('demo-session-value')
   const [result, setResult] = useState('')

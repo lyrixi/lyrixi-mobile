@@ -4,14 +4,17 @@ import React, { forwardRef } from 'react'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import InputSearch from './../../Input/Search'
-import type { InputSearchProps, InputTextRef } from './../../Input/types'
+import type { InputTextRef } from './../../Input/types'
+import type { ToolBarSearchProps } from '../types/ToolBar.Search.types'
+import Icon from '../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
 import { DOMUtil, LocaleUtil, Input } from 'lyrixi-mobile'
 测试使用-end */
 
-const Search = forwardRef<InputTextRef, InputSearchProps>(function Search(props, ref) {
+const Search = forwardRef<InputTextRef, ToolBarSearchProps>(function Search(props, ref) {
   const {
     id,
     name,
@@ -33,14 +36,13 @@ const Search = forwardRef<InputTextRef, InputSearchProps>(function Search(props,
     style,
     className,
 
-    // Element
+    // Elements
     inputRender,
     leftIconNode,
     rightIconNode,
     clearRender,
 
-    // Validate
-    precision, // 小数精度, 只有数值框才生效
+        precision, // 小数精度, 只有数值框才生效
     trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
     max,
     min,
@@ -80,13 +82,16 @@ const Search = forwardRef<InputTextRef, InputSearchProps>(function Search(props,
       // Style
       style={style}
       className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}
-      // Element
+      // Elements
       inputRender={inputRender}
-      leftIconNode={leftIconNode || <i className="lyrixi-toolbar-search-input-left-icon" />}
+      leftIconNode={
+        leftIconNode || (
+          <Icon svg={Icons.Search} size="s" className="lyrixi-toolbar-search-input-left-icon" />
+        )
+      }
       rightIconNode={rightIconNode}
       clearRender={clearRender}
-      // Validate
-      precision={precision}
+            precision={precision}
       trim={trim}
       max={max}
       min={min}

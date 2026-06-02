@@ -1,8 +1,10 @@
-import Row from './Row'
+import _Row from './Row'
 import Col from './Col'
 
-import type { RowComponents } from './Row.Components.types'
+import type { RowComponents } from './types/Row.modules.types'
 
-;(Row as RowComponents).Col = Col
+const Row = _Row as RowComponents
 
-export default Row as RowComponents
+Row.Col = Col
+
+export default Row

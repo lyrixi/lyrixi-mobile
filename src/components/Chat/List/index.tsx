@@ -15,14 +15,17 @@ import { DateUtil } from 'lyrixi-mobile'
 
 const List = (
   {
+    // Value & Display Value
     value,
     list,
     formatViewList,
     formatViewItem,
+    timeSpace = 60000,
+    // Status
     checkable,
     checkboxVariant,
     checkboxPosition,
-    timeSpace = 60000,
+    // Events
     onChange
   }: ChatListProps,
   ref: React.ForwardedRef<ChatListRef>

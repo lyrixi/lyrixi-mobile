@@ -20,7 +20,7 @@ const AccordionGroup = forwardRef<AccordionGroupRef, AccordionGroupProps>(
       style,
       className,
 
-      // Element
+      // Elements
       children,
 
       // Events
@@ -71,7 +71,7 @@ const AccordionGroup = forwardRef<AccordionGroupRef, AccordionGroupProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-accordion-group', className)}
       >
-        {/* Element: Children */}
+        {/* Elements: Children */}
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) return child
           return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {

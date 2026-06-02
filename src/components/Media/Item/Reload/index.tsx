@@ -2,6 +2,11 @@ import React from 'react'
 
 import type { MediaItemReloadProps } from '../../types'
 
+// 内库使用-start
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
+// 内库使用-end
+
 // 失败重传图标
 const Reload = ({
   // Events
@@ -22,7 +27,7 @@ const Reload = ({
       }}
     >
       <div className="lyrixi-media-reload-icon">
-        <div className="lyrixi-media-reload-icon-error"></div>
+        <Icon svg={Icons.Redo} size="s" color="primary" />
       </div>
     </div>
   )

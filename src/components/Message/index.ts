@@ -12,21 +12,19 @@ import Button from './Button'
 import open from './api/open'
 import close from './api/close'
 
-const Message = {
-  Combo,
-  Modal,
+import type { MessageComponents } from './types/Message.modules.types'
 
-  Header,
-  Main,
-  Footer,
+const Message = {} as MessageComponents
 
-  Icon,
-  Title,
-  Button,
-
-  // JS API
-  open,
-  close
-}
+Message.Combo = Combo
+Message.Modal = Modal
+Message.Header = Header
+Message.Main = Main
+Message.Footer = Footer
+Message.Icon = Icon
+Message.Title = Title
+Message.Button = Button
+Message.open = open
+Message.close = close
 
 export default Message

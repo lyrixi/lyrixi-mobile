@@ -6,7 +6,7 @@ import StepHorizontalLeft from './StepHorizontalLeft'
 import StepVerticalCenter from './StepVerticalCenter'
 import StepVerticalLeft from './StepVerticalLeft'
 
-import type { StepsListItem, StepsProps, StepsRef } from './types'
+import type { StepsItem, StepsProps, StepsRef } from './types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -44,7 +44,7 @@ const Steps = forwardRef<StepsRef, StepsProps>(
     })
 
     // 获取每项的状态
-    function getItemStatus(item: StepsListItem, index: number): string {
+    function getItemStatus(item: StepsItem, index: number): string {
       // 没有索引, 也没有id, 则没有选中项
       if (typeof value?.index !== 'number' && !value?.id) return 'wait'
 
@@ -73,7 +73,7 @@ const Steps = forwardRef<StepsRef, StepsProps>(
     }
 
     // 获取Step
-    function renderStep(item: StepsListItem, index: number, params: Record<string, unknown>) {
+    function renderStep(item: StepsItem, index: number, params: Record<string, unknown>) {
       if (direction === 'vertical') {
         if (align === 'center') {
           return <StepVerticalCenter key={index} {...params} />

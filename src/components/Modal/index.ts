@@ -1,23 +1,17 @@
-import Modal from './Modal'
+import _Modal from './Modal'
 import NavBarModal from './NavBarModal'
 import DropdownModal from './DropdownModal'
-
 import FilterModal from './FilterModal'
 
 import getClassNameByAnimation from './api/getClassNameByAnimation'
 
-import type { ModalComponents } from './Modal.Components.types'
+import type { ModalComponents } from './types/Modal.modules.types'
 
-// NavBar
-;(Modal as ModalComponents).NavBarModal = NavBarModal
+const Modal = _Modal as ModalComponents
 
-// Dropdown
-;(Modal as ModalComponents).DropdownModal = DropdownModal
+Modal.NavBarModal = NavBarModal
+Modal.DropdownModal = DropdownModal
+Modal.FilterModal = FilterModal
+Modal.getClassNameByAnimation = getClassNameByAnimation
 
-// Filter
-;(Modal as ModalComponents).FilterModal = FilterModal
-
-// Js Api
-;(Modal as ModalComponents).getClassNameByAnimation = getClassNameByAnimation
-
-export default Modal as ModalComponents
+export default Modal

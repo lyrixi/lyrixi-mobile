@@ -1,12 +1,10 @@
-import React from 'react'
-
-import { Page, Divider, Button } from 'lyrixi-mobile'
+import { Page, Divider, Button, Icons } from 'lyrixi-mobile'
 
 const buttonStyle = {
   margin: 'var(--lyrixi-space-m)'
 }
 
-export default () => {
+export default function ButtonTextDemo() {
   return (
     <Page style={{ backgroundColor: 'white' }}>
       <Page.Main>
@@ -39,17 +37,17 @@ export default () => {
         <Divider>Button.Text 与 Button.Icon 组合</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
           <Button color="white" backgroundColor="primary" borderColor="primary" radius="m" style={buttonStyle}>
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-check"></Button.Icon>
+            <Button.Icon svg={Icons.Ok} />
             <Button.Text>确认</Button.Text>
           </Button>
           <Button color="primary" backgroundColor="transparent" border="solid" radius="m" style={buttonStyle}>
             <Button.Text>删除</Button.Text>
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-close"></Button.Icon>
+            <Button.Icon svg={Icons.Close}></Button.Icon>
           </Button>
           <Button color="default" backgroundColor="white" border="solid" radius="m" style={buttonStyle}>
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon svg={Icons.Search}></Button.Icon>
             <Button.Text>搜索</Button.Text>
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-arrow-right"></Button.Icon>
+            <Button.Icon svg={Icons.ArrowRight}></Button.Icon>
           </Button>
         </div>
 

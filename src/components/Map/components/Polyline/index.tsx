@@ -19,6 +19,7 @@ import { ObjectUtil } from 'lyrixi-mobile'
 const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
   (
     {
+      // Value & Display Value
       points: pointsProp,
       color,
       map

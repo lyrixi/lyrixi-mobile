@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 
 import type { MapContainerAPI, MapChooseValue } from './../../../Map/types'
 
-import type { LocationChooseProps } from '../../types'
+import type { LocationMainChooseProps } from './Location.Main.Choose.types'
 
 // 内库使用-start
 import Map from './../../../Map'
@@ -15,18 +15,25 @@ import { Map } from 'lyrixi-mobile'
 
 const { MapChoose } = Map
 
-const LocationChoose = forwardRef<MapContainerAPI, LocationChooseProps>(function LocationChoose(
+const LocationChoose = forwardRef<MapContainerAPI, LocationMainChooseProps>(function LocationChoose(
   {
+    // Value & Display Value
     value,
     cacheExpires,
+    // Status
     readOnly,
+    // Value & Display Value
     autoLocation,
+    // Status
     nearbyVisible,
+    // Value & Display Value
     mapConfig,
     getLocation,
     getAddress,
+    // Elements
     loadingNode,
     loadingRender,
+    // Events
     onChange,
     onSuccess,
     onError

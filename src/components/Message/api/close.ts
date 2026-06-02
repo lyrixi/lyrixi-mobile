@@ -1,6 +1,6 @@
 import destroy from './destroy'
 
-// Message.close() - 关闭当前打开的Message对话框
+/** 关闭当前 Message.open 打开的对话框（全局仅一个实例） */
 export default function close() {
-  return destroy(null)
+  destroy({ animated: true })
 }

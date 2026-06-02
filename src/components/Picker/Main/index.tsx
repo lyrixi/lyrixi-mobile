@@ -5,7 +5,7 @@ import getIndex from './utils/getIndex'
 
 import Slots from './Slots'
 
-import type { PickerColumnItem, PickerMainProps, PickerMainRef } from '../types'
+import type { PickerItem, PickerMainProps, PickerMainRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -37,7 +37,7 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
   void _allowClear
 
   // 一维数组强制改成二维数组
-  let lists: PickerColumnItem[][] | null = null
+  let lists: PickerItem[][] | null = null
 
   let listCount = 0
 
@@ -46,11 +46,11 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
   const dimensional = dimensionalArray(rawList)
 
   if (dimensional === 2) {
-    listCount = (rawList as PickerColumnItem[][]).length
-    lists = rawList as PickerColumnItem[][]
+    listCount = (rawList as PickerItem[][]).length
+    lists = rawList as PickerItem[][]
   } else if (dimensional === 1) {
     listCount = 1
-    lists = [rawList as PickerColumnItem[]]
+    lists = [rawList as PickerItem[]]
   } else {
     listCount = 0
     lists = null
@@ -61,7 +61,7 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
 
   const slotsRef = useRef<HTMLDivElement | null>(null)
 
-  const valueRef = useRef<PickerColumnItem[] | null>(null)
+  const valueRef = useRef<PickerItem[] | null>(null)
 
   valueRef.current = formatValue(value, { lists, listCount })
 
@@ -102,12 +102,12 @@ const Main = forwardRef<PickerMainRef, PickerMainProps>(function Main(
       style={style}
       className={DOMUtil.classNames('lyrixi-picker-main', className)}
     >
-      {/* Element: Layer */}
+      {/* Elements: Layer */}
       <div className="lyrixi-picker-layer">
         <div className="lyrixi-picker-layer-frame"></div>
       </div>
 
-      {/* Element: Slots */}
+      {/* Elements: Slots */}
       <Slots
         ref={slotsRef}
         // Value & Display Value

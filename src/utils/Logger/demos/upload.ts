@@ -1,6 +1,6 @@
 import { Device, Request, DateUtil } from 'lyrixi-mobile'
 
-import type { LoggerDemoLogUploadPayload } from './../Logger.demos.types'
+import type { LoggerDemoLogUploadPayload } from '../types/Logger.demos.types'
 
 function upload(data: unknown): Promise<boolean> {
   const { date, content } = data as LoggerDemoLogUploadPayload

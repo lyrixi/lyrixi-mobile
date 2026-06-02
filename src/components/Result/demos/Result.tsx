@@ -1,7 +1,6 @@
-import React from 'react'
-import { Page, Result, Button, LocaleUtil } from 'lyrixi-mobile'
+import { Page, Result } from 'lyrixi-mobile'
 
-export default () => {
+export default function ResultDemo() {
   return (
     <Page>
       <Page.Main>

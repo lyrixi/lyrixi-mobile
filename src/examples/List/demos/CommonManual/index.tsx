@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 
 import { Page, type ListAsyncLoadResult, type ListAsyncRef } from 'lyrixi-mobile'
 
@@ -10,8 +10,8 @@ import type { CommonManualQueryDataResult } from './types'
 // 样式图片等资源文件导入
 import './index.less'
 
-// 普通列表
-const Common = () => {
+// 手动加载列表（ListAsync）
+const CommonManual = () => {
   const mainRef = useRef<ListAsyncRef | null>(null)
   const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
@@ -30,7 +30,6 @@ const Common = () => {
       <Main
         ref={mainRef}
         loadData={async ({ previousResult, action }) => {
-          console.log('action:', action)
           const result = (await queryData(queryParams, {
             action: action
           })) as CommonManualQueryDataResult
@@ -47,12 +46,10 @@ const Common = () => {
             list: newList ?? undefined
           } as ListAsyncLoadResult
         }}
-        onChange={() => {
-          console.log('onChange')
-        }}
+        onChange={() => {}}
       />
     </Page>
   )
 }
 
-export default Common
+export default CommonManual

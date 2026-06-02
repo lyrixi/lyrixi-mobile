@@ -25,12 +25,9 @@ import type { ActionSheetItem } from './../../ActionSheet/types'
 import { Toast, LocaleUtil, Media, Loading, ActionSheet } from 'lyrixi-mobile'
 测试使用-end */
 
-import { MediaHandle, MediaItem, MediaUploaderWechatMiniProgramProps } from '../types'
-import type {
-  FileImageCompressOptions,
-  MediaListItem,
-  MediaComponentProps
-} from './../../Media/types'
+import type { MediaHandle, MediaItem } from '../types'
+import type { MediaUploaderWechatMiniProgramProps } from './MediaUploader.WechatMiniProgram.types'
+import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
 
 // 微信小程序拍照上传, 通过前端id，通过接口与小程序通信，轮询接口获取小程序上传的照片
 function WechatMiniProgram(
@@ -68,7 +65,7 @@ function WechatMiniProgram(
     previewMaskStyle,
     previewMaskClassName,
 
-    // Element
+    // Elements
     uploadRender,
     uploadingRender,
     itemRender,
@@ -337,19 +334,19 @@ function WechatMiniProgram(
     uploadingRender == null
       ? undefined
       : typeof uploadingRender === 'function'
-        ? (uploadingRender as (ctx: MediaListItem & { uploadingType: string }) => ReactNode)
-        : (ctx: MediaListItem & { uploadingType: string }) => uploadingRender
+        ? (uploadingRender as (ctx: MediaItem & { uploadingType: string }) => ReactNode)
+        : (ctx: MediaItem & { uploadingType: string }) => uploadingRender
 
 
   const itemRenderFn =
     itemRender == null
       ? undefined
       : typeof itemRender === 'function'
-        ? (itemRender as (item: MediaListItem) => ReactNode)
-        : (_item: MediaListItem) => itemRender as ReactNode
+        ? (itemRender as (item: MediaItem) => ReactNode)
+        : (_item: MediaItem) => itemRender as ReactNode
 
 
-  const onBeforeChooseForMedia: MediaComponentProps['onBeforeChoose'] =
+  const onBeforeChooseForMedia: MediaProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'
       ? (e) => {
           void e
@@ -388,7 +385,7 @@ function WechatMiniProgram(
         previewModalClassName={previewModalClassName}
         previewMaskStyle={previewMaskStyle}
         previewMaskClassName={previewMaskClassName}
-        // Element
+        // Elements
         uploadRender={uploadRenderFn}
         uploadingRender={uploadingRenderFn}
         itemRender={itemRenderFn}
@@ -414,11 +411,15 @@ function WechatMiniProgram(
         list={[
           {
             id: 'camera',
-            name: LocaleUtil.locale('拍照', 'lyrixi_bed9ec1e84486baa0422c80414edd31a')
+            name: String(
+              LocaleUtil.locale('拍照', 'lyrixi_bed9ec1e84486baa0422c80414edd31a')
+            )
           },
           {
             id: 'album',
-            name: LocaleUtil.locale('从相册选择', 'lyrixi_83c39abd16cd6a770fc1c3c326aabbdd')
+            name: String(
+              LocaleUtil.locale('从相册选择', 'lyrixi_83c39abd16cd6a770fc1c3c326aabbdd')
+            )
           }
         ]}
         onChange={(item: ActionSheetItem | null) => {

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from 'react'
+
 import { Page, Selector, Divider, type SelectorItem } from 'lyrixi-mobile'
 
-export default () => {
+export default function SelectorDemo() {
   const [value, setValue] = useState<SelectorItem[]>([
     {
       id: "1",

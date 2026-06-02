@@ -23,7 +23,7 @@ import LocaleUtil from './../../utils/LocaleUtil'
 import { DOMUtil, LocaleUtil, Device, Toast } from 'lyrixi-mobile'
 测试使用-end */
 
-import { MediaUploaderProps, MediaHandle } from './types'
+import type { MediaHandle, MediaUploaderProps } from './types'
 
 // 照片上传
 function MediaUploader(
@@ -63,7 +63,7 @@ function MediaUploader(
     previewMaskStyle,
     previewMaskClassName,
 
-    // Element
+    // Elements
     uploadRender,
     uploadingRender,
     itemRender,
@@ -155,7 +155,7 @@ function MediaUploader(
     previewModalClassName,
     previewMaskStyle,
     previewMaskClassName,
-    // Element
+    // Elements
     uploadRender,
     uploadingRender,
     itemRender,

@@ -14,10 +14,12 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Footer = forwardRef<MessageFooterRef, MessageFooterProps>(
   (
     {
+      // Value & Display Value
       layout = 'horizontal',
+      // Elements
       children,
-      // 其它属性
-      className,
+            // Style
+            className,
       style
     },
     ref

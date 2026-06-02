@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Page, Divider, Steps, Card, List, Button } from 'lyrixi-mobile'
 
 const list = [
@@ -48,7 +46,7 @@ const list = [
   }
 ]
 
-export default () => {
+export default function TimelineDemo() {
   return (
     <Page>
       <Page.Main>

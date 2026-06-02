@@ -13,10 +13,13 @@ import { DOMUtil } from 'lyrixi-mobile'
 
 // 印章控件
 const Stamp = forwardRef<StampRef, StampProps>(({
+      // Value & Display Value
   shape = 'round', // 类型: round, rect
+  color, // 颜色
+      // Style
   style,
   className,
-  color, // 颜色
+      // Elements
   children,
 }, ref) => {
   const rootRef = useRef<HTMLDivElement>(null)

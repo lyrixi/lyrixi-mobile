@@ -1,8 +1,7 @@
-import React from 'react'
-import { Logger, Page, Button, Input, Card, Divider, Form } from 'lyrixi-mobile'
+import { Logger, Page, Button, Card, Divider } from 'lyrixi-mobile'
 import upload from './upload'
 
-export default () => {
+export default function LoggerDemo() {
   return (
     <Page>
       <Page.Main>

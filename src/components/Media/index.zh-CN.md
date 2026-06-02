@@ -121,36 +121,43 @@ toc: content
 
 #### 属性
 
-| 属性                   | 说明           | 类型                                | 默认值 |
-| ---------------------- | -------------- | ----------------------------------- | ------ |
-| list                   | 媒体列表       | `Array<object>`                     | -      |
-| index                  | 当前索引       | `number`                            | -      |
-| mediaType              | 媒体类型       | `Array<'image' \| 'video'>`         | -      |
-| open                   | 是否显示       | `boolean`                           | -      |
-| safeArea               | 是否安全区     | `boolean`                           | -      |
-| previewNavBarStyle     | 预览导航栏样式 | `object`                            | -      |
-| previewNavBarClassName | 预览导航栏类名 | `string`                            | -      |
-| modalStyle             | 模态框样式     | `object`                            | -      |
-| modalClassName         | 模态框类名     | `string`                            | -      |
-| maskStyle              | 遮罩样式       | `object`                            | -      |
-| maskClassName          | 遮罩类名       | `string`                            | -      |
-| portal                 | 挂载节点       | `HTMLElement`                       | -      |
-| cancelPosition         | 取消位置       | `string`                            | -      |
-| allowChoose            | 允许选择       | `boolean`                           | -      |
-| allowClear             | 允许清除       | `boolean`                           | -      |
-| onBeforeChoose         | 选择前事件     | `(e: Event) => Promise<boolean>`    | -      |
-| onChoose               | 选择事件       | `(result: object) => void`          | -      |
-| onFileChange           | 文件变化事件   | `(result: object) => void`          | -      |
-| onUpload               | 上传事件       | `(item: object) => Promise<object>` | -      |
-| onChange               | 变化事件       | `(list: Array) => void`             | -      |
-| onClose                | 关闭事件       | `() => void`                        | -      |
+| 属性              | 说明           | 类型                                              | 默认值 |
+| ----------------- | -------------- | ------------------------------------------------- | ------ |
+| list              | 媒体列表       | `MediaItem[]`                                     | -      |
+| index             | 当前索引       | `number`                                          | -      |
+| current           | 当前页索引     | `number`                                          | -      |
+| mediaType         | 媒体类型       | `string \| string[]`                              | -      |
+| maxCount          | 最大数量       | `number`                                          | -      |
+| sourceType        | 来源类型       | `string[]`                                        | -      |
+| sizeType          | 尺寸类型       | `string[]`                                        | -      |
+| fileImageCompress | 图片压缩配置   | `{maxWidth?: number, quality?: number}`           | -      |
+| open              | 是否显示       | `boolean`                                         | -      |
+| allowChoose       | 允许选择       | `boolean`                                         | -      |
+| allowClear        | 允许清除       | `boolean \| ((item: MediaItem) => boolean)`       | -      |
+| mainStyle         | 主区域样式     | `CSSProperties`                                   | -      |
+| mainClassName     | 主区域类名     | `string`                                          | -      |
+| safeArea          | 是否安全区     | `boolean`                                         | -      |
+| navBarStyle       | 导航栏样式     | `CSSProperties`                                   | -      |
+| navBarClassName   | 导航栏类名     | `string`                                          | -      |
+| modalStyle        | 模态框样式     | `CSSProperties`                                   | -      |
+| modalClassName    | 模态框类名     | `string`                                          | -      |
+| maskStyle         | 遮罩样式       | `CSSProperties`                                   | -      |
+| maskClassName     | 遮罩类名       | `string`                                          | -      |
+| portal            | 挂载节点       | `HTMLElement`                                     | -      |
+| cancelPosition    | 取消按钮位置   | `'left' \| 'right'`                               | -      |
+| onBeforeChoose    | 选择前事件     | 同 `Media.onBeforeChoose`                         | -      |
+| onChoose          | 选择事件       | 同 `Media.onChoose`                               | -      |
+| onFileChange      | 文件变化事件   | 同 `Media.onFileChange`                           | -      |
+| onUpload          | 上传事件       | 同 `Media.onUpload`                               | -      |
+| onChange          | 变化事件       | 同 `Media.onChange`                               | -      |
+| onClose           | 关闭事件       | `() => void`                                      | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性            | 说明           | 类型                    |
+| --------------- | -------------- | ----------------------- |
+| mainElement     | 预览主区域实例 | `SwiperRef \| null`     |
+| getMainElement  | 获取主区域实例 | `() => SwiperRef \| null` |
 
 ## Media.PreviewMain
 
@@ -168,20 +175,37 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型                        | 默认值 |
-| --------- | ---------- | --------------------------- | ------ |
-| list      | 媒体列表   | `Array<object>`             | -      |
-| index     | 当前索引   | `number`                    | -      |
-| mediaType | 媒体类型   | `Array<'image' \| 'video'>` | -      |
-| style     | 自定义样式 | `object`                    | -      |
-| className | 自定义类名 | `string`                    | -      |
+| 属性              | 说明           | 类型                                              | 默认值 |
+| ----------------- | -------------- | ------------------------------------------------- | ------ |
+| list              | 媒体列表       | `MediaItem[]`                                     | -      |
+| index             | 当前索引       | `number`                                          | -      |
+| mediaType         | 媒体类型       | `string \| string[]`                              | -      |
+| sourceType        | 来源类型       | `string[]`                                        | -      |
+| sizeType          | 尺寸类型       | `string[]`                                        | -      |
+| maxCount          | 最大数量       | `number`                                          | -      |
+| fileImageCompress | 图片压缩配置   | `{maxWidth?: number, quality?: number}`           | -      |
+| open              | 是否显示       | `boolean`                                         | -      |
+| closable          | 是否可关闭     | `boolean`                                         | -      |
+| allowChoose       | 允许选择       | `boolean`                                         | -      |
+| allowClear        | 允许清除       | `boolean \| ((item: MediaItem) => boolean)`       | -      |
+| async             | 是否异步上传   | `boolean`                                         | -      |
+| reUpload          | 支持重新上传   | `boolean`                                         | -      |
+| className         | 自定义类名     | `string`                                          | -      |
+| style             | 自定义样式     | `CSSProperties`                                   | -      |
+| safeArea          | 是否安全区     | `boolean`                                         | -      |
+| onBeforeChoose    | 选择前事件     | 同 `Media.onBeforeChoose`                         | -      |
+| onChoose          | 选择事件       | 同 `Media.onChoose`                               | -      |
+| onFileChange      | 文件变化事件   | 同 `Media.onFileChange`                           | -      |
+| onUpload          | 上传事件       | 同 `Media.onUpload`                               | -      |
+| onChange          | 变化事件       | 同 `Media.onChange`                               | -      |
+| onClose           | 关闭事件       | `() => void`                                      | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性            | 说明           | 类型                    |
+| --------------- | -------------- | ----------------------- |
+| mainElement     | 预览主区域实例 | `SwiperRef \| null`     |
+| getMainElement  | 获取主区域实例 | `() => SwiperRef \| null` |
 
 ## Media.Mark
 
@@ -199,15 +223,8 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 标记内容   | `ReactNode` | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| labels    | 标记文案列表 | `ReactNode[]` | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |

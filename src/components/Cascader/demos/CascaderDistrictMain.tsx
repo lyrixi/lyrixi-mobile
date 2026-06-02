@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { Page, Cascader, type CascaderNode } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
-  const [value, setValue] = useState<CascaderNode[] | null>(null)
+import { Page, Cascader, type CascaderItem } from 'lyrixi-mobile'
+
+export default function CascaderDistrictMainDemo() {
+  const [value, setValue] = useState<CascaderItem[] | null>(null)
 
   return (
     <Page>

@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, NavBar } from 'lyrixi-mobile'
 
-export default () => {
+export default function NavBarTitleDemo() {
   return (
     <Page>
       <Page.Main>

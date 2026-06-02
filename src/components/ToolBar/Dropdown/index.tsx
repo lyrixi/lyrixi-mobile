@@ -9,12 +9,15 @@ import React, {
 import closeAllDropdown from './../utils/closeAllDropdown'
 import Combo from './../components/Combo'
 
-import type { ToolBarComboRef, ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
+import type { ToolBarComboRef } from './../components/ToolBar.Combo.types'
+import type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import DropdownModal from './../../Modal/DropdownModal'
+import Button from '../../Button'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -38,10 +41,14 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     style,
     className,
 
-    // Combo: Element
+    // Combo: Elements
     children,
     comboRender,
-    arrowRender = () => <i className="lyrixi-button-icon lyrixi-toolbar-dropdown-combo-arrow"></i>,
+    arrowRender = () => (
+      <Button.Icon
+        svg={Icons.TriangleUpFill}
+      />
+    ),
 
     // Modal: Style
     modalStyle,
@@ -54,7 +61,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     left,
     right,
 
-    // Modal: Element
+    // Modal: Elements
     portal,
     modalRender,
 
@@ -187,7 +194,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
         maskClassName={DOMUtil.classNames('lyrixi-mask-toolbar-dropdown', maskClassName)}
         modalStyle={modalStyle}
         modalClassName={DOMUtil.classNames('lyrixi-modal-toolbar-dropdown', modalClassName)}
-        // Element
+        // Elements
         portal={portal}
         offset={offset}
         left={left}

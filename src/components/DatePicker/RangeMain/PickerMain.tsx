@@ -1,11 +1,10 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import MultipleMain from './../MultipleMain'
-import type { DatePickerRangeMainPickerTab } from './../DatePicker.RangeMain.PickerMain.types'
 import type {
-  DatePickerMultipleValue,
-  DatePickerMultipleTab,
-  DatePickerRangePickerMainProps
-} from './../types'
+  DatePickerRangeMainPickerMainProps,
+  DatePickerRangeMainPickerTab
+} from './DatePicker.RangeMain.PickerMain.types'
+import type { DatePickerMultipleValue, DatePickerMultipleItem } from './../types'
 
 // 内库使用-start
 import LocaleUtil from '../../../utils/LocaleUtil'
@@ -16,7 +15,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 日期区间弹窗
-const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePickerMainProps>(
+const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangeMainPickerMainProps>(
   function DatePickerRangePickerMain(
     {
       // Modal: Status
@@ -61,7 +60,7 @@ const PickerMain = forwardRef<Record<string, unknown> | null, DatePickerRangePic
         mainElement: mainRef.current,
         getMainElement: () => mainRef.current,
         getValue: () => {
-          const m = mainRef.current as { getValue?: () => DatePickerMultipleTab[] | null } | null
+          const m = mainRef.current as { getValue?: () => DatePickerMultipleItem[] | null } | null
           const multipleValue = m?.getValue?.()
           if (!multipleValue) {
             return null

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Page, Card, Divider, Input } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Page, Card, Divider, Input, Icon, Icons } from 'lyrixi-mobile'
+
+export default function InputRateDemo() {
   const [value, setValue] = useState(3)
   return (
     <Page>
@@ -48,7 +49,7 @@ export default () => {
           <Divider>Icon</Divider>
           <Input.Rate
             style={{ margin: '0 12px' }}
-            iconRender={() => <i className="lyrixi-icon lyrixi-iconfont-circle-question" />}
+            iconRender={() => <Icon svg={Icons.CircleQuestion} size="l" color="info" />}
             value={value}
             onChange={setValue}
           />

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Page, Card, Icon, Checkbox, Flex } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Page, Card, Icon, Checkbox, Flex, Icons } from 'lyrixi-mobile'
+
+export default function CheckboxDemo() {
   const [value, setValue] = useState(false)
 
   return (
@@ -48,8 +49,8 @@ export default () => {
               checked={value}
               onChange={setValue}
               iconRender={({ checked }) => {
-                if (!checked) return <Icon />
-                return <Icon color="primary" className="lyrixi-iconfont-ok" />
+                if (!checked) return <Icon svg={Icons.Ok} className="lyrixi-opacity-0" />
+                return <Icon color="primary" svg={Icons.Ok} />
               }}
             >
               Custom

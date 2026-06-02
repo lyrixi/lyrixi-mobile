@@ -1,5 +1,5 @@
 // 第三方库导入
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 // 内部组件导入
 import type { CardContentProps } from './types'

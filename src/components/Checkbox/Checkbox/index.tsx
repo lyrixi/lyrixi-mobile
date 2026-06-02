@@ -15,15 +15,21 @@ import { DOMUtil } from 'lyrixi-mobile'
 const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(
   (
     {
+      // Status
       checked,
       readOnly,
       disabled,
+      // Value & Display Value
       variant,
+      // Style
       style,
       className,
+      // Elements
       children,
       iconRender,
+      // Value & Display Value
       iconPosition = 'left',
+      // Events
       onChange
     },
     ref

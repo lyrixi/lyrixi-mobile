@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, Calendar, DateUtil } from 'lyrixi-mobile'
 
-export default () => {
+export default function CalendarHeaderDemo() {
   const [value, setValue] = useState<Date | null>(null)
 
   return (

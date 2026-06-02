@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
 
-
 import type { IconRef } from './../Icon/types'
 
 import type { ButtonIconProps } from './types'
@@ -15,21 +14,23 @@ import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 const ButtonIcon = forwardRef<IconRef, ButtonIconProps>(function ButtonIcon(
-  { color, backgroundColor, size = 'm', radius, style, className, children },
+  { svg, color, backgroundColor, size = 'm', radius, style, className },
   ref
 ) {
   return (
     <Icon
       ref={ref}
+      svg={svg}
       color={color}
       backgroundColor={backgroundColor}
       size={size}
       radius={radius}
       style={style}
-      className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-button-icon', className)}
-    >
-      {children}
-    </Icon>
+      className={(DOMUtil.classNames as (...args: unknown[]) => string)(
+        'lyrixi-button-icon',
+        className
+      )}
+    />
   )
 })
 

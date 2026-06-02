@@ -1,20 +1,11 @@
-import React, { useState } from 'react'
-import { Page, Divider, TabBar } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-import type { TabBarDemoMenusItemArg } from './TabBar.demos.types'
+import { Page, Divider, TabBar, Icon, Icons, type TabBarItem } from 'lyrixi-mobile'
 
-export default () => {
-  const list = [
-    {
-      id: 'Fruit',
-      name: 'Fruit'
-    },
-    { id: 'Vegetable', name: 'Vegetable' },
-    { id: 'Animal', name: 'Animal' }
-  ]
-  const [value, setValue] = useState<TabBarDemoMenusItemArg>({ name: 'Vegetable', id: 'Vegetable' })
+export default function TabBarMenusDemo() {
+  const [value, setValue] = useState<TabBarItem>({ name: 'Vegetable', id: 'Vegetable' })
 
-  function handleChange(next: TabBarDemoMenusItemArg) {
+  function handleChange(next: TabBarItem) {
     setValue(next)
   }
   return (
@@ -103,17 +94,17 @@ export default () => {
         <TabBar.Tabs
           list={[
             {
-              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
               id: 'Fruit',
               name: 'Fruit'
             },
             {
-              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
               id: 'Vegetable',
               name: 'Vegetable'
             },
             {
-              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
               id: 'Animal',
               name: 'Animal'
             }
@@ -129,21 +120,21 @@ export default () => {
         <TabBar.Tabs
           list={[
             {
-              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <i className="lyrixi-iconfont-file-text"></i>,
+              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
               id: 'Animal',
               name: 'Animal',
               description: 'description',

@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
+
 import { Toast, Page, Divider, Bridge, Button, Attach } from 'lyrixi-mobile'
 import type { AttachListItem, AttachRef } from 'lyrixi-mobile'
 
-export default () => {
+export default function AttachDemo() {
   const uploadRef = useRef<AttachRef | null>(null)
   const [list, setList] = useState<AttachListItem[]>([
     {

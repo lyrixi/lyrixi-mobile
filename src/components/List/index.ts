@@ -1,12 +1,14 @@
+import _List from './List'
 import InfiniteScroll from './InfiniteScroll'
 import HeaderItem from './HeaderItem'
 import Item from './Item'
-import List from './List'
 
-import type { ListComponents } from './List.Components.types'
+import type { ListComponents } from './types/List.modules.types'
 
-;(List as ListComponents).HeaderItem = HeaderItem
-;(List as ListComponents).InfiniteScroll = InfiniteScroll
-;(List as ListComponents).Item = Item
+const List = _List as ListComponents
 
-export default List as ListComponents
+List.HeaderItem = HeaderItem
+List.InfiniteScroll = InfiniteScroll
+List.Item = Item
+
+export default List

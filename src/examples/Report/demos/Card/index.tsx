@@ -1,5 +1,6 @@
 // 第三方库导入
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import { Device, Bridge, Result, LocaleUtil } from 'lyrixi-mobile'
 
 // 公共组件导入

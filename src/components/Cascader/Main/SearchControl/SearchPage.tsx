@@ -4,7 +4,7 @@ import type {
   CascaderMainSearchPageProps,
   CascaderMainSearchPageSearchActiveBarProps,
   CascaderMainSearchPageSearchResult,
-  CascaderNode
+  CascaderItem
 } from './../../types'
 // 内库使用-start
 import ArrayUtil from './../../../../utils/ArrayUtil'
@@ -44,7 +44,7 @@ const SearchPage = ({
     const currentList =
       newKeyword && newKeyword.trim()
         ? ArrayUtil.getDeepTreeNodes(externalList as never, (node) => {
-            return String((node as CascaderNode).name).includes(newKeyword)
+            return String((node as CascaderItem).name).includes(newKeyword)
           })
         : []
 
@@ -57,9 +57,9 @@ const SearchPage = ({
           const path = (
             ArrayUtil.getDeepTreePredecessorNodes(
               externalList as never,
-              (node as CascaderNode).id
-            ) as CascaderNode[]
-          ).concat(node as CascaderNode)
+              (node as CascaderItem).id
+            ) as CascaderItem[]
+          ).concat(node as CascaderItem)
           return {
             ...restNode,
             path
@@ -88,7 +88,7 @@ const SearchPage = ({
           list={result.list.map((node) => {
             const pathName = (node.path ?? [])
               .map((option) => {
-                return (option as CascaderNode).name
+                return (option as CascaderItem).name
               })
               .join('/')
             return {
@@ -100,9 +100,9 @@ const SearchPage = ({
             if (
               item !== null &&
               !Array.isArray(item) &&
-              Array.isArray((item as { path?: CascaderNode[] }).path)
+              Array.isArray((item as { path?: CascaderItem[] }).path)
             ) {
-              onChange?.((item as { path: CascaderNode[] }).path)
+              onChange?.((item as { path: CascaderItem[] }).path)
             }
           }}
         />

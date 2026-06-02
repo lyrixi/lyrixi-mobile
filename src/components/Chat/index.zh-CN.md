@@ -64,21 +64,24 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明       | 类型                           | 默认值 |
-| --------------- | ---------- | ------------------------------ | ------ |
-| className       | 自定义类名 | `string`                       | -      |
-| item            | 项数据     | `object`                       | -      |
-| checked         | 是否选中   | `boolean`                      | -      |
-| checkable       | 是否可选   | `boolean`                      | -      |
-| checkboxVariant | 复选框渲染 | `(item: object) => ReactNode`  | -      |
-| position        | 位置       | `'left' \| 'right'`            | -      |
-| avatarUrl       | 头像地址   | `string`                       | -      |
-| avatarRender    | 头像渲染   | `(props: object) => ReactNode` | -      |
-| avatarNode      | 头像节点   | `ReactNode`                    | -      |
-| authorRender    | 作者渲染   | `(props: object) => ReactNode` | -      |
-| authorNode      | 作者节点   | `ReactNode`                    | -      |
-| content         | 内容       | `ReactNode`                    | -      |
-| style           | 自定义样式 | `object`                       | -      |
+| 属性             | 说明           | 类型                                                         | 默认值 |
+| ---------------- | -------------- | ------------------------------------------------------------ | ------ |
+| id               | 消息唯一标识   | `string \| number`                                           | -      |
+| _raw             | 原始消息数据   | `Record<string, unknown>`                                    | -      |
+| checked          | 是否选中       | `boolean`                                                    | -      |
+| checkable        | 是否可选       | `boolean`                                                    | -      |
+| className        | 自定义类名     | `string`                                                     | -      |
+| position         | 气泡位置       | `string`                                                     | -      |
+| style            | 自定义样式     | `CSSProperties`                                              | -      |
+| checkboxVariant  | 复选框样式变体 | `string`                                                     | -      |
+| checkboxPosition | 复选框位置     | `string`                                                     | -      |
+| avatarUrl        | 头像地址       | `string`                                                     | -      |
+| avatarRender     | 头像渲染       | `(ctx: {checked?: boolean, ...}) => ReactNode`               | -      |
+| avatarNode       | 头像节点       | `ReactNode`                                                  | -      |
+| authorRender     | 作者渲染       | `(ctx: {checked?: boolean, ...}) => ReactNode`               | -      |
+| authorNode       | 作者节点       | `ReactNode`                                                  | -      |
+| content          | 消息内容       | `ReactNode`                                                  | -      |
+| onChange         | 选中变化事件   | `(checked: boolean) => void`                                 | -      |
 
 #### Ref
 

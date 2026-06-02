@@ -1,10 +1,12 @@
 import React, { type ChangeEvent, type MouseEvent } from 'react'
 import Uploading from './../Uploading'
 
-import type { MediaChooseProps, MediaListItem } from '../types'
+import type { MediaChooseProps, MediaItem } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from '../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 // 上传按钮
@@ -16,7 +18,7 @@ const Choose = ({
   // Style
   className,
 
-  // Element
+  // Elements
   uploadRender,
 
   uploadingRender,
@@ -72,7 +74,7 @@ const Choose = ({
   if (!onChoose && !onFileChange) return null
 
   const cameraOnly = sourceType.length === 1 && sourceType[0] === 'camera'
-  const itemStub: MediaListItem = {}
+  const itemStub: MediaItem = {}
 
   return (
     <div
@@ -83,12 +85,11 @@ const Choose = ({
       onClick={handleUploadClick}
     >
       {/* 拍照或者视频图标 */}
-      <div
-        className={DOMUtil.classNames(
-          'lyrixi-media-choose-icon',
-          mediaType?.includes?.('video') ? 'lyrixi-video' : null
-        )}
-      ></div>
+      <Icon
+        svg={mediaType?.includes?.('video') ? Icons.VideoFill : Icons.Plus}
+        size={mediaType?.includes?.('video') ? 'l' : 'm'}
+        className="lyrixi-media-choose-icon"
+      />
       {/* 启用file框 */}
       {onFileChange && (
         <input

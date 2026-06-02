@@ -1,6 +1,9 @@
+import _Accordion from './Accordion'
 import AccordionGroup from './AccordionGroup'
-import Accordion from './Accordion'
 
-const AccordionWithGroup = Object.assign(Accordion, { Group: AccordionGroup })
+import type { AccordionComponents } from './types/Accordion.modules.types'
 
-export default AccordionWithGroup
+const Accordion = _Accordion as AccordionComponents
+Accordion.Group = AccordionGroup
+
+export default Accordion

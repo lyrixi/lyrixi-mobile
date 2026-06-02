@@ -13,6 +13,7 @@ import { Flex } from 'lyrixi-mobile'
 
 const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
   {
+      // Value & Display Value
     id,
     direction = 'horizontal',
     block,
@@ -24,10 +25,14 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
     sizeEqual,
     fontSize,
     radius,
+      // Status
+    disabled,
+      // Style
     style,
     className,
-    disabled,
+      // Elements
     children,
+      // Events
     onClick
   },
   ref

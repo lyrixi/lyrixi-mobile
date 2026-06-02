@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
+
 import {
   Page,
   Map,
@@ -85,7 +86,7 @@ const points = coordsToWgs84(
 //   }
 // ])
 
-export default () => {
+export default function PageMapMarkersDemo() {
   const mapRef = useRef<MapMapMarkersHandle | null>(null)
 
   function handleFocusPoint() {

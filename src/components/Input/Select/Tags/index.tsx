@@ -33,7 +33,7 @@ const Tags = ({
       readOnly={readOnly}
       style={style}
       onClick={onAdd}
-      value={typeof value === 'string' ? value : undefined}
+      value={value}
       onChange={onChange as InputNodeProps['onChange']}
       allowClear={allowClear}
       clearRender={clearRender}

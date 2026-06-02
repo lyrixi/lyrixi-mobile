@@ -2,11 +2,16 @@ import React from 'react'
 
 import type { TransferItemProps } from './../types'
 
+// 内库使用-start
+import Icon from '../../Icon'
+import Icons from '../../../icons'
+// 内库使用-end
+
 // 单项
 const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
   return (
     <div className="lyrixi-transfer-item">
-      {/* Element: Operate */}
+      {/* Elements: Operate */}
       <div
         className="lyrixi-transfer-item-operate"
         onClick={() => {
@@ -15,19 +20,27 @@ const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
         }}
       >
         {onAdd ? (
-          <i className="lyrixi-transfer-item-operate-icon lyrixi-add" />
+          <Icon
+            svg={Icons.CirclePlus}
+            size="m"
+            className="lyrixi-transfer-item-operate-icon lyrixi-add"
+          />
         ) : (
-          <i className="lyrixi-transfer-item-operate-icon lyrixi-delete" />
+          <Icon
+            svg={Icons.CircleMinus}
+            size="m"
+            className="lyrixi-transfer-item-operate-icon lyrixi-delete"
+          />
         )}
       </div>
 
-      {/* Element: Content */}
+      {/* Elements: Content */}
       <div className="lyrixi-transfer-item-content">{children}</div>
 
-      {/* Element: Drop Handle */}
+      {/* Elements: Drop Handle */}
       {sortable ? (
         <div className="lyrixi-transfer-item-drop">
-          <i className="lyrixi-transfer-item-drop-icon" />
+          <Icon svg={Icons.TransferDrop} size="m" className="lyrixi-transfer-item-drop-icon" />
         </div>
       ) : null}
     </div>

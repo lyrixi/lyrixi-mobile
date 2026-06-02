@@ -7,6 +7,8 @@ import type { SignatureComboAddProps, SignatureComboAddRef, SignatureModalRef } 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import DOMUtil from './../../../../utils/DOMUtil'
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -25,7 +27,7 @@ const Combo = (
     modalClassName,
     modalStyle,
 
-    // Element
+    // Elements
     color, // 绘画配置: 画笔颜色
     backgroundColor, // 绘画配置: 背景颜色
 
@@ -60,7 +62,7 @@ const Combo = (
   // 未签显示签名
   return (
     <>
-      {/* Element: Combo Button */}
+      {/* Elements: Combo Button */}
       <div
         ref={comboRef}
         // Style
@@ -69,16 +71,16 @@ const Combo = (
         // Events
         onClick={handleSign}
       >
-        {/* Element: Icon */}
-        <i className="lyrixi-signature-button-icon-add"></i>
+        {/* Elements: Icon */}
+        <Icon svg={Icons.Signature} size="l" className="lyrixi-signature-button-icon-add" />
 
-        {/* Element: Label */}
+        {/* Elements: Label */}
         <div className="lyrixi-signature-button-label">
           {LocaleUtil.locale('签名', 'lyrixi_be2525ebade48dee835e25c04f130725')}
         </div>
       </div>
 
-      {/* Element: Modal */}
+      {/* Elements: Modal */}
       <Modal
         ref={modalRef}
         // Status
@@ -88,7 +90,7 @@ const Combo = (
         modalStyle={modalStyle}
         // Value & Display Value
         value={value}
-        // Element
+        // Elements
         color={color} // 绘画配置: 画笔颜色
         backgroundColor={backgroundColor} // 绘画配置: 背景颜色
         // Events

@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
-import { Icon, Button, Float, Page, Divider, Storage, ActionSheet } from 'lyrixi-mobile'
+import { useEffect } from 'react'
+
 import vconsole from 'vconsole'
+
+import { Icon, Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'
 
 new vconsole()
 
-export default () => {
-  useEffect(() => { }, [])
+export default function FloatDemo() {
+  useEffect(() => {}, [])
 
   return (
     <Page>
@@ -40,7 +42,7 @@ export default () => {
               console.log(e)
             }}
           >
-            <Icon className="lyrixi-iconfont-three-dots" />1
+            <Icon svg={Icons.ThreeDots} />1
           </Button>
           <Button
             sizeEqual
@@ -54,7 +56,7 @@ export default () => {
               marginTop: '16px'
             }}
           >
-            <Icon className="lyrixi-iconfont-plus" />
+            <Icon svg={Icons.Plus} />
             <Button.Text>2</Button.Text>
           </Button>
           <Button
@@ -81,21 +83,27 @@ export default () => {
           }}
           portal={typeof document !== 'undefined' ? document.body : undefined}
         >
-          <ActionSheet.Combo list={[{ id: '1', name: 'Sort by 1' }, { id: '2', name: 'Sort by 2' }]}
+          <ActionSheet.Combo
+            list={[
+              { id: '1', name: 'Sort by 1' },
+              { id: '2', name: 'Sort by 2' }
+            ]}
             comboRender={({ comboRef, onClick }) => {
-              return <Button
-                ref={comboRef}
-                sizeEqual
-                direction="vertical"
-                size="xl"
-                radius="100%"
-                color="white"
-                backgroundColor="primary"
-                borderColor="primary"
-                onClick={onClick}
-              >
-                <Icon className="lyrixi-iconfont-three-dots" />
-              </Button>
+              return (
+                <Button
+                  ref={comboRef}
+                  sizeEqual
+                  direction="vertical"
+                  size="xl"
+                  radius="100%"
+                  color="white"
+                  backgroundColor="primary"
+                  borderColor="primary"
+                  onClick={onClick}
+                >
+                  <Icon svg={Icons.ThreeDots} />
+                </Button>
+              )
             }}
             onChange={(newValue) => {
               console.log('onChange', newValue)

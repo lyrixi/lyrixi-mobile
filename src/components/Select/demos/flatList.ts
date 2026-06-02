@@ -1,6 +1,6 @@
-import type { RawItem } from '../../List/types'
+import type { SelectItem } from '../types'
 
-export default [
+const flatList = [
   {
     allowClear: true,
     id: '1',
@@ -66,4 +66,6 @@ export default [
     id: '15',
     name: 'Option15'
   }
-] as RawItem[]
+] as SelectItem[]
+
+export default flatList

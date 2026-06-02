@@ -2,7 +2,7 @@ import React, { Fragment, useRef, forwardRef, useImperativeHandle, useState } fr
 
 import type { ButtonRef } from './../../Button/types'
 import type { FooterBarButtonProps, FooterBarButtonRef } from './../types'
-import type { FooterBarButtonComponents } from '../FooterBar.Button.Components.types'
+import type { FooterBarButtonComponents } from '../types/FooterBar.Button.types'
 import type { ModalRef } from './../../Modal/types'
 
 // 内库使用-start
@@ -70,7 +70,7 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
 
     return (
       <Fragment>
-        {/* Element: Button */}
+        {/* Elements: Button */}
         <Button
           ref={comboRef}
           // Button: Style
@@ -97,7 +97,7 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
           {children}
         </Button>
 
-        {/* Element: ActionSheet Modal */}
+        {/* Elements: ActionSheet Modal */}
         {list?.length ? (
           <ActionSheet.Modal
             ref={modalRef}
@@ -110,8 +110,8 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
             maskClassName={maskClassName}
             modalStyle={modalStyle}
             modalClassName={modalClassName}
-            // Modal: Element
-            portal={portal as boolean | HTMLElement}
+            // Modal: Elements
+            portal={portal}
             // Events
             onClose={() => {
               setOpen(false)

@@ -60,11 +60,18 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 子元素     | `ReactNode` | -      |
+| 属性               | 说明       | 类型                              | 默认值 |
+| ------------------ | ---------- | --------------------------------- | ------ |
+| separator          | 分隔符     | `ReactNode`                       | -      |
+| block              | 块级布局   | `boolean`                         | -      |
+| size               | 尺寸       | `'s' \| 'm' \| 'l' \| string`     | -      |
+| direction          | 方向       | `'horizontal' \| 'vertical' \| string` | - |
+| radius             | 圆角       | `'s' \| 'm' \| 'l' \| string`     | -      |
+| style              | 自定义样式 | `object`                          | -      |
+| className          | 自定义类名 | `string`                          | -      |
+| separatorStyle     | 分隔符样式 | `object`                          | -      |
+| separatorClassName | 分隔符类名 | `string`                          | -      |
+| children           | 子元素     | `ReactNode`                       | -      |
 
 #### Ref
 

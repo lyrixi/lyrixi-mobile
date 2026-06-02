@@ -9,7 +9,13 @@ import React, {
 import Main from './../Main'
 
 import type { ModalRef } from '../../Modal/types'
-import type { PickerColumnItem, PickerMainProps, PickerMainRef, PickerModalProps } from '../types'
+import type {
+  PickerItem,
+  PickerMainProps,
+  PickerMainRef,
+  PickerModalProps,
+  PickerModalRef
+} from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -22,7 +28,7 @@ const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
 // Modal
-const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
+const Modal = forwardRef<PickerModalRef, PickerModalProps>(function PickerModal(
   {
     // Value & Display Value
     value,
@@ -53,9 +59,9 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
     onOk,
     onChange
   },
-  ref: Ref<ModalRef>
+  ref: Ref<PickerModalRef>
 ) {
-  let [currentValue, setCurrentValue] = useState<unknown>(value)
+  let [currentValue, setCurrentValue] = useState<PickerItem[] | null>(() => value ?? null)
 
   const modalRef = useRef<ModalRef | null>(null)
 
@@ -63,35 +69,31 @@ const Modal = forwardRef<ModalRef, PickerModalProps>(function PickerModal(
 
   // 同步外部value到内部
   useEffect(() => {
-    setCurrentValue(value)
+    setCurrentValue(value ?? null)
   }, [value])
 
   useImperativeHandle(ref, () => {
     return {
-      ...((typeof modalRef.current === 'object' && modalRef.current !== null
-        ? modalRef.current
-        : {}) as ModalRef),
-      ...((typeof mainRef.current === 'object' && mainRef.current !== null
-        ? mainRef.current
-        : {}) as Record<string, unknown>)
-    } as ModalRef
-  }, [])
+      ...(modalRef.current ?? {}),
+      ...(mainRef.current ?? {})
+    } as PickerModalRef
+  })
 
   async function handleOk() {
     // 触发 onOk
     if (onOk) {
-      let goOn = await onOk(currentValue)
+      let goOn = await onOk(currentValue ?? [])
       if (goOn === false) return false
       if (goOn instanceof Date) {
-        currentValue = goOn
+        currentValue = goOn as unknown as PickerItem[]
       }
     }
 
-    onChange?.(currentValue)
+    onChange?.(currentValue ?? [])
     onClose?.()
   }
 
-  function handleChange(newValue: PickerColumnItem[]) {
+  function handleChange(newValue: PickerItem[]) {
     setCurrentValue(newValue)
   }
 

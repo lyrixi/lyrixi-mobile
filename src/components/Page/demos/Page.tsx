@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+
 import { createPortal } from 'react-dom'
 import { Page } from 'lyrixi-mobile'
 
@@ -12,7 +13,7 @@ for (let i = 0; i < 100; i++) {
   })
 }
 
-export default () => {
+export default function PageDemo() {
   const { Header, Footer, Aside, Main } = Page
   useEffect(() => {
     const root = document.getElementById('root')

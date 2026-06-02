@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+
 import { SafeArea } from 'lyrixi-mobile'
 
-export default () => {
+export default function SafeAreaDemo() {
   useEffect(() => {}, [])
 
   return (

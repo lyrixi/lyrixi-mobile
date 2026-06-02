@@ -19,7 +19,7 @@ function Result({
   style,
   className,
 
-  // Element
+  // Elements
   imageRender,
   imageUrl,
   children
@@ -54,7 +54,7 @@ function Result({
       style={style}
       className={DOMUtil.classNames('lyrixi-result', full ? 'lyrixi-full' : '', className)}
     >
-      {/* Element: Image */}
+      {/* Elements: Image */}
       {renderImage()}
 
       {/* Value & Display Value: Title */}
@@ -63,7 +63,7 @@ function Result({
       {/* Value & Display Value: Description */}
       {description && <div className="lyrixi-result-description">{description}</div>}
 
-      {/* Element: Children */}
+      {/* Elements: Children */}
       {children}
     </div>
   )

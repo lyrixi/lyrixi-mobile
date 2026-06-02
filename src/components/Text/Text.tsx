@@ -30,7 +30,7 @@ const Text = forwardRef<TextRef, TextProps>(
       style,
       className,
 
-      // Element
+      // Elements
       children,
 
       // Events

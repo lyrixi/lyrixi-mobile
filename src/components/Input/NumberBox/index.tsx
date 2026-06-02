@@ -6,6 +6,8 @@ import type { InputNumberBoxProps, InputNumberBoxRef, InputTextRef } from '../ty
 // 内库使用-start
 import MathUtil from './../../../utils/MathUtil'
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -41,13 +43,12 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       minusClassName,
       minusStyle,
 
-      // Element
+      // Elements
       leftIconNode,
       rightIconNode,
       clearRender,
 
-      // Validate
-      precision, // 小数精度, 只有数值框才生效
+            precision, // 小数精度, 只有数值框才生效
       trim, // 小数位补0, true: 不补0; false: 补0;
       min,
       max,
@@ -112,7 +113,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
     }
 
     // 修改值回调
-    function handleChange(val: string, options?: { action: 'minus' | 'plus' }) {
+    function handleChange(val: string, options?: { action: string }) {
       if (disabled) return
       let inputElement = _getInputElement()
       if (!inputElement) return
@@ -132,7 +133,9 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
 
       let inputElement = _getInputElement()
       if (!inputElement) return
-      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) - step))
+      let val = inputRef?.current?.correctValue(
+        String(MathUtil.strip(Number(inputElement.value || 0) - step))
+      )
       // Callback
       handleChange(String(val ?? ''), { action: 'minus' })
       if (stepFocus) {
@@ -148,7 +151,9 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       let inputElement = _getInputElement()
       if (!inputElement) return
       if (isNaN(Number(inputElement?.value))) return
-      let val = inputRef?.current?.correctValue(MathUtil.strip(Number(inputElement.value || 0) + step))
+      let val = inputRef?.current?.correctValue(
+        String(MathUtil.strip(Number(inputElement.value || 0) + step))
+      )
       // Callback
       handleChange(String(val ?? ''), { action: 'minus' })
       if (stepFocus) {
@@ -162,7 +167,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
         <InputNumber
           ref={inputRef}
           name={name}
-          // Element
+          // Elements
           type="number"
           className="lyrixi-numberbox-input"
           leftIconNode={leftIconNode}
@@ -178,8 +183,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           allowClear={allowClear}
           autoFocus={autoFocus} // 渲染时自动获取焦点
           autoSelect={autoSelect} // 渲染时自动选中
-          // Validate
-          precision={precision}
+                    precision={precision}
           trim={trim}
           min={min}
           max={max}
@@ -207,7 +211,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           ? { disabled: true }
           : {})}
       >
-        {/* Element: Minus Button */}
+        {/* Elements: Minus Button */}
         <div
           // Style
           style={minusStyle}
@@ -219,13 +223,13 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           // Events
           onClick={handleMinus}
         >
-          <i className="lyrixi-numberbox-button-minus-icon"></i>
+          <Icon svg={Icons.Minus} size="s" className="lyrixi-numberbox-button-minus-icon" />
         </div>
 
-        {/* Element: Input */}
+        {/* Elements: Input */}
         {getInputElement()}
 
-        {/* Element: Plus Button */}
+        {/* Elements: Plus Button */}
         <div
           // Style
           style={plusStyle}
@@ -237,7 +241,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           // Events
           onClick={handlePlus}
         >
-          <i className="lyrixi-numberbox-button-plus-icon"></i>
+          <Icon svg={Icons.Plus} size="s" className="lyrixi-numberbox-button-plus-icon" />
         </div>
       </div>
     )

@@ -3,7 +3,7 @@ import React, { useRef, type ReactNode } from 'react'
 import Dropdown from './../Dropdown'
 import List from './List'
 
-import type { ToolBarDropdownRef, ToolBarListProps } from './../types'
+import type { ToolBarDropdownRef, ToolBarItem, ToolBarListProps } from './../types'
 
 // 列表下拉
 function ToolBarList({
@@ -34,7 +34,7 @@ function ToolBarList({
   right,
   list,
 
-  // Element
+  // Elements
   children,
   comboRender,
   arrowRender,
@@ -45,7 +45,7 @@ function ToolBarList({
 }: ToolBarListProps) {
   const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
   // 修改
-  async function handleChange(newValue: unknown) {
+  async function handleChange(newValue: ToolBarItem | ToolBarItem[] | null) {
     onChange?.(newValue)
     dropdownRef.current?.close()
   }
@@ -70,7 +70,7 @@ function ToolBarList({
       maskClassName={maskClassName}
       modalStyle={modalStyle}
       modalClassName={modalClassName}
-      // Element
+      // Elements
       comboRender={comboRender}
       arrowRender={arrowRender}
       portal={portal}
@@ -82,7 +82,7 @@ function ToolBarList({
           <List
             // Value & Display Value
             value={value}
-            // Element
+            // Elements
             list={list}
             // Events
             onChange={handleChange}

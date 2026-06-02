@@ -8,9 +8,7 @@ export type EditDemoSaveResult = {
   message?: string
 }
 
-export type EditDemoFormItemExtraParams = {
-  value: unknown
-}
+export type { EditDemoFormItemExtraParams } from '../Cache/types'
 
 export type EditDemoAttachListItem = {
   name: string

@@ -4,17 +4,18 @@ import Main from './Main'
 import DistrictCombo from './DistrictCombo'
 import DistrictModal from './DistrictModal'
 import DistrictMain from './DistrictMain'
-// 导出工具
 import * as districtUtils from './DistrictMain/utils'
 
-// eslint-disable-next-line
-export default {
-  Combo,
-  Modal,
-  Main,
-  DistrictCombo,
-  DistrictModal,
-  DistrictMain,
-  // 导出工具
-  districtUtils
-}
+import type { CascaderComponents } from './types/Cascader.modules.types'
+
+const Cascader = {} as CascaderComponents
+
+Cascader.Combo = Combo
+Cascader.Modal = Modal
+Cascader.Main = Main
+Cascader.DistrictCombo = DistrictCombo
+Cascader.DistrictModal = DistrictModal
+Cascader.DistrictMain = DistrictMain
+Cascader.districtUtils = districtUtils
+
+export default Cascader

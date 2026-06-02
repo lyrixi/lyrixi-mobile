@@ -2,6 +2,11 @@ import React from 'react'
 
 import type { MediaPreviewToolbarProps } from '../../types'
 
+// 内库使用-start
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
+// 内库使用-end
+
 const PreviewToolbar = ({
   onRotateAnticlockwise,
   onRotateClockwise,
@@ -19,7 +24,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="逆时针旋转90度"
       >
-        <i className="lyrixi-iconfont lyrixi-iconfont-image-rotate-anticlockwise" />
+        <Icon svg={Icons.ImageAnticlockwise} size="l" color="white" />
       </div>
       <div
         className="lyrixi-media-preview-main-toolbar-btn"
@@ -30,7 +35,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="顺时针旋转90度"
       >
-        <i className="lyrixi-iconfont lyrixi-iconfont-image-rotate-clockwise" />
+        <Icon svg={Icons.ImageClockwise} size="l" color="white" />
       </div>
       <div
         className="lyrixi-media-preview-main-toolbar-btn"
@@ -41,7 +46,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="缩小"
       >
-        <i className="lyrixi-iconfont lyrixi-iconfont-image-zoom-out" />
+        <Icon svg={Icons.ImageZoomout} size="l" color="white" />
       </div>
       <div
         className="lyrixi-media-preview-main-toolbar-btn"
@@ -52,7 +57,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="放大"
       >
-        <i className="lyrixi-iconfont lyrixi-iconfont-image-zoom-in" />
+        <Icon svg={Icons.ImageZoomin} size="l" color="white" />
       </div>
     </div>
   )

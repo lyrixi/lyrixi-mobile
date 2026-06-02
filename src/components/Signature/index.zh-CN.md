@@ -41,15 +41,8 @@ toc: content
 | portal          | 挂载节点   | `HTMLElement` | -        |
 | color           | 画笔颜色   | `string` | `'#000'` |
 | backgroundColor | 背景颜色   | `string` | `'#fff'` |
-| onChange        | 变化事件   | `(value: string) => void` | -      |
-| onPreview       | 预览事件   | `(value: string) => void` | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| onChange        | 变化事件   | `(base64: string \| null) => void` | -      |
+| onPreview       | 预览事件   | `(src: string) => Promise<boolean \| string \| void>` | - |
 
 ## Signature.Modal
 
@@ -77,7 +70,8 @@ toc: content
 | portal          | 挂载节点   | `HTMLElement` | -        |
 | color           | 画笔颜色   | `string` | `'#000'` |
 | backgroundColor | 背景颜色   | `string` | `'#fff'` |
-| onChange        | 变化事件   | `(value: string) => void` | -      |
+| onChange        | 变化事件   | `(base64: string \| null) => void` | -      |
+| onOpen          | 打开事件   | `() => void` | -      |
 | onClose         | 关闭事件   | `() => void` | -      |
 
 #### Ref

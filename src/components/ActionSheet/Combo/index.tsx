@@ -6,7 +6,7 @@ import type { ActionSheetComboHandle, ActionSheetComboProps, ActionSheetItem } f
 
 // 内库使用-start
 import type { ComboRef } from './../../Combo/types'
-import type { InputSelectComboRef, InputSelectValue } from './../../Input/types'
+import type { InputSelectRef, InputSelectValue } from './../../Input/types'
 import Input from './../../Input'
 // 内库使用-end
 
@@ -125,7 +125,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       // 默认使用 Input.Select
       return (
         <Input.Select
-          ref={comboRef as React.Ref<InputSelectComboRef>}
+          ref={comboRef as React.Ref<InputSelectRef>}
           // Combo: Value & Display Value
           value={value as unknown as InputSelectValue}
           placeholder={placeholder}
@@ -140,7 +140,7 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
           // Combo: Style
           style={style}
           className={className}
-          // Combo: Element
+          // Combo: Elements
           leftIconNode={leftIconNode}
           rightIconNode={rightIconNode}
           clearRender={clearRender}

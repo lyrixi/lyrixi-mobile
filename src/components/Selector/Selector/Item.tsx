@@ -4,6 +4,8 @@ import type { SelectorItemProps, SelectorItemRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -64,12 +66,17 @@ const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
         // Events
         onClick={handleClick}
       >
-        {/* Element: Name */}
+        {/* Elements: Name */}
         <div className="lyrixi-selector-item-name">{children}</div>
 
-        {/* Element: Checked Mark */}
+        {/* Elements: Checked Mark */}
         <div className="lyrixi-selector-item-checked-mark">
-          <i className="lyrixi-selector-item-checked-mark-icon"></i>
+          <Icon
+            svg={Icons.Ok}
+            size="xxs"
+            color="white"
+            className="lyrixi-selector-item-checked-mark-icon"
+          />
         </div>
       </div>
     )

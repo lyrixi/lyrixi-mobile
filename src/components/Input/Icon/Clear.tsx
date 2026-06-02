@@ -1,33 +1,33 @@
 import React, { forwardRef } from 'react'
-
-import type { InputIconClearProps } from '../types'
+import type { InputIconClearProps } from '../types/Input.IconClear.types'
 
 // 内库使用-start
+import Icons from '../../../icons'
 import Icon from './../../Icon'
 import type { IconRef } from './../../Icon/types'
 import DOMUtil from './../../../utils/DOMUtil'
+
 // 内库使用-end
 
 /* 测试使用-start
-import { Icon } from 'lyrixi-mobile'
+import { Icon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
 const IconClear = forwardRef<IconRef, InputIconClearProps>(
   (
     {
+      // Value & Display Value
+      svg = Icons.CircleCloseFill,
       // Status
       disabled,
-
+      // Value & Display Value
+      color,
+      backgroundColor,
+      size = 'm',
+      radius,
       // Style
-      color, // 颜色: default, transparent, primary, info, warning, danger, success
-      backgroundColor, // 背景颜色: default, transparent, white, primary, info, warning, danger, success
-      size = 'm', // 尺寸: xxs, xs, s, m, l, xl
-      radius, // 圆角: xxs, xs, s, m, l, xl
       style,
-
-      // Element ClassName
       iconClassName,
-
       // Events
       onClick,
       onTouchStart
@@ -37,20 +37,14 @@ const IconClear = forwardRef<IconRef, InputIconClearProps>(
     return (
       <Icon
         ref={ref}
-        // Status
+        svg={svg}
         disabled={disabled}
-        // Style
         color={color}
         backgroundColor={backgroundColor}
         size={size}
         radius={radius}
         style={style}
-        className={DOMUtil.classNames(
-          'lyrixi-input-icon',
-          'lyrixi-right-icon',
-          iconClassName || 'lyrixi-input-icon-clear'
-        )}
-        // Events
+        className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-right-icon', iconClassName)}
         onClick={onClick}
         onTouchStart={onTouchStart}
       />

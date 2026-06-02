@@ -17,7 +17,7 @@ const FooterBar = forwardRef<FooterBarRef, FooterBarProps>(
       className,
       style,
 
-      // Element
+      // Elements
       children
     },
     ref

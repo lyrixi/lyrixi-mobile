@@ -1,8 +1,6 @@
-import React from 'react'
+import { Page } from 'lyrixi-mobile'
 
-import { Page, GeoUtil } from 'lyrixi-mobile'
-
-export default () => {
+export default function GeoUtilDemo() {
   return (
     <Page>
       <Page.Main>定位</Page.Main>

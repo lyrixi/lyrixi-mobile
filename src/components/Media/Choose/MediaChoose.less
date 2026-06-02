@@ -1,8 +1,8 @@
 // 照片上传按钮
 .lyrixi-media-choose {
-  .lyrixi-flex;
-  .lyrixi-flex-align-center;
-  .lyrixi-flex-justify-center;
+  .lyrixi-flex();
+  .lyrixi-flex-align-center();
+  .lyrixi-flex-justify-center();
   background-color: var(--lyrixi-bg-default);
   color: #c2c6cd;
 }
@@ -20,19 +20,10 @@
   pointer-events: none;
 }
 
-// 默认上传按钮
 .lyrixi-media-choose-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: var(--choose-icon-size);
   pointer-events: none;
-  font-family: 'lyrixi-iconfont';
-  &:extend(.lyrixi-iconfont-plus all);
-
-  &.lyrixi-video {
-    font-size: 24px;
-    &:extend(.lyrixi-iconfont-video-fill all);
-  }
 }

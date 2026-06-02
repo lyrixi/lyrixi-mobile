@@ -1,7 +1,6 @@
-import React from 'react'
 import { ObjectUtil, Page, Card, Divider } from 'lyrixi-mobile'
 
-export default () => {
+export default function ObjectUtilDemo() {
   const emptyExamples = [
     { label: '{}', result: ObjectUtil.isEmpty({}) },
     { label: '[]', result: ObjectUtil.isEmpty([]) },

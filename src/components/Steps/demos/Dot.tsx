@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Page, Divider, Steps, Card } from 'lyrixi-mobile'
 
 const list = [
@@ -20,7 +18,7 @@ const list = [
   }
 ]
 
-export default () => {
+export default function DotDemo() {
   return (
     <Page>
       <Page.Main>

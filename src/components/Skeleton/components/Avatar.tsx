@@ -12,7 +12,9 @@ import DOMUtil from './../../../utils/DOMUtil'
 const Avatar = forwardRef<HTMLDivElement, SkeletonAvatarProps>(
   (
     {
+      // Value & Display Value
       animated = true,
+      // Style
       className,
       style
     },

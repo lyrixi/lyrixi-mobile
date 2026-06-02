@@ -10,6 +10,8 @@ import Toast from './../../../Toast'
 import Row from '../../../Row'
 import type { RowColRef } from '../../../Row/types'
 import Text from '../../../Text'
+import Icon from '../../../Icon'
+import Icons from '../../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -27,10 +29,9 @@ const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
       style,
       className,
 
-      // Validate
-      required,
+            required,
 
-      // Element
+      // Elements
       help,
       children
     },
@@ -61,7 +62,7 @@ const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
         span={layout === 'horizontal' ? span || labelSpan || 8 : 24}
       >
         <>
-          {/* Element: Children */}
+          {/* Elements: Children */}
           {children && (
             <Text className="lyrixi-form-item-label-text" ellipsis={ellipsis || labelEllipsis || undefined}>
               {children}
@@ -70,12 +71,15 @@ const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
 
           {/* Value & Display Value: Help */}
           {help && (
-            <i
+            <Icon
+              svg={Icons.CircleQuestion}
+              size="s"
+              color="info"
               className="lyrixi-form-item-help"
               onClick={() => {
                 Toast.show({ content: help == null ? '' : String(help) })
               }}
-            ></i>
+            />
           )}
 
           {/* Value & Display Value: Required */}

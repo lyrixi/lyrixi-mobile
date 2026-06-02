@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { Page, Cascader, Loading, type CascaderNode, type LoadDataResult } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
-  const [value, setValue] = useState<CascaderNode[]>([
+import { Page, Cascader, Loading, type CascaderItem, type LoadDataResult } from 'lyrixi-mobile'
+
+export default function CascaderMainDemo() {
+  const [value, setValue] = useState<CascaderItem[]>([
     {
       id: '1',
       name: '根节点',
@@ -22,14 +23,14 @@ export default () => {
   ])
 
   function loadData(
-    tabs: CascaderNode[],
-    _ctx: { list: CascaderNode[] }
+    tabs: CascaderItem[],
+    _ctx: { list: CascaderItem[] }
   ): Promise<LoadDataResult> {
     return new Promise((resolve) => {
       console.log('loadData:', tabs)
       Loading.show()
       const lastTab = tabs?.[tabs.length - 1]
-      const leaves: CascaderNode[] = [
+      const leaves: CascaderItem[] = [
         {
           parentid: lastTab?.id,
           name: '孙子节点1',

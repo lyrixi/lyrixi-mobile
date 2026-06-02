@@ -108,7 +108,7 @@ const WeekModal = forwardRef<DatePickerModalRef, DatePickerWeekModalProps>(funct
       modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
       maskStyle={maskStyle}
       maskClassName={maskClassName}
-      // Element
+      // Elements
       portal={portal}
       title={titleNode || getTitle(currentValue, { type: 'week' })}
       okNode={okNode}

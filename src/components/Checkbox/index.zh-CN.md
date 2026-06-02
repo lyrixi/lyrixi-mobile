@@ -65,8 +65,9 @@ toc: content
 
 | 属性         | 说明           | 类型                                       | 默认值   |
 | ------------ | -------------- | ------------------------------------------ | -------- |
-| value        | 选中的值       | `any \| any[]`                             | -        |
-| list         | 选项列表       | `Array<{id: string, [key: string]: any}>`  | -        |
+| value        | 选中的值       | `unknown`                                  | -        |
+| list         | 选项列表       | `Array<{id: string \| number, [key: string]: any}>` | - |
+| placeholder  | 占位符         | `string`                                   | -        |
 | disabled     | 是否禁用       | `boolean`                                  | -        |
 | readOnly     | 是否只读       | `boolean`                                  | -        |
 | allowClear   | 允许清除       | `boolean`                                  | -        |
@@ -75,7 +76,7 @@ toc: content
 | className    | 自定义类名     | `string`                                   | -        |
 | iconRender   | 自定义图标渲染 | `(props: {checked: boolean}) => ReactNode` | -        |
 | iconPosition | 图标位置       | `'left' \| 'right'`                        | `'left'` |
-| onChange     | 变化事件       | `(value: any \| any[]) => void`            | -        |
+| onChange     | 变化事件       | `(value: object \| object[] \| null) => void` | -     |
 
 #### Ref
 

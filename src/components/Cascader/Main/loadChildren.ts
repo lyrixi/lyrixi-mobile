@@ -1,4 +1,4 @@
-import type { CascaderNode, LoadDataFn } from '../types'
+import type { CascaderItem, LoadDataFn } from '../types'
 
 import type { CascaderMainLoadChildrenResult } from '../types'
 
@@ -11,13 +11,13 @@ import { ArrayUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 async function loadChildren(
-  tabs: CascaderNode[],
+  tabs: CascaderItem[],
   {
     externalLoadData,
     externalList
   }: {
     externalLoadData?: LoadDataFn
-    externalList: CascaderNode[]
+    externalList: CascaderItem[]
   }
 ): Promise<CascaderMainLoadChildrenResult> {
   if (!Array.isArray(tabs) || !tabs.length) {
@@ -33,7 +33,7 @@ async function loadChildren(
     ? (ArrayUtil.getDeepTreeNode(
         externalList as Parameters<typeof ArrayUtil.getDeepTreeNode>[0],
         lastTabId
-      ) as CascaderNode | null)
+      ) as CascaderItem | null)
     : null
 
   if (node && Array.isArray(node.children)) {

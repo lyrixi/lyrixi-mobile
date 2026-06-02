@@ -1,11 +1,11 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import getDateDefaultValue from './../utils/getDateDefaultValue'
 import WeekModal from './../WeekModal'
-import type { DatePickerComboProps, DatePickerModalProps, DatePickerModalRef } from './../types'
+import type { DatePickerModalProps, DatePickerModalRef, DatePickerWeekComboProps, DatePickerWeekComboRef } from './../types'
 
 // 内库使用-start
 import type { ComboRef as BasicComboWrapperRef } from './../../Combo/types'
-import type { InputSelectComboRef as InputComboSelectRef, InputSelectProps } from './../../Input/types'
+import type { InputSelectRef as InputComboSelectRef, InputSelectProps } from './../../Input/types'
 import DateUtil from './../../../utils/DateUtil'
 import Combo from './../../Combo'
 import Input from './../../Input'
@@ -16,7 +16,7 @@ import { DateUtil, Combo, Input } from 'lyrixi-mobile'
 测试使用-end */
 
 // 获取周
-const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerWeekCombo(
+const WeekCombo = forwardRef<DatePickerWeekComboRef, DatePickerWeekComboProps>(function DatePickerWeekCombo(
   {
     // Combo
     // Combo: Value & Display Value
@@ -32,7 +32,7 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
     // Combo: Style
     style,
     className,
-    // Combo: Element
+    // Combo: Elements
     comboRender,
     children,
     leftIconNode,
@@ -82,7 +82,7 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
         : {}),
       close: () => setOpen(false),
       open: () => setOpen(true)
-    }
+    } as DatePickerWeekComboRef
   })
 
   async function handleOpen() {
@@ -98,6 +98,18 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
   }
 
   const modalValue: Date = value instanceof Date ? value : getDateDefaultValue({ min, max })
+
+  const handleInputChange: InputSelectProps['onChange'] = (v, meta) => {
+    if (v instanceof Date || v === null) {
+      onChange?.(v, meta)
+    }
+  }
+
+  const handleFormatter: InputSelectProps['formatter'] = (v, options) => {
+    const dateVal = v instanceof Date || v === null ? v : null
+    if (formatter) return formatter(dateVal, options)
+    return DateUtil.format(v as Date, 'week')
+  }
 
   // 获取 Combo 节点
   function renderCombo() {
@@ -125,7 +137,7 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
         // Combo: Value & Display Value
         value={value}
         placeholder={placeholder}
-        formatter={formatter || ((v: unknown) => DateUtil.format(v as Date, 'week'))}
+        formatter={handleFormatter}
         autoSize={autoSize}
         separator={separator}
         // Combo: Status
@@ -135,12 +147,12 @@ const WeekCombo = forwardRef<unknown, DatePickerComboProps>(function DatePickerW
         // Combo: Style
         style={style}
         className={className}
-        // Combo: Element
+        // Combo: Elements
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}
         // Events
-        onChange={onChange as InputSelectProps['onChange']}
+        onChange={handleInputChange}
         onClick={handleOpen}
       />
     )

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { DatePicker, Page, DateUtil, LocaleUtil, ObjectUtil } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { DatePicker, Page } from 'lyrixi-mobile'
+
+export default function DatePickerRangeMainDemo() {
   const [rangeId, setRangeId] = useState<string | null>(null)
   const [value, setValue] = useState<(Date | null)[]>([new Date(), new Date()])
   return (

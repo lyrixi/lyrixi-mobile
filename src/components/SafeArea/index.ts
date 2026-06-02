@@ -1,9 +1,10 @@
-import SafeArea from './SafeArea'
-
+import _SafeArea from './SafeArea'
 import { safeAreaDebug } from './SafeArea.debug'
 
-import type { SafeAreaComponents } from './SafeArea.Components.types'
+import type { SafeAreaComponents } from './types/SafeArea.modules.types'
 
-;(SafeArea as SafeAreaComponents).debug = safeAreaDebug
+const SafeArea = _SafeArea as SafeAreaComponents
 
-export default SafeArea as SafeAreaComponents
+SafeArea.debug = safeAreaDebug
+
+export default SafeArea

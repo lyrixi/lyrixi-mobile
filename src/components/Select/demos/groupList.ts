@@ -1,6 +1,6 @@
-import type { RawItem } from '../../List/types'
+import type { SelectItem } from '../types'
 
-export default [
+const groupList = [
   {
     avatar: 'https://api.dicebear.com/7.x/miniavs/svg',
     id: 'Option',
@@ -104,4 +104,6 @@ export default [
     id: '21',
     name: 'Option21'
   }
-] as RawItem[]
+] as SelectItem[]
+
+export default groupList

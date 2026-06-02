@@ -1,4 +1,5 @@
-import React, { useState, useEffect, type CSSProperties } from 'react'
+import { useState, useEffect, type CSSProperties } from 'react'
+
 import { QRCode } from 'lyrixi-mobile'
 
 const Logo: CSSProperties = {
@@ -10,7 +11,7 @@ const Logo: CSSProperties = {
   marginLeft: '-25px',
   marginTop: '-25px'
 }
-export default () => {
+export default function QRCodeDemo() {
   const [url, setUrl] = useState('')
   useEffect(() => {
     setTimeout(() => {

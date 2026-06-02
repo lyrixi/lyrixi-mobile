@@ -81,19 +81,15 @@ toc: content
 
 #### 属性
 
-| 属性       | 说明     | 类型                          | 默认值 |
-| ---------- | -------- | ----------------------------- | ------ |
-| list       | 附件列表 | `Array<object>`               | -      |
-| allowClear | 允许清除 | `boolean`                     | -      |
-| itemRender | 项渲染   | `(item: object) => ReactNode` | -      |
-| onChange   | 变化事件 | `(list: Array) => void`       | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性            | 说明         | 类型                                              | 默认值 |
+| --------------- | ------------ | ------------------------------------------------- | ------ |
+| list            | 附件列表     | `AttachFileItem[]`                                | -      |
+| allowClear      | 允许清除     | `boolean \| ((item: unknown) => boolean)`         | -      |
+| uploadingRender | 上传中渲染   | `(ctx: {uploadingType: string}) => ReactNode`     | -      |
+| itemRender      | 项渲染       | `(item: AttachFileItem, index: number) => ReactNode` | -   |
+| onChange        | 变化事件     | `(list: AttachFileItem[], meta: {action: string}) => void` | - |
+| onReUpload      | 重新上传事件 | `(item: AttachFileItem, index: number) => void`   | -      |
+| onPreview       | 预览事件     | `(item: AttachFileItem, index: number) => unknown` | -     |
 
 ## Attach.Button
 
@@ -111,12 +107,12 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型                 | 默认值 |
-| --------- | ---------- | -------------------- | ------ |
-| style     | 自定义样式 | `object`             | -      |
-| className | 自定义类名 | `string`             | -      |
-| children  | 按钮内容   | `ReactNode`          | -      |
-| onClick   | 点击事件   | `(e: Event) => void` | -      |
+| 属性            | 说明         | 类型                                          | 默认值 |
+| --------------- | ------------ | --------------------------------------------- | ------ |
+| disabled        | 是否禁用     | `boolean`                                     | -      |
+| style           | 自定义样式   | `CSSProperties`                               | -      |
+| className       | 自定义类名   | `string`                                      | -      |
+| uploadingRender | 上传中渲染   | `(ctx: {uploadingType: string}) => ReactNode` | -      |
 
 #### Ref
 
@@ -141,15 +137,8 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 上传中内容 | `ReactNode` | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性            | 说明         | 类型                                          | 默认值 |
+| --------------- | ------------ | --------------------------------------------- | ------ |
+| uploadingType   | 上传状态类型 | `string`                                      | -      |
+| className       | 自定义类名   | `string`                                      | -      |
+| uploadingRender | 上传中渲染   | `(ctx: {uploadingType: string}) => ReactNode` | -      |

@@ -56,15 +56,14 @@ function Attach(
     async = false,
     reUpload = true,
 
-    // Validate
-    maxSize,
+        maxSize,
 
     // Style
     style,
     className,
     uploadPosition = 'end', // start | end
 
-    // Element
+    // Elements
     uploadRender, // 上传按钮覆盖的dom
     uploadingRender,
     children,
@@ -349,7 +348,7 @@ function Attach(
         // Status
         disabled={disabled}
         className={className}
-        // Element
+        // Elements
         uploadRender={uploadRender}
         uploadingRender={uploadingRender}
         // Events
@@ -382,7 +381,7 @@ function Attach(
           list={list}
           // Status
           allowClear={allowClear}
-          // Element
+          // Elements
           uploadingRender={uploadingRender}
           itemRender={itemRender}
           // Events

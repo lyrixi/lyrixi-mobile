@@ -1,12 +1,10 @@
-import React from 'react'
-
-import { Page, Divider, Button } from 'lyrixi-mobile'
+import { Page, Divider, Button, Icons } from 'lyrixi-mobile'
 
 const buttonStyle = {
   margin: 'var(--lyrixi-space-m)'
 }
 
-export default () => {
+export default function ButtonIconDemo() {
   return (
     <Page style={{ backgroundColor: 'white' }}>
       <Page.Main>
@@ -19,7 +17,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-check"></Button.Icon>
+            <Button.Icon svg={Icons.Ok} />
           </Button>
           <Button
             color="primary"
@@ -28,7 +26,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-close"></Button.Icon>
+            <Button.Icon svg={Icons.Close} />
           </Button>
           <Button
             color="danger"
@@ -37,7 +35,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-delete"></Button.Icon>
+            <Button.Icon svg={Icons.Trash} />
           </Button>
           <Button
             color="success"
@@ -46,7 +44,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-success"></Button.Icon>
+            <Button.Icon svg={Icons.CircleOk} />
           </Button>
         </div>
 
@@ -60,7 +58,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon size="xs" className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon size="xs" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button
             size="s"
@@ -70,7 +68,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon size="s" className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon size="s" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button
             size="m"
@@ -80,7 +78,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon size="m" className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon size="m" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button
             size="l"
@@ -90,7 +88,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon size="l" className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon size="l" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button
             size="xl"
@@ -100,7 +98,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon size="xl" className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon size="xl" svg={Icons.Search}></Button.Icon>
           </Button>
         </div>
 
@@ -115,7 +113,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-check"></Button.Icon>
+            <Button.Icon svg={Icons.Ok} />
           </Button>
           <Button
             size="40"
@@ -126,7 +124,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon svg={Icons.Search} />
           </Button>
           <Button
             size="48"
@@ -137,7 +135,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-setting"></Button.Icon>
+            <Button.Icon svg={Icons.Config} />
           </Button>
           <Button
             size="56"
@@ -148,7 +146,7 @@ export default () => {
             borderColor="primary"
             style={buttonStyle}
           >
-            <Button.Icon size="xl" className="lyrixi-iconfont lyrixi-iconfont-add"></Button.Icon>
+            <Button.Icon svg={Icons.Plus} size="xl" />
           </Button>
         </div>
 
@@ -161,7 +159,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-heart"></Button.Icon>
+            <Button.Icon svg={Icons.StarFill} />
           </Button>
           <Button
             color="white"
@@ -170,7 +168,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-info"></Button.Icon>
+            <Button.Icon svg={Icons.CircleInfo} />
           </Button>
           <Button
             color="white"
@@ -179,7 +177,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-warning"></Button.Icon>
+            <Button.Icon svg={Icons.CircleWarning} />
           </Button>
           <Button
             color="white"
@@ -188,7 +186,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-delete"></Button.Icon>
+            <Button.Icon svg={Icons.Trash} />
           </Button>
           <Button
             color="white"
@@ -197,7 +195,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-success"></Button.Icon>
+            <Button.Icon svg={Icons.CircleOk} />
           </Button>
         </div>
 
@@ -210,7 +208,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-check"></Button.Icon>
+            <Button.Icon svg={Icons.Ok} />
             <Button.Text>确认</Button.Text>
           </Button>
           <Button
@@ -221,7 +219,7 @@ export default () => {
             style={buttonStyle}
           >
             <Button.Text>删除</Button.Text>
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-close"></Button.Icon>
+            <Button.Icon svg={Icons.Close} />
           </Button>
           <Button
             color="default"
@@ -230,7 +228,7 @@ export default () => {
             radius="m"
             style={buttonStyle}
           >
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-search"></Button.Icon>
+            <Button.Icon svg={Icons.Search} />
             <Button.Text>搜索</Button.Text>
           </Button>
           <Button
@@ -241,7 +239,7 @@ export default () => {
             style={buttonStyle}
           >
             <Button.Text>更多</Button.Text>
-            <Button.Icon className="lyrixi-iconfont lyrixi-iconfont-arrow-right"></Button.Icon>
+            <Button.Icon svg={Icons.ArrowRight} />
           </Button>
         </div>
       </Page.Main>

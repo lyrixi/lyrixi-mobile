@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import { Page, DatePicker, DateUtil, Card } from 'lyrixi-mobile'
 
-export default () => {
+export default function DatePickerRangeSelectorDemo() {
   const [rangeId1, setRangeId1] = useState<string | null>(null)
   const [value1, setValue1] = useState<(Date | null)[]>([new Date(), new Date()])
 

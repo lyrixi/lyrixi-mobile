@@ -4,6 +4,8 @@ import type { InputRateProps, InputRateRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -31,8 +33,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
       // Elements
       iconRender,
 
-      // Validate
-      min = 0,
+            min = 0,
       max = 5,
       step = 0.5,
 
@@ -87,16 +88,17 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
         })
       }
 
-      // 默认图标
+      const iconClassName = isActive
+        ? 'lyrixi-input-rate-item-icon-active'
+        : 'lyrixi-input-rate-item-icon'
+
       return (
-        <div
-          className={
-            isActive
-              ? 'lyrixi-input-rate-item-icon-active lyrixi-default'
-              : 'lyrixi-input-rate-item-icon lyrixi-default'
-          }
+        <Icon
+          svg={Icons.StarFill}
+          size="l"
+          className={iconClassName}
           style={isActive ? { width: getItemActiveWidth(index + 1) } : undefined}
-        ></div>
+        />
       )
     }
 
@@ -113,7 +115,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
           disabled ? 'lyrixi-input-disabled' : ''
         )}
       >
-        {/* Element: Range Input */}
+        {/* Elements: Range Input */}
         <input
           ref={inputRef}
           name={name}
@@ -124,15 +126,14 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
           // Status
           readOnly={readOnly}
           disabled={disabled}
-          // Validate
-          min={min}
+                    min={min}
           max={max}
           step={step}
           // Events
           onChange={handleChange}
         />
 
-        {/* Element: Icon & Active Icon */}
+        {/* Elements: Icon & Active Icon */}
         {new Array(max).fill(1).map((item, index) => {
           const IconNode = renderIcon(index, false)
           const ActiveIconNode = renderIcon(index, true)

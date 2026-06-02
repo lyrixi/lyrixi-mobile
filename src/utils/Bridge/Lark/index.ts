@@ -6,11 +6,11 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
 
-import type { BridgePlatformErrorResponse } from '../Bridge.platform.types'
+import type { BridgePlatformErrorResponse } from '../types/Bridge.platform.types'
 import type {
   BridgeLarkGetLocationSuccessResponse,
   BridgeLarkScanCodeSuccessResponse
-} from '../Bridge.Lark.types'
+} from '../types/Bridge.Lark.types'
 import type {
   BridgeCloseWindowParams,
   BridgeConfigParams,

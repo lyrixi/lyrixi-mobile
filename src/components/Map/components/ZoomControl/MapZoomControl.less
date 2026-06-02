@@ -4,10 +4,10 @@
   bottom: 10px;
   right: 10px;
   z-index: 1;
-  .lyrixi-inline-flex;
-  .lyrixi-flex-justify-center;
-  .lyrixi-flex-align-center;
-  .lyrixi-flex-vertical;
+  .lyrixi-inline-flex();
+  .lyrixi-flex-justify-center();
+  .lyrixi-flex-align-center();
+  .lyrixi-flex-vertical();
   width: 36px;
   height: 72px;
   color: #333;
@@ -18,18 +18,16 @@
 
 .lyrixi-map-zoomControl-out,
 .lyrixi-map-zoomControl-in {
-  .lyrixi-flex;
-  .lyrixi-flex-justify-center;
-  .lyrixi-flex-align-center;
+  .lyrixi-flex();
+  .lyrixi-flex-justify-center();
+  .lyrixi-flex-align-center();
   width: 32px;
   height: 36px;
 
   .lyrixi-map-zoomControl-icon {
-    .lyrixi-flex;
-    .lyrixi-flex-justify-center;
-    .lyrixi-flex-align-center;
-    font-family: 'lyrixi-iconfont';
-    font-size: 18px;
+    .lyrixi-flex();
+    .lyrixi-flex-justify-center();
+    .lyrixi-flex-align-center();
     width: 18px;
     height: 18px;
   }
@@ -37,14 +35,4 @@
 
 .lyrixi-map-zoomControl-in {
   box-shadow: inset 0px -0.5px 0px 0px rgba(230, 231, 232, 1);
-
-  .lyrixi-map-zoomControl-icon {
-    &:extend(.lyrixi-iconfont-plus all);
-  }
-}
-
-.lyrixi-map-zoomControl-out {
-  .lyrixi-map-zoomControl-icon {
-    &:extend(.lyrixi-iconfont-minus all);
-  }
 }

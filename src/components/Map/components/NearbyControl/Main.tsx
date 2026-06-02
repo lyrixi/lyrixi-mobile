@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { MapNearbyControlMainProps } from '../../types'
+import type { MapNearbyControlMainProps } from './Map.NearbyControl.Main.types'
 
 // 内库使用-start
 import Result from './../../../Result'

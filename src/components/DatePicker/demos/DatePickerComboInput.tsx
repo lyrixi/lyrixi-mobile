@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-import { Card, DatePicker, Page, type InputSelectProps } from 'lyrixi-mobile'
+import { Card, DatePicker, Page } from 'lyrixi-mobile'
 
-export default () => {
+export default function DatePickerComboInputDemo() {
   const [value, setValue] = useState<Date | null>(null)
   return (
     <Page>
@@ -14,7 +14,7 @@ export default () => {
               type="date"
               placeholder="请选择日期"
               value={value}
-              onChange={setValue as InputSelectProps['onChange']}
+              onChange={(v) => setValue(v ?? null)}
               allowClear
             />
           </Card.Main>

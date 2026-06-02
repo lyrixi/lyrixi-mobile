@@ -1,10 +1,10 @@
-import type { LocationChooseFooterProps } from '../../types'
+import type { LocationMainChooseFooterProps } from './Location.Main.Choose.Footer.types'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Page from './../../../Page'
 import FooterBar from './../../../FooterBar'
-import type { FooterBarComponents } from './../../../FooterBar/FooterBar.Components.types'
+import type { FooterBarComponents } from './../../../FooterBar/types/FooterBar.modules.types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -13,7 +13,7 @@ import { LocaleUtil, Page, FooterBar } from 'lyrixi-mobile'
 
 const FooterBarComp = FooterBar as FooterBarComponents
 
-function Foot({ onOk, onClear }: LocationChooseFooterProps) {
+function Foot({ onOk, onClear }: LocationMainChooseFooterProps) {
   return (
     <Page.Footer className="lyrixi-map-footer">
       <FooterBarComp>

@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react'
-import { Page, Modal, Button, Input } from 'lyrixi-mobile'
+import { useState } from 'react'
 
-export default () => {
+import { Page, Modal } from 'lyrixi-mobile'
+
+export default function ModalNavBarModalDemo() {
   const [open, setOpen] = useState(false)
 
   function handleToggle() {
@@ -10,11 +11,6 @@ export default () => {
 
   function handleOk() {
     console.log('确定按钮被点击')
-    setOpen(false)
-  }
-
-  function handleCancel() {
-    console.log('取消按钮被点击')
     setOpen(false)
   }
 

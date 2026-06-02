@@ -2,7 +2,11 @@ import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react
 
 import { CanvasUtil } from './utils'
 
-import type { SignatureMainDrawProps, SignatureMainDrawRef, SignatureMainExtendedCanvas } from '../types'
+import type {
+  SignatureMainDrawProps,
+  SignatureMainDrawRef,
+  SignatureMainExtendedCanvas
+} from './Signature.Main.Signature.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -163,7 +167,7 @@ const Signature = (
       style={safeStyle}
       className="lyrixi-signature-main-canvas"
     >
-      {/* Element: Canvas */}
+      {/* Elements: Canvas */}
       <canvas
         ref={canvasRef}
         // Events

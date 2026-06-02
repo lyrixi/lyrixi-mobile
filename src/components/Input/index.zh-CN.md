@@ -34,7 +34,7 @@ toc: content
 | id            | 输入框 ID    | `string`                                                                            | -        |
 | name          | 输入框名称   | `string`                                                                            | -        |
 | type          | 输入类型     | `'text' \| 'number' \| 'tel' \| 'password' \| 'search' \| 'textarea' \| 'autoSize'` | `'text'` |
-| value         | 输入值       | `string \| number`                                                                  | `''`     |
+| value         | 输入值       | `string`                                                                            | `''`     |
 | placeholder   | 占位符       | `string`                                                                            | -        |
 | formatter     | 格式化函数   | `(value: any) => string`                                                            | -        |
 | readOnly      | 是否只读     | `boolean`                                                                           | -        |
@@ -58,13 +58,17 @@ toc: content
 | enterKeyHint  | 回车键提示   | `string`                                                                            | -        |
 | autoComplete  | 自动完成     | `string`                                                                            | -        |
 | autoCorrect   | 自动纠正     | `string`                                                                            | -        |
-| spellCheck    | 拼写检查     | `string`                                                                            | -        |
+| spellCheck    | 拼写检查     | `boolean \| 'true' \| 'false'`                                                      | -        |
+| cursor        | 是否显示光标 | `boolean \| null`                                                                   | -        |
 | onClick       | 点击事件     | `(e: Event) => void`                                                                | -        |
 | onChange      | 值变化事件   | `(value: any, e: Event) => void`                                                    | -        |
 | onBlur        | 失焦事件     | `(e: Event) => void`                                                                | -        |
 | onFocus       | 聚焦事件     | `(e: Event) => void`                                                                | -        |
 | onKeyDown     | 按键事件     | `(e: Event) => void`                                                                | -        |
 | onPressEnter  | 回车事件     | `(e: Event) => void`                                                                | -        |
+| onCompositionStart | 输入法开始 | `(e: Event) => void`                                                                | -        |
+| onCompositionUpdate | 输入法更新 | `(e: Event) => void`                                                                | -        |
+| onCompositionEnd | 输入法结束 | `(e: Event) => void`                                                                | -        |
 
 #### Ref
 
@@ -76,6 +80,7 @@ toc: content
 | getInputElement | 获取输入框元素 | () => `HTMLInputElement` |
 | correctValue    | 矫正值         | `(value: any) => string` |
 | focus           | 获取焦点       | `() => void`             |
+| blur            | 失去焦点       | `() => void`             |
 
 ## Input.Number
 
@@ -118,11 +123,25 @@ toc: content
 
 #### 属性
 
-同 Input.Text 组件属性。
+同 Input.Text 组件属性，以及：
+
+| 属性            | 说明           | 类型        | 默认值 |
+| --------------- | -------------- | ----------- | ------ |
+| step            | 步进值         | `number`    | -      |
+| stepFocus       | 步进后聚焦     | `boolean`   | -      |
+| plusClassName   | 加号按钮类名   | `string`    | -      |
+| plusStyle       | 加号按钮样式   | `object`    | -      |
+| minusClassName  | 减号按钮类名   | `string`    | -      |
+| minusStyle      | 减号按钮样式   | `object`    | -      |
+| children        | 自定义内容     | `ReactNode` | -      |
 
 #### Ref
 
-同 Input.Text 组件 Ref。
+同 Input.Text 组件 Ref，以及：
+
+| 属性        | 说明           | 类型                            |
+| ----------- | -------------- | ------------------------------- |
+| getInputRef | 获取 Input Ref | () => `RefObject<InputTextRef>` |
 
 ## Input.NumberKeyboard
 
@@ -141,11 +160,17 @@ toc: content
 
 #### 属性
 
-同 Input.Text 组件属性。
+基于 Input.Node 展示层，`value` 为 `string`，`onChange` 为 `(value: string) => void`。其余属性与 Input.Node 一致，以及：
+
+| 属性  | 说明     | 类型                  | 默认值 |
+| ----- | -------- | --------------------- | ------ |
+| ok    | 确认按钮 | `ReactNode \| null`   | -      |
+| value | 输入值   | `string`              | -      |
+| onChange | 值变化 | `(value: string) => void` | -   |
 
 #### Ref
 
-同 Input.Text 组件 Ref。
+同 Input.Node 组件 Ref。
 
 ## Input.Password
 
@@ -187,11 +212,19 @@ toc: content
 
 #### 属性
 
-同 Input.Text 组件属性。
+| 属性      | 说明       | 类型     | 默认值 |
+| --------- | ---------- | -------- | ------ |
+| value     | 密码值     | `string` | -      |
+| style     | 自定义样式 | `object` | -      |
+| className | 自定义类名 | `string` | -      |
 
 #### Ref
 
-同 Input.Text 组件 Ref。
+| 属性        | 说明         | 类型                              |
+| ----------- | ------------ | --------------------------------- |
+| element     | 根元素       | `HTMLUListElement`                |
+| getElement  | 获取根元素   | () => `HTMLUListElement`          |
+| getStrength | 获取强度等级 | `(newValue?: string) => number`   |
 
 ## Input.Search
 
@@ -260,7 +293,11 @@ URL 输入框组件。
 
 #### 属性
 
-同 Input.Text 组件属性。
+同 Input.Text 组件属性，以及：
+
+| 属性      | 说明     | 类型                                              | 默认值 |
+| --------- | -------- | ------------------------------------------------- | ------ |
+| onPreview | 预览事件 | `(value: string) => Promise<boolean> \| boolean`  | -      |
 
 #### Ref
 
@@ -329,11 +366,26 @@ URL 输入框组件。
 
 #### 属性
 
-同 Input.Text 组件属性。
+| 属性       | 说明       | 类型                      | 默认值 |
+| ---------- | ---------- | ------------------------- | ------ |
+| type       | 输入类型   | `string`                  | -      |
+| value      | 输入值     | `string[]`                | -      |
+| maxLength  | 最大长度   | `number`                  | -      |
+| style      | 自定义样式 | `object`                  | -      |
+| className  | 自定义类名 | `string`                  | -      |
+| disabled   | 是否禁用   | `boolean`                 | -      |
+| readOnly   | 是否只读   | `boolean`                 | -      |
+| onChange   | 值变化事件 | `(value: string[]) => void` | -    |
+| onComplete | 输入完成   | `(value: string[]) => void` | -    |
 
 #### Ref
 
-同 Input.Text 组件 Ref。
+| 属性       | 说明           | 类型                   |
+| ---------- | -------------- | ---------------------- |
+| element    | 根元素         | `HTMLDivElement`       |
+| getElement | 获取根元素     | () => `HTMLDivElement` |
+| focus      | 获取焦点       | `(itemIndex?: number) => void` |
+| blur       | 失去焦点       | `() => void`           |
 
 ## Input.Range
 
@@ -352,11 +404,28 @@ URL 输入框组件。
 
 #### 属性
 
-同 Input.Text 组件属性。
+| 属性      | 说明       | 类型                      | 默认值 |
+| --------- | ---------- | ------------------------- | ------ |
+| id        | 输入框 ID  | `string`                  | -      |
+| name      | 输入框名称 | `string`                  | -      |
+| value     | 输入值     | `number`                  | -      |
+| readOnly  | 是否只读   | `boolean`                 | -      |
+| disabled  | 是否禁用   | `boolean`                 | -      |
+| style     | 自定义样式 | `object`                  | -      |
+| className | 自定义类名 | `string`                  | -      |
+| min       | 最小值     | `number`                  | -      |
+| max       | 最大值     | `number`                  | -      |
+| step      | 步进值     | `number`                  | -      |
+| onChange  | 值变化事件 | `(value: number) => void` | -      |
 
 #### Ref
 
-同 Input.Text 组件 Ref。
+| 属性            | 说明           | 类型                     |
+| --------------- | -------------- | ------------------------ |
+| element         | 根元素         | `HTMLDivElement`         |
+| inputElement    | 输入框元素     | `HTMLInputElement`       |
+| getElement      | 获取根元素     | () => `HTMLDivElement`   |
+| getInputElement | 获取输入框元素 | () => `HTMLInputElement` |
 
 ## Input.Rate
 
@@ -375,8 +444,26 @@ URL 输入框组件。
 
 #### 属性
 
-同 Input.Text 组件属性。
+| 属性       | 说明         | 类型                                                      | 默认值 |
+| ---------- | ------------ | --------------------------------------------------------- | ------ |
+| id         | 输入框 ID    | `string`                                                  | -      |
+| name       | 输入框名称   | `string`                                                  | -      |
+| value      | 评分值       | `number`                                                  | -      |
+| readOnly   | 是否只读     | `boolean`                                                 | -      |
+| disabled   | 是否禁用     | `boolean`                                                 | -      |
+| style      | 自定义样式   | `object`                                                  | -      |
+| className  | 自定义类名   | `string`                                                  | -      |
+| iconRender | 图标渲染     | `(params: object) => ReactNode`                           | -      |
+| min        | 最小值       | `number`                                                  | -      |
+| max        | 最大值       | `number`                                                  | -      |
+| step       | 步进值       | `number`                                                  | -      |
+| onChange   | 值变化事件   | `(value: number) => void`                                 | -      |
 
 #### Ref
 
-同 Input.Text 组件 Ref。
+| 属性            | 说明           | 类型                     |
+| --------------- | -------------- | ------------------------ |
+| element         | 根元素         | `HTMLDivElement`         |
+| inputElement    | 输入框元素     | `HTMLInputElement`       |
+| getElement      | 获取根元素     | () => `HTMLDivElement`   |
+| getInputElement | 获取输入框元素 | () => `HTMLInputElement` |

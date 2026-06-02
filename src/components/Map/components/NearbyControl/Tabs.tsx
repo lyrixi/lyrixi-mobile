@@ -1,7 +1,7 @@
 import React from 'react'
 import getTabs from './utils/getTabs'
 
-import type { MapNearbyControlTabsProps } from '../../types'
+import type { MapNearbyControlTabsProps } from './Map.NearbyControl.Tabs.types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'

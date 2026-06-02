@@ -1,15 +1,13 @@
-import React from 'react'
+import { Page, NavBar, Divider, Button, Icon, Icons } from 'lyrixi-mobile'
 
-import { Page, NavBar, Divider, Button, Icon } from 'lyrixi-mobile'
-
-export default () => {
+export default function NavBarDemo() {
   return (
     <Page className="lyrixi-full lyrixi-bg-white">
       <Page.Main>
         <Divider>Normal</Divider>
         <NavBar>
           <NavBar.Button>
-            <Button.Icon className="lyrixi-iconfont-arrow-left" />
+            <Button.Icon svg={Icons.ArrowLeft} />
             <Button.Text>Back</Button.Text>
           </NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>
@@ -20,8 +18,7 @@ export default () => {
         <NavBar>
           <NavBar.Button>
             <Icon
-              className="lyrixi-iconfont-close"
-              size="12"
+              svg={Icons.Close} size="12"
               style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"
@@ -29,7 +26,7 @@ export default () => {
           </NavBar.Button>
           <NavBar.Button>
             <Button.Icon
-              className="lyrixi-iconfont-three-dots"
+              svg={Icons.ThreeDots}
               size="12"
               style={{ padding: 4 }}
               radius="2px"
@@ -43,8 +40,7 @@ export default () => {
         <NavBar>
           <NavBar.Button>
             <Icon
-              className="lyrixi-iconfont-close"
-              size="12"
+              svg={Icons.Close} size="12"
               style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"

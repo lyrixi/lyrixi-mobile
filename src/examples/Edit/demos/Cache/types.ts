@@ -1,3 +1,7 @@
+export type EditDemoFormItemExtraParams = {
+  value: unknown
+}
+
 export type EditCacheQueryDataResult = {
   formData?: unknown
 } | null

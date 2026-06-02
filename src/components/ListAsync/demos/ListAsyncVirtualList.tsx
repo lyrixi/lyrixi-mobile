@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+
 import { Page, ListAsync } from 'lyrixi-mobile'
 
 // 虚拟滚动列表：传入 virtual={{ getItemHeight }}，列表项高度需固定以便计算可视区
 const ITEM_HEIGHT = 72
 
-export default () => {
+export default function ListAsyncVirtualListDemo() {
   const mainRef = useRef(null)
   const [value, setValue] = useState<Record<string, unknown> | Record<string, unknown>[] | null>(null)
 

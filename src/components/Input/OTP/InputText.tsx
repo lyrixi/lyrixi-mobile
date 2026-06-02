@@ -1,6 +1,6 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-import type { InputOTPInputTextProps, InputOTPInputTextRef } from './Input.OTP.types'
+import type { InputOTPInputTextProps, InputOTPInputTextRef } from './Input.OTP.InputText.types'
 
 const InputText = forwardRef<InputOTPInputTextRef, InputOTPInputTextProps>(
   ({ values, disabled, readOnly, onChange, onKeyDown, onPaste }, ref) => {

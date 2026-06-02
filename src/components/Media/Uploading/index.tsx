@@ -17,7 +17,7 @@ const Uploading = ({
   item = {},
   // Style
   className,
-  // Element
+  // Elements
   uploadingRender
 }: MediaUploadingProps) => {
   // 上传中node

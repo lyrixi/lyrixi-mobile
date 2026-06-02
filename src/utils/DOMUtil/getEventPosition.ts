@@ -1,23 +1,32 @@
-import type { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react'
+import type { TouchEvent, MouseEvent } from 'react'
 
-/** 兼容原生事件与 React 合成事件 */
-function getEventPosition(
-  e: MouseEvent | TouchEvent | ReactMouseEvent<unknown> | ReactTouchEvent<unknown>
-): { clientX: number; clientY: number } {
-  if (typeof TouchEvent !== 'undefined' && e instanceof TouchEvent) {
-    const touch = e.changedTouches?.[0] ?? e.touches?.[0]
-    if (touch) {
-      return { clientX: touch.clientX, clientY: touch.clientY }
+/**
+ * 获取事件的坐标位置(兼容touch和mouse事件)
+ * @param {Event} e - 事件对象
+ * @returns {{clientX: number, clientY: number}} 坐标对象
+ */
+function getEventPosition(e: TouchEvent | MouseEvent) {
+  // touchstart & touchmove & touchend
+  if ('changedTouches' in e && e.changedTouches[0]) {
+    return {
+      clientX: e.changedTouches[0].clientX,
+      clientY: e.changedTouches[0].clientY
     }
   }
-  if ('touches' in e && e.touches && e.touches.length > 0) {
-    const touch = e.changedTouches?.[0] ?? e.touches[0]
-    if (touch) {
-      return { clientX: touch.clientX, clientY: touch.clientY }
+
+  // 兼容touchmove
+  if ('touches' in e && e.touches[0]) {
+    return {
+      clientX: e.touches[0].clientX,
+      clientY: e.touches[0].clientY
     }
   }
-  const me = e as Pick<MouseEvent, 'clientX' | 'clientY'>
-  return { clientX: me.clientX, clientY: me.clientY }
+
+  const mouse = e as MouseEvent
+  return {
+    clientX: mouse.clientX,
+    clientY: mouse.clientY
+  }
 }
 
 export default getEventPosition

@@ -1,6 +1,6 @@
 import getRemainCount from './../../utils/getRemainCount'
 
-import type { MediaChooseUtilOptions, MediaListItem } from '../../types'
+import type { MediaChooseUtilOptions, MediaItem } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -41,17 +41,17 @@ async function choose({
     return false
   }
 
-  let currentList: MediaListItem[] | null = null
+  let currentList: MediaItem[] | null = null
   if (typeof onChoose === 'function') {
     const r = await Promise.resolve(onChoose())
-    currentList = Array.isArray(r) ? (r as MediaListItem[]) : null
+    currentList = Array.isArray(r) ? (r as MediaItem[]) : null
   }
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     return null
   }
 
   // 构建新的照片列表
-  let newList: MediaListItem[] = []
+  let newList: MediaItem[] = []
   // 新照片放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]

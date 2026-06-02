@@ -39,7 +39,7 @@ const ToolBarActionSheet = forwardRef<
     modalStyle,
     modalClassName,
 
-    // Element
+    // Elements
     comboRender,
     children,
     arrowRender,
@@ -111,7 +111,7 @@ const ToolBarActionSheet = forwardRef<
       maskClassName={maskClassName}
       modalStyle={modalStyle}
       modalClassName={modalClassName}
-      // Element
+      // Elements
       portal={portal}
       comboRender={renderCombo}
       // Events

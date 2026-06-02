@@ -3,7 +3,7 @@ import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } f
 
 import ItemsContext from './../ItemsContext'
 
-import type { FormVirtualFormProps, FormVirtualFormRef } from '../../types'
+import type { FormVirtualFormProps, FormVirtualFormRef } from './Form.Items.VirtualForm.types'
 
 // 内库使用-start
 import DOMUtil from './../../../../utils/DOMUtil'
@@ -28,7 +28,7 @@ const VirtualForm = forwardRef<FormVirtualFormRef, FormVirtualFormProps>(
       mainSpan,
       mainEllipsis,
 
-      // Element
+      // Elements
       children
     },
     ref
@@ -92,7 +92,7 @@ const VirtualForm = forwardRef<FormVirtualFormRef, FormVirtualFormProps>(
           style={style}
           className={(DOMUtil.classNames as (...args: unknown[]) => string)('lyrixi-form-items lyrixi-virtual', className)}
         >
-          {/* Element: Children */}
+          {/* Elements: Children */}
           {children}
         </div>
       </ItemsContext.Provider>

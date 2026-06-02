@@ -6,6 +6,8 @@ import type { SelectorItem, SelectorProps, SelectorRef } from './../types'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
+import Icon from './../../Icon'
+import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -31,7 +33,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
       style,
       columns = 2, // 列数
 
-      // Element
+      // Elements
       id,
 
       // Events
@@ -116,13 +118,13 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     return (
       <div
         ref={rootRef}
-        // Element
+        // Elements
         id={id}
         // Style
         style={Object.assign({ ['--columns' as string]: columns } as CSSProperties, style)}
         className={DOMUtil.classNames('lyrixi-selector', className)}
       >
-        {/* Element: Items */}
+        {/* Elements: Items */}
         {displayList.map((item, index) => {
           return (
             <Item
@@ -140,7 +142,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
           )
         })}
 
-        {/* Element: Ellipsis */}
+        {/* Elements: Ellipsis */}
         {hasEllipsis && (
           <div
             className="lyrixi-selector-item lyrixi-selector-item-ellipsis"
@@ -152,13 +154,14 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
                 ? LocaleUtil.locale('收起', 'lyrixi_def9e98b60e3bfc493bcd7693e702096')
                 : LocaleUtil.locale('更多', 'lyrixi_0ec9eaf9c3525eb110db58aae5912210')}
             </div>
-            <i
+            <Icon
+              svg={Icons.ArrowDown}
+              size="xs"
               className={DOMUtil.classNames(
                 'lyrixi-selector-item-ellipsis-icon',
-                expanded ? 'lyrixi-selector-item-ellipsis-icon-expanded' : '',
-                'lyrixi-iconfont-arrow-down'
+                expanded ? 'lyrixi-selector-item-ellipsis-icon-expanded' : ''
               )}
-            ></i>
+            />
           </div>
         )}
       </div>

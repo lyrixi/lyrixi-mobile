@@ -11,7 +11,7 @@ import type {
 } from './types'
 import RetryButton from './components/RetryButton'
 
-import type { RawItem } from './../List/types'
+import type { ListItem } from './../List/types'
 
 // 内库使用-start
 import DOMUtil from './../../utils/DOMUtil'
@@ -177,12 +177,12 @@ const ListAsync = forwardRef<ListAsyncRef, ListAsyncProps>(
         value={value}
         formatViewList={
           typeof formatViewList === 'function'
-            ? (rawList: RawItem[]) => formatViewList(rawList, { result })
+            ? (rawList: ListItem[]) => formatViewList(rawList, { result })
             : undefined
         }
         formatViewItem={
           typeof formatViewItem === 'function'
-            ? (rawItem: RawItem, options: { index: number }) =>
+            ? (rawItem: ListItem, options: { index: number }) =>
                 formatViewItem(rawItem, { result, index: options.index })
             : undefined
         }

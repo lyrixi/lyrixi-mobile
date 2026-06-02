@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type Ref } from 'react'
-import type { CascaderMainRef, CascaderModalProps, CascaderNode } from '../types'
+import type { CascaderMainRef, CascaderModalProps, CascaderItem } from '../types'
 import Main from './../Main'
 
 // 内库使用-start
@@ -16,24 +16,43 @@ const NavBarModal = Modal.NavBarModal
 const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
   (
     {
+      // Value & Display Value
       value,
+
+      // Main
+      // Main: Value & Display Value
       list,
       loadData,
+
+      // Status
       open,
+
+      // Modal
+      // Modal: Status
       maskClosable,
-      allowClear: _allowClear,
       safeArea,
+
+      // Main: Status
+      allowClear: _allowClear,
+      searchVisible,
+
+      // Modal: Style
       modalStyle,
       modalClassName,
       maskStyle,
       maskClassName,
+
+      // Modal: Elements
       portal,
-      searchVisible,
       title,
       okNode,
       cancelNode,
+
+      // Modal: Status
       okVisible,
       cancelVisible,
+
+      // Events
       onClose,
       onOk,
       onSearch,
@@ -41,7 +60,7 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
     },
     ref
   ) => {
-    const [currentValue, setCurrentValue] = useState<CascaderNode[] | null | undefined>(value)
+    const [currentValue, setCurrentValue] = useState<CascaderItem[] | null | undefined>(value)
 
     const modalRef = useRef<unknown>(null)
 
@@ -69,12 +88,12 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
       }
 
       if (onChange) {
-        onChange((currentValue ?? []) as CascaderNode[])
+        onChange((currentValue ?? []) as CascaderItem[])
       }
       onClose?.()
     }
 
-    function handleChange(newValue: CascaderNode[], _newArguments?: unknown) {
+    function handleChange(newValue: CascaderItem[], _newArguments?: unknown) {
       setCurrentValue(newValue)
 
       const lastTab = Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
@@ -111,7 +130,7 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
             list={list ?? undefined}
             loadData={loadData}
             onSearch={onSearch}
-            onChange={handleChange as (v: CascaderNode[]) => void}
+            onChange={handleChange as (v: CascaderItem[]) => void}
           />
         )}
       </NavBarModal>

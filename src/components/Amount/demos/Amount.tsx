@@ -1,7 +1,6 @@
-import React from 'react'
 import { Page, Amount } from 'lyrixi-mobile'
 
-export default () => {
+export default function AmountDemo() {
   return (
     <Page>
       <Page.Main>

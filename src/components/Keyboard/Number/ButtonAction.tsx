@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import type { KeyboardButtonActionProps } from './../types'
+import type { KeyboardNumberButtonActionProps } from './Keyboard.Number.ButtonAction.types'
 
 // 内库使用-start
 import DOMUtil from '../../../utils/DOMUtil'
@@ -11,7 +11,7 @@ import DOMUtil from '../../../utils/DOMUtil'
 import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-const ButtonAction = ({ onClick, className = '', children }: KeyboardButtonActionProps) => {
+const ButtonAction = ({ onClick, className = '', children }: KeyboardNumberButtonActionProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     if (onClick) {

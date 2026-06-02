@@ -1,9 +1,8 @@
-import React from 'react'
 import { Storage, Page, Button } from 'lyrixi-mobile'
 
-import type { StorageDemoCacheState } from './../Storage.demos.types'
+import type { StorageDemoCacheState } from '../types/Storage.demos.types'
 
-export default () => {
+export default function UseCacheStateDemo() {
   const [data, setData] = Storage.useCacheState<StorageDemoCacheState>(null, {
     name: 'cache-state-pageName-futureName',
     persist: true

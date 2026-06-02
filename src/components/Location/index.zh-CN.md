@@ -30,30 +30,33 @@ toc: content
 
 | 属性                   | 说明         | 类型                                                   | 默认值    |
 | ---------------------- | ------------ | ------------------------------------------------------ | --------- |
-| value                  | 位置值       | `{latitude: number, longitude: number, value: string}` | -         |
+| value                  | 位置值       | `LocationValue \| null`                                | -         |
+| placeholder            | 占位符       | `string`                                               | -         |
+| type                   | 坐标类型     | `string`                                               | -         |
+| cacheExpires           | 缓存过期时间 | `number`                                               | -         |
+| mapConfig              | 地图配置     | `object`                                               | -         |
+| autoSize               | 自动调整大小 | `boolean`                                              | -         |
 | errorText              | 错误提示文本 | `string`                                               | -         |
 | loadingText            | 加载提示文本 | `string`                                               | -         |
-| disabled               | 是否禁用     | `boolean`                                              | `false`   |
-| editable               | 是否可编辑   | `boolean`                                              | `false`   |
-| autoLocation           | 自动定位     | `boolean`                                              | `false`   |
-| locationVisible        | 定位按钮可见 | `boolean`                                              | `true`    |
-| chooseVisible          | 选择按钮可见 | `boolean`                                              | `false`   |
-| previewVisible         | 预览按钮可见 | `boolean`                                              | `false`   |
-| clickAction            | 点击动作     | `'location' \| 'choose' \| 'preview'`                  | -         |
+| allowClear             | 允许清除     | `boolean`                                              | -         |
+| disabled               | 是否禁用     | `boolean`                                              | -         |
+| editable               | 是否可编辑   | `boolean`                                              | -         |
+| autoLocation           | 自动定位     | `boolean`                                              | -         |
+| locationVisible        | 定位按钮可见 | `boolean`                                              | -         |
+| chooseVisible          | 选择按钮可见 | `boolean \| { nearbyVisible?: boolean }`               | -         |
+| previewVisible         | 预览按钮可见 | `boolean`                                              | -         |
+| clickAction            | 点击动作     | `string`                                               | -         |
 | className              | 自定义类名   | `string`                                               | -         |
 | modalClassName         | 模态框类名   | `string`                                               | -         |
 | modalStyle             | 模态框样式   | `object`                                               | -         |
-| type                   | 坐标类型     | `string`                                               | `'gcj02'` |
-| autoSize               | 自动调整大小 | `boolean`                                              | -         |
-| mapConfig              | 地图配置     | `object`                                               | -         |
-| getAddress             | 获取地址函数 | `(location: object) => Promise<string>`                | -         |
-| getLocation            | 获取位置函数 | `() => Promise<object>`                                | -         |
-| portal                 | 挂载节点     | `HTMLElement`                                          | -         |
-| onChange               | 变化事件     | `(value: object) => void`                              | -         |
+| getAddress             | 获取地址函数 | `(...args: unknown[]) => unknown`                      | -         |
+| getLocation            | 获取位置函数 | `(...args: unknown[]) => unknown`                      | -         |
+| portal                 | 挂载节点     | `HTMLElement \| null`                                  | -         |
+| onChange               | 变化事件     | `(value: LocationValue \| null) => void`               | -         |
 | onOpen                 | 打开事件     | `() => void`                                           | -         |
 | onClose                | 关闭事件     | `() => void`                                           | -         |
 | onLocationStatusChange | 定位状态变化 | `(status: string) => void`                             | -         |
-| onError                | 错误事件     | `(error: object) => void`                              | -         |
+| onError                | 错误事件     | `(error: { status: string; message: string }) => void` | -         |
 
 #### Ref
 
@@ -77,26 +80,27 @@ toc: content
 
 #### 属性
 
-| 属性           | 说明         | 类型                                                   | 默认值 |
-| -------------- | ------------ | ------------------------------------------------------ | ------ |
-| value          | 位置值       | `{latitude: number, longitude: number, value: string}` | -      |
-| open           | 是否显示     | `boolean`                                              | -      |
-| mapConfig      | 地图配置     | `object`                                               | -      |
-| getAddress     | 获取地址函数 | `(location: object) => Promise<string>`                | -      |
-| getLocation    | 获取位置函数 | `() => Promise<object>`                                | -      |
-| portal         | 挂载节点     | `HTMLElement`                                          | -      |
-| modalClassName | 模态框类名   | `string`                                               | -      |
-| modalStyle     | 模态框样式   | `object`                                               | -      |
-| onChange       | 变化事件     | `(value: object) => void`                              | -      |
-| onOpen         | 打开事件     | `() => void`                                           | -      |
-| onClose        | 关闭事件     | `() => void`                                           | -      |
-
-#### Ref
-
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性           | 说明           | 类型                                     | 默认值 |
+| -------------- | -------------- | ---------------------------------------- | ------ |
+| value          | 位置值         | `LocationValue \| null`                  | -      |
+| cacheExpires   | 缓存过期时间   | `number`                                 | -      |
+| open           | 显示类型       | `string`                                 | -      |
+| maskClosable   | 点击遮罩关闭   | `boolean`                                | -      |
+| safeArea       | 是否安全区     | `boolean`                                | -      |
+| allowClear     | 允许清除       | `boolean`                                | -      |
+| multiple       | 是否多选       | `boolean`                                | -      |
+| nearbyVisible  | 附近地点可见   | `boolean`                                | -      |
+| modalClassName | 模态框类名     | `string`                                 | -      |
+| modalStyle     | 模态框样式     | `object`                                 | -      |
+| maskStyle      | 遮罩样式       | `object`                                 | -      |
+| maskClassName  | 遮罩类名       | `string`                                 | -      |
+| mapConfig      | 地图配置       | `object`                                 | -      |
+| getAddress     | 获取地址函数   | `function`                               | -      |
+| getLocation    | 获取位置函数   | `function`                               | -      |
+| portal         | 挂载节点       | `Element \| null`                        | -      |
+| onOk           | 确认事件       | `(value: LocationValue \| null) => unknown` | -   |
+| onChange       | 变化事件       | `(value: LocationValue \| null) => void` | -      |
+| onClose        | 关闭事件       | `() => void`                             | -      |
 
 ## Location.Main
 
@@ -115,23 +119,19 @@ toc: content
 
 #### 属性
 
-| 属性         | 说明          | 类型                                                   | 默认值 |
-| ------------ | ------------- | ------------------------------------------------------ | ------ |
-| value        | 位置值        | `{latitude: number, longitude: number, value: string}` | -      |
-| open         | 显示类型      | `'preview' \| 'choose'`                                | -      |
-| allowClear   | 允许清除      | `boolean`                                              | -      |
-| autoLocation | 自动定位      | `boolean`                                              | `true` |
-| id           | 位置选择器 ID | `string`                                               | -      |
-| mapConfig    | 地图配置      | `object`                                               | -      |
-| getLocation  | 获取位置函数  | `() => Promise<object>`                                | -      |
-| getAddress   | 获取地址函数  | `(location: object) => Promise<string>`                | -      |
-| style        | 自定义样式    | `object`                                               | -      |
-| className    | 自定义类名    | `string`                                               | -      |
-| onChange     | 变化事件      | `(value: object) => void`                              | -      |
-
-#### Ref
-
-| 属性           | 说明       | 类型                   |
-| -------------- | ---------- | ---------------------- |
-| mainElement    | 主元素     | `HTMLDivElement`       |
-| getMainElement | 获取主元素 | () => `HTMLDivElement` |
+| 属性          | 说明           | 类型                                     | 默认值 |
+| ------------- | -------------- | ---------------------------------------- | ------ |
+| value         | 位置值         | `LocationValue \| null`                  | -      |
+| cacheExpires  | 缓存过期时间   | `number`                                 | -      |
+| open          | 显示类型       | `string`                                 | -      |
+| autoLocation  | 自动定位       | `boolean`                                | -      |
+| nearbyVisible | 附近地点可见   | `boolean`                                | -      |
+| id            | 位置选择器 ID  | `string`                                 | -      |
+| mapConfig     | 地图配置       | `object`                                 | -      |
+| getLocation   | 获取位置函数   | `function`                               | -      |
+| getAddress    | 获取地址函数   | `function`                               | -      |
+| style         | 自定义样式     | `object`                                 | -      |
+| className     | 自定义类名     | `string`                                 | -      |
+| onChange      | 变化事件       | `(value: LocationValue \| null) => void` | -      |
+| onOk          | 确认事件       | `(value: LocationValue \| null) => void` | -      |
+| onClear       | 清除事件       | `() => void`                             | -      |

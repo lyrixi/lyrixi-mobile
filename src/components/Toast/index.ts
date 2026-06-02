@@ -1,10 +1,8 @@
 import show from './show'
-import type { ToastShowProps } from './types'
 import hide from './hide'
 
-const Toast: { defaultProps?: ToastShowProps; show: typeof show; hide: typeof hide } = {
-  show,
-  hide
-}
+import type { ToastComponents } from './types/Toast.modules.types'
+
+const Toast: ToastComponents = { show, hide }
 
 export default Toast
