@@ -21,10 +21,13 @@ function getStyle({
 }: IconStyleInput): { style: CSSProperties; className: string } {
   const isColorClass = !!(color && VariablesUtil.isColorVariable(color))
   const isBackgroundColorClass = !!(
-    backgroundColor && VariablesUtil.isColorVariable(backgroundColor)
+    backgroundColor && VariablesUtil.isBgColorVariable(backgroundColor)
   )
-  const isSizeClass = !!(size && VariablesUtil.isSizeVariable(size))
-  const isRadiusClass = !!(radius && VariablesUtil.isSizeVariable(radius))
+  const isSizeClass = !!(
+    size &&
+    (VariablesUtil.isFontSizeVariable(size) || size === 'xxs' || size === 'xxxl')
+  )
+  const isRadiusClass = !!(radius && VariablesUtil.isRadiusVariable(radius))
 
   const newStyle: CSSProperties = {
     ...(!isColorClass && color ? { color } : {}),

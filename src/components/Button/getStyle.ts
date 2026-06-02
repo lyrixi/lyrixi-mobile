@@ -47,11 +47,11 @@ export default function getStyle({
   }
 
   const isColorClass = VariablesUtil.isColorVariable(color)
-  const isBorderColorClass = VariablesUtil.isColorVariable(borderColor)
-  const isBackgroundColorClass = VariablesUtil.isColorVariable(backgroundColor)
-  const isSizeClass = VariablesUtil.isSizeVariable(sizeResolved)
-  const isRadiusClass = VariablesUtil.isSizeVariable(radiusResolved)
-  const isFontSizeClass = VariablesUtil.isSizeVariable(fontSizeResolved)
+  const isBorderColorClass = VariablesUtil.isBorderColorVariable(borderColor)
+  const isBackgroundColorClass = VariablesUtil.isBgColorVariable(backgroundColor)
+  const isSizeClass = VariablesUtil.isHeightVariable(sizeResolved)
+  const isRadiusClass = VariablesUtil.isRadiusVariable(radiusResolved)
+  const isFontSizeClass = VariablesUtil.isFontSizeVariable(fontSizeResolved)
 
   const newStyle = {
     ...(!isColorClass && color ? { color } : {}),

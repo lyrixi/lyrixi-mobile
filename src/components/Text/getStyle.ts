@@ -24,9 +24,9 @@ function getStyle({
 }) {
   // 判断颜色是否在枚举值中（含类名 token 的需与 design token 字符串比较）
   const isColorClass = color !== null && VariablesUtil.isColorVariable(color)
-  const isFontSizeClass = fontSize !== null && VariablesUtil.isSizeVariable(fontSize)
+  const isFontSizeClass = fontSize !== null && VariablesUtil.isFontSizeVariable(fontSize)
   const isFontWeightClass =
-    fontWeight !== null && VariablesUtil.isSizeVariable(fontWeight)
+    fontWeight !== null && VariablesUtil.isFontWeightVariable(fontWeight)
 
   // 构建自定义样式
   const newStyle: CSSProperties = {

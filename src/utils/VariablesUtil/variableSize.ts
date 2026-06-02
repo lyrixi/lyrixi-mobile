@@ -6,12 +6,31 @@ import MathUtil from './../MathUtil'
 import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import isSizeVariable from './isSizeVariable'
+import variables from './variables'
+
+const variableTypeKeys = ['font-size', 'font-weight', 'radius', 'height'] as const
+type VariableType = (typeof variableTypeKeys)[number]
+
+function isDesignToken(size: unknown, type: VariableType): boolean {
+  const value = String(size)
+  switch (type) {
+    case 'font-size':
+      return variables.fontSizes.includes(value)
+    case 'font-weight':
+      return variables.fontWeights.includes(value)
+    case 'radius':
+      return variables.radius.includes(value)
+    case 'height':
+      return variables.heights.includes(value)
+    default:
+      return false
+  }
+}
 
 /**
  * 获取尺寸变量, 与variables.less中的变量一致
  * @param {Number|String} size
- * @param {String} type 'space' | 'font-size' | 'font-weight' | 'radius', 不传则不使用变量
+ * @param {String} type 'font-size' | 'font-weight' | 'radius' | 'height', 不传则不使用变量
  * @returns {String} 间距大小
  */
 function variableSize(size: number | string, type?: string) {
@@ -21,8 +40,8 @@ function variableSize(size: number | string, type?: string) {
     return MathUtil.isNumber(size) ? `${size}px` : size
   }
 
-  // 如果是间距变量, 则返回变量
-  if (type && isSizeVariable(size)) {
+  // 如果是设计 token, 则返回变量
+  if (type && variableTypeKeys.includes(type as VariableType) && isDesignToken(size, type as VariableType)) {
     return `var(--lyrixi-${type}-${String(size)})`
   }
 
