@@ -6,6 +6,8 @@ import type {
   TouchEventHandler
 } from 'react'
 
+import type { IconSize } from './Icon.Size.types'
+
 export type IconSVGElement = ComponentType<SVGProps<SVGSVGElement>>
 
 export interface IconProps {
@@ -13,7 +15,7 @@ export interface IconProps {
   svg: IconSVGElement
   color?: string
   backgroundColor?: string
-  size?: string
+  size?: IconSize | string | number
   radius?: string
   // Status
   disabled?: boolean
@@ -33,7 +35,7 @@ export interface IconRef {
 export interface IconStyleInput {
   color?: string
   backgroundColor?: string
-  size?: string
+  size?: IconSize | string | number
   radius?: string
   style?: CSSProperties
   className?: string

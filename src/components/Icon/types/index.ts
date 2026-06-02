@@ -1,2 +1,2 @@
 export * from './Icon.types'
-export * from './Size'
+export * from './Icon.Size.types'
