@@ -402,11 +402,137 @@
   ],
   "utils": [
     {
-      "keywords": "Bridge|桥接|JSSDK",
+      "keywords": "ArrayUtil|数组|树形|deepTree|flattenTree",
+      "name": "ArrayUtil",
+      "props": ".ai/docs/utils/ArrayUtil/ArrayUtil-props.json",
+      "rule": ".ai/docs/utils/ArrayUtil/ArrayUtil-rules.md",
+      "example": ".ai/docs/utils/ArrayUtil/ArrayUtil-example.md"
+    },
+    {
+      "keywords": "AssetUtil|资源|图片|脚本|loadRemoteJs",
+      "name": "AssetUtil",
+      "props": ".ai/docs/utils/AssetUtil/AssetUtil-props.json",
+      "rule": ".ai/docs/utils/AssetUtil/AssetUtil-rules.md",
+      "example": ".ai/docs/utils/AssetUtil/AssetUtil-example.md"
+    },
+    {
+      "keywords": "Bridge|桥接|JSSDK|微信|钉钉",
       "name": "Bridge",
       "props": ".ai/docs/utils/Bridge/Bridge-props.json",
       "rule": ".ai/docs/utils/Bridge/Bridge-rules.md",
       "example": ".ai/docs/utils/Bridge/Bridge-example.md"
+    },
+    {
+      "keywords": "Clipboard|剪贴板|复制",
+      "name": "Clipboard",
+      "props": ".ai/docs/utils/Clipboard/Clipboard-props.json",
+      "rule": ".ai/docs/utils/Clipboard/Clipboard-rules.md",
+      "example": ".ai/docs/utils/Clipboard/Clipboard-example.md"
+    },
+    {
+      "keywords": "DOMUtil|classNames|DOM|variables",
+      "name": "DOMUtil",
+      "props": ".ai/docs/utils/DOMUtil/DOMUtil-props.json",
+      "rule": ".ai/docs/utils/DOMUtil/DOMUtil-rules.md",
+      "example": ".ai/docs/utils/DOMUtil/DOMUtil-example.md"
+    },
+    {
+      "keywords": "DateUtil|日期|时间|format|diff|compare",
+      "name": "DateUtil",
+      "props": ".ai/docs/utils/DateUtil/DateUtil-props.json",
+      "rule": ".ai/docs/utils/DateUtil/DateUtil-rules.md",
+      "example": ".ai/docs/utils/DateUtil/DateUtil-example.md"
+    },
+    {
+      "keywords": "Debugger|调试|vconsole",
+      "name": "Debugger",
+      "props": ".ai/docs/utils/Debugger/Debugger-props.json",
+      "rule": ".ai/docs/utils/Debugger/Debugger-rules.md",
+      "example": ".ai/docs/utils/Debugger/Debugger-example.md"
+    },
+    {
+      "keywords": "Device|设备|平台|UA|platform|os",
+      "name": "Device",
+      "props": ".ai/docs/utils/Device/Device-props.json",
+      "rule": ".ai/docs/utils/Device/Device-rules.md",
+      "example": ".ai/docs/utils/Device/Device-example.md"
+    },
+    {
+      "keywords": "EventUtil|事件|emit|on",
+      "name": "EventUtil",
+      "props": ".ai/docs/utils/EventUtil/EventUtil-props.json",
+      "rule": ".ai/docs/utils/EventUtil/EventUtil-rules.md",
+      "example": ".ai/docs/utils/EventUtil/EventUtil-example.md"
+    },
+    {
+      "keywords": "FullScreen|全屏",
+      "name": "FullScreen",
+      "props": ".ai/docs/utils/FullScreen/FullScreen-props.json",
+      "rule": ".ai/docs/utils/FullScreen/FullScreen-rules.md",
+      "example": ".ai/docs/utils/FullScreen/FullScreen-example.md"
+    },
+    {
+      "keywords": "GeoUtil|地理|坐标|距离|经纬度",
+      "name": "GeoUtil",
+      "props": ".ai/docs/utils/GeoUtil/GeoUtil-props.json",
+      "rule": ".ai/docs/utils/GeoUtil/GeoUtil-rules.md",
+      "example": ".ai/docs/utils/GeoUtil/GeoUtil-example.md"
+    },
+    {
+      "keywords": "HistoryUtil|历史记录|路由返回|navigate|popstate",
+      "name": "HistoryUtil",
+      "props": ".ai/docs/utils/HistoryUtil/HistoryUtil-props.json",
+      "rule": ".ai/docs/utils/HistoryUtil/HistoryUtil-rules.md",
+      "example": ".ai/docs/utils/HistoryUtil/HistoryUtil-example.md"
+    },
+    {
+      "keywords": "LocaleUtil|国际化|locale|多语言|languageMap",
+      "name": "LocaleUtil",
+      "props": ".ai/docs/utils/LocaleUtil/LocaleUtil-props.json",
+      "rule": ".ai/docs/utils/LocaleUtil/LocaleUtil-rules.md",
+      "example": ".ai/docs/utils/LocaleUtil/LocaleUtil-example.md"
+    },
+    {
+      "keywords": "Logger|日志|uploadLogs",
+      "name": "Logger",
+      "props": ".ai/docs/utils/Logger/Logger-props.json",
+      "rule": ".ai/docs/utils/Logger/Logger-rules.md",
+      "example": ".ai/docs/utils/Logger/Logger-example.md"
+    },
+    {
+      "keywords": "MathUtil|数学|variableSize",
+      "name": "MathUtil",
+      "props": ".ai/docs/utils/MathUtil/MathUtil-props.json",
+      "rule": ".ai/docs/utils/MathUtil/MathUtil-rules.md",
+      "example": ".ai/docs/utils/MathUtil/MathUtil-example.md"
+    },
+    {
+      "keywords": "ObjectUtil|对象|debounce|cloneDeep|isEmpty|pickBy",
+      "name": "ObjectUtil",
+      "props": ".ai/docs/utils/ObjectUtil/ObjectUtil-props.json",
+      "rule": ".ai/docs/utils/ObjectUtil/ObjectUtil-rules.md",
+      "example": ".ai/docs/utils/ObjectUtil/ObjectUtil-example.md"
+    },
+    {
+      "keywords": "Request|请求|axios|get|post|接口",
+      "name": "Request",
+      "props": ".ai/docs/utils/Request/Request-props.json",
+      "rule": ".ai/docs/utils/Request/Request-rules.md",
+      "example": ".ai/docs/utils/Request/Request-example.md"
+    },
+    {
+      "keywords": "Storage|存储|localStorage|sessionStorage|useCacheState",
+      "name": "Storage",
+      "props": ".ai/docs/utils/Storage/Storage-props.json",
+      "rule": ".ai/docs/utils/Storage/Storage-rules.md",
+      "example": ".ai/docs/utils/Storage/Storage-example.md"
+    },
+    {
+      "keywords": "Theme|主题|字体|hexToRgb|setFontSize",
+      "name": "Theme",
+      "props": ".ai/docs/utils/Theme/Theme-props.json",
+      "rule": ".ai/docs/utils/Theme/Theme-rules.md",
+      "example": ".ai/docs/utils/Theme/Theme-example.md"
     }
   ]
 }

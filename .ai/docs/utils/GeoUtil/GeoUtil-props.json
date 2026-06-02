@@ -1,0 +1,5 @@
+{
+  "GeoUtil.for": "获取边线, [[[lng, lat], [lng, lat]], [[lng, lat], [lng, lat]]]",
+  "GeoUtil.if": "检查参数是否有效",
+  "GeoUtil.return": "判断是否在范围内"
+}

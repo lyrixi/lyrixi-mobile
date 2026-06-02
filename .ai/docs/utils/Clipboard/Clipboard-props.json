@@ -1,0 +1,4 @@
+{
+  "Clipboard.selectContent": "选择元素的内容",
+  "Clipboard.createElementForExecCommand": "为execCommand方法创建一个临时元素"
+}

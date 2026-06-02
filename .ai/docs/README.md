@@ -28,15 +28,22 @@
 
 ### `utils/` — 工具文档
 
-包含**工具用法示例**，以及 **API / 属性** 说明，便于在业务代码中正确调用。
+与 `src/utils/` **导出工具一一对应**（当前 19 个），供 AI 查阅 API、规则与示例，减少生成代码时的幻觉。
 
-文件组织与 `components/` 相同（`*-props.json`、`*-rules.md`、`*-example.md`）。
+| 文件 / 目录 | 用途 |
+|-------------|------|
+| `{Name}-props.json` | API / 方法（由 `index.zh-CN.md`、源码与 demos 生成） |
+| `{Name}-rules.md` | 何时使用、必须使用库工具、demo 索引 |
+| `{Name}-example.md` | 示例说明与代码摘录 |
+| `demos/` | 与 `src/utils/{Name}/demos` 同步的示例源码 |
 
-索引：[`mapping.json`](mapping.json) 中的 `utils` 条目。
+修改工具文档或 demo 后，在仓库根目录执行 `npm run build:ai-docs` 重新生成。
+
+索引：[`mapping.json`](mapping.json) 的 `utils`；目录说明：[`utils/README.md`](utils/README.md)。
 
 ## 如何使用
 
 1. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
 2. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
 3. 扩展组件文档：改 `src/components/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
-4. 扩展工具文档：在 `utils/` 下手工维护或后续补充生成脚本。
+4. 扩展工具文档：改 `src/utils/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。

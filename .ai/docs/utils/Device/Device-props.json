@@ -1,0 +1,12 @@
+{
+  "Device._getCustomPlatforms": "存储自定义平台检测函数",
+  "Device.addPlatform": "见源码与 demos",
+  "Device.userAgent": "再执行默认检测",
+  "Device.isOnLine": "getter，见源码",
+  "Device.osVersion": "getter，见源码",
+  "Device.platformVersion": "getter，见源码",
+  "Device.screenWidth": "屏幕宽高",
+  "Device.screenHeight": "getter，见源码",
+  "Device.getUrlParameter": "获取url参数",
+  "Device.compareVersion": "见源码与 demos"
+}

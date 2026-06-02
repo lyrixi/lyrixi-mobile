@@ -1,80 +1,161 @@
 # Bridge Example
 
-`Bridge` 是跨容器（浏览器、微信/企微/小程序、支付宝、钉钉、飞书等）的 **JS-SDK/原生能力** 统一入口。默认用 `Device.platform` 选实现；可传第二参 `platform` 强制。类型从包内 `Bridge` 相关导出或 `import type { SuccessCallback, ... } from 'lyrixi-mobile'` 使用。
+以下示例位于本目录 `demos/`（由 `src/utils/Bridge/demos` 同步，运行 `npm run build:ai-docs` 更新）。
 
-完整互动示例见源码：`src/utils/Bridge/demos/Bridge.tsx`。
+业务代码引入：`import { Bridge } from 'lyrixi-mobile'`
 
-## 引入
-
-```tsx
-import { Bridge, Page, Card, Button, Loading } from 'lyrixi-mobile'
-```
-
-## 窗口与返回
-
-- `openWindow` / `closeWindow` / `back`：多场景可用；`back` 与地址栏 `isFromApp` 等共同决定是关 WebView、回首页或 `history`。
-- `onBack`：在支持的客户端/企微里拦截返回。
+## demos/Bridge.tsx
 
 ```tsx
-Bridge.openWindow({ title: '测试', url: 'https://www.baidu.com/' })
-Bridge.closeWindow()
-Bridge.back()
-Bridge.setTitle({ title: '自定义标题' })
+import { useRef } from 'react'
+
+import vconsole from 'vconsole'
+
+import {
+  Loading,
+  Button,
+  Bridge,
+  Page,
+  Divider,
+  Card,
+  type BridgeSuccessResult,
+  type BridgeErrorResult,
+  type BridgeCancelResult,
+  type BridgeScanCodeResultData,
+  type BridgeChooseMediaResultData,
+  type BridgeGetLocationResultData
+} from 'lyrixi-mobile'
+
+new vconsole()
+
+export default function BridgeDemo() {
+  const imageLocalFiles = useRef<unknown[] | null>(null)
+
+  return (
+    <Page>
+      <Page.Main>
+        <Divider>窗口接口</Divider>
+        <Card>
+          <Card.Header>打开新窗口接口</Card.Header>
+          <Card.Main>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                Bridge.openWindow({ title: '测试', url: 'https://www.baidu.com/' })
+              }}
+            >
+              openWindow
+            </Button>
+          </Card.Main>
+        </Card>
+        <Card>
+          <Card.Header>关闭当前网页窗口接口(仅客户端与企微)</Card.Header>
+          <Card.Main>
+            <a href="/#/test?title=test&isFromApp=confirm-close:11">返回提示11, 并关闭webview</a>
+            <br />
+            <a href="/#/test?title=test&isFromApp=confirm-close">返回提示, 并关闭webview</a>
+            <br />
+            <a href="/#/test?title=test&isFromApp=confirm:11">返回提示11</a>
+            <br />
+            <a href="/#/test?title=test&isFromApp=confirm">返回提示</a>
+            <br />
+            <a href="/#/test?title=test&isFromApp=1">返回时将会关闭webview</a>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                Bridge.closeWindow()
+              }}
+            >
+              closeWindow(全平台支持)
+            </Button>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                Bridge.back()
+              }}
+            >
+              back(全平台支持)
+            </Button>
+          </Card.Main>
+        </Card>
+        <Card>
+          <Card.Header>监听页面返回事件(仅客户端与企微)</Card.Header>
+          <Card.Main>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                Bridge.onBack({
+                  onSuccess: () => {
+                    console.log('阻止返回')
+                    alert('阻止返回')
+                  }
+                })
+              }}
+            >
+              onBack
+            </Button>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>修改页面title</Card.Header>
+          <Card.Main>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                Bridge.setTitle({
+                  title: '自定义标题'
+                })
+              }}
+            >
+              setTitle
+            </Button>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>退出至登录页面(仅客户端)</Card.Header>
+          <Card.Main>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                ;(Bridge as { logOut?: () => void }).logOut?.()
+              }}
+            >
+              logout
+            </Button>
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>返回首页(仅订货客户端支持)</Card.Header>
+          <Card.Main>
+            <Button
+              className="lyrixi-primary lyrixi-flex"
+              style={{ margin: '12px 10px' }}
+              radius="m"
+              onClick={() => {
+                Bridge.goHome()
+              }}
+            >
+              goHome
+            </Button>
+          </Card.Main>
+        </Card>
+
+        <Divider>媒体接口</Divider>
+        <Card>
+// ... 其余见 demos/Bridge.tsx 全文
 ```
-
-## 媒体
-
-```tsx
-Bridge.scanCode({
-  scanType: ['barCode'],
-  onSuccess: (res) => {
-    console.log(res)
-  },
-  onError: (err) => {
-    console.log(err)
-  }
-})
-
-Bridge.chooseMedia({
-  sizeType: ['original', 'compressed'],
-  sourceType: ['album', 'camera'],
-  onSuccess: (res) => {
-    // res.data.localFiles
-  },
-  onError: (e) => {},
-  onCancel: (c) => {}
-})
-```
-
-`previewMedia` 使用 `sources` 与 `index`；`previewFile` 推荐 **`fileUrl`**。
-
-## 位置与分享
-
-```tsx
-Bridge.openLocation({
-  type: 'gcj02',
-  latitude: 39.81,
-  longitude: 116.49,
-  name: '终点',
-  address: '终点地址名',
-  scale: 16
-})
-
-Loading.show({ content: '定位中...' })
-Bridge.getLocation({
-  type: 'gcj02',
-  onSuccess: (res) => { Loading.hide(); console.log(res) },
-  onError: (e) => { Loading.hide(); console.log(e) }
-})
-
-Bridge.share({
-  title: '标题',
-  description: '描述',
-  imageUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-  url: 'https://lyrixi.github.io/lyrixi-mobile/'
-})
-```
-
-## 自定义 Bridge
-
-在自有 App WebView 注入对象时，可先 `addBridge` 再合并到默认 `Browser` 上，与内置 `WeChat` / `DingTalk` 等选路方式一致，详见 `index.ts` 中 `_getCurrentBridge`。
