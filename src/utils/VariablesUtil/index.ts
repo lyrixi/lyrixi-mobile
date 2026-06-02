@@ -1,22 +1,22 @@
 import variables from './variables'
-import isColorVariable from './isColorVariable'
-import isBgColorVariable from './isBgColorVariable'
-import isBorderColorVariable from './isBorderColorVariable'
-import isFontSizeVariable from './isFontSizeVariable'
-import isFontWeightVariable from './isFontWeightVariable'
-import isHeightVariable from './isHeightVariable'
-import isRadiusVariable from './isRadiusVariable'
+import getColorClass from './getColorClass'
+import getBgColorClass from './getBgColorClass'
+import getBorderColorClass from './getBorderColorClass'
+import getFontSizeClass from './getFontSizeClass'
+import getFontWeightClass from './getFontWeightClass'
+import getHeightClass from './getHeightClass'
+import getRadiusClass from './getRadiusClass'
 import variableSize from './variableSize'
 
 const VariablesUtil = {
   variables,
-  isColorVariable,
-  isBgColorVariable,
-  isBorderColorVariable,
-  isFontSizeVariable,
-  isFontWeightVariable,
-  isHeightVariable,
-  isRadiusVariable,
+  getColorClass,
+  getBgColorClass,
+  getBorderColorClass,
+  getFontSizeClass,
+  getFontWeightClass,
+  getHeightClass,
+  getRadiusClass,
   variableSize
 }
 

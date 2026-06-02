@@ -12,12 +12,13 @@ import { VariablesUtil } from 'lyrixi-mobile'
 
 function getStyle({ color, style }: StampStyleInput) {
   // 判断颜色是否在枚举值中
-  const isColorClass =
-    color !== null && color !== undefined && color !== '' && VariablesUtil.isColorVariable(color)
-
+  const colorClass =
+    color !== null && color !== undefined && color !== ''
+      ? VariablesUtil.getColorClass(color)
+      : ''
   // 构建自定义样式
   const newStyle: CSSProperties = {
-    ...(!isColorClass ? {
+    ...(!colorClass ? {
       color: color,
       // 如果不考虑兼容性问题, 可以使用自定义样式:
       '--lyrixi-stamp-color': color,
@@ -25,7 +26,7 @@ function getStyle({ color, style }: StampStyleInput) {
     ...style
   }
 
-  const newClassName = isColorClass ? `lyrixi-${color}` : undefined
+  const newClassName = colorClass ? `lyrixi-${color}` : undefined
 
   return { style: newStyle, className: newClassName }
 }

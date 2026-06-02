@@ -23,23 +23,25 @@ function getStyle({
   className?: string
 }) {
   // 判断颜色是否在枚举值中（含类名 token 的需与 design token 字符串比较）
-  const isColorClass = color !== null && VariablesUtil.isColorVariable(color)
-  const isFontSizeClass = fontSize !== null && VariablesUtil.isFontSizeVariable(fontSize)
-  const isFontWeightClass =
-    fontWeight !== null && VariablesUtil.isFontWeightVariable(fontWeight)
+  const colorClass =
+    color !== null && color !== undefined ? VariablesUtil.getColorClass(color) : ''
+  const fontSizeClass =
+    fontSize !== null && fontSize !== undefined ? VariablesUtil.getFontSizeClass(fontSize) : ''
+  const fontWeightClass =
+    fontWeight !== null && fontWeight !== undefined ? VariablesUtil.getFontWeightClass(fontWeight) : ''
 
   // 构建自定义样式
   const newStyle: CSSProperties = {
-    ...(!isColorClass && color ? { color } : {}),
-    ...(!isFontSizeClass && fontSize ? { fontSize: fontSize } : {}),
-    ...(!isFontWeightClass && fontWeight ? { fontWeight: fontWeight } : {}),
+    ...(!colorClass && color ? { color } : {}),
+    ...(!fontSizeClass && fontSize ? { fontSize: fontSize } : {}),
+    ...(!fontWeightClass && fontWeight ? { fontWeight: fontWeight } : {}),
     ...style
   }
 
   const newClassName = DOMUtil.classNames(
-    isColorClass && color && `lyrixi-color-${color}`,
-    isFontSizeClass && fontSize && `lyrixi-font-size-${fontSize}`,
-    isFontWeightClass && fontWeight && `lyrixi-font-weight-${fontWeight}`,
+    colorClass,
+    fontSizeClass,
+    fontWeightClass,
     className
   )
 

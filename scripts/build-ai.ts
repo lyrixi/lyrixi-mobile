@@ -264,7 +264,7 @@ const metadata = {
     kind: 'util',
     priority: 1,
     description:
-      '设计变量：variableSize 按 design token 换算 CSS 变量；isColorVariable / isBgColorVariable / isBorderColorVariable / isFontSizeVariable / isFontWeightVariable / isHeightVariable / isRadiusVariable 判断枚举值。',
+      '设计变量：variableSize 按 design token 换算 CSS 变量；getColorClass / getBgColorClass / getBorderColorClass / getFontSizeClass / getFontWeightClass / getHeightClass / getRadiusClass 返回 design token 类名（无匹配返回空串）。',
     replace: ['手写 rem 换算', '各处复制 variables 判断'],
     scenes: ['响应式尺寸', '颜色/尺寸 token 类名'],
     anti: ['各处复制一套 variableSize 逻辑'],

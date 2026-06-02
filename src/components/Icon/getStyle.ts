@@ -19,30 +19,28 @@ function getStyle({
   style,
   className
 }: IconStyleInput): { style: CSSProperties; className: string } {
-  const isColorClass = !!(color && VariablesUtil.isColorVariable(color))
-  const isBackgroundColorClass = !!(
-    backgroundColor && VariablesUtil.isBgColorVariable(backgroundColor)
-  )
-  const isSizeClass = !!(
-    size &&
-    (VariablesUtil.isFontSizeVariable(size) || size === 'xxs' || size === 'xxxl')
-  )
-  const isRadiusClass = !!(radius && VariablesUtil.isRadiusVariable(radius))
+  const colorClass = color ? VariablesUtil.getColorClass(color) : ''
+  const backgroundColorClass = backgroundColor ? VariablesUtil.getBgColorClass(backgroundColor) : ''
+  const sizeClass =
+    size && (VariablesUtil.getFontSizeClass(size) || size === 'xxs' || size === 'xxxl')
+      ? `lyrixi-icon-size-${size}`
+      : ''
+  const radiusClass = radius ? VariablesUtil.getRadiusClass(radius) : ''
 
   const newStyle: CSSProperties = {
-    ...(!isColorClass && color ? { color } : {}),
-    ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!isSizeClass && size ? { width: size, height: size } : {}),
-    ...(!isRadiusClass && radius ? { borderRadius: radius } : {}),
+    ...(!colorClass && color ? { color } : {}),
+    ...(!backgroundColorClass && backgroundColor ? { backgroundColor } : {}),
+    ...(!sizeClass && size ? { width: size, height: size } : {}),
+    ...(!radiusClass && radius ? { borderRadius: radius } : {}),
     ...style
   }
 
   const newClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
     'lyrixi-icon',
-    isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
-    isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
-    isSizeClass && size && `lyrixi-icon-size-${size}`,
-    isRadiusClass && radius && `lyrixi-radius-${radius}`,
+    colorClass && `${colorClass} lyrixi-border-color-${color}`,
+    backgroundColorClass,
+    sizeClass,
+    radiusClass,
     className
   )
 

@@ -46,36 +46,43 @@ export default function getStyle({
     radiusResolved = (VariablesUtil.variableSize(radius, '') as string) || radius
   }
 
-  const isColorClass = VariablesUtil.isColorVariable(color)
-  const isBorderColorClass = VariablesUtil.isBorderColorVariable(borderColor)
-  const isBackgroundColorClass = VariablesUtil.isBgColorVariable(backgroundColor)
-  const isSizeClass = VariablesUtil.isHeightVariable(sizeResolved)
-  const isRadiusClass = VariablesUtil.isRadiusVariable(radiusResolved)
-  const isFontSizeClass = VariablesUtil.isFontSizeVariable(fontSizeResolved)
+  const colorClass =
+    color !== null && color !== undefined && color !== '' ? VariablesUtil.getColorClass(color) : ''
+  const borderColorClass =
+    borderColor !== null && borderColor !== undefined && borderColor !== ''
+      ? VariablesUtil.getBorderColorClass(borderColor)
+      : ''
+  const backgroundColorClass =
+    backgroundColor !== null && backgroundColor !== undefined && backgroundColor !== ''
+      ? VariablesUtil.getBgColorClass(backgroundColor)
+      : ''
+  const sizeClass = sizeResolved ? VariablesUtil.getHeightClass(sizeResolved) : ''
+  const radiusClass = radiusResolved ? VariablesUtil.getRadiusClass(radiusResolved) : ''
+  const fontSizeClass = fontSizeResolved ? VariablesUtil.getFontSizeClass(fontSizeResolved) : ''
 
   const newStyle = {
-    ...(!isColorClass && color ? { color } : {}),
-    ...(!isBorderColorClass && borderColor ? { borderColor } : {}),
-    ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!isSizeClass && sizeResolved
+    ...(!colorClass && color ? { color } : {}),
+    ...(!borderColorClass && borderColor ? { borderColor } : {}),
+    ...(!backgroundColorClass && backgroundColor ? { backgroundColor } : {}),
+    ...(!sizeClass && sizeResolved
       ? { height: sizeResolved as string | number, width: sizeEqual ? sizeResolved : 'auto' }
       : {}),
-    ...(!isRadiusClass && radiusResolved ? { borderRadius: radiusResolved as string | number } : {}),
-    ...(!isFontSizeClass && fontSizeResolved ? { fontSize: fontSizeResolved } : {}),
+    ...(!radiusClass && radiusResolved ? { borderRadius: radiusResolved as string | number } : {}),
+    ...(!fontSizeClass && fontSizeResolved ? { fontSize: fontSizeResolved } : {}),
     ...style
   } as CSSProperties
 
   const newClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
     'lyrixi-button',
     direction === 'vertical' && `lyrixi-flex-vertical`,
-    isColorClass && color && `lyrixi-color-${color}`,
-    isBorderColorClass && borderColor && `lyrixi-border-color-${borderColor}`,
-    isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
+    colorClass,
+    borderColorClass,
+    backgroundColorClass,
     border !== 'none' && `lyrixi-border-width-default`,
     border && `lyrixi-border-style-${border}`,
     block && `lyrixi-button-block`,
-    isSizeClass && sizeResolved && `lyrixi-size-${sizeResolved}`,
-    isRadiusClass && radiusResolved && `lyrixi-radius-${radiusResolved}`,
+    sizeClass,
+    radiusClass,
     sizeEqual && `lyrixi-size-equal`,
     className
   )
