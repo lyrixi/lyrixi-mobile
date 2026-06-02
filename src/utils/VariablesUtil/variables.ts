@@ -119,10 +119,6 @@ function getValue(token: unknown, map: VariableMap): string {
   return map[String(token)]?.value ?? ''
 }
 
-function hasVariable(token: unknown, map: VariableMap): boolean {
-  return String(token) in map
-}
-
 const variables = {
   fontColors,
   bgColors,
@@ -132,8 +128,7 @@ const variables = {
   heights,
   radius,
   getClassName,
-  getValue,
-  hasVariable
+  getValue
 }
 
 export default variables

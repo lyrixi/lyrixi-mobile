@@ -13,7 +13,6 @@ import getFontSizeValue from './getFontSizeValue'
 import getFontWeightValue from './getFontWeightValue'
 import getHeightValue from './getHeightValue'
 import getRadiusValue from './getRadiusValue'
-import variableSize from './variableSize'
 
 const VariablesUtil = {
   variables,
