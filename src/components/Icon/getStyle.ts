@@ -19,27 +19,18 @@ function getStyle({
   style,
   className
 }: IconStyleInput): { style: CSSProperties; className: string } {
-  const resolvedSize =
-    size !== null && size !== undefined && size !== ''
-      ? (VariablesUtil.variableSize(size, undefined) as string | undefined) || size
-      : size
-  const resolvedRadius =
-    radius !== null && radius !== undefined && radius !== ''
-      ? (VariablesUtil.variableSize(radius, undefined) as string | undefined) || radius
-      : radius
-
   const isColorClass = !!(color && VariablesUtil.isColorVariable(color))
   const isBackgroundColorClass = !!(
     backgroundColor && VariablesUtil.isColorVariable(backgroundColor)
   )
-  const isSizeClass = !!(resolvedSize && VariablesUtil.isSizeVariable(resolvedSize))
-  const isRadiusClass = !!(resolvedRadius && VariablesUtil.isSizeVariable(resolvedRadius))
+  const isSizeClass = !!(size && VariablesUtil.isSizeVariable(size))
+  const isRadiusClass = !!(radius && VariablesUtil.isSizeVariable(radius))
 
   const newStyle: CSSProperties = {
     ...(!isColorClass && color ? { color } : {}),
     ...(!isBackgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!isSizeClass && resolvedSize ? { width: resolvedSize, height: resolvedSize } : {}),
-    ...(!isRadiusClass && resolvedRadius ? { borderRadius: resolvedRadius } : {}),
+    ...(!isSizeClass && size ? { width: size, height: size } : {}),
+    ...(!isRadiusClass && radius ? { borderRadius: radius } : {}),
     ...style
   }
 
@@ -47,8 +38,8 @@ function getStyle({
     'lyrixi-icon',
     isColorClass && color && `lyrixi-color-${color} lyrixi-border-color-${color}`,
     isBackgroundColorClass && backgroundColor && `lyrixi-bg-${backgroundColor}`,
-    isSizeClass && resolvedSize && `lyrixi-icon-size-${resolvedSize}`,
-    isRadiusClass && resolvedRadius && `lyrixi-radius-${resolvedRadius}`,
+    isSizeClass && size && `lyrixi-icon-size-${size}`,
+    isRadiusClass && radius && `lyrixi-radius-${radius}`,
     className
   )
 
