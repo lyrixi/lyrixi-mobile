@@ -7,12 +7,12 @@ import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 import variables from './variables'
-import type { DesignTokenMap } from './variables'
+import type { VariableMap } from './variables'
 
 const variableTypeKeys = ['font-size', 'font-weight', 'radius', 'height'] as const
 type VariableType = (typeof variableTypeKeys)[number]
 
-const tokenMapByType: Record<VariableType, DesignTokenMap> = {
+const tokenMapByType: Record<VariableType, VariableMap> = {
   'font-size': variables.fontSizes,
   'font-weight': variables.fontWeights,
   radius: variables.radius,
@@ -35,7 +35,7 @@ function variableSize(size: number | string, type?: string) {
   // 如果是设计 token, 则返回变量
   if (type && variableTypeKeys.includes(type as VariableType)) {
     const map = tokenMapByType[type as VariableType]
-    if (variables.hasDesignToken(size, map)) {
+    if (variables.hasVariable(size, map)) {
       return variables.getValue(size, map)
     }
   }
