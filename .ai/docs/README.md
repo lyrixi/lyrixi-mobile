@@ -1,20 +1,19 @@
 # AI 文档（`.ai/docs`）
 
-供 AI 与开发者在生成/查阅代码时使用的结构化文档，与站点文档（`src-docs`、`src/components/*/index.zh-CN.md`）互补。
+`.ai` 目录下的文档、规则、技能等，均面向 **AI 辅助开发**。生成或查阅本仓库代码时，**只需阅读 `.ai` 目录**（`docs`、`rules`、`skills`、`memory` 等），无需再翻 `src-docs`、`src/components` 下的站点文档或其它路径。
 
 ## 目录说明
 
 ### `examples/` — 页面示例（参考模板）
 
-用于**参考的完整页面示例**（列表、编辑、详情、报表等），供 [create-page](../skills/create-page/SKILL.md) 等技能选用模板并生成业务页。
+**供参考的完整页面示例**（列表、编辑、详情、报表等），供 [create-page](../skills/create-page/SKILL.md) 等技能选模板、生成业务页。
 
 - 模板清单：[`examples/catalog.json`](examples/catalog.json)
 - 说明：[`examples/README.md`](examples/README.md)
-- 与 `src/examples/` 保持同构，改模板时请同步维护
 
 ### `components/` — 组件文档
 
-不仅包含**组件用法示例**，还包含**组件属性（Props）与使用约定**的描述，便于生成页面时选对组件、写对参数。
+包含**组件用法示例**，以及 **Props、使用规则** 等属性说明，便于选对组件、写对参数。
 
 典型文件（以 `Page` 为例）：
 
@@ -26,20 +25,16 @@
 
 索引：[`mapping.json`](mapping.json) 中的 `components` 条目。
 
-站点上的交互 Demo 仍以 `src/components/<Name>/demos/` 与 `index.zh-CN.md` 为准。
-
 ### `utils/` — 工具文档
 
-不仅包含**工具用法示例**，还包含**工具 API / 属性**的描述，便于在业务代码中正确调用。
+包含**工具用法示例**，以及 **API / 属性** 说明，便于在业务代码中正确调用。
 
 文件组织与 `components/` 相同（`*-props.json`、`*-rules.md`、`*-example.md`）。
 
 索引：[`mapping.json`](mapping.json) 中的 `utils` 条目。
 
-实现代码与 Demo 见 `src/utils/<Name>/`。
-
 ## 如何使用
 
-1. 生成业务页：先查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
-2. 关键词检索：编辑 [`mapping.json`](mapping.json)，为组件/工具补充 `keywords` 与文档路径。
-3. 新增组件/工具文档：在 `components/` 或 `utils/` 下新建同名目录，补齐 props、rules、example 三类文件并登记到 `mapping.json`。
+1. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
+2. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
+3. 扩展文档：在 `components/` 或 `utils/` 下新建目录，补齐 props、rules、example，并登记到 `mapping.json`。

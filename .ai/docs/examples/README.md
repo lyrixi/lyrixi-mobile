@@ -2,4 +2,4 @@
 
 供 **create-page** 技能选用。清单见 [`catalog.json`](catalog.json)。
 
-与 `src/examples/` 保持同构；改模板时请同步两处（或只维护一处后复制）。
+AI 以本目录为准，无需读取 `src/examples/`。人工维护模板时，可与 `src/examples/` 保持同构并同步。
