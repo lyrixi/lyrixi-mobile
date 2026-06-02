@@ -28,7 +28,7 @@
     justify-content: center;
     width: 14px;
     height: 14px;
-    color: var(--lyrixi-font-color-default);
+    color: var(--lyrixi-color-default);
     border-radius: 100%;
     pointer-events: none;
   }
@@ -36,7 +36,7 @@
 
 .lyrixi-indexbar-button.lyrixi-active {
   .lyrixi-indexbar-button-name {
-    color: var(--lyrixi-primary);
+    color: var(--lyrixi-color-primary);
   }
 }
 
@@ -59,6 +59,6 @@
   transition: 200ms;
 }
 
-.lyrixi-indexbar.lyrixi-active+.lyrixi-indexbar-tooltip {
+.lyrixi-indexbar.lyrixi-active + .lyrixi-indexbar-tooltip {
   display: block;
 }

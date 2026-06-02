@@ -35,7 +35,7 @@
   .lyrixi-list-item {
     gap: initial;
 
-    &>div:not(:last-child) {
+    & > div:not(:last-child) {
       margin-right: 8px;
     }
   }
@@ -82,7 +82,8 @@
     visibility: hidden;
   }
 
-  &.lyrixi-error {}
+  &.lyrixi-error {
+  }
 
   &.lyrixi-success {
     .lyrixi-avatar {
@@ -119,12 +120,12 @@
 }
 
 // 元数据-内容
-.lyrixi-list-item-meta-image+.lyrixi-list-item-meta-avatar {
+.lyrixi-list-item-meta-image + .lyrixi-list-item-meta-avatar {
   margin-left: var(--lyrixi-space-s);
 }
 
-.lyrixi-list-item-meta-image+.lyrixi-list-item-meta-content,
-.lyrixi-list-item-meta-avatar+.lyrixi-list-item-meta-content {
+.lyrixi-list-item-meta-image + .lyrixi-list-item-meta-content,
+.lyrixi-list-item-meta-avatar + .lyrixi-list-item-meta-content {
   margin-left: 10px;
 }
 
@@ -139,14 +140,14 @@
 }
 
 .lyrixi-list-item-meta-description {
-  color: var(--lyrixi-font-color-tertiary);
+  color: var(--lyrixi-color-tertiary);
   margin-top: 4px;
 }
 
 .lyrixi-list-item-meta-note {
   // 高度100%
   align-self: stretch;
-  color: var(--lyrixi-font-color-tertiary);
+  color: var(--lyrixi-color-tertiary);
   font-size: var(--lyrixi-font-size-s);
 }
 

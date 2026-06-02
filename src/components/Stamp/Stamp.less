@@ -1,7 +1,7 @@
 @import '../../assets/variables.less';
 
 .lyrixi-stamp {
-  --lyrixi-stamp-color: var(--lyrixi-primary);
+  --lyrixi-stamp-color: var(--lyrixi-color-primary);
 
   display: inline-flex;
   transform: rotate(-15deg);
@@ -48,22 +48,21 @@
 // 颜色控制
 .lyrixi-stamp {
   &.lyrixi-primary {
-    color: var(--lyrixi-primary);
-    background-color: var(--lyrixi-primary-lighten);
+    color: var(--lyrixi-color-primary);
+    background-color: var(--lyrixi-color-primary-lighten);
     border-color: tint(@lyrixi-primary, 60%);
-
 
     .lyrixi-stamp-inner {
       border-color: tint(@lyrixi-primary, 60%);
     }
 
     // 等兼容性问题没有以后, 可以简化成这样:
-    // --lyrixi-stamp-color: var(--lyrixi-primary);
+    // --lyrixi-stamp-color: var(--lyrixi-color-primary);
   }
 
   &.lyrixi-info {
-    color: var(--lyrixi-info);
-    background-color: var(--lyrixi-info-lighten);
+    color: var(--lyrixi-color-info);
+    background-color: var(--lyrixi-color-info-lighten);
     border-color: tint(@lyrixi-info, 60%);
 
     .lyrixi-stamp-inner {
@@ -71,12 +70,12 @@
     }
 
     // 等兼容性问题没有以后, 可以简化成这样:
-    // --lyrixi-stamp-color: var(--lyrixi-info);
+    // --lyrixi-stamp-color: var(--lyrixi-color-info);
   }
 
   &.lyrixi-warning {
-    color: var(--lyrixi-warning);
-    background-color: var(--lyrixi-warning-lighten);
+    color: var(--lyrixi-color-warning);
+    background-color: var(--lyrixi-color-warning-lighten);
     border-color: tint(@lyrixi-warning, 60%);
 
     .lyrixi-stamp-inner {
@@ -84,12 +83,12 @@
     }
 
     // 等兼容性问题没有以后, 可以简化成这样:
-    // --lyrixi-stamp-color: var(--lyrixi-warning);
+    // --lyrixi-stamp-color: var(--lyrixi-color-warning);
   }
 
   &.lyrixi-danger {
-    color: var(--lyrixi-danger);
-    background-color: var(--lyrixi-danger-lighten);
+    color: var(--lyrixi-color-danger);
+    background-color: var(--lyrixi-color-danger-lighten);
     border-color: tint(@lyrixi-danger, 60%);
 
     .lyrixi-stamp-inner {
@@ -97,12 +96,12 @@
     }
 
     // 等兼容性问题没有以后, 可以简化成这样:
-    // --lyrixi-stamp-color: var(--lyrixi-danger);
+    // --lyrixi-stamp-color: var(--lyrixi-color-danger);
   }
 
   &.lyrixi-success {
-    color: var(--lyrixi-success);
-    background-color: var(--lyrixi-success-lighten);
+    color: var(--lyrixi-color-success);
+    background-color: var(--lyrixi-color-success-lighten);
     border-color: tint(@lyrixi-success, 60%);
 
     .lyrixi-stamp-inner {
@@ -110,12 +109,12 @@
     }
 
     // 等兼容性问题没有以后, 可以简化成这样:
-    // --lyrixi-stamp-color: var(--lyrixi-success);
+    // --lyrixi-stamp-color: var(--lyrixi-color-success);
   }
 
   &.lyrixi-disabled {
-    color: var(--lyrixi-disabled);
-    background-color: var(--lyrixi-disabled-lighten);
+    color: var(--lyrixi-color-disabled);
+    background-color: var(--lyrixi-color-disabled-lighten);
     border-color: tint(@lyrixi-disabled, 60%);
 
     .lyrixi-stamp-inner {
@@ -123,6 +122,6 @@
     }
 
     // 等兼容性问题没有以后, 可以简化成这样:
-    // --lyrixi-stamp-color: var(--lyrixi-disabled);
+    // --lyrixi-stamp-color: var(--lyrixi-color-disabled);
   }
 }

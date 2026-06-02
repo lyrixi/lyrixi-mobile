@@ -35,7 +35,7 @@
     padding: 0 8px;
     overflow: hidden;
 
-    color: var(--lyrixi-font-color-default);
+    color: var(--lyrixi-color-default);
     font-size: 17px;
     line-height: 44px;
     white-space: nowrap;
@@ -43,7 +43,7 @@
     pointer-events: none;
 
     &.lyrixi-active {
-      color: var(--lyrixi-font-color-default);
+      color: var(--lyrixi-color-default);
     }
   }
 
@@ -62,12 +62,16 @@
   pointer-events: none;
 
   // 渐变
-  --picker-view-mask-top-background: linear-gradient(to bottom,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.7) 65%);
-  --picker-view-mask-bottom-background: linear-gradient(to top,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.7) 65%);
+  --picker-view-mask-top-background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.7) 65%
+  );
+  --picker-view-mask-bottom-background: linear-gradient(
+    to top,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.7) 65%
+  );
 
   &:before,
   &:after {
@@ -121,6 +125,6 @@
   .lyrixi-border-b();
 }
 
-.lyrixi-picker-tabs+.lyrixi-picker-main {
+.lyrixi-picker-tabs + .lyrixi-picker-main {
   margin: 10px 0;
 }

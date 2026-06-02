@@ -7,7 +7,7 @@
   overflow-x: auto;
   scrollbar-width: none;
 
-  color: var(--lyrixi-font-color-secondary);
+  color: var(--lyrixi-color-secondary);
 }
 
 // Separator
@@ -20,7 +20,7 @@
 // Separator align to name
 .lyrixi-tabbar-group-tab-description {
   &.lyrixi-top {
-    +.lyrixi-tabbar-group-separator {
+    + .lyrixi-tabbar-group-separator {
       align-items: end;
       padding-bottom: 10px;
     }
@@ -37,9 +37,9 @@
 }
 
 .lyrixi-tabbar-group-tab-wrapper.lyrixi-active {
-  color: var(--lyrixi-primary);
+  color: var(--lyrixi-color-primary);
   background-color: #fff;
-  border-color: var(--lyrixi-primary);
+  border-color: var(--lyrixi-color-primary);
 }
 
 // 每块只有上右下有边框, 选中时需要补充左边框
@@ -50,7 +50,7 @@
   top: -1px;
   bottom: -1px;
   width: 1px;
-  background-color: var(--lyrixi-primary);
+  background-color: var(--lyrixi-color-primary);
 }
 
 // Tab
@@ -78,18 +78,17 @@
 }
 
 .lyrixi-tabbar-group-tab-description {
-  color: var(--lyrixi-font-color-secondary);
+  color: var(--lyrixi-color-secondary);
   font-size: var(--lyrixi-font-size-s);
 }
 
-.lyrixi-tabbar-group-tab-name+.lyrixi-tabbar-group-tab-description,
-.lyrixi-tabbar-group-tab-description+.lyrixi-tabbar-group-tab-name {
+.lyrixi-tabbar-group-tab-name + .lyrixi-tabbar-group-tab-description,
+.lyrixi-tabbar-group-tab-description + .lyrixi-tabbar-group-tab-name {
   margin-top: var(--lyrixi-space-s);
 }
 
 // 尺寸
 .lyrixi-tabbar-group.lyrixi-s {
-
   // 圆角
   .lyrixi-tabbar-group-tab-wrapper:first-child {
     border-start-start-radius: var(--lyrixi-radius-xs);

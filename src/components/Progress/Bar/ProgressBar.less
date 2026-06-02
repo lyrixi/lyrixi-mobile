@@ -13,30 +13,31 @@
   overflow: hidden;
 
   &.lyrixi-primary {
-    --lyrixi-progress-fill-color: var(--lyrixi-primary);
+    --lyrixi-progress-fill-color: var(--lyrixi-color-primary);
   }
 
   &.lyrixi-info {
-    --lyrixi-progress-fill-color: var(--lyrixi-info);
+    --lyrixi-progress-fill-color: var(--lyrixi-color-info);
   }
 
   &.lyrixi-warning {
-    --lyrixi-progress-fill-color: var(--lyrixi-warning);
+    --lyrixi-progress-fill-color: var(--lyrixi-color-warning);
   }
 
   &.lyrixi-danger {
-    --lyrixi-progress-fill-color: var(--lyrixi-danger);
+    --lyrixi-progress-fill-color: var(--lyrixi-color-danger);
   }
 
   &.lyrixi-success {
-    --lyrixi-progress-fill-color: var(--lyrixi-success);
+    --lyrixi-progress-fill-color: var(--lyrixi-color-success);
   }
 
   .lyrixi-progress-bar-fill {
     height: 100%;
     background: var(--lyrixi-progress-fill-color);
     border-radius: calc(var(--lyrixi-progress-track-width) / 2);
-    transition: width var(--lyrixi-progress-animation-duration, 0.3s) var(--lyrixi-progress-animation-timing, ease);
+    transition: width var(--lyrixi-progress-animation-duration, 0.3s)
+      var(--lyrixi-progress-animation-timing, ease);
     display: flex;
     align-items: center;
     justify-content: flex-end;
