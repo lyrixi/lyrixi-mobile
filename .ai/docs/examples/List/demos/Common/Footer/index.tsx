@@ -1,0 +1,27 @@
+import { FooterBar, LocaleUtil, Page } from 'lyrixi-mobile'
+
+import type { ListDemoCommonFooterProps } from './types'
+
+const locale = LocaleUtil.locale
+
+// 底部
+function Footer({ ok, cancel, onOk, onCancel }: ListDemoCommonFooterProps) {
+  return (
+    <Page.Footer>
+      <FooterBar>
+        {onCancel && (
+          <FooterBar.Button block backgroundColor="default" onClick={onCancel}>
+            {cancel || locale('Cancel')}
+          </FooterBar.Button>
+        )}
+        {onOk && (
+          <FooterBar.Button block backgroundColor="primary" color="white" onClick={onOk}>
+            {ok || locale('Ok')}
+          </FooterBar.Button>
+        )}
+      </FooterBar>
+    </Page.Footer>
+  )
+}
+
+export default Footer

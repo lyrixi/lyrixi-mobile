@@ -1,0 +1,75 @@
+{
+  "description": "create-page 技能选用的页面模板。templatePath 相对 .ai/docs/examples/",
+  "pages": [
+    {
+      "id": "list-common",
+      "category": "List",
+      "title": "普通列表",
+      "templatePath": "List/demos/Common",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "list-cache",
+      "category": "List",
+      "title": "缓存列表",
+      "templatePath": "List/demos/Cache",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "list-indexbar",
+      "category": "List",
+      "title": "IndexBar 列表",
+      "templatePath": "List/demos/IndexBar",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "list-virtual",
+      "category": "List",
+      "title": "虚拟滚动列表",
+      "templatePath": "List/demos/Virtual",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "list-common-manual",
+      "category": "List",
+      "title": "手动加载列表（ListAsync）",
+      "templatePath": "List/demos/CommonManual",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "edit-common",
+      "category": "Edit",
+      "title": "表单编辑（全量控件）",
+      "templatePath": "Edit/demos/Common",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "edit-virtual",
+      "category": "Edit",
+      "title": "虚拟滚动表单编辑",
+      "templatePath": "Edit/demos/Virtual",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "edit-cache",
+      "category": "Edit",
+      "title": "带缓存的表单编辑",
+      "templatePath": "Edit/demos/Cache",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "detail-form",
+      "category": "Detail",
+      "title": "只读详情（表单展示）",
+      "templatePath": "Detail/demos/Form",
+      "entry": "index.tsx"
+    },
+    {
+      "id": "report-card",
+      "category": "Report",
+      "title": "报表卡片",
+      "templatePath": "Report/demos/Card",
+      "entry": "index.tsx"
+    }
+  ]
+}

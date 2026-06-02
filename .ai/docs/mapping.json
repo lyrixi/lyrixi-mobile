@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "keywords": "Page|页面",
+      "name": "Page",
+      "props": ".ai/docs/components/Page/Page-props.json",
+      "rule": ".ai/docs/components/Page/Page-rules.md",
+      "example": ".ai/docs/components/Page/Page-example.md"
+    },
+    {
+      "keywords": "FooterBar|底部栏",
+      "name": "FooterBar",
+      "props": ".ai/docs/components/FooterBar/FooterBar-props.json",
+      "rule": ".ai/docs/components/FooterBar/FooterBar-rules.md",
+      "example": ".ai/docs/components/FooterBar/FooterBar-example.md"
+    }
+  ],
+  "utils": [
+    {
+      "keywords": "Bridge|桥接|JSSDK",
+      "name": "Bridge",
+      "props": ".ai/docs/utils/Bridge/Bridge-props.json",
+      "rule": ".ai/docs/utils/Bridge/Bridge-rules.md",
+      "example": ".ai/docs/utils/Bridge/Bridge-example.md"
+    }
+  ]
+}

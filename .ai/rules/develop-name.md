@@ -1,0 +1,110 @@
+---
+description: JS/TS 实现代码命名规范（props、refs、state、handlers 等）
+globs: '**/*.{js,jsx,ts,tsx}'
+alwaysApply: false
+---
+
+# 实现代码命名规范
+
+## props 解构 / 默认值
+
+规则保持业务语义名, 布尔值用 `readOnly / disabled / open / enableXxx/ disableXxx/ xxVisible` 回调函数用 `onXxx` 示例: `{ title, value, open = false, disabled = false, onChange, onClose }`
+
+## refs 规则
+
+- React ref 统一后缀：`xxRef`，如 `rootRef`、`listRef`
+- 保存真实 DOM 节点变量：`xxElement`，如 `rootElement`、`inputElement`
+
+## state 规则
+
+值本身直接命名，示例 `open / setOpen`, `loading / setLoading`, `activeIndex / setActiveIndex`, `keyword / setKeyword`
+
+## derived values / memo 规则
+
+统一前缀：`mergedXxx`, `computedXxx`, `visibleXxx`, `filteredXxx`, `sortedXxx`, 示例: `mergedOpen`, `computedStyle`, `filteredList`, `sortedOptions`, `visibleItems`
+
+## internal helpers 规则
+
+按动作命名, 示例: `getXxx`, `saveXxx`, `updateXxx`, `loadXxx`, `calcXxx`, `isXxx`, `hasXxx`
+
+## effects 规则
+
+useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
+
+## expose / imperative handle 规则
+
+暴露给外部的方法，用动词开头, 示例: `focus`, `blur`, `open`, `close`, `toggle`, `scrollTo`, `reset`, `submit`, 避免: `doOpen`, `handleOpen`, `setOpen`
+
+## event handlers 规则
+
+事件处理名与 props 对应，`handle` + 与 `on` 后相同的一段, 例如: onChange -> handleChange。
+
+统一用`handle`开头, 示例: `handleChange`, `handleInput`, `handleSelect`, `handleClick`, `handleClose`, `handleSubmit`
+
+## render helpers 规则
+
+- 统一用`render`开头, 示例: `renderArrow`, `renderHeader`, `renderFooter`, `renderContent`, `renderEmpty`, `renderLoading`
+- 返回 TSX
+
+## return 规则
+
+JSX 内变量名延续以上规范。
+
+### Props 事件命名：`on` + 大写首字母的事件语义，即 `onXxx` 形式；若中间含名词，名词放在 `on` 之后、事件语义之前。
+
+- 示例：`onChange`、`onVisibleChange`、`onButtonClick`、`onSearch`、`onSelect`
+
+### className 类名
+
+`项目前缀(可以防冲突)-功能名`, 多个样式, 使用`DOMUtil.classNames`包裹
+
+## props 和 state 值结构约定
+
+- 页面上查询参数为: `[queryParams, setQueryParams] = useState(null)`
+- 单选值通常为: `{ id, name }`
+- 多选值通常为: `Array<{ id, name }>`
+- 列表数据通常为: `[{ id, name, ... }]`
+- 通过 `onChange`, `onSelect` 更新受控值
+
+## 完整示例
+
+```tsx
+const Example = forwardRef<ExampleRef, ExampleProps>(({...}, ref) => {
+  // 1. props
+
+  // 2. refs
+  const xxRef = useRef<...>(...)
+
+  // 3. state, {id: '', name: ''} 或者[{id: '', name: ''}]
+  const [...] = useState(...)
+
+  // 4. derived values / memo
+
+  // 5. internal helpers
+  const initXX = () => {}
+  const loadXX = () => {}
+  const queryXX = () => {}
+  const updateXX = () => {}
+  const saveXX = () => {}
+  const getXX = () => {}
+
+  // 6. effects
+  useEffect(() => {}, [])
+
+  // 7. expose / imperative handle
+  useImperativeHandle(...)
+
+  // 8. event handlers
+  const handleChange = () => {}
+
+  // 9. render helpers
+  const renderArrow = () => {}
+
+  // 10. return
+  return <Page>
+    <Main className={DOMUtil.classNames('', '')} onChange={handleChange}/>
+  </Page>
+})
+
+export default Example
+```

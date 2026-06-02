@@ -1,0 +1,53 @@
+import { useRef, useState } from 'react'
+
+// 第三方库导入
+import { Page } from 'lyrixi-mobile'
+
+// 公共组件导入
+
+// 内部组件导入
+import Header from './../Common/Header'
+import Main from './../Common/Main'
+import type { ListPaginationMainRef } from 'lyrixi-mobile'
+import type { VirtualDemoItemHeightRow } from './types'
+
+// 样式图片等资源文件导入
+import './../Common/index.less'
+
+// 虚拟滚动列表
+const Virtual = () => {
+  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
+
+  const mainRef = useRef<ListPaginationMainRef | null>(null)
+
+  return (
+    <Page>
+      {/* 搜索栏 */}
+      <Header
+        queryParams={queryParams}
+        onSearch={(newQueryParams: Record<string, unknown>) => {
+          setQueryParams(newQueryParams)
+          mainRef.current?.reload?.('reload')
+        }}
+      />
+
+      {/* 列表 */}
+      <Main
+        ref={mainRef}
+        cacheName="list-virtual-demo"
+        queryParams={queryParams}
+        virtual={{
+          getItemHeight: (item: Record<string, unknown>) => {
+            const row = item as VirtualDemoItemHeightRow
+            if (row?.virtualData?.type === 'group') {
+              return 33
+            }
+            return 71
+          }
+        }}
+      />
+    </Page>
+  )
+}
+
+export default Virtual
