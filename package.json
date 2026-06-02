@@ -110,6 +110,7 @@
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.1",
     "@umijs/lint": "^4.0.0",
+    "babel-plugin-inline-react-svg": "^2.0.2",
     "dumi": "^2.4.21",
     "eslint": "^8.23.0",
     "father": "^4.1.0",

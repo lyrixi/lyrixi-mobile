@@ -1,5 +1,7 @@
 import { defineConfig } from 'dumi'
 
+import { configureSrcSvgWebpack } from './scripts/configureSrcSvgWebpack'
+
 // 读取package.json文件
 // const packageJson = require('./package.json')
 
@@ -119,9 +121,12 @@ export default defineConfig({
     'src/': '/src/',
     'lyrixi-mobile/': '/src/'
   },
-  chainWebpack(memo: any) {
+  chainWebpack(memo) {
     // 设置 alias
     memo.resolve.alias.set('src', '/src')
+
+    // src 内 svg 以 React 组件 default 导出，供 Icon / Icons 使用
+    configureSrcSvgWebpack(memo)
 
     // 添加额外插件
     // memo.plugin('hello').use(Plugin, [...args]);
