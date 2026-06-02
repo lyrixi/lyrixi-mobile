@@ -111,12 +111,12 @@ const radius: VariableMap = {
   xxs: { className: 'lyrixi-radius-xxs', value: 'var(--lyrixi-radius-xxs)' }
 }
 
-function getClassName(token: unknown, map: VariableMap): string {
-  return map[String(token)]?.className ?? ''
+function getClassName(name: string, map: VariableMap): string {
+  return map[name]?.className ?? ''
 }
 
-function getValue(token: unknown, map: VariableMap): string {
-  return map[String(token)]?.value ?? ''
+function getValue(name: string, map: VariableMap): string {
+  return map[name]?.value ?? ''
 }
 
 const variables = {
