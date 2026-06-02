@@ -25,6 +25,5 @@ const colors = [
 // 尺寸枚举值(业务自行控制)
 const sizes = ['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
 
-// 导出颜色枚举值
 const variables = { colors, sizes }
 export default variables

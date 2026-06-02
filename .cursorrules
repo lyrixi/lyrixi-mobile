@@ -15,7 +15,7 @@
 
 **工具:** ArrayUtil, DateUtil, DOMUtil, MathUtil, ObjectUtil, AssetUtil, EventUtil, GeoUtil, HistoryUtil, LocaleUtil, Logger, Storage, Request, Clipboard, Device, Debugger, FullScreen, Bridge
 
-常用场景对应：类名 → `DOMUtil.classNames`；日期 → `DateUtil`；尺寸变量 → `MathUtil.variableSize`；国际化 → `LocaleUtil.locale`。
+常用场景对应：类名 → `DOMUtil.classNames`；日期 → `DateUtil`；国际化 → `LocaleUtil.locale`。
 
 ## 3. 导入规范
 

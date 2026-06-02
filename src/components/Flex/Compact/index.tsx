@@ -18,12 +18,12 @@ import type {
 } from './../types'
 
 // 内库使用-start
-import MathUtil from './../../../utils/MathUtil'
+import VariablesUtil from './../../../utils/VariablesUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { MathUtil, DOMUtil } from 'lyrixi-mobile'
+import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const Context = React.createContext<FlexCompactContextValue | null>(null)
@@ -80,7 +80,7 @@ const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
           style={
             {
               ...style,
-              '--lyrixi-flex-compact-radius': MathUtil.variableSize(radius, 'radius')
+              '--lyrixi-flex-compact-radius': VariablesUtil.variableSize(radius, 'radius')
             } as CSSProperties
           }
           className={DOMUtil.classNames(

@@ -1,10 +1,11 @@
 import type { CSSProperties } from 'react'
 // 内库使用-start
+import VariablesUtil from './../../utils/VariablesUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 function getStyle({
@@ -22,10 +23,10 @@ function getStyle({
   className?: string
 }) {
   // 判断颜色是否在枚举值中（含类名 token 的需与 design token 字符串比较）
-  const isColorClass = color !== null && DOMUtil.variables.colors.includes(String(color))
-  const isFontSizeClass = fontSize !== null && DOMUtil.variables.sizes.includes(String(fontSize))
+  const isColorClass = color !== null && VariablesUtil.isColorVariable(color)
+  const isFontSizeClass = fontSize !== null && VariablesUtil.isSizeVariable(fontSize)
   const isFontWeightClass =
-    fontWeight !== null && DOMUtil.variables.sizes.includes(String(fontWeight))
+    fontWeight !== null && VariablesUtil.isSizeVariable(fontWeight)
 
   // 构建自定义样式
   const newStyle: CSSProperties = {

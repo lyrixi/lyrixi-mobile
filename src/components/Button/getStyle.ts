@@ -3,12 +3,12 @@ import type { CSSProperties } from 'react'
 import type { ButtonGetStyleParams } from './getStyle.types'
 
 // 内库使用-start
-import MathUtil from './../../utils/MathUtil'
+import VariablesUtil from './../../utils/VariablesUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { MathUtil, DOMUtil } from 'lyrixi-mobile'
+import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 export default function getStyle({
@@ -27,7 +27,7 @@ export default function getStyle({
 }: ButtonGetStyleParams): { style: CSSProperties; className: string } {
   let fontSizeResolved: string | number | undefined
   if (fontSize !== null && fontSize !== undefined && (typeof fontSize === 'string' || typeof fontSize === 'number')) {
-    fontSizeResolved = (MathUtil.variableSize(fontSize, '') as string) || fontSize
+    fontSizeResolved = (VariablesUtil.variableSize(fontSize, '') as string) || fontSize
   } else {
     fontSizeResolved = undefined
   }
@@ -38,20 +38,20 @@ export default function getStyle({
     sizeResolved !== undefined &&
     (typeof sizeResolved === 'string' || typeof sizeResolved === 'number')
   ) {
-    sizeResolved = (MathUtil.variableSize(sizeResolved, '') as string) || sizeResolved
+    sizeResolved = (VariablesUtil.variableSize(sizeResolved, '') as string) || sizeResolved
   }
 
   let radiusResolved: string | number | unknown = radius
   if (radius !== null && radius !== undefined && (typeof radius === 'string' || typeof radius === 'number')) {
-    radiusResolved = (MathUtil.variableSize(radius, '') as string) || radius
+    radiusResolved = (VariablesUtil.variableSize(radius, '') as string) || radius
   }
 
-  const isColorClass = DOMUtil.variables.colors.includes(color as string)
-  const isBorderColorClass = DOMUtil.variables.colors.includes(borderColor as string)
-  const isBackgroundColorClass = DOMUtil.variables.colors.includes(backgroundColor as string)
-  const isSizeClass = DOMUtil.variables.sizes.includes(sizeResolved as string)
-  const isRadiusClass = DOMUtil.variables.sizes.includes(radiusResolved as string)
-  const isFontSizeClass = DOMUtil.variables.sizes.includes(fontSizeResolved as string)
+  const isColorClass = VariablesUtil.isColorVariable(color)
+  const isBorderColorClass = VariablesUtil.isColorVariable(borderColor)
+  const isBackgroundColorClass = VariablesUtil.isColorVariable(backgroundColor)
+  const isSizeClass = VariablesUtil.isSizeVariable(sizeResolved)
+  const isRadiusClass = VariablesUtil.isSizeVariable(radiusResolved)
+  const isFontSizeClass = VariablesUtil.isSizeVariable(fontSizeResolved)
 
   const newStyle = {
     ...(!isColorClass && color ? { color } : {}),

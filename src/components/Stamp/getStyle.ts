@@ -3,17 +3,17 @@ import type { CSSProperties } from 'react'
 import type { StampStyleInput } from './types'
 
 // 内库使用-start
-import DOMUtil from './../../utils/DOMUtil'
+import VariablesUtil from './../../utils/VariablesUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { VariablesUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 function getStyle({ color, style }: StampStyleInput) {
   // 判断颜色是否在枚举值中
   const isColorClass =
-    color !== null && color !== undefined && color !== '' && DOMUtil.variables.colors.includes(color)
+    color !== null && color !== undefined && color !== '' && VariablesUtil.isColorVariable(color)
 
   // 构建自定义样式
   const newStyle: CSSProperties = {

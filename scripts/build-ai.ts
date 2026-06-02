@@ -254,12 +254,21 @@ const metadata = {
   MathUtil: {
     kind: 'util',
     priority: 1,
+    description: '数值工具：千分位与金额展示、数值校验与提取、惯性滚动计算等。',
+    replace: ['散落 toFixed', '手写千分位'],
+    scenes: ['金额输入展示', 'Picker 惯性滚动'],
+    anti: ['各处复制一套数值格式化逻辑'],
+    usage: 'MathUtil.thousands(1234.5)'
+  },
+  VariablesUtil: {
+    kind: 'util',
+    priority: 1,
     description:
-      '移动端布局与数值：variableSize 按设计稿换算、千分位与金额展示、数值校验与提取等。',
-    replace: ['手写 rem 换算', '散落 toFixed'],
-    scenes: ['响应式尺寸', '金额输入展示'],
+      '设计变量：variableSize 按 design token 换算 CSS 变量，isColorVariable / isSizeVariable 判断枚举值。',
+    replace: ['手写 rem 换算', '各处复制 variables 判断'],
+    scenes: ['响应式尺寸', '颜色/尺寸 token 类名'],
     anti: ['各处复制一套 variableSize 逻辑'],
-    usage: 'MathUtil.variableSize(12)'
+    usage: 'VariablesUtil.variableSize(12, "space")'
   },
   ObjectUtil: {
     kind: 'util',

@@ -3,12 +3,12 @@ import type { CSSProperties } from 'react'
 import type { IconStyleInput } from './types'
 
 // 内库使用-start
-import MathUtil from './../../utils/MathUtil'
+import VariablesUtil from './../../utils/VariablesUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { MathUtil, DOMUtil } from 'lyrixi-mobile'
+import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 function getStyle({
@@ -21,19 +21,19 @@ function getStyle({
 }: IconStyleInput): { style: CSSProperties; className: string } {
   const resolvedSize =
     size !== null && size !== undefined && size !== ''
-      ? (MathUtil.variableSize(size, undefined) as string | undefined) || size
+      ? (VariablesUtil.variableSize(size, undefined) as string | undefined) || size
       : size
   const resolvedRadius =
     radius !== null && radius !== undefined && radius !== ''
-      ? (MathUtil.variableSize(radius, undefined) as string | undefined) || radius
+      ? (VariablesUtil.variableSize(radius, undefined) as string | undefined) || radius
       : radius
 
-  const isColorClass = !!(color && DOMUtil.variables.colors.includes(color))
+  const isColorClass = !!(color && VariablesUtil.isColorVariable(color))
   const isBackgroundColorClass = !!(
-    backgroundColor && DOMUtil.variables.colors.includes(backgroundColor)
+    backgroundColor && VariablesUtil.isColorVariable(backgroundColor)
   )
-  const isSizeClass = !!(resolvedSize && DOMUtil.variables.sizes.includes(resolvedSize))
-  const isRadiusClass = !!(resolvedRadius && DOMUtil.variables.sizes.includes(resolvedRadius))
+  const isSizeClass = !!(resolvedSize && VariablesUtil.isSizeVariable(resolvedSize))
+  const isRadiusClass = !!(resolvedRadius && VariablesUtil.isSizeVariable(resolvedRadius))
 
   const newStyle: CSSProperties = {
     ...(!isColorClass && color ? { color } : {}),
