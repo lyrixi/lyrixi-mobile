@@ -25,27 +25,6 @@ export default function getStyle({
   style,
   className
 }: ButtonGetStyleParams): { style: CSSProperties; className: string } {
-  let fontSizeResolved: string | number | undefined
-  if (fontSize !== null && fontSize !== undefined && (typeof fontSize === 'string' || typeof fontSize === 'number')) {
-    fontSizeResolved = (VariablesUtil.variableSize(fontSize, '') as string) || fontSize
-  } else {
-    fontSizeResolved = undefined
-  }
-
-  let sizeResolved: string | number | readonly string[] | unknown = size
-  if (
-    sizeResolved !== null &&
-    sizeResolved !== undefined &&
-    (typeof sizeResolved === 'string' || typeof sizeResolved === 'number')
-  ) {
-    sizeResolved = (VariablesUtil.variableSize(sizeResolved, '') as string) || sizeResolved
-  }
-
-  let radiusResolved: string | number | unknown = radius
-  if (radius !== null && radius !== undefined && (typeof radius === 'string' || typeof radius === 'number')) {
-    radiusResolved = (VariablesUtil.variableSize(radius, '') as string) || radius
-  }
-
   const colorClass =
     color !== null && color !== undefined && color !== '' ? VariablesUtil.getColorClass(color) : ''
   const borderColorClass =
@@ -56,19 +35,26 @@ export default function getStyle({
     backgroundColor !== null && backgroundColor !== undefined && backgroundColor !== ''
       ? VariablesUtil.getBgColorClass(backgroundColor)
       : ''
-  const sizeClass = sizeResolved ? VariablesUtil.getHeightClass(sizeResolved) : ''
-  const radiusClass = radiusResolved ? VariablesUtil.getRadiusClass(radiusResolved) : ''
-  const fontSizeClass = fontSizeResolved ? VariablesUtil.getFontSizeClass(fontSizeResolved) : ''
+  const sizeClass =
+    size !== null && size !== undefined && size !== '' ? VariablesUtil.getHeightClass(size) : ''
+  const radiusClass =
+    radius !== null && radius !== undefined && radius !== ''
+      ? VariablesUtil.getRadiusClass(radius)
+      : ''
+  const fontSizeClass =
+    fontSize !== null && fontSize !== undefined && fontSize !== ''
+      ? VariablesUtil.getFontSizeClass(fontSize)
+      : ''
 
   const newStyle = {
     ...(!colorClass && color ? { color } : {}),
     ...(!borderColorClass && borderColor ? { borderColor } : {}),
     ...(!backgroundColorClass && backgroundColor ? { backgroundColor } : {}),
-    ...(!sizeClass && sizeResolved
-      ? { height: sizeResolved as string | number, width: sizeEqual ? sizeResolved : 'auto' }
+    ...(!sizeClass && size
+      ? { height: size as string | number, width: sizeEqual ? (size as string | number) : 'auto' }
       : {}),
-    ...(!radiusClass && radiusResolved ? { borderRadius: radiusResolved as string | number } : {}),
-    ...(!fontSizeClass && fontSizeResolved ? { fontSize: fontSizeResolved } : {}),
+    ...(!radiusClass && radius ? { borderRadius: radius as string | number } : {}),
+    ...(!fontSizeClass && fontSize ? { fontSize: fontSize as string | number } : {}),
     ...style
   } as CSSProperties
 
@@ -83,6 +69,7 @@ export default function getStyle({
     block && `lyrixi-button-block`,
     sizeClass,
     radiusClass,
+    fontSizeClass,
     sizeEqual && `lyrixi-size-equal`,
     className
   )
