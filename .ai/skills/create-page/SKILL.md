@@ -9,7 +9,7 @@ description: >-
 
 通过**多轮问答**收集需求，读取 `.ai/docs/examples/` 中的参考模板，生成新业务页面。
 
-**约束：** 生成代码时**不要修改** `.ai/skills/`、`.ai/rules/`；遵守 `develop-page-structure.md`、`develop-sequence-import.md`、`develop-locale.md` 等 rules。
+**约束：** 生成代码时**不要修改** `.ai/rules/`；遵守 `develop-page-structure.md`、`develop-sequence-import.md`、`develop-locale.md` 等 rules。本技能自身迭代时可改 `.cursor/skills/create-page/` 与 `.ai/skills/create-page/`。
 
 ## 何时启用
 
@@ -21,57 +21,93 @@ description: >-
 1. Read [`.ai/docs/examples/catalog.json`](../../docs/examples/catalog.json) — 模板清单（`id`、`title`、`templatePath`）。
 2. Read [reference/generation.md](reference/generation.md) — 复制模板后的 API / 目录改写规则。
 
-## 问答流程（必须按序，用 AskQuestion；无工具则逐条文字提问）
+## 问答原则（必读）
 
-未完成收集前**不要**开始写业务代码。
+- **一次只问一件事**：每一轮只收集一个字段；拿到用户回复后再问下一项。
+- **选择题**用 `AskQuestion`（页面类型、是否有设计稿、GET/POST、默认路径还是自定义路径等）。
+- **自由填写**（目录、PageName、apiUrl、入参说明、出参说明、文字版 designNotes）**禁止**合并成「请在下一条消息补充 1、2、3…」；应单独发一条消息、只问一个字段，等用户答完再继续。
+- 表述不清时**只追问当前字段**，不要猜测业务含义。
+- 未完成全部问答前**不要**开始写业务代码。
 
-### Q1 — 页面类型
+## 问答流程（必须按序）
 
-**问题：** 你想生成什么页面？
+### Q1 — 页面大类（AskQuestion）
 
-- 从 `catalog.json` 的 `pages` 生成选项（展示 `category · title`，值为 `id`）。
-- 可按 `List` / `Edit` / `Detail` / `Report` 分组；选项过多时分组两次问（先 category，再具体 `id`）。
+**问题：** 你想生成什么类型的页面？
 
-记录：`templateId`、`templatePath`（拼成 `.ai/docs/examples/{templatePath}`）。
+- 从 `catalog.json` 按 `List` / `Edit` / `Detail` / `Report` 分组；选项过多时先问大类，再问具体模板。
 
-### Q2 — 高保真设计
+### Q1b — 具体模板（AskQuestion，若 Q1 下有多于 1 个模板）
+
+**问题：** 选择具体模板？
+
+- 展示 `category · title`，值为 `id`。记录 `templateId`、`templatePath` → `.ai/docs/examples/{templatePath}`。
+
+### Q2 — 是否有高保真（AskQuestion）
 
 **问题：** 页面有没有高保真设计稿？
 
-| 选项 | 后续 |
-|------|------|
-| 有 | 请用户**上传图片**（可多张）。结合截图分析布局：Header/Main/Footer、表单项、列表样式等，写入 `designNotes`。 |
-| 没有 | **问题：** 请用文字描述页面长什么样（模块、字段、交互）。记入 `designNotes`。 |
+| 选项 | 下一步 |
+|------|--------|
+| 有 | **单独一轮**：请用户上传图片；分析后写入 `designNotes`，再进入 Q3 |
+| 没有 | 进入 Q2b |
 
-### Q3 — 接口
+### Q2b — 页面描述（仅当 Q2 选「没有」；单独一轮文字问）
 
-依次收集（可合并为一轮表单式提问）：
+**只问：** 请用文字描述页面布局（Header/Main/Footer、展示字段、交互）。记入 `designNotes`。
 
-| 字段 | 说明 |
-|------|------|
-| `apiUrl` | 接口地址（如 `/api/order/list`） |
-| `apiMethod` | `GET` 或 `POST`（默认与模板一致，不明则 POST） |
-| `apiRequest` | 入参：字段名、类型、来源（`queryParams` / `Device.getUrlParameter` 等） |
-| `apiResponse` | 出参：成功码字段、列表/对象字段、与前端 `result.status/data/message` 的映射 |
-
-表述不清时追问一条澄清，不要猜测业务含义。
-
-### Q4 — 输出位置
+### Q3 — 输出路径方式（AskQuestion）
 
 **问题：** 页面生成到哪里？
 
-- 默认建议：`src/pages/{PageName}/`（`PageName` 用英文 PascalCase，列表以 `List`、编辑以 `Edit`、详情以 `Detail` 结尾，见 rules）。
-- 入口组件名与目录末级一致（如 `src/pages/OrderList` → `OrderList`）。
+| 选项 | 下一步 |
+|------|--------|
+| 默认规则 | 进入 Q4a |
+| 自定义完整路径 | 进入 Q4b |
 
-### Q5 — 确认（可选）
+默认规则：`src/pages/{PageName}/`，`PageName` 为 PascalCase，列表 `*List`、编辑 `*Edit`、详情 `*Detail`（见 develop-page-structure）。
 
-用简短摘要列出：模板、路径、`designNotes` 要点、接口三要素。用户确认后再生成。
+### Q4a — PageName（仅当 Q3 选默认；单独一轮文字问）
+
+**只问：** 页面目录名（PageName）是什么？例如 `OrderDetail`。
+
+记录：`outputDir = src/pages/{PageName}/`，入口组件名 = `PageName`。
+
+### Q4b — 自定义目录（仅当 Q3 选自定义；单独一轮文字问）
+
+**只问：** 请给出完整生成目录（相对仓库根），例如 `src/pages/custom/OrderDetail/`。
+
+### Q5 — 请求方式（AskQuestion）
+
+**问题：** 接口是 GET 还是 POST？
+
+- 不明则与模板一致；仍无法判断时默认 POST。记录 `apiMethod`。
+
+### Q6 — 接口地址（单独一轮文字问）
+
+**只问：** 接口地址（apiUrl）是什么？例如 `/api/order/detail`。
+
+### Q7 — 接口入参（单独一轮文字问）
+
+**只问：** 接口入参有哪些？请写字段名、类型、来源（如 `id` 来自 `Device.getUrlParameter('id')`，或来自 `queryParams`）。
+
+记录：`apiRequest`。
+
+### Q8 — 接口出参（单独一轮文字问）
+
+**只问：** 接口出参如何映射？请写成功码字段、业务数据字段、错误文案字段（与前端 `result.status` / `result.data` / `result.message` 的对应关系）。
+
+记录：`apiResponse`。
+
+### Q9 — 确认（可选）
+
+用简短摘要列出：模板、`outputDir`、`designNotes` 要点、`apiMethod`、`apiUrl`、入参/出参要点。用户确认后再生成。
 
 ## 生成步骤
 
 1. **读模板** — 递归 Read `.ai/docs/examples/{templatePath}/`（至少 `index.tsx`、`api/**`、子组件入口）。必要时对照 `src/examples/` 同路径（若存在）但以 `.ai/docs/examples` 为准。
 2. **写 `page-spec.json`** — 在目标页面目录写入本次问答结果（见 [reference/page-spec.schema.json](reference/page-spec.schema.json)），便于后续改动。
-3. **复制并改写** — 按模板目录结构创建 `src/pages/{PageName}/`：
+3. **复制并改写** — 按模板目录结构创建目标目录：
    - 保留模板的 Header / Main / Footer / api 分层；
    - 按 `reference/generation.md` 替换 URL、method、payload/response 转换；
    - 按 `designNotes` 增删表单项、列表列、文案（`LocaleUtil.locale`）；
@@ -80,12 +116,12 @@ description: >-
 
 ## 产出清单
 
-- `src/pages/{PageName}/index.tsx` 及子目录
-- `src/pages/{PageName}/page-spec.json`
+- `{outputDir}/index.tsx` 及子目录
+- `{outputDir}/page-spec.json`
 - 向用户说明：模板来源、主要改动、如何联调接口
 
 ## 不允许
 
 - 跳过问答直接生成
-- 改动 `.ai/skills/create-page` 或 `.ai/rules` 内文件
+- **在一轮消息里同时索要目录、apiUrl、入参、出参等多项自由填写内容**
 - 使用与 catalog 无关的随意目录当模板（除非用户明确指定路径）
