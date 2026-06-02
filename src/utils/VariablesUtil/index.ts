@@ -29,8 +29,7 @@ const VariablesUtil = {
   getFontSizeValue,
   getFontWeightValue,
   getHeightValue,
-  getRadiusValue,
-  variableSize
+  getRadiusValue
 }
 
 export default VariablesUtil

@@ -4,6 +4,7 @@ import type { LoadingOuroborosProps, LoadingOuroborosRef } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import VariablesUtil from './../../../utils/VariablesUtil'
 // 内库使用-end
 
 const Ouroboros = forwardRef<LoadingOuroborosRef, LoadingOuroborosProps>(
@@ -20,11 +21,12 @@ const Ouroboros = forwardRef<LoadingOuroborosRef, LoadingOuroborosProps>(
 
     const newStyle: CSSProperties = style ? { ...style } : {}
     if (color) {
-      newStyle.color = color
+      newStyle.color = VariablesUtil.getColorValue(color) || color
     }
     if (size) {
-      newStyle.width = size
-      newStyle.height = size
+      const resolvedSize = VariablesUtil.getHeightValue(size) || size
+      newStyle.width = resolvedSize
+      newStyle.height = resolvedSize
     }
 
     return (
