@@ -242,10 +242,94 @@ function buildRulesMd(componentName, title, whenToUse, subKeys, demos) {
   return lines.join('\n')
 }
 
-function buildKeywords(componentName, title) {
-  const parts = [componentName]
-  if (title && title !== componentName) parts.push(title)
-  return parts.join('|')
+/** @type {Set<string>} */
+const KEYWORD_STOPWORDS = new Set([
+  '组件',
+  '用于',
+  '需要',
+  '可以',
+  '进行',
+  '一个',
+  '显示',
+  '使用',
+  '见',
+  '的',
+  '和',
+  '或',
+  '时',
+  '当',
+  '等',
+  '操作',
+  '功能',
+  '场景',
+  '页面',
+  '数据',
+  '内容',
+  '支持',
+  '提供',
+  '通过',
+  '如下',
+  '如下所示'
+])
+
+/** @type {Record<string, string[]>} */
+const KEYWORD_ALIASES = {
+  Button: ['btn', 'button', '按钮', '提交', '确认', '取消'],
+  Input: ['input', '输入框', '表单', 'Input.Text', 'Input.Textarea'],
+  Form: ['form', '表单', '校验', 'validate'],
+  Modal: ['modal', '弹窗', '对话框', '弹层'],
+  Toast: ['toast', '轻提示', '提示'],
+  Loading: ['loading', '加载', 'Spin', 'Ouroboros'],
+  List: ['list', '列表'],
+  Page: ['page', '页面', '布局'],
+  NavBar: ['navbar', '导航栏', '标题栏'],
+  TabBar: ['tabbar', '底部导航'],
+  FooterBar: ['footer', '底栏', '底部按钮'],
+  DatePicker: ['datepicker', '日期', '时间选择'],
+  Select: ['select', '下拉', '选择器'],
+  Picker: ['picker', '滚轮选择'],
+  Icon: ['icon', '图标'],
+  Card: ['card', '卡片'],
+  Flex: ['flex', '布局', '弹性'],
+  Row: ['row', '栅格'],
+  Checkbox: ['checkbox', '复选', '多选'],
+  Switch: ['switch', '开关'],
+  Upload: ['upload', '上传'],
+  Attach: ['attach', '附件'],
+  AttachUploader: ['attach', '附件上传'],
+  MediaUploader: ['media', '图片上传', '视频上传'],
+  Map: ['map', '地图'],
+  Request: ['request', '请求', '接口'],
+  DOMUtil: ['classNames', 'dom', '样式类名'],
+  VariablesUtil: ['variables', '主题变量', 'getColorValue', 'getHeightValue']
+}
+
+function extractCjkKeywords(text, max = 8) {
+  const phrases = text.match(/[\u4e00-\u9fff]{2,8}/g) || []
+  const seen = new Set()
+  const out = []
+  for (const phrase of phrases) {
+    if (KEYWORD_STOPWORDS.has(phrase)) continue
+    if (seen.has(phrase)) continue
+    seen.add(phrase)
+    out.push(phrase)
+    if (out.length >= max) break
+  }
+  return out
+}
+
+function buildKeywords(componentName, title, intro, whenToUse, subKeys) {
+  const parts = new Set([componentName])
+  if (title && title !== componentName) parts.add(title)
+  ;(KEYWORD_ALIASES[componentName] || []).forEach((k) => parts.add(k))
+  subKeys
+    .filter((k) => k.includes('.') && !k.endsWith('.ref'))
+    .forEach((k) => parts.add(k))
+  whenToUse.forEach((line) => {
+    extractCjkKeywords(line, 4).forEach((k) => parts.add(k))
+  })
+  extractCjkKeywords(intro || '', 6).forEach((k) => parts.add(k))
+  return [...parts].join('|')
 }
 
 function processComponent(componentName) {
@@ -288,7 +372,7 @@ function processComponent(componentName) {
   )
 
   return {
-    keywords: buildKeywords(componentName, title),
+    keywords: buildKeywords(componentName, title, intro, whenToUse, subKeys),
     name: componentName,
     props: `.ai/docs/components/${componentName}/${componentName}-props.json`,
     rule: `.ai/docs/components/${componentName}/${componentName}-rules.md`,

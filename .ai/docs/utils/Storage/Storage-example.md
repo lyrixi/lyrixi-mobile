@@ -165,7 +165,7 @@ export default function StorageDemo() {
 ```tsx
 import { Storage, Page, Button } from 'lyrixi-mobile'
 
-import type { StorageDemoCacheState } from '../types/Storage.demos.types'
+import type { StorageDemoCacheState } from './Storage.demos.types'
 
 export default function UseCacheStateDemo() {
   const [data, setData] = Storage.useCacheState<StorageDemoCacheState>(null, {
@@ -489,4 +489,10 @@ export default function SessionStorageDemo() {
     </Page>
   )
 }
+```
+
+## demos/Storage.demos.types.ts
+
+```ts
+export type StorageDemoCacheState = { name: string } | null
 ```

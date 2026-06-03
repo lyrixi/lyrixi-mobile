@@ -32,7 +32,9 @@ const KEYWORDS = {
   ObjectUtil: 'ObjectUtil|对象|debounce|cloneDeep|isEmpty|pickBy',
   Request: 'Request|请求|axios|get|post|接口',
   Storage: 'Storage|存储|localStorage|sessionStorage|useCacheState',
-  Theme: 'Theme|主题|字体|hexToRgb|setFontSize'
+  Theme: 'Theme|主题|字体|hexToRgb|setFontSize',
+  VariablesUtil:
+    'VariablesUtil|变量|主题色|getColorValue|getHeightValue|getColorClass|getHeightClass|lyrixi-color|lyrixi-height'
 }
 
 function readFileSafe(p) {

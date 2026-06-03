@@ -670,12 +670,13 @@ import { useRef, useState } from 'react'
 import {
   Page,
   Loading,
-  type DemoMarkerClickPayload,
   type L,
   type MapChooseProps,
   type MapChooseValue,
   type MapContainerAPI
 } from 'lyrixi-mobile'
+
+import type { DemoMarkerClickPayload } from './Map.demos.types'
 
 import MapLoader from '../components/MapLoader'
 import MapChoose from '../pages/MapChoose'
@@ -814,7 +815,6 @@ export default function PageMapChooseDemo() {
             //     {
             //       address: '上海市南京东路832号',
             //       latitude: 31.237415229632834,
-            //       longitude: 121.47015544295395,
 // ... 其余见 demos/PageMapChoose.tsx 全文
 ```
 
@@ -827,12 +827,13 @@ import {
   Page,
   Map,
   Button,
-  type DemoMarkerClickPayload,
   type L,
   type MapMapMarkersHandle,
   type MapMarkersLayerHandle,
   type MapPoint
 } from 'lyrixi-mobile'
+
+import type { DemoMarkerClickPayload } from './Map.demos.types'
 
 import getPoints from './getPoints'
 
@@ -970,6 +971,5 @@ export default function PageMapMarkersDemo() {
               markers={points}
               // 折线
               // polyline={points}
-              // MapPolylineProps={{
 // ... 其余见 demos/PageMapMarkers.tsx 全文
 ```

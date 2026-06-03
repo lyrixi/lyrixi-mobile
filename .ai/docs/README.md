@@ -43,7 +43,8 @@
 
 ## 如何使用
 
-1. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
-2. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
-3. 扩展组件文档：改 `src/components/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
-4. 扩展工具文档：改 `src/utils/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
+1. **推荐**：启用技能 [`docs`](../skills/docs/SKILL.md)，用 `resolve-docs.mjs` + `mapping.json` 检索后按需读 props/rules。
+2. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
+3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档（关键词由 `npm run build:ai-docs` 生成，不全时可改 `scripts/build-ai-component-docs.mjs` 的 `KEYWORD_ALIASES`）。
+4. 扩展组件文档：改 `src/components/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
+5. 扩展工具文档：改 `src/utils/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。

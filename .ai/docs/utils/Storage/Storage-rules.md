@@ -14,6 +14,7 @@
 - `demos/useCacheState.tsx`
 - `demos/localStorage.tsx`
 - `demos/sessionStorage.tsx`
+- `demos/Storage.demos.types.ts`
 
 ## 查阅顺序
 - API：`Storage-props.json`

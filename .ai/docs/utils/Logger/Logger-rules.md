@@ -16,6 +16,7 @@
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Logger.tsx`
+- `demos/Logger.demos.types.ts`
 - `demos/upload.ts`
 
 ## 查阅顺序

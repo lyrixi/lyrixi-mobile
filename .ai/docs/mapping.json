@@ -1,399 +1,399 @@
 {
   "components": [
     {
-      "keywords": "Accordion",
+      "keywords": "Accordion|需要折叠和展开内|容时|需要显示可折叠的|面板时|需要节省页面空间|手风琴组件|用于折叠和展开内",
       "name": "Accordion",
       "props": ".ai/docs/components/Accordion/Accordion-props.json",
       "rule": ".ai/docs/components/Accordion/Accordion-rules.md",
       "example": ".ai/docs/components/Accordion/Accordion-example.md"
     },
     {
-      "keywords": "ActionSheet",
+      "keywords": "ActionSheet|ActionSheet.Combo|ActionSheet.Modal|ActionSheet.Item|动作面板组件|用于显示操作选项",
       "name": "ActionSheet",
       "props": ".ai/docs/components/ActionSheet/ActionSheet-props.json",
       "rule": ".ai/docs/components/ActionSheet/ActionSheet-rules.md",
       "example": ".ai/docs/components/ActionSheet/ActionSheet-example.md"
     },
     {
-      "keywords": "App",
+      "keywords": "App|需要应用初始化时|需要配置全局设置|需要启用日志|调试等功能时|应用组件|用于应用初始化和|配置",
       "name": "App",
       "props": ".ai/docs/components/App/App-props.json",
       "rule": ".ai/docs/components/App/App-rules.md",
       "example": ".ai/docs/components/App/App-example.md"
     },
     {
-      "keywords": "Attach",
+      "keywords": "Attach|attach|附件|Attach.List|Attach.Button|Attach.Uploading|需要显示附件文件|需要上传附件文件|需要预览附件文件|附件组件|用于显示和管理附|件文件",
       "name": "Attach",
       "props": ".ai/docs/components/Attach/Attach-props.json",
       "rule": ".ai/docs/components/Attach/Attach-rules.md",
       "example": ".ai/docs/components/Attach/Attach-example.md"
     },
     {
-      "keywords": "AttachUploader",
+      "keywords": "AttachUploader|attach|附件上传|需要上传附件文件|需要管理附件上传|状态时|需要显示附件上传|进度时|附件上传器组件|用于上传附件文件",
       "name": "AttachUploader",
       "props": ".ai/docs/components/AttachUploader/AttachUploader-props.json",
       "rule": ".ai/docs/components/AttachUploader/AttachUploader-rules.md",
       "example": ".ai/docs/components/AttachUploader/AttachUploader-example.md"
     },
     {
-      "keywords": "Badge",
+      "keywords": "Badge|需要显示数字标记|需要显示状态标记|需要在元素上显示|标记时|徽标组件|用于显示数字|状态等标记",
       "name": "Badge",
       "props": ".ai/docs/components/Badge/Badge-props.json",
       "rule": ".ai/docs/components/Badge/Badge-rules.md",
       "example": ".ai/docs/components/Badge/Badge-example.md"
     },
     {
-      "keywords": "Button",
+      "keywords": "Button|btn|button|按钮|提交|确认|取消|Button.Text|需要触发一个操作|需要提交表单时|需要执行确认|取消等操作时|按钮组件|用于触发操作",
       "name": "Button",
       "props": ".ai/docs/components/Button/Button-props.json",
       "rule": ".ai/docs/components/Button/Button-rules.md",
       "example": ".ai/docs/components/Button/Button-example.md"
     },
     {
-      "keywords": "Calendar",
+      "keywords": "Calendar|Calendar.Header|需要显示日历时|需要选择日期时|需要选择日期范围|日历组件|用于显示和选择日",
       "name": "Calendar",
       "props": ".ai/docs/components/Calendar/Calendar-props.json",
       "rule": ".ai/docs/components/Calendar/Calendar-rules.md",
       "example": ".ai/docs/components/Calendar/Calendar-example.md"
     },
     {
-      "keywords": "Card",
+      "keywords": "Card|card|卡片|Card.Header|Card.Main|需要展示相关内容|区块时|需要将信息分组展|示时|需要带标题和内容|的结构化展示时|卡片组件|用于展示内容区块",
       "name": "Card",
       "props": ".ai/docs/components/Card/Card-props.json",
       "rule": ".ai/docs/components/Card/Card-rules.md",
       "example": ".ai/docs/components/Card/Card-example.md"
     },
     {
-      "keywords": "Cascader",
+      "keywords": "Cascader|Cascader.Combo|Cascader.Modal|Cascader.Main|Cascader.DistrictModal|Cascader.DistrictMain|级联选择器组件|用于从级联数据中|选择",
       "name": "Cascader",
       "props": ".ai/docs/components/Cascader/Cascader-props.json",
       "rule": ".ai/docs/components/Cascader/Cascader-rules.md",
       "example": ".ai/docs/components/Cascader/Cascader-example.md"
     },
     {
-      "keywords": "Chat",
+      "keywords": "Chat|Chat.List|Chat.Item|聊天组件|用于显示聊天消息",
       "name": "Chat",
       "props": ".ai/docs/components/Chat/Chat-props.json",
       "rule": ".ai/docs/components/Chat/Chat-rules.md",
       "example": ".ai/docs/components/Chat/Chat-example.md"
     },
     {
-      "keywords": "Checkbox",
+      "keywords": "Checkbox|checkbox|复选|多选|Checkbox.Group|需要从一组选项中|选择多个时|需要表示开关状态|需要确认操作时|复选框组件|用于多选场景",
       "name": "Checkbox",
       "props": ".ai/docs/components/Checkbox/Checkbox-props.json",
       "rule": ".ai/docs/components/Checkbox/Checkbox-rules.md",
       "example": ".ai/docs/components/Checkbox/Checkbox-example.md"
     },
     {
-      "keywords": "Combo",
+      "keywords": "Combo|需要自定义渲染组|合元素时|需要创建可点击的|组合元素时|组合组件|用于自定义渲染组|合元素",
       "name": "Combo",
       "props": ".ai/docs/components/Combo/Combo-props.json",
       "rule": ".ai/docs/components/Combo/Combo-rules.md",
       "example": ".ai/docs/components/Combo/Combo-example.md"
     },
     {
-      "keywords": "DatePicker",
+      "keywords": "DatePicker|datepicker|日期|时间选择|DatePicker.TypeSwitcher|DatePicker.RangeSelector|需要选择日期时|需要选择时间时|需要选择日期范围|日期选择器组件|用于选择日期|时间等",
       "name": "DatePicker",
       "props": ".ai/docs/components/DatePicker/DatePicker-props.json",
       "rule": ".ai/docs/components/DatePicker/DatePicker-rules.md",
       "example": ".ai/docs/components/DatePicker/DatePicker-example.md"
     },
     {
-      "keywords": "Divider",
+      "keywords": "Divider|需要分隔内容时|需要显示分割线时|需要在内容之间添|加分隔时|分割线组件|用于分隔内容",
       "name": "Divider",
       "props": ".ai/docs/components/Divider/Divider-props.json",
       "rule": ".ai/docs/components/Divider/Divider-rules.md",
       "example": ".ai/docs/components/Divider/Divider-example.md"
     },
     {
-      "keywords": "Flex",
+      "keywords": "Flex|flex|布局|弹性|Flex.Compact|需要创建灵活的布|局时|需要控制元素对齐|方式时|需要控制元素间距|弹性布局组件|用于创建灵活的布",
       "name": "Flex",
       "props": ".ai/docs/components/Flex/Flex-props.json",
       "rule": ".ai/docs/components/Flex/Flex-rules.md",
       "example": ".ai/docs/components/Flex/Flex-example.md"
     },
     {
-      "keywords": "Float",
+      "keywords": "Float|需要显示悬浮按钮|需要可拖动的按钮|需要固定在页面上|的按钮时|悬浮按钮组件|用于显示可拖动的|悬浮按钮",
       "name": "Float",
       "props": ".ai/docs/components/Float/Float-props.json",
       "rule": ".ai/docs/components/Float/Float-rules.md",
       "example": ".ai/docs/components/Float/Float-example.md"
     },
     {
-      "keywords": "FooterBar",
+      "keywords": "FooterBar|footer|底栏|底部按钮|需要显示页面底部|内容时|需要显示操作按钮|需要在页面底部显|示固定内容时|底部栏组件|用于显示页面底部",
       "name": "FooterBar",
       "props": ".ai/docs/components/FooterBar/FooterBar-props.json",
       "rule": ".ai/docs/components/FooterBar/FooterBar-rules.md",
       "example": ".ai/docs/components/FooterBar/FooterBar-example.md"
     },
     {
-      "keywords": "Form",
+      "keywords": "Form|form|表单|校验|validate|Form.Item|需要收集用户输入|数据时|需要对输入进行校|验时|需要提交表单数据|表单组件|用于数据收集|校验和提交",
       "name": "Form",
       "props": ".ai/docs/components/Form/Form-props.json",
       "rule": ".ai/docs/components/Form/Form-rules.md",
       "example": ".ai/docs/components/Form/Form-example.md"
     },
     {
-      "keywords": "IFrame",
+      "keywords": "IFrame|需要嵌入其他页面|需要显示外部内容|需要隔离内容时|内联框架组件|用于嵌入其他页面",
       "name": "IFrame",
       "props": ".ai/docs/components/IFrame/IFrame-props.json",
       "rule": ".ai/docs/components/IFrame/IFrame-rules.md",
       "example": ".ai/docs/components/IFrame/IFrame-example.md"
     },
     {
-      "keywords": "Icon",
+      "keywords": "Icon|icon|图标|需要显示图标时|需要自定义图标样|式时|需要在按钮|输入框等组件中使|用图标时|通用|图标组件|用于显示图标",
       "name": "Icon",
       "props": ".ai/docs/components/Icon/Icon-props.json",
       "rule": ".ai/docs/components/Icon/Icon-rules.md",
       "example": ".ai/docs/components/Icon/Icon-example.md"
     },
     {
-      "keywords": "IndexBar",
+      "keywords": "IndexBar|IndexBar.Anchor|需要快速定位内容|需要显示索引导航|需要字母索引时|索引栏组件|用于快速定位内容",
       "name": "IndexBar",
       "props": ".ai/docs/components/IndexBar/IndexBar-props.json",
       "rule": ".ai/docs/components/IndexBar/IndexBar-rules.md",
       "example": ".ai/docs/components/IndexBar/IndexBar-example.md"
     },
     {
-      "keywords": "Input",
+      "keywords": "Input|input|输入框|表单|Input.Text|Input.Textarea|Input.PasswordStrength|Input.OTP|Input.Range|Input.Rate|输入框组件|提供多种类型的输|入控件",
       "name": "Input",
       "props": ".ai/docs/components/Input/Input-props.json",
       "rule": ".ai/docs/components/Input/Input-rules.md",
       "example": ".ai/docs/components/Input/Input-example.md"
     },
     {
-      "keywords": "Keyboard",
+      "keywords": "Keyboard|Keyboard.Number|键盘组件|目前提供数字键盘",
       "name": "Keyboard",
       "props": ".ai/docs/components/Keyboard/Keyboard-props.json",
       "rule": ".ai/docs/components/Keyboard/Keyboard-rules.md",
       "example": ".ai/docs/components/Keyboard/Keyboard-example.md"
     },
     {
-      "keywords": "List",
+      "keywords": "List|list|列表|需要展示数据列表|需要支持单选或多|选时|需要分组显示数据|列表组件|用于展示数据列表",
       "name": "List",
       "props": ".ai/docs/components/List/List-props.json",
       "rule": ".ai/docs/components/List/List-rules.md",
       "example": ".ai/docs/components/List/List-example.md"
     },
     {
-      "keywords": "ListAsync",
+      "keywords": "ListAsync|需要显示分页数据|列表时|需要自动加载数据|需要支持下拉刷新|和上拉加载时|最灵活的异步列表|通常使用|可满足大部分的异|步列表",
       "name": "ListAsync",
       "props": ".ai/docs/components/ListAsync/ListAsync-props.json",
       "rule": ".ai/docs/components/ListAsync/ListAsync-rules.md",
       "example": ".ai/docs/components/ListAsync/ListAsync-example.md"
     },
     {
-      "keywords": "ListPagination",
+      "keywords": "ListPagination|ListPagination.Main|ListPagination.Combo|需要显示分页数据|列表时|需要自动加载数据|下拉刷新和上拉加|载时|需要从分页列表中|单选|多选并展示在输入|框或弹窗时|分页列表组件|提供分页数据列表|的三种用法|内嵌列表|触发器|弹窗选择",
       "name": "ListPagination",
       "props": ".ai/docs/components/ListPagination/ListPagination-props.json",
       "rule": ".ai/docs/components/ListPagination/ListPagination-rules.md",
       "example": ".ai/docs/components/ListPagination/ListPagination-example.md"
     },
     {
-      "keywords": "Loading",
+      "keywords": "Loading|loading|加载|Spin|Ouroboros|Loading.BallWave",
       "name": "Loading",
       "props": ".ai/docs/components/Loading/Loading-props.json",
       "rule": ".ai/docs/components/Loading/Loading-rules.md",
       "example": ".ai/docs/components/Loading/Loading-example.md"
     },
     {
-      "keywords": "Location",
+      "keywords": "Location|Location.Combo|Location.Modal|Location.Main|位置选择器组件|用于选择地理位置",
       "name": "Location",
       "props": ".ai/docs/components/Location/Location-props.json",
       "rule": ".ai/docs/components/Location/Location-rules.md",
       "example": ".ai/docs/components/Location/Location-example.md"
     },
     {
-      "keywords": "Map",
+      "keywords": "Map|map|地图|Map.MapContainer|Map.ZoomControl|Map.SearchControl|Map.CenterMarker|Map.Markers|Map.Circles|Map.Polyline|Map.Polygon|Map.LocationControl|Map.NearbyControl|Map.MapChoose|Map.MapMarkers",
       "name": "Map",
       "props": ".ai/docs/components/Map/Map-props.json",
       "rule": ".ai/docs/components/Map/Map-rules.md",
       "example": ".ai/docs/components/Map/Map-example.md"
     },
     {
-      "keywords": "Media",
+      "keywords": "Media|Media.List|Media.PreviewModal|Media.PreviewMain|Media.Mark|需要显示图片|视频时|需要上传图片|需要预览图片|媒体组件|用于显示和管理图|视频等媒体文件",
       "name": "Media",
       "props": ".ai/docs/components/Media/Media-props.json",
       "rule": ".ai/docs/components/Media/Media-rules.md",
       "example": ".ai/docs/components/Media/Media-example.md"
     },
     {
-      "keywords": "MediaUploader",
+      "keywords": "MediaUploader|media|图片上传|视频上传|需要上传图片|视频时|需要管理媒体上传|状态时|需要显示媒体上传|进度时|媒体上传器组件|用于上传图片|视频等媒体文件",
       "name": "MediaUploader",
       "props": ".ai/docs/components/MediaUploader/MediaUploader-props.json",
       "rule": ".ai/docs/components/MediaUploader/MediaUploader-rules.md",
       "example": ".ai/docs/components/MediaUploader/MediaUploader-example.md"
     },
     {
-      "keywords": "Message",
+      "keywords": "Message|Message.Modal|Message.Main|Message.Header|Message.Footer|Message.Icon|Message.Title|Message.Button|需要居中展示标题|正文与操作按钮的|对话框时|需要命令式唤起全|局消息框|如操作确认|结果提示|需要自定义对话框|结构|图标|标题|消息对话框组件集|用于展示提示|确认等居中弹窗|提供命令式|与组合式子组件",
       "name": "Message",
       "props": ".ai/docs/components/Message/Message-props.json",
       "rule": ".ai/docs/components/Message/Message-rules.md",
       "example": ".ai/docs/components/Message/Message-example.md"
     },
     {
-      "keywords": "Modal",
+      "keywords": "Modal|modal|弹窗|对话框|弹层|需要显示对话框时|需要用户确认操作|需要显示重要信息|模态框组件|用于显示对话框|确认框等",
       "name": "Modal",
       "props": ".ai/docs/components/Modal/Modal-props.json",
       "rule": ".ai/docs/components/Modal/Modal-rules.md",
       "example": ".ai/docs/components/Modal/Modal-example.md"
     },
     {
-      "keywords": "NavBar",
+      "keywords": "NavBar|navbar|导航栏|标题栏|NavBar.Title|NavBar.Button|需要显示页面导航|需要显示标题和操|作按钮时|需要在页面顶部显|示导航栏时|导航栏组件|用于显示页面导航",
       "name": "NavBar",
       "props": ".ai/docs/components/NavBar/NavBar-props.json",
       "rule": ".ai/docs/components/NavBar/NavBar-rules.md",
       "example": ".ai/docs/components/NavBar/NavBar-example.md"
     },
     {
-      "keywords": "NoticeBar",
+      "keywords": "NoticeBar|需要显示通知|提示|警告等信息时|需要在页面顶部或|内容区域显示重要|信息时|需要吸引用户注意|但不强制交互时|通告栏组件|用于显示重要通知|提示信息",
       "name": "NoticeBar",
       "props": ".ai/docs/components/NoticeBar/NoticeBar-props.json",
       "rule": ".ai/docs/components/NoticeBar/NoticeBar-rules.md",
       "example": ".ai/docs/components/NoticeBar/NoticeBar-example.md"
     },
     {
-      "keywords": "Page",
+      "keywords": "Page|page|页面|布局|Page.Header|Page.Main|Page.Footer|需要构建页面布局|需要页面级别的容|器时|需要带安全区的页|面时|页面容器组件|用于构建页面布局",
       "name": "Page",
       "props": ".ai/docs/components/Page/Page-props.json",
       "rule": ".ai/docs/components/Page/Page-rules.md",
       "example": ".ai/docs/components/Page/Page-example.md"
     },
     {
-      "keywords": "Picker",
+      "keywords": "Picker|picker|滚轮选择|需要从多个选项中|选择时|需要滚动选择时|需要选择日期|时间等时|选择器组件|用于从多个选项中|选择",
       "name": "Picker",
       "props": ".ai/docs/components/Picker/Picker-props.json",
       "rule": ".ai/docs/components/Picker/Picker-rules.md",
       "example": ".ai/docs/components/Picker/Picker-example.md"
     },
     {
-      "keywords": "Progress",
+      "keywords": "Progress|Progress.Bar|Progress.Circle|进度条组件|用于显示进度",
       "name": "Progress",
       "props": ".ai/docs/components/Progress/Progress-props.json",
       "rule": ".ai/docs/components/Progress/Progress-rules.md",
       "example": ".ai/docs/components/Progress/Progress-example.md"
     },
     {
-      "keywords": "QRCode",
+      "keywords": "QRCode|需要生成二维码时|需要显示二维码时|需要扫描二维码时|二维码组件|用于生成和显示二|维码",
       "name": "QRCode",
       "props": ".ai/docs/components/QRCode/QRCode-props.json",
       "rule": ".ai/docs/components/QRCode/QRCode-rules.md",
       "example": ".ai/docs/components/QRCode/QRCode-example.md"
     },
     {
-      "keywords": "Result",
+      "keywords": "Result|需要显示操作结果|需要显示空状态时|需要显示错误状态|结果页组件|用于显示操作结果",
       "name": "Result",
       "props": ".ai/docs/components/Result/Result-props.json",
       "rule": ".ai/docs/components/Result/Result-rules.md",
       "example": ".ai/docs/components/Result/Result-example.md"
     },
     {
-      "keywords": "Row",
+      "keywords": "Row|row|栅格|需要创建行布局时|需要水平排列元素|行组件|用于创建行布局",
       "name": "Row",
       "props": ".ai/docs/components/Row/Row-props.json",
       "rule": ".ai/docs/components/Row/Row-rules.md",
       "example": ".ai/docs/components/Row/Row-example.md"
     },
     {
-      "keywords": "SafeArea",
+      "keywords": "SafeArea|需要适配安全区域|需要在有刘海屏的|设备上显示内容时|需要避免内容被遮|挡时|安全区组件|用于适配安全区域",
       "name": "SafeArea",
       "props": ".ai/docs/components/SafeArea/SafeArea-props.json",
       "rule": ".ai/docs/components/SafeArea/SafeArea-rules.md",
       "example": ".ai/docs/components/SafeArea/SafeArea-example.md"
     },
     {
-      "keywords": "Select",
+      "keywords": "Select|select|下拉|选择器|Select.Combo|Select.Modal|Select.Main|选择器组件|用于从多个选项中|选择",
       "name": "Select",
       "props": ".ai/docs/components/Select/Select-props.json",
       "rule": ".ai/docs/components/Select/Select-rules.md",
       "example": ".ai/docs/components/Select/Select-example.md"
     },
     {
-      "keywords": "Selector",
+      "keywords": "Selector|需要从多个选项中|选择时|需要单选或多选时|需要网格布局显示|选项时|选择组组件|用于从多个选项中|选择",
       "name": "Selector",
       "props": ".ai/docs/components/Selector/Selector-props.json",
       "rule": ".ai/docs/components/Selector/Selector-rules.md",
       "example": ".ai/docs/components/Selector/Selector-example.md"
     },
     {
-      "keywords": "Signature",
+      "keywords": "Signature|Signature.Combo|Signature.Modal|Signature.Main|签名组件|用于手写签名",
       "name": "Signature",
       "props": ".ai/docs/components/Signature/Signature-props.json",
       "rule": ".ai/docs/components/Signature/Signature-rules.md",
       "example": ".ai/docs/components/Signature/Signature-example.md"
     },
     {
-      "keywords": "Skeleton",
+      "keywords": "Skeleton|需要显示加载占位|效果时|需要在内容加载时|显示骨架屏时|需要提升列表|详情|编辑等页面的加载|体验时|骨架屏组件|用于在内容加载时|显示占位效果|包含基础块|段落|标签",
       "name": "Skeleton",
       "props": ".ai/docs/components/Skeleton/Skeleton-props.json",
       "rule": ".ai/docs/components/Skeleton/Skeleton-rules.md",
       "example": ".ai/docs/components/Skeleton/Skeleton-example.md"
     },
     {
-      "keywords": "Stamp",
+      "keywords": "Stamp|需要显示加载占位|效果时|需要在内容加载时|显示骨架屏时|需要提升用户体验|邮戳组件",
       "name": "Stamp",
       "props": ".ai/docs/components/Stamp/Stamp-props.json",
       "rule": ".ai/docs/components/Stamp/Stamp-rules.md",
       "example": ".ai/docs/components/Stamp/Stamp-example.md"
     },
     {
-      "keywords": "Steps",
+      "keywords": "Steps|需要显示步骤流程|需要显示进度步骤|需要引导用户完成|操作时|步骤条组件|用于显示步骤流程",
       "name": "Steps",
       "props": ".ai/docs/components/Steps/Steps-props.json",
       "rule": ".ai/docs/components/Steps/Steps-rules.md",
       "example": ".ai/docs/components/Steps/Steps-example.md"
     },
     {
-      "keywords": "Switch",
+      "keywords": "Switch|switch|开关|需要表示开关状态|需要切换两种状态|需要表示启用|禁用状态时|开关组件|用于表示两种状态|的切换",
       "name": "Switch",
       "props": ".ai/docs/components/Switch/Switch-props.json",
       "rule": ".ai/docs/components/Switch/Switch-rules.md",
       "example": ".ai/docs/components/Switch/Switch-example.md"
     },
     {
-      "keywords": "TabBar",
+      "keywords": "TabBar|tabbar|底部导航|TabBar.Tabs|TabBar.Slide|TabBar.Menus|TabBar.Group|标签栏组件|用于显示标签页",
       "name": "TabBar",
       "props": ".ai/docs/components/TabBar/TabBar-props.json",
       "rule": ".ai/docs/components/TabBar/TabBar-rules.md",
       "example": ".ai/docs/components/TabBar/TabBar-example.md"
     },
     {
-      "keywords": "Text",
+      "keywords": "Text|需要显示文本时|文本组件|何时使用|代码演示|属性|说明",
       "name": "Text",
       "props": ".ai/docs/components/Text/Text-props.json",
       "rule": ".ai/docs/components/Text/Text-rules.md",
       "example": ".ai/docs/components/Text/Text-example.md"
     },
     {
-      "keywords": "Toast",
+      "keywords": "Toast|toast|轻提示|提示|需要显示简短的消|息提示时|需要显示操作结果|需要显示成功|错误|警告等信息时|轻提示组件|用于显示简短的消|息提示",
       "name": "Toast",
       "props": ".ai/docs/components/Toast/Toast-props.json",
       "rule": ".ai/docs/components/Toast/Toast-rules.md",
       "example": ".ai/docs/components/Toast/Toast-example.md"
     },
     {
-      "keywords": "ToolBar",
+      "keywords": "ToolBar|ToolBar.Dropdown|ToolBar.DateRange|ToolBar.Filter|需要显示工具栏时|需要显示操作按钮|需要显示筛选|搜索等功能时|工具栏组件|用于显示工具栏",
       "name": "ToolBar",
       "props": ".ai/docs/components/ToolBar/ToolBar-props.json",
       "rule": ".ai/docs/components/ToolBar/ToolBar-rules.md",
       "example": ".ai/docs/components/ToolBar/ToolBar-example.md"
     },
     {
-      "keywords": "Tooltip",
+      "keywords": "Tooltip|需要显示提示信息|需要在元素上显示|提示时|需要显示帮助信息|文字提示组件|用于显示提示信息",
       "name": "Tooltip",
       "props": ".ai/docs/components/Tooltip/Tooltip-props.json",
       "rule": ".ai/docs/components/Tooltip/Tooltip-rules.md",
       "example": ".ai/docs/components/Tooltip/Tooltip-example.md"
     },
     {
-      "keywords": "Transfer",
+      "keywords": "Transfer|需要在两栏之间移|动元素时|需要选择多个选项|需要管理已选和未|选项时|穿梭框组件|用于在两栏之间移|动元素",
       "name": "Transfer",
       "props": ".ai/docs/components/Transfer/Transfer-props.json",
       "rule": ".ai/docs/components/Transfer/Transfer-rules.md",
       "example": ".ai/docs/components/Transfer/Transfer-example.md"
     },
     {
-      "keywords": "VideoPlayer",
+      "keywords": "VideoPlayer|需要播放视频时|需要显示视频播放|器时|需要控制视频播放|视频播放器组件|用于播放视频",
       "name": "VideoPlayer",
       "props": ".ai/docs/components/VideoPlayer/VideoPlayer-props.json",
       "rule": ".ai/docs/components/VideoPlayer/VideoPlayer-rules.md",
@@ -533,6 +533,13 @@
       "props": ".ai/docs/utils/Theme/Theme-props.json",
       "rule": ".ai/docs/utils/Theme/Theme-rules.md",
       "example": ".ai/docs/utils/Theme/Theme-example.md"
+    },
+    {
+      "keywords": "VariablesUtil|变量|主题色|getColorValue|getHeightValue|getColorClass|getHeightClass|lyrixi-color|lyrixi-height",
+      "name": "VariablesUtil",
+      "props": ".ai/docs/utils/VariablesUtil/VariablesUtil-props.json",
+      "rule": ".ai/docs/utils/VariablesUtil/VariablesUtil-rules.md",
+      "example": ".ai/docs/utils/VariablesUtil/VariablesUtil-example.md"
     }
   ]
 }

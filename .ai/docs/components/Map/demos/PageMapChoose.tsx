@@ -3,12 +3,13 @@ import { useRef, useState } from 'react'
 import {
   Page,
   Loading,
-  type DemoMarkerClickPayload,
   type L,
   type MapChooseProps,
   type MapChooseValue,
   type MapContainerAPI
 } from 'lyrixi-mobile'
+
+import type { DemoMarkerClickPayload } from './Map.demos.types'
 
 import MapLoader from '../components/MapLoader'
 import MapChoose from '../pages/MapChoose'

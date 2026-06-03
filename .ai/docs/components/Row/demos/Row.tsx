@@ -10,7 +10,7 @@ export default function RowDemo() {
             span={8}
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -22,7 +22,7 @@ export default function RowDemo() {
             span={16}
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -34,7 +34,7 @@ export default function RowDemo() {
             span={8}
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -46,7 +46,7 @@ export default function RowDemo() {
             span={16}
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -62,7 +62,7 @@ export default function RowDemo() {
             span="auto"
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -73,7 +73,7 @@ export default function RowDemo() {
           <Row.Col
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -85,7 +85,7 @@ export default function RowDemo() {
             span="auto"
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
@@ -96,7 +96,7 @@ export default function RowDemo() {
           <Row.Col
             className="lyrixi-color-white"
             style={{
-              backgroundColor: 'var(--lyrixi-primary)',
+              backgroundColor: 'var(--lyrixi-color-primary)',
               padding: 'var(--lyrixi-space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
