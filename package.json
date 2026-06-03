@@ -49,6 +49,7 @@
     "build": "father build && tsx scripts/build-after.ts",
     "build:ai": "tsx scripts/build-ai.ts",
     "build:watch": "father dev",
+    "create-ai": "node .ai/init.js",
     "dev": "dumi dev",
     "docs:build": "dumi build && tsx scripts/docs-after/index.ts",
     "docs:preview": "dumi preview",
