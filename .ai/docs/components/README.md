@@ -9,10 +9,6 @@
 | `{Name}-example.md` | 示例索引与代码摘录 |
 | `demos/` | 与 `src/components/{Name}/demos` 同步的示例源码 |
 
-**更新：** 修改组件文档或 demo 后执行：
-
-```bash
-npm run build:ai-docs
-```
+**更新：** 直接编辑本目录下对应组件文件，并同步 [`../mapping.json`](../mapping.json) 的 `keywords`（源文档见 `src/components/{Name}/index.zh-CN.md`）。
 
 索引：[`../mapping.json`](../mapping.json)

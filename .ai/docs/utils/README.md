@@ -9,10 +9,6 @@
 | `{Name}-example.md` | 示例索引与代码摘录 |
 | `demos/` | 与 `src/utils/{Name}/demos` 同步的示例源码 |
 
-**更新：** 修改工具文档或 demo 后执行：
-
-```bash
-npm run build:ai-docs
-```
+**更新：** 直接编辑本目录下对应工具文件，并同步 [`../mapping.json`](../mapping.json) 的 `keywords`（源文档见 `src/utils/{Name}/`）。
 
 索引：[`../mapping.json`](../mapping.json)

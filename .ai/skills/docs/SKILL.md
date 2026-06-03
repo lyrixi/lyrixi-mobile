@@ -62,18 +62,14 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 | 情况 | 做法 |
 |------|------|
 | mapping 无条目 | 查 `src/components/{Name}/index.zh-CN.md` 或 `src/utils/{Name}/` |
-| props 与实现不一致 | 以 `src` 源码为准，并提示用户执行 `npm run build:ai-docs` 更新 docs |
+| props 与实现不一致 | 以 `src` 源码为准；需同步时直接改 `.ai/docs` 或 `mapping.json` |
 | 页面级模板 | 另用 [create-page](../create-page/SKILL.md) + `examples/catalog.json` |
 
 ## mapping.json 与 keywords
 
 - 索引文件：[`.ai/docs/mapping.json`](../../docs/mapping.json)
-- `keywords` 为 `|` 分隔；组件由 `npm run build:ai-docs` 从标题、何时使用、子组件名、中文摘要及 `KEYWORD_ALIASES` 生成；工具见 `scripts/build-ai-utils-docs.mjs` 的 `KEYWORDS`
-- **keywords 不全会影响检索**：脚本匹配为子串/相等打分，同义词未写入则易漏检；可改 `scripts/build-ai-component-docs.mjs` 的 `KEYWORD_ALIASES` 后重建
-
-```bash
-npm run build:ai-docs
-```
+- `keywords` 为 `|` 分隔，手工维护；检索不全时直接编辑对应条目的 `keywords` 或 `name`
+- **keywords 不全会影响检索**：`resolve-docs.mjs` 为子串/相等打分，同义词未写入则易漏检
 
 ## 业务页面
 

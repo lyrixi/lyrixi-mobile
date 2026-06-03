@@ -13,31 +13,27 @@
 
 ### `components/` — 组件文档
 
-与 `src/components/` **一一对应**（当前 57 个组件），供 AI 查阅 Props、规则与示例，减少生成代码时的幻觉。
+与 `src/components/` **一一对应**，供 AI 查阅 Props、规则与示例，减少生成代码时的幻觉。
 
 | 文件 / 目录 | 用途 |
 |-------------|------|
-| `{Name}-props.json` | Props / Ref（由站点文档 API 表生成） |
+| `{Name}-props.json` | Props / Ref |
 | `{Name}-rules.md` | 何时使用、子组件、必须用库组件 |
 | `{Name}-example.md` | 示例说明与代码摘录 |
-| `demos/` | 与 `src/components/{Name}/demos` 同步的示例源码 |
-
-修改组件文档或 demo 后，在仓库根目录执行 `npm run build:ai-docs` 重新生成。
+| `demos/` | 示例源码 |
 
 索引：[`mapping.json`](mapping.json) 的 `components`；目录说明：[`components/README.md`](components/README.md)。
 
 ### `utils/` — 工具文档
 
-与 `src/utils/` **导出工具一一对应**（当前 19 个），供 AI 查阅 API、规则与示例，减少生成代码时的幻觉。
+与 `src/utils/` **导出工具一一对应**，供 AI 查阅 API、规则与示例。
 
 | 文件 / 目录 | 用途 |
 |-------------|------|
-| `{Name}-props.json` | API / 方法（由 `index.zh-CN.md`、源码与 demos 生成） |
+| `{Name}-props.json` | API / 方法 |
 | `{Name}-rules.md` | 何时使用、必须使用库工具、demo 索引 |
 | `{Name}-example.md` | 示例说明与代码摘录 |
-| `demos/` | 与 `src/utils/{Name}/demos` 同步的示例源码 |
-
-修改工具文档或 demo 后，在仓库根目录执行 `npm run build:ai-docs` 重新生成。
+| `demos/` | 示例源码 |
 
 索引：[`mapping.json`](mapping.json) 的 `utils`；目录说明：[`utils/README.md`](utils/README.md)。
 
@@ -45,6 +41,5 @@
 
 1. **推荐**：启用技能 [`docs`](../skills/docs/SKILL.md)，用 `resolve-docs.mjs` + `mapping.json` 检索后按需读 props/rules。
 2. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
-3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档（关键词由 `npm run build:ai-docs` 生成，不全时可改 `scripts/build-ai-component-docs.mjs` 的 `KEYWORD_ALIASES`）。
-4. 扩展组件文档：改 `src/components/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
-5. 扩展工具文档：改 `src/utils/{Name}/index.zh-CN.md` 或 demos 后执行 `npm run build:ai-docs`。
+3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
+4. 扩展文档：直接编辑 `.ai/docs` 下对应文件，并更新 `mapping.json` 中的路径与 `keywords`（与 `src` 不一致时以 `src` 为准）。
