@@ -78,7 +78,12 @@ function listFileNames(dir) {
   })
 }
 
+function samePath(a, b) {
+  return path.resolve(a) === path.resolve(b)
+}
+
 function copyRecursive(src, dest, dryRun) {
+  if (samePath(src, dest)) return
   if (dryRun) return
   fs.cpSync(src, dest, { recursive: true, force: true })
 }
@@ -90,6 +95,7 @@ function removeIfExists(p, dryRun) {
 }
 
 function mergeSkills(srcSkills, destSkills, dryRun, summary) {
+  if (samePath(srcSkills, destSkills)) return
   ensureDir(destSkills, dryRun)
   const srcNames = listDirNames(srcSkills)
   const destNames = listDirNames(destSkills)
@@ -109,6 +115,7 @@ function mergeSkills(srcSkills, destSkills, dryRun, summary) {
 }
 
 function mergeRules(srcRules, destRules, dryRun, summary) {
+  if (samePath(srcRules, destRules)) return
   ensureDir(destRules, dryRun)
   const srcFiles = listFileNames(srcRules)
   const destFiles = listFileNames(destRules)
@@ -128,6 +135,7 @@ function mergeRules(srcRules, destRules, dryRun, summary) {
 }
 
 function syncOverwriteDirs(templateRoot, destRoot, dryRun, summary) {
+  if (samePath(templateRoot, destRoot)) return
   for (const dir of OVERWRITE_DIRS) {
     const src = path.join(templateRoot, dir)
     const dest = path.join(destRoot, dir)
@@ -139,6 +147,7 @@ function syncOverwriteDirs(templateRoot, destRoot, dryRun, summary) {
 }
 
 function syncOverwriteFiles(templateRoot, destRoot, dryRun, summary) {
+  if (samePath(templateRoot, destRoot)) return
   for (const file of OVERWRITE_FILES) {
     const src = path.join(templateRoot, file)
     const dest = path.join(destRoot, file)
@@ -282,6 +291,11 @@ function updateAI(options) {
   }
 
   ensureDir(targetAi, parsed.dryRun)
+
+  const isLocal = samePath(templateDir, targetAi)
+  if (isLocal && !parsed.dryRun) {
+    console.log('Local mode: template and target are the same .ai directory, skipping file sync\n')
+  }
 
   mergeSkills(path.join(templateDir, 'skills'), path.join(targetAi, 'skills'), parsed.dryRun, summary)
   mergeRules(path.join(templateDir, 'rules'), path.join(targetAi, 'rules'), parsed.dryRun, summary)
