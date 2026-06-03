@@ -38,8 +38,7 @@
     "lyrixi-mobile-ai": "./ai/init.js"
   },
   "files": [
-    "ai",
-    "cli",
+    ".ai",
     "esm",
     "src/examples",
     "umd",

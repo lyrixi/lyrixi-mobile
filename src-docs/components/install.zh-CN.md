@@ -32,11 +32,21 @@ npm install lyrixi-mobile
 
 ## 🤖 AI CLI
 
-安装完成后，执行以下命令为您的 cursor 项目增加 skill 和 dsl , 支持生成生产级代码
+安装完成后，在项目根目录执行：
 
 ```bash
 npx lyrixi-mobile-ai
 ```
+
+该命令会：
+
+1. 将包内 `.ai` 同步到工程根目录的 `.ai/`
+2. **skills/**：同名 skill 覆盖，你独有的 skill 保留
+3. **rules/**：同名 rule 覆盖，你独有的 rule 保留
+4. **docs、commands、memory 等**：每次全量覆盖（随库版本更新）
+5. 自动创建/更新 `.cursor/`、`.claude/` 软链接指向 `.ai`
+
+升级 `lyrixi-mobile` 后重新执行即可更新文档与库侧配置。可选参数：`--dry-run`（预览变更）、`--force-link`（强制替换非软链的 `.cursor/*`、`.claude/*`）。
 
 ## 📦 CSS
 
