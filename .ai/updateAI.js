@@ -1,12 +1,5 @@
-#!/usr/bin/env node
-
 const fs = require('fs')
 const path = require('path')
-
-const pkgRoot = path.resolve(__dirname, '..')
-const templateDir = path.join(pkgRoot, '.ai')
-const targetRoot = process.cwd()
-const targetAi = path.join(targetRoot, '.ai')
 
 const OVERWRITE_DIRS = ['docs', 'commands', 'memory', 'decisions', 'archive']
 const OVERWRITE_FILES = ['CLAUDE.md', 'README.md']
@@ -31,25 +24,27 @@ const CLAUDE_LINKS = {
   'CLAUDE.md': '../.ai/CLAUDE.md'
 }
 
-const summary = {
-  skillsUpdated: [],
-  skillsAdded: [],
-  skillsKept: [],
-  rulesUpdated: [],
-  rulesAdded: [],
-  rulesKept: [],
-  dirsOverwritten: [],
-  filesOverwritten: [],
-  symlinksCreated: [],
-  symlinksUpdated: [],
-  symlinksSkipped: [],
-  warnings: []
-}
-
 function parseArgs(argv) {
   return {
     dryRun: argv.includes('--dry-run'),
     forceLink: argv.includes('--force-link')
+  }
+}
+
+function createSummary() {
+  return {
+    skillsUpdated: [],
+    skillsAdded: [],
+    skillsKept: [],
+    rulesUpdated: [],
+    rulesAdded: [],
+    rulesKept: [],
+    dirsOverwritten: [],
+    filesOverwritten: [],
+    symlinksCreated: [],
+    symlinksUpdated: [],
+    symlinksSkipped: [],
+    warnings: []
   }
 }
 
@@ -94,7 +89,7 @@ function removeIfExists(p, dryRun) {
   fs.rmSync(p, { recursive: true, force: true })
 }
 
-function mergeSkills(srcSkills, destSkills, dryRun) {
+function mergeSkills(srcSkills, destSkills, dryRun, summary) {
   ensureDir(destSkills, dryRun)
   const srcNames = listDirNames(srcSkills)
   const destNames = listDirNames(destSkills)
@@ -113,7 +108,7 @@ function mergeSkills(srcSkills, destSkills, dryRun) {
   }
 }
 
-function mergeRules(srcRules, destRules, dryRun) {
+function mergeRules(srcRules, destRules, dryRun, summary) {
   ensureDir(destRules, dryRun)
   const srcFiles = listFileNames(srcRules)
   const destFiles = listFileNames(destRules)
@@ -132,7 +127,7 @@ function mergeRules(srcRules, destRules, dryRun) {
   }
 }
 
-function syncOverwriteDirs(templateRoot, destRoot, dryRun) {
+function syncOverwriteDirs(templateRoot, destRoot, dryRun, summary) {
   for (const dir of OVERWRITE_DIRS) {
     const src = path.join(templateRoot, dir)
     const dest = path.join(destRoot, dir)
@@ -143,7 +138,7 @@ function syncOverwriteDirs(templateRoot, destRoot, dryRun) {
   }
 }
 
-function syncOverwriteFiles(templateRoot, destRoot, dryRun) {
+function syncOverwriteFiles(templateRoot, destRoot, dryRun, summary) {
   for (const file of OVERWRITE_FILES) {
     const src = path.join(templateRoot, file)
     const dest = path.join(destRoot, file)
@@ -169,7 +164,7 @@ function readSymlinkTarget(linkPath) {
   }
 }
 
-function ensureSymlink(linkPath, targetRelative, dryRun, forceLink) {
+function ensureSymlink(linkPath, targetRelative, dryRun, forceLink, summary) {
   const parentDir = path.dirname(linkPath)
   ensureDir(parentDir, dryRun)
 
@@ -217,19 +212,19 @@ function ensureSymlink(linkPath, targetRelative, dryRun, forceLink) {
   }
 }
 
-function syncSymlinks(dryRun, forceLink) {
+function syncSymlinks(targetRoot, dryRun, forceLink, summary) {
   for (const [name, target] of Object.entries(CURSOR_LINKS)) {
-    ensureSymlink(path.join(targetRoot, '.cursor', name), target, dryRun, forceLink)
+    ensureSymlink(path.join(targetRoot, '.cursor', name), target, dryRun, forceLink, summary)
   }
 
   for (const [name, target] of Object.entries(CLAUDE_LINKS)) {
-    ensureSymlink(path.join(targetRoot, '.claude', name), target, dryRun, forceLink)
+    ensureSymlink(path.join(targetRoot, '.claude', name), target, dryRun, forceLink, summary)
   }
 }
 
-function printSummary(dryRun) {
+function printSummary(summary, targetAi, dryRun, label) {
   const prefix = dryRun ? '[dry-run] ' : ''
-  console.log(`\n${prefix}lyrixi-mobile-ai sync complete\n`)
+  console.log(`\n${prefix}${label} sync complete\n`)
 
   if (summary.skillsAdded.length) console.log(`Skills added: ${summary.skillsAdded.join(', ')}`)
   if (summary.skillsUpdated.length) console.log(`Skills updated: ${summary.skillsUpdated.join(', ')}`)
@@ -264,28 +259,37 @@ function printSummary(dryRun) {
   console.log(`\nTarget: ${targetAi}`)
 }
 
-function main() {
-  const options = parseArgs(process.argv.slice(2))
+/**
+ * @param {object} options
+ * @param {string} options.templateDir - source .ai directory
+ * @param {string} options.targetRoot - project root (writes .ai + symlinks here)
+ * @param {string[]} [options.argv]
+ * @param {string} [options.label]
+ */
+function updateAI(options) {
+  const { templateDir, targetRoot, argv = [], label = 'lyrixi-mobile-ai' } = options
+  const parsed = parseArgs(argv)
+  const targetAi = path.join(targetRoot, '.ai')
+  const summary = createSummary()
 
   if (!exists(templateDir)) {
     console.error(`Template not found: ${templateDir}`)
-    console.error('Ensure lyrixi-mobile is installed and the package includes .ai/')
     process.exit(1)
   }
 
-  if (options.dryRun) {
+  if (parsed.dryRun) {
     console.log('Dry run — no files will be changed\n')
   }
 
-  ensureDir(targetAi, options.dryRun)
+  ensureDir(targetAi, parsed.dryRun)
 
-  mergeSkills(path.join(templateDir, 'skills'), path.join(targetAi, 'skills'), options.dryRun)
-  mergeRules(path.join(templateDir, 'rules'), path.join(targetAi, 'rules'), options.dryRun)
-  syncOverwriteDirs(templateDir, targetAi, options.dryRun)
-  syncOverwriteFiles(templateDir, targetAi, options.dryRun)
-  syncSymlinks(options.dryRun, options.forceLink)
+  mergeSkills(path.join(templateDir, 'skills'), path.join(targetAi, 'skills'), parsed.dryRun, summary)
+  mergeRules(path.join(templateDir, 'rules'), path.join(targetAi, 'rules'), parsed.dryRun, summary)
+  syncOverwriteDirs(templateDir, targetAi, parsed.dryRun, summary)
+  syncOverwriteFiles(templateDir, targetAi, parsed.dryRun, summary)
+  syncSymlinks(targetRoot, parsed.dryRun, parsed.forceLink, summary)
 
-  printSummary(options.dryRun)
+  printSummary(summary, targetAi, parsed.dryRun, label)
 }
 
-main()
+module.exports = { updateAI, parseArgs }

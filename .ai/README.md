@@ -1,5 +1,13 @@
 # 创建软链接共享配置
 
+在本仓库开发时，可在项目根目录执行：
+
+```bash
+npm run create-ai
+```
+
+业务项目安装 `lyrixi-mobile` 后使用 `npx lyrixi-mobile-ai`（逻辑相同，模板来自 `node_modules`）。
+
 ## cursor
 
 ```bash

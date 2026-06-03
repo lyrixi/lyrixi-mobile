@@ -35,7 +35,7 @@
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "bin": {
-    "lyrixi-mobile-ai": "./.ai/init.js"
+    "lyrixi-mobile-ai": "./.ai/initAI.js"
   },
   "files": [
     ".ai",
@@ -47,9 +47,8 @@
   ],
   "scripts": {
     "build": "father build && tsx scripts/build-after.ts",
-    "build:ai": "tsx scripts/build-ai.ts",
     "build:watch": "father dev",
-    "create-ai": "node .ai/init.js",
+    "create-ai": "tsx scripts/create-ai.ts",
     "dev": "dumi dev",
     "docs:build": "dumi build && tsx scripts/docs-after/index.ts",
     "docs:preview": "dumi preview",
