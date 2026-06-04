@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import close from '../close'
 import { MESSAGE_ID } from '../constants'
 import messageInstance from '../MessageInstance'
-import MessageOpenLayer from './MessageOpenLayer'
+import MessageModal from './MessageModal'
 
 import type { MessageOpenProps } from '../../types'
 
@@ -26,7 +26,7 @@ export default async function open(props: MessageOpenProps): Promise<void> {
     void close({ animated: true })
   }
 
-  root.render(<MessageOpenLayer {...props} onRequestClose={handleRequestClose} />)
+  root.render(<MessageModal {...props} onRequestClose={handleRequestClose} />)
 
   props.onOpen?.()
 }

@@ -9,11 +9,11 @@ import DOMUtil from '../../../../utils/DOMUtil'
 import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
 // 内库使用-end
 
-export type MessageOpenLayerProps = MessageOpenProps & {
+export type MessageModalProps = MessageOpenProps & {
   onRequestClose: () => void
 }
 
-function MessageOpenLayer({
+function MessageModal({
   maskClassName,
   maskStyle,
   maskClosable = true,
@@ -29,7 +29,7 @@ function MessageOpenLayer({
   buttonsLayout = 'horizontal',
   buttons = [],
   onRequestClose
-}: MessageOpenLayerProps) {
+}: MessageModalProps) {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
@@ -90,4 +90,4 @@ function MessageOpenLayer({
   )
 }
 
-export default MessageOpenLayer
+export default MessageModal
