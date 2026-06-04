@@ -2,9 +2,9 @@ import React from 'react'
 import type { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
-import type { ReactDOMClientCompatRoot } from './types'
+import type { Root } from './types'
 
-export type { ReactDOMClientCompatRoot } from './types'
+export type { Root } from './types'
 
 // 判断版本
 function isReactBelow18(): boolean {
@@ -12,14 +12,14 @@ function isReactBelow18(): boolean {
 }
 
 // 18创建
-function createReact18Root(container: Element): ReactDOMClientCompatRoot {
+function createReact18Root(container: Element): Root {
   // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
   const { createRoot } = require('react-dom/client')
   return createRoot(container)
 }
 
 // 17创建
-function createReact17Root(container: Element): ReactDOMClientCompatRoot {
+function createReact17Root(container: Element): Root {
   const render = (ReactDOM as { render?: (element: ReactNode, container: Element) => void }).render
   const unmount = (ReactDOM as { unmountComponentAtNode?: (container: Element) => boolean })
     .unmountComponentAtNode
@@ -38,6 +38,6 @@ function createReact17Root(container: Element): ReactDOMClientCompatRoot {
 }
 
 /** createRoot：18+ 用 react-dom/client，17 用 render 垫片（供 Message.open） */
-export function createRoot(container: Element): ReactDOMClientCompatRoot {
+export function createRoot(container: Element): Root {
   return isReactBelow18() ? createReact17Root(container) : createReact18Root(container)
 }
