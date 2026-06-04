@@ -4,7 +4,7 @@ import type { ModalProps, ModalRef } from '../../Modal/types'
 
 import type { MessageBodyProps } from './Message.common.types'
 
-export interface MessageModalRef extends ModalRef {}
+export type MessageModalRef = ModalRef
 
 export interface MessageModalProps extends MessageBodyProps {
   open?: boolean
