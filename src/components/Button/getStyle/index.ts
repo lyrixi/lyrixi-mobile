@@ -9,16 +9,16 @@ import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { VariablesUtil, DOMUtil } from 'qince-mobile'
+import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const sizes = {
-  xs: { className: 'qince-size-xs' },
-  s: { className: 'qince-size-s' },
-  m: { className: 'qince-size-m' },
-  l: { className: 'qince-size-l' },
-  xl: { className: 'qince-size-xl' },
-  xxl: { className: 'qince-size-xxl' }
+  xs: { className: 'lyrixi-size-xs' },
+  s: { className: 'lyrixi-size-s' },
+  m: { className: 'lyrixi-size-m' },
+  l: { className: 'lyrixi-size-l' },
+  xl: { className: 'lyrixi-size-xl' },
+  xxl: { className: 'lyrixi-size-xxl' }
 }
 
 export default function getStyle({
@@ -54,14 +54,14 @@ export default function getStyle({
   } as CSSProperties
 
   const newClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
-    'qince-button',
-    direction === 'vertical' && `qince-flex-vertical`,
+    'lyrixi-button',
+    direction === 'vertical' && `lyrixi-flex-vertical`,
     getVariantClassName(variant, color),
-    block && `qince-button-block`,
+    block && `lyrixi-button-block`,
     sizeClass,
     radiusClass,
     fontSizeClass,
-    sizeEqual && `qince-size-equal`,
+    sizeEqual && `lyrixi-size-equal`,
     className
   )
 

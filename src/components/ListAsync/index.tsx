@@ -107,7 +107,7 @@ const ListAsync = forwardRef<ListAsyncRef, ListAsyncProps>(
       // eslint-disable-next-line
     }, [])
 
-    // Expose（与 qince 一致：能力从子列表 ref 透传，避免重复包装）
+    // Expose（与 lyrixi 一致：能力从子列表 ref 透传，避免重复包装）
     useImperativeHandle(ref, () => {
       const c = mainRef.current
       const v = c as ListAsyncRef | null
