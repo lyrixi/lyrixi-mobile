@@ -66,7 +66,7 @@ const InputNumber = forwardRef<InputOTPInputNumberRef, InputOTPInputNumberProps>
           value={values[currentIndex]}
           onChange={(val: string, { action }: { action: string }) => {
             if (action === 'delete') {
-              onKeyDown && onKeyDown('Backspace', currentIndex)
+              onKeyDown?.('Backspace', currentIndex)
               // 如果当前项没有值, 则将上一项清空
               if (!values[currentIndex] && currentIndex !== 0) {
                 onChange(currentIndex - 1, '')

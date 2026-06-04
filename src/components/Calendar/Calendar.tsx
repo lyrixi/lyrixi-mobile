@@ -307,12 +307,12 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
 
             if (selectionMode === 'range') {
               newValue = sortRangeValue(date, value) as Date[]
-              onChange && onChange(newValue, { currentDate: date, action: 'select' })
+              onChange?.(newValue, { currentDate: date, action: 'select' })
             } else if (selectionMode === 'multiple') {
               newValue = [...((value as Date[] | null | undefined) || []), date] as Date[]
-              onChange && onChange(newValue, { currentDate: date, action: 'select' })
+              onChange?.(newValue, { currentDate: date, action: 'select' })
             } else {
-              onChange && onChange(newValue, { currentDate: date, action: 'select' })
+              onChange?.(newValue, { currentDate: date, action: 'select' })
             }
           }}
           onSlideX={async (slideAction) => {

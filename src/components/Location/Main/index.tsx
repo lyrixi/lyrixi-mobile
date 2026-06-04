@@ -76,7 +76,7 @@ const Main = forwardRef<unknown, LocationMainProps>(
               getLocation={getLocation}
               getAddress={getAddress}
               onChange={(newValue) => {
-                onChange && onChange(newValue)
+                onChange?.(newValue)
               }}
             />
           )}

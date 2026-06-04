@@ -66,7 +66,7 @@ const List = (
         newValue = _raw
       }
     }
-    onChange && onChange(newValue, { checkedItem: _raw })
+    onChange?.(newValue, { checkedItem: _raw })
   }
 
   function renderItem(item: ViewItem, index: number) {

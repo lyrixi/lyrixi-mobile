@@ -93,7 +93,7 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
     function handleInputClick(e: React.MouseEvent<HTMLDivElement>) {
       e.stopPropagation()
       if (readOnly || disabled) return
-      onClick && onClick(e)
+      onClick?.(e)
     }
 
     // 渲染清空按钮

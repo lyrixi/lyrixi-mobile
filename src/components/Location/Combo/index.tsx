@@ -262,7 +262,7 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
         }
         locationStatus = '0'
         setLocationStatus('0')
-        onChangeRef?.current && onChangeRef.current(null)
+        onChangeRef.current?.(null)
       } else {
         locationStatus = '1'
         setLocationStatus('1')
@@ -271,7 +271,7 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
         if (locVal.address && !locVal.value) {
           locVal.value = locVal.address as string
         }
-        onChangeRef?.current && onChangeRef.current(locVal)
+        onChangeRef.current?.(locVal)
       }
     }
 
@@ -421,7 +421,7 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
             if (newValue) {
               updateValue(newValue)
             } else {
-              onChange && onChange(null)
+              onChange?.(null)
             }
           }}
         />

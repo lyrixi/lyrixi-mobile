@@ -76,7 +76,7 @@ const Slide = forwardRef<TabBarSlideRef, TabBarSlideProps>(
               data-index={index}
               onClick={(e) => {
                 e.stopPropagation()
-                onChange && onChange(item)
+                onChange?.(item)
               }}
             >
               <div className="lyrixi-tabbar-slide-tab">

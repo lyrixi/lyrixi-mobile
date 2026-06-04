@@ -184,7 +184,7 @@ const Item = ({
       </div>
 
       {/* 自定义渲染 */}
-      {itemRender && itemRender(item, index)}
+      {itemRender?.(item, index)}
     </div>
   )
 }

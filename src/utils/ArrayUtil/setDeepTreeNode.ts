@@ -7,7 +7,7 @@ function setDeepTreeNode(
 ): ArrayUtilDeepTreeNode[] {
   for (const node of tree) {
     if (node.id === id) {
-      updateNode && updateNode(node)
+      updateNode?.(node)
       break
     }
     if (Array.isArray(node.children) && node.children.length) {

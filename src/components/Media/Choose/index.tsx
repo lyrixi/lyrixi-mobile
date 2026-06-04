@@ -30,7 +30,7 @@ const Choose = ({
 }: MediaChooseProps) => {
   // 选择文件
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
-    onFileChange && onFileChange(e)
+    onFileChange?.(e)
   }
 
   // 点击选择框
@@ -58,7 +58,7 @@ const Choose = ({
     }
 
     // 触发选择
-    onChoose && onChoose(e)
+    onChoose?.(e)
   }
 
   // 上传node

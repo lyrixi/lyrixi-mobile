@@ -211,7 +211,7 @@ const Media = forwardRef(function Media(
     }
 
     if (hasUploaded) {
-      onChangeRef.current && onChangeRef.current(workList, { action: action || 'upload' })
+      onChangeRef.current?.(workList, { action: action || 'upload' })
     }
 
     return workList
@@ -271,7 +271,7 @@ const Media = forwardRef(function Media(
     newList[index] = (await uploadItem(item, { onUpload })) as MediaItem
     _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
 
-    onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
+    onChangeRef.current?.(newList, { action: 'reUpload' })
   }
 
   // 点击预览

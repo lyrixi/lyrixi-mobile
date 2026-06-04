@@ -27,7 +27,7 @@ const List = ({
     const newList = list.filter((_photo, photoIndex) => {
       return photoIndex !== index
     })
-    onChange && onChange(newList, { action: 'delete' })
+    onChange?.(newList, { action: 'delete' })
   }
 
   const maxCountVisible = ellipsis?.count

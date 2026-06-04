@@ -52,7 +52,7 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       scrollerElement.removeEventListener('scroll', handleScroll, false)
       scrollerElement.addEventListener('scroll', handleScroll, false)
       return () => {
-        scrollerElement && scrollerElement.removeEventListener('scroll', handleScroll, false)
+        scrollerElement?.removeEventListener('scroll', handleScroll, false)
       }
       // eslint-disable-next-line
     }, [])
@@ -73,10 +73,11 @@ const IndexBar = forwardRef<IndexBarRef, IndexBarProps>(
       scrollDebounceRef.current = setTimeout(() => {
         // 定时器里e.currentTarget为null
         const currentAnchor = getAnchorByScroller(e.target as Element)
-        currentAnchor &&
+        if (currentAnchor) {
           activeAnchor(currentAnchor, {
             sidebarElement: sidebarRef.current
           })
+        }
         scrollDebounceRef.current = null
       }, 300)
     }

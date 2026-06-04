@@ -217,41 +217,41 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       /* eslint-disable @typescript-eslint/no-unused-expressions */
       const lmap = leafletMap as L.Map
       lmap.on('zoomstart', function () {
-        onZoomStart && onZoomStart(APIRef.current)
+        onZoomStart?.(APIRef.current)
         APIRef.current.onZoomStart && APIRef.current.onZoomStart(APIRef.current)
       })
       lmap.on('zoom', function () {
-        onZoom && onZoom(APIRef.current)
+        onZoom?.(APIRef.current)
         APIRef.current.onZoom && APIRef.current.onZoom(APIRef.current)
       })
       lmap.on('zoomend', function () {
-        onZoomEnd && onZoomEnd(APIRef.current)
+        onZoomEnd?.(APIRef.current)
         APIRef.current.onZoomEnd && APIRef.current.onZoomEnd(APIRef.current)
       })
 
       lmap.on('movestart', function () {
-        onMoveStart && onMoveStart(APIRef.current)
+        onMoveStart?.(APIRef.current)
         APIRef.current.onMoveStart && APIRef.current.onMoveStart(APIRef.current)
       })
       lmap.on('move', function () {
-        onMove && onMove(APIRef.current)
+        onMove?.(APIRef.current)
         APIRef.current.onMove && APIRef.current.onMove(APIRef.current)
       })
       lmap.on('moveend', function () {
-        onMoveEnd && onMoveEnd(APIRef.current)
+        onMoveEnd?.(APIRef.current)
         APIRef.current.onMoveEnd && APIRef.current.onMoveEnd(APIRef.current)
       })
 
       lmap.on('dragstart', function () {
-        onDragStart && onDragStart(APIRef.current)
+        onDragStart?.(APIRef.current)
         APIRef.current.onDragStart && APIRef.current.onDragStart(APIRef.current)
       })
       lmap.on('drag', function () {
-        onDrag && onDrag(APIRef.current)
+        onDrag?.(APIRef.current)
         APIRef.current.onDrag && APIRef.current.onDrag(APIRef.current)
       })
       lmap.on('dragend', function () {
-        onDragEnd && onDragEnd(APIRef.current)
+        onDragEnd?.(APIRef.current)
         APIRef.current.onDragEnd && APIRef.current.onDragEnd(APIRef.current)
       })
       /* eslint-enable @typescript-eslint/no-unused-expressions */

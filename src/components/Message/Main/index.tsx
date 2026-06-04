@@ -61,10 +61,7 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
 
     const IconNode = renderIcon()
     const hasStructuredBody =
-      IconNode ||
-      title ||
-      (content && content !== '') ||
-      (Array.isArray(buttons) && buttons.length > 0)
+      IconNode || title || content || (Array.isArray(buttons) && buttons.length > 0)
 
     async function handleButtonClick(
       button: MessageComboButton,

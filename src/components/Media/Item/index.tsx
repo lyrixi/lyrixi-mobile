@@ -42,7 +42,7 @@ const Item = ({
       onClick={(e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
 
-        onPreview && onPreview(item, index)
+        onPreview?.(item, index)
       }}
     >
       {/* 缩略图 */}
@@ -56,7 +56,7 @@ const Item = ({
       {/* 重新上传图标 */}
       <Reload
         onClick={() => {
-          onReUpload && onReUpload(item, index)
+          onReUpload?.(item, index)
         }}
       />
 
@@ -76,7 +76,7 @@ const Item = ({
         <RemainCount count={remainCount} />
       ) : null}
 
-      {itemRender && itemRender(item)}
+      {itemRender?.(item)}
     </div>
   )
 }

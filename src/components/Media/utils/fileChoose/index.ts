@@ -101,7 +101,7 @@ async function fileChoose({
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     console.error('onFileChange返回的数据不正确, 请返回数组', currentList)
-    onChange && onChange([], { action: 'choose' })
+    onChange?.([], { action: 'choose' })
     return null
   }
 
@@ -113,7 +113,7 @@ async function fileChoose({
   }
 
   if (asyncMode) {
-    onChange && onChange(newList, { action: 'choose' })
+    onChange?.(newList, { action: 'choose' })
     return newList
   }
 

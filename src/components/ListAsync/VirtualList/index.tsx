@@ -164,7 +164,7 @@ const VirtualList = (
   // 滚动
   function handleScroll(e: React.UIEvent<HTMLElement>) {
     updateVisibleItems()
-    onScroll && onScroll(e)
+    onScroll?.(e)
   }
 
   return (

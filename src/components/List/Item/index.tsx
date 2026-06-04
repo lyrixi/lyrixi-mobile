@@ -140,8 +140,8 @@ const Item = ({
         )}
         onClick={(e) => {
           e.stopPropagation()
-          onClick && onClick(e)
-          onSelect && onSelect({ ...(_raw || {}), checked: !checked })
+          onClick?.(e)
+          onSelect?.({ ...(_raw || {}), checked: !checked })
         }}
       >
         {/* Left Checkbox */}

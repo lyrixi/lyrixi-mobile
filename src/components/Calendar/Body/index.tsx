@@ -205,24 +205,24 @@ const Body = forwardRef<CalendarBodyRef, CalendarBodyProps>(
 
       if (direction === 'horizontal') {
         if (Math.abs(diffX) < threshold) {
-          onSlideX && onSlideX('')
+          onSlideX?.('')
           return
         }
 
         if (diffX > 0) {
-          onSlideX && onSlideX('next')
+          onSlideX?.('next')
         } else {
-          onSlideX && onSlideX('previous')
+          onSlideX?.('previous')
         }
       } else if (direction === 'vertical') {
         if (Math.abs(diffY) < threshold) {
-          onSlideY && onSlideY('')
+          onSlideY?.('')
           return
         }
         if (diffY < 0) {
-          onSlideY && onSlideY('expand')
+          onSlideY?.('expand')
         } else {
-          onSlideY && onSlideY('collapse')
+          onSlideY?.('collapse')
         }
       }
     }

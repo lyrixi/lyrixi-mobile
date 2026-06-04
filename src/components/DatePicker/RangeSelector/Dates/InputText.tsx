@@ -46,7 +46,7 @@ const InputText = ({
       }}
       onChange={(val) => {
         if (!val) {
-          onChange && onChange(null)
+          onChange?.(null)
         }
       }}
     />

@@ -22,7 +22,7 @@ const Reload = ({
         const parent = e.currentTarget.parentElement
         // 上传失败允许重新上传
         if (parent?.classList.contains('lyrixi-error')) {
-          onClick && onClick(e)
+          onClick?.(e)
         }
       }}
     >

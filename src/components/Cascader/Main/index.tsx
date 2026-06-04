@@ -145,7 +145,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 
       // 点击项, 触发onChange
       if (action === 'clickItem') {
-        onChange && onChange(newValue)
+        onChange?.(newValue)
       }
 
       // 有子级, 则增加一个tab

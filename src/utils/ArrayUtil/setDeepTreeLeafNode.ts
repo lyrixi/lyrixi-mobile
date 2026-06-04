@@ -9,7 +9,7 @@ function setDeepTreeLeafNode(
     if (Array.isArray(node.children) && node.children.length) {
       setDeepTreeLeafNode(node.children, updateNode)
     } else {
-      updateNode && updateNode(node)
+      updateNode?.(node)
     }
   }
   return tree

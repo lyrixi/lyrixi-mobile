@@ -4,9 +4,11 @@ function serializeParams(val: unknown, prefix = ''): string | unknown {
     const build = (o: Record<string, unknown>, p: string) => {
       Object.keys(o).forEach((key) => {
         const paramKey = p ? `${p}.${key}` : key
-        o[key] && typeof o[key] === 'object'
-          ? build(o[key] as Record<string, unknown>, paramKey)
-          : usp.append(paramKey, String(o[key]))
+        if (o[key] && typeof o[key] === 'object') {
+          build(o[key] as Record<string, unknown>, paramKey)
+        } else {
+          usp.append(paramKey, String(o[key]))
+        }
       })
     }
     build(val as Record<string, unknown>, prefix)

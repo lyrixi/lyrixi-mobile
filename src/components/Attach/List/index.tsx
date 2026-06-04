@@ -34,7 +34,7 @@ const List = ({
     const newList = (list ?? []).filter((attach, attachIndex) => {
       return attachIndex !== index
     })
-    onChange && onChange(newList, { action: 'delete' })
+    onChange?.(newList, { action: 'delete' })
   }
 
   return (

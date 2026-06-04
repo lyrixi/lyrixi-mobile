@@ -28,7 +28,7 @@ async function post(url: string, params?: unknown, config?: Record<string, unkno
       .post(url, newParams, config)
       .then((response) => {
         let newResponse = formatResponse(response as unknown as Record<string, unknown>)
-        config?.cacheKey && setCache(url, config?.cacheKey as string | number, newResponse)
+        if (config?.cacheKey) setCache(url, config?.cacheKey as string | number, newResponse)
         resolve(newResponse)
       })
       .catch((error) => {

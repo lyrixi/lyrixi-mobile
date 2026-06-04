@@ -24,8 +24,7 @@ function Buttons({ value, onChange, rangeId, ranges = {}, allowClear }: DatePick
         list={getSelectorOptions(ranges)}
         onChange={(newRange: SelectorItem[]) => {
           if (ObjectUtil.isEmpty(newRange)) {
-            onChange &&
-              onChange(null, {
+            onChange?.(null, {
                 rangeId: null
               })
             return
@@ -38,8 +37,7 @@ function Buttons({ value, onChange, rangeId, ranges = {}, allowClear }: DatePick
               ? r[newRangeId]
               : value
 
-          onChange &&
-            onChange(newValue ?? null, {
+          onChange?.(newValue ?? null, {
               rangeId: newRangeId
             })
         }}

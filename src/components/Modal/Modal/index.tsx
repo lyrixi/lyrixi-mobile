@@ -58,7 +58,7 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     // 点击遮罩
     function handleMaskClick(e: MouseEvent<HTMLDivElement>) {
       if (maskClosable) {
-        onClose && onClose(e)
+        onClose?.(e)
       }
       e.stopPropagation()
     }

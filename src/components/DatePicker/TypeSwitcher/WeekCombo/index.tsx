@@ -33,13 +33,13 @@ const Week = forwardRef<unknown, DatePickerTypeSwitcherWeekComboProps>(function 
   // 向前
   function handlePrev(_e: MouseEvent) {
     if (!(value instanceof Date)) return
-    onChange && onChange(DateUtil.previousWeek(value))
+    onChange?.(DateUtil.previousWeek(value))
   }
 
   // 向后
   function handleNext(_e: MouseEvent) {
     if (!(value instanceof Date)) return
-    onChange && onChange(DateUtil.nextWeek(value))
+    onChange?.(DateUtil.nextWeek(value))
   }
 
   return (

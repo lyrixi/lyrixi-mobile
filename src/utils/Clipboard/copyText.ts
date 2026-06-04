@@ -18,20 +18,23 @@ function copyText(
   const { onSuccess, onError } = opts || {}
   Clipboard.copy(url, {
     onSuccess: () => {
-      onSuccess
-        ? onSuccess()
-        : Toast.show({
+      if (onSuccess) {
+        onSuccess()
+      } else {
+        Toast.show({
           content: LocaleUtil.locale(
             '链接已复制到剪贴板',
             'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75',
             undefined
           ) as string
         })
+      }
     },
     onError: () => {
-      onError
-        ? onError()
-        : Message.open({
+      if (onError) {
+        onError()
+      } else {
+        Message.open({
           maskStyle: {
             zIndex: 100
           },
@@ -50,6 +53,7 @@ function copyText(
             }
           ]
         })
+      }
     }
   })
 }

@@ -20,7 +20,7 @@ const Delete = ({
       onClick={(e) => {
         e.stopPropagation()
 
-        onClick && onClick(e)
+        onClick?.(e)
       }}
     >
       <Icon svg={Icons.Close} size="xs" color="white" className="lyrixi-media-delete-icon" />

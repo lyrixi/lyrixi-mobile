@@ -86,7 +86,7 @@ const Main = (
           // Events
           onClick={async () => {
             let base64 = await signatureRef?.current?.getBase64?.()
-            onChange && onChange(base64 ?? null)
+            onChange?.(base64 ?? null)
           }}
         >
           <p>{LocaleUtil.locale('确认', 'lyrixi_e83a256e4f5bb4ff8b3d804b5473217a')}</p>

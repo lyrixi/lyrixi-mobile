@@ -19,7 +19,7 @@ const PreviewToolbar = ({
         className="lyrixi-media-preview-main-toolbar-btn"
         onClick={(e) => {
           e.stopPropagation()
-          onRotateAnticlockwise && onRotateAnticlockwise(e)
+          onRotateAnticlockwise?.(e)
         }}
         role="button"
         aria-label="逆时针旋转90度"
@@ -30,7 +30,7 @@ const PreviewToolbar = ({
         className="lyrixi-media-preview-main-toolbar-btn"
         onClick={(e) => {
           e.stopPropagation()
-          onRotateClockwise && onRotateClockwise(e)
+          onRotateClockwise?.(e)
         }}
         role="button"
         aria-label="顺时针旋转90度"
@@ -41,7 +41,7 @@ const PreviewToolbar = ({
         className="lyrixi-media-preview-main-toolbar-btn"
         onClick={(e) => {
           e.stopPropagation()
-          onZoomOut && onZoomOut(e)
+          onZoomOut?.(e)
         }}
         role="button"
         aria-label="缩小"
@@ -52,7 +52,7 @@ const PreviewToolbar = ({
         className="lyrixi-media-preview-main-toolbar-btn"
         onClick={(e) => {
           e.stopPropagation()
-          onZoomIn && onZoomIn(e)
+          onZoomIn?.(e)
         }}
         role="button"
         aria-label="放大"

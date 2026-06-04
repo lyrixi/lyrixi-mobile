@@ -36,14 +36,14 @@ const DateCombo = forwardRef<unknown, DatePickerTypeSwitcherDateComboProps>(func
   function handlePrev(e: MouseEvent) {
     if (!value) return
     const newValue = updateValue(value, -1)
-    if (newValue) onChange && onChange(newValue)
+    if (newValue) onChange?.(newValue)
   }
 
   // 向后
   function handleNext(e: MouseEvent) {
     if (!value) return
     const newValue = updateValue(value, 1)
-    if (newValue) onChange && onChange(newValue)
+    if (newValue) onChange?.(newValue)
   }
 
   function updateValue(val: Date, go = 0) {

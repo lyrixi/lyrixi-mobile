@@ -67,8 +67,7 @@ const SelectorPanel = forwardRef<Record<string, unknown> | null, DatePickerRange
                 ? [pair[0], pair[1]]
                 : value
 
-            onChange &&
-              onChange(newValue ?? null, {
+            onChange?.(newValue ?? null, {
                 rangeId: newRangeId
               })
           }}

@@ -249,7 +249,7 @@ const InputText = (
 
   // 点击清除(blur生效)
   async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
-    e && (e as React.SyntheticEvent)?.stopPropagation?.()
+    if (e) (e as React.SyntheticEvent)?.stopPropagation?.()
 
     // 删除阻止blur
     if (inputRef.current) {

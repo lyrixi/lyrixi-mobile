@@ -77,7 +77,7 @@ const Group = forwardRef<TabBarGroupRef, TabBarGroupProps>(
               key={index}
               onClick={(e) => {
                 e.stopPropagation()
-                onChange && onChange(item)
+                onChange?.(item)
               }}
             >
               <div className="lyrixi-tabbar-group-tab">

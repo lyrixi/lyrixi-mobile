@@ -80,7 +80,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
     // 处理输入框点击
     const handleInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
       setKeyboardOpen(true)
-      onClick && onClick(e)
+      onClick?.(e)
     }
 
     const handleChange = (newValue: string) => {
@@ -90,7 +90,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
       val = maxLengthFormatter(val, { maxLength })
       // 输入.不触发onChange
       console.log('val', val, MathUtil.isNumber(val, ['-']))
-      onChange && onChange(correctInputNumber(val))
+      onChange?.(correctInputNumber(val))
     }
 
     const handleClose = () => {

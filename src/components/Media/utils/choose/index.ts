@@ -63,7 +63,7 @@ async function choose({
 
   // 异步上传
   if (asyncMode) {
-    onChange && onChange(newList, { action: 'choose' })
+    onChange?.(newList, { action: 'choose' })
     return newList
   }
 

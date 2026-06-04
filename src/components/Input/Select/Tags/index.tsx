@@ -51,13 +51,13 @@ const Tags = ({
                   disabled={item.disabled}
                   allowClear={item.allowClear}
                   onEdit={() => {
-                    onEdit && onEdit(item)
+                    onEdit?.(item)
                   }}
                   onDelete={() => {
                     let currentValue = (value as InputSelectItem[]).filter(
                       (valueItem) => valueItem.id !== item.id
                     )
-                    onChange && onChange(currentValue, { action: 'clickDelete' })
+                    onChange?.(currentValue, { action: 'clickDelete' })
                   }}
                 />
                 {index < value.length - 1 && separator ? separator : null}

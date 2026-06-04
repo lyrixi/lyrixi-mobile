@@ -190,7 +190,7 @@ function WechatMiniProgram(
       listRef.current = [...listRef.current, item as MediaItem]
       console.log('照片拍完, 清空redis', listRef.current)
       await clearPhotos(idRef.current, { url: saveMediaUrl })
-      onChangeRef.current && onChangeRef.current(listRef.current)
+      onChangeRef.current?.(listRef.current)
       Loading.hide()
       return
     }

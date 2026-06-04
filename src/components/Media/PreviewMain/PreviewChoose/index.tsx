@@ -40,7 +40,7 @@ const Choose = ({
     }
 
     // 触发选择
-    onChoose && onChoose(e)
+    onChoose?.(e)
   }
 
   if (!onChoose && !onFileChange) return null

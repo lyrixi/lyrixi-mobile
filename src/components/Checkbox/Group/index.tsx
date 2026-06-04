@@ -92,7 +92,7 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
                       newValue = item
                     }
                   }
-                  onChange && onChange(newValue)
+                  onChange?.(newValue)
                 }}
               >
                 {String(item.name || '')}

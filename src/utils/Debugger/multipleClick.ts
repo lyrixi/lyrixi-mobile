@@ -7,7 +7,7 @@ function multipleClick(element: HTMLElement & { hasEventListener?: boolean }, co
   element.addEventListener('click', function () {
     clickCount++
     if (clickCount > count) {
-      callback && callback()
+      callback?.()
     }
   })
 }

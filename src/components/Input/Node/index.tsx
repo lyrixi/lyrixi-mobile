@@ -158,7 +158,7 @@ const InputNode = (
   }
 
   async function handleClear(e?: React.MouseEvent | React.TouchEvent) {
-    e && (e as React.SyntheticEvent)?.stopPropagation?.()
+    if (e) (e as React.SyntheticEvent)?.stopPropagation?.()
 
     onChange?.(getClearedValue(value), { action: 'clickClear' })
   }

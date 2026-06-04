@@ -107,7 +107,7 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
                   onChange={(date) => {
                     tab.value = date
                     tab.name = date ? DateUtil.format(date, type) : undefined
-                    onChange && onChange(tabsRef.current)
+                    onChange?.(tabsRef.current)
                   }}
                 />
               )
