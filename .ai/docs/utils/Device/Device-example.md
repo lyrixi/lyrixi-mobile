@@ -1,56 +1,17 @@
 # Device Example
 
-以下示例位于本目录 `demos/`（由 `src/utils/Device/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/utils/Device/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Device } from 'lyrixi-mobile'`
 
-## demos/Device.tsx
+## Demo 索引
 
-```tsx
-import { Page, Device, Card } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Device.tsx](./demos/Device.tsx) | 主示例 |
 
-export default function DeviceDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <p className="demo-title">language</p>
-        <Card style={{ padding: 12 }}>{Device.language}</Card>
+## 查阅顺序
 
-        <p className="demo-title">protocol</p>
-        <Card style={{ padding: 12 }}>{Device.protocol}</Card>
-        <p className="demo-title">host</p>
-        <Card style={{ padding: 12 }}>{Device.host}</Card>
-        <p className="demo-title">domain</p>
-        <Card style={{ padding: 12 }}>{Device.domain}</Card>
-        <p className="demo-title">kernel</p>
-        <Card style={{ padding: 12 }}>{Device.kernel}</Card>
-        <p className="demo-title">device</p>
-        <Card style={{ padding: 12 }}>{Device.device}</Card>
-        <p className="demo-title">os</p>
-        <Card style={{ padding: 12 }}>{Device.os}</Card>
-        <p className="demo-title">osVersion</p>
-        <Card style={{ padding: 12 }}>{Device.osVersion}</Card>
-        <p className="demo-title">model</p>
-        <Card style={{ padding: 12 }}>{Device.model}</Card>
-        <p className="demo-title">platform</p>
-        <Card style={{ padding: 12 }}>{Device.platform}</Card>
-        <p className="demo-title">platformVersion</p>
-        <Card style={{ padding: 12 }}>{Device.platformVersion}</Card>
-
-        <p className="demo-title">isOnLine</p>
-        <Card style={{ padding: 12 }}>{String(Device.isOnLine || '')}</Card>
-        <p className="demo-title">userAgent</p>
-        <Card style={{ padding: 12 }}>{Device.userAgent}</Card>
-        <p className="demo-title">getUrlParameter</p>
-        <Card style={{ padding: 12 }}>{String(Device.getUrlParameter('locale') ?? '')}</Card>
-        <p className="demo-title">screenWidth</p>
-        <Card style={{ padding: 12 }}>{Device.screenWidth}</Card>
-        <p className="demo-title">screenHeight</p>
-        <Card style={{ padding: 12 }}>{Device.screenHeight}</Card>
-        <p className="demo-title">compareVersion: 7_7_10 vs 7_7_5</p>
-        <Card style={{ padding: 12 }}>{Device.compareVersion('7_7_10', '7_7_5', '_')}</Card>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `Device-props.ts` — API
+2. `Device-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

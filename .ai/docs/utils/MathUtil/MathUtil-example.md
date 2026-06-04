@@ -1,35 +1,17 @@
 # MathUtil Example
 
-以下示例位于本目录 `demos/`（由 `src/utils/MathUtil/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/utils/MathUtil/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { MathUtil } from 'lyrixi-mobile'`
 
-## demos/MathUtil.tsx
+## Demo 索引
 
-```tsx
-import vconsole from 'vconsole'
+| Demo | 说明 |
+|------|------|
+| [demos/MathUtil.tsx](./demos/MathUtil.tsx) | 主示例 |
 
-import { MathUtil } from 'lyrixi-mobile'
+## 查阅顺序
 
-// 内库// 内库使用-start
-import Page from './../../../components/Page'
-// 内库使用-end
-
-/* 测试使用-start
-import { Page } from 'lyrixi-mobile'
-测试使用-end */
-
-new vconsole()
-
-export default function MathUtilDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <h2>组件</h2>
-        <p className="demo-title">计算</p>
-        {MathUtil.strip(0.1 * 0.2)}
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `MathUtil-props.ts` — API
+2. `MathUtil-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

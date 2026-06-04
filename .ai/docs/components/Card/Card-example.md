@@ -1,56 +1,19 @@
 # Card Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Card/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Card/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Card } from 'lyrixi-mobile'`
 
-## demos/Card.tsx
+## Demo 索引
 
-```tsx
-import { Page, Card } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Card.tsx](./demos/Card.tsx) | 主示例 |
+| [demos/CardHeader.tsx](./demos/CardHeader.tsx) | Card.Header 子组件示例 |
+| [demos/CardMain.tsx](./demos/CardMain.tsx) | Card.Main 子组件示例 |
 
-export default function CardDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Card>
-          <Card.Header>Header</Card.Header>
-          <Card.Main>Content content</Card.Main>
-        </Card>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+## 查阅顺序
 
-## demos/CardHeader.tsx
-
-```tsx
-import { Page, Card } from 'lyrixi-mobile'
-
-export default function CardHeaderDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Card.Header>{/* Card.Header 示例内容 */}</Card.Header>
-      </Page.Main>
-    </Page>
-  )
-}
-```
-
-## demos/CardMain.tsx
-
-```tsx
-import { Page, Card } from 'lyrixi-mobile'
-
-export default function CardMainDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Card.Main>{/* Card.Main 示例内容 */}</Card.Main>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `Card-props.ts` — API
+2. `Card-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

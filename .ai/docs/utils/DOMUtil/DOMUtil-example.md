@@ -1,24 +1,17 @@
 # DOMUtil Example
 
-以下示例位于本目录 `demos/`（由 `src/utils/DOMUtil/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/utils/DOMUtil/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { DOMUtil } from 'lyrixi-mobile'`
 
-## demos/DOMUtil.tsx
+## Demo 索引
 
-```tsx
-import { DOMUtil } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/DOMUtil.tsx](./demos/DOMUtil.tsx) | 主示例 |
 
-export default function DOMUtilDemo() {
-  function handleClick() {
-    console.log(
-      DOMUtil.classNames(undefined, null, ' ', 'className1', 'className2', 'className3 className4')
-    )
-  }
-  return (
-    <>
-      <div onClick={handleClick}>Generate class</div>
-    </>
-  )
-}
-```
+## 查阅顺序
+
+1. `DOMUtil-props.ts` — API
+2. `DOMUtil-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

@@ -1,111 +1,20 @@
 # Page Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Page/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Page/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Page } from 'lyrixi-mobile'`
 
-## demos/Page.tsx
+## Demo 索引
 
-```tsx
-import { useEffect } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/Page.tsx](./demos/Page.tsx) | 主示例 |
+| [demos/PageFooter.tsx](./demos/PageFooter.tsx) | Page.Footer 子组件示例 |
+| [demos/PageHeader.tsx](./demos/PageHeader.tsx) | Page.Header 子组件示例 |
+| [demos/PageMain.tsx](./demos/PageMain.tsx) | Page.Main 子组件示例 |
 
-import { createPortal } from 'react-dom'
-import { Page } from 'lyrixi-mobile'
+## 查阅顺序
 
-import type { PageDemoRow } from './Page.demos.types'
-
-const list: PageDemoRow[] = []
-for (let i = 0; i < 100; i++) {
-  list.push({
-    id: i,
-    name: '测试数据' + i
-  })
-}
-
-export default function PageDemo() {
-  const { Header, Footer, Aside, Main } = Page
-  useEffect(() => {
-    const root = document.getElementById('root')
-    root?.parentElement?.removeChild(root)
-  }, [])
-
-  function handleBottomRefresh() {
-    console.log('底部加载')
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        resolve()
-      }, 5000)
-    })
-  }
-
-  return createPortal(
-    <Page>
-      <Header style={{ height: '44px', backgroundColor: '#7dbcea' }}>Header</Header>
-      <Page full={false} layout="horizontal">
-        <Aside style={{ width: '80px', backgroundColor: '#3ba0e9' }}>Aside</Aside>
-        <Main
-          safeArea
-          style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}
-          onBottomRefresh={handleBottomRefresh}
-        >
-          {list.map((item, index) => {
-            return <div key={index}>{item.name}</div>
-          })}
-        </Main>
-      </Page>
-      <Footer safeArea style={{ height: '44px', backgroundColor: '#7dbcea' }}>
-        Footer
-      </Footer>
-    </Page>,
-    document.body
-  )
-}
-```
-
-## demos/PageHeader.tsx
-
-```tsx
-import { Page } from 'lyrixi-mobile'
-
-export default function PageHeaderDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Page.Header>{/* Page.Header 示例内容 */}</Page.Header>
-      </Page.Main>
-    </Page>
-  )
-}
-```
-
-## demos/PageMain.tsx
-
-```tsx
-import { Page } from 'lyrixi-mobile'
-
-export default function PageMainDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Page.Main>{/* Page.Main 示例内容 */}</Page.Main>
-      </Page.Main>
-    </Page>
-  )
-}
-```
-
-## demos/PageFooter.tsx
-
-```tsx
-import { Page } from 'lyrixi-mobile'
-
-export default function PageFooterDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Page.Footer>{/* Page.Footer 示例内容 */}</Page.Footer>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `Page-props.ts` — API
+2. `Page-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

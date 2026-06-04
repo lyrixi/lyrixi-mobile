@@ -47,9 +47,14 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 1. `{name}-props.ts` — API / Ref（生成代码的主要依据）
 2. `{name}-rules.md` — 何时使用、子组件、禁止自造组件
 
-**仅当**需要具体写法或 demo 片段时，再读 `{name}-example.md` 或 `demos/` 下对应文件。
+**仅当**需要具体写法或 demo 片段时：
+
+1. 先读 `{name}-example.md` 的 **Demo 索引表**（薄索引，不含完整代码）
+2. 再 **Read** 表中链接的 `demos/*.tsx`（示例源码唯一来源）
 
 路径以 `resolve-docs` 输出为准（相对仓库根，如 `.ai/docs/components/Button/Button-props.ts`）。
+
+维护示例：同步 `src/**/demos` 后运行 `node .ai/skills/docs/scripts/generate-example-index.mjs [组件名]` 刷新索引。
 
 ### 4. 生成代码
 

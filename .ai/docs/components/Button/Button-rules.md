@@ -23,8 +23,8 @@
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Button.tsx` — variant × color 矩阵、size、block
-- `demos/ButtonText.tsx`
-- `demos/ButtonIcon.tsx`
+- `demos/ButtonText.tsx` — Button.Text、与 Icon 组合
+- `demos/ButtonIcon.tsx` — Button.Icon 尺寸与圆形按钮
 
 ## 查阅顺序
 - Props：`Button-props.ts`

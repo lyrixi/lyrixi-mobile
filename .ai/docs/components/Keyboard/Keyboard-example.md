@@ -1,161 +1,17 @@
 # Keyboard Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Keyboard/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Keyboard/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Keyboard } from 'lyrixi-mobile'`
 
-## demos/KeyboardNumber.tsx
+## Demo 索引
 
-```tsx
-import { useState } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/KeyboardNumber.tsx](./demos/KeyboardNumber.tsx) | Keyboard.Number 子组件示例 |
 
-import { Page, Card, Divider, Input, Keyboard } from 'lyrixi-mobile'
+## 查阅顺序
 
-export default function KeyboardNumberDemo() {
-  const [open1, setOpen1] = useState(false)
-  const [value1, setValue1] = useState('')
-  const [open2, setOpen2] = useState(false)
-  const [value2, setValue2] = useState('')
-  const [open3, setOpen3] = useState(false)
-  const [value3, setValue3] = useState('')
-  const [open4, setOpen4] = useState(false)
-  const [value4, setValue4] = useState('')
-  const [open5, setOpen5] = useState(false)
-  const [value5, setValue5] = useState('')
-  const [open6, setOpen6] = useState(false)
-  const [value6, setValue6] = useState('')
-  const [openFull, setOpenFull] = useState(false)
-  const [valueFull, setValueFull] = useState('')
-
-  return (
-    <Page>
-      <Page.Main>
-        <Card>
-          <Divider>所有按键（小数点、负号、删除、确认、取消）</Divider>
-          <Input.Node
-            value={valueFull}
-            placeholder="点击输入，展示完整键盘"
-            onClick={() => setOpenFull(true)}
-            onChange={(v) => setValueFull(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={openFull}
-            value={valueFull}
-            onChange={(v) => setValueFull(v)}
-            dot
-            minus
-            okVisible
-            cancelVisible
-            onOk={(val) => {
-              setValueFull(val)
-              return true
-            }}
-            onCancel={() => setOpenFull(false)}
-            onClose={() => setOpenFull(false)}
-          />
-        </Card>
-
-        <Card>
-          <Divider>value / onChange / open / onClose</Divider>
-          <Input.Node
-            value={value1}
-            placeholder="点击输入"
-            onClick={() => setOpen1(true)}
-            onChange={(v) => setValue1(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={open1}
-            value={value1}
-            onChange={(v) => setValue1(v)}
-            onClose={() => setOpen1(false)}
-          />
-        </Card>
-
-        <Card>
-          <Divider>dot（小数点）</Divider>
-          <Input.Node
-            value={value2}
-            placeholder="带小数点的数字"
-            onClick={() => setOpen2(true)}
-            onChange={(v) => setValue2(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={open2}
-            value={value2}
-            onChange={(v) => setValue2(v)}
-            dot
-            onClose={() => setOpen2(false)}
-          />
-        </Card>
-
-        <Card>
-          <Divider>minus（负号）</Divider>
-          <Input.Node
-            value={value3}
-            placeholder="可输入负数"
-            onClick={() => setOpen3(true)}
-            onChange={(v) => setValue3(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={open3}
-            value={value3}
-            onChange={(v) => setValue3(v)}
-            minus
-            onClose={() => setOpen3(false)}
-          />
-        </Card>
-
-        <Card>
-          <Divider>okVisible / okNode / onOk</Divider>
-          <Input.Node
-            value={value4}
-            placeholder="带确认按钮"
-            onClick={() => setOpen4(true)}
-            onChange={(v) => setValue4(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={open4}
-            value={value4}
-            onChange={(v) => setValue4(v)}
-            okVisible
-            okNode={<span>完成</span>}
-            onOk={(val) => {
-              setValue4(val)
-              return true
-            }}
-            onClose={() => setOpen4(false)}
-          />
-        </Card>
-
-        <Card>
-          <Divider>cancelVisible / cancelNode / onCancel</Divider>
-          <Input.Node
-            value={value5}
-            placeholder="带取消按钮"
-            onClick={() => setOpen5(true)}
-            onChange={(v) => setValue5(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={open5}
-            value={value5}
-            onChange={(v) => setValue5(v)}
-            cancelVisible
-            cancelNode={<span>收起</span>}
-            onCancel={() => setOpen5(false)}
-            onClose={() => setOpen5(false)}
-          />
-        </Card>
-
-        <Card>
-          <Divider>safeArea / modalStyle / modalClassName / onOpen</Divider>
-          <Input.Node
-            value={value6}
-            placeholder="自定义样式与事件"
-            onClick={() => setOpen6(true)}
-            onChange={(v) => setValue6(String(v ?? ''))}
-          />
-          <Keyboard.Number
-            open={open6}
-            value={value6}
-// ... 其余见 demos/KeyboardNumber.tsx 全文
-```
+1. `Keyboard-props.ts` — API
+2. `Keyboard-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

@@ -1,99 +1,19 @@
 # NavBar Example
 
-以下示例位于本目录 `demos/`（由 `src/components/NavBar/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/NavBar/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { NavBar } from 'lyrixi-mobile'`
 
-## demos/NavBar.tsx
+## Demo 索引
 
-```tsx
-import { Page, NavBar, Divider, Button, Icon, Icons } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/NavBar.tsx](./demos/NavBar.tsx) | 主示例 |
+| [demos/NavBarButton.tsx](./demos/NavBarButton.tsx) | NavBar.Button 子组件示例 |
+| [demos/NavBarTitle.tsx](./demos/NavBarTitle.tsx) | NavBar.Title 子组件示例 |
 
-export default function NavBarDemo() {
-  return (
-    <Page className="lyrixi-full lyrixi-bg-white">
-      <Page.Main>
-        <Divider>Normal</Divider>
-        <NavBar>
-          <NavBar.Button>
-            <Button.Icon svg={Icons.ArrowLeft} />
-            <Button.Text>Back</Button.Text>
-          </NavBar.Button>
-          <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Button color="primary">Ok</NavBar.Button>
-        </NavBar>
+## 查阅顺序
 
-        <Divider>Button Shape</Divider>
-        <NavBar>
-          <NavBar.Button>
-            <Icon
-              svg={Icons.Close}
-              size="12px"
-              style={{ padding: 4 }}
-              radius="100%"
-              backgroundColor="secondary"
-            />
-          </NavBar.Button>
-          <NavBar.Button>
-            <Button.Icon
-              svg={Icons.ThreeDots}
-              size="12px"
-              style={{ padding: 4 }}
-              radius="2px"
-              backgroundColor="secondary"
-            />
-            <Button.Text>More</Button.Text>
-          </NavBar.Button>
-        </NavBar>
-
-        <Divider>Title</Divider>
-        <NavBar>
-          <NavBar.Button>
-            <Icon
-              svg={Icons.Close}
-              size="12px"
-              style={{ padding: 4 }}
-              radius="100%"
-              backgroundColor="secondary"
-            />
-          </NavBar.Button>
-          <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Button color="primary">Ok</NavBar.Button>
-        </NavBar>
-      </Page.Main>
-    </Page>
-  )
-}
-```
-
-## demos/NavBarTitle.tsx
-
-```tsx
-import { Page, NavBar } from 'lyrixi-mobile'
-
-export default function NavBarTitleDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <NavBar.Title>{/* NavBar.Title 示例内容 */}</NavBar.Title>
-      </Page.Main>
-    </Page>
-  )
-}
-```
-
-## demos/NavBarButton.tsx
-
-```tsx
-import { Page, NavBar } from 'lyrixi-mobile'
-
-export default function NavBarButtonDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <NavBar.Button>{/* NavBar.Button 示例内容 */}</NavBar.Button>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `NavBar-props.ts` — API
+2. `NavBar-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

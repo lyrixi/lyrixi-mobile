@@ -1,118 +1,17 @@
 # Selector Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Selector/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Selector/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Selector } from 'lyrixi-mobile'`
 
-## demos/Selector.tsx
+## Demo 索引
 
-```tsx
-import { useState } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/Selector.tsx](./demos/Selector.tsx) | 主示例 |
 
-import { Page, Selector, Divider, type SelectorItem } from 'lyrixi-mobile'
+## 查阅顺序
 
-export default function SelectorDemo() {
-  const [value, setValue] = useState<SelectorItem[]>([
-    {
-      id: "1",
-      name: "选项1",
-    },
-  ]);
-
-  const [value2, setValue2] = useState<SelectorItem[]>([
-    {
-      id: "1",
-      name: "选项1",
-    },
-  ]);
-
-  return (
-    <Page className="lyrixi-full lyrixi-bg-white">
-      <Page.Main>
-        <Divider>基础示例</Divider>
-        <Selector
-          columns={3}
-          // multiple
-          allowClear
-          value={value}
-          list={[
-            {
-              id: "1",
-              name: "选项1",
-            },
-            {
-              id: "2",
-              name: "Option 2 is very very very very very long",
-            },
-            {
-              id: "3",
-              name: "选项3",
-            },
-            {
-              id: "4",
-              name: "选项4",
-            },
-            {
-              id: "5",
-              name: "选项5",
-            },
-          ]}
-          // multiple={true}
-          onChange={(v) => setValue(v)}
-        />
-
-        <Divider>带省略功能</Divider>
-        <Selector
-          columns={3}
-          allowClear
-          value={value2}
-          list={[
-            {
-              id: "1",
-              name: "选项1",
-            },
-            {
-              id: "2",
-              name: "选项2",
-            },
-            {
-              id: "3",
-              name: "选项3",
-            },
-            {
-              id: "4",
-              name: "选项4",
-            },
-            {
-              id: "5",
-              name: "选项5",
-            },
-            {
-              id: "6",
-              name: "选项6",
-            },
-            {
-              id: "7",
-              name: "选项7",
-            },
-            {
-              id: "8",
-              name: "选项8",
-            },
-            {
-              id: "9",
-              name: "选项9",
-            },
-            {
-              id: "10",
-              name: "选项10",
-            },
-          ]}
-          ellipsis={{ count: 5 }}
-          onChange={(v) => setValue2(v)}
-        />
-      </Page.Main>
-    </Page>
-  );
-};
-```
+1. `Selector-props.ts` — API
+2. `Selector-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

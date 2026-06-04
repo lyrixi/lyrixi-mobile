@@ -1,19 +1,17 @@
 # GeoUtil Example
 
-以下示例位于本目录 `demos/`（由 `src/utils/GeoUtil/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/utils/GeoUtil/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { GeoUtil } from 'lyrixi-mobile'`
 
-## demos/GeoUtil.tsx
+## Demo 索引
 
-```tsx
-import { Page } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/GeoUtil.tsx](./demos/GeoUtil.tsx) | 主示例 |
 
-export default function GeoUtilDemo() {
-  return (
-    <Page>
-      <Page.Main>定位</Page.Main>
-    </Page>
-  )
-}
-```
+## 查阅顺序
+
+1. `GeoUtil-props.ts` — API
+2. `GeoUtil-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

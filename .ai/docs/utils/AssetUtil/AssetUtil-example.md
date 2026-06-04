@@ -1,74 +1,18 @@
 # AssetUtil Example
 
-以下示例位于本目录 `demos/`（由 `src/utils/AssetUtil/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/utils/AssetUtil/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { AssetUtil } from 'lyrixi-mobile'`
 
-## demos/AssetUtil.tsx
+## Demo 索引
 
-```tsx
-import { AssetUtil } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/AssetUtil.tsx](./demos/AssetUtil.tsx) | 主示例 |
+| [demos/loadJs.tsx](./demos/loadJs.tsx) | — |
 
-export default function AssetUtilDemo() {
-  return (
-    <>
-      <div>
-        {AssetUtil.getFileExtension(
-          'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js'
-        )}
-      </div>
-      <div>{AssetUtil.getFileExtension('leaflet.pdf')}</div>
-      <div>
-        {AssetUtil.getFileExtension(
-          'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.image'
-        )}
-      </div>
-      <div>
-        {AssetUtil.getFileExtension(
-          'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.'
-        ) || 'No Extension'}
-      </div>
-      <div>{AssetUtil.getFileExtension('leaflet. a') || 'No Extension'}</div>
-    </>
-  )
-}
-```
+## 查阅顺序
 
-## demos/loadJs.tsx
-
-```tsx
-import { AssetUtil } from 'lyrixi-mobile'
-
-export default function LoadJsDemo() {
-  function handleLoadJsByCallback() {
-    void AssetUtil.loadRemoteJs('https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js', {
-      id: 'leaflet-js',
-      onSuccess: () => {
-        alert('Js load succeeded')
-      },
-      onError: () => {
-        alert('Js load failed')
-      }
-    })
-  }
-  async function handleLoadJsByAsync() {
-    const result: { status: string } = (await AssetUtil.loadRemoteJs(
-      'https://lyrixi.github.io/lyrixi-mobile/assets/plugin/leaflet/js/leaflet.js',
-      {
-        id: 'leaflet-js'
-      }
-    )) as { status: string }
-    if (result.status === 'success') {
-      alert('Js load succeeded')
-    } else {
-      alert('Js load failed')
-    }
-  }
-  return (
-    <>
-      <div onClick={handleLoadJsByCallback}>Load js by callback</div>
-      <div onClick={handleLoadJsByAsync}>Load js by async</div>
-    </>
-  )
-}
-```
+1. `AssetUtil-props.ts` — API
+2. `AssetUtil-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

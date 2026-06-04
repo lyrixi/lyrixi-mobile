@@ -1,44 +1,17 @@
 # Stamp Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Stamp/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Stamp/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Stamp } from 'lyrixi-mobile'`
 
-## demos/Stamp.tsx
+## Demo 索引
 
-```tsx
-import { Page, Card, Stamp } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Stamp.tsx](./demos/Stamp.tsx) | 主示例 |
 
-export default function StampDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Card>
-          <Card.Header>Colors</Card.Header>
-          <Card.Main>
-            <Stamp color="primary">Primary</Stamp>
-            <Stamp color="info">Link</Stamp>
-            <Stamp color="warning">Warning</Stamp>
-            <Stamp color="danger">Danger</Stamp>
-            <Stamp color="success">Success</Stamp>
-            <Stamp color="disabled">Disabled</Stamp>
-          </Card.Main>
-        </Card>
-        <Card>
-          <Card.Header>Custom Color: iOS 16.2+ / Android Chrome 111+</Card.Header>
-          <Card.Main>
-            <Stamp color="#ff8800">ff8800</Stamp>
-          </Card.Main>
-        </Card>
-        <Card>
-          <Card.Header>Shapes</Card.Header>
-          <Card.Main>
-            <Stamp color="primary">Round</Stamp>
-            <Stamp color="primary" shape="rect">Primary</Stamp>
-          </Card.Main>
-        </Card>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+## 查阅顺序
+
+1. `Stamp-props.ts` — API
+2. `Stamp-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

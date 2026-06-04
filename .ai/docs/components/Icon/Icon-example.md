@@ -1,130 +1,17 @@
 # Icon Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Icon/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Icon/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Icon } from 'lyrixi-mobile'`
 
-## demos/Icon.tsx
+## Demo 索引
 
-```tsx
-import { Page, Divider, Icon, Icons } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Icon.tsx](./demos/Icon.tsx) | 主示例 |
 
-const iconStyle = {
-  margin: 'var(--lyrixi-space-m)'
-}
+## 查阅顺序
 
-const iconWithBgStyle = {
-  ...iconStyle,
-  padding: '4px'
-}
-
-const sizeSamples = ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
-const colorSamples = ['primary', 'info', 'danger', 'success', 'warning']
-
-const builtinIconEntries = Object.entries(Icons) as Array<
-  [string, (typeof Icons)[keyof typeof Icons]]
->
-
-const builtinIconGridStyle = {
-  marginTop: 'var(--lyrixi-space-l)',
-  display: 'flex',
-  flexWrap: 'wrap' as const
-}
-
-const builtinIconItemStyle = {
-  display: 'inline-flex',
-  flexDirection: 'column' as const,
-  alignItems: 'center',
-  width: '80px',
-  margin: 'var(--lyrixi-space-s)'
-}
-
-export default function IconDemo() {
-  return (
-    <Page style={{ backgroundColor: 'white' }}>
-      <Page.Main>
-        <Divider>Icon 基础用法</Divider>
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Icon svg={Icons.Close} size="l" color="primary" style={iconStyle} />
-          <Icon svg={Icons.Search} size="l" color="primary" style={iconStyle} />
-          <Icon svg={Icons.Ok} size="l" color="success" style={iconStyle} />
-          <Icon svg={Icons.Trash} size="l" color="danger" style={iconStyle} />
-          <Icon svg={Icons.Config} size="l" color="default" style={iconStyle} />
-        </div>
-
-        <Divider>Icon 不同尺寸</Divider>
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          {sizeSamples.map((size) => (
-            <Icon key={size} svg={Icons.Close} size={size} color="primary" style={iconStyle} />
-          ))}
-        </div>
-
-        <Divider>Icon 带背景与圆角</Divider>
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Icon
-            svg={Icons.Ok}
-            size="l"
-            color="white"
-            backgroundColor="primary"
-            radius="m"
-            style={iconWithBgStyle}
-          />
-          <Icon
-            svg={Icons.Search}
-            size="xl"
-            color="white"
-            backgroundColor="primary"
-            radius="100%"
-            style={iconWithBgStyle}
-          />
-          <Icon
-            svg={Icons.Config}
-            size="xl"
-            color="white"
-            backgroundColor="info"
-            radius="100%"
-            style={iconWithBgStyle}
-          />
-          <Icon
-            svg={Icons.Plus}
-            size="xl"
-            color="white"
-            backgroundColor="success"
-            radius="100%"
-            style={iconWithBgStyle}
-          />
-        </div>
-
-        <Divider>Icon 不同颜色</Divider>
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          {colorSamples.map((color) => (
-            <Icon key={color} svg={Icons.Close} size="xl" color={color} style={iconStyle} />
-          ))}
-        </div>
-
-        <Divider>Icon 可点击与禁用</Divider>
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Icon
-            svg={Icons.Reload}
-            size="l"
-            color="primary"
-            style={iconStyle}
-            onClick={() => console.log('icon clicked')}
-          />
-          <Icon svg={Icons.Reload} size="l" color="primary" disabled style={iconStyle} />
-        </div>
-
-        <Divider>Icon 内置 Icons</Divider>
-        <div style={builtinIconGridStyle}>
-          {builtinIconEntries.map(([name, svg]) => (
-            <div key={name} style={builtinIconItemStyle}>
-              <Icon svg={svg} size="l" color="primary" />
-              <span className="lyrixi-font-size-xs lyrixi-color-auxiliary">{name}</span>
-            </div>
-          ))}
-        </div>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `Icon-props.ts` — API
+2. `Icon-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

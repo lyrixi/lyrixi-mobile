@@ -1,51 +1,13 @@
 # AttachUploader Example
 
-以下示例位于本目录 `demos/`（由 `src/components/AttachUploader/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/AttachUploader/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { AttachUploader } from 'lyrixi-mobile'`
 
-## demos/index.tsx
+_暂无 demo 文件，请查阅 `-rules.md`、`-props.ts` 与源码。_
 
-```tsx
-import { useState } from 'react'
+## 查阅顺序
 
-import vconsole from 'vconsole'
-import { Page, AttachUploader, type AttachUploaderItem } from 'lyrixi-mobile'
-
-new vconsole()
-
-export default function AttachUploaderDemo() {
-  const [list, setList] = useState<AttachUploaderItem[]>([
-    {
-      fileName: '1.jpg',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg'
-    },
-    {
-      fileName: '2.doc',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.docx'
-    },
-    {
-      fileName: '2022_PDF.pdf',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.pdf'
-    }
-  ])
-  function handlePhotoChange(newList: AttachUploaderItem[]) {
-    console.log(newList)
-    setList(newList)
-  }
-  return (
-    <Page>
-      <Page.Header className="lyrixi-text-center">附件上传</Page.Header>
-      <Page.Main className="lyrixi-bg-white">
-        <AttachUploader
-          maxCount={2}
-          extension={['image']}
-          uploadPosition="start"
-          list={list}
-          onChange={handlePhotoChange}
-        />
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `AttachUploader-props.ts` — API
+2. `AttachUploader-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

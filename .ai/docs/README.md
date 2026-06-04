@@ -19,8 +19,8 @@
 |-------------|------|
 | `{Name}-props.ts` | Props / Ref |
 | `{Name}-rules.md` | 何时使用、子组件、必须用库组件 |
-| `{Name}-example.md` | 示例说明与代码摘录 |
-| `demos/` | 示例源码 |
+| `{Name}-example.md` | Demo 索引（链到 `demos/`，不含完整代码） |
+| `demos/` | 示例源码（与 `src` 同步，AI 读代码时读此目录） |
 
 索引：[`mapping.json`](mapping.json) 的 `components`；目录说明：[`components/README.md`](components/README.md)。
 
@@ -32,8 +32,8 @@
 |-------------|------|
 | `{Name}-props.ts` | API / 方法 |
 | `{Name}-rules.md` | 何时使用、必须使用库工具、demo 索引 |
-| `{Name}-example.md` | 示例说明与代码摘录 |
-| `demos/` | 示例源码 |
+| `{Name}-example.md` | Demo 索引（链到 `demos/`，不含完整代码） |
+| `demos/` | 示例源码（与 `src` 同步，AI 读代码时读此目录） |
 
 索引：[`mapping.json`](mapping.json) 的 `utils`；目录说明：[`utils/README.md`](utils/README.md)。
 
@@ -53,4 +53,6 @@
 - 工具 API 用 `export namespace DateUtil { export function toDate(...) }` 表达
 - 与业务代码同语言，AI 生成 props 时更不易编造枚举值
 
-从 JSON 迁移时可运行：`node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs`
+从 JSON 迁移 props 时可运行：`node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs`
+
+同步 demo 后刷新 example 索引：`node .ai/skills/docs/scripts/generate-example-index.mjs`（可加组件名只更新部分）

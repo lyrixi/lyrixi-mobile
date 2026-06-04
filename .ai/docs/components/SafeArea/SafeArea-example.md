@@ -1,30 +1,17 @@
 # SafeArea Example
 
-以下示例位于本目录 `demos/`（由 `src/components/SafeArea/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/SafeArea/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { SafeArea } from 'lyrixi-mobile'`
 
-## demos/SafeArea.tsx
+## Demo 索引
 
-```tsx
-import { useEffect } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/SafeArea.tsx](./demos/SafeArea.tsx) | 主示例 |
 
-import { SafeArea } from 'lyrixi-mobile'
+## 查阅顺序
 
-export default function SafeAreaDemo() {
-  useEffect(() => {}, [])
-
-  return (
-    <div
-      className="lyrixi-flex lyrixi-position-absolute lyrixi-full"
-      data-safe-area="auto-border-bottom"
-      style={{ backgroundColor: 'green', borderColor: 'red' }}
-    >
-      You can test it on mobile, if you can see a red rectangle, the mobile needs a safe area
-      <SafeArea style={{ backgroundColor: 'red' }} />
-      Use root stage safe area
-      <div>{`If you want to test to the safe area, you can invoke: SafeArea.debug()`}</div>
-    </div>
-  )
-}
-```
+1. `SafeArea-props.ts` — API
+2. `SafeArea-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

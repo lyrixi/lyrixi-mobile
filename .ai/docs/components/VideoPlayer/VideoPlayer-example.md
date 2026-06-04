@@ -1,53 +1,17 @@
 # VideoPlayer Example
 
-以下示例位于本目录 `demos/`（由 `src/components/VideoPlayer/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/VideoPlayer/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { VideoPlayer } from 'lyrixi-mobile'`
 
-## demos/VideoPlayer.tsx
+## Demo 索引
 
-```tsx
-import { useRef } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/VideoPlayer.tsx](./demos/VideoPlayer.tsx) | 主示例 |
 
-import { Page, VideoPlayer, Button, type VideoPlayerRef } from 'lyrixi-mobile'
+## 查阅顺序
 
-export default function VideoPlayerDemo() {
-  const videoPlayerRef = useRef<VideoPlayerRef | null>(null)
-  return (
-    <Page>
-      <Page.Main>
-        <VideoPlayer
-          ref={videoPlayerRef}
-          poster={'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'}
-          src={'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.mp4'}
-          autoPlay={false}
-          headerRender={() => (
-            <div
-              className="lyrixi-videoplayer-header-close"
-              onClick={() => {
-                alert('close')
-              }}
-            ></div>
-          )}
-        />
-      </Page.Main>
-      <Page.Footer>
-        <Button
-          onClick={() => {
-            videoPlayerRef.current?.play()
-          }}
-        >
-          Play
-        </Button>
-        <Button
-          onClick={() => {
-            videoPlayerRef.current?.pause()
-          }}
-        >
-          Pause
-        </Button>
-      </Page.Footer>
-    </Page>
-  )
-}
-```
+1. `VideoPlayer-props.ts` — API
+2. `VideoPlayer-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

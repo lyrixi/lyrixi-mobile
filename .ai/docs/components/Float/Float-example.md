@@ -1,127 +1,17 @@
 # Float Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Float/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Float/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Float } from 'lyrixi-mobile'`
 
-## demos/Float.tsx
+## Demo 索引
 
-```tsx
-import { useEffect } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/Float.tsx](./demos/Float.tsx) | 主示例 |
 
-import vconsole from 'vconsole'
+## 查阅顺序
 
-import { Icon, Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'
-
-new vconsole()
-
-export default function FloatDemo() {
-  useEffect(() => {}, [])
-
-  return (
-    <Page>
-      <Page.Header className="lyrixi-text-center">Float</Page.Header>
-      <Page.Main className="lyrixi-bg-white">
-        <Divider>Float</Divider>
-        <Float
-          draggable
-          // gap={{
-          //   top: 12,
-          //   left: 0,
-          //   right: 40,
-          //   bottom: 80
-          // }}
-          style={{
-            ...(Storage.getLocalStorage('pos') || {})
-          }}
-          onDragEnd={(e) => {
-            Storage.setLocalStorage('pos', e.position)
-          }}
-          className="lyrixi-flex-vertical"
-        >
-          <Button
-            sizeEqual
-            direction="vertical"
-            size="l"
-            radius="100%"
-            color="white"
-            backgroundColor="primary"
-            borderColor="primary"
-            onClick={(e) => {
-              console.log(e)
-            }}
-          >
-            <Icon svg={Icons.ThreeDots} />1
-          </Button>
-          <Button
-            sizeEqual
-            size="l"
-            radius="100%"
-            borderColor="default"
-            onClick={(e) => {
-              console.log(e)
-            }}
-            style={{
-              marginTop: '16px'
-            }}
-          >
-            <Icon svg={Icons.Plus} />
-            <Button.Text>2</Button.Text>
-          </Button>
-          <Button
-            sizeEqual
-            size="l"
-            radius="100%"
-            borderColor="default"
-            onClick={(e) => {
-              console.log(e)
-            }}
-            style={{
-              marginTop: '16px'
-            }}
-          >
-            3
-          </Button>
-        </Float>
-
-        <Float
-          draggable={true}
-          gap={{ top: 8, right: 8, bottom: 88, left: 8 }}
-          style={{
-            left: 8
-          }}
-          portal={typeof document !== 'undefined' ? document.body : undefined}
-        >
-          <ActionSheet.Combo
-            list={[
-              { id: '1', name: 'Sort by 1' },
-              { id: '2', name: 'Sort by 2' }
-            ]}
-            comboRender={({ comboRef, onClick }) => {
-              return (
-                <Button
-                  ref={comboRef}
-                  sizeEqual
-                  direction="vertical"
-                  size="xl"
-                  radius="100%"
-                  color="white"
-                  backgroundColor="primary"
-                  borderColor="primary"
-                  onClick={onClick}
-                >
-                  <Icon svg={Icons.ThreeDots} />
-                </Button>
-              )
-            }}
-            onChange={(newValue) => {
-              console.log('onChange', newValue)
-            }}
-          />
-        </Float>
-      </Page.Main>
-      <Page.Footer style={{ height: '100px' }}></Page.Footer>
-    </Page>
-  )
-}
-```
+1. `Float-props.ts` — API
+2. `Float-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

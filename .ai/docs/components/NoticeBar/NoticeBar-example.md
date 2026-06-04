@@ -1,50 +1,17 @@
 # NoticeBar Example
 
-以下示例位于本目录 `demos/`（由 `src/components/NoticeBar/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/NoticeBar/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { NoticeBar } from 'lyrixi-mobile'`
 
-## demos/NoticeBar.tsx
+## Demo 索引
 
-```tsx
-import { Icon, Page, NoticeBar, Icons } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/NoticeBar.tsx](./demos/NoticeBar.tsx) | 主示例 |
 
-export default function NoticeBarDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        {/* 基础用法 */}
-        <NoticeBar type="info" title="这是一条通知信息" closable />
+## 查阅顺序
 
-        {/* 带描述 */}
-        <NoticeBar
-          type="success"
-          title="操作成功"
-          description="您的操作已成功完成，系统已自动保存"
-        />
-
-        {/* 可关闭 */}
-        <NoticeBar type="warning" title="注意事项" description="请仔细阅读相关说明" closable />
-
-        {/* 错误提示 */}
-        <NoticeBar
-          type="error"
-          title="操作失败"
-          description="网络连接异常，请检查网络设置后重试"
-          closable
-        />
-
-        {/* 自定义图标 */}
-        <NoticeBar
-          type="info"
-          title="自定义图标"
-          iconRender={() => <Icon svg={Icons.CircleOkFill} />}
-        />
-
-        {/* 无图标 */}
-        <NoticeBar type="info" title="无图标通知" iconRender={() => null} />
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `NoticeBar-props.ts` — API
+2. `NoticeBar-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

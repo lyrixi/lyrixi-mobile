@@ -1,49 +1,18 @@
 # Request Example
 
-以下示例位于本目录 `demos/`（由 `src/utils/Request/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/utils/Request/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Request } from 'lyrixi-mobile'`
 
-## demos/Request.tsx
+## Demo 索引
 
-```tsx
-import { Request } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Request.tsx](./demos/Request.tsx) | 主示例 |
+| [demos/cache.tsx](./demos/cache.tsx) | — |
 
-export default function RequestDemo() {
-  async function handleClick() {
-    let response = await Request.get(
-      'https://lyrixi.github.io/lyrixi-mobile/assets/district/zh_CN/86.json.info'
-    )
-    console.log(response)
-  }
-  return (
-    <>
-      <div onClick={handleClick}>Request get</div>
-    </>
-  )
-}
-```
+## 查阅顺序
 
-## demos/cache.tsx
-
-```tsx
-import { Request } from 'lyrixi-mobile'
-
-export default function RequestCacheDemo() {
-  async function handleClick() {
-    let response = await Request.get(
-      'https://lyrixi.github.io/lyrixi-mobile/assets/district/en_US/86.json',
-      null,
-      {
-        cacheKey: '0'
-      }
-    )
-    console.log(response)
-  }
-  return (
-    <>
-      <div onClick={handleClick}>Request by cacheKey</div>
-    </>
-  )
-}
-```
+1. `Request-props.ts` — API
+2. `Request-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

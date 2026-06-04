@@ -1,161 +1,17 @@
 # Accordion Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Accordion/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Accordion/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Accordion } from 'lyrixi-mobile'`
 
-## demos/Accordion.tsx
+## Demo 索引
 
-```tsx
-import { useState } from 'react'
+| Demo | 说明 |
+|------|------|
+| [demos/Accordion.tsx](./demos/Accordion.tsx) | 主示例 |
 
-import { Divider, Page, Card, Button, Accordion, Icon, Icons } from 'lyrixi-mobile'
+## 查阅顺序
 
-export default function AccordionDemo() {
-  const [value, setValue] = useState<number | null>(null)
-
-  return (
-    <Page>
-      <Page.Main>
-        <Card>
-          <Divider>Group(Controlled component)</Divider>
-          <Button
-            className="lyrixi-flex"
-            color="primary"
-            style={{ margin: '12px' }}
-            onClick={() => setValue(2)}
-          >
-            Open Third
-          </Button>
-          {/* Group only allow single item appear */}
-          <Accordion.Group value={value} style={{ margin: '0 12px' }} onChange={setValue}>
-            <Accordion ellipsis={{ expandText: 'Expand One', collapseText: 'Collapse One' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                First Text
-              </div>
-            </Accordion>
-            <Accordion ellipsis={{ expandText: 'Expand Two', collapseText: 'Collapse Two' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                Second Text
-              </div>
-            </Accordion>
-            <Accordion ellipsis={{ expandText: 'Expand Three', collapseText: 'Collapse Three' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                Third Text
-              </div>
-            </Accordion>
-            <Accordion ellipsis={{ expandText: 'Expand Four', collapseText: 'Collapse Four' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                Fourth Text
-              </div>
-            </Accordion>
-          </Accordion.Group>
-        </Card>
-
-        <Card>
-          <Divider>Group</Divider>
-          {/* Group only allow single item appear */}
-          <Accordion.Group style={{ margin: '0 12px' }}>
-            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                First Text
-              </div>
-            </Accordion>
-            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                Second Text
-              </div>
-            </Accordion>
-            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                Third Text
-              </div>
-            </Accordion>
-            <Accordion ellipsis={{ expandText: 'View More', collapseText: 'Collapse' }}>
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                Fourth Text
-              </div>
-            </Accordion>
-          </Accordion.Group>
-        </Card>
-
-        <Card>
-          <Divider>Min Height</Divider>
-          <div style={{ margin: '0 12px' }}>
-            <Accordion
-              open={false}
-              minHeight={60}
-              ellipsis={{ expandText: 'Expand', collapseText: 'Collapse' }}
-            >
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 160 }}
-              >
-                Content keeps 60px visible when collapsed.
-              </div>
-            </Accordion>
-          </div>
-        </Card>
-
-        <Card>
-          <Divider>Accordion(Controlled component)</Divider>
-          <div style={{ margin: '0 12px' }}>
-            <Accordion
-              open={value === 0}
-              onOpen={() => setValue(0)}
-              onClose={() => setValue(null)}
-              ellipsis={{ expandText: 'Open', collapseText: 'Close' }}
-            >
-              <div
-                className="lyrixi-flex lyrixi-flex-justify-center lyrixi-flex-align-center lyrixi-border-b"
-                style={{ height: 100 }}
-              >
-                First Text
-              </div>
-            </Accordion>
-          </div>
-        </Card>
-
-        <Card>
-          <Divider>Custom Ellipsis</Divider>
-          <div style={{ margin: '0 12px' }}>
-            <Accordion
-              open={false}
-              ellipsisRender={({ open, onClick }) => {
-                return (
-                  <div
-                    className="lyrixi-flex lyrixi-flex-justify-center"
-                    style={{
-                      padding: '8px 0',
-                      color: '#f90',
-                      fontSize: '14px',
-                      cursor: 'pointer'
-                    }}
-                    onClick={onClick}
-                  >
-// ... 其余见 demos/Accordion.tsx 全文
-```
+1. `Accordion-props.ts` — API
+2. `Accordion-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

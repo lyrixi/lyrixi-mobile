@@ -1,71 +1,17 @@
 # Steps Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Steps/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Steps/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Steps } from 'lyrixi-mobile'`
 
-## demos/Active.tsx
+## Demo 索引
 
-```tsx
-import { Page, Divider, Steps, Icon, Card, Icons } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Active.tsx](./demos/Active.tsx) | — |
 
-const list = [
-  {
-    id: 'finish',
-    title: 'Finished',
-    description: 'This is a description.'
-  },
-  {
-    id: 'progress',
-    title: 'In Progress',
-    description: 'This is a description.'
-  },
-  {
-    id: 'wait',
-    title: 'Waiting',
-    description: 'This is a description.'
-  }
-]
+## 查阅顺序
 
-export default function ActiveDemo() {
-  return (
-    <Page>
-      <Page.Main>
-        <Card>
-          <Divider>Active by Index</Divider>
-          <Steps value={{ index: 1 }} list={list} direction="horizontal" />
-        </Card>
-
-        <Card>
-          <Divider>Active by Id</Divider>
-          <Steps value={{ id: 'progress' }} list={list} direction="vertical" />
-        </Card>
-
-        <Card>
-          <Divider>Active Status</Divider>
-          <Steps
-            value={{ id: 'progress', status: 'error' }}
-            list={list}
-            align="left"
-            direction="horizontal"
-          />
-        </Card>
-
-        <Card>
-          <Divider>Active Icon</Divider>
-          <Steps
-            value={{
-              id: 'progress',
-              status: 'error',
-              icon: <Icon svg={Icons.Signature} />
-            }}
-            list={list}
-            align="left"
-            direction="vertical"
-          />
-        </Card>
-      </Page.Main>
-    </Page>
-  )
-}
-```
+1. `Steps-props.ts` — API
+2. `Steps-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读

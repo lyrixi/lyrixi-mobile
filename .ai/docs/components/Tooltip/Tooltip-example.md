@@ -1,31 +1,17 @@
 # Tooltip Example
 
-以下示例位于本目录 `demos/`（由 `src/components/Tooltip/demos` 同步，运行 `npm run build:ai-docs` 更新）。
+示例源码在 `demos/`（由 `src/components/Tooltip/demos` 同步）。需要具体写法时 **Read 下表对应 demo 文件**，不要依赖本文件中的旧代码块。
 
 业务代码引入：`import { Tooltip } from 'lyrixi-mobile'`
 
-## demos/Tooltip.tsx
+## Demo 索引
 
-```tsx
-import { Tooltip } from 'lyrixi-mobile'
+| Demo | 说明 |
+|------|------|
+| [demos/Tooltip.tsx](./demos/Tooltip.tsx) | 主示例 |
 
-export default function TooltipDemo() {
-  return (
-    <>
-      <Tooltip
-        onOpen={() => {
-          console.log('open:', true)
-        }}
-        onClose={() => {
-          console.log('open:', false)
-        }}
-        modalRender={() => {
-          return <div style={{ margin: 100 }}>Modal Content</div>
-        }}
-      >
-        <div style={{ margin: 100 }}>Combo</div>
-      </Tooltip>
-    </>
-  )
-}
-```
+## 查阅顺序
+
+1. `Tooltip-props.ts` — API
+2. `Tooltip-rules.md` — 何时使用、子组件
+3. 上表 `demos/` — 需要片段时再读
