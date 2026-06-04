@@ -1,16 +1,11 @@
 const hasOwn = {}.hasOwnProperty
 
-export default function classNames(...args: unknown[]): string {
-  let classes = ''
-
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i]
-    if (arg) {
-      classes = appendClass(classes, parseValue(arg))
-    }
+function appendClass(value: string, newClass: string): string {
+  if (!newClass) {
+    return value
   }
 
-  return classes
+  return value ? value + ' ' + newClass : newClass
 }
 
 function parseValue(arg: unknown): string {
@@ -46,10 +41,17 @@ function parseValue(arg: unknown): string {
   return classes
 }
 
-function appendClass(value: string, newClass: string): string {
-  if (!newClass) {
-    return value
+function classNames(...args: unknown[]): string {
+  let classes = ''
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i]
+    if (arg) {
+      classes = appendClass(classes, parseValue(arg))
+    }
   }
 
-  return value ? value + ' ' + newClass : newClass
+  return classes
 }
+
+export default classNames

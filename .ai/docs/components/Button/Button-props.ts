@@ -6,7 +6,7 @@
 /** 语义色，与 VariablesUtil 标准色一致；可从 `lyrixi-mobile` 导入 `ButtonColor` */
 export type ButtonColor = 'default' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
 
-/** 外观变体，由 resolveVariantStyle 映射为文字/背景/边框；可从 `lyrixi-mobile` 导入 `ButtonVariant` */
+/** 外观变体，由 getVariantClassName 映射为文字/背景/边框 class；可从 `lyrixi-mobile` 导入 `ButtonVariant` */
 export type ButtonVariant = 'solid' | 'text' | 'outlined' | 'filled' | 'dashed'
 
 /** 尺寸 token，与 Button.less 中 `.lyrixi-size-*` 一致 */

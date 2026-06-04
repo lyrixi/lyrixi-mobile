@@ -1,6 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import getStyle from './getStyle'
-import resolveVariantStyle from './resolveVariantStyle'
 
 import { ButtonColor } from './types/Button.Color.types'
 import { ButtonVariant } from './types/Button.Variant.types'
@@ -41,17 +40,13 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
   const rootRef = useRef<HTMLDivElement>(null)
   const compactContext = Flex.Compact.useContext()
 
-  const { textColor, backgroundColor, borderColor, border } = resolveVariantStyle(variant, color)
-
   const { style: newStyle, className: newClassName } = getStyle({
-    color: textColor,
-    borderColor,
-    backgroundColor,
+    variant,
+    color,
     size: (size || compactContext?.size || 'm') as string | number | readonly string[],
     sizeEqual,
     fontSize,
     radius,
-    border,
     direction,
     block: block || compactContext?.block || false,
     style,

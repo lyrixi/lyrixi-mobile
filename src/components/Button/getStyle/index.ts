@@ -1,32 +1,31 @@
 import type { CSSProperties } from 'react'
 
 import type { ButtonGetStyleParams } from './getStyle.types'
+import getVariantClassName from './getVariantClassName'
 
 // 内库使用-start
-import VariablesUtil from './../../utils/VariablesUtil'
-import DOMUtil from './../../utils/DOMUtil'
+import VariablesUtil from './../../../utils/VariablesUtil'
+import DOMUtil from './../../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
+import { VariablesUtil, DOMUtil } from 'qince-mobile'
 测试使用-end */
 
 const sizes = {
-  xs: { className: 'lyrixi-size-xs' },
-  s: { className: 'lyrixi-size-s' },
-  m: { className: 'lyrixi-size-m' },
-  l: { className: 'lyrixi-size-l' },
-  xl: { className: 'lyrixi-size-xl' },
-  xxl: { className: 'lyrixi-size-xxl' }
+  xs: { className: 'qince-size-xs' },
+  s: { className: 'qince-size-s' },
+  m: { className: 'qince-size-m' },
+  l: { className: 'qince-size-l' },
+  xl: { className: 'qince-size-xl' },
+  xxl: { className: 'qince-size-xxl' }
 }
 
 export default function getStyle({
   direction,
   block,
   color,
-  backgroundColor,
-  borderColor,
-  border,
+  variant,
   size,
   sizeEqual,
   fontSize,
@@ -34,9 +33,6 @@ export default function getStyle({
   style,
   className
 }: ButtonGetStyleParams): { style: CSSProperties; className: string } {
-  const colorClass = color ? VariablesUtil.getColorClass(color) : ''
-  const borderColorClass = borderColor ? VariablesUtil.getBorderColorClass(borderColor) : ''
-  const backgroundColorClass = backgroundColor ? VariablesUtil.getBgColorClass(backgroundColor) : ''
   const sizeClass =
     typeof size === 'string' && size in sizes ? sizes[size as keyof typeof sizes].className : ''
   const radiusClass =
@@ -49,9 +45,6 @@ export default function getStyle({
       : ''
 
   const newStyle = {
-    ...(!colorClass && color ? { color } : {}),
-    ...(!borderColorClass && borderColor ? { borderColor } : {}),
-    ...(!backgroundColorClass && backgroundColor ? { backgroundColor } : {}),
     ...(!sizeClass && size
       ? { height: size as string | number, width: sizeEqual ? (size as string | number) : 'auto' }
       : {}),
@@ -61,18 +54,14 @@ export default function getStyle({
   } as CSSProperties
 
   const newClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
-    'lyrixi-button',
-    direction === 'vertical' && `lyrixi-flex-vertical`,
-    colorClass,
-    borderColorClass,
-    backgroundColorClass,
-    border !== 'none' && `lyrixi-border-width-default`,
-    border && `lyrixi-border-style-${border}`,
-    block && `lyrixi-button-block`,
+    'qince-button',
+    direction === 'vertical' && `qince-flex-vertical`,
+    getVariantClassName(variant, color),
+    block && `qince-button-block`,
     sizeClass,
     radiusClass,
     fontSizeClass,
-    sizeEqual && `lyrixi-size-equal`,
+    sizeEqual && `qince-size-equal`,
     className
   )
 

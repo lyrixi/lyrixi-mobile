@@ -1,4 +1,4 @@
-/** Button 外观变体，与 resolveVariantStyle 映射一致 */
+/** Button 外观变体，与 getVariantClassName 映射一致 */
 export enum ButtonVariant {
   solid = 'solid',
   text = 'text',
