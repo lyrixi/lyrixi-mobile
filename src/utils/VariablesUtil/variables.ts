@@ -108,6 +108,7 @@ const widths: VariableMap = {
 
 // 圆角（size.less）
 const radius: VariableMap = {
+  xxl: { className: 'lyrixi-radius-xxl', value: 'var(--lyrixi-radius-xxl)' },
   xl: { className: 'lyrixi-radius-xl', value: 'var(--lyrixi-radius-xl)' },
   l: { className: 'lyrixi-radius-l', value: 'var(--lyrixi-radius-l)' },
   m: { className: 'lyrixi-radius-m', value: 'var(--lyrixi-radius-m)' },
