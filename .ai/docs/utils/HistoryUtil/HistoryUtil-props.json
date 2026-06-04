@@ -1,5 +1,0 @@
-{
-  "HistoryUtil.urlParameter": "见源码与 demos",
-  "HistoryUtil.onBack": "Trigger onBack",
-  "HistoryUtil": "构造函数 + 静态方法；实例方法 navigate/back。见 HistoryUtil/index.ts 与 types"
-}

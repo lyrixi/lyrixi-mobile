@@ -20,5 +20,5 @@
 - `demos/SignatureMain.tsx`
 
 ## 查阅顺序
-- Props：`Signature-props.json`
+- Props：`Signature-props.ts`
 - 示例：`Signature-example.md`

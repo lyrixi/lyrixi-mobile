@@ -17,7 +17,7 @@
 
 | 文件 / 目录 | 用途 |
 |-------------|------|
-| `{Name}-props.json` | Props / Ref |
+| `{Name}-props.ts` | Props / Ref |
 | `{Name}-rules.md` | 何时使用、子组件、必须用库组件 |
 | `{Name}-example.md` | 示例说明与代码摘录 |
 | `demos/` | 示例源码 |
@@ -30,7 +30,7 @@
 
 | 文件 / 目录 | 用途 |
 |-------------|------|
-| `{Name}-props.json` | API / 方法 |
+| `{Name}-props.ts` | API / 方法 |
 | `{Name}-rules.md` | 何时使用、必须使用库工具、demo 索引 |
 | `{Name}-example.md` | 示例说明与代码摘录 |
 | `demos/` | 示例源码 |
@@ -43,3 +43,14 @@
 2. 生成业务页：查 `examples/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
 3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
 4. 扩展文档：直接编辑 `.ai/docs` 下对应文件，并更新 `mapping.json` 中的路径与 `keywords`（与 `src` 不一致时以 `src` 为准）。
+
+## 为何 props 用 TypeScript
+
+`*-props.ts` 使用 **interface / namespace + JSDoc**，而非 JSON 字符串：
+
+- 联合类型（如 `'primary' | 'danger'`）可直接阅读，无需解析转义
+- 子组件 Props 拆成独立 interface（如 `ButtonTextProps`、`FormItemProps`）
+- 工具 API 用 `export namespace DateUtil { export function toDate(...) }` 表达
+- 与业务代码同语言，AI 生成 props 时更不易编造枚举值
+
+从 JSON 迁移时可运行：`node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs`

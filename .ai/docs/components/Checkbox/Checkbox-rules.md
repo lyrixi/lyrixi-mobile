@@ -19,5 +19,5 @@
 - `demos/CheckboxGroup.tsx`
 
 ## 查阅顺序
-- Props：`Checkbox-props.json`
+- Props：`Checkbox-props.ts`
 - 示例：`Checkbox-example.md`

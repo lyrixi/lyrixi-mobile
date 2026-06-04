@@ -28,5 +28,5 @@
 - `demos/ToolBarFilter.tsx`
 
 ## 查阅顺序
-- Props：`ToolBar-props.json`
+- Props：`ToolBar-props.ts`
 - 示例：`ToolBar-example.md`

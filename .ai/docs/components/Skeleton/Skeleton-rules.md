@@ -22,5 +22,5 @@
 - `demos/SkeletonTabs.tsx`
 
 ## 查阅顺序
-- Props：`Skeleton-props.json`
+- Props：`Skeleton-props.ts`
 - 示例：`Skeleton-example.md`

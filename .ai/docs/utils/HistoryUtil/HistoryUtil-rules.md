@@ -14,5 +14,5 @@
 - `HistoryUtil.onBack`
 
 ## 查阅顺序
-- API：`HistoryUtil-props.json`
+- API：`HistoryUtil-props.ts`
 - 示例：`HistoryUtil-example.md`

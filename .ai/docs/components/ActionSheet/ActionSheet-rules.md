@@ -20,5 +20,5 @@
 - `demos/ActionSheetItem.tsx`
 
 ## 查阅顺序
-- Props：`ActionSheet-props.json`
+- Props：`ActionSheet-props.ts`
 - 示例：`ActionSheet-example.md`

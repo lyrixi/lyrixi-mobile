@@ -19,5 +19,5 @@
 - `demos/LocationMain.tsx`
 
 ## 查阅顺序
-- Props：`Location-props.json`
+- Props：`Location-props.ts`
 - 示例：`Location-example.md`

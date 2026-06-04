@@ -44,17 +44,17 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 
 对每个命中项，**默认只读**：
 
-1. `{name}-props.json` — API / Ref（生成代码的主要依据）
+1. `{name}-props.ts` — API / Ref（生成代码的主要依据）
 2. `{name}-rules.md` — 何时使用、子组件、禁止自造组件
 
 **仅当**需要具体写法或 demo 片段时，再读 `{name}-example.md` 或 `demos/` 下对应文件。
 
-路径以 `resolve-docs` 输出为准（相对仓库根，如 `.ai/docs/components/Button/Button-props.json`）。
+路径以 `resolve-docs` 输出为准（相对仓库根，如 `.ai/docs/components/Button/Button-props.ts`）。
 
 ### 4. 生成代码
 
 - 组件/工具从 `lyrixi-mobile` barrel 引入（业务代码）；内库改动用相对路径（见 `.cursorrules`）
-- Props、子组件名、默认值 **必须与 props.json 一致**，禁止编造未出现的 API
+- Props、子组件名、默认值 **必须与 props.ts 一致**，禁止编造未出现的 API
 - 遵守 `.ai/rules/`（命名、import 顺序、页面结构等）
 
 ### 5. 回退（文档未覆盖时）

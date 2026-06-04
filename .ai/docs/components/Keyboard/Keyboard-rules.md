@@ -16,5 +16,5 @@
 - `demos/KeyboardNumber.tsx`
 
 ## 查阅顺序
-- Props：`Keyboard-props.json`
+- Props：`Keyboard-props.ts`
 - 示例：`Keyboard-example.md`

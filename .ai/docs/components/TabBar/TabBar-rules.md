@@ -22,5 +22,5 @@
 - `demos/TabBarGroup.tsx`
 
 ## 查阅顺序
-- Props：`TabBar-props.json`
+- Props：`TabBar-props.ts`
 - 示例：`TabBar-example.md`

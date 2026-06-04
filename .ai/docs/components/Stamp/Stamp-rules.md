@@ -15,5 +15,5 @@
 - `demos/Stamp.tsx`
 
 ## 查阅顺序
-- Props：`Stamp-props.json`
+- Props：`Stamp-props.ts`
 - 示例：`Stamp-example.md`

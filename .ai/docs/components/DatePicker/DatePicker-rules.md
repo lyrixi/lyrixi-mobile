@@ -25,5 +25,5 @@
 - `demos/DatePickerRangeSelector.tsx`
 
 ## 查阅顺序
-- Props：`DatePicker-props.json`
+- Props：`DatePicker-props.ts`
 - 示例：`DatePicker-example.md`

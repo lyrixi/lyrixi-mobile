@@ -33,5 +33,5 @@
 - `demos/InputRate.tsx`
 
 ## 查阅顺序
-- Props：`Input-props.json`
+- Props：`Input-props.ts`
 - 示例：`Input-example.md`

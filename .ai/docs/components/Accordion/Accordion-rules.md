@@ -15,5 +15,5 @@
 - `demos/Accordion.tsx`
 
 ## 查阅顺序
-- Props：`Accordion-props.json`
+- Props：`Accordion-props.ts`
 - 示例：`Accordion-example.md`

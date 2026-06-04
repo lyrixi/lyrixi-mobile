@@ -23,5 +23,5 @@
 - `demos/AttachUploading.tsx`
 
 ## 查阅顺序
-- Props：`Attach-props.json`
+- Props：`Attach-props.ts`
 - 示例：`Attach-example.md`

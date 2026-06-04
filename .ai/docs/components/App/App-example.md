@@ -4,4 +4,4 @@
 
 业务代码引入：`import { App } from 'lyrixi-mobile'`
 
-_暂无 demo 文件，请查阅 `-rules.md` 与 `-props.json`。_
+_暂无 demo 文件，请查阅 `-rules.md` 与 `-props.ts`。_

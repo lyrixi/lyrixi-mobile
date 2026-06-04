@@ -15,5 +15,5 @@
 - `demos/Float.tsx`
 
 ## 查阅顺序
-- Props：`Float-props.json`
+- Props：`Float-props.ts`
 - 示例：`Float-example.md`

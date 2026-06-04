@@ -19,5 +19,5 @@
 - `demos/IndexBarAnchor.tsx`
 
 ## 查阅顺序
-- Props：`IndexBar-props.json`
+- Props：`IndexBar-props.ts`
 - 示例：`IndexBar-example.md`

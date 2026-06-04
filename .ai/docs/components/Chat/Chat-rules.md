@@ -18,5 +18,5 @@
 - `demos/ChatItem.tsx`
 
 ## 查阅顺序
-- Props：`Chat-props.json`
+- Props：`Chat-props.ts`
 - 示例：`Chat-example.md`

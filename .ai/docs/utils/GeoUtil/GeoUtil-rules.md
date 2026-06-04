@@ -18,5 +18,5 @@
 - `demos/GeoUtil.tsx`
 
 ## 查阅顺序
-- API：`GeoUtil-props.json`
+- API：`GeoUtil-props.ts`
 - 示例：`GeoUtil-example.md`

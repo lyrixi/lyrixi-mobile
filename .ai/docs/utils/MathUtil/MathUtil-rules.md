@@ -18,5 +18,5 @@
 - `demos/MathUtil.tsx`
 
 ## 查阅顺序
-- API：`MathUtil-props.json`
+- API：`MathUtil-props.ts`
 - 示例：`MathUtil-example.md`

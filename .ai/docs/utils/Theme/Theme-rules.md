@@ -13,5 +13,5 @@
 - `Theme.hexToRgb`
 
 ## 查阅顺序
-- API：`Theme-props.json`
+- API：`Theme-props.ts`
 - 示例：`Theme-example.md`

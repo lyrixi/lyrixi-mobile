@@ -18,5 +18,5 @@
 - `demos/DOMUtil.tsx`
 
 ## 查阅顺序
-- API：`DOMUtil-props.json`
+- API：`DOMUtil-props.ts`
 - 示例：`DOMUtil-example.md`

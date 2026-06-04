@@ -21,5 +21,5 @@
 - `demos/ListPaginationModal/index.tsx`
 
 ## 查阅顺序
-- Props：`ListPagination-props.json`
+- Props：`ListPagination-props.ts`
 - 示例：`ListPagination-example.md`

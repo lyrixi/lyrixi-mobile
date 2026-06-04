@@ -13,5 +13,5 @@
 - `demos/Text.tsx`
 
 ## 查阅顺序
-- Props：`Text-props.json`
+- Props：`Text-props.ts`
 - 示例：`Text-example.md`

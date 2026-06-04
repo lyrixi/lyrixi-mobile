@@ -15,5 +15,5 @@
 - `demos/SafeArea.tsx`
 
 ## 查阅顺序
-- Props：`SafeArea-props.json`
+- Props：`SafeArea-props.ts`
 - 示例：`SafeArea-example.md`

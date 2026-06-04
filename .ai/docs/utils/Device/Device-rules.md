@@ -25,5 +25,5 @@
 - `demos/Device.tsx`
 
 ## 查阅顺序
-- API：`Device-props.json`
+- API：`Device-props.ts`
 - 示例：`Device-example.md`

@@ -15,5 +15,5 @@
 - `demos/Badge.tsx`
 
 ## 查阅顺序
-- Props：`Badge-props.json`
+- Props：`Badge-props.ts`
 - 示例：`Badge-example.md`

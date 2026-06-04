@@ -18,5 +18,5 @@
 - `demos/ProgressCircle.tsx`
 
 ## 查阅顺序
-- Props：`Progress-props.json`
+- Props：`Progress-props.ts`
 - 示例：`Progress-example.md`

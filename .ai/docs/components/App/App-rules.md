@@ -12,5 +12,5 @@
 - 需要启用日志、调试等功能时
 
 ## 查阅顺序
-- Props：`App-props.json`
+- Props：`App-props.ts`
 - 示例：`App-example.md`

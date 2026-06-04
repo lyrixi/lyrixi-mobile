@@ -22,5 +22,5 @@
 - `demos/LoadingBallWave.tsx`
 
 ## 查阅顺序
-- Props：`Loading-props.json`
+- Props：`Loading-props.ts`
 - 示例：`Loading-example.md`

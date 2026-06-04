@@ -15,5 +15,5 @@
 - `demos/Selector.tsx`
 
 ## 查阅顺序
-- Props：`Selector-props.json`
+- Props：`Selector-props.ts`
 - 示例：`Selector-example.md`

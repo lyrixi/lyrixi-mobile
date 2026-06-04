@@ -26,5 +26,5 @@
 - `VariablesUtil.getHeightValue`
 
 ## 查阅顺序
-- API：`VariablesUtil-props.json`
+- API：`VariablesUtil-props.ts`
 - 示例：`VariablesUtil-example.md`

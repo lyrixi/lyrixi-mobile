@@ -15,5 +15,5 @@
 - `demos/NoticeBar.tsx`
 
 ## 查阅顺序
-- Props：`NoticeBar-props.json`
+- Props：`NoticeBar-props.ts`
 - 示例：`NoticeBar-example.md`

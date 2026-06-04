@@ -20,5 +20,5 @@
 - `demos/ObjectUtil.tsx`
 
 ## 查阅顺序
-- API：`ObjectUtil-props.json`
+- API：`ObjectUtil-props.ts`
 - 示例：`ObjectUtil-example.md`

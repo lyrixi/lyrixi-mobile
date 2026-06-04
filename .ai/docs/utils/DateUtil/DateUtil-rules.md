@@ -32,5 +32,5 @@
 - `demos/DateUtil.tsx`
 
 ## 查阅顺序
-- API：`DateUtil-props.json`
+- API：`DateUtil-props.ts`
 - 示例：`DateUtil-example.md`

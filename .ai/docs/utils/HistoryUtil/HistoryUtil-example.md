@@ -4,4 +4,4 @@
 
 业务代码引入：`import { HistoryUtil } from 'lyrixi-mobile'`
 
-_暂无 demo 文件，请查阅 `-rules.md`、`-props.json` 与 `src/utils/HistoryUtil/`。_
+_暂无 demo 文件，请查阅 `-rules.md`、`-props.ts` 与 `src/utils/HistoryUtil/`。_

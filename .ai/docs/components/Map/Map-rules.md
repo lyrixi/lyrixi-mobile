@@ -38,5 +38,5 @@
 - `demos/PageMapMarkers.tsx`
 
 ## 查阅顺序
-- Props：`Map-props.json`
+- Props：`Map-props.ts`
 - 示例：`Map-example.md`

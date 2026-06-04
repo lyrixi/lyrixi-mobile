@@ -17,5 +17,5 @@
 - `demos/FullScreen.tsx`
 
 ## 查阅顺序
-- API：`FullScreen-props.json`
+- API：`FullScreen-props.ts`
 - 示例：`FullScreen-example.md`

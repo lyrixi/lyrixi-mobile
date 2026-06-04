@@ -18,5 +18,5 @@
 - `demos/Main/index.tsx`
 
 ## 查阅顺序
-- Props：`Transfer-props.json`
+- Props：`Transfer-props.ts`
 - 示例：`Transfer-example.md`

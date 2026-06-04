@@ -18,5 +18,5 @@
 - `demos/FilterModal/index.tsx`
 
 ## 查阅顺序
-- Props：`Modal-props.json`
+- Props：`Modal-props.ts`
 - 示例：`Modal-example.md`

@@ -15,5 +15,5 @@
 - `demos/Tooltip.tsx`
 
 ## 查阅顺序
-- Props：`Tooltip-props.json`
+- Props：`Tooltip-props.ts`
 - 示例：`Tooltip-example.md`

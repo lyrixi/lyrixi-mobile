@@ -18,5 +18,5 @@
 - `demos/PickerMain.tsx`
 
 ## 查阅顺序
-- Props：`Picker-props.json`
+- Props：`Picker-props.ts`
 - 示例：`Picker-example.md`

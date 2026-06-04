@@ -17,5 +17,5 @@
 - `demos/Storage.demos.types.ts`
 
 ## 查阅顺序
-- API：`Storage-props.json`
+- API：`Storage-props.ts`
 - 示例：`Storage-example.md`

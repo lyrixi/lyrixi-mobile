@@ -13,5 +13,5 @@
 - `demos/Debugger.tsx`
 
 ## 查阅顺序
-- API：`Debugger-props.json`
+- API：`Debugger-props.ts`
 - 示例：`Debugger-example.md`

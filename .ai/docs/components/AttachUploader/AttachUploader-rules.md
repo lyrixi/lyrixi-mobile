@@ -15,5 +15,5 @@
 - `demos/index.tsx`
 
 ## 查阅顺序
-- Props：`AttachUploader-props.json`
+- Props：`AttachUploader-props.ts`
 - 示例：`AttachUploader-example.md`

@@ -18,5 +18,5 @@
 - `demos/ListHeaderItem.tsx`
 
 ## 查阅顺序
-- Props：`List-props.json`
+- Props：`List-props.ts`
 - 示例：`List-example.md`

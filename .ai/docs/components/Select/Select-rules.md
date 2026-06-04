@@ -18,5 +18,5 @@
 - `demos/SelectCombo.tsx`
 
 ## 查阅顺序
-- Props：`Select-props.json`
+- Props：`Select-props.ts`
 - 示例：`Select-example.md`

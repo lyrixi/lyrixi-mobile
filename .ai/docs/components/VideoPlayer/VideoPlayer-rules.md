@@ -15,5 +15,5 @@
 - `demos/VideoPlayer.tsx`
 
 ## 查阅顺序
-- Props：`VideoPlayer-props.json`
+- Props：`VideoPlayer-props.ts`
 - 示例：`VideoPlayer-example.md`

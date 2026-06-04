@@ -17,5 +17,5 @@
 - `demos/Clipboard.tsx`
 
 ## 查阅顺序
-- API：`Clipboard-props.json`
+- API：`Clipboard-props.ts`
 - 示例：`Clipboard-example.md`

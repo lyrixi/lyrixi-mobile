@@ -19,5 +19,5 @@
 - `demos/FormItem.tsx`
 
 ## 查阅顺序
-- Props：`Form-props.json`
+- Props：`Form-props.ts`
 - 示例：`Form-example.md`

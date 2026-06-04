@@ -15,5 +15,5 @@
 - `demos/QRCode.tsx`
 
 ## 查阅顺序
-- Props：`QRCode-props.json`
+- Props：`QRCode-props.ts`
 - 示例：`QRCode-example.md`

@@ -19,5 +19,5 @@
 - `demos/CalendarHeader.tsx`
 
 ## 查阅顺序
-- Props：`Calendar-props.json`
+- Props：`Calendar-props.ts`
 - 示例：`Calendar-example.md`

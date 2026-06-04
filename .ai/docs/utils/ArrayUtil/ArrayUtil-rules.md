@@ -29,5 +29,5 @@
 - `demos/ArrayUtil.tsx`
 
 ## 查阅顺序
-- API：`ArrayUtil-props.json`
+- API：`ArrayUtil-props.ts`
 - 示例：`ArrayUtil-example.md`

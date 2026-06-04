@@ -25,5 +25,5 @@
 - `demos/MediaMark.tsx`
 
 ## 查阅顺序
-- Props：`Media-props.json`
+- Props：`Media-props.ts`
 - 示例：`Media-example.md`

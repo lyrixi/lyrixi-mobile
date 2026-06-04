@@ -13,5 +13,5 @@
 - `demos/EventUtil.tsx`
 
 ## 查阅顺序
-- API：`EventUtil-props.json`
+- API：`EventUtil-props.ts`
 - 示例：`EventUtil-example.md`

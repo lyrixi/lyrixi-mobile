@@ -15,5 +15,5 @@
 - `demos/RowCol.tsx`
 
 ## 查阅顺序
-- Props：`Row-props.json`
+- Props：`Row-props.ts`
 - 示例：`Row-example.md`

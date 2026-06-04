@@ -32,5 +32,5 @@
 - `demos/MessageButton.tsx`
 
 ## 查阅顺序
-- Props：`Message-props.json`
+- Props：`Message-props.ts`
 - 示例：`Message-example.md`

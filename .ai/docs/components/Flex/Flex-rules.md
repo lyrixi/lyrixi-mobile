@@ -19,5 +19,5 @@
 - `demos/FlexCompact.tsx`
 
 ## 查阅顺序
-- Props：`Flex-props.json`
+- Props：`Flex-props.ts`
 - 示例：`Flex-example.md`

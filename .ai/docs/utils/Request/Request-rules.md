@@ -17,5 +17,5 @@
 - `demos/cache.tsx`
 
 ## 查阅顺序
-- API：`Request-props.json`
+- API：`Request-props.ts`
 - 示例：`Request-example.md`

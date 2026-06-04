@@ -21,5 +21,5 @@
 - `demos/NavBarButton.tsx`
 
 ## 查阅顺序
-- Props：`NavBar-props.json`
+- Props：`NavBar-props.ts`
 - 示例：`NavBar-example.md`

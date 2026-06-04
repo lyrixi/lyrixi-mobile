@@ -20,5 +20,5 @@
 - `demos/ButtonIcon.tsx`
 
 ## 查阅顺序
-- Props：`Button-props.json`
+- Props：`Button-props.ts`
 - 示例：`Button-example.md`

@@ -22,5 +22,5 @@
 - `demos/LocaleUtil.tsx`
 
 ## 查阅顺序
-- API：`LocaleUtil-props.json`
+- API：`LocaleUtil-props.ts`
 - 示例：`LocaleUtil-example.md`

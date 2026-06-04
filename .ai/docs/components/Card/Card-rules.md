@@ -21,5 +21,5 @@
 - `demos/CardMain.tsx`
 
 ## 查阅顺序
-- Props：`Card-props.json`
+- Props：`Card-props.ts`
 - 示例：`Card-example.md`

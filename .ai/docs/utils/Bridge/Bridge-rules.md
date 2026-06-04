@@ -38,5 +38,5 @@
 - `demos/Bridge.tsx`
 
 ## 查阅顺序
-- API：`Bridge-props.json`
+- API：`Bridge-props.ts`
 - 示例：`Bridge-example.md`

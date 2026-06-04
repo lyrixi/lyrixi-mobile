@@ -1,9 +1,0 @@
-{
-  "LocaleUtil.languageMap": "支持的语言列表",
-  "LocaleUtil._getCustomGetLanguages": "存储自定义 getLanguage 函数",
-  "LocaleUtil.addLanguage": "见源码与 demos",
-  "LocaleUtil.getLanguage": "见源码与 demos",
-  "LocaleUtil.loadLocale": "见源码与 demos",
-  "LocaleUtil.setLocale": "见源码与 demos",
-  "LocaleUtil.getLanguageMap": "见源码与 demos"
-}

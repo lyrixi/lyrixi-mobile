@@ -15,5 +15,5 @@
 - `demos/Icon.tsx`
 
 ## 查阅顺序
-- Props：`Icon-props.json`
+- Props：`Icon-props.ts`
 - 示例：`Icon-example.md`

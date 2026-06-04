@@ -17,5 +17,5 @@
 - `demos/ListAsyncGroup.tsx`
 
 ## 查阅顺序
-- Props：`ListAsync-props.json`
+- Props：`ListAsync-props.ts`
 - 示例：`ListAsync-example.md`

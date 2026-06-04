@@ -15,5 +15,5 @@
 - `demos/general/index.tsx`
 
 ## 查阅顺序
-- Props：`MediaUploader-props.json`
+- Props：`MediaUploader-props.ts`
 - 示例：`MediaUploader-example.md`

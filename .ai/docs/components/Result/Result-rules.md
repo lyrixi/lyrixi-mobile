@@ -16,5 +16,5 @@
 - `demos/500.tsx`
 
 ## 查阅顺序
-- Props：`Result-props.json`
+- Props：`Result-props.ts`
 - 示例：`Result-example.md`

@@ -20,5 +20,5 @@
 - `demos/loadJs.tsx`
 
 ## 查阅顺序
-- API：`AssetUtil-props.json`
+- API：`AssetUtil-props.ts`
 - 示例：`AssetUtil-example.md`

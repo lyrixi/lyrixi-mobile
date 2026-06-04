@@ -15,5 +15,5 @@
 - `demos/Divider.tsx`
 
 ## 查阅顺序
-- Props：`Divider-props.json`
+- Props：`Divider-props.ts`
 - 示例：`Divider-example.md`

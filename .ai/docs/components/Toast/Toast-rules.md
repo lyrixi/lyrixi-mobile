@@ -16,5 +16,5 @@
 - `demos/hide/index.tsx`
 
 ## 查阅顺序
-- Props：`Toast-props.json`
+- Props：`Toast-props.ts`
 - 示例：`Toast-example.md`

@@ -14,5 +14,5 @@
 - `demos/Combo.tsx`
 
 ## 查阅顺序
-- Props：`Combo-props.json`
+- Props：`Combo-props.ts`
 - 示例：`Combo-example.md`

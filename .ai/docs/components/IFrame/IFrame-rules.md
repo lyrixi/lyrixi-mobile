@@ -12,5 +12,5 @@
 - 需要隔离内容时
 
 ## 查阅顺序
-- Props：`IFrame-props.json`
+- Props：`IFrame-props.ts`
 - 示例：`IFrame-example.md`

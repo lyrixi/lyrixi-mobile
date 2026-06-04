@@ -15,5 +15,5 @@
 - `demos/FooterBarButton.tsx`
 
 ## 查阅顺序
-- Props：`FooterBar-props.json`
+- Props：`FooterBar-props.ts`
 - 示例：`FooterBar-example.md`

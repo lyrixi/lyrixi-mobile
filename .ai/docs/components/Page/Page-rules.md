@@ -23,5 +23,5 @@
 - `demos/PageFooter.tsx`
 
 ## 查阅顺序
-- Props：`Page-props.json`
+- Props：`Page-props.ts`
 - 示例：`Page-example.md`

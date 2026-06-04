@@ -25,5 +25,5 @@
 - `demos/CascaderDistrictMain.tsx`
 
 ## 查阅顺序
-- Props：`Cascader-props.json`
+- Props：`Cascader-props.ts`
 - 示例：`Cascader-example.md`

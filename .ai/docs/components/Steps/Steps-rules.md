@@ -15,5 +15,5 @@
 - `demos/Active.tsx`
 
 ## 查阅顺序
-- Props：`Steps-props.json`
+- Props：`Steps-props.ts`
 - 示例：`Steps-example.md`

@@ -20,5 +20,5 @@
 - `demos/upload.ts`
 
 ## 查阅顺序
-- API：`Logger-props.json`
+- API：`Logger-props.ts`
 - 示例：`Logger-example.md`

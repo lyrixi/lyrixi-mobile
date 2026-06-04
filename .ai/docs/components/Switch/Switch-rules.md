@@ -15,5 +15,5 @@
 - `demos/Switch.tsx`
 
 ## 查阅顺序
-- Props：`Switch-props.json`
+- Props：`Switch-props.ts`
 - 示例：`Switch-example.md`
