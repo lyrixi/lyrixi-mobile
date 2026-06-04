@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import close from '../close'
 import Main from '../../Main'
 
 import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
@@ -22,8 +23,6 @@ function MessageModal({
   maskClassName,
   // Elements
   children,
-  // Events
-  onClose,
   // Elements
   iconRender,
   title,
@@ -40,8 +39,12 @@ function MessageModal({
   // Value & Display Value
   buttonsLayout,
   buttons
-}: Omit<MessageModalProps, 'open'>) {
+}: Omit<MessageModalProps, 'open' | 'onClose'>) {
   const [active, setActive] = useState(false)
+
+  function handleClose() {
+    void close({ animated: true })
+  }
 
   useEffect(() => {
     const timer = window.setTimeout(() => setActive(true), MESSAGE_ENTRANCE_ACTIVE_DELAY)
@@ -56,7 +59,7 @@ function MessageModal({
   ) {
     const result = button.onClick ? await button.onClick(e) : undefined
     if (result !== false) {
-      onClose?.()
+      handleClose()
     }
   }
 
@@ -69,7 +72,7 @@ function MessageModal({
   function handleMaskClick(e: React.MouseEvent<HTMLDivElement>) {
     if (!maskClosable) return
     if (e.target !== e.currentTarget) return
-    onClose?.(e)
+    handleClose()
   }
 
   const activeClass = active ? 'lyrixi-active' : ''
