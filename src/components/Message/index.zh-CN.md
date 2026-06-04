@@ -21,7 +21,7 @@ toc: content
 
 ### Message.open / Message.close
 
-<code src="./demos/Message.tsx"></code>
+<code src="./demos/MessageApi.tsx"></code>
 
 ### Message.Modal
 

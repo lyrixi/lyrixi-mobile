@@ -1,6 +1,6 @@
 import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
 
-export default function MessageDemo() {
+export default function MessageApiDemo() {
   const handleOpenMessage = () => {
     Message.open({
       iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,

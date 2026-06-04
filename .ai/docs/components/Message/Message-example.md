@@ -8,7 +8,7 @@
 
 | Demo | 说明 |
 |------|------|
-| [demos/Message.tsx](./demos/Message.tsx) | 主示例 |
+| [demos/MessageApi.tsx](./demos/MessageApi.tsx) | 主示例 |
 | [demos/MessageButton.tsx](./demos/MessageButton.tsx) | Message.Button 子组件示例 |
 | [demos/MessageCombo.tsx](./demos/MessageCombo.tsx) | Message.Combo 子组件示例 |
 | [demos/MessageFooter.tsx](./demos/MessageFooter.tsx) | Message.Footer 子组件示例 |

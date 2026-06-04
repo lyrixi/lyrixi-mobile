@@ -21,7 +21,7 @@
 - `Message.Button`
 
 ## Demo 索引（本目录 `demos/`）
-- `demos/Message.tsx`
+- `demos/MessageApi.tsx`
 - `demos/MessageModal.tsx`
 - `demos/MessageCombo.tsx`
 - `demos/MessageMain.tsx`
