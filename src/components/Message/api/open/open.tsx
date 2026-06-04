@@ -1,5 +1,7 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+// 内库使用-start
+import { createRoot } from '../../../../utils/ReactDOMClientCompat'
+// 内库使用-end
 
 import close from '../close'
 import { MESSAGE_ID } from '../constants'
