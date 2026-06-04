@@ -8,8 +8,8 @@ type DestroyOptions = {
 function finishDestroy() {
   messageRuntime.root?.unmount()
   messageRuntime.root = null
-  messageRuntime.container?.remove()
-  messageRuntime.container = null
+  messageRuntime.rootElement?.remove()
+  messageRuntime.rootElement = null
   messageRuntime.animateClose = null
 
   if (messageRuntime.exitTimer) {
@@ -26,7 +26,7 @@ function finishDestroy() {
 export default function destroy(options?: DestroyOptions) {
   const { animated = true } = options ?? {}
 
-  if (!messageRuntime.root || !messageRuntime.container) {
+  if (!messageRuntime.root || !messageRuntime.rootElement) {
     return
   }
 

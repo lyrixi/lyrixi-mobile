@@ -12,12 +12,12 @@ export default function open(props: MessageOpenProps): void {
   destroy({ animated: false })
 
   const host = props.portal || document.body
-  const container = document.createElement('div')
-  host.appendChild(container)
+  const rootElement = document.createElement('div')
+  host.appendChild(rootElement)
 
-  const root = createRoot(container)
+  const root = createRoot(rootElement)
   messageRuntime.root = root
-  messageRuntime.container = container
+  messageRuntime.rootElement = rootElement
   messageRuntime.onClose = props.onClose
 
   const handleRequestClose = () => destroy({ animated: true })

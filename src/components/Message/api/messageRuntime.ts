@@ -2,7 +2,7 @@ import type { Root } from 'react-dom/client'
 
 export type MessageRuntime = {
   root: Root | null
-  container: HTMLDivElement | null
+  rootElement: HTMLDivElement | null
   onClose?: () => void
   exitTimer: number | null
   animateClose: (() => void) | null
@@ -10,7 +10,7 @@ export type MessageRuntime = {
 
 export const messageRuntime: MessageRuntime = {
   root: null,
-  container: null,
+  rootElement: null,
   onClose: undefined,
   exitTimer: null,
   animateClose: null
