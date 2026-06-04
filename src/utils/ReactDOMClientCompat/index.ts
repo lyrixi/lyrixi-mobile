@@ -12,15 +12,10 @@ function isReact18OrNewer(): boolean {
   return parseInt(React.version.split('.')[0] ?? '0', 10) >= 18
 }
 
-let clientCreateRoot: React18CreateRoot | undefined
-
 function createReact18Root(container: Element): ReactDOMClientCompatRoot {
-  if (!clientCreateRoot) {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
-    const { createRoot } = require('react-dom/client') as { createRoot: React18CreateRoot }
-    clientCreateRoot = createRoot
-  }
-  return clientCreateRoot(container)
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
+  const { createRoot } = require('react-dom/client') as { createRoot: React18CreateRoot }
+  return createRoot(container)
 }
 
 function createReact17Root(container: Element): ReactDOMClientCompatRoot {
