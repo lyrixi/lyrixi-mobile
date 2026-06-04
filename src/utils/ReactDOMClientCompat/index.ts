@@ -1,66 +1,54 @@
 import type { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
-/** 与 react-dom/client 的 Root 一致（仅保留库内用到的 render / unmount） */
-export type Root = {
-  render(element: ReactNode): void
-  unmount(): void
-}
+import type {
+  ReactDOMClientCompatClient18Module,
+  ReactDOMClientCompatContainer,
+  ReactDOMClientCompatDom17,
+  ReactDOMClientCompatDomWith18,
+  ReactDOMClientCompatRoot
+} from './types'
 
-type Container = Element | DocumentFragment
+export type { ReactDOMClientCompatRoot } from './types'
 
-type ReactDOMClientModule = {
-  createRoot: (container: Container) => Root
-  hydrateRoot: (container: Element | Document, initialChildren: ReactNode) => Root
-}
+const reactDom17 = ReactDOM as ReactDOMClientCompatDom17
 
-type ReactDOMWithClient = typeof ReactDOM & Partial<ReactDOMClientModule>
+let cachedReact18Client: ReactDOMClientCompatClient18Module | null | undefined
 
-/** React 17 无 createRoot，用 render / unmountComponentAtNode 模拟 */
-type LegacyReactDOM = {
-  render?: (element: ReactNode, container: Container) => unknown
-  hydrate?: (element: ReactNode, container: Element) => void
-  unmountComponentAtNode?: (container: Container) => boolean
-}
-
-const legacyReactDom = ReactDOM as LegacyReactDOM
-
-/** 解析顺序：react-dom 主包(18) → react-dom/client(19) → null(17 走垫片) */
-let cachedClient: ReactDOMClientModule | null | undefined
-
-function loadReactDOMClient(): ReactDOMClientModule | null {
-  if (cachedClient !== undefined) {
-    return cachedClient
+/** 解析 18+ 客户端：主包 createRoot(18) → react-dom/client(19) */
+function resolveReact18Client(): ReactDOMClientCompatClient18Module | null {
+  if (cachedReact18Client !== undefined) {
+    return cachedReact18Client
   }
 
-  const fromMain = ReactDOM as ReactDOMWithClient
+  const fromMain = ReactDOM as ReactDOMClientCompatDomWith18
   if (typeof fromMain.createRoot === 'function') {
-    cachedClient = fromMain as ReactDOMClientModule
-    return cachedClient
+    cachedReact18Client = fromMain as ReactDOMClientCompatClient18Module
+    return cachedReact18Client
   }
 
   try {
-    // 动态 require，避免 React 17 在打包阶段解析不存在的 react-dom/client
+    // 动态 require，避免 17 在打包阶段解析不存在的 react-dom/client
     // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
-    const fromClient = require('react-dom/client') as ReactDOMClientModule
+    const fromClient = require('react-dom/client') as ReactDOMClientCompatClient18Module
     if (typeof fromClient.createRoot === 'function') {
-      cachedClient = fromClient
-      return cachedClient
+      cachedReact18Client = fromClient
+      return cachedReact18Client
     }
   } catch {
-    // react-dom/client 不存在（React 17）
+    // 17 无 react-dom/client
   }
 
-  cachedClient = null
+  cachedReact18Client = null
   return null
 }
 
-function createRootLegacy(container: Container): Root {
-  const render = legacyReactDom.render
-  const unmount = legacyReactDom.unmountComponentAtNode
+function createRoot17(container: ReactDOMClientCompatContainer): ReactDOMClientCompatRoot {
+  const render = reactDom17.render
+  const unmount = reactDom17.unmountComponentAtNode
   if (!render || !unmount) {
     throw new Error(
-      '[lyrixi-mobile] createRoot is unavailable: use react-dom 18+ or React 17 with legacy render API.'
+      '[lyrixi-mobile] createRoot is unavailable: use react-dom 18+ or React 17 render API.'
     )
   }
   return {
@@ -73,27 +61,16 @@ function createRootLegacy(container: Container): Root {
   }
 }
 
-/** createRoot：React 18/19 走原生 API，React 17 走垫片 */
-export function createRoot(container: Container): Root {
-  const client = loadReactDOMClient()
-  if (client) {
-    return client.createRoot(container)
-  }
-  return createRootLegacy(container)
-}
-
-/** hydrateRoot：React 18/19 走原生 API，React 17 用 hydrate + render 模拟 */
-export function hydrateRoot(container: Element | Document, element: ReactNode): Root {
-  const client = loadReactDOMClient()
-  if (client?.hydrateRoot) {
-    return client.hydrateRoot(container, element)
-  }
-  const hydrate = legacyReactDom.hydrate
-  const render = legacyReactDom.render
-  const unmount = legacyReactDom.unmountComponentAtNode
+function hydrateRoot17(
+  container: Element | Document,
+  element: ReactNode
+): ReactDOMClientCompatRoot {
+  const hydrate = reactDom17.hydrate
+  const render = reactDom17.render
+  const unmount = reactDom17.unmountComponentAtNode
   if (!hydrate || !render || !unmount) {
     throw new Error(
-      '[lyrixi-mobile] hydrateRoot is unavailable: use react-dom 18+ or React 17 with legacy hydrate API.'
+      '[lyrixi-mobile] hydrateRoot is unavailable: use react-dom 18+ or React 17 hydrate API.'
     )
   }
   const host = container as Element
@@ -106,4 +83,25 @@ export function hydrateRoot(container: Element | Document, element: ReactNode): 
       unmount(host)
     }
   }
+}
+
+/** createRoot：18+ 原生 API，17 垫片 */
+export function createRoot(container: ReactDOMClientCompatContainer): ReactDOMClientCompatRoot {
+  const client18 = resolveReact18Client()
+  if (client18) {
+    return client18.createRoot(container)
+  }
+  return createRoot17(container)
+}
+
+/** hydrateRoot：18+ 原生 API，17 垫片 */
+export function hydrateRoot(
+  container: Element | Document,
+  element: ReactNode
+): ReactDOMClientCompatRoot {
+  const client18 = resolveReact18Client()
+  if (client18?.hydrateRoot) {
+    return client18.hydrateRoot(container, element)
+  }
+  return hydrateRoot17(container, element)
 }

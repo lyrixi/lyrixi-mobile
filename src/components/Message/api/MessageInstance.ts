@@ -1,9 +1,9 @@
 // 内库使用-start
-import type { Root } from '../../../utils/ReactDOMClientCompat'
+import type { ReactDOMClientCompatRoot } from '../../../utils/ReactDOMClientCompat'
 // 内库使用-end
 
 export type MessageInstance = {
-  root: Root | null
+  root: ReactDOMClientCompatRoot | null
   rootElement: HTMLDivElement | null
 }
 
