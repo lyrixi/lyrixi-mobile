@@ -18,8 +18,16 @@ description: >-
 
 ## 准备
 
-1. Read [`.ai/docs/pages/catalog.json`](../../docs/pages/catalog.json) — 模板清单（`id`、`title`、`templatePath`）。
+1. Read [`.ai/docs/pages/catalog.json`](../../docs/pages/catalog.json) — 模板清单（`id`、`title`、`templatePath`、`props`、`rules`、`example`）。
 2. Read [reference/generation.md](reference/generation.md) — 复制模板后的 API / 目录改写规则。
+
+## 选定模板后（Q1b 之后必读）
+
+根据 catalog 中该项的 `props`、`rules`、`example` 路径：
+
+1. **`{Variant}-props.ts`** — 本模板所有**可替换项**（output、design、api、formFields、listItem 等）；问答收集的每个答案必须能映射到 props 中的字段。
+2. **`{Variant}-rules.md`** — 目录结构、替换点表、禁止项。
+3. **`{Variant}-example.md`** — 仅索引；需要看代码时再 Read `demos/{Variant}/` 下文件。
 
 ## 问答原则（必读）
 
@@ -41,7 +49,7 @@ description: >-
 
 **问题：** 选择具体模板？
 
-- 展示 `category · title`，值为 `id`。记录 `templateId`、`templatePath` → `.ai/docs/pages/{templatePath}`。
+- 展示 `category · title`，值为 `id`。记录 `templateId`、`templatePath`，以及 catalog 中的 `props` / `rules` / `example` 路径 → **立即 Read props + rules**。
 
 ### Q2 — 是否有高保真（AskQuestion）
 
@@ -54,7 +62,7 @@ description: >-
 
 ### Q2b — 页面描述（仅当 Q2 选「没有」；单独一轮文字问）
 
-**只问：** 请用文字描述页面布局（Header/Main/Footer、展示字段、交互）。记入 `designNotes`。
+**只问：** 请用文字描述页面布局（Header/Main/Footer、展示字段、交互）。记入 `design.designNotes`（对应 `{Variant}-props.ts` 的 `PageDesignSpec`）。
 
 ### Q3 — 输出路径方式（AskQuestion）
 
@@ -91,13 +99,13 @@ description: >-
 
 **只问：** 接口入参有哪些？请写字段名、类型、来源（如 `id` 来自 `Device.getUrlParameter('id')`，或来自 `queryParams`）。
 
-记录：`apiRequest`。
+记录：`apiRequest`（写入 page-spec，并映射到 props 里对应 `api.*.request`）。
 
 ### Q8 — 接口出参（单独一轮文字问）
 
 **只问：** 接口出参如何映射？请写成功码字段、业务数据字段、错误文案字段（与前端 `result.status` / `result.data` / `result.message` 的对应关系）。
 
-记录：`apiResponse`。
+记录：`apiResponse`（映射到 props 里对应 `api.*.response`）。
 
 ### Q9 — 确认（可选）
 
@@ -105,13 +113,13 @@ description: >-
 
 ## 生成步骤
 
-1. **读模板** — 递归 Read `.ai/docs/pages/{templatePath}/`（至少 `index.tsx`、`api/**`、子组件入口）。必要时对照 `src/examples/` 同路径（若存在）但以 `.ai/docs/pages` 为准。
-2. **写 `page-spec.json`** — 在目标页面目录写入本次问答结果（见 [reference/page-spec.schema.json](reference/page-spec.schema.json)），便于后续改动。
+1. **读文档与模板** — Read catalog 指向的 `{Variant}-props.ts`、`{Variant}-rules.md`；再递归 Read `.ai/docs/pages/{templatePath}/`（至少 `index.tsx`、`api/**`、子组件入口）。
+2. **写 `page-spec.json`** — 在目标页面目录写入本次问答结果，**字段结构与 props.ts 对齐**（见 [reference/page-spec.schema.json](reference/page-spec.schema.json)）。
 3. **复制并改写** — 按模板目录结构创建目标目录：
-   - 保留模板的 Header / Main / Footer / api 分层；
+   - 按 `{Variant}-props.ts` 与 `{Variant}-rules.md` 的「替换点」表改 url、字段、文案；
    - 按 `reference/generation.md` 替换 URL、method、payload/response 转换；
-   - 按 `designNotes` 增删表单项、列表列、文案（`LocaleUtil.locale`）；
-   - 删除模板中不需要的 demo 专有逻辑（如 mock、console.log）。
+   - 按 `design.designNotes` 增删表单项、列表列（`formFields` / `displayFields` / `listItem`）；
+   - 删除 demo 专有逻辑（mock、`/api/examples/*`、`console.log`）。
 4. **校验** — `npx tsc --noEmit`；修复新增文件中的类型错误。
 
 ## 产出清单

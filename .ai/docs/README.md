@@ -4,12 +4,14 @@
 
 ## 目录说明
 
-### `pages/` — 页面模板（参考模板）
+### `pages/` — 页面模板
 
-**供参考的完整页面示例**（列表、编辑、详情、报表等），供 [create-page](../skills/create-page/SKILL.md) 等技能选模板、生成业务页。
+**列表 / 编辑 / 详情 / 报表** 参考模板，供 [create-page](../skills/create-page/SKILL.md) 生成 `src/pages/`。
 
-- 模板清单：[`pages/catalog.json`](pages/catalog.json)
+- 模板清单：[`pages/catalog.json`](pages/catalog.json)（含 `props` / `rules` / `example` 路径）
 - 说明：[`pages/README.md`](pages/README.md)
+
+每个模板三件套：`{Variant}-props.ts`（可替换项）、`{Variant}-rules.md`、`{Variant}-example.md` + `demos/{Variant}/` 源码。
 
 ### `components/` — 组件文档
 
@@ -40,7 +42,7 @@
 ## 如何使用
 
 1. **推荐**：启用技能 [`docs`](../skills/docs/SKILL.md)，用 `resolve-docs.mjs` + `mapping.json` 检索后按需读 props/rules。
-2. 生成业务页：查 `pages/catalog.json` 选模板，再结合 `components/`、`utils/` 中的 props 与 rules。
+2. 生成业务页：查 `pages/catalog.json` 选模板 → 读 `{Variant}-props.ts` + `{Variant}-rules.md` → 按需 Read `demos/`。
 3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
 4. 扩展文档：直接编辑 `.ai/docs` 下对应文件，并更新 `mapping.json` 中的路径与 `keywords`（与 `src` 不一致时以 `src` 为准）。
 

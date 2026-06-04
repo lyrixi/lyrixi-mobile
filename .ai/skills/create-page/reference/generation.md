@@ -1,7 +1,10 @@
 # 模板复制与 API 改写
 
 模板根目录：`.ai/docs/pages/{templatePath}/`  
+文档三件套：`.ai/docs/pages/{Category}/{Variant}-props.ts`、`-rules.md`、`-example.md`  
 生成目标：`src/pages/{PageName}/`（与 [develop-page-structure.md](../../../rules/develop-page-structure.md) 一致）
+
+生成时以 **props.ts 中的可替换项** 为准，将 page-spec.json / 问答结果写入模板对应文件（见各 `-rules.md` 替换点表）。
 
 ## 目录映射
 

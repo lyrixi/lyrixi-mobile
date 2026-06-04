@@ -1,9 +1,11 @@
 {
-  "$comment": "create-page 问答结束后写入目标页面目录的 page-spec.json",
+  "$comment": "create-page 问答结束后写入目标页面目录；字段应对齐 .ai/docs/pages/{Category}/{Variant}-props.ts",
   "templateId": "list-common",
   "templatePath": "List/demos/Common",
-  "outputPath": "src/pages/OrderList",
-  "pageName": "OrderList",
+  "output": {
+    "outputPath": "src/pages/OrderList",
+    "pageName": "OrderList"
+  },
   "design": {
     "hasHiFi": false,
     "designNotes": "用户描述或根据高保真图整理的布局说明"
@@ -14,6 +16,17 @@
       "method": "POST",
       "request": "入参说明或字段表",
       "response": "出参说明：成功码、data 结构、message 字段"
+    }
+  },
+  "cacheName": "order-list",
+  "initialQueryParams": {},
+  "header": {
+    "filters": []
+  },
+  "main": {
+    "listItem": {
+      "titleField": "name",
+      "descriptionField": "introduce"
     }
   }
 }
