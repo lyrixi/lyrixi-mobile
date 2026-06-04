@@ -38,14 +38,14 @@ export default async function close(options?: CloseOptions): Promise<void> {
     return
   }
 
-  const generation = ++closeGeneration
+  const currentGeneration = ++closeGeneration
   const root = messageInstance.root
   const rootElement = messageInstance.rootElement
 
   if (animated) {
     playCloseAnimation(rootElement)
     await delay(MESSAGE_ANIMATION_DURATION_CLOSE)
-    if (generation !== closeGeneration) {
+    if (currentGeneration !== closeGeneration) {
       return
     }
   }
