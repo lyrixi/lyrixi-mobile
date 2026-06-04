@@ -1,5 +1,5 @@
 {
-  "description": "create-page 技能选用的页面模板。templatePath 相对 .ai/docs/examples/",
+  "description": "create-page 技能选用的页面模板。templatePath 相对 .ai/docs/pages/",
   "pages": [
     {
       "id": "list-common",

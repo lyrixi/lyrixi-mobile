@@ -1,6 +1,6 @@
 # 模板复制与 API 改写
 
-模板根目录：`.ai/docs/examples/{templatePath}/`  
+模板根目录：`.ai/docs/pages/{templatePath}/`  
 生成目标：`src/pages/{PageName}/`（与 [develop-page-structure.md](../../../rules/develop-page-structure.md) 一致）
 
 ## 目录映射

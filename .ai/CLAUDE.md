@@ -98,7 +98,7 @@
 详见 `.ai/skills/` 目录（可 symlink 到 `.cursor/skills`、`.claude/skills`）：
 
 - `docs/` — 经 `mapping.json` 检索组件/工具文档，优先按 `.ai/docs` 生成代码
-- `create-page/` — 问答式生成业务页面（选择 docs/examples 模板 + 接口信息）
+- `create-page/` — 问答式生成业务页面（选择 docs/pages 模板 + 接口信息）
 
 ## Docs
 

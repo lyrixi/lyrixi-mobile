@@ -1,4 +1,4 @@
-# 页面模板（examples）
+# 页面模板（pages）
 
 供 **create-page** 技能选用。清单见 [`catalog.json`](catalog.json)。
 

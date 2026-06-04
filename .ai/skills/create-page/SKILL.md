@@ -1,13 +1,13 @@
 ---
 name: create-page
 description: >-
-  问答式生成业务页面：让用户选择 docs/examples 模板、补充设计说明与接口信息，再按模板生成
+  问答式生成业务页面：让用户选择 docs/pages 模板、补充设计说明与接口信息，再按模板生成
   src/pages 页面。在用户要新建页面、搭列表/编辑/详情/报表页时使用。
 ---
 
 # create-page
 
-通过**多轮问答**收集需求，读取 `.ai/docs/examples/` 中的参考模板，生成新业务页面。
+通过**多轮问答**收集需求，读取 `.ai/docs/pages/` 中的参考模板，生成新业务页面。
 
 **约束：** 生成代码时**不要修改** `.ai/rules/`；遵守 `develop-page-structure.md`、`develop-sequence-import.md`、`develop-locale.md` 等 rules。本技能自身迭代时可改 `.cursor/skills/create-page/` 与 `.ai/skills/create-page/`。
 
@@ -18,7 +18,7 @@ description: >-
 
 ## 准备
 
-1. Read [`.ai/docs/examples/catalog.json`](../../docs/examples/catalog.json) — 模板清单（`id`、`title`、`templatePath`）。
+1. Read [`.ai/docs/pages/catalog.json`](../../docs/pages/catalog.json) — 模板清单（`id`、`title`、`templatePath`）。
 2. Read [reference/generation.md](reference/generation.md) — 复制模板后的 API / 目录改写规则。
 
 ## 问答原则（必读）
@@ -41,7 +41,7 @@ description: >-
 
 **问题：** 选择具体模板？
 
-- 展示 `category · title`，值为 `id`。记录 `templateId`、`templatePath` → `.ai/docs/examples/{templatePath}`。
+- 展示 `category · title`，值为 `id`。记录 `templateId`、`templatePath` → `.ai/docs/pages/{templatePath}`。
 
 ### Q2 — 是否有高保真（AskQuestion）
 
@@ -105,7 +105,7 @@ description: >-
 
 ## 生成步骤
 
-1. **读模板** — 递归 Read `.ai/docs/examples/{templatePath}/`（至少 `index.tsx`、`api/**`、子组件入口）。必要时对照 `src/examples/` 同路径（若存在）但以 `.ai/docs/examples` 为准。
+1. **读模板** — 递归 Read `.ai/docs/pages/{templatePath}/`（至少 `index.tsx`、`api/**`、子组件入口）。必要时对照 `src/examples/` 同路径（若存在）但以 `.ai/docs/pages` 为准。
 2. **写 `page-spec.json`** — 在目标页面目录写入本次问答结果（见 [reference/page-spec.schema.json](reference/page-spec.schema.json)），便于后续改动。
 3. **复制并改写** — 按模板目录结构创建目标目录：
    - 保留模板的 Header / Main / Footer / api 分层；
