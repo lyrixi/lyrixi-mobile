@@ -11,9 +11,9 @@ import type { MessageOpenProps } from '../../types'
 export default function open(props: MessageOpenProps): void {
   destroy({ animated: false })
 
-  const host = props.portal || document.body
+  const portal = props.portal || document.body
   const rootElement = document.createElement('div')
-  host.appendChild(rootElement)
+  portal.appendChild(rootElement)
 
   const root = createRoot(rootElement)
   messageRuntime.root = root
