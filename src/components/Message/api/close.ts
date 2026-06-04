@@ -24,10 +24,6 @@ function destroy() {
   messageInstance.root = null
   messageInstance.rootElement?.remove()
   messageInstance.rootElement = null
-
-  const onClose = messageInstance.onClose
-  messageInstance.onClose = undefined
-  onClose?.()
 }
 
 /** 关闭当前 Message.open 实例（全局仅允许一个） */

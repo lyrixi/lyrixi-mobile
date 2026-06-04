@@ -20,7 +20,6 @@ export default async function open(props: MessageOpenProps): Promise<void> {
   const root = createRoot(rootElement)
   messageInstance.root = root
   messageInstance.rootElement = rootElement
-  messageInstance.onClose = props.onClose
 
   const handleRequestClose = () => {
     void close({ animated: true })

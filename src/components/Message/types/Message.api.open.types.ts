@@ -2,6 +2,6 @@ import type { MessageComboButton, MessageComboProps } from './Message.Combo.type
 
 export type MessageOpenButton = MessageComboButton
 
-export interface MessageOpenProps extends Omit<MessageComboProps, 'buttons'> {
+export interface MessageOpenProps extends Omit<MessageComboProps, 'buttons' | 'onClose'> {
   buttons?: MessageOpenButton[]
 }
