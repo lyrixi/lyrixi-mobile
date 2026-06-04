@@ -2,16 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 import Main from '../../Main'
 
-import type { MessageOpenProps } from '../../types'
+import type { MessageModalProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from '../../../../utils/DOMUtil'
 import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
 // 内库使用-end
-
-export type MessageModalProps = MessageOpenProps & {
-  onClose: () => void
-}
 
 function MessageModal({
   maskClassName,
