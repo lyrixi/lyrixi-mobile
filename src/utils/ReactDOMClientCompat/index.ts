@@ -6,15 +6,15 @@ import type { ReactDOMClientCompatRoot } from './types'
 
 export type { ReactDOMClientCompatRoot } from './types'
 
-type React18CreateRoot = (container: Element) => ReactDOMClientCompatRoot
-
 function isReact18OrNewer(): boolean {
   return parseInt(React.version.split('.')[0] ?? '0', 10) >= 18
 }
 
 function createReact18Root(container: Element): ReactDOMClientCompatRoot {
   // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
-  const { createRoot } = require('react-dom/client') as { createRoot: React18CreateRoot }
+  const { createRoot } = require('react-dom/client') as {
+    createRoot: (container: Element) => ReactDOMClientCompatRoot
+  }
   return createRoot(container)
 }
 
