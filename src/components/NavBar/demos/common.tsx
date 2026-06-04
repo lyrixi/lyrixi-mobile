@@ -18,7 +18,8 @@ export default function CommonDemo() {
         <NavBar>
           <NavBar.Button>
             <Icon
-              svg={Icons.Close} size="12"
+              svg={Icons.Close}
+              size="12px"
               style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"
@@ -27,7 +28,7 @@ export default function CommonDemo() {
           <NavBar.Button>
             <Button.Icon
               svg={Icons.ThreeDots}
-              size="12"
+              size="12px"
               style={{ padding: 4 }}
               radius="2px"
               backgroundColor="secondary"
@@ -40,7 +41,8 @@ export default function CommonDemo() {
         <NavBar>
           <NavBar.Button>
             <Icon
-              svg={Icons.Close} size="12"
+              svg={Icons.Close}
+              size="12px"
               style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"

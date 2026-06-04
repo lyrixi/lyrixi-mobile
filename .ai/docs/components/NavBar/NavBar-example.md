@@ -27,7 +27,8 @@ export default function NavBarDemo() {
         <NavBar>
           <NavBar.Button>
             <Icon
-              svg={Icons.Close} size="12"
+              svg={Icons.Close}
+              size="12px"
               style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"
@@ -36,7 +37,7 @@ export default function NavBarDemo() {
           <NavBar.Button>
             <Button.Icon
               svg={Icons.ThreeDots}
-              size="12"
+              size="12px"
               style={{ padding: 4 }}
               radius="2px"
               backgroundColor="secondary"
@@ -49,7 +50,8 @@ export default function NavBarDemo() {
         <NavBar>
           <NavBar.Button>
             <Icon
-              svg={Icons.Close} size="12"
+              svg={Icons.Close}
+              size="12px"
               style={{ padding: 4 }}
               radius="100%"
               backgroundColor="secondary"
@@ -73,9 +75,7 @@ export default function NavBarTitleDemo() {
   return (
     <Page>
       <Page.Main>
-        <NavBar.Title>
-          {/* NavBar.Title 示例内容 */}
-        </NavBar.Title>
+        <NavBar.Title>{/* NavBar.Title 示例内容 */}</NavBar.Title>
       </Page.Main>
     </Page>
   )
@@ -91,9 +91,7 @@ export default function NavBarButtonDemo() {
   return (
     <Page>
       <Page.Main>
-        <NavBar.Button>
-          {/* NavBar.Button 示例内容 */}
-        </NavBar.Button>
+        <NavBar.Button>{/* NavBar.Button 示例内容 */}</NavBar.Button>
       </Page.Main>
     </Page>
   )

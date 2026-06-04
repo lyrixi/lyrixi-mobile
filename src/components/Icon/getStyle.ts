@@ -22,14 +22,10 @@ const sizes = {
   xxxl: { className: 'lyrixi-size-xxxl' }
 }
 
-function getStyle({
-  color,
-  backgroundColor,
-  size,
-  radius,
-  style,
-  className
-}: IconStyleInput): { style: CSSProperties; className: string } {
+function getStyle({ color, backgroundColor, size, radius, style, className }: IconStyleInput): {
+  style: CSSProperties
+  className: string
+} {
   const colorClass = color ? VariablesUtil.getColorClass(color) : ''
   const backgroundColorClass = backgroundColor ? VariablesUtil.getBgColorClass(backgroundColor) : ''
   const sizeClass =
