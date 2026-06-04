@@ -12,7 +12,8 @@ import type { MessageOpenProps } from '../../types'
 export default async function open(props: MessageOpenProps): Promise<void> {
   await close({ animated: false })
 
-  const portal = props.portal || document.body
+  const { portal: portalProp, onClose: userOnClose, ...modalProps } = props
+  const portal = portalProp || document.body
   const rootElement = document.createElement('div')
   rootElement.id = MESSAGE_ID
   portal.appendChild(rootElement)
@@ -21,9 +22,10 @@ export default async function open(props: MessageOpenProps): Promise<void> {
   messageInstance.root = root
   messageInstance.rootElement = rootElement
 
-  const handleRequestClose = () => {
+  const handleClose: MessageOpenProps['onClose'] = (e) => {
     void close({ animated: true })
+    userOnClose?.(e)
   }
 
-  root.render(<MessageModal {...props} onRequestClose={handleRequestClose} />)
+  root.render(<MessageModal {...modalProps} onClose={handleClose} />)
 }

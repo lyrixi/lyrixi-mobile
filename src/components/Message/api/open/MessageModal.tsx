@@ -2,30 +2,45 @@ import React, { useEffect, useState } from 'react'
 
 import Main from '../../Main'
 
+import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
 import type { MessageModalProps } from '../../types'
+import type { MessageComboButton } from '../../types'
 
 // 内库使用-start
 import DOMUtil from '../../../../utils/DOMUtil'
-import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
+import SafeArea from '../../../SafeArea'
 // 内库使用-end
 
 function MessageModal({
-  maskClassName,
-  maskStyle,
+  // Status
   maskClosable = true,
+  safeArea,
+  // Style
+  modalStyle,
+  modalClassName,
+  maskStyle,
+  maskClassName,
+  // Elements
+  children,
+  // Events
+  onClose,
+  // Elements
   iconRender,
   title,
+  // Style
   titleClassName,
   titleStyle,
+  // Value & Display Value
   content,
+  // Style
   contentClassName,
   contentStyle,
   footerClassName,
   footerStyle,
-  buttonsLayout = 'horizontal',
-  buttons = [],
-  onClose
-}: MessageModalProps) {
+  // Value & Display Value
+  buttonsLayout,
+  buttons
+}: Omit<MessageModalProps, 'open'>) {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
@@ -35,21 +50,39 @@ function MessageModal({
     }
   }, [])
 
+  async function handleButtonClick(
+    button: MessageComboButton,
+    e: React.MouseEvent<HTMLDivElement>
+  ) {
+    const result = button.onClick ? await button.onClick(e) : undefined
+    if (result !== false) {
+      onClose?.()
+    }
+  }
+
+  const hasBodyProps =
+    typeof iconRender === 'function' ||
+    title != null ||
+    content != null ||
+    (Array.isArray(buttons) && buttons.length > 0)
+
   function handleMaskClick(e: React.MouseEvent<HTMLDivElement>) {
     if (!maskClosable) return
     if (e.target !== e.currentTarget) return
-    onClose()
+    onClose?.(e)
   }
+
+  const activeClass = active ? 'lyrixi-active' : ''
 
   return (
     <div
       className={DOMUtil.classNames(
         'lyrixi-mask',
         'lyrixi-mask-message',
-        active && 'lyrixi-active',
+        activeClass,
         maskClassName
       )}
-      style={maskStyle as React.CSSProperties}
+      style={maskStyle}
       onClick={handleMaskClick}
     >
       <div
@@ -57,30 +90,31 @@ function MessageModal({
           'lyrixi-modal-animation',
           'lyrixi-middle',
           'lyrixi-modal-message',
-          active && 'lyrixi-active'
+          modalClassName,
+          activeClass
         )}
+        style={modalStyle}
         data-animation="zoom"
         onClick={(e) => e.stopPropagation()}
       >
-        <Main
-          iconRender={iconRender}
-          title={title}
-          titleClassName={titleClassName}
-          titleStyle={titleStyle}
-          content={content}
-          contentClassName={contentClassName}
-          contentStyle={contentStyle}
-          footerClassName={footerClassName}
-          footerStyle={footerStyle}
-          buttonsLayout={buttonsLayout}
-          buttons={buttons}
-          onButtonClick={async (button, e) => {
-            const result = button.onClick ? await button.onClick(e) : undefined
-            if (result !== false) {
-              onClose()
-            }
-          }}
-        />
+        {children ??
+          (hasBodyProps ? (
+            <Main
+              iconRender={iconRender}
+              title={title}
+              titleClassName={titleClassName}
+              titleStyle={titleStyle}
+              content={content}
+              contentClassName={contentClassName}
+              contentStyle={contentStyle}
+              footerClassName={footerClassName}
+              footerStyle={footerStyle}
+              buttonsLayout={buttonsLayout}
+              buttons={buttons}
+              onButtonClick={handleButtonClick}
+            />
+          ) : null)}
+        {safeArea === true && <SafeArea />}
       </div>
     </div>
   )
