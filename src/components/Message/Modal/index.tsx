@@ -69,8 +69,8 @@ const MessageModal = forwardRef<MessageModalRef, MessageModalProps>(
 
     const hasBodyProps =
       typeof iconRender === 'function' ||
-      title != null ||
-      content != null ||
+      title ||
+      content ||
       (Array.isArray(buttons) && buttons.length > 0)
 
     return (

@@ -61,9 +61,9 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
 
     const IconNode = renderIcon()
     const hasStructuredBody =
-      IconNode != null ||
-      title != null ||
-      (content != null && content !== '') ||
+      IconNode ||
+      title ||
+      (content && content !== '') ||
       (Array.isArray(buttons) && buttons.length > 0)
 
     async function handleButtonClick(
@@ -89,7 +89,7 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
       )
     }
 
-    const hasHeader = IconNode != null || title != null
+    const hasHeader = IconNode || title
     const hasFooter = Array.isArray(buttons) && buttons.length > 0
     const bodyContent = content ?? children
 
@@ -98,7 +98,7 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
         {hasHeader ? (
           <Header>
             {IconNode}
-            {title != null ? (
+            {title ? (
               <Title className={titleClassName} style={titleStyle}>
                 {title}
               </Title>
@@ -106,7 +106,7 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
           </Header>
         ) : null}
 
-        {bodyContent != null && bodyContent !== '' ? (
+        {bodyContent && bodyContent !== '' ? (
           <main
             ref={rootRef}
             className={DOMUtil.classNames('lyrixi-message-content', contentClassName, className)}

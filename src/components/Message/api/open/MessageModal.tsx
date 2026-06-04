@@ -62,8 +62,8 @@ function MessageModal({
 
   const hasBodyProps =
     typeof iconRender === 'function' ||
-    title != null ||
-    content != null ||
+    title ||
+    content ||
     (Array.isArray(buttons) && buttons.length > 0)
 
   function handleMaskClick(e: React.MouseEvent<HTMLDivElement>) {
