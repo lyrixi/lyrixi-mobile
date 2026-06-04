@@ -1,510 +1,136 @@
-import { Page, Divider, Button, Icon, Icons } from 'lyrixi-mobile'
+import { Page, Divider, Button, Icon, Icons, ButtonColor, ButtonVariant } from 'lyrixi-mobile'
 
 const buttonStyle = {
   margin: 'var(--lyrixi-space-m)'
 }
 
+const themeColors = [
+  ButtonColor.default,
+  ButtonColor.primary,
+  ButtonColor.info,
+  ButtonColor.warning,
+  ButtonColor.danger,
+  ButtonColor.success
+]
+
+const variants = [
+  ButtonVariant.solid,
+  ButtonVariant.text,
+  ButtonVariant.outlined,
+  ButtonVariant.filled,
+  ButtonVariant.dashed
+]
+
 export default function ButtonDemo() {
   return (
     <Page style={{ backgroundColor: 'white' }}>
       <Page.Main>
-        <Divider>Color & Background & Border</Divider>
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button backgroundColor="white" radius="m" borderColor="default" style={buttonStyle}>
-            backgroundColor="white"
-          </Button>
-          <Button
-            backgroundColor="white"
-            radius="m"
-            borderColor="default"
-            disabled
-            style={buttonStyle}
-          >
-            disabled
-          </Button>
-          <br />
-          <Button backgroundColor="default" border="none" radius="m" style={buttonStyle}>
-            backgroundColor="default" border="none"
-          </Button>
-          <Button
-            backgroundColor="default"
-            border="solid"
-            borderColor="default"
-            radius="m"
-            style={buttonStyle}
-          >
-            backgroundColor="default" border="solid"
-          </Button>
-          <Button
-            backgroundColor="default"
-            border="dashed"
-            borderColor="default"
-            radius="m"
-            style={buttonStyle}
-          >
-            backgroundColor="default" border="dashed"
-          </Button>
-          <br />
-          <Button
-            backgroundColor="transparent"
-            border="none"
-            borderColor="default"
-            radius="m"
-            style={buttonStyle}
-          >
-            backgroundColor="transparent" border="none"
-          </Button>
-          <Button
-            backgroundColor="transparent"
-            border="solid"
-            borderColor="default"
-            radius="m"
-            style={buttonStyle}
-          >
-            backgroundColor="transparent" border="solid"
-          </Button>
-          <Button
-            backgroundColor="transparent"
-            border="dashed"
-            borderColor="default"
-            radius="m"
-            style={buttonStyle}
-          >
-            backgroundColor="transparent" border="dashed"
-          </Button>
-        </div>
-
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button
-            color="white"
-            backgroundColor="primary"
-            borderColor="primary"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="white" backgroundColor="primary"
-          </Button>
-          <br />
-          <Button
-            color="primary"
-            backgroundColor="primary-lighten"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="primary" backgroundColor="primary-lighten"
-          </Button>
-          <Button
-            color="primary"
-            backgroundColor="primary-lighten"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="primary" backgroundColor="primary-lighten" border="solid"
-          </Button>
-          <Button
-            color="primary"
-            backgroundColor="primary-lighten"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="primary" backgroundColor="primary-lighten" border="dashed"
-          </Button>
-          <br />
-          <Button
-            color="primary"
-            backgroundColor="transparent"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="primary" backgroundColor="transparent" border="none"
-          </Button>
-          <Button
-            color="primary"
-            backgroundColor="transparent"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="primary" backgroundColor="transparent" border="solid"
-          </Button>
-          <Button
-            color="primary"
-            backgroundColor="transparent"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="primary" backgroundColor="transparent" border="dashed"
-          </Button>
-        </div>
-
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button
-            color="white"
-            backgroundColor="info"
-            borderColor="info"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="white" backgroundColor="info"
-          </Button>
-          <br />
-          <Button
-            color="info"
-            backgroundColor="info-lighten"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="info" backgroundColor="info-lighten"
-          </Button>
-          <Button
-            color="info"
-            backgroundColor="info-lighten"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="info" backgroundColor="info-lighten" border="solid"
-          </Button>
-          <Button
-            color="info"
-            backgroundColor="info-lighten"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="info" backgroundColor="info-lighten" border="dashed"
-          </Button>
-          <br />
-          <Button
-            color="info"
-            backgroundColor="transparent"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="info" backgroundColor="transparent" border="none"
-          </Button>
-          <Button
-            color="info"
-            backgroundColor="transparent"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="info" backgroundColor="transparent" border="solid"
-          </Button>
-          <Button
-            color="info"
-            backgroundColor="transparent"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="info" backgroundColor="transparent" border="dashed"
-          </Button>
-        </div>
-
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button
-            color="white"
-            backgroundColor="warning"
-            borderColor="warning"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="white" backgroundColor="warning"
-          </Button>
-          <br />
-          <Button
-            color="warning"
-            backgroundColor="warning-lighten"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="warning" backgroundColor="warning-lighten"
-          </Button>
-          <Button
-            color="warning"
-            backgroundColor="warning-lighten"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="warning" backgroundColor="warning-lighten" border="solid"
-          </Button>
-          <Button
-            color="warning"
-            backgroundColor="warning-lighten"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="warning" backgroundColor="warning-lighten" border="dashed"
-          </Button>
-          <br />
-          <Button
-            color="warning"
-            backgroundColor="transparent"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="warning" backgroundColor="transparent" border="none"
-          </Button>
-          <Button
-            color="warning"
-            backgroundColor="transparent"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="warning" backgroundColor="transparent" border="solid"
-          </Button>
-          <Button
-            color="warning"
-            backgroundColor="transparent"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="warning" backgroundColor="transparent" border="dashed"
-          </Button>
-        </div>
-
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button
-            color="white"
-            backgroundColor="danger"
-            borderColor="danger"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="white" backgroundColor="danger"
-          </Button>
-          <br />
-          <Button
-            color="danger"
-            backgroundColor="danger-lighten"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="danger" backgroundColor="danger-lighten"
-          </Button>
-          <Button
-            color="danger"
-            backgroundColor="danger-lighten"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="danger" backgroundColor="danger-lighten" border="solid"
-          </Button>
-          <Button
-            color="danger"
-            backgroundColor="danger-lighten"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="danger" backgroundColor="danger-lighten" border="dashed"
-          </Button>
-          <br />
-          <Button
-            color="danger"
-            backgroundColor="transparent"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="danger" backgroundColor="transparent" border="none"
-          </Button>
-          <Button
-            color="danger"
-            backgroundColor="transparent"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="danger" backgroundColor="transparent" border="solid"
-          </Button>
-          <Button
-            color="danger"
-            backgroundColor="transparent"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="danger" backgroundColor="transparent" border="dashed"
-          </Button>
-        </div>
-
-        <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button color="white" backgroundColor="success" radius="m" style={buttonStyle}>
-            color="white" backgroundColor="success"
-          </Button>
-          <br />
-          <Button
-            color="success"
-            backgroundColor="success-lighten"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="success" backgroundColor="success-lighten"
-          </Button>
-          <Button
-            color="success"
-            backgroundColor="success-lighten"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="success" backgroundColor="success-lighten" border="solid"
-          </Button>
-          <Button
-            color="success"
-            backgroundColor="success-lighten"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="success" backgroundColor="success-lighten" border="dashed"
-          </Button>
-          <br />
-          <Button
-            color="success"
-            backgroundColor="transparent"
-            border="none"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="success" backgroundColor="transparent" border="none"
-          </Button>
-          <Button
-            color="success"
-            backgroundColor="transparent"
-            border="solid"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="success" backgroundColor="transparent" border="solid"
-          </Button>
-          <Button
-            color="success"
-            backgroundColor="transparent"
-            border="dashed"
-            radius="m"
-            style={buttonStyle}
-          >
-            color="success" backgroundColor="transparent" border="dashed"
-          </Button>
-        </div>
+        <Divider>variant × color</Divider>
+        {themeColors.map((color) => (
+          <div key={color} style={{ marginTop: 'var(--lyrixi-space-l)' }}>
+            <Divider>{color}</Divider>
+            {variants.map((variant) => (
+              <Button
+                key={`${color}-${variant}`}
+                variant={variant}
+                color={color}
+                radius="m"
+                style={buttonStyle}
+              >
+                {variant}
+              </Button>
+            ))}
+            <Button variant={ButtonVariant.solid} color={color} radius="m" disabled style={buttonStyle}>
+              disabled
+            </Button>
+          </div>
+        ))}
 
         <br />
 
         <Divider>sizeEqual</Divider>
         <div>
           <Button
-            size="32"
-            radius="100%"
             sizeEqual
-            color="white"
-            backgroundColor="primary"
-            borderColor="primary"
+            radius="100%"
+            size="m"
+            variant={ButtonVariant.solid}
+            color={ButtonColor.default}
             style={buttonStyle}
           >
-            R
+            <Icon svg={Icons.Search} />
           </Button>
-          <Button sizeEqual radius="100%" size="m" borderColor="default" style={buttonStyle}>
-            <Icon svg={Icons.Barcode} />
-          </Button>
-          <Button sizeEqual size="l" radius="l" borderColor="default" style={buttonStyle}>
-            <Icon size="xl" svg={Icons.Barcode} />
-          </Button>
-          <br />
-
-          <Divider>Block</Divider>
           <Button
-            color="white"
-            backgroundColor="primary"
-            borderColor="primary"
-            radius="m"
-            block
+            sizeEqual
+            size="l"
+            radius="l"
+            variant={ButtonVariant.solid}
+            color={ButtonColor.default}
             style={buttonStyle}
           >
-            block
+            <Icon svg={Icons.Search} />
           </Button>
         </div>
-        <br />
 
-        <Divider>Size & radius</Divider>
+        <Divider>size</Divider>
         <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="xs"
           radius="xs"
+          variant={ButtonVariant.filled}
+          color={ButtonColor.primary}
           style={buttonStyle}
         >
           xs
         </Button>
         <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="s"
           radius="s"
+          variant={ButtonVariant.filled}
+          color={ButtonColor.primary}
           style={buttonStyle}
         >
           s
         </Button>
         <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="m"
           radius="m"
+          variant={ButtonVariant.filled}
+          color={ButtonColor.primary}
           style={buttonStyle}
         >
           m
         </Button>
         <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="l"
           radius="l"
+          variant={ButtonVariant.filled}
+          color={ButtonColor.primary}
           style={buttonStyle}
         >
           l
         </Button>
         <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="xl"
           radius="xl"
+          variant={ButtonVariant.filled}
+          color={ButtonColor.primary}
           style={buttonStyle}
         >
           xl
         </Button>
         <Button
-          color="white"
-          backgroundColor="primary"
-          borderColor="primary"
           size="xxl"
-          radius="xl"
+          radius="xxl"
+          variant={ButtonVariant.filled}
+          color={ButtonColor.primary}
           style={buttonStyle}
         >
           xxl
+        </Button>
+
+        <Divider>block</Divider>
+        <Button block variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m">
+          block
         </Button>
       </Page.Main>
     </Page>

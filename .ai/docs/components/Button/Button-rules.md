@@ -4,18 +4,25 @@
 
 ## 必须使用
 - 从 `lyrixi-mobile` 引入 `Button`，**禁止**自造同类 UI。
-- 子组件写法：`Button.Sub`（与库导出一致）。
+- 子组件写法：`Button.Text`、`Button.Icon`（与库导出一致）。
 
 ## 何时使用
 - 需要触发一个操作时
 - 需要提交表单时
 - 需要执行确认、取消等操作时
 
+## 样式 API（variant + color）
+- 使用 **`variant` + `color`** 控制外观，**不要**再使用已移除的 `backgroundColor` / `borderColor` / `border`。
+- `color` 为语义色：`default` | `primary` | `info` | `warning` | `danger` | `success`。
+- `variant` 为外观：`solid` | `text` | `outlined` | `filled` | `dashed`。
+- 推荐从 barrel 引入枚举：`import { Button, ButtonColor, ButtonVariant } from 'lyrixi-mobile'`。
+
 ## 子组件
-- `Button.Text`
+- `Button.Text` — 按钮内文本
+- `Button.Icon` — 按钮内图标（Props 同 Icon，`svg` 必填）
 
 ## Demo 索引（本目录 `demos/`）
-- `demos/Button.tsx`
+- `demos/Button.tsx` — variant × color 矩阵、size、block
 - `demos/ButtonText.tsx`
 - `demos/ButtonIcon.tsx`
 

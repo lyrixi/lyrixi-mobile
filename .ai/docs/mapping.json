@@ -43,7 +43,7 @@
       "example": ".ai/docs/components/Badge/Badge-example.md"
     },
     {
-      "keywords": "Button|btn|button|按钮|提交|确认|取消|Button.Text|需要触发一个操作|需要提交表单时|需要执行确认|取消等操作时|按钮组件|用于触发操作",
+      "keywords": "Button|btn|button|按钮|提交|确认|取消|Button.Text|Button.Icon|ButtonVariant|ButtonColor|variant|需要触发一个操作|需要提交表单时|需要执行确认|取消等操作时|按钮组件|用于触发操作",
       "name": "Button",
       "props": ".ai/docs/components/Button/Button-props.ts",
       "rule": ".ai/docs/components/Button/Button-rules.md",

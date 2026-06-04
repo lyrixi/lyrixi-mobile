@@ -1,32 +1,38 @@
 /**
  * Button Props / Ref（AI 文档，生成代码时以此为准）
+ * @see src/components/Button/types/
  */
+
+/** 语义色，与 VariablesUtil 标准色一致；可从 `lyrixi-mobile` 导入 `ButtonColor` */
+export type ButtonColor = 'default' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
+
+/** 外观变体，由 resolveVariantStyle 映射为文字/背景/边框；可从 `lyrixi-mobile` 导入 `ButtonVariant` */
+export type ButtonVariant = 'solid' | 'text' | 'outlined' | 'filled' | 'dashed'
+
+/** 尺寸 token，与 Button.less 中 `.lyrixi-size-*` 一致 */
+export type ButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'
 
 export interface ButtonProps {
   /** 按钮 ID */
   id?: string
   /** 方向，默认 `'horizontal'` */
-  direction?: 'horizontal' | 'vertical'
+  direction?: 'horizontal' | 'vertical' | string
   /** 是否为块级元素 */
   block?: boolean
-  /** 颜色，默认 `'default'` */
-  color?: 'default' | 'transparent' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
-  /** 背景颜色，默认 `'white'` */
-  backgroundColor?: 'default' | 'transparent' | 'white' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
-  /** 边框颜色，默认 `'default'` */
-  borderColor?: 'default' | 'transparent' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
-  /** 边框样式，默认 `'solid'` */
-  border?: 'none' | 'dotted' | 'dashed' | 'solid'
-  /** 高度尺寸 */
-  size?: 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | [number, number]
+  /** 外观变体，默认 `'solid'` */
+  variant?: ButtonVariant
+  /** 语义色，默认 `'default'`；与 variant 组合决定最终样式 */
+  color?: ButtonColor
+  /** 高度尺寸；未传时使用 Flex.Compact 上下文或 `'m'` */
+  size?: ButtonSize | string | number | readonly [number, number]
   /** 是否为等宽高 */
   sizeEqual?: boolean
   /** 字体大小 */
-  fontSize?: 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl'
+  fontSize?: string | number
   /** 圆角 */
-  radius?: 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl'
+  radius?: string | number
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 是否禁用 */
@@ -34,28 +40,31 @@ export interface ButtonProps {
   /** 按钮内容 */
   children?: ReactNode
   /** 点击事件 */
-  onClick?: (e: Event) => void
+  onClick?: MouseEventHandler<HTMLDivElement>
 }
 
 export interface ButtonTextProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 文本内容 */
   children?: ReactNode
 }
 
+/** 同 IconProps（`svg` 必填），详见 Icon-props.ts */
+export type ButtonIconProps = IconProps
+
 export interface ButtonRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }
 
 export interface ButtonTextRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }
