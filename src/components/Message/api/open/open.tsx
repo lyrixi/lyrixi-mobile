@@ -1,26 +1,30 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-import destroy from '../destroy'
-import { messageRuntime } from '../messageRuntime'
+import close from '../close'
+import { MESSAGE_ID } from '../constants'
+import messageInstance from '../MessageInstance'
 import MessageOpenLayer from './MessageOpenLayer'
 
 import type { MessageOpenProps } from '../../types'
 
 /** 打开消息对话框（全局同时仅存在一个，再次 open 会先关闭上一个） */
-export default function open(props: MessageOpenProps): void {
-  destroy({ animated: false })
+export default async function open(props: MessageOpenProps): Promise<void> {
+  await close({ animated: false })
 
   const portal = props.portal || document.body
   const rootElement = document.createElement('div')
+  rootElement.id = MESSAGE_ID
   portal.appendChild(rootElement)
 
   const root = createRoot(rootElement)
-  messageRuntime.root = root
-  messageRuntime.rootElement = rootElement
-  messageRuntime.onClose = props.onClose
+  messageInstance.root = root
+  messageInstance.rootElement = rootElement
+  messageInstance.onClose = props.onClose
 
-  const handleRequestClose = () => destroy({ animated: true })
+  const handleRequestClose = () => {
+    void close({ animated: true })
+  }
 
   root.render(<MessageOpenLayer {...props} onRequestClose={handleRequestClose} />)
 

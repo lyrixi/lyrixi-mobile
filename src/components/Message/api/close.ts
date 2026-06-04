@@ -1,6 +1,56 @@
-import destroy from './destroy'
+import { MESSAGE_ANIMATION_DURATION_CLOSE } from './constants'
+import messageInstance from './MessageInstance'
 
-/** 关闭当前 Message.open 打开的对话框（全局仅一个实例） */
-export default function close() {
-  destroy({ animated: true })
+type CloseOptions = {
+  /** 是否播放关闭动画，默认 true */
+  animated?: boolean
+}
+
+let closeGeneration = 0
+
+function delay(ms: number) {
+  return new Promise<void>((resolve) => {
+    window.setTimeout(resolve, ms)
+  })
+}
+
+function playCloseAnimation(rootElement: HTMLDivElement) {
+  rootElement.querySelector('.lyrixi-mask')?.classList.remove('lyrixi-active')
+  rootElement.querySelector('.lyrixi-modal-animation')?.classList.remove('lyrixi-active')
+}
+
+function destroy() {
+  messageInstance.root?.unmount()
+  messageInstance.root = null
+  messageInstance.rootElement?.remove()
+  messageInstance.rootElement = null
+
+  const onClose = messageInstance.onClose
+  messageInstance.onClose = undefined
+  onClose?.()
+}
+
+/** 关闭当前 Message.open 实例（全局仅允许一个） */
+export default async function close(options?: CloseOptions): Promise<void> {
+  const { animated = true } = options ?? {}
+
+  if (!messageInstance.root || !messageInstance.rootElement) {
+    return
+  }
+
+  const generation = ++closeGeneration
+  const root = messageInstance.root
+  const rootElement = messageInstance.rootElement
+
+  if (animated) {
+    playCloseAnimation(rootElement)
+    await delay(MESSAGE_ANIMATION_DURATION_CLOSE)
+    if (generation !== closeGeneration) {
+      return
+    }
+  }
+
+  if (messageInstance.root === root && messageInstance.rootElement === rootElement) {
+    destroy()
+  }
 }

@@ -6,7 +6,7 @@ import type { MessageOpenProps } from '../../types'
 
 // 内库使用-start
 import DOMUtil from '../../../../utils/DOMUtil'
-import { setMessageAnimateClose } from '../messageRuntime'
+import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
 // 内库使用-end
 
 export type MessageOpenLayerProps = MessageOpenProps & {
@@ -33,11 +33,9 @@ function MessageOpenLayer({
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    setMessageAnimateClose(() => setActive(false))
-    const timer = window.setTimeout(() => setActive(true), 10)
+    const timer = window.setTimeout(() => setActive(true), MESSAGE_ENTRANCE_ACTIVE_DELAY)
     return () => {
       window.clearTimeout(timer)
-      setMessageAnimateClose(null)
     }
   }, [])
 
