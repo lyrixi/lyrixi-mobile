@@ -10,7 +10,7 @@ import { MESSAGE_ENTRANCE_ACTIVE_DELAY } from '../constants'
 // 内库使用-end
 
 export type MessageModalProps = MessageOpenProps & {
-  onRequestClose: () => void
+  onClose: () => void
 }
 
 function MessageModal({
@@ -28,7 +28,7 @@ function MessageModal({
   footerStyle,
   buttonsLayout = 'horizontal',
   buttons = [],
-  onRequestClose
+  onClose
 }: MessageModalProps) {
   const [active, setActive] = useState(false)
 
@@ -42,7 +42,7 @@ function MessageModal({
   function handleMaskClick(e: React.MouseEvent<HTMLDivElement>) {
     if (!maskClosable) return
     if (e.target !== e.currentTarget) return
-    onRequestClose()
+    onClose()
   }
 
   return (
@@ -81,7 +81,7 @@ function MessageModal({
           onButtonClick={async (button, e) => {
             const result = button.onClick ? await button.onClick(e) : undefined
             if (result !== false) {
-              onRequestClose()
+              onClose()
             }
           }}
         />
