@@ -26,6 +26,4 @@ export default async function open(props: MessageOpenProps): Promise<void> {
   }
 
   root.render(<MessageModal {...props} onRequestClose={handleRequestClose} />)
-
-  props.onOpen?.()
 }

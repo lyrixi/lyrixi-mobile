@@ -70,7 +70,6 @@ toc: content
 | maskClassName    | 遮罩类名                                                             | `string`                                                                           | -              |
 | maskStyle        | 遮罩样式                                                             | `CSSProperties`                                                                    | -              |
 | portal           | 挂载节点                                                             | `HTMLElement \| null \| false`                                                     | `document.body` |
-| onOpen           | 打开后回调                                                           | `() => void`                                                                       | -              |
 | onClose          | 关闭后回调                                                           | `() => void`                                                                       | -              |
 
 按钮 `onClick` 返回 `false`（或 resolve 为 `false`）时不关闭对话框；其余情况会关闭。

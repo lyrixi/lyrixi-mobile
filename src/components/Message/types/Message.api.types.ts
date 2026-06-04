@@ -2,7 +2,6 @@
 export interface MessageMaskElement extends HTMLElement {
   timeout?: ReturnType<typeof setTimeout>
   maskClosable?: boolean
-  onOpen?: () => void
   buttons?: Array<{
     id?: string
     name: string
