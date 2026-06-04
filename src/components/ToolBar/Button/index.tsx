@@ -16,10 +16,8 @@ const ToolBarButton = forwardRef<ButtonRef, ToolBarButtonProps>(function ToolBar
     // Style
     direction,
     block,
+    variant,
     color,
-    backgroundColor,
-    borderColor,
-    border = 'none',
     size,
     sizeEqual,
     fontSize,
@@ -49,10 +47,8 @@ const ToolBarButton = forwardRef<ButtonRef, ToolBarButtonProps>(function ToolBar
     <Button
       ref={rootRef}
         // Style
+        variant={variant}
         color={color}
-        borderColor={borderColor}
-        backgroundColor={backgroundColor}
-        border={border}
         direction={direction}
         size={size}
         radius={radius}

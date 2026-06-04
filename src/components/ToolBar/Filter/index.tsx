@@ -24,9 +24,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     style,
     className,
     color = 'default',
-    backgroundColor,
-    borderColor = 'default',
-    border = 'none',
+    variant = 'text',
     size,
     sizeEqual,
     fontSize,
@@ -99,10 +97,8 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
       <Button
         ref={comboRef}
         // Style
+        variant={variant}
         color={color}
-        borderColor={borderColor}
-        backgroundColor={backgroundColor}
-        border={border}
         direction={direction}
         block={block}
         fontSize={fontSize}

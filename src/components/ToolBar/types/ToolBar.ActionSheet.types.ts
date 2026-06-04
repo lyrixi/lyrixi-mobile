@@ -1,15 +1,14 @@
 import type { CSSProperties, ReactNode } from 'react'
 
 import type { ActionSheetComboProps } from '../../ActionSheet/types'
+import type { ButtonProps } from '../../Button/types'
 
 export interface ToolBarActionSheetStyleProps {
   // Value & Display Value
   direction?: string
   block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
+  color?: ButtonProps['color']
+  variant?: ButtonProps['variant']
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   radius?: string | number

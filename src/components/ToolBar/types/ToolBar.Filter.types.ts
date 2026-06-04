@@ -16,10 +16,8 @@ export interface ToolBarFilterProps {
   block?: boolean
   style?: CSSProperties
   className?: string
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
+  color?: ButtonProps['color']
+  variant?: ButtonProps['variant']
   size?: ButtonProps['size']
   sizeEqual?: boolean
   fontSize?: string | number

@@ -9,7 +9,7 @@ export default function FlexCompactDemo() {
           <Card.Main>
             <Flex.Compact size="m">
               <Button>Content</Button>
-              <Button color="primary" backgroundColor="white">
+              <Button variant="outlined" color="primary">
                 Sent
               </Button>
               <Button>Retry</Button>
@@ -21,7 +21,7 @@ export default function FlexCompactDemo() {
           <Card.Main>
             <Flex.Compact block>
               <Button>Content</Button>
-              <Button color="primary" backgroundColor="white">
+              <Button variant="outlined" color="primary">
                 Sent
               </Button>
               <Button>Retry</Button>
@@ -34,7 +34,7 @@ export default function FlexCompactDemo() {
             <Flex direction="vertical">
               <Flex.Compact size="s">
                 <Button>Content</Button>
-                <Button color="primary" backgroundColor="white">
+                <Button variant="outlined" color="primary">
                   Sent
                 </Button>
                 <Button>Retry</Button>
@@ -42,7 +42,7 @@ export default function FlexCompactDemo() {
 
               <Flex.Compact size="m">
                 <Button>Content</Button>
-                <Button color="primary" backgroundColor="white">
+                <Button variant="outlined" color="primary">
                   Sent
                 </Button>
                 <Button>Retry</Button>
@@ -50,7 +50,7 @@ export default function FlexCompactDemo() {
 
               <Flex.Compact size="l">
                 <Button>Content</Button>
-                <Button color="primary" backgroundColor="white">
+                <Button variant="outlined" color="primary">
                   Sent
                 </Button>
                 <Button>Retry</Button>
@@ -64,7 +64,7 @@ export default function FlexCompactDemo() {
             <Flex direction="vertical">
               <Flex.Compact radius="s">
                 <Button>Content</Button>
-                <Button color="primary" backgroundColor="white">
+                <Button variant="outlined" color="primary">
                   Sent
                 </Button>
                 <Button>Retry</Button>
@@ -72,7 +72,7 @@ export default function FlexCompactDemo() {
 
               <Flex.Compact radius="m">
                 <Button>Content</Button>
-                <Button color="primary" backgroundColor="white">
+                <Button variant="outlined" color="primary">
                   Sent
                 </Button>
                 <Button>Retry</Button>
@@ -80,7 +80,7 @@ export default function FlexCompactDemo() {
 
               <Flex.Compact radius="l">
                 <Button>Content</Button>
-                <Button color="primary" backgroundColor="white">
+                <Button variant="outlined" color="primary">
                   Sent
                 </Button>
                 <Button>Retry</Button>
@@ -93,7 +93,7 @@ export default function FlexCompactDemo() {
           <Card.Main>
             <Flex.Compact direction="vertical" size="m">
               <Button>Button1</Button>
-              <Button color="primary" backgroundColor="white">
+              <Button variant="outlined" color="primary">
                 Button2
               </Button>
               <Button>Button3</Button>

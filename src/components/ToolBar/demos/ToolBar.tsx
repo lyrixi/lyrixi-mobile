@@ -21,7 +21,7 @@ export default function ToolBarDemo() {
         <FooterBar>
           <FooterBar.Button
             block
-            backgroundColor="default"
+            variant="filled" color="default"
             onClick={() => {
               if (typeof onClose === 'function') onClose()
               else dropdownRef.current?.close()
@@ -31,8 +31,7 @@ export default function ToolBarDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            color="white"
-            backgroundColor="primary"
+            variant="filled" color="primary"
             onClick={() => {
               console.log('ok')
             }}

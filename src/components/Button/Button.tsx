@@ -1,6 +1,9 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import getStyle from './getStyle'
+import resolveVariantStyle from './resolveVariantStyle'
 
+import { ButtonColor } from './types/Button.Color.types'
+import { ButtonVariant } from './types/Button.Variant.types'
 import type { ButtonProps, ButtonRef } from './types'
 
 // 内库使用-start
@@ -17,10 +20,8 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
     id,
     direction = 'horizontal',
     block,
-    color = 'default',
-    backgroundColor = 'white',
-    borderColor = 'default',
-    border = 'solid',
+    variant = ButtonVariant.solid,
+    color = ButtonColor.default,
     size,
     sizeEqual,
     fontSize,
@@ -40,8 +41,10 @@ const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
   const rootRef = useRef<HTMLDivElement>(null)
   const compactContext = Flex.Compact.useContext()
 
+  const { textColor, backgroundColor, borderColor, border } = resolveVariantStyle(variant, color)
+
   const { style: newStyle, className: newClassName } = getStyle({
-    color,
+    color: textColor,
     borderColor,
     backgroundColor,
     size: (size || compactContext?.size || 'm') as string | number | readonly string[],

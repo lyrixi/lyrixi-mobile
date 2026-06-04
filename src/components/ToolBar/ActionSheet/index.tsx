@@ -25,9 +25,7 @@ const ToolBarActionSheet = forwardRef<
     direction,
     block,
     color = 'default',
-    backgroundColor,
-    borderColor,
-    border = 'none',
+    variant = 'text',
     size,
     sizeEqual,
     radius = 'm',
@@ -77,11 +75,9 @@ const ToolBarActionSheet = forwardRef<
         // Style
         style={style}
         className={className}
+        variant={variant}
         color={color}
-        backgroundColor={backgroundColor}
-        borderColor={borderColor}
         sizeEqual={sizeEqual}
-        border={border}
         direction={direction}
         block={block}
         radius={radius}

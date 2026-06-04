@@ -18,10 +18,8 @@ const NavBarButton = forwardRef<ButtonRef, NavBarButtonProps>(
       // Button: Style
       direction,
       block,
-      color = 'secondary',
-      backgroundColor = 'transparent',
-      borderColor,
-      border = 'none',
+      variant,
+      color,
       size = 22,
       sizeEqual,
       fontSize,
@@ -43,14 +41,12 @@ const NavBarButton = forwardRef<ButtonRef, NavBarButtonProps>(
     return (
       <Button
         // Button: Style
+        variant={variant}
         color={color}
-        borderColor={borderColor}
-        backgroundColor={backgroundColor}
         size={size}
         fontSize={fontSize}
         radius={radius}
         sizeEqual={sizeEqual}
-        border={border}
         direction={direction}
         block={block}
         style={style}

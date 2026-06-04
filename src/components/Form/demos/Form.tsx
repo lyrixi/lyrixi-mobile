@@ -105,7 +105,7 @@ export default function FormDemo() {
       </Page.Main>
       <Page.Footer>
         <FooterBar>
-          <FooterBar.Button block backgroundColor="primary" color="white" onClick={handleSave}>
+          <FooterBar.Button block variant="filled" color="primary" onClick={handleSave}>
             {LocaleUtil.locale('确定')}
           </FooterBar.Button>
         </FooterBar>

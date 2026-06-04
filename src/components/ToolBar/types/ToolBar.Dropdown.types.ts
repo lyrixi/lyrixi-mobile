@@ -1,5 +1,6 @@
 import type { CSSProperties, MouseEvent, ReactNode, RefObject } from 'react'
 
+import type { ButtonProps } from '../../Button/types'
 import type { ToolBarComboRef } from '../components/ToolBar.Combo.types'
 
 export interface ToolBarDropdownRef {
@@ -13,10 +14,8 @@ export interface ToolBarDropdownProps {
   // Combo: Style
   direction?: string
   block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
+  color?: ButtonProps['color']
+  variant?: ButtonProps['variant']
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   radius?: string | number

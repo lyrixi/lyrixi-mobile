@@ -1,13 +1,13 @@
 import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 
+import type { ButtonColor, ButtonVariant } from '../../Button/types'
+
 export interface NavBarButtonProps {
   // Value & Display Value
   direction?: string
   block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
+  variant?: `${ButtonVariant}`
+  color?: `${ButtonColor}`
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   fontSize?: string | number

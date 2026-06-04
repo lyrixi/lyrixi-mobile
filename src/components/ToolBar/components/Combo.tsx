@@ -23,9 +23,7 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     direction,
     block,
     color = 'default',
-    backgroundColor,
-    borderColor = 'default',
-    border = 'none',
+    variant = 'text',
     size,
     sizeEqual,
     fontSize,
@@ -68,10 +66,8 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     <Button
       ref={comboRef}
       block={block}
+      variant={variant}
       color={color}
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
-      border={border}
       direction={direction}
       size={size}
       sizeEqual={sizeEqual}

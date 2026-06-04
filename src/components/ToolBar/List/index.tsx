@@ -15,9 +15,7 @@ function ToolBarList({
   direction,
   block,
   color,
-  backgroundColor,
-  borderColor,
-  border = 'none',
+  variant,
   size,
   sizeEqual,
   fontSize,
@@ -56,11 +54,9 @@ function ToolBarList({
       // Style
       style={style}
       className={className}
+      variant={variant}
       color={color}
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
       sizeEqual={sizeEqual}
-      border={border}
       direction={direction}
       block={block}
       radius={radius}

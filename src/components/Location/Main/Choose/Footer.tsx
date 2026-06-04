@@ -18,7 +18,7 @@ function Foot({ onOk, onClear }: LocationMainChooseFooterProps) {
     <Page.Footer className="lyrixi-map-footer">
       <FooterBarComp>
         {onOk && (
-          <FooterBarComp.Button block size="l" backgroundColor="primary" color="white" onClick={onOk}>
+          <FooterBarComp.Button block size="l" variant="filled" color="primary" onClick={onOk}>
             {LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721')}
           </FooterBarComp.Button>
         )}
@@ -26,7 +26,7 @@ function Foot({ onOk, onClear }: LocationMainChooseFooterProps) {
           <FooterBarComp.Button
             block
             size="l"
-            backgroundColor="default"
+            variant="filled" color="default"
             color="default"
             onClick={onClear}
           >

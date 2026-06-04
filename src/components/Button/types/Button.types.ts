@@ -1,14 +1,15 @@
 import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 
+import type { ButtonColor } from './Button.Color.types'
+import type { ButtonVariant } from './Button.Variant.types'
+
 export interface ButtonProps {
   // Value & Display Value
   id?: string
   direction?: 'horizontal' | 'vertical' | string
   block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
+  variant?: `${ButtonVariant}`
+  color?: `${ButtonColor}`
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   fontSize?: string | number

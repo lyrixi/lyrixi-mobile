@@ -31,9 +31,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     direction,
     block,
     color = 'default',
-    backgroundColor,
-    borderColor = 'default',
-    border = 'none',
+    variant = 'text',
     size,
     sizeEqual,
     radius = 'm',
@@ -156,11 +154,9 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
         // Style
         style={style}
         className={className}
+        variant={variant}
         color={color}
-        borderColor={borderColor}
-        backgroundColor={backgroundColor}
         sizeEqual={sizeEqual}
-        border={border}
         direction={direction}
         block={block}
         fontSize={fontSize}

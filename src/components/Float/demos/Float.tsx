@@ -35,9 +35,7 @@ export default function FloatDemo() {
             direction="vertical"
             size="l"
             radius="100%"
-            color="white"
-            backgroundColor="primary"
-            borderColor="primary"
+            variant="filled" color="primary"
             onClick={(e) => {
               console.log(e)
             }}
@@ -48,7 +46,7 @@ export default function FloatDemo() {
             sizeEqual
             size="l"
             radius="100%"
-            borderColor="default"
+            variant="solid" color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -63,7 +61,7 @@ export default function FloatDemo() {
             sizeEqual
             size="l"
             radius="100%"
-            borderColor="default"
+            variant="solid" color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -96,9 +94,7 @@ export default function FloatDemo() {
                   direction="vertical"
                   size="xl"
                   radius="100%"
-                  color="white"
-                  backgroundColor="primary"
-                  borderColor="primary"
+                  variant="filled" color="primary"
                   onClick={onClick}
                 >
                   <Icon svg={Icons.ThreeDots} />

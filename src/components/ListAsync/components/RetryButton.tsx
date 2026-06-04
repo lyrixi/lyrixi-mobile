@@ -20,9 +20,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: ListAsyncRetry
     return (
       <Button
         radius="l"
-        backgroundColor="primary"
-        border="none"
-        color="white"
+        variant="filled" color="primary"
         style={{ margin: '10px 12px' }}
         onClick={onClick}
       >
@@ -37,9 +35,7 @@ const RetryButton = ({ status, errorRetry, emptyRetry, onClick }: ListAsyncRetry
     return (
       <Button
         radius="l"
-        backgroundColor="primary"
-        border="none"
-        color="white"
+        variant="filled" color="primary"
         style={{ margin: '10px 12px' }}
         onClick={onClick}
       >

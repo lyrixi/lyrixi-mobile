@@ -37,7 +37,7 @@ export default function ModalFilterModalDemo() {
                 </FooterBar.Button>
                 <FooterBar.Button
                   className="lyrixi-flex-1"
-                  backgroundColor="default"
+                  variant="filled" color="default"
                   onClick={() => {
                     console.log('reset')
                   }}
@@ -46,8 +46,7 @@ export default function ModalFilterModalDemo() {
                 </FooterBar.Button>
                 <FooterBar.Button
                   className="lyrixi-flex-1"
-                  color="white"
-                  backgroundColor="primary"
+                  variant="filled" color="primary"
                   onClick={() => {
                     console.log('confirm')
                     onClose?.()

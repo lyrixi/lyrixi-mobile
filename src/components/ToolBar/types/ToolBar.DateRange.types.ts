@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
+import type { ButtonProps } from '../../Button/types'
 import type { DatePickerRangesMap } from '../../DatePicker/types'
 import type { ToolBarDropdownProps } from './ToolBar.Dropdown.types'
 
@@ -11,10 +12,8 @@ export interface ToolBarDateRangeBarProps {
   allowClear?: boolean
   direction?: string
   block?: boolean
-  color?: string
-  borderColor?: string
-  backgroundColor?: string
-  border?: string
+  color?: ButtonProps['color']
+  variant?: ButtonProps['variant']
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   fontSize?: string | number

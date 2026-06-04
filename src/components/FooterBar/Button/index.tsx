@@ -20,10 +20,8 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
       // Button: Style
       direction,
       block,
-      color = 'default',
-      backgroundColor = 'white',
-      borderColor,
-      border = 'none',
+      variant,
+      color,
       size = 'l',
       sizeEqual,
       fontSize,
@@ -74,14 +72,12 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
         <Button
           ref={comboRef}
           // Button: Style
+          variant={variant}
           color={color}
-          borderColor={borderColor}
-          backgroundColor={backgroundColor}
           size={size}
           fontSize={fontSize}
           radius={radius}
           sizeEqual={sizeEqual}
-          border={border}
           direction={direction}
           block={block}
           style={style}

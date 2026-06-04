@@ -38,9 +38,7 @@ function DateRangeBar({
   direction,
   block,
   color,
-  borderColor,
-  backgroundColor,
-  border = 'none',
+  variant,
   size,
   sizeEqual,
   fontSize,
@@ -161,12 +159,10 @@ function DateRangeBar({
       // Style
       style={style}
       className={className}
+      variant={variant}
       color={color}
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
       sizeEqual={sizeEqual}
       fontSize={fontSize}
-      border={border}
       direction={direction}
       radius={radius}
       size={size}
@@ -200,10 +196,10 @@ function DateRangeBar({
 
             {/* Elements: Footer */}
             <FooterBar>
-              <FooterBar.Button block backgroundColor="default" onClick={handleCancel}>
+              <FooterBar.Button block variant="filled" color="default" onClick={handleCancel}>
                 {LocaleUtil.locale('取消', 'lyrixi_625fb26b4b3340f7872b411f401e754c')}
               </FooterBar.Button>
-              <FooterBar.Button block color="white" backgroundColor="primary" onClick={handleOk}>
+              <FooterBar.Button block variant="filled" color="primary" onClick={handleOk}>
                 {LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721')}
               </FooterBar.Button>
             </FooterBar>

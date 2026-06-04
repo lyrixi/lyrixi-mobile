@@ -156,7 +156,7 @@ export default function FooterBarButtonDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            backgroundColor="default"
+            variant="filled" color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -165,8 +165,7 @@ export default function FooterBarButtonDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            color="white"
-            backgroundColor="primary"
+            variant="filled" color="primary"
             onClick={(e) => {
               console.log(e)
             }}
@@ -225,8 +224,7 @@ export default function FooterBarButtonDemo() {
           <FooterBar.Button
             disabled
             block
-            color="white"
-            backgroundColor="primary"
+            variant="filled" color="primary"
             onClick={(e) => {
               console.log(e)
             }}

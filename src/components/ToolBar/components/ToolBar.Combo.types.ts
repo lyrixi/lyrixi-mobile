@@ -1,5 +1,7 @@
 import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 
+import type { ButtonProps } from '../../Button/types'
+
 /** 仅 ToolBar.Dropdown 内部 Combo 使用，不在入口对外暴露 */
 export interface ToolBarComboRef {
   element: HTMLDivElement | null
@@ -10,10 +12,8 @@ export interface ToolBarComboProps {
   // Value & Display Value
   direction?: string
   block?: boolean
-  color?: string
-  backgroundColor?: string
-  borderColor?: string
-  border?: string
+  color?: ButtonProps['color']
+  variant?: ButtonProps['variant']
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   fontSize?: string | number
