@@ -1,3 +1,4 @@
+import React from 'react'
 import type { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -5,49 +6,27 @@ import type { ReactDOMClientCompatRoot } from './types'
 
 export type { ReactDOMClientCompatRoot } from './types'
 
-type NativeCreateRoot = (container: Element) => ReactDOMClientCompatRoot
+type React18CreateRoot = (container: Element) => ReactDOMClientCompatRoot
 
-let nativeCreateRoot: NativeCreateRoot | null | undefined
-
-function getNativeCreateRoot(): NativeCreateRoot | null {
-  if (nativeCreateRoot !== undefined) {
-    return nativeCreateRoot
-  }
-
-  const mainCreateRoot = (ReactDOM as { createRoot?: NativeCreateRoot }).createRoot
-  if (typeof mainCreateRoot === 'function') {
-    nativeCreateRoot = mainCreateRoot.bind(ReactDOM) as NativeCreateRoot
-    return nativeCreateRoot
-  }
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
-    const clientCreateRoot = (require('react-dom/client') as { createRoot?: NativeCreateRoot })
-      .createRoot
-    if (typeof clientCreateRoot === 'function') {
-      nativeCreateRoot = clientCreateRoot
-      return nativeCreateRoot
-    }
-  } catch {
-    // React 17 无 react-dom/client
-  }
-
-  nativeCreateRoot = null
-  return null
+function isReact18OrNewer(): boolean {
+  return parseInt(React.version.split('.')[0] ?? '0', 10) >= 18
 }
 
-/** createRoot：18+ 原生，17 用 render 垫片（供 Message.open） */
-export function createRoot(container: Element): ReactDOMClientCompatRoot {
-  const createRootNative = getNativeCreateRoot()
-  if (createRootNative) {
-    return createRootNative(container)
-  }
+let clientCreateRoot: React18CreateRoot | undefined
 
-  const render = (ReactDOM as { render?: (element: ReactNode, container: Element) => void })
-    .render
-  const unmount = (
-    ReactDOM as { unmountComponentAtNode?: (container: Element) => boolean }
-  ).unmountComponentAtNode
+function createReact18Root(container: Element): ReactDOMClientCompatRoot {
+  if (!clientCreateRoot) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, global-require
+    const { createRoot } = require('react-dom/client') as { createRoot: React18CreateRoot }
+    clientCreateRoot = createRoot
+  }
+  return clientCreateRoot(container)
+}
+
+function createReact17Root(container: Element): ReactDOMClientCompatRoot {
+  const render = (ReactDOM as { render?: (element: ReactNode, container: Element) => void }).render
+  const unmount = (ReactDOM as { unmountComponentAtNode?: (container: Element) => boolean })
+    .unmountComponentAtNode
   if (!render || !unmount) {
     throw new Error('[lyrixi-mobile] createRoot requires react-dom 18+ or React 17.')
   }
@@ -60,4 +39,9 @@ export function createRoot(container: Element): ReactDOMClientCompatRoot {
       unmount(container)
     }
   }
+}
+
+/** createRoot：18+ 用 react-dom/client，17 用 render 垫片（供 Message.open） */
+export function createRoot(container: Element): ReactDOMClientCompatRoot {
+  return isReact18OrNewer() ? createReact18Root(container) : createReact17Root(container)
 }
