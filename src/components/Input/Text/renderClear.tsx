@@ -1,7 +1,7 @@
 import React from 'react'
 
 import type { InputTextRenderClearOptions } from './Input.Text.renderClear.types'
-import IconClear from './../Icon/Clear'
+import IconClear from './../Icons/Clear'
 
 // 渲染清除按钮
 function renderClear({

@@ -14,9 +14,9 @@ import Search from '../Search'
 import Select from '../Select'
 import Textarea from '../Textarea'
 import Url from '../Url'
-import IconClear from '../Icon/Clear'
-import IconRightArrow from '../Icon/RightArrow'
-import IconLeftArrow from '../Icon/LeftArrow'
+import IconClear from '../Icons/Clear'
+import IconRightArrow from '../Icons/RightArrow'
+import IconLeftArrow from '../Icons/LeftArrow'
 
 export type InputComponents = {
   AutoSize: typeof AutoSize

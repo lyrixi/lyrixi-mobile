@@ -4,8 +4,8 @@ import getDisplayValue from './formatter'
 import InputText from './../Text'
 
 import InputAutoSize from './../AutoSize'
-import IconRightArrow from './../Icon/RightArrow'
-import IconClear from './../Icon/Clear'
+import IconRightArrow from './../Icons/RightArrow'
+import IconClear from './../Icons/Clear'
 import Tags from './Tags'
 
 import type { InputSelectProps, InputSelectRef, InputTextProps, InputTextRef } from '../types'
