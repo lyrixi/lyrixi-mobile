@@ -2,6 +2,7 @@
 .lyrixi-input-text,
 .lyrixi-input-textarea,
 .lyrixi-input-autoSize-textarea {
+  line-height: 20px;
   &:extend(.lyrixi-appearance-none);
 
   display: block;
@@ -12,21 +13,6 @@
     opacity: 1; // 解决iosdisabled颜色变淡的问题
     -webkit-text-fill-color: #b2b2b2; // 解决iosdisabled颜色变淡的问题
   }
-}
-
-// textarea
-.lyrixi-input-textarea {
-  line-height: 20px;
-}
-
-// autoSize
-.lyrixi-input-autoSize-textarea,
-.lyrixi-input-autoSize-pre {
-  line-height: 20px;
-}
-
-.lyrixi-input-autoSize + .lyrixi-input-formatter {
-  line-height: 20px;
 }
 
 .lyrixi-input-text,
@@ -40,7 +26,7 @@
 
 // Input: 失焦时显示(不能用flex, 否则text-center不生效)
 .lyrixi-input-formatter {
-  font-size: var(--lyrixi-font-size-l);
+  line-height: 20px;
   pointer-events: none;
 
   position: absolute;
@@ -116,23 +102,21 @@
     font-size: var(--lyrixi-font-size-l);
   }
 
+  // text
   .lyrixi-input-text {
     height: var(--lyrixi-height-xl);
   }
 
   // textarea
-  .lyrixi-input-textarea {
-    height: 60px;
+  .lyrixi-input-textarea,
+  .lyrixi-input-textarea + .lyrixi-input-formatter {
+    height: 88px;
     padding: 14px 0;
   }
 
   // autoSize
   .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre {
-    min-height: 20px;
-    padding: 14px 0;
-  }
-
+  .lyrixi-input-autoSize-pre,
   .lyrixi-input-autoSize + .lyrixi-input-formatter {
     min-height: 20px;
     padding: 14px 0;
@@ -153,23 +137,21 @@
     font-size: var(--lyrixi-font-size-l);
   }
 
+  // text
   .lyrixi-input-text {
     height: var(--lyrixi-height-l);
   }
 
   // textarea
-  .lyrixi-input-textarea {
-    height: 60px;
+  .lyrixi-input-textarea,
+  .lyrixi-input-textarea + .lyrixi-input-formatter {
+    height: 80px;
     padding: 10px 0;
   }
 
   // autoSize
   .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre {
-    min-height: 20px;
-    padding: 10px 0;
-  }
-
+  .lyrixi-input-autoSize-pre,
   .lyrixi-input-autoSize + .lyrixi-input-formatter {
     min-height: 20px;
     padding: 10px 0;
@@ -190,23 +172,21 @@
     font-size: var(--lyrixi-font-size-m);
   }
 
+  // text
   .lyrixi-input-text {
     height: var(--lyrixi-height-m);
   }
 
   // textarea
-  .lyrixi-input-textarea {
-    height: 40px;
+  .lyrixi-input-textarea,
+  .lyrixi-input-textarea + .lyrixi-input-formatter {
+    height: 52px;
     padding: 6px 0;
   }
 
   // autoSize
   .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre {
-    min-height: 20px;
-    padding: 6px 0;
-  }
-
+  .lyrixi-input-autoSize-pre,
   .lyrixi-input-autoSize + .lyrixi-input-formatter {
     min-height: 20px;
     padding: 6px 0;
@@ -226,23 +206,21 @@
     font-size: var(--lyrixi-font-size-s);
   }
 
+  // text
   .lyrixi-input-text {
     height: var(--lyrixi-height-s);
   }
 
   // textarea
-  .lyrixi-input-textarea {
-    height: 40px;
+  .lyrixi-input-textarea,
+  .lyrixi-input-textarea + .lyrixi-input-formatter {
+    height: 44px;
     padding: 2px 0;
   }
 
   // autoSize
   .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre {
-    min-height: 20px;
-    padding: 2px 0;
-  }
-
+  .lyrixi-input-autoSize-pre,
   .lyrixi-input-autoSize + .lyrixi-input-formatter {
     min-height: 20px;
     padding: 2px 0;
@@ -263,21 +241,20 @@
     font-size: var(--lyrixi-font-size-xs);
   }
 
+  // text
   .lyrixi-input-text {
     height: var(--lyrixi-height-xs);
   }
 
   // textarea
-  .lyrixi-input-textarea {
+  .lyrixi-input-textarea,
+  .lyrixi-input-textarea + .lyrixi-input-formatter {
     height: 40px;
   }
 
   // autoSize
   .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre {
-    min-height: 20px;
-  }
-
+  .lyrixi-input-autoSize-pre,
   .lyrixi-input-autoSize + .lyrixi-input-formatter {
     min-height: 20px;
   }

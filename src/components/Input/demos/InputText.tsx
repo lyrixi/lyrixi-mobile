@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect, type ComponentRef } from 'react'
-import { Page, Divider, Input, Card, Button } from 'lyrixi-mobile'
+import { Page, Divider, Input, Card, Button, MathUtil } from 'lyrixi-mobile'
 
 export default function InputTextDemo() {
   const inputTextRef = useRef<ComponentRef<typeof Input.Text> | null>(null)
   const [value, setValue] = useState('')
   const [value2, setValue2] = useState('')
-  const [value3, setValue3] = useState('')
+  const [formatterValue, setFormatterValue] = useState('12345.67')
+  const [formatterThousandsValue, setFormatterThousandsValue] = useState('1234567.89')
   const [value4, setValue4] = useState('')
   const [value5, setValue5] = useState('')
   const [valueComposition, setValueComposition] = useState('')
@@ -91,17 +92,34 @@ export default function InputTextDemo() {
         </Card>
 
         <Card style={{ marginTop: '20px' }}>
-          <Divider>格式化显示</Divider>
+          <Divider>formatter</Divider>
+          <div style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+            失焦时显示 formatter 格式化内容，获焦时恢复原始输入。
+          </div>
           <Input.Text
-            placeholder="格式化显示"
-            value={value3}
+            placeholder="前缀 $"
+            value={formatterValue}
+            allowClear
             formatter={(currentValue: string) => {
               return currentValue ? '$' + currentValue : ''
             }}
-            onChange={setValue3}
+            onChange={setFormatterValue}
           />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
-            当前值: {value3 || '空'}
+            当前值: {formatterValue || '空'}
+          </div>
+          <Input.Text
+            placeholder="千分位"
+            value={formatterThousandsValue}
+            allowClear
+            formatter={(currentValue: string) => {
+              return currentValue ? '$' + MathUtil.thousands(currentValue) : ''
+            }}
+            onChange={setFormatterThousandsValue}
+            style={{ marginTop: '12px' }}
+          />
+          <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+            当前值: {formatterThousandsValue || '空'}
           </div>
         </Card>
 
@@ -200,7 +218,7 @@ export default function InputTextDemo() {
             <p>• 支持文本输入和编辑</p>
             <p>• 支持placeholder提示</p>
             <p>• 支持清除按钮</p>
-            <p>• 支持格式化显示</p>
+            <p>• 支持 formatter 失焦格式化显示</p>
             <p>• 支持最大长度限制</p>
             <p>• 支持左右图标</p>
             <p>• 支持 enableCompositionEnd（输入法落字后再触发 onChange）</p>
