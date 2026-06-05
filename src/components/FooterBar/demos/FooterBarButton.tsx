@@ -152,11 +152,12 @@ export default function FooterBarButtonDemo() {
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             <Button.Icon svg={Icons.Config} />
-            <Button.Text>Icons.Config</Button.Text>
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="filled" color="default"
+            variant="filled"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -165,7 +166,8 @@ export default function FooterBarButtonDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="filled" color="primary"
+            variant="filled"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}
@@ -182,7 +184,6 @@ export default function FooterBarButtonDemo() {
             fontSize="12px"
             list={[
               {
-                disabled: true,
                 id: 'option1',
                 name: 'Option 1',
                 onClick: (e) => {
@@ -197,6 +198,7 @@ export default function FooterBarButtonDemo() {
                 }
               }
             ]}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             <Button.Icon svg={Icons.ThreeDots} size="xl" />
             <Button.Text>More</Button.Text>
@@ -208,13 +210,16 @@ export default function FooterBarButtonDemo() {
             onClick={(e) => {
               console.log(e)
             }}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             <Button.Icon svg={Icons.Config} />
-            <Button.Text>Icons.Config</Button.Text>
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             disabled
             block
+            variant="filled"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -224,7 +229,8 @@ export default function FooterBarButtonDemo() {
           <FooterBar.Button
             disabled
             block
-            variant="filled" color="primary"
+            variant="filled"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}

@@ -45,11 +45,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     // Events
     onCancel,
     onOpen,
-    onClose,
-    onConfig,
-    onReset,
-    onOk,
-    icon
+    onClose
   },
   ref
 ) {
@@ -113,7 +109,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
         }}
       >
         {/* comboChildren */}
-        {children || icon || <Icon svg={Icons.FilterMenu} />}
+        {children || <Icon svg={Icons.FilterMenu} />}
       </Button>
     )
   }

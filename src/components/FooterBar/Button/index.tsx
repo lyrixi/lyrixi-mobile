@@ -20,7 +20,7 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
       // Button: Style
       direction,
       block,
-      variant,
+      variant = 'text',
       color,
       size = 'l',
       sizeEqual,

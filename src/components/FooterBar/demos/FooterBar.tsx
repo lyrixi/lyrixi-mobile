@@ -152,11 +152,12 @@ export default function FooterBarDemo() {
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             <Button.Icon svg={Icons.Config} />
-            <Button.Text>Icons.Config</Button.Text>
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="filled" color="default"
+            variant="filled"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -165,7 +166,8 @@ export default function FooterBarDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="filled" color="primary"
+            variant="filled"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}
@@ -210,7 +212,7 @@ export default function FooterBarDemo() {
             }}
           >
             <Button.Icon svg={Icons.Config} />
-            <Button.Text>Icons.Config</Button.Text>
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             disabled
@@ -224,7 +226,8 @@ export default function FooterBarDemo() {
           <FooterBar.Button
             disabled
             block
-            variant="filled" color="primary"
+            variant="filled"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}
