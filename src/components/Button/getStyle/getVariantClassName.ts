@@ -64,7 +64,7 @@ export default function getVariantClassName(
   }
 
   switch (variant) {
-    case ButtonVariant.filled:
+    case ButtonVariant.solid:
       return DOMUtil.classNames(
         'lyrixi-color-white',
         `lyrixi-border-color-${color}`,
@@ -72,7 +72,7 @@ export default function getVariantClassName(
         'lyrixi-border-width-default',
         'lyrixi-border-style-solid'
       )
-    case ButtonVariant.solid:
+    case ButtonVariant.filled:
       return DOMUtil.classNames(
         `lyrixi-color-${color}`,
         `lyrixi-border-color-${color}`,
