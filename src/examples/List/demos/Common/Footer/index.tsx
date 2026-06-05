@@ -15,7 +15,7 @@ function Footer({ ok, cancel, onOk, onCancel }: ListDemoCommonFooterProps) {
           </FooterBar.Button>
         )}
         {onOk && (
-          <FooterBar.Button block variant="filled" color="primary" onClick={onOk}>
+          <FooterBar.Button block variant="solid" color="primary" onClick={onOk}>
             {ok || locale('Ok')}
           </FooterBar.Button>
         )}

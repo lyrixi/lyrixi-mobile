@@ -76,7 +76,7 @@ export default function ButtonDemo() {
         <Button
           size="xs"
           radius="xs"
-          variant={ButtonVariant.filled}
+          variant={ButtonVariant.solid}
           color={ButtonColor.primary}
           style={buttonStyle}
         >
@@ -85,7 +85,7 @@ export default function ButtonDemo() {
         <Button
           size="s"
           radius="s"
-          variant={ButtonVariant.filled}
+          variant={ButtonVariant.solid}
           color={ButtonColor.primary}
           style={buttonStyle}
         >
@@ -94,7 +94,7 @@ export default function ButtonDemo() {
         <Button
           size="m"
           radius="m"
-          variant={ButtonVariant.filled}
+          variant={ButtonVariant.solid}
           color={ButtonColor.primary}
           style={buttonStyle}
         >
@@ -103,7 +103,7 @@ export default function ButtonDemo() {
         <Button
           size="l"
           radius="l"
-          variant={ButtonVariant.filled}
+          variant={ButtonVariant.solid}
           color={ButtonColor.primary}
           style={buttonStyle}
         >
@@ -112,7 +112,7 @@ export default function ButtonDemo() {
         <Button
           size="xl"
           radius="xl"
-          variant={ButtonVariant.filled}
+          variant={ButtonVariant.solid}
           color={ButtonColor.primary}
           style={buttonStyle}
         >
@@ -121,7 +121,7 @@ export default function ButtonDemo() {
         <Button
           size="xxl"
           radius="xxl"
-          variant={ButtonVariant.filled}
+          variant={ButtonVariant.solid}
           color={ButtonColor.primary}
           style={buttonStyle}
         >
@@ -129,7 +129,7 @@ export default function ButtonDemo() {
         </Button>
 
         <Divider>block</Divider>
-        <Button block variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m">
+        <Button block variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m">
           block
         </Button>
       </Page.Main>

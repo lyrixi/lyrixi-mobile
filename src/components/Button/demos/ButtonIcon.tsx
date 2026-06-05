@@ -10,7 +10,7 @@ export default function ButtonIconDemo() {
       <Page.Main>
         <Divider>Button.Icon 基础用法</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.Ok} />
           </Button>
           <Button variant={ButtonVariant.outlined} color={ButtonColor.primary} radius="m" style={buttonStyle}>
@@ -26,19 +26,19 @@ export default function ButtonIconDemo() {
 
         <Divider>Button.Icon 不同尺寸</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button size="xs" radius="xs" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="xs" radius="xs" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Icon size="xs" svg={Icons.Search}></Button.Icon>
           </Button>
-          <Button size="s" radius="s" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="s" radius="s" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Icon size="s" svg={Icons.Search}></Button.Icon>
           </Button>
-          <Button size="m" radius="m" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="m" radius="m" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Icon size="m" svg={Icons.Search}></Button.Icon>
           </Button>
-          <Button size="l" radius="l" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="l" radius="l" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Icon size="l" svg={Icons.Search}></Button.Icon>
           </Button>
-          <Button size="xl" radius="xl" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="xl" radius="xl" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Icon size="xl" svg={Icons.Search}></Button.Icon>
           </Button>
         </div>
@@ -49,7 +49,7 @@ export default function ButtonIconDemo() {
             size="32"
             radius="100%"
             sizeEqual
-            variant={ButtonVariant.filled}
+            variant={ButtonVariant.solid}
             color={ButtonColor.primary}
             style={buttonStyle}
           >
@@ -59,7 +59,7 @@ export default function ButtonIconDemo() {
             size="40"
             radius="100%"
             sizeEqual
-            variant={ButtonVariant.filled}
+            variant={ButtonVariant.solid}
             color={ButtonColor.primary}
             style={buttonStyle}
           >
@@ -69,7 +69,7 @@ export default function ButtonIconDemo() {
             size="48"
             radius="100%"
             sizeEqual
-            variant={ButtonVariant.filled}
+            variant={ButtonVariant.solid}
             color={ButtonColor.primary}
             style={buttonStyle}
           >
@@ -79,7 +79,7 @@ export default function ButtonIconDemo() {
             size="56"
             radius="100%"
             sizeEqual
-            variant={ButtonVariant.filled}
+            variant={ButtonVariant.solid}
             color={ButtonColor.primary}
             style={buttonStyle}
           >
@@ -89,26 +89,26 @@ export default function ButtonIconDemo() {
 
         <Divider>Button.Icon 不同颜色</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.StarFill} />
           </Button>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.info} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.info} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.CircleInfo} />
           </Button>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.warning} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.warning} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.CircleWarning} />
           </Button>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.danger} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.danger} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.Trash} />
           </Button>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.success} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.success} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.CircleOk} />
           </Button>
         </div>
 
         <Divider>Button.Icon 与 Button.Text 组合</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.Ok} />
             <Button.Text>确认</Button.Text>
           </Button>

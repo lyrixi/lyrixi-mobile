@@ -46,7 +46,7 @@ export default function ModalFilterModalDemo() {
                 </FooterBar.Button>
                 <FooterBar.Button
                   className="lyrixi-flex-1"
-                  variant="filled" color="primary"
+                  variant="solid" color="primary"
                   onClick={() => {
                     console.log('confirm')
                     onClose?.()

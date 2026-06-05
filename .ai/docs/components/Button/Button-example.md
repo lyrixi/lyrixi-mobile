@@ -17,7 +17,7 @@
 ```tsx
 import { Button, ButtonColor, ButtonVariant } from 'lyrixi-mobile'
 
-<Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m">
+<Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m">
   提交
 </Button>
 ```

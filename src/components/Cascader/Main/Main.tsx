@@ -59,7 +59,7 @@ const Main = forwardRef<HTMLDivElement, CascaderMainViewProps>(
             {result?.status === 'error' && onReLoad ? (
               <Button
                 radius="l"
-                variant="filled"
+                variant="solid"
                 color="primary"
                 style={{ margin: '10px 12px' }}
                 onClick={onReLoad}

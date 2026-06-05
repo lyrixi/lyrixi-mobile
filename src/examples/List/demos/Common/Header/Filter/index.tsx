@@ -77,7 +77,7 @@ function Filter({ queryParams, onSearch }: FilterHeaderProps) {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="filled" color="primary"
+            variant="solid" color="primary"
             onClick={() =>
               handleConfirm(() => {
                 params.onClose?.()

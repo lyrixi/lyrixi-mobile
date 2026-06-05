@@ -14,7 +14,7 @@ function Footer({ onOk, onCancel }: { onOk?: () => void; onCancel?: () => void }
           </FooterBar.Button>
         )}
         {onOk && (
-          <FooterBar.Button block variant="filled" color="primary" onClick={onOk}>
+          <FooterBar.Button block variant="solid" color="primary" onClick={onOk}>
             {locale('Ok')}
           </FooterBar.Button>
         )}

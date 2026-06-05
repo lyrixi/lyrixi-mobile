@@ -31,7 +31,7 @@ export default function ToolBarDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="filled" color="primary"
+            variant="solid" color="primary"
             onClick={() => {
               console.log('ok')
             }}

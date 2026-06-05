@@ -59,7 +59,7 @@ export default function ToolBarFilterDemo() {
                 </FooterBar.Button>
                 <FooterBar.Button
                   block
-                  variant="filled"
+                  variant="solid"
                   color="primary"
                   onClick={(e) => {
                     console.log(e)

@@ -8,7 +8,7 @@ export default function Result500Demo() {
         <Result status={'500'}>
           <Button
             radius="l"
-            variant="filled" color="primary"
+            variant="solid" color="primary"
             style={{ margin: '77px 12px 0 12px' }}
             onClick={() => {
               window.location.reload()

@@ -108,7 +108,7 @@ function App({
       <ResultComponent status="500" title={result?.message}>
         <Button
           radius="l"
-          variant="filled" color="primary"
+          variant="solid" color="primary"
           style={{ margin: '10px 12px' }}
           onClick={() => void load()}
         >

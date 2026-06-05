@@ -1,3 +1,4 @@
+import React from 'react'
 import type { LocationMainChooseFooterProps } from './Location.Main.Choose.Footer.types'
 
 // 内库使用-start
@@ -18,18 +19,12 @@ function Foot({ onOk, onClear }: LocationMainChooseFooterProps) {
     <Page.Footer className="lyrixi-map-footer">
       <FooterBarComp>
         {onOk && (
-          <FooterBarComp.Button block size="l" variant="filled" color="primary" onClick={onOk}>
+          <FooterBarComp.Button block size="l" variant="solid" color="primary" onClick={onOk}>
             {LocaleUtil.locale('确定', 'lyrixi_38cf16f2204ffab8a6e0187070558721')}
           </FooterBarComp.Button>
         )}
         {onClear && (
-          <FooterBarComp.Button
-            block
-            size="l"
-            variant="filled" color="default"
-            color="default"
-            onClick={onClear}
-          >
+          <FooterBarComp.Button block size="l" variant="filled" color="default" onClick={onClear}>
             {LocaleUtil.locale('清空标注', 'lyrixi_ac562906083401454f9b6ab34cd113b8')}
           </FooterBarComp.Button>
         )}

@@ -10,7 +10,7 @@ export default function ButtonTextDemo() {
       <Page.Main>
         <Divider>Button.Text 基础用法</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m" style={buttonStyle}>
             <Button.Text>按钮文本</Button.Text>
           </Button>
           <Button variant={ButtonVariant.outlined} color={ButtonColor.primary} radius="m" style={buttonStyle}>
@@ -23,7 +23,7 @@ export default function ButtonTextDemo() {
 
         <Divider>Button.Text 自定义样式</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m" style={buttonStyle}>
             <Button.Text style={{ fontWeight: 'bold' }}>加粗文本</Button.Text>
           </Button>
           <Button variant={ButtonVariant.outlined} color={ButtonColor.primary} radius="m" style={buttonStyle}>
@@ -36,7 +36,7 @@ export default function ButtonTextDemo() {
 
         <Divider>Button.Text 与 Button.Icon 组合</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button variant={ButtonVariant.filled} color={ButtonColor.primary} radius="m" style={buttonStyle}>
+          <Button variant={ButtonVariant.solid} color={ButtonColor.primary} radius="m" style={buttonStyle}>
             <Button.Icon svg={Icons.Ok} />
             <Button.Text>确认</Button.Text>
           </Button>
@@ -53,16 +53,16 @@ export default function ButtonTextDemo() {
 
         <Divider>Button.Text 不同尺寸</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Button size="xs" radius="xs" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="xs" radius="xs" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Text>小号按钮</Button.Text>
           </Button>
-          <Button size="s" radius="s" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="s" radius="s" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Text>小按钮</Button.Text>
           </Button>
-          <Button size="m" radius="m" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="m" radius="m" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Text>中等按钮</Button.Text>
           </Button>
-          <Button size="l" radius="l" variant={ButtonVariant.filled} color={ButtonColor.primary} style={buttonStyle}>
+          <Button size="l" radius="l" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
             <Button.Text>大按钮</Button.Text>
           </Button>
         </div>
