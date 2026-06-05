@@ -8,7 +8,7 @@ import type {
 
 export interface DatePickerTypeSwitcherSwitcherProps {
   // Value & Display Value
-  switcherType?: DatePickerTypeSwitcherType
+  variant?: DatePickerTypeSwitcherType
   dropdownPortal?: HTMLElement
   types: DatePickerTypeListItem[]
   value: DatePickerTypeSwitcherValue

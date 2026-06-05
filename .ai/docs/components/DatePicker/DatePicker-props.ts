@@ -81,7 +81,7 @@ export interface DatePickerTypeSwitcherProps {
   /** 类型列表 */
   types?: Array<object>
   /** 切换方式 */
-  switcherType?: 'tabbar' | 'dropdown'
+  variant?: 'tabbar' | 'dropdown'
   /** 下拉挂载节点 */
   dropdownPortal?: HTMLElement
   /** 自定义样式 */

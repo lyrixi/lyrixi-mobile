@@ -220,7 +220,7 @@ toc: content
 | ------------------- | -------------- | ----------------------------------------- | ------ |
 | value               | 当前选中项     | `object`                                  | -      |
 | types               | 类型列表       | `Array<object>`                           | -      |
-| switcherType        | 切换方式       | `'tabbar' \| 'dropdown'`                  | -      |
+| variant             | 切换方式       | `'tabbar' \| 'dropdown'`                  | -      |
 | dropdownPortal      | 下拉挂载节点   | `HTMLElement`                             | -      |
 | style               | 自定义样式     | `object`                                  | -      |
 | className           | 自定义类名     | `string`                                  | -      |

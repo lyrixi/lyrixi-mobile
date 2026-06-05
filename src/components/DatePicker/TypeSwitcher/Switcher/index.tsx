@@ -14,7 +14,7 @@ import { TabBar, ToolBar } from 'lyrixi-mobile'
 测试使用-end */
 
 function Switcher({
-  switcherType = 'tabbar',
+  variant = 'tabbar',
   dropdownPortal,
   types,
   value,
@@ -22,7 +22,7 @@ function Switcher({
   className,
   onChange
 }: DatePickerTypeSwitcherSwitcherProps) {
-  if (switcherType === 'dropdown') {
+  if (variant === 'dropdown') {
     return (
       <ToolBar.List
         value={value as ToolBarItem}

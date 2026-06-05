@@ -22,7 +22,7 @@ export type DatePickerTypeSwitcherType = 'tabbar' | 'dropdown'
 export interface DatePickerTypeSwitcherProps {
   value?: DatePickerTypeSwitcherValue
   types?: DatePickerTypeListItem[]
-  switcherType?: DatePickerTypeSwitcherType
+  variant?: DatePickerTypeSwitcherType
   dropdownPortal?: HTMLElement
   style?: CSSProperties
   className?: string

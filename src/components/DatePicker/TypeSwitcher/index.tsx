@@ -57,7 +57,7 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
       pickerComboClassName = '',
       tabbarStyle = {},
       tabbarClassName = '',
-      switcherType = 'tabbar',
+      variant = 'tabbar',
       dropdownPortal,
       // Status
       min,
@@ -147,7 +147,7 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
       >
         {Array.isArray(types) && value && (
           <Switcher
-            switcherType={switcherType}
+            variant={variant}
             dropdownPortal={dropdownPortal}
             types={types}
             value={value}

@@ -88,10 +88,10 @@ export default function DatePickerTypeSwitcherDemo() {
         </Card>
 
         <Card>
-          <Card.Header>下拉模式（switcherType=&quot;dropdown&quot;）</Card.Header>
+          <Card.Header>下拉模式（variant=&quot;dropdown&quot;）</Card.Header>
           <Card.Main>
             <DatePicker.TypeSwitcher
-              switcherType="dropdown"
+              variant="dropdown"
               value={collapsedValue as DatePickerTypeSwitcherValue | undefined}
               types={[
                 {
