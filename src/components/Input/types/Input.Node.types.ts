@@ -9,6 +9,8 @@ import type {
   TouchEvent
 } from 'react'
 
+import type { InputSize } from './Input.Size.types'
+
 /** 选择类列表项；可携带任意透传字段，但 value 不会是 DOM。 */
 export type InputSelectItem = {
   id?: string | number
@@ -60,6 +62,7 @@ export interface InputNodeProps {
   cursor?: boolean | null
   style?: CSSProperties
   // Style
+  size?: InputSize
   className?: string
   // Elements
   leftIconNode?: ReactNode

@@ -48,7 +48,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       rightIconNode,
       clearRender,
 
-            precision, // 小数精度, 只有数值框才生效
+      precision, // 小数精度, 只有数值框才生效
       trim, // 小数位补0, true: 不补0; false: 补0;
       min,
       max,
@@ -183,7 +183,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           allowClear={allowClear}
           autoFocus={autoFocus} // 渲染时自动获取焦点
           autoSelect={autoSelect} // 渲染时自动选中
-                    precision={precision}
+          precision={precision}
           trim={trim}
           min={min}
           max={max}

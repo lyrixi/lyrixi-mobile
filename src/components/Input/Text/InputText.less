@@ -5,13 +5,28 @@
   &:extend(.lyrixi-appearance-none);
 
   display: block;
-  font-size: var(--lyrixi-font-size-l);
+  box-sizing: border-box;
 
   &[disabled] {
     color: #b2b2b2;
     opacity: 1; // 解决iosdisabled颜色变淡的问题
     -webkit-text-fill-color: #b2b2b2; // 解决iosdisabled颜色变淡的问题
   }
+}
+
+// textarea
+.lyrixi-input-textarea {
+  line-height: 20px;
+}
+
+// autoSize
+.lyrixi-input-autoSize-textarea,
+.lyrixi-input-autoSize-pre {
+  line-height: 20px;
+}
+
+.lyrixi-input-autoSize + .lyrixi-input-formatter {
+  line-height: 20px;
 }
 
 .lyrixi-input-text,
@@ -21,25 +36,6 @@
   flex: 1;
   // 解决flex1失效的问题
   min-width: 0;
-}
-
-.lyrixi-input-text {
-  height: calc(var(--lyrixi-input-height-m));
-}
-
-.lyrixi-input-textarea {
-  height: calc(var(--lyrixi-input-height-m) + 40px);
-}
-
-.lyrixi-input-autoSize-textarea,
-.lyrixi-input-autoSize-pre {
-  min-height: var(--lyrixi-input-height-m);
-  max-height: 500px;
-  line-height: var(--lyrixi-input-height-m);
-}
-
-.lyrixi-input-autoSize + .lyrixi-input-formatter {
-  line-height: var(--lyrixi-input-height-m);
 }
 
 // Input: 失焦时显示(不能用flex, 否则text-center不生效)
@@ -107,4 +103,186 @@
 
 .lyrixi-input-node + .lyrixi-input-icon {
   margin-left: 12px;
+}
+
+// Size: 尺寸与 NumberBox 一致
+.lyrixi-input.lyrixi-xl {
+  .lyrixi-input-text,
+  .lyrixi-input-textarea,
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre,
+  .lyrixi-input-formatter,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-l);
+  }
+
+  .lyrixi-input-text {
+    height: var(--lyrixi-height-xl);
+  }
+
+  // textarea
+  .lyrixi-input-textarea {
+    height: 60px;
+    padding: 14px 0;
+  }
+
+  // autoSize
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre {
+    min-height: 20px;
+    padding: 14px 0;
+  }
+
+  .lyrixi-input-autoSize + .lyrixi-input-formatter {
+    min-height: 20px;
+    padding: 14px 0;
+  }
+
+  div.lyrixi-input-text.lyrixi-input-focus::after {
+    height: 20px;
+  }
+}
+
+.lyrixi-input.lyrixi-l {
+  .lyrixi-input-text,
+  .lyrixi-input-textarea,
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre,
+  .lyrixi-input-formatter,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-l);
+  }
+
+  .lyrixi-input-text {
+    height: var(--lyrixi-height-l);
+  }
+
+  // textarea
+  .lyrixi-input-textarea {
+    height: 60px;
+    padding: 10px 0;
+  }
+
+  // autoSize
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre {
+    min-height: 20px;
+    padding: 10px 0;
+  }
+
+  .lyrixi-input-autoSize + .lyrixi-input-formatter {
+    min-height: 20px;
+    padding: 10px 0;
+  }
+
+  div.lyrixi-input-text.lyrixi-input-focus::after {
+    height: 18px;
+  }
+}
+
+.lyrixi-input.lyrixi-m {
+  .lyrixi-input-text,
+  .lyrixi-input-textarea,
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre,
+  .lyrixi-input-formatter,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-m);
+  }
+
+  .lyrixi-input-text {
+    height: var(--lyrixi-height-m);
+  }
+
+  // textarea
+  .lyrixi-input-textarea {
+    height: 40px;
+    padding: 6px 0;
+  }
+
+  // autoSize
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre {
+    min-height: 20px;
+    padding: 6px 0;
+  }
+
+  .lyrixi-input-autoSize + .lyrixi-input-formatter {
+    min-height: 20px;
+    padding: 6px 0;
+  }
+
+  div.lyrixi-input-text.lyrixi-input-focus::after {
+    height: 16px;
+  }
+}
+
+.lyrixi-input.lyrixi-s {
+  .lyrixi-input-textarea,
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre,
+  .lyrixi-input-formatter,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-s);
+  }
+
+  .lyrixi-input-text {
+    height: var(--lyrixi-height-s);
+  }
+
+  // textarea
+  .lyrixi-input-textarea {
+    height: 40px;
+    padding: 2px 0;
+  }
+
+  // autoSize
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre {
+    min-height: 20px;
+    padding: 2px 0;
+  }
+
+  .lyrixi-input-autoSize + .lyrixi-input-formatter {
+    min-height: 20px;
+    padding: 2px 0;
+  }
+
+  div.lyrixi-input-text.lyrixi-input-focus::after {
+    height: 14px;
+  }
+}
+
+.lyrixi-input.lyrixi-xs {
+  .lyrixi-input-text,
+  .lyrixi-input-textarea,
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre,
+  .lyrixi-input-formatter,
+  .lyrixi-input-node {
+    font-size: var(--lyrixi-font-size-xs);
+  }
+
+  .lyrixi-input-text {
+    height: var(--lyrixi-height-xs);
+  }
+
+  // textarea
+  .lyrixi-input-textarea {
+    height: 40px;
+  }
+
+  // autoSize
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre {
+    min-height: 20px;
+  }
+
+  .lyrixi-input-autoSize + .lyrixi-input-formatter {
+    min-height: 20px;
+  }
+
+  div.lyrixi-input-text.lyrixi-input-focus::after {
+    height: 12px;
+  }
 }

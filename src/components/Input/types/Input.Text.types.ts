@@ -9,6 +9,8 @@ import type {
   TouchEvent
 } from 'react'
 
+import type { InputSize } from './Input.Size.types'
+
 export type InputTextElement = (HTMLInputElement | HTMLTextAreaElement) & {
   composing?: boolean
   preventBlur?: boolean
@@ -50,6 +52,7 @@ export interface InputTextProps {
   enableCompositionEnd?: boolean
   style?: CSSProperties
   // Style
+  size?: InputSize
   className?: string
   // Elements
   inputRender?: (params: Record<string, unknown>) => ReactNode

@@ -9,6 +9,7 @@ export default function InputTextDemo() {
   const [value4, setValue4] = useState('')
   const [value5, setValue5] = useState('')
   const [valueComposition, setValueComposition] = useState('')
+  const [sizeValue, setSizeValue] = useState('')
 
   useEffect(() => {
     console.log('Input.Text ref:', inputTextRef.current)
@@ -31,6 +32,54 @@ export default function InputTextDemo() {
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
             当前值: {value || '空'}
           </div>
+        </Card>
+
+        <Card style={{ marginTop: '20px' }}>
+          <Divider>尺寸 size</Divider>
+          <Input.Text
+            size="xs"
+            placeholder="size xs"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="s"
+            placeholder="size s"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="m"
+            placeholder="size m"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="l"
+            placeholder="size l"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="xl"
+            placeholder="size xl"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
         </Card>
 
         <Card style={{ marginTop: '20px' }}>
@@ -147,6 +196,7 @@ export default function InputTextDemo() {
         <Card style={{ marginTop: '20px' }}>
           <Divider>功能说明</Divider>
           <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#666' }}>
+            <p>• 支持 size 尺寸（xs / s / m / l / xl）</p>
             <p>• 支持文本输入和编辑</p>
             <p>• 支持placeholder提示</p>
             <p>• 支持清除按钮</p>

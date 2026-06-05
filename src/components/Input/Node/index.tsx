@@ -35,6 +35,7 @@ const InputNode = (
 
     // Style
     style: externalStyle,
+    size,
     className,
 
     // Elements
@@ -172,6 +173,7 @@ const InputNode = (
       style={style}
       className={DOMUtil.classNames(
         `lyrixi-input`,
+        size ? `lyrixi-${size}` : '',
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
         disabled ? 'lyrixi-input-disabled' : '',

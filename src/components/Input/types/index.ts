@@ -1,4 +1,5 @@
 export * from './Input.modules.types'
+export * from './Input.Size.types'
 export * from './Input.Node.types'
 export * from './Input.Text.types'
 export * from './Input.AutoSize.types'

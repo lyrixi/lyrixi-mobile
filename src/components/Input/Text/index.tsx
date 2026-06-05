@@ -39,6 +39,7 @@ const InputText = (
 
     // Style
     style: externalStyle,
+    size = 'l',
     className,
 
     // Elements
@@ -47,7 +48,7 @@ const InputText = (
     rightIconNode,
     clearRender,
 
-        precision, // 小数精度, 只有数值框才生效
+    precision, // 小数精度, 只有数值框才生效
     trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
     max,
     min,
@@ -323,7 +324,7 @@ const InputText = (
             // Style
             style={inputStyle}
             className="lyrixi-input-autoSize-textarea"
-                        maxLength={maxLength}
+            maxLength={maxLength}
             // Other
             inputMode={inputMode}
             enterKeyHint={enterKeyHint}
@@ -361,7 +362,7 @@ const InputText = (
           // Style
           style={inputStyle}
           className="lyrixi-input-textarea"
-                    maxLength={maxLength}
+          maxLength={maxLength}
           // Other
           inputMode={inputMode}
           enterKeyHint={enterKeyHint}
@@ -395,7 +396,7 @@ const InputText = (
         // Style
         style={inputStyle}
         className="lyrixi-input-text"
-                min={typeof min === 'number' ? min : ''}
+        min={typeof min === 'number' ? min : ''}
         max={typeof max === 'number' ? max : ''}
         maxLength={maxLength}
         // Other
@@ -424,6 +425,7 @@ const InputText = (
       style={style}
       className={DOMUtil.classNames(
         `lyrixi-input`,
+        size ? `lyrixi-${size}` : '',
         className,
         displayValue ? 'lyrixi-has-formatter' : '',
         disabled ? 'lyrixi-input-disabled' : '',

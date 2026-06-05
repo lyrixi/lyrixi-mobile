@@ -22,6 +22,7 @@ const Textarea = forwardRef<InputTextareaRef, InputTextareaProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -71,6 +72,7 @@ const Textarea = forwardRef<InputTextareaRef, InputTextareaProps>(
         autoSelect={autoSelect}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}

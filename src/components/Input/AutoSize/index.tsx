@@ -22,6 +22,7 @@ const AutoSize = forwardRef<InputAutoSizeRef, InputAutoSizeProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -71,6 +72,7 @@ const AutoSize = forwardRef<InputAutoSizeRef, InputAutoSizeProps>(
         autoSelect={autoSelect}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}
