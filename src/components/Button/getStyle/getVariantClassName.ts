@@ -48,7 +48,7 @@ export default function getVariantClassName(
         return DOMUtil.classNames(
           'lyrixi-color-default',
           'lyrixi-border-color-default',
-          'lyrixi-bg-white',
+          'lyrixi-bg-transparent',
           'lyrixi-border-width-default',
           'lyrixi-border-style-dashed'
         )
@@ -96,7 +96,7 @@ export default function getVariantClassName(
       return DOMUtil.classNames(
         `lyrixi-color-${color}`,
         `lyrixi-border-color-${color}`,
-        `lyrixi-bg-${color}-lighten`,
+        'lyrixi-bg-transparent',
         'lyrixi-border-width-default',
         'lyrixi-border-style-dashed'
       )
