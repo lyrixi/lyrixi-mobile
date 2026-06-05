@@ -104,6 +104,46 @@
   }
 }
 
+.lyrixi-switch.lyrixi-l {
+  height: 24px;
+
+  .lyrixi-switch-on,
+  .lyrixi-switch-off {
+    min-width: 20px;
+  }
+
+  .lyrixi-switch-off {
+    margin-top: -24px;
+  }
+
+  .lyrixi-switch-handle {
+    height: calc(24px - 2px);
+    width: calc(24px - 2px);
+  }
+
+  &:not(.lyrixi-active) {
+    .lyrixi-switch-handle {
+      left: 1px;
+    }
+
+    .lyrixi-switch-inner {
+      padding-left: calc(24px + 2px);
+      padding-right: 10px;
+    }
+  }
+
+  &.lyrixi-active {
+    .lyrixi-switch-handle {
+      left: calc(100% - 24px);
+    }
+
+    .lyrixi-switch-inner {
+      padding-left: 10px;
+      padding-right: calc(24px + 2px);
+    }
+  }
+}
+
 .lyrixi-switch.lyrixi-m {
   height: 20px;
 

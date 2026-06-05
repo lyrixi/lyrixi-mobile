@@ -1,5 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 
+export type SwitchSize = 's' | 'm' | 'l'
+
 export interface SwitchProps {
   // Value & Display Value
   checked?: boolean
@@ -7,7 +9,7 @@ export interface SwitchProps {
   readOnly?: boolean
   disabled?: boolean
   // Style
-  size?: string
+  size?: SwitchSize
   style?: CSSProperties
   className?: string
   // Elements

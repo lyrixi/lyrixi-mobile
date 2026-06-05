@@ -34,6 +34,19 @@ export default function SwitchDemo() {
           off="Off"
           onChange={setChecked}
         />
+        <Divider>Size l</Divider>
+        <Switch
+          size="l"
+          checked={checked}
+          onChange={setChecked}
+        />
+        <Switch
+          size="l"
+          checked={checked}
+          on="On"
+          off="Off"
+          onChange={setChecked}
+        />
       </Page.Main>
     </Page>
   )
