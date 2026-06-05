@@ -105,7 +105,7 @@
 }
 
 .lyrixi-switch.lyrixi-m {
-  height: var(--lyrixi-input-height-m);
+  height: 20px;
 
   .lyrixi-switch-on,
   .lyrixi-switch-off {
@@ -113,12 +113,12 @@
   }
 
   .lyrixi-switch-off {
-    margin-top: -var(--lyrixi-input-height-m);
+    margin-top: -20px;
   }
 
   .lyrixi-switch-handle {
-    height: calc(var(--lyrixi-input-height-m) - 2px);
-    width: calc(var(--lyrixi-input-height-m) - 2px);
+    height: calc(20px - 2px);
+    width: calc(20px - 2px);
   }
 
   // 激活和非激活的位移与间距
@@ -130,7 +130,7 @@
 
     // 主体内容
     .lyrixi-switch-inner {
-      padding-left: calc(var(--lyrixi-input-height-m) + 2px);
+      padding-left: calc(20px + 2px);
       padding-right: 8px;
     }
   }
@@ -138,13 +138,13 @@
   &.lyrixi-active {
     // 小球
     .lyrixi-switch-handle {
-      left: calc(100% - var(--lyrixi-input-height-m));
+      left: calc(100% - 20px);
     }
 
     // 主体内容
     .lyrixi-switch-inner {
       padding-left: 8px;
-      padding-right: calc(var(--lyrixi-input-height-m) + 2px);
+      padding-right: calc(20px + 2px);
     }
   }
 }
