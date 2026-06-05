@@ -38,6 +38,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       // Style
       className,
       style,
+      size = 'm',
       plusClassName,
       plusStyle,
       minusClassName,
@@ -203,7 +204,11 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
         ref={rootRef}
         // Style
         style={style}
-        className={DOMUtil.classNames('lyrixi-numberbox', className)}
+        className={DOMUtil.classNames(
+          'lyrixi-numberbox',
+          size ? `lyrixi-${size}` : '',
+          className
+        )}
         // Status
         {...((min !== undefined && max !== undefined && !isNaN(min) && !isNaN(max)
           ? Number(min) >= Number(max)

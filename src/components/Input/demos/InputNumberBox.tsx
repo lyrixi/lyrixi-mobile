@@ -10,7 +10,7 @@ export default function InputNumberBoxDemo() {
         <Divider>Size XS</Divider>
         <Card className="lyrixi-padding-horizontal-l lyrixi-padding-vertical-l">
           <Input.NumberBox
-            className="lyrixi-xs"
+            size="xs"
             placeholder="Size xs"
             value={value}
             onChange={setValue}
@@ -25,7 +25,7 @@ export default function InputNumberBoxDemo() {
         <Divider>Size S</Divider>
         <Card className="lyrixi-padding-horizontal-l lyrixi-padding-vertical-l">
           <Input.NumberBox
-            className="lyrixi-s"
+            size="s"
             placeholder="Size s"
             value={value}
             onChange={setValue}
@@ -40,7 +40,7 @@ export default function InputNumberBoxDemo() {
         <Divider>Size M</Divider>
         <Card className="lyrixi-padding-horizontal-l lyrixi-padding-vertical-l">
           <Input.NumberBox
-            className="lyrixi-radius-m"
+            size="m"
             placeholder="Size m"
             value={value}
             onChange={setValue}
@@ -62,7 +62,7 @@ export default function InputNumberBoxDemo() {
         <Divider>Size L</Divider>
         <Card className="lyrixi-padding-horizontal-l lyrixi-padding-vertical-l">
           <Input.NumberBox
-            className="lyrixi-l"
+            size="l"
             placeholder="Size l"
             value={value}
             onChange={setValue}
@@ -77,7 +77,7 @@ export default function InputNumberBoxDemo() {
         <Divider>Size XL</Divider>
         <Card className="lyrixi-padding-horizontal-l lyrixi-padding-vertical-l">
           <Input.NumberBox
-            className="lyrixi-xl"
+            size="xl"
             placeholder="Size xl"
             value={value}
             onChange={setValue}
