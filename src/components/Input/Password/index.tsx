@@ -22,6 +22,7 @@ const InputPassword = forwardRef<InputPasswordRef, InputPasswordProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -71,6 +72,7 @@ const InputPassword = forwardRef<InputPasswordRef, InputPasswordProps>(
         autoSelect={autoSelect}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}

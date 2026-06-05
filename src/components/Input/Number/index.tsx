@@ -22,6 +22,7 @@ const Number = forwardRef<InputNumberRef, InputNumberProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -71,6 +72,7 @@ const Number = forwardRef<InputNumberRef, InputNumberProps>(
         autoSelect={autoSelect}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}

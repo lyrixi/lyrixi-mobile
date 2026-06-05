@@ -35,6 +35,7 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -140,6 +141,7 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
           allowClear={allowClear}
           // Style
           style={style}
+          size={size}
           className={className}
           // Elements
           leftIconNode={leftIconNode}
@@ -165,6 +167,7 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
         allowClear={allowClear}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         leftIconNode={leftIconNode}

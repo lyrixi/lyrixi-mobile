@@ -15,6 +15,7 @@ const Tags = ({
   clearRender,
   className,
   style,
+  size,
   placeholder,
   readOnly,
   disabled,
@@ -29,6 +30,7 @@ const Tags = ({
       leftIconNode={leftIconNode}
       rightIconNode={rightIconNode}
       className={className}
+      size={size}
       disabled={disabled}
       readOnly={readOnly}
       style={style}

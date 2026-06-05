@@ -35,7 +35,7 @@ const InputNode = (
 
     // Style
     style: externalStyle,
-    size,
+    size = 'l',
     className,
 
     // Elements
@@ -43,7 +43,7 @@ const InputNode = (
     rightIconNode,
     clearRender,
 
-        precision,
+    precision,
     trim,
     min,
     max,

@@ -1,6 +1,7 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import type { InputSelectItem, InputSelectProps } from '../../types/Input.Select.types'
+import type { InputSize } from '../../types/Input.Size.types'
 
 export interface InputSelectTagsProps {
   // Value & Display Value
@@ -14,6 +15,7 @@ export interface InputSelectTagsProps {
   // Style
   className?: string
   style?: CSSProperties
+  size?: InputSize
   // Elements
   leftIconNode?: ReactNode
   rightIconNode?: ReactNode

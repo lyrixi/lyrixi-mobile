@@ -35,6 +35,7 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -43,7 +44,7 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
       rightIconNode,
       clearRender,
 
-            precision, // 小数精度, 只有数值框才生效
+      precision, // 小数精度, 只有数值框才生效
       trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
       max,
       min,
@@ -57,7 +58,6 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
       spellCheck,
 
       // Events
-      onClick,
       onChange,
       onBlur,
       onFocus,
@@ -74,10 +74,7 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
         onSuccess: () => {
           toastShow({
             content: String(
-              LocaleUtil.locale(
-                '链接已复制到剪贴板',
-                'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75'
-              )
+              LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75')
             )
           })
         },
@@ -142,13 +139,14 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
         autoSelect={autoSelect}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}
         leftIconNode={leftIconNode}
         rightIconNode={rightIconNode}
         clearRender={clearRender}
-                precision={precision}
+        precision={precision}
         trim={trim}
         max={max}
         min={min}

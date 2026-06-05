@@ -29,6 +29,7 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
       // Style
       className,
       style,
+      size,
 
             maxLength = 6,
 
@@ -152,6 +153,7 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-otp',
+          size ? `lyrixi-${size}` : '',
           className,
           disabled ? 'lyrixi-input-disabled' : '',
           readOnly ? 'lyrixi-input-readOnly' : ''
@@ -164,6 +166,7 @@ const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
           // Status
           disabled={disabled}
           readOnly={readOnly}
+          size={size}
           // Events
           onChange={handleChange}
           onKeyDown={handleKeyDown}

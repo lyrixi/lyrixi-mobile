@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
 
+import type { InputSize } from './Input.Size.types'
+
 export interface InputOTPRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
@@ -22,6 +24,7 @@ export interface InputOTPProps {
   // Style
   className?: string
   style?: CSSProperties
+  size?: InputSize
   // Status
   disabled?: boolean
   readOnly?: boolean

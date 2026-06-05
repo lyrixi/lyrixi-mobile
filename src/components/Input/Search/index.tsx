@@ -24,6 +24,7 @@ const Search = forwardRef<InputSearchRef, InputSearchProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -79,6 +80,7 @@ const Search = forwardRef<InputSearchRef, InputSearchProps>(
         enableCompositionEnd={enableCompositionEnd}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}

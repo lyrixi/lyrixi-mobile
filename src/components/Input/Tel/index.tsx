@@ -22,6 +22,7 @@ const InputTel = forwardRef<InputTelRef, InputTelProps>(
 
       // Style
       style,
+      size,
       className,
 
       // Elements
@@ -71,6 +72,7 @@ const InputTel = forwardRef<InputTelRef, InputTelProps>(
         autoSelect={autoSelect}
         // Style
         style={style}
+        size={size}
         className={className}
         // Elements
         inputRender={inputRender}

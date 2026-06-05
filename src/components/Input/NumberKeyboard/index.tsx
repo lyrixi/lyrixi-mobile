@@ -44,6 +44,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
 
       // Input: Style
       style,
+      size,
       className,
 
       // Input: Elements
@@ -121,6 +122,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           cursor={keyboardOpen} // 键盘打开时显示光标
           // Input: Style
           style={style}
+          size={size}
           className={DOMUtil.classNames('lyrixi-input-numberkeyboard', className)}
           // Input: Elements
           leftIconNode={leftIconNode}
