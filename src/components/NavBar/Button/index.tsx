@@ -18,7 +18,7 @@ const NavBarButton = forwardRef<ButtonRef, NavBarButtonProps>(
       // Button: Style
       direction,
       block,
-      variant,
+      variant = 'text',
       color,
       size = 22,
       sizeEqual,

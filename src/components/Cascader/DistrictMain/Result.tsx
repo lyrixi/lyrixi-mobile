@@ -36,7 +36,8 @@ const DistrictMainResult = ({
           {result?.status === 'error' ? (
             <Button
               radius="l"
-              variant="filled" color="primary"
+              variant="filled"
+              color="primary"
               style={{ margin: '10px 12px' }}
               onClick={onReload}
             >

@@ -46,23 +46,24 @@ const ToolBarButton = forwardRef<ButtonRef, ToolBarButtonProps>(function ToolBar
   return (
     <Button
       ref={rootRef}
-        // Style
-        variant={variant}
-        color={color}
-        direction={direction}
-        size={size}
-        radius={radius}
-        sizeEqual={sizeEqual}
-        fontSize={fontSize}
-        className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
-        style={style}
-        // Events
-        onClick={onClick}
-      >
-        {/* Elements: Children */}
-        {children}
-      </Button>
-    )
+      // Style
+      block={block}
+      variant={variant}
+      color={color}
+      direction={direction}
+      size={size}
+      radius={radius}
+      sizeEqual={sizeEqual}
+      fontSize={fontSize}
+      className={DOMUtil.classNames('lyrixi-toolbar-button', className)}
+      style={style}
+      // Events
+      onClick={onClick}
+    >
+      {/* Elements: Children */}
+      {children}
+    </Button>
+  )
 })
 
 // Component Name, for compact

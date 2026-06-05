@@ -46,9 +46,9 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
     onCancel,
     onOpen,
     onClose,
-    onConfig: _onConfig,
-    onReset: _onReset,
-    onOk: _onOk,
+    onConfig,
+    onReset,
+    onOk,
     icon
   },
   ref

@@ -107,7 +107,8 @@ const MapLoader = forwardRef<MapLoaderRef, MapLoaderProps>(
         <Result title={result.message} className="lyrixi-map-container-result" status={'500'}>
           <Button
             radius="l"
-            variant="filled" color="primary"
+            variant="filled"
+            color="primary"
             style={{ margin: '10px 12px' }}
             onClick={() => {
               loadData()
