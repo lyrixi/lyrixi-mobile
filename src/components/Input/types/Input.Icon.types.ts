@@ -1,3 +1,4 @@
-import type { IconProps } from '../../Icon/types'
+import type { IconProps, IconRef } from '../../Icon/types'
 
 export type InputIconProps = IconProps
+export type InputIconRef = IconRef

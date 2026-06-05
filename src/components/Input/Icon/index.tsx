@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import type { IconRef } from './../../Icon/types'
-
-import type { InputIconProps } from '../types/Input.Icon.types'
+import type { InputIconProps, InputIconRef } from '../types/Input.Icon.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -13,7 +11,7 @@ import Icon from './../../Icon'
 import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
-const InputIcon = forwardRef<IconRef, InputIconProps>(function InputIcon(
+const InputIcon = forwardRef<InputIconRef, InputIconProps>(function InputIcon(
   {
     svg,
     color,
