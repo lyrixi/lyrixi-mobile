@@ -1,3 +1,3 @@
 import type { IconProps } from '../../Icon/types'
 
-export interface InputIconProps extends IconProps {}
+export type InputIconProps = IconProps
