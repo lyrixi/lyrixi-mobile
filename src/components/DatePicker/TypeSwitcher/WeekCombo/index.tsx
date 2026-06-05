@@ -45,7 +45,7 @@ const Week = forwardRef<unknown, DatePickerTypeSwitcherWeekComboProps>(function 
   return (
     <>
       <Input.IconLeftArrow
-        iconClassName="lyrixi-datepicker-typeswitcher-combo-previous"
+        className="lyrixi-datepicker-typeswitcher-combo-previous"
         onClick={handlePrev}
       />
       <DatePickerCombo
@@ -69,7 +69,7 @@ const Week = forwardRef<unknown, DatePickerTypeSwitcherWeekComboProps>(function 
         }}
       />
       <Input.IconRightArrow
-        iconClassName="lyrixi-datepicker-typeswitcher-combo-next"
+        className="lyrixi-datepicker-typeswitcher-combo-next"
         onClick={handleNext}
       />
     </>

@@ -69,7 +69,7 @@ const DateCombo = forwardRef<unknown, DatePickerTypeSwitcherDateComboProps>(func
   return (
     <>
       <Input.IconLeftArrow
-        iconClassName="lyrixi-datepicker-typeswitcher-combo-previous"
+        className="lyrixi-datepicker-typeswitcher-combo-previous"
         onClick={handlePrev}
       />
       <DatePickerCombo
@@ -95,7 +95,7 @@ const DateCombo = forwardRef<unknown, DatePickerTypeSwitcherDateComboProps>(func
         ref={ref as React.Ref<DatePickerComboRef>}
       />
       <Input.IconRightArrow
-        iconClassName="lyrixi-datepicker-typeswitcher-combo-next"
+        className="lyrixi-datepicker-typeswitcher-combo-next"
         onClick={handleNext}
       />
     </>

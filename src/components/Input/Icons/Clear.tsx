@@ -1,55 +1,23 @@
 import React, { forwardRef } from 'react'
-import type { InputIconClearProps } from '../types/Input.IconClear.types'
+
+import type { InputIconProps } from '../types/Input.Icon.types'
 
 // 内库使用-start
 import Icons from '../../../icons'
-import Icon from './../../Icon'
+import InputIcon from './../Icon'
 import type { IconRef } from './../../Icon/types'
-import DOMUtil from './../../../utils/DOMUtil'
-
 // 内库使用-end
 
 /* 测试使用-start
-import { Icon, Icons } from 'lyrixi-mobile'
+import { Icons } from 'lyrixi-mobile'
+import InputIcon from './../Icon'
 测试使用-end */
 
-const IconClear = forwardRef<IconRef, InputIconClearProps>(
-  (
-    {
-      // Value & Display Value
-      svg = Icons.CircleCloseFill,
-      // Status
-      disabled,
-      // Value & Display Value
-      color,
-      backgroundColor,
-      size = 'm',
-      radius,
-      // Style
-      style,
-      iconClassName,
-      // Events
-      onClick,
-      onTouchStart
-    },
-    ref
-  ) => {
-    return (
-      <Icon
-        ref={ref}
-        svg={svg}
-        disabled={disabled}
-        color={color}
-        backgroundColor={backgroundColor}
-        size={size}
-        radius={radius}
-        style={style}
-        className={DOMUtil.classNames('lyrixi-input-icon', iconClassName)}
-        onClick={onClick}
-        onTouchStart={onTouchStart}
-      />
-    )
-  }
-)
+const IconClear = forwardRef<
+  IconRef,
+  Omit<InputIconProps, 'svg'> & Pick<Partial<InputIconProps>, 'svg'>
+>(function IconClear({ svg = Icons.CircleCloseFill, ...rest }, ref) {
+  return <InputIcon ref={ref} svg={svg} {...rest} />
+})
 
 export default IconClear
