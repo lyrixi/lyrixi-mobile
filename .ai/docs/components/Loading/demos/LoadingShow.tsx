@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page } from 'lyrixi-mobile'
 import { Loading } from 'lyrixi-mobile'
 

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Storage, Page, Button } from 'lyrixi-mobile'
 
 import type { StorageDemoCacheState } from './Storage.demos.types'

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import vconsole from 'vconsole'
 import { MediaUploader, Page, Toast, type MediaHandle, type MediaItem } from 'lyrixi-mobile'

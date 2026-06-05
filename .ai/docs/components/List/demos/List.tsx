@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import React, { useState, type ReactNode } from 'react'
 
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 import type { ListItem, ViewItem } from 'lyrixi-mobile'

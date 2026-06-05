@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { ObjectUtil, Page, Card, Divider } from 'lyrixi-mobile'
 
 export default function ObjectUtilDemo() {

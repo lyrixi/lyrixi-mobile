@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { Page, type ListAsyncLoadResult, type ListAsyncRef } from 'lyrixi-mobile'
 

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Icon, Page, NoticeBar, Icons } from 'lyrixi-mobile'
 
 export default function NoticeBarDemo() {

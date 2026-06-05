@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState, useRef } from 'react'
+import React, { Fragment, useEffect, useMemo, useState, useRef } from 'react'
 
 import { Page, IndexBar } from 'lyrixi-mobile'
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ComponentType } from 'react'
+import React, { useEffect, useRef, useState, type ComponentType } from 'react'
 
 import {
   Attach,

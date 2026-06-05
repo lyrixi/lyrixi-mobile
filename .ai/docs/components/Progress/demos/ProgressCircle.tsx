@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page, Progress, Divider, Card } from 'lyrixi-mobile'
 
 const BasicDemo = () => {

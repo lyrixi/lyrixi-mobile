@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, SearchControl } = Map

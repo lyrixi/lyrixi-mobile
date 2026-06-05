@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page, Divider, Row } from 'lyrixi-mobile'
 
 export default function RowDemo() {

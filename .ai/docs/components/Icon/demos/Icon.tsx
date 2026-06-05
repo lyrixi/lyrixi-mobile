@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page, Divider, Icon, Icons } from 'lyrixi-mobile'
 
 const iconStyle = {

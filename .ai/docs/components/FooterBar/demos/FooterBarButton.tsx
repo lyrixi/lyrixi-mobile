@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Icon, Page, Divider, FooterBar, Button, Icons } from 'lyrixi-mobile'
 
 export default function FooterBarButtonDemo() {

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page, Chat, type ChatRawItem } from 'lyrixi-mobile'
 
 const ChatListDemo = () => {

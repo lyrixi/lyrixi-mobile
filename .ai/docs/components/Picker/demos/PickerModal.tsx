@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Picker, Page, type PickerItem } from 'lyrixi-mobile'
 

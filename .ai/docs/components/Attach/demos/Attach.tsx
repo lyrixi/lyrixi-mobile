@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 import { Toast, Page, Divider, Bridge, Button, Attach } from 'lyrixi-mobile'
 import type { AttachListItem, AttachRef } from 'lyrixi-mobile'

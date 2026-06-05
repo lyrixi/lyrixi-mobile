@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import { Page, Modal } from 'lyrixi-mobile'
 

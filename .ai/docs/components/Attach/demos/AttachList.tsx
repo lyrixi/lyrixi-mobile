@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Page, Attach } from 'lyrixi-mobile'
 
 export default function AttachListDemo() {

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Request } from 'lyrixi-mobile'
 
 export default function RequestCacheDemo() {

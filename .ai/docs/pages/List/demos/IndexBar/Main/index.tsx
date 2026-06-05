@@ -1,5 +1,5 @@
 // 第三方库导入
-import { forwardRef, type Ref } from 'react'
+import React, { forwardRef, type Ref } from 'react'
 
 import { ListPagination } from 'lyrixi-mobile'
 
