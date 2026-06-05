@@ -6,7 +6,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import InputSearch from './../../Input/Search'
 import type { InputTextRef } from './../../Input/types'
 import type { ToolBarSearchProps } from '../types/ToolBar.Search.types'
-import Icon from '../../Icon'
+import Input from '../../Input'
 import Icons from '../../../icons'
 // 内库使用-end
 
@@ -42,7 +42,7 @@ const Search = forwardRef<InputTextRef, ToolBarSearchProps>(function Search(prop
     rightIconNode,
     clearRender,
 
-        precision, // 小数精度, 只有数值框才生效
+    precision, // 小数精度, 只有数值框才生效
     trim, // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
     max,
     min,
@@ -80,18 +80,15 @@ const Search = forwardRef<InputTextRef, ToolBarSearchProps>(function Search(prop
       autoSelect={autoSelect}
       enableCompositionEnd={enableCompositionEnd}
       // Style
+      size="m"
       style={style}
       className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}
       // Elements
       inputRender={inputRender}
-      leftIconNode={
-        leftIconNode || (
-          <Icon svg={Icons.Search} size="s" className="lyrixi-toolbar-search-input-left-icon" />
-        )
-      }
+      leftIconNode={leftIconNode || <Input.Icon svg={Icons.Search} />}
       rightIconNode={rightIconNode}
       clearRender={clearRender}
-            precision={precision}
+      precision={precision}
       trim={trim}
       max={max}
       min={min}
