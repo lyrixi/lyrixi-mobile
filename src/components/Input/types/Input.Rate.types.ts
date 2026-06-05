@@ -16,6 +16,7 @@ export interface InputRateProps {
   readOnly?: boolean
   disabled?: boolean
   // Style
+  size?: 's' | 'm' | 'l'
   style?: CSSProperties
   className?: string
   // Elements

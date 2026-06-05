@@ -45,6 +45,12 @@ export default function InputRateDemo() {
         </Card>
 
         <Card>
+          <Divider>Size s</Divider>
+          <Input.Rate style={{ margin: '0 12px' }} size="s" value={value} onChange={setValue} />
+          <Input.Rate style={{ margin: '0 12px' }} size="m" value={value} onChange={setValue} />
+          <Input.Rate style={{ margin: '0 12px' }} size="l" value={value} onChange={setValue} />
+        </Card>
+        <Card>
           <Divider>Icon</Divider>
           <Input.Rate
             style={{ margin: '0 12px' }}
