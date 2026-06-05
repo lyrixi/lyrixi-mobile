@@ -33,7 +33,6 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
       className,
       layout,
       height,
-      maxLength: _maxLength,
       labelStyle,
       labelClassName,
       mainStyle,
@@ -79,7 +78,9 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
                 style={labelStyle}
                 className={labelClassName}
                 span={labelSpan}
-                                required={(rules || []).some((rule) => typeof rule === 'object' && !('validator' in rule) ? rule.required : false)}
+                required={(rules || []).some((rule) =>
+                  typeof rule === 'object' && !('validator' in rule) ? rule.required : false
+                )}
                 // Elements
                 help={labelHelp}
               >
@@ -96,7 +97,8 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
                 errorMessage={renderMeta?.errors?.[0] || ''}
                 inputExtraNode={inputExtraRender?.({ errors: renderMeta?.errors ?? [] })}
                 extraNode={
-                  extra?.({ value: control?.value }) ?? extraRender?.({ errors: renderMeta?.errors ?? [] })
+                  extra?.({ value: control?.value }) ??
+                  extraRender?.({ errors: renderMeta?.errors ?? [] })
                 }
               >
                 {/* In Form, Set value and onChange props to children: */}
@@ -104,21 +106,25 @@ const FormItem = forwardRef<FormItemRef, FormItemProps>(
                   // 检查是否是一个 React 组件（函数组件或类组件），而不是原生元素
                   if (React.isValidElement(child) && typeof child.type !== 'string') {
                     // 克隆该组件并注入新的属性
-                    return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
-                      value: control?.value,
-                      onChange: (...changeProps: unknown[]) => {
-                        // 调用原有onChange（如果存在）
-                        const childOnChange = (child.props as Record<string, unknown>).onChange
-                        if (typeof childOnChange === 'function') {
-                          childOnChange(...changeProps)
-                        }
-                        // 执行父组件的逻辑
-                        const controlOnChange = control?.onChange
-                        if (typeof controlOnChange === 'function') {
-                          controlOnChange(...changeProps)
+                    const valueName = valuePropName || 'value'
+                    return React.cloneElement(
+                      child as React.ReactElement<Record<string, unknown>>,
+                      {
+                        [valueName]: control?.[valueName],
+                        onChange: (...changeProps: unknown[]) => {
+                          // 调用原有onChange（如果存在）
+                          const childOnChange = (child.props as Record<string, unknown>).onChange
+                          if (typeof childOnChange === 'function') {
+                            childOnChange(...changeProps)
+                          }
+                          // 执行父组件的逻辑
+                          const controlOnChange = control?.onChange
+                          if (typeof controlOnChange === 'function') {
+                            controlOnChange(...changeProps)
+                          }
                         }
                       }
-                    })
+                    )
                   }
                   // 如果是原生元素，直接返回
                   return child

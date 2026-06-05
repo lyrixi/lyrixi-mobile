@@ -120,6 +120,12 @@ const Edit = () => {
             form={form}
             style={{ margin: '0 12px' }}
             labelEllipsis={{ rows: 2, expandable: true }}
+            onFieldsChange={(changedFields, allFields) => {
+              console.log('onFieldsChange:', { changedFields, allFields })
+            }}
+            onValuesChange={(changedFields, allFields) => {
+              console.log('onValuesChange:', { changedFields, allFields })
+            }}
           >
             <Form.Item
               name="input"
@@ -312,13 +318,21 @@ const Edit = () => {
           <Divider>Vertical Layout</Divider>
           <Form form={form} layout="vertical" style={{ margin: '0 12px' }}>
             <Form.Item name="datetime" label={String(locale('Datetime'))}>
-              <DatePicker.Combo type="datetime" placeholder={String(locale('Please select'))} allowClear />
+              <DatePicker.Combo
+                type="datetime"
+                placeholder={String(locale('Please select'))}
+                allowClear
+              />
             </Form.Item>
             <Form.Item name="date" label={String(locale('Date'))}>
               <DatePicker.Combo placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
             <Form.Item name="time" label={String(locale('Time'))}>
-              <DatePicker.Combo type="time" placeholder={String(locale('Please select'))} allowClear />
+              <DatePicker.Combo
+                type="time"
+                placeholder={String(locale('Please select'))}
+                allowClear
+              />
             </Form.Item>
             <Form.Item name="dateRange" label={String(locale('Date range'))}>
               <DatePicker.RangeCombo placeholder={String(locale('Please select'))} allowClear />

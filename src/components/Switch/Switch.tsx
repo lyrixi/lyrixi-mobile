@@ -56,7 +56,7 @@ const Switch = forwardRef<SwitchRef, SwitchProps>(
           className,
           checked ? 'lyrixi-active' : '',
           readOnly ? 'lyrixi-readOnly' : '',
-          disabled ? 'lyrixi-disabled' : (disabled === false ? '' : '')
+          disabled ? 'lyrixi-disabled' : disabled === false ? '' : ''
         )}
         // Events
         onClick={(e) => {
