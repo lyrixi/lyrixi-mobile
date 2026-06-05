@@ -1,5 +1,4 @@
-import { useState, useEffect, type CSSProperties } from 'react'
-
+import React, { useState, useEffect, type CSSProperties } from 'react'
 import { QRCode } from 'lyrixi-mobile'
 
 const Logo: CSSProperties = {

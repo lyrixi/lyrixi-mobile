@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-
+import React, { useEffect } from 'react'
 import vconsole from 'vconsole'
 
 import { Icon, Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'

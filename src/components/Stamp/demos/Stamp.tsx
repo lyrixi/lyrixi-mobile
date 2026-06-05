@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Card, Stamp } from 'lyrixi-mobile'
 
 export default function StampDemo() {

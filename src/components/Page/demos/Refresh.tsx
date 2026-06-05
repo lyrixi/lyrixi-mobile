@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, List } from 'lyrixi-mobile'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'

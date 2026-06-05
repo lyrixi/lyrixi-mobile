@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react'
-
+import React, { useEffect, useRef } from 'react'
 import { Input } from 'lyrixi-mobile'
 
 export default function InputUrlDemo() {

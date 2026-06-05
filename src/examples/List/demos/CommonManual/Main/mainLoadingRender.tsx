@@ -1,5 +1,4 @@
-import { type FC } from 'react'
-
+import React, { type FC } from 'react'
 import { Skeleton, Loading } from 'lyrixi-mobile'
 
 const LoadingView = Loading as unknown as FC<Record<string, unknown>>

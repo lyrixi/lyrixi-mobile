@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import { LocaleUtil, Page, ToolBar, type InputTextProps, type ToolBarSearchActiveProps } from 'lyrixi-mobile'
 
 import type { HeaderProps } from './types'

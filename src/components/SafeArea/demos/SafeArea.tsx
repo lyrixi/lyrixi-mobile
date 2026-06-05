@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-
+import React, { useEffect } from 'react'
 import { SafeArea } from 'lyrixi-mobile'
 
 export default function SafeAreaDemo() {

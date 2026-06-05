@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Toast, Button } from 'lyrixi-mobile'
 
 export default function ToastShowDemo() {

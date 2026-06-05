@@ -1,3 +1,4 @@
+import React from 'react'
 // 第三方库导入
 import { ToolBar, TabBar } from 'lyrixi-mobile'
 

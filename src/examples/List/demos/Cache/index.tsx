@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react'
-
+import React, { useRef, useState } from 'react'
 // 第三方库导入
 import { LocaleUtil, Page, Storage } from 'lyrixi-mobile'
 

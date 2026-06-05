@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Text, Card } from 'lyrixi-mobile'
 
 export default function TextDemo() {

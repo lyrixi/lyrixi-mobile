@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import { Page, Divider, TabBar, Icon, Icons, type TabBarItem } from 'lyrixi-mobile'
 
 export default function TabBarGroupDemo() {

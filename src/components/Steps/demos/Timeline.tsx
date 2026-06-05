@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Divider, Steps, Card, List, Button } from 'lyrixi-mobile'
 
 const list = [

@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import { Page, Cascader, Loading, type CascaderItem, type LoadDataResult } from 'lyrixi-mobile'
 
 export default function CascaderComboDemo() {

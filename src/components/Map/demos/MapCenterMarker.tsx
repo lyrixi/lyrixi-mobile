@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import { Page, Map } from 'lyrixi-mobile'
 
 const { MapLoader, MapContainer, CenterMarker, coordsToWgs84 } = Map

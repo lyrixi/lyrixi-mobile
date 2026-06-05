@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Chat } from 'lyrixi-mobile'
 
 export default function ChatItemDemo() {

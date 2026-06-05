@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import { Page, ToolBar, Card } from 'lyrixi-mobile'
 
 export default function ToolBarSearchActiveDemo() {

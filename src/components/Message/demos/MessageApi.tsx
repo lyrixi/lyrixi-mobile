@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
 
 export default function MessageApiDemo() {

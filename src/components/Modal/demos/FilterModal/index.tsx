@@ -1,5 +1,4 @@
-import { useState, useRef } from 'react'
-
+import React, { useState, useRef } from 'react'
 import { Icon, Page, Modal, FooterBar, Icons } from 'lyrixi-mobile'
 
 export default function ModalFilterModalDemo() {

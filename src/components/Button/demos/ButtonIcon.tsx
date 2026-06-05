@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Divider, Button, Icons, ButtonColor, ButtonVariant } from 'lyrixi-mobile'
 
 const buttonStyle = {

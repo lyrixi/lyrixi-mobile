@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import { Page, Device, ActionSheet, type ActionSheetItem } from 'lyrixi-mobile'
 
 export default function ActionSheetComboDemo() {

@@ -1,5 +1,4 @@
-import { forwardRef, type Ref } from 'react'
-
+import React, { forwardRef, type Ref } from 'react'
 import { ListPagination } from 'lyrixi-mobile'
 
 import type { ListPaginationMainRef } from 'lyrixi-mobile'

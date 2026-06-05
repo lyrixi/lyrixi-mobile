@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, ToolBar } from 'lyrixi-mobile'
 
 export default function ToolBarButtonDemo() {

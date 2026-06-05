@@ -1,3 +1,4 @@
+import React from 'react'
 import { Signature, Page } from 'lyrixi-mobile'
 
 export default function SignatureModalDemo() {

@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
 
 export default function MessageMainDemo() {

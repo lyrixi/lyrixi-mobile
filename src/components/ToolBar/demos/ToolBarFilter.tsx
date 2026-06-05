@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, ToolBar, FooterBar, Icons, Button } from 'lyrixi-mobile'
 
 export default function ToolBarFilterDemo() {

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
-
+import React, { useEffect, useRef, useState } from 'react'
 import { Picker, Page, type PickerComboRef, type PickerItem } from 'lyrixi-mobile'
 
 export default function PickerComboDemo() {

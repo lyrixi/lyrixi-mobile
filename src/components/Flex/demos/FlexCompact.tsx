@@ -1,3 +1,4 @@
+import React from 'react'
 import { Page, Card, Flex, Button } from 'lyrixi-mobile'
 
 export default function FlexCompactDemo() {

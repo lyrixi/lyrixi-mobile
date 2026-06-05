@@ -1,6 +1,18 @@
-import { useState, useRef } from 'react'
-
-import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar, type ActionSheetItem, type ToolBarDropdownRef, type ToolBarFilterRef, type ToolBarItem, Icons } from 'lyrixi-mobile'
+import React, { useState, useRef } from 'react'
+import {
+  LocaleUtil,
+  Page,
+  Flex,
+  ToolBar,
+  Card,
+  Icon,
+  FooterBar,
+  type ActionSheetItem,
+  type ToolBarDropdownRef,
+  type ToolBarFilterRef,
+  type ToolBarItem,
+  Icons
+} from 'lyrixi-mobile'
 
 export default function ToolBarDemo() {
   const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
@@ -21,7 +33,8 @@ export default function ToolBarDemo() {
         <FooterBar>
           <FooterBar.Button
             block
-            variant="filled" color="default"
+            variant="filled"
+            color="default"
             onClick={() => {
               if (typeof onClose === 'function') onClose()
               else dropdownRef.current?.close()
@@ -31,7 +44,8 @@ export default function ToolBarDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            variant="solid" color="primary"
+            variant="solid"
+            color="primary"
             onClick={() => {
               console.log('ok')
             }}
@@ -129,7 +143,7 @@ export default function ToolBarDemo() {
                 left={12}
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
+                onChange={(v) => setItem(Array.isArray(v) ? v[0] ?? null : v ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -149,7 +163,7 @@ export default function ToolBarDemo() {
               <ToolBar.List
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
+                onChange={(v) => setItem(Array.isArray(v) ? v[0] ?? null : v ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -217,7 +231,7 @@ export default function ToolBarDemo() {
                     zIndex: 99
                   }}
                   value={item}
-                  onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
+                  onChange={(v) => setItem(Array.isArray(v) ? v[0] ?? null : v ?? null)}
                   list={[
                     {
                       id: 'desc',

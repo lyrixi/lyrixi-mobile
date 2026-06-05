@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-
+import React, { useRef } from 'react'
 import { Page, Input, Card, Divider } from 'lyrixi-mobile'
 
 export default function InputSelectDemo() {

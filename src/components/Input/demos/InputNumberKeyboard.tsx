@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
-
+import React, { useEffect, useState, useRef } from 'react'
 import { Page, MathUtil, Input, Card, Divider } from 'lyrixi-mobile'
 
 export default function InputNumberKeyboardDemo() {

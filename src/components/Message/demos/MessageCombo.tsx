@@ -1,3 +1,4 @@
+import React from 'react'
 import { Icon, Page, Message, Button, Icons } from 'lyrixi-mobile'
 
 export default function ComboDemo2() {

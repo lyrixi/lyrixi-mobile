@@ -1,3 +1,4 @@
+import React from 'react'
 import { Logger, Page, Button, Card, Divider } from 'lyrixi-mobile'
 import upload from './upload'
 

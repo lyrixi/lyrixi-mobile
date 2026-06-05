@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect, type ComponentRef } from 'react'
-
+import React, { useState, useRef, useEffect, type ComponentRef } from 'react'
 import { Page, Location } from 'lyrixi-mobile'
 
 import type { LocationDemoMainValue } from './Location.demos.types'

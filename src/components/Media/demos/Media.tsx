@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef, type CSSProperties } from 'react'
-
+import React, { useEffect, useState, useRef, type CSSProperties } from 'react'
 import { Page, Divider, Bridge, Media, type MediaProps, type MediaRef, type MediaItem } from 'lyrixi-mobile'
 import HistoryUtil from './../../../utils/HistoryUtil/HistoryUtil'
 // import VConsole from 'vconsole'

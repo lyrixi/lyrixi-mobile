@@ -1,3 +1,4 @@
+import React from 'react'
 import { Tooltip } from 'lyrixi-mobile'
 
 export default function TooltipDemo() {

@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import { Signature, Page, Bridge } from 'lyrixi-mobile'
 
 // Test safe area

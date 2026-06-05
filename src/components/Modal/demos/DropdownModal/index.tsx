@@ -1,5 +1,4 @@
-import { useState, useRef } from 'react'
-
+import React, { useState, useRef } from 'react'
 import { Page, Modal } from 'lyrixi-mobile'
 
 export default function ModalDropdownModalDemo() {

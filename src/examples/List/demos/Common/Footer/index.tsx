@@ -1,3 +1,4 @@
+import React from 'react'
 import { FooterBar, LocaleUtil, Page } from 'lyrixi-mobile'
 
 import type { ListDemoCommonFooterProps } from './types'
