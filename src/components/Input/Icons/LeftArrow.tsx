@@ -43,7 +43,7 @@ const IconLeftArrow = forwardRef<IconRef, InputIconLeftArrowProps>(
         size={size}
         radius={radius}
         style={style}
-        className={DOMUtil.classNames('lyrixi-input-icon', 'lyrixi-left-icon', iconClassName)}
+        className={DOMUtil.classNames('lyrixi-input-icon', iconClassName)}
         onClick={onClick}
       />
     )

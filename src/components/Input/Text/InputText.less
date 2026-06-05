@@ -38,7 +38,7 @@
   line-height: var(--lyrixi-input-height-m);
 }
 
-.lyrixi-input-autoSize+.lyrixi-input-formatter {
+.lyrixi-input-autoSize + .lyrixi-input-formatter {
   line-height: var(--lyrixi-input-height-m);
 }
 
@@ -55,7 +55,7 @@
 }
 
 // formatter单行文本框一行显示, 多行则多行显示
-.lyrixi-input-text+.lyrixi-input-formatter {
+.lyrixi-input-text + .lyrixi-input-formatter {
   // overflow-x: auto;
   white-space: nowrap;
   overflow: hidden;
@@ -63,15 +63,14 @@
   transform: translateY(-50%);
 }
 
-.lyrixi-input-autoSize+.lyrixi-input-formatter,
-.lyrixi-input-textarea+.lyrixi-input-formatter {
+.lyrixi-input-autoSize + .lyrixi-input-formatter,
+.lyrixi-input-textarea + .lyrixi-input-formatter {
   top: 0;
   bottom: 0;
 }
 
 // Formatter
 .lyrixi-has-formatter {
-
   // 失焦隐藏框
   .lyrixi-input-text,
   .lyrixi-input-textarea,
@@ -84,7 +83,7 @@
   .lyrixi-input-text:focus,
   .lyrixi-input-textarea:focus,
   .lyrixi-input-autoSize-textarea:focus {
-    &+.lyrixi-input-formatter {
+    & + .lyrixi-input-formatter {
       opacity: 0;
     }
 
@@ -102,10 +101,10 @@
 }
 
 // Icon
-.lyrixi-left-icon+.lyrixi-input-node {
+.lyrixi-input-icon + .lyrixi-input-node {
   margin-left: 4px;
 }
 
-.lyrixi-input-node+.lyrixi-right-icon {
+.lyrixi-input-node + .lyrixi-input-icon {
   margin-left: 12px;
 }

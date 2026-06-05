@@ -14,6 +14,7 @@ import Search from '../Search'
 import Select from '../Select'
 import Textarea from '../Textarea'
 import Url from '../Url'
+import Icon from '../Icon'
 import IconClear from '../Icons/Clear'
 import IconRightArrow from '../Icons/RightArrow'
 import IconLeftArrow from '../Icons/LeftArrow'
@@ -35,6 +36,7 @@ export type InputComponents = {
   Select: typeof Select
   Textarea: typeof Textarea
   Url: typeof Url
+  Icon: typeof Icon
   IconClear: typeof IconClear
   IconRightArrow: typeof IconRightArrow
   IconLeftArrow: typeof IconLeftArrow

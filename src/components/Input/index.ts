@@ -15,6 +15,7 @@ import Select from './Select'
 import Textarea from './Textarea'
 import Url from './Url'
 
+import Icon from './Icon'
 import IconClear from './Icons/Clear'
 import IconRightArrow from './Icons/RightArrow'
 import IconLeftArrow from './Icons/LeftArrow'
@@ -39,6 +40,7 @@ Input.Search = Search
 Input.Select = Select
 Input.Textarea = Textarea
 Input.Url = Url
+Input.Icon = Icon
 Input.IconClear = IconClear
 Input.IconRightArrow = IconRightArrow
 Input.IconLeftArrow = IconLeftArrow
