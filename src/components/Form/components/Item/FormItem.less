@@ -4,9 +4,21 @@
   .lyrixi-border-b();
 
   // 表单内文本框高度减小
-  .lyrixi-input {
+  .lyrixi-input.lyrixi-l {
     padding: 0;
-    height: 20px;
+    .lyrixi-input-text {
+      height: 20px;
+    }
+    .lyrixi-input-autoSize-textarea,
+    .lyrixi-input-autoSize-pre,
+    .lyrixi-input-formatter {
+      min-height: 20px;
+      padding: 0;
+    }
+    .lyrixi-input-textarea {
+      height: 40px;
+      padding: 0;
+    }
   }
 }
 

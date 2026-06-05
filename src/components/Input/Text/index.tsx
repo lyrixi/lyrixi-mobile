@@ -39,7 +39,7 @@ const InputText = (
 
     // Style
     style: externalStyle,
-    size = 'm',
+    size = 'l',
     className,
 
     // Elements
