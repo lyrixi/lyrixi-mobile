@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-export type SwitchSize = 's' | 'm' | 'l'
+export type SwitchSize = 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'
 
 export interface SwitchProps {
   // Value & Display Value

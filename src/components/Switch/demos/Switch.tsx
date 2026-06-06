@@ -30,23 +30,13 @@ export default function SwitchDemo() {
           size="s"
           // disabled
           checked={checked}
-          on="On"
+          on="On On On On"
           off="Off"
           onChange={setChecked}
         />
         <Divider>Size l</Divider>
-        <Switch
-          size="l"
-          checked={checked}
-          onChange={setChecked}
-        />
-        <Switch
-          size="l"
-          checked={checked}
-          on="On"
-          off="Off"
-          onChange={setChecked}
-        />
+        <Switch size="l" checked={checked} onChange={setChecked} />
+        <Switch size="l" checked={checked} on="On On On On" off="Off" onChange={setChecked} />
       </Page.Main>
     </Page>
   )
