@@ -68,6 +68,7 @@ const Combo = (
         ref={comboRef}
         // Style
         variant="filled"
+        radius="m"
         style={style}
         className={DOMUtil.classNames('lyrixi-signature-button', className)}
         // Events
