@@ -34,7 +34,7 @@ export default function ToolBarFilterDemo() {
                   ]}
                   style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
                 >
-                  <Button.Icon svg={Icons.ThreeDots} size="xl" />
+                  <Button.Icon svg={Icons.ThreeDots} size="xxxs" />
                   <Button.Text>More</Button.Text>
                 </FooterBar.Button>
                 <FooterBar.Button

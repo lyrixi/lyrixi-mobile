@@ -142,7 +142,7 @@ const Range = forwardRef<InputRangeRef, InputRangeProps>(
         <div ref={handleRef} className="lyrixi-input-range-handle">
           <Icon
             svg={Icons.Adjuster}
-            size="xxs"
+            size="xxxs"
             className="lyrixi-input-range-handle-icon"
           />
         </div>

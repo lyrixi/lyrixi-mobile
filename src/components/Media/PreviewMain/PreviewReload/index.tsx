@@ -15,7 +15,7 @@ const PreviewReload = ({ onReUpload }: { onReUpload?: () => void }) => {
       }}
     >
       <div className="lyrixi-media-preview-main-reload-icon">
-        <Icon svg={Icons.Redo} size="m" color="primary" />
+        <Icon svg={Icons.Redo} size="xxxs" color="primary" />
       </div>
     </div>
   )

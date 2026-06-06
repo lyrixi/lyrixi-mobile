@@ -43,11 +43,11 @@ const ZoomControl = forwardRef<MapZoomControlRef, MapZoomControlProps>(
       className={DOMUtil.classNames('lyrixi-map-zoomControl', className)}
     >
       <div className="lyrixi-map-zoomControl-in" onClick={zoomIn}>
-        <Icon svg={Icons.Plus} size="m" className="lyrixi-map-zoomControl-icon" />
+        <Icon svg={Icons.Plus} size="xxxs" className="lyrixi-map-zoomControl-icon" />
       </div>
 
       <div className="lyrixi-map-zoomControl-out" onClick={zoomOut}>
-        <Icon svg={Icons.Minus} size="m" className="lyrixi-map-zoomControl-icon" />
+        <Icon svg={Icons.Minus} size="xxxs" className="lyrixi-map-zoomControl-icon" />
       </div>
     </div>
   )

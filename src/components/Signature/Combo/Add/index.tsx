@@ -72,7 +72,7 @@ const Combo = (
         onClick={handleSign}
       >
         {/* Elements: Icon */}
-        <Icon svg={Icons.Signature} size="l" className="lyrixi-signature-button-icon-add" />
+        <Icon svg={Icons.Signature} size="xxxs" className="lyrixi-signature-button-icon-add" />
 
         {/* Elements: Label */}
         <div className="lyrixi-signature-button-label">

@@ -67,7 +67,7 @@ const Choose = ({
     >
       <Icon
         svg={mediaType?.includes?.('video') ? Icons.VideoFill : Icons.Plus}
-        size="m"
+        size="xxs"
         color="white"
         className="lyrixi-media-preview-main-choose-icon"
       />

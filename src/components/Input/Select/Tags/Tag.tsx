@@ -40,7 +40,7 @@ const Tag = ({
       {readOnly || disabled || !allowClear ? null : (
         <Icon
           svg={Icons.Close}
-          size="xs"
+          size="xxxs"
           className="lyrixi-select-tags-item-clear"
           onClick={(e) => {
             onDelete?.()

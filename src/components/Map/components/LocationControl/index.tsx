@@ -86,7 +86,7 @@ const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProp
       className={DOMUtil.classNames('lyrixi-map-locationControl', className)}
       onClick={handleLocation}
     >
-      <Icon svg={Icons.Location} size="m" className="lyrixi-map-locationControl-icon" />
+      <Icon svg={Icons.Location} size="xxxs" className="lyrixi-map-locationControl-icon" />
     </div>
   )
 })

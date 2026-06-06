@@ -14,7 +14,7 @@ const PreviewDelete = ({ onDelete }: { onDelete?: () => void }) => {
         onDelete?.()
       }}
     >
-      <Icon svg={Icons.Trash} size="m" color="white" />
+      <Icon svg={Icons.Trash} size="xxxs" color="white" />
     </div>
   )
 }

@@ -54,7 +54,7 @@ export default function InputRateDemo() {
           <Divider>Icon</Divider>
           <Input.Rate
             style={{ margin: '0 12px' }}
-            iconRender={() => <Icon svg={Icons.CircleQuestion} size="l" color="info" />}
+            iconRender={() => <Icon svg={Icons.CircleQuestion} size="xxxs" color="info" />}
             value={value}
             onChange={setValue}
           />

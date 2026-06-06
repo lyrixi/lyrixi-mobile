@@ -31,7 +31,7 @@ function Navigation({ type, longitude, latitude, name, address, map }: MapNearby
         } as Record<string, unknown>)
       }
     >
-      <Icon svg={Icons.Navigation} size="s" className="lyrixi-map-navigation-button-icon" />
+      <Icon svg={Icons.Navigation} size="xxxs" className="lyrixi-map-navigation-button-icon" />
       <span className="lyrixi-map-navigation-button-text">
         {LocaleUtil.locale('导航', 'lyrixi_056f2d7df6e6b64625c3a2d27ce07b05')}
       </span>

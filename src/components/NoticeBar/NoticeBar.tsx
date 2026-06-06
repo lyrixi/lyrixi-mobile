@@ -118,7 +118,7 @@ const NoticeBar = forwardRef<NoticeBarRef, NoticeBarProps>(
         {/* 关闭按钮 */}
         {closable && (
           <div className="lyrixi-noticebar-close-icon">
-            <Icon svg={Icons.Close} size="xs" onClick={() => setVisible(false)} />
+            <Icon svg={Icons.Close} size="xxxs" onClick={() => setVisible(false)} />
           </div>
         )}
       </div>

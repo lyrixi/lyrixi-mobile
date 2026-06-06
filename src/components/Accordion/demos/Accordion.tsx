@@ -149,7 +149,7 @@ export default function AccordionDemo() {
                   >
                     <Icon
                       svg={Icons.StarFill}
-                      size="s"
+                      size="xxxs"
                       style={{ marginRight: '4px', color: '#f90' }}
                     />
                     {open ? 'Hide Content' : 'Show Content'}

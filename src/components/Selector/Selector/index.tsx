@@ -156,7 +156,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
             </div>
             <Icon
               svg={Icons.ArrowDown}
-              size="xs"
+              size="xxxs"
               className={DOMUtil.classNames(
                 'lyrixi-selector-item-ellipsis-icon',
                 expanded ? 'lyrixi-selector-item-ellipsis-icon-expanded' : ''

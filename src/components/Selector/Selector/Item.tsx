@@ -73,7 +73,7 @@ const Item = forwardRef<SelectorItemRef, SelectorItemProps>(
         <div className="lyrixi-selector-item-checked-mark">
           <Icon
             svg={Icons.Ok}
-            size="xxs"
+            size="xxxs"
             color="white"
             className="lyrixi-selector-item-checked-mark-icon"
           />

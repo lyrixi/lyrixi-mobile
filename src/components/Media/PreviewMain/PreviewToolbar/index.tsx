@@ -24,7 +24,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="逆时针旋转90度"
       >
-        <Icon svg={Icons.ImageAnticlockwise} size="l" color="white" />
+        <Icon svg={Icons.ImageAnticlockwise} size="xxxs" color="white" />
       </div>
       <div
         className="lyrixi-media-preview-main-toolbar-btn"
@@ -35,7 +35,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="顺时针旋转90度"
       >
-        <Icon svg={Icons.ImageClockwise} size="l" color="white" />
+        <Icon svg={Icons.ImageClockwise} size="xxxs" color="white" />
       </div>
       <div
         className="lyrixi-media-preview-main-toolbar-btn"
@@ -46,7 +46,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="缩小"
       >
-        <Icon svg={Icons.ImageZoomout} size="l" color="white" />
+        <Icon svg={Icons.ImageZoomout} size="xxxs" color="white" />
       </div>
       <div
         className="lyrixi-media-preview-main-toolbar-btn"
@@ -57,7 +57,7 @@ const PreviewToolbar = ({
         role="button"
         aria-label="放大"
       >
-        <Icon svg={Icons.ImageZoomin} size="l" color="white" />
+        <Icon svg={Icons.ImageZoomin} size="xxxs" color="white" />
       </div>
     </div>
   )

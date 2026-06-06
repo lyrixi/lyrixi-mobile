@@ -228,7 +228,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           // Events
           onClick={handleMinus}
         >
-          <Icon svg={Icons.Minus} size="s" className="lyrixi-numberbox-button-minus-icon" />
+          <Icon svg={Icons.Minus} size="xxxs" className="lyrixi-numberbox-button-minus-icon" />
         </div>
 
         {/* Elements: Input */}
@@ -246,7 +246,7 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           // Events
           onClick={handlePlus}
         >
-          <Icon svg={Icons.Plus} size="s" className="lyrixi-numberbox-button-plus-icon" />
+          <Icon svg={Icons.Plus} size="xxxs" className="lyrixi-numberbox-button-plus-icon" />
         </div>
       </div>
     )

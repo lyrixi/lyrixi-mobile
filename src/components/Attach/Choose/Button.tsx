@@ -40,7 +40,7 @@ const UploadButton = forwardRef<AttachButtonRef, AttachButtonProps>(function Upl
       )}
       aria-disabled={disabled}
     >
-      <Icon svg={Icons.Plus} size="l" className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add" />
+      <Icon svg={Icons.Plus} size="xxxs" className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add" />
 
       {/* Loading图标 */}
       <Uploading

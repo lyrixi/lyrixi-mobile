@@ -63,17 +63,17 @@ export default function TabBarSlideDemo() {
         <TabBar.Slide
           list={[
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Fruit',
               name: 'Fruit'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Vegetable',
               name: 'Vegetable'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Animal',
               name: 'Animal'
             }
@@ -89,21 +89,21 @@ export default function TabBarSlideDemo() {
         <TabBar.Slide
           list={[
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Animal',
               name: 'Animal',
               description: 'description',

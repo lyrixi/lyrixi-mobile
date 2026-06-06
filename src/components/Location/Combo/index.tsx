@@ -336,7 +336,7 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
           <Icon
             key="location"
             svg={Icons.Update}
-            size="s"
+            size="xxxs"
             className={DOMUtil.classNames(
               'lyrixi-location-combo-icon',
               'lyrixi-location-combo-icon-location',

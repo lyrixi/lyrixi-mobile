@@ -73,7 +73,7 @@ const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
           {help && (
             <Icon
               svg={Icons.CircleQuestion}
-              size="s"
+              size="xxxs"
               color="info"
               className="lyrixi-form-item-help"
               onClick={() => {

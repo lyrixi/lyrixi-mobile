@@ -12,6 +12,7 @@ import { VariablesUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const sizes = {
+  xxxs: { className: 'lyrixi-size-xxxs' },
   xxs: { className: 'lyrixi-size-xxs' },
   xs: { className: 'lyrixi-size-xs' },
   s: { className: 'lyrixi-size-s' },

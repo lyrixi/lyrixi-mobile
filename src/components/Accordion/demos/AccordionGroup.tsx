@@ -168,7 +168,7 @@ export default function AccordionGroupDemo() {
           <Divider>Custom Arrow</Divider>
           <div style={{ margin: '0 12px' }}>
             <Accordion
-              arrowRender={() => <Icon svg={Icons.StarFill} size="s" color="warning" />}
+              arrowRender={() => <Icon svg={Icons.StarFill} size="xxxs" color="warning" />}
               title="Arrow ClassName"
             >
               <div
@@ -180,7 +180,7 @@ export default function AccordionGroupDemo() {
             </Accordion>
             <Accordion
               open={false}
-              arrowRender={() => <Icon svg={Icons.StarFill} size="s" style={{ color: '#f90' }} />}
+              arrowRender={() => <Icon svg={Icons.StarFill} size="xxxs" style={{ color: '#f90' }} />}
               title="Arrow Node"
             >
               <div

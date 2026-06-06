@@ -26,7 +26,7 @@ export default function FooterBarButtonDemo() {
               }
             ]}
           >
-            <Icon svg={Icons.ThreeDots} size="xl" />
+            <Icon svg={Icons.ThreeDots} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -35,7 +35,7 @@ export default function FooterBarButtonDemo() {
               console.log(e)
             }}
           >
-            <Icon svg={Icons.Config} size="xl" />
+            <Icon svg={Icons.Config} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -81,7 +81,7 @@ export default function FooterBarButtonDemo() {
               }
             ]}
           >
-            <Icon svg={Icons.ThreeDots} size="xl" />
+            <Icon svg={Icons.ThreeDots} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -91,7 +91,7 @@ export default function FooterBarButtonDemo() {
               console.log(e)
             }}
           >
-            <Icon svg={Icons.Config} size="xl" />
+            <Icon svg={Icons.Config} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -141,7 +141,7 @@ export default function FooterBarButtonDemo() {
             ]}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            <Button.Icon svg={Icons.ThreeDots} size="xl" />
+            <Button.Icon svg={Icons.ThreeDots} size="xxxs" />
             <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
@@ -201,7 +201,7 @@ export default function FooterBarButtonDemo() {
             ]}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            <Button.Icon svg={Icons.ThreeDots} size="xl" />
+            <Button.Icon svg={Icons.ThreeDots} size="xxxs" />
             <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button

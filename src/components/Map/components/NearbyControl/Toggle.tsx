@@ -24,7 +24,7 @@ function Toggle() {
       </span>
       <Icon
         svg={Icons.TriangleUpFill}
-        size="xxs"
+        size="xxxs"
         color="primary"
         className="lyrixi-map-nearbyControl-toggle-arrow"
       />

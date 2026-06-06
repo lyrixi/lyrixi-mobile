@@ -28,19 +28,19 @@ export default function ButtonIconDemo() {
         <Divider>Button.Icon 不同尺寸</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
           <Button size="xs" radius="xs" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
-            <Button.Icon size="xs" svg={Icons.Search}></Button.Icon>
+            <Button.Icon size="xxxs" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button size="s" radius="s" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
-            <Button.Icon size="s" svg={Icons.Search}></Button.Icon>
+            <Button.Icon size="xxxs" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button size="m" radius="m" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
-            <Button.Icon size="m" svg={Icons.Search}></Button.Icon>
+            <Button.Icon size="xxxs" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button size="l" radius="l" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
-            <Button.Icon size="l" svg={Icons.Search}></Button.Icon>
+            <Button.Icon size="xxxs" svg={Icons.Search}></Button.Icon>
           </Button>
           <Button size="xl" radius="xl" variant={ButtonVariant.solid} color={ButtonColor.primary} style={buttonStyle}>
-            <Button.Icon size="xl" svg={Icons.Search}></Button.Icon>
+            <Button.Icon size="xxxs" svg={Icons.Search}></Button.Icon>
           </Button>
         </div>
 
@@ -84,7 +84,7 @@ export default function ButtonIconDemo() {
             color={ButtonColor.primary}
             style={buttonStyle}
           >
-            <Button.Icon svg={Icons.Plus} size="xl" />
+            <Button.Icon svg={Icons.Plus} size="xxxs" />
           </Button>
         </div>
 

@@ -50,7 +50,7 @@ function CompatibleToggle({
           handleToggle()
         }}
       >
-        <Icon svg={Icons.Sort} size="s" style={{ transform: 'rotate(90deg)' }} />
+        <Icon svg={Icons.Sort} size="xxxs" style={{ transform: 'rotate(90deg)' }} />
         <span style={{ marginLeft: '4px' }}>{currentItem.name as React.ReactNode}</span>
       </span>
     </span>

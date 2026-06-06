@@ -103,7 +103,7 @@ const Accordion = forwardRef<AccordionRef, AccordionProps>(
 
       return (
         <div className="lyrixi-accordion-arrow">
-          <Icon svg={Icons.ArrowUp} className={arrowClassName} size="xs" />
+          <Icon svg={Icons.ArrowUp} className={arrowClassName} size="xxxs" />
         </div>
       )
     }

@@ -37,11 +37,11 @@ export default function IconDemo() {
       <Page.Main>
         <Divider>Icon 基础用法</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
-          <Icon svg={Icons.Close} size="l" color="primary" style={iconStyle} />
-          <Icon svg={Icons.Search} size="l" color="primary" style={iconStyle} />
-          <Icon svg={Icons.Ok} size="l" color="success" style={iconStyle} />
-          <Icon svg={Icons.Trash} size="l" color="danger" style={iconStyle} />
-          <Icon svg={Icons.Config} size="l" color="default" style={iconStyle} />
+          <Icon svg={Icons.Close} size="xxxs" color="primary" style={iconStyle} />
+          <Icon svg={Icons.Search} size="xxxs" color="primary" style={iconStyle} />
+          <Icon svg={Icons.Ok} size="xxxs" color="success" style={iconStyle} />
+          <Icon svg={Icons.Trash} size="xxxs" color="danger" style={iconStyle} />
+          <Icon svg={Icons.Config} size="xxxs" color="default" style={iconStyle} />
         </div>
 
         <Divider>Icon 不同尺寸</Divider>
@@ -55,7 +55,7 @@ export default function IconDemo() {
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
           <Icon
             svg={Icons.Ok}
-            size="l"
+            size="xs"
             color="white"
             backgroundColor="primary"
             radius="m"
@@ -63,7 +63,7 @@ export default function IconDemo() {
           />
           <Icon
             svg={Icons.Search}
-            size="xl"
+            size="xs"
             color="white"
             backgroundColor="primary"
             radius="100%"
@@ -71,7 +71,7 @@ export default function IconDemo() {
           />
           <Icon
             svg={Icons.Config}
-            size="xl"
+            size="xs"
             color="white"
             backgroundColor="info"
             radius="100%"
@@ -79,7 +79,7 @@ export default function IconDemo() {
           />
           <Icon
             svg={Icons.Plus}
-            size="xl"
+            size="xs"
             color="white"
             backgroundColor="success"
             radius="100%"
@@ -90,7 +90,7 @@ export default function IconDemo() {
         <Divider>Icon 不同颜色</Divider>
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
           {colorSamples.map((color) => (
-            <Icon key={color} svg={Icons.Close} size="xl" color={color} style={iconStyle} />
+            <Icon key={color} svg={Icons.Close} size="xxxs" color={color} style={iconStyle} />
           ))}
         </div>
 
@@ -98,19 +98,19 @@ export default function IconDemo() {
         <div style={{ marginTop: 'var(--lyrixi-space-l)' }}>
           <Icon
             svg={Icons.Reload}
-            size="l"
+            size="xs"
             color="primary"
             style={iconStyle}
             onClick={() => console.log('icon clicked')}
           />
-          <Icon svg={Icons.Reload} size="l" color="primary" disabled style={iconStyle} />
+          <Icon svg={Icons.Reload} size="xxxs" color="primary" disabled style={iconStyle} />
         </div>
 
         <Divider>Icon 内置 Icons</Divider>
         <div style={builtinIconGridStyle}>
           {builtinIconEntries.map(([name, svg]) => (
             <div key={name} style={builtinIconItemStyle}>
-              <Icon svg={svg} size="l" color="primary" />
+              <Icon svg={svg} size="xxxs" color="primary" />
               <span className="lyrixi-font-size-xs lyrixi-color-auxiliary">{name}</span>
             </div>
           ))}

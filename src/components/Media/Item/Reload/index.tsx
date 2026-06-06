@@ -27,7 +27,7 @@ const Reload = ({
       }}
     >
       <div className="lyrixi-media-reload-icon">
-        <Icon svg={Icons.Redo} size="s" color="primary" />
+        <Icon svg={Icons.Redo} size="xxxs" color="primary" />
       </div>
     </div>
   )

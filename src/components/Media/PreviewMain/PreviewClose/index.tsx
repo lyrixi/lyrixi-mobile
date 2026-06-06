@@ -14,7 +14,7 @@ const PreviewClose = ({ onClose }: { onClose?: () => void }) => {
         onClose?.()
       }}
     >
-      <Icon svg={Icons.Close} size="m" color="white" />
+      <Icon svg={Icons.Close} size="xxxs" color="white" />
     </div>
   )
 }

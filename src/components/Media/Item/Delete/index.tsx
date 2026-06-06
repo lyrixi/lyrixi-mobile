@@ -23,7 +23,7 @@ const Delete = ({
         onClick?.(e)
       }}
     >
-      <Icon svg={Icons.Close} size="xs" color="white" className="lyrixi-media-delete-icon" />
+      <Icon svg={Icons.Close} size="xxxs" color="white" className="lyrixi-media-delete-icon" />
     </div>
   )
 }

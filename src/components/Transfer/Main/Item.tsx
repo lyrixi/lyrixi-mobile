@@ -22,13 +22,13 @@ const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
         {onAdd ? (
           <Icon
             svg={Icons.CirclePlus}
-            size="m"
+            size="xxs"
             className="lyrixi-transfer-item-operate-icon lyrixi-add"
           />
         ) : (
           <Icon
             svg={Icons.CircleMinus}
-            size="m"
+            size="xxs"
             className="lyrixi-transfer-item-operate-icon lyrixi-delete"
           />
         )}
@@ -40,7 +40,7 @@ const Item = ({ children, sortable, onAdd, onDelete }: TransferItemProps) => {
       {/* Elements: Drop Handle */}
       {sortable ? (
         <div className="lyrixi-transfer-item-drop">
-          <Icon svg={Icons.TransferDrop} size="m" className="lyrixi-transfer-item-drop-icon" />
+          <Icon svg={Icons.TransferDrop} size="xxxs" className="lyrixi-transfer-item-drop-icon" />
         </div>
       ) : null}
     </div>

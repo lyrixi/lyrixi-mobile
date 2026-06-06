@@ -34,19 +34,19 @@ const Header = forwardRef<CalendarHeaderRef, CalendarHeaderProps>(
         className={DOMUtil.classNames('lyrixi-calendar-header', className)}
       >
         <div className="lyrixi-calendar-previous-year" onClick={onPreviousYear}>
-          <Icon svg={Icons.ArrowLeft} color="tertiary" size="s" />
-          <Icon svg={Icons.ArrowLeft} color="tertiary" size="s" style={{ marginLeft: '-4px' }} />
+          <Icon svg={Icons.ArrowLeft} color="tertiary" size="xxxs" />
+          <Icon svg={Icons.ArrowLeft} color="tertiary" size="xxxs" style={{ marginLeft: '-4px' }} />
         </div>
         <div className="lyrixi-calendar-previous-month" onClick={onPreviousMonth}>
-          <Icon svg={Icons.ArrowLeft} color="tertiary" size="s" />
+          <Icon svg={Icons.ArrowLeft} color="tertiary" size="xxxs" />
         </div>
         <div className="lyrixi-calendar-title">{children}</div>
         <div className="lyrixi-calendar-next-month" onClick={onNextMonth}>
-          <Icon svg={Icons.ArrowRight} color="tertiary" size="s" />
+          <Icon svg={Icons.ArrowRight} color="tertiary" size="xxxs" />
         </div>
         <div className="lyrixi-calendar-next-year" onClick={onNextYear}>
-          <Icon svg={Icons.ArrowRight} color="tertiary" size="s" style={{ marginRight: '-4px' }} />
-          <Icon svg={Icons.ArrowRight} color="tertiary" size="s" />
+          <Icon svg={Icons.ArrowRight} color="tertiary" size="xxxs" style={{ marginRight: '-4px' }} />
+          <Icon svg={Icons.ArrowRight} color="tertiary" size="xxxs" />
         </div>
       </div>
     )

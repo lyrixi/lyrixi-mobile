@@ -157,7 +157,7 @@ const Item = ({
               onReUpload(item, index)
             }}
           >
-            <Icon svg={Icons.Update} size="xs" />
+            <Icon svg={Icons.Update} size="xxxs" />
           </div>
         )}
 
@@ -171,7 +171,7 @@ const Item = ({
               onDelete(item, index)
             }}
           >
-            <Icon svg={Icons.Close} size="xs" />
+            <Icon svg={Icons.Close} size="xxxs" />
           </div>
         )}
 
