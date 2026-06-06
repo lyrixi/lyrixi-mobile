@@ -10,7 +10,7 @@ const iconWithBgStyle = {
   padding: '4px'
 }
 
-const sizeSamples = ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
+const sizeSamples = ['xxxxs', 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']
 const colorSamples = ['primary', 'info', 'danger', 'success', 'warning']
 
 const builtinIconEntries = Object.entries(Icons) as Array<
