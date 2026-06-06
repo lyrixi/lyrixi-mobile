@@ -61,21 +61,21 @@
 }
 
 // Size
-.switch-size(@height, @min-width) {
-  height: @height;
+.switch-size() {
+  height: var(--switch-size);
 
   .lyrixi-switch-on,
   .lyrixi-switch-off {
-    min-width: @min-width;
+    min-width: var(--switch-size);
   }
 
   .lyrixi-switch-off {
-    margin-top: -@height;
+    margin-top: calc(var(--switch-size) * -1);
   }
 
   .lyrixi-switch-handle {
-    height: calc(@height - 2px);
-    width: calc(@height - 2px);
+    height: calc(var(--switch-size) - 2px);
+    width: calc(var(--switch-size) - 2px);
   }
 
   &:not(.lyrixi-active) {
@@ -84,41 +84,48 @@
     }
 
     .lyrixi-switch-inner {
-      padding-left: calc(@height + 2px);
+      padding-left: calc(var(--switch-size) + 2px);
       padding-right: 0;
     }
   }
 
   &.lyrixi-active {
     .lyrixi-switch-handle {
-      left: calc(100% - @height);
+      left: calc(100% - var(--switch-size));
     }
 
     .lyrixi-switch-inner {
       padding-left: 0;
-      padding-right: calc(@height + 2px);
+      padding-right: calc(var(--switch-size) + 2px);
     }
   }
 }
 
 .lyrixi-switch.lyrixi-xs {
-  .switch-size(var(--lyrixi-icon-size-xs), var(--lyrixi-icon-size-xs));
+  --switch-size: var(--lyrixi-icon-size-xs);
+  .switch-size();
 }
 .lyrixi-switch.lyrixi-s {
-  .switch-size(var(--lyrixi-icon-size-s), var(--lyrixi-icon-size-s));
+  --switch-size: var(--lyrixi-icon-size-s);
+  .switch-size();
 }
 .lyrixi-switch.lyrixi-m {
-  .switch-size(var(--lyrixi-icon-size-m), var(--lyrixi-icon-size-m));
+  --switch-size: var(--lyrixi-icon-size-m);
+  .switch-size();
 }
 .lyrixi-switch.lyrixi-l {
-  .switch-size(var(--lyrixi-icon-size-l), var(--lyrixi-icon-size-l));
+  --switch-size: var(--lyrixi-icon-size-l);
+  .switch-size();
 }
 .lyrixi-switch.lyrixi-xl {
-  .switch-size(var(--lyrixi-icon-size-xl), var(--lyrixi-icon-size-xl));
+  --switch-size: var(--lyrixi-icon-size-xl);
+  .switch-size();
 }
 .lyrixi-switch.lyrixi-xxl {
-  .switch-size(var(--lyrixi-icon-size-xxl), var(--lyrixi-icon-size-xxl));
+  --switch-size: var(--lyrixi-icon-size-xxl);
+  .switch-size();
 }
 .lyrixi-switch.lyrixi-xxxl {
-  .switch-size(var(--lyrixi-icon-size-xxxl), var(--lyrixi-icon-size-xxxl));
+  --switch-size: var(--lyrixi-icon-size-xxxl);
+  .switch-size();
 }
