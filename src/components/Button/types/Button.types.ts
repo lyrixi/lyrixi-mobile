@@ -8,8 +8,8 @@ export interface ButtonProps {
   id?: string
   direction?: 'horizontal' | 'vertical' | string
   block?: boolean
-  variant?: `${ButtonVariant}`
-  color?: `${ButtonColor}`
+  variant?: ButtonVariant
+  color?: ButtonColor
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   fontSize?: string | number

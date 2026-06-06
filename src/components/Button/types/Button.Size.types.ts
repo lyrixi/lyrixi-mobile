@@ -1,9 +1,2 @@
 /** Button 尺寸，与 Button.less 中 `.lyrixi-size-*` 一致 */
-export enum ButtonSize {
-  xs = 'xs',
-  s = 's',
-  m = 'm',
-  l = 'l',
-  xl = 'xl',
-  xxl = 'xxl'
-}
+export type ButtonSize = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'

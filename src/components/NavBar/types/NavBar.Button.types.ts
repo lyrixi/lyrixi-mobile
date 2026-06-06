@@ -6,8 +6,8 @@ export interface NavBarButtonProps {
   // Value & Display Value
   direction?: string
   block?: boolean
-  variant?: `${ButtonVariant}`
-  color?: `${ButtonColor}`
+  variant?: ButtonVariant
+  color?: ButtonColor
   size?: string | number | readonly string[]
   sizeEqual?: boolean
   fontSize?: string | number

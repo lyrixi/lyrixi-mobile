@@ -7,7 +7,8 @@ import type { SignatureComboAddProps, SignatureComboAddRef, SignatureModalRef } 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import DOMUtil from './../../../../utils/DOMUtil'
-import Icon from '../../../Icon'
+import Button from '../../../Button'
+import type { ButtonRef } from '../../../Button/types'
 import Icons from '../../../../icons'
 // 内库使用-end
 
@@ -38,13 +39,13 @@ const Combo = (
 ) => {
   const [open, setOpen] = useState(false)
 
-  const comboRef = useRef<HTMLDivElement>(null)
+  const comboRef = useRef<ButtonRef | null>(null)
   const modalRef = useRef<SignatureModalRef | null>(null)
 
   useImperativeHandle(ref, () => {
     return {
-      element: comboRef.current,
-      getElement: () => comboRef.current
+      element: comboRef.current?.element ?? null,
+      getElement: () => comboRef.current?.element ?? null
     }
   })
 
@@ -63,22 +64,27 @@ const Combo = (
   return (
     <>
       {/* Elements: Combo Button */}
-      <div
+      <Button
         ref={comboRef}
         // Style
+        variant="filled"
         style={style}
         className={DOMUtil.classNames('lyrixi-signature-button', className)}
         // Events
         onClick={handleSign}
       >
         {/* Elements: Icon */}
-        <Icon svg={Icons.Signature} size="xxxs" className="lyrixi-signature-button-icon-add" />
+        <Button.Icon
+          svg={Icons.Signature}
+          size="xxxs"
+          className="lyrixi-signature-button-icon-add"
+        />
 
         {/* Elements: Label */}
-        <div className="lyrixi-signature-button-label">
+        <Button.Text>
           {LocaleUtil.locale('签名', 'lyrixi_be2525ebade48dee835e25c04f130725')}
-        </div>
-      </div>
+        </Button.Text>
+      </Button>
 
       {/* Elements: Modal */}
       <Modal

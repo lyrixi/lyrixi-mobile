@@ -6,8 +6,8 @@ import type { ButtonVariant } from '../types/Button.Variant.types'
 export interface ButtonGetStyleParams {
   direction?: string
   block?: boolean
-  variant?: `${ButtonVariant}`
-  color?: `${ButtonColor}`
+  variant?: ButtonVariant
+  color?: ButtonColor
   size?: string | number | readonly string[] | unknown
   sizeEqual?: boolean
   fontSize?: string | number | unknown

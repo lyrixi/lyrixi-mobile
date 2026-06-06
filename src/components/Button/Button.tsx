@@ -1,8 +1,6 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import getStyle from './getStyle'
 
-import { ButtonColor } from './types/Button.Color.types'
-import { ButtonVariant } from './types/Button.Variant.types'
 import type { ButtonProps, ButtonRef } from './types'
 
 // 内库使用-start
@@ -15,24 +13,24 @@ import { Flex } from 'lyrixi-mobile'
 
 const Button = forwardRef<ButtonRef, ButtonProps>(function Button(
   {
-      // Value & Display Value
+    // Value & Display Value
     id,
     direction = 'horizontal',
     block,
-    variant = ButtonVariant.solid,
-    color = ButtonColor.default,
+    variant = 'solid',
+    color = 'default',
     size,
     sizeEqual,
     fontSize,
     radius,
-      // Status
+    // Status
     disabled,
-      // Style
+    // Style
     style,
     className,
-      // Elements
+    // Elements
     children,
-      // Events
+    // Events
     onClick
   },
   ref
