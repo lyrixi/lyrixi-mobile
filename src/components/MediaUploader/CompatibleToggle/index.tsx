@@ -1,19 +1,24 @@
 import React from 'react'
 
-
 import getList from './getList'
 
 import type { MediaUploaderCompatibleToggleProps } from '../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+import Icon from './../../Icon'
+import Icons from './../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { LocaleUtil, Icon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
-function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatformChange }: MediaUploaderCompatibleToggleProps) {
+function CompatibleToggle({
+  compatible,
+  compatiblePlatform,
+  onCompatiblePlatformChange
+}: MediaUploaderCompatibleToggleProps) {
   const list = getList()
 
   const currentItem = getList(compatiblePlatform || 'browser')
@@ -35,9 +40,9 @@ function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatform
       {typeof compatible === 'string'
         ? compatible
         : LocaleUtil.locale(
-          '如果无法拍照，请切换拍照方式',
-          'lyrixi_58ec7924f08282da3bf37ac0ad7f857c'
-        )}
+            '如果无法拍照，请切换拍照方式',
+            'lyrixi_58ec7924f08282da3bf37ac0ad7f857c'
+          )}
       <span
         style={{ textDecoration: 'none' }}
         onClick={(e) => {
@@ -45,10 +50,7 @@ function CompatibleToggle({ compatible, compatiblePlatform, onCompatiblePlatform
           handleToggle()
         }}
       >
-        <i
-          className="lyrixi-icon icon-sort-fill lyrixi-font-size-s"
-          style={{ transform: 'rotate(90deg)', width: '12px', height: '12px' }}
-        ></i>
+        <Icon svg={Icons.Sort} size="s" style={{ transform: 'rotate(90deg)' }} />
         <span style={{ marginLeft: '4px' }}>{currentItem.name as React.ReactNode}</span>
       </span>
     </span>
