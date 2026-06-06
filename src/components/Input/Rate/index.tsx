@@ -27,7 +27,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
       disabled,
 
       // Style
-      size = 'xxl',
+      size = 'm',
       style,
       className,
 

@@ -1,5 +1,13 @@
 import type { CSSProperties, ReactNode } from 'react'
 
+// 内库使用-start
+import type { IconSize } from '../../Icon/types'
+// 内库使用-end
+
+/* 测试使用-start
+import type { IconSize } from 'lyrixi-mobile'
+测试使用-end */
+
 export interface InputRateRef {
   element: HTMLDivElement | null
   inputElement: HTMLInputElement | null
@@ -16,12 +24,12 @@ export interface InputRateProps {
   readOnly?: boolean
   disabled?: boolean
   // Style
-  size?: 's' | 'm' | 'l'
+  size?: IconSize
   style?: CSSProperties
   className?: string
   // Elements
   iconRender?: (params: { className: string; style?: CSSProperties }) => ReactNode
-    min?: number
+  min?: number
   max?: number
   step?: number
   // Events

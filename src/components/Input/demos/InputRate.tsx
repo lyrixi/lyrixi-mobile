@@ -45,10 +45,19 @@ export default function InputRateDemo() {
         </Card>
 
         <Card>
-          <Divider>Size s</Divider>
+          <Divider>Size</Divider>
+          S:
           <Input.Rate style={{ margin: '0 12px' }} size="s" value={value} onChange={setValue} />
+          M:
           <Input.Rate style={{ margin: '0 12px' }} size="m" value={value} onChange={setValue} />
+          L:
           <Input.Rate style={{ margin: '0 12px' }} size="l" value={value} onChange={setValue} />
+          XL:
+          <Input.Rate style={{ margin: '0 12px' }} size="xl" value={value} onChange={setValue} />
+          XXL:
+          <Input.Rate style={{ margin: '0 12px' }} size="xxl" value={value} onChange={setValue} />
+          XXXL:
+          <Input.Rate style={{ margin: '0 12px' }} size="xxxl" value={value} onChange={setValue} />
         </Card>
         <Card>
           <Divider>Icon</Divider>
