@@ -34,7 +34,7 @@ export default function getVariantClassName(variant: 'solid', color: 'default'):
         )
       case 'filled':
         return DOMUtil.classNames(
-          'lyrixi-color-default',
+          'lyrixi-color-secondary',
           'lyrixi-border-color-default',
           'lyrixi-bg-default'
         )
