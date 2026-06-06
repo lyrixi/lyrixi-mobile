@@ -27,7 +27,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
       disabled,
 
       // Style
-      size = 'm',
+      size = 'xxl',
       style,
       className,
 
@@ -94,11 +94,12 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
         : 'lyrixi-input-rate-item-icon'
 
       return (
-        <Icon
-          svg={Icons.StarFill}
+        <div
           className={iconClassName}
           style={isActive ? { width: getItemActiveWidth(index + 1) } : undefined}
-        />
+        >
+          <Icon svg={Icons.StarFill} size={size} />
+        </div>
       )
     }
 
@@ -110,7 +111,6 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
         style={style}
         className={DOMUtil.classNames(
           'lyrixi-input-rate',
-          `lyrixi-${size}`,
           className,
           readOnly ? 'lyrixi-input-readOnly' : '',
           disabled ? 'lyrixi-input-disabled' : ''
