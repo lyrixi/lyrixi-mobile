@@ -35,6 +35,7 @@ const UploadButton = forwardRef<AttachButtonRef, AttachButtonProps>(function Upl
       ref={buttonRef}
       style={style}
       className={DOMUtil.classNames('lyrixi-attach-choose-button', className)}
+      variant="filled"
       disabled={disabled}
     >
       <Button.Icon
