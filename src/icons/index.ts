@@ -48,6 +48,7 @@ import Reload from './reload.svg'
 import Reloadtime from './reloadtime.svg'
 import Search from './search.svg'
 import Signature from './signature.svg'
+import Sort from './sort.svg'
 import StarFill from './star-fill.svg'
 import ThreeDots from './three-dots.svg'
 import TransferDrop from './transfer-drop.svg'
@@ -109,6 +110,7 @@ const Icons = {
   Reloadtime,
   Search,
   Signature,
+  Sort,
   StarFill,
   ThreeDots,
   TransferDrop,
