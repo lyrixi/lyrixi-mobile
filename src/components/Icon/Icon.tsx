@@ -1,7 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getStyle from './getStyle'
 import type { IconProps, IconRef } from './types'
-import { IconSize } from './types'
 
 const Icon = forwardRef<IconRef, IconProps>(function Icon(
   {
@@ -12,7 +11,7 @@ const Icon = forwardRef<IconRef, IconProps>(function Icon(
     // Value & Display Value
     color,
     backgroundColor,
-    size = IconSize.m,
+    size = 'm',
     radius,
     // Style
     style,

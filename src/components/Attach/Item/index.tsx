@@ -60,10 +60,7 @@ const Item = ({
     if (attach.status === 'error') {
       Toast.show({
         content: toToastString(
-          LocaleUtil.locale(
-            '图片未上传成功, 无法预览',
-            'lyrixi_48ec308c5a5abf2b6dc08111a4aa08bb'
-          )
+          LocaleUtil.locale('图片未上传成功, 无法预览', 'lyrixi_48ec308c5a5abf2b6dc08111a4aa08bb')
         )
       })
       return
@@ -75,11 +72,13 @@ const Item = ({
       fileUrl == null
         ? ''
         : typeof fileUrl === 'string'
-          ? decodeURIComponent(decodeURIComponent(fileUrl))
-          : ''
+        ? decodeURIComponent(decodeURIComponent(fileUrl))
+        : ''
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
-        content: toToastString(LocaleUtil.locale('预览地址不合法', 'lyrixi_abbd8dd2fbc71bf8315e71e5e80d041a'))
+        content: toToastString(
+          LocaleUtil.locale('预览地址不合法', 'lyrixi_abbd8dd2fbc71bf8315e71e5e80d041a')
+        )
       })
       return
     }
@@ -140,7 +139,7 @@ const Item = ({
       {/* 文件图标 */}
       <Icon
         svg={getAttachFileIconSvg(fileIconType)}
-        size={fileIconType === 'word' || fileIconType === 'excel' || fileIconType === 'ppt' ? 'm' : 'l'}
+        size="m"
         color={getAttachFileIconColor(fileIconType)}
         className={DOMUtil.classNames('lyrixi-attach-item-type', `lyrixi-${fileIconType}`)}
       />

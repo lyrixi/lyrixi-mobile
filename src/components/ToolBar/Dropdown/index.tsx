@@ -42,11 +42,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     // Combo: Elements
     children,
     comboRender,
-    arrowRender = () => (
-      <Button.Icon
-        svg={Icons.TriangleUpFill}
-      />
-    ),
+    arrowRender = () => <Button.Icon svg={Icons.TriangleUpFill} size="xxxs" />,
 
     // Modal: Style
     modalStyle,

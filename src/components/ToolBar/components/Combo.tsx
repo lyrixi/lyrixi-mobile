@@ -32,11 +32,7 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     className,
 
     // Elements
-    arrowRender = () => (
-      <Button.Icon
-        svg={Icons.TriangleUpFill}
-      />
-    ),
+    arrowRender = () => <Button.Icon svg={Icons.TriangleUpFill} size="xxxs" />,
     children,
 
     // Events

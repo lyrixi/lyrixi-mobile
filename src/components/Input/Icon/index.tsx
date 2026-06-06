@@ -16,7 +16,7 @@ const InputIcon = forwardRef<InputIconRef, InputIconProps>(function InputIcon(
     svg,
     color,
     backgroundColor,
-    size = 'm',
+    size = 'xxxs',
     radius,
     style,
     className,

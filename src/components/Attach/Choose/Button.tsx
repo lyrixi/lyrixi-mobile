@@ -2,16 +2,17 @@ import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import Uploading from './../Uploading'
 
 import type { AttachButtonProps, AttachButtonRef } from '../types/Attach.Button.types'
+import type { ButtonRef } from './../../Button/types'
 
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
-import Icon from './../../Icon'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Icons from '../../../icons'
+import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil, Icons, Button } from 'lyrixi-mobile'
 测试使用-end */
 
 // 上传按钮
@@ -19,28 +20,28 @@ const UploadButton = forwardRef<AttachButtonRef, AttachButtonProps>(function Upl
   { uploadingRender, style, className, disabled },
   ref
 ) {
-  const rootRef = useRef<HTMLDivElement | null>(null)
+  const buttonRef = useRef<ButtonRef | null>(null)
 
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      element: rootRef.current,
-      getElement: () => rootRef.current
+      element: buttonRef.current?.element ?? null,
+      getElement: () => buttonRef.current?.element ?? null
     }
   })
 
   return (
-    <div
-      ref={rootRef}
+    <Button
+      ref={buttonRef}
       style={style}
-      className={DOMUtil.classNames(
-        'lyrixi-attach-choose-button',
-        className,
-        disabled && 'lyrixi-disabled'
-      )}
-      aria-disabled={disabled}
+      className={DOMUtil.classNames('lyrixi-attach-choose-button', className)}
+      disabled={disabled}
     >
-      <Icon svg={Icons.Plus} size="xxxs" className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add" />
+      <Button.Icon
+        svg={Icons.Plus}
+        size="xxxs"
+        className="lyrixi-attach-choose-icon lyrixi-attach-choose-icon-add"
+      />
 
       {/* Loading图标 */}
       <Uploading
@@ -53,7 +54,7 @@ const UploadButton = forwardRef<AttachButtonRef, AttachButtonProps>(function Upl
       <div className="lyrixi-attach-choose-button-label">
         {LocaleUtil.locale('附件', 'lyrixi_c9a6ee90f5d43732e3f6cf4dcaa8493c')}
       </div>
-    </div>
+    </Button>
   )
 })
 
