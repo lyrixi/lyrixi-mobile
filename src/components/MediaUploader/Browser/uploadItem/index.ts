@@ -1,6 +1,8 @@
 import uploadLocalFile from './uploadLocalFile'
+import { UploadItemConfig } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
@@ -9,9 +11,10 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import { MediaItem, UploadItemConfig } from '../../types'
-
-function uploadItem(item: MediaItem, { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }: UploadItemConfig) {
+function uploadItem(
+  item: FileItem,
+  { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }: UploadItemConfig
+) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''

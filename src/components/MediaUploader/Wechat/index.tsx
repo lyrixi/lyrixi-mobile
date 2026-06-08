@@ -2,7 +2,11 @@ import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from '
 import getRemainCount from './../../Media/utils/getRemainCount'
 import _uploadItem from './uploadItem'
 
+import { MediaHandle, MediaUploaderCommonProps } from '../types'
+import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
+
 // 内库使用-start
+import type { FileItem } from './../../Attach/types'
 import Bridge from './../../../utils/Bridge'
 import Toast from './../../Toast'
 import Loading from './../../Loading'
@@ -12,9 +16,6 @@ import Media from './../../Media'
 /* 测试使用-start
 import { Bridge,Toast, Loading, Media } from 'lyrixi-mobile'
 测试使用-end */
-
-import { MediaHandle, MediaItem, MediaUploaderCommonProps } from '../types'
-import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
 
 // 照片上传
 function MediaUploader(
@@ -84,7 +85,7 @@ function MediaUploader(
   })
 
   // 上传文件
-  async function uploadItem(item: MediaItem) {
+  async function uploadItem(item: FileItem) {
     let newItem = await _uploadItem(item, {
       getUploadUrl,
       formatHeaders,
@@ -127,7 +128,7 @@ function MediaUploader(
         sourceType: sourceType,
         mediaType: mediaType,
         isSaveToAlbum: isSaveToAlbum || 0,
-        onSuccess: async (res: { data?: { localFiles?: MediaItem[] } }) => {
+        onSuccess: async (res: { data?: { localFiles?: FileItem[] } }) => {
           const localFiles = res.data?.localFiles
           if (!Array.isArray(localFiles) || !localFiles.length) {
             resolve(null)
@@ -171,14 +172,14 @@ function MediaUploader(
   }
 
   const mediaTypeList =
-    mediaType == null
-      ? undefined
-      : Array.isArray(mediaType)
-        ? mediaType
-        : [mediaType]
+    mediaType == null ? undefined : Array.isArray(mediaType) ? mediaType : [mediaType]
 
   const ellipsisForMedia =
-    ellipsis === true ? { count: 1 } : ellipsis && typeof ellipsis === 'object' ? ellipsis : undefined
+    ellipsis === true
+      ? { count: 1 }
+      : ellipsis && typeof ellipsis === 'object'
+      ? ellipsis
+      : undefined
 
   const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
 
@@ -194,22 +195,22 @@ function MediaUploader(
     uploadRender == null
       ? undefined
       : typeof uploadRender === 'function'
-        ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
-        : () => uploadRender
+      ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+      : () => uploadRender
 
   const uploadingRenderFn =
     uploadingRender == null
       ? undefined
       : typeof uploadingRender === 'function'
-        ? (uploadingRender as (ctx: MediaItem & { uploadingType: string }) => ReactNode)
-        : (ctx: MediaItem & { uploadingType: string }) => uploadingRender
+      ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
+      : (ctx: FileItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
     itemRender == null
       ? undefined
       : typeof itemRender === 'function'
-        ? (itemRender as (item: MediaItem) => ReactNode)
-        : (_item: MediaItem) => itemRender as ReactNode
+      ? (itemRender as (item: FileItem) => ReactNode)
+      : (_item: FileItem) => itemRender as ReactNode
 
   const onBeforeChooseForMedia: MediaProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'

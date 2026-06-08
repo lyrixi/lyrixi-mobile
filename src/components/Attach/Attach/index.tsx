@@ -18,7 +18,6 @@ import PreviewModal from './../PreviewModal'
 import copyFileUrl from './copyFileUrl'
 
 import type { FileItem, AttachProps, AttachRef } from '../types'
-import type { MediaItem } from './../../MediaUploader/types'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
@@ -194,8 +193,8 @@ function Attach(
     let newList = [...list]
     // 开始上传
     _showLoading({ index })
-    newList[index] = (await uploadItem(item as unknown as MediaItem, {
-      onUpload: onUpload as unknown as ((item: MediaItem) => unknown) | undefined
+    newList[index] = (await uploadItem(item as unknown as FileItem, {
+      onUpload: onUpload as unknown as ((item: FileItem) => unknown) | undefined
     })) as FileItem
     _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
 

@@ -1,7 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from 'react'
 import _uploadItem from './uploadItem'
 
+import { MediaHandle, MediaUploaderCommonProps } from '../types'
+import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
+
 // 内库使用-start
+import type { FileItem } from './../../Attach/types'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Media from './../../Media'
@@ -10,9 +14,6 @@ import Media from './../../Media'
 /* 测试使用-start
 import { LocaleUtil, Toast, Media } from 'lyrixi-mobile'
 测试使用-end */
-
-import { MediaHandle, MediaItem, MediaUploaderCommonProps } from '../types'
-import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
 
 // 照片上传
 function Browser(
@@ -89,7 +90,7 @@ function Browser(
   })
 
   // 上传文件
-  async function uploadItem(item: MediaItem) {
+  async function uploadItem(item: FileItem) {
     let newItem = await _uploadItem(item, {
       getUploadUrl,
       formatHeaders,
@@ -103,7 +104,7 @@ function Browser(
   }
 
   // 选择文件
-  async function handleChoose(localFile: MediaItem) {
+  async function handleChoose(localFile: FileItem) {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // 前置校验
@@ -140,14 +141,14 @@ function Browser(
   }
 
   const mediaTypeList =
-    mediaType == null
-      ? undefined
-      : Array.isArray(mediaType)
-        ? mediaType
-        : [mediaType]
+    mediaType == null ? undefined : Array.isArray(mediaType) ? mediaType : [mediaType]
 
   const ellipsisForMedia =
-    ellipsis === true ? { count: 1 } : ellipsis && typeof ellipsis === 'object' ? ellipsis : undefined
+    ellipsis === true
+      ? { count: 1 }
+      : ellipsis && typeof ellipsis === 'object'
+      ? ellipsis
+      : undefined
 
   const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
 
@@ -163,22 +164,22 @@ function Browser(
     uploadRender == null
       ? undefined
       : typeof uploadRender === 'function'
-        ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
-        : () => uploadRender
+      ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+      : () => uploadRender
 
   const uploadingRenderFn =
     uploadingRender == null
       ? undefined
       : typeof uploadingRender === 'function'
-        ? (uploadingRender as (ctx: MediaItem & { uploadingType: string }) => ReactNode)
-        : (ctx: MediaItem & { uploadingType: string }) => uploadingRender
+      ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
+      : (ctx: FileItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
     itemRender == null
       ? undefined
       : typeof itemRender === 'function'
-        ? (itemRender as (item: MediaItem) => ReactNode)
-        : (_item: MediaItem) => itemRender as ReactNode
+      ? (itemRender as (item: FileItem) => ReactNode)
+      : (_item: FileItem) => itemRender as ReactNode
 
   const onBeforeChooseForMedia: MediaProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'

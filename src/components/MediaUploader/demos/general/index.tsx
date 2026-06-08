@@ -1,20 +1,18 @@
 import React, { useRef, useState } from 'react'
 import vconsole from 'vconsole'
-import { MediaUploader, Page, Toast, type MediaHandle, type MediaItem } from 'lyrixi-mobile'
+import { MediaUploader, Page, Toast, type MediaHandle, type FileItem } from 'lyrixi-mobile'
 import uploadListUtil from './../../utils/uploadList'
 
 new vconsole()
 
-function normalizeList(
-  r: MediaItem | MediaItem[] | null
-): MediaItem[] {
+function normalizeList(r: FileItem | FileItem[] | null): FileItem[] {
   if (r == null) return []
   return Array.isArray(r) ? r : [r]
 }
 
 export default function MediaUploaderGeneralDemo() {
   const imageUploaderRef = useRef<MediaHandle | null>(null)
-  const [list, setList] = useState<MediaItem[]>([
+  const [list, setList] = useState<FileItem[]>([
     {
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/test/1.jpg',
@@ -28,7 +26,7 @@ export default function MediaUploaderGeneralDemo() {
     }
   ])
 
-  function handlePhotoChange(newList: MediaItem[]) {
+  function handlePhotoChange(newList: FileItem[]) {
     console.log('update:', newList)
     setList(newList)
   }

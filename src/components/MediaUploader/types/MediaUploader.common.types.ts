@@ -4,14 +4,10 @@ import type { FileItem, LocalFile } from '../../Attach/types/Attach.common.types
 
 export type { LocalFile }
 
-export interface MediaItem extends FileItem {
-  filePath?: string
-}
-
 export interface MediaUploaderUploadResponse {
   status: string
   message?: string
-  data?: MediaItem
+  data?: FileItem
   code?: string
   [key: string]: unknown
 }
@@ -88,9 +84,9 @@ export interface MediaUploaderCommonProps extends UploadItemConfig {
   itemRender?: ReactNode
   previewPortal?: HTMLElement
   previewCancelPosition?: string
-  getItemExtra?: (
-    params: { platform: string }
-  ) => Promise<Record<string, unknown> | false | null> | Record<string, unknown> | false | null
+  getItemExtra?: (params: {
+    platform: string
+  }) => Promise<Record<string, unknown> | false | null> | Record<string, unknown> | false | null
   formatChoose?: (
     params: Record<string, unknown>,
     extra: { platform: string }

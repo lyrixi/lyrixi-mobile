@@ -3,10 +3,10 @@ import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
 import uploadCustom from './../../Custom/uploadItem'
 
-
-import type { MediaItem, MediaUploaderUploadListConfig, UploadItemConfig } from '../../types'
+import type { MediaUploaderUploadListConfig, UploadItemConfig } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import Device from './../../../../utils/Device'
@@ -17,7 +17,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-
 /**
  * 导出给外部使用的工具类: 异步上传图片
  * @param {Array|Object} pendingList ImageUploader控件返回的待传列表
@@ -26,12 +25,12 @@ import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
  */
 
 async function uploadList(
-  pendingList: MediaItem | MediaItem[],
+  pendingList: FileItem | FileItem[],
   uploadConfig: MediaUploaderUploadListConfig
-): Promise<MediaItem | MediaItem[] | null> {
+): Promise<FileItem | FileItem[] | null> {
   // 根据平台选择上传方法
   let currentPlatform = uploadConfig?.platform || Device.platform
-  let uploadItem: ((item: MediaItem, config: UploadItemConfig) => Promise<unknown>) | null = null
+  let uploadItem: ((item: FileItem, config: UploadItemConfig) => Promise<unknown>) | null = null
   if (Device.device === 'pc' || ['browser', 'lark'].includes(currentPlatform)) {
     uploadItem = uploadFile
   } else if (currentPlatform === 'dingtalk') {
@@ -41,7 +40,9 @@ async function uploadList(
     } else {
       uploadItem = uploadDingtalk
     }
-  } else if (['wechat', 'wecom', 'wechatMiniProgram', 'wecomMiniProgram'].includes(currentPlatform)) {
+  } else if (
+    ['wechat', 'wecom', 'wechatMiniProgram', 'wecomMiniProgram'].includes(currentPlatform)
+  ) {
     uploadItem = uploadWechat
   } else {
     uploadItem = uploadCustom
@@ -51,15 +52,15 @@ async function uploadList(
     return null
   }
 
-  let list: MediaItem[] | null = null
+  let list: FileItem[] | null = null
 
   // 如果是对象则转为数组
   if (toString.call(pendingList) === '[object Object]') {
-    list = [pendingList as MediaItem]
+    list = [pendingList as FileItem]
   }
   // 如果是数组
   else if (Array.isArray(pendingList)) {
-    list = pendingList as MediaItem[]
+    list = pendingList as FileItem[]
   }
 
   if (!list) {
@@ -72,7 +73,10 @@ async function uploadList(
   })
   if (ObjectUtil.isEmpty(list)) {
     Toast.show({
-      content: LocaleUtil.locale('uploadList参数列表错误', 'lyrixi_02e1574baeddc79ed7bfa5931dde85f0') as string
+      content: LocaleUtil.locale(
+        'uploadList参数列表错误',
+        'lyrixi_02e1574baeddc79ed7bfa5931dde85f0'
+      ) as string
     })
     return null
   }
@@ -80,7 +84,10 @@ async function uploadList(
   // 不支持的平台
   if (!uploadItem) {
     Toast.show({
-      content: LocaleUtil.locale('不支持此平台上传', 'lyrixi_84281205c0ab7c4983124a98006c7014') as string
+      content: LocaleUtil.locale(
+        '不支持此平台上传',
+        'lyrixi_84281205c0ab7c4983124a98006c7014'
+      ) as string
     })
     return list?.map?.((item) => {
       if (!item.fileUrl?.startsWith?.('http')) {
@@ -117,7 +124,7 @@ async function uploadList(
     console.log(`上传结果：`, newItem)
 
     // 重新设置list
-    list[index] = newItem as MediaItem
+    list[index] = newItem as FileItem
   }
   return toString.call(pendingList) === '[object Object]' ? list[0] : list
 }
