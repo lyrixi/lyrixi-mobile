@@ -69,10 +69,9 @@ const Url = forwardRef<InputUrlRef, InputUrlProps>(
     ref
   ) => {
     function copyLink(url: string) {
-      const toastShow = Toast.show.bind(undefined)
       Clipboard.copy(url, {
         onSuccess: () => {
-          toastShow({
+          Toast.show({
             content: String(
               LocaleUtil.locale('链接已复制到剪贴板', 'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75')
             )
