@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode, SVGProps } from 'react'
+import type { ComponentType, CSSProperties, ReactNode, SVGProps } from 'react'
 
 // 内库使用-start
 import type { IconSize } from '../../Icon/types'
@@ -29,7 +29,7 @@ export interface InputRateProps {
   className?: string
   // Elements
   svg?: ComponentType<SVGProps<SVGSVGElement>>
-  iconRender?: (params: { className: string; style?: CSSProperties }) => ReactNode
+  iconRender?: (params: { checked: boolean }) => ReactNode
   min?: number
   max?: number
   step?: number

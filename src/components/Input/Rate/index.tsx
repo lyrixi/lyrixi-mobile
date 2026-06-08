@@ -81,25 +81,20 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
 
     // 获取图标节点
     function renderIcon(index: number, isActive: boolean = false): React.ReactNode {
-      if (typeof iconRender === 'function') {
-        return iconRender({
-          className: isActive
-            ? 'lyrixi-input-rate-item-icon-active'
-            : 'lyrixi-input-rate-item-icon',
-          style: isActive ? { width: getItemActiveWidth(index + 1) } : undefined
-        })
-      }
-
       const iconClassName = isActive
         ? 'lyrixi-input-rate-item-icon-active'
         : 'lyrixi-input-rate-item-icon'
+      const iconStyle = isActive ? { width: getItemActiveWidth(index + 1) } : undefined
 
       return (
-        <div
-          className={iconClassName}
-          style={isActive ? { width: getItemActiveWidth(index + 1) } : undefined}
-        >
-          <Icon svg={svg} size={size} />
+        <div className={iconClassName} style={iconStyle}>
+          {typeof iconRender === 'function' ? (
+            iconRender({
+              checked: isActive
+            })
+          ) : (
+            <Icon svg={svg} size={size} />
+          )}
         </div>
       )
     }
