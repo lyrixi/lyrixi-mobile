@@ -7,6 +7,8 @@ import React, {
   type Ref
 } from 'react'
 import Main from './../Main'
+import dimensionalArray from './../Main/utils/dimensionalArray'
+import formatValue from './../Main/utils/formatValue'
 
 import type { ModalRef } from '../../Modal/types'
 import type {
@@ -26,6 +28,13 @@ import NavBarModal from './../../Modal/NavBarModal'
 import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
+
+function getLists(rawList: PickerModalProps['list']): { lists: PickerItem[][] | null; listCount: number } {
+  const dimensional = dimensionalArray(rawList)
+  if (dimensional === 2) return { lists: rawList as PickerItem[][], listCount: (rawList as PickerItem[][]).length }
+  if (dimensional === 1) return { lists: [rawList as PickerItem[]], listCount: 1 }
+  return { lists: null, listCount: 0 }
+}
 
 // Modal
 const Modal = forwardRef<PickerModalRef, PickerModalProps>(function PickerModal(
@@ -61,7 +70,9 @@ const Modal = forwardRef<PickerModalRef, PickerModalProps>(function PickerModal(
   },
   ref: Ref<PickerModalRef>
 ) {
-  let [currentValue, setCurrentValue] = useState<PickerItem[] | null>(() => value ?? null)
+  let [currentValue, setCurrentValue] = useState<PickerItem[] | null>(() =>
+    formatValue(value, getLists(list))
+  )
 
   const modalRef = useRef<ModalRef | null>(null)
 
@@ -69,7 +80,8 @@ const Modal = forwardRef<PickerModalRef, PickerModalProps>(function PickerModal(
 
   // 同步外部value到内部
   useEffect(() => {
-    setCurrentValue(value ?? null)
+    setCurrentValue(formatValue(value, getLists(list)))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
   useImperativeHandle(ref, () => {

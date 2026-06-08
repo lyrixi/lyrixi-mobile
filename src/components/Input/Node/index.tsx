@@ -35,7 +35,7 @@ const InputNode = (
 
     // Style
     style: externalStyle,
-    size = 'l',
+    size = 'xs',
     className,
 
     // Elements
