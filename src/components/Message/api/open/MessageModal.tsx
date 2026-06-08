@@ -26,6 +26,7 @@ function MessageModal({
   // Elements
   iconSvg,
   iconSize,
+  iconColor,
   iconRender,
   title,
   // Style
@@ -108,6 +109,7 @@ function MessageModal({
             <Main
               iconSvg={iconSvg}
               iconSize={iconSize}
+              iconColor={iconColor}
               iconRender={iconRender}
               title={title}
               titleClassName={titleClassName}

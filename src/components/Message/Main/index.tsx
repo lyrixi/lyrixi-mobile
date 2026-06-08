@@ -24,7 +24,8 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
     {
       // Elements
       iconSvg,
-      iconSize,
+      iconSize = '32px',
+      iconColor = 'primary',
       iconRender,
       title,
       // Style
@@ -65,7 +66,9 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
       }
 
       if (iconSvg) {
-        return <Icon svg={iconSvg} size={iconSize} />
+        return (
+          <Icon className="lyrixi-message-icon" svg={iconSvg} color={iconColor} size={iconSize} />
+        )
       }
 
       return null

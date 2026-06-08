@@ -53,23 +53,23 @@ toc: content
 
 #### 参数
 
-| 参数             | 说明                                                                 | 类型                                                                               | 默认值         |
-| ---------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------------- |
-| iconRender       | 图标区域渲染                                                         | `() => ReactNode`                                                                  | -              |
-| title            | 标题                                                                 | `ReactNode`                                                                        | -              |
-| content          | 正文                                                                 | `ReactNode`                                                                        | -              |
-| buttonsLayout    | 底部按钮布局                                                         | `'vertical' \| 'horizontal'`                                                       | `'horizontal'` |
-| buttons          | 底部按钮配置，见下方 [按钮配置](#按钮配置-messagecombobutton)        | `MessageComboButton[]`                                                             | `[]`           |
-| titleClassName   | 标题类名                                                             | `string`                                                                           | -              |
-| titleStyle       | 标题样式                                                             | `CSSProperties`                                                                    | -              |
-| contentClassName | 正文类名                                                             | `string`                                                                           | -              |
-| contentStyle     | 正文样式                                                             | `CSSProperties`                                                                    | -              |
-| footerClassName  | 底部类名                                                             | `string`                                                                           | -              |
-| footerStyle      | 底部样式                                                             | `CSSProperties`                                                                    | -              |
-| maskClosable     | 点击遮罩是否关闭                                                     | `boolean`                                                                          | `true`         |
-| maskClassName    | 遮罩类名                                                             | `string`                                                                           | -              |
-| maskStyle        | 遮罩样式                                                             | `CSSProperties`                                                                    | -              |
-| portal           | 挂载节点                                                             | `HTMLElement \| null \| false`                                                     | `document.body` |
+| 参数             | 说明                                                          | 类型                           | 默认值          |
+| ---------------- | ------------------------------------------------------------- | ------------------------------ | --------------- |
+| iconRender       | 图标区域渲染                                                  | `() => ReactNode`              | -               |
+| title            | 标题                                                          | `ReactNode`                    | -               |
+| content          | 正文                                                          | `ReactNode`                    | -               |
+| buttonsLayout    | 底部按钮布局                                                  | `'vertical' \| 'horizontal'`   | `'horizontal'`  |
+| buttons          | 底部按钮配置，见下方 [按钮配置](#按钮配置-messagecombobutton) | `MessageComboButton[]`         | `[]`            |
+| titleClassName   | 标题类名                                                      | `string`                       | -               |
+| titleStyle       | 标题样式                                                      | `CSSProperties`                | -               |
+| contentClassName | 正文类名                                                      | `string`                       | -               |
+| contentStyle     | 正文样式                                                      | `CSSProperties`                | -               |
+| footerClassName  | 底部类名                                                      | `string`                       | -               |
+| footerStyle      | 底部样式                                                      | `CSSProperties`                | -               |
+| maskClosable     | 点击遮罩是否关闭                                              | `boolean`                      | `true`          |
+| maskClassName    | 遮罩类名                                                      | `string`                       | -               |
+| maskStyle        | 遮罩样式                                                      | `CSSProperties`                | -               |
+| portal           | 挂载节点                                                      | `HTMLElement \| null \| false` | `document.body` |
 
 按钮 `onClick` 返回 `false`（或 resolve 为 `false`）时不关闭对话框；其余情况会关闭。
 
@@ -97,29 +97,29 @@ toc: content
 
 #### 属性
 
-| 属性           | 说明           | 类型                           | 默认值  |
-| -------------- | -------------- | ------------------------------ | ------- |
-| open           | 是否显示       | `boolean`                      | `false` |
-| maskClosable   | 点击遮罩关闭   | `boolean`                      | `true`  |
-| safeArea       | 是否启用安全区 | `boolean`                      | -       |
-| modalStyle     | 模态框样式     | `CSSProperties`                | -       |
-| modalClassName | 模态框类名     | `string`                       | -       |
-| maskStyle      | 遮罩样式       | `CSSProperties`                | -       |
-| maskClassName  | 遮罩类名       | `string`                       | -       |
-| portal         | 挂载节点       | `HTMLElement \| null \| false` | -       |
-| children       | 自定义内容     | `ReactNode`                    | -       |
-| onClose        | 关闭事件       | `() => void`                   | -       |
-| iconRender     | 图标区域渲染   | `() => ReactNode`              | -       |
-| title          | 标题           | `ReactNode`                    | -       |
-| content        | 正文           | `ReactNode`                    | -       |
-| buttonsLayout  | 底部按钮布局   | `'vertical' \| 'horizontal'`   | -       |
-| buttons        | 底部按钮配置   | `MessageComboButton[]`         | -       |
-| titleClassName | 标题类名       | `string`                       | -       |
-| titleStyle     | 标题样式       | `CSSProperties`                | -       |
-| contentClassName | 正文类名     | `string`                       | -       |
-| contentStyle   | 正文样式       | `CSSProperties`                | -       |
-| footerClassName | 底部类名      | `string`                       | -       |
-| footerStyle    | 底部样式       | `CSSProperties`                | -       |
+| 属性             | 说明           | 类型                           | 默认值  |
+| ---------------- | -------------- | ------------------------------ | ------- |
+| open             | 是否显示       | `boolean`                      | `false` |
+| maskClosable     | 点击遮罩关闭   | `boolean`                      | `true`  |
+| safeArea         | 是否启用安全区 | `boolean`                      | -       |
+| modalStyle       | 模态框样式     | `CSSProperties`                | -       |
+| modalClassName   | 模态框类名     | `string`                       | -       |
+| maskStyle        | 遮罩样式       | `CSSProperties`                | -       |
+| maskClassName    | 遮罩类名       | `string`                       | -       |
+| portal           | 挂载节点       | `HTMLElement \| null \| false` | -       |
+| children         | 自定义内容     | `ReactNode`                    | -       |
+| onClose          | 关闭事件       | `() => void`                   | -       |
+| iconRender       | 图标区域渲染   | `() => ReactNode`              | -       |
+| title            | 标题           | `ReactNode`                    | -       |
+| content          | 正文           | `ReactNode`                    | -       |
+| buttonsLayout    | 底部按钮布局   | `'vertical' \| 'horizontal'`   | -       |
+| buttons          | 底部按钮配置   | `MessageComboButton[]`         | -       |
+| titleClassName   | 标题类名       | `string`                       | -       |
+| titleStyle       | 标题样式       | `CSSProperties`                | -       |
+| contentClassName | 正文类名       | `string`                       | -       |
+| contentStyle     | 正文样式       | `CSSProperties`                | -       |
+| footerClassName  | 底部类名       | `string`                       | -       |
+| footerStyle      | 底部样式       | `CSSProperties`                | -       |
 
 #### Ref
 
@@ -146,46 +146,46 @@ toc: content
 
 #### Ref
 
-| 属性       | 说明           | 类型                              |
-| ---------- | -------------- | --------------------------------- |
-| element    | 触发区域根元素 | `HTMLDivElement \| null`          |
-| getElement | 获取触发区域   | `() => HTMLDivElement \| null`    |
-| open       | 打开对话框     | `() => void`                      |
-| close      | 关闭对话框     | `() => void`                      |
+| 属性       | 说明           | 类型                           |
+| ---------- | -------------- | ------------------------------ |
+| element    | 触发区域根元素 | `HTMLDivElement \| null`       |
+| getElement | 获取触发区域   | `() => HTMLDivElement \| null` |
+| open       | 打开对话框     | `() => void`                   |
+| close      | 关闭对话框     | `() => void`                   |
 
 另包含 `Message.Modal` 对应 Ref 上的遮罩/模态框方法。
 
 ## Message.Main
 
-消息对话框主体，默认组合 `Message.Icon`、`Message.Title`、正文与 `Message.Footer`（按钮区）。
+消息对话框主体，默认组合 `Icon`、`Message.Title`、正文与 `Message.Footer`（按钮区）。
 
 ### API
 
 #### 属性
 
-| 属性             | 说明           | 类型                                                                               | 默认值         |
-| ---------------- | -------------- | ---------------------------------------------------------------------------------- | -------------- |
-| iconRender       | 图标区域渲染   | `() => ReactNode`                                                                  | -              |
-| title            | 标题           | `ReactNode`                                                                        | -              |
-| content          | 正文           | `ReactNode`                                                                        | -              |
-| buttonsLayout    | 底部按钮布局   | `'vertical' \| 'horizontal'`                                                       | `'horizontal'` |
-| buttons          | 底部按钮配置   | `MessageComboButton[]`                                                             | -              |
-| titleClassName   | 标题类名       | `string`                                                                           | -              |
-| titleStyle       | 标题样式       | `CSSProperties`                                                                    | -              |
-| contentClassName | 正文类名       | `string`                                                                           | -              |
-| contentStyle     | 正文样式       | `CSSProperties`                                                                    | -              |
-| footerClassName  | 底部类名       | `string`                                                                           | -              |
-| footerStyle      | 底部样式       | `CSSProperties`                                                                    | -              |
-| className        | 根节点类名     | `string`                                                                           | -              |
-| style            | 根节点样式     | `CSSProperties`                                                                    | -              |
-| children         | 自定义主体内容 | `ReactNode`                                                                        | -              |
-| onButtonClick    | 按钮点击       | `(button: MessageComboButton, e: MouseEvent) => boolean \| void \| Promise<...>`   | -              |
+| 属性             | 说明           | 类型                                                                             | 默认值         |
+| ---------------- | -------------- | -------------------------------------------------------------------------------- | -------------- |
+| iconRender       | 图标区域渲染   | `() => ReactNode`                                                                | -              |
+| title            | 标题           | `ReactNode`                                                                      | -              |
+| content          | 正文           | `ReactNode`                                                                      | -              |
+| buttonsLayout    | 底部按钮布局   | `'vertical' \| 'horizontal'`                                                     | `'horizontal'` |
+| buttons          | 底部按钮配置   | `MessageComboButton[]`                                                           | -              |
+| titleClassName   | 标题类名       | `string`                                                                         | -              |
+| titleStyle       | 标题样式       | `CSSProperties`                                                                  | -              |
+| contentClassName | 正文类名       | `string`                                                                         | -              |
+| contentStyle     | 正文样式       | `CSSProperties`                                                                  | -              |
+| footerClassName  | 底部类名       | `string`                                                                         | -              |
+| footerStyle      | 底部样式       | `CSSProperties`                                                                  | -              |
+| className        | 根节点类名     | `string`                                                                         | -              |
+| style            | 根节点样式     | `CSSProperties`                                                                  | -              |
+| children         | 自定义主体内容 | `ReactNode`                                                                      | -              |
+| onButtonClick    | 按钮点击       | `(button: MessageComboButton, e: MouseEvent) => boolean \| void \| Promise<...>` | -              |
 
 #### Ref
 
-| 属性       | 说明     | 类型                         |
-| ---------- | -------- | ---------------------------- |
-| element    | 根元素   | `HTMLElement \| null`        |
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLElement \| null`       |
 | getElement | 获取根元素 | `() => HTMLElement \| null` |
 
 ## Message.Header
@@ -204,9 +204,9 @@ toc: content
 
 #### Ref
 
-| 属性       | 说明     | 类型                         |
-| ---------- | -------- | ---------------------------- |
-| element    | 根元素   | `HTMLElement \| null`        |
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLElement \| null`       |
 | getElement | 获取根元素 | `() => HTMLElement \| null` |
 
 ## Message.Footer
@@ -217,37 +217,16 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型            | 默认值 |
-| --------- | ---------- | --------------- | ------ |
-| layout    | 按钮布局   | `string`        | -      |
-| className | 类名       | `string`        | -      |
-| style     | 样式       | `CSSProperties` | -      |
-| children  | 底部内容   | `ReactNode`     | -      |
+| 属性      | 说明     | 类型            | 默认值 |
+| --------- | -------- | --------------- | ------ |
+| layout    | 按钮布局 | `string`        | -      |
+| className | 类名     | `string`        | -      |
+| style     | 样式     | `CSSProperties` | -      |
+| children  | 底部内容 | `ReactNode`     | -      |
 
 #### Ref
 
 同 [Message.Header](#messageheader) Ref。
-
-## Message.Icon
-
-对话框图标区域。
-
-### API
-
-#### 属性
-
-| 属性      | 说明     | 类型            | 默认值 |
-| --------- | -------- | --------------- | ------ |
-| className | 类名     | `string`        | -      |
-| style     | 样式     | `CSSProperties` | -      |
-| children  | 图标内容 | `ReactNode`     | -      |
-
-#### Ref
-
-| 属性       | 说明     | 类型                         |
-| ---------- | -------- | ---------------------------- |
-| element    | 根元素   | `HTMLDivElement \| null`     |
-| getElement | 获取根元素 | `() => HTMLDivElement \| null` |
 
 ## Message.Title
 
@@ -264,8 +243,6 @@ toc: content
 | children  | 标题内容 | `ReactNode`     | -      |
 
 #### Ref
-
-同 [Message.Icon](#messageicon) Ref。
 
 ## Message.Button
 
@@ -287,16 +264,14 @@ toc: content
 
 #### Ref
 
-同 [Message.Icon](#messageicon) Ref。
-
 ### 按钮配置 MessageComboButton
 
 用于 `Message.open`、`Message.Modal`、`Message.Combo`、`Message.Main` 的 `buttons` 数组项：
 
-| 属性      | 说明           | 类型                                                                               | 默认值 |
-| --------- | -------------- | ---------------------------------------------------------------------------------- | ------ |
-| id        | 按钮标识       | `string`                                                                           | -      |
-| name      | 按钮文案       | `string`                                                                           | -      |
-| className | 按钮类名       | `string`                                                                           | -      |
-| style     | 按钮样式       | `CSSProperties`                                                                    | -      |
+| 属性      | 说明                              | 类型                                                                             | 默认值 |
+| --------- | --------------------------------- | -------------------------------------------------------------------------------- | ------ |
+| id        | 按钮标识                          | `string`                                                                         | -      |
+| name      | 按钮文案                          | `string`                                                                         | -      |
+| className | 按钮类名                          | `string`                                                                         | -      |
+| style     | 按钮样式                          | `CSSProperties`                                                                  | -      |
 | onClick   | 点击；返回 `false` 时不关闭对话框 | `(e: MouseEvent<HTMLDivElement>) => boolean \| void \| Promise<boolean \| void>` | -      |

@@ -24,6 +24,7 @@ export interface MessageBodyProps {
   // Elements
   iconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   iconSize?: string
+  iconColor?: string
   iconRender?: () => ReactNode
   title?: ReactNode
 }

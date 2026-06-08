@@ -115,7 +115,7 @@ export default function MessageApiDemo() {
             Open Message (Vertical)
           </Button>
 
-          <Button className="lyrixi-flex" color="secondary" onClick={handleOpenHorizontalMessage}>
+          <Button className="lyrixi-flex" color="info" onClick={handleOpenHorizontalMessage}>
             Open Message (Horizontal)
           </Button>
 
