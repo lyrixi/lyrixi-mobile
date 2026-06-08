@@ -16,7 +16,7 @@ function getStyle({ color, backgroundColor, size, radius, style, className }: Ic
   style: CSSProperties
   className: string
 } {
-  const colorValue = color ? VariablesUtil.getColorClass(color) : ''
+  const colorValue = color ? VariablesUtil.getColorValue(color) : ''
   const backgroundColorValue = backgroundColor ? VariablesUtil.getBgColorValue(backgroundColor) : ''
 
   const sizeClass =

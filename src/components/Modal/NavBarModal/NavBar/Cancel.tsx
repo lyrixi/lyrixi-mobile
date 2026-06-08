@@ -27,10 +27,11 @@ const Cancel = ({ onClick, children }: ModalNavBarModalCancelProps) => {
     <NavBar.Button onClick={handleClick}>
       <Icon
         svg={Icons.Close}
-        size="12px"
-        style={{ padding: 4 }}
+        style={{ padding: 5 }}
         radius="100%"
-        backgroundColor="secondary"
+        size="10px"
+        color="secondary"
+        backgroundColor="default"
       />
     </NavBar.Button>
   )

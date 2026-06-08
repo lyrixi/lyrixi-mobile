@@ -14,7 +14,7 @@ import { DOMUtil, Icon } from 'lyrixi-mobile'
 测试使用-end */
 
 const ButtonIcon = forwardRef<IconRef, ButtonIconProps>(function ButtonIcon(
-  { svg, color, backgroundColor, size = 'm', radius, style, className },
+  { svg, color, backgroundColor, size = 'xxs', radius, style, className },
   ref
 ) {
   return (
