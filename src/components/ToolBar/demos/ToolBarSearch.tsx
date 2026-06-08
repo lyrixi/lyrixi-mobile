@@ -5,7 +5,9 @@ export default function ToolBarSearchDemo() {
   return (
     <Page className="lyrixi-bg-white">
       <Page.Main>
-        <ToolBar.Search placeholder="Search" value="" onSearch={() => {}} />
+        <ToolBar>
+          <ToolBar.Search placeholder="Search" value="" onSearch={() => {}} />
+        </ToolBar>
       </Page.Main>
     </Page>
   )
