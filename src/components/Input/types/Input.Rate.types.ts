@@ -29,7 +29,7 @@ export interface InputRateProps {
   style?: CSSProperties
   className?: string
   // Elements
-  svg?: ComponentType<SVGProps<SVGSVGElement>>
+  iconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   iconRender?: (params: { checked: boolean }) => ReactNode
   min?: number
   max?: number
