@@ -77,7 +77,7 @@ const FormLabel = forwardRef<RowColRef, FormItemLabelProps>(
               color="info"
               className="lyrixi-form-item-help"
               onClick={() => {
-                Toast.show({ content: help === null ? '' : String(help) })
+                Toast.show({ content: help === null || help === undefined ? '' : String(help) })
               }}
             />
           )}

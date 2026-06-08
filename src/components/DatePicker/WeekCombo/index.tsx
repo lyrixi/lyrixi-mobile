@@ -168,7 +168,7 @@ const WeekCombo = forwardRef<DatePickerWeekComboRef, DatePickerWeekComboProps>(f
       <WeekModal
         ref={modalRef}
         // Modal: Value & Display Value
-        value={value === null || !(value instanceof Date) ? modalValue : (value as Date)}
+        value={value === null || value === undefined || !(value instanceof Date) ? modalValue : (value as Date)}
         type="week"
         min={min}
         max={max}

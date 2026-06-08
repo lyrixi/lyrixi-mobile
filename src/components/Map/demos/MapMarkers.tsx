@@ -44,7 +44,7 @@ export default function MapMarkersDemo() {
 
   function handleFocusPoint() {
     const p0 = points[0]
-    if (p0 === null) {
+    if (p0 === null || p0 === undefined) {
       return
     }
     markersRef.current?.focus(p0)

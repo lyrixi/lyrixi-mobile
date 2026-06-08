@@ -136,7 +136,7 @@ const Lists = forwardRef<HTMLDivElement, PickerMainSlotsProps>(function Lists(
 
     const slotIdx = slotRef.current.slotIndex
     onDragEnd?.({
-      slotIndex: slotIdx === null ? 0 : slotIdx,
+      slotIndex: slotIdx === null || slotIdx === undefined ? 0 : slotIdx,
       rowIndex: inertia.index
     })
   }

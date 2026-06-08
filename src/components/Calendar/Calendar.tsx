@@ -78,7 +78,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
     }, [value])
 
     useEffect(() => {
-      if (drawDate === null || !(drawDate instanceof Date)) {
+      if (drawDate === null || drawDate === undefined || !(drawDate instanceof Date)) {
         return
       }
 
@@ -177,7 +177,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
 
     function handlePreviousYear(e?: React.MouseEvent) {
       e?.stopPropagation()
-      if (drawDate === null || !(drawDate instanceof Date)) {
+      if (drawDate === null || drawDate === undefined || !(drawDate instanceof Date)) {
         return
       }
       const lastYear = DateUtil.add(drawDate, -1, 'year')
@@ -196,7 +196,7 @@ const Calendar = forwardRef<CalendarRef, CalendarProps>(
 
     function handleNextYear(e?: React.MouseEvent) {
       e?.stopPropagation()
-      if (drawDate === null || !(drawDate instanceof Date)) {
+      if (drawDate === null || drawDate === undefined || !(drawDate instanceof Date)) {
         return
       }
       const nextYear = DateUtil.add(drawDate, 1, 'year')

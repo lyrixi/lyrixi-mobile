@@ -9,13 +9,13 @@ import { DateUtil } from 'lyrixi-mobile'
 function getDefaultValue({ min, max }: { min?: Date | null; max?: Date | null }): Date {
   const now = new Date()
 
-  if (min !== null) {
+  if (min !== null && min !== undefined) {
     const cmpMin = DateUtil.compare(now, min, 'date')
     if (cmpMin !== undefined && cmpMin < 0) {
       return min
     }
   }
-  if (max !== null) {
+  if (max !== null && max !== undefined) {
     const cmpMax = DateUtil.compare(now, max, 'date')
     if (cmpMax !== undefined && cmpMax > 0) {
       return max

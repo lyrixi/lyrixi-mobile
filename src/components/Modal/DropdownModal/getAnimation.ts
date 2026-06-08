@@ -1,8 +1,8 @@
 function getAnimation(left: string | number | undefined | null, right: string | number | undefined | null): string {
-  if (left !== null) {
+  if (left !== null && left !== undefined) {
     return 'slideDownLeft'
   }
-  if (right !== null) {
+  if (right !== null && right !== undefined) {
     return 'slideDownRight'
   }
   return 'slideDown'

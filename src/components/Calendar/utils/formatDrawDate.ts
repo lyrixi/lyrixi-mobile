@@ -14,7 +14,7 @@ function formatDrawDate(
     newDrawDate = newValue
   }
 
-  if (newDrawDate === null || !(newDrawDate instanceof Date)) {
+  if (newDrawDate === null || newDrawDate === undefined || !(newDrawDate instanceof Date)) {
     newDrawDate = new Date()
   }
 

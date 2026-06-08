@@ -35,7 +35,7 @@ const SearchPage = ({
     setKeyword(newKeyword)
     if (typeof onSearch === 'function') {
       const newResult = await onSearch(newKeyword, { list: externalList })
-      if (newResult !== null) {
+      if (newResult !== null && newResult !== undefined) {
         setResult(newResult)
       }
       return
@@ -109,7 +109,7 @@ const SearchPage = ({
       )
     }
 
-    if (result === null || result?.status !== 'success') {
+    if (result === null || result === undefined || result?.status !== 'success') {
       return (
         <Result
           title={

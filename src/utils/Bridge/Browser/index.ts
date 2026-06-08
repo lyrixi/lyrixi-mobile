@@ -27,6 +27,7 @@ import Clipboard from './../../Clipboard'
 import GeoUtil from './../../GeoUtil'
 import Device from './../../Device'
 import Toast from './../../../components/Toast'
+import MathUtil from './../../MathUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -98,7 +99,7 @@ let Browser = {
       })
       return
     }
-    if (number === null || Number.isNaN(Number(number))) {
+    if (!MathUtil.isNumber(number)) {
       onError?.({
         status: 'error',
         message: `Browser ${LocaleUtil.locale(

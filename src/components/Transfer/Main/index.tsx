@@ -10,7 +10,7 @@ import type { TransferItem, TransferMainProps, TransferTitles } from './../types
 function normalizeTitles(
   titles: TransferMainProps['titles']
 ): TransferTitles | undefined {
-  if (titles === null) return undefined
+  if (titles === null || titles === undefined) return undefined
   if (Array.isArray(titles)) {
     return { selected: titles[0], unSelected: titles[1] }
   }
