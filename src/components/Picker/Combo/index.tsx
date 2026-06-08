@@ -30,8 +30,10 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
     style,
     className,
     // Combo: Elements
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     // Modal
@@ -107,8 +109,10 @@ const PickerCombo = forwardRef<PickerComboRef, PickerComboProps>(function Picker
           style={style}
           className={className}
           // Combo: Elements
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Events
           onChange={handleInputChange}

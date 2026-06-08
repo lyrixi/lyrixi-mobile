@@ -35,8 +35,10 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
       formatter,
       separator,
       // Combo: Elements
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
       // Modal
       // Modal: Value & Display Value
@@ -126,8 +128,10 @@ const DistrictCombo = forwardRef<CascaderDistrictComboRef, CascaderDistrictCombo
           className={className}
           formatter={formatter as InputSelectProps['formatter']}
           separator={separator}
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           onChange={handleInputChange}
           onClick={handleOpen}

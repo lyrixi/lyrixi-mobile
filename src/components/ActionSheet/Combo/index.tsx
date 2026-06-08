@@ -32,8 +32,10 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
       className,
       comboRender,
       children,
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
 
       // Modal
@@ -141,8 +143,10 @@ const ActionSheetCombo = forwardRef<ActionSheetComboHandle, ActionSheetComboProp
           style={style}
           className={className}
           // Combo: Elements
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Events
           onChange={

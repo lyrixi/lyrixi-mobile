@@ -10,6 +10,7 @@ import getStringValue from './getStringValue'
 import ObjectUtil from './../../../utils/ObjectUtil'
 import MathUtil from './../../../utils/MathUtil'
 import DOMUtil from './../../../utils/DOMUtil'
+import InputIcon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
@@ -39,8 +40,10 @@ const InputNode = (
     className,
 
     // Elements
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     precision,
@@ -184,7 +187,7 @@ const InputNode = (
         onClick?.(e)
       }}
     >
-      {leftIconNode}
+      {leftIconRender ?? (leftIconSvg ? <InputIcon svg={leftIconSvg} /> : null)}
 
       <div
         className={DOMUtil.classNames(
@@ -217,7 +220,7 @@ const InputNode = (
             onClear: handleClear
           })}
 
-      {rightIconNode}
+      {rightIconRender ?? (rightIconSvg ? <InputIcon svg={rightIconSvg} /> : null)}
     </div>
   )
 }

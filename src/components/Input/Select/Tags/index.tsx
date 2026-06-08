@@ -10,8 +10,10 @@ const Tags = ({
   // 分隔符
   separator,
   // 左右图标
-  leftIconNode,
-  rightIconNode,
+  leftIconRender,
+  leftIconSvg,
+  rightIconRender,
+  rightIconSvg,
   clearRender,
   className,
   style,
@@ -27,8 +29,10 @@ const Tags = ({
 }: InputSelectTagsProps) => {
   return (
     <InputNode
-      leftIconNode={leftIconNode}
-      rightIconNode={rightIconNode}
+      leftIconRender={leftIconRender}
+      leftIconSvg={leftIconSvg}
+      rightIconRender={rightIconRender}
+      rightIconSvg={rightIconSvg}
       className={className}
       size={size}
       disabled={disabled}

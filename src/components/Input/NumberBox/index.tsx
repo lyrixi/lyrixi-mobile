@@ -45,8 +45,10 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
       minusStyle,
 
       // Elements
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
 
       precision, // 小数精度, 只有数值框才生效
@@ -173,8 +175,10 @@ const NumberBox = forwardRef<InputNumberBoxRef, InputNumberBoxProps>(
           // Elements
           type="number"
           className="lyrixi-numberbox-input"
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Value & Display Value
           value={value as string}

@@ -8,7 +8,6 @@ import type { ToolBarSearchActiveProps } from './../types'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import type { InputTextRef } from './../../Input/types'
-import Input from '../../Input'
 import Icons from '../../../icons'
 // 内库使用-end
 
@@ -43,8 +42,10 @@ const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(function Se
 
     // Elements
     inputRender,
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     precision, // 小数精度, 只有数值框才生效
@@ -97,8 +98,10 @@ const SearchBar = forwardRef<InputTextRef, ToolBarSearchActiveProps>(function Se
         className={DOMUtil.classNames('lyrixi-active', className)}
         // Elements
         inputRender={inputRender}
-        leftIconNode={leftIconNode || <Input.Icon svg={Icons.Search} />}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+        leftIconSvg={leftIconSvg ?? Icons.Search}
+        rightIconRender={rightIconRender}
+        rightIconSvg={rightIconSvg}
         clearRender={clearRender}
         precision={precision}
         trim={trim}

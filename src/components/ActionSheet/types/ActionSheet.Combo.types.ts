@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode, RefObject } from 'react'
+import type { ComponentType, CSSProperties, ReactNode, RefObject, SVGProps } from 'react'
 
 import type { ComboRef } from '../../Combo/types'
 import type { ModalProps } from '../../Modal/types'
@@ -32,8 +32,10 @@ export interface ActionSheetComboProps {
     onClick: () => void
   }) => ReactNode
   children?: ReactNode
-  leftIconNode?: ReactNode
-  rightIconNode?: ReactNode
+  leftIconRender?: ReactNode
+  leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  rightIconRender?: ReactNode
+  rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: () => ReactNode
   // Modal: Value & Display Value
   list?: ActionSheetItem[]

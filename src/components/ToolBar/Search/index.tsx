@@ -6,12 +6,11 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import InputSearch from './../../Input/Search'
 import type { InputTextRef } from './../../Input/types'
 import type { ToolBarSearchProps } from '../types/ToolBar.Search.types'
-import Input from '../../Input'
 import Icons from '../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil, LocaleUtil, Input } from 'lyrixi-mobile'
+import { DOMUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const Search = forwardRef<InputTextRef, ToolBarSearchProps>(function Search(props, ref) {
@@ -38,8 +37,10 @@ const Search = forwardRef<InputTextRef, ToolBarSearchProps>(function Search(prop
 
     // Elements
     inputRender,
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     precision, // 小数精度, 只有数值框才生效
@@ -85,8 +86,10 @@ const Search = forwardRef<InputTextRef, ToolBarSearchProps>(function Search(prop
       className={DOMUtil.classNames('lyrixi-toolbar-search-input', className)}
       // Elements
       inputRender={inputRender}
-      leftIconNode={leftIconNode || <Input.Icon svg={Icons.Search} />}
-      rightIconNode={rightIconNode}
+      leftIconRender={leftIconRender}
+      leftIconSvg={leftIconSvg ?? Icons.Search}
+      rightIconRender={rightIconRender}
+      rightIconSvg={rightIconSvg}
       clearRender={clearRender}
       precision={precision}
       trim={trim}

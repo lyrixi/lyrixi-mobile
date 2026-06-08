@@ -34,8 +34,10 @@ const SelectCombo = forwardRef<SelectComboRef, SelectComboProps>(function Select
     style,
     className,
     // Combo: Elements
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
     // Modal
     // Modal: Value & Display Value
@@ -137,8 +139,10 @@ const SelectCombo = forwardRef<SelectComboRef, SelectComboProps>(function Select
         allowClear={allowClear}
         style={style}
         className={className}
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+        leftIconSvg={leftIconSvg}
+        rightIconRender={rightIconRender}
+        rightIconSvg={rightIconSvg}
         clearRender={clearRender}
         onChange={handleInputChange}
         onClick={handleOpen}

@@ -18,8 +18,10 @@ export type ListPaginationComboProps = Omit<InputSelectProps, 'value' | 'onChang
     readOnly?: boolean
     disabled?: boolean
     separator?: string
-    leftIconNode?: InputTextProps['leftIconNode']
-    rightIconNode?: InputTextProps['rightIconNode']
+    leftIconRender?: InputTextProps['leftIconRender']
+    leftIconSvg?: InputTextProps['leftIconSvg']
+    rightIconRender?: InputTextProps['rightIconRender']
+    rightIconSvg?: InputTextProps['rightIconSvg']
     clearRender?: InputTextProps['clearRender']
     onClick?: InputSelectProps['onClick']
   }

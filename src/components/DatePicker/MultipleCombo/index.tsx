@@ -31,8 +31,10 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
     style,
     className,
     // Combo: Elements
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     // Modal
@@ -127,8 +129,10 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
         style={style}
         className={className}
         // Combo: Elements
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+        rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
         clearRender={clearRender}
         // Events
         onChange={handleInputChange}

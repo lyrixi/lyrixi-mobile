@@ -12,6 +12,7 @@ import type { InputTextElement, InputTextProps, InputTextRef } from '../types'
 import type { InputTextRenderClearOptions } from './Input.Text.renderClear.types'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import InputIcon from './../Icon'
 // 内库使用-end
 
 /* 测试使用-start
@@ -44,8 +45,10 @@ const InputText = (
 
     // Elements
     inputRender,
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     precision, // 小数精度, 只有数值框才生效
@@ -435,7 +438,7 @@ const InputText = (
       onClick={onClick}
     >
       {/* Left */}
-      {leftIconNode}
+      {leftIconRender ?? (leftIconSvg ? <InputIcon svg={leftIconSvg} /> : null)}
 
       <div
         className={DOMUtil.classNames(
@@ -478,7 +481,7 @@ const InputText = (
           } as InputTextRenderClearOptions)}
 
       {/* Right */}
-      {rightIconNode}
+      {rightIconRender ?? (rightIconSvg ? <InputIcon svg={rightIconSvg} /> : null)}
     </div>
   )
 }

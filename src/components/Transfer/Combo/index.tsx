@@ -30,8 +30,10 @@ const TransferCombo = forwardRef<unknown, TransferComboProps>(function TransferC
     style,
     className,
     // Combo: Elements
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     // Modal: Value & Display Value
@@ -110,8 +112,10 @@ const TransferCombo = forwardRef<unknown, TransferComboProps>(function TransferC
         allowClear={allowClear}
         style={style}
         className={className}
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+        rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
         clearRender={clearRender}
         onChange={onChange ? handleInputChange : undefined}
         onClick={handleOpen}

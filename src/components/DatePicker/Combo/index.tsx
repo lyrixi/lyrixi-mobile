@@ -37,8 +37,10 @@ const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(
       // Combo: Elements
       comboRender,
       children,
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
 
       // Modal
@@ -154,8 +156,10 @@ const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(
           style={style}
           className={className}
           // Combo: Elements
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Events
           onChange={handleInputChange}

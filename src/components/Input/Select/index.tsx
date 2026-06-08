@@ -41,8 +41,10 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
       // Elements
       formatter,
       separator,
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender: customClearRender,
 
       // Events
@@ -144,8 +146,10 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
           size={size}
           className={className}
           // Elements
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Events
           onAdd={handleInputClick}
@@ -170,8 +174,10 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
         size={size}
         className={className}
         // Elements
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+        leftIconSvg={leftIconSvg}
+        rightIconRender={rightIconRender}
+        rightIconSvg={rightIconSvg}
         clearRender={clearRender}
         // Events
         onClick={handleInputClick}

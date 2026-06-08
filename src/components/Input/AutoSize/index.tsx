@@ -27,8 +27,10 @@ const AutoSize = forwardRef<InputAutoSizeRef, InputAutoSizeProps>(
 
       // Elements
       inputRender,
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
 
             precision, // 小数精度, 只有数值框才生效
@@ -76,8 +78,10 @@ const AutoSize = forwardRef<InputAutoSizeRef, InputAutoSizeProps>(
         className={className}
         // Elements
         inputRender={inputRender}
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+        leftIconSvg={leftIconSvg}
+        rightIconRender={rightIconRender}
+        rightIconSvg={rightIconSvg}
         clearRender={clearRender}
                 precision={precision}
         trim={trim}

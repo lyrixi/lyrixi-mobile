@@ -35,8 +35,10 @@ const WeekCombo = forwardRef<DatePickerWeekComboRef, DatePickerWeekComboProps>(f
     // Combo: Elements
     comboRender,
     children,
-    leftIconNode,
-    rightIconNode,
+    leftIconRender,
+    leftIconSvg,
+    rightIconRender,
+    rightIconSvg,
     clearRender,
 
     // Modal
@@ -148,8 +150,10 @@ const WeekCombo = forwardRef<DatePickerWeekComboRef, DatePickerWeekComboProps>(f
         style={style}
         className={className}
         // Combo: Elements
-        leftIconNode={leftIconNode}
-        rightIconNode={rightIconNode}
+        leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+        rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
         clearRender={clearRender}
         // Events
         onChange={handleInputChange}

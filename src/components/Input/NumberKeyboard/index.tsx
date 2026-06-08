@@ -48,8 +48,10 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
       className,
 
       // Input: Elements
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
 
       // Input: Events
@@ -125,8 +127,10 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           size={size}
           className={DOMUtil.classNames('lyrixi-input-numberkeyboard', className)}
           // Input: Elements
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Input: Events
           onChange={(v) => handleChange(typeof v === 'string' ? v : '')}

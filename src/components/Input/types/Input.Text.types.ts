@@ -1,4 +1,5 @@
 import type {
+  ComponentType,
   CompositionEventHandler,
   CSSProperties,
   FocusEvent,
@@ -6,6 +7,7 @@ import type {
   KeyboardEvent,
   MouseEvent,
   ReactNode,
+  SVGProps,
   TouchEvent
 } from 'react'
 
@@ -56,8 +58,10 @@ export interface InputTextProps {
   className?: string
   // Elements
   inputRender?: (params: Record<string, unknown>) => ReactNode
-  leftIconNode?: ReactNode
-  rightIconNode?: ReactNode
+  leftIconRender?: ReactNode
+  leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  rightIconRender?: ReactNode
+  rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: (params: {
     clearable: boolean
     allowClear?: boolean

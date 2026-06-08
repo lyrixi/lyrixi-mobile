@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEvent, ReactNode } from 'react'
+import type { ComponentType, CSSProperties, MouseEvent, ReactNode, SVGProps } from 'react'
 
 import type { InputSelectItem, InputSelectProps } from '../../types/Input.Select.types'
 import type { InputSize } from '../../types/Input.Size.types'
@@ -17,8 +17,10 @@ export interface InputSelectTagsProps {
   style?: CSSProperties
   size?: InputSize
   // Elements
-  leftIconNode?: ReactNode
-  rightIconNode?: ReactNode
+  leftIconRender?: ReactNode
+  leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  rightIconRender?: ReactNode
+  rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: InputSelectProps['clearRender']
   // Events
   onAdd?: (e: MouseEvent<HTMLDivElement>) => void

@@ -36,8 +36,10 @@ const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
       style,
       className,
       // Combo: Elements
-      leftIconNode,
-      rightIconNode,
+      leftIconRender,
+      leftIconSvg,
+      rightIconRender,
+      rightIconSvg,
       clearRender,
 
       // Modal
@@ -152,8 +154,10 @@ const Combo = forwardRef<ListPaginationComboRef, ListPaginationComboProps>(
           style={style}
           className={className}
           // Combo: Elements
-          leftIconNode={leftIconNode}
-          rightIconNode={rightIconNode}
+          leftIconRender={leftIconRender}
+          leftIconSvg={leftIconSvg}
+          rightIconRender={rightIconRender}
+          rightIconSvg={rightIconSvg}
           clearRender={clearRender}
           // Events
           onChange={handleInputChange}
