@@ -7,9 +7,10 @@ import type {
   SetStateAction,
   SyntheticEvent
 } from 'react'
-import type { MediaItem } from '../../MediaUploader/types'
 
-export type { MediaItem } from '../../MediaUploader/types'
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 export interface MediaChooseCallbacks {
   onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
@@ -23,7 +24,7 @@ export interface FileImageCompressOptions {
 }
 
 export interface MediaProps extends MediaChooseCallbacks {
-  list?: MediaItem[]
+  list?: FileItem[]
   maxCount?: number
   mediaType?: string[]
   ellipsis?: { count?: number }
@@ -31,7 +32,7 @@ export interface MediaProps extends MediaChooseCallbacks {
   sizeType?: string[]
   fileImageCompress?: FileImageCompressOptions
   allowChoose?: boolean
-  allowClear?: boolean | ((item: MediaItem) => boolean)
+  allowClear?: boolean | ((item: FileItem) => boolean)
   async?: boolean
   reUpload?: boolean
   previewAllowChoose?: boolean
@@ -47,17 +48,14 @@ export interface MediaProps extends MediaChooseCallbacks {
   previewMaskStyle?: CSSProperties
   previewMaskClassName?: string
   uploadRender?: (ctx: { uploadType: string }) => ReactNode
-  uploadingRender?: (ctx: MediaItem & { uploadingType: string }) => ReactNode
-  itemRender?: (item: MediaItem) => ReactNode
+  uploadingRender?: (ctx: FileItem & { uploadingType: string }) => ReactNode
+  itemRender?: (item: FileItem) => ReactNode
   previewPortal?: HTMLElement | null
   previewCancelPosition?: 'left' | 'right'
-  onUpload?: (item: MediaItem) => void | Promise<unknown>
-  onChange?: (
-    list: MediaItem[],
-    meta: { action: string }
-  ) => void | Promise<unknown>
+  onUpload?: (item: FileItem) => void | Promise<unknown>
+  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
   onPreview?: (
-    item: MediaItem,
+    item: FileItem,
     index: number
   ) =>
     | void
@@ -68,7 +66,7 @@ export interface MediaProps extends MediaChooseCallbacks {
     | Promise<void | boolean | 'nativeMedia' | 'nativeFile' | 'browser'>
 }
 
-export type MediaListChangeHandler = (list: MediaItem[], meta: { action: string }) => void
+export type MediaListChangeHandler = (list: FileItem[], meta: { action: string }) => void
 
 export type MediaFileChangeHandler = (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
 export type MediaOnBeforeChooseHandler = (e: MouseEvent) => void | boolean | Promise<void | boolean>
@@ -80,10 +78,7 @@ export interface MediaRef {
   updateStatus: () => void
   chooseFile: (e?: SyntheticEvent) => Promise<unknown>
   choose: (e?: SyntheticEvent) => Promise<unknown>
-  uploadList: (
-    newList?: MediaItem[],
-    opts?: { action?: string }
-  ) => Promise<MediaItem[] | undefined>
+  uploadList: (newList?: FileItem[], opts?: { action?: string }) => Promise<FileItem[] | undefined>
   showLoading: (options?: { content?: string; index?: number }) => void
   hideLoading: (options?: { failIndexes?: number[] }) => void
   setPreviewVisible: Dispatch<SetStateAction<number | null>>

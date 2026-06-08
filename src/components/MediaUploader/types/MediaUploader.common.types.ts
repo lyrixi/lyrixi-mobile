@@ -1,24 +1,11 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-export interface MediaItem {
-  fileThumbnail?: string
-  fileUrl?: string
-  filePath?: string
-  status?: string
-  localFile?: LocalFile
-  fileType?: string
-  message?: string
-  className?: string
-  reloadKey?: unknown
-  [key: string]: unknown
-}
+import type { FileItem, LocalFile } from '../../Attach/types/Attach.common.types'
 
-/** 本地上传中间态，字段可能未齐（与 Media 侧预览、压缩流程一致） */
-export interface LocalFile {
-  fileUrl?: string
-  fileType?: string
-  tempFileThumbnail?: string
-  [key: string]: unknown
+export type { LocalFile }
+
+export interface MediaItem extends FileItem {
+  filePath?: string
 }
 
 export interface MediaUploaderUploadResponse {

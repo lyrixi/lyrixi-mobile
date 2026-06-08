@@ -1,4 +1,6 @@
-import type { MediaItem } from './Media.types'
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 export interface MediaFileChooseChangePayload {
   fileName: string
@@ -16,14 +18,14 @@ export interface MediaFileChooseOptions {
   maxWidth?: number
   quality?: number
   maxCount?: number
-  list?: MediaItem[]
+  list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: MediaItem[] | undefined,
+    newList: FileItem[] | undefined,
     opts?: { action?: string }
-  ) => Promise<MediaItem[] | undefined>
+  ) => Promise<FileItem[] | undefined>
   onFileChange?: (
     payload: MediaFileChooseChangePayload
-  ) => Promise<MediaItem[] | void> | MediaItem[] | void
-  onChange?: (list: MediaItem[], meta: { action: string }) => void
+  ) => Promise<FileItem[] | void> | FileItem[] | void
+  onChange?: (list: FileItem[], meta: { action: string }) => void
 }

@@ -1,10 +1,9 @@
 // 与Attach.uploadItem共用
 
-import type { MediaItem } from './../../types'
-
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
+import type { FileItem } from './../../../Attach/types'
 // 内库使用-end
 
 /* 测试使用-start
@@ -13,13 +12,11 @@ import { LocaleUtil, Toast } from 'lyrixi-mobile'
 
 // 上传文件
 async function uploadItem(
-  item: MediaItem,
+  item: FileItem,
   {
     onUpload
   }: {
-    onUpload?: (
-      item: MediaItem
-    ) => void | MediaItem | unknown | Promise<MediaItem | void | unknown>
+    onUpload?: (item: FileItem) => void | FileItem | unknown | Promise<FileItem | void | unknown>
   }
 ) {
   if (typeof onUpload !== 'function') {

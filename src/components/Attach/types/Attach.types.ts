@@ -1,17 +1,11 @@
 import type { ChangeEvent, CSSProperties, ReactNode, SyntheticEvent } from 'react'
 
 import type { ModalProps } from '../../Modal/types'
-import type { AttachItem } from './Attach.common.types'
-
-export type AttachListItem = Record<string, unknown> & {
-  fileUrl?: string
-  fileName?: string
-  status?: string
-}
+import type { FileItem } from './Attach.common.types'
 
 export interface AttachProps {
   // Value & Display Value
-  list?: AttachListItem[]
+  list?: FileItem[]
   maxCount?: number
   sourceType?: string | string[]
   allowChoose?: boolean
@@ -32,14 +26,14 @@ export interface AttachProps {
   children?: ReactNode
   uploadRender?: (ctx: { uploadingType: string }) => ReactNode
   uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
-  itemRender?: (item: AttachListItem, index: number) => ReactNode
+  itemRender?: (item: FileItem, index: number) => ReactNode
   // Events
   onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>
   onChoose?: (e?: SyntheticEvent) => unknown
-  onFileChange?: (e: ChangeEvent<HTMLInputElement> | AttachItem) => unknown
-  onUpload?: (item: AttachListItem) => unknown
-  onChange?: (list: AttachListItem[], meta?: { action?: string }) => void
-  onPreview?: (item: AttachListItem, index: number) => unknown
+  onFileChange?: (e: ChangeEvent<HTMLInputElement> | FileItem) => unknown
+  onUpload?: (item: FileItem) => unknown
+  onChange?: (list: FileItem[], meta?: { action?: string }) => void
+  onPreview?: (item: FileItem, index: number) => unknown
 }
 
 export interface AttachRef {
@@ -49,9 +43,9 @@ export interface AttachRef {
   chooseFile: (e: SyntheticEvent) => Promise<unknown>
   choose: (e: SyntheticEvent) => Promise<unknown>
   uploadList: (
-    newList?: AttachListItem[] | null,
+    newList?: FileItem[] | null,
     meta?: { action?: string }
-  ) => Promise<AttachListItem[]>
+  ) => Promise<FileItem[]>
   showLoading: (options?: { content?: string; index?: number }) => void
   hideLoading: (options?: { failIndexes?: number[] }) => void
 }

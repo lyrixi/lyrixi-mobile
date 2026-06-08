@@ -3,7 +3,7 @@ import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 import convertBytes from './../../utils/convertBytes'
 
-import type { AttachItem } from '../../types'
+import type { FileItem } from '../../types'
 import type { FileChooseOptions } from '../../types'
 
 // 内库使用-start
@@ -123,7 +123,7 @@ async function fileChoose({
     return false
   }
 
-  let currentList: AttachItem[] | null = null
+  let currentList: FileItem[] | null = null
   if (typeof onFileChange === 'function') {
     const r = await onFileChange({
       fileName,
@@ -133,7 +133,7 @@ async function fileChoose({
       fileUrl: fileURL,
       status: 'choose'
     })
-    currentList = Array.isArray(r) ? (r as AttachItem[]) : null
+    currentList = Array.isArray(r) ? (r as FileItem[]) : null
   }
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
@@ -143,7 +143,7 @@ async function fileChoose({
   }
 
   // 构建新的列表
-  let newList: AttachItem[] = []
+  let newList: FileItem[] = []
   // 新放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]

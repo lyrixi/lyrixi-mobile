@@ -16,16 +16,15 @@ import List from './../List'
 import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 
-import type { MediaProps, MediaItem } from './../types'
-
+import type { MediaProps } from './../types'
 // 内库使用-start
+import type { FileItem } from './../../Attach/types'
 import Bridge from './../../../utils/Bridge'
 import Device from './../../../utils/Device'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 // 内库使用-end
-
 
 /* 测试使用-start
 import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
@@ -162,8 +161,8 @@ const Media = forwardRef(function Media(
   }
 
   // 上传
-  async function uploadList(newList?: MediaItem[], { action }: { action?: string } = {}) {
-    let workList: MediaItem[] = newList ? [...newList] : [...list]
+  async function uploadList(newList?: FileItem[], { action }: { action?: string } = {}) {
+    let workList: FileItem[] = newList ? [...newList] : [...list]
     if (!workList) return
 
     let hasUploaded = false
@@ -175,7 +174,7 @@ const Media = forwardRef(function Media(
       const el = workList[idx]
       // 只上传未上传或上传失败的照片
       if (el.status === 'choose' || el.status === 'error') {
-        workList[idx] = (await uploadItem(el, { onUpload })) as MediaItem
+        workList[idx] = (await uploadItem(el, { onUpload })) as FileItem
         hasUploaded = true
       }
     }
@@ -257,25 +256,25 @@ const Media = forwardRef(function Media(
   }
 
   // 重新上传
-  async function handleReUpload(item: MediaItem, index: number) {
+  async function handleReUpload(item: FileItem, index: number) {
     if (typeof onChange !== 'function') {
       console.warn('Media: onChange is not a function')
       return
     }
-    const newList: MediaItem[] = [...list]
+    const newList: FileItem[] = [...list]
     // 开始上传
     _showLoading({
       content: localeToastContent('上传中', 'lyrixi_fc09a73e52b76f697cff129b4dddecd1'),
       index: index
     })
-    newList[index] = (await uploadItem(item, { onUpload })) as MediaItem
+    newList[index] = (await uploadItem(item, { onUpload })) as FileItem
     _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
 
     onChangeRef.current?.(newList, { action: 'reUpload' })
   }
 
   // 点击预览
-  async function handlePreview(item: MediaItem, index: number) {
+  async function handlePreview(item: FileItem, index: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
       const goOn = await onPreview(item, index)
@@ -346,7 +345,7 @@ const Media = forwardRef(function Media(
       {/* Elements: 图片列表 */}
       <List
         // Value & Display Value
-        list={list as MediaItem[]}
+        list={list as FileItem[]}
         ellipsis={ellipsis}
         // Status
         allowClear={allowClear}

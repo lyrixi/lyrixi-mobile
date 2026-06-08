@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import _uploadItem from './uploadItem'
 
 
-import type { AttachListItem, AttachItem, AttachRef } from './../../Attach/types'
+import type { FileItem, AttachRef } from './../../Attach/types'
 import type { AttachUploaderBrowserProps, AttachUploaderItem } from './../types'
 
 // 内库使用-start
@@ -104,13 +104,13 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
   }
 
   function isNativePayload(
-    a: import('react').ChangeEvent<HTMLInputElement> | AttachItem
-  ): a is AttachItem {
+    a: import('react').ChangeEvent<HTMLInputElement> | FileItem
+  ): a is FileItem {
     return typeof a === 'object' && a !== null && a !== undefined && 'fileName' in a && 'status' in a
   }
 
   async function handleFileOrNative(
-    arg: import('react').ChangeEvent<HTMLInputElement> | AttachItem
+    arg: import('react').ChangeEvent<HTMLInputElement> | FileItem
   ): Promise<unknown> {
     if (!isNativePayload(arg)) {
       return undefined
@@ -128,14 +128,14 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
         fileSize: arg.fileSize,
         fileUrl: arg.fileUrl,
         fileName: arg.fileName
-      } as AttachListItem
+      } as unknown as FileItem
     ]
   }
 
   return (
     <Attach
       ref={attachRef}
-      list={list as AttachListItem[]}
+      list={list as FileItem[]}
       maxCount={maxCount}
       sourceType={sourceTypeList}
       maxSize={maxSize}

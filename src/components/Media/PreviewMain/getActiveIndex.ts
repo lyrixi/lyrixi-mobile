@@ -1,7 +1,9 @@
-import type { MediaItem } from './../types'
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 // 当前选中项
-function getActiveIndex({ index, list }: { index?: number; list?: MediaItem[] }) {
+function getActiveIndex({ index, list }: { index?: number; list?: FileItem[] }) {
   if (!Array.isArray(list) || !list.length) return 0
 
   let activeIndex = 0

@@ -1,8 +1,9 @@
 import getRemainCount from './../../utils/getRemainCount'
 
-import type { MediaChooseUtilOptions, MediaItem } from '../../types'
+import type { MediaChooseUtilOptions } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
@@ -41,17 +42,17 @@ async function choose({
     return false
   }
 
-  let currentList: MediaItem[] | null = null
+  let currentList: FileItem[] | null = null
   if (typeof onChoose === 'function') {
     const r = await Promise.resolve(onChoose())
-    currentList = Array.isArray(r) ? (r as MediaItem[]) : null
+    currentList = Array.isArray(r) ? (r as FileItem[]) : null
   }
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
     return null
   }
 
   // 构建新的照片列表
-  let newList: MediaItem[] = []
+  let newList: FileItem[] = []
   // 新照片放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]

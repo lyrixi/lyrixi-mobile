@@ -1,9 +1,10 @@
 import React, { type ChangeEvent, type MouseEvent } from 'react'
 import Uploading from './../Uploading'
 
-import type { MediaChooseProps, MediaItem } from '../types'
+import type { MediaChooseProps } from '../types'
 
 // 内库使用-start
+import type { FileItem } from './../../Attach/types'
 import DOMUtil from './../../../utils/DOMUtil'
 import Icon from '../../Icon'
 import Icons from '../../../icons'
@@ -74,7 +75,7 @@ const Choose = ({
   if (!onChoose && !onFileChange) return null
 
   const cameraOnly = sourceType.length === 1 && sourceType[0] === 'camera'
-  const itemStub: MediaItem = {}
+  const itemStub: FileItem = {}
 
   return (
     <div

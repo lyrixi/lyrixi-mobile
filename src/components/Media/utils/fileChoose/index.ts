@@ -1,9 +1,10 @@
 import getRemainCount from './../getRemainCount'
 import compressImage from './compressImage'
 
-import type { MediaFileChooseOptions, MediaItem } from '../../types'
+import type { MediaFileChooseOptions } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
@@ -85,7 +86,7 @@ async function fileChoose({
     }
   }
 
-  let currentList: MediaItem[] | null = null
+  let currentList: FileItem[] | null = null
   if (typeof onFileChange === 'function') {
     const fileURL = URL.createObjectURL(fileData)
     const r = await onFileChange({
@@ -105,7 +106,7 @@ async function fileChoose({
     return null
   }
 
-  let newList: MediaItem[] = []
+  let newList: FileItem[] = []
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]
   } else {

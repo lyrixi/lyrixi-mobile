@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Toast, Page, Divider, Bridge, Button, Attach } from 'lyrixi-mobile'
-import type { AttachListItem, AttachRef } from 'lyrixi-mobile'
+import type { FileItem, AttachRef } from 'lyrixi-mobile'
 
 export default function AttachDemo2() {
   const uploadRef = useRef<AttachRef | null>(null)
-  const [list, setList] = useState<AttachListItem[]>([
+  const [list, setList] = useState<FileItem[]>([
     {
       fileName: '1',
       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
@@ -12,11 +12,12 @@ export default function AttachDemo2() {
     },
     {
       fileName: '2',
-      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+      status: 'success'
     }
   ])
 
-  const [customList, setCustomList] = useState<AttachListItem[]>([])
+  const [customList, setCustomList] = useState<FileItem[]>([])
 
   useEffect(() => {
     Bridge.load({ onSuccess: () => console.log('加载桥接') })

@@ -1,11 +1,15 @@
 import type { CSSProperties } from 'react'
 import type { SwiperRef } from 'swiper/react'
 
-import type { FileImageCompressOptions, MediaProps, MediaItem } from './Media.types'
+import type { FileImageCompressOptions, MediaProps } from './Media.types'
+
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 export interface MediaPreviewMainProps {
   // Value & Display Value
-  list?: MediaItem[]
+  list?: FileItem[]
   index?: number
   mediaType?: string | string[]
   sourceType?: string[]
@@ -16,7 +20,7 @@ export interface MediaPreviewMainProps {
   open?: boolean
   closable?: boolean
   allowChoose?: boolean
-  allowClear?: boolean | ((item: MediaItem) => boolean)
+  allowClear?: boolean | ((item: FileItem) => boolean)
   async?: boolean
   reUpload?: boolean
   // Style

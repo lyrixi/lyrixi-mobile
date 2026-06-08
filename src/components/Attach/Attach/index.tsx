@@ -17,7 +17,8 @@ import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 import copyFileUrl from './copyFileUrl'
 
-import type { AttachListItem, AttachItem, AttachProps, AttachRef } from '../types'
+import type { FileItem, AttachProps, AttachRef } from '../types'
+import type { MediaItem } from './../../MediaUploader/types'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
@@ -34,7 +35,7 @@ import { Bridge, DOMUtil, LocaleUtil, Toast } from 'lyrixi-mobile'
 function Attach(
   {
     // Value & Display Value
-    list = [] as Array<Record<string, unknown>>,
+    list = [] as FileItem[],
     /*
   [
     {
@@ -56,7 +57,7 @@ function Attach(
     async = false,
     reUpload = true,
 
-        maxSize,
+    maxSize,
 
     // Style
     style,
@@ -127,14 +128,14 @@ function Attach(
 
   // 上传
   async function uploadList(
-    newList: AttachListItem[] | null | undefined,
+    newList: FileItem[] | null | undefined,
     { action }: { action?: string } = {}
   ) {
     if (!newList) {
       // eslint-disable-next-line
       newList = [...list]
     }
-    if (!newList) return [] as AttachListItem[]
+    if (!newList) return [] as FileItem[]
 
     let hasUploaded = false
     // 开始上传
@@ -145,7 +146,9 @@ function Attach(
       const item = newList[index]
       // 只上传未上传的文件
       if (item.status === 'choose') {
-        newList[index] = (await uploadItem(item, { onUpload })) as AttachListItem
+        newList[index] = (await uploadItem(item as unknown as FileItem, {
+          onUpload: onUpload as unknown as ((item: FileItem) => unknown) | undefined
+        })) as FileItem
         hasUploaded = true
       }
     }
@@ -187,11 +190,13 @@ function Attach(
   }
 
   // 重新上传
-  async function handleReUpload(item: AttachListItem, index: number) {
+  async function handleReUpload(item: FileItem, index: number) {
     let newList = [...list]
     // 开始上传
     _showLoading({ index })
-    newList[index] = await uploadItem(item, { onUpload })
+    newList[index] = (await uploadItem(item as unknown as MediaItem, {
+      onUpload: onUpload as unknown as ((item: MediaItem) => unknown) | undefined
+    })) as FileItem
     _hideLoading(newList[index].status === 'error' ? { failIndexes: [index] } : undefined)
 
     onChangeRef.current?.(newList, { action: 'reUpload' })
@@ -226,9 +231,7 @@ function Attach(
       list,
       uploadPosition,
       uploadList,
-      onFileChange: onFileChange
-        ? (payload: AttachItem) => onFileChange(payload)
-        : undefined,
+      onFileChange: onFileChange ? (payload: FileItem) => onFileChange(payload) : undefined,
       onChange: onChangeRef.current
     })
     _hideLoading()
@@ -302,7 +305,7 @@ function Attach(
   })
 
   // 点击预览
-  async function handlePreview(item: AttachListItem, index: number) {
+  async function handlePreview(item: FileItem, index: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
       let goOn = await onPreview(item, index)
@@ -395,23 +398,25 @@ function Attach(
       {uploadPosition === 'end' && (onChoose || onFileChange) && renderChoose()}
 
       {/* 预览 */}
-      {previewTypeRef.current === 'browser' && previewVisible !== null && previewVisible !== undefined && (
-        <PreviewModal
-          // Value & Display Value
-          fileName={list[previewVisible]?.fileName}
-          previewServerUrl={previewServerUrl}
-          fileUrl={list[previewVisible]?.fileUrl}
-          previewServerSourceType={previewSourceTypes}
-          // Status
-          open={typeof previewVisible === 'number'}
-          // Elements
-          portal={previewPortal}
-          // Events
-          onClose={() => {
-            setPreviewVisible(null)
-          }}
-        />
-      )}
+      {previewTypeRef.current === 'browser' &&
+        previewVisible !== null &&
+        previewVisible !== undefined && (
+          <PreviewModal
+            // Value & Display Value
+            fileName={list[previewVisible]?.fileName as string | undefined}
+            previewServerUrl={previewServerUrl}
+            fileUrl={list[previewVisible]?.fileUrl}
+            previewServerSourceType={previewSourceTypes}
+            // Status
+            open={typeof previewVisible === 'number'}
+            // Elements
+            portal={previewPortal}
+            // Events
+            onClose={() => {
+              setPreviewVisible(null)
+            }}
+          />
+        )}
     </div>
   )
 }

@@ -1,17 +1,16 @@
-import type { MediaItem } from './Media.types'
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 export interface MediaChooseUtilOptions {
   async: boolean
   maxCount?: number
-  list?: MediaItem[]
+  list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: MediaItem[] | undefined,
+    newList: FileItem[] | undefined,
     opts?: { action?: string }
-  ) => Promise<MediaItem[] | undefined>
-  onChoose?: () =>
-    | void
-    | MediaItem[]
-    | Promise<MediaItem[] | void | null | undefined | unknown>
-  onChange?: (list: MediaItem[], meta: { action: string }) => void | Promise<unknown>
+  ) => Promise<FileItem[] | undefined>
+  onChoose?: () => void | FileItem[] | Promise<FileItem[] | void | null | undefined | unknown>
+  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
 }

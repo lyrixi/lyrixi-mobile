@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
-import type { AttachItem } from './../types/Attach.common.types'
-import type { AttachItemProps } from './Attach.Item.types'
+import type { FileItem } from './../types/Attach.common.types'
+import type { FileItemProps } from './Attach.Item.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -43,12 +43,12 @@ const Item = ({
   onDelete,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}: AttachItemProps) => {
+}: FileItemProps) => {
   // 预览类型: browser|native
   const previewTypeRef = useRef<unknown>(Device.platform === 'browser' ? 'browser' : null)
 
   // 点击预览
-  async function handlePreview(attach: AttachItem, attachIndex: number) {
+  async function handlePreview(attach: FileItem, attachIndex: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
       const goOn = await onPreview(attach, attachIndex)

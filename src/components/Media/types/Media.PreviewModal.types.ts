@@ -1,11 +1,15 @@
 import type { CSSProperties } from 'react'
 
 import type { ModalProps } from '../../Modal/types'
-import type { FileImageCompressOptions, MediaProps, MediaItem } from './Media.types'
+import type { FileImageCompressOptions, MediaProps } from './Media.types'
+
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 export interface MediaPreviewModalProps {
   // Value & Display Value
-  list?: MediaItem[]
+  list?: FileItem[]
   index?: number
   current?: number
   mediaType?: string | string[]

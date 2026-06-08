@@ -1,4 +1,4 @@
-import type { AttachItem } from './Attach.common.types'
+import type { FileItem } from './Attach.common.types'
 
 export interface FileChooseOptions {
   file: HTMLInputElement
@@ -6,12 +6,12 @@ export interface FileChooseOptions {
   maxSize?: number
   maxCount?: number
   sourceType: string[]
-  list?: AttachItem[]
+  list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: AttachItem[],
+    newList: FileItem[],
     opts?: { action?: string }
-  ) => Promise<AttachItem[] | undefined>
-  onFileChange?: (payload: AttachItem) => unknown
-  onChange?: (list: AttachItem[], meta: { action: string }) => void
+  ) => Promise<FileItem[] | undefined>
+  onFileChange?: (payload: FileItem) => unknown
+  onChange?: (list: FileItem[], meta: { action: string }) => void
 }

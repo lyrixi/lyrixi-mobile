@@ -3,7 +3,7 @@ import convertBytes from './../../utils/convertBytes'
 import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 
-import type { AttachChooseOptions, AttachItem } from '../../types'
+import type { AttachChooseOptions, FileItem } from '../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../utils/ObjectUtil'
@@ -46,10 +46,10 @@ async function choose({
     return false
   }
 
-  let currentList: AttachItem[] | null = null
+  let currentList: FileItem[] | null = null
   if (typeof onChoose === 'function') {
     const r = await Promise.resolve(onChoose())
-    currentList = Array.isArray(r) ? (r as AttachItem[]) : null
+    currentList = Array.isArray(r) ? (r as FileItem[]) : null
   }
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {
@@ -114,7 +114,7 @@ async function choose({
   }
 
   // 构建新的列表
-  let newList: AttachItem[] = []
+  let newList: FileItem[] = []
   // 新放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]
