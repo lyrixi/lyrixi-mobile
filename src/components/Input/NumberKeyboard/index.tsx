@@ -75,7 +75,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
           blur: () => {
             setKeyboardOpen(false)
           }
-        }) as InputNumberKeyboardRef
+        } as InputNumberKeyboardRef)
     )
 
     // 处理输入框点击
@@ -95,7 +95,6 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
     }
 
     const handleClose = () => {
-      if (readOnly) return
       setKeyboardOpen(false)
     }
 

@@ -195,15 +195,13 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
         style={modalStyle}
       >
         <Page.Header>
-          {cancelVisible && (
-            <ButtonQuick onClick={handleCancel}>
-              {!cancelNode ? (
-                <Icon svg={Icons.ArrowDown} className="lyrixi-keyboard-icon" />
-              ) : (
-                cancelNode
-              )}
-            </ButtonQuick>
-          )}
+          <ButtonQuick onClick={handleCancel}>
+            {!cancelNode ? (
+              <Icon size="xxs" svg={Icons.ArrowDown} className="lyrixi-keyboard-icon" />
+            ) : (
+              cancelNode
+            )}
+          </ButtonQuick>
         </Page.Header>
 
         <Page full={false} layout="horizontal">
