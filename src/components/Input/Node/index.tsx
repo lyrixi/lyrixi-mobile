@@ -167,6 +167,16 @@ const InputNode = (
     onChange?.(getClearedValue(value), { action: 'clickClear' })
   }
 
+  function renderLeftIcon() {
+    if (leftIconRender) return leftIconRender()
+    return leftIconSvg ? <InputIcon svg={leftIconSvg} /> : null
+  }
+
+  function renderRightIcon() {
+    if (rightIconRender) return rightIconRender()
+    return rightIconSvg ? <InputIcon svg={rightIconSvg} /> : null
+  }
+
   const stringValue = getStringValue(value)
 
   return (
@@ -187,7 +197,7 @@ const InputNode = (
         onClick?.(e)
       }}
     >
-      {leftIconRender ?? (leftIconSvg ? <InputIcon svg={leftIconSvg} /> : null)}
+      {renderLeftIcon()}
 
       <div
         className={DOMUtil.classNames(
@@ -220,7 +230,7 @@ const InputNode = (
             onClear: handleClear
           })}
 
-      {rightIconRender ?? (rightIconSvg ? <InputIcon svg={rightIconSvg} /> : null)}
+      {renderRightIcon()}
     </div>
   )
 }

@@ -17,9 +17,9 @@ export interface InputSelectTagsProps {
   style?: CSSProperties
   size?: InputSize
   // Elements
-  leftIconRender?: ReactNode
+  leftIconRender?: () => ReactNode
   leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
-  rightIconRender?: ReactNode
+  rightIconRender?: () => ReactNode
   rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: InputSelectProps['clearRender']
   // Events

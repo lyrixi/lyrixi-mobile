@@ -67,9 +67,9 @@ export interface InputNodeProps {
   size?: InputSize
   className?: string
   // Elements
-  leftIconRender?: ReactNode
+  leftIconRender?: () => ReactNode
   leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
-  rightIconRender?: ReactNode
+  rightIconRender?: () => ReactNode
   rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: (params: {
     clearable: boolean

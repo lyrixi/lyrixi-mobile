@@ -161,8 +161,8 @@ export default function InputTextDemo() {
           <Input.Text
             placeholder="带左右图标"
             value={value5}
-            leftIconRender={<span style={{ color: '#999' }}>&lt;</span>}
-            rightIconRender={<Input.IconRightArrow />}
+            leftIconRender={() => <span style={{ color: '#999' }}>&lt;</span>}
+            rightIconRender={() => <Input.IconRightArrow />}
             onChange={setValue5}
           />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>

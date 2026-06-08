@@ -58,9 +58,9 @@ export interface InputTextProps {
   className?: string
   // Elements
   inputRender?: (params: Record<string, unknown>) => ReactNode
-  leftIconRender?: ReactNode
+  leftIconRender?: () => ReactNode
   leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
-  rightIconRender?: ReactNode
+  rightIconRender?: () => ReactNode
   rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: (params: {
     clearable: boolean

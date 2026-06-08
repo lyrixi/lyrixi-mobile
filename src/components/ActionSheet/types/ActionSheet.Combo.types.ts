@@ -32,9 +32,9 @@ export interface ActionSheetComboProps {
     onClick: () => void
   }) => ReactNode
   children?: ReactNode
-  leftIconRender?: ReactNode
+  leftIconRender?: () => ReactNode
   leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
-  rightIconRender?: ReactNode
+  rightIconRender?: () => ReactNode
   rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   clearRender?: () => ReactNode
   // Modal: Value & Display Value

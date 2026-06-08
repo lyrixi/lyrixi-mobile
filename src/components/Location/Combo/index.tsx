@@ -375,7 +375,7 @@ const LocationCombo = forwardRef<LocationComboRef, LocationComboProps>(
           ref={comboRef}
           placeholder={placeholder}
           type={autoSize ? 'autoSize' : 'text'}
-          rightIconRender={<>{renderRightIcon()}</>}
+          rightIconRender={() => <>{renderRightIcon()}</>}
           inputRender={statusNode ? () => statusNode : undefined}
           value={value?.value || value?.address || ''}
           allowClear={allowClear}

@@ -283,6 +283,16 @@ const InputText = (
     }
   }
 
+  function renderLeftIcon() {
+    if (leftIconRender) return leftIconRender()
+    return leftIconSvg ? <InputIcon svg={leftIconSvg} /> : null
+  }
+
+  function renderRightIcon() {
+    if (rightIconRender) return rightIconRender()
+    return rightIconSvg ? <InputIcon svg={rightIconSvg} /> : null
+  }
+
   // render
   function renderInput() {
     if (typeof inputRender === 'function') {
@@ -438,7 +448,7 @@ const InputText = (
       onClick={onClick}
     >
       {/* Left */}
-      {leftIconRender ?? (leftIconSvg ? <InputIcon svg={leftIconSvg} /> : null)}
+      {renderLeftIcon()}
 
       <div
         className={DOMUtil.classNames(
@@ -481,7 +491,7 @@ const InputText = (
           } as InputTextRenderClearOptions)}
 
       {/* Right */}
-      {rightIconRender ?? (rightIconSvg ? <InputIcon svg={rightIconSvg} /> : null)}
+      {renderRightIcon()}
     </div>
   )
 }
