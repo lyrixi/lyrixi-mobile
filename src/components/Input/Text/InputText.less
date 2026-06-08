@@ -24,16 +24,20 @@
   min-width: 0;
 }
 
-// Input: 失焦时显示(不能用flex, 否则text-center不生效)
+// Input, 失焦时显示(不能用flex, 否则text-center不生效)
 .lyrixi-input-formatter {
   line-height: 20px;
-  pointer-events: none;
-
   position: absolute;
   width: 100%;
   z-index: 1;
   box-sizing: border-box;
   overflow: hidden;
+}
+// 只有Select是没有焦点的，所以不需要设置pointer-events: none
+.lyrixi-input:not(.lyrixi-input-select) {
+  .lyrixi-input-formatter {
+    pointer-events: none;
+  }
 }
 
 // formatter单行文本框一行显示, 多行则多行显示

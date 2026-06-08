@@ -5,6 +5,10 @@ import type { InputSelectTagsProps } from './Input.Select.Tags.types'
 import Tag from './Tag'
 import InputNode from './../../Node'
 
+// 内库使用-start
+import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
+// 内库使用-end
+
 // 标签模式
 const Tags = ({
   // 分隔符
@@ -33,7 +37,7 @@ const Tags = ({
       leftIconSvg={leftIconSvg}
       rightIconRender={rightIconRender}
       rightIconSvg={rightIconSvg}
-      className={className}
+      className={DOMUtil.classNames('lyrixi-input-select', className)}
       size={size}
       disabled={disabled}
       readOnly={readOnly}

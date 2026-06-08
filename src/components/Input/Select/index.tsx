@@ -12,6 +12,7 @@ import type { InputSelectProps, InputSelectRef, InputTextProps, InputTextRef } f
 
 // 内库使用-start
 import ObjectUtil from './../../../utils/ObjectUtil'
+import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -172,7 +173,7 @@ const Combo = forwardRef<InputSelectRef, InputSelectProps>(
         // Style
         style={style}
         size={size}
-        className={className}
+        className={DOMUtil.classNames('lyrixi-input-select', className)}
         // Elements
         leftIconRender={leftIconRender}
         leftIconSvg={leftIconSvg}
