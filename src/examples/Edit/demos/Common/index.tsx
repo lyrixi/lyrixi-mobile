@@ -388,38 +388,45 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="image" label={String(locale('Media'))}>
-              <MediaUntyped
+            <Form.Item
+              name="image"
+              valuePropName="list"
+              initialValue={[
+                {
+                  id: '1',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  status: 'error'
+                },
+                {
+                  id: '2',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl:
+                    'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg'
+                  // status: 'uploading'
+                },
+                {
+                  id: '3',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                },
+                {
+                  id: '4',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                }
+              ]}
+              label={String(locale('Media'))}
+            >
+              <Media
+                reUpload={true}
+                async={true}
                 allowChoose
                 allowClear
-                list={[
-                  {
-                    id: '1',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    status: 'error'
-                  },
-                  {
-                    id: '2',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    fileUrl:
-                      'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg'
-                    // status: 'uploading'
-                  },
-                  {
-                    id: '3',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
-                  },
-                  {
-                    id: '4',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
-                  }
-                ]}
                 count={9}
-                onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
-                onChange={(_newList: unknown) => {}}
+                onFileChange={async (item: FileItem) => {
+                  return [item]
+                }}
               />
             </Form.Item>
           </Form>
