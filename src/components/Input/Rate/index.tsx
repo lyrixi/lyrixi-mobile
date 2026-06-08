@@ -32,6 +32,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
       className,
 
       // Elements
+      svg = Icons.StarFill,
       iconRender,
 
       min = 0,
@@ -98,7 +99,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
           className={iconClassName}
           style={isActive ? { width: getItemActiveWidth(index + 1) } : undefined}
         >
-          <Icon svg={Icons.StarFill} size={size} />
+          <Icon svg={svg} size={size} />
         </div>
       )
     }

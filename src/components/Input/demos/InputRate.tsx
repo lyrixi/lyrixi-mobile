@@ -45,25 +45,25 @@ export default function InputRateDemo() {
         </Card>
 
         <Card>
-          <Divider>Size</Divider>
-          S:
+          <Divider>Size S</Divider>
           <Input.Rate style={{ margin: '0 12px' }} size="s" value={value} onChange={setValue} />
-          M:
+          <Divider>Size M</Divider>
           <Input.Rate style={{ margin: '0 12px' }} size="m" value={value} onChange={setValue} />
-          L:
+          <Divider>Size L</Divider>
           <Input.Rate style={{ margin: '0 12px' }} size="l" value={value} onChange={setValue} />
-          XL:
+          <Divider>Size XL</Divider>
           <Input.Rate style={{ margin: '0 12px' }} size="xl" value={value} onChange={setValue} />
-          XXL:
+          <Divider>Size XXL</Divider>
           <Input.Rate style={{ margin: '0 12px' }} size="xxl" value={value} onChange={setValue} />
-          XXXL:
+          <Divider>Size XXXL</Divider>
           <Input.Rate style={{ margin: '0 12px' }} size="xxxl" value={value} onChange={setValue} />
         </Card>
         <Card>
           <Divider>Icon</Divider>
           <Input.Rate
             style={{ margin: '0 12px' }}
-            iconRender={() => <Icon svg={Icons.CircleQuestion} size="xxxs" color="info" />}
+            svg={Icons.CircleQuestion}
+            // iconRender={() => <Icon svg={Icons.CircleQuestion} size="s" />}
             value={value}
             onChange={setValue}
           />

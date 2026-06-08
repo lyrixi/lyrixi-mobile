@@ -8,11 +8,9 @@ import type {
 
 import type { IconSize } from './Icon.Size.types'
 
-export type IconSVGElement = ComponentType<SVGProps<SVGSVGElement>>
-
 export interface IconProps {
   // Value & Display Value
-  svg: IconSVGElement
+  svg: ComponentType<SVGProps<SVGSVGElement>>
   color?: string
   backgroundColor?: string
   size?: IconSize | string | number
