@@ -80,6 +80,7 @@ const NumberKeyboard = forwardRef<InputNumberKeyboardRef, InputNumberKeyboardPro
 
     // 处理输入框点击
     const handleInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (readOnly) return
       setKeyboardOpen(true)
       onClick?.(e)
     }
