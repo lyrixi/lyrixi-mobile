@@ -18,7 +18,7 @@ function markerClickLeaflet({
   layerGroup.eachLayer(function (layer) {
     const markerLayer = layer as L.Marker
     markerLayer.on('click', function (e: L.LeafletMouseEvent) {
-      if (e.latlng == null) return
+      if (e.latlng === null) return
       const latitude = e.latlng.lat
       const longitude = e.latlng.lng
 

@@ -28,7 +28,7 @@ export default function Flex1Demo() {
                 { id: 'custom', name: 'Custom' }
               ]}
               onChange={(value) => {
-                if (value == null || Array.isArray(value)) return
+                if (value === null || Array.isArray(value)) return
                 setMode(String(value.id))
                 setGap(value.id !== 'custom' ? String(value.id) : 2)
               }}

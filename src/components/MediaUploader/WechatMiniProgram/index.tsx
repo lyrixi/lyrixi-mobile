@@ -292,7 +292,7 @@ function WechatMiniProgram(
   }
 
   const mediaTypeList =
-    mediaType == null ? undefined : Array.isArray(mediaType) ? mediaType : [mediaType]
+    mediaType === null ? undefined : Array.isArray(mediaType) ? mediaType : [mediaType]
 
   const ellipsisForMedia =
     ellipsis === true
@@ -312,21 +312,21 @@ function WechatMiniProgram(
       : undefined
 
   const uploadRenderFn =
-    uploadRender == null
+    uploadRender === null
       ? undefined
       : typeof uploadRender === 'function'
       ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
       : () => uploadRender
 
   const uploadingRenderFn =
-    uploadingRender == null
+    uploadingRender === null
       ? undefined
       : typeof uploadingRender === 'function'
       ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
       : (ctx: FileItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
-    itemRender == null
+    itemRender === null
       ? undefined
       : typeof itemRender === 'function'
       ? (itemRender as (item: FileItem) => ReactNode)

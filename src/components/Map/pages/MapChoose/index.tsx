@@ -109,7 +109,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(value)])
 
-  // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current == null.
+  // Inner ref is null before MapContainer commits; parent Ref<MapContainerAPI> still allows .current === null.
   useImperativeHandle(ref, () => mapRef.current as MapContainerAPI)
 
   async function handleAutoLocation() {

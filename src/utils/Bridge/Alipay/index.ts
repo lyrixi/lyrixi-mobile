@@ -130,7 +130,7 @@ let Bridge = {
         console.error('支付宝定位成功', res)
         let latitude = res.latitude
         let longitude = res.longitude
-        if (latitude == null || longitude == null) {
+        if (latitude === null || longitude === null) {
           onError?.({
             status: 'error',
             message: `Alipay ${LocaleUtil.locale('定位失败', 'lyrixi_9831baf6b76c1da7b69b463033b924cc')}`

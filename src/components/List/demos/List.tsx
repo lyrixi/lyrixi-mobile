@@ -70,7 +70,7 @@ const ListDemo = () => {
               value={multipleValue}
               onChange={(newMultipleValue) => {
                 console.log('newMultipleValue:', newMultipleValue)
-                if (newMultipleValue == null) {
+                if (newMultipleValue === null) {
                   setMultipleValue([])
                 } else {
                   setMultipleValue(

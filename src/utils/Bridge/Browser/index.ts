@@ -98,7 +98,7 @@ let Browser = {
       })
       return
     }
-    if (number == null || Number.isNaN(Number(number))) {
+    if (number === null || Number.isNaN(Number(number))) {
       onError?.({
         status: 'error',
         message: `Browser ${LocaleUtil.locale(

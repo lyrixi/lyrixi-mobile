@@ -85,7 +85,7 @@ export default function MapMapContainerDemo() {
             onClick={() => {
               if (mapRef.current) {
                 const zoom = mapRef.current.getZoom()
-                if (zoom == null) {
+                if (zoom === null) {
                   return
                 }
                 mapRef.current.setZoom(zoom + 1)
@@ -99,7 +99,7 @@ export default function MapMapContainerDemo() {
             onClick={() => {
               if (mapRef.current) {
                 const zoom = mapRef.current.getZoom()
-                if (zoom == null) {
+                if (zoom === null) {
                   return
                 }
                 mapRef.current.setZoom(zoom - 1)

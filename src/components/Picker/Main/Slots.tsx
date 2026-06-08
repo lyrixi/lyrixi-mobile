@@ -71,7 +71,7 @@ const Lists = forwardRef<HTMLDivElement, PickerMainSlotsProps>(function Lists(
     slotRef.current.slotElement = target
     const idxAttr = target.getAttribute('data-slot-index')
     slotRef.current.slotIndex = idxAttr
-    const colIndex = idxAttr == null ? NaN : Number(idxAttr)
+    const colIndex = idxAttr === null ? NaN : Number(idxAttr)
     const col = !Number.isNaN(colIndex) && Array.isArray(lists[colIndex]) ? lists[colIndex]! : []
     slotRef.current.slotHeight = Math.max(0, (col.length - 1) * cellHeight)
 
@@ -136,7 +136,7 @@ const Lists = forwardRef<HTMLDivElement, PickerMainSlotsProps>(function Lists(
 
     const slotIdx = slotRef.current.slotIndex
     onDragEnd?.({
-      slotIndex: slotIdx == null ? 0 : slotIdx,
+      slotIndex: slotIdx === null ? 0 : slotIdx,
       rowIndex: inertia.index
     })
   }

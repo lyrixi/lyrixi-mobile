@@ -83,7 +83,7 @@ function DateRangeBar({
     a: (Date | null)[] | null | undefined,
     b: (Date | null)[] | null | undefined
   ): boolean {
-    if (a == null && b == null) return true
+    if (a === null && b === null) return true
     if (!a || !b || a.length !== 2 || b.length !== 2) return false
     if (!a[0] || !a[1] || !b[0] || !b[1]) return false
     return DateUtil.compareRange(a as [Date, Date], b as [Date, Date], type) === 0

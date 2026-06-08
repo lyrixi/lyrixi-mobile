@@ -29,7 +29,7 @@ function paginateMonths(
         continue
       }
       const page = pages[idx]
-      if (weekDates == null) {
+      if (weekDates === null) {
         continue
       }
       for (let rowIndex = 0; rowIndex < page.length; rowIndex++) {

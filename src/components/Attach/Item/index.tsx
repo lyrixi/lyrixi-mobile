@@ -69,7 +69,7 @@ const Item = ({
     // 预览地址
     const fileUrl = attach.fileUrl
     let previewUrl =
-      fileUrl == null
+      fileUrl === null
         ? ''
         : typeof fileUrl === 'string'
         ? decodeURIComponent(decodeURIComponent(fileUrl))

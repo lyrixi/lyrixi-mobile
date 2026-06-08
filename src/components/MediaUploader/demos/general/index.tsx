@@ -6,7 +6,7 @@ import uploadListUtil from './../../utils/uploadList'
 new vconsole()
 
 function normalizeList(r: FileItem | FileItem[] | null): FileItem[] {
-  if (r == null) return []
+  if (r === null) return []
   return Array.isArray(r) ? r : [r]
 }
 

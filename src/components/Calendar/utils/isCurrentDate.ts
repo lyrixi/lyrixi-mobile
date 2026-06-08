@@ -14,7 +14,7 @@ function isCurrentDate(
   drawDate: Date | null,
   currentPage: CalendarCellDate[][] | undefined | null
 ): boolean {
-  if (drawDate == null || !currentPage || !Array.isArray(currentPage)) {
+  if (drawDate === null || !currentPage || !Array.isArray(currentPage)) {
     return false
   }
 

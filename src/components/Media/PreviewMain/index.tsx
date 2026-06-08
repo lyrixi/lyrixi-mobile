@@ -52,12 +52,12 @@ function toToastString(s: string | import('react').ReactNode): string {
 
 function itemMediaUrl(item: MediaItem): string {
   const raw = item?.localFile?.tempFileUrl ?? item?.fileUrl
-  return raw == null || raw === '' ? '' : String(raw)
+  return raw === null || raw === '' ? '' : String(raw)
 }
 
 function itemPosterUrl(item: MediaItem): string {
   const raw = item?.localFile?.tempFileThumbnail ?? item?.fileThumbnail
-  return raw == null || raw === '' ? '' : String(raw)
+  return raw === null || raw === '' ? '' : String(raw)
 }
 
 const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(function PreviewMain(

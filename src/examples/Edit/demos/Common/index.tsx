@@ -18,7 +18,8 @@ import {
   Selector,
   Signature,
   Switch,
-  Toast
+  Toast,
+  type FileItem
 } from 'lyrixi-mobile'
 
 import { queryData, saveData, validateData } from './../Cache/api'
@@ -375,13 +376,16 @@ const Edit = () => {
               label={String(locale('Attach'))}
             >
               <Attach
-                reUpload={false}
+                reUpload={true}
+                async={true}
                 allowChoose
                 allowClear
                 uploadPosition="start"
                 maxSize={300 * 1024 * 1024}
                 count={9}
-                onFileChange={async (_payload: Attach) => {}}
+                onFileChange={async (item: FileItem[]) => {
+                  return [item]
+                }}
               />
             </Form.Item>
             <Form.Item name="image" label={String(locale('Media'))}>

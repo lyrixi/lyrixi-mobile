@@ -47,7 +47,7 @@ function getTitle(
     }
     return value
       .map((item) => {
-        if (item == null) return ''
+        if (item === null) return ''
         return DateUtil.format(item as Date, type ?? 'date')
       })
       .join(separator || ' ~ ')

@@ -8,7 +8,7 @@ export default function CalendarDemo() {
 
   // 区间选中
   function formatRangeValue(value: Date | null) {
-    if (value == null) {
+    if (value === null) {
       return null
     }
     const weekDates = DateUtil.getWeekDates(value, 'Monday')
