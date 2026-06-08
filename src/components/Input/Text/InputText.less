@@ -91,175 +91,74 @@
   margin-left: 12px;
 }
 
-// Size: 尺寸与 NumberBox 一致
+// Size: 尺寸与 Input.NumberBox 一致
+.input-text-size() {
+  // .lyrixi-input-text,
+  // .lyrixi-input-textarea,
+  // .lyrixi-input-autoSize-textarea,
+  // .lyrixi-input-autoSize-pre,
+  // .lyrixi-input-formatter,
+  // .lyrixi-input-node {
+  //   font-size: var(--input-text-font-size);
+  // }
+
+  // text
+  .lyrixi-input-text {
+    height: var(--input-text-height);
+  }
+
+  // textarea
+  .lyrixi-input-textarea,
+  .lyrixi-input-textarea + .lyrixi-input-formatter {
+    height: var(--input-textarea-height);
+    padding: var(--input-textarea-padding) 0;
+  }
+
+  // autoSize
+  .lyrixi-input-autoSize-textarea,
+  .lyrixi-input-autoSize-pre,
+  .lyrixi-input-autoSize + .lyrixi-input-formatter {
+    min-height: 20px;
+    padding: var(--input-textarea-padding) 0;
+  }
+
+  div.lyrixi-input-text.lyrixi-input-focus::after {
+    height: var(--input-focus-after-height);
+  }
+}
+
 .lyrixi-input.lyrixi-xl {
-  // .lyrixi-input-text,
-  // .lyrixi-input-textarea,
-  // .lyrixi-input-autoSize-textarea,
-  // .lyrixi-input-autoSize-pre,
-  // .lyrixi-input-formatter,
-  // .lyrixi-input-node {
-  //   font-size: var(--lyrixi-font-size-l);
-  // }
-
-  // text
-  .lyrixi-input-text {
-    height: var(--lyrixi-height-xl);
-  }
-
-  // textarea
-  .lyrixi-input-textarea,
-  .lyrixi-input-textarea + .lyrixi-input-formatter {
-    height: 88px;
-    padding: 14px 0;
-  }
-
-  // autoSize
-  .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre,
-  .lyrixi-input-autoSize + .lyrixi-input-formatter {
-    min-height: 20px;
-    padding: 14px 0;
-  }
-
-  div.lyrixi-input-text.lyrixi-input-focus::after {
-    height: 20px;
-  }
+  --input-text-height: var(--lyrixi-height-xl);
+  --input-textarea-height: 88px;
+  --input-textarea-padding: 14px;
+  --input-focus-after-height: 20px;
+  .input-text-size();
 }
-
 .lyrixi-input.lyrixi-l {
-  // .lyrixi-input-text,
-  // .lyrixi-input-textarea,
-  // .lyrixi-input-autoSize-textarea,
-  // .lyrixi-input-autoSize-pre,
-  // .lyrixi-input-formatter,
-  // .lyrixi-input-node {
-  //   font-size: var(--lyrixi-font-size-l);
-  // }
-
-  // text
-  .lyrixi-input-text {
-    height: var(--lyrixi-height-l);
-  }
-
-  // textarea
-  .lyrixi-input-textarea,
-  .lyrixi-input-textarea + .lyrixi-input-formatter {
-    height: 80px;
-    padding: 10px 0;
-  }
-
-  // autoSize
-  .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre,
-  .lyrixi-input-autoSize + .lyrixi-input-formatter {
-    min-height: 20px;
-    padding: 10px 0;
-  }
-
-  div.lyrixi-input-text.lyrixi-input-focus::after {
-    height: 18px;
-  }
+  --input-text-height: var(--lyrixi-height-l);
+  --input-textarea-height: 80px;
+  --input-textarea-padding: 10px;
+  --input-focus-after-height: 18px;
+  .input-text-size();
 }
-
 .lyrixi-input.lyrixi-m {
-  // .lyrixi-input-text,
-  // .lyrixi-input-textarea,
-  // .lyrixi-input-autoSize-textarea,
-  // .lyrixi-input-autoSize-pre,
-  // .lyrixi-input-formatter,
-  // .lyrixi-input-node {
-  //   font-size: var(--lyrixi-font-size-m);
-  // }
-
-  // text
-  .lyrixi-input-text {
-    height: var(--lyrixi-height-m);
-  }
-
-  // textarea
-  .lyrixi-input-textarea,
-  .lyrixi-input-textarea + .lyrixi-input-formatter {
-    height: 52px;
-    padding: 6px 0;
-  }
-
-  // autoSize
-  .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre,
-  .lyrixi-input-autoSize + .lyrixi-input-formatter {
-    min-height: 20px;
-    padding: 6px 0;
-  }
-
-  div.lyrixi-input-text.lyrixi-input-focus::after {
-    height: 16px;
-  }
+  --input-text-height: var(--lyrixi-height-m);
+  --input-textarea-height: 52px;
+  --input-textarea-padding: 6px;
+  --input-focus-after-height: 16px;
+  .input-text-size();
 }
-
 .lyrixi-input.lyrixi-s {
-  // .lyrixi-input-textarea,
-  // .lyrixi-input-autoSize-textarea,
-  // .lyrixi-input-autoSize-pre,
-  // .lyrixi-input-formatter,
-  // .lyrixi-input-node {
-  //   font-size: var(--lyrixi-font-size-s);
-  // }
-
-  // text
-  .lyrixi-input-text {
-    height: var(--lyrixi-height-s);
-  }
-
-  // textarea
-  .lyrixi-input-textarea,
-  .lyrixi-input-textarea + .lyrixi-input-formatter {
-    height: 44px;
-    padding: 2px 0;
-  }
-
-  // autoSize
-  .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre,
-  .lyrixi-input-autoSize + .lyrixi-input-formatter {
-    min-height: 20px;
-    padding: 2px 0;
-  }
-
-  div.lyrixi-input-text.lyrixi-input-focus::after {
-    height: 14px;
-  }
+  --input-text-height: var(--lyrixi-height-s);
+  --input-textarea-height: 44px;
+  --input-textarea-padding: 2px;
+  --input-focus-after-height: 14px;
+  .input-text-size();
 }
-
 .lyrixi-input.lyrixi-xs {
-  // .lyrixi-input-text,
-  // .lyrixi-input-textarea,
-  // .lyrixi-input-autoSize-textarea,
-  // .lyrixi-input-autoSize-pre,
-  // .lyrixi-input-formatter,
-  // .lyrixi-input-node {
-  //   font-size: var(--lyrixi-font-size-xs);
-  // }
-
-  // text
-  .lyrixi-input-text {
-    height: var(--lyrixi-height-xs);
-  }
-
-  // textarea
-  .lyrixi-input-textarea,
-  .lyrixi-input-textarea + .lyrixi-input-formatter {
-    height: 40px;
-  }
-
-  // autoSize
-  .lyrixi-input-autoSize-textarea,
-  .lyrixi-input-autoSize-pre,
-  .lyrixi-input-autoSize + .lyrixi-input-formatter {
-    min-height: 20px;
-  }
-
-  div.lyrixi-input-text.lyrixi-input-focus::after {
-    height: 12px;
-  }
+  --input-text-height: var(--lyrixi-height-xs);
+  --input-textarea-height: 40px;
+  --input-textarea-padding: 0px;
+  --input-focus-after-height: 12px;
+  .input-text-size();
 }
