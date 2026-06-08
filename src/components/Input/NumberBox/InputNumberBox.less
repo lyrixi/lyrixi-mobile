@@ -1,76 +1,61 @@
-.lyrixi-numberbox.lyrixi-xl {
-  border-radius: var(--lyrixi-radius-xl);
-  width: 198px;
-  height: 48px;
+.numberbox-size() {
+  border-radius: var(--numberbox-radius);
+  width: var(--numberbox-width);
+  height: var(--numberbox-height);
 
   .lyrixi-numberbox-button {
-    width: 44px;
+    width: var(--numberbox-button-width);
   }
 
   .lyrixi-numberbox-button,
   .lyrixi-input-node {
-    font-size: var(--lyrixi-font-size-l);
+    font-size: var(--numberbox-font-size);
   }
+}
+
+.lyrixi-numberbox.lyrixi-xl {
+  --numberbox-radius: var(--lyrixi-radius-xl);
+  --numberbox-width: 198px;
+  --numberbox-height: 48px;
+  --numberbox-button-width: 44px;
+  --numberbox-font-size: var(--lyrixi-font-size-l);
+  .numberbox-size();
 }
 
 .lyrixi-numberbox.lyrixi-l {
-  border-radius: var(--lyrixi-radius-l);
-  width: 168px;
-  height: 40px;
-
-  .lyrixi-numberbox-button {
-    width: 32px;
-  }
-
-  .lyrixi-numberbox-button,
-  .lyrixi-input-node {
-    font-size: var(--lyrixi-font-size-m);
-  }
+  --numberbox-radius: var(--lyrixi-radius-l);
+  --numberbox-width: 168px;
+  --numberbox-height: 40px;
+  --numberbox-button-width: 32px;
+  --numberbox-font-size: var(--lyrixi-font-size-m);
+  .numberbox-size();
 }
 
 .lyrixi-numberbox.lyrixi-m {
-  border-radius: var(--lyrixi-radius-m);
-  width: 148px;
-  height: 32px;
-
-  .lyrixi-numberbox-button {
-    width: 28px;
-  }
-
-  .lyrixi-numberbox-button,
-  .lyrixi-input-node {
-    font-size: var(--lyrixi-font-size-s);
-  }
+  --numberbox-radius: var(--lyrixi-radius-m);
+  --numberbox-width: 148px;
+  --numberbox-height: 32px;
+  --numberbox-button-width: 28px;
+  --numberbox-font-size: var(--lyrixi-font-size-s);
+  .numberbox-size();
 }
 
 .lyrixi-numberbox.lyrixi-s {
-  border-radius: var(--lyrixi-radius-s);
-  width: 128px;
-  height: 24px;
-
-  .lyrixi-numberbox-button {
-    width: 20px;
-  }
-
-  .lyrixi-numberbox-button,
-  .lyrixi-input-node {
-    font-size: var(--lyrixi-font-size-xs);
-  }
+  --numberbox-radius: var(--lyrixi-radius-s);
+  --numberbox-width: 128px;
+  --numberbox-height: 24px;
+  --numberbox-button-width: 20px;
+  --numberbox-font-size: var(--lyrixi-font-size-xs);
+  .numberbox-size();
 }
 
 .lyrixi-numberbox.lyrixi-xs {
-  border-radius: var(--lyrixi-radius-xs);
-  width: 128px;
-  height: 20px;
-
-  .lyrixi-numberbox-button {
-    width: 16px;
-  }
-
-  .lyrixi-numberbox-button,
-  .lyrixi-input-node {
-    font-size: var(--lyrixi-font-size-xs);
-  }
+  --numberbox-radius: var(--lyrixi-radius-xs);
+  --numberbox-width: 128px;
+  --numberbox-height: 20px;
+  --numberbox-button-width: 16px;
+  --numberbox-font-size: var(--lyrixi-font-size-xs);
+  .numberbox-size();
 }
 
 .lyrixi-numberbox-button {
