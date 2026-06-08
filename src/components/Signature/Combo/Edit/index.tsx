@@ -53,7 +53,12 @@ const Edit = forwardRef<SignatureComboEditRef, SignatureComboEditProps>(
               onDelete('')
             }}
           >
-            <Icon svg={Icons.Close} size="xxxs" color="white" className="lyrixi-signature-edit-image-delete-icon" />
+            <Icon
+              svg={Icons.Close}
+              size="xxxs"
+              color="white"
+              className="lyrixi-signature-edit-image-delete-icon"
+            />
           </div>
         )}
       </div>
