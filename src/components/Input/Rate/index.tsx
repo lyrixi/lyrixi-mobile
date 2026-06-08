@@ -109,7 +109,8 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
         style={{
           ...(checkedColor
             ? ({
-                '--lyrixi-input-rate-checked-color': VariablesUtil.getColorValue(checkedColor)
+                '--lyrixi-input-rate-checked-color':
+                  VariablesUtil.getColorValue(checkedColor) || checkedColor
               } as React.CSSProperties)
             : {}),
           ...style

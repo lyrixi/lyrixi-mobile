@@ -68,6 +68,23 @@ export default function InputRateDemo() {
             onChange={setValue}
           />
         </Card>
+
+        <Card>
+          <Divider>checkedColor</Divider>
+          {['default', 'primary', 'info', 'warning', 'danger', 'success', '#ff8800'].map(
+            (color) => (
+              <React.Fragment key={color}>
+                <Divider>{color}</Divider>
+                <Input.Rate
+                  style={{ margin: '0 12px var(--lyrixi-space-l)' }}
+                  checkedColor={color}
+                  value={value}
+                  onChange={setValue}
+                />
+              </React.Fragment>
+            )
+          )}
+        </Card>
       </Page.Main>
     </Page>
   )
