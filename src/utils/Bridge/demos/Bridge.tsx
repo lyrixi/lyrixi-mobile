@@ -290,7 +290,7 @@ export default function BridgeDemo() {
               radius="m"
               onClick={() => {
                 Bridge.previewFile({
-                  url: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
                 })
               }}
             >

@@ -162,8 +162,6 @@ export type BridgePreviewMediaParams = {
 /** {@link Bridge.previewFile} */
 export type BridgePreviewFileParams = {
   fileUrl?: string
-  /** 兼容旧写法，同 fileUrl */
-  url?: string
   fileName?: string
   fileSize?: number
   onSuccess?: BridgeSuccessCallback

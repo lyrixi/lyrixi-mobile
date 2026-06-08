@@ -356,29 +356,32 @@ const Edit = () => {
             <Form.Item name="signatureVertical" label={String(locale('Signature'))}>
               <Signature.Combo />
             </Form.Item>
-            <Form.Item name="attach" label={String(locale('Attach'))}>
+            <Form.Item
+              name="attach"
+              valuePropName="list"
+              initialValue={
+                [
+                  {
+                    name: '1',
+                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                    status: 'error'
+                  },
+                  {
+                    name: '2',
+                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  }
+                ] as EditDemoAttachListItem[]
+              }
+              label={String(locale('Attach'))}
+            >
               <AttachUntyped
                 reUpload={false}
                 allowChoose
                 allowClear
                 uploadPosition="start"
                 maxSize={300 * 1024 * 1024}
-                list={
-                  [
-                    {
-                      name: '1',
-                      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      status: 'error'
-                    },
-                    {
-                      name: '2',
-                      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
-                    }
-                  ] as EditDemoAttachListItem[]
-                }
                 count={9}
-                onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
-                onChange={(_newList: unknown) => {}}
+                // onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
               />
             </Form.Item>
             <Form.Item name="image" label={String(locale('Media'))}>

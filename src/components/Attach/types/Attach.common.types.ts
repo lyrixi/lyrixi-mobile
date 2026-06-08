@@ -14,5 +14,6 @@ export interface AttachFileItem {
   status?: string
   fileUrl?: string
   fileName?: string
+  // 透传业务属性(勿删)
   [key: string]: unknown
 }
