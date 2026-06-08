@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
-import type { AttachFileItem } from './../types/Attach.common.types'
+import type { AttachItem } from './../types/Attach.common.types'
 import type { AttachItemProps } from './Attach.Item.types'
 
 // 内库使用-start
@@ -48,7 +48,7 @@ const Item = ({
   const previewTypeRef = useRef<unknown>(Device.platform === 'browser' ? 'browser' : null)
 
   // 点击预览
-  async function handlePreview(attach: AttachFileItem, attachIndex: number) {
+  async function handlePreview(attach: AttachItem, attachIndex: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
       const goOn = await onPreview(attach, attachIndex)

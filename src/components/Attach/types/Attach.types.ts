@@ -1,7 +1,7 @@
 import type { ChangeEvent, CSSProperties, ReactNode, SyntheticEvent } from 'react'
 
 import type { ModalProps } from '../../Modal/types'
-import type { AttachNativeFilePayload } from './Attach.common.types'
+import type { AttachItem } from './Attach.common.types'
 
 export type AttachListItem = Record<string, unknown> & {
   fileUrl?: string
@@ -36,7 +36,7 @@ export interface AttachProps {
   // Events
   onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>
   onChoose?: (e?: SyntheticEvent) => unknown
-  onFileChange?: (e: ChangeEvent<HTMLInputElement> | AttachNativeFilePayload) => unknown
+  onFileChange?: (e: ChangeEvent<HTMLInputElement> | AttachItem) => unknown
   onUpload?: (item: AttachListItem) => unknown
   onChange?: (list: AttachListItem[], meta?: { action?: string }) => void
   onPreview?: (item: AttachListItem, index: number) => unknown

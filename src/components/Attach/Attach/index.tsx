@@ -17,7 +17,7 @@ import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 import copyFileUrl from './copyFileUrl'
 
-import type { AttachListItem, AttachNativeFilePayload, AttachProps, AttachRef } from '../types'
+import type { AttachListItem, AttachItem, AttachProps, AttachRef } from '../types'
 
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
@@ -227,7 +227,7 @@ function Attach(
       uploadPosition,
       uploadList,
       onFileChange: onFileChange
-        ? (payload: AttachNativeFilePayload) => onFileChange(payload)
+        ? (payload: AttachItem) => onFileChange(payload)
         : undefined,
       onChange: onChangeRef.current
     })

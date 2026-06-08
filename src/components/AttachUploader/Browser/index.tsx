@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import _uploadItem from './uploadItem'
 
 
-import type { AttachListItem, AttachNativeFilePayload, AttachRef } from './../../Attach/types'
+import type { AttachListItem, AttachItem, AttachRef } from './../../Attach/types'
 import type { AttachUploaderBrowserProps, AttachUploaderItem } from './../types'
 
 // 内库使用-start
@@ -104,13 +104,13 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
   }
 
   function isNativePayload(
-    a: import('react').ChangeEvent<HTMLInputElement> | AttachNativeFilePayload
-  ): a is AttachNativeFilePayload {
+    a: import('react').ChangeEvent<HTMLInputElement> | AttachItem
+  ): a is AttachItem {
     return typeof a === 'object' && a !== null && a !== undefined && 'fileName' in a && 'status' in a
   }
 
   async function handleFileOrNative(
-    arg: import('react').ChangeEvent<HTMLInputElement> | AttachNativeFilePayload
+    arg: import('react').ChangeEvent<HTMLInputElement> | AttachItem
   ): Promise<unknown> {
     if (!isNativePayload(arg)) {
       return undefined

@@ -1,4 +1,4 @@
-import type { AttachFileItem, AttachNativeFilePayload } from './Attach.common.types'
+import type { AttachItem } from './Attach.common.types'
 
 export interface FileChooseOptions {
   file: HTMLInputElement
@@ -6,12 +6,12 @@ export interface FileChooseOptions {
   maxSize?: number
   maxCount?: number
   sourceType: string[]
-  list?: AttachFileItem[]
+  list?: AttachItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: AttachFileItem[],
+    newList: AttachItem[],
     opts?: { action?: string }
-  ) => Promise<AttachFileItem[] | undefined>
-  onFileChange?: (payload: AttachNativeFilePayload) => unknown
-  onChange?: (list: AttachFileItem[], meta: { action: string }) => void
+  ) => Promise<AttachItem[] | undefined>
+  onFileChange?: (payload: AttachItem) => unknown
+  onChange?: (list: AttachItem[], meta: { action: string }) => void
 }

@@ -1,16 +1,16 @@
-import type { AttachFileItem } from './Attach.common.types'
+import type { AttachItem } from './Attach.common.types'
 
 export interface AttachChooseOptions {
   async: boolean
   maxSize?: number
   maxCount?: number
   sourceType: string[]
-  list?: AttachFileItem[]
+  list?: AttachItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: AttachFileItem[],
+    newList: AttachItem[],
     opts?: { action?: string }
-  ) => Promise<AttachFileItem[] | undefined>
+  ) => Promise<AttachItem[] | undefined>
   onChoose?: () => unknown
-  onChange?: (list: AttachFileItem[], meta: { action: string }) => void
+  onChange?: (list: AttachItem[], meta: { action: string }) => void
 }

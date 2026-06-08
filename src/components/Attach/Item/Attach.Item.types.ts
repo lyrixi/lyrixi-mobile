@@ -1,17 +1,17 @@
 import type { ReactNode } from 'react'
 
-import type { AttachFileItem } from '../types/Attach.common.types'
+import type { AttachItem } from '../types/Attach.common.types'
 import type { AttachListProps } from '../types/Attach.List.types'
 
 export interface AttachItemProps {
   // Value & Display Value
-  item: AttachFileItem
+  item: AttachItem
   index: number
   // Elements
   uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
-  itemRender?: (item: AttachFileItem, index: number) => ReactNode
+  itemRender?: (item: AttachItem, index: number) => ReactNode
   // Events
-  onDelete: ((item: AttachFileItem, index: number) => void) | null
-  onReUpload?: (item: AttachFileItem, index: number) => void
+  onDelete: ((item: AttachItem, index: number) => void) | null
+  onReUpload?: (item: AttachItem, index: number) => void
   onPreview?: AttachListProps['onPreview']
 }

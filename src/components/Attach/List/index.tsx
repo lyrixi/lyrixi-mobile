@@ -2,7 +2,7 @@ import React from 'react'
 
 import Item from './../Item'
 
-import type { AttachListProps, AttachFileItem } from './../types'
+import type { AttachListProps, AttachItem } from './../types'
 
 // 内库使用-start
 import Media from './../../Media'
@@ -30,7 +30,7 @@ const List = ({
   onPreview // 是否支持单击预览, readOnly为true时才生效
 }: AttachListProps) => {
   // Delete
-  function handleDelete(item: AttachFileItem, index: number) {
+  function handleDelete(item: AttachItem, index: number) {
     const newList = (list ?? []).filter((attach, attachIndex) => {
       return attachIndex !== index
     })

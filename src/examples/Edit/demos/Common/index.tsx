@@ -374,14 +374,14 @@ const Edit = () => {
               }
               label={String(locale('Attach'))}
             >
-              <AttachUntyped
+              <Attach
                 reUpload={false}
                 allowChoose
                 allowClear
                 uploadPosition="start"
                 maxSize={300 * 1024 * 1024}
                 count={9}
-                // onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
+                onFileChange={async (_payload: Attach) => {}}
               />
             </Form.Item>
             <Form.Item name="image" label={String(locale('Media'))}>

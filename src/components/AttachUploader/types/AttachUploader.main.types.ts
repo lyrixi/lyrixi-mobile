@@ -1,6 +1,6 @@
 import type { ReactNode, SyntheticEvent } from 'react'
 
-import type { AttachListItem, AttachNativeFilePayload, AttachRef } from '../../Attach/types'
+import type { AttachListItem, AttachItem, AttachRef } from '../../Attach/types'
 import type { ModalProps } from '../../Modal/types'
 
 export type { AttachRef }
@@ -49,7 +49,7 @@ export interface AttachUploaderProps {
   formatResponse?: FormatResponseFn
   onBeforeChoose?: () => boolean | void | Promise<boolean | void>
   onFileChange?: (
-    arg: SyntheticEvent<HTMLInputElement> | AttachNativeFilePayload
+    arg: SyntheticEvent<HTMLInputElement> | AttachItem
   ) => unknown
   onUpload?: (item: AttachUploaderItem) => unknown
   onChange?: (list: AttachUploaderItem[], meta?: { action?: string }) => void
