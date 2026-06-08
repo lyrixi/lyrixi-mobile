@@ -1,6 +1,6 @@
-import type { IconSVGElement } from '../../Icon/types'
 import Icons from '../../../icons'
 import AssetUtil from '../../../utils/AssetUtil'
+import { ComponentType, SVGProps } from 'react'
 
 export type AttachFileIconType =
   | 'video'
@@ -46,7 +46,9 @@ export function getAttachFileIconType(src: string | undefined): AttachFileIconTy
   return 'unknown'
 }
 
-export function getAttachFileIconSvg(type: AttachFileIconType): IconSVGElement {
+export function getAttachFileIconSvg(
+  type: AttachFileIconType
+): ComponentType<SVGProps<SVGSVGElement>> {
   switch (type) {
     case 'video':
       return Icons.FileVideo

@@ -5,7 +5,6 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 
-import Icon from './Icon'
 import Title from './Title'
 import Button from './Button'
 
@@ -21,7 +20,6 @@ Message.Modal = Modal
 Message.Header = Header
 Message.Main = Main
 Message.Footer = Footer
-Message.Icon = Icon
 Message.Title = Title
 Message.Button = Button
 Message.open = open

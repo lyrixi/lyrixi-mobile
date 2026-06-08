@@ -4,7 +4,7 @@ import { Icon, Page, Message, Button, Icons } from 'lyrixi-mobile'
 export default function ComboDemo2() {
   const handleOpenMessage = () => {
     Message.open({
-      iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,
+      iconSvg: Icons.Config,
       title: 'Title',
       content: <div>Content</div>,
       buttonsLayout: 'vertical',
@@ -36,9 +36,7 @@ export default function ComboDemo2() {
           <div>
             <h3>Using Message.Combo Component</h3>
             <Message.Combo
-              iconRender={() => (
-                <Icon svg={Icons.Config} className="lyrixi-color-primary" size="80" />
-              )}
+              iconSvg={Icons.Config}
               title="Title"
               content={<div>Content</div>}
               buttonsLayout="vertical"

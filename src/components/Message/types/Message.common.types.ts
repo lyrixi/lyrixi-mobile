@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEvent, ReactNode } from 'react'
+import type { ComponentType, CSSProperties, MouseEvent, ReactNode, SVGProps } from 'react'
 
 export interface MessageComboButton {
   id?: string
@@ -22,6 +22,8 @@ export interface MessageBodyProps {
   footerClassName?: string
   footerStyle?: CSSProperties
   // Elements
+  iconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  iconSize?: string
   iconRender?: () => ReactNode
   title?: ReactNode
 }

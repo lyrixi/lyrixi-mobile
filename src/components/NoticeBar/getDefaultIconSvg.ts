@@ -1,10 +1,9 @@
-import type { IconSVGElement } from '../Icon/types'
-
 // 内库使用-start
 import Icons from '../../icons'
+import { ComponentType, SVGProps } from 'react'
 // 内库使用-end
 
-function getDefaultIconSvg(type: string): IconSVGElement | null {
+function getDefaultIconSvg(type: string): ComponentType<SVGProps<SVGSVGElement>> | null {
   switch (type) {
     case 'success':
       return Icons.CircleOk

@@ -2,9 +2,12 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 import Header from '../Header'
 import Footer from '../Footer'
-import Icon from '../Icon'
 import Title from '../Title'
 import Button from '../Button'
+
+// 内库使用-start
+import Icon from './../../Icon'
+// 内库使用-end
 
 import type { MessageComboButton, MessageMainProps, MessageMainRef } from '../types'
 
@@ -20,6 +23,8 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
   (
     {
       // Elements
+      iconSvg,
+      iconSize,
       iconRender,
       title,
       // Style
@@ -55,8 +60,15 @@ const Main = forwardRef<MessageMainRef, MessageMainProps>(
     })
 
     function renderIcon() {
-      if (typeof iconRender !== 'function') return null
-      return <Icon>{iconRender()}</Icon>
+      if (typeof iconRender === 'function') {
+        return iconRender()
+      }
+
+      if (iconSvg) {
+        return <Icon svg={iconSvg} size={iconSize} />
+      }
+
+      return null
     }
 
     const IconNode = renderIcon()

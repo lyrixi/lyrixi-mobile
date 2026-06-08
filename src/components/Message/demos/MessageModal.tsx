@@ -16,7 +16,7 @@ export default function MessageModalDemo() {
       <Message.Modal
         open={open}
         onClose={() => setOpen(false)}
-        iconRender={() => <Icon svg={Icons.Config} size="80" color="primary" />}
+        iconSvg={Icons.Config}
         title="Title"
         content="Content"
         buttonsLayout="vertical"

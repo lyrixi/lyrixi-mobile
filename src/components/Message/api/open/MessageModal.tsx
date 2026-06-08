@@ -24,6 +24,8 @@ function MessageModal({
   // Elements
   children,
   // Elements
+  iconSvg,
+  iconSize,
   iconRender,
   title,
   // Style
@@ -65,6 +67,7 @@ function MessageModal({
 
   const hasBodyProps =
     typeof iconRender === 'function' ||
+    iconSvg ||
     title ||
     content ||
     (Array.isArray(buttons) && buttons.length > 0)
@@ -103,6 +106,8 @@ function MessageModal({
         {children ??
           (hasBodyProps ? (
             <Main
+              iconSvg={iconSvg}
+              iconSize={iconSize}
               iconRender={iconRender}
               title={title}
               titleClassName={titleClassName}

@@ -33,6 +33,7 @@ const MessageModal = forwardRef<MessageModalRef, MessageModalProps>(
       // Events
       onClose,
       // Elements
+      iconSvg,
       iconRender,
       title,
       // Style
@@ -69,6 +70,7 @@ const MessageModal = forwardRef<MessageModalRef, MessageModalProps>(
 
     const hasBodyProps =
       typeof iconRender === 'function' ||
+      iconSvg ||
       title ||
       content ||
       (Array.isArray(buttons) && buttons.length > 0)
@@ -89,6 +91,7 @@ const MessageModal = forwardRef<MessageModalRef, MessageModalProps>(
       >
         {children ?? (hasBodyProps ? (
           <Main
+            iconSvg={iconSvg}
             iconRender={iconRender}
             title={title}
             titleClassName={titleClassName}
