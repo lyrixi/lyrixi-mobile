@@ -16,8 +16,9 @@ function getStyle({ color, backgroundColor, size, radius, style, className }: Ic
   style: CSSProperties
   className: string
 } {
-  const colorClass = color ? VariablesUtil.getColorClass(color) : ''
-  const backgroundColorClass = backgroundColor ? VariablesUtil.getBgColorClass(backgroundColor) : ''
+  const colorValue = color ? VariablesUtil.getColorClass(color) : ''
+  const backgroundColorValue = backgroundColor ? VariablesUtil.getBgColorValue(backgroundColor) : ''
+
   const sizeClass =
     typeof size === 'string' && size in IconSizeClasses
       ? IconSizeClasses[size as keyof typeof IconSizeClasses].className
@@ -25,8 +26,8 @@ function getStyle({ color, backgroundColor, size, radius, style, className }: Ic
   const radiusClass = radius ? VariablesUtil.getRadiusClass(radius) : ''
 
   const newStyle: CSSProperties = {
-    ...(!colorClass && color ? { color } : {}),
-    ...(!backgroundColorClass && backgroundColor ? { backgroundColor } : {}),
+    ...(colorValue ? { color: colorValue } : {}),
+    ...(backgroundColorValue ? { backgroundColor: backgroundColorValue } : {}),
     ...(!sizeClass && size ? { width: size, height: size } : {}),
     ...(!radiusClass && radius ? { borderRadius: radius } : {}),
     ...style
@@ -34,8 +35,6 @@ function getStyle({ color, backgroundColor, size, radius, style, className }: Ic
 
   const newClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
     'lyrixi-icon',
-    colorClass && `${colorClass} lyrixi-border-color-${color}`,
-    backgroundColorClass,
     sizeClass,
     radiusClass,
     className
