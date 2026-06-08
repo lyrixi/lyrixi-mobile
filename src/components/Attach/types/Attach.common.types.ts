@@ -3,10 +3,10 @@ export interface AttachItem {
   // 必要属性
   fileName: string
   status: string
-  filePath?: File
   fileUrl?: string
   // 其它属性
   className?: string
+  filePath?: File
   fileSize?: number
   fileType?: string
   // 透传业务属性(勿删)
