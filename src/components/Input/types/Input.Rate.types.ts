@@ -25,6 +25,7 @@ export interface InputRateProps {
   disabled?: boolean
   // Style
   size?: IconSize
+  checkedColor?: string
   style?: CSSProperties
   className?: string
   // Elements

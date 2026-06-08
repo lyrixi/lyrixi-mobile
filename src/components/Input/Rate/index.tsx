@@ -4,6 +4,7 @@ import type { InputRateProps, InputRateRef } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import VariablesUtil from './../../../utils/VariablesUtil'
 import Icon from './../../Icon'
 import Icons from '../../../icons'
 // 内库使用-end
@@ -28,6 +29,7 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
 
       // Style
       size = 'm',
+      checkedColor = 'primary',
       style,
       className,
 
@@ -104,7 +106,14 @@ const Rate = forwardRef<InputRateRef, InputRateProps>(
         ref={rootRef}
         id={id}
         // Style
-        style={style}
+        style={{
+          ...(checkedColor
+            ? ({
+                '--lyrixi-input-rate-checked-color': VariablesUtil.getColorValue(checkedColor)
+              } as React.CSSProperties)
+            : {}),
+          ...style
+        }}
         className={DOMUtil.classNames(
           'lyrixi-input-rate',
           className,
