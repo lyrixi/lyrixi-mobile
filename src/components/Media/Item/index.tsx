@@ -28,6 +28,7 @@ const Item = ({
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
 }: MediaItemProps) => {
+  console.log('item:', item)
   return (
     <div
       // Elements

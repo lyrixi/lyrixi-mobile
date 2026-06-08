@@ -94,6 +94,7 @@ async function fileChoose({
       fileSize: fileData?.size,
       fileType: fileType,
       fileUrl: fileURL,
+      fileThumbnail: fileURL,
       filePath: fileData,
       status: 'choose'
     })

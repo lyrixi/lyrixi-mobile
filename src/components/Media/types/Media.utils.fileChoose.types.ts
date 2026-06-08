@@ -2,15 +2,6 @@
 import type { FileItem } from './../../Attach/types'
 // 内库使用-end
 
-export interface MediaFileChooseChangePayload {
-  fileName: string
-  fileSize?: number
-  fileType?: string
-  fileUrl?: string
-  filePath?: File
-  status: string
-}
-
 export interface MediaFileChooseOptions {
   file: HTMLInputElement
   async: boolean
@@ -24,8 +15,6 @@ export interface MediaFileChooseOptions {
     newList: FileItem[] | undefined,
     opts?: { action?: string }
   ) => Promise<FileItem[] | undefined>
-  onFileChange?: (
-    payload: MediaFileChooseChangePayload
-  ) => Promise<FileItem[] | void> | FileItem[] | void
+  onFileChange?: (fileItem: FileItem) => Promise<FileItem[] | void> | FileItem[] | void
   onChange?: (list: FileItem[], meta: { action: string }) => void
 }
