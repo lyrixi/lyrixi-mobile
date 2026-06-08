@@ -122,7 +122,7 @@ const Item = ({
   }
 
   // 获取附件类型图标
-  const fileIconType = getAttachFileIconType(item.fileUrl)
+  const fileIconType = item.fileType || getAttachFileIconType(item.fileUrl)
 
   return (
     <div
