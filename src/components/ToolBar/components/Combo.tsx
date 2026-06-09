@@ -56,7 +56,9 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     }
 
     if (arrowSvg) {
-      return <Button.Icon svg={arrowSvg} size="8px" />
+      return (
+        <Button.Icon className="lyrixi-toolbar-dropdown-combo-arrow" svg={arrowSvg} size="8px" />
+      )
     }
 
     return null

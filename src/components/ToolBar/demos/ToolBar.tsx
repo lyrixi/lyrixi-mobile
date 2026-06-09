@@ -71,7 +71,8 @@ export default function ToolBarDemo() {
             <ToolBar>
               <ToolBar.Dropdown
                 left={12}
-                color="primary"
+                // color="primary"
+                variant="solid"
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
                 }}
