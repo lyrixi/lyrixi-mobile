@@ -48,22 +48,22 @@ toc: content
 | clickAction            | 点击动作     | `string`                                               | -         |
 | className              | 自定义类名   | `string`                                               | -         |
 | modalClassName         | 模态框类名   | `string`                                               | -         |
-| modalStyle             | 模态框样式   | `object`                                               | -         |
-| getAddress             | 获取地址函数 | `(...args: unknown[]) => unknown`                      | -         |
-| getLocation            | 获取位置函数 | `(...args: unknown[]) => unknown`                      | -         |
+| modalStyle             | 模态框样式   | `CSSProperties`                                        | -         |
+| getAddress             | 获取地址函数 | `((...args: unknown[]) => unknown) \| null`          | -         |
+| getLocation            | 获取位置函数 | `((...args: unknown[]) => unknown) \| null`          | -         |
 | portal                 | 挂载节点     | `HTMLElement \| null`                                  | -         |
-| onChange               | 变化事件     | `(value: LocationValue \| null) => void`               | -         |
-| onOpen                 | 打开事件     | `() => void`                                           | -         |
-| onClose                | 关闭事件     | `() => void`                                           | -         |
-| onLocationStatusChange | 定位状态变化 | `(status: string) => void`                             | -         |
-| onError                | 错误事件     | `(error: { status: string; message: string }) => void` | -         |
+| onChange               | 变化事件     | `((value: LocationValue \| null) => void) \| null`    | -         |
+| onOpen                 | 打开事件     | `(() => void) \| null`                                 | -         |
+| onClose                | 关闭事件     | `(() => void) \| null`                                 | -         |
+| onLocationStatusChange | 定位状态变化 | `((status: string) => void) \| null`                  | -         |
+| onError                | 错误事件     | `((error: { status: string; message: string }) => void) \| null` | -         |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                |
+| ---------- | ---------- | ------------------- |
+| element    | 根元素     | `unknown`           |
+| getElement | 获取根元素 | () => `unknown`     |
 
 ## Location.Modal
 
@@ -95,12 +95,12 @@ toc: content
 | maskStyle      | 遮罩样式       | `object`                                 | -      |
 | maskClassName  | 遮罩类名       | `string`                                 | -      |
 | mapConfig      | 地图配置       | `object`                                 | -      |
-| getAddress     | 获取地址函数   | `function`                               | -      |
-| getLocation    | 获取位置函数   | `function`                               | -      |
-| portal         | 挂载节点       | `Element \| null`                        | -      |
-| onOk           | 确认事件       | `(value: LocationValue \| null) => unknown` | -   |
-| onChange       | 变化事件       | `(value: LocationValue \| null) => void` | -      |
-| onClose        | 关闭事件       | `() => void`                             | -      |
+| getAddress     | 获取地址函数   | `(...args) => unknown`                             | -      |
+| getLocation    | 获取位置函数   | `(...args) => unknown`                             | -      |
+| portal         | 挂载节点       | `Element \| null`                                  | -      |
+| onOk           | 确认事件       | `((value: LocationValue \| null) => unknown) \| null` | -   |
+| onChange       | 变化事件       | `((value: LocationValue \| null) => void) \| null` | -      |
+| onClose        | 关闭事件       | `(() => void) \| null`                             | -      |
 
 ## Location.Main
 
@@ -128,10 +128,10 @@ toc: content
 | nearbyVisible | 附近地点可见   | `boolean`                                | -      |
 | id            | 位置选择器 ID  | `string`                                 | -      |
 | mapConfig     | 地图配置       | `object`                                 | -      |
-| getLocation   | 获取位置函数   | `function`                               | -      |
-| getAddress    | 获取地址函数   | `function`                               | -      |
-| style         | 自定义样式     | `object`                                 | -      |
-| className     | 自定义类名     | `string`                                 | -      |
-| onChange      | 变化事件       | `(value: LocationValue \| null) => void` | -      |
-| onOk          | 确认事件       | `(value: LocationValue \| null) => void` | -      |
-| onClear       | 清除事件       | `() => void`                             | -      |
+| getLocation   | 获取位置函数   | `(...args) => unknown`                          | -      |
+| getAddress    | 获取地址函数   | `(...args) => unknown`                          | -      |
+| style         | 自定义样式     | `CSSProperties`                                 | -      |
+| className     | 自定义类名     | `string`                                        | -      |
+| onChange      | 变化事件       | `(newValue: LocationValue \| null) => void`     | -      |
+| onOk          | 确认事件       | `((value: LocationValue \| null) => void) \| null` | -   |
+| onClear       | 清除事件       | `(() => void) \| null`                          | -      |

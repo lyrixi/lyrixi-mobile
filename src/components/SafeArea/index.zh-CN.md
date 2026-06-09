@@ -29,12 +29,12 @@ toc: content
 | --------- | ---------- | ---------------------------------------------------------------------- | ---------- |
 | type      | 类型       | `'height' \| 'padding' \| 'margin' \| 'border' \| 'before' \| 'after'` | `'height'` |
 | position  | 位置       | `'top' \| 'bottom'`                                                    | `'bottom'` |
-| style     | 自定义样式 | `object`                                                               | -          |
+| style     | 自定义样式 | `CSSProperties`                                                        | -          |
 | className | 自定义类名 | `string`                                                               | -          |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

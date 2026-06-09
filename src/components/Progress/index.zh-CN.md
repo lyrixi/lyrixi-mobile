@@ -30,16 +30,16 @@ toc: content
 
 | 属性      | 说明       | 类型     | 默认值 |
 | --------- | ---------- | -------- | ------ |
-| percent   | 进度百分比 | `number` | `0`    |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+| percent   | 进度百分比 | `number`        | `0`    |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
 ## Progress.Circle
 
@@ -58,17 +58,17 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| percent   | 进度百分比 | `number`    | `0`    |
-| size      | 尺寸       | `number`    | `50`   |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 中间内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| percent   | 进度百分比 | `number`        | `0`    |
+| size      | 尺寸       | `number`        | `50`   |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 中间内容   | `ReactNode`     | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

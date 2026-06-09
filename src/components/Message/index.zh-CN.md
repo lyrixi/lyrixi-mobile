@@ -55,6 +55,9 @@ toc: content
 
 | 参数             | 说明                                                          | 类型                           | 默认值          |
 | ---------------- | ------------------------------------------------------------- | ------------------------------ | --------------- |
+| iconSvg          | 图标 SVG 组件                                                 | `ComponentType<SVGProps<SVGSVGElement>>` | -               |
+| iconSize         | 图标尺寸                                                      | `string`                       | -               |
+| iconColor        | 图标颜色                                                      | `string`                       | -               |
 | iconRender       | 图标区域渲染                                                  | `() => ReactNode`              | -               |
 | title            | 标题                                                          | `ReactNode`                    | -               |
 | content          | 正文                                                          | `ReactNode`                    | -               |
@@ -66,6 +69,13 @@ toc: content
 | contentStyle     | 正文样式                                                      | `CSSProperties`                | -               |
 | footerClassName  | 底部类名                                                      | `string`                       | -               |
 | footerStyle      | 底部样式                                                      | `CSSProperties`                | -               |
+| open             | 是否显示                                                      | `boolean`                      | -               |
+| style            | 自定义样式                                                    | `CSSProperties`                | -               |
+| className        | 自定义类名                                                    | `string`                       | -               |
+| safeArea         | 安全区                                                        | `boolean`                      | -               |
+| children         | 自定义内容                                                    | `ReactNode`                    | -               |
+| modalStyle       | 模态框样式                                                    | `CSSProperties`                | -               |
+| modalClassName   | 模态框类名                                                    | `string`                       | -               |
 | maskClosable     | 点击遮罩是否关闭                                              | `boolean`                      | `true`          |
 | maskClassName    | 遮罩类名                                                      | `string`                       | -               |
 | maskStyle        | 遮罩样式                                                      | `CSSProperties`                | -               |
@@ -109,12 +119,15 @@ toc: content
 | portal           | 挂载节点       | `HTMLElement \| null \| false` | -       |
 | children         | 自定义内容     | `ReactNode`                    | -       |
 | onClose          | 关闭事件       | `() => void`                   | -       |
+| iconSvg          | 图标 SVG 组件  | `ComponentType<SVGProps<SVGSVGElement>>` | -       |
+| iconSize         | 图标尺寸       | `string`                       | -       |
+| iconColor        | 图标颜色       | `string`                       | -       |
 | iconRender       | 图标区域渲染   | `() => ReactNode`              | -       |
 | title            | 标题           | `ReactNode`                    | -       |
 | content          | 正文           | `ReactNode`                    | -       |
 | buttonsLayout    | 底部按钮布局   | `'vertical' \| 'horizontal'`   | -       |
 | buttons          | 底部按钮配置   | `MessageComboButton[]`         | -       |
-| titleClassName   | 标题类名       | `string`                       | -       |
+| titleClassName   | 标题类名     | `string`                       | -       |
 | titleStyle       | 标题样式       | `CSSProperties`                | -       |
 | contentClassName | 正文类名       | `string`                       | -       |
 | contentStyle     | 正文样式       | `CSSProperties`                | -       |
@@ -133,11 +146,12 @@ toc: content
 
 #### 属性
 
-在 [Message.Modal](#messagemodal) 属性基础上，去掉受控的 `open`（内部管理），并增加：
+在 [Message.Modal](#messagemodal) 属性基础上，`open` 仍可用但通常由内部管理，并增加：
 
 | 属性      | 说明                     | 类型            | 默认值 |
 | --------- | ------------------------ | --------------- | ------ |
 | onOpen    | 打开事件                 | `() => void`    | -      |
+| open      | 受控显示                 | `boolean`       | -      |
 | className | 触发区域类名             | `string`        | -      |
 | style     | 触发区域样式             | `CSSProperties` | -      |
 | children  | 触发区域内容（点击打开） | `ReactNode`     | -      |
@@ -165,6 +179,9 @@ toc: content
 
 | 属性             | 说明           | 类型                                                                             | 默认值         |
 | ---------------- | -------------- | -------------------------------------------------------------------------------- | -------------- |
+| iconSvg          | 图标 SVG 组件  | `ComponentType<SVGProps<SVGSVGElement>>`                                         | -              |
+| iconSize         | 图标尺寸       | `string`                                                                         | -              |
+| iconColor        | 图标颜色       | `string`                                                                         | -              |
 | iconRender       | 图标区域渲染   | `() => ReactNode`                                                                | -              |
 | title            | 标题           | `ReactNode`                                                                      | -              |
 | content          | 正文           | `ReactNode`                                                                      | -              |
@@ -244,6 +261,11 @@ toc: content
 
 #### Ref
 
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`    |
+| getElement | 获取根元素 | `() => HTMLDivElement \| null` |
+
 ## Message.Button
 
 对话框底部操作按钮。
@@ -263,6 +285,11 @@ toc: content
 | onClick         | 点击事件 | `(e: MouseEvent<HTMLDivElement>) => void` | -      |
 
 #### Ref
+
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`    |
+| getElement | 获取根元素 | `() => HTMLDivElement \| null` |
 
 ### 按钮配置 MessageComboButton
 

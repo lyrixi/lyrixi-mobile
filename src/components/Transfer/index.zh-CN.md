@@ -27,21 +27,21 @@ toc: content
 
 | 属性       | 说明       | 类型                                      | 默认值 |
 | ---------- | ---------- | ----------------------------------------- | ------ |
-| value      | 选中的值   | `Array<{id: string, [key: string]: any}>` | -      |
-| list       | 选项列表   | `Array<{id: string, [key: string]: any}>` | -      |
-| titles     | 标题数组   | `[string, string]`                        | -      |
+| value      | 选中的值   | `Array<{id: string \| number, name?: ReactNode, [key: string]: unknown}>` | -      |
+| list       | 选项列表   | `Array<{id: string \| number, name?: ReactNode, [key: string]: unknown}>` | -      |
+| titles     | 标题       | `{ selected?: ReactNode, unSelected?: ReactNode } \| [ReactNode, ReactNode]` | -      |
 | open       | 是否展开   | `boolean`                                 | -      |
 | allowClear | 允许清除   | `boolean`                                 | -      |
-| style      | 自定义样式 | `object`                                  | -      |
+| style      | 自定义样式 | `CSSProperties`                           | -      |
 | className  | 自定义类名 | `string`                                  | -      |
-| onChange   | 变化事件   | `(value: Array) => void`                  | -      |
+| onChange   | 变化事件   | `(value: TransferItem[]) => void`         | -      |
 
 ### Ref
 
-| 属性           | 说明       | 类型                   |
-| -------------- | ---------- | ---------------------- |
-| mainElement    | 主元素     | `HTMLDivElement`       |
-| getMainElement | 获取主元素 | () => `HTMLDivElement` |
+| 属性           | 说明       | 类型                         |
+| -------------- | ---------- | ---------------------------- |
+| mainElement    | 主元素     | `HTMLDivElement \| null`     |
+| getMainElement | 获取主元素 | () => `HTMLDivElement \| null`
 
 ## Transfer.Combo
 
@@ -59,7 +59,14 @@ toc: content
 
 #### 属性
 
-同 Transfer 组件属性。
+同 Transfer 组件属性，继承 [Input.Select](/components/input#inputselect) 的 `InputSelectProps` 和 Transfer.Modal 属性，以及：
+
+| 属性          | 说明       | 类型                                               | 默认值 |
+| ------------- | ---------- | -------------------------------------------------- | ------ |
+| value         | 选中的值   | `TransferItem[]`                                   | -      |
+| list          | 选项列表   | `TransferItem[]`                                   | -      |
+| onChange      | 变化事件   | `(value: TransferItem[]) => void`                  | -      |
+| onBeforeOpen  | 打开前事件 | `() => boolean \| void \| Promise<boolean \| void>` | -      |
 
 #### Ref
 
@@ -81,7 +88,24 @@ toc: content
 
 #### 属性
 
-同 Transfer 组件属性。
+同 Transfer 组件属性，以及：
+
+| 属性            | 说明         | 类型                                                 | 默认值 |
+| --------------- | ------------ | ---------------------------------------------------- | ------ |
+| maskClosable    | 点击遮罩关闭 | `boolean`                                            | -      |
+| safeArea        | 安全区适配   | `boolean`                                            | -      |
+| modalStyle      | 模态框样式   | `CSSProperties`                                      | -      |
+| modalClassName  | 模态框类名   | `string`                                             | -      |
+| maskStyle       | 遮罩样式     | `CSSProperties`                                      | -      |
+| maskClassName   | 遮罩类名     | `string`                                             | -      |
+| portal          | 挂载节点     | `ModalProps['portal']`                                | -      |
+| title           | 标题         | `ReactNode`                                          | -      |
+| okNode          | 确认按钮     | `ReactNode`                                          | -      |
+| cancelNode      | 取消按钮     | `ReactNode`                                          | -      |
+| okVisible       | 确认按钮可见 | `boolean`                                            | -      |
+| cancelVisible   | 取消按钮可见 | `boolean`                                            | -      |
+| onClose         | 关闭事件     | `() => void`                                         | -      |
+| onOk            | 确认事件     | `(value: TransferItem[]) => boolean \| void \| Promise<boolean \| void>` | -      |
 
 #### Ref
 

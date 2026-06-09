@@ -27,17 +27,17 @@ toc: content
 
 | 属性      | 说明       | 类型                                                                          | 默认值       |
 | --------- | ---------- | ----------------------------------------------------------------------------- | ------------ |
-| value     | 当前步骤   | `{index: number, id: string, status: string}`                                 | -            |
-| list      | 步骤列表   | `Array<{id: string, title: string, description: string, [key: string]: any}>` | -            |
-| style     | 自定义样式 | `object`                                                                      | -            |
+| value     | 当前步骤   | `{index?: number, id?: string, status?: string, activeIndex?: number, icon?: ReactNode}`                                 | -            |
+| list      | 步骤列表   | `Array<{id?: string, icon?: ReactNode, status?: string, title?: ReactNode, description?: ReactNode}>` | -            |
+| style     | 自定义样式 | `CSSProperties`                                                               | -            |
 | className | 自定义类名 | `string`                                                                      | -            |
 | iconSize  | 图标大小   | `number`                                                                      | `8`          |
-| align     | 对齐方式   | `'center' \| 'left'`                                                          | `'center'`   |
-| direction | 方向       | `'vertical' \| 'horizontal'`                                                  | `'vertical'` |
+| align     | 对齐方式   | `string`                                                                      | `'center'`   |
+| direction | 方向       | `string`                                                                      | `'vertical'` |
 
 ### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| element    | 根元素     | `HTMLDivElement \| null` |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

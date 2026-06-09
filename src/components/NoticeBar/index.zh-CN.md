@@ -31,19 +31,22 @@ toc: content
 | description         | 通知描述       | `ReactNode`                                   | -        |
 | type                | 通知类型       | `'success' \| 'info' \| 'warning' \| 'error'` | `'info'` |
 | closable            | 是否可关闭     | `boolean`                                     | -        |
-| style               | 自定义样式     | `object`                                      | -        |
+| style               | 自定义样式     | `CSSProperties`                               | -        |
 | className           | 自定义类名     | `string`                                      | -        |
+| iconStyle           | 图标样式       | `CSSProperties`                               | -        |
+| titleStyle          | 标题样式       | `CSSProperties`                               | -        |
+| descriptionStyle    | 描述样式       | `CSSProperties`                               | -        |
 | iconRender          | 自定义图标渲染 | `() => ReactNode`                             | -        |
 | iconClassName       | 图标类名       | `string`                                      | -        |
 | iconColor           | 图标颜色       | `string`                                      | -        |
 | iconBackgroundColor | 图标背景颜色   | `string`                                      | -        |
-| iconSize            | 图标大小       | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`  | `'m'`    |
+| iconSize            | 图标大小       | `string \| number`                            | `'m'`    |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-| close      | 关闭通告栏 | `() => void`           |
-| open       | 打开通告栏 | `() => void`           |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
+| close      | 关闭通告栏 | `() => void`                  |
+| open       | 打开通告栏 | `() => void`                  |

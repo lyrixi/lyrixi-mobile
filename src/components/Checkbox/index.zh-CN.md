@@ -25,25 +25,25 @@ toc: content
 
 ### 属性
 
-| 属性         | 说明           | 类型                                          | 默认值   |
-| ------------ | -------------- | --------------------------------------------- | -------- |
-| checked      | 是否选中       | `boolean`                                     | -        |
-| readOnly     | 是否只读       | `boolean`                                     | -        |
-| disabled     | 是否禁用       | `boolean`                                     | -        |
-| variant      | 样式变体       | `'solid' \| 'text' \| 'outlined' \| 'filled'` | -        |
-| style        | 自定义样式     | `object`                                      | -        |
-| className    | 自定义类名     | `string`                                      | -        |
-| children     | 复选框内容     | `ReactNode`                                   | -        |
-| iconRender   | 自定义图标渲染 | `(props: {checked: boolean}) => ReactNode`    | -        |
-| iconPosition | 图标位置       | `'left' \| 'right'`                           | `'left'` |
-| onChange     | 变化事件       | `(checked: boolean) => void`                  | -        |
+| 属性         | 说明           | 类型                                        | 默认值   |
+| ------------ | -------------- | ------------------------------------------- | -------- |
+| checked      | 是否选中       | `boolean`                                   | -        |
+| readOnly     | 是否只读       | `boolean`                                   | -        |
+| disabled     | 是否禁用       | `boolean`                                   | -        |
+| variant      | 样式变体       | `string`                                    | -        |
+| style        | 自定义样式     | `CSSProperties`                             | -        |
+| className    | 自定义类名     | `string`                                    | -        |
+| children     | 复选框内容     | `ReactNode`                                 | -        |
+| iconRender   | 自定义图标渲染 | `(props: { checked?: boolean }) => ReactNode` | -        |
+| iconPosition | 图标位置       | `'left' \| 'right'`                         | `'left'` |
+| onChange     | 变化事件       | `(checked: boolean) => void`                | -        |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
 ## Checkbox.Group
 
@@ -63,24 +63,24 @@ toc: content
 
 #### 属性
 
-| 属性         | 说明           | 类型                                       | 默认值   |
-| ------------ | -------------- | ------------------------------------------ | -------- |
-| value        | 选中的值       | `unknown`                                  | -        |
-| list         | 选项列表       | `Array<{id: string \| number, [key: string]: any}>` | - |
-| placeholder  | 占位符         | `string`                                   | -        |
-| disabled     | 是否禁用       | `boolean`                                  | -        |
-| readOnly     | 是否只读       | `boolean`                                  | -        |
-| allowClear   | 允许清除       | `boolean`                                  | -        |
-| multiple     | 是否多选       | `boolean`                                  | -        |
-| style        | 自定义样式     | `object`                                   | -        |
-| className    | 自定义类名     | `string`                                   | -        |
-| iconRender   | 自定义图标渲染 | `(props: {checked: boolean}) => ReactNode` | -        |
-| iconPosition | 图标位置       | `'left' \| 'right'`                        | `'left'` |
-| onChange     | 变化事件       | `(value: object \| object[] \| null) => void` | -     |
+| 属性         | 说明           | 类型                                                | 默认值   |
+| ------------ | -------------- | --------------------------------------------------- | -------- |
+| value        | 选中的值       | `unknown`                                           | -        |
+| list         | 选项列表       | `CheckboxItem[]`                                    | -        |
+| placeholder  | 占位符         | `string`                                            | -        |
+| disabled     | 是否禁用       | `boolean`                                           | -        |
+| readOnly     | 是否只读       | `boolean`                                           | -        |
+| allowClear   | 允许清除       | `boolean`                                           | -        |
+| multiple     | 是否多选       | `boolean`                                           | -        |
+| style        | 自定义样式     | `CSSProperties`                                     | -        |
+| className    | 自定义类名     | `string`                                            | -        |
+| iconRender   | 自定义图标渲染 | `(props: { checked?: boolean }) => ReactNode`        | -        |
+| iconPosition | 图标位置       | `'left' \| 'right'`                                 | `'left'` |
+| onChange     | 变化事件       | `(value: CheckboxItem \| CheckboxItem[] \| null) => void` | -     |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

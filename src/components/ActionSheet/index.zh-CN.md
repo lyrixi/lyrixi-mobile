@@ -41,10 +41,12 @@ toc: content
 | allowClear     | 允许清除       | `boolean`                      | -      |
 | style          | 自定义样式     | `object`                       | -      |
 | className      | 自定义类名     | `string`                       | -      |
-| comboRender    | 自定义组合渲染 | `() => ReactNode`              | -      |
+| comboRender    | 自定义组合渲染 | `(props: { comboRef: RefObject<ComboRef \| null>; open: boolean; onClick: () => void }) => ReactNode` | -      |
 | children       | 子元素         | `ReactNode`                    | -      |
-| leftIconNode   | 左侧图标       | `ReactNode`                    | -      |
-| rightIconNode  | 右侧图标       | `ReactNode`                    | -      |
+| leftIconRender | 左侧图标渲染   | `() => ReactNode`              | -      |
+| leftIconSvg    | 左侧 SVG 图标  | `ComponentType<SVGProps<SVGSVGElement>>` | -      |
+| rightIconRender| 右侧图标渲染   | `() => ReactNode`              | -      |
+| rightIconSvg   | 右侧 SVG 图标  | `ComponentType<SVGProps<SVGSVGElement>>` | -      |
 | clearRender    | 清除按钮渲染   | `() => ReactNode`              | -      |
 | list           | 选项列表       | `ActionSheetItem[]`            | -      |
 | maskClosable   | 点击遮罩关闭   | `boolean`                      | -      |

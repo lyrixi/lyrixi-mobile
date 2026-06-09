@@ -25,31 +25,29 @@ toc: content
 
 ### 属性
 
-| 属性            | 说明           | 类型                                                                                                 | 默认值         |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------------------- | -------------- |
-| id              | 按钮 ID        | `string`                                                                                             | -              |
-| direction       | 方向           | `'horizontal' \| 'vertical'`                                                                         | `'horizontal'` |
-| block           | 是否为块级元素 | `boolean`                                                                                            | -              |
-| color           | 颜色           | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | `'default'`    |
-| backgroundColor | 背景颜色       | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | `'white'`      |
-| borderColor     | 边框颜色       | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | `'default'`    |
-| border          | 边框样式       | `'none' \| 'dotted' \| 'dashed' \| 'solid'`                                                          | `'solid'`      |
-| size            | 高度尺寸       | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| [number, number]`                                     | -              |
-| sizeEqual       | 是否为等宽高   | `boolean`                                                                                            | -              |
-| fontSize        | 字体大小       | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | -              |
-| radius          | 圆角           | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | -              |
-| style           | 自定义样式     | `object`                                                                                             | -              |
-| className       | 自定义类名     | `string`                                                                                             | -              |
-| disabled        | 是否禁用       | `boolean`                                                                                            | -              |
-| children        | 按钮内容       | `ReactNode`                                                                                          | -              |
-| onClick         | 点击事件       | `(e: Event) => void`                                                                                 | -              |
+| 属性        | 说明           | 类型                                                     | 默认值         |
+| ----------- | -------------- | -------------------------------------------------------- | -------------- |
+| id          | 按钮 ID        | `string`                                                 | -              |
+| direction   | 方向           | `'horizontal' \| 'vertical' \| string`                    | `'horizontal'` |
+| block       | 是否为块级元素 | `boolean`                                                | -              |
+| variant     | 外观变体       | `'solid' \| 'text' \| 'outlined' \| 'filled' \| 'dashed'` | `'solid'`      |
+| color       | 颜色           | `'default' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | `'default'`    |
+| size        | 高度尺寸       | `string \| number \| readonly string[]`                   | -              |
+| sizeEqual   | 是否为等宽高   | `boolean`                                                | -              |
+| fontSize    | 字体大小       | `string \| number`                                        | -              |
+| radius      | 圆角           | `string \| number`                                        | -              |
+| style       | 自定义样式     | `CSSProperties`                                           | -              |
+| className   | 自定义类名     | `string`                                                 | -              |
+| disabled    | 是否禁用       | `boolean`                                                | -              |
+| children    | 按钮内容       | `ReactNode`                                              | -              |
+| onClick     | 点击事件       | `MouseEventHandler<HTMLDivElement>`                       | -              |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                            |
+| ---------- | ---------- | ------------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`        |
+| getElement | 获取根元素 | `() => HTMLDivElement \| null`  |
 
 ## Button.Text
 

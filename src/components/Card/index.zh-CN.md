@@ -27,18 +27,19 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 卡片内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型                                   | 默认值 |
+| --------- | ---------- | -------------------------------------- | ------ |
+| style     | 自定义样式 | `CSSProperties`                        | -      |
+| className | 自定义类名 | `string`                               | -      |
+| children  | 卡片内容   | `ReactNode`                            | -      |
+| onClick   | 点击事件   | `MouseEventHandler<HTMLDivElement>`    | -      |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
 ## Card.Header
 
@@ -52,18 +53,18 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 头部内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 头部内容   | `ReactNode`     | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
 ## Card.Main
 
@@ -77,15 +78,15 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 主体内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 主体内容   | `ReactNode`     | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

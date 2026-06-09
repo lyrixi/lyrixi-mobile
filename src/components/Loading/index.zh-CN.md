@@ -26,9 +26,9 @@ toc: content
 | portal        | 挂载节点   | `HTMLElement` | -      |
 | id            | Loading ID | `string`      | -      |
 | maskClassName | 遮罩类名   | `string`      | -      |
-| maskStyle     | 遮罩样式   | `object`      | -      |
-| className     | 内容类名   | `string`      | -      |
-| style         | 内容样式   | `object`      | -      |
+| maskStyle     | 遮罩样式   | `CSSProperties` | -      |
+| className     | 内容类名   | `string`        | -      |
+| style         | 内容样式   | `CSSProperties` | -      |
 | content       | 提示内容   | `string`      | -      |
 | onOpen        | 打开事件   | `() => void`  | -      |
 
@@ -98,21 +98,21 @@ toc: content
 
 | 属性           | 说明       | 类型        | 默认值 |
 | -------------- | ---------- | ----------- | ------ |
-| content        | 提示内容   | `ReactNode` | -      |
-| modalStyle     | 内容区样式 | `object`    | -      |
-| modalClassName | 内容区类名 | `string`    | -      |
-| maskStyle      | 遮罩样式   | `object`    | -      |
-| maskClassName  | 遮罩类名   | `string`    | -      |
+| content        | 提示内容   | `ReactNode`                    | -      |
+| modalStyle     | 内容区样式 | `CSSProperties`                | -      |
+| modalClassName | 内容区类名 | `string`                       | -      |
+| maskStyle      | 遮罩样式   | `CSSProperties`                | -      |
+| maskClassName  | 遮罩类名   | `string`                       | -      |
 | portal         | 挂载节点   | `Element \| DocumentFragment` | - |
 | iconRender     | 图标渲染   | `() => ReactNode` | -      |
 | children       | 子元素     | `ReactNode` | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
 ## Loading.SpinFade
 
@@ -166,5 +166,5 @@ toc: content
 | --------- | ---------- | ------------------ | ------ |
 | color     | 颜色       | `string`           | -      |
 | size      | 尺寸       | `string \| number` | -      |
-| style     | 自定义样式 | `object`           | -      |
+| style     | 自定义样式 | `CSSProperties`    | -      |
 | className | 自定义类名 | `string`           | -      |

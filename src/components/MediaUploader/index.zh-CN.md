@@ -27,54 +27,64 @@ toc: content
 
 | 属性                   | 说明           | 类型                                                                                                                         | 默认值                |
 | ---------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| mediaType              | 媒体类型       | `Array<'image' \| 'video'>`                                                                                                  | `['image']`           |
+| mediaType              | 媒体类型       | `string \| string[]`                                                                                                         | `['image']`           |
 | list                   | 媒体列表       | `Array<{fileThumbnail: string, fileUrl: string, filePath: string, status: 'choose' \| 'uploading' \| 'error' \| 'success'}>` | `[]`                  |
 | maxUploadCount         | 最大上传数量   | `number`                                                                                                                     | -                     |
 | maxChooseCount         | 最大选择数量   | `number`                                                                                                                     | -                     |
-| platform               | 强制上传平台   | `'browser' \| 'wechatMiniProgram' \| 'wechat' \| 'wecom' \| 'wecomMiniProgram' \| 'dingtalk'`                                | -                     |
-| ellipsis               | 省略配置       | `object`                                                                                                                     | -                     |
-| sourceType             | 来源类型       | `Array<'album' \| 'camera'>`                                                                                                 | `['album', 'camera']` |
-| sizeType               | 尺寸类型       | `Array<'original' \| 'compressed'>`                                                                                          | `['compressed']`      |
+| platform               | 强制上传平台   | `string`                                                                                                                     | -                     |
+| ellipsis               | 省略配置       | `boolean`                                                                                                                    | -                     |
+| sourceType             | 来源类型       | `string[]`                                                                                                                   | `['album', 'camera']` |
+| sizeType               | 尺寸类型       | `string[]`                                                                                                                   | `['compressed']`      |
 | isSaveToAlbum          | 是否保存到本地 | `number`                                                                                                                     | `0`                   |
 | fileImageCompress      | 图片压缩配置   | `{maxWidth: number, quality: number}`                                                                                        | -                     |
 | async                  | 是否异步上传   | `boolean`                                                                                                                    | `false`               |
 | verifyImage            | 校验图片       | `boolean`                                                                                                                    | `true`                |
 | reUpload               | 支持重新上传   | `boolean`                                                                                                                    | `true`                |
-| allowClear             | 允许清除       | `boolean`                                                                                                                    | `true`                |
-| allowChoose            | 允许选择       | `boolean`                                                                                                                    | `true`                |
+| allowClear             | 允许清除       | `boolean`                                                                                                                    | `false`               |
+| allowChoose            | 允许选择       | `boolean`                                                                                                                    | `false`               |
 | previewAllowChoose     | 预览允许选择   | `boolean`                                                                                                                    | -                     |
 | previewAllowClear      | 预览允许清除   | `boolean`                                                                                                                    | -                     |
-| compatible             | 兼容模式       | `boolean`                                                                                                                    | `true`                |
+| compatible             | 兼容模式       | `boolean \| string`                                                                                                          | `true`                |
 | timeout                | 超时时间       | `number`                                                                                                                     | -                     |
-| style                  | 自定义样式     | `object`                                                                                                                     | -                     |
+| style                  | 自定义样式     | `CSSProperties`                                                                                                              | -                     |
 | className              | 自定义类名     | `string`                                                                                                                     | -                     |
 | uploadPosition         | 上传位置       | `'start' \| 'end'`                                                                                                           | -                     |
+| navBarStyle            | 导航栏样式     | `CSSProperties`                                                                                                              | -                     |
+| navBarClassName        | 导航栏类名     | `string`                                                                                                                     | -                     |
 | previewSafeArea        | 预览安全区     | `boolean`                                                                                                                    | -                     |
-| previewNavBarStyle     | 预览导航栏样式 | `object`                                                                                                                     | -                     |
+| previewNavBarStyle     | 预览导航栏样式 | `CSSProperties`                                                                                                              | -                     |
 | previewNavBarClassName | 预览导航栏类名 | `string`                                                                                                                     | -                     |
-| previewModalStyle      | 预览模态框样式 | `object`                                                                                                                     | -                     |
+| previewModalStyle      | 预览模态框样式 | `CSSProperties`                                                                                                              | -                     |
 | previewModalClassName  | 预览模态框类名 | `string`                                                                                                                     | -                     |
-| previewMaskStyle       | 预览遮罩样式   | `object`                                                                                                                     | -                     |
+| previewMaskStyle       | 预览遮罩样式   | `CSSProperties`                                                                                                              | -                     |
 | previewMaskClassName   | 预览遮罩类名   | `string`                                                                                                                     | -                     |
-| uploadRender           | 上传按钮渲染   | `() => ReactNode`                                                                                                            | -                     |
-| uploadingRender        | 上传中渲染     | `(item: object) => ReactNode`                                                                                                | -                     |
-| itemRender             | 项渲染         | `(item: object) => ReactNode`                                                                                                | -                     |
+| uploadRender           | 上传按钮渲染   | `ReactNode`                                                                                                                  | -                     |
+| uploadingRender        | 上传中渲染     | `ReactNode`                                                                                                                  | -                     |
+| itemRender             | 项渲染         | `ReactNode`                                                                                                                  | -                     |
 | previewPortal          | 预览挂载节点   | `HTMLElement`                                                                                                                | -                     |
 | previewCancelPosition  | 预览取消位置   | `string`                                                                                                                     | -                     |
-| getItemExtra           | 获取项额外数据 | `(options: object) => object`                                                                                                | -                     |
-| getUploadUrl           | 获取上传地址   | `(options: object) => string`                                                                                                | -                     |
-| formatChoose           | 格式化选择     | `(result: object) => object`                                                                                                 | -                     |
-| formatHeaders          | 格式化请求头   | `(options: object) => object`                                                                                                | -                     |
-| formatPayload          | 格式化请求体   | `(options: object) => object`                                                                                                | -                     |
-| formatResponse         | 格式化响应     | `(result: object) => object`                                                                                                 | -                     |
-| onBeforeChoose         | 选择前事件     | `(e: Event) => Promise<boolean>`                                                                                             | -                     |
-| onUpload               | 上传事件       | `(item: object) => Promise<object>`                                                                                          | -                     |
-| onChange               | 变化事件       | `(list: Array, options: object) => void`                                                                                     | -                     |
-| onPreview              | 预览事件       | `(item: object, index: number) => void`                                                                                      | -                     |
+| chooseExtraParams      | 选择额外参数   | `Record<string, unknown>`                                                                                                    | -                     |
+| getItemExtra           | 获取项额外数据 | `(params: { platform: string }) => Promise<Record<string, unknown> \| false \| null> \| Record<string, unknown> \| false \| null` | -                     |
+| getUploadUrl           | 获取上传地址   | `(ctx: { platform: string }) => Record<string, unknown> \| undefined`                                                        | -                     |
+| formatChoose           | 格式化选择     | `(params: Record<string, unknown>, extra: { platform: string }) => Promise<Record<string, unknown>> \| Record<string, unknown>` | -                     |
+| formatHeaders          | 格式化请求头   | `(h: Record<string, unknown>, ctx: { platform: string }) => Record<string, unknown> \| Promise<Record<string, unknown>>`     | -                     |
+| formatPayload          | 格式化请求体   | `(p: Record<string, unknown>, ctx: { platform: string }) => Record<string, unknown> \| Promise<Record<string, unknown>>`     | -                     |
+| formatResponse         | 格式化响应     | `(r: unknown, ctx: { platform: string }) => MediaUploaderUploadResponse \| Promise<MediaUploaderUploadResponse>`             | -                     |
+| onBeforeChoose         | 选择前事件     | `() => Promise<boolean \| null \| undefined> \| boolean \| null \| undefined`                                                | -                     |
+| onUpload               | 上传事件       | `(item: MediaItem) => Promise<MediaItem>`                                                                                    | -                     |
+| onChange               | 变化事件       | `(list: MediaItem[]) => void`                                                                                                | -                     |
+| onPreview              | 预览事件       | `(item: MediaItem, index: number) => Promise<unknown>`                                                                       | -                     |
+| onNavigateTo           | 导航事件       | `(params: Record<string, unknown>) => Promise<boolean \| void>`                                                              | -                     |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性        | 说明           | 类型                           |
+| ----------- | -------------- | ------------------------------ |
+| element     | 根元素         | `HTMLElement \| null`          |
+| getElement  | 获取根元素     | `() => HTMLElement \| null`    |
+| updateStatus| 更新状态       | `() => void`                   |
+| chooseFile  | 选择文件       | `(...args: unknown[]) => Promise<unknown>` |
+| choose      | 选择           | `(...args: unknown[]) => Promise<unknown>` |
+| uploadList  | 上传列表       | `() => unknown`                |
+| showLoading | 显示加载       | `(options?: unknown) => void`  |
+| hideLoading | 隐藏加载       | `(options?: unknown) => void`  |

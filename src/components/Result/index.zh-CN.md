@@ -33,10 +33,11 @@ toc: content
 
 | 属性        | 说明           | 类型                                                                           | 默认值 |
 | ----------- | -------------- | ------------------------------------------------------------------------------ | ------ |
-| status      | 状态           | `'empty' \| '500' \| 'success' \| 'waiting' \| 'info' \| 'warning' \| 'error'` | -      |
+| status      | 状态（必填）   | `'empty' \| '500' \| 'success' \| 'waiting' \| 'info' \| 'warning' \| 'error'` | -      |
 | title       | 标题           | `ReactNode`                                                                    | -      |
 | description | 描述           | `ReactNode`                                                                    | -      |
-| style       | 自定义样式     | `object`                                                                       | -      |
+| full        | 是否全屏       | `boolean`                                                                      | -      |
+| style       | 自定义样式     | `CSSProperties`                                                                | -      |
 | className   | 自定义类名     | `string`                                                                       | -      |
 | imageRender | 自定义图片渲染 | `() => ReactNode`                                                              | -      |
 | imageUrl    | 图片地址       | `string \| null`                                                               | -      |

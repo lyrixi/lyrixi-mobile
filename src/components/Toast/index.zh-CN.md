@@ -39,14 +39,14 @@ toc: content
 | ------------- | ---------------- | ------------------------------- | ------ |
 | duration      | 显示时长（毫秒） | `number`                        | -      |
 | maskClickable | 遮罩是否可点击   | `boolean`                       | -      |
-| position      | 显示位置         | `'top' \| 'middle' \| 'bottom'` | -      |
+| position      | 显示位置         | `string`                        | -      |
 | portal        | 挂载节点         | `HTMLElement`                   | -      |
 | id            | Toast ID         | `string`                        | -      |
 | maskClassName | 遮罩类名         | `string`                        | -      |
-| maskStyle     | 遮罩样式         | `object`                        | -      |
+| maskStyle     | 遮罩样式         | `CSSProperties`                 | -      |
 | className     | 内容类名         | `string`                        | -      |
-| style         | 内容样式         | `object`                        | -      |
-| content       | 提示内容         | `string \| ReactNode`           | -      |
+| style         | 内容样式         | `CSSProperties`                 | -      |
+| content       | 提示内容         | `string`                        | -      |
 | onOpen        | 打开事件         | `() => void`                    | -      |
 | onClose       | 关闭事件         | `() => void`                    | -      |
 
@@ -60,10 +60,18 @@ toc: content
 
 #### 参数
 
-| 参数 | 说明     | 类型     | 默认值 |
-| ---- | -------- | -------- | ------ |
-| id   | Toast ID | `string` | -      |
+| 参数    | 说明     | 类型         | 默认值 |
+| ------- | -------- | ------------ | ------ |
+| onClose | 关闭回调 | `() => void` | -      |
 
 #### 返回值
 
 无返回值。
+
+### Toast.defaultProps
+
+Toast 的静态默认属性。
+
+#### 类型
+
+`ToastShowProps`

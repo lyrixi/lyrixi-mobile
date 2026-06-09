@@ -25,15 +25,46 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 底部栏内容 | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 底部栏内容 | `ReactNode`     | -      |
 
 ### Ref
 
-| 属性       | 说明       | 类型                      |
-| ---------- | ---------- | ------------------------- |
-| element    | 根元素     | `HtmlFooterElement`       |
-| getElement | 获取根元素 | () => `HtmlFooterElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLElement \| null`         |
+| getElement | 获取根元素 | () => `HTMLElement \| null`   |
+
+## FooterBar.Button
+
+底部栏按钮组件。
+
+### 何时使用
+
+- 需要在底部栏中添加按钮时
+
+### 代码演示
+
+<code src="./demos/FooterBarButton.tsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型                              | 默认值 |
+| --------- | ---------- | --------------------------------- | ------ |
+| disabled  | 是否禁用   | `boolean`                         | -      |
+| style     | 自定义样式 | `CSSProperties`                   | -      |
+| className | 自定义类名 | `string`                          | -      |
+| children  | 按钮内容   | `ReactNode`                       | -      |
+| onClick   | 点击事件   | `MouseEventHandler<HTMLDivElement>` | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

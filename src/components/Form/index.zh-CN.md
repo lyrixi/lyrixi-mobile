@@ -28,9 +28,8 @@ toc: content
 | 属性             | 说明         | 类型                                     | 默认值         |
 | ---------------- | ------------ | ---------------------------------------- | -------------- |
 | layout           | 布局方式     | `'horizontal' \| 'vertical' \| 'inline'` | `'horizontal'` |
-| labelCol         | 标签列配置   | `object`                                 | -              |
-| mainCol          | 内容列配置   | `object`                                 | -              |
-| scrollerElement  | 滚动容器元素 | `HTMLElement`                            | -              |
+| labelSpan        | 标签栅格占位 | `number \| string`                      | -              |
+| mainSpan         | 内容栅格占位 | `number \| string`                      | -              |
 | virtual          | 是否虚拟滚动 | `boolean`                                | -              |
 | style            | 自定义样式   | `object`                                 | -              |
 | className        | 自定义类名   | `string`                                 | -              |

@@ -29,9 +29,9 @@ toc: content
 
 | 属性           | 说明         | 类型                                                                | 默认值 |
 | -------------- | ------------ | ------------------------------------------------------------------- | ------ |
-| value          | 选中的值     | `any \| any[]`                                                      | -      |
+| value          | 选中的值     | `CascaderItem[] \| null`                                                       | -      |
 | placeholder    | 占位符       | `string`                                                            | -      |
-| formatter      | 格式化函数   | `(value: any \| any[]) => string`                                   | -      |
+| formatter      | 格式化函数   | `(value: CascaderItem[] \| null, options?: { separator?: string }) => string`                                   | -      |
 | autoSize       | 自动调整大小 | `boolean`                                                           | -      |
 | separator      | 分隔符       | `string`                                                            | -      |
 | mode           | 模式         | `string`                                                            | -      |
@@ -40,11 +40,13 @@ toc: content
 | allowClear     | 允许清除     | `boolean`                                                           | -      |
 | style          | 自定义样式   | `object`                                                            | -      |
 | className      | 自定义类名   | `string`                                                            | -      |
-| leftIconNode   | 左侧图标     | `ReactNode`                                                         | -      |
-| rightIconNode  | 右侧图标     | `ReactNode`                                                         | -      |
+| leftIconRender | 左侧图标渲染 | `() => ReactNode`                   | -      |
+| leftIconSvg    | 左侧 SVG 图标 | `ComponentType<SVGProps<SVGSVGElement>>` | -      |
+| rightIconRender| 右侧图标渲染 | `() => ReactNode`                   | -      |
+| rightIconSvg   | 右侧 SVG 图标 | `ComponentType<SVGProps<SVGSVGElement>>` | -      |
 | clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`                                      | -      |
 | list           | 级联数据     | `Array<{id: string, name: string, children?: Array}>`               | -      |
-| loadData       | 加载数据函数 | `(tabs: Array) => Promise<Array \| null>`                           | -      |
+| loadData       | 加载数据函数 | `(tabs: CascaderItem[], ctx: { list: CascaderItem[] }) => Promise<LoadDataResult>`     | -      |
 | maskClosable   | 点击遮罩关闭 | `boolean`                                                           | -      |
 | safeArea       | 是否安全区   | `boolean`                                                           | -      |
 | modalStyle     | 模态框样式   | `object`                                                            | -      |
@@ -58,8 +60,9 @@ toc: content
 | okVisible      | 确认按钮可见 | `boolean`                                                           | -      |
 | cancelVisible  | 取消按钮可见 | `boolean`                                                           | -      |
 | searchVisible  | 搜索可见     | `boolean`                                                           | -      |
-| onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`                                            | -      |
-| onChange       | 变化事件     | `(value: any \| any[]) => void`                                     | -      |
+| onBeforeOpen   | 打开前事件   | `() => boolean \| Promise<boolean>`                                            | -      |
+| onChange       | 变化事件     | `(value: CascaderItem[]) => void`                                     | -      |
+| onSearch       | 搜索事件     | `(keyword: string, ctx: { list: CascaderItem[] }) => void`          | -      |
 
 #### Ref
 
@@ -166,7 +169,15 @@ toc: content
 
 #### 属性
 
-同 Cascader.Combo 组件属性。
+同 [Cascader.Combo](#cascadercombo) 组件属性，额外增加以下属性：
+
+| 属性               | 说明         | 类型                                      | 默认值 |
+| ------------------ | ------------ | ----------------------------------------- | ------ |
+| type               | 地区类型     | `string`                                  | -      |
+| loadCountries      | 加载国家     | `() => Promise<DistrictResultState>`      | -      |
+| loadCountryRegions | 加载省市区   | `(id?: string \| number) => Promise<DistrictResultState>` | - |
+| loadStreets        | 加载街道     | `(id, ctx?) => Promise<DistrictResultState>` | -   |
+| min                | 最小层级     | `string`                                  | -      |
 
 #### Ref
 

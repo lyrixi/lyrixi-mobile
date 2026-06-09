@@ -27,16 +27,16 @@ toc: content
 
 | 属性      | 说明       | 类型        | 默认值 |
 | --------- | ---------- | ----------- | ------ |
-| text      | 二维码内容 | `string`    | -      |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 子元素     | `ReactNode` | -      |
+| text      | 二维码内容 | `string`        | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 子元素     | `ReactNode`     | -      |
 
 ### Ref
 
-| 属性        | 说明           | 类型                    |
-| ----------- | -------------- | ----------------------- |
-| element     | 根元素         | `HtmlSpanElement`       |
-| instance    | 二维码实例     | `QRCodeInstance`        |
-| getElement  | 获取根元素     | () => `HtmlSpanElement` |
-| getInstance | 获取二维码实例 | () => `QRCodeInstance`  |
+| 属性        | 说明           | 类型                           |
+| ----------- | -------------- | ------------------------------ |
+| element     | 根元素         | `HTMLSpanElement \| null`      |
+| instance    | 二维码实例     | `QRCodeInstance`               |
+| getElement  | 获取根元素     | () => `HTMLSpanElement \| null` |
+| getInstance | 获取二维码实例 | () => `QRCodeInstance`         |

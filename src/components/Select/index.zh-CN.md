@@ -39,11 +39,13 @@ toc: content
 | disabled         | 是否禁用     | `boolean`                       | -      |
 | allowClear       | 允许清除     | `boolean`                       | -      |
 | multiple         | 是否多选     | `boolean`                       | -      |
-| style            | 自定义样式   | `object`                        | -      |
+| style            | 自定义样式   | `CSSProperties`                 | -      |
 | className        | 自定义类名   | `string`                        | -      |
-| leftIconNode     | 左侧图标     | `ReactNode`                     | -      |
-| rightIconNode    | 右侧图标     | `ReactNode`                     | -      |
-| clearRender      | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
+| leftIconRender   | 左侧图标渲染 | `() => ReactNode`               | -      |
+| leftIconSvg      | 左侧 SVG 图标 | `ComponentType<SVGProps<SVGSVGElement>>` | -      |
+| rightIconRender  | 右侧图标渲染 | `() => ReactNode`               | -      |
+| rightIconSvg     | 右侧 SVG 图标 | `ComponentType<SVGProps<SVGSVGElement>>` | -      |
+| clearRender      | 清除按钮渲染 | `(params: { clearable; allowClear; onClear; onTouchStart }) => ReactNode \| undefined` | -      |
 | list             | 选项列表     | `Array<object>`                 | -      |
 | formatViewList   | 格式化列表   | `(list: Array) => Array`        | -      |
 | formatViewItem   | 格式化项     | `(item: object) => object`      | -      |
@@ -57,15 +59,17 @@ toc: content
 | title            | 标题         | `ReactNode`                     | -      |
 | cancelNode       | 取消按钮     | `ReactNode`                     | -      |
 | cancelVisible    | 取消按钮可见 | `boolean`                       | -      |
-| headerRender     | 头部渲染     | `(props: object) => ReactNode`  | -      |
-| itemRender       | 项渲染       | `(item: object) => ReactNode`   | -      |
-| layout           | 布局         | `string`                        | -      |
+| headerRender     | 头部渲染     | `(ctx: { open: boolean; value?: InputSelectValue; list?: SelectItem[] }) => ReactNode` | -      |
+| itemRender       | 项渲染       | `(item: SelectItem, options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }) => ReactNode` | -      |
+| itemLayout       | 项布局       | `string`                        | -      |
+| itemStyle        | 项自定义样式 | `CSSProperties`                 | -      |
+| itemClassName    | 项自定义类名 | `string`                        | -      |
 | checkable        | 是否可选     | `boolean`                       | -      |
-| checkboxVariant  | 复选框渲染   | `(item: object) => ReactNode`   | -      |
-| checkboxPosition | 复选框渲染   | `left/right`                    | -      |
-| onOk             | 确认事件     | `(value: any \| any[]) => void` | -      |
-| onChange         | 变化事件     | `(value: any \| any[]) => void` | -      |
-| onBeforeOpen     | 打开前事件   | `() => Promise<boolean>`        | -      |
+| checkboxVariant  | 复选框外观   | `string`                        | -      |
+| checkboxPosition | 复选框位置   | `string`                        | -      |
+| onOk             | 确认事件     | `(value: SelectItem \| SelectItem[] \| null) => unknown` | -      |
+| onChange         | 变化事件     | `(value: InputSelectValue, meta?: unknown) => void` | -      |
+| onBeforeOpen     | 打开前事件   | `() => boolean \| void \| Promise<boolean \| void>` | -      |
 
 #### Ref
 

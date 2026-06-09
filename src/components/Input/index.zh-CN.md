@@ -36,19 +36,22 @@ toc: content
 | type          | 输入类型     | `'text' \| 'number' \| 'tel' \| 'password' \| 'search' \| 'textarea' \| 'autoSize'` | `'text'` |
 | value         | 输入值       | `string`                                                                            | `''`     |
 | placeholder   | 占位符       | `string`                                                                            | -        |
-| formatter     | 格式化函数   | `(value: any) => string`                                                            | -        |
+| formatter     | 格式化函数   | `(value: string) => ReactNode`                                                            | -        |
 | readOnly      | 是否只读     | `boolean`                                                                           | -        |
 | disabled      | 是否禁用     | `boolean`                                                                           | -        |
 | allowClear    | 允许清除     | `boolean`                                                                           | -        |
 | autoFocus     | 自动获取焦点 | `boolean`                                                                           | -        |
 | autoSelect    | 自动选中     | `boolean`                                                                           | -        |
 | enableCompositionEnd | 仅输入法落字后触发 onChange | `boolean` | `false` |
-| style         | 自定义样式   | `object`                                                                            | -        |
+| style         | 自定义样式   | `CSSProperties`                                                                            | -        |
 | className     | 自定义类名   | `string`                                                                            | -        |
-| inputRender   | 自定义输入框 | `(props: object) => ReactNode`                                                      | -        |
-| leftIconNode  | 左侧图标     | `ReactNode`                                                                         | -        |
-| rightIconNode | 右侧图标     | `ReactNode \| (props: {value: any}) => ReactNode`                                   | -        |
-| clearRender   | 清除按钮     | `(props: object) => ReactNode`                                                      | -        |
+| size          | 输入框尺寸   | `InputSize`                                                                         | `'xs'`   |
+| inputRender   | 自定义输入框 | `(params: Record<string, unknown>) => ReactNode`                                                      | -        |
+| leftIconRender| 左侧图标渲染 | `() => ReactNode`                                                                         | -        |
+| leftIconSvg   | 左侧 SVG 图标 | `ComponentType<SVGProps<SVGSVGElement>>`                                               | -        |
+| rightIconRender| 右侧图标渲染 | `() => ReactNode`                                                                         | -        |
+| rightIconSvg  | 右侧 SVG 图标 | `ComponentType<SVGProps<SVGSVGElement>>`                                               | -        |
+| clearRender   | 清除按钮     | `(params: { clearable; allowClear; onClear; onTouchStart }) => ReactNode \| undefined`                                                      | -        |
 | precision     | 小数精度     | `number`                                                                            | -        |
 | trim          | 是否去除空格 | `boolean`                                                                           | -        |
 | max           | 最大值       | `number`                                                                            | -        |
@@ -60,24 +63,24 @@ toc: content
 | autoCorrect   | 自动纠正     | `string`                                                                            | -        |
 | spellCheck    | 拼写检查     | `boolean \| 'true' \| 'false'`                                                      | -        |
 | cursor        | 是否显示光标 | `boolean \| null`                                                                   | -        |
-| onClick       | 点击事件     | `(e: Event) => void`                                                                | -        |
-| onChange      | 值变化事件   | `(value: any, e: Event) => void`                                                    | -        |
-| onBlur        | 失焦事件     | `(e: Event) => void`                                                                | -        |
-| onFocus       | 聚焦事件     | `(e: Event) => void`                                                                | -        |
-| onKeyDown     | 按键事件     | `(e: Event) => void`                                                                | -        |
-| onPressEnter  | 回车事件     | `(e: Event) => void`                                                                | -        |
-| onCompositionStart | 输入法开始 | `(e: Event) => void`                                                                | -        |
-| onCompositionUpdate | 输入法更新 | `(e: Event) => void`                                                                | -        |
-| onCompositionEnd | 输入法结束 | `(e: Event) => void`                                                                | -        |
+| onClick       | 点击事件     | `MouseEventHandler<HTMLDivElement>`                                                                | -        |
+| onChange      | 值变化事件   | `(value: string, meta?: { action: string }) => void`                                                    | -        |
+| onBlur        | 失焦事件     | `FocusEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
+| onFocus       | 聚焦事件     | `FocusEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
+| onKeyDown     | 按键事件     | `KeyboardEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
+| onPressEnter  | 回车事件     | `KeyboardEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
+| onCompositionStart | 输入法开始 | `CompositionEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
+| onCompositionUpdate | 输入法更新 | `CompositionEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
+| onCompositionEnd | 输入法结束 | `CompositionEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
 
 #### Ref
 
-| 属性            | 说明           | 类型                     |
-| --------------- | -------------- | ------------------------ |
-| element         | 根元素         | `HTMLDivElement`         |
-| inputElement    | 输入框元素     | `HTMLInputElement`       |
-| getElement      | 获取根元素     | () => `HTMLDivElement`   |
-| getInputElement | 获取输入框元素 | () => `HTMLInputElement` |
+| 属性            | 说明           | 类型                              |
+| --------------- | -------------- | --------------------------------- |
+| element         | 根元素         | `HTMLDivElement \| null`          |
+| inputElement    | 输入框元素     | `HTMLInputElement \| null`        |
+| getElement      | 获取根元素     | `() => HTMLDivElement \| null`    |
+| getInputElement | 获取输入框元素 | `() => HTMLInputElement \| null`  |
 | correctValue    | 矫正值         | `(value: any) => string` |
 | focus           | 获取焦点       | `() => void`             |
 | blur            | 失去焦点       | `() => void`             |

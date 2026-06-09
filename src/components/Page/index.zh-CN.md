@@ -25,22 +25,22 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| safeArea  | 是否安全区 | `boolean`   | -      |
-| full      | 是否全屏   | `boolean`   | `true` |
-| layout    | 布局方式   | `string`    | -      |
-| animation | 动画效果   | `string`    | -      |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 页面内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| safeArea  | 是否安全区 | `boolean`       | -      |
+| full      | 是否全屏   | `boolean`       | `true` |
+| layout    | 布局方式   | `PageLayout`    | -      |
+| animation | 动画效果   | `string`        | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 页面内容   | `ReactNode`     | -      |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLElement \| null`         |
+| getElement | 获取根元素 | () => `HTMLElement \| null`   |
 
 ## Page.Header
 
@@ -60,17 +60,17 @@ toc: content
 
 | 属性      | 说明       | 类型        | 默认值 |
 | --------- | ---------- | ----------- | ------ |
-| safeArea  | 是否安全区 | `boolean`   | -      |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 头部内容   | `ReactNode` | -      |
+| safeArea  | 是否安全区 | `boolean`       | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 头部内容   | `ReactNode`     | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLElement \| null`         |
+| getElement | 获取根元素 | () => `HTMLElement \| null`   |
 
 ## Page.Main
 
@@ -88,25 +88,25 @@ toc: content
 
 #### 属性
 
-| 属性                 | 说明         | 类型                                                         | 默认值 |
-| -------------------- | ------------ | ------------------------------------------------------------ | ------ |
-| threshold            | 触发阈值     | `number`                                                     | -      |
-| touchStopPropagation | 触摸阻止冒泡 | `boolean`                                                    | -      |
-| safeArea             | 是否安全区   | `boolean`                                                    | -      |
-| style                | 自定义样式   | `object`                                                     | -      |
-| className            | 自定义类名   | `string`                                                     | -      |
-| children             | 主体内容     | `ReactNode`                                                  | -      |
-| onTopRefresh         | 顶部刷新     | `() => void \| Promise<boolean \| string \| undefined>`      | -      |
+| 属性                 | 说明         | 类型                                                          | 默认值 |
+| -------------------- | ------------ | ------------------------------------------------------------- | ------ |
+| threshold            | 触发阈值     | `number`                                                      | -      |
+| touchStopPropagation | 触摸阻止冒泡 | `boolean`                                                     | -      |
+| safeArea             | 是否安全区   | `boolean`                                                     | -      |
+| style                | 自定义样式   | `CSSProperties`                                               | -      |
+| className            | 自定义类名   | `string`                                                      | -      |
+| children             | 主体内容     | `ReactNode`                                                   | -      |
+| onTopRefresh         | 顶部刷新     | `() => undefined \| Promise<boolean \| string \| undefined>`  | -      |
 | onBottomRefresh      | 底部刷新     | `() => void \| Promise<boolean \| string \| undefined \| void>` | -   |
-| onScroll             | 滚动事件     | `(e: UIEvent) => void`                                       | -      |
-| onScrollEnd          | 滚动结束     | `(e: UIEvent) => void`                                       | -      |
+| onScroll             | 滚动事件     | `(e: UIEvent<HTMLElement>) => void`                           | -      |
+| onScrollEnd          | 滚动结束     | `(e: UIEvent<HTMLElement>) => void`                           | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLElement \| null`         |
+| getElement | 获取根元素 | () => `HTMLElement \| null`   |
 
 ## Page.Footer
 
@@ -128,14 +128,45 @@ toc: content
 | --------- | ---------- | ------------------------- | ------ |
 | buttons   | 按钮配置   | `unknown`                 | -      |
 | safeArea  | 是否安全区 | `boolean`                 | -      |
-| style     | 自定义样式 | `object`                  | -      |
+| style     | 自定义样式 | `CSSProperties`           | -      |
 | className | 自定义类名 | `string`                  | -      |
 | children  | 底部内容   | `ReactNode`               | -      |
 | onChange  | 变化事件   | `(newValue: unknown) => void` | -  |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLElement \| null`         |
+| getElement | 获取根元素 | () => `HTMLElement \| null`   |
+
+## Page.Aside
+
+页面侧栏组件。
+
+### 何时使用
+
+- 需要在页面侧边显示内容时
+
+### 代码演示
+
+<code src="./demos/PageAside.tsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| side      | 侧边       | `'left' \| 'right'` | `'left'` |
+| width     | 宽度       | `string \| number` | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 侧栏内容   | `ReactNode`     | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLElement \| null`         |
+| getElement | 获取根元素 | () => `HTMLElement \| null`   |

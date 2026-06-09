@@ -34,24 +34,24 @@ toc: content
 | safeArea       | 是否安全区   | `boolean`                                  | `true` |
 | portal         | 挂载节点     | `HTMLElement`                              | -      |
 | value          | 当前值       | `string`                                   | `''`   |
-| onChange       | 变化事件     | `(value: string, options: object) => void` | -      |
-| dot            | 小数点按钮   | `ReactNode`                                | -      |
-| minus          | 负号按钮     | `ReactNode`                                | -      |
+| onChange       | 变化事件     | `(value: string, options: { action: KeyboardAction }) => void` | -      |
+| dot            | 小数点按钮   | `boolean`                                  | -      |
+| minus          | 负号按钮     | `boolean`                                  | -      |
 | okNode         | 确认按钮     | `ReactNode`                                | -      |
 | okVisible      | 确认按钮可见 | `boolean`                                  | -      |
 | cancelNode     | 取消按钮     | `ReactNode`                                | -      |
 | cancelVisible  | 取消按钮可见 | `boolean`                                  | -      |
-| modalStyle     | 模态框样式   | `object`                                   | -      |
+| modalStyle     | 模态框样式   | `CSSProperties`                           | -      |
 | modalClassName | 模态框类名   | `string`                                   | -      |
 | open           | 是否显示     | `boolean`                                  | -      |
 | onOpen         | 打开事件     | `() => void`                               | -      |
 | onClose        | 关闭事件     | `() => void`                               | -      |
-| onOk           | 确认事件     | `(value: string) => void`                  | -      |
+| onOk           | 确认事件     | `(value: string) => Promise<boolean \| undefined> \| boolean \| undefined`                  | -      |
 | onCancel       | 取消事件     | `() => void`                               | -      |
 
 #### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| element    | 根元素     | `HTMLElement \| null`       |
+| getElement | 获取根元素 | `() => HTMLElement \| null` |

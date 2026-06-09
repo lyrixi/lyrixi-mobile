@@ -24,21 +24,45 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 行内容     | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 行内容     | `ReactNode`     | -      |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
-# Row.Col
+## Row.Col
 
-## 代码演示
+行列组件。
+
+### 何时使用
+
+- 需要在行中创建列时
+
+### 代码演示
 
 <code src="./demos/RowCol.tsx"></code>
+
+### API
+
+#### 属性
+
+| 属性      | 说明       | 类型                        | 默认值 |
+| --------- | ---------- | --------------------------- | ------ |
+| span      | 列占据格数 | `number`                    | -      |
+| style     | 自定义样式 | `CSSProperties`             | -      |
+| className | 自定义类名 | `string`                    | -      |
+| children  | 列内容     | `ReactNode`                 | -      |
+
+#### Ref
+
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

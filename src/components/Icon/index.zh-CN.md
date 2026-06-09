@@ -1,4 +1,3 @@
-import { Icon, Icons } from 'lyrixi-mobile'
 ---
 group:
   title: 通用
@@ -26,16 +25,18 @@ toc: content
 
 ### 属性
 
-| svg | SVG 图标（SVGR 组件） | `IconSVGElement` | - |
+| 属性 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| svg | SVG 图标（SVGR 组件） | `ComponentType<SVGProps<SVGSVGElement>>` | - |
 | disabled | 是否禁用 | `boolean` | - |
-| color | 颜色；SVG 需 currentColor | 主题 token 或自定义 | - |
-| backgroundColor | 背景颜色 | 主题 token 或自定义 | - |
-| size | 尺寸；SVG 模式为容器宽高 | `'xxs' \| 'xs' \| ...` | `'m'` |
-| radius | 圆角 | 尺寸 token | - |
+| color | 颜色；SVG 需 currentColor | `string` | - |
+| backgroundColor | 背景颜色 | `string` | - |
+| size | 尺寸；SVG 模式为容器宽高 | `IconSize \| string \| number` | `'m'` |
+| radius | 圆角 | `string` | - |
 | style | 自定义样式 | `CSSProperties` | - |
 | className | 附加类名（不用于选字形） | `string` | - |
-| onClick | 点击 | `MouseEventHandler` | - |
-| onTouchStart | 触摸开始 | `TouchEventHandler` | - |
+| onClick | 点击 | `MouseEventHandler<HTMLElement>` | - |
+| onTouchStart | 触摸开始 | `TouchEventHandler<HTMLElement>` | - |
 
 > `svg` 为必填。详见 [ICON-SVG-MIGRATION.zh-CN.md](./ICON-SVG-MIGRATION.zh-CN.md)。
 

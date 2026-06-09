@@ -25,25 +25,25 @@ toc: content
 
 ### 属性
 
-| 属性       | 说明       | 类型                                                    | 默认值 |
-| ---------- | ---------- | ------------------------------------------------------- | ------ |
-| value      | 选中的值   | `any[]`                                                 | -      |
-| list       | 选项列表   | `Array<{id: string, name: string, [key: string]: any}>` | -      |
-| ellipsis   | 省略配置   | `object`                                                | -      |
-| disabled   | 是否禁用   | `boolean`                                               | -      |
-| multiple   | 是否多选   | `boolean`                                               | -      |
-| allowClear | 允许清除   | `boolean`                                               | -      |
-| style      | 自定义样式 | `object`                                                | -      |
-| className  | 自定义类名 | `string`                                                | -      |
-| columns    | 列数       | `number`                                                | `2`    |
-| id         | 选择组 ID  | `string`                                                | -      |
-| onChange   | 变化事件   | `(value: any[]) => void`                                | -      |
+| 属性       | 说明       | 类型                                              | 默认值 |
+| ---------- | ---------- | ------------------------------------------------- | ------ |
+| value      | 选中的值   | `SelectorItem[]`                                  | -      |
+| list       | 选项列表   | `SelectorItem[]`                                  | -      |
+| ellipsis   | 省略配置   | `SelectorEllipsis`                                | -      |
+| disabled   | 是否禁用   | `boolean`                                         | -      |
+| multiple   | 是否多选   | `boolean`                                         | -      |
+| allowClear | 允许清除   | `boolean`                                         | -      |
+| style      | 自定义样式 | `CSSProperties`                                   | -      |
+| className  | 自定义类名 | `string`                                          | -      |
+| columns    | 列数       | `number`                                          | `2`    |
+| id         | 选择组 ID  | `string`                                          | -      |
+| onChange   | 变化事件   | `(value: SelectorItem[]) => void \| Promise<void>` | -      |
 
 ### Ref
 
-| 属性        | 说明         | 类型                   |
-| ----------- | ------------ | ---------------------- |
-| element     | 根元素       | `HTMLDivElement`       |
-| instance    | 实例对象     | `object`               |
-| getElement  | 获取根元素   | () => `HTMLDivElement` |
-| getInstance | 获取实例对象 | () => `object`         |
+| 属性        | 说明         | 类型                                                                      |
+| ----------- | ------------ | ------------------------------------------------------------------------- |
+| element     | 根元素       | `HTMLDivElement \| null`                                                  |
+| instance    | 实例对象     | `{ equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }`           |
+| getElement  | 获取根元素   | () => `HTMLDivElement \| null`                                            |
+| getInstance | 获取实例对象 | () => `{ equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }`    |

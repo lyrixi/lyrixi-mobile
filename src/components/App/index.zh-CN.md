@@ -22,16 +22,12 @@ toc: content
 
 ### 属性
 
-| 属性          | 说明       | 类型                                                           | 默认值 |
-| ------------- | ---------- | -------------------------------------------------------------- | ------ |
-| enableLogger  | 启用日志   | `boolean`                                                      | `true` |
-| bridgeConfig  | 桥接配置   | `object`                                                       | `null` |
-| backdoor      | 后门元素   | `HTMLElement`                                                  | `null` |
-| preload       | 预加载函数 | `() => Promise<boolean \| string>`                             | `null` |
-| loadingRender | 加载中渲染 | `() => ReactNode`                                              | -      |
-| map           | 地图配置   | `{onSuccess: function, onError: function, [key: string]: any}` | `{}`   |
-| children      | 应用内容   | `ReactNode`                                                    | -      |
-
-### Ref
-
-无 Ref 方法。
+| 属性          | 说明           | 类型                                                                               | 默认值 |
+| ------------- | -------------- | ---------------------------------------------------------------------------------- | ------ |
+| bridgeConfig  | 桥接配置       | `AppInitBridgeConfig \| null`                                                       | `null` |
+| debugElement  | 调试触发元素   | `HTMLElement \| null`                                                               | `null` |
+| preload       | 预加载函数     | `(() => Promise<{ status: string; message?: string }>) \| null`                    | `null` |
+| mapConfig     | 地图配置       | `{ type: 'bmap' \| 'amap' \| 'google'; key: string } \| null`                       | `null` |
+| language      | 语言配置       | `string \| null`                                                                    | `null` |
+| themeConfig   | 主题配置       | `{ fontSize: 'm' \| 'l' \| 'xl' } \| null`                                         | `null` |
+| children      | 应用内容       | `ReactNode`                                                                         | -      |

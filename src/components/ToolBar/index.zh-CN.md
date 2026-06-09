@@ -31,17 +31,17 @@ toc: content
 
 | 属性      | 说明       | 类型                    | 默认值      |
 | --------- | ---------- | ----------------------- | ----------- |
-| variant   | 变体       | `'filled' \| 'default'` | `'default'` |
-| style     | 自定义样式 | `object`                | -           |
+| variant   | 变体       | `string`                | `'default'` |
+| style     | 自定义样式 | `CSSProperties`         | -           |
 | className | 自定义类名 | `string`                | -           |
 | children  | 工具栏内容 | `ReactNode`             | -           |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                         |
+| ---------- | ---------- | ---------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`     |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null`
 
 ## ToolBar.Button
 
@@ -79,44 +79,48 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明             | 类型                                                                                                 | 默认值      |
-| --------------- | ---------------- | ---------------------------------------------------------------------------------------------------- | ----------- |
-| direction       | 方向             | `'horizontal' \| 'vertical'`                                                                         | -           |
-| block           | 是否为块级元素   | `boolean`                                                                                            | -           |
-| color           | 颜色             | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | `'default'` |
-| backgroundColor | 背景颜色         | `'default' \| 'transparent' \| 'white' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'` | -           |
-| borderColor     | 边框颜色         | `'default' \| 'transparent' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`            | `'default'` |
-| border          | 边框样式         | `'none' \| 'dotted' \| 'dashed' \| 'solid'`                                                          | `'none'`    |
-| size            | 高度尺寸         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| [number, number]`                                     | -           |
-| sizeEqual       | 是否为等宽高     | `boolean`                                                                                            | -           |
-| radius          | 圆角             | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | `'m'`       |
-| fontSize        | 字体大小         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'`                                                         | -           |
-| style           | 自定义样式       | `object`                                                                                             | -           |
-| className       | 自定义类名       | `string`                                                                                             | -           |
-| children        | 下拉内容         | `ReactNode`                                                                                          | -           |
-| comboRender     | 自定义组合渲染   | `() => ReactNode`                                                                                    | -           |
-| arrowRender     | 自定义箭头渲染   | `() => ReactNode`                                                                                    | -           |
-| modalStyle      | 模态框样式       | `object`                                                                                             | -           |
-| modalClassName  | 模态框类名       | `string`                                                                                             | -           |
-| maskStyle       | 遮罩样式         | `object`                                                                                             | -           |
-| maskClassName   | 遮罩类名         | `string`                                                                                             | -           |
-| offset          | 偏移量           | `{ top?: number; bottom?: number; left?: number; right?: number }`                                   | -           |
-| left            | 左侧偏移         | `string \| number`                                                                                   | -           |
-| right           | 右侧偏移         | `string \| number`                                                                                   | -           |
-| portal          | 挂载节点         | `HTMLElement`                                                                                        | -           |
-| modalRender     | 自定义模态框渲染 | `(ctx: { open: boolean \| null; onClose: () => void }) => ReactNode`                                 | -           |
-| onBeforeOpen    | 打开前事件       | `() => boolean \| void \| Promise<boolean \| void>`                                                  | -           |
-| onOpen          | 打开事件         | `() => void`                                                                                         | -           |
-| onClose         | 关闭事件         | `() => void`                                                                                         | -           |
+| 属性            | 说明             | 类型                                                                                                           | 默认值      |
+| --------------- | ---------------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| direction       | 方向             | `string`                                                                                                       | -           |
+| variant         | 变体             | `ButtonProps['variant']`                                                                                       | -           |
+| block           | 是否为块级元素   | `boolean`                                                                                                      | -           |
+| color           | 颜色             | `ButtonProps['color']`                                                                                         | `'default'` |
+| backgroundColor | 背景颜色         | `string`                                                                                                       | -           |
+| borderColor     | 边框颜色         | `string`                                                                                                       | -           |
+| border          | 边框样式         | `string`                                                                                                       | `'none'`    |
+| size            | 高度尺寸         | `string \| number \| readonly string[]`                                                                        | -           |
+| sizeEqual       | 是否为等宽高     | `boolean`                                                                                                      | -           |
+| fontSize        | 字体大小         | `string \| number`                                                                                             | -           |
+| radius          | 圆角             | `string \| number`                                                                                             | `'m'`       |
+| style           | 自定义样式       | `CSSProperties`                                                                                                | -           |
+| className       | 自定义类名       | `string`                                                                                                       | -           |
+| open            | 是否展开         | `boolean \| null`                                                                                              | -           |
+| children        | 下拉内容         | `ReactNode`                                                                                                    | -           |
+| comboRender     | 自定义组合渲染   | `(params: { comboRef: RefObject<ToolBarComboRef \| null>; open: boolean \| null; onClick: (e: MouseEvent) => void \| Promise<void> }) => ReactNode` | -           |
+| arrowRender     | 自定义箭头渲染   | `(props: { open: boolean \| null }) => ReactNode`                                                              | -           |
+| arrowSvg        | 自定义箭头 SVG   | `ComponentType<SVGProps<SVGSVGElement>> \| null`                                                               | -           |
+| modalStyle      | 模态框样式       | `CSSProperties`                                                                                                | -           |
+| modalClassName  | 模态框类名       | `string`                                                                                                       | -           |
+| maskStyle       | 遮罩样式         | `CSSProperties`                                                                                                | -           |
+| maskClassName   | 遮罩类名         | `string`                                                                                                       | -           |
+| offset          | 偏移量           | `{ top?: number; bottom?: number; left?: number; right?: number }`                                             | -           |
+| left            | 左侧偏移         | `string \| number`                                                                                             | -           |
+| right           | 右侧偏移         | `string \| number`                                                                                             | -           |
+| portal          | 挂载节点         | `HTMLElement`                                                                                                  | -           |
+| modalRender     | 自定义模态框渲染 | `(ctx: { open: boolean \| null; onClose: () => void }) => ReactNode`                                           | -           |
+| onClick         | 点击事件         | `MouseEventHandler<HTMLDivElement>`                                                                             | -           |
+| onBeforeOpen    | 打开前事件       | `() => boolean \| void \| Promise<boolean \| void>`                                                            | -           |
+| onOpen          | 打开事件         | `() => void`                                                                                                   | -           |
+| onClose         | 关闭事件         | `() => void`                                                                                                   | -           |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-| close      | 关闭下拉   | `() => void`           |
-| open       | 打开下拉   | `() => void`           |
+| 属性       | 说明       | 类型                         |
+| ---------- | ---------- | ---------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`     |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
+| close      | 关闭下拉   | `() => void`                 |
+| open       | 打开下拉   | `() => void`                 |
 
 ## ToolBar.Search
 
@@ -184,44 +188,45 @@ toc: content
 
 | 属性           | 说明         | 类型                                                                         | 默认值 |
 | -------------- | ------------ | ---------------------------------------------------------------------------- | ------ |
-| value          | 日期范围值   | `[Date, Date]`                                                               | -      |
-| placeholder    | 占位符       | `string`                                                                     | -      |
-| formatter      | 格式化函数   | `(value: [Date, Date]) => string`                                            | -      |
-| readOnly       | 是否只读     | `boolean`                                                                    | -      |
-| disabled       | 是否禁用     | `boolean`                                                                    | -      |
-| allowClear     | 允许清除     | `boolean`                                                                    | -      |
-| style          | 自定义样式   | `object`                                                                     | -      |
-| className      | 自定义类名   | `string`                                                                     | -      |
-| leftIconNode   | 左侧图标     | `ReactNode`                                                                  | -      |
-| rightIconNode  | 右侧图标     | `ReactNode`                                                                  | -      |
-| clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`                                               | -      |
-| type           | 日期类型     | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime' \| 'week'` | -      |
-| min            | 最小日期     | `Date`                                                                       | -      |
-| max            | 最大日期     | `Date`                                                                       | -      |
-| maskClosable   | 点击遮罩关闭 | `boolean`                                                                    | -      |
-| safeArea       | 是否安全区   | `boolean`                                                                    | -      |
-| modalStyle     | 模态框样式   | `object`                                                                     | -      |
-| modalClassName | 模态框类名   | `string`                                                                     | -      |
-| maskStyle      | 遮罩样式     | `object`                                                                     | -      |
-| maskClassName  | 遮罩类名     | `string`                                                                     | -      |
-| portal         | 挂载节点     | `HTMLElement \| null \| false`                                               | -      |
-| titleRender    | 标题渲染     | `() => ReactNode`                                                            | -      |
-| okNode         | 确认按钮     | `ReactNode`                                                                  | -      |
-| cancelNode     | 取消按钮     | `ReactNode`                                                                  | -      |
-| okVisible      | 确认按钮可见 | `boolean`                                                                    | -      |
-| cancelVisible  | 取消按钮可见 | `boolean`                                                                    | -      |
-| onBeforeOpen   | 打开前事件   | `() => Promise<boolean>`                                                     | -      |
-| onChange       | 变化事件     | `(value: [Date, Date]) => void`                                              | -      |
-| onOk           | 确认事件     | `(value: [Date, Date]) => void`                                              | -      |
+| value          | 日期范围值   | `(Date \| null)[] \| null`                                                                   | -      |
+| rangeId        | 范围 ID       | `string \| null`                                                                             | -      |
+| placeholder    | 占位符       | `string`                                                                                     | -      |
+| readOnly       | 是否只读     | `boolean`                                                                                    | -      |
+| disabled       | 是否禁用     | `boolean`                                                                                    | -      |
+| allowClear     | 允许清除     | `boolean`                                                                                    | -      |
+| style          | 自定义样式   | `CSSProperties`                                                                              | -      |
+| className      | 自定义类名   | `string`                                                                                     | -      |
+| leftIconNode   | 左侧图标     | `ReactNode`                                                                                  | -      |
+| rightIconNode  | 右侧图标     | `ReactNode`                                                                                  | -      |
+| clearRender    | 清除按钮渲染 | `(props: object) => ReactNode`                                                               | -      |
+| type           | 日期类型     | `string`                                                                                     | -      |
+| min            | 最小日期     | `Date \| null`                                                                               | -      |
+| max            | 最大日期     | `Date \| null`                                                                               | -      |
+| ranges         | 日期范围预设   | `DatePickerRangesMap`                                                                      | -      |
+| maskClosable   | 点击遮罩关闭 | `boolean`                                                                                    | -      |
+| safeArea       | 是否安全区   | `boolean`                                                                                    | -      |
+| modalStyle     | 模态框样式   | `CSSProperties`                                                                              | -      |
+| modalClassName | 模态框类名   | `string`                                                                                     | -      |
+| maskStyle      | 遮罩样式     | `CSSProperties`                                                                              | -      |
+| maskClassName  | 遮罩类名     | `string`                                                                                     | -      |
+| portal         | 挂载节点     | `HTMLElement \| null \| false`                                                               | -      |
+| titleRender    | 标题渲染     | `() => ReactNode`                                                                            | -      |
+| okNode         | 确认按钮     | `ReactNode`                                                                                  | -      |
+| cancelNode     | 取消按钮     | `ReactNode`                                                                                  | -      |
+| okVisible      | 确认按钮可见 | `boolean`                                                                                    | -      |
+| cancelVisible  | 取消按钮可见 | `boolean`                                                                                    | -      |
+| onBeforeOpen   | 打开前事件   | `() => boolean \| void \| Promise<boolean \| void>`                                          | -      |
+| onChange       | 变化事件     | `(value: (Date \| null)[] \| null, meta: { rangeId: string \| null \| undefined }) => void`  | -      |
+| onOk           | 确认事件     | `(value: (Date \| null)[] \| null \| undefined, meta: { rangeId: string \| null \| undefined }) => void \| boolean \| (Date \| null)[] \| Promise<void \| boolean \| (Date \| null)[]>` | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-| close      | 关闭选择器 | `() => void`           |
-| open       | 打开选择器 | `() => void`           |
+| 属性       | 说明       | 类型                         |
+| ---------- | ---------- | ---------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`     |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
+| close      | 关闭选择器 | `() => void`                 |
+| open       | 打开选择器 | `() => void`                 |
 
 ## ToolBar.List
 
@@ -269,6 +274,7 @@ toc: content
 | 属性            | 说明         | 类型                                      | 默认值      |
 | --------------- | ------------ | ----------------------------------------- | ----------- |
 | direction       | 方向         | `string`                                  | -           |
+| variant         | 变体         | `ButtonProps['variant']`                  | -           |
 | block           | 块级         | `boolean`                                 | -           |
 | color           | 颜色         | `string`                                  | `'default'` |
 | backgroundColor | 背景颜色     | `string`                                  | -           |
@@ -304,40 +310,41 @@ toc: content
 
 | 属性            | 说明           | 类型                                                                                                      | 默认值 |
 | --------------- | -------------- | --------------------------------------------------------------------------------------------------------- | ------ |
-| direction       | 方向           | `ButtonProps['direction']`                                                                                | -      |
-| block           | 块级           | `boolean`                                                                                                 | -      |
-| style           | 自定义样式     | `object`                                                                                                  | -      |
-| className       | 自定义类名     | `string`                                                                                                  | -      |
-| color           | 颜色           | `string`                                                                                                  | -      |
-| backgroundColor | 背景颜色       | `string`                                                                                                  | -      |
-| borderColor     | 边框颜色       | `string`                                                                                                  | -      |
-| border          | 边框样式       | `string`                                                                                                  | -      |
-| size            | 尺寸           | `ButtonProps['size']`                                                                                     | -      |
-| sizeEqual       | 等宽高         | `boolean`                                                                                                 | -      |
-| fontSize        | 字体大小       | `string \| number`                                                                                        | -      |
-| radius          | 圆角           | `string \| number`                                                                                        | -      |
-| maskStyle       | 遮罩样式       | `object`                                                                                                  | -      |
-| maskClassName   | 遮罩类名       | `string`                                                                                                  | -      |
-| modalStyle      | 模态框样式     | `object`                                                                                                  | -      |
-| modalClassName  | 模态框类名     | `string`                                                                                                  | -      |
-| children        | 筛选内容       | `ReactNode`                                                                                               | -      |
-| comboRender     | 组合区渲染     | `(params: { comboRef; open; onClick }) => ReactNode`                                                      | -      |
-| modalRender     | 模态内容渲染   | `(params: { open; onClose }) => ReactNode`                                                                | -      |
-| portal          | 挂载节点       | `ModalProps['portal']`                                                                                    | -      |
-| footerRender    | 底部渲染       | `(params: { onClose }) => ReactNode`                                                                      | -      |
-| icon            | 图标           | `ReactNode`                                                                                               | -      |
-| onCancel        | 取消事件       | `() => void`                                                                                              | -      |
-| onOpen          | 打开事件       | `() => void`                                                                                              | -      |
-| onClose         | 关闭事件       | `() => void`                                                                                              | -      |
-| onConfig        | 配置事件       | `() => void`                                                                                              | -      |
-| onReset         | 重置事件       | `() => void`                                                                                              | -      |
-| onOk            | 确认事件       | `(ctx: { close: () => void }) => void`                                                                    | -      |
+| direction       | 方向           | `ButtonProps['direction']`                                                                                  | -      |
+| variant         | 变体           | `ButtonProps['variant']`                                                                                    | -      |
+| block           | 块级           | `boolean`                                                                                                   | -      |
+| style           | 自定义样式     | `CSSProperties`                                                                                             | -      |
+| className       | 自定义类名     | `string`                                                                                                    | -      |
+| color           | 颜色           | `ButtonProps['color']`                                                                                      | -      |
+| backgroundColor | 背景颜色       | `string`                                                                                                    | -      |
+| borderColor     | 边框颜色       | `string`                                                                                                    | -      |
+| border          | 边框样式       | `string`                                                                                                    | -      |
+| size            | 尺寸           | `ButtonProps['size']`                                                                                       | -      |
+| sizeEqual       | 等宽高         | `boolean`                                                                                                   | -      |
+| fontSize        | 字体大小       | `string \| number`                                                                                          | -      |
+| radius          | 圆角           | `string \| number`                                                                                          | -      |
+| maskStyle       | 遮罩样式       | `CSSProperties`                                                                                             | -      |
+| maskClassName   | 遮罩类名       | `string`                                                                                                    | -      |
+| modalStyle      | 模态框样式     | `CSSProperties`                                                                                             | -      |
+| modalClassName  | 模态框类名     | `string`                                                                                                    | -      |
+| children        | 筛选内容       | `ReactNode`                                                                                                 | -      |
+| comboRender     | 组合区渲染     | `(params: { comboRef: RefObject<ButtonRef \| null>; open: boolean \| null; onClick: (e: MouseEvent<HTMLDivElement>) => void }) => ReactNode` | -      |
+| modalRender     | 模态内容渲染   | `(params: { open: boolean \| null; onClose: () => void }) => ReactNode`                                     | -      |
+| portal          | 挂载节点       | `ModalProps['portal']`                                                                                      | -      |
+| footerRender    | 底部渲染       | `(params: { onClose?: ModalProps['onClose'] }) => ReactNode`                                                | -      |
+| icon            | 图标           | `ReactNode`                                                                                                 | -      |
+| onCancel        | 取消事件       | `() => void`                                                                                                | -      |
+| onOpen          | 打开事件       | `() => void`                                                                                                | -      |
+| onClose         | 关闭事件       | `() => void`                                                                                                | -      |
+| onConfig        | 配置事件       | `() => void`                                                                                                | -      |
+| onReset         | 重置事件       | `() => void`                                                                                                | -      |
+| onOk            | 确认事件       | `(ctx: { close: () => void }) => void`                                                                      | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
-| close      | 关闭筛选   | `() => void`           |
-| open       | 打开筛选   | `() => void`           |
+| 属性       | 说明       | 类型                         |
+| ---------- | ---------- | ---------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`     |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
+| close      | 关闭筛选   | `() => void`                 |
+| open       | 打开筛选   | `() => void`                 |

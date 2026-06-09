@@ -25,43 +25,45 @@ toc: content
 
 ### 属性
 
-| 属性           | 说明           | 类型                                                                         | 默认值   |
-| -------------- | -------------- | ---------------------------------------------------------------------------- | -------- |
-| value          | 选中的值       | `Date \| Date[]`                                                             | -        |
-| placeholder    | 占位符         | `string`                                                                     | -        |
-| formatter      | 格式化函数     | `(value: Date \| Date[]) => string`                                          | -        |
-| autoSize       | 自动调整大小   | `boolean`                                                                    | -        |
-| separator      | 分隔符         | `string`                                                                     | -        |
-| readOnly       | 是否只读       | `boolean`                                                                    | -        |
-| disabled       | 是否禁用       | `boolean`                                                                    | -        |
-| allowClear     | 允许清除       | `boolean`                                                                    | -        |
-| style          | 自定义样式     | `object`                                                                     | -        |
-| className      | 自定义类名     | `string`                                                                     | -        |
-| comboRender    | 自定义组合渲染 | `() => ReactNode`                                                            | -        |
-| children       | 子元素         | `ReactNode`                                                                  | -        |
-| leftIconNode   | 左侧图标       | `ReactNode`                                                                  | -        |
-| rightIconNode  | 右侧图标       | `ReactNode`                                                                  | -        |
-| clearRender    | 清除按钮渲染   | `(props: object) => ReactNode`                                               | -        |
-| type           | 日期类型       | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime' \| 'week'` | `'date'` |
-| min            | 最小日期       | `Date`                                                                       | -        |
-| max            | 最大日期       | `Date`                                                                       | -        |
-| hourStep       | 小时步长       | `number`                                                                     | -        |
-| minuteStep     | 分钟步长       | `number`                                                                     | -        |
-| maskClosable   | 点击遮罩关闭   | `boolean`                                                                    | -        |
-| safeArea       | 是否安全区     | `boolean`                                                                    | -        |
-| modalStyle     | 模态框样式     | `object`                                                                     | -        |
-| modalClassName | 模态框类名     | `string`                                                                     | -        |
-| maskStyle      | 遮罩样式       | `object`                                                                     | -        |
-| maskClassName  | 遮罩类名       | `string`                                                                     | -        |
-| portal         | 挂载节点       | `HTMLElement \| null \| false`                                               | -        |
-| titleRender    | 标题渲染       | `() => ReactNode`                                                            | -        |
-| okNode         | 确认按钮       | `ReactNode`                                                                  | -        |
-| cancelNode     | 取消按钮       | `ReactNode`                                                                  | -        |
-| okVisible      | 确认按钮可见   | `boolean`                                                                    | -        |
-| cancelVisible  | 取消按钮可见   | `boolean`                                                                    | -        |
-| onBeforeOpen   | 打开前事件     | `() => Promise<boolean>`                                                     | -        |
-| onChange       | 变化事件       | `(value: Date \| Date[]) => void`                                            | -        |
-| onOk           | 确认事件       | `(value: Date \| Date[]) => void`                                            | -        |
+| 属性             | 说明           | 类型                                                                                   | 默认值   |
+| ---------------- | -------------- | -------------------------------------------------------------------------------------- | -------- |
+| value            | 选中的值       | `Date \| null`                                                                         | -        |
+| placeholder      | 占位符         | `string`                                                                               | -        |
+| formatter        | 格式化函数     | `(value: Date \| null \| undefined, options?: { separator?: string }) => string`       | -        |
+| autoSize         | 自动调整大小   | `boolean`                                                                              | -        |
+| separator        | 分隔符         | `string`                                                                               | -        |
+| readOnly         | 是否只读       | `boolean`                                                                              | -        |
+| disabled         | 是否禁用       | `boolean`                                                                              | -        |
+| allowClear       | 允许清除       | `boolean`                                                                              | -        |
+| style            | 自定义样式     | `CSSProperties`                                                                        | -        |
+| className        | 自定义类名     | `string`                                                                               | -        |
+| comboRender      | 自定义组合渲染 | `(params: { comboRef: RefObject<unknown>; open: boolean; onClick: () => void }) => ReactNode` | -        |
+| children         | 子元素         | `ReactNode`                                                                            | -        |
+| leftIconRender   | 左侧图标渲染   | `ReactNode`                                                                            | -        |
+| leftIconSvg      | 左侧图标 SVG   | `string`                                                                               | -        |
+| rightIconRender  | 右侧图标渲染   | `ReactNode`                                                                            | -        |
+| rightIconSvg     | 右侧图标 SVG   | `string`                                                                               | -        |
+| clearRender      | 清除按钮渲染   | `(props: object) => ReactNode`                                                         | -        |
+| type             | 日期类型       | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime' \| 'week'`           | `'date'` |
+| min              | 最小日期       | `Date \| null`                                                                         | -        |
+| max              | 最大日期       | `Date \| null`                                                                         | -        |
+| hourStep         | 小时步长       | `number`                                                                               | -        |
+| minuteStep       | 分钟步长       | `number`                                                                               | -        |
+| maskClosable     | 点击遮罩关闭   | `boolean`                                                                              | -        |
+| safeArea         | 是否安全区     | `boolean`                                                                              | -        |
+| modalStyle       | 模态框样式     | `CSSProperties`                                                                        | -        |
+| modalClassName   | 模态框类名     | `string`                                                                               | -        |
+| maskStyle        | 遮罩样式       | `CSSProperties`                                                                        | -        |
+| maskClassName    | 遮罩类名       | `string`                                                                               | -        |
+| portal           | 挂载节点       | `HTMLElement \| null \| false`                                                         | -        |
+| titleRender      | 标题渲染       | `(value: Date \| null \| undefined, options: { type?: DatePickerPickerType }) => ReactNode` | -        |
+| okNode           | 确认按钮       | `ReactNode`                                                                            | -        |
+| cancelNode       | 取消按钮       | `ReactNode`                                                                            | -        |
+| okVisible        | 确认按钮可见   | `boolean`                                                                              | -        |
+| cancelVisible    | 取消按钮可见   | `boolean`                                                                              | -        |
+| onBeforeOpen     | 打开前事件     | `() => boolean \| void \| Promise<boolean \| void>`                                    | -        |
+| onChange         | 变化事件       | `(value: Date \| null \| undefined, meta?: unknown) => void`                           | -        |
+| onOk             | 确认事件       | `(value: Date \| null \| undefined) => boolean \| Date \| void \| Promise<boolean \| Date \| void>` | -        |
 
 ### Ref
 
@@ -216,22 +218,22 @@ toc: content
 
 #### 属性
 
-| 属性                | 说明           | 类型                                      | 默认值 |
-| ------------------- | -------------- | ----------------------------------------- | ------ |
-| value               | 当前选中项     | `object`                                  | -      |
-| types               | 类型列表       | `Array<object>`                           | -      |
-| variant             | 切换方式       | `'tabbar' \| 'dropdown'`                  | -      |
-| dropdownPortal      | 下拉挂载节点   | `HTMLElement`                             | -      |
-| style               | 自定义样式     | `object`                                  | -      |
-| className           | 自定义类名     | `string`                                  | -      |
-| pickerComboStyle    | 选择器组合样式 | `object`                                  | -      |
-| pickerComboClassName | 选择器组合类名 | `string`                                 | -      |
-| tabbarStyle         | Tab 栏样式     | `object`                                  | -      |
-| tabbarClassName     | Tab 栏类名     | `string`                                  | -      |
-| min                 | 最小日期       | `Date \| null`                            | -      |
-| max                 | 最大日期       | `Date \| null`                            | -      |
-| pickerComboRender   | 选择器组合渲染 | `(value: object, ctx: object) => ReactNode` | -    |
-| onChange            | 变化事件       | `(value: object) => void`                 | -      |
+| 属性                | 说明           | 类型                                                                | 默认值 |
+| ------------------- | -------------- | ------------------------------------------------------------------- | ------ |
+| value               | 当前选中项     | `DatePickerTypeSwitcherValue`                                       | -      |
+| types               | 类型列表       | `DatePickerTypeListItem[]`                                          | -      |
+| variant             | 切换方式       | `'tabbar' \| 'dropdown'`                                            | -      |
+| dropdownPortal      | 下拉挂载节点   | `HTMLElement`                                                       | -      |
+| style               | 自定义样式     | `CSSProperties`                                                     | -      |
+| className           | 自定义类名     | `string`                                                            | -      |
+| pickerComboStyle    | 选择器组合样式 | `CSSProperties`                                                     | -      |
+| pickerComboClassName | 选择器组合类名 | `string`                                                           | -      |
+| tabbarStyle         | Tab 栏样式     | `CSSProperties`                                                     | -      |
+| tabbarClassName     | Tab 栏类名     | `string`                                                            | -      |
+| min                 | 最小日期       | `Date \| null`                                                      | -      |
+| max                 | 最大日期       | `Date \| null`                                                      | -      |
+| pickerComboRender   | 选择器组合渲染 | `(value: DatePickerTypeSwitcherValue, ctx: { onChange: (d: Date) => void }) => ReactNode` | -    |
+| onChange            | 变化事件       | `(value: DatePickerTypeSwitcherValue) => void`                      | -      |
 
 #### Ref
 
@@ -261,18 +263,18 @@ toc: content
 | ------------- | -------------- | ------------------------------------------------------------------ | -------- |
 | value         | 选中的值       | `(Date \| null)[] \| null`                                         | -        |
 | autoSwapValue | 自动交换值     | `boolean`                                                          | `true`   |
-| type          | 日期类型       | `'year' \| 'quarter' \| 'month' \| 'date' \| 'time' \| 'datetime'` | `'date'` |
-| rangeId       | 当前选中的范围 | `string`                                                           | -        |
-| ranges        | 范围配置       | `object`                                                           | -        |
-| min           | 最小日期       | `Date`                                                             | -        |
-| max           | 最大日期       | `Date`                                                             | -        |
+| type          | 日期类型       | `string`                                                           | -        |
+| rangeId       | 当前选中的范围 | `string \| null`                                                   | -        |
+| ranges        | 范围配置       | `DatePickerRangesMap`                                              | -        |
+| min           | 最小日期       | `Date \| null`                                                     | -        |
+| max           | 最大日期       | `Date \| null`                                                     | -        |
 | hourStep      | 小时步长       | `number`                                                           | -        |
 | minuteStep    | 分钟步长       | `number`                                                           | -        |
 | startDisabled | 禁用开始日期   | `boolean`                                                          | -        |
 | endDisabled   | 禁用结束日期   | `boolean`                                                          | -        |
 | allowClear    | 允许清除       | `boolean`                                                          | -        |
-| style         | 自定义样式     | `object`                                                           | -        |
+| style         | 自定义样式     | `CSSProperties`                                                    | -        |
 | className     | 自定义类名     | `string`                                                           | -        |
-| portal        | 挂载节点       | `HTMLElement`                                                      | -        |
-| onChange      | 变化事件       | `(value: (Date \| null)[] \| null, meta?: object) => void` | -        |
-| onOk          | 确认事件       | `(value: (Date \| null)[] \| null) => void`                  | -        |
+| portal        | 挂载节点       | `HTMLElement \| null`                                              | -        |
+| onChange      | 变化事件       | `(value: (Date \| null)[] \| null, meta?: DatePickerRangeChangeMeta) => void` | -        |
+| onOk          | 确认事件       | `(value: (Date \| null)[] \| null) => void`                        | -        |

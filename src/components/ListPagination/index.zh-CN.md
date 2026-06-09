@@ -116,53 +116,60 @@ toc: content
 
 #### 属性
 
-| 属性                 | 说明         | 类型                            | 默认值 |
-| -------------------- | ------------ | ------------------------------- | ------ |
-| value                | 选中的值     | `any \| any[]`                  | -      |
-| placeholder          | 占位符       | `string`                        | -      |
-| formatter            | 展示格式化   | `(value: any) => string`        | -      |
-| autoSize             | 自动调整大小 | `boolean`                       | -      |
-| separator            | 多选时分隔符 | `string`                        | -      |
-| mode                 | 展示模式     | `string`                        | -      |
-| readOnly             | 只读         | `boolean`                       | -      |
-| disabled             | 禁用         | `boolean`                       | -      |
-| allowClear           | 允许清除     | `boolean`                       | -      |
-| style / className    | 样式/类名    | `object` / `string`             | -      |
-| leftIconNode         | 左侧图标     | `ReactNode`                     | -      |
-| rightIconNode        | 右侧图标     | `ReactNode`                     | -      |
-| clearRender          | 清除按钮渲染 | `(props: object) => ReactNode`  | -      |
-| url                  | 数据接口地址 | `string`                        | -      |
-| headers              | 请求头       | `object`                        | -      |
-| payload              | 查询参数     | `object`                        | -      |
-| formatPayload        | 格式化入参   | `(result: object) => object`    | -      |
-| formatResult         | 格式化结果   | `(result: object) => object`    | -      |
-| formatViewList       | 格式化列表   | `(list: Array) => Array`        | -      |
-| formatViewItem       | 格式化项     | `(item: object) => object`      | -      |
-| maskClosable         | 点击遮罩关闭 | `boolean`                       | -      |
-| errorRetry           | 错误重试     | `boolean`                       | -      |
-| emptyRetry           | 空状态重试   | `boolean`                       | -      |
-| multiple             | 是否多选     | `boolean`                       | -      |
-| checkable            | 是否可选     | `boolean`                       | -      |
-| disableTopRefresh    | 禁用顶部刷新 | `boolean`                       | -      |
-| disableBottomRefresh | 禁用底部刷新 | `boolean`                       | -      |
-| virtual              | 是否虚拟滚动 | `boolean`                       | -      |
-| safeArea             | 是否安全区   | `boolean`                       | -      |
-| modalStyle           | 弹窗样式     | `object`                        | -      |
-| modalClassName       | 弹窗类名     | `string`                        | -      |
-| maskStyle            | 遮罩样式     | `object`                        | -      |
-| maskClassName        | 遮罩类名     | `string`                        | -      |
-| portal               | 挂载节点     | `HTMLElement \| null \| false`  | -      |
-| title                | 弹窗标题     | `ReactNode`                     | -      |
-| cancelNode           | 取消按钮     | `ReactNode`                     | -      |
-| cancelVisible        | 取消按钮可见 | `boolean`                       | -      |
-| headerRender         | 头部渲染     | `(props: object) => ReactNode`  | -      |
-| itemRender           | 项渲染       | `(item: object) => ReactNode`   | -      |
-| loadingRender        | 加载中渲染   | `() => ReactNode`               | -      |
-| prependRender        | 前置渲染     | `() => ReactNode`               | -      |
-| appendRender         | 后置渲染     | `() => ReactNode`               | -      |
-| onOk                 | 确认事件     | `(value: any \| any[]) => void` | -      |
-| onChange             | 变化事件     | `(value: any \| any[]) => void` | -      |
-| onBeforeOpen         | 打开前事件   | `() => Promise<boolean>`        | -      |
+| 属性                 | 说明         | 类型                                                                                                                                                  | 默认值 |
+| -------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| value                | 选中的值     | `ListPaginationItem \| ListPaginationItem[] \| null`                                                                                                  | -      |
+| placeholder          | 占位符       | `string`                                                                                                                                              | -      |
+| formatter            | 展示格式化   | `(value: ListPaginationItem \| ListPaginationItem[] \| null, options?: { separator?: string }) => string`                                              | -      |
+| autoSize             | 自动调整大小 | `boolean`                                                                                                                                             | -      |
+| separator            | 多选时分隔符 | `string`                                                                                                                                              | -      |
+| mode                 | 展示模式     | `string`                                                                                                                                              | -      |
+| readOnly             | 只读         | `boolean`                                                                                                                                             | -      |
+| disabled             | 禁用         | `boolean`                                                                                                                                             | -      |
+| allowClear           | 允许清除     | `boolean`                                                                                                                                             | -      |
+| style                | 自定义样式   | `CSSProperties`                                                                                                                                       | -      |
+| className            | 自定义类名   | `string`                                                                                                                                              | -      |
+| leftIconRender       | 左侧图标渲染 | `ReactNode`                                                                                                                                           | -      |
+| leftIconSvg          | 左侧图标 SVG | `string`                                                                                                                                              | -      |
+| rightIconRender      | 右侧图标渲染 | `ReactNode`                                                                                                                                           | -      |
+| rightIconSvg         | 右侧图标 SVG | `string`                                                                                                                                              | -      |
+| clearRender          | 清除按钮渲染 | `(props: object) => ReactNode`                                                                                                                        | -      |
+| onClick              | 点击事件     | `(e: MouseEvent<HTMLDivElement>) => void`                                                                                                             | -      |
+| list                 | 静态列表     | `ListPaginationItem[]`                                                                                                                                | -      |
+| url                  | 数据接口地址 | `string`                                                                                                                                              | -      |
+| headers              | 请求头       | `Record<string, string>`                                                                                                                              | -      |
+| payload              | 查询参数     | `Record<string, unknown>`                                                                                                                             | -      |
+| formatPayload        | 格式化入参   | `(params: Record<string, unknown>) => Promise<Record<string, unknown>> \| Record<string, unknown>`                                                     | -      |
+| formatResult         | 格式化结果   | `(result: unknown, options: { payload: Record<string, unknown> }) => Promise<ListAsyncLoadResult> \| ListAsyncLoadResult`                                | -      |
+| formatViewList       | 格式化列表   | `(list: ListPaginationItem[]) => ListPaginationViewItem[]`                                                                                            | -      |
+| formatViewItem       | 格式化项     | `(item: ListPaginationItem, options: { index: number }) => ListPaginationViewItem`                                                                     | -      |
+| maskClosable         | 点击遮罩关闭 | `boolean`                                                                                                                                             | -      |
+| errorRetry           | 错误重试     | `boolean`                                                                                                                                             | -      |
+| emptyRetry           | 空状态重试   | `boolean`                                                                                                                                             | -      |
+| multiple             | 是否多选     | `boolean`                                                                                                                                             | -      |
+| checkable            | 是否可选     | `boolean`                                                                                                                                             | -      |
+| checkboxVariant      | 复选框样式   | `string`                                                                                                                                              | -      |
+| checkboxPosition     | 复选框位置   | `string`                                                                                                                                              | -      |
+| disableTopRefresh    | 禁用顶部刷新 | `boolean`                                                                                                                                             | -      |
+| disableBottomRefresh | 禁用底部刷新 | `boolean`                                                                                                                                             | -      |
+| virtual              | 是否虚拟滚动 | `ListAsyncVirtualProp`                                                                                                                                | -      |
+| safeArea             | 是否安全区   | `boolean`                                                                                                                                             | -      |
+| modalStyle           | 弹窗样式     | `CSSProperties`                                                                                                                                       | -      |
+| modalClassName       | 弹窗类名     | `string`                                                                                                                                              | -      |
+| maskStyle            | 遮罩样式     | `CSSProperties`                                                                                                                                       | -      |
+| maskClassName        | 遮罩类名     | `string`                                                                                                                                              | -      |
+| portal               | 挂载节点     | `HTMLElement \| null \| false`                                                                                                                        | -      |
+| title                | 弹窗标题     | `ReactNode`                                                                                                                                           | -      |
+| cancelNode           | 取消按钮     | `ReactNode`                                                                                                                                           | -      |
+| cancelVisible        | 取消按钮可见 | `boolean`                                                                                                                                             | -      |
+| headerRender         | 头部渲染     | `(options: { open?: boolean; value?: ListPaginationItem \| ListPaginationItem[] \| null; list?: ListPaginationItem[] }) => ReactNode`                   | -      |
+| itemRender           | 项渲染       | `(item: ListPaginationItem, options: { index: number; checked: boolean; onChange: (item: ListPaginationItem) => void }) => ReactNode`                   | -      |
+| loadingRender        | 加载中渲染   | `(options: { action?: string }) => ReactNode`                                                                                                         | -      |
+| prependRender        | 前置渲染     | `(options: { list?: ListPaginationItem[]; value?: ListPaginationItem \| ListPaginationItem[] \| null; onChange?: (...) => void }) => ReactNode`         | -      |
+| appendRender         | 后置渲染     | `(options: { list?: ListPaginationItem[]; value?: ListPaginationItem \| ListPaginationItem[] \| null; onChange?: (...) => void }) => ReactNode`         | -      |
+| onOk                 | 确认事件     | `(value: ListPaginationItem \| ListPaginationItem[] \| null) => Promise<unknown \| false> \| unknown \| false`                                         | -      |
+| onChange             | 变化事件     | `(newValue: ListPaginationItem \| ListPaginationItem[] \| null, options?: { action?: string; checkedItem: ListPaginationItem }) => void`                | -      |
+| onBeforeOpen         | 打开前事件   | `() => Promise<boolean \| undefined> \| boolean \| undefined`                                                                                         | -      |
 
 #### Ref
 
@@ -192,21 +199,21 @@ toc: content
 
 同 [ListPagination.Main](#listpaginationmain) 组件属性，并额外支持：
 
-| 属性           | 说明         | 类型                                              | 默认值 |
-| -------------- | ------------ | ------------------------------------------------- | ------ |
-| open           | 是否显示     | `boolean`                                         | -      |
-| maskClosable   | 点击遮罩关闭 | `boolean`                                         | -      |
-| modalStyle     | 弹窗样式     | `object`                                          | -      |
-| modalClassName | 弹窗类名     | `string`                                          | -      |
-| maskStyle      | 遮罩样式     | `object`                                          | -      |
-| maskClassName  | 遮罩类名     | `string`                                          | -      |
-| portal         | 挂载节点     | `HTMLElement \| null \| false`                    | -      |
-| title          | 弹窗标题     | `ReactNode`                                       | -      |
-| cancelNode     | 取消按钮     | `ReactNode`                                       | -      |
-| cancelVisible  | 取消按钮可见 | `boolean`                                         | -      |
-| headerRender   | 头部渲染     | `(options: object) => ReactNode`                  | -      |
-| onOk           | 确认事件     | `(value: object \| object[] \| null) => unknown`  | -      |
-| onClose        | 关闭事件     | `() => void`                                      | -      |
+| 属性           | 说明         | 类型                                                                                                 | 默认值 |
+| -------------- | ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
+| open           | 是否显示     | `boolean`                                                                                            | -      |
+| maskClosable   | 点击遮罩关闭 | `boolean`                                                                                            | -      |
+| modalStyle     | 弹窗样式     | `CSSProperties`                                                                                      | -      |
+| modalClassName | 弹窗类名     | `string`                                                                                             | -      |
+| maskStyle      | 遮罩样式     | `CSSProperties`                                                                                      | -      |
+| maskClassName  | 遮罩类名     | `string`                                                                                             | -      |
+| portal         | 挂载节点     | `HTMLElement \| null \| false`                                                                       | -      |
+| title          | 弹窗标题     | `ReactNode`                                                                                          | -      |
+| cancelNode     | 取消按钮     | `ReactNode`                                                                                          | -      |
+| cancelVisible  | 取消按钮可见 | `boolean`                                                                                            | -      |
+| headerRender   | 头部渲染     | `(options: { open?: boolean; value?: ListPaginationItem \| ListPaginationItem[] \| null; list?: ListPaginationItem[] }) => ReactNode` | -      |
+| onOk           | 确认事件     | `(value: ListPaginationItem \| ListPaginationItem[] \| null) => Promise<unknown \| false> \| unknown \| false` | -      |
+| onClose        | 关闭事件     | `() => void`                                                                                         | -      |
 
 #### Ref
 

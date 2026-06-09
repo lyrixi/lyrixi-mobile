@@ -30,8 +30,8 @@ toc: content
 | checked   | 是否选中     | `boolean`                                    | -      |
 | readOnly  | 是否只读     | `boolean`                                    | -      |
 | disabled  | 是否禁用     | `boolean`                                    | -      |
-| size      | 尺寸         | `'xxs' \| 'xs' \| 's' \| 'm' \| 'l' \| 'xl'` | `'m'`  |
-| style     | 自定义样式   | `object`                                     | -      |
+| size      | 尺寸         | `SwitchSize`                                 | `'m'`  |
+| style     | 自定义样式   | `CSSProperties`                              | -      |
 | className | 自定义类名   | `string`                                     | -      |
 | on        | 开启状态内容 | `ReactNode`                                  | -      |
 | off       | 关闭状态内容 | `ReactNode`                                  | -      |
@@ -39,7 +39,7 @@ toc: content
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

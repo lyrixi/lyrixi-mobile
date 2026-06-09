@@ -27,15 +27,23 @@ toc: content
 | --------- | ---------- | ---------------------------------------------------------------------------------- | ------ |
 | highlight | 高亮文本   | `string \| Array<string>`                                                          | -      |
 | ellipsis  | 省略配置   | `{rows: number, expandable: boolean, defaultExpanded: boolean}` | -      |
-| style     | 自定义样式 | `object`                                                                           | -      |
+| color     | 字体颜色   | `string`                                                                           | -      |
+| fontSize  | 字体大小   | `string \| number`                                                                  | -      |
+| fontWeight| 字体粗细   | `string \| number`                                                                  | -      |
+| style     | 自定义样式 | `CSSProperties`                                                                    | -      |
 | className | 自定义类名 | `string`                                                                           | -      |
 | children  | 文本内容   | `ReactNode`                                                                        | -      |
+| onClick   | 点击事件   | `MouseEventHandler<HTMLDivElement>`                                                | -      |
 
 #### Ref
 
-| 属性           | 说明       | 类型                   |
-| -------------- | ---------- | ---------------------- |
-| element        | 根元素     | `HTMLDivElement`       |
-| getElement     | 获取根元素 | () => `HTMLDivElement` |
-| toggleEllipsis | 切换省略   | `() => boolean`        |
-| hasEllipsis    | 是否有省略 | `() => boolean`        |
+| 属性       | 说明       | 类型                            |
+| ---------- | ---------- | ------------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`        |
+| getElement | 获取根元素 | `() => HTMLDivElement \| null`  |
+
+#### 静态方法
+
+| 方法               | 说明         | 类型                                     |
+| ------------------ | ------------ | ---------------------------------------- |
+| Text.getDisplayValue | 获取显示值 | `(value: unknown, options?: { maxCount?: number; precision?: number }) => string \| number` |

@@ -25,23 +25,23 @@ toc: content
 
 ### 属性
 
-| 属性               | 说明                                                                     | 类型                                                                   | 默认值 |
-| ------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------------------------- | ------ |
-| anchors            | 锚点数组                                                                 | `Array<string>`                                                        | -      |
-| getScrollerElement | 滚动容器元素 getter（初始化时 ref 可能未挂载，传 getter 可在使用时再取） | `() => HTMLElement \| null`                                            | -      |
-| style              | 自定义样式                                                               | `object`                                                               | -      |
-| className          | 自定义类名                                                               | `string`                                                               | -      |
-| scrollToAnchor     | 自定义滚动到指定位置                                                     | `(anchor: string, options?: { scrollerElement: HTMLElement }) => void` | -      |
+| 属性               | 说明                                                                     | 类型                                                                      | 默认值 |
+| ------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- | ------ |
+| anchors            | 锚点数组                                                                 | `string[]`                                                                | -      |
+| getScrollerElement | 滚动容器元素 getter（初始化时 ref 可能未挂载，传 getter 可在使用时再取） | `() => Element \| null`                                                  | -      |
+| style              | 自定义样式                                                               | `CSSProperties`                                                           | -      |
+| className          | 自定义类名                                                               | `string`                                                                  | -      |
+| scrollToAnchor     | 自定义滚动到指定位置                                                     | `(anchor: string, opts: { scrollerElement: Element \| null }) => void`    | -      |
 
 ### Ref
 
-| 属性              | 说明         | 类型                       | 默认值 |
-| ----------------- | ------------ | -------------------------- | ------ |
-| element           | 根元素       | `HTMLDivElement`           |
-| tooltipElement    | 提示元素     | `HTMLDivElement`           |
-| getElement        | 获取根元素   | () => `HTMLDivElement`     |
-| getTooltipElement | 获取提示元素 | () => `HTMLDivElement`     |
-| scrollToAnchor    | 滚动到锚点   | `(anchor: string) => void` | -      |
+| 属性              | 说明         | 类型                                  |
+| ----------------- | ------------ | ------------------------------------- |
+| element           | 根元素       | `HTMLDivElement \| null`              |
+| tooltipElement    | 提示元素     | `HTMLDivElement \| null`              |
+| getElement        | 获取根元素   | () => `HTMLDivElement \| null`        |
+| getTooltipElement | 获取提示元素 | () => `HTMLDivElement \| null`        |
+| scrollToAnchor    | 滚动到锚点   | `(anchor: string) => void`            |
 
 ## IndexBar.Anchor
 
@@ -59,9 +59,9 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| name      | 锚点名称   | `string`    | -      |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 锚点内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| name      | 锚点名称   | `string`        | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 锚点内容   | `ReactNode`     | -      |

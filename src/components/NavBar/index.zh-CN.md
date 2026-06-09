@@ -25,18 +25,19 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 导航栏内容 | `ReactNode` | -      |
+| 属性      | 说明       | 类型             | 默认值 |
+| --------- | ---------- | ---------------- | ------ |
+| style     | 自定义样式 | `CSSProperties`  | -      |
+| className | 自定义类名 | `string`         | -      |
+| children  | 导航栏内容 | `ReactNode`      | -      |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+NavBar 通过 `forwardRef` 暴露原生 DOM 引用。
+
+| 属性 | 说明       | 类型                  |
+| ---- | ---------- | --------------------- |
+| ref  | 根元素引用 | `HTMLDivElement`      |
 
 ## NavBar.Title
 
@@ -54,11 +55,11 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 标题内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 标题内容   | `ReactNode`     | -      |
 
 #### Ref
 
@@ -83,20 +84,25 @@ toc: content
 
 #### 属性
 
-| 属性            | 说明       | 类型                          | 默认值 |
-| --------------- | ---------- | ----------------------------- | ------ |
-| direction       | 方向       | `string`                      | -      |
-| block           | 块级按钮   | `boolean`                     | -      |
-| color           | 文字颜色   | `string`                      | -      |
-| backgroundColor | 背景颜色   | `string`                      | -      |
-| borderColor     | 边框颜色   | `string`                      | -      |
-| border          | 边框样式   | `string`                      | -      |
-| size            | 尺寸       | `string \| number \| string[]` | -     |
-| sizeEqual       | 等宽高     | `boolean`                     | -      |
-| fontSize        | 字体大小   | `string \| number`            | -      |
-| radius          | 圆角       | `string \| number`            | -      |
-| disabled        | 是否禁用   | `boolean`                     | -      |
-| style           | 自定义样式 | `object`                      | -      |
-| className       | 自定义类名 | `string`                      | -      |
-| children        | 按钮内容   | `ReactNode`                   | -      |
-| onClick         | 点击事件   | `(e: MouseEvent) => void`     | -      |
+| 属性      | 说明       | 类型                                                                          | 默认值  |
+| --------- | ---------- | ----------------------------------------------------------------------------- | ------- |
+| direction | 方向       | `string`                                                                      | -       |
+| block     | 块级按钮   | `boolean`                                                                     | -       |
+| variant   | 按钮变体   | `'solid' \| 'text' \| 'outlined' \| 'filled' \| 'dashed'`                     | `'text'` |
+| color     | 按钮颜色   | `'default' \| 'primary' \| 'info' \| 'warning' \| 'danger' \| 'success'`      | -       |
+| size      | 尺寸       | `string \| number \| readonly string[]`                                        | -       |
+| sizeEqual | 等宽高     | `boolean`                                                                     | -       |
+| fontSize  | 字体大小   | `string \| number`                                                            | -       |
+| radius    | 圆角       | `string \| number`                                                            | -       |
+| disabled  | 是否禁用   | `boolean`                                                                     | -       |
+| style     | 自定义样式 | `CSSProperties`                                                               | -       |
+| className | 自定义类名 | `string`                                                                      | -       |
+| children  | 按钮内容   | `ReactNode`                                                                   | -       |
+| onClick   | 点击事件   | `MouseEventHandler<HTMLDivElement>`                                           | -       |
+
+#### Ref
+
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`    |
+| getElement | 获取根元素 | `() => HTMLDivElement \| null` |

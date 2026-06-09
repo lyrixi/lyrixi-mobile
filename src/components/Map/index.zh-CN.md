@@ -370,70 +370,93 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 页面内容   | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
+| children  | 页面内容   | `ReactNode`     | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                          |
+| ---------- | ---------- | ----------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
-## Map.MapMarkers
+## Map.MapLoader
 
-地图标记页面组件。
+地图加载器组件，用于加载地图资源。
 
 ### 何时使用
 
-- 需要显示地图标记页面时
+- 需要预加载地图 SDK 和资源时
+- 确保地图组件所需的外部库已就绪时
 
 ### 代码演示
 
-<code src="./demos/PageMapMarkers.tsx"></code>
+<code src="./demos/MapMapContainer.tsx"></code>
 
 ### API
 
 #### 属性
 
-| 属性                 | 说明             | 类型                                                                 | 默认值 |
-| -------------------- | ---------------- | -------------------------------------------------------------------- | ------ |
-| markers              | 标记点数据       | `unknown`                                                            | -      |
-| minZoom              | 最小缩放级别     | `number`                                                             | -      |
-| maxZoom              | 最大缩放级别     | `number`                                                             | -      |
-| polyline             | 折线数据         | `unknown`                                                            | -      |
-| circles              | 圆形数据         | `unknown`                                                            | -      |
-| getAddress           | 获取地址函数     | `(coord: object) => Promise<string>`                                 | -      |
-| getLocation          | 获取位置函数     | `() => Promise<object>`                                              | -      |
-| queryNearby          | 查询附近函数     | `(location: object) => Promise<Array>`                               | -      |
-| openLocation         | 打开位置函数     | `(location: object) => void`                                         | -      |
-| style                | 自定义样式       | `object`                                                             | -      |
-| className            | 自定义类名       | `string`                                                             | -      |
-| polylineStyle        | 折线样式         | `object`                                                             | -      |
-| polylineClassName    | 折线类名         | `string`                                                             | -      |
-| circlesStyle         | 圆形样式         | `object`                                                             | -      |
-| circlesClassName     | 圆形类名         | `string`                                                             | -      |
-| zoomControlStyle     | 缩放控件样式     | `object`                                                             | -      |
-| zoomControlClassName | 缩放控件类名     | `string`                                                             | -      |
-| children             | 页面内容         | `ReactNode`                                                          | -      |
-| onLoad               | 加载完成事件     | `(result: object) => void`                                           | -      |
-| onMarkerClick        | 标记点击事件     | `(e: unknown) => void`                                               | -      |
-| onZoomStart          | 缩放开始事件     | `(map: MapContainerAPI) => void`                                     | -      |
-| onZoom               | 缩放事件         | `(map: MapContainerAPI) => void`                                     | -      |
-| onZoomEnd            | 缩放结束事件     | `(map: MapContainerAPI) => void`                                     | -      |
-| onMoveStart          | 移动开始事件     | `(map: MapContainerAPI) => void`                                     | -      |
-| onMove               | 移动事件         | `(map: MapContainerAPI) => void`                                     | -      |
-| onMoveEnd            | 移动结束事件     | `(map: MapContainerAPI) => void`                                     | -      |
-| onDragStart          | 拖动开始事件     | `(map: MapContainerAPI) => void`                                     | -      |
-| onDrag               | 拖动事件         | `(map: MapContainerAPI) => void`                                     | -      |
-| onDragEnd            | 拖动结束事件     | `(map: MapContainerAPI) => void`                                     | -      |
+| 属性          | 说明         | 类型                                                                                  | 默认值 |
+| ------------- | ------------ | ------------------------------------------------------------------------------------- | ------ |
+| config        | 地图配置     | `{ key?: string; type?: string; leaflet?: { css?: string; js?: string }; [key: string]: unknown }` | -      |
+| getAddress    | 获取地址函数 | `((...args: unknown[]) => unknown) \| null`                                           | -      |
+| getLocation   | 获取位置函数 | `((...args: unknown[]) => unknown) \| null`                                           | -      |
+| openLocation  | 打开位置函数 | `((...args: unknown[]) => unknown) \| null`                                           | -      |
+| queryNearby   | 查询附近函数 | `((...args: unknown[]) => unknown) \| null`                                           | -      |
+| loadingRender | 加载中渲染   | `(() => ReactNode) \| null`                                                           | -      |
+| loadingNode   | 加载中内容   | `ReactNode`                                                                           | -      |
+| children      | 子元素       | `ReactNode`                                                                           | -      |
+| onError       | 错误事件     | `((result: LoadResult & { reload?: () => void }) => ...) \| null`                      | -      |
+| onSuccess     | 成功事件     | `((result: { status: string; map: { reload: () => void } }) => void) \| null`          | -      |
 
 #### Ref
 
-`MapMapMarkersHandle`：地图容器 API（`MapContainerAPI`）及内部 `markersRef`、`polylineRef`、`circlesRef`、`zoomRef` 引用。
+| 属性   | 说明     | 类型         |
+| ------ | -------- | ------------ |
+| reload | 重新加载 | `() => void` |
+
+## Map.getSuperAddress
+
+获取地址（带缓存）。
+
+### 参数
+
+| 参数                  | 说明               | 类型               | 默认值 |
+| --------------------- | ------------------ | ------------------ | ------ |
+| cacheExpiresContinue  | 缓存过期后继续获取 | `boolean`          | `true`  |
+| cacheExpires          | 缓存过期时间（秒） | `number \| null`   | -      |
+| type                  | 坐标类型           | `string`           | -      |
+| latitude              | 纬度               | `number`           | -      |
+| longitude             | 经度               | `number`           | -      |
+
+### 返回值
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| `Promise<unknown>` | 地址数据 |
+
+## Map.getSuperLocation
+
+获取位置（带缓存和超时重试）。
+
+### 参数
+
+| 参数                 | 说明               | 类型               | 默认值   |
+| -------------------- | ------------------ | ------------------ | -------- |
+| timeout              | 超时时间（毫秒）   | `number`           | `10000`  |
+| cacheExpiresContinue | 缓存过期后继续获取 | `boolean`          | `true`   |
+| cacheExpires         | 缓存过期时间（秒） | `number \| null`   | -        |
+| type                 | 坐标类型           | `string`           | -        |
+
+### 返回值
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| `Promise<unknown>` | 位置数据 |
 
 ## Map.coordsToWgs84
 

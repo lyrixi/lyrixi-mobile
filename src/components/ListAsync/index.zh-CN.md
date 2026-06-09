@@ -35,44 +35,55 @@ toc: content
 
 ### 属性
 
-| 属性                 | 说明         | 类型                                                                                                 | 默认值 |
-| -------------------- | ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
-| cacheName            | 缓存名称     | `string`                                                                                             | -      |
-| url                  | 数据接口地址 | `string`                                                                                             | -      |
-| headers              | 请求头       | `object`                                                                                             | -      |
-| payload              | 查询参数     | `{rows: number, [key: string]: any}`                                                                 | -      |
-| formatPayload        | 格式化入参   | `(result: object) => object`                                                                         | -      |
-| formatResult         | 格式化结果   | `(result: object) => object{status: 'error/success', totalPage: 总页数(非必返回), list: [列表数据]}` | -      |
-| formatViewList       | 格式化列表   | `(list: Array) => Array`                                                                             | -      |
-| formatViewItem       | 格式化项     | `(item: object) => object`                                                                           | -      |
-| errorRetry           | 错误重试     | `boolean`                                                                                            | -      |
-| emptyRetry           | 空状态重试   | `boolean`                                                                                            | -      |
-| multiple             | 是否多选     | `boolean`                                                                                            | -      |
-| allowClear           | 允许清除     | `boolean`                                                                                            | -      |
-| checkable            | 是否可选     | `boolean`                                                                                            | -      |
-| disableTopRefresh    | 禁用顶部刷新 | `boolean`                                                                                            | -      |
-| disableBottomRefresh | 禁用底部刷新 | `boolean`                                                                                            | -      |
-| virtual              | 是否虚拟滚动 | `boolean`                                                                                            | -      |
-| style                | 自定义样式   | `object`                                                                                             | -      |
-| className            | 自定义类名   | `string`                                                                                             | -      |
-| itemRender           | 自定义项渲染 | `(item: object) => ReactNode`                                                                        | -      |
-| itemLayout           | 项布局       | `string`                                                                                             | -      |
-| loadingRender        | 加载中渲染   | `() => ReactNode`                                                                                    | -      |
-| prependRender        | 前置渲染     | `() => ReactNode`                                                                                    | -      |
-| appendRender         | 后置渲染     | `() => ReactNode`                                                                                    | -      |
-| onChange             | 变化事件     | `(value: any \| any[]) => void`                                                                      | -      |
-| onScroll             | 滚动事件     | `(e: Event) => void`                                                                                 | -      |
-| onScrollEnd          | 滚动结束事件 | `(e: Event) => void`                                                                                 | -      |
-| onLoad               | 加载事件     | `({result: object, action: string}) => void`                                                         | -      |
+| 属性                 | 说明             | 类型                                                                                                                                                     | 默认值   |
+| -------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| loadData             | 数据加载函数     | `(params: { previousResult: ListAsyncLoadResult \| null; action: string }) => Promise<ListAsyncLoadResult>`                                               | -        |
+| initialLoad          | 初始加载         | `boolean`                                                                                                                                                | `true`   |
+| list                 | 列表数据         | `ListAsyncItem[]`                                                                                                                                        | -        |
+| height               | 列表高度         | `number`                                                                                                                                                 | -        |
+| children             | 子元素           | `ReactNode`                                                                                                                                              | -        |
+| value                | 选中的项         | `ListAsyncItem \| ListAsyncItem[] \| null`                                                                                                                | -        |
+| formatViewList       | 格式化列表       | `(list: ListAsyncItem[], meta?: { result: ListAsyncLoadResult \| null }) => ListAsyncViewItem[]`                                                          | -        |
+| formatViewItem       | 格式化项         | `(item: ListAsyncItem, options: { index: number; result?: ListAsyncLoadResult \| null }) => ListAsyncViewItem`                                            | -        |
+| errorRetry           | 错误重试         | `boolean`                                                                                                                                                | `true`   |
+| emptyRetry           | 空状态重试       | `boolean`                                                                                                                                                | -        |
+| multiple             | 是否多选         | `boolean`                                                                                                                                                | -        |
+| allowClear           | 允许清除         | `boolean`                                                                                                                                                | -        |
+| checkable            | 是否可选         | `boolean`                                                                                                                                                | -        |
+| disableTopRefresh    | 禁用顶部刷新     | `boolean`                                                                                                                                                | `false`  |
+| disableBottomRefresh | 禁用底部刷新     | `boolean`                                                                                                                                                | `false`  |
+| virtual              | 虚拟滚动配置     | `{ getItemHeight: (item: ListAsyncItem) => number }`                                                                                                      | -        |
+| threshold            | 滚动阈值         | `number`                                                                                                                                                 | -        |
+| touchStopPropagation | 触摸事件阻止冒泡 | `boolean`                                                                                                                                                | -        |
+| safeArea             | 安全区域适配     | `boolean`                                                                                                                                                | -        |
+| style                | 自定义样式       | `CSSProperties`                                                                                                                                          | -        |
+| className            | 自定义类名       | `string`                                                                                                                                                 | -        |
+| itemStyle            | 项自定义样式     | `CSSProperties`                                                                                                                                          | -        |
+| itemClassName        | 项自定义类名     | `string`                                                                                                                                                 | -        |
+| itemLayout           | 项布局           | `string`                                                                                                                                                 | -        |
+| checkboxVariant      | 复选框外观       | `string`                                                                                                                                                 | -        |
+| checkboxPosition     | 复选框位置       | `string`                                                                                                                                                 | -        |
+| itemRender           | 自定义项渲染     | `(item: ListAsyncItem, options: { index: number; checked: boolean; onChange: (item: ListAsyncItem) => void }) => ReactNode`                               | -        |
+| loadingRender        | 加载中渲染       | `(options: { action?: string }) => ReactNode`                                                                                                             | -        |
+| loadingModalStyle    | 加载弹窗样式     | `CSSProperties`                                                                                                                                          | -        |
+| loadingModalClassName| 加载弹窗类名     | `string`                                                                                                                                                 | -        |
+| loadingMaskStyle     | 加载遮罩样式     | `CSSProperties`                                                                                                                                          | -        |
+| loadingMaskClassName | 加载遮罩类名     | `string`                                                                                                                                                 | -        |
+| loadingPortal        | 加载弹窗挂载节点 | `HTMLElement`                                                                                                                                            | -        |
+| prependRender        | 列表前置渲染     | `(options: { list?: ListAsyncItem[]; value?: ListAsyncItem \| ListAsyncItem[] \| null; onChange?: (newValue, options?) => void }) => ReactNode`            | -        |
+| appendRender         | 列表后置渲染     | `(options: { list?: ListAsyncItem[]; value?: ListAsyncItem \| ListAsyncItem[] \| null; onChange?: (newValue, options?) => void }) => ReactNode`            | -        |
+| onChange             | 变化事件         | `(newValue: ListAsyncItem \| ListAsyncItem[] \| null, options?: { action?: string; checkedItem: ListAsyncItem }) => void`                                 | -        |
+| onTopRefresh         | 顶部刷新回调     | `() => void \| Promise<void>`                                                                                                                             | -        |
+| onBottomRefresh      | 底部刷新回调     | `() => void \| Promise<void>`                                                                                                                             | -        |
+| onLoad               | 加载事件         | `(params: { result: ListAsyncLoadResult \| null; action: ListAsyncLoadAction }) => void`                                                                   | -        |
 
 ### Ref
 
-| 属性        | 说明       | 类型                           |
-| ----------- | ---------- | ------------------------------ | --- |
-| element     | 根元素     | `HTMLDivElement`               |
-| getElement  | 获取根元素 | () => `HTMLDivElement`         |
-| updateCache | 更新缓存   | `(extraCache: object) => void` | -   |
-| clearCache  | 清除缓存   | `() => void`                   |
-| getCache    | 获取缓存   | `() => object`                 |
-| reload      | 重新加载   | `(action?: string) => void`    | -   |
-| getResult   | 获取结果   | `() => object`                 |
+| 属性            | 说明         | 类型                            |
+| --------------- | ------------ | ------------------------------- |
+| element         | 根元素       | `HTMLElement \| null`           |
+| getElement      | 获取根元素   | `() => HTMLElement \| null`     |
+| getAnchors      | 获取锚点列表 | `() => string[]`                |
+| scrollToAnchor  | 滚动到锚点   | `(anchor: string) => void`      |
+| reload          | 重新加载     | `(action?: string) => void`     |
+| getResult       | 获取加载结果 | `() => ListAsyncLoadResult \| null` |

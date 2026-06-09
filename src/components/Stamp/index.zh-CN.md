@@ -13,9 +13,9 @@ toc: content
 
 ## 何时使用
 
-- 需要显示加载占位效果时
-- 需要在内容加载时显示骨架屏时
-- 需要提升用户体验时
+- 需要显示邮戳标记时
+- 需要内容盖章效果时
+- 需要覆盖式标记展示时
 
 ## 代码演示
 
@@ -25,15 +25,17 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型        | 默认值 |
-| --------- | ---------- | ----------- | ------ |
-| style     | 自定义样式 | `object`    | -      |
-| className | 自定义类名 | `string`    | -      |
-| children  | 骨架屏内容 | `ReactNode` | -      |
+| 属性      | 说明       | 类型            | 默认值    |
+| --------- | ---------- | --------------- | --------- |
+| shape     | 形状       | `string`        | `'round'` |
+| color     | 颜色       | `string`        | -         |
+| style     | 自定义样式 | `CSSProperties` | -         |
+| className | 自定义类名 | `string`        | -         |
+| children  | 内容       | `ReactNode`     | -         |
 
 ### Ref
 
-| 属性       | 说明       | 类型                   |
-| ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| 属性       | 说明       | 类型                        |
+| ---------- | ---------- | --------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`    |
+| getElement | 获取根元素 | `() => HTMLDivElement \| null` |

@@ -29,46 +29,59 @@ toc: content
 | ---------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | list                   | 媒体列表       | `Array<{fileThumbnail: string, fileUrl: string, filePath: string, status: 'choose' \| 'uploading' \| 'error' \| 'success'}>` | `[]`                  |
 | maxCount               | 最大数量       | `number`                                                                                                                     | -                     |
-| mediaType              | 媒体类型       | `Array<'image' \| 'video'>`                                                                                                  | `['image']`           |
-| ellipsis               | 省略配置       | `object`                                                                                                                     | -                     |
-| sourceType             | 来源类型       | `Array<'album' \| 'camera'>`                                                                                                 | `['album', 'camera']` |
-| sizeType               | 尺寸类型       | `Array<'original' \| 'compressed'>`                                                                                          | `['compressed']`      |
+| mediaType              | 媒体类型       | `string[]`                                                                                                                   | `['image']`           |
+| ellipsis               | 省略配置       | `{ count?: number }`                                                                                                         | -                     |
+| sourceType             | 来源类型       | `string[]`                                                                                                                   | `['album', 'camera']` |
+| sizeType               | 尺寸类型       | `string[]`                                                                                                                   | `['compressed']`      |
 | fileImageCompress      | 图片压缩配置   | `{maxWidth: number, quality: number}`                                                                                        | -                     |
 | allowChoose            | 允许选择       | `boolean`                                                                                                                    | `false`               |
-| allowClear             | 允许清除       | `boolean`                                                                                                                    | `false`               |
+| allowClear             | 允许清除       | `boolean \| ((item: FileItem) => boolean)`                                                                                   | `false`               |
 | async                  | 是否异步上传   | `boolean`                                                                                                                    | `false`               |
 | reUpload               | 支持重新上传   | `boolean`                                                                                                                    | `true`                |
 | previewAllowChoose     | 预览允许选择   | `boolean`                                                                                                                    | -                     |
 | previewAllowClear      | 预览允许清除   | `boolean`                                                                                                                    | -                     |
-| style                  | 自定义样式     | `object`                                                                                                                     | -                     |
+| style                  | 自定义样式     | `CSSProperties`                                                                                                              | -                     |
 | className              | 自定义类名     | `string`                                                                                                                     | -                     |
 | uploadPosition         | 上传位置       | `'start' \| 'end'`                                                                                                           | `'end'`               |
 | previewSafeArea        | 预览安全区     | `boolean`                                                                                                                    | -                     |
-| previewNavBarStyle     | 预览导航栏样式 | `object`                                                                                                                     | -                     |
+| previewNavBarStyle     | 预览导航栏样式 | `CSSProperties`                                                                                                              | -                     |
 | previewNavBarClassName | 预览导航栏类名 | `string`                                                                                                                     | -                     |
-| previewModalStyle      | 预览模态框样式 | `object`                                                                                                                     | -                     |
+| previewModalStyle      | 预览模态框样式 | `CSSProperties`                                                                                                              | -                     |
 | previewModalClassName  | 预览模态框类名 | `string`                                                                                                                     | -                     |
-| previewMaskStyle       | 预览遮罩样式   | `object`                                                                                                                     | -                     |
+| previewMaskStyle       | 预览遮罩样式   | `CSSProperties`                                                                                                              | -                     |
 | previewMaskClassName   | 预览遮罩类名   | `string`                                                                                                                     | -                     |
-| uploadRender           | 上传按钮渲染   | `() => ReactNode`                                                                                                            | -                     |
-| uploadingRender        | 上传中渲染     | `(item: object) => ReactNode`                                                                                                | -                     |
-| itemRender             | 项渲染         | `(item: object) => ReactNode`                                                                                                | -                     |
+| uploadRender           | 上传按钮渲染   | `(ctx: { uploadType: string }) => ReactNode`                                                                                 | -                     |
+| uploadingRender        | 上传中渲染     | `(ctx: FileItem & { uploadingType: string }) => ReactNode`                                                                   | -                     |
+| itemRender             | 项渲染         | `(item: FileItem) => ReactNode`                                                                                              | -                     |
 | previewPortal          | 预览挂载节点   | `HTMLElement`                                                                                                                | -                     |
 | previewCancelPosition  | 预览取消位置   | `string`                                                                                                                     | -                     |
-| onBeforeChoose         | 选择前事件     | `(e: Event) => Promise<boolean>`                                                                                             | -                     |
-| onChoose               | 选择事件       | `(result: object) => void`                                                                                                   | -                     |
-| onFileChange           | 文件变化事件   | `(result: object) => void`                                                                                                   | -                     |
-| onUpload               | 上传事件       | `(item: object) => Promise<object>`                                                                                          | -                     |
-| onChange               | 变化事件       | `(list: Array, options: object) => void`                                                                                     | -                     |
-| onPreview              | 预览事件       | `(item: object, index: number) => Promise<string \| false>`                                                                  | -                     |
+| onBeforeChoose         | 选择前事件     | `(e: React.MouseEvent) => boolean \| void \| Promise<boolean \| void>`                                                       | -                     |
+| onChoose               | 选择事件       | `(e?: React.MouseEvent) => void \| Promise<unknown>`                                                                         | -                     |
+| onFileChange           | 文件变化事件   | `(e: React.ChangeEvent<HTMLInputElement>) => void \| Promise<unknown>`                                                       | -                     |
+| onUpload               | 上传事件       | `(item: FileItem) => void \| Promise<unknown>`                                                                               | -                     |
+| onChange               | 变化事件       | `(list: FileItem[], meta: { action: string }) => void \| Promise<unknown>`                                                   | -                     |
+| onPreview              | 预览事件       | `(item: FileItem, index: number) => void \| boolean \| 'nativeMedia' \| 'nativeFile' \| 'browser' \| Promise<void \| boolean \| 'nativeMedia' \| 'nativeFile' \| 'browser'>` | -                     |
 
 ### Ref
 
-| 属性         | 说明       | 类型                   |
-| ------------ | ---------- | ---------------------- |
-| element      | 根元素     | `HTMLDivElement`       |
-| getElement   | 获取根元素 | () => `HTMLDivElement` |
-| updateStatus | 更新状态   | `() => void`           |
+| 属性             | 说明       | 类型                                    |
+| ---------------- | ---------- | --------------------------------------- |
+| element          | 根元素     | `HTMLDivElement \| null`                |
+| getElement       | 获取根元素 | `() => HTMLDivElement \| null`          |
+| updateStatus     | 更新状态   | `() => void`                            |
+| chooseFile       | 选择文件   | `(e?: SyntheticEvent) => Promise<unknown>` |
+| choose           | 选择       | `(e?: SyntheticEvent) => Promise<unknown>` |
+| uploadList       | 上传列表   | `(newList?: FileItem[], opts?: { action?: string }) => Promise<FileItem[] \| undefined>` |
+| showLoading      | 显示加载   | `(options?: { content?: string; index?: number }) => void` |
+| hideLoading      | 隐藏加载   | `(options?: { failIndexes?: number[] }) => void` |
+| setPreviewVisible| 设置预览可见 | `Dispatch<SetStateAction<number \| null>>` |
+
+## Media 静态方法
+
+| 方法                | 说明               | 类型                                                                     |
+| ------------------- | ------------------ | ------------------------------------------------------------------------ |
+| validateListStatus  | 校验列表上传状态   | `(list: Array<{ status?: string }> \| null \| undefined) => true \| ReactNode` |
+| isAllowClear        | 判断是否允许清除   | `(allowClear: boolean \| ((item: Record<string, unknown>) => boolean) \| undefined, item: Record<string, unknown>) => boolean` |
 
 ## Media.List
 
@@ -89,12 +102,12 @@ toc: content
 | 属性            | 说明         | 类型                                    | 默认值 |
 | --------------- | ------------ | --------------------------------------- | ------ |
 | list            | 媒体列表     | `Array<object>`                         | -      |
-| mediaType       | 媒体类型     | `Array<'image' \| 'video'>`             | -      |
-| ellipsis        | 省略配置     | `object`                                | -      |
-| allowClear      | 允许清除     | `boolean`                               | -      |
-| uploadingRender | 上传中渲染   | `(item: object) => ReactNode`           | -      |
-| itemRender      | 项渲染       | `(item: object) => ReactNode`           | -      |
-| onChange        | 变化事件     | `(list: Array) => void`                 | -      |
+| mediaType       | 媒体类型     | `string[]`                              | -      |
+| ellipsis        | 省略配置     | `{ count?: number }`                    | -      |
+| allowClear      | 允许清除     | `boolean \| ((item: FileItem) => boolean)` | -      |
+| uploadingRender | 上传中渲染   | `(ctx: FileItem & { uploadingType: string }) => ReactNode` | -      |
+| itemRender      | 项渲染       | `(item: FileItem) => ReactNode`         | -      |
+| onChange        | 变化事件     | `(list: FileItem[], meta: { action: string }) => void` | -      |
 | onReUpload      | 重新上传事件 | `(item: object, index: number) => void` | -      |
 | onPreview       | 预览事件     | `(item: object, index: number) => void` | -      |
 

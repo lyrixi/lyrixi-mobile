@@ -52,16 +52,15 @@ if (typeof window.frameElement?.data?.onOk === 'function') {
 
 ### 属性
 
-| 属性      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| src       | 页面地址   | `string` | -      |
-| data      | 数据       | `object` | -      |
-| style     | 自定义样式 | `object` | -      |
-| className | 自定义类名 | `string` | -      |
+| 属性      | 说明       | 类型            | 默认值 |
+| --------- | ---------- | --------------- | ------ |
+| src       | 页面地址   | `string`        | -      |
+| data      | 数据       | `unknown`       | -      |
+| style     | 自定义样式 | `CSSProperties` | -      |
+| className | 自定义类名 | `string`        | -      |
 
 ### Ref
 
-| 属性       | 说明       | 类型                      |
-| ---------- | ---------- | ------------------------- |
-| element    | 根元素     | `HtmlIFrameElement`       |
-| getElement | 获取根元素 | () => `HtmlIFrameElement` |
+| 属性       | 说明       | 类型                             |
+| ---------- | ---------- | -------------------------------- |
+| element    | 根元素     | `HTMLIFrameElement \| null`      |

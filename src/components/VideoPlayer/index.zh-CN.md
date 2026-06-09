@@ -25,22 +25,23 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型                      | 默认值  |
-| --------- | ---------- | ------------------------- | ------- |
-| src       | 视频地址   | `string`                  | -       |
-| autoPlay  | 自动播放   | `boolean`                 | `false` |
-| style     | 自定义样式 | `object`                  | -       |
-| className | 自定义类名 | `string`                  | -       |
-| portal    | 挂载节点   | `HTMLElement`             | -       |
-| poster    | 封面图     | `string`                  | `''`    |
-| children  | 子元素     | `ReactNode`               | -       |
-| onError   | 错误事件   | `(error: object) => void` | -       |
+| 属性         | 说明       | 类型                                                          | 默认值  |
+| ------------ | ---------- | ------------------------------------------------------------- | ------- |
+| src          | 视频地址   | `string`                                                      | -       |
+| autoPlay     | 自动播放   | `boolean`                                                     | `false` |
+| style        | 自定义样式 | `CSSProperties`                                               | -       |
+| className    | 自定义类名 | `string`                                                      | -       |
+| portal       | 挂载节点   | `Element`                                                     | -       |
+| poster       | 封面图     | `string`                                                      | -       |
+| children     | 子元素     | `ReactNode`                                                   | -       |
+| headerRender | 自定义头部 | `() => ReactNode`                                             | -       |
+| onError      | 错误事件   | `(err: { status: string; message: string; error: unknown }) => void` | -       |
 
 ### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
-| element    | 根元素     | `HTMLDivElement`       |
-| getElement | 获取根元素 | () => `HTMLDivElement` |
+| element    | 根元素     | `HTMLDivElement \| null` |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 | pause      | 暂停播放   | `() => void`           |
 | play       | 开始播放   | `() => void`           |
