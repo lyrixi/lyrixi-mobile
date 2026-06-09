@@ -25,7 +25,7 @@ export interface ToolBarComboProps {
   className?: string
   // Elements
   arrowRender?: (props: { open: boolean | null }) => ReactNode
-  arrowSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  arrowSvg?: ComponentType<SVGProps<SVGSVGElement>> | null
   children?: ReactNode
   // Events
   onClick?: MouseEventHandler<HTMLDivElement>
