@@ -15,6 +15,13 @@
       "example": ".ai/docs/components/ActionSheet/ActionSheet-example.md"
     },
     {
+      "keywords": "Amount|金额|货币符号|格式化金额|需要格式化显示金|额时|需要带货币符号显|示金额时|需要千分位分隔显|示金额时|金额组件|用于格式化显示金|额",
+      "name": "Amount",
+      "props": ".ai/docs/components/Amount/Amount-props.ts",
+      "rule": ".ai/docs/components/Amount/Amount-rules.md",
+      "example": ".ai/docs/components/Amount/Amount-example.md"
+    },
+    {
       "keywords": "App|需要应用初始化时|需要配置全局设置|需要启用日志|调试等功能时|应用组件|用于应用初始化和|配置",
       "name": "App",
       "props": ".ai/docs/components/App/App-props.ts",
@@ -540,6 +547,13 @@
       "props": ".ai/docs/utils/VariablesUtil/VariablesUtil-props.ts",
       "rule": ".ai/docs/utils/VariablesUtil/VariablesUtil-rules.md",
       "example": ".ai/docs/utils/VariablesUtil/VariablesUtil-example.md"
+    },
+    {
+      "keywords": "ReactDOMClientCompat|createRoot|React版本兼容|需要兼容React|18创建root|需要在多版本国",
+      "name": "ReactDOMClientCompat",
+      "props": ".ai/docs/utils/ReactDOMClientCompat/ReactDOMClientCompat-props.ts",
+      "rule": ".ai/docs/utils/ReactDOMClientCompat/ReactDOMClientCompat-rules.md",
+      "example": ".ai/docs/utils/ReactDOMClientCompat/ReactDOMClientCompat-example.md"
     }
   ]
 }
