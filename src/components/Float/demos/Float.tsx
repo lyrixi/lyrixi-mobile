@@ -100,7 +100,7 @@ export default function FloatDemo() {
                   color="primary"
                   onClick={onClick}
                 >
-                  <Button.Icon svg={Icons.ThreeDots} />
+                  <Button.Icon size="l" svg={Icons.ThreeDots} />
                 </Button>
               )
             }}
