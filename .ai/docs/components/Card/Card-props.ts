@@ -2,18 +2,22 @@
  * Card Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
+
 export interface CardProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 卡片内容 */
   children?: ReactNode
+  /** 点击事件 */
+  onClick?: MouseEventHandler<HTMLDivElement>
 }
 
 export interface CardHeaderProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 头部内容 */
@@ -22,7 +26,7 @@ export interface CardHeaderProps {
 
 export interface CardMainProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 主体内容 */
@@ -31,21 +35,21 @@ export interface CardMainProps {
 
 export interface CardRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }
 
 export interface CardHeaderRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }
 
 export interface CardMainRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }

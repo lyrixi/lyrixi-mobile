@@ -2,64 +2,88 @@
  * AttachUploader Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode, SyntheticEvent } from 'react'
+
+import type { AttachFileItem, AttachRef } from '../Attach/Attach-props'
+import type { ModalProps } from '../Modal/Modal-props'
+
+export type { AttachRef }
+
+export interface AttachUploaderItem extends AttachFileItem {
+  localFile?: Record<string, unknown> & { fileSize?: number; fileUrl?: string; [key: string]: unknown }
+}
+
+export interface UploadFormatContext {
+  platform: string
+  uploadItem: AttachUploaderItem
+  result?: unknown
+}
+
+export type GetUploadUrlFn = (ctx: UploadFormatContext) => string | Promise<string>
+export type FormatHeadersFn = (
+  headers: Record<string, string>,
+  ctx: { platform: string }
+) => Record<string, string> | Promise<Record<string, string>>
+export type FormatPayloadFn = (payload: unknown, ctx: { platform: string }) => unknown
+export type FormatResponseFn = (response: unknown, ctx: { platform: string }) => unknown
+
 export interface AttachUploaderProps {
-  /** 附件列表，默认 `[]` */
-  list?: Array<{fileUrl: string, filePath: string, status: 'choose' | 'uploading' | 'error' | 'success'}>
+  /** 附件列表 */
+  list?: AttachUploaderItem[]
   /** 最大数量 */
   maxCount?: number
   /** 最大选择数量 */
   maxChooseCount?: number
+  /** 文件扩展名过滤 */
+  extension?: string[]
   /** 来源类型 */
-  sourceType?: Array<'album' | 'camera'>
+  sourceType?: string | string[]
   /** 最大文件大小 */
   maxSize?: number
-  /** 是否异步上传，默认 `false` */
+  /** 是否异步上传 */
   async?: boolean
-  /** 支持重新上传，默认 `true` */
+  /** 支持重新上传 */
   reUpload?: boolean
-  /** 允许清除，默认 `true` */
+  /** 允许清除 */
   allowClear?: boolean
-  /** 允许选择，默认 `true` */
+  /** 允许选择 */
   allowChoose?: boolean
+  /** 自定义样式 */
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 上传位置 */
   uploadPosition?: 'start' | 'end'
   /** 上传按钮渲染 */
-  uploadRender?: () => ReactNode
+  uploadRender?: (ctx: { uploadingType: string }) => ReactNode
   /** 上传中渲染 */
-  uploadingRender?: (item: object) => ReactNode
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
   /** 项渲染 */
-  itemRender?: (item: object) => ReactNode
+  itemRender?: (item: AttachUploaderItem, index: number) => ReactNode
   /** 预览挂载节点 */
-  previewPortal?: HTMLElement
+  previewPortal?: ModalProps['portal']
   /** 预览服务器地址 */
   previewServerUrl?: string
   /** 预览服务器来源类型 */
-  previewServerSourceType?: string
+  previewServerSourceType?: string | string[]
   /** 获取上传地址 */
-  getUploadUrl?: (options: object) => string
+  getUploadUrl?: GetUploadUrlFn
   /** 格式化请求头 */
-  formatHeaders?: (options: object) => object
+  formatHeaders?: FormatHeadersFn
   /** 格式化请求体 */
-  formatPayload?: (options: object) => object
+  formatPayload?: FormatPayloadFn
   /** 格式化响应 */
-  formatResponse?: (result: object) => object
+  formatResponse?: FormatResponseFn
   /** 选择前事件 */
-  onBeforeChoose?: (e: Event) => Promise<boolean>
+  onBeforeChoose?: () => boolean | void | Promise<boolean | void>
   /** 文件变化事件 */
-  onFileChange?: (result: object) => void
+  onFileChange?: (arg: SyntheticEvent<HTMLInputElement> | AttachFileItem) => unknown
   /** 上传事件 */
-  onUpload?: (item: object) => Promise<object>
+  onUpload?: (item: AttachUploaderItem) => unknown
   /** 变化事件 */
-  onChange?: (list: Array, options: object) => void
+  onChange?: (list: AttachUploaderItem[], meta?: { action?: string }) => void
   /** 预览事件 */
-  onPreview?: (item: object, index: number) => void
+  onPreview?: (item: AttachUploaderItem, index: number) => unknown
 }
 
-export interface AttachUploaderRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
-}
+export interface AttachUploaderRef extends AttachRef {}

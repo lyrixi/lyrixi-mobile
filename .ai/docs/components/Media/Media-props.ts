@@ -2,35 +2,37 @@
  * Media Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode, MouseEvent, ChangeEvent, SyntheticEvent, Dispatch, SetStateAction } from 'react'
+
 export interface MediaProps {
   /** 媒体列表，默认 `[]` */
-  list?: Array<{fileThumbnail: string, fileUrl: string, filePath: string, status: 'choose' | 'uploading' | 'error' | 'success'}>
+  list?: FileItem[]
   /** 最大数量 */
   maxCount?: number
   /** 媒体类型，默认 `['image']` */
-  mediaType?: Array<'image' | 'video'>
+  mediaType?: string[]
   /** 省略配置 */
-  ellipsis?: object
+  ellipsis?: { count?: number }
   /** 来源类型，默认 `['album', 'camera']` */
-  sourceType?: Array<'album' | 'camera'>
+  sourceType?: string[]
   /** 尺寸类型，默认 `['compressed']` */
-  sizeType?: Array<'original' | 'compressed'>
+  sizeType?: string[]
   /** 图片压缩配置 */
-  fileImageCompress?: {maxWidth: number, quality: number}
+  fileImageCompress?: { maxWidth?: number; quality?: number }
   /** 允许选择，默认 `false` */
   allowChoose?: boolean
   /** 允许清除，默认 `false` */
-  allowClear?: boolean
+  allowClear?: boolean | ((item: FileItem) => boolean)
   /** 是否异步上传，默认 `false` */
   async?: boolean
-  /** 支持重新上传，默认 `true` */
+  /** 支持重新上传 */
   reUpload?: boolean
   /** 预览允许选择 */
   previewAllowChoose?: boolean
   /** 预览允许清除 */
   previewAllowClear?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 上传位置，默认 `'end'` */
@@ -38,65 +40,101 @@ export interface MediaProps {
   /** 预览安全区 */
   previewSafeArea?: boolean
   /** 预览导航栏样式 */
-  previewNavBarStyle?: object
+  previewNavBarStyle?: CSSProperties
   /** 预览导航栏类名 */
   previewNavBarClassName?: string
   /** 预览模态框样式 */
-  previewModalStyle?: object
+  previewModalStyle?: CSSProperties
   /** 预览模态框类名 */
   previewModalClassName?: string
   /** 预览遮罩样式 */
-  previewMaskStyle?: object
+  previewMaskStyle?: CSSProperties
   /** 预览遮罩类名 */
   previewMaskClassName?: string
   /** 上传按钮渲染 */
-  uploadRender?: () => ReactNode
+  uploadRender?: (ctx: { uploadType: string }) => ReactNode
   /** 上传中渲染 */
-  uploadingRender?: (item: object) => ReactNode
+  uploadingRender?: (ctx: FileItem & { uploadingType: string }) => ReactNode
   /** 项渲染 */
-  itemRender?: (item: object) => ReactNode
+  itemRender?: (item: FileItem) => ReactNode
   /** 预览挂载节点 */
-  previewPortal?: HTMLElement
+  previewPortal?: HTMLElement | null
   /** 预览取消位置 */
-  previewCancelPosition?: string
+  previewCancelPosition?: 'left' | 'right'
   /** 选择前事件 */
-  onBeforeChoose?: (e: Event) => Promise<boolean>
+  onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
-  onChoose?: (result: object) => void
+  onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
   /** 文件变化事件 */
-  onFileChange?: (result: object) => void
+  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
   /** 上传事件 */
-  onUpload?: (item: object) => Promise<object>
+  onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
-  onChange?: (list: Array, options: object) => void
+  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
   /** 预览事件 */
-  onPreview?: (item: object, index: number) => Promise<string | false>
+  onPreview?: (
+    item: FileItem,
+    index: number
+  ) =>
+    | void
+    | boolean
+    | 'nativeMedia'
+    | 'nativeFile'
+    | 'browser'
+    | Promise<void | boolean | 'nativeMedia' | 'nativeFile' | 'browser'>
+}
+
+export interface MediaRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  updateStatus: () => void
+  chooseFile: (e?: SyntheticEvent) => Promise<unknown>
+  choose: (e?: SyntheticEvent) => Promise<unknown>
+  uploadList: (newList?: FileItem[], opts?: { action?: string }) => Promise<FileItem[] | undefined>
+  showLoading: (options?: { content?: string; index?: number }) => void
+  hideLoading: (options?: { failIndexes?: number[] }) => void
+  setPreviewVisible: Dispatch<SetStateAction<number | null>>
+}
+
+/** Media 组件静态方法 */
+export interface MediaStatic {
+  validateListStatus: (...args: unknown[]) => unknown
+  isAllowClear: (...args: unknown[]) => unknown
 }
 
 export interface MediaListProps {
   /** 媒体列表 */
-  list?: Array<object>
+  list?: FileItem[]
   /** 媒体类型 */
-  mediaType?: Array<'image' | 'video'>
+  mediaType?: string[]
   /** 省略配置 */
-  ellipsis?: object
+  ellipsis?: { count?: number }
   /** 允许清除 */
-  allowClear?: boolean
+  allowClear?: boolean | ((item: FileItem) => boolean)
   /** 上传中渲染 */
-  uploadingRender?: (item: object) => ReactNode
+  uploadingRender?: (ctx: FileItem & { uploadingType: string }) => ReactNode
   /** 项渲染 */
-  itemRender?: (item: object) => ReactNode
+  itemRender?: (item: FileItem) => ReactNode
   /** 变化事件 */
-  onChange?: (list: Array) => void
+  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
   /** 重新上传事件 */
-  onReUpload?: (item: object, index: number) => void
+  onReUpload?: (item: FileItem, index: number) => void
   /** 预览事件 */
-  onPreview?: (item: object, index: number) => void
+  onPreview?: (
+    item: FileItem,
+    index: number
+  ) =>
+    | void
+    | boolean
+    | 'nativeMedia'
+    | 'nativeFile'
+    | 'browser'
+    | Promise<void | boolean | 'nativeMedia' | 'nativeFile' | 'browser'>
 }
 
 export interface MediaPreviewModalProps {
   /** 媒体列表 */
-  list?: MediaItem[]
+  list?: FileItem[]
   /** 当前索引 */
   index?: number
   /** 当前页索引 */
@@ -110,13 +148,13 @@ export interface MediaPreviewModalProps {
   /** 尺寸类型 */
   sizeType?: string[]
   /** 图片压缩配置 */
-  fileImageCompress?: {maxWidth?: number, quality?: number}
+  fileImageCompress?: { maxWidth?: number; quality?: number }
   /** 是否显示 */
   open?: boolean
   /** 允许选择 */
   allowChoose?: boolean
   /** 允许清除 */
-  allowClear?: boolean | ((item: MediaItem) => boolean)
+  allowClear?: boolean | ((item: FileItem) => boolean)
   /** 主区域样式 */
   mainStyle?: CSSProperties
   /** 主区域类名 */
@@ -140,22 +178,22 @@ export interface MediaPreviewModalProps {
   /** 取消按钮位置 */
   cancelPosition?: 'left' | 'right'
   /** 选择前事件 */
-  onBeforeChoose?: 同 Media.onBeforeChoose
+  onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
-  onChoose?: 同 Media.onChoose
+  onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
   /** 文件变化事件 */
-  onFileChange?: 同 Media.onFileChange
+  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
   /** 上传事件 */
-  onUpload?: 同 Media.onUpload
+  onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
-  onChange?: 同 Media.onChange
+  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
   /** 关闭事件 */
   onClose?: () => void
 }
 
 export interface MediaPreviewMainProps {
   /** 媒体列表 */
-  list?: MediaItem[]
+  list?: FileItem[]
   /** 当前索引 */
   index?: number
   /** 媒体类型 */
@@ -167,7 +205,7 @@ export interface MediaPreviewMainProps {
   /** 最大数量 */
   maxCount?: number
   /** 图片压缩配置 */
-  fileImageCompress?: {maxWidth?: number, quality?: number}
+  fileImageCompress?: { maxWidth?: number; quality?: number }
   /** 是否显示 */
   open?: boolean
   /** 是否可关闭 */
@@ -175,7 +213,7 @@ export interface MediaPreviewMainProps {
   /** 允许选择 */
   allowChoose?: boolean
   /** 允许清除 */
-  allowClear?: boolean | ((item: MediaItem) => boolean)
+  allowClear?: boolean | ((item: FileItem) => boolean)
   /** 是否异步上传 */
   async?: boolean
   /** 支持重新上传 */
@@ -187,15 +225,15 @@ export interface MediaPreviewMainProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 选择前事件 */
-  onBeforeChoose?: 同 Media.onBeforeChoose
+  onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
-  onChoose?: 同 Media.onChoose
+  onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
   /** 文件变化事件 */
-  onFileChange?: 同 Media.onFileChange
+  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
   /** 上传事件 */
-  onUpload?: 同 Media.onUpload
+  onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
-  onChange?: 同 Media.onChange
+  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
   /** 关闭事件 */
   onClose?: () => void
 }
@@ -209,32 +247,26 @@ export interface MediaMarkProps {
   className?: string
 }
 
-export interface MediaRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
-  /** 更新状态 */
-  updateStatus?: () => void
-}
-
 export interface MediaListRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }
 
 export interface MediaPreviewModalRef {
-  /** 预览主区域实例 */
   mainElement?: SwiperRef | null
-  /** 获取主区域实例 */
   getMainElement?: () => SwiperRef | null
 }
 
 export interface MediaPreviewMainRef {
-  /** 预览主区域实例 */
   mainElement?: SwiperRef | null
-  /** 获取主区域实例 */
   getMainElement?: () => SwiperRef | null
+}
+
+interface SwiperRef {}
+
+interface FileItem {
+  fileThumbnail: string
+  fileUrl: string
+  filePath: string
+  status: 'choose' | 'uploading' | 'error' | 'success'
 }

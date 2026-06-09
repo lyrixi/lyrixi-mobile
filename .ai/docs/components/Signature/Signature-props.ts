@@ -2,28 +2,30 @@
  * Signature Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties } from 'react'
+
 export interface SignatureComboProps {
   /** 签名值 */
   value?: string
-  /** 允许清除，默认 `true` */
+  /** 允许清除 */
   allowClear?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 模态框类名 */
   modalClassName?: string
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
-  portal?: HTMLElement
-  /** 画笔颜色，默认 `'#000'` */
+  portal?: Element
+  /** 画笔颜色 */
   color?: string
-  /** 背景颜色，默认 `'#fff'` */
+  /** 背景颜色 */
   backgroundColor?: string
   /** 变化事件 */
   onChange?: (base64: string | null) => void
@@ -39,12 +41,12 @@ export interface SignatureModalProps {
   /** 模态框类名 */
   modalClassName?: string
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 挂载节点 */
-  portal?: HTMLElement
-  /** 画笔颜色，默认 `'#000'` */
+  portal?: Element
+  /** 画笔颜色 */
   color?: string
-  /** 背景颜色，默认 `'#fff'` */
+  /** 背景颜色 */
   backgroundColor?: string
   /** 变化事件 */
   onChange?: (base64: string | null) => void
@@ -55,32 +57,81 @@ export interface SignatureModalProps {
 }
 
 export interface SignatureMainProps {
-  /** 自定义样式 */
-  style?: object
-  /** 画笔颜色，默认 `'#000'` */
+  /** 画笔颜色 */
   color?: string
-  /** 背景颜色，默认 `'#fff'` */
+  /** 背景颜色 */
   backgroundColor?: string
+  /** 自定义样式 */
+  style?: CSSProperties
   /** 变化事件 */
-  onChange?: (value: string) => void
+  onChange?: (base64: string | null) => void
   /** 取消事件 */
   onCancel?: () => void
 }
 
+export interface SignatureComboAddProps {
+  /** 签名值 */
+  value?: string
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+  /** 模态框类名 */
+  modalClassName?: string
+  /** 模态框样式 */
+  modalStyle?: CSSProperties
+  /** 画笔颜色 */
+  color?: string
+  /** 背景颜色 */
+  backgroundColor?: string
+  /** 变化事件 */
+  onChange?: (base64: string | null) => void
+}
+
+export interface SignatureComboEditProps {
+  /** 签名值 */
+  value?: string
+  /** 删除事件 */
+  onDelete?: (val: string) => void
+  /** 预览事件 */
+  onPreview?: (src: string) => Promise<boolean | string | void>
+}
+
+export interface SignatureComboRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+export interface SignatureComboAddRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+export interface SignatureComboEditRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
 export interface SignatureModalRef {
   /** 模态框元素 */
-  modalElement?: HTMLDivElement
+  modalElement: HTMLElement | null
   /** 获取模态框元素 */
-  getModalElement?: () => HTMLDivElement
+  getModalElement: () => HTMLElement | null
 }
 
 export interface SignatureMainRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
   /** 获取 Base64 */
-  getBase64?: () => Promise<string | null>
+  getBase64?: (() => Promise<string | null>) | undefined
   /** 清除签名 */
-  clear?: () => void
+  clear?: (() => void) | undefined
 }

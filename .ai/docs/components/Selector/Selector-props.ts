@@ -2,38 +2,49 @@
  * Selector Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
+export interface SelectorItem {
+  id?: string | number
+  name?: ReactNode
+}
+
+export interface SelectorEllipsis {
+  count: number
+}
+
 export interface SelectorProps {
   /** 选中的值 */
-  value?: any[]
+  value?: SelectorItem[]
   /** 选项列表 */
-  list?: Array<{id: string, name: string, [key: string]: any}>
+  list: SelectorItem[]
   /** 省略配置 */
-  ellipsis?: object
-  /** 是否禁用 */
-  disabled?: boolean
+  ellipsis?: SelectorEllipsis
   /** 是否多选 */
   multiple?: boolean
-  /** 允许清除 */
-  allowClear?: boolean
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
   /** 列数，默认 `2` */
   columns?: number
   /** 选择组 ID */
   id?: string
+  /** 是否禁用 */
+  disabled?: boolean
+  /** 允许清除 */
+  allowClear?: boolean
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
   /** 变化事件 */
-  onChange?: (value: any[]) => void
+  onChange?: (value: SelectorItem[]) => void | Promise<void>
 }
 
 export interface SelectorRef {
   /** 根元素 */
-  element?: HTMLDivElement
-  /** 实例对象 */
-  instance?: object
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
-  /** 获取实例对象 */
-  getInstance?: () => object
+  getElement: () => HTMLDivElement | null
+  /** 实例 */
+  instance: { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
+  /** 获取实例 */
+  getInstance: () => { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
 }

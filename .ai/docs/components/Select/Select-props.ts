@@ -2,13 +2,18 @@
  * Select Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { ComponentType, CSSProperties, ReactNode, SVGProps } from 'react'
+import type { ModalProps } from '../../../src/components/Modal/types'
+import type { SelectItem } from './Select-item-types'
+import type { ViewItem } from '../../../src/components/List/types'
+
 export interface SelectComboProps {
   /** 选中的值 */
-  value?: any | any[]
+  value?: SelectItem | SelectItem[] | null
   /** 占位符 */
   placeholder?: string
   /** 格式化函数 */
-  formatter?: (value: any) => string
+  formatter?: (value: SelectItem | SelectItem[] | null, options?: { separator?: string }) => string
   /** 自动调整大小 */
   autoSize?: boolean
   /** 分隔符 */
@@ -21,38 +26,44 @@ export interface SelectComboProps {
   disabled?: boolean
   /** 允许清除 */
   allowClear?: boolean
-  /** 是否多选 */
-  multiple?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
-  /** 左侧图标 */
-  leftIconNode?: ReactNode
-  /** 右侧图标 */
-  rightIconNode?: ReactNode
+  /** 左侧图标渲染 */
+  leftIconRender?: () => ReactNode
+  /** 左侧图标 SVG 组件 */
+  leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  /** 右侧图标渲染 */
+  rightIconRender?: () => ReactNode
+  /** 右侧图标 SVG 组件 */
+  rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   /** 清除按钮渲染 */
-  clearRender?: (props: object) => ReactNode
+  clearRender?: () => ReactNode
   /** 选项列表 */
-  list?: Array<object>
+  list?: SelectItem[]
   /** 格式化列表 */
-  formatViewList?: (list: Array) => Array
+  formatViewList?: (list: SelectItem[]) => ViewItem[]
   /** 格式化项 */
-  formatViewItem?: (item: object) => object
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ViewItem
+  /** 是否多选 */
+  multiple?: boolean
+  /** 是否可选 */
+  checkable?: boolean
   /** 点击遮罩关闭 */
   maskClosable?: boolean
   /** 是否安全区 */
   safeArea?: boolean
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 模态框类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
-  portal?: HTMLElement | null | false
+  portal?: ModalProps['portal']
   /** 标题 */
   title?: ReactNode
   /** 取消按钮 */
@@ -60,23 +71,35 @@ export interface SelectComboProps {
   /** 取消按钮可见 */
   cancelVisible?: boolean
   /** 头部渲染 */
-  headerRender?: (props: object) => ReactNode
+  headerRender?: (ctx: {
+    open: boolean
+    value?: SelectItem | SelectItem[] | null
+    list?: SelectItem[]
+  }) => ReactNode
+  /** 项样式 */
+  itemStyle?: CSSProperties
+  /** 项类名 */
+  itemClassName?: string
+  /** 项布局 */
+  itemLayout?: string
+  /** 复选框变体 */
+  checkboxVariant?: string
+  /** 复选框位置 */
+  checkboxPosition?: string
   /** 项渲染 */
-  itemRender?: (item: object) => ReactNode
-  /** 布局 */
-  layout?: string
-  /** 是否可选 */
-  checkable?: boolean
-  /** 复选框渲染 */
-  checkboxVariant?: (item: object) => ReactNode
-  /** 复选框渲染 */
-  checkboxPosition?: left/right
+  itemRender?: (
+    item: SelectItem,
+    options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }
+  ) => ReactNode
   /** 确认事件 */
-  onOk?: (value: any | any[]) => void
+  onOk?: (value: SelectItem | SelectItem[] | null) => unknown
   /** 变化事件 */
-  onChange?: (value: any | any[]) => void
+  onChange?: (
+    newValue: SelectItem | SelectItem[] | null,
+    options?: { action?: string; checkedItem: SelectItem }
+  ) => void
   /** 打开前事件 */
-  onBeforeOpen?: () => Promise<boolean>
+  onBeforeOpen?: () => boolean | void | Promise<boolean | void>
 }
 
 export interface SelectModalProps {
@@ -93,7 +116,7 @@ export interface SelectModalProps {
   /** 是否可选 */
   checkable?: boolean
   /** 项样式 */
-  itemStyle?: object
+  itemStyle?: CSSProperties
   /** 项类名 */
   itemClassName?: string
   /** 项布局 */
@@ -103,9 +126,15 @@ export interface SelectModalProps {
   /** 复选框位置 */
   checkboxPosition?: string
   /** 项渲染 */
-  itemRender?: (item, options: { index; checked; onChange }) => ReactNode
+  itemRender?: (
+    item: SelectItem,
+    options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }
+  ) => ReactNode
   /** 变化事件 */
-  onChange?: (newValue, options?: { action; checkedItem }) => void
+  onChange?: (
+    newValue: SelectItem | SelectItem[] | null,
+    options?: { action?: string; checkedItem: SelectItem }
+  ) => void
   /** 是否显示 */
   open?: boolean
   /** 点击遮罩关闭 */
@@ -113,15 +142,15 @@ export interface SelectModalProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 模态框类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
-  portal?: HTMLElement | null | false
+  portal?: ModalProps['portal']
   /** 标题 */
   title?: ReactNode
   /** 取消按钮 */
@@ -129,7 +158,11 @@ export interface SelectModalProps {
   /** 取消按钮可见 */
   cancelVisible?: boolean
   /** 头部渲染 */
-  headerRender?: (ctx: { open; value; list }) => ReactNode
+  headerRender?: (ctx: {
+    open: boolean
+    value?: SelectItem | SelectItem[] | null
+    list?: SelectItem[]
+  }) => ReactNode
   /** 确认事件 */
   onOk?: (value: SelectItem | SelectItem[] | null) => unknown
   /** 关闭事件 */
@@ -150,7 +183,7 @@ export interface SelectMainProps {
   /** 是否可选 */
   checkable?: boolean
   /** 项样式 */
-  itemStyle?: object
+  itemStyle?: CSSProperties
   /** 项类名 */
   itemClassName?: string
   /** 项布局 */
@@ -160,20 +193,26 @@ export interface SelectMainProps {
   /** 复选框位置 */
   checkboxPosition?: string
   /** 项渲染 */
-  itemRender?: (item, options: { index; checked; onChange }) => ReactNode
+  itemRender?: (
+    item: SelectItem,
+    options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }
+  ) => ReactNode
   /** 变化事件 */
-  onChange?: (newValue, options?: { action; checkedItem }) => void
+  onChange?: (
+    newValue: SelectItem | SelectItem[] | null,
+    options?: { action?: string; checkedItem: SelectItem }
+  ) => void
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
 }
 
 export interface SelectComboRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element?: HTMLElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement?: () => HTMLElement | null
   /** 关闭选择器 */
   close?: () => void
   /** 打开选择器 */
@@ -181,23 +220,15 @@ export interface SelectComboRef {
 }
 
 export interface SelectModalRef {
-  /** 遮罩元素 */
-  maskElement?: HTMLDivElement
-  /** 获取遮罩元素 */
-  getMaskElement?: () => HTMLDivElement
-  /** 模态元素 */
-  modalElement?: HTMLDivElement
-  /** 获取模态元素 */
-  getModalElement?: () => HTMLDivElement
   /** 主列表元素 */
-  mainElement?: HTMLDivElement
+  mainElement: HTMLDivElement | null
   /** 获取主列表元素 */
-  getMainElement?: () => HTMLDivElement
+  getMainElement: () => HTMLDivElement | null
 }
 
 export interface SelectMainRef {
   /** 主元素 */
-  mainElement?: HTMLDivElement
+  mainElement: HTMLDivElement | null
   /** 获取主元素 */
-  getMainElement?: () => HTMLDivElement
+  getMainElement: () => HTMLDivElement | null
 }

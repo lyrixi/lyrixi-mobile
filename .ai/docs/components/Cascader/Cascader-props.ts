@@ -2,13 +2,22 @@
  * Cascader Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { ComponentType, CSSProperties, ReactNode, SVGProps } from 'react'
+import type { ModalProps } from '../../../src/components/Modal/types'
+import type { InputSelectProps } from '../../../src/components/Input/types'
+import type {
+  CascaderItem,
+  LoadDataResult,
+  LoadDataFn
+} from './Cascader-item-types'
+
 export interface CascaderComboProps {
   /** 选中的值 */
-  value?: any | any[]
+  value?: CascaderItem[] | null
   /** 占位符 */
   placeholder?: string
   /** 格式化函数 */
-  formatter?: (value: any | any[]) => string
+  formatter?: (value: CascaderItem[] | null, options?: { separator?: string }) => string
   /** 自动调整大小 */
   autoSize?: boolean
   /** 分隔符 */
@@ -18,37 +27,41 @@ export interface CascaderComboProps {
   /** 是否只读 */
   readOnly?: boolean
   /** 是否禁用 */
-  disabled?: boolean | string[]（Cascader.DistrictCombo 可传如 ['country','province','city','district','street'] 禁用层级）
+  disabled?: boolean
   /** 允许清除 */
   allowClear?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
-  /** 左侧图标 */
-  leftIconNode?: ReactNode
-  /** 右侧图标 */
-  rightIconNode?: ReactNode
+  /** 左侧图标渲染 */
+  leftIconRender?: () => ReactNode
+  /** 左侧图标 SVG 组件 */
+  leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  /** 右侧图标渲染 */
+  rightIconRender?: () => ReactNode
+  /** 右侧图标 SVG 组件 */
+  rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   /** 清除按钮渲染 */
-  clearRender?: (props: object) => ReactNode
+  clearRender?: () => ReactNode
   /** 级联数据 */
-  list?: Array<{id: string, name: string, children?: Array}>
+  list?: CascaderItem[]
   /** 加载数据函数 */
-  loadData?: (tabs: Array) => Promise<Array | null>
+  loadData?: LoadDataFn
   /** 点击遮罩关闭 */
   maskClosable?: boolean
   /** 是否安全区 */
   safeArea?: boolean
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 模态框类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
-  portal?: HTMLElement | null | false
+  portal?: ModalProps['portal']
   /** 标题 */
   title?: ReactNode
   /** 确认按钮 */
@@ -62,18 +75,20 @@ export interface CascaderComboProps {
   /** 搜索可见 */
   searchVisible?: boolean
   /** 打开前事件 */
-  onBeforeOpen?: () => Promise<boolean>
+  onBeforeOpen?: () => boolean | Promise<boolean>
+  /** 搜索事件 */
+  onSearch?: (keyword: string, ctx: { list: CascaderItem[] }) => void
   /** 变化事件 */
-  onChange?: (value: any | any[]) => void
+  onChange?: (value: CascaderItem[]) => void
 }
 
 export interface CascaderModalProps {
   /** 选中的值 */
   value?: CascaderItem[] | null
   /** 级联数据 */
-  list?: CascaderItem[]
+  list?: CascaderItem[] | null
   /** 加载数据 */
-  loadData?: (tabs, ctx) => Promise<LoadDataResult>
+  loadData?: LoadDataFn
   /** 是否显示 */
   open?: boolean
   /** 点击遮罩关闭 */
@@ -83,15 +98,15 @@ export interface CascaderModalProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 模态框类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
-  portal?: HTMLElement | null | false
+  portal?: ModalProps['portal']
   /** 搜索可见 */
   searchVisible?: boolean
   /** 标题 */
@@ -120,21 +135,104 @@ export interface CascaderMainProps {
   /** 级联数据 */
   list?: CascaderItem[]
   /** 加载数据 */
-  loadData?: (tabs, ctx) => Promise<LoadDataResult>
+  loadData?: LoadDataFn
   /** 列表样式 */
-  listStyle?: object
+  listStyle?: CSSProperties
   /** 列表类名 */
   listClassName?: string
   /** 项样式 */
-  itemStyle?: object
+  itemStyle?: CSSProperties
   /** 项类名 */
   itemClassName?: string
   /** 搜索可见 */
   searchVisible?: boolean
   /** 标签栏渲染 */
-  tabbarRender?: (params: { list; value; onChange }) => ReactNode
+  tabbarRender?: (params: {
+    list: CascaderItem[]
+    value: CascaderItem | undefined
+    onChange: (tab: CascaderItem) => void
+  }) => ReactNode
   /** 搜索事件 */
   onSearch?: (keyword: string, ctx: { list: CascaderItem[] }) => unknown
+  /** 变化事件 */
+  onChange?: (value: CascaderItem[]) => void
+}
+
+export interface CascaderDistrictComboProps {
+  /** 选中的值 */
+  value?: CascaderItem[] | null
+  /** 占位符 */
+  placeholder?: string
+  /** 格式化函数 */
+  formatter?: (value: CascaderItem[] | null, options?: { separator?: string }) => string
+  /** 自动调整大小 */
+  autoSize?: boolean
+  /** 分隔符 */
+  separator?: string
+  /** 模式 */
+  mode?: string
+  /** 是否只读 */
+  readOnly?: boolean
+  /** 是否禁用 */
+  disabled?: boolean
+  /** 允许清除 */
+  allowClear?: boolean
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+  /** 左侧图标渲染 */
+  leftIconRender?: () => ReactNode
+  /** 左侧图标 SVG 组件 */
+  leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  /** 右侧图标渲染 */
+  rightIconRender?: () => ReactNode
+  /** 右侧图标 SVG 组件 */
+  rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  /** 清除按钮渲染 */
+  clearRender?: () => ReactNode
+  /** 地区类型 */
+  type?: string
+  /** 最小层级 */
+  min?: string
+  /** 加载国家 */
+  loadCountries?: () => Promise<unknown>
+  /** 加载省市区 */
+  loadCountryRegions?: (id?: string | number) => Promise<unknown>
+  /** 加载街道 */
+  loadStreets?: (id: string | number, ctx?: { value?: CascaderItem[] }) => Promise<unknown>
+  /** 点击遮罩关闭 */
+  maskClosable?: boolean
+  /** 列表样式 */
+  listStyle?: CSSProperties
+  /** 列表类名 */
+  listClassName?: string
+  /** 项样式 */
+  itemStyle?: CSSProperties
+  /** 项类名 */
+  itemClassName?: string
+  /** 模态框样式 */
+  modalStyle?: CSSProperties
+  /** 模态框类名 */
+  modalClassName?: string
+  /** 遮罩样式 */
+  maskStyle?: CSSProperties
+  /** 遮罩类名 */
+  maskClassName?: string
+  /** 挂载节点 */
+  portal?: ModalProps['portal']
+  /** 标题 */
+  title?: ReactNode
+  /** 确认按钮 */
+  okNode?: ReactNode
+  /** 取消按钮 */
+  cancelNode?: ReactNode
+  /** 取消按钮可见 */
+  cancelVisible?: boolean
+  /** 搜索可见 */
+  searchVisible?: boolean
+  /** 打开前事件 */
+  onBeforeOpen?: () => boolean | Promise<boolean>
   /** 变化事件 */
   onChange?: (value: CascaderItem[]) => void
 }
@@ -145,11 +243,11 @@ export interface CascaderDistrictModalProps {
   /** 地区类型 */
   type?: string
   /** 加载国家 */
-  loadCountries?: () => Promise<DistrictResultState>
+  loadCountries?: () => Promise<unknown>
   /** 加载省市区 */
-  loadCountryRegions?: (id?: string | number) => Promise<DistrictResultState>
+  loadCountryRegions?: (id?: string | number) => Promise<unknown>
   /** 加载街道 */
-  loadStreets?: (id, ctx?) => Promise<DistrictResultState>
+  loadStreets?: (id: string | number, ctx?: { value?: CascaderItem[] }) => Promise<unknown>
   /** 是否显示 */
   open?: boolean
   /** 最小层级 */
@@ -159,23 +257,23 @@ export interface CascaderDistrictModalProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 列表样式 */
-  listStyle?: object
+  listStyle?: CSSProperties
   /** 列表类名 */
   listClassName?: string
   /** 项样式 */
-  itemStyle?: object
+  itemStyle?: CSSProperties
   /** 项类名 */
   itemClassName?: string
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 模态框类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
-  portal?: HTMLElement | null | false
+  portal?: ModalProps['portal']
   /** 搜索可见 */
   searchVisible?: boolean
   /** 标题 */
@@ -202,17 +300,17 @@ export interface CascaderDistrictMainProps {
   /** 地区类型 */
   type?: string
   /** 加载国家 */
-  loadCountries?: () => Promise<DistrictResultState>
+  loadCountries?: () => Promise<unknown>
   /** 加载省市区 */
-  loadCountryRegions?: (id?: string | number) => Promise<DistrictResultState>
+  loadCountryRegions?: (id?: string | number) => Promise<unknown>
   /** 加载街道 */
-  loadStreets?: (id, ctx?) => Promise<DistrictResultState>
+  loadStreets?: (id: string | number, ctx?: { value?: CascaderItem[] }) => Promise<unknown>
   /** 列表样式 */
-  listStyle?: object
+  listStyle?: CSSProperties
   /** 列表类名 */
   listClassName?: string
   /** 项样式 */
-  itemStyle?: object
+  itemStyle?: CSSProperties
   /** 项类名 */
   itemClassName?: string
   /** 搜索可见 */
@@ -223,9 +321,9 @@ export interface CascaderDistrictMainProps {
 
 export interface CascaderComboRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element?: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement?: () => HTMLDivElement | null
   /** 关闭选择器 */
   close?: () => void
   /** 打开选择器 */
@@ -234,9 +332,9 @@ export interface CascaderComboRef {
 
 export interface CascaderMainRef {
   /** 主元素 */
-  mainElement?: HTMLDivElement
+  mainElement: HTMLDivElement | null
   /** 获取主元素 */
-  getMainElement?: () => HTMLDivElement
+  getMainElement: () => HTMLDivElement | null
   /** 更新选中值 */
-  update?: (value, opts?: { action?: string }) => void
+  update: (value: CascaderItem[] | null | undefined, opts?: { action?: string }) => void
 }

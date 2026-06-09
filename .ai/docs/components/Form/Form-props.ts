@@ -2,36 +2,55 @@
  * Form Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+import type { FormInstance, FormProps as RcFormProps } from 'rc-field-form'
+import type { Store, ValidateMessages, Rule, NamePath } from 'rc-field-form/lib/interface'
+import type { ShouldUpdate } from 'rc-field-form/lib/Field'
+import type { WrappedFormInstance } from '../../../src/components/Form/types/Form.useForm.types'
+
+// ---------- Form ----------
+
 export interface FormProps {
-  /** 布局方式，默认 `'horizontal'` */
-  layout?: 'horizontal' | 'vertical' | 'inline'
-  /** 标签列配置 */
-  labelCol?: object
-  /** 内容列配置 */
-  mainCol?: object
-  /** 滚动容器元素 */
-  scrollerElement?: HTMLElement
+  /** 布局方式 */
+  layout?: string
+  /** 标签栅格占位 */
+  labelSpan?: number
+  /** 标签省略配置 */
+  labelEllipsis?: { rows?: number; [key: string]: unknown } | null
+  /** 内容栅格占位 */
+  mainSpan?: number
+  /** 内容省略配置 */
+  mainEllipsis?: { rows?: number; [key: string]: unknown } | null
   /** 是否虚拟滚动 */
   virtual?: boolean
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
-  /** 表单内容 */
-  children?: ReactNode
   /** 表单实例 */
   form?: FormInstance
   /** 表单名称 */
   name?: string
   /** 校验提示信息 */
-  validateMessages?: object
+  validateMessages?: ValidateMessages
   /** 初始值 */
-  initialValues?: object
+  initialValues?: Store
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+  /** 表单内容 */
+  children?: ReactNode
   /** 字段变化事件 */
-  onFieldsChange?: (changedFields, allFields) => void
+  onFieldsChange?: RcFormProps['onFieldsChange']
   /** 值变化事件 */
-  onValuesChange?: (changedValues, allValues) => void
+  onValuesChange?: RcFormProps['onValuesChange']
 }
+
+export interface FormRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+// ---------- Form.Item ----------
 
 export interface FormItemProps {
   /** 字段名 */
@@ -39,7 +58,7 @@ export interface FormItemProps {
   /** 值属性名 */
   valuePropName?: string
   /** 是否更新 */
-  shouldUpdate?: boolean | (prevValues, currentValues) => boolean
+  shouldUpdate?: ShouldUpdate
   /** 初始值 */
   initialValue?: unknown
   /** 校验触发时机 */
@@ -49,15 +68,15 @@ export interface FormItemProps {
   /** 表单项 ID */
   id?: string
   /** 标签省略配置 */
-  labelEllipsis?: object
+  labelEllipsis?: { rows?: number; [key: string]: unknown }
   /** 标签栅格占位 */
   labelSpan?: number | string
   /** 内容栅格占位 */
   mainSpan?: number | string
   /** 内容省略配置 */
-  mainEllipsis?: object
+  mainEllipsis?: { rows?: number; [key: string]: unknown }
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 布局方式 */
@@ -67,11 +86,11 @@ export interface FormItemProps {
   /** 最大长度 */
   maxLength?: number
   /** 标签样式 */
-  labelStyle?: object
+  labelStyle?: CSSProperties
   /** 标签类名 */
   labelClassName?: string
   /** 内容区样式 */
-  mainStyle?: object
+  mainStyle?: CSSProperties
   /** 内容区类名 */
   mainClassName?: string
   /** 标签 */
@@ -88,16 +107,17 @@ export interface FormItemProps {
   children?: ReactNode
 }
 
-export interface FormRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
-}
-
 export interface FormItemRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }
+
+// ---------- Form module types ----------
+
+/** Form.useForm 返回的表单实例（扩展了 scrollToField） */
+export type FormUseFormInstance = WrappedFormInstance
+
+/** Form.useWatch 的签名（同 rc-field-form useWatch） */
+export type FormUseWatch = typeof import('rc-field-form').useWatch

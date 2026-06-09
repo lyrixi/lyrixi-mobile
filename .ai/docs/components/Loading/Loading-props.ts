@@ -2,15 +2,17 @@
  * Loading Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
 export interface LoadingProps {
   /** 提示内容 */
   content?: ReactNode
   /** 内容区样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 内容区类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 挂载节点 */
@@ -21,20 +23,28 @@ export interface LoadingProps {
   children?: ReactNode
 }
 
-export interface LoadingBallWaveProps {
-  /** 颜色 */
-  color?: string
-  /** 尺寸 */
-  size?: string | number
-  /** 自定义样式 */
-  style?: object
+export interface LoadingShowProps {
+  /** 唯一 ID */
+  id?: string
+  /** 提示内容 */
+  content?: string
+  /** 遮罩样式 */
+  maskStyle?: Record<string, string>
+  /** 遮罩类名 */
+  maskClassName?: string
   /** 自定义类名 */
   className?: string
+  /** 自定义样式 */
+  style?: Record<string, string>
+  /** 挂载节点 */
+  portal?: HTMLElement | null
+  /** 打开事件 */
+  onOpen?: () => void
 }
 
 export interface LoadingRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }

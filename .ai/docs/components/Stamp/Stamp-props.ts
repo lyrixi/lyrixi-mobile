@@ -2,18 +2,22 @@
  * Stamp Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
 export interface StampProps {
+  /** 形状，默认 `'round'` */
+  shape?: string
+  /** 颜色 */
+  color?: string
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
-  /** 骨架屏内容 */
+  /** 标签内容 */
   children?: ReactNode
 }
 
 export interface StampRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }

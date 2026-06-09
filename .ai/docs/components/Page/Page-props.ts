@@ -2,17 +2,19 @@
  * Page Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode, UIEvent } from 'react'
+
 export interface PageProps {
-  /** 是否安全区 */
-  safeArea?: boolean
-  /** 是否全屏，默认 `true` */
+  /** 是否全屏 */
   full?: boolean
   /** 布局方式 */
-  layout?: string
+  layout?: 'horizontal' | 'vertical'
   /** 动画效果 */
   animation?: string
+  /** 是否安全区 */
+  safeArea?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 页面内容 */
@@ -23,7 +25,7 @@ export interface PageHeaderProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 头部内容 */
@@ -38,19 +40,19 @@ export interface PageMainProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 主体内容 */
   children?: ReactNode
   /** 顶部刷新 */
-  onTopRefresh?: () => void | Promise<boolean | string | undefined>
+  onTopRefresh?: () => undefined | Promise<boolean | string | undefined>
   /** 底部刷新 */
   onBottomRefresh?: () => void | Promise<boolean | string | undefined | void>
   /** 滚动事件 */
-  onScroll?: (e: UIEvent) => void
+  onScroll?: (e: UIEvent<HTMLElement>) => void
   /** 滚动结束 */
-  onScrollEnd?: (e: UIEvent) => void
+  onScrollEnd?: (e: UIEvent<HTMLElement>) => void
 }
 
 export interface PageFooterProps {
@@ -59,7 +61,7 @@ export interface PageFooterProps {
   /** 是否安全区 */
   safeArea?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 底部内容 */
@@ -68,30 +70,52 @@ export interface PageFooterProps {
   onChange?: (newValue: unknown) => void
 }
 
+// --- Page.Aside ---
+
+export interface PageAsideProps {
+  /** 是否安全区 */
+  safeArea?: boolean
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+  /** 侧边内容 */
+  children?: ReactNode
+}
+
+// --- Refs ---
+
 export interface PageRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLElement | null
 }
 
 export interface PageHeaderRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLElement | null
 }
 
 export interface PageMainRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLElement | null
 }
 
 export interface PageFooterRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLElement | null
+}
+
+export interface PageAsideRef {
+  /** 根元素 */
+  element: HTMLElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLElement | null
 }

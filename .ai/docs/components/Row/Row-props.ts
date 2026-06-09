@@ -2,9 +2,11 @@
  * Row Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
 export interface RowProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 行内容 */
@@ -13,7 +15,27 @@ export interface RowProps {
 
 export interface RowRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
+}
+
+// --- Row.Col ---
+
+export interface RowColProps {
+  /** 栅格占比 */
+  span?: number | string
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+  /** 列内容 */
+  children?: ReactNode
+}
+
+export interface RowColRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
 }

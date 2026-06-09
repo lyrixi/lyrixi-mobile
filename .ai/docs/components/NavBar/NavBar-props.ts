@@ -2,18 +2,23 @@
  * NavBar Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
 export interface NavBarProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 导航栏内容 */
   children?: ReactNode
 }
 
+/** NavBar ref 类型 — 直接引用 HTMLDivElement */
+export type NavBarRef = HTMLDivElement | null
+
 export interface NavBarTitleProps {
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 标题内容 */
@@ -25,16 +30,12 @@ export interface NavBarButtonProps {
   direction?: string
   /** 块级按钮 */
   block?: boolean
-  /** 文字颜色 */
-  color?: string
-  /** 背景颜色 */
-  backgroundColor?: string
-  /** 边框颜色 */
-  borderColor?: string
-  /** 边框样式 */
-  border?: string
+  /** 外观变体，默认 `'text'` */
+  variant?: 'solid' | 'text' | 'outlined' | 'filled' | 'dashed'
+  /** 语义色 */
+  color?: 'default' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
   /** 尺寸 */
-  size?: string | number | string[]
+  size?: string | number | readonly string[]
   /** 等宽高 */
   sizeEqual?: boolean
   /** 字体大小 */
@@ -44,25 +45,23 @@ export interface NavBarButtonProps {
   /** 是否禁用 */
   disabled?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 按钮内容 */
   children?: ReactNode
   /** 点击事件 */
-  onClick?: (e: MouseEvent) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
 }
 
-export interface NavBarRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+export interface ButtonRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }
+
+export type NavBarButtonRef = ButtonRef
 
 export interface NavBarTitleRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }

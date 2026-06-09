@@ -2,24 +2,26 @@
  * IndexBar Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
 export interface IndexBarProps {
   /** 锚点数组 */
-  anchors?: Array<string>
-  /** 滚动容器元素 getter（初始化时 ref 可能未挂载，传 getter 可在使用时再取） */
-  getScrollerElement?: () => HTMLElement | null
+  anchors?: string[]
+  /** 获取滚动容器元素 */
+  getScrollerElement: () => Element | null
+  /** 自定义滚动到指定位置 */
+  scrollToAnchor?: (anchor: string, opts: { scrollerElement: Element | null }) => void
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
-  /** 自定义滚动到指定位置 */
-  scrollToAnchor?: (anchor: string, options?: { scrollerElement: HTMLElement }) => void
 }
 
 export interface IndexBarAnchorProps {
   /** 锚点名称 */
   name?: string
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 锚点内容 */
@@ -28,13 +30,13 @@ export interface IndexBarAnchorProps {
 
 export interface IndexBarRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 提示元素 */
-  tooltipElement?: HTMLDivElement
+  tooltipElement: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
   /** 获取提示元素 */
-  getTooltipElement?: () => HTMLDivElement
+  getTooltipElement: () => HTMLDivElement | null
   /** 滚动到锚点 */
-  scrollToAnchor?: (anchor: string) => void | -
+  scrollToAnchor: (anchor: string) => void
 }

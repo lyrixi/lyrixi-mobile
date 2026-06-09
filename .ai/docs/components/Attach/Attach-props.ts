@@ -2,56 +2,99 @@
  * Attach Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode, SyntheticEvent, ChangeEvent } from 'react'
+
+import type { ModalProps } from '../Modal/Modal-props'
+
+/** 文件/媒体列表单项基础类型 */
+export interface AttachFileItem {
+  status?: string
+  fileName?: string
+  fileUrl?: string
+  fileType?: string
+  localFile?: { fileUrl?: string; fileType?: string; tempFileThumbnail?: string; [key: string]: unknown }
+  fileSize?: number
+  filePath?: File | string
+  className?: string
+  fileThumbnail?: string
+  message?: string
+  reloadKey?: unknown
+  [key: string]: unknown
+}
+
 export interface AttachProps {
-  /** 附件列表，默认 `[]` */
-  list?: Array<{fileUrl: string, filePath: string, fileName: string, fileSize: number, status: 'choose' | 'uploading' | 'error' | 'success'}>
+  /** 附件列表 */
+  list?: AttachFileItem[]
   /** 最大数量 */
   maxCount?: number
   /** 来源类型 */
-  sourceType?: Array<'album' | 'camera'>
-  /** 是否禁用 */
-  disabled?: boolean
-  /** 允许选择，默认 `false` */
+  sourceType?: string | string[]
+  /** 允许选择 */
   allowChoose?: boolean
-  /** 允许清除，默认 `false` */
-  allowClear?: boolean
-  /** 是否异步上传，默认 `false` */
+  /** 是否异步上传 */
   async?: boolean
-  /** 支持重新上传，默认 `true` */
+  /** 支持重新上传 */
   reUpload?: boolean
   /** 最大文件大小 */
   maxSize?: number
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
   /** 上传位置，默认 `'end'` */
   uploadPosition?: 'start' | 'end'
-  /** 上传按钮渲染 */
-  uploadRender?: () => ReactNode
-  /** 上传中渲染 */
-  uploadingRender?: (item: object) => ReactNode
-  /** 项渲染 */
-  itemRender?: (item: object) => ReactNode
   /** 预览挂载节点 */
-  previewPortal?: HTMLElement
+  previewPortal?: ModalProps['portal']
   /** 预览服务器地址 */
   previewServerUrl?: string
   /** 预览服务器来源类型 */
-  previewServerSourceType?: string
+  previewServerSourceType?: string | string[]
+  /** 是否禁用 */
+  disabled?: boolean
+  /** 允许清除 */
+  allowClear?: boolean
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+  /** 内容 */
+  children?: ReactNode
+  /** 上传按钮渲染 */
+  uploadRender?: (ctx: { uploadingType: string }) => ReactNode
+  /** 上传中渲染 */
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  /** 项渲染 */
+  itemRender?: (item: AttachFileItem, index: number) => ReactNode
   /** 选择前事件 */
-  onBeforeChoose?: (e: Event) => Promise<boolean>
+  onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
-  onChoose?: (result: object) => void
+  onChoose?: (e?: SyntheticEvent) => unknown
   /** 文件变化事件 */
-  onFileChange?: (result: object) => void
+  onFileChange?: (e: ChangeEvent<HTMLInputElement> | AttachFileItem) => unknown
   /** 上传事件 */
-  onUpload?: (item: object) => Promise<object>
+  onUpload?: (item: AttachFileItem) => unknown
   /** 变化事件 */
-  onChange?: (list: Array, options: object) => void
+  onChange?: (list: AttachFileItem[], meta?: { action?: string }) => void
   /** 预览事件 */
-  onPreview?: (item: object, index: number) => void
+  onPreview?: (item: AttachFileItem, index: number) => unknown
 }
+
+export interface AttachRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+  /** 更新状态 */
+  updateStatus: () => void
+  /** 选择文件 */
+  chooseFile: (e: SyntheticEvent) => Promise<unknown>
+  /** 选择 */
+  choose: (e: SyntheticEvent) => Promise<unknown>
+  /** 上传列表 */
+  uploadList: (newList?: AttachFileItem[] | null, meta?: { action?: string }) => Promise<AttachFileItem[]>
+  /** 显示加载 */
+  showLoading: (options?: { content?: string; index?: number }) => void
+  /** 隐藏加载 */
+  hideLoading: (options?: { failIndexes?: number[] }) => void
+}
+
+// Attach sub-components
 
 export interface AttachListProps {
   /** 附件列表 */
@@ -59,11 +102,11 @@ export interface AttachListProps {
   /** 允许清除 */
   allowClear?: boolean | ((item: unknown) => boolean)
   /** 上传中渲染 */
-  uploadingRender?: (ctx: {uploadingType: string}) => ReactNode
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
   /** 项渲染 */
   itemRender?: (item: AttachFileItem, index: number) => ReactNode
   /** 变化事件 */
-  onChange?: (list: AttachFileItem[], meta: {action: string}) => void
+  onChange?: (list: AttachFileItem[], meta: { action: string }) => void
   /** 重新上传事件 */
   onReUpload?: (item: AttachFileItem, index: number) => void
   /** 预览事件 */
@@ -78,7 +121,7 @@ export interface AttachButtonProps {
   /** 自定义类名 */
   className?: string
   /** 上传中渲染 */
-  uploadingRender?: (ctx: {uploadingType: string}) => ReactNode
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
 }
 
 export interface AttachUploadingProps {
@@ -87,31 +130,12 @@ export interface AttachUploadingProps {
   /** 自定义类名 */
   className?: string
   /** 上传中渲染 */
-  uploadingRender?: (ctx: {uploadingType: string}) => ReactNode
-}
-
-export interface AttachRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
-  /** 更新状态 */
-  updateStatus?: () => void
-  /** 选择文件 */
-  chooseFile?: () => Promise<object>
-  /** 选择 */
-  choose?: () => Promise<object>
-  /** 上传列表 */
-  uploadList?: (list: Array) => Promise<Array> | -
-  /** 显示加载 */
-  showLoading?: (options: object) => void | -
-  /** 隐藏加载 */
-  hideLoading?: (options: object) => void | -
+  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
 }
 
 export interface AttachButtonRef {
   /** 根元素 */
-  element?: HTMLDivElement
+  element: HTMLDivElement | null
   /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  getElement: () => HTMLDivElement | null
 }

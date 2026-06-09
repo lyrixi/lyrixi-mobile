@@ -2,108 +2,116 @@
  * TabBar Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
+export interface TabBarValue {
+  id?: string | number
+}
+
+export interface TabBarItem {
+  id?: string | number
+  name?: ReactNode
+  description?: ReactNode
+  placeholder?: ReactNode
+  disabled?: boolean
+  iconRender?: (params: Record<string, unknown>) => ReactNode
+  content?: ReactNode | ((params: Record<string, unknown>) => ReactNode)
+}
+
 export interface TabBarTabsProps {
   /** 选中的值 */
-  value?: object
-  /** 标签列表，默认 `[]` */
-  list?: Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>
+  value?: TabBarValue
+  /** 标签列表 */
+  list?: TabBarItem[]
   /** 分隔符 */
   separator?: ReactNode
   /** 间距 */
   gap?: string | number
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
+  /** 描述位置 */
+  descriptionPosition?: string
   /** 是否禁用 */
   disabled?: boolean
-  /** 描述位置，默认 `'bottom'` */
-  descriptionPosition?: 'top' | 'bottom'
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
   /** 变化事件 */
-  onChange?: (value: object) => void
+  onChange?: (item: TabBarItem) => void
 }
 
 export interface TabBarSlideProps {
   /** 选中的值 */
-  value?: object
-  /** 标签列表，默认 `[]` */
-  list?: Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>
+  value?: TabBarValue
+  /** 标签列表 */
+  list?: TabBarItem[]
   /** 分隔符 */
   separator?: ReactNode
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
+  /** 描述位置 */
+  descriptionPosition?: string
   /** 是否禁用 */
   disabled?: boolean
-  /** 描述位置，默认 `'bottom'` */
-  descriptionPosition?: 'top' | 'bottom'
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
   /** 变化事件 */
-  onChange?: (value: object) => void
+  onChange?: (item: TabBarItem) => void
 }
 
 export interface TabBarMenusProps {
   /** 选中的值 */
-  value?: object
-  /** 标签列表，默认 `[]` */
-  list?: Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>
+  value?: TabBarValue
+  /** 标签列表 */
+  list?: TabBarItem[]
   /** 分隔符 */
   separator?: ReactNode
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
+  /** 描述位置 */
+  descriptionPosition?: string
   /** 是否禁用 */
   disabled?: boolean
-  /** 描述位置，默认 `'bottom'` */
-  descriptionPosition?: 'top' | 'bottom'
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
   /** 变化事件 */
-  onChange?: (value: object) => void
+  onChange?: (item: TabBarItem) => void
 }
 
 export interface TabBarGroupProps {
   /** 选中的值 */
-  value?: object
-  /** 标签列表，默认 `[]` */
-  list?: Array<{id: string, name: string, description: string, iconRender: function, content: ReactNode, disabled: boolean}>
+  value?: TabBarValue
+  /** 标签列表 */
+  list?: TabBarItem[]
   /** 分隔符 */
   separator?: ReactNode
-  /** 自定义样式 */
-  style?: object
-  /** 自定义类名 */
-  className?: string
+  /** 描述位置 */
+  descriptionPosition?: string
   /** 是否禁用 */
   disabled?: boolean
-  /** 描述位置，默认 `'bottom'` */
-  descriptionPosition?: 'top' | 'bottom'
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
   /** 变化事件 */
-  onChange?: (value: object) => void
+  onChange?: (item: TabBarItem) => void
 }
 
 export interface TabBarTabsRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }
 
 export interface TabBarSlideRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }
 
 export interface TabBarMenusRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }
 
 export interface TabBarGroupRef {
-  /** 根元素 */
-  element?: HTMLDivElement
-  /** 获取根元素 */
-  getElement?: () => HTMLDivElement
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
 }

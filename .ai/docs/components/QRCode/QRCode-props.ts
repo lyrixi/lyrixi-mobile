@@ -2,11 +2,13 @@
  * QRCode Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode } from 'react'
+
 export interface QRCodeProps {
   /** 二维码内容 */
   text?: string
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
   /** 子元素 */
@@ -15,11 +17,11 @@ export interface QRCodeProps {
 
 export interface QRCodeRef {
   /** 根元素 */
-  element?: HtmlSpanElement
+  element: HTMLSpanElement | null
   /** 二维码实例 */
-  instance?: QRCodeInstance
+  instance: unknown
   /** 获取根元素 */
-  getElement?: () => HtmlSpanElement
+  getElement: () => HTMLSpanElement | null
   /** 获取二维码实例 */
-  getInstance?: () => QRCodeInstance
+  getInstance: () => unknown
 }

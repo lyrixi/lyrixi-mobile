@@ -2,35 +2,42 @@
  * Tooltip Props / Ref（AI 文档，生成代码时以此为准）
  */
 
+import type { CSSProperties, ReactNode, RefObject } from 'react'
+import type { ComboRef } from '../../Combo/types'
+
 export interface TooltipProps {
-  /** 点击遮罩关闭，默认 `true` */
+  /** 点击遮罩关闭 */
   maskClosable?: boolean
   /** 自定义样式 */
-  style?: object
+  style?: CSSProperties
   /** 自定义类名 */
   className?: string
-  /** 动画效果，默认 `'slideDownLeft'` */
-  animation?: 'none' | 'slideLeft' | 'slideRight' | 'slideUp' | 'slideDown' | 'zoom' | 'fade' | 'slideDownLeft'
+  /** 动画效果 */
+  animation?: string
   /** 模态框样式 */
-  modalStyle?: object
+  modalStyle?: CSSProperties
   /** 模态框类名 */
   modalClassName?: string
   /** 遮罩样式 */
-  maskStyle?: object
+  maskStyle?: CSSProperties
   /** 遮罩类名 */
   maskClassName?: string
   /** 触发元素 */
   children?: ReactNode
   /** 自定义组合渲染 */
-  comboRender?: () => ReactNode
+  comboRender?: (ctx: {
+    comboRef: RefObject<ComboRef | null>
+    open: boolean | null
+    onClick: () => void
+  }) => ReactNode
   /** 自定义模态框渲染 */
-  modalRender?: () => ReactNode
+  modalRender?: (ctx: { open: boolean | null; onClose: () => void }) => ReactNode
   /** 参考元素 */
-  referenceElement?: HTMLElement | (() => HTMLElement)
+  referenceElement?: Element | null | (() => Element | null)
   /** 挂载节点 */
-  portal?: HTMLElement | null | false
+  portal?: boolean | Element | null
   /** 打开前事件 */
-  onBeforeOpen?: () => Promise<boolean>
+  onBeforeOpen?: () => boolean | void | Promise<boolean | void>
   /** 打开事件 */
   onOpen?: () => void
   /** 关闭事件 */
@@ -42,4 +49,57 @@ export interface TooltipRef {
   element?: HTMLDivElement
   /** 获取根元素 */
   getElement?: () => HTMLDivElement
+}
+
+export interface TooltipPopupProps {
+  /** 动画效果 */
+  animation?: string
+  /** 是否打开 */
+  open?: boolean
+  /** 点击遮罩关闭 */
+  maskClosable?: boolean
+  /** 模态框样式 */
+  modalStyle?: CSSProperties
+  /** 模态框类名 */
+  modalClassName?: string
+  /** 遮罩样式 */
+  maskStyle?: CSSProperties
+  /** 遮罩类名 */
+  maskClassName?: string
+  /** 挂载节点 */
+  portal?: Element | null
+  /** 子元素 */
+  children?: ReactNode
+  /** 关闭事件 */
+  onClose?: () => void
+}
+
+export interface TooltipPopupRef {
+  /** 遮罩元素 */
+  maskElement: HTMLDivElement | null
+  /** 获取遮罩元素 */
+  getMaskElement: () => HTMLDivElement | null
+  /** 模态框元素 */
+  modalElement: HTMLDivElement | null
+  /** 获取模态框元素 */
+  getModalElement: () => HTMLDivElement | null
+}
+
+/** 静态方法：根据参考元素更新 Tooltip 位置 */
+export interface TooltipStatic {
+  updatePositionByReferenceElement: (params: {
+    referenceElement?: HTMLElement | null
+    parentElement?: HTMLElement | null
+    animation?: string
+    bottom?: string | number | null
+    top?: string | number | null
+    left?: string | number | null
+    right?: string | number | null
+    offset?: {
+      top?: number
+      bottom?: number
+      left?: number
+      right?: number
+    }
+  }) => void
 }
