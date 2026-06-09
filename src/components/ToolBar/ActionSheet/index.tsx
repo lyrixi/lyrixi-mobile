@@ -41,6 +41,7 @@ const ToolBarActionSheet = forwardRef<
     comboRender,
     children,
     arrowRender,
+    arrowSvg,
     portal,
     list,
 
@@ -84,6 +85,7 @@ const ToolBarActionSheet = forwardRef<
         size={size}
         // Elements
         arrowRender={arrowRender}
+        arrowSvg={arrowSvg}
         // Events
         onClick={(e: MouseEvent<HTMLDivElement>) => {
           e.stopPropagation()

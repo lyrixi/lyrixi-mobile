@@ -36,6 +36,7 @@ function ToolBarList({
   children,
   comboRender,
   arrowRender,
+  arrowSvg,
   portal,
 
   // Events
@@ -69,6 +70,7 @@ function ToolBarList({
       // Elements
       comboRender={comboRender}
       arrowRender={arrowRender}
+      arrowSvg={arrowSvg}
       portal={portal}
       offset={offset}
       left={left}

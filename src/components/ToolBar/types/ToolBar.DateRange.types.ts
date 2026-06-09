@@ -4,7 +4,7 @@ import type { ButtonProps } from '../../Button/types'
 import type { DatePickerRangesMap } from '../../DatePicker/types'
 import type { ToolBarDropdownProps } from './ToolBar.Dropdown.types'
 
-export interface ToolBarDateRangeBarProps {
+export interface ToolBarDateRangeBarProps extends ToolBarDropdownProps {
   value?: (Date | null)[] | null
   rangeId?: string | null
   type?: string
@@ -27,6 +27,7 @@ export interface ToolBarDateRangeBarProps {
   comboRender?: ToolBarDropdownProps['comboRender']
   children?: ReactNode
   arrowRender?: ToolBarDropdownProps['arrowRender']
+  arrowSvg?: ToolBarDropdownProps['arrowSvg']
   portal?: HTMLElement
   min?: Date | null
   max?: Date | null

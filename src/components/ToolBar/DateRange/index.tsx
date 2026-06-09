@@ -3,10 +3,7 @@ import getDisplayValue from './../../DatePicker/RangeCombo/getDisplayValue'
 import Dropdown from './../Dropdown'
 import DateRange from './DateRange'
 
-import type {
-  DatePickerRangesMap,
-  DatePickerRangeChangeMeta
-} from './../../DatePicker/types'
+import type { DatePickerRangesMap, DatePickerRangeChangeMeta } from './../../DatePicker/types'
 
 import type { ToolBarDateRangeBarProps, ToolBarDropdownRef } from './../types'
 
@@ -55,6 +52,7 @@ function DateRangeBar({
   comboRender,
   children,
   arrowRender,
+  arrowSvg,
   portal,
   min,
   max,
@@ -164,6 +162,7 @@ function DateRangeBar({
       sizeEqual={sizeEqual}
       fontSize={fontSize}
       direction={direction}
+      block={block}
       radius={radius}
       size={size}
       maskStyle={maskStyle}
@@ -173,6 +172,7 @@ function DateRangeBar({
       // Elements
       comboRender={comboRender}
       arrowRender={arrowRender}
+      arrowSvg={arrowSvg}
       modalRender={() => {
         return (
           <div className="lyrixi-modal-toolbar-daterange">
