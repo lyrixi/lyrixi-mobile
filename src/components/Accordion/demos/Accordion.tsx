@@ -13,7 +13,9 @@ export default function AccordionDemo() {
             className="lyrixi-flex"
             color="primary"
             style={{ margin: '12px' }}
-            onClick={() => setValue(2)}
+            onClick={() => {
+              setValue((prev) => (prev === 2 ? null : 2))
+            }}
           >
             Open Third
           </Button>

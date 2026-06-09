@@ -13,7 +13,9 @@ export default function AccordionGroupDemo() {
             className="lyrixi-flex"
             color="primary"
             style={{ margin: '12px' }}
-            onClick={() => setValue(2)}
+            onClick={() => {
+              setValue((prev) => (prev === 2 ? null : 2))
+            }}
           >
             Open Third
           </Button>
@@ -180,7 +182,9 @@ export default function AccordionGroupDemo() {
             </Accordion>
             <Accordion
               open={false}
-              arrowRender={() => <Icon svg={Icons.StarFill} size="xxxs" style={{ color: '#f90' }} />}
+              arrowRender={() => (
+                <Icon svg={Icons.StarFill} size="xxxs" style={{ color: '#f90' }} />
+              )}
               title="Arrow Node"
             >
               <div
