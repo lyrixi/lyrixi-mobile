@@ -126,7 +126,11 @@ const CompactRoot = forwardRef<FlexCompactRef, FlexCompactProps>(
                     )}
                     style={separatorStyle}
                   >
-                    {separator}
+                    {React.isValidElement(separator) ? (
+                      separator
+                    ) : (
+                      <div style={{ width: '1px' }}></div>
+                    )}
                   </div>
                 ) : null}
               </Fragment>

@@ -220,14 +220,15 @@ export default function ToolBarDemo() {
               <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
                 <Icon svg={Icons.Barcode} size="xs" />
               </ToolBar.Button>
-              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={true}>
                 <ToolBar.Button>1</ToolBar.Button>
                 <ToolBar.Button>2</ToolBar.Button>
                 <ToolBar.Button>3</ToolBar.Button>
               </Flex.Compact>
-              <Flex.Compact>
+              <Flex.Compact separator={true}>
                 <ToolBar.List
                   sizeEqual
+                  arrowSvg={null}
                   variant="solid"
                   maskStyle={{
                     zIndex: 99
@@ -321,6 +322,15 @@ export default function ToolBarDemo() {
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
+                  footerRender={() => {
+                    return (
+                      <FooterBar>
+                        <FooterBar.Button>
+                          <Icon svg={Icons.Barcode} />
+                        </FooterBar.Button>
+                      </FooterBar>
+                    )
+                  }}
                   modalRender={() => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}

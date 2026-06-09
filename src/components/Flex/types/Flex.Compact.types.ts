@@ -17,7 +17,7 @@ export interface FlexCompactRef {
 
 export interface FlexCompactProps {
   // Value & Display Value
-  separator?: ReactNode
+  separator?: ReactNode | boolean
   block?: boolean
   size?: FlexCompactSizeToken | string
   direction?: FlexCompactDirection | string
