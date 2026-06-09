@@ -12,4 +12,4 @@ export const IconSizeClasses = {
   xl: { className: 'lyrixi-size-xl' },
   xxl: { className: 'lyrixi-size-xxl' },
   xxxl: { className: 'lyrixi-size-xxxl' }
-} satisfies Partial<Record<IconSize, { className: string }>>
+}
