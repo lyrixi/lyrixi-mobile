@@ -1,6 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-
 import type { MessageButtonComponents } from '../types/Message.Button.modules.types'
 import type { MessageButtonProps, MessageButtonRef } from '../types'
 
@@ -55,7 +54,5 @@ const Button = forwardRef<MessageButtonRef, MessageButtonProps>(
     )
   }
 )
-
-;(Button as MessageButtonComponents).componentName = 'ToolBar.Button'
 
 export default Button as MessageButtonComponents
