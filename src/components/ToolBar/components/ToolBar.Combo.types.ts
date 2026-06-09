@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEventHandler, ReactNode } from 'react'
+import type { CSSProperties, MouseEventHandler, ReactNode, ComponentType, SVGProps } from 'react'
 
 import type { ButtonProps } from '../../Button/types'
 
@@ -25,6 +25,7 @@ export interface ToolBarComboProps {
   className?: string
   // Elements
   arrowRender?: (props: { open: boolean | null }) => ReactNode
+  arrowSvg?: ComponentType<SVGProps<SVGSVGElement>>
   children?: ReactNode
   // Events
   onClick?: MouseEventHandler<HTMLDivElement>
