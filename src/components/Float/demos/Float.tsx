@@ -34,18 +34,20 @@ export default function FloatDemo() {
             direction="vertical"
             size="l"
             radius="100%"
-            variant="solid" color="primary"
+            variant="solid"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}
           >
-            <Icon svg={Icons.ThreeDots} />1
+            <Button.Icon svg={Icons.ThreeDots} />1
           </Button>
           <Button
             sizeEqual
             size="l"
             radius="100%"
-            variant="solid" color="default"
+            variant="solid"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -53,14 +55,15 @@ export default function FloatDemo() {
               marginTop: '16px'
             }}
           >
-            <Icon svg={Icons.Plus} />
+            <Button.Icon svg={Icons.Plus} />
             <Button.Text>2</Button.Text>
           </Button>
           <Button
             sizeEqual
             size="l"
             radius="100%"
-            variant="solid" color="default"
+            variant="solid"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -93,10 +96,11 @@ export default function FloatDemo() {
                   direction="vertical"
                   size="xl"
                   radius="100%"
-                  variant="solid" color="primary"
+                  variant="solid"
+                  color="primary"
                   onClick={onClick}
                 >
-                  <Icon svg={Icons.ThreeDots} />
+                  <Button.Icon svg={Icons.ThreeDots} />
                 </Button>
               )
             }}
