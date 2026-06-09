@@ -13,6 +13,7 @@ import {
   type ToolBarItem,
   Icons
 } from 'lyrixi-mobile'
+import FilterFooter from './FilterFooter'
 
 export default function ToolBarDemo() {
   const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
@@ -255,6 +256,9 @@ export default function ToolBarDemo() {
                 <ToolBar.Filter
                   sizeEqual
                   variant="solid"
+                  footerRender={({ onClose }) => {
+                    return <FilterFooter onClose={onClose} />
+                  }}
                   modalRender={() => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
@@ -278,12 +282,8 @@ export default function ToolBarDemo() {
               <ToolBar.Filter
                 color="primary"
                 sizeEqual
-                icon={<Icon svg={Icons.Search} />}
-                onReset={() => {
-                  console.log('reset')
-                }}
-                onOk={() => {
-                  console.log('submit')
+                footerRender={({ onClose }) => {
+                  return <FilterFooter onClose={onClose} />
                 }}
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
@@ -322,14 +322,8 @@ export default function ToolBarDemo() {
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
-                  footerRender={() => {
-                    return (
-                      <FooterBar>
-                        <FooterBar.Button>
-                          <Icon svg={Icons.Barcode} />
-                        </FooterBar.Button>
-                      </FooterBar>
-                    )
+                  footerRender={({ onClose }) => {
+                    return <FilterFooter onClose={onClose} />
                   }}
                   modalRender={() => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
@@ -371,6 +365,9 @@ export default function ToolBarDemo() {
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
+                      footerRender={({ onClose }) => {
+                        return <FilterFooter onClose={onClose} />
+                      }}
                       modalRender={() => {
                         return <div style={{ height: '300px' }}>Modal Content</div>
                       }}
@@ -413,6 +410,9 @@ export default function ToolBarDemo() {
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
+                      footerRender={({ onClose }) => {
+                        return <FilterFooter onClose={onClose} />
+                      }}
                       modalRender={() => {
                         return <div style={{ height: '300px' }}>Modal Content</div>
                       }}
