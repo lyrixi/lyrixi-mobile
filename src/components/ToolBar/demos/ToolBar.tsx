@@ -218,7 +218,7 @@ export default function ToolBarDemo() {
           <Card.Main>
             <ToolBar>
               <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                <Icon svg={Icons.Barcode} />
+                <Icon svg={Icons.Barcode} size="xs" />
               </ToolBar.Button>
               <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
                 <ToolBar.Button>1</ToolBar.Button>
@@ -228,6 +228,7 @@ export default function ToolBarDemo() {
               <Flex.Compact>
                 <ToolBar.List
                   sizeEqual
+                  variant="solid"
                   maskStyle={{
                     zIndex: 99
                   }}
@@ -244,14 +245,15 @@ export default function ToolBarDemo() {
                     }
                   ]}
                 >
-                  <Icon svg={Icons.ThreeDots} />
+                  <Icon svg={Icons.ThreeDots} size="xs" />
                 </ToolBar.List>
 
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon svg={Icons.Barcode} />
+                  <Icon svg={Icons.Barcode} size="xs" />
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
+                  variant="solid"
                   modalRender={() => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}

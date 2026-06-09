@@ -109,7 +109,7 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
         }}
       >
         {/* comboChildren */}
-        {children || <Icon svg={Icons.FilterMenu} />}
+        {children || <Icon svg={Icons.FilterMenu} size="xs" />}
       </Button>
     )
   }
@@ -152,6 +152,4 @@ const Filter = forwardRef<ToolBarFilterRef, ToolBarFilterProps>(function Filter(
   )
 })
 
-// Component Name, for compact
-;(Filter as typeof Filter & { componentName?: string }).componentName = 'ToolBar.Filter'
 export default Filter

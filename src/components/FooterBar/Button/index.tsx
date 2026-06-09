@@ -119,6 +119,4 @@ const FooterBarButton = forwardRef<FooterBarButtonRef, FooterBarButtonProps>(
   }
 )
 
-;(FooterBarButton as FooterBarButtonComponents).componentName = 'FooterBar.Button'
-
 export default FooterBarButton as FooterBarButtonComponents

@@ -66,8 +66,4 @@ const ToolBarButton = forwardRef<ButtonRef, ToolBarButtonProps>(function ToolBar
   )
 })
 
-// Component Name, for compact
-;(ToolBarButton as typeof ToolBarButton & { componentName?: string }).componentName =
-  'ToolBar.Button'
-
 export default ToolBarButton

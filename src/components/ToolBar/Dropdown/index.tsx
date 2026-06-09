@@ -205,6 +205,4 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
   )
 })
 
-// Component Name, for compact
-;(Dropdown as typeof Dropdown & { componentName?: string }).componentName = 'ToolBar.Dropdown'
 export default Dropdown
