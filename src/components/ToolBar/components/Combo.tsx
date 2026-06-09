@@ -56,7 +56,7 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     }
 
     if (arrowSvg) {
-      return <Button.Icon svg={arrowSvg} size="xxxs" />
+      return <Button.Icon svg={arrowSvg} size="8px" />
     }
 
     return null
@@ -85,7 +85,7 @@ const Combo = forwardRef<ToolBarComboRef, ToolBarComboProps>(function Combo(
     >
       {/* 有箭头左右对齐, 没有箭头居中对齐 */}
       {ArrowNode ? (
-        <span className="lyrixi-toolbar-dropdown-combo-title">{children}</span>
+        <Button.Text className="lyrixi-toolbar-dropdown-combo-title">{children}</Button.Text>
       ) : (
         children
       )}

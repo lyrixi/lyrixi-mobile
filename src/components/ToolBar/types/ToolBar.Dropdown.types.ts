@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEvent, ReactNode, RefObject } from 'react'
+import type { CSSProperties, MouseEvent, ReactNode, RefObject, ComponentType, SVGProps } from 'react'
 
 import type { ButtonProps } from '../../Button/types'
 import type { ToolBarComboRef } from '../components/ToolBar.Combo.types'
@@ -30,6 +30,7 @@ export interface ToolBarDropdownProps {
     onClick: (e: MouseEvent) => void | Promise<void>
   }) => ReactNode
   arrowRender?: (props: { open: boolean | null }) => ReactNode
+  arrowSvg?: ComponentType<SVGProps<SVGSVGElement>>
   // Modal: Style
   modalStyle?: CSSProperties
   modalClassName?: string

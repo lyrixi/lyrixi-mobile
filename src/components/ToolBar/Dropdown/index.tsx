@@ -16,7 +16,6 @@ import type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
 import ObjectUtil from './../../../utils/ObjectUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import DropdownModal from './../../Modal/DropdownModal'
-import Button from '../../Button'
 import Icons from '../../../icons'
 // 内库使用-end
 
@@ -42,7 +41,8 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     // Combo: Elements
     children,
     comboRender,
-    arrowRender = () => <Button.Icon svg={Icons.TriangleUpFill} size="xxxs" />,
+    arrowRender,
+    arrowSvg = Icons.TriangleUpFill,
 
     // Modal: Style
     modalStyle,
@@ -160,6 +160,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
         size={size}
         // Elements
         arrowRender={arrowRender}
+        arrowSvg={arrowSvg}
         // Events
         onClick={handleClick}
       >
