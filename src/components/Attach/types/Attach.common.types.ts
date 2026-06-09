@@ -1,5 +1,6 @@
 /** 本地上传中间态，字段可能未齐 */
 export interface LocalFile {
+  fileSize?: number
   fileUrl?: string
   fileType?: string
   tempFileThumbnail?: string

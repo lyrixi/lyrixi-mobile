@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { Page, DatePicker, DateUtil, Card, Toast, type DatePickerRangeComboProps } from 'lyrixi-mobile'
+import {
+  Page,
+  DatePicker,
+  DateUtil,
+  Card,
+  Toast,
+  type DatePickerRangeComboProps
+} from 'lyrixi-mobile'
 
 export default function DatePickerRangeComboDemo() {
   const [value, setValue] = useState<(Date | null)[] | null>(null)
@@ -135,6 +142,7 @@ export default function DatePickerRangeComboDemo() {
               placeholder="onOk"
               value={value}
               onChange={setValue as DatePickerRangeComboProps['onChange']}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onOk={(newValue) => {
                 Toast.show({ content: 'Use onOk to stop' })
                 return false
@@ -174,4 +182,3 @@ export default function DatePickerRangeComboDemo() {
     </Page>
   )
 }
-

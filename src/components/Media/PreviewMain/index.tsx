@@ -28,12 +28,12 @@ import PreviewToolbar from './PreviewToolbar'
 import type {
   MediaProps,
   MediaFileChooseOptions,
-  MediaItem,
   MediaPreviewMainProps,
   MediaPreviewMainRef
 } from './../types'
 
 // 内库使用-start
+import type { FileItem } from './../../Attach/types'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import Device from './../../../utils/Device'
@@ -50,12 +50,12 @@ function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
 }
 
-function itemMediaUrl(item: MediaItem): string {
+function itemMediaUrl(item: FileItem): string {
   const raw = item?.localFile?.tempFileUrl ?? item?.fileUrl
   return raw === null || raw === undefined || raw === '' ? '' : String(raw)
 }
 
-function itemPosterUrl(item: MediaItem): string {
+function itemPosterUrl(item: FileItem): string {
   const raw = item?.localFile?.tempFileThumbnail ?? item?.fileThumbnail
   return raw === null || raw === undefined || raw === '' ? '' : String(raw)
 }
@@ -95,7 +95,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
   },
   ref: Ref<MediaPreviewMainRef>
 ) {
-  const list: MediaItem[] = listProp
+  const list: FileItem[] = listProp
 
   const swiperRef = useRef<SwiperRef | null>(null)
 
@@ -147,10 +147,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     setActiveIndex(swiper.activeIndex)
   }
 
-  async function uploadList(
-    newList: MediaItem[] | undefined,
-    { action }: { action?: string } = {}
-  ) {
+  async function uploadList(newList: FileItem[] | undefined, { action }: { action?: string } = {}) {
     // eslint-disable-next-line
     if (!newList) newList = [...list]
     if (!newList) return
@@ -162,7 +159,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     for (let index = 0; index < newList.length; index++) {
       const item = newList[index]
       if (item.status === 'choose' || item.status === 'error') {
-        newList[index] = (await uploadItem(item, { onUpload })) as MediaItem
+        newList[index] = (await uploadItem(item, { onUpload })) as FileItem
         hasUploaded = true
       }
     }
@@ -267,7 +264,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
       ),
       index: reIdx
     })
-    newListRe[reIdx] = (await uploadItem(reItem, { onUpload })) as MediaItem
+    newListRe[reIdx] = (await uploadItem(reItem, { onUpload })) as FileItem
     _hideLoading(newListRe[reIdx].status === 'error' ? { failIndexes: [reIdx] } : undefined)
     onChangeRef.current?.(newListRe, { action: 'reUpload' })
   }

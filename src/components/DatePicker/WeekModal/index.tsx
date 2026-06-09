@@ -17,121 +17,118 @@ const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
 // WeekModal
-const WeekModal = forwardRef<DatePickerModalRef, DatePickerWeekModalProps>(function DatePickerWeekModal(
-  {
-    // Value & Display Value
-    value,
-    min,
-    max,
+const WeekModal = forwardRef<DatePickerModalRef, DatePickerWeekModalProps>(
+  function DatePickerWeekModal(
+    {
+      // Value & Display Value
+      value,
+      min,
+      max,
 
-    // Status
-    open,
-    maskClosable,
-    allowClear,
-
-    // Style
-    safeArea,
-    modalStyle,
-    modalClassName,
-    maskStyle,
-    maskClassName,
-
-    // Elements
-    portal,
-    titleRender,
-    okNode,
-    cancelNode,
-    okVisible,
-    cancelVisible,
-
-    // Events
-    onClose,
-    onChange,
-    onOk
-  },
-  ref
-) {
-  let [currentValue, setCurrentValue] = useState<Date | null | undefined>(value)
-
-  const modalRef = useRef<ModalRef | null>(null)
-
-  const mainRef = useRef<CalendarRef | null>(null)
-
-
-  // 同步外部value到内部currentValue
-  useEffect(() => {
-    setCurrentValue(value)
-  }, [value])
-
-
-  useImperativeHandle(ref, () => {
-    return {
-      ...(typeof modalRef.current === 'object' && modalRef.current !== null
-        ? (modalRef.current as unknown as Record<string, unknown>)
-        : {}),
-      ...(typeof mainRef.current === 'object' && mainRef.current !== null ? mainRef.current : {})
-    } as DatePickerModalRef
-  })
-
-
-  async function handleOk() {
-    if (onOk) {
-      let goOn = await onOk(currentValue)
-      if (goOn === false) return false
-      if (goOn instanceof Date) {
-        currentValue = goOn
-      }
-    }
-    onChange?.(currentValue ?? null)
-    onClose?.()
-  }
-
-
-  function handleChange(newValue: Date | null) {
-    setCurrentValue(newValue)
-  }
-
-
-  // 自定义标题节点
-  const titleNode = titleRender?.(currentValue, { type: 'week' }) ?? null
-
-
-  return (
-    <NavBarModal
-      ref={modalRef}
       // Status
-      open={open}
-      maskClosable={maskClosable}
+      open,
+      maskClosable,
+      allowClear,
+
       // Style
-      safeArea={safeArea}
-      modalStyle={modalStyle}
-      modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
-      maskStyle={maskStyle}
-      maskClassName={maskClassName}
+      safeArea,
+      modalStyle,
+      modalClassName,
+      maskStyle,
+      maskClassName,
+
       // Elements
-      portal={portal}
-      title={titleNode || getTitle(currentValue, { type: 'week' })}
-      okNode={okNode}
-      cancelNode={cancelNode}
-      okVisible={true}
-      cancelVisible={cancelVisible}
+      portal,
+      titleRender,
+      okNode,
+      cancelNode,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      okVisible,
+      cancelVisible,
+
       // Events
-      onClose={onClose}
-      onOk={handleOk}
-    >
-      <WeekMain
-        ref={mainRef}
+      onClose,
+      onChange,
+      onOk
+    },
+    ref
+  ) {
+    let [currentValue, setCurrentValue] = useState<Date | null | undefined>(value)
+
+    const modalRef = useRef<ModalRef | null>(null)
+
+    const mainRef = useRef<CalendarRef | null>(null)
+
+    // 同步外部value到内部currentValue
+    useEffect(() => {
+      setCurrentValue(value)
+    }, [value])
+
+    useImperativeHandle(ref, () => {
+      return {
+        ...(typeof modalRef.current === 'object' && modalRef.current !== null
+          ? (modalRef.current as unknown as Record<string, unknown>)
+          : {}),
+        ...(typeof mainRef.current === 'object' && mainRef.current !== null ? mainRef.current : {})
+      } as DatePickerModalRef
+    })
+
+    async function handleOk() {
+      if (onOk) {
+        let goOn = await onOk(currentValue)
+        if (goOn === false) return false
+        if (goOn instanceof Date) {
+          currentValue = goOn
+        }
+      }
+      onChange?.(currentValue ?? null)
+      onClose?.()
+    }
+
+    function handleChange(newValue: Date | null) {
+      setCurrentValue(newValue)
+    }
+
+    // 自定义标题节点
+    const titleNode = titleRender?.(currentValue, { type: 'week' }) ?? null
+
+    return (
+      <NavBarModal
+        ref={modalRef}
+        // Status
         open={open}
-        value={currentValue ?? null}
-        allowClear={allowClear}
-        onChange={handleChange}
-        min={min}
-        max={max}
-        style={undefined}
-        className={undefined}
-      />
-    </NavBarModal>
-  )
-})
+        maskClosable={maskClosable}
+        // Style
+        safeArea={safeArea}
+        modalStyle={modalStyle}
+        modalClassName={DOMUtil.classNames('lyrixi-modal-picker', modalClassName)}
+        maskStyle={maskStyle}
+        maskClassName={maskClassName}
+        // Elements
+        portal={portal}
+        title={titleNode || getTitle(currentValue, { type: 'week' })}
+        okNode={okNode}
+        cancelNode={cancelNode}
+        okVisible={true}
+        cancelVisible={cancelVisible}
+        // Events
+        onClose={onClose}
+        onOk={handleOk}
+      >
+        <WeekMain
+          ref={mainRef}
+          open={open}
+          value={currentValue ?? null}
+          allowClear={allowClear}
+          onChange={handleChange}
+          min={min}
+          max={max}
+          style={undefined}
+          className={undefined}
+        />
+      </NavBarModal>
+    )
+  }
+)
 
 export default WeekModal

@@ -33,6 +33,7 @@ const KeyboardNumber = forwardRef<KeyboardNumberRef, KeyboardNumberProps>(
       // Status
       safeArea = true,
       okVisible,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       cancelVisible,
       open,
       // Style

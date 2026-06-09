@@ -30,9 +30,10 @@ const Main = forwardRef<PickerMainRef, DatePickerMainProps>(function DateMain(
     hourStep,
     minuteStep,
     // Style (与外层 Main 对齐；当前未向下传递)
-    style: _style,
-    className: _className,
-    allowClear: _allowClear,
+    style,
+    className,
+    allowClear,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     weekStart: _weekStart,
 
     // Events
@@ -60,9 +61,13 @@ const Main = forwardRef<PickerMainRef, DatePickerMainProps>(function DateMain(
       ref={ref}
       // Modal: Status
       open={open}
+      allowClear={allowClear}
       // Value & Display Value
       value={valueToList(value, pickerType, { hourStep, minuteStep }) as PickerItem[] | null}
       list={getList(value, pickerType, { hourStep, minuteStep }) as PickerItem[][]}
+      // Style
+      style={style}
+      className={className}
       // Events
       onChange={(v) => handleChange(v as DatePickerPickerValueList)}
     />

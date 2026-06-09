@@ -1,11 +1,11 @@
-import type { ChangeEvent, MouseEvent, SyntheticEvent } from 'react'
+import type { MediaChooseProps } from './Media.Choose.types'
 
 export interface MediaPreviewChooseProps {
   // Value & Display Value
   mediaType?: string | string[]
   sourceType: string[]
   // Events
-  onBeforeChoose?: (e: MouseEvent) => boolean | void | Promise<boolean | void>
-  onChoose?: (e?: SyntheticEvent) => void | Promise<unknown>
-  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
+  onBeforeChoose?: MediaChooseProps['onBeforeChoose']
+  onChoose?: MediaChooseProps['onChoose']
+  onFileChange?: MediaChooseProps['onFileChange']
 }

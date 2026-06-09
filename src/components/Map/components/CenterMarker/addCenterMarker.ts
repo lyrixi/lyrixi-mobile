@@ -22,13 +22,16 @@ function addCenterMarker(
   } else {
     resolvedIcon = icon ?? undefined
   }
-  const marker = window.L!.marker([fittedPoint.latitude as number, fittedPoint.longitude as number], {
-    ...(resolvedIcon ? { icon: resolvedIcon } : {})
-  })
+  const marker = window.L!.marker(
+    [fittedPoint.latitude as number, fittedPoint.longitude as number],
+    {
+      ...(resolvedIcon ? { icon: resolvedIcon } : {})
+    }
+  )
   marker.addTo(layer)
 
   if (!onClick) return marker
-  marker.on('click', function (e) {
+  marker.on('click', function (e: L.LeafletMouseEvent) {
     onClick({
       ...(fittedPoint || {}),
       icon: (e?.target as L.Marker)?.options?.icon?.options || null,

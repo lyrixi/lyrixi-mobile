@@ -1,6 +1,5 @@
 import hasIntersection from './hasIntersection'
 
-
 import type { DistrictSearchByKeywordNode, DistrictSearchByKeywordResult } from '../../../types'
 
 // 内库使用-start
@@ -22,15 +21,15 @@ function searchByKeyword(
   const currentList =
     keyword && keyword.trim()
       ? ArrayUtil.getDeepTreeNodes(externalList, (node: DistrictSearchByKeywordNode) => {
-        if (
-          String(node.name).includes(keyword) &&
-          Array.isArray(node.type) &&
-          hasIntersection(currentLevelTypes, node.type)
-        ) {
-          return true
-        }
-        return false
-      })
+          if (
+            String(node.name).includes(keyword) &&
+            Array.isArray(node.type) &&
+            hasIntersection(currentLevelTypes, node.type)
+          ) {
+            return true
+          }
+          return false
+        })
       : []
 
   if (currentList.length > 0) {
@@ -38,6 +37,7 @@ function searchByKeyword(
       status: 'success',
       message: '',
       list: currentList.map((node: DistrictSearchByKeywordNode) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { children, ...restNode } = node
         const path = ArrayUtil.getDeepTreePredecessorNodes(
           externalList,
@@ -53,12 +53,8 @@ function searchByKeyword(
     return {
       status: 'empty',
       message: !keyword?.trim?.()
-        ? String(
-            LocaleUtil.locale('请输入关键字', 'lyrixi_db91cb073ee4c9b76289e93ae2b4aa04') ?? ''
-          )
-        : String(
-            LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60') ?? ''
-          ),
+        ? String(LocaleUtil.locale('请输入关键字', 'lyrixi_db91cb073ee4c9b76289e93ae2b4aa04') ?? '')
+        : String(LocaleUtil.locale('暂无数据', 'lyrixi_21efd88b67a39834582ad99aabb9dc60') ?? ''),
       list: []
     }
   }

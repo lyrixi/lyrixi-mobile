@@ -44,7 +44,7 @@ async function uploadItem(
   if (raw === undefined || raw === null) {
     return { ...item, status: 'success' }
   }
-  const newItem = raw as MediaItem
+  const newItem = raw as FileItem
 
   // 上传失败
   if (newItem.status === 'error') {

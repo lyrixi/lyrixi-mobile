@@ -2,14 +2,6 @@ import React, { useState } from 'react'
 import { Page, Divider, TabBar, Icon, Icons, type TabBarItem } from 'lyrixi-mobile'
 
 export default function TabBarSlideDemo() {
-  const list = [
-    {
-      id: 'Fruit',
-      name: 'Fruit'
-    },
-    { id: 'Vegetable', name: 'Vegetable', disabled: true },
-    { id: 'Animal', name: 'Animal' }
-  ]
   const [value, setValue] = useState<TabBarItem>({ name: 'Vegetable', id: 'Vegetable' })
 
   function handleChange(next: TabBarItem) {

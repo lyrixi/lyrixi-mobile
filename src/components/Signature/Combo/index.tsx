@@ -19,10 +19,13 @@ const Combo = (
     style,
     modalClassName,
     modalStyle,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     maskStyle,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     maskClassName,
 
     // Elements
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     portal,
     color, // 绘画配置: 画笔颜色
     backgroundColor, // 绘画配置: 背景颜色

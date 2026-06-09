@@ -20,6 +20,7 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
       // Value & Display Value
       value,
       list,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       placeholder: _placeholder,
       // Status
       disabled,
@@ -64,41 +65,42 @@ const CheckboxGroup = forwardRef<CheckboxGroupRef, CheckboxGroupProps>(
       >
         {Array.isArray(list) && list.length
           ? list.map((item) => {
-            if (!item?.id) return null
+              if (!item?.id) return null
 
-            const isChecked = multiple
-              ? Array.isArray(formattedValue) && formattedValue.some((valueItem) => valueItem?.id === item.id)
-              : !Array.isArray(formattedValue) && formattedValue?.id === item.id
+              const isChecked = multiple
+                ? Array.isArray(formattedValue) &&
+                  formattedValue.some((valueItem) => valueItem?.id === item.id)
+                : !Array.isArray(formattedValue) && formattedValue?.id === item.id
 
-            return (
-              <Checkbox
-                key={String(item.id)}
-                checked={isChecked}
-                iconRender={iconRender}
-                iconPosition={iconPosition}
-                onChange={(checked) => {
-                  let newValue: CheckboxItem | CheckboxItem[] | null = null
-                  if (multiple) {
-                    const currentArr = Array.isArray(formattedValue) ? formattedValue : []
-                    if (!checked) {
-                      newValue = currentArr.filter((valueItem) => valueItem?.id !== item.id)
+              return (
+                <Checkbox
+                  key={String(item.id)}
+                  checked={isChecked}
+                  iconRender={iconRender}
+                  iconPosition={iconPosition}
+                  onChange={(checked) => {
+                    let newValue: CheckboxItem | CheckboxItem[] | null = null
+                    if (multiple) {
+                      const currentArr = Array.isArray(formattedValue) ? formattedValue : []
+                      if (!checked) {
+                        newValue = currentArr.filter((valueItem) => valueItem?.id !== item.id)
+                      } else {
+                        newValue = [...currentArr, item]
+                      }
                     } else {
-                      newValue = [...currentArr, item]
+                      if (!checked) {
+                        newValue = allowClear ? null : item
+                      } else {
+                        newValue = item
+                      }
                     }
-                  } else {
-                    if (!checked) {
-                      newValue = allowClear ? null : item
-                    } else {
-                      newValue = item
-                    }
-                  }
-                  onChange?.(newValue)
-                }}
-              >
-                {String(item.name || '')}
-              </Checkbox>
-            )
-          })
+                    onChange?.(newValue)
+                  }}
+                >
+                  {String(item.name || '')}
+                </Checkbox>
+              )
+            })
           : null}
       </div>
     )

@@ -9,21 +9,19 @@ import type {
 } from 'react'
 
 // 内库使用-start
+import type { AttachProps } from './../../Attach/types'
 import type { FileItem } from './../../Attach/types'
 // 内库使用-end
-
-export interface MediaChooseCallbacks {
-  onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
-  onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
-  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
-}
 
 export interface FileImageCompressOptions {
   maxWidth?: number
   quality?: number
 }
 
-export interface MediaProps extends MediaChooseCallbacks {
+export interface MediaProps {
+  onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
+  onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
+  onFileChange?: AttachProps['onFileChange']
   list?: FileItem[]
   maxCount?: number
   mediaType?: string[]

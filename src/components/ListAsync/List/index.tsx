@@ -28,6 +28,7 @@ const EntityList = forwardRef<ListAsyncRef, ListAsyncProps>(
       multiple,
       allowClear,
       checkable,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       virtual,
       threshold,
       touchStopPropagation,

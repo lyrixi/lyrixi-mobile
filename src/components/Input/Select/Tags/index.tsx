@@ -6,7 +6,7 @@ import Tag from './Tag'
 import InputNode from './../../Node'
 
 // 内库使用-start
-import DOMUtil from 'lyrixi-mobile/utils/DOMUtil'
+import DOMUtil from '../../../../utils/DOMUtil'
 // 内库使用-end
 
 // 标签模式

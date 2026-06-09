@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Card, Divider, Input, Icon, Icons } from 'lyrixi-mobile'
+import { Page, Card, Divider, Input, Icons } from 'lyrixi-mobile'
 
 export default function InputRateDemo() {
   const [value, setValue] = useState(3)

@@ -13,6 +13,6 @@ export interface MediaChooseProps {
   uploadingRender?: MediaUploadingProps['uploadingRender']
   // Events
   onBeforeChoose?: (e: MouseEvent) => void | boolean | Promise<void | boolean>
-  onChoose?: (e?: MouseEvent) => void | Promise<unknown>
-  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
+  onChoose?: (e?: MouseEvent) => void
+  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }

@@ -93,8 +93,9 @@ export default function MediaDemo() {
           sourceType={['camera', 'album']}
           list={list}
           maxCount={9}
-          onFileChange={(localFile) => {
-            console.log('localFile:', localFile)
+          onFileChange={(e: FileItem): FileItem => {
+            console.log('localFile:', e)
+            return e
           }}
           onChange={(newList) => {
             console.log('修改:', newList)
@@ -110,6 +111,7 @@ export default function MediaDemo() {
           style={mediaVarsStyle}
           previewAllowChoose={true}
           previewAllowClear={true}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onPreview={(_item, _index) => {
             HistoryUtil.navigate('imagePreview=1', {
               onBack: () => {

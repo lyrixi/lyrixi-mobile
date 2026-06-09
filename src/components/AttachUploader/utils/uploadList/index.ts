@@ -1,9 +1,9 @@
 import defaultUploadItem from './../../Browser/uploadItem'
 
-
-import type { AttachUploaderItem, UploadListConfig } from '../../types'
+import type { UploadListConfig } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -28,9 +28,9 @@ function toToastString(s: string | import('react').ReactNode): string {
  */
 
 async function uploadList(
-  pendingList: AttachUploaderItem | AttachUploaderItem[] | null | undefined,
+  pendingList: FileItem | FileItem[] | null | undefined,
   uploadConfig: UploadListConfig | null | undefined
-): Promise<AttachUploaderItem | AttachUploaderItem[] | null> {
+): Promise<FileItem | FileItem[] | null> {
   if (ObjectUtil.isEmpty(pendingList)) {
     return null
   }
@@ -40,11 +40,11 @@ async function uploadList(
     uploadItem = defaultUploadItem
   }
 
-  let list: AttachUploaderItem[] = []
+  let list: FileItem[] = []
 
   // 如果是对象则转为数组
   if (toString.call(pendingList) === '[object Object]') {
-    list = [pendingList as AttachUploaderItem]
+    list = [pendingList as FileItem]
   }
   // 如果是数组
   else if (Array.isArray(pendingList)) {
@@ -58,7 +58,11 @@ async function uploadList(
   if (ObjectUtil.isEmpty(filtered)) {
     Toast.show({
       content: toToastString(
-        LocaleUtil.locale('uploadList参数列表错误', 'lyrixi_02e1574baeddc79ed7bfa5931dde85f0', undefined)
+        LocaleUtil.locale(
+          'uploadList参数列表错误',
+          'lyrixi_02e1574baeddc79ed7bfa5931dde85f0',
+          undefined
+        )
       )
     })
     return null
@@ -106,7 +110,7 @@ async function uploadList(
     console.log(`上传结果：`, newItem)
 
     // 重新设置list
-    list[index] = newItem as AttachUploaderItem
+    list[index] = newItem as FileItem
   }
   return toString.call(pendingList) === '[object Object]' ? list[0] : list
 }

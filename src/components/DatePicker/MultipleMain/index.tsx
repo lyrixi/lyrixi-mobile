@@ -28,6 +28,7 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
       value,
       // Status
       type = 'date', // year | quarter | month | date | time | datetime | week
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       allowClear,
       min,
       max,
@@ -46,10 +47,8 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
 
     const [activeTab, setActiveTab] = useState<DatePickerMultipleItem | undefined>(undefined)
 
-
     // Expose tools
     const mainRef = useRef<HTMLDivElement | null>(null)
-
 
     useEffect(() => {
       if (activeTab) return
@@ -67,9 +66,7 @@ const MultipleMain = forwardRef<Record<string, unknown> | null, DatePickerMultip
       }
     })
 
-
     const tabs = tabsRef.current
-
 
     return (
       <div ref={mainRef} className="lyrixi-picker-multiple-main">

@@ -45,7 +45,9 @@ const ListAsync = forwardRef<ListAsyncRef, ListAsyncProps>(
       loadingPortal,
 
       // 子组件特定属性属性(父组件里构建这两个属性)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       list,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       children,
 
       // 共用属性

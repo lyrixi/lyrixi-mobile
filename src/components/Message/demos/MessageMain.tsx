@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
+import { Page, Message, Button, Icons } from 'lyrixi-mobile'
 
 export default function MessageMainDemo() {
   const [open, setOpen] = useState(false)

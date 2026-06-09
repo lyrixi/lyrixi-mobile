@@ -49,6 +49,7 @@ function MediaUploader(
     previewAllowChoose,
     previewAllowClear,
     compatible = true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     timeout,
 
     // Style
@@ -83,6 +84,7 @@ function MediaUploader(
     onPreview,
 
     chooseExtraParams,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onNavigateTo
   }: MediaUploaderProps,
   ref: React.ForwardedRef<MediaHandle>
@@ -246,7 +248,9 @@ function MediaUploader(
   return <Browser ref={ref} {...commonProps} style={style} className={className} />
 }
 
-const MediaUploaderComponent = forwardRef<MediaHandle, MediaUploaderProps>(MediaUploader) as React.ForwardRefExoticComponent<MediaUploaderProps & React.RefAttributes<MediaHandle>> & {
+const MediaUploaderComponent = forwardRef<MediaHandle, MediaUploaderProps>(
+  MediaUploader
+) as React.ForwardRefExoticComponent<MediaUploaderProps & React.RefAttributes<MediaHandle>> & {
   uploadList: typeof uploadList
 }
 MediaUploaderComponent.uploadList = uploadList

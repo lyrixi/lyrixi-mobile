@@ -1,7 +1,7 @@
-
-import type { AttachUploaderItem, UploadOpts, UploadResponse } from './../../types'
+import type { UploadOpts, UploadResponse } from './../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import Bridge from './../../../../utils/Bridge'
 // 内库使用-end
 
@@ -17,7 +17,7 @@ function uploadLocalFile({
   formatPayload,
   formatResponse,
   item
-}: UploadOpts): Promise<AttachUploaderItem> {
+}: UploadOpts): Promise<FileItem> {
   return new Promise((resolve) => {
     Bridge.uploadFile({
       getUploadUrl,
@@ -31,7 +31,7 @@ function uploadLocalFile({
             ...item,
             status: 'error',
             message: response.message
-          } as AttachUploaderItem)
+          } as FileItem)
           return
         }
 
@@ -41,14 +41,14 @@ function uploadLocalFile({
           ...item,
           ...newItem,
           status: 'success'
-        } as AttachUploaderItem)
+        } as FileItem)
       },
       onError: function (error: { message?: string }) {
         resolve({
           ...item,
           status: 'error',
           message: error.message
-        } as AttachUploaderItem)
+        } as FileItem)
       }
     })
   })

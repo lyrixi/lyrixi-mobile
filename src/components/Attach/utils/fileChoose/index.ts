@@ -53,11 +53,9 @@ async function fileChoose({
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({
       content: toToastString(
-        LocaleUtil.locale(
-          `总数不能大于${maxCount}`,
-          'lyrixi_2d5162e5511eccd2b3d50796122c6e6e',
-          [maxCount]
-        )
+        LocaleUtil.locale(`总数不能大于${maxCount}`, 'lyrixi_2d5162e5511eccd2b3d50796122c6e6e', [
+          maxCount
+        ])
       ),
       maskClickable: true
     })
@@ -133,7 +131,7 @@ async function fileChoose({
       fileUrl: fileURL,
       status: 'choose'
     })
-    currentList = Array.isArray(r) ? (r as FileItem[]) : null
+    currentList = r ? ([r] as FileItem[]) : null
   }
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {

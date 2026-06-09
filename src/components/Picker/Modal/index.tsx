@@ -29,9 +29,13 @@ import { DOMUtil, Modal } from 'lyrixi-mobile'
 const NavBarModal = Modal.NavBarModal
 测试使用-end */
 
-function getLists(rawList: PickerModalProps['list']): { lists: PickerItem[][] | null; listCount: number } {
+function getLists(rawList: PickerModalProps['list']): {
+  lists: PickerItem[][] | null
+  listCount: number
+} {
   const dimensional = dimensionalArray(rawList)
-  if (dimensional === 2) return { lists: rawList as PickerItem[][], listCount: (rawList as PickerItem[][]).length }
+  if (dimensional === 2)
+    return { lists: rawList as PickerItem[][], listCount: (rawList as PickerItem[][]).length }
   if (dimensional === 1) return { lists: [rawList as PickerItem[]], listCount: 1 }
   return { lists: null, listCount: 0 }
 }
@@ -60,6 +64,7 @@ const Modal = forwardRef<PickerModalRef, PickerModalProps>(function PickerModal(
     title,
     okNode,
     cancelNode,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     okVisible,
     cancelVisible,
 

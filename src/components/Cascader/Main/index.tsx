@@ -268,6 +268,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     }
 
     // 点击选项, value不包含children
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleDrill({ children: _children, ...item }: CascaderItem) {
       // 防止用户快速点击多次触发
       Loading.show({

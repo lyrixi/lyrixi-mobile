@@ -25,39 +25,39 @@ toc: content
 
 ### 属性
 
-| 属性                    | 说明               | 类型                                                                                  | 默认值  |
-| ----------------------- | ------------------ | ------------------------------------------------------------------------------------- | ------- |
-| list                    | 附件列表           | `AttachUploaderItem[]`                                                                | `[]`    |
-| maxCount                | 最大数量           | `number`                                                                              | -       |
-| maxChooseCount          | 最大选择数量       | `number`                                                                              | -       |
-| sourceType              | 来源类型           | `string \| string[]`                                                                  | -       |
-| extension               | 允许文件扩展名     | `string[]`                                                                            | -       |
-| maxSize                 | 最大文件大小       | `number`                                                                              | -       |
-| async                   | 是否异步上传       | `boolean`                                                                             | `false` |
-| reUpload                | 支持重新上传       | `boolean`                                                                             | `true`  |
-| allowClear              | 允许清除           | `boolean`                                                                             | `true`  |
-| allowChoose             | 允许选择           | `boolean`                                                                             | `true`  |
-| className               | 自定义类名         | `string`                                                                              | -       |
-| uploadPosition          | 上传位置           | `'start' \| 'end'`                                                                    | -       |
-| uploadRender            | 上传按钮渲染       | `(ctx: { uploadingType: string }) => ReactNode`                                       | -       |
-| uploadingRender         | 上传中渲染         | `(ctx: { uploadingType: string }) => ReactNode`                                       | -       |
-| itemRender              | 项渲染             | `(item: AttachUploaderItem, index: number) => ReactNode`                              | -       |
-| previewPortal           | 预览挂载节点       | `boolean \| Element \| null`                                                          | -       |
-| previewServerUrl        | 预览服务器地址     | `string`                                                                              | -       |
-| previewServerSourceType | 预览服务器来源类型 | `string \| string[]`                                                                  | -       |
-| getUploadUrl            | 获取上传地址       | `(ctx: UploadFormatContext) => string \| Promise<string>`                             | -       |
+| 属性                    | 说明               | 类型                                                                                                                        | 默认值  |
+| ----------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| list                    | 附件列表           | `FileItem[]`                                                                                                                | `[]`    |
+| maxCount                | 最大数量           | `number`                                                                                                                    | -       |
+| maxChooseCount          | 最大选择数量       | `number`                                                                                                                    | -       |
+| sourceType              | 来源类型           | `string \| string[]`                                                                                                        | -       |
+| extension               | 允许文件扩展名     | `string[]`                                                                                                                  | -       |
+| maxSize                 | 最大文件大小       | `number`                                                                                                                    | -       |
+| async                   | 是否异步上传       | `boolean`                                                                                                                   | `false` |
+| reUpload                | 支持重新上传       | `boolean`                                                                                                                   | `true`  |
+| allowClear              | 允许清除           | `boolean`                                                                                                                   | `true`  |
+| allowChoose             | 允许选择           | `boolean`                                                                                                                   | `true`  |
+| className               | 自定义类名         | `string`                                                                                                                    | -       |
+| uploadPosition          | 上传位置           | `'start' \| 'end'`                                                                                                          | -       |
+| uploadRender            | 上传按钮渲染       | `(ctx: { uploadingType: string }) => ReactNode`                                                                             | -       |
+| uploadingRender         | 上传中渲染         | `(ctx: { uploadingType: string }) => ReactNode`                                                                             | -       |
+| itemRender              | 项渲染             | `(item: FileItem, index: number) => ReactNode`                                                                              | -       |
+| previewPortal           | 预览挂载节点       | `boolean \| Element \| null`                                                                                                | -       |
+| previewServerUrl        | 预览服务器地址     | `string`                                                                                                                    | -       |
+| previewServerSourceType | 预览服务器来源类型 | `string \| string[]`                                                                                                        | -       |
+| getUploadUrl            | 获取上传地址       | `(ctx: UploadFormatContext) => string \| Promise<string>`                                                                   | -       |
 | formatHeaders           | 格式化请求头       | `(headers: Record<string, string>, ctx: { platform: string }) => Record<string, string> \| Promise<Record<string, string>>` | -       |
-| formatPayload           | 格式化请求体       | `(payload: unknown, ctx: { platform: string }) => unknown`                            | -       |
-| formatResponse          | 格式化响应         | `(response: unknown, ctx: { platform: string }) => unknown`                           | -       |
-| onBeforeChoose          | 选择前事件         | `() => boolean \| void \| Promise<boolean \| void>`                                    | -       |
-| onFileChange            | 文件变化事件       | `(arg: SyntheticEvent<HTMLInputElement> \| FileItem) => unknown`                       | -       |
-| onUpload                | 上传事件           | `(item: AttachUploaderItem) => unknown`                                               | -       |
-| onChange                | 变化事件           | `(list: AttachUploaderItem[], meta?: { action?: string }) => void`                    | -       |
-| onPreview               | 预览事件           | `(item: AttachUploaderItem, index: number) => unknown`                                | -       |
+| formatPayload           | 格式化请求体       | `(payload: unknown, ctx: { platform: string }) => unknown`                                                                  | -       |
+| formatResponse          | 格式化响应         | `(response: unknown, ctx: { platform: string }) => unknown`                                                                 | -       |
+| onBeforeChoose          | 选择前事件         | `() => boolean \| void \| Promise<boolean \| void>`                                                                         | -       |
+| onFileChange            | 文件变化事件       | `(arg: SyntheticEvent<HTMLInputElement> \| FileItem) => unknown`                                                            | -       |
+| onUpload                | 上传事件           | `(item: FileItem) => unknown`                                                                                               | -       |
+| onChange                | 变化事件           | `(list: FileItem[], meta?: { action?: string }) => void`                                                                    | -       |
+| onPreview               | 预览事件           | `(item: FileItem, index: number) => unknown`                                                                                | -       |
 
 ### Ref
 
-| 属性       | 说明       | 类型                          |
-| ---------- | ---------- | ----------------------------- |
-| element    | 根元素     | `HTMLDivElement \| null`      |
+| 属性       | 说明       | 类型                           |
+| ---------- | ---------- | ------------------------------ |
+| element    | 根元素     | `HTMLDivElement \| null`       |
 | getElement | 获取根元素 | () => `HTMLDivElement \| null` |

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
+import type { AttachFileIconType } from './getAttachFileIconSvg'
 import type { FileItem } from './../types/Attach.common.types'
 import type { FileItemProps } from './Attach.Item.types'
 
@@ -72,8 +73,8 @@ const Item = ({
       fileUrl === null || fileUrl === undefined
         ? ''
         : typeof fileUrl === 'string'
-        ? decodeURIComponent(decodeURIComponent(fileUrl))
-        : ''
+          ? decodeURIComponent(decodeURIComponent(fileUrl))
+          : ''
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
         content: toToastString(
@@ -138,9 +139,9 @@ const Item = ({
     >
       {/* 文件图标 */}
       <Icon
-        svg={getAttachFileIconSvg(fileIconType)}
+        svg={getAttachFileIconSvg(fileIconType as AttachFileIconType)}
         size="m"
-        color={getAttachFileIconColor(fileIconType)}
+        color={getAttachFileIconColor(fileIconType as AttachFileIconType)}
         className={DOMUtil.classNames('lyrixi-attach-item-type', `lyrixi-${fileIconType}`)}
       />
       {/* 文件名称 */}

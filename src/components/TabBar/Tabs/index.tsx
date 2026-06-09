@@ -24,6 +24,7 @@ const Tabs = forwardRef<TabBarTabsRef, TabBarTabsProps>(
       gap,
       style,
       className,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       disabled,
       descriptionPosition = 'bottom',
 

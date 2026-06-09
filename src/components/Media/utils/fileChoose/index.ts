@@ -98,7 +98,7 @@ async function fileChoose({
       filePath: fileData,
       status: 'choose'
     })
-    currentList = Array.isArray(r) ? r : null
+    currentList = r ? ([r] as FileItem[]) : null
   }
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {

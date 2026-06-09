@@ -118,6 +118,7 @@ const Dropdown = forwardRef<ToolBarDropdownRef, ToolBarDropdownProps>(function D
     }
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleClick(e: MouseEvent) {
     let newOpen = !open
     if (!newOpen) {

@@ -48,11 +48,11 @@ export interface UploadLocalFileParams {
   formatPayload?: UploadItemConfig['formatPayload']
   formatResponse?: UploadItemConfig['formatResponse']
   verifyImage?: boolean
-  item: MediaItem
+  item: FileItem
 }
 
 export interface MediaUploaderCommonProps extends UploadItemConfig {
-  list?: MediaItem[]
+  list?: FileItem[]
   maxUploadCount?: number
   maxChooseCount?: number
   mediaType?: string | string[]
@@ -92,7 +92,7 @@ export interface MediaUploaderCommonProps extends UploadItemConfig {
     extra: { platform: string }
   ) => Promise<Record<string, unknown>> | Record<string, unknown>
   onBeforeChoose?: () => Promise<boolean | null | undefined> | boolean | null | undefined
-  onUpload?: (item: MediaItem) => Promise<MediaItem>
-  onChange?: (list: MediaItem[]) => void
-  onPreview?: (item: MediaItem, index: number) => Promise<unknown>
+  onUpload?: (item: FileItem) => Promise<FileItem>
+  onChange?: (list: FileItem[]) => void
+  onPreview?: (item: FileItem, index: number) => Promise<unknown>
 }

@@ -1,6 +1,8 @@
 import uploadLocalFile from './uploadLocalFile'
+import { UploadItemConfig } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
@@ -9,11 +11,9 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-import { MediaItem, UploadItemConfig } from '../../types'
-
 // 单张照片上传
 function uploadItem(
-  item: MediaItem,
+  item: FileItem,
   { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }: UploadItemConfig
 ): Promise<unknown> {
   // eslint-disable-next-line

@@ -20,7 +20,7 @@ export interface MediaPreviewModalProps {
   // Status
   open?: boolean
   allowChoose?: boolean
-  allowClear?: boolean | ((item: MediaItem) => boolean)
+  allowClear?: boolean | ((item: FileItem) => boolean)
   // Style
   mainStyle?: CSSProperties
   mainClassName?: string

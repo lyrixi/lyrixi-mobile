@@ -7,9 +7,7 @@ import Card from './../../Card'
 import Item from './Item'
 import type { TransferItem, TransferMainProps, TransferTitles } from './../types'
 
-function normalizeTitles(
-  titles: TransferMainProps['titles']
-): TransferTitles | undefined {
+function normalizeTitles(titles: TransferMainProps['titles']): TransferTitles | undefined {
   if (titles === null || titles === undefined) return undefined
   if (Array.isArray(titles)) {
     return { selected: titles[0], unSelected: titles[1] }
@@ -25,7 +23,9 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
     list,
     titles: titlesProp,
     // Status
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     open: _open,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     allowClear: _allowClear,
     // Style
     className,
@@ -47,6 +47,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
   })
 
   // 删除
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleDelete(item: TransferItem, _index: number) {
     if (onChange) {
       onChange(
@@ -58,6 +59,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
   }
 
   // 添加
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleAdd(item: TransferItem, _index: number) {
     for (const originItem of list) {
       if (originItem.id === item.id) {
@@ -71,6 +73,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
 
   // 未选列表
   const unSelectedList = list?.filter(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (item, _index) => !value?.some((selected) => selected.id === item.id)
   )
 
@@ -113,11 +116,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
           >
             {value.map((item, index) => {
               return (
-                <Item
-                  key={String(item.id)}
-                  onDelete={() => handleDelete(item, index)}
-                  sortable
-                >
+                <Item key={String(item.id)} onDelete={() => handleDelete(item, index)} sortable>
                   {item?.name || ''}
                 </Item>
               )
@@ -142,10 +141,7 @@ const Transfer = forwardRef<unknown, TransferMainProps>(function TransferMain(
           <Card className="lyrixi-transfer-card">
             {unSelectedList.map((item, index) => {
               return (
-                <Item
-                  key={String(item.id)}
-                  onAdd={() => handleAdd(item, index)}
-                >
+                <Item key={String(item.id)} onAdd={() => handleAdd(item, index)}>
                   {item?.name || ''}
                 </Item>
               )

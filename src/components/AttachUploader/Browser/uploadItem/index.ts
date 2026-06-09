@@ -1,12 +1,12 @@
 import uploadLocalFile from './uploadLocalFile'
 
-import type { AttachUploaderItem, UploadDeps } from '../../types'
+import type { UploadDeps } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from './../../../Attach/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
-
 
 function toMessage(m: string | import('react').ReactNode): string {
   return typeof m === 'string' ? m : String(m)
@@ -14,9 +14,9 @@ function toMessage(m: string | import('react').ReactNode): string {
 
 // 单张照片上传
 async function uploadItem(
-  item: AttachUploaderItem,
+  item: FileItem,
   { getUploadUrl, formatHeaders, formatPayload, formatResponse }: UploadDeps
-): Promise<AttachUploaderItem | string> {
+): Promise<FileItem | string> {
   if (ObjectUtil.isEmpty(item?.localFile)) {
     return toMessage(
       LocaleUtil.locale(

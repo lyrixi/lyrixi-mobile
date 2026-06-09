@@ -1,10 +1,12 @@
-import type { AttachUploaderItem } from './AttachUploader.main.types'
+// 内库使用-start
+import type { FileItem } from './../../Attach/types'
+// 内库使用-end
 
 export type UploadListConfig = {
   platform?: string
   getUploadUrl?: (ctx: {
     platform: string
-    uploadItem: AttachUploaderItem
+    uploadItem: FileItem
     result?: unknown
   }) => string | Promise<string>
   formatHeaders?: (

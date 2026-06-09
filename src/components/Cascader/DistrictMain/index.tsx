@@ -39,6 +39,7 @@ const CascaderDistrictMain = forwardRef<
       loadCountryRegions = api.loadCountryRegions,
       loadStreets = api.loadStreets,
       // Status
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       open = true,
       searchVisible = true,
       // Style
@@ -75,7 +76,9 @@ const CascaderDistrictMain = forwardRef<
       const baseData = await loadBaseData({
         countryId: value?.[0]?.id,
         loadCountries,
-        loadCountryRegions: loadCountryRegions as (id?: string | number) => Promise<DistrictResultState>
+        loadCountryRegions: loadCountryRegions as (
+          id?: string | number
+        ) => Promise<DistrictResultState>
       })
 
       if (baseData?.status === 'error') {
@@ -145,6 +148,7 @@ const CascaderDistrictMain = forwardRef<
 
     async function loadData(
       tabs: CascaderItem[],
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       _ctx: { list: CascaderItem[] }
     ): Promise<LoadDataResult> {
       const childrenData = await _loadData(tabs, {

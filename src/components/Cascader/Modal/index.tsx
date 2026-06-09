@@ -1,4 +1,11 @@
-import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle, type Ref } from 'react'
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  type Ref
+} from 'react'
 import type { CascaderMainRef, CascaderModalProps, CascaderItem } from '../types'
 import Main from './../Main'
 
@@ -33,6 +40,7 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
       safeArea,
 
       // Main: Status
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       allowClear: _allowClear,
       searchVisible,
 
@@ -93,10 +101,12 @@ const CascaderModal = forwardRef<Record<string, unknown>, CascaderModalProps>(
       onClose?.()
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleChange(newValue: CascaderItem[], _newArguments?: unknown) {
       setCurrentValue(newValue)
 
-      const lastTab = Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
+      const lastTab =
+        Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
       if (lastTab?.isLeaf) {
         onChange?.(newValue)
         onClose?.()

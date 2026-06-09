@@ -6,7 +6,9 @@ import mockResult from './mockResult'
 
 // 转换 API 返回数据为页面所需格式
 function formatResult(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _result: unknown,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _options: { payload: Record<string, unknown> }
 ): ListAsyncLoadResult {
   // 测试数据

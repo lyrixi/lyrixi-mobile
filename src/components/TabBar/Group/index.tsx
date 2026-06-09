@@ -22,6 +22,7 @@ const Group = forwardRef<TabBarGroupRef, TabBarGroupProps>(
       // Style
       className,
       // Status
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       disabled,
       // Value & Display Value
       descriptionPosition,

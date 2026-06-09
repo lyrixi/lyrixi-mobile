@@ -1,9 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import _uploadItem from './uploadItem'
 
-
 import type { FileItem, AttachRef } from './../../Attach/types'
-import type { AttachUploaderBrowserProps, AttachUploaderItem } from './../types'
+import type { AttachUploaderBrowserProps } from './../types'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -92,7 +91,7 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
     }
   })
 
-  async function uploadItem(item: AttachUploaderItem) {
+  async function uploadItem(item: FileItem) {
     const newItem = await _uploadItem(item, {
       getUploadUrl,
       formatHeaders,
@@ -106,7 +105,9 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
   function isNativePayload(
     a: import('react').ChangeEvent<HTMLInputElement> | FileItem
   ): a is FileItem {
-    return typeof a === 'object' && a !== null && a !== undefined && 'fileName' in a && 'status' in a
+    return (
+      typeof a === 'object' && a !== null && a !== undefined && 'fileName' in a && 'status' in a
+    )
   }
 
   async function handleFileOrNative(

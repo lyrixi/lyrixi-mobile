@@ -12,38 +12,40 @@ import { DateUtil } from 'lyrixi-mobile'
 // 用于自定义渲染Combo, 按照要求返回comboElement
 const Combo = forwardRef<Record<string, unknown> | null, DatePickerTypeSwitcherDateComboComboProps>(
   function TypesDateCombo(
-  {
-    // Value & Display Value
-    value,
-    type,
+    {
+      // Value & Display Value
+      value,
+      type,
 
-    // Style
-    style,
-    className,
+      // Style
+      style,
+      className,
 
-    // Elements
-    children,
+      // Elements
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      children,
 
-    // Events
-    onClick
-  },
-  ref
-) {
-  const comboRef = useRef<HTMLDivElement | null>(null)
-  useImperativeHandle(ref, () => {
-    return {
-      element: comboRef.current,
-      getElement: () => {
-        return comboRef.current
+      // Events
+      onClick
+    },
+    ref
+  ) {
+    const comboRef = useRef<HTMLDivElement | null>(null)
+    useImperativeHandle(ref, () => {
+      return {
+        element: comboRef.current,
+        getElement: () => {
+          return comboRef.current
+        }
       }
-    }
-  })
+    })
 
-  return (
-    <div ref={comboRef} style={style} className={className} onClick={onClick}>
-      {value instanceof Date ? DateUtil.format(value, type as string) : null}
-    </div>
-  )
-})
+    return (
+      <div ref={comboRef} style={style} className={className} onClick={onClick}>
+        {value instanceof Date ? DateUtil.format(value, type as string) : null}
+      </div>
+    )
+  }
+)
 
 export default Combo

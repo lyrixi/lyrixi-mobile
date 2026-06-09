@@ -16,6 +16,7 @@ async function loadDayjsLanguage(language: string) {
 
     // 动态引入国际化文件
     import(`dayjs/locale/${lang.dayjs}.js`)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .then((jsFile) => {
         let result = {
           status: 'success',

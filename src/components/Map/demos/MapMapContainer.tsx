@@ -9,7 +9,7 @@ export default function MapMapContainerDemo() {
   const center = coordsToWgs84({
     latitude: 31.982664,
     longitude: 118.735069,
-    type: "wgs84"
+    type: 'wgs84'
     // latitude: 39.909187,
     // longitude: 116.397451,
     // type: 'gcj02',
@@ -47,21 +47,27 @@ export default function MapMapContainerDemo() {
               onZoomEnd={(map) => {
                 console.log('缩放结束:', map.getZoom())
               }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onMoveStart={(map) => {
                 console.log('开始移动')
               }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onMove={(map) => {
                 console.log('移动中')
               }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onMoveEnd={(map) => {
                 console.log('移动结束')
               }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onDragStart={(map) => {
                 console.log('开始拖拽')
               }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onDrag={(map) => {
                 console.log('拖拽中')
               }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onDragEnd={(map) => {
                 console.log('拖拽结束')
               }}

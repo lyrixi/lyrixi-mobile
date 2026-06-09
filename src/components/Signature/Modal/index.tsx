@@ -20,6 +20,7 @@ const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
   (
     {
       // Value & Display Value
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       value,
 
       // Status
@@ -45,9 +46,7 @@ const Modal = forwardRef<SignatureModalRef, SignatureModalProps>(
     useImperativeHandle(ref, () => {
       return {
         modalElement: modalRef?.current?.element || null,
-        getModalElement: modalRef?.current?.getElement
-          ? modalRef.current.getElement
-          : () => null
+        getModalElement: modalRef?.current?.getElement ? modalRef.current.getElement : () => null
       }
     })
 

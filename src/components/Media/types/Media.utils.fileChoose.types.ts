@@ -1,3 +1,5 @@
+import type { MediaProps } from './Media.types'
+
 // 内库使用-start
 import type { FileItem } from './../../Attach/types'
 // 内库使用-end
@@ -15,6 +17,6 @@ export interface MediaFileChooseOptions {
     newList: FileItem[] | undefined,
     opts?: { action?: string }
   ) => Promise<FileItem[] | undefined>
-  onFileChange?: (fileItem: FileItem) => Promise<FileItem[] | void> | FileItem[] | void
-  onChange?: (list: FileItem[], meta: { action: string }) => void
+  onFileChange?: MediaProps['onFileChange']
+  onChange?: MediaProps['onChange']
 }

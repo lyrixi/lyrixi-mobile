@@ -1,11 +1,9 @@
-import { LocaleUtil, Request, Loading, Toast } from 'lyrixi-mobile'
-
-import type { MediaUploaderDemoOcrItem } from './../MediaUploader.demos.ocr.types'
+import { LocaleUtil, Request, Loading, Toast, FileItem } from 'lyrixi-mobile'
 
 // 新的OCR识别：单个照片识别
-function recognizeItem(item: MediaUploaderDemoOcrItem | null) {
+function recognizeItem(item: FileItem | null) {
   // eslint-disable-next-line
-  return new Promise<MediaUploaderDemoOcrItem | null>(async (resolve) => {
+  return new Promise<FileItem | null>(async (resolve) => {
     // 识别完成
     if (!item) {
       resolve(item)
@@ -16,7 +14,7 @@ function recognizeItem(item: MediaUploaderDemoOcrItem | null) {
     if (!item.fileUrl) {
       item.ocrErrMsg = String(LocaleUtil.locale(`缺少url参数, 无法进行ocr识别！`))
 
-      Toast.show({ content: item.ocrErrMsg })
+      Toast.show({ content: String(item.ocrErrMsg) })
       resolve(item)
       return
     }
@@ -41,7 +39,7 @@ function recognizeItem(item: MediaUploaderDemoOcrItem | null) {
           resolve(item)
         } else {
           item.ocrErrMsg = r?.message || String(LocaleUtil.locale('名片识别失败！'))
-          Toast.show({ content: item.ocrErrMsg })
+          Toast.show({ content: String(item.ocrErrMsg) })
           Loading.hide()
           resolve(item)
         }

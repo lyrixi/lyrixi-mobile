@@ -47,6 +47,7 @@ const Debugger: {
           this.debugVisible = new VConsoleCtor()
           resolve(true)
         })
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .catch((error) => {
           Toast.show({
             content: LocaleUtil.locale(

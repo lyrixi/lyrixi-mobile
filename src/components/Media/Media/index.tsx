@@ -239,6 +239,7 @@ const Media = forwardRef(function Media(
   }
 
   // 选择照片
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleChoose(_e?: SyntheticEvent) {
     _showLoading()
     const chooseResult = await choose({
@@ -365,7 +366,7 @@ const Media = forwardRef(function Media(
       {previewTypeRef.current === 'browser' && (
         <PreviewModal
           // Value & Display Value
-          list={list as MediaItem[]}
+          list={list as FileItem[]}
           index={previewVisible ?? undefined}
           mediaType={mediaType}
           maxCount={maxCount}

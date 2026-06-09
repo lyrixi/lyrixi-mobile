@@ -53,6 +53,7 @@ const SearchPage = ({
         status: 'success',
         message: '',
         list: (currentList as CascaderMainSearchPagePathNode[]).map((node) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { children, ...restNode } = node
           const path = (
             ArrayUtil.getDeepTreePredecessorNodes(

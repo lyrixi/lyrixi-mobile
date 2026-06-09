@@ -1,5 +1,13 @@
 import React from 'react'
-import { Page, Divider, Button, Icon, Icons } from 'lyrixi-mobile'
+import {
+  Page,
+  Divider,
+  Button,
+  Icon,
+  Icons,
+  type ButtonVariant,
+  type ButtonColor
+} from 'lyrixi-mobile'
 
 const buttonStyle = {
   margin: 'var(--lyrixi-space-m)'
@@ -20,15 +28,21 @@ export default function ButtonDemo() {
             {variants.map((variant) => (
               <Button
                 key={`${color}-${variant}`}
-                variant={variant}
-                color={color}
+                variant={variant as ButtonVariant}
+                color={color as ButtonColor}
                 radius="m"
                 style={buttonStyle}
               >
                 {variant}
               </Button>
             ))}
-            <Button variant="solid" color={color} radius="m" disabled style={buttonStyle}>
+            <Button
+              variant="solid"
+              color={color as ButtonColor}
+              radius="m"
+              disabled
+              style={buttonStyle}
+            >
               disabled
             </Button>
           </div>

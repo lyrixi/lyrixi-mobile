@@ -3,6 +3,8 @@ import type { CSSProperties } from 'react'
 import type { ButtonGetStyleParams } from './getStyle.types'
 import getVariantClassName from './getVariantClassName'
 import { ButtonSizeClasses } from './../types/Button.Size.types'
+import type { ButtonVariant } from './../types/Button.Variant.types'
+import type { ButtonColor } from './../types/Button.Color.types'
 
 // 内库使用-start
 import VariablesUtil from './../../../utils/VariablesUtil'
@@ -50,7 +52,7 @@ export default function getStyle({
   const newClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
     'lyrixi-button',
     direction === 'vertical' && `lyrixi-flex-vertical`,
-    getVariantClassName(variant, color),
+    getVariantClassName(variant as ButtonVariant, color as ButtonColor),
     block && `lyrixi-button-block`,
     sizeClass,
     radiusClass,
