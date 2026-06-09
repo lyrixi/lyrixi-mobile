@@ -292,11 +292,8 @@ export default function ToolBarDemo() {
               <ToolBar.Filter
                 ref={filterRef}
                 sizeEqual
-                onReset={() => {
-                  console.log('reset')
-                }}
-                onOk={() => {
-                  console.log('submit')
+                footerRender={({ onClose }) => {
+                  return <FilterFooter onClose={onClose} />
                 }}
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
@@ -316,12 +313,13 @@ export default function ToolBarDemo() {
                   console.log('search:', value)
                 }}
               />
-              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={true}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon svg={Icons.Barcode} />
+                  <Icon svg={Icons.Barcode} size="xs" />
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
+                  variant="solid"
                   footerRender={({ onClose }) => {
                     return <FilterFooter onClose={onClose} />
                   }}
@@ -359,12 +357,13 @@ export default function ToolBarDemo() {
                       setSearchActive(true)
                     }}
                   />
-                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                  <Flex.Compact separator={true}>
                     <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon svg={Icons.Barcode} />
+                      <Icon svg={Icons.Barcode} size="xs" />
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
+                      variant="solid"
                       footerRender={({ onClose }) => {
                         return <FilterFooter onClose={onClose} />
                       }}
@@ -404,9 +403,9 @@ export default function ToolBarDemo() {
                       setFilledSearchActive(true)
                     }}
                   />
-                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                  <Flex.Compact separator={true}>
                     <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon svg={Icons.Barcode} />
+                      <Icon svg={Icons.Barcode} size="xs" />
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
