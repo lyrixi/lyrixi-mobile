@@ -8,4 +8,4 @@ export const ButtonSizeClasses = {
   l: { className: 'lyrixi-size-l' },
   xl: { className: 'lyrixi-size-xl' },
   xxl: { className: 'lyrixi-size-xxl' }
-} satisfies Partial<Record<ButtonSize, { className: string }>>
+}
