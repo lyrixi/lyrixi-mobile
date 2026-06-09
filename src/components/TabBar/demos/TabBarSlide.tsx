@@ -116,17 +116,6 @@ export default function TabBarSlideDemo() {
             handleChange(newValue)
           }}
         />
-
-        <Divider>Size s</Divider>
-        <TabBar.Slide
-          list={list}
-          value={value}
-          onChange={(newValue) => {
-            console.log(newValue)
-            handleChange(newValue)
-          }}
-          className="lyrixi-s"
-        />
       </Page.Main>
     </Page>
   )

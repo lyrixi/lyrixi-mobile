@@ -107,7 +107,11 @@ const Slide = forwardRef<TabBarSlideRef, TabBarSlideProps>(
     return (
       <div
         style={style}
-        className={DOMUtil.classNames('lyrixi-tabbar-slide', className)}
+        className={DOMUtil.classNames(
+          'lyrixi-tabbar-slide',
+          disabled ? 'lyrixi-disabled' : '',
+          className
+        )}
         ref={rootRef}
       >
         {getGroup()}
