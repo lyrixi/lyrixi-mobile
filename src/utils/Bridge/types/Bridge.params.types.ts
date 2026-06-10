@@ -113,11 +113,33 @@ export type BridgeChooseMediaParams = {
   onCancel?: BridgeCancelCallback
 }
 
-/** {@link Bridge.uploadFile} 本地文件描述（各端字段略有差异，允许扩展） */
-export type BridgeUploadLocalFile = {
-  filePath?: string
+/** 本地上传中间态，字段可能未齐 */
+export interface LocalFile {
+  fileSize?: number
+  fileUrl?: string
   fileType?: string
-} & Record<string, unknown>
+  tempFileThumbnail?: string
+  [key: string]: unknown
+}
+
+/** 文件/媒体列表单项基础类型，Attach 与 Media 共用 */
+export interface FileItem {
+  status?: string
+  fileName?: string
+  fileUrl?: string
+  fileType?: string
+  localFile?: LocalFile
+  fileSize?: number
+  filePath?: File | string
+  className?: string
+  fileThumbnail?: string
+  message?: string
+  reloadKey?: unknown
+  [key: string]: unknown
+}
+
+/** {@link Bridge.uploadFile} 本地文件描述（各端字段略有差异，允许扩展） */
+export type BridgeUploadLocalFile = LocalFile
 
 /**
  * {@link Bridge.uploadFile}
@@ -127,17 +149,25 @@ export type BridgeUploadLocalFile = {
 export type BridgeUploadFileParams = {
   localFile?: BridgeUploadLocalFile | unknown
   /** `(ctx) => url`，ctx 因业务扩展（如含 uploadItem） */
-  getUploadUrl?: unknown
-  formatHeaders?: unknown
-  formatPayload?: unknown
-  formatResponse?: unknown
-  onSuccess?: BridgeSuccessCallback
+  getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined> | string
+  formatHeaders?: (
+    headers: Record<string, string>,
+    ctx: { platform: string }
+  ) => Record<string, string> | Promise<Record<string, string>>
+  formatPayload?: (
+    payload: Record<string, unknown>,
+    ctx: { platform: string }
+  ) => Record<string, unknown> | Promise<Record<string, unknown>>
+  formatResponse?: (
+    response: unknown,
+    ctx: { platform: string }
+  ) => BridgeSuccessCallback<FileItem> | Promise<BridgeSuccessCallback<FileItem>>
+  onSuccess?: BridgeSuccessCallback<FileItem>
   onError?: BridgeErrorCallback | ((err: unknown) => void)
   onCancel?: BridgeCancelCallback | ((res: unknown) => void)
-  /** Demo/历史：直传上传地址等 */
-  url?: string
-  headers?: Record<string, unknown>
-  data?: Record<string, unknown>
+  // 业务组件使用Media、Attach
+  platform?: string
+  [key: string]: unknown
 } & Record<string, unknown>
 
 /** {@link Bridge.previewMedia} 单条资源 */

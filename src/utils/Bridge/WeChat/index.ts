@@ -409,9 +409,6 @@ let Bridge = {
       onError
     } = params || {}
     const localFile = rawLocalFile as BridgeUploadLocalFile | undefined
-    const getUploadUrlFn = getUploadUrl as
-      | ((ctx: { platform: string }) => Promise<string | undefined>)
-      | undefined
     if (Device.device === 'pc') {
       let message = `WeChat ${LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
@@ -424,7 +421,7 @@ let Bridge = {
       return
     }
 
-    let url = (await getUploadUrlFn?.({ platform: 'wechat' })) || ''
+    let url = (await getUploadUrl?.({ platform: 'wechat' })) || ''
     if (!url || typeof url !== 'string') {
       onError?.({
         status: 'error',

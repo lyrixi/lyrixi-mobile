@@ -1,4 +1,6 @@
-import type { FileItem } from './Attach.common.types'
+// 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
+// 内库使用-end
 
 export interface AttachChooseOptions {
   async: boolean
@@ -7,10 +9,7 @@ export interface AttachChooseOptions {
   sourceType: string[]
   list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
-  uploadList: (
-    newList: FileItem[],
-    opts?: { action?: string }
-  ) => Promise<FileItem[] | undefined>
+  uploadList: (newList: FileItem[], opts?: { action?: string }) => Promise<FileItem[] | undefined>
   onChoose?: () => unknown
   onChange?: (list: FileItem[], meta: { action: string }) => void
 }

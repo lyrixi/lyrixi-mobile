@@ -3,10 +3,8 @@ import uploadDingtalk from './../../Dingtalk/uploadItem'
 import uploadFile from './../../Browser/uploadItem'
 import uploadCustom from './../../Custom/uploadItem'
 
-import type { MediaUploaderUploadListConfig, UploadItemConfig } from '../../types'
-
 // 内库使用-start
-import type { FileItem } from './../../../Attach/types'
+import type { BridgeUploadFileParams, FileItem } from './../../../../utils/Bridge/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import Device from './../../../../utils/Device'
@@ -26,11 +24,12 @@ import { ObjectUtil, Toast, Device, LocaleUtil } from 'lyrixi-mobile'
 
 async function uploadList(
   pendingList: FileItem | FileItem[],
-  uploadConfig: MediaUploaderUploadListConfig
+  uploadConfig: BridgeUploadFileParams
 ): Promise<FileItem | FileItem[] | null> {
   // 根据平台选择上传方法
   let currentPlatform = uploadConfig?.platform || Device.platform
-  let uploadItem: ((item: FileItem, config: UploadItemConfig) => Promise<unknown>) | null = null
+  let uploadItem: ((item: FileItem, config: BridgeUploadFileParams) => Promise<unknown>) | null =
+    null
   if (Device.device === 'pc' || ['browser', 'lark'].includes(currentPlatform)) {
     uploadItem = uploadFile
   } else if (currentPlatform === 'dingtalk') {

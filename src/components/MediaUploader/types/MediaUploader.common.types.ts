@@ -1,8 +1,8 @@
 import type { CSSProperties, ReactNode } from 'react'
 
-import type { FileItem, LocalFile } from '../../Attach/types/Attach.common.types'
-
-export type { LocalFile }
+// 内库使用-start
+import type { FileItem, BridgeUploadFileParams } from '../../../utils/Bridge/types'
+// 内库使用-end
 
 export interface MediaUploaderUploadResponse {
   status: string
@@ -24,34 +24,7 @@ export interface MediaHandle {
   [key: string]: unknown
 }
 
-export interface UploadItemConfig {
-  getUploadUrl?: (ctx: { platform: string }) => Record<string, unknown> | undefined
-  formatHeaders?: (
-    h: Record<string, unknown>,
-    ctx: { platform: string }
-  ) => Record<string, unknown> | Promise<Record<string, unknown>>
-  formatPayload?: (
-    p: Record<string, unknown>,
-    ctx: { platform: string }
-  ) => Record<string, unknown> | Promise<Record<string, unknown>>
-  formatResponse?: (
-    r: unknown,
-    ctx: { platform: string }
-  ) => MediaUploaderUploadResponse | Promise<MediaUploaderUploadResponse>
-  verifyImage?: boolean
-}
-
-export interface UploadLocalFileParams {
-  localFile: LocalFile
-  getUploadUrl?: UploadItemConfig['getUploadUrl']
-  formatHeaders?: UploadItemConfig['formatHeaders']
-  formatPayload?: UploadItemConfig['formatPayload']
-  formatResponse?: UploadItemConfig['formatResponse']
-  verifyImage?: boolean
-  item: FileItem
-}
-
-export interface MediaUploaderCommonProps extends UploadItemConfig {
+export interface MediaUploaderCommonProps extends BridgeUploadFileParams {
   list?: FileItem[]
   maxUploadCount?: number
   maxChooseCount?: number

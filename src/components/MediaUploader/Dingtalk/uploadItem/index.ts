@@ -1,8 +1,7 @@
 import uploadLocalFile from './uploadLocalFile'
-import { UploadItemConfig } from '../../types'
 
 // 内库使用-start
-import type { FileItem } from './../../../Attach/types'
+import type { BridgeUploadFileParams, FileItem } from './../../../../utils/Bridge/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
@@ -14,7 +13,13 @@ import { ObjectUtil, LocaleUtil } from 'lyrixi-mobile'
 // 单张照片上传
 function uploadItem(
   item: FileItem,
-  { getUploadUrl, formatHeaders, formatPayload, formatResponse, verifyImage }: UploadItemConfig
+  {
+    getUploadUrl,
+    formatHeaders,
+    formatPayload,
+    formatResponse,
+    verifyImage
+  }: BridgeUploadFileParams
 ): Promise<unknown> {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {

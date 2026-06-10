@@ -18,7 +18,7 @@ import PreviewModal from './../PreviewModal'
 
 import type { MediaProps } from './../types'
 // 内库使用-start
-import type { FileItem } from './../../Attach/types'
+import type { FileItem } from './../../../utils/Bridge/types'
 import Bridge from './../../../utils/Bridge'
 import Device from './../../../utils/Device'
 import DOMUtil from './../../../utils/DOMUtil'

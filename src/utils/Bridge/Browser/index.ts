@@ -335,10 +335,7 @@ let Browser = {
       onError
     } = params || {}
     const localFile = rawLocalFile as BridgeUploadLocalFile | undefined
-    const getUploadUrlFn = getUploadUrl as
-      | ((ctx: { platform: string }) => Promise<string | undefined>)
-      | undefined
-    let url = (await getUploadUrlFn?.({ platform: 'browser' })) || ''
+    let url = (await getUploadUrl?.({ platform: 'browser' })) || ''
     if (!url || typeof url !== 'string') {
       onError?.({
         status: 'error',

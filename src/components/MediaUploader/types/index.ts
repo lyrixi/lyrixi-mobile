@@ -1,7 +1,6 @@
 export * from './MediaUploader.common.types'
 export * from './MediaUploader.types'
 export * from './MediaUploader.CompatibleToggle.types'
-export * from './MediaUploader.utils.uploadList.types'
 export * from './MediaUploader.utils.interval.types'
 export * from './MediaUploader.WechatMiniProgram.getPhotos.types'
 export * from './MediaUploader.WechatMiniProgram.clearPhotos.types'

@@ -4,7 +4,7 @@ import Uploading from './../Uploading'
 import type { MediaChooseProps } from '../types'
 
 // 内库使用-start
-import type { FileItem } from './../../Attach/types'
+import type { FileItem } from './../../../utils/Bridge/types'
 import DOMUtil from './../../../utils/DOMUtil'
 import Icon from '../../Icon'
 import Icons from '../../../icons'

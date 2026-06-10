@@ -1,7 +1,10 @@
 import type { CSSProperties, ReactNode, SyntheticEvent } from 'react'
 
 import type { ModalProps } from '../../Modal/types'
-import type { FileItem } from './Attach.common.types'
+
+// 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
+// 内库使用-end
 
 export interface AttachProps {
   // Value & Display Value

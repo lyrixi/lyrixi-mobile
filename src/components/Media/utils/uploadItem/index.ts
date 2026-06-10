@@ -3,7 +3,7 @@
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
-import type { FileItem } from './../../../Attach/types'
+import type { FileItem } from './../../../../utils/Bridge/types'
 // 内库使用-end
 
 /* 测试使用-start

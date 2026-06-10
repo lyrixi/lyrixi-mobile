@@ -369,10 +369,7 @@ let Bridge = {
       onCancel
     } = params || {}
     const localFile = rawLocalFile as BridgeUploadLocalFile | undefined
-    const getUploadUrlFn = getUploadUrl as
-      | ((ctx: { platform: string }) => Promise<string | undefined>)
-      | undefined
-    const url = (await getUploadUrlFn?.({ platform: 'dingtalk' })) || ''
+    const url = (await getUploadUrl?.({ platform: 'dingtalk' })) || ''
     if (!localFile?.fileType || !localFile?.filePath) {
       onError?.({
         status: 'error',

@@ -1,5 +1,5 @@
 // 内库使用-start
-import type { FileItem } from './../../Attach/types'
+import type { FileItem } from './../../../utils/Bridge/types'
 // 内库使用-end
 
 export interface MediaChooseUtilOptions {

@@ -2,10 +2,10 @@ import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
 import type { AttachFileIconType } from './getAttachFileIconSvg'
-import type { FileItem } from './../types/Attach.common.types'
-import type { FileItemProps } from './Attach.Item.types'
+import type { AttachItemProps } from './Attach.Item.types'
 
 // 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Clipboard from './../../../utils/Clipboard'
@@ -44,7 +44,7 @@ const Item = ({
   onDelete,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
-}: FileItemProps) => {
+}: AttachItemProps) => {
   // 预览类型: browser|native
   const previewTypeRef = useRef<unknown>(Device.platform === 'browser' ? 'browser' : null)
 
@@ -73,8 +73,8 @@ const Item = ({
       fileUrl === null || fileUrl === undefined
         ? ''
         : typeof fileUrl === 'string'
-          ? decodeURIComponent(decodeURIComponent(fileUrl))
-          : ''
+        ? decodeURIComponent(decodeURIComponent(fileUrl))
+        : ''
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
         content: toToastString(

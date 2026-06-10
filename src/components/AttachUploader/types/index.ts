@@ -3,5 +3,4 @@
  */
 export * from './AttachUploader.main.types'
 export * from './AttachUploader.Browser.types'
-export * from './AttachUploader.Browser.uploadItem.types'
 export * from './AttachUploader.utils.uploadList.types'

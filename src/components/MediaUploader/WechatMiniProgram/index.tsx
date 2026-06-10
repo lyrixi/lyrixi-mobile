@@ -17,7 +17,7 @@ import type { MediaUploaderWechatMiniProgramProps } from './MediaUploader.Wechat
 import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
 
 // 内库使用-start
-import type { FileItem } from './../../Attach/types'
+import type { FileItem } from './../../../utils/Bridge/types'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Media from './../../Media'
@@ -300,15 +300,15 @@ function WechatMiniProgram(
     mediaType === null || mediaType === undefined
       ? undefined
       : Array.isArray(mediaType)
-        ? mediaType
-        : [mediaType]
+      ? mediaType
+      : [mediaType]
 
   const ellipsisForMedia =
     ellipsis === true
       ? { count: 1 }
       : ellipsis && typeof ellipsis === 'object'
-        ? ellipsis
-        : undefined
+      ? ellipsis
+      : undefined
 
   const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
 
@@ -324,24 +324,24 @@ function WechatMiniProgram(
     uploadRender === null || uploadRender === undefined
       ? undefined
       : typeof uploadRender === 'function'
-        ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
-        : () => uploadRender
+      ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+      : () => uploadRender
 
   const uploadingRenderFn =
     uploadingRender === null || uploadingRender === undefined
       ? undefined
       : typeof uploadingRender === 'function'
-        ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
-        : // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          (ctx: FileItem & { uploadingType: string }) => uploadingRender
+      ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
+      : // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (ctx: FileItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
     itemRender === null || itemRender === undefined
       ? undefined
       : typeof itemRender === 'function'
-        ? (itemRender as (item: FileItem) => ReactNode)
-        : // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          (_item: FileItem) => itemRender as ReactNode
+      ? (itemRender as (item: FileItem) => ReactNode)
+      : // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (_item: FileItem) => itemRender as ReactNode
 
   const onBeforeChooseForMedia: MediaProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'

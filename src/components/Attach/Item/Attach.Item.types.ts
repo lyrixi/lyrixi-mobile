@@ -1,9 +1,12 @@
 import type { ReactNode } from 'react'
 
-import type { FileItem } from '../types/Attach.common.types'
 import type { AttachListProps } from '../types/Attach.List.types'
 
-export interface FileItemProps {
+// 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
+// 内库使用-end
+
+export interface AttachItemProps {
   // Value & Display Value
   item: FileItem
   index: number

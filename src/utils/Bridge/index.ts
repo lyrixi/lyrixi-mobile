@@ -211,7 +211,16 @@ let Bridge = {
    * @returns {void}
    */
   openLocation(params?: BridgeOpenLocationParams, platform?: string) {
-    const { latitude, longitude, type = 'wgs84', name, address, scale, onSuccess, onError } = params || {}
+    const {
+      latitude,
+      longitude,
+      type = 'wgs84',
+      name,
+      address,
+      scale,
+      onSuccess,
+      onError
+    } = params || {}
     return this._getCurrentBridge(platform).openLocation({
       latitude,
       longitude,

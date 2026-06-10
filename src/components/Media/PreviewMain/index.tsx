@@ -33,7 +33,7 @@ import type {
 } from './../types'
 
 // 内库使用-start
-import type { FileItem } from './../../Attach/types'
+import type { FileItem } from './../../../utils/Bridge/types'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DOMUtil from './../../../utils/DOMUtil'
 import Device from './../../../utils/Device'

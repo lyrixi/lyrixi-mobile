@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react'
+
+// 内库使用-start
 import type { AttachProps } from './../../Attach/types'
-import type { FileItem } from '../../Attach/types'
+import type { FileItem } from './../../../utils/Bridge/types'
 import type { ModalProps } from '../../Modal/types'
+// 内库使用-end
 
 export interface UploadFormatContext {
   platform: string

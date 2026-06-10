@@ -1,4 +1,5 @@
 // 内库使用-start
+import type { BridgeUploadFileParams, FileItem } from '../../../../utils/Bridge/types'
 import AssetUtil from './../../../../utils/AssetUtil'
 import Bridge from './../../../../utils/Bridge'
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -7,8 +8,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 /* 测试使用-start
 import { AssetUtil, Bridge, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-import { UploadLocalFileParams, MediaUploaderUploadResponse } from '../../types'
 
 // 上传localFile
 function uploadLocalFile({
@@ -19,7 +18,8 @@ function uploadLocalFile({
   formatResponse,
   verifyImage,
   item
-}: UploadLocalFileParams): Promise<unknown> {
+}: BridgeUploadFileParams): Promise<unknown> {
+  let fileItem = item as FileItem
   return new Promise((resolve) => {
     Bridge.uploadFile({
       getUploadUrl,
@@ -27,10 +27,10 @@ function uploadLocalFile({
       formatHeaders,
       formatPayload,
       formatResponse,
-      onSuccess: async function (response: MediaUploaderUploadResponse) {
-        if (response.status === 'error') {
+      onSuccess: async function (response) {
+        if ((response.status as string) === 'error') {
           resolve({
-            ...item,
+            ...fileItem,
             status: 'error',
             message: response.message
           })
@@ -41,9 +41,9 @@ function uploadLocalFile({
         let newItem = response.data
 
         // 校验其是否真的是否法图片
-        if (item?.fileType === 'image' && verifyImage) {
+        if (item?.fileItem === 'image' && verifyImage) {
           console.log('校验图片是否可访问:', newItem?.fileThumbnail)
-            let isValid = await AssetUtil.accessImage(newItem?.fileThumbnail ?? '')
+          let isValid = await AssetUtil.accessImage(newItem?.fileThumbnail ?? '')
           if (!isValid) {
             resolve({
               ...item,
@@ -57,16 +57,16 @@ function uploadLocalFile({
           }
         }
 
-        delete item.message
+        delete fileItem.message
         resolve({
-          ...item,
+          ...fileItem,
           ...newItem,
           status: 'success'
         })
       },
-      onError: function (error: { message?: string }) {
+      onError: function (error) {
         resolve({
-          ...item,
+          ...fileItem,
           status: 'error',
           message: error.message
         })
