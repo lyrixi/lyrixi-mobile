@@ -1,5 +1,3 @@
-// src/shims/react-dom-client.ts
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -20,7 +18,16 @@ export function createRoot(container: Element): Root {
 }
 
 /* react webpack配置: 勿删 */
-/*
+/* 方法1:
+plugins: [
+// [自定义修改] 忽略 react-dom/client 模块的静态分析
+new webpack.IgnorePlugin({
+  resourceRegExp: /^react-dom\/client$/,
+  contextRegExp: /compatibility/
+}),
+*/
+
+/*方法2:
 module.exports = {
   resolve: {
     alias: {
