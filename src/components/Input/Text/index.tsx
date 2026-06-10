@@ -340,7 +340,6 @@ const InputText = (
             maxLength={maxLength}
             // Other
             inputMode={inputMode}
-            enterKeyHint={enterKeyHint}
             autoComplete={autoComplete}
             autoCorrect={autoCorrect}
             spellCheck={spellCheck}
@@ -378,7 +377,6 @@ const InputText = (
           maxLength={maxLength}
           // Other
           inputMode={inputMode}
-          enterKeyHint={enterKeyHint}
           autoComplete={autoComplete}
           autoCorrect={autoCorrect}
           spellCheck={spellCheck}
