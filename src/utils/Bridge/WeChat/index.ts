@@ -7,13 +7,13 @@ import uploadServerId from './uploadServerId'
 import getPreview from './getPreview'
 import wechatConfig from './wechatConfig'
 import wecomAgentConfig from './wecomAgentConfig'
-import type { BridgePlatformErrorResponse } from '../types/Bridge.platform.types'
+import type { BridgeSDKErrorResponse } from './BridgeSDKErrorResponse.types'
 import type {
   BridgeWechatChooseImageSuccessResponse,
   BridgeWechatGetLocationSuccessResponse,
   BridgeWechatScanCodeSuccessResponse,
   BridgeWechatUploadImageSuccessResponse
-} from '../types/Bridge.WeChat.types'
+} from './Bridge.WeChat.types'
 import type {
   BridgeChooseMediaParams,
   // BridgeChooseMediaResultData,
@@ -185,7 +185,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -219,11 +219,11 @@ let Bridge = {
           }
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         console.error('微信定位失败', error)
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         console.error('拒绝微信定位', error)
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
@@ -300,10 +300,10 @@ let Bridge = {
           data: { content: resultStr }
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -358,7 +358,7 @@ let Bridge = {
         }
       })
     }
-    const handleError = function (error: BridgePlatformErrorResponse) {
+    const handleError = function (error: BridgeSDKErrorResponse) {
       onError?.({ status: 'error', message: error?.errMsg || '' })
     }
 
@@ -368,7 +368,7 @@ let Bridge = {
       sizeType,
       success: handleSuccess,
       fail: handleError,
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     }
@@ -485,7 +485,7 @@ let Bridge = {
           onError?.(response as BridgeErrorResult)
         }
       },
-      fail: function (error: BridgePlatformErrorResponse) {
+      fail: function (error: BridgeSDKErrorResponse) {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       }
     })
@@ -535,7 +535,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         console.log('微信previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -544,7 +544,7 @@ let Bridge = {
             `WeChat ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -570,7 +570,7 @@ let Bridge = {
       onSuccess: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -592,7 +592,7 @@ let Bridge = {
         onSuccess: function () {
           onSuccess?.({ status: 'success', data: undefined })
         },
-        onError: function (err: BridgePlatformErrorResponse) {
+        onError: function (err: BridgeSDKErrorResponse) {
           console.log('WeChat Share onError:', err)
           Toast.show({
             content:

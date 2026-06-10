@@ -4,7 +4,7 @@
  * - `errorMessage` / `errorCode`：钉钉常见
  * - `message`：飞书部分接口（如 share）
  */
-export type BridgePlatformErrorResponse = {
+export type BridgeSDKErrorResponse = {
   errMsg?: string
   errorMessage?: string
   message?: string

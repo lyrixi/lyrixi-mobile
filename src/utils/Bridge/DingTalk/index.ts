@@ -5,14 +5,14 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import compressImage from './compressImage'
 import config from './config'
-import type { BridgePlatformErrorResponse } from '../types/Bridge.platform.types'
+import type { BridgeSDKErrorResponse } from '../WeChat/BridgeSDKErrorResponse.types'
 import type {
   BridgeDingTalkChooseImageSuccessResponse,
   BridgeDingTalkFaceDetectSuccessResponse,
   BridgeDingTalkGetLocationSuccessResponse,
   BridgeDingTalkScanCodeSuccessResponse,
   BridgeDingTalkUploadFileSuccessResponse
-} from '../types/Bridge.DingTalk.types'
+} from './Bridge.DingTalk.types'
 import type {
   BridgeChooseMediaParams,
   // BridgeChooseMediaResultData,
@@ -54,7 +54,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -141,7 +141,7 @@ let Bridge = {
         success: () => {
           onSuccess?.({ status: 'success', data: undefined })
         },
-        fail: (error: BridgePlatformErrorResponse) => {
+        fail: (error: BridgeSDKErrorResponse) => {
           onError?.({
             status: 'error',
             message:
@@ -160,7 +160,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -189,7 +189,7 @@ let Bridge = {
       onSuccess: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      onError: (error: BridgePlatformErrorResponse) => {
+      onError: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -244,7 +244,7 @@ let Bridge = {
           data
         })
       },
-      onError: (error: BridgePlatformErrorResponse) => {
+      onError: (error: BridgeSDKErrorResponse) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       }
     })
@@ -270,7 +270,7 @@ let Bridge = {
           data: { content: res.text || '' }
         })
       },
-      onError: (error: BridgePlatformErrorResponse) => {
+      onError: (error: BridgeSDKErrorResponse) => {
         onError?.({ status: 'error', message: error?.errorMessage || '' })
       },
       onCancel: onCancel ? () => onCancel({ status: 'cancel', message: '' }) : undefined
@@ -324,7 +324,7 @@ let Bridge = {
       })
     }
 
-    const handleError = function (error: BridgePlatformErrorResponse) {
+    const handleError = function (error: BridgeSDKErrorResponse) {
       if (
         error?.errorCode === '11' ||
         error?.errorCode === '-1' ||
@@ -451,14 +451,14 @@ let Bridge = {
       filePath: localFile.filePath,
       fileType: localFile.fileType,
       success: handleSuccess,
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           code: String(error?.errorCode ?? '') || undefined,
           message: error?.errorMessage || ''
         })
       },
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         onCancel?.({
           status: 'cancel',
           code: String(error?.errorCode ?? '') || undefined,
@@ -492,7 +492,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         console.log('钉钉previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -502,7 +502,7 @@ let Bridge = {
             `DingTalk ${LocaleUtil.locale('预览失败', 'lyrixi_6a3a5ef00db03994963efebe08432ce1')}`
         })
       },
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         onCancel?.({
           status: 'cancel',
           code: String(error?.errorCode ?? '') || undefined,
@@ -534,7 +534,7 @@ let Bridge = {
           }
         })
       },
-      onFail: (err: BridgePlatformErrorResponse) => {
+      onFail: (err: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           code: err?.errorCode !== undefined ? String(err.errorCode) : undefined,
@@ -554,7 +554,7 @@ let Bridge = {
       onSuccess: function () {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      onFail: function (err: BridgePlatformErrorResponse) {
+      onFail: function (err: BridgeSDKErrorResponse) {
         console.log('DingTalk Share onError:', err)
         onError?.({
           status: 'error',

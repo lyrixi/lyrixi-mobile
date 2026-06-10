@@ -6,11 +6,11 @@ import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import getConfigPayload from './../utils/getConfigPayload'
 import config from './config'
 
-import type { BridgePlatformErrorResponse } from '../types/Bridge.platform.types'
+import type { BridgeSDKErrorResponse } from '../WeChat/BridgeSDKErrorResponse.types'
 import type {
   BridgeLarkGetLocationSuccessResponse,
   BridgeLarkScanCodeSuccessResponse
-} from '../types/Bridge.Lark.types'
+} from './Bridge.Lark.types'
 import type {
   BridgeCloseWindowParams,
   BridgeConfigParams,
@@ -109,7 +109,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -153,7 +153,7 @@ let Bridge = {
       success: () => {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({
           status: 'error',
           message:
@@ -203,7 +203,7 @@ let Bridge = {
           data
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         console.error('飞书定位失败', error)
         onError?.({
           status: 'error',
@@ -227,10 +227,10 @@ let Bridge = {
           data: { content: res.resultStr || '' }
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         onError?.({ status: 'error', message: error?.errMsg || '' })
       },
-      cancel: (error: BridgePlatformErrorResponse) => {
+      cancel: (error: BridgeSDKErrorResponse) => {
         onCancel?.({ status: 'cancel', message: error?.errMsg || '' })
       }
     })
@@ -266,7 +266,7 @@ let Bridge = {
           data: undefined
         })
       },
-      fail: (error: BridgePlatformErrorResponse) => {
+      fail: (error: BridgeSDKErrorResponse) => {
         console.log('飞书previewImage失败:', error)
         onError?.({
           status: 'error',
@@ -290,7 +290,7 @@ let Bridge = {
       success() {
         onSuccess?.({ status: 'success', data: undefined })
       },
-      fail(err: BridgePlatformErrorResponse) {
+      fail(err: BridgeSDKErrorResponse) {
         console.log('Lark Share onError:', err)
 
         onError?.({

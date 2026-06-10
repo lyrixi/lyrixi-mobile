@@ -47,6 +47,3 @@ export interface BridgeAdapter {
   share?: (params?: BridgeShareParams) => void
   detectFace?: (params?: BridgeDetectFaceParams) => void
 }
-
-export * from './Bridge.params.types'
-export * from './Bridge.callbacks.types'
