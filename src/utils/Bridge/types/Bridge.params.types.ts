@@ -132,7 +132,7 @@ export type BridgeUploadFileParams = {
   formatHeaders?: unknown
   formatPayload?: unknown
   formatResponse?: unknown
-  onSuccess?: BridgeSuccessCallback<Record<string, unknown>> | ((res: unknown) => void)
+  onSuccess?: BridgeSuccessCallback
   onError?: BridgeErrorCallback | ((err: unknown) => void)
   onCancel?: BridgeCancelCallback | ((res: unknown) => void)
   /** Demo/历史：直传上传地址等 */
