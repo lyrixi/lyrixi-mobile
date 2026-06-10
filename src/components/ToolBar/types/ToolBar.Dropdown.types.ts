@@ -1,5 +1,6 @@
 import type { MouseEvent, ReactNode, RefObject } from 'react'
-import type { ToolBarComboRef, ToolBarComboProps } from '../components/ToolBar.Combo.types'
+import type { ToolBarComboRef } from './ToolBar.common.types'
+import type { ToolBarComboProps } from '../components/ToolBar.Combo.types'
 
 // 内库使用-start
 import type { ModalDropdownModalProps } from '../../Modal/types'

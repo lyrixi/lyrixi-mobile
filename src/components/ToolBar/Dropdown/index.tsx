@@ -9,7 +9,7 @@ import React, {
 import closeAllDropdown from './../utils/closeAllDropdown'
 import Combo from './../components/Combo'
 
-import type { ToolBarComboRef } from './../components/ToolBar.Combo.types'
+import type { ToolBarComboRef } from './../types/ToolBar.common.types'
 import type { ToolBarDropdownProps, ToolBarDropdownRef } from './../types'
 
 // 内库使用-start

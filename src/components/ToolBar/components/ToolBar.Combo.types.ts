@@ -2,12 +2,6 @@ import type { CSSProperties, MouseEventHandler, ReactNode, ComponentType, SVGPro
 
 import type { ButtonProps } from '../../Button/types'
 
-/** 仅 ToolBar.Dropdown 内部 Combo 使用，不在入口对外暴露 */
-export interface ToolBarComboRef {
-  element: HTMLDivElement | null
-  getElement: () => HTMLDivElement | null
-}
-
 export interface ToolBarComboProps {
   // Value & Display Value
   direction?: string

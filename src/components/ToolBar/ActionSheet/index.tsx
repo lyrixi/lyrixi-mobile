@@ -1,7 +1,7 @@
 import React, { forwardRef, type MouseEvent } from 'react'
 import Combo from './../components/Combo'
 
-import type { ToolBarComboRef } from './../components/ToolBar.Combo.types'
+import type { ToolBarComboRef } from './../types/ToolBar.common.types'
 import type { ToolBarActionSheetComboRenderParams, ToolBarActionSheetProps } from './../types'
 
 // 内库使用-start

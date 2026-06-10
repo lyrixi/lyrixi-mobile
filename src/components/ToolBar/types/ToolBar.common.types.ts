@@ -4,3 +4,8 @@ import type { ListItem } from '../../List/types'
 export interface ToolBarItem extends ListItem {
   children?: ToolBarItem[]
 }
+
+export interface ToolBarComboRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}

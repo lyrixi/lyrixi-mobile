@@ -1,6 +1,7 @@
 import React, { useImperativeHandle, useRef, forwardRef } from 'react'
 
-import type { ToolBarComboProps, ToolBarComboRef } from './ToolBar.Combo.types'
+import type { ToolBarComboRef } from './../types/ToolBar.common.types'
+import type { ToolBarComboProps } from './ToolBar.Combo.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
