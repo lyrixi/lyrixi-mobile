@@ -1,4 +1,4 @@
-import type { BridgeWeChatWecomAgentConfigOptions } from '../types/Bridge.WeChat.types'
+import type { BridgeWeChatWecomAgentConfigOptions } from './Bridge.WeChat.types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'
@@ -30,7 +30,10 @@ function wecomAgentConfig(params?: BridgeWeChatWecomAgentConfigOptions) {
       const res = response as { code?: string; message?: string } & Record<string, unknown>
       if (res.code === '1') {
         if (!formatResponse) return
-        const result = (await formatResponse(res, { platform: 'wecom' })) as Record<string, unknown> & {
+        const result = (await formatResponse(res, { platform: 'wecom' })) as Record<
+          string,
+          unknown
+        > & {
           status?: string
           message?: string
         }
