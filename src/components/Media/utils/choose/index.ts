@@ -3,7 +3,7 @@ import getRemainCount from './../../utils/getRemainCount'
 import type { MediaChooseUtilOptions } from '../../types'
 
 // 内库使用-start
-import type { FileItem } from './../../../utils/Bridge/types'
+import type { FileItem } from './../../../../utils/Bridge/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'

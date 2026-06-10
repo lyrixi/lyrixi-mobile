@@ -16,6 +16,7 @@ function uploadLocalFile({
   formatResponse,
   item
 }: BridgeUploadFileParams): Promise<FileItem> {
+  let fileItem = item as FileItem
   return new Promise((resolve) => {
     Bridge.uploadFile({
       getUploadUrl,
@@ -26,7 +27,7 @@ function uploadLocalFile({
       onSuccess: async function (response) {
         if ((response.status as string) === 'error') {
           resolve({
-            ...item,
+            ...fileItem,
             status: 'error',
             message: response.message
           } as FileItem)
@@ -36,14 +37,14 @@ function uploadLocalFile({
         const newItem = response.data
 
         resolve({
-          ...item,
+          ...fileItem,
           ...newItem,
           status: 'success'
         } as FileItem)
       },
       onError: function (error) {
         resolve({
-          ...item,
+          ...fileItem,
           status: 'error',
           message: error.message
         } as FileItem)

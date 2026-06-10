@@ -1,10 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
 import _uploadItem from './uploadItem'
 
-import type { FileItem, AttachRef } from './../../Attach/types'
+import type { AttachRef } from './../../Attach/types'
 import type { AttachUploaderBrowserProps } from './../types'
 
 // 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
 import Attach from './../../Attach'

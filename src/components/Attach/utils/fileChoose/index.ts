@@ -3,10 +3,10 @@ import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 import convertBytes from './../../utils/convertBytes'
 
-import type { FileItem } from '../../types'
 import type { FileChooseOptions } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from '../../../../utils/Bridge/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'

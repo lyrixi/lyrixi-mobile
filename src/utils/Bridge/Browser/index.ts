@@ -1,6 +1,7 @@
 import uploadFile from './uploadFile'
 import back from './../utils/back'
 import type {
+  FileItem,
   BridgeLoadParams,
   BridgeConfigParams,
   BridgeCloseWindowParams,
@@ -366,11 +367,11 @@ let Browser = {
     })) as { status: string; [key: string]: unknown }
 
     if (response.status === 'success' && typeof formatResponse === 'function') {
-      response = (await formatResponse(response, { platform: 'browser' })) as typeof response
+      response = await formatResponse(response, { platform: 'browser' })
     }
 
-    if (response.status === 'success') {
-      onSuccess?.(response as BridgeSuccessResult<Record<string, unknown>>)
+    if (response?.status === 'success') {
+      onSuccess?.(response as BridgeSuccessResult<FileItem>)
     } else {
       onError?.(response as BridgeErrorResult)
     }

@@ -6,7 +6,8 @@ import type {
   BridgeSuccessResult,
   BridgeCancelCallback,
   BridgeErrorCallback,
-  BridgeSuccessCallback
+  BridgeSuccessCallback,
+  BridgeErrorResult
 } from './Bridge.callbacks.types'
 
 /** {@link Bridge.load} */
@@ -149,7 +150,13 @@ export type BridgeUploadLocalFile = LocalFile
 export type BridgeUploadFileParams = {
   localFile?: BridgeUploadLocalFile | unknown
   /** `(ctx) => url`，ctx 因业务扩展（如含 uploadItem） */
-  getUploadUrl?: (ctx: { platform: string }) => Promise<string | undefined> | string
+  getUploadUrl?: (ctx: {
+    platform: string
+  }) =>
+    | string
+    | undefined
+    | { saveMediaUrl: string; getMediaUrl: string }
+    | Promise<string | undefined | { saveMediaUrl: string; getMediaUrl: string }>
   formatHeaders?: (
     headers: Record<string, string>,
     ctx: { platform: string }
@@ -161,10 +168,10 @@ export type BridgeUploadFileParams = {
   formatResponse?: (
     response: unknown,
     ctx: { platform: string }
-  ) => BridgeSuccessCallback<FileItem> | Promise<BridgeSuccessCallback<FileItem>>
+  ) => BridgeErrorResult | BridgeSuccessResult<FileItem>
   onSuccess?: BridgeSuccessCallback<FileItem>
-  onError?: BridgeErrorCallback | ((err: unknown) => void)
-  onCancel?: BridgeCancelCallback | ((res: unknown) => void)
+  onError?: BridgeErrorCallback
+  onCancel?: BridgeCancelCallback
   // 业务组件使用Media、Attach
   platform?: string
   [key: string]: unknown

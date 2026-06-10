@@ -95,9 +95,9 @@ function WechatMiniProgram(
   // 返回{saveMediaUrl, getMediaUrl}
   const uploadUrl = getUploadUrl?.({ platform: 'wechatMiniProgram' }) || {}
 
-  const saveMediaUrl = (uploadUrl.saveMediaUrl as string) || ''
+  const saveMediaUrl = ((uploadUrl as Record<string, unknown>).saveMediaUrl as string) || ''
 
-  const getMediaUrl = (uploadUrl.getMediaUrl as string) || ''
+  const getMediaUrl = ((uploadUrl as Record<string, unknown>).getMediaUrl as string) || ''
 
   // Auto generate id, used to get item form server
   const idRef = useRef(generateId())
@@ -300,15 +300,15 @@ function WechatMiniProgram(
     mediaType === null || mediaType === undefined
       ? undefined
       : Array.isArray(mediaType)
-      ? mediaType
-      : [mediaType]
+        ? mediaType
+        : [mediaType]
 
   const ellipsisForMedia =
     ellipsis === true
       ? { count: 1 }
       : ellipsis && typeof ellipsis === 'object'
-      ? ellipsis
-      : undefined
+        ? ellipsis
+        : undefined
 
   const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
 
@@ -324,24 +324,24 @@ function WechatMiniProgram(
     uploadRender === null || uploadRender === undefined
       ? undefined
       : typeof uploadRender === 'function'
-      ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
-      : () => uploadRender
+        ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+        : () => uploadRender
 
   const uploadingRenderFn =
     uploadingRender === null || uploadingRender === undefined
       ? undefined
       : typeof uploadingRender === 'function'
-      ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
-      : // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        (ctx: FileItem & { uploadingType: string }) => uploadingRender
+        ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
+        : // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          (ctx: FileItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
     itemRender === null || itemRender === undefined
       ? undefined
       : typeof itemRender === 'function'
-      ? (itemRender as (item: FileItem) => ReactNode)
-      : // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        (_item: FileItem) => itemRender as ReactNode
+        ? (itemRender as (item: FileItem) => ReactNode)
+        : // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          (_item: FileItem) => itemRender as ReactNode
 
   const onBeforeChooseForMedia: MediaProps['onBeforeChoose'] =
     typeof onBeforeChoose === 'function'

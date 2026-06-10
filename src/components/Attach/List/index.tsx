@@ -2,9 +2,10 @@ import React from 'react'
 
 import Item from './../Item'
 
-import type { AttachListProps, FileItem } from './../types'
+import type { AttachListProps } from './../types'
 
 // 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
 import Media from './../../Media'
 // 内库使用-end
 

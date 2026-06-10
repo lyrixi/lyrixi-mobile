@@ -41,12 +41,12 @@ function uploadLocalFile({
         let newItem = response.data
 
         // 校验其是否真的是否法图片
-        if (item?.fileItem === 'image' && verifyImage) {
+        if (fileItem?.fileItem === 'image' && verifyImage) {
           console.log('校验图片是否可访问:', newItem?.fileThumbnail)
           let isValid = await AssetUtil.accessImage(newItem?.fileThumbnail ?? '')
           if (!isValid) {
             resolve({
-              ...item,
+              ...fileItem,
               status: 'error',
               message: LocaleUtil.locale(
                 '图片加载失败，请重试',

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 // 内库使用-start
+import type { BridgeUploadFileParams } from '../../../utils/Bridge/types'
 import type { AttachProps } from './../../Attach/types'
 import type { FileItem } from './../../../utils/Bridge/types'
 import type { ModalProps } from '../../Modal/types'
@@ -40,10 +41,10 @@ export interface AttachUploaderProps {
   previewPortal?: ModalProps['portal']
   previewServerUrl?: string
   previewServerSourceType?: string | string[]
-  getUploadUrl?: GetUploadUrlFn
-  formatHeaders?: FormatHeadersFn
-  formatPayload?: FormatPayloadFn
-  formatResponse?: FormatResponseFn
+  getUploadUrl?: BridgeUploadFileParams['getUploadUrl']
+  formatHeaders?: BridgeUploadFileParams['formatHeaders']
+  formatPayload?: BridgeUploadFileParams['formatPayload']
+  formatResponse?: BridgeUploadFileParams['formatResponse']
   onBeforeChoose?: () => boolean | void | Promise<boolean | void>
   onFileChange?: AttachProps['onFileChange']
   onUpload?: (item: FileItem) => unknown

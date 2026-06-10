@@ -1,9 +1,7 @@
 import defaultUploadItem from './../../Browser/uploadItem'
 
-import type { UploadListConfig } from '../../types'
-
 // 内库使用-start
-import type { FileItem } from './../../../../utils/Bridge/types'
+import type { BridgeUploadFileParams, FileItem } from './../../../../utils/Bridge/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import Toast from './../../../Toast'
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -12,9 +10,6 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 /* 测试使用-start
 import { ObjectUtil, Toast, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
-
-// 导出给外部使用的工具类: 异步上传
-let uploadItem: typeof defaultUploadItem = defaultUploadItem
 
 function toToastString(s: string | import('react').ReactNode): string {
   return typeof s === 'string' ? s : ''
@@ -29,12 +24,13 @@ function toToastString(s: string | import('react').ReactNode): string {
 
 async function uploadList(
   pendingList: FileItem | FileItem[] | null | undefined,
-  uploadConfig: UploadListConfig | null | undefined
+  uploadConfig: BridgeUploadFileParams | null | undefined
 ): Promise<FileItem | FileItem[] | null> {
   if (ObjectUtil.isEmpty(pendingList)) {
     return null
   }
 
+  let uploadItem = null
   // 强制上传方式
   if (uploadConfig?.platform === 'browser') {
     uploadItem = defaultUploadItem

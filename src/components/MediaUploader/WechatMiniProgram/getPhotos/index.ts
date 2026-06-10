@@ -1,9 +1,11 @@
-import type {
-  WechatMiniProgramGetPhotosOptions,
-  WechatMiniProgramGetPhotosResponse
-} from '../../types'
+import type { WechatMiniProgramGetPhotosOptions } from '../../types'
 
 // 内库使用-start
+import type {
+  BridgeSuccessResult,
+  FileItem,
+  BridgeErrorResult
+} from '../../../../utils/Bridge/types'
 import Request from './../../../../utils/Request'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
@@ -12,35 +14,41 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getPhotos(id: string, { url, formatResponse }: WechatMiniProgramGetPhotosOptions): Promise<unknown> {
+function getPhotos(
+  id: string,
+  { url, formatResponse }: WechatMiniProgramGetPhotosOptions
+): Promise<string | FileItem | null> {
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
         console.log('服务器返回照片结果:', result)
-        let response: WechatMiniProgramGetPhotosResponse = {
+        let response = {
           status: 'success',
           code: '',
           message: '',
-          data: result
-        }
+          data: result as Record<string, unknown>
+        } as { status: string; [key: string]: unknown }
+
         if (typeof formatResponse === 'function') {
-          response = await formatResponse(
+          response = (await formatResponse(
             { status: 'success', code: '', message: '', data: result },
             { platform: 'wechatMiniProgram' }
-          )
+          )) as BridgeErrorResult | BridgeSuccessResult<FileItem>
         }
 
         console.log('照片格式化完成:', response)
         if (response.status === 'success') {
-          resolve(response.data)
+          resolve(response.data as FileItem)
         } else if (response.status === 'error') {
-          resolve(response.message)
+          resolve(response.message as string)
         } else {
           resolve(null)
         }
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取照片异常', 'lyrixi_a189fb8a40ac4d851d6888b886c0022f') as string)
+        resolve(
+          LocaleUtil.locale('获取照片异常', 'lyrixi_a189fb8a40ac4d851d6888b886c0022f') as string
+        )
       })
   })
 }

@@ -3,9 +3,10 @@ import convertBytes from './../../utils/convertBytes'
 import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 
-import type { AttachChooseOptions, FileItem } from '../../types'
+import type { AttachChooseOptions } from '../../types'
 
 // 内库使用-start
+import type { FileItem } from '../../../../utils/Bridge/types'
 import ObjectUtil from './../../../../utils/ObjectUtil'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Toast from './../../../Toast'
@@ -35,11 +36,9 @@ async function choose({
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.show({
       content: toToastString(
-        LocaleUtil.locale(
-          `总数不能大于${maxCount}`,
-          'lyrixi_2d5162e5511eccd2b3d50796122c6e6e',
-          [maxCount]
-        )
+        LocaleUtil.locale(`总数不能大于${maxCount}`, 'lyrixi_2d5162e5511eccd2b3d50796122c6e6e', [
+          maxCount
+        ])
       ),
       maskClickable: true
     })

@@ -465,7 +465,7 @@ let Bridge = {
         })
 
         let response = (await uploadServerId({
-          url: url,
+          url: url as string,
           headers: headers,
           payload: payload
         })) as { status: string; [key: string]: unknown }

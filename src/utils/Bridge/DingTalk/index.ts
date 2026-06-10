@@ -14,6 +14,7 @@ import type {
   BridgeDingTalkUploadFileSuccessResponse
 } from './Bridge.DingTalk.types'
 import type {
+  FileItem,
   BridgeChooseMediaParams,
   // BridgeChooseMediaResultData,
   BridgeCloseWindowParams,
@@ -426,7 +427,7 @@ let Bridge = {
       }
 
       if (response.status === 'success') {
-        onSuccess?.(response as BridgeSuccessResult<Record<string, unknown>>)
+        onSuccess?.(response as BridgeSuccessResult<FileItem>)
       } else {
         onError?.(response as BridgeErrorResult)
       }

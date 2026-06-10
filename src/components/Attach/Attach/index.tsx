@@ -17,9 +17,10 @@ import Choose from './../Choose'
 import PreviewModal from './../PreviewModal'
 import copyFileUrl from './copyFileUrl'
 
-import type { FileItem, AttachProps, AttachRef } from '../types'
+import type { AttachProps, AttachRef } from '../types'
 
 // 内库使用-start
+import type { FileItem } from '../../../utils/Bridge/types'
 import Bridge from './../../../utils/Bridge'
 import DOMUtil from './../../../utils/DOMUtil'
 import LocaleUtil from './../../../utils/LocaleUtil'
