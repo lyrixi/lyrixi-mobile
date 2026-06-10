@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import vconsole from 'vconsole'
-
-import { Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'
+import { ButtonRef, Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'
 
 new vconsole()
 
@@ -91,7 +90,7 @@ export default function FloatDemo() {
             comboRender={({ comboRef, onClick }) => {
               return (
                 <Button
-                  ref={comboRef}
+                  ref={comboRef as React.RefObject<ButtonRef>}
                   sizeEqual
                   direction="vertical"
                   size="xl"

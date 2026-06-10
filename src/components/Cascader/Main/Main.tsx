@@ -72,7 +72,7 @@ const Main = forwardRef<HTMLDivElement, CascaderMainViewProps>(
         {Array.isArray(result?.list) &&
           result?.list.map((item, index) => {
             // 字母分栏
-            let anchorBar = null
+            let anchorBar: React.ReactNode = null
             if (item.anchor && !indexes[item.anchor]) {
               indexes[item.anchor] = true
               anchorBar = (

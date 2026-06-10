@@ -30,7 +30,7 @@ async function uploadList(
     return null
   }
 
-  let uploadItem = null
+  let uploadItem: typeof defaultUploadItem | null = null
   // 强制上传方式
   if (uploadConfig?.platform === 'browser') {
     uploadItem = defaultUploadItem

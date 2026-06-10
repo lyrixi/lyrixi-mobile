@@ -1,6 +1,7 @@
 import React, { forwardRef, type MouseEvent } from 'react'
 import Combo from './../components/Combo'
 
+import type { ToolBarComboRef } from './../components/ToolBar.Combo.types'
 import type { ToolBarActionSheetComboRenderParams, ToolBarActionSheetProps } from './../types'
 
 // 内库使用-start
@@ -70,7 +71,7 @@ const ToolBarActionSheet = forwardRef<
     }
     return (
       <Combo
-        ref={comboRef}
+        ref={comboRef as React.RefObject<ToolBarComboRef>}
         // Status
         open={open}
         // Style

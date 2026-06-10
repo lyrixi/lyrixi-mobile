@@ -323,7 +323,7 @@ const MapContainer = forwardRef<MapContainerAPI | null, MapContainerProps>(
       })
     }
 
-    let newChildren = null
+    let newChildren: React.ReactNode = null
 
     if (!leafletMap) {
       newChildren = null
