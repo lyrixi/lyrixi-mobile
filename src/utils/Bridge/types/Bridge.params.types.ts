@@ -115,7 +115,6 @@ export type BridgeChooseMediaParams = {
 
 /** {@link Bridge.uploadFile} 本地文件描述（各端字段略有差异，允许扩展） */
 export type BridgeUploadLocalFile = {
-  path?: string
   filePath?: string
   fileType?: string
 } & Record<string, unknown>

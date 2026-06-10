@@ -300,7 +300,7 @@ function Attach(
       uploadList: uploadList,
       showLoading: _showLoading,
       hideLoading: _hideLoading
-    } satisfies AttachRef
+    }
   })
 
   // 点击预览
