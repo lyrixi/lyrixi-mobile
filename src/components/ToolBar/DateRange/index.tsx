@@ -18,8 +18,6 @@ import FooterBar from './../../FooterBar'
 import { DateUtil, LocaleUtil, DatePicker, FooterBar } from 'lyrixi-mobile'
 测试使用-end */
 
-const getDefaultRanges = DatePicker.getDefaultRanges
-
 // 日期区间
 function DateRangeBar({
   // Value & Display Value
@@ -65,7 +63,7 @@ function DateRangeBar({
   let ranges: DatePickerRangesMap | undefined = rangesIn
   if (ranges === undefined) {
     // eslint-disable-next-line
-    ranges = getDefaultRanges()
+    ranges = DatePicker.getDefaultRanges()
   }
 
   const [rangeId, setRangeId] = useState<string | null | undefined>(externalRangeId)
