@@ -24,6 +24,7 @@ const DateCombo = forwardRef<unknown, DatePickerTypeSwitcherDateComboProps>(
       type,
       min,
       max,
+      disabled,
       // Style
       style,
       className,
@@ -80,6 +81,7 @@ const DateCombo = forwardRef<unknown, DatePickerTypeSwitcherDateComboProps>(
           type={type as DatePickerComboProps['type']}
           min={min}
           max={max}
+          disabled={disabled}
           onChange={(v) => {
             if (v instanceof Date) onChange?.(v)
           }}
@@ -89,10 +91,11 @@ const DateCombo = forwardRef<unknown, DatePickerTypeSwitcherDateComboProps>(
                 ref={comboRef as Ref<Record<string, unknown> | null>}
                 className={DOMUtil.classNames(
                   'lyrixi-datepicker-typeswitcher-combo-date',
+                  disabled && 'lyrixi-disabled',
                   className
                 )}
                 style={style}
-                onClick={onClick}
+                onClick={disabled ? undefined : onClick}
                 type={type}
                 value={value}
               />

@@ -46,6 +46,8 @@ export interface DatePickerTypeSwitcherProps {
   tabbarClassName?: string
   min?: Date | null
   max?: Date | null
+  /** 是否禁用日期选择器点击（`.lyrixi-datepicker-typeswitcher-combo-date`） */
+  pickerDisabled?: boolean
   pickerComboRender?: (
     value: DatePickerTypeSwitcherValue,
     ctx: { onChange: (d: Date) => void }

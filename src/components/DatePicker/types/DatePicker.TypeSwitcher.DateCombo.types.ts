@@ -18,6 +18,7 @@ export type DatePickerTypeSwitcherDateComboProps = {
   type: string
   min?: Date | null
   max?: Date | null
+  disabled?: boolean
   style?: CSSProperties
   className?: string
   onChange?: (value: Date) => void

@@ -215,6 +215,7 @@ toc: content
 | tabbarClassName     | Tab 栏类名     | `string`                                                            | -      |
 | min                 | 最小日期       | `Date \| null`                                                      | -      |
 | max                 | 最大日期       | `Date \| null`                                                      | -      |
+| pickerDisabled      | 是否禁用日期选择器点击 | `boolean`                                                   | -      |
 | pickerComboRender   | 选择器组合渲染 | `(value: DatePickerTypeSwitcherValue, ctx: { onChange: (d: Date) => void }) => ReactNode` | -    |
 | onChange            | 变化事件       | `(value: DatePickerTypeSwitcherValue) => void`                      | -      |
 

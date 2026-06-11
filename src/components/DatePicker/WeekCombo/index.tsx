@@ -88,6 +88,7 @@ const WeekCombo = forwardRef<DatePickerWeekComboRef, DatePickerWeekComboProps>(f
   })
 
   async function handleOpen() {
+    if (disabled) return
     if (typeof onBeforeOpen === 'function') {
       const goOn = await onBeforeOpen()
       if (goOn === false) return

@@ -66,6 +66,7 @@ export default function DatePickerTypeSwitcherDemo() {
   const [dropdownStyleValue, setDropdownStyleValue] = useState<unknown>(undefined)
   const [dropdownSizeValue, setDropdownSizeValue] = useState<unknown>(undefined)
   const [dropdownArrowValue, setDropdownArrowValue] = useState<unknown>(undefined)
+  const [pickerDisabledValue, setPickerDisabledValue] = useState<unknown>(undefined)
 
   return (
     <Page>
@@ -200,6 +201,22 @@ export default function DatePickerTypeSwitcherDemo() {
               onChange={(newValue: unknown) => {
                 console.log('dropdownSize:', newValue)
                 setDropdownSizeValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>禁用日期选择（pickerDisabled）</Card.Header>
+          <Card.Main>
+            <DatePicker.TypeSwitcher
+              pickerDisabled
+              value={pickerDisabledValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('pickerDisabled:', newValue)
+                setPickerDisabledValue(newValue)
               }}
               pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
             />

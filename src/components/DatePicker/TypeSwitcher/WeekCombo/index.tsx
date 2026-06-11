@@ -23,6 +23,7 @@ const Week = forwardRef<unknown, DatePickerTypeSwitcherWeekComboProps>(
       // Status
       min,
       max,
+      disabled,
       // Style
       style,
       className,
@@ -56,6 +57,7 @@ const Week = forwardRef<unknown, DatePickerTypeSwitcherWeekComboProps>(
           value={value}
           min={min}
           max={max}
+          disabled={disabled}
           onChange={(v) => {
             if (v instanceof Date) onChange?.(v)
           }}
@@ -65,10 +67,11 @@ const Week = forwardRef<unknown, DatePickerTypeSwitcherWeekComboProps>(
                 ref={comboRef as Ref<Record<string, unknown> | null>}
                 className={DOMUtil.classNames(
                   'lyrixi-datepicker-typeswitcher-combo-date',
+                  disabled && 'lyrixi-disabled',
                   className
                 )}
                 style={style}
-                onClick={onClick}
+                onClick={disabled ? undefined : onClick}
                 value={value}
               />
             )

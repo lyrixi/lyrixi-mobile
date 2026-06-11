@@ -72,6 +72,7 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
       // Status
       min,
       max,
+      pickerDisabled,
 
       // Elements
       pickerComboRender,
@@ -134,13 +135,20 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
       if (pickerNode === undefined) {
         pickerNode =
           value.type === 'week' ? (
-            <WeekCombo value={value?.value} min={min} max={max} onChange={handleDate} />
+            <WeekCombo
+              value={value?.value}
+              min={min}
+              max={max}
+              disabled={pickerDisabled}
+              onChange={handleDate}
+            />
           ) : (
             <DateCombo
               type={value?.type}
               value={value?.value}
               min={min}
               max={max}
+              disabled={pickerDisabled}
               onChange={handleDate}
             />
           )

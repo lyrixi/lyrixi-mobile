@@ -14,6 +14,7 @@ export type DatePickerTypeSwitcherWeekComboProps = {
   value?: Date | null
   min?: Date | null
   max?: Date | null
+  disabled?: boolean
   style?: React.CSSProperties
   className?: string
   onChange?: (value: Date) => void

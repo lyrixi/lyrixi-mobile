@@ -223,6 +223,8 @@ export interface DatePickerTypeSwitcherProps {
   min?: Date | null
   /** 最大日期 */
   max?: Date | null
+  /** 是否禁用日期选择器点击（`.lyrixi-datepicker-typeswitcher-combo-date`） */
+  pickerDisabled?: boolean
   /** 选择器组合渲染 */
   pickerComboRender?: (
     value: DatePickerTypeSwitcherValue,

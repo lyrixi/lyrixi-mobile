@@ -91,6 +91,7 @@ const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(
     })
 
     async function handleOpen() {
+      if (disabled) return
       if (typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
         if (goOn === false) return
