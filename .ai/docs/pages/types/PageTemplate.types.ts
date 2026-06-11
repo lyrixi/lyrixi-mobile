@@ -17,14 +17,33 @@ export interface PageDesignSpec {
   designNotes?: string
 }
 
+/** Q7：接口出参映射（填空，有默认值） */
+export interface ApiResponseMapping {
+  /** 成功判定表达式，默认 `result.code === '1'` */
+  success?: string
+  /** 失败判定表达式，默认 `result.code !== '1'` */
+  error?: string
+  /** 业务数据取值表达式，默认 `result.data` */
+  data?: string
+  /** 错误文案取值表达式，默认 `result.message` */
+  message?: string
+}
+
+export const DEFAULT_API_RESPONSE_MAPPING: ApiResponseMapping = {
+  success: "result.code === '1'",
+  error: "result.code !== '1'",
+  data: 'result.data',
+  message: 'result.message'
+}
+
 /** Q5–Q8：单个接口端点 */
 export interface ApiEndpointSpec {
   url: string
   method: 'GET' | 'POST'
   /** 入参：字段名、类型、来源（URL 参数 / queryParams / Device.getUrlParameter） */
   request?: string
-  /** 出参：成功码、data 路径、message 字段 */
-  response?: string
+  /** 出参映射（Q7 填空；缺省字段用 DEFAULT_API_RESPONSE_MAPPING） */
+  response?: ApiResponseMapping
 }
 
 /** 表单/筛选项（Edit Form.Item、List Header/Filter） */

@@ -33,7 +33,8 @@ description: >-
 
 - **一次只问一件事**：每一轮只收集一个字段；拿到用户回复后再问下一项。
 - **选择题**用 `AskQuestion`（页面类型、是否有设计稿、GET/POST 等）。
-- **自由填写**（**输出路径**、apiUrl、入参说明、出参说明、文字版 designNotes）**禁止**合并成「请在下一条消息补充 1、2、3…」；应单独发一条消息、只问一个字段，等用户答完再继续。
+- **自由填写**（**输出路径**、apiUrl、入参说明、文字版 designNotes）**禁止**合并成「请在下一条消息补充 1、2、3…」；应单独发一条消息、只问一个字段，等用户答完再继续。
+- **Q7 出参映射**为单独一轮；**禁止用表格向用户提问**。须给出 [reference/api-response-template.txt](reference/api-response-template.txt) 的**可复制文本块**（见 Q7）；用户回复「用默认」或粘贴修改后的整段/部分行。
 - 表述不清时**只追问当前字段**，不要猜测业务含义。
 - 未完成全部问答前**不要**开始写业务代码。
 
@@ -88,11 +89,28 @@ description: >-
 
 记录：`apiRequest`（写入 page-spec，并映射到 props 里对应 `api.*.request`）。
 
-### Q7 — 接口出参（单独一轮文字问）
+### Q7 — 接口出参（单独一轮；可复制文本填空）
 
-**只问：** 接口出参如何映射？请写成功码字段、业务数据字段、错误文案字段（与前端 `result.status` / `result.data` / `result.message` 的对应关系）。
+聊天无法提供多输入框，**向用户展示时必须用下面这段可复制文本**（禁止表格）：
 
-记录：`apiResponse`（映射到 props 里对应 `api.*.response`）。
+````
+请确认接口出参映射：
+
+- 默认值即可 → 直接回复「用默认」
+- 需要修改 → 复制下面 4 行，改好后粘贴发回（只改要改的行即可）
+
+success: result.code === '1'
+error: result.code !== '1'
+data: result.data
+message: result.message
+````
+
+**解析规则**
+
+- 每行格式：`{key}: {expression}`，`key` 仅允许 `success` | `error` | `data` | `message`。
+- 回复「用默认」「默认」→ 四项均用 `DEFAULT_API_RESPONSE_MAPPING`。
+- 用户只粘贴部分行 → 未出现的 key 仍用默认值。
+- 记录 `api.*.response` 为 `ApiResponseMapping`；生成时在 `api/**/index.ts` 按表达式映射到 `result.status` / `result.data` / `result.message`。
 
 ### Q8 — 确认（可选）
 
@@ -118,6 +136,6 @@ description: >-
 ## 不允许
 
 - 跳过问答直接生成
-- **在一轮消息里同时索要输出路径、apiUrl、入参、出参等多项自由填写内容**
+- **在一轮消息里同时索要输出路径、apiUrl、入参等多项自由填写内容**（Q7 四项填空除外，属同一轮）
 - **跳过或自动填充输出路径**（Q3 必填）
 - 使用与 catalog 无关的随意目录当模板（除非用户明确指定路径）

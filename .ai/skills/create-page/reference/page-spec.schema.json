@@ -15,7 +15,12 @@
       "url": "/api/order/list",
       "method": "POST",
       "request": "入参说明或字段表",
-      "response": "出参说明：成功码、data 结构、message 字段"
+      "response": {
+        "success": "result.code === '1'",
+        "error": "result.code !== '1'",
+        "data": "result.data",
+        "message": "result.message"
+      }
     }
   },
   "cacheName": "order-list",

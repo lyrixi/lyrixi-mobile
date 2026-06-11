@@ -26,10 +26,11 @@
 3. **入参** — 根据 `apiRequest`：
    - URL 参数：`Device.getUrlParameter('id')`
    - 查询 state：`queryParams.xxx` → 经 `toServerParams` / `serverData` 转出（模板有则沿用文件名）
-4. **出参** — 根据 `apiResponse` 映射到统一形态：
-   - `result.status` — 成功码（如 `code === '1'`）
-   - `result.message` — 错误文案字段
-   - `result.data` — 业务数据；列表用 `localData` / `toData` 转前端字段
+4. **出参** — 根据 `api.*.response`（`ApiResponseMapping`，缺省见 `DEFAULT_API_RESPONSE_MAPPING`）映射到统一形态：
+   - `success` → 成功时 `result.status = 'success'`（或模板约定的 loading/empty 等）
+   - `error` → 失败时 `result.status = 'error'`
+   - `data` → 业务数据；列表用 `localData` / `toData` 转前端字段
+   - `message` → 错误文案，写入 `result.message`
 
 命名约定（rules）：查询 `queryXxx`，提交 `saveXxx`；`serverData` / `localData` 用于前后端结构转换。
 
