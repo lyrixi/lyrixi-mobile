@@ -1,18 +1,28 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
 export interface Root {
-  render(children: React.ReactNode): void
+  render(children: ReactNode): void
   unmount(): void
 }
 
+const legacyReactDOM = ReactDOM as {
+  render?: (element: ReactNode, container: Element) => void
+  unmountComponentAtNode?: (container: Element) => boolean
+}
+
 export function createRoot(container: Element): Root {
+  const { render, unmountComponentAtNode } = legacyReactDOM
+  if (!render || !unmountComponentAtNode) {
+    throw new Error('[lyrixi-mobile] shim createRoot requires React 17 legacy render APIs.')
+  }
+
   return {
-    render(children: React.ReactNode) {
-      ReactDOM.render(children as React.ReactElement, container)
+    render(children: ReactNode) {
+      render(children, container)
     },
     unmount() {
-      ReactDOM.unmountComponentAtNode(container)
+      unmountComponentAtNode(container)
     }
   }
 }
