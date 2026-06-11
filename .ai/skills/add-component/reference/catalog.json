@@ -1,0 +1,77 @@
+{
+  "description": "add-component 技能选用的参考组件。仅通过 docs 路径查阅，禁止 Read src/ 实现",
+  "templates": [
+    {
+      "id": "ref-amount",
+      "morphology": "C",
+      "title": "单一组件（index.tsx）",
+      "reference": "Amount",
+      "docs": {
+        "props": ".ai/docs/components/Amount/Amount-props.ts",
+        "rules": ".ai/docs/components/Amount/Amount-rules.md",
+        "example": ".ai/docs/components/Amount/Amount-example.md"
+      },
+      "hint": "无子组件、实现集中在包根 index.tsx；适合展示类、格式化类组件"
+    },
+    {
+      "id": "ref-badge",
+      "morphology": "C",
+      "title": "单一组件（根文件 + index.ts）",
+      "reference": "Badge",
+      "docs": {
+        "props": ".ai/docs/components/Badge/Badge-props.ts",
+        "rules": ".ai/docs/components/Badge/Badge-rules.md",
+        "example": ".ai/docs/components/Badge/Badge-example.md"
+      },
+      "hint": "无子组件；包根有主文件 + index.ts re-export；适合简单标记、状态展示"
+    },
+    {
+      "id": "ref-button",
+      "morphology": "B",
+      "title": "父组件 + 子组件（根文件挂载）",
+      "reference": "Button",
+      "docs": {
+        "props": ".ai/docs/components/Button/Button-props.ts",
+        "rules": ".ai/docs/components/Button/Button-rules.md",
+        "example": ".ai/docs/components/Button/Button-example.md"
+      },
+      "hint": "包根有主实现 + Text/Icon 等子文件；适合带主入口的复合组件"
+    },
+    {
+      "id": "ref-accordion",
+      "morphology": "B",
+      "title": "父组件 + 子组件（含内部模块）",
+      "reference": "Accordion",
+      "docs": {
+        "props": ".ai/docs/components/Accordion/Accordion-props.ts",
+        "rules": ".ai/docs/components/Accordion/Accordion-rules.md",
+        "example": ".ai/docs/components/Accordion/Accordion-example.md"
+      },
+      "hint": "父组件 + Group 子组件 + 内部过渡模块；适合可折叠面板"
+    },
+    {
+      "id": "ref-input",
+      "morphology": "A",
+      "title": "纯子组件合集",
+      "reference": "Input",
+      "docs": {
+        "props": ".ai/docs/components/Input/Input-props.ts",
+        "rules": ".ai/docs/components/Input/Input-rules.md",
+        "example": ".ai/docs/components/Input/Input-example.md"
+      },
+      "hint": "包根无主实现，仅 Text / Number 等子目录挂载；适合表单控件族"
+    },
+    {
+      "id": "ref-flex",
+      "morphology": "B",
+      "title": "布局容器 + 子区域",
+      "reference": "Flex",
+      "docs": {
+        "props": ".ai/docs/components/Flex/Flex-props.ts",
+        "rules": ".ai/docs/components/Flex/Flex-rules.md",
+        "example": ".ai/docs/components/Flex/Flex-example.md"
+      },
+      "hint": "布局类父组件 + Compact 等子组件；适合栅格、间距容器"
+    }
+  ]
+}

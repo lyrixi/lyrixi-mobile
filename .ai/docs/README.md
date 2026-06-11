@@ -15,7 +15,7 @@
 
 ### `components/` — 组件文档
 
-与 `src/components/` **一一对应**，供 AI 查阅 Props、规则与示例，减少生成代码时的幻觉。
+与 `src/components/` **一一对应**，供 AI 查阅 Props、规则与示例，减少生成代码时的幻觉。新建库组件时使用 [add-component](../skills/add-component/SKILL.md)（参考模板见 `add-component/reference/catalog.json`）。
 
 | 文件 / 目录 | 用途 |
 |-------------|------|
@@ -42,7 +42,8 @@
 ## 如何使用
 
 1. **推荐**：启用技能 [`docs`](../skills/docs/SKILL.md)，用 `resolve-docs.mjs` + `mapping.json` 检索后按需读 props/rules。
-2. 生成业务页：查 `pages/catalog.json` 选模板 → 读 `{Variant}-props.ts` + `{Variant}-rules.md` → 按需 Read `demos/`。
+2. 新建组件：启用 [`add-component`](../skills/add-component/SKILL.md) → 问答收集需求 → 按 `reference/catalog.json` 选参考（**只读 `.ai/docs`**）→ 生成组件包并同步本目录。
+3. 生成业务页：查 `pages/catalog.json` 选模板 → 读 `{Variant}-props.ts` + `{Variant}-rules.md` → 按需 Read `demos/`。
 3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
 4. 扩展文档：直接编辑 `.ai/docs` 下对应文件，并更新 `mapping.json` 中的路径与 `keywords`（与 `src` 不一致时以 `src` 为准）。
 

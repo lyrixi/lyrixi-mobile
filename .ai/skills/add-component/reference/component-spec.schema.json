@@ -1,0 +1,31 @@
+{
+  "$comment": "add-component 问答结束后写入组件包根目录；字段应对齐 reference/catalog.json 所选模板",
+  "templateId": "ref-badge",
+  "reference": "Badge",
+  "morphology": "C",
+  "output": {
+    "componentName": "StatusTag"
+  },
+  "design": {
+    "hasHiFi": false,
+    "designNotes": "用户描述或根据高保真图整理的交互与视觉说明"
+  },
+  "subComponents": [],
+  "api": {
+    "props": "主组件 Props 说明（分组：Value/Status/Style/Elements/Events）",
+    "ref": "Ref 暴露方法，如 element / getElement / focus",
+    "events": "onChange、onClick 等回调说明"
+  },
+  "i18n": {
+    "needed": false,
+    "keys": []
+  },
+  "dependencies": {
+    "components": ["Icon", "Text"],
+    "utils": ["DOMUtil"]
+  },
+  "docs": {
+    "keywords": "StatusTag|状态标签|标记",
+    "whenToUse": ["需要显示状态标签时", "需要在列表项上展示状态时"]
+  }
+}

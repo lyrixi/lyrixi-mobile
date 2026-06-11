@@ -69,6 +69,7 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 | mapping 无条目 | 查 `src/components/{Name}/index.zh-CN.md` 或 `src/utils/{Name}/` |
 | props 与实现不一致 | 以 `src` 源码为准；需同步时直接改 `.ai/docs` 或 `mapping.json` |
 | 页面级模板 | 另用 [create-page](../create-page/SKILL.md) + `pages/catalog.json` |
+| 新建库组件 | 另用 [add-component](../add-component/SKILL.md) + `reference/catalog.json` |
 
 ## mapping.json 与 keywords
 
@@ -78,7 +79,7 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 
 ## 业务页面
 
-整页骨架（列表/编辑/详情/报表）→ 使用 **create-page** 选 `pages/` 模板；页面内的组件/工具仍按本技能查 `components/`、`utils/`。
+整页骨架（列表/编辑/详情/报表）→ 使用 **create-page** 选 `pages/` 模板；新建库组件 → 使用 **add-component**；页面内或实现中引用的组件/工具仍按本技能查 `components/`、`utils/`。
 
 ## 输出自检
 
