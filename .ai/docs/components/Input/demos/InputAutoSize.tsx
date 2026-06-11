@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-
 import { Page, Divider, Input } from 'lyrixi-mobile'
 
 export default function InputAutoSizeDemo() {
   const [value, setValue] = useState('')
+  const [sizeValue, setSizeValue] = useState('')
   return (
     <Page>
       <Page.Main>
@@ -32,6 +32,52 @@ export default function InputAutoSizeDemo() {
           onBlur={() => {
             console.log('触发blur')
           }}
+        />
+
+        <Divider>尺寸 size</Divider>
+        <Input.AutoSize
+          size="xs"
+          placeholder="size xs"
+          value={sizeValue}
+          allowClear
+          onChange={setSizeValue}
+          className="lyrixi-border"
+        />
+        <Input.AutoSize
+          size="s"
+          placeholder="size s"
+          value={sizeValue}
+          allowClear
+          onChange={setSizeValue}
+          style={{ marginTop: '12px' }}
+          className="lyrixi-border"
+        />
+        <Input.AutoSize
+          size="m"
+          placeholder="size m"
+          value={sizeValue}
+          allowClear
+          onChange={setSizeValue}
+          style={{ marginTop: '12px' }}
+          className="lyrixi-border"
+        />
+        <Input.AutoSize
+          size="l"
+          placeholder="size l"
+          value={sizeValue}
+          allowClear
+          onChange={setSizeValue}
+          style={{ marginTop: '12px' }}
+          className="lyrixi-border"
+        />
+        <Input.AutoSize
+          size="xl"
+          placeholder="size xl"
+          value={sizeValue}
+          allowClear
+          onChange={setSizeValue}
+          style={{ marginTop: '12px' }}
+          className="lyrixi-border"
         />
       </Page.Main>
     </Page>

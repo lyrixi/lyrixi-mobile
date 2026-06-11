@@ -107,6 +107,25 @@ export interface InputTextProps {
   onCompositionEnd?: CompositionEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
+// Input.NumberBox
+
+export interface InputNumberBoxProps extends InputTextProps {
+  /** 步进值 */
+  step?: number
+  /** 步进时是否聚焦 */
+  stepFocus?: boolean
+  /** 加号按钮类名 */
+  plusClassName?: string
+  /** 加号按钮样式 */
+  plusStyle?: CSSProperties
+  /** 减号按钮类名 */
+  minusClassName?: string
+  /** 减号按钮样式 */
+  minusStyle?: CSSProperties
+  /** 子元素 */
+  children?: ReactNode
+}
+
 export interface InputNodeProps {
   /** 输入框 ID */
   id?: string

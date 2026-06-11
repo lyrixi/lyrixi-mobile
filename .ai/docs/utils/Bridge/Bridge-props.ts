@@ -2,6 +2,32 @@
  * Bridge API（AI 文档，生成代码时以此为准）
  */
 
+/** 本地文件描述（各端字段略有差异） */
+export interface LocalFile {
+  tempFilePath?: string
+  tempFile?: string
+  fileUrl?: string
+  fileType?: string
+  tempFileThumbnail?: string
+  [key: string]: unknown
+}
+
+/** 文件/媒体列表单项，Attach 与 MediaUploader 共用 */
+export interface FileItem {
+  status?: string
+  fileName?: string
+  fileUrl?: string
+  fileType?: string
+  localFile?: LocalFile
+  fileSize?: number
+  filePath?: File | string
+  className?: string
+  fileThumbnail?: string
+  message?: string
+  reloadKey?: unknown
+  [key: string]: unknown
+}
+
 export namespace Bridge {
   /** 加载平台 SDK（如微信 JSSDK 等）。 */
 

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { DOMUtil } from 'lyrixi-mobile'
 
 export default function DOMUtilDemo() {

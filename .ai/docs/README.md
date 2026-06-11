@@ -58,3 +58,5 @@
 从 JSON 迁移 props 时可运行：`node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs`
 
 同步 demo 后刷新 example 索引：`node .ai/skills/docs/scripts/generate-example-index.mjs`（可加组件名只更新部分）
+
+同步 demo 源码：`node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs`（可加组件名只更新部分）

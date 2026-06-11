@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Button, Icon, Icons, Message, Page } from 'lyrixi-mobile'
 
 export default function MessageIconDemo() {
@@ -15,9 +14,7 @@ export default function MessageIconDemo() {
       </Page>
       <Message.Modal open={open} onClose={() => setOpen(false)}>
         <Message.Header>
-          <Message.Icon>
-            <Icon svg={Icons.Config} size="80" color="primary" />
-          </Message.Icon>
+          <Icon svg={Icons.Config} size="80" color="primary" />
           <Message.Title>标题</Message.Title>
         </Message.Header>
         <Message.Main>内容</Message.Main>

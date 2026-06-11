@@ -1,5 +1,4 @@
 import React from 'react'
-
 import vconsole from 'vconsole'
 
 import { MathUtil } from 'lyrixi-mobile'

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Card, Flex, Button, Checkbox, Input } from 'lyrixi-mobile'
 
 const buttons = Array.from({ length: 6 }).map((_, index) => <Button key={index}>Button {index + 1}</Button>)
@@ -29,7 +28,7 @@ export default function Flex1Demo() {
                 { id: 'custom', name: 'Custom' }
               ]}
               onChange={(value) => {
-                if (value == null || Array.isArray(value)) return
+                if (value === null || Array.isArray(value)) return
                 setMode(String(value.id))
                 setGap(value.id !== 'custom' ? String(value.id) : 2)
               }}

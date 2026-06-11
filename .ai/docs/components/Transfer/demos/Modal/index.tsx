@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Transfer, type TransferItem } from 'lyrixi-mobile'
 
 export default function TransferModalDemo() {

@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useRef, type CSSProperties } from 'react'
-
-import { Page, Divider, Bridge, Media, type MediaProps, type MediaRef, type MediaItem } from 'lyrixi-mobile'
+import {
+  Page,
+  Divider,
+  Bridge,
+  Media,
+  type MediaProps,
+  type MediaRef,
+  type FileItem
+} from 'lyrixi-mobile'
 import HistoryUtil from './../../../utils/HistoryUtil/HistoryUtil'
 // import VConsole from 'vconsole'
 // new VConsole()
@@ -8,7 +15,7 @@ import HistoryUtil from './../../../utils/HistoryUtil/HistoryUtil'
 export default function MediaDemo() {
   const imageUploaderRef = useRef<MediaRef | null>(null)
 
-  const [list, setList] = useState<MediaItem[]>([
+  const [list, setList] = useState<FileItem[]>([
     {
       id: '1',
       fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png?id=1',
@@ -25,8 +32,10 @@ export default function MediaDemo() {
     },
     {
       id: '3',
-      fileThumbnail: 'https://thumbs.dreamstime.com/z/mobile-phone-wallpaper-serene-forest-path-sunlight-vibrant-greenery-354017056.jpg?ct=jpeg',
-      fileUrl: 'https://thumbs.dreamstime.com/z/mobile-phone-wallpaper-serene-forest-path-sunlight-vibrant-greenery-354017056.jpg?ct=jpeg',
+      fileThumbnail:
+        'https://thumbs.dreamstime.com/z/mobile-phone-wallpaper-serene-forest-path-sunlight-vibrant-greenery-354017056.jpg?ct=jpeg',
+      fileUrl:
+        'https://thumbs.dreamstime.com/z/mobile-phone-wallpaper-serene-forest-path-sunlight-vibrant-greenery-354017056.jpg?ct=jpeg',
       fileType: 'image'
       // status: 'uploading'
     },
@@ -53,13 +62,11 @@ export default function MediaDemo() {
   ])
 
   useEffect(() => {
-    Bridge.load(
-      {
-        onSuccess: () => {
-          console.log('加载桥接')
-        }
-      } as Record<string, unknown>
-    )
+    Bridge.load({
+      onSuccess: () => {
+        console.log('加载桥接')
+      }
+    } as Record<string, unknown>)
   }, [])
 
   const mediaVarsStyle = {
@@ -86,8 +93,9 @@ export default function MediaDemo() {
           sourceType={['camera', 'album']}
           list={list}
           maxCount={9}
-          onFileChange={(localFile) => {
-            console.log('localFile:', localFile)
+          onFileChange={(e: FileItem): FileItem => {
+            console.log('localFile:', e)
+            return e
           }}
           onChange={(newList) => {
             console.log('修改:', newList)
@@ -103,6 +111,7 @@ export default function MediaDemo() {
           style={mediaVarsStyle}
           previewAllowChoose={true}
           previewAllowClear={true}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onPreview={(_item, _index) => {
             HistoryUtil.navigate('imagePreview=1', {
               onBack: () => {
@@ -117,17 +126,19 @@ export default function MediaDemo() {
           list={list}
           maxCount={9}
           // onFileChange和onChoose的返回值一致, 都是数组
-          onFileChange={((localFile: unknown) => {
-            return [
-              {
-                status: 'choose',
-                localFile: localFile,
-                fileThumbnail: (localFile as { fileUrl?: string }).fileUrl,
-                fileUrl: (localFile as { fileUrl?: string }).fileUrl,
-                fileType: (localFile as { fileType?: string }).fileType
-              }
-            ]
-          }) as unknown as MediaProps['onFileChange']}
+          onFileChange={
+            ((localFile: unknown) => {
+              return [
+                {
+                  status: 'choose',
+                  localFile: localFile,
+                  fileThumbnail: (localFile as { fileUrl?: string }).fileUrl,
+                  fileUrl: (localFile as { fileUrl?: string }).fileUrl,
+                  fileType: (localFile as { fileType?: string }).fileType
+                }
+              ]
+            }) as unknown as MediaProps['onFileChange']
+          }
           onChange={(newList) => {
             console.log('修改:', newList)
             setList(newList)

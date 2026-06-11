@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 
 export default function ListItemDemo() {

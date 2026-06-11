@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, DatePicker, DateUtil, Card, Toast } from 'lyrixi-mobile'
 
 export default function DatePickerComboDemo() {
@@ -10,7 +9,12 @@ export default function DatePickerComboDemo() {
         <Card>
           <Card.Header>Year</Card.Header>
           <Card.Main>
-            <DatePicker.Combo type="year" placeholder="Year" value={value} onChange={(v) => setValue(v ?? null)} />
+            <DatePicker.Combo
+              type="year"
+              placeholder="Year"
+              value={value}
+              onChange={(v) => setValue(v ?? null)}
+            />
           </Card.Main>
         </Card>
 
@@ -131,6 +135,7 @@ export default function DatePickerComboDemo() {
               placeholder="onOk"
               value={value}
               onChange={(v) => setValue(v ?? null)}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onOk={(newValue) => {
                 Toast.show({ content: 'Use onOk to stop' })
                 return false

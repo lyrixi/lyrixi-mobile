@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Card, Page, Picker, type PickerItem } from 'lyrixi-mobile'
 
 export default function PickerComboInputDemo() {

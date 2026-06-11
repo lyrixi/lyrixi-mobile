@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Modal } from 'lyrixi-mobile'
 
 export default function ModalDemo2() {

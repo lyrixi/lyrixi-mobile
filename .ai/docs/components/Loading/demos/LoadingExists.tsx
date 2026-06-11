@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Loading, Button, Toast } from 'lyrixi-mobile'
 
 export default function LoadingExistsDemo() {

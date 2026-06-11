@@ -1,5 +1,4 @@
 import React, { useState, type ReactNode } from 'react'
-
 import { Page, List, Card, Button } from 'lyrixi-mobile'
 import type { ListItem, ViewItem } from 'lyrixi-mobile'
 import listAllData from './listAllData'
@@ -71,7 +70,7 @@ const ListDemo = () => {
               value={multipleValue}
               onChange={(newMultipleValue) => {
                 console.log('newMultipleValue:', newMultipleValue)
-                if (newMultipleValue == null) {
+                if (newMultipleValue === null) {
                   setMultipleValue([])
                 } else {
                   setMultipleValue(

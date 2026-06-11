@@ -8,6 +8,7 @@
 
 | Demo | 说明 |
 |------|------|
+| [demos/Map.demos.types.ts](./demos/Map.demos.types.ts) | Map..demos.types 子组件示例 |
 | [demos/MapCenterMarker.tsx](./demos/MapCenterMarker.tsx) | Map.CenterMarker 子组件示例 |
 | [demos/MapCircles.tsx](./demos/MapCircles.tsx) | Map.Circles 子组件示例 |
 | [demos/MapLocationControl.tsx](./demos/MapLocationControl.tsx) | Map.LocationControl 子组件示例 |
@@ -20,6 +21,8 @@
 | [demos/MapZoomControl.tsx](./demos/MapZoomControl.tsx) | Map.ZoomControl 子组件示例 |
 | [demos/PageMapChoose.tsx](./demos/PageMapChoose.tsx) | — |
 | [demos/PageMapMarkers.tsx](./demos/PageMapMarkers.tsx) | — |
+| [demos/getPoints.ts](./demos/getPoints.ts) | — |
+| [demos/points.ts](./demos/points.ts) | — |
 
 ## 查阅顺序
 

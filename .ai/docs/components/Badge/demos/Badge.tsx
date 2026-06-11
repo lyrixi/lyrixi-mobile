@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Badge } from 'lyrixi-mobile'
 
 export default function BadgeDemo() {

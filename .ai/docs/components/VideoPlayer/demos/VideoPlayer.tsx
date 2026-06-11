@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-
 import { Page, VideoPlayer, Button, type VideoPlayerRef } from 'lyrixi-mobile'
 
 export default function VideoPlayerDemo() {

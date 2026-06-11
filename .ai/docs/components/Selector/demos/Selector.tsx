@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Selector, Divider, type SelectorItem } from 'lyrixi-mobile'
 
 export default function SelectorDemo() {

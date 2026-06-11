@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Calendar, DateUtil } from 'lyrixi-mobile'
 
 export default function CalendarHeaderDemo() {
@@ -10,10 +9,17 @@ export default function CalendarHeaderDemo() {
       <Page.Main>
         <Calendar
           value={value}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onChange={(v, _c) => {
             setValue(v as Date | null)
           }}
-          headerRender={({ drawDate, onPreviousMonth, onNextMonth, onPreviousYear, onNextYear }) => (
+          headerRender={({
+            drawDate,
+            onPreviousMonth,
+            onNextMonth,
+            onPreviousYear,
+            onNextYear
+          }) => (
             <Calendar.Header
               onPreviousMonth={onPreviousMonth}
               onNextMonth={onNextMonth}

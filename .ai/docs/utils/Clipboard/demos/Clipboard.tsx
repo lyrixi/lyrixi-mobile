@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Clipboard, Toast } from 'lyrixi-mobile'
 
 export default function ClipboardDemo() {

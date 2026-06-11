@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, List, Card, Button, Flex } from 'lyrixi-mobile'
 
 export default function ListInfiniteScrollDemo() {

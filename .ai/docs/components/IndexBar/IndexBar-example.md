@@ -8,6 +8,7 @@
 
 | Demo | 说明 |
 |------|------|
+| [demos/IndexBar.demos.types.ts](./demos/IndexBar.demos.types.ts) | IndexBar..demos.types 子组件示例 |
 | [demos/IndexBar.tsx](./demos/IndexBar.tsx) | 主示例 |
 | [demos/IndexBarAnchor.tsx](./demos/IndexBarAnchor.tsx) | IndexBar.Anchor 子组件示例 |
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, List, Card } from 'lyrixi-mobile'
 import listData from './listData'
 

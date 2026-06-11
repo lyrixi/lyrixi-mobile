@@ -10,6 +10,8 @@
 |------|------|
 | [demos/ProgressBar.tsx](./demos/ProgressBar.tsx) | Progress.Bar 子组件示例 |
 | [demos/ProgressCircle.tsx](./demos/ProgressCircle.tsx) | Progress.Circle 子组件示例 |
+| [demos/barAnimated.tsx](./demos/barAnimated.tsx) | — |
+| [demos/circleAnimated.tsx](./demos/circleAnimated.tsx) | — |
 
 ## 查阅顺序
 

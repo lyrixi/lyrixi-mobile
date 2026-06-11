@@ -6,6 +6,21 @@ export namespace DateUtil {
   /** 通用方法: 转为日期格式 */
 
   export function toDate(...args: unknown[]): unknown
+  /** 通用方法: 增加日期, 'year', 'quarter', 'month', 'week', 'date' */
+
+  export function add(...args: unknown[]): unknown
+  /** 通用方法: 比较年月日,大于返回1,等于返回0,小于返回-1 */
+
+  export function compare(...args: unknown[]): unknown
+  /** 通用方法: 日期相差'year|quarter|month|week|day|hour|minute|second' */
+
+  export function diff(...args: unknown[]): unknown
+  /** 通用方法: 格式化日期 */
+
+  export function format(...args: unknown[]): unknown
+  /** 通用方法: 获取季度 */
+
+  export function quarter(...args: unknown[]): unknown
   /** 通用方法: 边界时间, 支持: 'year', 'quarter', 'month', 'week', 'date' */
 
   export function startOrEnd(...args: unknown[]): unknown

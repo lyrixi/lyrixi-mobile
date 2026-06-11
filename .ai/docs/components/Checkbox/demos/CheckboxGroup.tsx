@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-
 import { Checkbox, type CheckboxItem } from 'lyrixi-mobile'
 
 export default function CheckboxGroupDemo() {

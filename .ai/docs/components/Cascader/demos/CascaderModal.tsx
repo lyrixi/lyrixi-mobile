@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Cascader, Loading, type CascaderItem, type LoadDataResult } from 'lyrixi-mobile'
 
 export default function CascaderModalDemo() {
@@ -24,6 +23,7 @@ export default function CascaderModalDemo() {
 
   function loadData(
     tabs: CascaderItem[],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _ctx: { list: CascaderItem[] }
   ): Promise<LoadDataResult> {
     return new Promise((resolve) => {

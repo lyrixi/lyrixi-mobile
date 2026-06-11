@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Divider } from 'lyrixi-mobile'
 
 export default function DividerDemo() {

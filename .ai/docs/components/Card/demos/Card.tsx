@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Card } from 'lyrixi-mobile'
 
 export default function CardDemo() {

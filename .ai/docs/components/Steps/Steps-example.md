@@ -9,6 +9,10 @@
 | Demo | 说明 |
 |------|------|
 | [demos/Active.tsx](./demos/Active.tsx) | — |
+| [demos/Circle.tsx](./demos/Circle.tsx) | — |
+| [demos/Dot.tsx](./demos/Dot.tsx) | — |
+| [demos/Icon.tsx](./demos/Icon.tsx) | — |
+| [demos/Timeline.tsx](./demos/Timeline.tsx) | — |
 
 ## 查阅顺序
 

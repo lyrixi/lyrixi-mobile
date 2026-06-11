@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Card, Icon, Checkbox, Flex, Icons } from 'lyrixi-mobile'
 
 export default function CheckboxDemo() {

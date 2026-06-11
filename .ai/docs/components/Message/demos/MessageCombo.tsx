@@ -1,11 +1,10 @@
 import React from 'react'
-
-import { Icon, Page, Message, Button, Icons } from 'lyrixi-mobile'
+import { Page, Message, Button, Icons } from 'lyrixi-mobile'
 
 export default function ComboDemo2() {
   const handleOpenMessage = () => {
     Message.open({
-      iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,
+      iconSvg: Icons.Config,
       title: 'Title',
       content: <div>Content</div>,
       buttonsLayout: 'vertical',
@@ -37,9 +36,7 @@ export default function ComboDemo2() {
           <div>
             <h3>Using Message.Combo Component</h3>
             <Message.Combo
-              iconRender={() => (
-                <Icon svg={Icons.Config} className="lyrixi-color-primary" size="80" />
-              )}
+              iconSvg={Icons.Config}
               title="Title"
               content={<div>Content</div>}
               buttonsLayout="vertical"
@@ -70,7 +67,7 @@ export default function ComboDemo2() {
           {/* Using Message.open() API */}
           <div>
             <h3>Using Message.open() API</h3>
-            <Button className="lyrixi-flex" color="secondary" onClick={handleOpenMessage}>
+            <Button className="lyrixi-flex" color="info" onClick={handleOpenMessage}>
               Click to show message (API)
             </Button>
           </div>

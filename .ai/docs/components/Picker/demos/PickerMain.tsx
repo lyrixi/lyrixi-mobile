@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Picker, Page, type PickerItem } from 'lyrixi-mobile'
 
 export default function PickerMainDemo() {

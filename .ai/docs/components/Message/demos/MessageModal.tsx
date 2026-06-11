@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-
-import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
+import { Page, Message, Button, Icons } from 'lyrixi-mobile'
 
 export default function MessageModalDemo() {
   const [open, setOpen] = useState(false)
@@ -17,7 +16,7 @@ export default function MessageModalDemo() {
       <Message.Modal
         open={open}
         onClose={() => setOpen(false)}
-        iconRender={() => <Icon svg={Icons.Config} size="80" color="primary" />}
+        iconSvg={Icons.Config}
         title="Title"
         content="Content"
         buttonsLayout="vertical"

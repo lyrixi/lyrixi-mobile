@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Result, Button, LocaleUtil } from 'lyrixi-mobile'
 import Bridge from './../../../utils/Bridge'
 
@@ -10,9 +9,7 @@ export default function Result500Demo() {
         <Result status={'500'}>
           <Button
             radius="l"
-            backgroundColor="primary"
-            border="none"
-            color="white"
+            variant="solid" color="primary"
             style={{ margin: '77px 12px 0 12px' }}
             onClick={() => {
               window.location.reload()

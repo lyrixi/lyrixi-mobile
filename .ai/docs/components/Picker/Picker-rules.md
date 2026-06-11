@@ -11,9 +11,14 @@
 - 需要滚动选择时
 - 需要选择日期、时间等时
 
+## 子组件
+- `Picker.Combo`
+- `Picker.Modal`
+- `Picker.Main`
+
 ## Demo 索引（本目录 `demos/`）
 - `demos/PickerCombo.tsx`
-- `demos/PickerComboInput.tsx`
+- `demos/PickerComboInput.tsx` — `Picker.Combo` 输入框形态
 - `demos/PickerModal.tsx`
 - `demos/PickerMain.tsx`
 

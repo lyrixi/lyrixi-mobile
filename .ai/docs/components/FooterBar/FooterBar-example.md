@@ -8,6 +8,7 @@
 
 | Demo | 说明 |
 |------|------|
+| [demos/FooterBar.tsx](./demos/FooterBar.tsx) | 主示例 |
 | [demos/FooterBarButton.tsx](./demos/FooterBarButton.tsx) | FooterBar.Button 子组件示例 |
 
 ## 查阅顺序

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, NavBar, Divider, Button, Icon, Icons } from 'lyrixi-mobile'
 
 export default function NavBarDemo() {
@@ -21,19 +20,21 @@ export default function NavBarDemo() {
           <NavBar.Button>
             <Icon
               svg={Icons.Close}
-              size="12px"
-              style={{ padding: 4 }}
+              style={{ padding: 5 }}
               radius="100%"
-              backgroundColor="secondary"
+              size="10px"
+              color="secondary"
+              backgroundColor="default"
             />
           </NavBar.Button>
           <NavBar.Button>
             <Button.Icon
               svg={Icons.ThreeDots}
-              size="12px"
-              style={{ padding: 4 }}
-              radius="2px"
-              backgroundColor="secondary"
+              style={{ padding: 5 }}
+              radius="100%"
+              size="10px"
+              color="secondary"
+              backgroundColor="default"
             />
             <Button.Text>More</Button.Text>
           </NavBar.Button>
@@ -44,10 +45,11 @@ export default function NavBarDemo() {
           <NavBar.Button>
             <Icon
               svg={Icons.Close}
-              size="12px"
-              style={{ padding: 4 }}
+              style={{ padding: 5 }}
               radius="100%"
-              backgroundColor="secondary"
+              size="10px"
+              color="secondary"
+              backgroundColor="default"
             />
           </NavBar.Button>
           <NavBar.Title>Title</NavBar.Title>

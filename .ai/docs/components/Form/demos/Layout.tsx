@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Form, Divider, Select, Input, FooterBar, LocaleUtil } from 'lyrixi-mobile'
 
 export default function LayoutDemo() {
@@ -107,7 +106,7 @@ export default function LayoutDemo() {
       </Page.Main>
       <Page.Footer>
         <FooterBar>
-          <FooterBar.Button block backgroundColor="primary" color="white" onClick={handleSave}>
+          <FooterBar.Button block variant="solid" color="primary" onClick={handleSave}>
             {LocaleUtil.locale('确定')}
           </FooterBar.Button>
         </FooterBar>

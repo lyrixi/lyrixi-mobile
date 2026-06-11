@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import { Page, ActionSheet, type ActionSheetItem } from 'lyrixi-mobile'
 
 export default function ActionSheetItemDemo() {

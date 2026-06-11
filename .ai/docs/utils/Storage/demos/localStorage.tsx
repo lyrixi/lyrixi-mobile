@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Storage, Page, Button, Input, Card, Divider, Form } from 'lyrixi-mobile'
 
 export default function LocalStorageDemo() {

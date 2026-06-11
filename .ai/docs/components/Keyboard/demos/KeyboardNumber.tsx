@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Card, Divider, Input, Keyboard } from 'lyrixi-mobile'
 
 export default function KeyboardNumberDemo() {

@@ -1,5 +1,4 @@
 import React, { useState, type ReactNode } from 'react'
-
 import { App, Page, Calendar, DateUtil, Card, Divider, Button } from 'lyrixi-mobile'
 
 export default function CalendarDemo() {
@@ -9,7 +8,7 @@ export default function CalendarDemo() {
 
   // 区间选中
   function formatRangeValue(value: Date | null) {
-    if (value == null) {
+    if (value === null) {
       return null
     }
     const weekDates = DateUtil.getWeekDates(value, 'Monday')
@@ -18,12 +17,14 @@ export default function CalendarDemo() {
 
   const onSingleChange = (
     v: Date | Date[] | null | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _c: { currentDate: Date; action: 'select' | 'clear' }
   ) => {
     setSingleValue(v as Date | null)
   }
   const onMultiChange = (
     v: Date | Date[] | null | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _c: { currentDate: Date; action: 'select' | 'clear' }
   ) => {
     setMultipleValue((Array.isArray(v) ? v : []) as Date[])
@@ -44,16 +45,14 @@ export default function CalendarDemo() {
           <Card>
             <Card.Header>selectionMode: multiple（多选，value 为 Date[]）</Card.Header>
             <Card.Main>
-              <Calendar
-                selectionMode="multiple"
-                value={multipleValue}
-                onChange={onMultiChange}
-              />
+              <Calendar selectionMode="multiple" value={multipleValue} onChange={onMultiChange} />
             </Card.Main>
           </Card>
 
           <Card>
-            <Card.Header>selectionMode: range（范围选，value 为 [Date, Date]，用法参考 DatePicker.WeekMain）</Card.Header>
+            <Card.Header>
+              selectionMode: range（范围选，value 为 [Date, Date]，用法参考 DatePicker.WeekMain）
+            </Card.Header>
             <Card.Main>
               <Calendar
                 selectionMode="range"
@@ -116,7 +115,6 @@ export default function CalendarDemo() {
             </Card.Main>
           </Card>
 
-
           <Divider>Custom render</Divider>
           <Card>
             <Card.Header>Custom Header Render (自定义头部渲染)</Card.Header>
@@ -170,6 +168,7 @@ export default function CalendarDemo() {
             <Card.Header>Custom Date Render (自定义日期渲染)</Card.Header>
             <Card.Main>
               <Calendar
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 dateRender={(date, { isSelected, isDisabled, isCurrent }) => {
                   return (
                     <div
@@ -195,8 +194,6 @@ export default function CalendarDemo() {
               />
             </Card.Main>
           </Card>
-
-
         </Page.Main>
       </Page>
     </App>

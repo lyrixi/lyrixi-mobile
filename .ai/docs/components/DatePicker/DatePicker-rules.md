@@ -12,17 +12,36 @@
 - 需要选择日期范围时
 
 ## 子组件
-- `DatePicker.TypeSwitcher`
+- `DatePicker.Combo`
+- `DatePicker.Modal`
+- `DatePicker.Main`
+- `DatePicker.MultipleCombo`
+- `DatePicker.MultipleModal`
+- `DatePicker.MultipleMain`
+- `DatePicker.RangeCombo`
+- `DatePicker.RangeModal`
+- `DatePicker.RangeMain`
 - `DatePicker.RangeSelector`
+- `DatePicker.WeekCombo`
+- `DatePicker.WeekModal`
+- `DatePicker.WeekMain`
+- `DatePicker.TypeSwitcher`
+
+## 静态方法
+- `DatePicker.getTitle`
+- `DatePicker.getDefaultRanges`
+- `DatePicker.getRangeId`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/DatePickerCombo.tsx`
-- `demos/DatePickerComboInput.tsx`
+- `demos/DatePickerComboInput.tsx` — `DatePicker.Combo` 输入框形态
 - `demos/DatePickerRangeCombo.tsx`
 - `demos/DatePickerMultipleCombo.tsx`
 - `demos/DatePickerWeekCombo.tsx`
 - `demos/DatePickerTypeSwitcher.tsx`
 - `demos/DatePickerRangeSelector.tsx`
+- `demos/DatePickerRangeMain.tsx`
+- `demos/DatePickerTypes.tsx`
 
 ## 查阅顺序
 - Props：`DatePicker-props.ts`

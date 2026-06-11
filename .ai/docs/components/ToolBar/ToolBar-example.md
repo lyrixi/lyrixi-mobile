@@ -8,6 +8,7 @@
 
 | Demo | 说明 |
 |------|------|
+| [demos/FilterFooter.tsx](./demos/FilterFooter.tsx) | — |
 | [demos/ToolBar.tsx](./demos/ToolBar.tsx) | 主示例 |
 | [demos/ToolBarActionSheet.tsx](./demos/ToolBarActionSheet.tsx) | ToolBar.ActionSheet 子组件示例 |
 | [demos/ToolBarButton.tsx](./demos/ToolBarButton.tsx) | ToolBar.Button 子组件示例 |

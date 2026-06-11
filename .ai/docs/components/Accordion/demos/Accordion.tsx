@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Divider, Page, Card, Button, Accordion, Icon, Icons } from 'lyrixi-mobile'
 
 export default function AccordionDemo() {
@@ -14,7 +13,9 @@ export default function AccordionDemo() {
             className="lyrixi-flex"
             color="primary"
             style={{ margin: '12px' }}
-            onClick={() => setValue(2)}
+            onClick={() => {
+              setValue((prev) => (prev === 2 ? null : 2))
+            }}
           >
             Open Third
           </Button>
@@ -150,7 +151,7 @@ export default function AccordionDemo() {
                   >
                     <Icon
                       svg={Icons.StarFill}
-                      size="s"
+                      size="xxxs"
                       style={{ marginRight: '4px', color: '#f90' }}
                     />
                     {open ? 'Hide Content' : 'Show Content'}

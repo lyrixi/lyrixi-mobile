@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Card, Page, Transfer, type TransferItem } from 'lyrixi-mobile'
 
 export default function TransferDemo() {

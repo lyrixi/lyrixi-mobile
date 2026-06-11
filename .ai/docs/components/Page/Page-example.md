@@ -8,10 +8,13 @@
 
 | Demo | 说明 |
 |------|------|
+| [demos/Page.demos.types.ts](./demos/Page.demos.types.ts) | Page..demos.types 子组件示例 |
 | [demos/Page.tsx](./demos/Page.tsx) | 主示例 |
+| [demos/PageAside.tsx](./demos/PageAside.tsx) | Page.Aside 子组件示例 |
 | [demos/PageFooter.tsx](./demos/PageFooter.tsx) | Page.Footer 子组件示例 |
 | [demos/PageHeader.tsx](./demos/PageHeader.tsx) | Page.Header 子组件示例 |
 | [demos/PageMain.tsx](./demos/PageMain.tsx) | Page.Main 子组件示例 |
+| [demos/Refresh.tsx](./demos/Refresh.tsx) | — |
 
 ## 查阅顺序
 

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-
 import { Icon, Page, Modal, FooterBar, Icons } from 'lyrixi-mobile'
 
 export default function ModalFilterModalDemo() {
@@ -37,7 +36,7 @@ export default function ModalFilterModalDemo() {
                 </FooterBar.Button>
                 <FooterBar.Button
                   className="lyrixi-flex-1"
-                  backgroundColor="default"
+                  variant="filled" color="default"
                   onClick={() => {
                     console.log('reset')
                   }}
@@ -46,8 +45,7 @@ export default function ModalFilterModalDemo() {
                 </FooterBar.Button>
                 <FooterBar.Button
                   className="lyrixi-flex-1"
-                  color="white"
-                  backgroundColor="primary"
+                  variant="solid" color="primary"
                   onClick={() => {
                     console.log('confirm')
                     onClose?.()

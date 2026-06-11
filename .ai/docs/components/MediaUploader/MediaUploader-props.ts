@@ -4,11 +4,27 @@
 
 import type { CSSProperties, ReactNode } from 'react'
 
+/** 文件/媒体列表单项（与 Bridge.FileItem 一致） */
+export interface FileItem {
+  status?: string
+  fileName?: string
+  fileUrl?: string
+  fileType?: string
+  fileSize?: number
+  filePath?: File | string
+  className?: string
+  fileThumbnail?: string
+  message?: string
+  reloadKey?: unknown
+  localFile?: Record<string, unknown>
+  [key: string]: unknown
+}
+
 export interface MediaUploaderProps {
   /** 媒体类型，默认 `['image']` */
   mediaType?: string | string[]
   /** 媒体列表，默认 `[]` */
-  list?: MediaItem[]
+  list?: FileItem[]
   /** 最大上传数量 */
   maxUploadCount?: number
   /** 最大选择数量 */
@@ -108,11 +124,11 @@ export interface MediaUploaderProps {
   /** 选择前事件 */
   onBeforeChoose?: () => Promise<boolean | null | undefined> | boolean | null | undefined
   /** 上传事件 */
-  onUpload?: (item: MediaItem) => Promise<MediaItem>
+  onUpload?: (item: FileItem) => Promise<FileItem>
   /** 变化事件 */
-  onChange?: (list: MediaItem[]) => void
+  onChange?: (list: FileItem[]) => void
   /** 预览事件 */
-  onPreview?: (item: MediaItem, index: number) => Promise<unknown>
+  onPreview?: (item: FileItem, index: number) => Promise<unknown>
   /** 导航跳转事件 */
   onNavigateTo?: (params: Record<string, unknown>) => Promise<boolean | void>
 }

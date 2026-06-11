@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Input } from 'lyrixi-mobile'
 
 export default function InputTelDemo() {

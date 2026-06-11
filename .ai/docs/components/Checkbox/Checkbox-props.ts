@@ -27,7 +27,7 @@ export interface CheckboxProps {
   onChange?: (checked: boolean) => void
 }
 
-export interface CheckboxGroupItem {
+export interface CheckboxItem {
   id: string | number
   name?: string
   [key: string]: unknown
@@ -37,7 +37,7 @@ export interface CheckboxGroupProps {
   /** 选中的值 */
   value?: unknown
   /** 选项列表 */
-  list?: CheckboxGroupItem[]
+  list?: CheckboxItem[]
   /** 占位符 */
   placeholder?: string
   /** 是否禁用 */
@@ -57,7 +57,7 @@ export interface CheckboxGroupProps {
   /** 图标位置 */
   iconPosition?: CheckboxProps['iconPosition']
   /** 变化事件 */
-  onChange?: (value: CheckboxGroupItem | CheckboxGroupItem[] | null) => void
+  onChange?: (value: CheckboxItem | CheckboxItem[] | null) => void
 }
 
 export interface CheckboxRef {

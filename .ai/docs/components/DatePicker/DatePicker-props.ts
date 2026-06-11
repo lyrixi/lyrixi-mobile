@@ -3,7 +3,7 @@
  */
 
 import type { ComponentType, CSSProperties, ReactNode, RefObject, SVGProps } from 'react'
-import type { DatePickerPickerType, DatePickerRangesMap, DatePickerRangeChangeMeta } from './DatePicker-item-types'
+import type { DatePickerPickerType, DatePickerRangesMap, DatePickerRangeChangeMeta, DatePickerMultipleValue } from './DatePicker-item-types'
 
 export interface DatePickerComboProps {
   /** 选中的值 */
@@ -267,4 +267,125 @@ export interface DatePickerTypeSwitcherRef {
   element: HTMLDivElement | null
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
+}
+
+// DatePicker.RangeCombo
+
+export interface DatePickerRangeComboProps extends Omit<
+  DatePickerComboProps,
+  'value' | 'onChange' | 'onOk' | 'titleRender'
+> {
+  /** 区间值 */
+  value?: (Date | null)[] | null
+  /** 当前选中的范围 id */
+  rangeId?: string | null
+  /** 范围配置 */
+  ranges?: DatePickerRangesMap
+  /** 自动交换起止值 */
+  autoSwapValue?: boolean
+  /** 禁用开始日期 */
+  startDisabled?: boolean
+  /** 禁用结束日期 */
+  endDisabled?: boolean
+  /** 变化事件 */
+  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  /** 确认事件 */
+  onOk?: (value: (Date | null)[] | null) => boolean | Date[] | void | Promise<boolean | void | Date[]>
+}
+
+// DatePicker.RangeModal
+
+export interface DatePickerRangeModalProps extends Omit<
+  DatePickerModalProps,
+  'value' | 'onChange' | 'onOk' | 'type' | 'titleRender'
+> {
+  value?: (Date | null)[] | null
+  type?: string
+  autoSwapValue?: boolean
+  rangeId?: string | null
+  ranges?: DatePickerRangesMap
+  rangesVisible?: boolean
+  startDisabled?: boolean
+  endDisabled?: boolean
+  separator?: string
+  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onOk?: (value: (Date | null)[] | null) => void | boolean | Date[] | Promise<void | boolean | Date[]>
+}
+
+// DatePicker.RangeMain
+
+export interface DatePickerRangeMainProps {
+  value?: (Date | null)[] | null
+  rangeId?: string | null
+  ranges?: DatePickerRangesMap
+  type?: string
+  min?: Date | null
+  max?: Date | null
+  hourStep?: number
+  minuteStep?: number
+  startDisabled?: boolean
+  endDisabled?: boolean
+  separator?: string
+  autoSwapValue?: boolean
+  open?: boolean
+  rangesVisible?: boolean
+  allowClear?: boolean
+  portal?: HTMLElement | null
+  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+}
+
+// DatePicker.WeekCombo / WeekModal / WeekMain
+
+export interface DatePickerWeekComboProps extends DatePickerComboProps {}
+
+export interface DatePickerWeekModalProps extends DatePickerModalProps {}
+
+export interface DatePickerWeekMainProps {
+  value?: Date | null
+  min?: Date | null
+  max?: Date | null
+  weekStart?: string
+  open?: boolean
+  allowClear?: boolean
+  style?: CSSProperties
+  className?: string
+  onChange?: (value: Date | null) => void
+}
+
+// DatePicker.MultipleCombo / MultipleModal / MultipleMain
+
+export interface DatePickerMultipleComboProps extends Omit<
+  DatePickerComboProps,
+  'value' | 'onChange' | 'onOk' | 'titleRender'
+> {
+  value?: DatePickerMultipleValue
+  onChange?: (value: DatePickerMultipleValue, meta?: { action: string }) => void
+  onOk?: (
+    value: DatePickerMultipleValue
+  ) => boolean | DatePickerMultipleValue | void | Promise<boolean | void | DatePickerMultipleValue>
+}
+
+export interface DatePickerMultipleModalProps extends Omit<
+  DatePickerModalProps,
+  'value' | 'onChange' | 'onOk' | 'titleRender'
+> {
+  separator?: string
+  value?: DatePickerMultipleValue
+  onChange?: (value: DatePickerMultipleValue) => void
+  onOk?: (
+    value: DatePickerMultipleValue
+  ) => boolean | DatePickerMultipleValue | void | Promise<boolean | void | DatePickerMultipleValue>
+}
+
+export interface DatePickerMultipleMainProps {
+  value?: DatePickerMultipleValue
+  type?: DatePickerPickerType | string
+  min?: Date | null
+  max?: Date | null
+  hourStep?: number
+  minuteStep?: number
+  separator?: string
+  open?: boolean
+  allowClear?: boolean
+  onChange?: (value: DatePickerMultipleValue) => void
 }

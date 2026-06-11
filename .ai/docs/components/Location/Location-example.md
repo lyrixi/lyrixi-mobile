@@ -8,6 +8,7 @@
 
 | Demo | 说明 |
 |------|------|
+| [demos/Location.demos.types.ts](./demos/Location.demos.types.ts) | Location..demos.types 子组件示例 |
 | [demos/LocationCombo.tsx](./demos/LocationCombo.tsx) | Location.Combo 子组件示例 |
 | [demos/LocationMain.tsx](./demos/LocationMain.tsx) | Location.Main 子组件示例 |
 

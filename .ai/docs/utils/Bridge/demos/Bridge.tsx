@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-
 import vconsole from 'vconsole'
 
 import {
@@ -231,12 +230,12 @@ export default function BridgeDemo() {
                     uploadDir: 'test'
                   },
                   localFile: imageLocalFiles.current[0],
-                  onSuccess: function (res: BridgeSuccessResult<Record<string, unknown>>) {
+                  onSuccess: function (res) {
                     console.log(res)
                     alert(JSON.stringify(res))
                     Loading.hide()
                   },
-                  onError: function (error: BridgeErrorResult) {
+                  onError: function (error) {
                     console.log(error)
                     alert(JSON.stringify(error))
                     Loading.hide()
@@ -291,7 +290,7 @@ export default function BridgeDemo() {
               radius="m"
               onClick={() => {
                 Bridge.previewFile({
-                  url: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
                 })
               }}
             >

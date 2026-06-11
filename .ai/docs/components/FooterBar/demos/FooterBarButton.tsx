@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Icon, Page, Divider, FooterBar, Button, Icons } from 'lyrixi-mobile'
 
 export default function FooterBarButtonDemo() {
@@ -27,7 +26,7 @@ export default function FooterBarButtonDemo() {
               }
             ]}
           >
-            <Icon svg={Icons.ThreeDots} size="xl" />
+            <Icon svg={Icons.ThreeDots} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -36,7 +35,7 @@ export default function FooterBarButtonDemo() {
               console.log(e)
             }}
           >
-            <Icon svg={Icons.Config} size="xl" />
+            <Icon svg={Icons.Config} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -82,7 +81,7 @@ export default function FooterBarButtonDemo() {
               }
             ]}
           >
-            <Icon svg={Icons.ThreeDots} size="xl" />
+            <Icon svg={Icons.ThreeDots} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -92,7 +91,7 @@ export default function FooterBarButtonDemo() {
               console.log(e)
             }}
           >
-            <Icon svg={Icons.Config} size="xl" />
+            <Icon svg={Icons.Config} size="xxxs" />
           </FooterBar.Button>
 
           <FooterBar.Button
@@ -142,7 +141,7 @@ export default function FooterBarButtonDemo() {
             ]}
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            <Button.Icon svg={Icons.ThreeDots} size="xl" />
+            <Button.Icon svg={Icons.ThreeDots} size="xxxs" />
             <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
@@ -154,11 +153,12 @@ export default function FooterBarButtonDemo() {
             style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             <Button.Icon svg={Icons.Config} />
-            <Button.Text>Icons.Config</Button.Text>
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             block
-            backgroundColor="default"
+            variant="filled"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -167,8 +167,8 @@ export default function FooterBarButtonDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            color="white"
-            backgroundColor="primary"
+            variant="solid"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}
@@ -185,7 +185,6 @@ export default function FooterBarButtonDemo() {
             fontSize="12px"
             list={[
               {
-                disabled: true,
                 id: 'option1',
                 name: 'Option 1',
                 onClick: (e) => {
@@ -200,8 +199,9 @@ export default function FooterBarButtonDemo() {
                 }
               }
             ]}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
-            <Button.Icon svg={Icons.ThreeDots} size="xl" />
+            <Button.Icon svg={Icons.ThreeDots} size="xxxs" />
             <Button.Text>More</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
@@ -211,13 +211,16 @@ export default function FooterBarButtonDemo() {
             onClick={(e) => {
               console.log(e)
             }}
+            style={{ fontSize: '12px', flex: 'none', padding: '0 12px' }}
           >
             <Button.Icon svg={Icons.Config} />
-            <Button.Text>Icons.Config</Button.Text>
+            <Button.Text>Config</Button.Text>
           </FooterBar.Button>
           <FooterBar.Button
             disabled
             block
+            variant="filled"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -227,8 +230,8 @@ export default function FooterBarButtonDemo() {
           <FooterBar.Button
             disabled
             block
-            color="white"
-            backgroundColor="primary"
+            variant="solid"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}

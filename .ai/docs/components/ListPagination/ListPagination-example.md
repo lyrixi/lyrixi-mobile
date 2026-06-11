@@ -4,6 +4,12 @@
 
 业务代码引入：`import { ListPagination } from 'lyrixi-mobile'`
 
+## Demo 索引
+
+| Demo | 说明 |
+|------|------|
+| [demos/ListPagination.demos.types.ts](./demos/ListPagination.demos.types.ts) | ListPagination..demos.types 子组件示例 |
+
 _暂无 demo 文件，请查阅 `-rules.md`、`-props.ts` 与源码。_
 
 ## 查阅顺序

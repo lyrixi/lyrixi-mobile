@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Divider, TabBar, Icon, Icons, type TabBarItem } from 'lyrixi-mobile'
 
 export default function TabBarTabsDemo() {
@@ -94,17 +93,17 @@ export default function TabBarTabsDemo() {
         <TabBar.Tabs
           list={[
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Fruit',
               name: 'Fruit'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Vegetable',
               name: 'Vegetable'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Animal',
               name: 'Animal'
             }
@@ -120,21 +119,21 @@ export default function TabBarTabsDemo() {
         <TabBar.Tabs
           list={[
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              iconRender: () => <Icon svg={Icons.FileText} size="m" />,
+              iconRender: () => <Icon svg={Icons.FileText} size="xxxs" />,
               id: 'Animal',
               name: 'Animal',
               description: 'description',

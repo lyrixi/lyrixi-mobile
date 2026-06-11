@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
-
 import vconsole from 'vconsole'
-
-import { Icon, Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'
+import { ButtonRef, Button, Float, Page, Divider, Storage, ActionSheet, Icons } from 'lyrixi-mobile'
 
 new vconsole()
 
@@ -35,20 +33,20 @@ export default function FloatDemo() {
             direction="vertical"
             size="l"
             radius="100%"
-            color="white"
-            backgroundColor="primary"
-            borderColor="primary"
+            variant="solid"
+            color="primary"
             onClick={(e) => {
               console.log(e)
             }}
           >
-            <Icon svg={Icons.ThreeDots} />1
+            <Button.Icon svg={Icons.ThreeDots} />1
           </Button>
           <Button
             sizeEqual
             size="l"
             radius="100%"
-            borderColor="default"
+            variant="solid"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -56,14 +54,15 @@ export default function FloatDemo() {
               marginTop: '16px'
             }}
           >
-            <Icon svg={Icons.Plus} />
+            <Button.Icon svg={Icons.Plus} />
             <Button.Text>2</Button.Text>
           </Button>
           <Button
             sizeEqual
             size="l"
             radius="100%"
-            borderColor="default"
+            variant="solid"
+            color="default"
             onClick={(e) => {
               console.log(e)
             }}
@@ -91,17 +90,16 @@ export default function FloatDemo() {
             comboRender={({ comboRef, onClick }) => {
               return (
                 <Button
-                  ref={comboRef}
+                  ref={comboRef as React.RefObject<ButtonRef>}
                   sizeEqual
                   direction="vertical"
                   size="xl"
                   radius="100%"
-                  color="white"
-                  backgroundColor="primary"
-                  borderColor="primary"
+                  variant="solid"
+                  color="primary"
                   onClick={onClick}
                 >
-                  <Icon svg={Icons.ThreeDots} />
+                  <Button.Icon size="l" svg={Icons.ThreeDots} />
                 </Button>
               )
             }}

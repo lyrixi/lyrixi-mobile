@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { AssetUtil } from 'lyrixi-mobile'
 
 export default function LoadJsDemo() {

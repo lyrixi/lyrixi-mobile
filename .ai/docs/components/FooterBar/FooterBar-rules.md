@@ -11,6 +11,9 @@
 - 需要显示操作按钮时
 - 需要在页面底部显示固定内容时
 
+## 子组件
+- `FooterBar.Button`
+
 ## Demo 索引（本目录 `demos/`）
 - `demos/FooterBarButton.tsx`
 

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Combo } from 'lyrixi-mobile'
 
 export default function ComboDemo() {

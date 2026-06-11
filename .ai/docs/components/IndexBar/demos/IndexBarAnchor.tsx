@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, IndexBar } from 'lyrixi-mobile'
 
 export default function IndexBarAnchorDemo() {

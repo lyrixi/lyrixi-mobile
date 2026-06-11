@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect, type ComponentRef } from 'react'
-
-import { Page, Divider, Input, Card, Button } from 'lyrixi-mobile'
+import { Page, Divider, Input, Card, Button, MathUtil } from 'lyrixi-mobile'
 
 export default function InputTextDemo() {
   const inputTextRef = useRef<ComponentRef<typeof Input.Text> | null>(null)
   const [value, setValue] = useState('')
   const [value2, setValue2] = useState('')
-  const [value3, setValue3] = useState('')
+  const [formatterValue, setFormatterValue] = useState('12345.67')
+  const [formatterThousandsValue, setFormatterThousandsValue] = useState('1234567.89')
   const [value4, setValue4] = useState('')
   const [value5, setValue5] = useState('')
   const [valueComposition, setValueComposition] = useState('')
+  const [sizeValue, setSizeValue] = useState('')
 
   useEffect(() => {
     console.log('Input.Text ref:', inputTextRef.current)
@@ -35,6 +36,54 @@ export default function InputTextDemo() {
         </Card>
 
         <Card style={{ marginTop: '20px' }}>
+          <Divider>尺寸 size</Divider>
+          <Input.Text
+            size="xs"
+            placeholder="size xs"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="s"
+            placeholder="size s"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="m"
+            placeholder="size m"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="l"
+            placeholder="size l"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+          <Input.Text
+            size="xl"
+            placeholder="size xl"
+            value={sizeValue}
+            allowClear
+            onChange={setSizeValue}
+            style={{ marginTop: '12px' }}
+            className="lyrixi-border"
+          />
+        </Card>
+
+        <Card style={{ marginTop: '20px' }}>
           <Divider>带清除按钮</Divider>
           <Input.Text placeholder="带清除按钮" value={value2} allowClear onChange={setValue2} />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
@@ -43,17 +92,34 @@ export default function InputTextDemo() {
         </Card>
 
         <Card style={{ marginTop: '20px' }}>
-          <Divider>格式化显示</Divider>
+          <Divider>formatter</Divider>
+          <div style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+            失焦时显示 formatter 格式化内容，获焦时恢复原始输入。
+          </div>
           <Input.Text
-            placeholder="格式化显示"
-            value={value3}
+            placeholder="前缀 $"
+            value={formatterValue}
+            allowClear
             formatter={(currentValue: string) => {
               return currentValue ? '$' + currentValue : ''
             }}
-            onChange={setValue3}
+            onChange={setFormatterValue}
           />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
-            当前值: {value3 || '空'}
+            当前值: {formatterValue || '空'}
+          </div>
+          <Input.Text
+            placeholder="千分位"
+            value={formatterThousandsValue}
+            allowClear
+            formatter={(currentValue: string) => {
+              return currentValue ? '$' + MathUtil.thousands(currentValue) : ''
+            }}
+            onChange={setFormatterThousandsValue}
+            style={{ marginTop: '12px' }}
+          />
+          <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+            当前值: {formatterThousandsValue || '空'}
           </div>
         </Card>
 
@@ -95,8 +161,8 @@ export default function InputTextDemo() {
           <Input.Text
             placeholder="带左右图标"
             value={value5}
-            leftIconNode={<span style={{ color: '#999' }}>&lt;</span>}
-            rightIconNode={<Input.IconRightArrow />}
+            leftIconRender={() => <span style={{ color: '#999' }}>&lt;</span>}
+            rightIconRender={() => <Input.IconRightArrow />}
             onChange={setValue5}
           />
           <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
@@ -148,10 +214,11 @@ export default function InputTextDemo() {
         <Card style={{ marginTop: '20px' }}>
           <Divider>功能说明</Divider>
           <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#666' }}>
+            <p>• 支持 size 尺寸（xs / s / m / l / xl）</p>
             <p>• 支持文本输入和编辑</p>
             <p>• 支持placeholder提示</p>
             <p>• 支持清除按钮</p>
-            <p>• 支持格式化显示</p>
+            <p>• 支持 formatter 失焦格式化显示</p>
             <p>• 支持最大长度限制</p>
             <p>• 支持左右图标</p>
             <p>• 支持 enableCompositionEnd（输入法落字后再触发 onChange）</p>

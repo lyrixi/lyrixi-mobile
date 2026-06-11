@@ -9,6 +9,7 @@
 | Demo | 说明 |
 |------|------|
 | [demos/Accordion.tsx](./demos/Accordion.tsx) | 主示例 |
+| [demos/AccordionGroup.tsx](./demos/AccordionGroup.tsx) | Accordion.Group 子组件示例 |
 
 ## 查阅顺序
 

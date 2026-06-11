@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Form } from 'lyrixi-mobile'
 
 export default function FormItemDemo() {

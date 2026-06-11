@@ -1,11 +1,10 @@
 import React from 'react'
-
-import { Page, Message, Button, Icon, Icons } from 'lyrixi-mobile'
+import { Page, Message, Button, Icons } from 'lyrixi-mobile'
 
 export default function MessageApiDemo() {
   const handleOpenMessage = () => {
     Message.open({
-      iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,
+      iconSvg: Icons.Config,
       title: 'Title',
       content: <div>Content</div>,
       buttonsLayout: 'vertical',
@@ -31,7 +30,7 @@ export default function MessageApiDemo() {
 
   const handleOpenHorizontalMessage = () => {
     Message.open({
-      iconRender: () => <Icon svg={Icons.Config} size="80" color="primary" />,
+      iconSvg: Icons.Config,
       title: 'Horizontal Layout',
       content: <div>This message uses horizontal button layout</div>,
       buttonsLayout: 'horizontal',
@@ -116,7 +115,7 @@ export default function MessageApiDemo() {
             Open Message (Vertical)
           </Button>
 
-          <Button className="lyrixi-flex" color="secondary" onClick={handleOpenHorizontalMessage}>
+          <Button className="lyrixi-flex" color="info" onClick={handleOpenHorizontalMessage}>
             Open Message (Horizontal)
           </Button>
 

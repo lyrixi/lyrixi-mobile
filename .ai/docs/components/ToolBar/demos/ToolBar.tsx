@@ -1,6 +1,19 @@
 import React, { useState, useRef } from 'react'
-
-import { LocaleUtil, Page, Flex, ToolBar, Card, Icon, FooterBar, type ActionSheetItem, type ToolBarDropdownRef, type ToolBarFilterRef, type ToolBarItem, Icons } from 'lyrixi-mobile'
+import {
+  LocaleUtil,
+  Page,
+  Flex,
+  ToolBar,
+  Card,
+  Icon,
+  FooterBar,
+  type ActionSheetItem,
+  type ToolBarDropdownRef,
+  type ToolBarFilterRef,
+  type ToolBarItem,
+  Icons
+} from 'lyrixi-mobile'
+import FilterFooter from './FilterFooter'
 
 export default function ToolBarDemo() {
   const dropdownRef = useRef<ToolBarDropdownRef | null>(null)
@@ -21,7 +34,8 @@ export default function ToolBarDemo() {
         <FooterBar>
           <FooterBar.Button
             block
-            backgroundColor="default"
+            variant="filled"
+            color="default"
             onClick={() => {
               if (typeof onClose === 'function') onClose()
               else dropdownRef.current?.close()
@@ -31,8 +45,8 @@ export default function ToolBarDemo() {
           </FooterBar.Button>
           <FooterBar.Button
             block
-            color="white"
-            backgroundColor="primary"
+            variant="solid"
+            color="primary"
             onClick={() => {
               console.log('ok')
             }}
@@ -58,7 +72,8 @@ export default function ToolBarDemo() {
             <ToolBar>
               <ToolBar.Dropdown
                 left={12}
-                color="primary"
+                // color="primary"
+                variant="solid"
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
                 }}
@@ -130,7 +145,7 @@ export default function ToolBarDemo() {
                 left={12}
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
+                onChange={(v) => setItem(Array.isArray(v) ? v[0] ?? null : v ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -150,7 +165,7 @@ export default function ToolBarDemo() {
               <ToolBar.List
                 placeholder="List"
                 value={item}
-                onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
+                onChange={(v) => setItem(Array.isArray(v) ? v[0] ?? null : v ?? null)}
                 list={[
                   {
                     disabled: true,
@@ -204,21 +219,23 @@ export default function ToolBarDemo() {
           <Card.Main>
             <ToolBar>
               <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                <Icon svg={Icons.Barcode} />
+                <Icon svg={Icons.Barcode} size="xs" />
               </ToolBar.Button>
-              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={true}>
                 <ToolBar.Button>1</ToolBar.Button>
                 <ToolBar.Button>2</ToolBar.Button>
                 <ToolBar.Button>3</ToolBar.Button>
               </Flex.Compact>
-              <Flex.Compact>
+              <Flex.Compact separator={true}>
                 <ToolBar.List
                   sizeEqual
+                  arrowSvg={null}
+                  variant="solid"
                   maskStyle={{
                     zIndex: 99
                   }}
                   value={item}
-                  onChange={(v) => setItem(Array.isArray(v) ? (v[0] ?? null) : (v ?? null))}
+                  onChange={(v) => setItem(Array.isArray(v) ? v[0] ?? null : v ?? null)}
                   list={[
                     {
                       id: 'desc',
@@ -230,14 +247,18 @@ export default function ToolBarDemo() {
                     }
                   ]}
                 >
-                  <Icon svg={Icons.ThreeDots} />
+                  <Icon svg={Icons.ThreeDots} size="xs" />
                 </ToolBar.List>
 
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon svg={Icons.Barcode} />
+                  <Icon svg={Icons.Barcode} size="xs" />
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
+                  variant="solid"
+                  footerRender={({ onClose }) => {
+                    return <FilterFooter onClose={onClose} />
+                  }}
                   modalRender={() => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
@@ -261,12 +282,8 @@ export default function ToolBarDemo() {
               <ToolBar.Filter
                 color="primary"
                 sizeEqual
-                icon={<Icon svg={Icons.Search} />}
-                onReset={() => {
-                  console.log('reset')
-                }}
-                onOk={() => {
-                  console.log('submit')
+                footerRender={({ onClose }) => {
+                  return <FilterFooter onClose={onClose} />
                 }}
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
@@ -275,11 +292,8 @@ export default function ToolBarDemo() {
               <ToolBar.Filter
                 ref={filterRef}
                 sizeEqual
-                onReset={() => {
-                  console.log('reset')
-                }}
-                onOk={() => {
-                  console.log('submit')
+                footerRender={({ onClose }) => {
+                  return <FilterFooter onClose={onClose} />
                 }}
                 modalRender={() => {
                   return <div style={{ height: '300px' }}>Modal Content</div>
@@ -299,12 +313,16 @@ export default function ToolBarDemo() {
                   console.log('search:', value)
                 }}
               />
-              <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+              <Flex.Compact separator={true}>
                 <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                  <Icon svg={Icons.Barcode} />
+                  <Icon svg={Icons.Barcode} size="xs" />
                 </ToolBar.Button>
                 <ToolBar.Filter
                   sizeEqual
+                  variant="solid"
+                  footerRender={({ onClose }) => {
+                    return <FilterFooter onClose={onClose} />
+                  }}
                   modalRender={() => {
                     return <div style={{ height: '300px' }}>Modal Content</div>
                   }}
@@ -339,12 +357,16 @@ export default function ToolBarDemo() {
                       setSearchActive(true)
                     }}
                   />
-                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                  <Flex.Compact separator={true}>
                     <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon svg={Icons.Barcode} />
+                      <Icon svg={Icons.Barcode} size="xs" />
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
+                      variant="solid"
+                      footerRender={({ onClose }) => {
+                        return <FilterFooter onClose={onClose} />
+                      }}
                       modalRender={() => {
                         return <div style={{ height: '300px' }}>Modal Content</div>
                       }}
@@ -381,12 +403,15 @@ export default function ToolBarDemo() {
                       setFilledSearchActive(true)
                     }}
                   />
-                  <Flex.Compact separator={<div style={{ width: '2px' }}></div>}>
+                  <Flex.Compact separator={true}>
                     <ToolBar.Button sizeEqual onClick={() => console.log(1)}>
-                      <Icon svg={Icons.Barcode} />
+                      <Icon svg={Icons.Barcode} size="xs" />
                     </ToolBar.Button>
                     <ToolBar.Filter
                       sizeEqual
+                      footerRender={({ onClose }) => {
+                        return <FilterFooter onClose={onClose} />
+                      }}
                       modalRender={() => {
                         return <div style={{ height: '300px' }}>Modal Content</div>
                       }}

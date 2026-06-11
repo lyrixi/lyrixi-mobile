@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Page, Toast } from 'lyrixi-mobile'
 
 export default function ToastHideDemo() {

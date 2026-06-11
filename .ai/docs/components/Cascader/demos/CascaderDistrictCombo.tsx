@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import { Card, Divider, Page, Cascader, type CascaderItem } from 'lyrixi-mobile'
 
 export default function CascaderDistrictComboDemo() {

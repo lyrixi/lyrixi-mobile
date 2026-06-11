@@ -9,7 +9,7 @@
 | Demo | 说明 |
 |------|------|
 | [demos/PickerCombo.tsx](./demos/PickerCombo.tsx) | Picker.Combo 子组件示例 |
-| [demos/PickerComboInput.tsx](./demos/PickerComboInput.tsx) | Picker.ComboInput 子组件示例 |
+| [demos/PickerComboInput.tsx](./demos/PickerComboInput.tsx) | `Picker.Combo` 输入框形态 |
 | [demos/PickerMain.tsx](./demos/PickerMain.tsx) | Picker.Main 子组件示例 |
 | [demos/PickerModal.tsx](./demos/PickerModal.tsx) | Picker.Modal 子组件示例 |
 

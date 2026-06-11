@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { Page, Input } from 'lyrixi-mobile'
 
 export default function InputSearchDemo() {

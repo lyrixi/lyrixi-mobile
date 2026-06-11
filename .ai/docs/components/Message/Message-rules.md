@@ -12,13 +12,17 @@
 - 需要自定义对话框结构（图标、标题、内容、底部按钮分区）时
 
 ## 子组件
+- `Message.Combo`
 - `Message.Modal`
 - `Message.Main`
 - `Message.Header`
 - `Message.Footer`
-- `Message.Icon`
 - `Message.Title`
 - `Message.Button`
+
+## 静态方法
+- `Message.open`
+- `Message.close`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/MessageApi.tsx`
@@ -27,7 +31,7 @@
 - `demos/MessageMain.tsx`
 - `demos/MessageHeader.tsx`
 - `demos/MessageFooter.tsx`
-- `demos/MessageIcon.tsx`
+- `demos/MessageIcon.tsx` — 在 Header 内使用 `Icon` 展示图标（非独立子组件）
 - `demos/MessageTitle.tsx`
 - `demos/MessageButton.tsx`
 

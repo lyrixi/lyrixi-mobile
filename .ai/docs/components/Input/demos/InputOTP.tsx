@@ -1,5 +1,4 @@
 import React, { useState, useRef, type ComponentRef } from 'react'
-
 import { Page, Input, Card, Divider, FooterBar } from 'lyrixi-mobile'
 
 export default function InputOTPDemo() {

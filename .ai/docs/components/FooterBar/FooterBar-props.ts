@@ -3,6 +3,7 @@
  */
 
 import type { CSSProperties, ReactNode } from 'react'
+import type { ActionSheetItem } from '../ActionSheet/ActionSheet-item-types'
 import type { ButtonProps } from '../Button/Button-props'
 import type { ModalProps } from '../Modal/Modal-props'
 
@@ -25,7 +26,7 @@ export interface FooterBarRef {
 // FooterBar.Button
 
 export interface FooterBarButtonProps extends Omit<ButtonProps, 'onClick'> {
-  list?: { id?: string | number; label?: ReactNode; [key: string]: unknown }[]
+  list?: ActionSheetItem[]
   modalStyle?: CSSProperties
   modalClassName?: string
   maskStyle?: CSSProperties

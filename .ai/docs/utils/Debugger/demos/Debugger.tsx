@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-
 import { Page, Debugger } from 'lyrixi-mobile'
 
 export default function DebuggerDemo() {
