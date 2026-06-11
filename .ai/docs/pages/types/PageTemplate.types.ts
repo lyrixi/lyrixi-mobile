@@ -2,7 +2,7 @@
  * 页面模板公共类型（create-page 问答 → page-spec.json → 生成代码时替换模板动态内容）
  */
 
-/** Q3–Q4：输出路径 */
+/** Q3：输出路径（必填） */
 export interface PageOutputSpec {
   /** 相对仓库根，如 `src/pages/OrderList` */
   outputPath: string
