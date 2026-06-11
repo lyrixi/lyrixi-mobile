@@ -1,4 +1,4 @@
-import React, { type ComponentType, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import {
   Attach,
@@ -29,16 +29,11 @@ import type {
   EditDemoFormItemExtraParams,
   EditDemoQueryDataResult,
   EditDemoResultView,
-  EditDemoSaveResult,
-  EditDemoUntypedFileChangePayload
+  EditDemoSaveResult
 } from './types'
 import Footer from './../Cache/Footer'
 
 const locale = LocaleUtil.locale
-
-// Attach/Media demos use richer callbacks than the exported prop types describe
-const AttachUntyped = Attach as unknown as ComponentType<Record<string, unknown>>
-const MediaUntyped = Media as unknown as ComponentType<Record<string, unknown>>
 
 // 表单控件展示（编辑页）
 const Edit = () => {
@@ -121,6 +116,8 @@ const Edit = () => {
           <Form
             form={form}
             style={{ margin: '0 12px' }}
+            labelSpan={10}
+            mainSpan={14}
             labelEllipsis={{ rows: 2, expandable: true }}
             onFieldsChange={(changedFields, allFields) => {
               console.log('onFieldsChange:', { changedFields, allFields })
