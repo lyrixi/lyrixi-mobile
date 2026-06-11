@@ -19,7 +19,7 @@ toc: content
 
 ## 代码演示
 
-<code src="./demos/FooterBarButton.tsx"></code>
+<code src="./demos/FooterBar.tsx"></code>
 
 ## API
 

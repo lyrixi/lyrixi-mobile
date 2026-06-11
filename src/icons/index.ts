@@ -123,5 +123,3 @@ const Icons = {
 }
 
 export default Icons
-
-export type IconSvgName = keyof typeof Icons

@@ -73,7 +73,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ListItem.tsx"></code>
+见上方 List.Item 示例。
 
 ### API
 
@@ -112,7 +112,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ListHeaderItem.tsx"></code>
+见上方 List.HeaderItem 示例。
 
 ### API
 
@@ -136,7 +136,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/ListInfiniteScroll.tsx"></code>
+见上方 List.InfiniteScroll 示例。
 
 ### API
 
