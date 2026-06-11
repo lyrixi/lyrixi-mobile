@@ -1,5 +1,9 @@
 import type { CSSProperties, ReactNode } from 'react'
 
+// 内库使用-start
+import type { ToolBarComboProps } from '../../ToolBar/components/ToolBar.Combo.types'
+// 内库使用-end
+
 export interface DatePickerTypeListItem {
   type: string
   id?: string
@@ -25,6 +29,15 @@ export interface DatePickerTypeSwitcherProps {
   variant?: DatePickerTypeSwitcherType
   dropdownPortal?: HTMLElement
   dropdownLeft?: string | number
+  dropdownColor?: ToolBarComboProps['color']
+  dropdownVariant?: ToolBarComboProps['variant']
+  dropdownSize?: ToolBarComboProps['size']
+  dropdownSizeEqual?: ToolBarComboProps['sizeEqual']
+  dropdownFontSize?: ToolBarComboProps['fontSize']
+  dropdownRadius?: ToolBarComboProps['radius']
+  dropdownClassName?: string
+  dropdownStyle?: CSSProperties
+  dropdownArrowSvg?: ToolBarComboProps['arrowSvg']
   style?: CSSProperties
   className?: string
   pickerComboStyle?: CSSProperties

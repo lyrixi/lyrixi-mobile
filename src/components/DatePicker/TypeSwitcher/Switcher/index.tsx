@@ -16,6 +16,15 @@ function Switcher({
   variant = 'tabbar',
   dropdownPortal,
   dropdownLeft,
+  dropdownColor,
+  dropdownVariant,
+  dropdownSize,
+  dropdownSizeEqual,
+  dropdownFontSize,
+  dropdownRadius,
+  dropdownClassName,
+  dropdownStyle,
+  dropdownArrowSvg,
   types,
   value,
   style,
@@ -27,8 +36,15 @@ function Switcher({
       <ToolBar.List
         value={value as ToolBarItem}
         list={types as ToolBarItem[]}
-        style={style}
-        className={className}
+        color={dropdownColor}
+        variant={dropdownVariant}
+        size={dropdownSize}
+        sizeEqual={dropdownSizeEqual}
+        fontSize={dropdownFontSize}
+        radius={dropdownRadius}
+        style={dropdownStyle}
+        className={dropdownClassName}
+        arrowSvg={dropdownArrowSvg}
         portal={dropdownPortal}
         left={dropdownLeft}
         onChange={(newValue) => {

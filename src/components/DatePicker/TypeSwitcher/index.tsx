@@ -60,6 +60,15 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
       variant = 'tabbar',
       dropdownPortal,
       dropdownLeft,
+      dropdownColor,
+      dropdownVariant,
+      dropdownSize,
+      dropdownSizeEqual,
+      dropdownFontSize,
+      dropdownRadius,
+      dropdownClassName,
+      dropdownStyle,
+      dropdownArrowSvg,
       // Status
       min,
       max,
@@ -151,6 +160,15 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
             variant={variant}
             dropdownPortal={dropdownPortal}
             dropdownLeft={dropdownLeft}
+            dropdownColor={dropdownColor}
+            dropdownVariant={dropdownVariant}
+            dropdownSize={dropdownSize}
+            dropdownSizeEqual={dropdownSizeEqual}
+            dropdownFontSize={dropdownFontSize}
+            dropdownRadius={dropdownRadius}
+            dropdownClassName={dropdownClassName}
+            dropdownStyle={dropdownStyle}
+            dropdownArrowSvg={dropdownArrowSvg}
             types={types}
             value={value}
             style={tabbarStyle}
