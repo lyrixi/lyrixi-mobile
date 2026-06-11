@@ -13,7 +13,7 @@ import { DOMUtil, Icon as LyrixiIcon, Icons } from 'lyrixi-mobile'
 测试使用-end */
 
 function getCheckIconSize(variant: CheckboxIconProps['variant']): string {
-  return variant === 'text' ? 'm' : 'xxxs'
+  return variant === 'text' ? 'xs' : 'xxxs'
 }
 
 function getCheckIconColor(variant: CheckboxIconProps['variant']): string | undefined {
