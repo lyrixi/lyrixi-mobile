@@ -189,6 +189,24 @@ export interface DatePickerTypeSwitcherProps {
   dropdownPortal?: HTMLElement
   /** 下拉左侧偏移 */
   dropdownLeft?: string | number
+  /** 下拉颜色，对应 `ToolBar.List` 的 `color` */
+  dropdownColor?: 'default' | 'transparent' | 'primary' | 'info' | 'warning' | 'danger' | 'success'
+  /** 下拉变体，对应 `ToolBar.List` 的 `variant` */
+  dropdownVariant?: 'solid' | 'text' | 'outlined' | 'filled' | 'dashed'
+  /** 下拉高度尺寸，对应 `ToolBar.List` 的 `size` */
+  dropdownSize?: string | number | readonly string[]
+  /** 下拉是否为等宽高，对应 `ToolBar.List` 的 `sizeEqual` */
+  dropdownSizeEqual?: boolean
+  /** 下拉字体大小，对应 `ToolBar.List` 的 `fontSize` */
+  dropdownFontSize?: string | number
+  /** 下拉圆角，对应 `ToolBar.List` 的 `radius` */
+  dropdownRadius?: string | number
+  /** 下拉自定义类名，对应 `ToolBar.List` 的 `className` */
+  dropdownClassName?: string
+  /** 下拉自定义样式，对应 `ToolBar.List` 的 `style` */
+  dropdownStyle?: CSSProperties
+  /** 下拉箭头 SVG，对应 `ToolBar.List` 的 `arrowSvg` */
+  dropdownArrowSvg?: ComponentType<SVGProps<SVGSVGElement>> | null
   /** 自定义样式 */
   style?: CSSProperties
   /** 自定义类名 */
