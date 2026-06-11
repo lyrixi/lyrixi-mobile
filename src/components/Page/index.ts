@@ -6,7 +6,7 @@ import Main from './Main'
 
 import type { PageComponents } from './types/Page.modules.types'
 
-const Page = _Page as PageComponents
+const Page: PageComponents = _Page as PageComponents
 
 Page.Header = Header
 Page.Aside = Aside
