@@ -1,5 +1,5 @@
-// 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
+
 import {
   Storage,
   LocaleUtil,
@@ -19,11 +19,7 @@ import {
   Toast
 } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
 import { cacheConfig, queryData, validateData, saveData } from './api'
-import Footer from './Footer'
 import type {
   EditCacheLoadedForSave,
   EditCacheQueryDataResult,
@@ -31,8 +27,8 @@ import type {
   EditCacheSaveResult,
   EditDemoFormItemExtraParams
 } from './types'
+import Footer from './Footer'
 
-// 样式图片等资源文件导入
 const locale = LocaleUtil.locale
 
 // 带缓存的表单编辑示例

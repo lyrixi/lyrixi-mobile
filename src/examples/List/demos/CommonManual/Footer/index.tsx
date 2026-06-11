@@ -1,9 +1,9 @@
 import React from 'react'
+
 import { Page, LocaleUtil, FooterBar } from 'lyrixi-mobile'
 
 import type { ListDemoCommonManualFooterProps } from './types'
 
-// 样式图片等资源文件导入
 const locale = LocaleUtil.locale
 
 // 底部

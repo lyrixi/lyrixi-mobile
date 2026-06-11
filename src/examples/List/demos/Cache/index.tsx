@@ -1,18 +1,13 @@
 import React, { useRef, useState } from 'react'
-// 第三方库导入
-import { LocaleUtil, Page, Storage } from 'lyrixi-mobile'
-
-// 公共组件导入
-
-// 内部组件导入
-import Header from './../Common/Header'
-import Main from './../Common/Main'
-import Footer from './../Common/Footer'
 
 import type { ListPaginationMainRef } from 'lyrixi-mobile'
+import { LocaleUtil, Page, Storage } from 'lyrixi-mobile'
+
+import Footer from './../Common/Footer'
+import Header from './../Common/Header'
+import Main from './../Common/Main'
 import type { ListCacheStoredShape } from './types'
 
-// 样式图片等资源文件导入
 import './../Common/index.less'
 
 const locale = LocaleUtil.locale

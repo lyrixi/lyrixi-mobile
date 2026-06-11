@@ -1,16 +1,12 @@
 import React, { useRef, useState } from 'react'
-// 第三方库导入
+
+import type { ListPaginationMainRef } from 'lyrixi-mobile'
 import { Page } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
 import Header from './../Common/Header'
 import Main from './../Common/Main'
-import type { ListPaginationMainRef } from 'lyrixi-mobile'
 import type { VirtualDemoItemHeightRow } from './types'
 
-// 样式图片等资源文件导入
 import './../Common/index.less'
 
 // 虚拟滚动列表

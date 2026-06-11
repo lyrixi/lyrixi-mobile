@@ -1,14 +1,10 @@
-// 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
+
 import { LocaleUtil, Divider, Page, Result, Card, Text, Form, Toast } from 'lyrixi-mobile'
-// 公共组件导入
 
-// 内部组件导入
-import { queryData, approveData } from './api'
-import Footer from './Footer'
+import { approveData, queryData } from './api'
 import type { DetailFormApproveResult, DetailFormQueryResultView } from './types'
-
-// 样式图片等资源文件导入
+import Footer from './Footer'
 
 const locale = LocaleUtil.locale
 

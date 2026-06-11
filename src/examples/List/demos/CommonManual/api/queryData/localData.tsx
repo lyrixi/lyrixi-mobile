@@ -1,4 +1,5 @@
 import React, { type ReactNode } from 'react'
+
 // 转换 API 返回数据为页面所需格式
 function localData(result: unknown) {
   const r = result as { rows?: Array<Record<string, unknown>>; totalPage?: number }

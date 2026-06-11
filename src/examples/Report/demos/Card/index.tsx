@@ -1,16 +1,12 @@
-// 第三方库导入
 import React, { useEffect, useState } from 'react'
+
 import { Device, Bridge, Result, LocaleUtil } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
 import { queryTabs, querySlides, queryData } from './api'
+import type { CardItem, DataResult, ReportCardUpdateDataParams } from './types'
 import Content from './Content'
 import Header from './Header'
-import type { CardItem, DataResult, ReportCardUpdateDataParams } from './types'
 
-// 样式图片等资源文件导入
 const locale = LocaleUtil.locale
 
 // 日报报表卡片组件（日报分析）

@@ -1,5 +1,5 @@
-// 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
+
 import {
   LocaleUtil,
   Card,
@@ -19,19 +19,15 @@ import {
   Toast
 } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
 import { queryData, validateData, saveData } from './../Cache/api'
-import Footer from './../Cache/Footer'
 import type {
   EditDemoFormItemExtraParams,
   EditDemoQueryDataResult,
   EditDemoResultView,
   EditDemoSaveResult
 } from './../Common/types'
+import Footer from './../Cache/Footer'
 
-// 样式图片等资源文件导入
 const locale = LocaleUtil.locale
 
 // 虚拟滚动表单编辑示例
