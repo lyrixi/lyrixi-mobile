@@ -1,25 +1,25 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import {
-  Storage,
-  LocaleUtil,
-  Page,
-  Result,
-  Input,
-  Select,
-  Picker,
-  Switch,
-  Checkbox,
-  Selector,
-  DatePicker,
   Cascader,
-  Location,
-  Signature,
+  Checkbox,
+  DatePicker,
   Form,
+  Input,
+  LocaleUtil,
+  Location,
+  Page,
+  Picker,
+  Result,
+  Select,
+  Selector,
+  Signature,
+  Storage,
+  Switch,
   Toast
 } from 'lyrixi-mobile'
 
-import { cacheConfig, queryData, validateData, saveData } from './api'
+import { cacheConfig, queryData, saveData, validateData } from './api'
 import type {
   EditCacheLoadedForSave,
   EditCacheQueryDataResult,
@@ -33,27 +33,16 @@ const locale = LocaleUtil.locale
 
 // 带缓存的表单编辑示例
 const Edit = () => {
-  // 表单
-  const [form] = Form.useForm()
-
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
+
+  // 表单
+  const [form] = Form.useForm()
 
   // 全屏提示: {status: 'empty|500', message: '', data: { baseData: {}, formData: {} }}
   const [result, setResult] = useState<unknown>(null)
 
-  useEffect(() => {
-    // 前进需要清除缓存
-    // const history = useHistory()
-    // if (Storage.getCache(`${cacheConfig.name}:scrollTop`) && history.action !== 'POP') {
-    //   Storage.clearCache(cacheConfig.name, { match: 'prefix' })
-    // }
-
-    // 初始化数据
-    loadData()
-
-    // eslint-disable-next-line
-  }, [])
+  const resultView = result as EditCacheResultView
 
   /**
    * queryData初始化数据方法
@@ -68,6 +57,19 @@ const Edit = () => {
       ;(form as { setFieldsValue: (v: unknown) => void }).setFieldsValue(data.formData)
     }
   }
+
+  useEffect(() => {
+    // 前进需要清除缓存
+    // const history = useHistory()
+    // if (Storage.getCache(`${cacheConfig.name}:scrollTop`) && history.action !== 'POP') {
+    //   Storage.clearCache(cacheConfig.name, { match: 'prefix' })
+    // }
+
+    // 初始化数据
+    loadData()
+
+    // eslint-disable-next-line
+  }, [])
 
   // 保存
   async function handleSave() {
@@ -109,8 +111,6 @@ const Edit = () => {
       })
     }
   }
-
-  const resultView = result as EditCacheResultView
 
   return (
     <Page>

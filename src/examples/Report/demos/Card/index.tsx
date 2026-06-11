@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-import { Device, Bridge, Result, LocaleUtil } from 'lyrixi-mobile'
+import { Bridge, Device, LocaleUtil, Result } from 'lyrixi-mobile'
 
-import { queryTabs, querySlides, queryData } from './api'
+import { queryData, querySlides, queryTabs } from './api'
 import type { CardItem, DataResult, ReportCardUpdateDataParams } from './types'
 import Content from './Content'
 import Header from './Header'
@@ -11,11 +11,6 @@ const locale = LocaleUtil.locale
 
 // 日报报表卡片组件（日报分析）
 const DailyCard = () => {
-  const title = String(
-    decodeURIComponent(decodeURIComponent((Device.getUrlParameter('title') as string) || '')) ||
-      locale('部门报表')
-  )
-
   // Tabs
   const [tabs, setTabs] = useState<CardItem[] | null>(null)
   const [tab, setTab] = useState<CardItem | null>(null)
@@ -27,12 +22,10 @@ const DailyCard = () => {
   // 数据: { status: 'empty|500', message: '', data: {  } }
   const [result, setResult] = useState<DataResult | null>(null)
 
-  useEffect(() => {
-    // 初始化数据
-    void initData()
-
-    // eslint-disable-next-line
-  }, [])
+  const title = String(
+    decodeURIComponent(decodeURIComponent((Device.getUrlParameter('title') as string) || '')) ||
+      locale('部门报表')
+  )
 
   // 加载数据
   async function initData() {
@@ -68,6 +61,13 @@ const DailyCard = () => {
     const dataResult = (await queryData(params)) as DataResult
     setResult(dataResult)
   }
+
+  useEffect(() => {
+    // 初始化数据
+    void initData()
+
+    // eslint-disable-next-line
+  }, [])
 
   // Slide Change
   function handleSlideChange(newSlide: CardItem) {

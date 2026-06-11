@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ToolBar, TabBar } from 'lyrixi-mobile'
+import { TabBar, ToolBar } from 'lyrixi-mobile'
 
 import type { CardItem } from '../types'
 import type { CardHeaderProps } from './types'

@@ -1,12 +1,11 @@
 import React, { useRef, useState } from 'react'
 
-import type { ListPaginationMainRef } from 'lyrixi-mobile'
-import { LocaleUtil, Page, Storage } from 'lyrixi-mobile'
+import { LocaleUtil, Page, Storage, type ListPaginationMainRef } from 'lyrixi-mobile'
 
+import type { ListCacheStoredShape } from './types'
 import Footer from './../Common/Footer'
 import Header from './../Common/Header'
 import Main from './../Common/Main'
-import type { ListCacheStoredShape } from './types'
 
 import './../Common/index.less'
 

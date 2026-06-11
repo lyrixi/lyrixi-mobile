@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react'
 
-import type { ListPaginationMainRef } from 'lyrixi-mobile'
-import { IndexBar, Page } from 'lyrixi-mobile'
+import { IndexBar, Page, type ListPaginationMainRef } from 'lyrixi-mobile'
 
-import Header from './../Common/Header'
 import type { IndexBarListLoadContext, IndexBarListRowWithAnchor } from './Main/types'
+import Header from './../Common/Header'
 import Main from './Main'
 
 import './../Common/index.less'

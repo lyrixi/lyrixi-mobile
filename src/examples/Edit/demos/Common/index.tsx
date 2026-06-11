@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, type ComponentType } from 'react'
+import React, { type ComponentType, useEffect, useRef, useState } from 'react'
 
 import {
   Attach,
@@ -7,6 +7,7 @@ import {
   Checkbox,
   DatePicker,
   Divider,
+  type FileItem,
   Form,
   Input,
   Location,
@@ -19,12 +20,10 @@ import {
   Selector,
   Signature,
   Switch,
-  Toast,
-  type FileItem
+  Toast
 } from 'lyrixi-mobile'
 
 import { queryData, saveData, validateData } from './../Cache/api'
-import Footer from './../Cache/Footer'
 import type {
   EditDemoAttachListItem,
   EditDemoFormItemExtraParams,
@@ -33,6 +32,7 @@ import type {
   EditDemoSaveResult,
   EditDemoUntypedFileChangePayload
 } from './types'
+import Footer from './../Cache/Footer'
 
 const locale = LocaleUtil.locale
 
@@ -42,15 +42,17 @@ const MediaUntyped = Media as unknown as ComponentType<Record<string, unknown>>
 
 // 表单控件展示（编辑页）
 const Edit = () => {
-  // 表单
-  const [form] = Form.useForm()
-
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
   const baseDataRef = useRef<unknown>(null)
 
+  // 表单
+  const [form] = Form.useForm()
+
   // 全屏提示: {status: 'empty|500', message: '', data: { baseData: {}, formData: {} }}
   const [result, setResult] = useState<unknown>(null)
+
+  const resultView = result as EditDemoResultView
 
   // 加载数据
   async function loadData() {
@@ -110,8 +112,6 @@ const Edit = () => {
       })
     }
   }
-
-  const resultView = result as EditDemoResultView
 
   return (
     <Page>

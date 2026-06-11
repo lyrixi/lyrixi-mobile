@@ -8,18 +8,18 @@ import type { TestQueryResultView } from './types'
 const Test = () => {
   const [result, setResult] = useState<unknown>(null)
 
-  useEffect(() => {
-    loadData()
-
-    // eslint-disable-next-line
-  }, [])
+  const resData = result as TestQueryResultView
 
   async function loadData() {
     const newResult = await queryData()
     setResult(newResult)
   }
 
-  const resData = result as TestQueryResultView
+  useEffect(() => {
+    loadData()
+
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <Page>

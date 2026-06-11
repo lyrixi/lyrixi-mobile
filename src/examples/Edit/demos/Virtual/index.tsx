@@ -1,25 +1,25 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import {
-  LocaleUtil,
   Card,
-  Page,
-  Result,
-  Input,
-  Select,
-  Picker,
-  Switch,
-  Checkbox,
-  Selector,
-  DatePicker,
   Cascader,
-  Location,
-  Signature,
+  Checkbox,
+  DatePicker,
   Form,
+  Input,
+  LocaleUtil,
+  Location,
+  Page,
+  Picker,
+  Result,
+  Select,
+  Selector,
+  Signature,
+  Switch,
   Toast
 } from 'lyrixi-mobile'
 
-import { queryData, validateData, saveData } from './../Cache/api'
+import { queryData, saveData, validateData } from './../Cache/api'
 import type {
   EditDemoFormItemExtraParams,
   EditDemoQueryDataResult,
@@ -32,22 +32,17 @@ const locale = LocaleUtil.locale
 
 // 虚拟滚动表单编辑示例
 const Edit = () => {
-  // 表单
-  const [form] = Form.useForm()
-
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
   const baseDataRef = useRef<unknown>(null)
 
+  // 表单
+  const [form] = Form.useForm()
+
   // 全屏提示: {status: 'empty|500', message: '', data: { baseData: {}, formData: {} }}
   const [result, setResult] = useState<unknown>(null)
 
-  useEffect(() => {
-    // 初始化数据
-    loadData()
-
-    // eslint-disable-next-line
-  }, [])
+  const resultView = result as EditDemoResultView
 
   /**
    * queryData初始化数据方法
@@ -64,6 +59,13 @@ const Edit = () => {
       ;(form as { setFieldsValue: (v: unknown) => void }).setFieldsValue(data.formData)
     }
   }
+
+  useEffect(() => {
+    // 初始化数据
+    loadData()
+
+    // eslint-disable-next-line
+  }, [])
 
   // 保存
   async function handleSave() {
@@ -104,8 +106,6 @@ const Edit = () => {
       })
     }
   }
-
-  const resultView = result as EditDemoResultView
 
   return (
     <Page>

@@ -1,7 +1,6 @@
 import React, { forwardRef, type Ref } from 'react'
 
-import type { ListPaginationMainRef } from 'lyrixi-mobile'
-import { ListPagination } from 'lyrixi-mobile'
+import { ListPagination, type ListPaginationMainRef } from 'lyrixi-mobile'
 
 import formatPayload from './formatPayload'
 import formatResult from './formatResult'

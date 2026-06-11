@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Page, LocaleUtil, FooterBar } from 'lyrixi-mobile'
+import { FooterBar, LocaleUtil, Page } from 'lyrixi-mobile'
 
 const locale = LocaleUtil.locale
 

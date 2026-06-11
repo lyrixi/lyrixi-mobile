@@ -1,19 +1,18 @@
 import React, { useRef, useState } from 'react'
 
-import type { ListPaginationMainRef } from 'lyrixi-mobile'
-import { Page } from 'lyrixi-mobile'
+import { Page, type ListPaginationMainRef } from 'lyrixi-mobile'
 
+import type { VirtualDemoItemHeightRow } from './types'
 import Header from './../Common/Header'
 import Main from './../Common/Main'
-import type { VirtualDemoItemHeightRow } from './types'
 
 import './../Common/index.less'
 
 // 虚拟滚动列表
 const Virtual = () => {
-  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
-
   const mainRef = useRef<ListPaginationMainRef | null>(null)
+
+  const [queryParams, setQueryParams] = useState<Record<string, unknown>>({})
 
   return (
     <Page>

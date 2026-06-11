@@ -12,8 +12,8 @@ import type {
 const locale = LocaleUtil.locale
 
 function Filter({ queryParams, onSearch }: FilterHeaderProps) {
-  const [form] = Form.useForm()
   const modifiedRef = useRef(false)
+  const [form] = Form.useForm()
 
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
