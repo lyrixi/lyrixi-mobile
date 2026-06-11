@@ -34,8 +34,8 @@ description: >-
 - **一次只问一件事**：每一轮只收集一个字段；拿到用户回复后再问下一项。
 - **选择题**用 `AskQuestion`（页面类型、是否有设计稿、GET/POST 等）。
 - **自由填写**（**输出路径**、apiUrl、入参说明、文字版 designNotes）**禁止**合并成「请在下一条消息补充 1、2、3…」；应单独发一条消息、只问一个字段，等用户答完再继续。
-- **Q7 出参映射**为单独一轮；**禁止用表格向用户提问**。须给出 [reference/api-response-template.txt](reference/api-response-template.txt) 的**可复制文本块**（见 Q7）；用户回复「用默认」或粘贴修改后的整段/部分行。
-- **Q8 Mock 数据**不可跳过；无 mock 时须明确选「推测字段」，生成结果须标注字段来源。
+- **Q7 Mock 数据**不可跳过；须先收集 mock（或选推测字段），再进入 Q8 出参映射。
+- **Q8 出参映射**为单独一轮；**禁止用表格向用户提问**。须给出 [reference/api-response-template.txt](reference/api-response-template.txt) 的**可复制文本块**（见 Q8）；用户回复「用默认」或粘贴修改后的整段/部分行。有 mock 时可对照 sample 中的 `code` / `data` / `message` 结构填写。
 - 表述不清时**只追问当前字段**，不要猜测业务含义。
 - 未完成全部问答前**不要**开始写业务代码。
 
@@ -90,7 +90,37 @@ description: >-
 
 记录：`apiRequest`（写入 page-spec，并映射到 props 里对应 `api.*.request`）。
 
-### Q7 — 接口出参（单独一轮；可复制文本填空）
+### Q7 — 后台 Mock 数据（AskQuestion）
+
+**问题：** 能否提供后台 mock 数据（接口成功时的返回示例）？
+
+| 选项 | 下一步 |
+|------|--------|
+| 我能提供 mock 数据 | 进入 Q7a |
+| 暂时没有，请推测字段 | 记录 `mockData.source = 'inferred'`；生成时根据 `designNotes`、页面类型与接口说明**推测字段**渲染，并在产出说明中标注「字段为推测，联调后需校正」 |
+
+### Q7a — Mock 数据内容（仅当 Q7 选「我能提供」；单独一轮文字问）
+
+**只问：** 请粘贴后台 mock 数据（JSON）。建议粘贴**完整 response**（含 `code` / `message` / `data`），便于下一步配置出参映射。
+
+可参考 [reference/mock-data-template.txt](reference/mock-data-template.txt) 复制修改：
+
+````
+{
+  "code": "1",
+  "message": "",
+  "data": {
+    "fieldName": "示例值"
+  }
+}
+````
+
+- 记录 `mockData.source = 'user'`，`mockData.sample` = 解析后的 JSON（同时保留完整 response 供 Q8 对照）。
+- JSON 无法解析时**只追问此项**。
+
+### Q8 — 接口出参（单独一轮；可复制文本填空）
+
+**顺序说明：** 须在 Q7 之后提问——用户已提供 mock 时，可对照 sample 填写 `success` / `data` / `message` 对应关系。
 
 聊天无法提供多输入框，**向用户展示时必须用下面这段可复制文本**（禁止表格）：
 
@@ -113,37 +143,9 @@ message: result.message
 - 用户只粘贴部分行 → 未出现的 key 仍用默认值。
 - 记录 `api.*.response` 为 `ApiResponseMapping`；生成时在 `api/**/index.ts` 按表达式映射到 `result.status` / `result.data` / `result.message`。
 
-### Q8 — 后台 Mock 数据（AskQuestion）
-
-**问题：** 能否提供后台 mock 数据（接口成功时的返回示例）？
-
-| 选项 | 下一步 |
-|------|--------|
-| 我能提供 mock 数据 | 进入 Q8a |
-| 暂时没有，请推测字段 | 记录 `mockData.source = 'inferred'`；生成时根据 `designNotes`、页面类型与接口说明**推测字段**渲染，并在产出说明中标注「字段为推测，联调后需校正」 |
-
-### Q8a — Mock 数据内容（仅当 Q8 选「我能提供」；单独一轮文字问）
-
-**只问：** 请粘贴后台 mock 数据（JSON）。建议为成功时 `data` 字段；也可粘贴含 `code` / `data` 的完整 response。
-
-可参考 [reference/mock-data-template.txt](reference/mock-data-template.txt) 复制修改：
-
-````
-{
-  "code": "1",
-  "message": "",
-  "data": {
-    "fieldName": "示例值"
-  }
-}
-````
-
-- 记录 `mockData.source = 'user'`，`mockData.sample` = 解析后的 JSON（若粘贴完整 response，取 `data` 作为业务数据样本）。
-- JSON 无法解析时**只追问此项**。
-
 ### Q9 — 确认（可选）
 
-用简短摘要列出：模板、`output.outputPath`、`designNotes` 要点、`apiMethod`、`apiUrl`、入参/出参要点、**mock 来源**（用户提供 / 推测字段）。用户确认后再生成。
+用简短摘要列出：模板、`output.outputPath`、`designNotes` 要点、`apiMethod`、`apiUrl`、入参、**mock 来源**（用户提供 / 推测字段）、出参映射要点。用户确认后再生成。
 
 ## 生成步骤
 
@@ -165,7 +167,7 @@ message: result.message
 ## 不允许
 
 - 跳过问答直接生成
-- **跳过 Q8**（Mock 数据）直接生成视图字段
-- **在一轮消息里同时索要输出路径、apiUrl、入参等多项自由填写内容**（Q7 四项填空除外，属同一轮）
+- **跳过 Q7**（Mock 数据）直接生成视图字段或进入 Q8
+- **在一轮消息里同时索要输出路径、apiUrl、入参等多项自由填写内容**（Q8 四项填空除外，属同一轮）
 - **跳过或自动填充输出路径**（Q3 必填）
 - 使用与 catalog 无关的随意目录当模板（除非用户明确指定路径）

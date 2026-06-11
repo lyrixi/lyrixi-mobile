@@ -17,7 +17,7 @@ export interface PageDesignSpec {
   designNotes?: string
 }
 
-/** Q8：后台 mock 数据（用于推导展示/表单/列表字段） */
+/** Q7：后台 mock 数据（用于推导展示/表单/列表字段；须在 Q8 出参映射之前收集） */
 export interface PageMockDataSpec {
   /** user=用户提供 sample；inferred=无 mock 时推测字段 */
   source: 'user' | 'inferred'
@@ -25,7 +25,7 @@ export interface PageMockDataSpec {
   sample?: unknown
 }
 
-/** Q7：接口出参映射（填空，有默认值） */
+/** Q8：接口出参映射（填空，有默认值；在 Q7 mock 之后，可对照 sample 填写） */
 export interface ApiResponseMapping {
   /** 成功判定表达式，默认 `result.code === '1'` */
   success?: string
@@ -50,7 +50,7 @@ export interface ApiEndpointSpec {
   method: 'GET' | 'POST'
   /** 入参：字段名、类型、来源（URL 参数 / queryParams / Device.getUrlParameter） */
   request?: string
-  /** 出参映射（Q7 填空；缺省字段用 DEFAULT_API_RESPONSE_MAPPING） */
+  /** 出参映射（Q8 填空；缺省字段用 DEFAULT_API_RESPONSE_MAPPING） */
   response?: ApiResponseMapping
 }
 

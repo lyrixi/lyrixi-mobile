@@ -36,7 +36,7 @@
 
 ## Mock 与视图字段
 
-Q8 决定页面字段如何生成（写入 `page-spec.json` 的 `mockData`）：
+Q7 决定页面字段如何生成（写入 `page-spec.json` 的 `mockData`）；**须在 Q8 出参映射之前完成**，以便对照 mock 结构配置 `success` / `data` / `message`：
 
 | `mockData.source` | 生成策略 |
 |-------------------|----------|
