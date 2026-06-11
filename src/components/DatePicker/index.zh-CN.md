@@ -207,7 +207,6 @@ toc: content
 | variant             | 切换方式       | `'tabbar' \| 'dropdown'`                                            | -      |
 | dropdownPortal      | 下拉挂载节点   | `HTMLElement`                                                       | -      |
 | dropdownLeft        | 下拉左侧偏移   | `string \| number`                                                  | -      |
-| dropdownRight       | 下拉右侧偏移   | `string \| number`                                                  | -      |
 | style               | 自定义样式     | `CSSProperties`                                                     | -      |
 | className           | 自定义类名     | `string`                                                            | -      |
 | pickerComboStyle    | 选择器组合样式 | `CSSProperties`                                                     | -      |

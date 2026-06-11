@@ -16,7 +16,6 @@ function Switcher({
   variant = 'tabbar',
   dropdownPortal,
   dropdownLeft,
-  dropdownRight,
   types,
   value,
   style,
@@ -32,7 +31,6 @@ function Switcher({
         className={className}
         portal={dropdownPortal}
         left={dropdownLeft}
-        right={dropdownRight}
         onChange={(newValue) => {
           const item = Array.isArray(newValue) ? newValue[0] : newValue
           if (item) onChange(item as DatePickerTypeListItem)

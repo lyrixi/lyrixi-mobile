@@ -11,7 +11,6 @@ export interface DatePickerTypeSwitcherSwitcherProps {
   variant?: DatePickerTypeSwitcherType
   dropdownPortal?: HTMLElement
   dropdownLeft?: string | number
-  dropdownRight?: string | number
   types: DatePickerTypeListItem[]
   value: DatePickerTypeSwitcherValue
   // Style

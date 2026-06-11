@@ -1,6 +1,34 @@
 import React, { useState } from 'react'
 import { Page, Card, DatePicker, LocaleUtil, type DatePickerTypeSwitcherValue } from 'lyrixi-mobile'
 
+const dateTypes = [
+  {
+    type: 'date',
+    id: 'date',
+    name: LocaleUtil.locale('日', 'datetype_unit_date')
+  },
+  {
+    type: 'month',
+    id: 'month',
+    name: LocaleUtil.locale('月', 'datetype_unit_month')
+  },
+  {
+    type: 'quarter',
+    id: 'quarter',
+    name: LocaleUtil.locale('季', 'datetype_unit_quarter')
+  },
+  {
+    type: 'year',
+    id: 'year',
+    name: LocaleUtil.locale('年', 'datetype_unit_year')
+  },
+  {
+    type: 'week',
+    id: 'week',
+    name: LocaleUtil.locale('周', 'datetype_unit_week')
+  }
+]
+
 const quickSelectList = [
   {
     type: 'date',
@@ -26,6 +54,8 @@ export default function DatePickerTypeSwitcherDemo() {
   const [value, setValue] = useState<unknown>(undefined)
   const [quickValue, setQuickValue] = useState<unknown>(undefined)
   const [collapsedValue, setCollapsedValue] = useState<unknown>(undefined)
+  const [dropdownLeftValue, setDropdownLeftValue] = useState<unknown>(undefined)
+  const [dropdownPortalValue, setDropdownPortalValue] = useState<unknown>(undefined)
 
   return (
     <Page>
@@ -35,33 +65,7 @@ export default function DatePickerTypeSwitcherDemo() {
           <Card.Main>
             <DatePicker.TypeSwitcher
               value={value as DatePickerTypeSwitcherValue | undefined}
-              types={[
-                {
-                  type: 'date',
-                  id: 'date',
-                  name: LocaleUtil.locale('日', 'datetype_unit_date')
-                },
-                {
-                  type: 'month',
-                  id: 'month',
-                  name: LocaleUtil.locale('月', 'datetype_unit_month')
-                },
-                {
-                  type: 'quarter',
-                  id: 'quarter',
-                  name: LocaleUtil.locale('季', 'datetype_unit_quarter')
-                },
-                {
-                  type: 'year',
-                  id: 'year',
-                  name: LocaleUtil.locale('年', 'datetype_unit_year')
-                },
-                {
-                  type: 'week',
-                  id: 'week',
-                  name: LocaleUtil.locale('周', 'datetype_unit_week')
-                }
-              ]}
+              types={dateTypes}
               onChange={(newValue: unknown) => {
                 console.log('修改:', newValue)
                 setValue(newValue)
@@ -92,36 +96,44 @@ export default function DatePickerTypeSwitcherDemo() {
             <DatePicker.TypeSwitcher
               variant="dropdown"
               value={collapsedValue as DatePickerTypeSwitcherValue | undefined}
-              types={[
-                {
-                  type: 'date',
-                  id: 'date',
-                  name: LocaleUtil.locale('日', 'datetype_unit_date')
-                },
-                {
-                  type: 'month',
-                  id: 'month',
-                  name: LocaleUtil.locale('月', 'datetype_unit_month')
-                },
-                {
-                  type: 'quarter',
-                  id: 'quarter',
-                  name: LocaleUtil.locale('季', 'datetype_unit_quarter')
-                },
-                {
-                  type: 'year',
-                  id: 'year',
-                  name: LocaleUtil.locale('年', 'datetype_unit_year')
-                },
-                {
-                  type: 'week',
-                  id: 'week',
-                  name: LocaleUtil.locale('周', 'datetype_unit_week')
-                }
-              ]}
+              types={dateTypes}
               onChange={(newValue: unknown) => {
                 console.log('下拉模式:', newValue)
                 setCollapsedValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>下拉左侧偏移（dropdownLeft）</Card.Header>
+          <Card.Main>
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownLeft={12}
+              value={dropdownLeftValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownLeft:', newValue)
+                setDropdownLeftValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>下拉挂载节点（dropdownPortal）</Card.Header>
+          <Card.Main>
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownPortal={typeof document !== 'undefined' ? document.body : undefined}
+              value={dropdownPortalValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownPortal:', newValue)
+                setDropdownPortalValue(newValue)
               }}
               pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
             />

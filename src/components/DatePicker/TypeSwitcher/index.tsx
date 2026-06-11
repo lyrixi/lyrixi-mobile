@@ -60,7 +60,6 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
       variant = 'tabbar',
       dropdownPortal,
       dropdownLeft,
-      dropdownRight,
       // Status
       min,
       max,
@@ -152,7 +151,6 @@ const TypeSwitcher = forwardRef<DatePickerTypeSwitcherRef, DatePickerTypeSwitche
             variant={variant}
             dropdownPortal={dropdownPortal}
             dropdownLeft={dropdownLeft}
-            dropdownRight={dropdownRight}
             types={types}
             value={value}
             style={tabbarStyle}
