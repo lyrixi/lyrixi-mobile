@@ -1,17 +1,11 @@
 import React, { useRef, useState } from 'react'
 
-// 第三方库导入
-import { IndexBar, Page } from 'lyrixi-mobile'
+import { IndexBar, Page, type ListPaginationMainRef } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
+import type { IndexBarListLoadContext, IndexBarListRowWithAnchor } from './Main/types'
 import Header from './../Common/Header'
 import Main from './Main'
-import type { ListPaginationMainRef } from 'lyrixi-mobile'
-import type { IndexBarListLoadContext, IndexBarListRowWithAnchor } from './Main/types'
 
-// 样式图片等资源文件导入
 import './../Common/index.less'
 
 // IndexBar列表示例

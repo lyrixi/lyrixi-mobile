@@ -12,12 +12,12 @@ function Footer({ ok, cancel, onOk, onCancel }: ListDemoCommonFooterProps) {
     <Page.Footer>
       <FooterBar>
         {onCancel && (
-          <FooterBar.Button block backgroundColor="default" onClick={onCancel}>
+          <FooterBar.Button block variant="filled" color="default" onClick={onCancel}>
             {cancel || locale('Cancel')}
           </FooterBar.Button>
         )}
         {onOk && (
-          <FooterBar.Button block backgroundColor="primary" color="white" onClick={onOk}>
+          <FooterBar.Button block variant="solid" color="primary" onClick={onOk}>
             {ok || locale('Ok')}
           </FooterBar.Button>
         )}

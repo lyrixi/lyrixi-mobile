@@ -1,15 +1,10 @@
-// 第三方库导入
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-import { LocaleUtil, Divider, Page, Result, Card, Text, Form, Toast } from 'lyrixi-mobile'
-// 公共组件导入
+import { Card, Divider, Form, LocaleUtil, Page, Result, Text, Toast } from 'lyrixi-mobile'
 
-// 内部组件导入
-import { queryData, approveData } from './api'
-import Footer from './Footer'
+import { approveData, queryData } from './api'
 import type { DetailFormApproveResult, DetailFormQueryResultView } from './types'
-
-// 样式图片等资源文件导入
+import Footer from './Footer'
 
 const locale = LocaleUtil.locale
 
@@ -21,12 +16,7 @@ const FormDetail = () => {
   // 全屏提示: { status: 'empty|500', message: '', data: {} }
   const [result, setResult] = useState<unknown>(null)
 
-  useEffect(() => {
-    // 初始化数据
-    loadData()
-
-    // eslint-disable-next-line
-  }, [])
+  const resData = result as DetailFormQueryResultView
 
   // 加载数据
   async function loadData() {
@@ -34,6 +24,13 @@ const FormDetail = () => {
     let newResult = await queryData()
     setResult(newResult)
   }
+
+  useEffect(() => {
+    // 初始化数据
+    loadData()
+
+    // eslint-disable-next-line
+  }, [])
 
   // 保存
   async function handleApprove() {
@@ -66,8 +63,6 @@ const FormDetail = () => {
       })
     }
   }
-
-  const resData = result as DetailFormQueryResultView
 
   return (
     <Page>

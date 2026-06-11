@@ -1,15 +1,9 @@
 import React from 'react'
 
-// 第三方库导入
-import { ToolBar, TabBar } from 'lyrixi-mobile'
+import { TabBar, ToolBar } from 'lyrixi-mobile'
 
-// 公共组件导入
-
-// 内部组件导入
 import type { CardItem } from '../types'
 import type { CardHeaderProps } from './types'
-
-// 样式图片等资源文件导入
 
 // 头部
 const Header = ({

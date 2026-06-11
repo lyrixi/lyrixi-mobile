@@ -1,13 +1,12 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { Page, type ListAsyncLoadResult, type ListAsyncRef } from 'lyrixi-mobile'
 
 import { queryData } from './api'
+import type { CommonManualQueryDataResult } from './types'
 import Header from './Header'
 import Main from './Main'
-import type { CommonManualQueryDataResult } from './types'
 
-// 样式图片等资源文件导入
 import './index.less'
 
 // 手动加载列表（ListAsync）

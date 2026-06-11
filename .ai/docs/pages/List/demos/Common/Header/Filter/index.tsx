@@ -12,8 +12,8 @@ import type {
 const locale = LocaleUtil.locale
 
 function Filter({ queryParams, onSearch }: FilterHeaderProps) {
-  const [form] = Form.useForm()
   const modifiedRef = useRef(false)
+  const [form] = Form.useForm()
 
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -72,13 +72,12 @@ function Filter({ queryParams, onSearch }: FilterHeaderProps) {
       }
       return (
         <FooterBar>
-          <FooterBar.Button block color="default" backgroundColor="default" onClick={close}>
+          <FooterBar.Button block variant="filled" color="default" onClick={close}>
             {String(locale('取消'))}
           </FooterBar.Button>
           <FooterBar.Button
             block
-            color="white"
-            backgroundColor="primary"
+            variant="solid" color="primary"
             onClick={() =>
               handleConfirm(() => {
                 params.onClose?.()

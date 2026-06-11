@@ -1,4 +1,5 @@
 import { LocaleUtil, Toast } from 'lyrixi-mobile'
+
 import scrollToErrorElement from './scrollToErrorElement'
 
 const locale = LocaleUtil.locale

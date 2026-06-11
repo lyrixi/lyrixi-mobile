@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, type ComponentType } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import {
   Attach,
@@ -7,6 +7,7 @@ import {
   Checkbox,
   DatePicker,
   Divider,
+  type FileItem,
   Form,
   Input,
   Location,
@@ -23,33 +24,30 @@ import {
 } from 'lyrixi-mobile'
 
 import { queryData, saveData, validateData } from './../Cache/api'
-import Footer from './../Cache/Footer'
 import type {
   EditDemoAttachListItem,
   EditDemoFormItemExtraParams,
   EditDemoQueryDataResult,
   EditDemoResultView,
-  EditDemoSaveResult,
-  EditDemoUntypedFileChangePayload
+  EditDemoSaveResult
 } from './types'
+import Footer from './../Cache/Footer'
 
 const locale = LocaleUtil.locale
 
-// Attach/Media demos use richer callbacks than the exported prop types describe
-const AttachUntyped = Attach as unknown as ComponentType<Record<string, unknown>>
-const MediaUntyped = Media as unknown as ComponentType<Record<string, unknown>>
-
 // 表单控件展示（编辑页）
 const Edit = () => {
-  // 表单
-  const [form] = Form.useForm()
-
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
   const baseDataRef = useRef<unknown>(null)
 
+  // 表单
+  const [form] = Form.useForm()
+
   // 全屏提示: {status: 'empty|500', message: '', data: { baseData: {}, formData: {} }}
   const [result, setResult] = useState<unknown>(null)
+
+  const resultView = result as EditDemoResultView
 
   // 加载数据
   async function loadData() {
@@ -110,8 +108,6 @@ const Edit = () => {
     }
   }
 
-  const resultView = result as EditDemoResultView
-
   return (
     <Page>
       <Page.Main>
@@ -120,7 +116,15 @@ const Edit = () => {
           <Form
             form={form}
             style={{ margin: '0 12px' }}
+            labelSpan={10}
+            mainSpan={14}
             labelEllipsis={{ rows: 2, expandable: true }}
+            onFieldsChange={(changedFields, allFields) => {
+              console.log('onFieldsChange:', { changedFields, allFields })
+            }}
+            onValuesChange={(changedFields, allFields) => {
+              console.log('onValuesChange:', { changedFields, allFields })
+            }}
           >
             <Form.Item
               name="input"
@@ -313,13 +317,21 @@ const Edit = () => {
           <Divider>Vertical Layout</Divider>
           <Form form={form} layout="vertical" style={{ margin: '0 12px' }}>
             <Form.Item name="datetime" label={String(locale('Datetime'))}>
-              <DatePicker.Combo type="datetime" placeholder={String(locale('Please select'))} allowClear />
+              <DatePicker.Combo
+                type="datetime"
+                placeholder={String(locale('Please select'))}
+                allowClear
+              />
             </Form.Item>
             <Form.Item name="date" label={String(locale('Date'))}>
               <DatePicker.Combo placeholder={String(locale('Please select'))} allowClear />
             </Form.Item>
             <Form.Item name="time" label={String(locale('Time'))}>
-              <DatePicker.Combo type="time" placeholder={String(locale('Please select'))} allowClear />
+              <DatePicker.Combo
+                type="time"
+                placeholder={String(locale('Please select'))}
+                allowClear
+              />
             </Form.Item>
             <Form.Item name="dateRange" label={String(locale('Date range'))}>
               <DatePicker.RangeCombo placeholder={String(locale('Please select'))} allowClear />
@@ -343,63 +355,76 @@ const Edit = () => {
             <Form.Item name="signatureVertical" label={String(locale('Signature'))}>
               <Signature.Combo />
             </Form.Item>
-            <Form.Item name="attach" label={String(locale('Attach'))}>
-              <AttachUntyped
-                reUpload={false}
-                allowChoose
-                allowClear
-                uploadPosition="start"
-                maxSize={300 * 1024 * 1024}
-                list={
-                  [
-                    {
-                      name: '1',
-                      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                      status: 'error'
-                    },
-                    {
-                      name: '2',
-                      fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
-                    }
-                  ] as EditDemoAttachListItem[]
-                }
-                count={9}
-                onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
-                onChange={(_newList: unknown) => {}}
-              />
-            </Form.Item>
-            <Form.Item name="image" label={String(locale('Media'))}>
-              <MediaUntyped
-                allowChoose
-                allowClear
-                list={[
+            <Form.Item
+              name="attach"
+              valuePropName="list"
+              initialValue={
+                [
                   {
-                    id: '1',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                    name: '1',
                     fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
                     status: 'error'
                   },
                   {
-                    id: '2',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    fileUrl:
-                      'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg'
-                    // status: 'uploading'
-                  },
-                  {
-                    id: '3',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
-                    fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
-                  },
-                  {
-                    id: '4',
-                    fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                    name: '2',
                     fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
                   }
-                ]}
-                count={9}
-                onFileChange={async (_payload: EditDemoUntypedFileChangePayload) => {}}
-                onChange={(_newList: unknown) => {}}
+                ] as EditDemoAttachListItem[]
+              }
+              label={String(locale('Attach'))}
+            >
+              <Attach
+                reUpload={true}
+                async={true}
+                allowChoose
+                allowClear
+                uploadPosition="start"
+                maxSize={300 * 1024 * 1024}
+                maxCount={9}
+                onFileChange={async (item: FileItem) => {
+                  return item
+                }}
+              />
+            </Form.Item>
+            <Form.Item
+              name="image"
+              valuePropName="list"
+              initialValue={[
+                {
+                  id: '1',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  status: 'error'
+                },
+                {
+                  id: '2',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl:
+                    'https://www.wilsoncomm.com.hk/image/cache/catalog/product-3566/6ca91b2b19a3d19b6cbe4f618a028e65-850x850.jpg'
+                  // status: 'uploading'
+                },
+                {
+                  id: '3',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                },
+                {
+                  id: '4',
+                  fileThumbnail: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png',
+                  fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                }
+              ]}
+              label={String(locale('Media'))}
+            >
+              <Media
+                reUpload={true}
+                async={true}
+                allowChoose
+                allowClear
+                maxCount={9}
+                onFileChange={async (item: FileItem) => {
+                  return [item]
+                }}
               />
             </Form.Item>
           </Form>
