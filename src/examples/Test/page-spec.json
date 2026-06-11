@@ -1,0 +1,25 @@
+{
+  "templateId": "detail-form",
+  "templatePath": "Detail/demos/Form",
+  "output": {
+    "outputPath": "src/examples/Test",
+    "pageName": "Test"
+  },
+  "design": {
+    "hasHiFi": false,
+    "designNotes": ""
+  },
+  "api": {
+    "queryData": {
+      "url": "/api/getDetail.do",
+      "method": "GET",
+      "request": "id 来自 Device.getUrlParameter('id')",
+      "response": {
+        "success": "result.code === '1'",
+        "error": "result.code !== '1'",
+        "data": "result.data",
+        "message": "result.message"
+      }
+    }
+  }
+}
