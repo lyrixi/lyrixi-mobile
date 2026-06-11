@@ -34,6 +34,19 @@
 
 命名约定（rules）：查询 `queryXxx`，提交 `saveXxx`；`serverData` / `localData` 用于前后端结构转换。
 
+## Mock 与视图字段
+
+Q8 决定页面字段如何生成（写入 `page-spec.json` 的 `mockData`）：
+
+| `mockData.source` | 生成策略 |
+|-------------------|----------|
+| `user` | 从 `mockData.sample`（业务 `data`）解析 key，生成 `displayFields` / `formFields` / `listItem`；字符串 → `Text` 展示或 `Input.Text`；数组/对象按模板惯例选用 `Select`/`Text.getDisplayValue` 等 |
+| `inferred` | 优先用 `designNotes` 中提到的字段；否则按页面类型给**合理推测字段**（Detail：若干 `Form.Item` + 字段名占位；List：`titleField`/`descriptionField` 等常见名；Edit：与 Detail 类似但用输入控件）。**必须在产出说明标注「字段为推测」** |
+
+- 有 mock 时：**禁止**无视 sample 自行编造与 sample 无关的字段名。
+- 无 mock 时：推测字段宜少不宜多（3–5 个），便于联调后替换。
+- `mockData.sample` **仅写入 page-spec**，不要作为运行时 mock 留在 `api/**`（生产页仍走真实接口）。
+
 ## 视图改写
 
 - **有高保真图**：按图调整 `Header`/`Main`/`Footer` 组合与表单项 `name`/`label`；组件选用 `lyrixi-mobile` 与模板一致。

@@ -35,6 +35,7 @@ description: >-
 - **选择题**用 `AskQuestion`（页面类型、是否有设计稿、GET/POST 等）。
 - **自由填写**（**输出路径**、apiUrl、入参说明、文字版 designNotes）**禁止**合并成「请在下一条消息补充 1、2、3…」；应单独发一条消息、只问一个字段，等用户答完再继续。
 - **Q7 出参映射**为单独一轮；**禁止用表格向用户提问**。须给出 [reference/api-response-template.txt](reference/api-response-template.txt) 的**可复制文本块**（见 Q7）；用户回复「用默认」或粘贴修改后的整段/部分行。
+- **Q8 Mock 数据**不可跳过；无 mock 时须明确选「推测字段」，生成结果须标注字段来源。
 - 表述不清时**只追问当前字段**，不要猜测业务含义。
 - 未完成全部问答前**不要**开始写业务代码。
 
@@ -112,9 +113,37 @@ message: result.message
 - 用户只粘贴部分行 → 未出现的 key 仍用默认值。
 - 记录 `api.*.response` 为 `ApiResponseMapping`；生成时在 `api/**/index.ts` 按表达式映射到 `result.status` / `result.data` / `result.message`。
 
-### Q8 — 确认（可选）
+### Q8 — 后台 Mock 数据（AskQuestion）
 
-用简短摘要列出：模板、`output.outputPath`、`designNotes` 要点、`apiMethod`、`apiUrl`、入参/出参要点。用户确认后再生成。
+**问题：** 能否提供后台 mock 数据（接口成功时的返回示例）？
+
+| 选项 | 下一步 |
+|------|--------|
+| 我能提供 mock 数据 | 进入 Q8a |
+| 暂时没有，请推测字段 | 记录 `mockData.source = 'inferred'`；生成时根据 `designNotes`、页面类型与接口说明**推测字段**渲染，并在产出说明中标注「字段为推测，联调后需校正」 |
+
+### Q8a — Mock 数据内容（仅当 Q8 选「我能提供」；单独一轮文字问）
+
+**只问：** 请粘贴后台 mock 数据（JSON）。建议为成功时 `data` 字段；也可粘贴含 `code` / `data` 的完整 response。
+
+可参考 [reference/mock-data-template.txt](reference/mock-data-template.txt) 复制修改：
+
+````
+{
+  "code": "1",
+  "message": "",
+  "data": {
+    "fieldName": "示例值"
+  }
+}
+````
+
+- 记录 `mockData.source = 'user'`，`mockData.sample` = 解析后的 JSON（若粘贴完整 response，取 `data` 作为业务数据样本）。
+- JSON 无法解析时**只追问此项**。
+
+### Q9 — 确认（可选）
+
+用简短摘要列出：模板、`output.outputPath`、`designNotes` 要点、`apiMethod`、`apiUrl`、入参/出参要点、**mock 来源**（用户提供 / 推测字段）。用户确认后再生成。
 
 ## 生成步骤
 
@@ -123,7 +152,7 @@ message: result.message
 3. **复制并改写** — 按模板目录结构创建目标目录：
    - 按 `{Variant}-props.ts` 与 `{Variant}-rules.md` 的「替换点」表改 url、字段、文案；
    - 按 `reference/generation.md` 替换 URL、method、payload/response 转换；
-   - 按 `design.designNotes` 增删表单项、列表列（`formFields` / `displayFields` / `listItem`）；
+   - 按 `mockData` 与 `design.designNotes` 生成/增删视图字段（见 generation.md「Mock 与视图字段」）；
    - 删除 demo 专有逻辑（mock、`/api/examples/*`、`console.log`）。
 4. **校验** — `npx tsc --noEmit`；修复新增文件中的类型错误。
 
@@ -136,6 +165,7 @@ message: result.message
 ## 不允许
 
 - 跳过问答直接生成
+- **跳过 Q8**（Mock 数据）直接生成视图字段
 - **在一轮消息里同时索要输出路径、apiUrl、入参等多项自由填写内容**（Q7 四项填空除外，属同一轮）
 - **跳过或自动填充输出路径**（Q3 必填）
 - 使用与 catalog 无关的随意目录当模板（除非用户明确指定路径）

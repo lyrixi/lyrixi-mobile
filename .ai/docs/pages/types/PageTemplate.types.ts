@@ -17,6 +17,14 @@ export interface PageDesignSpec {
   designNotes?: string
 }
 
+/** Q8：后台 mock 数据（用于推导展示/表单/列表字段） */
+export interface PageMockDataSpec {
+  /** user=用户提供 sample；inferred=无 mock 时推测字段 */
+  source: 'user' | 'inferred'
+  /** 用户粘贴的成功响应示例（通常为 data，或含 code/data 的完整 response） */
+  sample?: unknown
+}
+
 /** Q7：接口出参映射（填空，有默认值） */
 export interface ApiResponseMapping {
   /** 成功判定表达式，默认 `result.code === '1'` */

@@ -10,6 +10,13 @@
     "hasHiFi": false,
     "designNotes": "用户描述或根据高保真图整理的布局说明"
   },
+  "mockData": {
+    "source": "user",
+    "sample": {
+      "name": "示例名称",
+      "status": "1"
+    }
+  },
   "api": {
     "queryData": {
       "url": "/api/order/list",
