@@ -11,19 +11,67 @@ toc: content
 
 选择器组件，用于从多个选项中选择。
 
-## 何时使用
+## Picker.Combo
 
-- 需要从多个选项中选择时
-- 需要滚动选择时
-- 需要选择日期、时间等时
+选择器组合组件，结合输入框和选择器。
 
-## 代码演示
+### 何时使用
+
+- 需要结合输入框和选择器时
+
+### 代码演示
 
 <code src="./demos/PickerCombo.tsx"></code>
 
-## API
+<code src="./demos/PickerComboInput.tsx"></code>
 
-### 属性
+### API
+
+#### 属性
+
+同 Picker.Main 组件属性。
+
+#### Ref
+
+同 Picker.Main 组件 Ref。
+
+## Picker.Modal
+
+选择器模态框组件。
+
+### 何时使用
+
+- 需要以模态框形式显示选择器时
+
+### 代码演示
+
+<code src="./demos/PickerModal.tsx"></code>
+
+### API
+
+#### 属性
+
+同 Picker.Main 组件属性。
+
+#### Ref
+
+同 Picker.Main 组件 Ref。
+
+## Picker.Main
+
+选择器主组件。
+
+### 何时使用
+
+- 需要直接使用选择器主组件时
+
+### 代码演示
+
+<code src="./demos/PickerMain.tsx"></code>
+
+### API
+
+#### 属性
 
 | 属性            | 说明         | 类型                                                                    | 默认值 |
 | --------------- | ------------ | ----------------------------------------------------------------------- | ------ |
@@ -62,7 +110,7 @@ toc: content
 | onOk            | 确认事件     | `(value: PickerItem[]) => boolean \| void \| Date \| Promise<boolean \| void \| Date>` | -      |
 | onChange        | 变化事件     | `(value: PickerItem[]) => void`                                         | -      |
 
-### Ref
+#### Ref
 
 | 属性            | 说明           | 类型                       |
 | --------------- | -------------- | -------------------------- |
@@ -78,82 +126,3 @@ toc: content
 | update          | 更新选择器     | `() => void`               |
 | close           | 关闭选择器     | `() => void`               |
 | open            | 打开选择器     | `() => void`               |
-
-## Picker.Combo
-
-选择器组合组件，结合输入框和选择器。
-
-### 何时使用
-
-- 需要结合输入框和选择器时
-
-### 代码演示
-
-<code src="./demos/PickerComboInput.tsx"></code>
-
-### API
-
-#### 属性
-
-同 Picker 组件属性。
-
-#### Ref
-
-同 Picker 组件 Ref。
-
-## Picker.Modal
-
-选择器模态框组件。
-
-### 何时使用
-
-- 需要以模态框形式显示选择器时
-
-### 代码演示
-
-<code src="./demos/PickerModal.tsx"></code>
-
-### API
-
-#### 属性
-
-同 Picker 组件属性。
-
-#### Ref
-
-同 Picker 组件 Ref。
-
-## Picker.Main
-
-选择器主组件。
-
-### 何时使用
-
-- 需要直接使用选择器主组件时
-
-### 代码演示
-
-<code src="./demos/PickerMain.tsx"></code>
-
-### API
-
-#### 属性
-
-| 属性       | 说明       | 类型                            | 默认值 |
-| ---------- | ---------- | ------------------------------- | ------ |
-| open       | 是否打开   | `boolean`                       | -      |
-| allowClear | 允许清除   | `boolean`                       | -      |
-| value      | 选中的值   | `PickerItem[] \| null`          | -      |
-| list       | 选项列表   | `PickerItem[] \| PickerItem[][]` | -      |
-| style      | 自定义样式 | `CSSProperties`                 | -      |
-| className  | 自定义类名 | `string`                        | -      |
-| onChange   | 变化事件   | `(value: PickerItem[]) => void` | -      |
-
-#### Ref
-
-| 属性           | 说明         | 类型                       |
-| -------------- | ------------ | -------------------------- |
-| mainElement    | 主元素       | `HTMLDivElement`           |
-| getMainElement | 获取主元素   | () => `HTMLDivElement`     |
-| getValue       | 获取当前值   | () => `PickerItem[] \| null` |
-| update         | 更新选择器   | `() => void`               |

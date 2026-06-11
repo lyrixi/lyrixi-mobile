@@ -1,9 +1,6 @@
 import React from 'react'
 
-import type {
-  DatePickerTypeListItem,
-  DatePickerTypeSwitcherSwitcherProps
-} from '../../types'
+import type { DatePickerTypeListItem, DatePickerTypeSwitcherSwitcherProps } from '../../types'
 
 // 内库使用-start
 import TabBar from './../../../TabBar'
@@ -18,6 +15,8 @@ import { TabBar, ToolBar } from 'lyrixi-mobile'
 function Switcher({
   variant = 'tabbar',
   dropdownPortal,
+  dropdownLeft,
+  dropdownRight,
   types,
   value,
   style,
@@ -32,6 +31,8 @@ function Switcher({
         style={style}
         className={className}
         portal={dropdownPortal}
+        left={dropdownLeft}
+        right={dropdownRight}
         onChange={(newValue) => {
           const item = Array.isArray(newValue) ? newValue[0] : newValue
           if (item) onChange(item as DatePickerTypeListItem)

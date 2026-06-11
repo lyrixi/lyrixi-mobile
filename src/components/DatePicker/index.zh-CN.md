@@ -11,19 +11,63 @@ toc: content
 
 日期选择器组件，用于选择日期、时间等。
 
-## 何时使用
+## DatePicker.Combo
 
-- 需要选择日期时
-- 需要选择时间时
-- 需要选择日期范围时
+日期选择器组合组件，结合输入框和日期选择器。
 
-## 代码演示
+### 何时使用
+
+- 需要结合输入框和日期选择器时
+
+### 代码演示
 
 <code src="./demos/DatePickerCombo.tsx"></code>
 
-## API
+<code src="./demos/DatePickerComboInput.tsx"></code>
 
-### 属性
+### API
+
+#### 属性
+
+同 DatePicker.Main 组件属性。
+
+#### Ref
+
+同 DatePicker.Main 组件 Ref。
+
+## DatePicker.Modal
+
+日期选择器模态框组件。
+
+### 何时使用
+
+- 需要以模态框形式显示日期选择器时
+
+### 代码演示
+
+### API
+
+#### 属性
+
+同 DatePicker.Main 组件属性。
+
+#### Ref
+
+同 DatePicker.Main 组件 Ref。
+
+## DatePicker.Main
+
+日期选择器主组件。
+
+### 何时使用
+
+- 需要直接使用日期选择器主组件时
+
+### 代码演示
+
+### API
+
+#### 属性
 
 | 属性             | 说明           | 类型                                                                                   | 默认值   |
 | ---------------- | -------------- | -------------------------------------------------------------------------------------- | -------- |
@@ -65,7 +109,7 @@ toc: content
 | onChange         | 变化事件       | `(value: Date \| null \| undefined, meta?: unknown) => void`                           | -        |
 | onOk             | 确认事件       | `(value: Date \| null \| undefined) => boolean \| Date \| void \| Promise<boolean \| Date \| void>` | -        |
 
-### Ref
+#### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
@@ -73,68 +117,6 @@ toc: content
 | getElement | 获取根元素 | () => `HTMLDivElement` |
 | close      | 关闭选择器 | `() => void`           |
 | open       | 打开选择器 | `() => void`           |
-
-## DatePicker.Combo
-
-日期选择器组合组件，结合输入框和日期选择器。
-
-### 何时使用
-
-- 需要结合输入框和日期选择器时
-
-### 代码演示
-
-<code src="./demos/DatePickerComboInput.tsx"></code>
-
-### API
-
-#### 属性
-
-同 DatePicker 组件属性。
-
-#### Ref
-
-同 DatePicker 组件 Ref。
-
-## DatePicker.Modal
-
-日期选择器模态框组件。
-
-### 何时使用
-
-- 需要以模态框形式显示日期选择器时
-
-### 代码演示
-
-### API
-
-#### 属性
-
-同 DatePicker 组件属性。
-
-#### Ref
-
-同 DatePicker 组件 Ref。
-
-## DatePicker.Main
-
-日期选择器主组件。
-
-### 何时使用
-
-- 需要直接使用日期选择器主组件时
-
-### 代码演示
-
-### API
-
-#### 属性
-
-同 DatePicker 组件属性。
-
-#### Ref
-
-同 DatePicker 组件 Ref。
 
 ## DatePicker.Range
 
@@ -152,11 +134,11 @@ toc: content
 
 #### 属性
 
-同 DatePicker 组件属性，但 value 为 `Date[]`。
+同 DatePicker.Main 组件属性，但 value 为 `Date[]`。
 
 #### Ref
 
-同 DatePicker 组件 Ref。
+同 DatePicker.Main 组件 Ref。
 
 ## DatePicker.Multiple
 
@@ -174,11 +156,11 @@ toc: content
 
 #### 属性
 
-同 DatePicker 组件属性，但 value 为 `Date[]`。
+同 DatePicker.Main 组件属性，但 value 为 `Date[]`。
 
 #### Ref
 
-同 DatePicker 组件 Ref。
+同 DatePicker.Main 组件 Ref。
 
 ## DatePicker.Week
 
@@ -196,11 +178,11 @@ toc: content
 
 #### 属性
 
-同 DatePicker 组件属性。
+同 DatePicker.Main 组件属性。
 
 #### Ref
 
-同 DatePicker 组件 Ref。
+同 DatePicker.Main 组件 Ref。
 
 ## DatePicker.TypeSwitcher
 
@@ -224,6 +206,8 @@ toc: content
 | types               | 类型列表       | `DatePickerTypeListItem[]`                                          | -      |
 | variant             | 切换方式       | `'tabbar' \| 'dropdown'`                                            | -      |
 | dropdownPortal      | 下拉挂载节点   | `HTMLElement`                                                       | -      |
+| dropdownLeft        | 下拉左侧偏移   | `string \| number`                                                  | -      |
+| dropdownRight       | 下拉右侧偏移   | `string \| number`                                                  | -      |
 | style               | 自定义样式     | `CSSProperties`                                                     | -      |
 | className           | 自定义类名     | `string`                                                            | -      |
 | pickerComboStyle    | 选择器组合样式 | `CSSProperties`                                                     | -      |

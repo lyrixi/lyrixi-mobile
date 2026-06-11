@@ -10,20 +10,21 @@ toc: content
 # Media
 
 媒体组件，用于显示和管理图片、视频等媒体文件。
+## Media
 
-## 何时使用
+### 何时使用
 
 - 需要显示图片、视频时
 - 需要上传图片、视频时
 - 需要预览图片、视频时
 
-## 代码演示
+### 代码演示
 
 <code src="./demos/Media.tsx"></code>
 
-## API
+### API
 
-### 属性
+#### 属性
 
 | 属性                   | 说明           | 类型                                                                                                                                                                         | 默认值                |
 | ---------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
@@ -62,7 +63,7 @@ toc: content
 | onChange               | 变化事件       | `(list: FileItem[], meta: { action: string }) => void \| Promise<unknown>`                                                                                                   | -                     |
 | onPreview              | 预览事件       | `(item: FileItem, index: number) => void \| boolean \| 'nativeMedia' \| 'nativeFile' \| 'browser' \| Promise<void \| boolean \| 'nativeMedia' \| 'nativeFile' \| 'browser'>` | -                     |
 
-### Ref
+#### Ref
 
 | 属性              | 说明         | 类型                                                                                     |
 | ----------------- | ------------ | ---------------------------------------------------------------------------------------- |
@@ -76,7 +77,7 @@ toc: content
 | hideLoading       | 隐藏加载     | `(options?: { failIndexes?: number[] }) => void`                                         |
 | setPreviewVisible | 设置预览可见 | `Dispatch<SetStateAction<number \| null>>`                                               |
 
-## Media 静态方法
+### Media 静态方法
 
 | 方法               | 说明             | 类型                                                                                                                           |
 | ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -241,3 +242,4 @@ toc: content
 | labels    | 标记文案列表 | `ReactNode[]`   | -      |
 | style     | 自定义样式   | `CSSProperties` | -      |
 | className | 自定义类名   | `string`        | -      |
+

@@ -7,6 +7,10 @@ title: Loading
 toc: content
 ---
 
+# Loading
+
+加载中组件，提供命令式 API 与多种加载动画子组件。
+
 ## Loading.show
 
 ### 何时使用
@@ -128,7 +132,7 @@ toc: content
 
 ### API
 
-同 Loading
+同 [Loading](#loading) 组件属性。
 
 ## Loading.Ouroboros
 
@@ -144,7 +148,7 @@ toc: content
 
 ### API
 
-同 Loading
+同 [Loading](#loading) 组件属性。
 
 ## Loading.BallWave
 

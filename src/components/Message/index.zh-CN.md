@@ -11,45 +11,20 @@ toc: content
 
 消息对话框组件集合，用于展示提示、确认等居中弹窗。提供命令式 API（`Message.open` / `Message.close`）与组合式子组件（`Message.Modal`、`Message.Combo` 等）。
 
-## 何时使用
+## Message.open
 
-- 需要居中展示标题、正文与操作按钮的对话框时
+命令式打开消息对话框。全局同时仅存在一个实例，再次调用会先关闭上一个。
+
+### 何时使用
+
 - 需要命令式唤起全局消息框（如操作确认、结果提示）时
-- 需要自定义对话框结构（图标、标题、内容、底部按钮分区）时
+- 需要居中展示标题、正文与操作按钮的对话框时
 
-## 代码演示
-
-### Message.open / Message.close
+### 代码演示
 
 <code src="./demos/MessageApi.tsx"></code>
 
-### Message.Modal
-
-<code src="./demos/MessageModal.tsx"></code>
-
-### Message.Combo
-
-<code src="./demos/MessageCombo.tsx"></code>
-
-### 组合式子组件
-
-<code src="./demos/MessageMain.tsx"></code>
-
-<code src="./demos/MessageHeader.tsx"></code>
-
-<code src="./demos/MessageFooter.tsx"></code>
-
-<code src="./demos/MessageIcon.tsx"></code>
-
-<code src="./demos/MessageTitle.tsx"></code>
-
-<code src="./demos/MessageButton.tsx"></code>
-
-## API
-
-### Message.open
-
-打开消息对话框。全局同时仅存在一个实例，再次调用会先关闭上一个。
+### API
 
 #### 参数
 
@@ -87,9 +62,19 @@ toc: content
 
 无返回值。
 
-### Message.close
+## Message.close
 
 关闭当前由 `Message.open` 打开的消息对话框。
+
+### 何时使用
+
+- 需要手动关闭命令式打开的消息框时
+
+### 代码演示
+
+<code src="./demos/MessageApi.tsx"></code>
+
+### API
 
 #### 参数
 
@@ -102,6 +87,15 @@ toc: content
 ## Message.Modal
 
 基于 `Modal` 的消息对话框，受控通过 `open` 显示/隐藏。未传 `children` 且提供了 `iconRender`、`title`、`content` 或 `buttons` 时，会自动渲染 `Message.Main`。
+
+### 何时使用
+
+- 需要受控显示/隐藏的消息对话框时
+- 需要自定义对话框结构（图标、标题、内容、底部按钮分区）时
+
+### 代码演示
+
+<code src="./demos/MessageModal.tsx"></code>
 
 ### API
 
@@ -142,6 +136,15 @@ toc: content
 
 将触发区域与 `Message.Modal` 组合：点击 `children` 打开对话框，适合表单或列表中的确认入口。
 
+### 何时使用
+
+- 需要从触发区域打开消息对话框时
+- 与表单或列表中的确认入口搭配时
+
+### 代码演示
+
+<code src="./demos/MessageCombo.tsx"></code>
+
 ### API
 
 #### 属性
@@ -172,6 +175,14 @@ toc: content
 ## Message.Main
 
 消息对话框主体，默认组合 `Icon`、`Message.Title`、正文与 `Message.Footer`（按钮区）。
+
+### 何时使用
+
+- 需要自定义消息对话框主体结构时
+
+### 代码演示
+
+<code src="./demos/MessageMain.tsx"></code>
 
 ### API
 
@@ -209,6 +220,14 @@ toc: content
 
 对话框头部容器。
 
+### 何时使用
+
+- 需要自定义对话框头部区域时
+
+### 代码演示
+
+<code src="./demos/MessageHeader.tsx"></code>
+
 ### API
 
 #### 属性
@@ -230,6 +249,14 @@ toc: content
 
 对话框底部容器（常与 `layout` 配合按钮排列）。
 
+### 何时使用
+
+- 需要自定义对话框底部按钮区域时
+
+### 代码演示
+
+<code src="./demos/MessageFooter.tsx"></code>
+
 ### API
 
 #### 属性
@@ -245,9 +272,39 @@ toc: content
 
 同 [Message.Header](#messageheader) Ref。
 
+## Message.Icon
+
+对话框图标区域。
+
+### 何时使用
+
+- 需要在消息对话框中展示图标时
+
+### 代码演示
+
+<code src="./demos/MessageIcon.tsx"></code>
+
+### API
+
+#### 属性
+
+同 [Icon](/components/icon) 组件属性。
+
+#### Ref
+
+同 Icon 组件 Ref。
+
 ## Message.Title
 
 对话框标题区域。
+
+### 何时使用
+
+- 需要单独使用对话框标题区域时
+
+### 代码演示
+
+<code src="./demos/MessageTitle.tsx"></code>
 
 ### API
 
@@ -269,6 +326,14 @@ toc: content
 ## Message.Button
 
 对话框底部操作按钮。
+
+### 何时使用
+
+- 需要在消息对话框底部使用独立按钮时
+
+### 代码演示
+
+<code src="./demos/MessageButton.tsx"></code>
 
 ### API
 

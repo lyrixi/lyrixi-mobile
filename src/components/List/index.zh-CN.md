@@ -11,31 +11,21 @@ toc: content
 
 列表组件，用于展示数据列表。
 
-## 何时使用
+## List
+
+### 何时使用
 
 - 需要展示数据列表时
 - 需要支持单选或多选时
 - 需要分组显示数据时
 
-## 代码演示
+### 代码演示
 
 <code src="./demos/List.tsx"></code>
 
-### List.Item 单独使用
+### API
 
-<code src="./demos/ListItem.tsx"></code>
-
-### List.InfiniteScroll
-
-<code src="./demos/ListInfiniteScroll.tsx"></code>
-
-### List.HeaderItem
-
-<code src="./demos/ListHeaderItem.tsx"></code>
-
-## API
-
-### 属性
+#### 属性
 
 | 属性             | 说明             | 类型                                                                                                                         | 默认值 |
 | ---------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------ |
@@ -56,7 +46,7 @@ toc: content
 | checkboxPosition | 复选框位置       | `string`                                                                                                                     | -      |
 | onChange         | 变化事件         | `(newValue: ListItem \| ListItem[] \| null, options?: { action?: string; checkedItem: ListItem }) => void`                    | -      |
 
-### Ref
+#### Ref
 
 | 属性       | 说明       | 类型                   |
 | ---------- | ---------- | ---------------------- |
@@ -73,7 +63,7 @@ toc: content
 
 ### 代码演示
 
-见上方 List.Item 示例。
+<code src="./demos/ListItem.tsx"></code>
 
 ### API
 
@@ -112,7 +102,7 @@ toc: content
 
 ### 代码演示
 
-见上方 List.HeaderItem 示例。
+<code src="./demos/ListHeaderItem.tsx"></code>
 
 ### API
 
@@ -136,7 +126,7 @@ toc: content
 
 ### 代码演示
 
-见上方 List.InfiniteScroll 示例。
+<code src="./demos/ListInfiniteScroll.tsx"></code>
 
 ### API
 

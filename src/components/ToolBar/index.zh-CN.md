@@ -10,24 +10,25 @@ toc: content
 # ToolBar
 
 工具栏组件，用于显示工具栏。
+## ToolBar
 
-## 何时使用
+### 何时使用
 
 - 需要显示工具栏时
 - 需要显示操作按钮时
 - 需要显示筛选、搜索等功能时
 
-## 代码演示
+### 代码演示
 
 <code src="./demos/ToolBar.tsx"></code>
 
-### ToolBar.Dropdown
+#### ToolBar.Dropdown
 
 <code src="./demos/ToolBarDropdown.tsx"></code>
 
-## API
+### API
 
-### 属性
+#### 属性
 
 | 属性      | 说明       | 类型                    | 默认值      |
 | --------- | ---------- | ----------------------- | ----------- |
@@ -36,7 +37,7 @@ toc: content
 | className | 自定义类名 | `string`                | -           |
 | children  | 工具栏内容 | `ReactNode`             | -           |
 
-### Ref
+#### Ref
 
 | 属性       | 说明       | 类型                         |
 | ---------- | ---------- | ---------------------------- |
@@ -348,3 +349,4 @@ toc: content
 | getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 | close      | 关闭筛选   | `() => void`                 |
 | open       | 打开筛选   | `() => void`                 |
+

@@ -10,20 +10,21 @@ toc: content
 # NavBar
 
 导航栏组件，用于显示页面导航。
+## NavBar
 
-## 何时使用
+### 何时使用
 
 - 需要显示页面导航时
 - 需要显示标题和操作按钮时
 - 需要在页面顶部显示导航栏时
 
-## 代码演示
+### 代码演示
 
 <code src="./demos/NavBar.tsx"></code>
 
-## API
+### API
 
-### 属性
+#### 属性
 
 | 属性      | 说明       | 类型             | 默认值 |
 | --------- | ---------- | ---------------- | ------ |
@@ -31,7 +32,7 @@ toc: content
 | className | 自定义类名 | `string`         | -      |
 | children  | 导航栏内容 | `ReactNode`      | -      |
 
-### Ref
+#### Ref
 
 NavBar 通过 `forwardRef` 暴露原生 DOM 引用。
 
@@ -106,3 +107,4 @@ NavBar 通过 `forwardRef` 暴露原生 DOM 引用。
 | ---------- | ---------- | --------------------------- |
 | element    | 根元素     | `HTMLDivElement \| null`    |
 | getElement | 获取根元素 | `() => HTMLDivElement \| null` |
+

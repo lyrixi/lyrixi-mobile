@@ -24,6 +24,8 @@ export interface DatePickerTypeSwitcherProps {
   types?: DatePickerTypeListItem[]
   variant?: DatePickerTypeSwitcherType
   dropdownPortal?: HTMLElement
+  dropdownLeft?: string | number
+  dropdownRight?: string | number
   style?: CSSProperties
   className?: string
   pickerComboStyle?: CSSProperties

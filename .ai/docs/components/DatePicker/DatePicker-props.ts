@@ -187,6 +187,10 @@ export interface DatePickerTypeSwitcherProps {
   variant?: 'tabbar' | 'dropdown'
   /** 下拉挂载节点 */
   dropdownPortal?: HTMLElement
+  /** 下拉左侧偏移 */
+  dropdownLeft?: string | number
+  /** 下拉右侧偏移 */
+  dropdownRight?: string | number
   /** 自定义样式 */
   style?: CSSProperties
   /** 自定义类名 */
