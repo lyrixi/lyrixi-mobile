@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { Page, Card, DatePicker, LocaleUtil, type DatePickerTypeSwitcherValue } from 'lyrixi-mobile'
+import {
+  Page,
+  Card,
+  DatePicker,
+  LocaleUtil,
+  Icons,
+  type DatePickerTypeSwitcherValue
+} from 'lyrixi-mobile'
 
 const dateTypes = [
   {
@@ -56,6 +63,9 @@ export default function DatePickerTypeSwitcherDemo() {
   const [collapsedValue, setCollapsedValue] = useState<unknown>(undefined)
   const [dropdownLeftValue, setDropdownLeftValue] = useState<unknown>(undefined)
   const [dropdownPortalValue, setDropdownPortalValue] = useState<unknown>(undefined)
+  const [dropdownStyleValue, setDropdownStyleValue] = useState<unknown>(undefined)
+  const [dropdownSizeValue, setDropdownSizeValue] = useState<unknown>(undefined)
+  const [dropdownArrowValue, setDropdownArrowValue] = useState<unknown>(undefined)
 
   return (
     <Page>
@@ -136,6 +146,78 @@ export default function DatePickerTypeSwitcherDemo() {
                 setDropdownPortalValue(newValue)
               }}
               pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>下拉颜色与变体（dropdownColor / dropdownVariant / dropdownRadius）</Card.Header>
+          <Card.Main>
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownColor="primary"
+              dropdownVariant="solid"
+              dropdownRadius="m"
+              value={dropdownStyleValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownColor / dropdownVariant:', newValue)
+                setDropdownStyleValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            下拉尺寸（dropdownSize / dropdownSizeEqual / dropdownFontSize / dropdownStyle /
+            dropdownClassName）
+          </Card.Header>
+          <Card.Main>
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownSize="m"
+              dropdownSizeEqual
+              dropdownFontSize={12}
+              dropdownStyle={{ minWidth: 72 }}
+              dropdownClassName="lyrixi-flex lyrixi-flex-justify-center"
+              value={dropdownSizeValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownSize:', newValue)
+                setDropdownSizeValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+          </Card.Main>
+        </Card>
+
+        <Card>
+          <Card.Header>下拉箭头（dropdownArrowSvg）</Card.Header>
+          <Card.Main>
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownArrowSvg={null}
+              value={dropdownArrowValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownArrowSvg:', newValue)
+                setDropdownArrowValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownArrowSvg={Icons.TriangleUpFill}
+              value={dropdownArrowValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownArrowSvg:', newValue)
+                setDropdownArrowValue(newValue)
+              }}
+              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+              style={{ marginTop: 12 }}
             />
           </Card.Main>
         </Card>
