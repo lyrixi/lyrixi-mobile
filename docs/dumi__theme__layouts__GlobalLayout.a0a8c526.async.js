@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklyrixi_mobile=self.webpackChunklyrixi_mobile||[]).push([[1032],{50246:function(o,l,u){u.r(l),u.d(l,{default:function(){return t}});var n=u(66685);function t(){var i=(0,n.pC)();return i}}}]);
