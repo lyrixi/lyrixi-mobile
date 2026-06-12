@@ -1,4 +1,4 @@
-export interface LoadingShowProps {
+export interface LoadingOpenProps {
   // Value & Display Value
   id?: string
   content?: string

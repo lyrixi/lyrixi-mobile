@@ -11,7 +11,7 @@ toc: content
 
 加载中组件，提供命令式 API 与多种加载动画子组件。
 
-## Loading.show
+## Loading.open
 
 ### 何时使用
 
@@ -19,28 +19,28 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingShow.tsx"></code>
+<code src="./demos/LoadingOpen.tsx"></code>
 
 ### API
 
 #### 参数
 
-| 参数          | 说明       | 类型          | 默认值 |
-| ------------- | ---------- | ------------- | ------ |
-| portal        | 挂载节点   | `HTMLElement` | -      |
-| id            | Loading ID | `string`      | -      |
-| maskClassName | 遮罩类名   | `string`      | -      |
+| 参数          | 说明       | 类型            | 默认值 |
+| ------------- | ---------- | --------------- | ------ |
+| portal        | 挂载节点   | `HTMLElement`   | -      |
+| id            | Loading ID | `string`        | -      |
+| maskClassName | 遮罩类名   | `string`        | -      |
 | maskStyle     | 遮罩样式   | `CSSProperties` | -      |
 | className     | 内容类名   | `string`        | -      |
 | style         | 内容样式   | `CSSProperties` | -      |
-| content       | 提示内容   | `string`      | -      |
-| onOpen        | 打开事件   | `() => void`  | -      |
+| content       | 提示内容   | `string`        | -      |
+| onOpen        | 打开事件   | `() => void`    | -      |
 
 ##### 返回值
 
 无返回值。
 
-## Loading.hide
+## Loading.close
 
 ### 何时使用
 
@@ -48,7 +48,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingHide.tsx"></code>
+<code src="./demos/LoadingClose.tsx"></code>
 
 ### API
 
@@ -100,22 +100,22 @@ toc: content
 
 #### 属性
 
-| 属性           | 说明       | 类型        | 默认值 |
-| -------------- | ---------- | ----------- | ------ |
-| content        | 提示内容   | `ReactNode`                    | -      |
-| modalStyle     | 内容区样式 | `CSSProperties`                | -      |
-| modalClassName | 内容区类名 | `string`                       | -      |
-| maskStyle      | 遮罩样式   | `CSSProperties`                | -      |
-| maskClassName  | 遮罩类名   | `string`                       | -      |
-| portal         | 挂载节点   | `Element \| DocumentFragment` | - |
-| iconRender     | 图标渲染   | `() => ReactNode` | -      |
-| children       | 子元素     | `ReactNode` | -      |
+| 属性           | 说明       | 类型                          | 默认值 |
+| -------------- | ---------- | ----------------------------- | ------ |
+| content        | 提示内容   | `ReactNode`                   | -      |
+| modalStyle     | 内容区样式 | `CSSProperties`               | -      |
+| modalClassName | 内容区类名 | `string`                      | -      |
+| maskStyle      | 遮罩样式   | `CSSProperties`               | -      |
+| maskClassName  | 遮罩类名   | `string`                      | -      |
+| portal         | 挂载节点   | `Element \| DocumentFragment` | -      |
+| iconRender     | 图标渲染   | `() => ReactNode`             | -      |
+| children       | 子元素     | `ReactNode`                   | -      |
 
 #### Ref
 
-| 属性       | 说明       | 类型                          |
-| ---------- | ---------- | ----------------------------- |
-| element    | 根元素     | `HTMLDivElement \| null`      |
+| 属性       | 说明       | 类型                           |
+| ---------- | ---------- | ------------------------------ |
+| element    | 根元素     | `HTMLDivElement \| null`       |
 | getElement | 获取根元素 | () => `HTMLDivElement \| null` |
 
 ## Loading.SpinFade

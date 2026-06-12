@@ -2,14 +2,14 @@ import React from 'react'
 import { Page } from 'lyrixi-mobile'
 import { Loading } from 'lyrixi-mobile'
 
-export default function LoadingShowDemo() {
+export default function LoadingOpenDemo() {
   function handleToggle() {
     // Loading.defaultProps = {
     //   style: { backgroundColor: 'blue' },
     //   maskStyle: { backgroundColor: 'red' }
     // }
 
-    let loading = Loading.show({
+    let loading = Loading.open({
       style: { backgroundColor: 'blue' },
       maskStyle: { backgroundColor: 'red' },
       className: 'abc',
@@ -17,16 +17,16 @@ export default function LoadingShowDemo() {
     })
     console.log(loading)
     setTimeout(() => {
-      Loading.show()
+      Loading.open()
     }, 3000)
     setTimeout(() => {
-      Loading.hide()
+      Loading.close()
     }, 6000)
   }
 
   return (
     <Page>
-      <Page.Header className="lyrixi-text-center">Loading.show</Page.Header>
+      <Page.Header className="lyrixi-text-center">Loading.open</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <div className="demo-title" onClick={handleToggle}>
           Loading toggle

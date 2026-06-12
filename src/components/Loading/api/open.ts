@@ -1,9 +1,8 @@
-
-import type { LoadingShowProps } from './types'
+import type { LoadingOpenProps } from '../types'
 
 // 内库使用-start
-import DOMUtil from './../../utils/DOMUtil'
-import LocaleUtil from './../../utils/LocaleUtil'
+import DOMUtil from '../../../utils/DOMUtil'
+import LocaleUtil from '../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -11,7 +10,7 @@ import { LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 显示Loading
-export default function showLoading(props?: LoadingShowProps): HTMLElement | null {
+export default function openLoading(props?: LoadingOpenProps): HTMLElement | null {
   const { portal, id, maskClassName, maskStyle, className, style, content, onOpen } = props || {}
 
   function render(): HTMLElement | null {
