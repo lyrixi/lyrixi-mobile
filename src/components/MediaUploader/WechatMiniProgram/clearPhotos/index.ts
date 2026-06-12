@@ -24,12 +24,12 @@ function clearPhotos(id: string, { url }: WechatMiniProgramClearPhotosOptions): 
         if (res.code === '1') {
           resolve(true)
         } else {
-          Toast.show({ content: res.message })
+          Toast.open({ content: res.message })
           resolve(false)
         }
       })
       .catch(() => {
-        Toast.show({
+        Toast.open({
           content: LocaleUtil.locale('照片删除异常', 'lyrixi_c6def5fa7c7e41ced1921c9e09ce97bb') as string
         })
         resolve(false)

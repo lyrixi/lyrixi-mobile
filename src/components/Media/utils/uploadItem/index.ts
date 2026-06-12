@@ -20,7 +20,7 @@ async function uploadItem(
   }
 ) {
   if (typeof onUpload !== 'function') {
-    Toast.show({
+    Toast.open({
       content: `没有onUpload入参, 无法上传`
     })
     return {
@@ -48,7 +48,7 @@ async function uploadItem(
 
   // 上传失败
   if (newItem.status === 'error') {
-    Toast.show({
+    Toast.open({
       content: newItem.message
     })
     return { ...item, status: 'error', ...newItem }

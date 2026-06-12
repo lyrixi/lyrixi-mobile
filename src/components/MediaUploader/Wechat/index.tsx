@@ -152,7 +152,7 @@ function MediaUploader(
           resolve(currentList)
         },
         onError: function (err: { errMsg?: string }) {
-          if (err && err.errMsg) Toast.show({ content: err.errMsg })
+          if (err && err.errMsg) Toast.open({ content: err.errMsg })
           resolve(false)
         },
         onCancel: function () {

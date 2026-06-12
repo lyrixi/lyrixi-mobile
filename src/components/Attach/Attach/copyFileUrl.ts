@@ -12,7 +12,7 @@ import { Clipboard, LocaleUtil, Message, Toast } from 'lyrixi-mobile'
 function copyFileUrl(fileUrl: string) {
   Clipboard.copy(fileUrl, {
     onSuccess: () => {
-      Toast.show({
+      Toast.open({
         content: LocaleUtil.locale(
           '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
           'lyrixi_6326307026a1ebefc8b307e7ef1c58b5'

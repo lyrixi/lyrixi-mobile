@@ -142,7 +142,7 @@ function WechatMiniProgram(
           '.lyrixi-media-item.image-choose'
         )
         if (!uploadElement) {
-          Toast.show({
+          Toast.open({
             content: LocaleUtil.locale(
               '未找到拍照按钮, 调用拍照失败',
               'lyrixi_76637d130a70149d956bf9acc14e2108'
@@ -155,7 +155,7 @@ function WechatMiniProgram(
         return chooseOk
       },
       uploadList: () => {
-        Toast.show({
+        Toast.open({
           content: LocaleUtil.locale(
             '小程序不支持异步上传',
             'lyrixi_34b5161adb0dd53091258a0558e9c2f1'
@@ -176,7 +176,7 @@ function WechatMiniProgram(
     if (typeof item === 'string') {
       console.log('获取结果异常, 停止轮询')
       stopAllPolls()
-      Toast.show({ content: item })
+      Toast.open({ content: item })
       Loading.hide()
       return
     }
@@ -201,7 +201,7 @@ function WechatMiniProgram(
   async function goCamera(sourceTypeParam: string[]) {
     const navigateToFn = (uploadUrl as Record<string, unknown>).navigateToMiniProgram
     if (typeof navigateToFn !== 'function') {
-      Toast.show({ content: 'uploadUrl.navigateToMiniProgram is not a function' })
+      Toast.open({ content: 'uploadUrl.navigateToMiniProgram is not a function' })
       return false
     }
     // eslint-disable-next-line
@@ -267,7 +267,7 @@ function WechatMiniProgram(
         // Invoke camera start interval list
         updatePhotos()
       } catch (err) {
-        Toast.show({ content: '呼起小程序拍照异常,请点击重试' })
+        Toast.open({ content: '呼起小程序拍照异常,请点击重试' })
         // If this fails, stop polling
         stopAllPolls()
       }

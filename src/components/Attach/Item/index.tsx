@@ -59,7 +59,7 @@ const Item = ({
 
     // 失败的文件用localFileUrl预览
     if (attach.status === 'error') {
-      Toast.show({
+      Toast.open({
         content: toToastString(
           LocaleUtil.locale('图片未上传成功, 无法预览', 'lyrixi_48ec308c5a5abf2b6dc08111a4aa08bb')
         )
@@ -76,7 +76,7 @@ const Item = ({
         ? decodeURIComponent(decodeURIComponent(fileUrl))
         : ''
     if (!previewUrl || typeof previewUrl !== 'string') {
-      Toast.show({
+      Toast.open({
         content: toToastString(
           LocaleUtil.locale('预览地址不合法', 'lyrixi_abbd8dd2fbc71bf8315e71e5e80d041a')
         )
@@ -92,7 +92,7 @@ const Item = ({
     else {
       Clipboard.copy(previewUrl, {
         onSuccess: () => {
-          Toast.show({
+          Toast.open({
             content: toToastString(
               LocaleUtil.locale(
                 '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',

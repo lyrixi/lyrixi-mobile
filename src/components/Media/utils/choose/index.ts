@@ -29,7 +29,7 @@ async function choose({
 }: MediaChooseUtilOptions) {
   // 大于总数禁止选择
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
-    Toast.show({
+    Toast.open({
       content: toToastString(
         LocaleUtil.locale(
           `照片总数不能大于${maxCount}张`,

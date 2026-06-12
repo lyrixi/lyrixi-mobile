@@ -172,7 +172,7 @@ function Attach(
         })
         // 上传失败
         if (failCount) {
-          Toast.show({
+          Toast.open({
             content: `${LocaleUtil.locale(
               '网络异常，上传失败',
               'lyrixi_18904cde640c2efd37bc6ed3e9dedc77'
@@ -259,7 +259,7 @@ function Attach(
 
   async function _choose(e: SyntheticEvent) {
     if (!chooseVisible) {
-      Toast.show({
+      Toast.open({
         content: String(
           LocaleUtil.locale(
             '此控件无上传功能, 请勿调用拍照',
@@ -272,7 +272,7 @@ function Attach(
     const root = rootRef.current
     const uploadElement = root?.querySelector('.lyrixi-attach-choose')
     if (!uploadElement) {
-      Toast.show({
+      Toast.open({
         content: String(
           LocaleUtil.locale(
             '未找到上传按钮, 调用上传失败',

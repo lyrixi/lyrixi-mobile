@@ -21,7 +21,7 @@ function copyText(
       if (onSuccess) {
         onSuccess()
       } else {
-        Toast.show({
+        Toast.open({
           content: LocaleUtil.locale(
             '链接已复制到剪贴板',
             'lyrixi_deb26c26fbaafab1dfa6c902a0ffad75',

@@ -46,9 +46,9 @@ export default function MediaUploaderGeneralDemo() {
   async function handleValidate() {
     const failed = list.filter((i) => i.status === 'error' || i.status === 'uploading')
     if (failed.length) {
-      Toast.show({ content: '存在未成功项，请检查后重试' })
+      Toast.open({ content: '存在未成功项，请检查后重试' })
     } else {
-      Toast.show({ content: '状态正常' })
+      Toast.open({ content: '状态正常' })
     }
   }
 

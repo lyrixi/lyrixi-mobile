@@ -61,7 +61,7 @@ let Browser = {
     onSuccess?.({ status: 'success', data: undefined })
   },
   onBack: function () {
-    Toast.show({
+    Toast.open({
       content: `Browser ${LocaleUtil.locale(
         '此平台不支持',
         'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
@@ -92,7 +92,7 @@ let Browser = {
   tel: function (params?: BridgeTelParams) {
     const { number, onSuccess, onError } = params || {}
     if (Device.device === 'pc') {
-      Toast.show({
+      Toast.open({
         content: `Browser ${LocaleUtil.locale(
           '此平台不支持',
           'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
@@ -122,7 +122,7 @@ let Browser = {
 
       ['openLocation']
     )}`
-    Toast.show({
+    Toast.open({
       content: message
     })
     onError?.({ status: 'error', message: message })
@@ -296,7 +296,7 @@ let Browser = {
         '此平台不支持',
         'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
       )} scanCode`
-      Toast.show({
+      Toast.open({
         content: message
       })
       if (onError)
@@ -321,7 +321,7 @@ let Browser = {
       '此平台不支持',
       'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
     )} chooseMedia`
-    Toast.show({
+    Toast.open({
       content: message
     })
   },
@@ -392,7 +392,7 @@ let Browser = {
       '此平台不支持',
       'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
     )} previewFile`
-    Toast.show({
+    Toast.open({
       content: message
     })
     onError?.({ status: 'error', message: message })

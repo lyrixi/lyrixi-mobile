@@ -81,7 +81,7 @@ function Browser(
     return {
       ...(mediaRef.current ?? ({} as MediaHandle)),
       chooseMedia: () => {
-        Toast.show({
+        Toast.open({
           content: LocaleUtil.locale(
             '浏览器上传模式, 不支持编程式调用拍照',
             'lyrixi_18a8c44715538c3079cf8bf9fd46fe82'

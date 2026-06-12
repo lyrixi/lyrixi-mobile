@@ -81,7 +81,7 @@ const Edit = () => {
       token: tokenRef.current
     })) as EditDemoSaveResult
     if (saveResult.code === '1') {
-      Toast.show({
+      Toast.open({
         content: String(locale('提交成功!')),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -90,7 +90,7 @@ const Edit = () => {
     }
     // 重复请求
     else if (saveResult.code === '2') {
-      Toast.show({
+      Toast.open({
         content: String(saveResult.message || locale('请勿重复提交!')),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -102,7 +102,7 @@ const Edit = () => {
       // 请求出错需要重新生成token
       tokenRef.current = '' + Date.now()
 
-      Toast.show({
+      Toast.open({
         content: String(saveResult.message || locale('提交失败!'))
       })
     }

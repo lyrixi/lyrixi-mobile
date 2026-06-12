@@ -180,7 +180,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
           return true
         })
         if (failCount) {
-          Toast.show({
+          Toast.open({
             content: toToastString(
               LocaleUtil.locale(
                 `网络异常，上传失败${failCount}张`,

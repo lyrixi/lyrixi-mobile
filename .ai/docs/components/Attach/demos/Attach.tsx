@@ -27,7 +27,7 @@ export default function AttachDemo() {
   async function handleAsyncUpload() {
     const isOK = Attach.validateListStatus(list)
     if (isOK !== true) {
-      Toast.show({
+      Toast.open({
         content: typeof isOK === 'string' ? isOK : String(isOK ?? '')
       })
       const el = uploadRef.current

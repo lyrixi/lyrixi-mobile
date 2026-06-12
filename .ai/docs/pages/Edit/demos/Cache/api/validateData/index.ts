@@ -34,14 +34,14 @@ function validateData(opts: { form?: unknown }) {
 
           // 错误消息
           const errMsg = e.errorFields?.[0]?.errors?.[0] ?? String(locale('此项错误'))
-          Toast.show({ content: String(errMsg) })
+          Toast.open({ content: String(errMsg) })
           resolve(false)
         })
       return
     }
     setTimeout(() => {
       let errMsg = scrollToErrorElement()
-      Toast.show({ content: String(errMsg) })
+      Toast.open({ content: String(errMsg) })
       resolve(false)
     }, 100)
   })

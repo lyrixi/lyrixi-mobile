@@ -71,7 +71,7 @@ async function uploadList(
     return !ObjectUtil.isEmpty(item) && ObjectUtil.isPlainObject(item)
   })
   if (ObjectUtil.isEmpty(list)) {
-    Toast.show({
+    Toast.open({
       content: LocaleUtil.locale(
         'uploadList参数列表错误',
         'lyrixi_02e1574baeddc79ed7bfa5931dde85f0'
@@ -82,7 +82,7 @@ async function uploadList(
 
   // 不支持的平台
   if (!uploadItem) {
-    Toast.show({
+    Toast.open({
       content: LocaleUtil.locale(
         '不支持此平台上传',
         'lyrixi_84281205c0ab7c4983124a98006c7014'

@@ -14,7 +14,7 @@ function recognizeItem(item: FileItem | null) {
     if (!item.fileUrl) {
       item.ocrErrMsg = String(LocaleUtil.locale(`缺少url参数, 无法进行ocr识别！`))
 
-      Toast.show({ content: String(item.ocrErrMsg) })
+      Toast.open({ content: String(item.ocrErrMsg) })
       resolve(item)
       return
     }
@@ -39,7 +39,7 @@ function recognizeItem(item: FileItem | null) {
           resolve(item)
         } else {
           item.ocrErrMsg = r?.message || String(LocaleUtil.locale('名片识别失败！'))
-          Toast.show({ content: String(item.ocrErrMsg) })
+          Toast.open({ content: String(item.ocrErrMsg) })
           Loading.hide()
           resolve(item)
         }

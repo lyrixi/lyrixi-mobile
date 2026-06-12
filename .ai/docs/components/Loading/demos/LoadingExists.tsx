@@ -20,7 +20,7 @@ export default function LoadingExistsDemo() {
   function checkExists() {
     const result = Loading.exists()
     setExists(result)
-    Toast.show({ content: result ? 'Loading exists' : 'Loading not exists', duration: 1000 })
+    Toast.open({ content: result ? 'Loading exists' : 'Loading not exists', duration: 1000 })
   }
 
   return (

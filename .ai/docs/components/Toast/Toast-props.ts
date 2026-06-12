@@ -4,7 +4,7 @@
 
 import type { CSSProperties } from 'react'
 
-export interface ToastShowProps {
+export interface ToastOpenProps {
   /** 显示时长（ms），默认 `2000` */
   duration?: number
   /** 遮罩是否可点击穿透 */
@@ -31,21 +31,21 @@ export interface ToastShowProps {
   onClose?: () => void
 }
 
-export interface ToastHideOptions {
+export interface ToastCloseOptions {
   /** 关闭回调 */
   onClose?: () => void
 }
 
 /** Toast 默认属性 */
-export type ToastDefaultProps = ToastShowProps
+export type ToastDefaultProps = ToastOpenProps
 
 // ---------- Toast module types ----------
 
 export interface ToastComponents {
   /** 默认属性 */
-  defaultProps?: ToastShowProps
+  defaultProps?: ToastOpenProps
   /** 显示 Toast */
-  show: (this: { defaultProps?: ToastShowProps } | void, props?: ToastShowProps) => HTMLElement
+  open: (this: { defaultProps?: ToastOpenProps } | void, props?: ToastOpenProps) => HTMLElement
   /** 隐藏 Toast */
-  hide: (options?: ToastHideOptions) => void
+  close: (options?: ToastCloseOptions) => void
 }

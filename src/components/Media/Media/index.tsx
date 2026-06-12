@@ -135,7 +135,7 @@ const Media = forwardRef(function Media(
   // Expose manual choose
   async function _choose(e?: SyntheticEvent) {
     if (!chooseVisible) {
-      Toast.show({
+      Toast.open({
         content: localeToastContent(
           '此照片控件无拍照功能, 请勿调用拍照',
           'lyrixi_35a3ca0b2cebe63e346eb2ef97193284'
@@ -145,7 +145,7 @@ const Media = forwardRef(function Media(
     }
     const chooseElement = rootRef.current?.querySelector?.('[data-type="upload"]')
     if (!chooseElement) {
-      Toast.show({
+      Toast.open({
         content: localeToastContent(
           '未找到拍照按钮, 调用拍照失败',
           'lyrixi_76637d130a70149d956bf9acc14e2108'
@@ -198,7 +198,7 @@ const Media = forwardRef(function Media(
         })
         // 上传失败
         if (failCount) {
-          Toast.show({
+          Toast.open({
             content: `${localeToastContent(
               `网络异常，上传失败${failCount}张`,
               'lyrixi_a096455f5d98e5ead856c948379040a6',

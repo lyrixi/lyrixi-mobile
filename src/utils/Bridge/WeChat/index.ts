@@ -167,7 +167,7 @@ let Bridge = {
 
         ['openLocation']
       )}`
-      Toast.show({
+      Toast.open({
         content: message
       })
       onError?.({ status: 'error', message: message })
@@ -232,7 +232,7 @@ let Bridge = {
   scanCode: function (params?: BridgeScanCodeParams) {
     const { scanType, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
-      Toast.show({
+      Toast.open({
         content: `WeChat ${LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
           'lyrixi_035ccd9e16f7b411f76b8369ce82e0a7'
@@ -326,7 +326,7 @@ let Bridge = {
         'chooseImage仅可在移动端微信或APP中使用',
         'lyrixi_0d4b28b9305da17cfaae5c59beeb647f'
       )}`
-      Toast.show({
+      Toast.open({
         content: message
       })
       onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
@@ -414,7 +414,7 @@ let Bridge = {
         'uploadImage仅可在移动端微信或APP中使用',
         'lyrixi_ae91b536a324063be22015b86480e967'
       )}`
-      Toast.show({
+      Toast.open({
         content: message
       })
       onError?.({ status: 'error', code: 'PC_NOT_IMPLENMENTED', message: message })
@@ -490,7 +490,7 @@ let Bridge = {
   previewMedia: function (params?: BridgePreviewMediaParams) {
     const { index, sources, onSuccess, onError, onCancel } = params || {}
     if (Device.device === 'pc') {
-      Toast.show({
+      Toast.open({
         content: `WeChat ${LocaleUtil.locale(
           'previewMedia仅可在移动端微信或APP中使用',
           'lyrixi_ef5f764cfc033f4bc441c4de232b2954'
@@ -555,7 +555,7 @@ let Bridge = {
 
         ['previewFile']
       )}`
-      Toast.show({
+      Toast.open({
         content: message
       })
       onError?.({ status: 'error', message: message })
@@ -591,7 +591,7 @@ let Bridge = {
         },
         onError: function (err: BridgeSDKErrorResponse) {
           console.log('WeChat Share onError:', err)
-          Toast.show({
+          Toast.open({
             content:
               err?.errMsg ||
               `WeChat ${LocaleUtil.locale('分享失败', 'lyrixi_e8e25af006ef2ebbdb317e1d7c035a0f')}`

@@ -38,7 +38,7 @@ export default function DatePickerMultipleComboDemo() {
         minuteStep={5}
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onOk={(newValue) => {
-          Toast.show({ content: 'Use onOk to stop' })
+          Toast.open({ content: 'Use onOk to stop' })
           return false
         }}
       />

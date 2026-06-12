@@ -112,7 +112,7 @@ function MediaUploader(
   const handleWechatMiniProgramMedia = async (): Promise<boolean | void> => {
     let isTimeout = intervalRef.current.isTimeout()
     if (isTimeout === false) {
-      Toast.show({
+      Toast.open({
         duration: 1000,
         content: LocaleUtil.locale(
           '检测到您的机型不支持小程序拍照，已强制为您切换成浏览器拍照',

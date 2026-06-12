@@ -33,7 +33,7 @@ const AttachPreviewModal = forwardRef<ModalRef, AttachPreviewModalProps>(functio
     }
     Clipboard.copy(fileUrl, {
       onSuccess: () => {
-        Toast.show({
+        Toast.open({
           content: toToastString(
             LocaleUtil.locale(
               '文件链接已复制到剪贴板，请粘贴到系统浏览器上预览',

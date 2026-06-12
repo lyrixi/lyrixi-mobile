@@ -1,13 +1,13 @@
 import React from 'react'
 import { Page, Toast, Button } from 'lyrixi-mobile'
 
-export default function ToastShowDemo() {
+export default function ToastOpenDemo() {
   function handleToggle() {
-    let toast = Toast.show({
+    let toast = Toast.open({
       style: { backgroundColor: 'blue', color: 'green' },
       maskStyle: { backgroundColor: 'red' },
       position: 'middle',
-      content: 'show toast',
+      content: 'open toast',
       duration: 3000,
       maskClickable: false,
       onOpen: () => {
@@ -21,7 +21,7 @@ export default function ToastShowDemo() {
   }
 
   function handleToggle2() {
-    Toast.show({
+    Toast.open({
       content: 'hh',
       onOpen: () => {
         console.log('hh open:', true)
@@ -34,7 +34,7 @@ export default function ToastShowDemo() {
 
   return (
     <Page>
-      <Page.Header className="lyrixi-text-center">Toast.show</Page.Header>
+      <Page.Header className="lyrixi-text-center">Toast.open</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <Button block radius="l" style={{ margin: '10px 12px' }} onClick={handleToggle}>
           Custom Toast

@@ -34,7 +34,7 @@ async function choose({
 }: AttachChooseOptions) {
   // 大于总数禁止选择
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
-    Toast.show({
+    Toast.open({
       content: toToastString(
         LocaleUtil.locale(`总数不能大于${maxCount}`, 'lyrixi_2d5162e5511eccd2b3d50796122c6e6e', [
           maxCount
@@ -58,7 +58,7 @@ async function choose({
   // 判断文件选中的类型
   for (const item of currentList) {
     if (!item.fileName) {
-      Toast.show({
+      Toast.open({
         content: toToastString(
           LocaleUtil.locale(
             `未返回fileName, 无法上传`,
@@ -72,7 +72,7 @@ async function choose({
     }
     const n = Number(item.fileSize)
     if (!Number.isFinite(n) || n < 0) {
-      Toast.show({
+      Toast.open({
         content: toToastString(
           LocaleUtil.locale(
             `未返回fileSize, 无法上传`,
@@ -85,7 +85,7 @@ async function choose({
       return false
     }
     if (!supportTypes(item.fileName, sourceType)) {
-      Toast.show({
+      Toast.open({
         content: toToastString(
           LocaleUtil.locale(
             `只支持选择${sourceType.join(',')}格式的文件`,
@@ -99,7 +99,7 @@ async function choose({
     }
 
     if (maxSize && !validateMaxSize(n, maxSize)) {
-      Toast.show({
+      Toast.open({
         content: toToastString(
           LocaleUtil.locale(
             `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,

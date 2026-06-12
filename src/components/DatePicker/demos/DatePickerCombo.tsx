@@ -137,7 +137,7 @@ export default function DatePickerComboDemo() {
               onChange={(v) => setValue(v ?? null)}
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onOk={(newValue) => {
-                Toast.show({ content: 'Use onOk to stop' })
+                Toast.open({ content: 'Use onOk to stop' })
                 return false
               }}
               allowClear

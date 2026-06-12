@@ -73,7 +73,7 @@ const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProp
   async function handleLocation() {
     const result = await location()
     if (isErrorResult(result) && result.message) {
-      Toast.show({ content: result.message })
+      Toast.open({ content: result.message })
       return
     }
     if (onChange) onChange(result)

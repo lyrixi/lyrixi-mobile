@@ -37,7 +37,7 @@ const FormDetail = () => {
     // 保存表单数据
     const res = (await approveData({ token: tokenRef.current })) as DetailFormApproveResult
     if (res.code === '1') {
-      Toast.show({
+      Toast.open({
         content: String(locale('审批通过!')),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -46,7 +46,7 @@ const FormDetail = () => {
     }
     // 重复请求
     else if (res.code === '2') {
-      Toast.show({
+      Toast.open({
         content: String(res.message || locale('请勿重复提交!')),
         onClose: () => {
           // 提交完成后操作: 返回等
@@ -58,7 +58,7 @@ const FormDetail = () => {
       // 请求出错需要重新生成token
       tokenRef.current = '' + Date.now()
 
-      Toast.show({
+      Toast.open({
         content: String(res.message || locale('审批失败!'))
       })
     }

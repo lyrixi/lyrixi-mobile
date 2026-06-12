@@ -35,7 +35,7 @@ async function fileChoose({
   if (file.type !== 'file') return false
 
   if (!file.files?.[0]) {
-    Toast.show({
+    Toast.open({
       content: toToastString(
         LocaleUtil.locale(
           '没有选择文件，无法上传！',
@@ -49,7 +49,7 @@ async function fileChoose({
   }
 
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
-    Toast.show({
+    Toast.open({
       content: toToastString(
         LocaleUtil.locale(
           `照片总数不能大于${maxCount}张`,

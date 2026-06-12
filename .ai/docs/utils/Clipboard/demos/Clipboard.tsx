@@ -5,7 +5,7 @@ export default function ClipboardDemo() {
   function handleClick() {
     Clipboard.copy('https://lyrixi.github.io/lyrixi-mobile', {
       onSuccess: () => {
-        Toast.show({ content: 'Copy to clipboard success!' })
+        Toast.open({ content: 'Copy to clipboard success!' })
       }
     })
   }

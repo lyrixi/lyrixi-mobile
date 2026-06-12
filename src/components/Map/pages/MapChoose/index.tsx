@@ -134,7 +134,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
         (result as { status: string }).status === 'error'
       ) {
         const message = (result as { message?: string }).message
-        Toast.show({
+        Toast.open({
           content: typeof message === 'string' ? message : 'Error'
         })
         return
@@ -160,7 +160,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
         (result as { status: string }).status === 'error'
       ) {
         const message = (result as { message?: string }).message
-        Toast.show({
+        Toast.open({
           content: typeof message === 'string' ? message : 'Error'
         })
         return

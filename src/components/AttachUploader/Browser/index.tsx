@@ -70,7 +70,7 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
         base?.updateStatus()
       },
       chooseFile: async () => {
-        Toast.show({
+        Toast.open({
           content: toToastString(
             LocaleUtil.locale(
               '浏览器上传模式, 不支持编程式调用拍照',

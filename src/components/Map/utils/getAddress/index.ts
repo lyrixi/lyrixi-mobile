@@ -42,7 +42,7 @@ async function getAddress(params: GetAddressParams): Promise<unknown> {
   const r = result as GetAddressResultShape
   if (r?.status === 'error') {
     if (r.message) {
-      Toast.show({ content: r.message })
+      Toast.open({ content: r.message })
     }
     return result
   }

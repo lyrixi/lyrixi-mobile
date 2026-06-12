@@ -49,7 +49,7 @@ const Debugger: {
         })
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .catch((error) => {
-          Toast.show({
+          Toast.open({
             content: LocaleUtil.locale(
               '打开调试面板失败',
               'lyrixi_577dd0de7cc745dc0fcce18b2d9d909a',
