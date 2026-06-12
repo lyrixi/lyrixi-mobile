@@ -7,7 +7,7 @@ const locale = LocaleUtil.locale
 // 提交数据
 async function saveData(opts: { baseData?: unknown; data?: unknown; token?: string }) {
   const { baseData, data, token } = opts
-  Loading.show()
+  Loading.open()
 
   // 构建服务器参数
   let params = (await serverData({ baseData, data })) as Record<string, unknown>
@@ -28,11 +28,11 @@ async function saveData(opts: { baseData?: unknown; data?: unknown; token?: stri
       }
     })
       .then((result) => {
-        Loading.hide()
+        Loading.close()
         resolve(result)
       })
       .catch((err: unknown) => {
-        Loading.hide()
+        Loading.close()
         const e = err as { data?: { message?: string } }
         resolve({
           code: '0',

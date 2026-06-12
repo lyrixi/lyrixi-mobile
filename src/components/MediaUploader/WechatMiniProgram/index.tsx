@@ -119,7 +119,7 @@ function WechatMiniProgram(
   useEffect(() => {
     return () => {
       console.log('组件移除, 停止轮询, 并清除照片')
-      Loading.hide()
+      Loading.close()
       stopAllPolls()
       // eslint-disable-next-line
       clearPhotos(idRef.current, { url: saveMediaUrl })
@@ -177,7 +177,7 @@ function WechatMiniProgram(
       console.log('获取结果异常, 停止轮询')
       stopAllPolls()
       Toast.open({ content: item })
-      Loading.hide()
+      Loading.close()
       return
     }
     // Get item success
@@ -188,7 +188,7 @@ function WechatMiniProgram(
       console.log('照片拍完, 清空redis', listRef.current)
       await clearPhotos(idRef.current, { url: saveMediaUrl })
       onChangeRef.current?.(listRef.current)
-      Loading.hide()
+      Loading.close()
       return
     }
     // Null Get item by polling interval 3s
@@ -221,14 +221,14 @@ function WechatMiniProgram(
       }
 
       // Protect click
-      Loading.show({
+      Loading.open({
         content: LocaleUtil.locale(
           '打开小程序拍照',
           'lyrixi_e55618c26ebea1724e7f5d8a0489995c'
         ) as string
       })
       setTimeout(() => {
-        Loading.hide()
+        Loading.close()
         resolve(true)
       }, 1000)
 

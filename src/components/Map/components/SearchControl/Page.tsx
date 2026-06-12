@@ -41,7 +41,7 @@ function SearchPage({ open, map, onClose, onChange }: MapSearchControlPageProps)
     }
     const center = map.getCenter()
     const loadMsg = LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
-    Loading.show({
+    Loading.open({
       content: typeof loadMsg === 'string' ? loadMsg : '…'
     })
     const newResult = (await map.queryNearby({
@@ -51,7 +51,7 @@ function SearchPage({ open, map, onClose, onChange }: MapSearchControlPageProps)
       longitude: center.longitude,
       type: center.type
     })) as unknown
-    Loading.hide()
+    Loading.close()
 
     setResult(isQueryResult(newResult) ? newResult : { message: 'Invalid result' })
   }

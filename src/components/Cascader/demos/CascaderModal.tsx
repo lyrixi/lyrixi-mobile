@@ -28,7 +28,7 @@ export default function CascaderModalDemo() {
   ): Promise<LoadDataResult> {
     return new Promise((resolve) => {
       console.log('loadData:', tabs)
-      Loading.show()
+      Loading.open()
       const lastTab = tabs?.[tabs.length - 1]
       const leaves: CascaderItem[] = [
         {
@@ -45,7 +45,7 @@ export default function CascaderModalDemo() {
         }
       ]
       setTimeout(() => {
-        Loading.hide()
+        Loading.close()
       }, 100)
       resolve({
         status: 'success',

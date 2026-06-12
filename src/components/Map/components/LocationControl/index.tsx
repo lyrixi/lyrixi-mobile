@@ -49,7 +49,7 @@ const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProp
         return
       }
       const msg = LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd')
-      Loading.show({
+      Loading.open({
         content: typeof msg === 'string' ? msg : '…'
       })
       let result: unknown = await map.getLocation({ type: 'wgs84' })
@@ -65,7 +65,7 @@ const LocationControl = forwardRef<MapLocationControlRef, MapLocationControlProp
         map.panTo(result as Parameters<MapContainerAPI['panTo']>[0])
       }
       resolve(result)
-      Loading.hide()
+      Loading.close()
     })
   }
   /* eslint-enable @typescript-eslint/no-use-before-define */

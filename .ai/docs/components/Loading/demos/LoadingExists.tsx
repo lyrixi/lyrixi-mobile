@@ -5,15 +5,15 @@ export default function LoadingExistsDemo() {
   const [exists, setExists] = useState(false)
 
   function handleShow() {
-    Loading.show({ content: 'Loading...' })
+    Loading.open({ content: 'Loading...' })
     setTimeout(() => {
-      Loading.hide()
+      Loading.close()
     }, 5000)
     checkExists()
   }
 
   function handleHide() {
-    Loading.hide()
+    Loading.close()
     checkExists()
   }
 

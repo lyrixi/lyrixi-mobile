@@ -136,7 +136,7 @@ function MediaUploader(
             return
           }
 
-          Loading.show()
+          Loading.open()
 
           let currentList = localFiles.map((localFile) => {
             return {

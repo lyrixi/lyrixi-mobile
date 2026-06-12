@@ -217,7 +217,7 @@ export default function BridgeDemo() {
                   alert('chooseMedia first!')
                   return
                 }
-                Loading.show({
+                Loading.open({
                   content: '上传中...'
                 })
                 Bridge.uploadFile({
@@ -233,17 +233,17 @@ export default function BridgeDemo() {
                   onSuccess: function (res) {
                     console.log(res)
                     alert(JSON.stringify(res))
-                    Loading.hide()
+                    Loading.close()
                   },
                   onError: function (error) {
                     console.log(error)
                     alert(JSON.stringify(error))
-                    Loading.hide()
+                    Loading.close()
                   },
                   onCancel: function (res: BridgeCancelResult) {
                     console.log(res)
                     alert(JSON.stringify(res))
-                    Loading.hide()
+                    Loading.close()
                   }
                 })
               }}
@@ -331,18 +331,18 @@ export default function BridgeDemo() {
               style={{ margin: '12px 10px' }}
               radius="m"
               onClick={() => {
-                Loading.show({
+                Loading.open({
                   content: '定位中...'
                 })
                 Bridge.getLocation({
                   type: 'gcj02',
                   onSuccess: (res: BridgeSuccessResult<BridgeGetLocationResultData>) => {
-                    Loading.hide()
+                    Loading.close()
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
                   onError: (error: BridgeErrorResult) => {
-                    Loading.hide()
+                    Loading.close()
                     console.log(error)
                     alert(JSON.stringify(error))
                   }
@@ -357,18 +357,18 @@ export default function BridgeDemo() {
               style={{ margin: '12px 10px' }}
               radius="m"
               onClick={() => {
-                Loading.show({
+                Loading.open({
                   content: '定位中...'
                 })
                 Bridge.getLocation({
                   type: 'wgs84',
                   onSuccess: (res: BridgeSuccessResult<BridgeGetLocationResultData>) => {
-                    Loading.hide()
+                    Loading.close()
                     console.log(res)
                     alert(JSON.stringify(res))
                   },
                   onError: (error: BridgeErrorResult) => {
-                    Loading.hide()
+                    Loading.close()
                     console.log(error)
                     alert(JSON.stringify(error))
                   }

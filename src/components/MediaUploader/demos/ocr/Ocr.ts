@@ -34,18 +34,18 @@ function recognizeItem(item: FileItem | null) {
         item.ocrResult = result || null
         const r = result as { code?: string; message?: string } | null
 
-        Loading.hide()
+        Loading.close()
         if (r?.code === '1') {
           resolve(item)
         } else {
           item.ocrErrMsg = r?.message || String(LocaleUtil.locale('名片识别失败！'))
           Toast.open({ content: String(item.ocrErrMsg) })
-          Loading.hide()
+          Loading.close()
           resolve(item)
         }
       })
       .catch(() => {
-        Loading.hide()
+        Loading.close()
         item.ocrErrMsg = String(LocaleUtil.locale('名片识别失败！'))
         resolve(item)
       })

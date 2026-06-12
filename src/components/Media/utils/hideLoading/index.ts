@@ -33,7 +33,7 @@ function hideLoading(
   }
 
 
-  Loading.hide()
+  Loading.close()
 }
 
 export default hideLoading

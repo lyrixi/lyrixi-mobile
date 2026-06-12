@@ -4,7 +4,7 @@ const locale = LocaleUtil.locale
 
 // 审批数据
 async function approveData(_opts?: { token?: string }) {
-  Loading.show()
+  Loading.open()
   let id = Device.getUrlParameter('id')
 
   return new Promise((resolve) => {
@@ -18,11 +18,11 @@ async function approveData(_opts?: { token?: string }) {
       }
     )
       .then((result) => {
-        Loading.hide()
+        Loading.close()
         resolve(result)
       })
       .catch((err: unknown) => {
-        Loading.hide()
+        Loading.close()
         const e = err as { data?: { message?: string } }
         resolve({
           code: '0',

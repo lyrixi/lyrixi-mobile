@@ -120,13 +120,13 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     let newValue: MapChooseValue | null = value ? { ...value } : null
 
     if (!newValue?.longitude || !newValue?.latitude) {
-      Loading.show({
+      Loading.open({
         content: strLocale(
           LocaleUtil.locale('定位中...', 'lyrixi_2c4006447f62bffd57686aabbdc3f5dd')
         )
       })
       const result: unknown = await mapRef.current?.getLocation?.({ type: 'wgs84' })
-      Loading.hide()
+      Loading.close()
       if (
         result &&
         typeof result === 'object' &&
@@ -146,13 +146,13 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
     }
 
     if (!newValue?.address) {
-      Loading.show({
+      Loading.open({
         content: strLocale(
           LocaleUtil.locale('获取地址中...', 'lyrixi_727c51b4575192c9cc0ca17b67375392')
         )
       })
       const result: unknown = await mapRef.current?.getAddress?.(newValue as WgsMapPoint)
-      Loading.hide()
+      Loading.close()
       if (
         result &&
         typeof result === 'object' &&
@@ -232,7 +232,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
                 let result: WgsMapPoint = {
                   ...center
                 } as WgsMapPoint
-                Loading.show({
+                Loading.open({
                   content: strLocale(
                     LocaleUtil.locale('获取地址中...', 'lyrixi_727c51b4575192c9cc0ca17b67375392')
                   )
@@ -246,7 +246,7 @@ const MapChoose = forwardRef<MapContainerAPI, MapChooseProps>(function MapChoose
                 ) {
                   result = { ...result, ...(addr as WgsMapPoint) }
                 }
-                Loading.hide()
+                Loading.close()
                 handleChange(result as MapChooseValue)
               }
         }

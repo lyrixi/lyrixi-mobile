@@ -1,17 +1,17 @@
 import React from 'react'
 import { Page, Loading } from 'lyrixi-mobile'
 
-export default function LoadingHideDemo() {
+export default function LoadingCloseDemo() {
   function handleToggle() {
-    Loading.show()
+    Loading.open()
     setTimeout(() => {
-      Loading.hide()
+      Loading.close()
     }, 500)
   }
 
   return (
     <Page>
-      <Page.Header className="lyrixi-text-center">Loading.hide</Page.Header>
+      <Page.Header className="lyrixi-text-center">Loading.close</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <div className="demo-title" onClick={handleToggle}>
           Loading toggle

@@ -27,7 +27,7 @@ function showLoading(
     itemElement.classList.add('lyrixi-uploading')
   }
 
-  Loading.show(content ? { content } : { className: 'lyrixi-hide' })
+  Loading.open(content ? { content } : { className: 'lyrixi-hide' })
 }
 
 export default showLoading

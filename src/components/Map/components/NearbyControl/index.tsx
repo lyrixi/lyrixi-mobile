@@ -54,7 +54,7 @@ const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
   async function loadData() {
     if (!map) return
     const loadMsg = LocaleUtil.locale('搜索中', 'lyrixi_9bc4c05af0d6d8e8fcad313f7614006b')
-    Loading.show({
+    Loading.open({
       content: typeof loadMsg === 'string' ? loadMsg : '…'
     })
     const newResult = (await map.queryNearby({
@@ -65,7 +65,7 @@ const Nearby = forwardRef<MapNearbyControlRef | null, MapNearbyControlProps>(
       type: value?.type,
       radius: radius
     })) as QueryNearbyResult
-    Loading.hide()
+    Loading.close()
 
     setResult(newResult)
 

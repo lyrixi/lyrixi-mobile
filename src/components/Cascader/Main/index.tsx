@@ -271,7 +271,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleDrill({ children: _children, ...item }: CascaderItem) {
       // 防止用户快速点击多次触发
-      Loading.show({
+      Loading.open({
         id: '__lyrixi_loading_cascader_drill_mask__',
         content: 'Get children...',
         style: {
@@ -299,7 +299,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 
       // 防止用户快速点击多次触发
       setTimeout(() => {
-        Loading.hide({ id: '__lyrixi_loading_cascader_drill_mask__' })
+        Loading.close({ id: '__lyrixi_loading_cascader_drill_mask__' })
       }, 300)
     }
 

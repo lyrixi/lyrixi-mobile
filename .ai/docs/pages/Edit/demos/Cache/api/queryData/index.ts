@@ -20,12 +20,12 @@ function queryData() {
     }
 
     // 修改或者复制
-    Loading.show()
+    Loading.open()
     Request.post('/api/examples/edit/load', {
       id: id
     })
       .then((result: unknown) => {
-        Loading.hide()
+        Loading.close()
         const r = result as { code?: string }
         if (r.code === '1') {
           resolve({
@@ -46,7 +46,7 @@ function queryData() {
         }
       })
       .catch(() => {
-        Loading.hide()
+        Loading.close()
         resolve({
           status: '500',
           message: locale('获取数据异常！')

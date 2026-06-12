@@ -6,10 +6,10 @@ function queryData() {
   return new Promise((resolve) => {
     const id = Device.getUrlParameter('id')
 
-    Loading.show()
+    Loading.open()
     Request.get('/api/getDetail.do', { id })
       .then((result: unknown) => {
-        Loading.hide()
+        Loading.close()
         const r = result as { code?: string; message?: string; data?: unknown }
         if (r.code === '1') {
           resolve({
@@ -23,7 +23,7 @@ function queryData() {
         }
       })
       .catch((err: unknown) => {
-        Loading.hide()
+        Loading.close()
         const e = err as { data?: { message?: string } }
         resolve({
           status: '500',

@@ -23,7 +23,7 @@ export interface LoadingProps {
   children?: ReactNode
 }
 
-export interface LoadingShowProps {
+export interface LoadingOpenProps {
   /** 唯一 ID */
   id?: string
   /** 提示内容 */

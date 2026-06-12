@@ -13,8 +13,8 @@
 - `Loading.BallWave`
 
 ## Demo 索引（本目录 `demos/`）
-- `demos/LoadingShow.tsx`
-- `demos/LoadingHide.tsx`
+- `demos/LoadingOpen.tsx`
+- `demos/LoadingClose.tsx`
 - `demos/LoadingExists.tsx`
 - `demos/Loading.tsx`
 - `demos/LoadingSpinFade.tsx`

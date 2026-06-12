@@ -23,18 +23,18 @@ async function loadData(
   const lastTab = tabs?.[tabs?.length - 1]
 
   if (lastTab?.type?.includes('country')) {
-    Loading.show()
+    Loading.open()
     const countryRegionsData = await loadCountryRegionsData({
       countryId: lastTab.id,
       loadCountryRegions
     })
-    Loading.hide()
+    Loading.close()
     return countryRegionsData
   }
 
-  Loading.show()
+  Loading.open()
   const streetsData = await loadStreets(lastTab.id, { value: tabs })
-  Loading.hide()
+  Loading.close()
   return streetsData
 }
 
