@@ -1,16 +1,19 @@
-import hide from './hide'
+import close from './close'
 import type { CSSProperties } from 'react'
 
-import type { ToastShowExtendedHTMLElement, ToastShowProps } from './types'
+import type { ToastOpenExtendedHTMLElement, ToastOpenProps } from '../types'
 
 // 内库使用-start
-import DOMUtil from './../../utils/DOMUtil'
+import DOMUtil from '../../../utils/DOMUtil'
 // 内库使用-end
 
-// 显示Toast（作为 Toast.show 调用时 this 为复合 export，含 show/hide 等挂载项）
+// 显示Toast（作为 Toast.open 调用时 this 为复合 export，含 open/close 等挂载项）
 // eslint-disable-next-line
-function show(this: ({ defaultProps?: ToastShowProps } & Record<string, unknown>) | void, props?: ToastShowProps) {
-  const context = this as { defaultProps?: ToastShowProps } | undefined
+function open(
+  this: ({ defaultProps?: ToastOpenProps } & Record<string, unknown>) | void,
+  props?: ToastOpenProps
+) {
+  const context = this as { defaultProps?: ToastOpenProps } | undefined
   const {
     // Visible duration
     duration,
@@ -36,10 +39,10 @@ function show(this: ({ defaultProps?: ToastShowProps } & Record<string, unknown>
   function render() {
     let toastId = id || '__lyrixi_toast_el__'
     // 如果没生成成功, 则强制生成
-    let mask = document.getElementById(toastId) as ToastShowExtendedHTMLElement | null
+    let mask = document.getElementById(toastId) as ToastOpenExtendedHTMLElement | null
     if (!mask) {
       // Create mask
-      mask = document.createElement('div') as ToastShowExtendedHTMLElement
+      mask = document.createElement('div') as ToastOpenExtendedHTMLElement
 
       mask.innerHTML = `<div class="lyrixi-toast">
         <div class="lyrixi-toast-wrapper">
@@ -111,7 +114,7 @@ function show(this: ({ defaultProps?: ToastShowProps } & Record<string, unknown>
     if (mask.showTimeout) window.clearTimeout(mask.showTimeout)
     mask.showTimeout = setTimeout(
       () => {
-        hide({ onClose: onClose })
+        close({ onClose: onClose })
       },
       typeof duration === 'number' ? duration : 2000
     )
@@ -122,4 +125,4 @@ function show(this: ({ defaultProps?: ToastShowProps } & Record<string, unknown>
   return render()
 }
 
-export default show
+export default open

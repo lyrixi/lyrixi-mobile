@@ -1,10 +1,10 @@
-import show from '../show'
-import hide from '../hide'
+import open from '../api/open'
+import close from '../api/close'
 
-import type { ToastShowProps } from './Toast.types'
+import type { ToastOpenProps } from './Toast.types'
 
 export type ToastComponents = {
-  defaultProps?: ToastShowProps
-  show: typeof show
-  hide: typeof hide
+  defaultProps?: ToastOpenProps
+  open: typeof open
+  close: typeof close
 }

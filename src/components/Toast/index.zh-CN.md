@@ -19,42 +19,42 @@ toc: content
 
 ## 代码演示
 
-### Toast.show
+### Toast.open
 
-<code src="./demos/show/index.tsx"></code>
+<code src="./demos/open/index.tsx"></code>
 
-### Toast.hide
+### Toast.close
 
-<code src="./demos/hide/index.tsx"></code>
+<code src="./demos/close/index.tsx"></code>
 
 ## API
 
-### Toast.show
+### Toast.open
 
 显示 Toast。
 
 #### 参数
 
-| 参数          | 说明             | 类型                            | 默认值 |
-| ------------- | ---------------- | ------------------------------- | ------ |
-| duration      | 显示时长（毫秒） | `number`                        | -      |
-| maskClickable | 遮罩是否可点击   | `boolean`                       | -      |
-| position      | 显示位置         | `string`                        | -      |
-| portal        | 挂载节点         | `HTMLElement`                   | -      |
-| id            | Toast ID         | `string`                        | -      |
-| maskClassName | 遮罩类名         | `string`                        | -      |
-| maskStyle     | 遮罩样式         | `CSSProperties`                 | -      |
-| className     | 内容类名         | `string`                        | -      |
-| style         | 内容样式         | `CSSProperties`                 | -      |
-| content       | 提示内容         | `string`                        | -      |
-| onOpen        | 打开事件         | `() => void`                    | -      |
-| onClose       | 关闭事件         | `() => void`                    | -      |
+| 参数          | 说明             | 类型            | 默认值 |
+| ------------- | ---------------- | --------------- | ------ |
+| duration      | 显示时长（毫秒） | `number`        | -      |
+| maskClickable | 遮罩是否可点击   | `boolean`       | -      |
+| position      | 显示位置         | `string`        | -      |
+| portal        | 挂载节点         | `HTMLElement`   | -      |
+| id            | Toast ID         | `string`        | -      |
+| maskClassName | 遮罩类名         | `string`        | -      |
+| maskStyle     | 遮罩样式         | `CSSProperties` | -      |
+| className     | 内容类名         | `string`        | -      |
+| style         | 内容样式         | `CSSProperties` | -      |
+| content       | 提示内容         | `string`        | -      |
+| onOpen        | 打开事件         | `() => void`    | -      |
+| onClose       | 关闭事件         | `() => void`    | -      |
 
 #### 返回值
 
 无返回值。
 
-### Toast.hide
+### Toast.close
 
 隐藏 Toast。
 
@@ -74,4 +74,4 @@ Toast 的静态默认属性。
 
 #### 类型
 
-`ToastShowProps`
+`ToastOpenProps`

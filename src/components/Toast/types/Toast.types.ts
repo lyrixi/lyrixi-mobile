@@ -1,14 +1,18 @@
 import type { CSSProperties } from 'react'
 
-export interface ToastHideOptions {
+export interface ToastCloseOptions {
   onClose?: () => void
 }
 
-export type ToastShowExtendedHTMLElement = HTMLElement & { showTimeout?: ReturnType<typeof setTimeout> }
+export type ToastOpenExtendedHTMLElement = HTMLElement & {
+  showTimeout?: ReturnType<typeof setTimeout>
+}
 
-export type ToastHideExtendedHTMLElement = HTMLElement & { timeout?: ReturnType<typeof setTimeout> }
+export type ToastCloseExtendedHTMLElement = HTMLElement & {
+  timeout?: ReturnType<typeof setTimeout>
+}
 
-export interface ToastShowProps {
+export interface ToastOpenProps {
   // Value & Display Value
   duration?: number
   maskClickable?: boolean

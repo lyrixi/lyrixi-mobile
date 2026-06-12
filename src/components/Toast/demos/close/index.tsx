@@ -1,11 +1,11 @@
 import React from 'react'
 import { Page, Toast } from 'lyrixi-mobile'
 
-export default function ToastHideDemo() {
+export default function ToastCloseDemo() {
   function handleToggle() {
-    Toast.show({
+    Toast.open({
       duration: 1000000,
-      content: 'show toast',
+      content: 'open toast',
       onOpen: () => {
         console.log('open:', true)
       },
@@ -14,13 +14,13 @@ export default function ToastHideDemo() {
       }
     })
     setTimeout(() => {
-      Toast.hide()
+      Toast.close()
     }, 500)
   }
 
   return (
     <Page>
-      <Page.Header className="lyrixi-text-center">Toast.hide</Page.Header>
+      <Page.Header className="lyrixi-text-center">Toast.close</Page.Header>
       <Page.Main className="lyrixi-bg-white">
         <div className="demo-title" onClick={handleToggle}>
           Toast open toggle
