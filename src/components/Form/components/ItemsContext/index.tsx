@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { createContext } from 'react'
 
 import type { ItemsContextType } from '../../types'
