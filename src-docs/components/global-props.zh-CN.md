@@ -54,3 +54,10 @@ toc: content
 | onLoad       | 加载事件         | Result | Empty  |
 | onOk         | 确定事件         | Empty  | Empty  |
 | onCancel     | 取消事件         | Empty  | Empty  |
+
+## 全局方法
+
+| 方法名 | 说明       | 示例                                    |
+| ------ | ---------- | --------------------------------------- |
+| open   | 打开模态框 | Message.open,Toast.open,Loading.open    |
+| close  | 关闭模态框 | Message.close,Toast.close,Loading.close |
