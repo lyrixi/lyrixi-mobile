@@ -269,7 +269,10 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     onChangeRef.current?.(newListRe, { action: 'reUpload' })
   }
 
-  function handleTouchStart(_swiper: SwiperClass, e: globalThis.TouchEvent) {
+  function handleTouchStart(
+    _swiper: SwiperClass,
+    e: MouseEvent | TouchEvent | PointerEvent
+  ) {
     e.stopPropagation()
     const t = e.currentTarget as HTMLElement & { touchMovePreventDefault?: boolean }
     if (t.touchMovePreventDefault) return
@@ -312,10 +315,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
       navigation={false}
       zoom={list?.[activeIndex]?.fileType !== 'video' ? true : false}
       // Bullet pagination
-      pagination={{
-        type: 'fraction',
-        className: 'lyrixi-media-preview-main-pagination'
-      }}
+      pagination={{ type: 'fraction' }}
       modules={[Zoom, Pagination]}
       // Style
       className={DOMUtil.classNames(
