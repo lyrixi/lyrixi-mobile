@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 /**
  * @fileoverview
  * - Using the 'QRCode for Javascript library'
@@ -9,7 +10,44 @@
  * @see <a href="http://www.d-project.com/" target="_blank">http://www.d-project.com/</a>
  * @see <a href="http://jeromeetienne.github.com/jquery-qrcode/" target="_blank">http://jeromeetienne.github.com/jquery-qrcode/</a>
  */
-var QRCode
+
+export interface QROption {
+  text: string
+  width?: number
+  height?: number
+  colorDark?: string
+  colorLight?: string
+  correctLevel?: number
+  [key: string]: unknown
+}
+
+export interface QRLib {
+  _htOption: QROption & {
+    width?: number
+    height?: number
+    colorDark?: string
+    colorLight?: string
+  }
+  makeCode(text: string): void
+  clear(): void
+}
+
+interface QRLibConstructor {
+  new (
+    el: Element | null,
+    options: {
+      text: string
+      width?: number
+      height?: number
+      colorDark?: string
+      colorLight?: string
+      correctLevel?: number
+    }
+  ): QRLib
+  CorrectLevel: { L: number; M: number; Q: number; H: number }
+}
+
+var QRCode: QRLibConstructor
 
 ;(function () {
   //---------------------------------------------------------------------

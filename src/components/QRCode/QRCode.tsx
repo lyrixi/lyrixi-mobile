@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect, type Ref } from 'react'
 import Instance from './instance'
-import type QRLib from './instance'
+import type { QRLib } from './instance'
 
 import type { QRCodeProps, QRCodeRef } from './types'
 

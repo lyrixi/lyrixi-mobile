@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type QRLib from '../instance'
+import type { QRLib } from '../instance'
 
 export interface QRCodeProps {
   // Value & Display Value
