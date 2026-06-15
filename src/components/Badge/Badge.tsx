@@ -1,26 +1,29 @@
-import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 import type { BadgeProps, BadgeRef } from './types'
 
 // 内库使用-start
+import MathUtil from './../../utils/MathUtil'
 import DOMUtil from './../../utils/DOMUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { DOMUtil } from 'lyrixi-mobile'
+import { MathUtil, DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 数值标
 const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
   {
     // Value & Display Value
-    children = '0',
+    count,
 
     // Style
     style,
     className,
 
-        maxLength = 2,
+    // Elements
+    children = '0',
+    maxCount = 99,
     ellipsis = '+' // 有maxLength属性时ellipsis才生效
   },
   ref
@@ -35,15 +38,11 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
   })
 
   // 标题
-  let text: ReactNode = children
-  if (maxLength && (children || children === 0) && (typeof children === 'string' || typeof children === 'number')) {
-    const raw = String(children)
-    if (!isNaN(Number(raw))) {
-      text = raw.length > maxLength ? '99999'.substring(0, maxLength) + ellipsis : raw
-    } else {
-      text = raw.length > maxLength ? raw.substring(0, maxLength) + ellipsis : raw
-    }
+  let countText: string = MathUtil.isNumber(count) ? String(count) : ''
+  if (MathUtil.isNumber(count) && MathUtil.isNumber(maxCount) && Number(count) > maxCount) {
+    countText = String(maxCount) + ellipsis
   }
+
   return (
     <span
       ref={rootRef}
@@ -51,7 +50,8 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
       style={style}
       className={DOMUtil.classNames('lyrixi-badge', className)}
     >
-      {text}
+      {countText}
+      {children}
     </span>
   )
 })
