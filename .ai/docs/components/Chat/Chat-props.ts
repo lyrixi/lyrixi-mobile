@@ -10,6 +10,7 @@ export type ChatPlacement = 'left' | 'right'
 
 export interface ChatRawItem {
   id?: string | number
+  /** 气泡位置，`left` 左、`right` 右 */
   placement?: ChatPlacement
   avatarUrl?: string
   avatarRender?: unknown
@@ -73,7 +74,7 @@ export interface ChatItemProps {
   checkable?: boolean
   /** 自定义类名 */
   className?: string
-  /** 气泡位置 */
+  /** 气泡位置，`left` 左、`right` 右 */
   placement?: ChatPlacement
   /** 自定义样式 */
   style?: CSSProperties

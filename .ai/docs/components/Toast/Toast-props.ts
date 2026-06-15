@@ -4,13 +4,15 @@
 
 import type { CSSProperties } from 'react'
 
+export type ToastPlacement = 'top' | 'middle' | 'bottom'
+
 export interface ToastOpenProps {
   /** 显示时长（ms），默认 `2000` */
   duration?: number
   /** 遮罩是否可点击穿透 */
   maskClickable?: boolean
-  /** 弹出位置 */
-  placement?: string
+  /** 弹出位置，`top` 上、`middle` 中、`bottom` 下，默认 `middle` */
+  placement?: ToastPlacement
   /** 唯一标识 */
   id?: string
   /** 内容文本 */

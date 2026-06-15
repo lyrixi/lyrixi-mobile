@@ -40,6 +40,14 @@ toc: content
 | checkboxPosition | 复选框位置 | `string`                                                                                                                                                                                                                                                       | -       |
 | onChange         | 变化事件   | `(value: ChatListValue[]) => void`                                                                                                                                                                                                                              | -       |
 
+#### list 项（ChatRawItem）
+
+`list` 中每项为 `ChatRawItem`，常用字段：
+
+| 属性      | 说明     | 类型                  | 默认值 |
+| --------- | -------- | --------------------- | ------ |
+| placement | 气泡位置，`left` 左、`right` 右 | `'left' \| 'right'`   | -      |
+
 #### Ref
 
 | 属性       | 说明       | 类型                   |
@@ -71,7 +79,7 @@ toc: content
 | checked          | 是否选中       | `boolean`                                                    | -      |
 | checkable        | 是否可选       | `boolean`                                                    | -      |
 | className        | 自定义类名     | `string`                                                     | -      |
-| placement        | 气泡位置       | `'left' \| 'right'`                                          | -      |
+| placement        | 气泡位置，`left` 左、`right` 右 | `'left' \| 'right'`                                          | -      |
 | style            | 自定义样式     | `CSSProperties`                                              | -      |
 | checkboxVariant  | 复选框样式变体 | `string`                                                     | -      |
 | checkboxPosition | 复选框位置     | `string`                                                     | -      |
