@@ -1,6 +1,8 @@
+export type ChatPlacement = 'left' | 'right'
+
 export interface ChatRawItem {
   id?: string | number
-  placement?: string
+  placement?: ChatPlacement
   avatarUrl?: string
   avatarRender?: unknown
   avatarNode?: unknown

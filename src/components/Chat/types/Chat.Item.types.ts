@@ -1,5 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 
+import type { ChatPlacement } from './Chat.common.types'
+
 export interface ChatItemRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
@@ -14,7 +16,7 @@ export interface ChatItemProps {
   checkable?: boolean
   // Style
   className?: string
-  placement?: string
+  placement?: ChatPlacement
   style?: CSSProperties
   checkboxVariant?: string
   checkboxPosition?: string

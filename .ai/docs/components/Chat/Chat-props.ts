@@ -6,9 +6,11 @@ import type { CSSProperties, ReactNode } from 'react'
 
 // ---------- Chat.List ----------
 
+export type ChatPlacement = 'left' | 'right'
+
 export interface ChatRawItem {
   id?: string | number
-  placement?: string
+  placement?: ChatPlacement
   avatarUrl?: string
   avatarRender?: unknown
   avatarNode?: unknown
@@ -72,7 +74,7 @@ export interface ChatItemProps {
   /** 自定义类名 */
   className?: string
   /** 气泡位置 */
-  placement?: string
+  placement?: ChatPlacement
   /** 自定义样式 */
   style?: CSSProperties
   /** 复选框样式变体 */

@@ -71,7 +71,7 @@ toc: content
 | checked          | 是否选中       | `boolean`                                                    | -      |
 | checkable        | 是否可选       | `boolean`                                                    | -      |
 | className        | 自定义类名     | `string`                                                     | -      |
-| placement        | 气泡位置       | `string`                                                     | -      |
+| placement        | 气泡位置       | `'left' \| 'right'`                                          | -      |
 | style            | 自定义样式     | `CSSProperties`                                              | -      |
 | checkboxVariant  | 复选框样式变体 | `string`                                                     | -      |
 | checkboxPosition | 复选框位置     | `string`                                                     | -      |

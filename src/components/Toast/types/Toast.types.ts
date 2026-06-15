@@ -12,11 +12,13 @@ export type ToastCloseExtendedHTMLElement = HTMLElement & {
   timeout?: ReturnType<typeof setTimeout>
 }
 
+export type ToastPlacement = 'top' | 'middle' | 'bottom'
+
 export interface ToastOpenProps {
   // Value & Display Value
   duration?: number
   maskClickable?: boolean
-  placement?: string
+  placement?: ToastPlacement
   id?: string
   content?: string
   // Style
