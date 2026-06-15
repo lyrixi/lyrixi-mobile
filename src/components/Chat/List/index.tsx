@@ -3,7 +3,7 @@ import viewFormatter from './viewFormatter'
 import getSpaceDates from './getSpaceDates'
 import Item from './../Item'
 
-import type { ChatItemProps, ChatListProps, ChatListRef, ChatListValue, ChatViewItem } from './../types'
+import type { ChatItem, ChatItemProps, ChatListProps, ChatListRef, ChatViewItem } from './../types'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
@@ -59,7 +59,7 @@ const List = (
         authorNode={(item.authorNode ?? item.name) as React.ReactNode}
         content={item.content as React.ReactNode}
         onChange={(checked) => {
-          let newValue: ChatListValue[] = []
+          let newValue: ChatItem[] = []
           if (!checked) {
             newValue = (value ?? []).filter((valueItem) => valueItem?.id !== item.id)
           } else {

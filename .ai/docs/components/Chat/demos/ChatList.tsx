@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Chat, type ChatRawItem } from 'lyrixi-mobile'
+import { Page, Chat, type ChatItem } from 'lyrixi-mobile'
 
 const ChatListDemo = () => {
   const list = [
@@ -23,7 +23,7 @@ const ChatListDemo = () => {
 
   // 使用 formatViewItem 格式化单个项
   // 注意：formatViewItem 和 formatViewList 只需要使用其中一个
-  function formatViewItem(item: ChatRawItem, { index }: { index: number }): ChatRawItem {
+  function formatViewItem(item: ChatItem, { index }: { index: number }): ChatItem {
     return {
       ...item,
       authorNode: (typeof item.name === 'string' ? item.name : null) || `用户${index + 1}`

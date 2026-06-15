@@ -14,7 +14,7 @@ export type ListItem = {
   [key: string]: unknown
 }
 
-export type ViewItem = {
+export type ListViewItem = {
   _raw?: ListItem
   id?: unknown
   disabled?: boolean
@@ -31,7 +31,7 @@ export type ViewItem = {
   note?: unknown
   content?: unknown
   actionRender?: (item: ListItem & { checked?: boolean }) => ReactNode
-  children?: ViewItem[]
+  children?: ListViewItem[]
 }
 
 export interface ListProps {
@@ -50,9 +50,9 @@ export interface ListProps {
   /** 列表数据 */
   list?: ListItem[]
   /** 格式化列表 */
-  formatViewList?: (list: ListItem[]) => ViewItem[]
+  formatViewList?: (list: ListItem[]) => ListViewItem[]
   /** 格式化项 */
-  formatViewItem?: (item: ListItem, options: { index: number }) => ViewItem
+  formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
   /** 项布局 */
   itemLayout?: string
   /** 自定义样式 */

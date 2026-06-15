@@ -1,4 +1,4 @@
-import type { ChatItem, ChatListValue, ChatRawItem, ChatViewItem } from './Chat.common.types'
+import type { ChatItem, ChatViewItem } from './Chat.common.types'
 
 export interface ChatListRef {
   element: HTMLDivElement | null
@@ -7,10 +7,10 @@ export interface ChatListRef {
 
 export interface ChatListProps {
   // Value & Display Value
-  value?: ChatListValue[]
+  value?: ChatItem[]
   list?: ChatItem[]
   formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
-  formatViewItem?: (item: ChatRawItem, ctx: { index: number }) => ChatRawItem
+  formatViewItem?: (item: ChatItem, ctx: { index: number }) => ChatItem
   // Status
   checkable?: boolean
   // Style
@@ -19,5 +19,5 @@ export interface ChatListProps {
   // Elements
   timeSpace?: number
   // Events
-  onChange?: (value: ChatListValue[]) => void
+  onChange?: (value: ChatItem[]) => void
 }

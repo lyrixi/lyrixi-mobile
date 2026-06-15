@@ -1,6 +1,6 @@
 export type ChatPlacement = 'left' | 'right'
 
-export interface ChatRawItem {
+export interface ChatItem {
   id?: string | number
   placement?: ChatPlacement
   avatarUrl?: string
@@ -11,23 +11,16 @@ export interface ChatRawItem {
   content?: unknown
   name?: string
   time?: Date
-  _raw?: ChatRawItem
+  _raw?: ChatItem
   [key: string]: unknown
 }
 
-export interface ChatViewItem extends ChatRawItem {
-  _raw: ChatRawItem
-}
-
-export interface ChatItem extends ChatRawItem {}
-
-export interface ChatListValue {
-  id?: string | number
-  [key: string]: unknown
+export interface ChatViewItem extends ChatItem {
+  _raw: ChatItem
 }
 
 export interface ChatViewFormatterOptions {
-  formatViewItem?: (item: ChatRawItem, ctx: { index: number }) => ChatRawItem
+  formatViewItem?: (item: ChatItem, ctx: { index: number }) => ChatItem
   formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
 }
 

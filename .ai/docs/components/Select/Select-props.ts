@@ -5,7 +5,7 @@
 import type { ComponentType, CSSProperties, ReactNode, SVGProps } from 'react'
 import type { ModalProps } from '../../../src/components/Modal/types'
 import type { SelectItem } from './Select-item-types'
-import type { ViewItem } from '../../../src/components/List/types'
+import type { ListViewItem } from '../../../src/components/List/types'
 
 export interface SelectComboProps {
   /** 选中的值 */
@@ -43,9 +43,9 @@ export interface SelectComboProps {
   /** 选项列表 */
   list?: SelectItem[]
   /** 格式化列表 */
-  formatViewList?: (list: SelectItem[]) => ViewItem[]
+  formatViewList?: (list: SelectItem[]) => ListViewItem[]
   /** 格式化项 */
-  formatViewItem?: (item: SelectItem, options: { index: number }) => ViewItem
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ListViewItem
   /** 是否多选 */
   multiple?: boolean
   /** 是否可选 */
@@ -108,9 +108,9 @@ export interface SelectModalProps {
   /** 选项列表 */
   list?: SelectItem[]
   /** 格式化列表 */
-  formatViewList?: (list: SelectItem[]) => ViewItem[]
+  formatViewList?: (list: SelectItem[]) => ListViewItem[]
   /** 格式化项 */
-  formatViewItem?: (item: SelectItem, options: { index: number }) => ViewItem
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ListViewItem
   /** 是否多选 */
   multiple?: boolean
   /** 是否可选 */
@@ -175,9 +175,9 @@ export interface SelectMainProps {
   /** 选项列表 */
   list?: SelectItem[]
   /** 格式化列表 */
-  formatViewList?: (list: SelectItem[]) => ViewItem[]
+  formatViewList?: (list: SelectItem[]) => ListViewItem[]
   /** 格式化项 */
-  formatViewItem?: (item: SelectItem, options: { index: number }) => ViewItem
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ListViewItem
   /** 是否多选 */
   multiple?: boolean
   /** 是否可选 */

@@ -9,7 +9,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 import SearchActive from './../../../ToolBar/SearchActive'
 import List from './../../../List'
-import type { ListItem, ViewItem } from './../../../List/types'
+import type { ListItem, ListViewItem } from './../../../List/types'
 import Page from './../../../Page'
 import Result from './../../../Result'
 import Text from './../../../Text'
@@ -89,14 +89,14 @@ function SearchPage({ open, map, onClose, onChange }: MapSearchControlPageProps)
           <List
             list={list}
             onChange={handleClick}
-            formatViewItem={(item: ListItem): ViewItem => {
+            formatViewItem={(item: ListItem): ListViewItem => {
               const name = typeof item.name === 'string' ? item.name : ''
               const address = typeof item.address === 'string' ? item.address : undefined
               return {
                 ...item,
                 title: <Text highlight={keyword || ''}>{name}</Text>,
                 description: address
-              } as ViewItem
+              } as ListViewItem
             }}
           />
         ) : null}

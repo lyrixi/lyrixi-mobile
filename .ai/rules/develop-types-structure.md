@@ -52,8 +52,8 @@ export interface SelectItem extends InputSelectItem {
 export interface SelectListProps extends Pick<ListProps, 'multiple' | 'itemStyle' | ...> {
   value?: SelectItem | SelectItem[] | null
   list?: SelectItem[]
-  formatViewList?: (list: SelectItem[]) => ViewItem[]
-  formatViewItem?: (item: SelectItem, options: { index: number }) => ViewItem
+  formatViewList?: (list: SelectItem[]) => ListViewItem[]
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ListViewItem
   itemRender?: (
     item: SelectItem,
     options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }

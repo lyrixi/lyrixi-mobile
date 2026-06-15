@@ -8,7 +8,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 export type ChatPlacement = 'left' | 'right'
 
-export interface ChatRawItem {
+export interface ChatItem {
   id?: string | number
   /** 气泡位置，`left` 左、`right` 右 */
   placement?: ChatPlacement
@@ -20,30 +20,25 @@ export interface ChatRawItem {
   content?: unknown
   name?: string
   time?: Date
-  _raw?: ChatRawItem
+  _raw?: ChatItem
   [key: string]: unknown
 }
 
-export interface ChatViewItem extends ChatRawItem {
-  _raw: ChatRawItem
-}
-
-export interface ChatListValue {
-  id?: string | number
-  [key: string]: unknown
+export interface ChatViewItem extends ChatItem {
+  _raw: ChatItem
 }
 
 export interface ChatListProps {
   /** 时间间隔，默认 `60000` */
   timeSpace?: number
   /** 选中的值 */
-  value?: ChatListValue[]
+  value?: ChatItem[]
   /** 消息列表 */
-  list?: ChatRawItem[]
+  list?: ChatItem[]
   /** 格式化列表 */
   formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
   /** 格式化项 */
-  formatViewItem?: (item: ChatRawItem, ctx: { index: number }) => ChatRawItem
+  formatViewItem?: (item: ChatItem, ctx: { index: number }) => ChatItem
   /** 是否可选 */
   checkable?: boolean
   /** 复选框样式变体 */
@@ -51,7 +46,7 @@ export interface ChatListProps {
   /** 复选框位置 */
   checkboxPosition?: string
   /** 变化事件 */
-  onChange?: (value: ChatListValue[]) => void
+  onChange?: (value: ChatItem[]) => void
 }
 
 export interface ChatListRef {

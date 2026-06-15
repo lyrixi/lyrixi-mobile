@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import type { InputSelectItem } from '../../Input/types/Input.Node.types'
-import type { ListProps, ViewItem } from '../../List/types'
+import type { ListProps, ListViewItem } from '../../List/types'
 
 /** Main / Modal / Combo 共用的列表项数据 */
 export interface SelectItem extends InputSelectItem {
@@ -22,8 +22,8 @@ export interface SelectListProps
   > {
   value?: SelectItem | SelectItem[] | null
   list?: SelectItem[]
-  formatViewList?: (list: SelectItem[]) => ViewItem[]
-  formatViewItem?: (item: SelectItem, options: { index: number }) => ViewItem
+  formatViewList?: (list: SelectItem[]) => ListViewItem[]
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ListViewItem
   itemRender?: (
     item: SelectItem,
     options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }

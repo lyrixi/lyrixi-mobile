@@ -33,8 +33,8 @@ toc: content
 | multiple         | 是否多选         | `boolean`                                                                                                                    | -      |
 | allowClear       | 允许清除         | `boolean`                                                                                                                    | -      |
 | list             | 列表数据         | `ListItem[]`                                                                                                                 | -      |
-| formatViewList   | 格式化列表       | `(list: ListItem[]) => ViewItem[]`                                                                                           | -      |
-| formatViewItem   | 格式化项         | `(item: ListItem, options: { index: number }) => ViewItem`                                                                    | -      |
+| formatViewList   | 格式化列表       | `(list: ListItem[]) => ListViewItem[]`                                                                                           | -      |
+| formatViewItem   | 格式化项         | `(item: ListItem, options: { index: number }) => ListViewItem`                                                                    | -      |
 | checkable        | 是否可选         | `boolean`                                                                                                                    | -      |
 | style            | 自定义样式       | `CSSProperties`                                                                                                              | -      |
 | className        | 自定义类名       | `string`                                                                                                                     | -      |

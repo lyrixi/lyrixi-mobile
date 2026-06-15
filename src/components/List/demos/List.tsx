@@ -1,6 +1,6 @@
 import React, { useState, type ReactNode } from 'react'
 import { Page, List, Card, Button } from 'lyrixi-mobile'
-import type { ListItem, ViewItem } from 'lyrixi-mobile'
+import type { ListItem, ListViewItem } from 'lyrixi-mobile'
 import listAllData from './listAllData'
 import listData from './listData'
 
@@ -19,13 +19,13 @@ const ListDemo = () => {
           <Card.Main>
             <List
               list={listAllData}
-              formatViewItem={(item: ListItem): ViewItem => {
+              formatViewItem={(item: ListItem): ListViewItem => {
                 return {
                   ...item,
                   actionRender: () => {
                     return <Button size="s">actionRender</Button>
                   }
-                } as ViewItem
+                } as ListViewItem
               }}
               value={singleValue}
               onChange={(newSingleValue) => {
@@ -41,7 +41,7 @@ const ListDemo = () => {
             <List
               list={listAllData}
               itemLayout="vertical"
-              formatViewItem={(item: ListItem): ViewItem => {
+              formatViewItem={(item: ListItem): ListViewItem => {
                 return {
                   ...item,
                   _raw: item,
@@ -49,7 +49,7 @@ const ListDemo = () => {
                   actionRender: () => {
                     return <Button size="s">actionRender</Button>
                   }
-                } as ViewItem
+                } as ListViewItem
               }}
               value={singleValue}
               onChange={(newSingleValue) => {
@@ -111,7 +111,7 @@ const ListDemo = () => {
               onChange={setSingleValue}
               checkable
               allowClear
-              formatViewItem={(item: ListItem, { index }): ViewItem => {
+              formatViewItem={(item: ListItem, { index }): ListViewItem => {
                 return {
                   ...item,
                   _raw: item,
@@ -122,7 +122,7 @@ const ListDemo = () => {
                       <span>{String((item as { name?: unknown }).name ?? '')}</span>
                     </div>
                   )
-                } as ViewItem
+                } as ListViewItem
               }}
             />
           </Card.Main>

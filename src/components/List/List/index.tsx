@@ -3,7 +3,7 @@ import viewFormatter from './viewFormatter'
 import HeaderItem from './../HeaderItem'
 import Item from './../Item'
 
-import type { ListProps, ListRef, ListItem, ViewItem } from './../types'
+import type { ListProps, ListRef, ListItem, ListViewItem } from './../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
@@ -69,7 +69,7 @@ const List = (
     onChange?.(newValue, { checkedItem: _raw })
   }
 
-  function renderItem(item: ViewItem, index: number) {
+  function renderItem(item: ListViewItem, index: number) {
     let checked = false
     if (value) {
       checked = multiple

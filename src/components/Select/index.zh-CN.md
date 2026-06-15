@@ -99,8 +99,8 @@ toc: content
 | ---------------- | ------------ | -------------------------------------------------------------------- | ------ |
 | value            | 选中的值     | `SelectItem \| SelectItem[] \| null`                                 | -      |
 | list             | 选项列表     | `SelectItem[]`                                                       | -      |
-| formatViewList   | 格式化列表   | `(list: SelectItem[]) => ViewItem[]`                                 | -      |
-| formatViewItem   | 格式化项     | `(item: SelectItem, options: { index: number }) => ViewItem`         | -      |
+| formatViewList   | 格式化列表   | `(list: SelectItem[]) => ListViewItem[]`                                 | -      |
+| formatViewItem   | 格式化项     | `(item: SelectItem, options: { index: number }) => ListViewItem`         | -      |
 | multiple         | 是否多选     | `boolean`                                                            | -      |
 | checkable        | 是否可选     | `boolean`                                                            | -      |
 | itemStyle        | 项样式       | `object`                                                             | -      |
@@ -155,8 +155,8 @@ toc: content
 | ---------------- | ---------- | ------------------------------------------------------------ | ------ |
 | value            | 选中的值   | `SelectItem \| SelectItem[] \| null`                         | -      |
 | list             | 选项列表   | `SelectItem[]`                                               | -      |
-| formatViewList   | 格式化列表 | `(list: SelectItem[]) => ViewItem[]`                         | -      |
-| formatViewItem   | 格式化项   | `(item: SelectItem, options: { index: number }) => ViewItem` | -      |
+| formatViewList   | 格式化列表 | `(list: SelectItem[]) => ListViewItem[]`                         | -      |
+| formatViewItem   | 格式化项   | `(item: SelectItem, options: { index: number }) => ListViewItem` | -      |
 | multiple         | 是否多选   | `boolean`                                                    | -      |
 | checkable        | 是否可选   | `boolean`                                                    | -      |
 | itemStyle        | 项样式     | `object`                                                     | -      |

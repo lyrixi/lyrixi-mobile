@@ -8,7 +8,7 @@ function formatViewList(list: ListPaginationItem[]): ListPaginationViewItem[] {
     return []
   }
 
-  // 使用 Map 来按 anchor 分组（分组头也是 ViewItem：必含 _raw、id）
+  // 使用 Map 来按 anchor 分组（分组头也是 ListViewItem：必含 _raw、id）
   const groupMap = new Map<string, ListPaginationViewItem>()
 
   list.forEach((raw) => {

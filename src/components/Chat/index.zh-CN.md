@@ -31,18 +31,18 @@ toc: content
 | 属性             | 说明       | 类型                                                                                                                                                                                                                                                           | 默认值  |
 | ---------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | timeSpace        | 时间间隔   | `number`                                                                                                                                                                                                                                                       | `60000` |
-| value            | 选中的值   | `ChatListValue[]`                                                                                                                                                                                                                                              | -       |
+| value            | 选中的值   | `ChatItem[]`                                                                                                                                                                                                                                              | -       |
 | list             | 消息列表   | `ChatItem[]`                                                                                                                                                                                                                                                   | -       |
 | formatViewList   | 格式化列表 | `(list: ChatViewItem[]) => ChatViewItem[]`                                                                                                                                                                                                                      | -       |
-| formatViewItem   | 格式化项   | `(item: ChatRawItem, ctx: { index: number }) => ChatRawItem`                                                                                                                                                                                                   | -       |
+| formatViewItem   | 格式化项   | `(item: ChatItem, ctx: { index: number }) => ChatItem`                                                                                                                                                                                                   | -       |
 | checkable        | 是否可选   | `boolean`                                                                                                                                                                                                                                                      | -       |
 | checkboxVariant  | 复选框渲染 | `string`                                                                                                                                                                                                                                                       | -       |
 | checkboxPosition | 复选框位置 | `string`                                                                                                                                                                                                                                                       | -       |
-| onChange         | 变化事件   | `(value: ChatListValue[]) => void`                                                                                                                                                                                                                              | -       |
+| onChange         | 变化事件   | `(value: ChatItem[]) => void`                                                                                                                                                                                                                              | -       |
 
-#### list 项（ChatRawItem）
+#### list 项（ChatItem）
 
-`list` 中每项为 `ChatRawItem`，常用字段：
+`list` 中每项为 `ChatItem`，常用字段：
 
 | 属性      | 说明     | 类型                  | 默认值 |
 | --------- | -------- | --------------------- | ------ |

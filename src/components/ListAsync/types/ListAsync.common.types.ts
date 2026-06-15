@@ -1,4 +1,4 @@
-import type { ListItem, ViewItem } from '../../List/types'
+import type { ListItem, ListViewItem } from '../../List/types'
 
 /** ListAsync 对外列表项 */
 export interface ListAsyncItem extends ListItem {
@@ -6,6 +6,6 @@ export interface ListAsyncItem extends ListItem {
 }
 
 /** ListAsync 格式化后的渲染项 */
-export interface ListAsyncViewItem extends ViewItem {
+export interface ListAsyncViewItem extends ListViewItem {
   children?: ListAsyncViewItem[]
 }

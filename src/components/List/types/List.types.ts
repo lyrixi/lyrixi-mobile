@@ -18,7 +18,7 @@ export type ListItem = ListItemBase & {
 }
 
 // 转换后的渲染数据
-type ViewItemBase = {
+type ListViewItemBase = {
   _raw?: ListItem
   id?: unknown
   disabled?: boolean
@@ -36,14 +36,14 @@ type ViewItemBase = {
   content?: unknown
   actionRender?: (item: ListItem & { checked?: boolean }) => ReactNode
 }
-export type ViewItem = ViewItemBase & {
-  children?: ViewItemBase[]
+export type ListViewItem = ListViewItemBase & {
+  children?: ListViewItemBase[]
 }
 
 // 格式化原始数据为渲染数据
 export interface ListViewFormatterOptions {
-  formatViewItem?: (item: ListItem, options: { index: number }) => ViewItem
-  formatViewList?: (list: ListItem[]) => ViewItem[]
+  formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
+  formatViewList?: (list: ListItem[]) => ListViewItem[]
 }
 
 export interface ListRef {
@@ -56,8 +56,8 @@ export interface ListProps {
   value?: ListItem | ListItem[] | null
   multiple?: boolean
   list?: ListItem[]
-  formatViewList?: (list: ListItem[]) => ViewItem[]
-  formatViewItem?: (item: ListItem, options: { index: number }) => ViewItem
+  formatViewList?: (list: ListItem[]) => ListViewItem[]
+  formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
   itemLayout?: string
   // Status
   allowClear?: boolean
