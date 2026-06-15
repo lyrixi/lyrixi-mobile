@@ -22,7 +22,7 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
     className,
 
     // Elements
-    children = '0',
+    children,
     maxCount = 99,
     ellipsis = '+' // 有maxLength属性时ellipsis才生效
   },
@@ -41,6 +41,10 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
   let countText: string = MathUtil.isNumber(count) ? String(count) : ''
   if (MathUtil.isNumber(count) && MathUtil.isNumber(maxCount) && Number(count) > maxCount) {
     countText = String(maxCount) + ellipsis
+  }
+
+  if (!children && !countText) {
+    return null
   }
 
   return (
