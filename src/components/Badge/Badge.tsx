@@ -54,8 +54,8 @@ const Badge = forwardRef<BadgeRef, BadgeProps>(function Badge(
       style={style}
       className={DOMUtil.classNames('lyrixi-badge', className)}
     >
-      {countText}
       {children}
+      {countText}
     </span>
   )
 })
