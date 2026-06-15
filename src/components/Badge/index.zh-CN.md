@@ -25,13 +25,14 @@ toc: content
 
 ### 属性
 
-| 属性      | 说明       | 类型                            | 默认值 |
-| --------- | ---------- | ------------------------------- | ------ |
-| children  | 徽标内容   | `string \| number \| ReactNode` | `'0'`  |
-| style     | 自定义样式 | `object`                        | -      |
-| className | 自定义类名 | `string`                        | -      |
-| maxLength | 最大长度   | `number`                        | `2`    |
-| ellipsis  | 省略符     | `string`                        | `'+'`  |
+| 属性      | 说明                                     | 类型                            | 默认值 |
+| --------- | ---------------------------------------- | ------------------------------- | ------ |
+| count     | 徽标数值                                 | `number`                        | -      |
+| style     | 自定义样式                               | `object`                        | -      |
+| className | 自定义类名                               | `string`                        | -      |
+| maxCount  | 最大显示数值，超出时显示 `maxCount + ellipsis` | `number`                        | `99`   |
+| ellipsis  | 超出 `maxCount` 时的省略符               | `string`                        | `'+'`  |
+| children  | 徽标包裹的内容                           | `ReactNode`                     | -      |
 
 ### Ref
 
