@@ -5,7 +5,7 @@ const ChatListDemo = () => {
   const list = [
     {
       id: '1',
-      position: 'left',
+      placement: 'left',
       avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
       name: '用户A',
       content: '这是一条来自用户A的消息',
@@ -13,7 +13,7 @@ const ChatListDemo = () => {
     },
     {
       id: '2',
-      position: 'right',
+      placement: 'right',
       avatarUrl: 'https://api.dicebear.com/7.x/miniavs/svg',
       name: '我',
       content: '这是一条我发送的消息',

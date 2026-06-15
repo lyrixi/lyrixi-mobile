@@ -16,7 +16,7 @@ export interface ToastOpenProps {
   // Value & Display Value
   duration?: number
   maskClickable?: boolean
-  position?: string
+  placement?: string
   id?: string
   content?: string
   // Style

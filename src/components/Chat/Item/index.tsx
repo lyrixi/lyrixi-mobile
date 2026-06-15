@@ -18,7 +18,7 @@ const Chat = (
     content,
     checked,
     checkable,
-    position,
+    placement,
     checkboxVariant,
     checkboxPosition,
     // Style
@@ -95,7 +95,7 @@ const Chat = (
   return (
     <div
       style={style}
-      className={DOMUtil.classNames('lyrixi-chat-item', `lyrixi-${position}`, className)}
+      className={DOMUtil.classNames('lyrixi-chat-item', `lyrixi-${placement}`, className)}
       ref={rootRef}
     >
       {checkboxPosition !== 'right' && renderCheckbox()}

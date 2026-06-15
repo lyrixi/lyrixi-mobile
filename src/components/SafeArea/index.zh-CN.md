@@ -28,7 +28,7 @@ toc: content
 | 属性      | 说明       | 类型                                                                   | 默认值     |
 | --------- | ---------- | ---------------------------------------------------------------------- | ---------- |
 | type      | 类型       | `'height' \| 'padding' \| 'margin' \| 'border' \| 'before' \| 'after'` | `'height'` |
-| position  | 位置       | `'top' \| 'bottom'`                                                    | `'bottom'` |
+| placement | 位置       | `'top' \| 'bottom'`                                                    | `'bottom'` |
 | style     | 自定义样式 | `CSSProperties`                                                        | -          |
 | className | 自定义类名 | `string`                                                               | -          |
 

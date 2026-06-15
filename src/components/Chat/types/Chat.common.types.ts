@@ -1,6 +1,6 @@
 export interface ChatRawItem {
   id?: string | number
-  position?: string
+  placement?: string
   avatarUrl?: string
   avatarRender?: unknown
   avatarNode?: unknown

@@ -18,8 +18,8 @@ function open(
     // Visible duration
     duration,
     maskClickable,
-    // Pop position: top、middle、bottom
-    position,
+    // Pop placement: top、middle、bottom
+    placement,
     portal,
     id,
     maskClassName,
@@ -77,7 +77,7 @@ function open(
     if (container) {
       container?.setAttribute(
         'class',
-        DOMUtil.classNames('lyrixi-toast', position ? `lyrixi-${position}` : 'lyrixi-middle')
+        DOMUtil.classNames('lyrixi-toast', placement ? `lyrixi-${placement}` : 'lyrixi-middle')
       )
     }
 

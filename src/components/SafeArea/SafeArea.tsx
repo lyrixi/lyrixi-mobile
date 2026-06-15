@@ -11,7 +11,7 @@ import { DOMUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 const SafeArea = forwardRef<SafeAreaRef, SafeAreaProps>(function SafeArea(
-  { type = 'height', position = 'bottom', style, className },
+  { type = 'height', placement = 'bottom', style, className },
   ref
 ) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -25,7 +25,7 @@ const SafeArea = forwardRef<SafeAreaRef, SafeAreaProps>(function SafeArea(
 
   const mergedClassName = (DOMUtil.classNames as (...args: unknown[]) => string)(
     'lyrixi-safe-area',
-    `lyrixi-${type}-${position}`,
+    `lyrixi-${type}-${placement}`,
     className
   )
 

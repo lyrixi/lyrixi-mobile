@@ -8,7 +8,7 @@ import type { CSSProperties, ReactNode } from 'react'
 
 export interface ChatRawItem {
   id?: string | number
-  position?: string
+  placement?: string
   avatarUrl?: string
   avatarRender?: unknown
   avatarNode?: unknown
@@ -72,7 +72,7 @@ export interface ChatItemProps {
   /** 自定义类名 */
   className?: string
   /** 气泡位置 */
-  position?: string
+  placement?: string
   /** 自定义样式 */
   style?: CSSProperties
   /** 复选框样式变体 */

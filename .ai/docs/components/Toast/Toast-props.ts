@@ -10,7 +10,7 @@ export interface ToastOpenProps {
   /** 遮罩是否可点击穿透 */
   maskClickable?: boolean
   /** 弹出位置 */
-  position?: string
+  placement?: string
   /** 唯一标识 */
   id?: string
   /** 内容文本 */

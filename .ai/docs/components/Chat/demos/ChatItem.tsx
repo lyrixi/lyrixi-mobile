@@ -9,13 +9,13 @@ export default function ChatItemDemo() {
           avatarUrl="https://api.dicebear.com/7.x/miniavs/svg"
           authorNode="用户名"
           content="这是一条聊天消息内容"
-          position="left"
+          placement="left"
         />
         <Chat.Item
           avatarUrl="https://api.dicebear.com/7.x/miniavs/svg"
           authorNode="用户名"
           content="这是一条聊天消息内容"
-          position="right"
+          placement="right"
         />
       </Page.Main>
     </Page>

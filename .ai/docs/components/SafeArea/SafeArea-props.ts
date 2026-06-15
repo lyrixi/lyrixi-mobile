@@ -8,7 +8,7 @@ export interface SafeAreaProps {
   /** 类型，默认 `'height'` */
   type?: 'height' | 'padding' | 'margin' | 'border' | 'before' | 'after'
   /** 位置，默认 `'bottom'` */
-  position?: 'top' | 'bottom'
+  placement?: 'top' | 'bottom'
   /** 自定义样式 */
   style?: CSSProperties
   /** 自定义类名 */

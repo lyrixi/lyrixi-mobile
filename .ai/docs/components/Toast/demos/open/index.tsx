@@ -6,7 +6,7 @@ export default function ToastOpenDemo() {
     let toast = Toast.open({
       style: { backgroundColor: 'blue', color: 'green' },
       maskStyle: { backgroundColor: 'red' },
-      position: 'middle',
+      placement: 'middle',
       content: 'open toast',
       duration: 3000,
       maskClickable: false,

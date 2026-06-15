@@ -49,7 +49,7 @@ const List = (
         _raw={(item._raw ?? { id: item.id ?? index }) as Record<string, unknown>}
         checkable={checkable}
         checked={(value?.findIndex?.((valueItem) => valueItem?.id === item.id) ?? -1) >= 0}
-        position={item.position}
+        placement={item.placement}
         checkboxVariant={checkboxVariant}
         checkboxPosition={checkboxPosition}
         avatarUrl={item.avatarUrl}

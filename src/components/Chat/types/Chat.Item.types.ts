@@ -14,7 +14,7 @@ export interface ChatItemProps {
   checkable?: boolean
   // Style
   className?: string
-  position?: string
+  placement?: string
   style?: CSSProperties
   checkboxVariant?: string
   checkboxPosition?: string

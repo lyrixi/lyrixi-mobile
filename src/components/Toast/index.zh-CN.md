@@ -39,7 +39,7 @@ toc: content
 | ------------- | ---------------- | --------------- | ------ |
 | duration      | 显示时长（毫秒） | `number`        | -      |
 | maskClickable | 遮罩是否可点击   | `boolean`       | -      |
-| position      | 显示位置         | `string`        | -      |
+| placement     | 显示位置         | `string`        | -      |
 | portal        | 挂载节点         | `HTMLElement`   | -      |
 | id            | Toast ID         | `string`        | -      |
 | maskClassName | 遮罩类名         | `string`        | -      |
