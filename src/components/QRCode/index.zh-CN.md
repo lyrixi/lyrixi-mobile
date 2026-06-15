@@ -34,9 +34,7 @@ toc: content
 
 ### Ref
 
-| 属性        | 说明           | 类型                           |
-| ----------- | -------------- | ------------------------------ |
-| element     | 根元素         | `HTMLSpanElement \| null`      |
-| instance    | 二维码实例     | `QRCodeInstance`               |
-| getElement  | 获取根元素     | () => `HTMLSpanElement \| null` |
-| getInstance | 获取二维码实例 | () => `QRCodeInstance`         |
+| 属性       | 说明       | 类型                           |
+| ---------- | ---------- | ------------------------------ |
+| element    | 根元素     | `HTMLSpanElement \| null`      |
+| getElement | 获取根元素 | () => `HTMLSpanElement \| null` |

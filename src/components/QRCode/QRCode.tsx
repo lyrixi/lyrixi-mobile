@@ -28,39 +28,37 @@ const QRCode = forwardRef<QRCodeRef, QRCodeProps>(function QRCode(
 
   const instance = useRef<QRLib | null>(null)
 
-    useEffect(() => {
-      if (!text || typeof text !== 'string') return
-      if (!instance.current) {
-        instance.current = new Instance(rootRef.current, {
-          text: text || '',
-          width: cssSizeToNumber(style?.width, 230),
-          height: cssSizeToNumber(style?.height ?? style?.width, 230),
-          colorDark: style?.color || '#000000',
-          colorLight: style?.backgroundColor || '#ffffff',
-          correctLevel: Instance.CorrectLevel.M // L,M,Q,H
-        })
-      }
+  useEffect(() => {
+    if (!text || typeof text !== 'string') return
+    if (!instance.current) {
+      instance.current = new Instance(rootRef.current, {
+        text: text || '',
+        width: cssSizeToNumber(style?.width, 230),
+        height: cssSizeToNumber(style?.height ?? style?.width, 230),
+        colorDark: style?.color || '#000000',
+        colorLight: style?.backgroundColor || '#ffffff',
+        correctLevel: Instance.CorrectLevel.M // L,M,Q,H
+      })
+    }
 
-      const width = cssSizeToNumber(style?.width, 0)
-      const height = cssSizeToNumber(style?.height, 0)
-      const color = style?.color
-      const backgroundColor = style?.backgroundColor
-      if (width) instance.current._htOption.width = width
-      if (height) instance.current._htOption.height = height
-      if (color) instance.current._htOption.colorDark = color
-      if (backgroundColor) instance.current._htOption.colorLight = backgroundColor
-      instance.current.makeCode(text)
-      // eslint-disable-next-line
-    }, [text])
+    const width = cssSizeToNumber(style?.width, 0)
+    const height = cssSizeToNumber(style?.height, 0)
+    const color = style?.color
+    const backgroundColor = style?.backgroundColor
+    if (width) instance.current._htOption.width = width
+    if (height) instance.current._htOption.height = height
+    if (color) instance.current._htOption.colorDark = color
+    if (backgroundColor) instance.current._htOption.colorLight = backgroundColor
+    instance.current.makeCode(text)
+    // eslint-disable-next-line
+  }, [text])
 
-    useImperativeHandle(ref, () => {
-      return {
-        element: rootRef.current,
-        instance: instance.current,
-        getElement: () => rootRef.current,
-        getInstance: () => instance.current
-      }
-    })
+  useImperativeHandle(ref, () => {
+    return {
+      element: rootRef.current,
+      getElement: () => rootRef.current
+    }
+  })
 
   if (!text) return null
 

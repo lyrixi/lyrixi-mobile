@@ -18,10 +18,6 @@ export interface QRCodeProps {
 export interface QRCodeRef {
   /** 根元素 */
   element: HTMLSpanElement | null
-  /** 二维码实例 */
-  instance: unknown
   /** 获取根元素 */
   getElement: () => HTMLSpanElement | null
-  /** 获取二维码实例 */
-  getInstance: () => unknown
 }
