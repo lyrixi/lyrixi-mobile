@@ -43,8 +43,4 @@ export interface SelectorRef {
   element: HTMLDivElement | null
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
-  /** 实例 */
-  instance: { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
-  /** 获取实例 */
-  getInstance: () => { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
 }

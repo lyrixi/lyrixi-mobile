@@ -42,17 +42,16 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     ref
   ) => {
     const rootRef = useRef<HTMLDivElement | null>(null)
-    const instance = useRef({
-      equalsItem(item1: SelectorItem, item2: SelectorItem) {
-        if (item1.id && item2.id) {
-          return item1.id === item2.id
-        } else if (item1.name && item2.name) {
-          return item1.name === item2.name
-        } else {
-          return false
-        }
+
+    function equalsItem(item1: SelectorItem, item2: SelectorItem) {
+      if (item1.id && item2.id) {
+        return item1.id === item2.id
+      } else if (item1.name && item2.name) {
+        return item1.name === item2.name
+      } else {
+        return false
       }
-    })
+    }
 
     const [expanded, setExpanded] = useState(false)
 
@@ -71,7 +70,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
         return false
       }
       for (let activeItem of value) {
-        if (instance.current.equalsItem(item, activeItem)) return true
+        if (equalsItem(item, activeItem)) return true
         continue
       }
       return false
@@ -80,9 +79,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
     useImperativeHandle(ref, () => {
       return {
         element: rootRef.current,
-        instance: instance.current,
-        getElement: () => rootRef.current,
-        getInstance: () => instance.current
+        getElement: () => rootRef.current
       }
     })
 
@@ -101,7 +98,7 @@ const Selector = forwardRef<SelectorRef, SelectorProps>(
           newValue = [...prev, currentItem]
         } else {
           newValue = prev.filter((activeItem) => {
-            if (instance.current.equalsItem(currentItem, activeItem)) return false
+            if (equalsItem(currentItem, activeItem)) return false
             return true
           })
         }

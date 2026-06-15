@@ -41,9 +41,7 @@ toc: content
 
 ### Ref
 
-| 属性        | 说明         | 类型                                                                      |
-| ----------- | ------------ | ------------------------------------------------------------------------- |
-| element     | 根元素       | `HTMLDivElement \| null`                                                  |
-| instance    | 实例对象     | `{ equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }`           |
-| getElement  | 获取根元素   | () => `HTMLDivElement \| null`                                            |
-| getInstance | 获取实例对象 | () => `{ equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }`    |
+| 属性       | 说明       | 类型                         |
+| ---------- | ---------- | ---------------------------- |
+| element    | 根元素     | `HTMLDivElement \| null`     |
+| getElement | 获取根元素 | () => `HTMLDivElement \| null` |

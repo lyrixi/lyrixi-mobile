@@ -23,6 +23,4 @@ export interface SelectorProps {
 export interface SelectorRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
-  instance: { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
-  getInstance: () => { equalsItem: (a: SelectorItem, b: SelectorItem) => boolean }
 }
