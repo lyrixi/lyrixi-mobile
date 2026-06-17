@@ -96,8 +96,9 @@ let Bridge = {
     console.log('支付宝不支持监听物理返回')
   },
   openLocation: function (params?: BridgeOpenLocationParams) {
-    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
-    if (!latitude || !longitude || !type) return
+    const { to, scale, onSuccess, onError } = params || {}
+    const { latitude, longitude, type = 'wgs84', name, address } = to || {}
+    if (!latitude || !longitude) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     console.log('调用支付宝地图...', { latitude, longitude, type, name, address, scale })
     ;(window.top ?? window).ap?.openLocation?.({

@@ -265,11 +265,18 @@ Bridge.getBrowserLocation({
 
 **参数：**
 
-- `latitude` (Number) - 纬度
-- `longitude` (Number) - 经度
-- `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
-- `name` (String) - 位置名称
-- `address` (String) - 位置地址
+- `from` (Object, 可选) - 起点，一般 SDK 不需要传
+  - `latitude` (Number) - 纬度
+  - `longitude` (Number) - 经度
+  - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
+  - `name` (String) - 位置名称
+  - `address` (String) - 位置地址
+- `to` (Object) - 终点
+  - `latitude` (Number) - 纬度
+  - `longitude` (Number) - 经度
+  - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
+  - `name` (String) - 位置名称
+  - `address` (String) - 位置地址
 - `scale` (Number, 可选) - 地图缩放级别
 - `onSuccess` (Function, 可选) - 成功回调
 - `onError` (Function, 可选) - 失败回调
@@ -278,10 +285,12 @@ Bridge.getBrowserLocation({
 
 ```javascript
 Bridge.openLocation({
-  latitude: 39.81,
-  longitude: 116.49,
-  name: '终点',
-  address: '终点地址名',
+  to: {
+    latitude: 39.81,
+    longitude: 116.49,
+    name: '终点',
+    address: '终点地址名'
+  },
   scale: 16
 })
 ```

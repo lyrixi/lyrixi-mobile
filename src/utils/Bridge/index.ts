@@ -200,37 +200,25 @@ let Bridge = {
   /**
    * 打开地图查看位置
    * @param {Object} params - 地图参数
-   * @param {Number} params.latitude - 纬度
-   * @param {Number} params.longitude - 经度
-   * @param {String} params.type - 坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
-   * @param {String} params.name - 位置名称
-   * @param {String} params.address - 位置地址
+   * @param {Object} params.from - 起点（可选，一般 SDK 不需要）
+   * @param {Number} params.from.latitude - 起点纬度
+   * @param {Number} params.from.longitude - 起点经度
+   * @param {String} params.from.type - 起点坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
+   * @param {String} params.from.name - 起点名称
+   * @param {String} params.from.address - 起点地址
+   * @param {Object} params.to - 终点
+   * @param {Number} params.to.latitude - 终点纬度
+   * @param {Number} params.to.longitude - 终点经度
+   * @param {String} params.to.type - 终点坐标类型，'wgs84'|'gcj02'，默认为 'wgs84'
+   * @param {String} params.to.name - 终点名称
+   * @param {String} params.to.address - 终点地址
    * @param {Number} params.scale - 地图缩放级别
    * @param {Function} params.onSuccess - 成功回调
    * @param {Function} params.onError - 失败回调
    * @returns {void}
    */
   openLocation(params?: BridgeOpenLocationParams, platform?: string) {
-    const {
-      latitude,
-      longitude,
-      type = 'wgs84',
-      name,
-      address,
-      scale,
-      onSuccess,
-      onError
-    } = params || {}
-    return this._getCurrentBridge(platform).openLocation({
-      latitude,
-      longitude,
-      type,
-      name,
-      address,
-      scale,
-      onSuccess,
-      onError
-    })
+    return this._getCurrentBridge(platform).openLocation(params)
   },
   /**
    * 获取当前地理位置

@@ -309,11 +309,13 @@ export default function BridgeDemo() {
               radius="m"
               onClick={() => {
                 Bridge.openLocation({
-                  type: 'gcj02',
-                  latitude: 39.81, // 纬度，浮点数，范围为90 ~ -90
-                  longitude: 116.49, // 经度，浮点数，范围为180 ~ -180。
-                  name: '终点', // 位置名
-                  address: '终点地址名', // 地址详情说明
+                  to: {
+                    type: 'gcj02',
+                    latitude: 39.81, // 纬度，浮点数，范围为90 ~ -90
+                    longitude: 116.49, // 经度，浮点数，范围为180 ~ -180。
+                    name: '终点', // 位置名
+                    address: '终点地址名' // 地址详情说明
+                  },
                   scale: 16 // 地图缩放级别,整形值,范围从1~28。默认为16
                 })
               }}

@@ -123,17 +123,9 @@ let Bridge = {
     console.log('飞书不支持监听物理返回')
   },
   openLocation: function (params?: BridgeOpenLocationParams) {
-    const {
-      latitude,
-      longitude,
-      type,
-      name,
-      address,
-      scale: scaleIn,
-      onSuccess,
-      onError
-    } = params || {}
-    if (!latitude || !longitude || !type) return
+    const { to, scale: scaleIn, onSuccess, onError } = params || {}
+    const { latitude, longitude, type = 'wgs84', name, address } = to || {}
+    if (!latitude || !longitude) return
     let coord = formatOpenLocationCoord({ latitude, longitude, type })
     let scale = scaleIn ?? 12
     console.log('调用飞书地图...', { latitude, longitude, type, name, address, scale })

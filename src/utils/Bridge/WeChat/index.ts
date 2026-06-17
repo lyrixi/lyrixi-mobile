@@ -158,8 +158,9 @@ let Bridge = {
     })
   },
   openLocation: function (params?: BridgeOpenLocationParams) {
-    const { latitude, longitude, type, name, address, scale, onSuccess, onError } = params || {}
-    if (!latitude || !longitude || !type) return
+    const { to, scale, onSuccess, onError } = params || {}
+    const { latitude, longitude, type = 'wgs84', name, address } = to || {}
+    if (!latitude || !longitude) return
     if (Device.device === 'pc' || Device.platform === 'wechat') {
       let message = `WeChat ${LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',

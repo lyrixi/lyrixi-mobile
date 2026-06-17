@@ -114,8 +114,9 @@ let Browser = {
     onSuccess?.({ status: 'success', data: undefined })
   },
   openLocation: function (params?: BridgeOpenLocationParams) {
-    const { latitude, longitude, type, onError } = params || {}
-    if (!latitude || !longitude || !type) return
+    const { to, onError } = params || {}
+    const { latitude, longitude } = to || {}
+    if (!latitude || !longitude) return
     let message = `Browser ${LocaleUtil.locale(
       'openLocation仅可在企业微信或APP中使用',
       'lyrixi_0e963a39eb4b363f9465618162b7d7d5',
