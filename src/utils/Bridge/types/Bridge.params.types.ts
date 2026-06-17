@@ -72,7 +72,7 @@ export type BridgeOpenLocationPoint = {
   latitude?: number
   longitude?: number
   /** 坐标类型，'wgs84'|'gcj02'，默认为 'wgs84' */
-  type?: string
+  type?: 'wgs84' | 'gcj02'
   name?: string
   address?: string
 }
