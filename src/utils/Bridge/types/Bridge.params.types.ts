@@ -188,8 +188,6 @@ export type BridgePreviewMediaSource = {
 export type BridgePreviewMediaParams = {
   index?: number
   sources?: BridgePreviewMediaSource[]
-  /** 部分客户端入参：当前预览 URL */
-  current?: string
   onSuccess?: BridgeSuccessCallback
   onError?: BridgeErrorCallback
   onCancel?: BridgeCancelCallback

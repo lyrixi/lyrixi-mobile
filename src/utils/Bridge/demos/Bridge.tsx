@@ -270,9 +270,7 @@ export default function BridgeDemo() {
                       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
                     }
                   ],
-
-                  index: 0,
-                  current: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  index: 0
                 })
               }}
             >
