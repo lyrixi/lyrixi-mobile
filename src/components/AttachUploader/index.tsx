@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 // 内部组件导出
-import uploadList from './utils/uploadList'
+import uploadList from './../MediaUploader/utils/uploadList'
 
 // 内部组件
 import Browser from './Browser'
@@ -10,7 +10,10 @@ import type { AttachRef } from './../Attach/types'
 import type { AttachUploaderProps } from './types'
 
 // 照片上传
-const AttachUploader = forwardRef<AttachRef, AttachUploaderProps>(function AttachUploader(props, ref) {
+const AttachUploader = forwardRef<AttachRef, AttachUploaderProps>(function AttachUploader(
+  props,
+  ref
+) {
   const {
     list = [],
     maxCount,

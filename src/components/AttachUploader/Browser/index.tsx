@@ -1,10 +1,10 @@
 import React, { forwardRef, useRef, useImperativeHandle, useMemo } from 'react'
-import _uploadItem from './uploadItem'
 
 import type { AttachRef } from './../../Attach/types'
 import type { AttachUploaderBrowserProps } from './../types'
 
 // 内库使用-start
+import _uploadItem from './../../MediaUploader/utils/uploadItem'
 import type { FileItem } from '../../../utils/Bridge/types'
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Toast from './../../Toast'
@@ -12,7 +12,8 @@ import Attach from './../../Attach'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Toast, Attach } from 'lyrixi-mobile'
+import { MediaUploader, LocaleUtil, Toast, Attach } from 'lyrixi-mobile'
+const _uploadItem = MediaUploader.uploadItem
 测试使用-end */
 
 function toToastString(s: string | import('react').ReactNode): string {
@@ -97,7 +98,8 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
       getUploadUrl,
       formatHeaders,
       formatPayload,
-      formatResponse
+      formatResponse,
+      platform: 'browser'
     })
     console.log('浏览器上传后新item:', newItem)
     return newItem
