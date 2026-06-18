@@ -1,8 +1,5 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
-// 内部组件导出
-import uploadList from './utils/uploadList'
-
 // 内部组件
 import Interval from './utils/Interval'
 import CompatibleToggle from './CompatibleToggle'
@@ -248,10 +245,6 @@ function MediaUploader(
   return <Browser ref={ref} {...commonProps} style={style} className={className} />
 }
 
-const MediaUploaderComponent = forwardRef<MediaHandle, MediaUploaderProps>(
-  MediaUploader
-) as React.ForwardRefExoticComponent<MediaUploaderProps & React.RefAttributes<MediaHandle>> & {
-  uploadList: typeof uploadList
-}
-MediaUploaderComponent.uploadList = uploadList
+const MediaUploaderComponent = forwardRef<MediaHandle, MediaUploaderProps>(MediaUploader)
+
 export default MediaUploaderComponent
