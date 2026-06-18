@@ -1,4 +1,3 @@
-
 import type { DistrictMainApiResult } from '../../types'
 
 // 内库使用-start
@@ -16,7 +15,11 @@ function loadCountryRegions(countryId: string | number = '86'): Promise<District
     const countryKey = String(countryId)
 
     window.countryRegions =
-      window.countryRegions || JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}') as Record<string, unknown[]>
+      window.countryRegions ||
+      (JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}') as Record<
+        string,
+        unknown[]
+      >)
     if (window.countryRegions?.[countryKey]) {
       resolve({
         status: 'success',
@@ -31,7 +34,9 @@ function loadCountryRegions(countryId: string | number = '86'): Promise<District
       undefined
     )
       .then(function (list: unknown) {
-        window.countryRegions = JSON.parse(window.sessionStorage.getItem('countryRegions') || '{}') as Record<string, unknown[]>
+        window.countryRegions = JSON.parse(
+          window.sessionStorage.getItem('countryRegions') || '{}'
+        ) as Record<string, unknown[]>
         if (window.countryRegions) {
           window.countryRegions[countryKey] = (list as unknown[]) || []
           window.sessionStorage.setItem('countryRegions', JSON.stringify(window.countryRegions))
@@ -44,7 +49,10 @@ function loadCountryRegions(countryId: string | number = '86'): Promise<District
       .catch(() => {
         resolve({
           status: 'error',
-          message: LocaleUtil.locale('获取省市区数据失败', 'lyrixi_6779a06b0961e051e7b3ea0296305d18') as string
+          message: LocaleUtil.locale(
+            '获取省市区数据失败',
+            'lyrixi_6779a06b0961e051e7b3ea0296305d18'
+          ) as string
         })
       })
   })
