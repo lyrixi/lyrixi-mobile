@@ -9,6 +9,25 @@ import Request from './../../../../utils/Request'
 import { LocaleUtil, Request } from 'lyrixi-mobile'
 测试使用-end */
 
+function resolveCountryRegionsList(
+  list: unknown[] | undefined,
+  resolve: (value: DistrictMainApiResult) => void
+): void {
+  const normalizedList = list || []
+  if (normalizedList.length) {
+    resolve({
+      status: 'success',
+      list: normalizedList
+    })
+    return
+  }
+  // 无子节点时，视为末级节点
+  resolve({
+    status: 'empty',
+    list: []
+  })
+}
+
 function loadCountryRegions(countryId: string | number = '86'): Promise<DistrictMainApiResult> {
   return new Promise((resolve) => {
     const language = LocaleUtil.getLanguage()
@@ -21,10 +40,7 @@ function loadCountryRegions(countryId: string | number = '86'): Promise<District
         unknown[]
       >)
     if (window.countryRegions?.[countryKey]) {
-      resolve({
-        status: 'success',
-        list: window.countryRegions[countryKey]
-      })
+      resolveCountryRegionsList(window.countryRegions[countryKey], resolve)
       return
     }
 
@@ -40,10 +56,7 @@ function loadCountryRegions(countryId: string | number = '86'): Promise<District
         if (window.countryRegions) {
           window.countryRegions[countryKey] = (list as unknown[]) || []
           window.sessionStorage.setItem('countryRegions', JSON.stringify(window.countryRegions))
-          resolve({
-            status: 'success',
-            list: window.countryRegions[countryKey]
-          })
+          resolveCountryRegionsList(window.countryRegions[countryKey], resolve)
         }
       })
       .catch(() => {
