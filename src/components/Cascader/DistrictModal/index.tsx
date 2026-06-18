@@ -126,6 +126,7 @@ const DistrictModal = forwardRef<Record<string, unknown>, CascaderDistrictModalP
         return
       }
       const last = newValue[newValue.length - 1]
+      // 选中末级节点
       if (last?.isLeaf || (Array.isArray(last?.type) && last.type.includes(districtType))) {
         onChange?.(newValue)
         onClose?.()
