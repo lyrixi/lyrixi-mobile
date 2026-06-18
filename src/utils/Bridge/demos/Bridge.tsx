@@ -82,7 +82,7 @@ export default function BridgeDemo() {
               style={{ margin: '12px 10px' }}
               radius="m"
               onClick={() => {
-                Bridge.onBack({
+                Bridge.onHistoryBack({
                   onSuccess: () => {
                     console.log('阻止返回')
                     alert('阻止返回')
@@ -90,7 +90,7 @@ export default function BridgeDemo() {
                 })
               }}
             >
-              onBack
+              onHistoryBack
             </Button>
           </Card.Main>
         </Card>

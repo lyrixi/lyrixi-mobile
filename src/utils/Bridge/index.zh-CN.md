@@ -122,7 +122,7 @@ Bridge.back()
 Bridge.closeWindow()
 ```
 
-### onBack(params)
+### onHistoryBack(params)
 
 监听物理返回键或手势返回（仅客户端与企微支持）。
 
@@ -134,7 +134,7 @@ Bridge.closeWindow()
 **示例：**
 
 ```javascript
-Bridge.onBack({
+Bridge.onHistoryBack({
   onSuccess: () => {
     console.log('用户点击了返回键')
     return true // 返回 true 表示允许返回；false 表示拦截并需再次监听
@@ -524,7 +524,7 @@ Bridge 还提供了一些工具方法：
 | `config`             | ✅\*   | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `back`               | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `closeWindow`        | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `onBack`             | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
+| `onHistoryBack`      | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
 | `setTitle`           | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `openWindow`         | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `goHome`             | ❌     | ❌   | ❌       | ❌     | ❌   | ❌   | ❌     |

@@ -16,7 +16,7 @@ import type {
   BridgeGetLocationParams,
   BridgeGoHomeParams,
   BridgeLoadParams,
-  BridgeOnBackParams,
+  BridgeOnHistoryBackParams,
   BridgeOpenLocationParams,
   BridgeOpenWindowParams,
   BridgePreviewFileParams,
@@ -134,9 +134,9 @@ let Bridge = {
    * @param {Function} params.onError - 阻止返回失败回调
    * @returns {void}
    */
-  onBack(params?: BridgeOnBackParams, platform?: string) {
+  onHistoryBack(params?: BridgeOnHistoryBackParams, platform?: string) {
     const bridge = this._getCurrentBridge(platform)
-    return bridge.onBack(params)
+    return bridge.onHistoryBack(params)
   },
   /**
    * 修改原生标题

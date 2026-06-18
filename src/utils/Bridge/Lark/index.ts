@@ -119,7 +119,7 @@ let Bridge = {
       }
     })
   },
-  onBack: function () {
+  onHistoryBack: function () {
     console.log('飞书不支持监听物理返回')
   },
   openLocation: function (params?: BridgeOpenLocationParams) {

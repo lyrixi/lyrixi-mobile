@@ -174,7 +174,7 @@ let Bridge = {
       }
     })
   },
-  onBack: function () {
+  onHistoryBack: function () {
     console.log('钉钉不支持监听物理返回')
   },
   openLocation: function (params?: BridgeOpenLocationParams) {

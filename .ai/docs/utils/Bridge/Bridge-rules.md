@@ -14,7 +14,7 @@
 - `Bridge.config`
 - `Bridge.back`
 - `Bridge.closeWindow`
-- `Bridge.onBack`
+- `Bridge.onHistoryBack`
 - `Bridge.setTitle`
 - `Bridge.openWindow`
 - `Bridge.goHome`

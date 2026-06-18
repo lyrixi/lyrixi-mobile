@@ -43,7 +43,7 @@ export namespace Bridge {
   export function closeWindow(...args: unknown[]): unknown
   /** 监听物理返回键或手势返回（仅客户端与企微支持）。 */
 
-  export function onBack(...args: unknown[]): unknown
+  export function onHistoryBack(...args: unknown[]): unknown
   /** 修改原生标题。 */
 
   export function setTitle(...args: unknown[]): unknown

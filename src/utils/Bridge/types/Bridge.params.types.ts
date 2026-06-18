@@ -33,8 +33,8 @@ export type BridgeCloseWindowParams = {
   onError?: BridgeErrorCallback
 }
 
-/** {@link Bridge.onBack} */
-export type BridgeOnBackParams = {
+/** {@link Bridge.onHistoryBack} */
+export type BridgeOnHistoryBackParams = {
   /** 返回 `true` / `undefined` 等表示允许返回；返回 `false` 表示拦截返回 */
   onSuccess?: (r: BridgeSuccessResult<undefined>) => boolean | void | Promise<boolean | void>
   onError?: BridgeErrorCallback

@@ -60,12 +60,12 @@ let Browser = {
     window.history.go(-1)
     onSuccess?.({ status: 'success', data: undefined })
   },
-  onBack: function () {
+  onHistoryBack: function () {
     Toast.open({
       content: `Browser ${LocaleUtil.locale(
         '此平台不支持',
         'lyrixi_60a7978c99ee3bd2f538096ee46727ca'
-      )} onBack`
+      )} onHistoryBack`
     })
   },
   setTitle: function (params?: BridgeSetTitleParams) {

@@ -22,7 +22,7 @@ import type {
   BridgeGetLocationParams,
   // BridgeGetLocationResultData,
   BridgeLoadParams,
-  BridgeOnBackParams,
+  BridgeOnHistoryBackParams,
   BridgeOpenLocationParams,
   BridgePreviewFileParams,
   BridgePreviewMediaParams,
@@ -138,14 +138,14 @@ let Bridge = {
     }
     onSuccess?.({ status: 'success', data: undefined })
   },
-  onBack: function (params?: BridgeOnBackParams) {
+  onHistoryBack: function (params?: BridgeOnHistoryBackParams) {
     const { onError, onSuccess } = params || {}
     ;(window.top ?? window).wx?.onHistoryBack?.(() => {
       const back = async () => {
         let isBack = await onSuccess?.({ status: 'success', data: undefined })
         // 不允许返回, 则需要再次监听返回
         if (isBack === false) {
-          this.onBack({ onError, onSuccess })
+          this.onHistoryBack({ onError, onSuccess })
         }
         // 允许返回
         else {

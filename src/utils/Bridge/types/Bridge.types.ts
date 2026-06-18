@@ -11,7 +11,7 @@ import type {
   BridgeGetLocationParams,
   BridgeGoHomeParams,
   BridgeLoadParams,
-  BridgeOnBackParams,
+  BridgeOnHistoryBackParams,
   BridgeOpenLocationParams,
   BridgeOpenWindowParams,
   BridgePreviewFileParams,
@@ -31,7 +31,7 @@ export interface BridgeAdapter {
   config: (params?: BridgeConfigParams) => void | Promise<void>
   back: (delta?: number) => void
   closeWindow: (params?: BridgeCloseWindowParams) => void
-  onBack: (params?: BridgeOnBackParams) => void
+  onHistoryBack: (params?: BridgeOnHistoryBackParams) => void
   setTitle?: (params?: BridgeSetTitleParams) => void
   openWindow?: (params?: BridgeOpenWindowParams) => void
   goHome?: (params?: BridgeGoHomeParams) => void
