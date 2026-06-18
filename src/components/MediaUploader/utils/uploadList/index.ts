@@ -1,7 +1,4 @@
-import uploadWechat from './../../Wechat/uploadItem'
-import uploadDingtalk from './../../Dingtalk/uploadItem'
-import uploadFile from './../../Browser/uploadItem'
-import uploadCustom from './../../Custom/uploadItem'
+import uploadItem from './../uploadItem'
 
 // 内库使用-start
 import type { BridgeUploadFileParams, FileItem } from './../../../../utils/Bridge/types'
@@ -26,26 +23,12 @@ async function uploadList(
   pendingList: FileItem | FileItem[],
   uploadConfig: BridgeUploadFileParams
 ): Promise<FileItem | FileItem[] | null> {
-  // 根据平台选择上传方法
   let currentPlatform = uploadConfig?.platform || Device.platform
-  let uploadItem: ((item: FileItem, config: BridgeUploadFileParams) => Promise<unknown>) | null =
-    null
-  if (Device.device === 'pc' || ['browser', 'lark'].includes(currentPlatform)) {
-    uploadItem = uploadFile
-  } else if (currentPlatform === 'dingtalk') {
-    // 鸿蒙钉钉有bug，上传方法不会带token，导致无法上传
-    if (Device?.os === 'harmony') {
-      uploadItem = uploadFile
-    } else {
-      uploadItem = uploadDingtalk
-    }
-  } else if (
-    ['wechat', 'wecom', 'wechatMiniProgram', 'wecomMiniProgram'].includes(currentPlatform)
-  ) {
-    uploadItem = uploadWechat
-  } else {
-    uploadItem = uploadCustom
-  }
+  // 浏览器强制上传方式：PC、browser/lark 平台，或鸿蒙钉钉（钉钉 uploadFile 不带 token）
+  let forceBrowser =
+    Device.device === 'pc' ||
+    ['browser', 'lark'].includes(currentPlatform) ||
+    (currentPlatform === 'dingtalk' && Device?.os === 'harmony')
 
   if (ObjectUtil.isEmpty(pendingList)) {
     return null
@@ -80,22 +63,6 @@ async function uploadList(
     return null
   }
 
-  // 不支持的平台
-  if (!uploadItem) {
-    Toast.open({
-      content: LocaleUtil.locale(
-        '不支持此平台上传',
-        'lyrixi_84281205c0ab7c4983124a98006c7014'
-      ) as string
-    })
-    return list?.map?.((item) => {
-      if (!item.fileUrl?.startsWith?.('http')) {
-        item.status = 'error'
-      }
-      return item
-    })
-  }
-
   // 开始上传
   for (let index = 0; index < list.length; index++) {
     const item = list[index]
@@ -117,7 +84,8 @@ async function uploadList(
       formatHeaders: uploadConfig?.formatHeaders,
       formatPayload: uploadConfig?.formatPayload,
       formatResponse: uploadConfig?.formatResponse,
-      verifyImage: uploadConfig?.verifyImage
+      verifyImage: uploadConfig?.verifyImage,
+      ...(forceBrowser ? { platform: 'browser' } : {})
     })
 
     console.log(`上传结果：`, newItem)

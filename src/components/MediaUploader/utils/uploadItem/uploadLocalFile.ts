@@ -17,7 +17,8 @@ function uploadLocalFile({
   formatPayload,
   formatResponse,
   verifyImage,
-  item
+  item,
+  platform
 }: BridgeUploadFileParams): Promise<unknown> {
   let fileItem = item as FileItem
   return new Promise((resolve) => {
@@ -73,7 +74,7 @@ function uploadLocalFile({
           })
         }
       },
-      'browser'
+      platform
     )
   })
 }

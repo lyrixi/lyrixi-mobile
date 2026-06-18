@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from 'react'
 import getRemainCount from './../../Media/utils/getRemainCount'
-import _uploadItem from './uploadItem'
+import _uploadItem from '../utils/uploadItem'
 
 import { MediaHandle, MediaUploaderCommonProps } from '../types'
 import type { FileImageCompressOptions, MediaProps } from './../../Media/types'

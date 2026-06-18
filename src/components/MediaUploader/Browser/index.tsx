@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, type ReactNode } from 'react'
-import _uploadItem from './uploadItem'
+import _uploadItem from '../utils/uploadItem'
 
 import { MediaHandle, MediaUploaderCommonProps } from '../types'
 import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
@@ -99,7 +99,8 @@ function Browser(
       formatHeaders,
       formatPayload,
       formatResponse,
-      verifyImage
+      verifyImage,
+      platform: 'browser'
     })
 
     console.log('浏览器上传后新item:', newItem)

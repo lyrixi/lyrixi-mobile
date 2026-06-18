@@ -10,6 +10,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { ObjectUtil, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
+// 单张照片上传
 function uploadItem(
   item: FileItem,
   {
@@ -17,9 +18,10 @@ function uploadItem(
     formatHeaders,
     formatPayload,
     formatResponse,
-    verifyImage
+    verifyImage,
+    platform
   }: BridgeUploadFileParams
-) {
+): Promise<unknown> {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let errMsg = ''
@@ -44,7 +46,8 @@ function uploadItem(
       },
       formatResponse,
       verifyImage,
-      item
+      item,
+      platform
     })
 
     resolve(newItem)
