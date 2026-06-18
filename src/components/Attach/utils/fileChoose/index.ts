@@ -123,15 +123,17 @@ async function fileChoose({
 
   let currentList: FileItem[] | null = null
   if (typeof onFileChange === 'function') {
-    const r = await onFileChange({
-      fileName,
-      fileSize,
-      fileType,
-      filePath: fileData,
-      fileUrl: fileURL,
-      status: 'choose'
-    })
-    currentList = r ? ([r] as FileItem[]) : null
+    const r = await onFileChange([
+      {
+        fileName,
+        fileSize,
+        fileType,
+        filePath: fileData,
+        fileUrl: fileURL,
+        status: 'choose'
+      }
+    ])
+    currentList = Array.isArray(r) ? (r as FileItem[]) : null
   }
 
   if (!Array.isArray(currentList) || ObjectUtil.isEmpty(currentList)) {

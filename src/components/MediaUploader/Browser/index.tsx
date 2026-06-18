@@ -107,7 +107,10 @@ function Browser(
   }
 
   // 选择文件
-  async function handleChoose(localFile: FileItem) {
+  async function handleFileChange(localFiles: FileItem[]) {
+    const localFile = localFiles[0]
+    if (!localFile) return null
+
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // 前置校验
@@ -235,7 +238,7 @@ function Browser(
       previewCancelPosition={previewCancelNarrow}
       // Events
       onBeforeChoose={onBeforeChooseForMedia}
-      onFileChange={handleChoose as unknown as MediaProps['onFileChange']}
+      onFileChange={handleFileChange}
       onUpload={uploadItem}
       onChange={onChange}
       onPreview={async (item, index) => {

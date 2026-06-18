@@ -4,7 +4,6 @@ import {
   Divider,
   Bridge,
   Media,
-  type MediaProps,
   type MediaRef,
   type FileItem
 } from 'lyrixi-mobile'
@@ -93,9 +92,9 @@ export default function MediaDemo() {
           sourceType={['camera', 'album']}
           list={list}
           maxCount={9}
-          onFileChange={(e: FileItem): FileItem => {
-            console.log('localFile:', e)
-            return e
+          onFileChange={(items: FileItem[]): FileItem[] => {
+            console.log('localFile:', items)
+            return items
           }}
           onChange={(newList) => {
             console.log('修改:', newList)
@@ -125,20 +124,15 @@ export default function MediaDemo() {
           sourceType={['camera', 'album']}
           list={list}
           maxCount={9}
-          // onFileChange和onChoose的返回值一致, 都是数组
-          onFileChange={
-            ((localFile: unknown) => {
-              return [
-                {
-                  status: 'choose',
-                  localFile: localFile,
-                  fileThumbnail: (localFile as { fileUrl?: string }).fileUrl,
-                  fileUrl: (localFile as { fileUrl?: string }).fileUrl,
-                  fileType: (localFile as { fileType?: string }).fileType
-                }
-              ]
-            }) as unknown as MediaProps['onFileChange']
-          }
+          onFileChange={(localFiles) => {
+            return localFiles.map((localFile) => ({
+              status: 'choose',
+              localFile: localFile,
+              fileThumbnail: localFile.fileUrl,
+              fileUrl: localFile.fileUrl,
+              fileType: localFile.fileType
+            }))
+          }}
           onChange={(newList) => {
             console.log('修改:', newList)
             setList(newList)

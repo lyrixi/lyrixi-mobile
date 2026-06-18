@@ -33,7 +33,7 @@ export interface AttachProps {
   // Events
   onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>
   onChoose?: (e?: SyntheticEvent) => unknown
-  onFileChange?: (fileItem: FileItem) => FileItem | Promise<FileItem | unknown>
+  onFileChange?: (fileItems: FileItem[]) => FileItem[] | Promise<FileItem[] | unknown>
   onUpload?: (item: FileItem) => unknown
   onChange?: (list: FileItem[], meta?: { action?: string }) => void
   onPreview?: (item: FileItem, index: number) => unknown

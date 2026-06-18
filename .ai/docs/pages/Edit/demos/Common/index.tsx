@@ -381,8 +381,8 @@ const Edit = () => {
                 uploadPosition="start"
                 maxSize={300 * 1024 * 1024}
                 maxCount={9}
-                onFileChange={async (item: FileItem) => {
-                  return item
+                onFileChange={async (items: FileItem[]) => {
+                  return items
                 }}
               />
             </Form.Item>
@@ -422,8 +422,8 @@ const Edit = () => {
                 allowChoose
                 allowClear
                 maxCount={9}
-                onFileChange={async (item: FileItem) => {
-                  return [item]
+                onFileChange={async (items: FileItem[]) => {
+                  return items
                 }}
               />
             </Form.Item>

@@ -65,8 +65,8 @@ export interface MediaProps {
   onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
   onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
-  /** 文件变化事件 */
-  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
+  /** 文件变化事件，入参与返回值均为数组，与 onChoose 一致 */
+  onFileChange?: (fileItems: FileItem[]) => FileItem[] | Promise<FileItem[] | unknown>
   /** 上传事件 */
   onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
@@ -181,8 +181,8 @@ export interface MediaPreviewModalProps {
   onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
   onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
-  /** 文件变化事件 */
-  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
+  /** 文件变化事件，入参与返回值均为数组，与 onChoose 一致 */
+  onFileChange?: (fileItems: FileItem[]) => FileItem[] | Promise<FileItem[] | unknown>
   /** 上传事件 */
   onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
@@ -228,8 +228,8 @@ export interface MediaPreviewMainProps {
   onBeforeChoose?: (e: React.MouseEvent) => boolean | void | Promise<boolean | void>
   /** 选择事件 */
   onChoose?: (e?: React.MouseEvent) => void | Promise<unknown>
-  /** 文件变化事件 */
-  onFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
+  /** 文件变化事件，入参与返回值均为数组，与 onChoose 一致 */
+  onFileChange?: (fileItems: FileItem[]) => FileItem[] | Promise<FileItem[] | unknown>
   /** 上传事件 */
   onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */

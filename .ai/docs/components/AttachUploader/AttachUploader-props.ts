@@ -76,8 +76,8 @@ export interface AttachUploaderProps {
   formatResponse?: FormatResponseFn
   /** 选择前事件 */
   onBeforeChoose?: () => boolean | void | Promise<boolean | void>
-  /** 文件变化事件 */
-  onFileChange?: (arg: SyntheticEvent<HTMLInputElement> | AttachFileItem) => unknown
+  /** 文件变化事件，入参与返回值均为数组，与 onChoose 一致 */
+  onFileChange?: (fileItems: AttachFileItem[]) => AttachFileItem[] | Promise<AttachFileItem[] | unknown>
   /** 上传事件 */
   onUpload?: (item: AttachUploaderItem) => unknown
   /** 变化事件 */

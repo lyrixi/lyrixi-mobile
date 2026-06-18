@@ -48,7 +48,7 @@ toc: content
 | previewServerSourceType | 预览服务器来源类型 | `string \| string[]`                                                                             | -       |
 | onBeforeChoose          | 选择前事件         | `(e: SyntheticEvent) => boolean \| void \| Promise<boolean \| void>`                              | -       |
 | onChoose                | 选择事件           | `(e?: SyntheticEvent) => unknown`                                                                | -       |
-| onFileChange            | 文件变化事件       | `(e: ChangeEvent<HTMLInputElement> \| FileItem) => unknown`                                       | -       |
+| onFileChange            | 文件变化事件       | `(fileItems: FileItem[]) => FileItem[] \| Promise<FileItem[] \| unknown>`                                       | -       |
 | onUpload                | 上传事件           | `(item: FileItem) => unknown`                                                                    | -       |
 | onChange                | 变化事件           | `(list: FileItem[], meta?: { action?: string }) => void`                                         | -       |
 | onPreview               | 预览事件           | `(item: FileItem, index: number) => unknown`                                                     | -       |

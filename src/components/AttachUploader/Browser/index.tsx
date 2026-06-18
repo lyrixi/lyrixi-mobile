@@ -103,20 +103,9 @@ const Browser = forwardRef<AttachRef, AttachUploaderBrowserProps>(function Brows
     return newItem
   }
 
-  function isNativePayload(
-    a: import('react').ChangeEvent<HTMLInputElement> | FileItem
-  ): a is FileItem {
-    return (
-      typeof a === 'object' && a !== null && a !== undefined && 'fileName' in a && 'status' in a
-    )
-  }
-
-  async function handleFileOrNative(
-    arg: import('react').ChangeEvent<HTMLInputElement> | FileItem
-  ): Promise<unknown> {
-    if (!isNativePayload(arg)) {
-      return undefined
-    }
+  async function handleFileOrNative(fileItems: FileItem[]): Promise<unknown> {
+    const arg = fileItems[0]
+    if (!arg) return
     if (typeof onBeforeChoose === 'function') {
       const isOk = await onBeforeChoose()
       if (isOk === false) {

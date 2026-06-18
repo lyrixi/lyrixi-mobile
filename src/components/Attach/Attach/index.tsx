@@ -231,7 +231,7 @@ function Attach(
       list,
       uploadPosition,
       uploadList,
-      onFileChange: onFileChange ? (payload: FileItem) => onFileChange(payload) : undefined,
+      onFileChange,
       onChange: onChangeRef.current
     })
     _hideLoading()
