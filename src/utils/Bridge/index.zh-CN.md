@@ -87,7 +87,7 @@ Bridge.config({
 })
 ```
 
-### back(delta)
+### back(delta?, platform?)
 
 自动判断返回上一页或关闭窗口, 根据 url 参数 isFromApp 决定返回方式
 
@@ -108,7 +108,7 @@ Bridge.config({
 Bridge.back()
 ```
 
-### closeWindow(params)
+### closeWindow(params?, platform?)
 
 关闭当前窗口。
 
@@ -122,7 +122,7 @@ Bridge.back()
 Bridge.closeWindow()
 ```
 
-### onHistoryBack(params)
+### onHistoryBack(params, platform?)
 
 监听物理返回键或手势返回（仅客户端与企微支持）。
 
@@ -142,7 +142,7 @@ Bridge.onHistoryBack({
 })
 ```
 
-### setTitle(params)
+### setTitle(params, platform?)
 
 修改原生标题。
 
@@ -160,7 +160,7 @@ Bridge.setTitle({
 })
 ```
 
-### openWindow(params)
+### openWindow(params, platform?)
 
 打开新的窗口。
 
@@ -186,9 +186,9 @@ Bridge.openWindow({
 })
 ```
 
-### goHome()
+### goHome(params?, platform?)
 
-返回首页（仅订货客户端支持）。
+返回首页（仅订货客户端支持；其他平台多为占位或 `history.go(-1)`）。
 
 **示例：**
 
@@ -196,7 +196,7 @@ Bridge.openWindow({
 Bridge.goHome()
 ```
 
-### tel(number)
+### tel(params, platform?)
 
 拨打电话。
 
@@ -210,14 +210,14 @@ Bridge.goHome()
 Bridge.tel({ number: '10086' })
 ```
 
-### getLocation(params)
+### getLocation(params, platform?)
 
 获取当前地理位置。
 
 **参数：**
 
 - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'wgs84'`
-- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code, message, data: { latitude, longitude, speed, accuracy, type, ... } }`（以实际平台为准）
+- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: { latitude, longitude, type, accuracy?, ... } }`（以实际平台为准）
 - `onError` (Function) - 失败回调
 - `onCancel` (Function, 可选) - 取消回调
 
@@ -227,7 +227,7 @@ Bridge.tel({ number: '10086' })
 Bridge.getLocation({
   type: 'gcj02',
   onSuccess: (res) => {
-    console.log('定位成功', res.latitude, res.longitude)
+    console.log('定位成功', res.data?.latitude, res.data?.longitude)
   },
   onError: (error) => {
     console.log('定位失败', error.message)
@@ -235,15 +235,15 @@ Bridge.getLocation({
 })
 ```
 
-### getBrowserLocation(params)
+### getBrowserLocation(params, platform?)
 
 获取浏览器地理位置（所有平台都可以调用）。
 
 **参数：**
 
 - `type` (String, 可选) - 坐标类型，`'wgs84'`|`'gcj02'`，默认为 `'gcj02'`
-- `onSuccess` (Function) - 成功回调
-- `onError` (Function) - 失败回调
+- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: { latitude, longitude, type, accuracy?, ... } }`
+- `onError` (Function) - 失败回调，返回 `{ status: 'error', code?, message? }`
 
 **示例：**
 
@@ -295,16 +295,16 @@ Bridge.openLocation({
 })
 ```
 
-### scanCode(params)
+### scanCode(params, platform?)
 
 扫描二维码并返回结果。
 
 **参数：**
 
 - `scanType` (Array<String>, 可选) - 扫码类型，`['qrCode', 'barCode']`，默认为 `['qrCode', 'barCode']`
-- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', resultStr: String}`
-- `onError` (Function, 可选) - 失败回调
-- `onCancel` (Function, 可选) - 取消回调
+- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: { content: String } }`
+- `onError` (Function, 可选) - 失败回调，返回 `{ status: 'error', code?, message? }`
+- `onCancel` (Function, 可选) - 取消回调，返回 `{ status: 'cancel', code?, message? }`
 
 **示例：**
 
@@ -312,15 +312,15 @@ Bridge.openLocation({
 Bridge.scanCode({
   scanType: ['barCode'],
   onSuccess: (res) => {
-    console.log('扫码成功', res.resultStr)
+    console.log('扫码成功', res.data?.content)
   },
   onError: (error) => {
-    console.log('扫码失败', error)
+    console.log('扫码失败', error.message)
   }
 })
 ```
 
-### chooseMedia(params)
+### chooseMedia(params, platform?)
 
 选择图片或视频。
 
@@ -331,7 +331,7 @@ Bridge.scanCode({
 - `sourceType` (Array<String>, 可选) - 图片来源，`['camera', 'album']`，默认为 `['camera', 'album']`
 - `mediaType` (Array<String>, 可选) - 媒体类型，`['image', 'video', 'mix']`，默认为 `['image']`
 - `maxDuration` (Number, 可选) - 视频最大时长，单位秒，默认为 10
-- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', localFiles: Array<{fileUrl: String, filePath: String, fileType: String}>}`
+- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: { localFiles: Array<{ fileUrl, filePath, fileType, fileThumbnail? }> } }`
 - `onError` (Function, 可选) - 失败回调
 - `onCancel` (Function, 可选) - 取消回调
 
@@ -344,27 +344,27 @@ Bridge.chooseMedia({
   sourceType: ['album', 'camera'],
   mediaType: ['image'],
   onSuccess: (res) => {
-    console.log('选择成功', res.localFiles)
+    console.log('选择成功', res.data?.localFiles)
   },
   onError: (error) => {
-    console.log('选择失败', error)
+    console.log('选择失败', error.message)
   }
 })
 ```
 
-### uploadFile(params)
+### uploadFile(params, platform?)
 
 上传文件。
 
 **参数：**
 
-- `localFile` (Object, 必填) - 需要上传的文件的本地文件对象，`{ path: String, type: String }`
-- `getUploadUrl` (Function, 必填) - 获取上传地址的函数，`function({ platform: String }) => String`
-- `formatHeaders` (Function, 可选) - 格式化请求头，`function({ 'Content-Type': 'multipart/form-data', Cookie: document.cookie }, { platform: String }) => Object`
+- `localFile` (Object, 必填) - 需要上传的本地文件对象，常见字段 `{ filePath: String | File | Blob, fileType: String }`（各端字段略有差异，允许扩展）
+- `getUploadUrl` (Function, 必填) - 获取上传地址，`function({ platform: String }) => String | { saveMediaUrl: String, getMediaUrl: String } | Promise<...>`
+- `formatHeaders` (Function, 可选) - 格式化请求头，`function(headers, { platform: String }) => Object`
 - `formatPayload` (Function, 可选) - 格式化表单数据，`function(payload, { platform: String }) => Object`
-- `formatResponse` (Function, 可选) - 格式化上传结果，`function(payload, { platform: String }) => {status: 'success|error', result: Object}`
-- `onSuccess` (Function) - 成功回调，返回 `{status: 'success', result: Object}`
-- `onError` (Function, 可选) - 失败回调
+- `formatResponse` (Function, 可选) - 格式化上传结果，`function(response, { platform: String }) => { status: 'success' | 'error', data?: Object, message?: String }`
+- `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: Object }`（`data` 通常为格式化后的文件信息，如 `fileUrl`、`filePath`、`fileThumbnail`）
+- `onError` (Function, 可选) - 失败回调，返回 `{ status: 'error', code?, message? }`
 - `onCancel` (Function, 可选) - 取消回调
 
 **示例：**
@@ -372,8 +372,8 @@ Bridge.chooseMedia({
 ```javascript
 Bridge.uploadFile({
   localFile: {
-    path: '/path/to/file',
-    type: 'image'
+    filePath: '/path/to/file',
+    fileType: 'image'
   },
   getUploadUrl: ({ platform }) => {
     return 'https://api.example.com/upload'
@@ -384,16 +384,20 @@ Bridge.uploadFile({
       Authorization: 'Bearer token'
     }
   },
+  formatResponse: (response, { platform }) => {
+    // 按业务约定把接口原始响应转为 { status, data }
+    return { status: 'success', data: response }
+  },
   onSuccess: (res) => {
-    console.log('上传成功', res.result)
+    console.log('上传成功', res.data)
   },
   onError: (error) => {
-    console.log('上传失败', error)
+    console.log('上传失败', error.message)
   }
 })
 ```
 
-### previewMedia(params)
+### previewMedia(params, platform?)
 
 预览图片或视频。
 
@@ -424,9 +428,9 @@ Bridge.previewMedia({
 })
 ```
 
-### previewFile(params)
+### previewFile(params, platform?)
 
-预览文件（仅客户端支持）。
+预览文件（企业微信、客户端等环境支持；个人微信、PC 浏览器会提示不支持）。
 
 **参数：**
 
@@ -533,19 +537,22 @@ Bridge 还提供了一些工具方法：
 | `getBrowserLocation` | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `openLocation`       | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `scanCode`           | ❌     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `chooseMedia`        | ❌     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `uploadFile`         | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `previewMedia`       | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `previewFile`        | ❌     | ❌   | ❌       | ❌     | ❌   | ❌   | ❌     |
+| `chooseMedia`        | ❌     | ✅\*  | ✅       | ❌     | ✅   | ❌   | ✅     |
+| `uploadFile`         | ✅     | ✅\*  | ✅       | ❌     | ✅   | ❌   | ✅\*   |
+| `previewMedia`       | ✅     | ✅\*  | ✅       | ❌     | ✅   | ✅   | ✅     |
+| `previewFile`        | ❌     | ❌    | ✅       | ❌     | ❌   | ❌   | ❌     |
 | `detectFace`         | ❌     | ❌   | ❌       | ❌     | ✅   | ❌   | ❌     |
 | `share`              | ❌     | ✅   | ✅       | ❌     | ✅   | ✅   | ✅     |
 
-\* 浏览器等平台为占位实现（直接成功回调），便于联调；真实鉴权以各端文档为准。
+\* `config` 在浏览器等平台为占位实现（直接成功回调），便于联调；真实鉴权以各端文档为准。
+
+\* 微信 / 企业微信 / 小程序下 `chooseMedia`、`uploadFile`、`previewMedia` 等仅在**移动端**可用，PC 端会提示不支持或回调 `onError`。
 
 **说明：**
 
-- ✅ 表示支持
-- ❌ 表示不支持或功能受限
+- ✅ 表示该平台有可用实现
+- ❌ 表示不支持、仅占位（如 `console.log` 提示暂未实现）或功能受限
+- 支付宝、飞书的 `chooseMedia`、`uploadFile` 等目前为占位，尚未接入原生能力
 
 ## 使用示例
 
