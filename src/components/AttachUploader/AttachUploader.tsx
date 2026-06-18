@@ -1,8 +1,5 @@
 import React, { forwardRef } from 'react'
 
-// 内部组件导出
-import uploadList from './../MediaUploader/utils/uploadList'
-
 // 内部组件
 import Browser from './Browser'
 
@@ -72,7 +69,5 @@ const AttachUploader = forwardRef<AttachRef, AttachUploaderProps>(function Attac
     />
   )
 })
-
-;(AttachUploader as unknown as { uploadList: typeof uploadList }).uploadList = uploadList
 
 export default AttachUploader

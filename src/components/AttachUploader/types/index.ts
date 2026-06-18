@@ -3,3 +3,4 @@
  */
 export * from './AttachUploader.main.types'
 export * from './AttachUploader.Browser.types'
+export * from './AttachUploader.modules.types'
