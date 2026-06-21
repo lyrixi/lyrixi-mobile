@@ -2,6 +2,7 @@ import type {
   BridgeChooseMediaResultData,
   BridgeDetectFaceResultData,
   BridgeGetLocationResultData,
+  BridgeGetPhoneNumberResultData,
   BridgeScanCodeResultData,
   BridgeSuccessResult,
   BridgeCancelCallback,
@@ -52,12 +53,6 @@ export type BridgeOpenWindowParams = {
   url?: string
   title?: string
   target?: string
-}
-
-/** {@link Bridge.goHome} */
-export type BridgeGoHomeParams = {
-  onSuccess?: BridgeSuccessCallback
-  onError?: BridgeErrorCallback
 }
 
 /** {@link Bridge.tel} */
@@ -227,4 +222,11 @@ export type BridgeDetectFaceParams = {
   }) => Promise<Record<string, unknown>> | Record<string, unknown>
   onSuccess?: BridgeSuccessCallback<BridgeDetectFaceResultData>
   onError?: BridgeErrorCallback
+}
+
+/** {@link Bridge.getPhoneNumber} */
+export type BridgeGetPhoneNumberParams = {
+  onSuccess?: BridgeSuccessCallback<BridgeGetPhoneNumberResultData>
+  onError?: BridgeErrorCallback
+  onCancel?: BridgeCancelCallback
 }

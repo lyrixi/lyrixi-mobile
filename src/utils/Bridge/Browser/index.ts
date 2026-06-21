@@ -53,7 +53,7 @@ let Browser = {
     })
   },
   back: function (delta?: number) {
-    back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
+    back(delta, { closeWindow: this.closeWindow })
   },
   closeWindow: function (params?: BridgeCloseWindowParams) {
     const { onSuccess } = params || {}
@@ -85,9 +85,6 @@ let Browser = {
       return
     }
     if (url) window.location.href = url
-  },
-  goHome: function () {
-    window.history.go(-1)
   },
   tel: function (params?: BridgeTelParams) {
     const { number, onSuccess, onError } = params || {}

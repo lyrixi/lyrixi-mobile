@@ -52,6 +52,12 @@ function getPlatform() {
     platformMatch = ua.match(/lark\/([\w.]*)/)
     if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
   }
+  // Lyrixi App
+  else if (ua.indexOf('lyrixi') > -1) {
+    platform = 'lyrixi'
+    platformMatch = ua.match(/lyrixi\/([\w.]*)/)
+    if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+  }
   // QQ
   else if (ua.indexOf('mqqbrowser') > -1) {
     platform = 'qq'

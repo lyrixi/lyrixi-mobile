@@ -129,22 +129,6 @@ export default function BridgeDemo() {
           </Card.Main>
         </Card>
 
-        <Card>
-          <Card.Header>返回首页(仅订货客户端支持)</Card.Header>
-          <Card.Main>
-            <Button
-              className="lyrixi-primary lyrixi-flex"
-              style={{ margin: '12px 10px' }}
-              radius="m"
-              onClick={() => {
-                Bridge.goHome()
-              }}
-            >
-              goHome
-            </Button>
-          </Card.Main>
-        </Card>
-
         <Divider>媒体接口</Divider>
         <Card>
           <Card.Header>扫码接口</Card.Header>

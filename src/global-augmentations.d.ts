@@ -3,6 +3,28 @@ import type { LeafletWithPlugins as LeafletWindowL } from './components/Map/Map.
 
 export {}
 
+/** 与 window.lyrixi 对齐的宽松类型 */
+type LyrixiJsSdk = {
+  config?: (cfg: Record<string, unknown>) => void
+  error?: (cb: (err: unknown) => void) => void
+  ready?: (cb: () => void) => void
+  closeWindow?: (opts: Record<string, unknown>) => void
+  onHistoryBack?: (opts: Record<string, unknown>) => void
+  setTitle?: (opts: Record<string, unknown>) => void
+  tel?: (opts: Record<string, unknown>) => void
+  openWindow?: (opts: Record<string, unknown>) => void
+  openLocation?: (opts: Record<string, unknown>) => void
+  getLocation?: (opts: Record<string, unknown>) => void
+  scanCode?: (opts: Record<string, unknown>) => void
+  chooseMedia?: (opts: Record<string, unknown>) => void
+  uploadFile?: (opts: Record<string, unknown>) => void
+  previewMedia?: (opts: Record<string, unknown>) => void
+  previewFile?: (opts: Record<string, unknown>) => void
+  share?: (opts: Record<string, unknown>) => void
+  detectFace?: (opts: Record<string, unknown>) => void
+  getPhoneNumber?: (opts: Record<string, unknown>) => void
+}
+
 /** 与 window.wx 对齐的宽松类型，避免为每个 API 维护完整签名 */
 type WeixinJsSdk = {
   config?: (cfg: Record<string, unknown>) => void
@@ -96,6 +118,13 @@ declare global {
     clipboardData?: { setData: (format: string, data: string) => void }
     /** legacy Firefox */
     netscape?: { security?: { PrivilegeManager?: { enablePrivilege: (cap: string) => void } } }
+    /** Lyrixi App JSSDK（运行时注入） */
+    lyrixi?: LyrixiJsSdk
+    /** Lyrixi 原生 WebView Bridge */
+    LyrixiJSBridge?: {
+      invoke: (api: string, data: Record<string, unknown>, callback: (res: Record<string, unknown>) => void) => void
+      on?: (event: string, callback: (res: Record<string, unknown>) => void) => void
+    }
     /** 微信 / 企业微信 JSSDK（运行时注入，方法表随官方文档扩展） */
     wx?: WeixinJsSdk
     /** 飞书 JSSDK */

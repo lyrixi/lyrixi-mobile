@@ -9,11 +9,8 @@ import { Device, Message, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 客户端默认返回控制
-async function back(
-  delta = -1,
-  helpers?: { closeWindow?: () => void; goHome?: () => void }
-) {
-  const { closeWindow = () => {}, goHome = () => {} } = helpers || {}
+async function back(delta = -1, helpers?: { closeWindow?: () => void }) {
+  const { closeWindow = () => {} } = helpers || {}
   // 返回操作对象与返回层级
   let isFromApp = String(Device.getUrlParameter('isFromApp') || '')
 
@@ -21,9 +18,9 @@ async function back(
     closeWindow()
     return true
   }
-  // 返回首页
+  // 返回首页（历史返回）
   else if (isFromApp === 'home') {
-    goHome()
+    window.history.go(-1)
     return true
   }
   // 提示后，关闭返回，或者历史返回

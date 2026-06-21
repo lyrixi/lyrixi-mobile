@@ -92,7 +92,7 @@ Bridge.config({
 自动判断返回上一页或关闭窗口, 根据 url 参数 isFromApp 决定返回方式
 
 - isFromApp=1 时, 调用 Bridge.closeWindow()
-- isFromApp=home 时, 调用 Bridge.goHome()
+- isFromApp=home 时, 调用 window.history.go(-1)
 - isFromApp 包含 confirm-close 时, 提示用户是否关闭窗口, 如果用户确认关闭, 调用 Bridge.closeWindow()
 - isFromApp 包含 confirm 时, 提示用户是否返回上一页, 如果用户确认返回, 调用 window.history.go(delta)
 - 其他情况调用 window.history.go(delta)
@@ -184,16 +184,6 @@ Bridge.openWindow({
   url: 'https://www.example.com',
   target: '_self'
 })
-```
-
-### goHome(params?, platform?)
-
-返回首页（仅订货客户端支持；其他平台多为占位或 `history.go(-1)`）。
-
-**示例：**
-
-```javascript
-Bridge.goHome()
 ```
 
 ### tel(params, platform?)
@@ -531,7 +521,6 @@ Bridge 还提供了一些工具方法：
 | `onHistoryBack`      | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
 | `setTitle`           | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `openWindow`         | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `goHome`             | ❌     | ❌   | ❌       | ❌     | ❌   | ❌   | ❌     |
 | `tel`                | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `getLocation`        | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `getBrowserLocation` | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |

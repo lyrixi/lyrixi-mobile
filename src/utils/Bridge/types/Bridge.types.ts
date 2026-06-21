@@ -7,9 +7,9 @@ import type {
   BridgeCloseWindowParams,
   BridgeConfigParams,
   BridgeDetectFaceParams,
+  BridgeGetPhoneNumberParams,
   BridgeGetBrowserLocationParams,
   BridgeGetLocationParams,
-  BridgeGoHomeParams,
   BridgeLoadParams,
   BridgeOnHistoryBackParams,
   BridgeOpenLocationParams,
@@ -34,7 +34,6 @@ export interface BridgeAdapter {
   onHistoryBack: (params?: BridgeOnHistoryBackParams) => void
   setTitle?: (params?: BridgeSetTitleParams) => void
   openWindow?: (params?: BridgeOpenWindowParams) => void
-  goHome?: (params?: BridgeGoHomeParams) => void
   tel?: (params?: BridgeTelParams) => void
   openLocation: (params?: BridgeOpenLocationParams) => void
   getLocation: (params?: BridgeGetLocationParams) => void
@@ -46,4 +45,5 @@ export interface BridgeAdapter {
   previewFile?: (params?: BridgePreviewFileParams) => void
   share?: (params?: BridgeShareParams) => void
   detectFace?: (params?: BridgeDetectFaceParams) => void
+  getPhoneNumber?: (params?: BridgeGetPhoneNumberParams) => void
 }

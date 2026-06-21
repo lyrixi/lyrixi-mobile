@@ -41,6 +41,12 @@ export type BridgeDetectFaceResultData = {
   confidence: number | undefined
 }
 
+/** {@link Bridge.getPhoneNumber} 成功时 `data` */
+export type BridgeGetPhoneNumberResultData = {
+  code: string
+  phoneNumber: string
+}
+
 /** 成功结果固定形状；无业务载荷时 `T` 为 `undefined`，`data` 为 `undefined`。 */
 export type BridgeSuccessResult<T = undefined> = {
   status: 'success'

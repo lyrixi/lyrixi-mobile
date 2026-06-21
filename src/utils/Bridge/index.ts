@@ -5,6 +5,7 @@ import WeChat from './WeChat'
 import Alipay from './Alipay'
 import DingTalk from './DingTalk'
 import Lark from './Lark'
+import Lyrixi from './Lyrixi'
 
 import type {
   BridgeAdapter,
@@ -12,9 +13,9 @@ import type {
   BridgeCloseWindowParams,
   BridgeConfigParams,
   BridgeDetectFaceParams,
+  BridgeGetPhoneNumberParams,
   BridgeGetBrowserLocationParams,
   BridgeGetLocationParams,
-  BridgeGoHomeParams,
   BridgeLoadParams,
   BridgeOnHistoryBackParams,
   BridgeOpenLocationParams,
@@ -70,6 +71,8 @@ let Bridge = {
       return { ...Browser, ...DingTalk } as BridgeAdapter
     } else if (platform === 'lark') {
       return { ...Browser, ...Lark } as BridgeAdapter
+    } else if (platform === 'lyrixi') {
+      return { ...Browser, ...Lyrixi } as BridgeAdapter
     } else {
       return Browser as BridgeAdapter
     }
@@ -106,7 +109,7 @@ let Bridge = {
   /**
    * 返回上一页或关闭窗口, 根据url参数isFromApp决定返回方式
    * @description isFromApp=1时, 调用Bridge.closeWindow()
-   * @description isFromApp=home时, 调用Bridge.goHome()
+   * @description isFromApp=home时, 调用window.history.go(-1)
    * @description isFromApp包含confirm-close时, 提示用户是否关闭窗口, 如果用户确认关闭, 调用Bridge.closeWindow()
    * @description isFromApp包含confirm时, 提示用户是否返回上一页, 如果用户确认返回, 调用window.history.go(delta)
    * @description 其他情况调用window.history.go(delta)
@@ -165,20 +168,6 @@ let Bridge = {
     const bridge = this._getCurrentBridge(platform)
     if (bridge.openWindow) {
       return bridge.openWindow(params)
-    }
-    return undefined
-  },
-  /**
-   * 返回首页
-   * @param {Object} params - 返回首页参数
-   * @param {Function} params.onSuccess - 成功回调
-   * @param {Function} params.onError - 失败回调
-   * @returns {void}
-   */
-  goHome(params?: BridgeGoHomeParams, platform?: string) {
-    const bridge = this._getCurrentBridge(platform)
-    if (bridge.goHome) {
-      return bridge.goHome(params)
     }
     return undefined
   },
@@ -365,6 +354,21 @@ let Bridge = {
     const bridge = this._getCurrentBridge(platform)
     if (typeof bridge.detectFace === 'function') {
       return bridge.detectFace(params)
+    }
+    return undefined
+  },
+  /**
+   * 获取手机号（当前仅 Lyrixi App 支持）
+   * @param {Object} params - 调用参数
+   * @param {Function} params.onSuccess - 成功回调，返回 { status: 'success', code, message, data: { code, phoneNumber } }
+   * @param {Function} params.onError - 失败回调
+   * @param {Function} params.onCancel - 取消回调
+   * @returns {void}
+   */
+  getPhoneNumber(params?: BridgeGetPhoneNumberParams, platform?: string) {
+    const bridge = this._getCurrentBridge(platform)
+    if (typeof bridge.getPhoneNumber === 'function') {
+      return bridge.getPhoneNumber(params)
     }
     return undefined
   },

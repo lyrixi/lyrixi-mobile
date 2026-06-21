@@ -123,11 +123,8 @@ let Bridge = {
       wechatConfig(cfg)
     }
   },
-  goHome: function () {
-    window.history.go(-1)
-  },
   back: function (delta?: number) {
-    back(delta, { closeWindow: this.closeWindow, goHome: this.goHome })
+    back(delta, { closeWindow: this.closeWindow })
   },
   closeWindow: function (params?: BridgeCloseWindowParams) {
     const { onSuccess } = params || {}
