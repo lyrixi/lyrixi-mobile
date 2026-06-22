@@ -63,9 +63,10 @@ let Bridge = {
     const script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = true
+    // 使用本地资源，上线后需要换成线上资源
     script.src =
       getScriptSrc?.({ platform: 'lyrixi' }) ||
-      '//res.lyrixi.com/open/js/LyrixiJSBridge.js'
+      'https://lyrixi.github.io/lyrixi-mobile/assets/js/LyrixiJSBridge.js'
 
     script.onload = function () {
       if (window.lyrixi) {
@@ -118,10 +119,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `Lyrixi ${LocaleUtil.locale(
-              '关闭窗口失败',
-              'lyrixi_665ecd23e32150fd197a316177a3973f'
-            )}`
+            `Lyrixi ${LocaleUtil.locale('关闭窗口失败', 'lyrixi_665ecd23e32150fd197a316177a3973f')}`
         })
       }
     })
@@ -158,10 +156,7 @@ let Bridge = {
           status: 'error',
           message:
             error?.errMsg ||
-            `Lyrixi ${LocaleUtil.locale(
-              '设置标题失败',
-              'lyrixi_6dd527e00e48b7580176120795b07b46'
-            )}`
+            `Lyrixi ${LocaleUtil.locale('设置标题失败', 'lyrixi_6dd527e00e48b7580176120795b07b46')}`
         })
       }
     })
@@ -279,16 +274,8 @@ let Bridge = {
     })
   },
   chooseMedia: function (params?: BridgeChooseMediaParams) {
-    const {
-      count,
-      sourceType,
-      sizeType,
-      mediaType,
-      maxDuration,
-      onSuccess,
-      onError,
-      onCancel
-    } = params || {}
+    const { count, sourceType, sizeType, mediaType, maxDuration, onSuccess, onError, onCancel } =
+      params || {}
 
     getLyrixi()?.chooseMedia?.({
       count,
