@@ -1,7 +1,5 @@
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
-import getConfigPayload from './../utils/getConfigPayload'
-import config from './config'
 import type { BridgeSDKErrorResponse } from '../WeChat/BridgeSDKErrorResponse.types'
 import type {
   BridgeLyrixiChooseMediaSuccessResponse,
@@ -54,56 +52,12 @@ function getLyrixi() {
 
 let Bridge = {
   load: function (params?: BridgeLoadParams) {
-    const { getScriptSrc, onSuccess, onError } = params || {}
-    if (getLyrixi()) {
-      onSuccess?.({ status: 'success', data: undefined })
-      return
-    }
-
-    const script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.defer = true
-    // 使用本地资源，上线后需要换成线上资源
-    script.src =
-      getScriptSrc?.({ platform: 'lyrixi' }) ||
-      'https://lyrixi.github.io/lyrixi-mobile/assets/js/LyrixiJSBridge.js'
-
-    script.onload = function () {
-      if (window.lyrixi) {
-        ;(window.top ?? window).lyrixi = window.lyrixi
-      }
-      onSuccess?.({ status: 'success', data: undefined })
-    }
-    script.onerror = function () {
-      onError?.({
-        status: 'error',
-        message: `Lyrixi js ${LocaleUtil.locale(
-          '加载失败',
-          'lyrixi_866b795eae73791792b09d33d6595fe5'
-        )}`
-      })
-    }
-
-    document.body.appendChild(script)
+    const { onSuccess } = params || {}
+    onSuccess?.({ status: 'success', data: undefined })
   },
-  config: async function (params?: BridgeConfigParams) {
-    const { getConfigUrl, formatHeaders, formatPayload, formatResponse, onSuccess, onError } =
-      params || {}
-
-    let url = ''
-    if (typeof getConfigUrl === 'function') {
-      url = await getConfigUrl({ platform: 'lyrixi' })
-    }
-    let payload: Record<string, unknown> = getConfigPayload() as Record<string, unknown>
-    if (typeof formatPayload === 'function') {
-      payload = (await formatPayload(payload, { platform: 'lyrixi' })) as Record<string, unknown>
-    }
-    let headers: Record<string, string> = { 'Content-Type': 'application/json' }
-    if (typeof formatHeaders === 'function') {
-      headers = (await formatHeaders(headers, { platform: 'lyrixi' })) as Record<string, string>
-    }
-
-    config({ url, headers, payload, formatResponse, onSuccess, onError })
+  config: function (params?: BridgeConfigParams) {
+    const { onSuccess } = params || {}
+    onSuccess?.({ status: 'success', data: undefined })
   },
   back: function (delta?: number) {
     back(delta, { closeWindow: this.closeWindow })

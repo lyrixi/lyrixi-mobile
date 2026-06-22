@@ -3,11 +3,8 @@ import type { LeafletWithPlugins as LeafletWindowL } from './components/Map/Map.
 
 export {}
 
-/** 与 window.lyrixi 对齐的宽松类型 */
+/** 与 window.lyrixi 对齐的宽松类型（原生 WebView 注入，无需额外 JS 与鉴权） */
 type LyrixiJsSdk = {
-  config?: (cfg: Record<string, unknown>) => void
-  error?: (cb: (err: unknown) => void) => void
-  ready?: (cb: () => void) => void
   closeWindow?: (opts: Record<string, unknown>) => void
   onHistoryBack?: (opts: Record<string, unknown>) => void
   setTitle?: (opts: Record<string, unknown>) => void
@@ -118,13 +115,8 @@ declare global {
     clipboardData?: { setData: (format: string, data: string) => void }
     /** legacy Firefox */
     netscape?: { security?: { PrivilegeManager?: { enablePrivilege: (cap: string) => void } } }
-    /** Lyrixi App JSSDK（运行时注入） */
+    /** Lyrixi App 原生桥接（WebView 注入，可直接调用 lyrixi.xx） */
     lyrixi?: LyrixiJsSdk
-    /** Lyrixi 原生 WebView Bridge */
-    LyrixiJSBridge?: {
-      invoke: (api: string, data: Record<string, unknown>, callback: (res: Record<string, unknown>) => void) => void
-      on?: (event: string, callback: (res: Record<string, unknown>) => void) => void
-    }
     /** 微信 / 企业微信 JSSDK（运行时注入，方法表随官方文档扩展） */
     wx?: WeixinJsSdk
     /** 飞书 JSSDK */
