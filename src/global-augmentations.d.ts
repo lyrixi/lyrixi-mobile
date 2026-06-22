@@ -5,21 +5,23 @@ export {}
 
 /** 与 window.lyrixi 对齐的宽松类型（原生 WebView 注入，无需额外 JS 与鉴权） */
 type LyrixiJsSdk = {
-  closeWindow?: (opts: Record<string, unknown>) => void
-  onHistoryBack?: (opts: Record<string, unknown>) => void
-  setTitle?: (opts: Record<string, unknown>) => void
-  tel?: (opts: Record<string, unknown>) => void
-  openWindow?: (opts: Record<string, unknown>) => void
-  openLocation?: (opts: Record<string, unknown>) => void
-  getLocation?: (opts: Record<string, unknown>) => void
-  scanCode?: (opts: Record<string, unknown>) => void
-  chooseMedia?: (opts: Record<string, unknown>) => void
-  uploadFile?: (opts: Record<string, unknown>) => void
-  previewMedia?: (opts: Record<string, unknown>) => void
-  previewFile?: (opts: Record<string, unknown>) => void
-  share?: (opts: Record<string, unknown>) => void
-  detectFace?: (opts: Record<string, unknown>) => void
-  getPhoneNumber?: (opts: Record<string, unknown>) => void
+  version?: string
+  ready?: (fn: () => void) => void
+  closeWindow?: (opts?: Record<string, unknown>) => void
+  onHistoryBack?: (opts?: Record<string, unknown>) => void
+  setTitle?: (opts?: Record<string, unknown>) => void
+  tel?: (opts?: Record<string, unknown>) => void
+  openWindow?: (opts?: Record<string, unknown>) => void
+  openLocation?: (opts?: Record<string, unknown>) => void
+  getLocation?: (opts?: Record<string, unknown>) => void
+  scanCode?: (opts?: Record<string, unknown>) => void
+  chooseMedia?: (opts?: Record<string, unknown>) => void
+  uploadFile?: (opts?: Record<string, unknown>) => void
+  previewMedia?: (opts?: Record<string, unknown>) => void
+  previewFile?: (opts?: Record<string, unknown>) => void
+  share?: (opts?: Record<string, unknown>) => void
+  detectFace?: (opts?: Record<string, unknown>) => void
+  getPhoneNumber?: (opts?: Record<string, unknown>) => void
 }
 
 /** 与 window.wx 对齐的宽松类型，避免为每个 API 维护完整签名 */
