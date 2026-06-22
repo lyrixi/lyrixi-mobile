@@ -65,7 +65,7 @@ let Bridge = {
     script.defer = true
     script.src =
       getScriptSrc?.({ platform: 'lyrixi' }) ||
-      '//res.lyrixi.com/open/js/lyrixi-bridge-1.0.0.js'
+      '//res.lyrixi.com/open/js/LyrixiJSBridge.js'
 
     script.onload = function () {
       if (window.lyrixi) {
