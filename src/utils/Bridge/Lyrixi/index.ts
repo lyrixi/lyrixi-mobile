@@ -1,21 +1,15 @@
 import back from './../utils/back'
 import formatOpenLocationCoord from './../utils/formatOpenLocationCoord'
 import type { BridgeSDKErrorResponse } from '../WeChat/BridgeSDKErrorResponse.types'
-import type {
-  BridgeLyrixiChooseMediaSuccessResponse,
-  BridgeLyrixiDetectFaceSuccessResponse,
-  BridgeLyrixiGetLocationSuccessResponse,
-  BridgeLyrixiGetPhoneNumberSuccessResponse,
-  BridgeLyrixiScanCodeSuccessResponse
-} from './Bridge.Lyrixi.types'
+
 import type {
   FileItem,
   BridgeChooseMediaParams,
+  BridgeChooseMediaResultData,
   BridgeCloseWindowParams,
   BridgeConfigParams,
   BridgeDetectFaceParams,
   BridgeGetLocationParams,
-  BridgeGetLocationResultData,
   BridgeGetPhoneNumberParams,
   BridgeLoadParams,
   BridgeOnHistoryBackParams,
@@ -186,16 +180,16 @@ let Bridge = {
     const { type, onSuccess, onError, onCancel } = params || {}
     getLyrixi()?.getLocation?.({
       type: type || 'wgs84',
-      success: (res: BridgeLyrixiGetLocationSuccessResponse) => {
+      success: (res: Record<string, unknown>) => {
         onSuccess?.({
           status: 'success',
           code: '',
           message: '',
           data: {
-            longitude: res.longitude ?? 0,
-            latitude: res.latitude ?? 0,
+            longitude: (res.longitude as number) ?? 0,
+            latitude: (res.latitude as number) ?? 0,
             type: (res.type as string) || type || 'wgs84',
-            accuracy: res.accuracy
+            accuracy: res.accuracy as number | undefined
           }
         })
       },
@@ -211,12 +205,14 @@ let Bridge = {
     const { scanType, onSuccess, onError, onCancel } = params || {}
     getLyrixi()?.scanCode?.({
       scanType: scanType || ['qrCode', 'barCode'],
-      success: (res: BridgeLyrixiScanCodeSuccessResponse) => {
+      success: (res: Record<string, unknown>) => {
         onSuccess?.({
           status: 'success',
           code: '',
           message: '',
-          data: { content: res.content || res.resultStr || '' }
+          data: {
+            content: String(res.content || res.resultStr || '')
+          }
         })
       },
       fail: (error: BridgeSDKErrorResponse) => {
@@ -237,13 +233,13 @@ let Bridge = {
       sizeType,
       mediaType,
       maxDuration,
-      success: (res: BridgeLyrixiChooseMediaSuccessResponse) => {
+      success: (res: Record<string, unknown>) => {
         onSuccess?.({
           status: 'success',
           code: '',
           message: '',
           data: {
-            localFiles: res.localFiles || []
+            localFiles: (res.localFiles as BridgeChooseMediaResultData['localFiles']) || []
           }
         })
       },
@@ -417,14 +413,14 @@ let Bridge = {
     }
     getLyrixi()?.detectFace?.({
       ...nativeConfig,
-      success: (res: BridgeLyrixiDetectFaceSuccessResponse) => {
+      success: (res: Record<string, unknown>) => {
         onSuccess?.({
           status: 'success',
           code: '',
           message: '',
           data: {
-            match: res.match ?? false,
-            confidence: res.confidence
+            match: Boolean(res.match),
+            confidence: res.confidence as number | undefined
           }
         })
       },
@@ -436,14 +432,14 @@ let Bridge = {
   getPhoneNumber: function (params?: BridgeGetPhoneNumberParams) {
     const { onSuccess, onError, onCancel } = params || {}
     getLyrixi()?.getPhoneNumber?.({
-      success: (res: BridgeLyrixiGetPhoneNumberSuccessResponse) => {
+      success: (res: Record<string, unknown>) => {
         onSuccess?.({
           status: 'success',
-          code: res.code || '',
+          code: String(res.code || ''),
           message: '',
           data: {
-            code: res.code || '',
-            phoneNumber: res.phoneNumber || ''
+            code: String(res.code || ''),
+            phoneNumber: String(res.phoneNumber || '')
           }
         })
       },
