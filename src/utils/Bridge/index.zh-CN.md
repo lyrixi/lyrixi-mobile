@@ -291,7 +291,7 @@ Bridge.openLocation({
 
 **参数：**
 
-- `scanType` (Array<String>, 可选) - 扫码类型，`['qrCode', 'barCode']`，默认为 `['qrCode', 'barCode']`
+- `scanType` (`Array<String>`, 可选) - 扫码类型，`['qrCode', 'barCode']`，默认为 `['qrCode', 'barCode']`
 - `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: { content: String } }`
 - `onError` (Function, 可选) - 失败回调，返回 `{ status: 'error', code?, message? }`
 - `onCancel` (Function, 可选) - 取消回调，返回 `{ status: 'cancel', code?, message? }`
@@ -317,9 +317,9 @@ Bridge.scanCode({
 **参数：**
 
 - `count` (Number, 可选) - 最多可以选择的图片张数，默认为 9
-- `sizeType` (Array<String>, 可选) - 图片大小，`['original', 'compressed']`，默认为 `['original', 'compressed']`
-- `sourceType` (Array<String>, 可选) - 图片来源，`['camera', 'album']`，默认为 `['camera', 'album']`
-- `mediaType` (Array<String>, 可选) - 媒体类型，`['image', 'video', 'mix']`，默认为 `['image']`
+- `sizeType` (`Array<String>`, 可选) - 图片大小，`['original', 'compressed']`，默认为 `['original', 'compressed']`
+- `sourceType` (`Array<String>`, 可选) - 图片来源，`['camera', 'album']`，默认为 `['camera', 'album']`
+- `mediaType` (`Array<String>`, 可选) - 媒体类型，`['image', 'video', 'mix']`，默认为 `['image']`
 - `maxDuration` (Number, 可选) - 视频最大时长，单位秒，默认为 10
 - `onSuccess` (Function) - 成功回调，返回 `{ status: 'success', code?, message?, data: { localFiles: Array<{ fileUrl, filePath, fileType, fileThumbnail? }> } }`
 - `onError` (Function, 可选) - 失败回调
@@ -394,7 +394,7 @@ Bridge.uploadFile({
 **参数：**
 
 - `index` (Number, 可选) - 当前显示图片索引，默认 0
-- `sources` (Array<Object>, 必填) - 需要预览的媒体 http 链接列表，`[{fileUrl: String, fileType: String, poster: String}]`
+- `sources` (`Array<Object>`, 必填) - 需要预览的媒体 http 链接列表，`[{fileUrl: String, fileType: String, poster: String}]`
 - `onSuccess` (Function, 可选) - 成功回调
 - `onError` (Function, 可选) - 失败回调
 - `onCancel` (Function, 可选) - 取消回调
@@ -471,7 +471,7 @@ Bridge.detectFace({
 
 **参数：**
 
-- `platforms` (Array<String>, 可选) - 分享平台，微信、企微、飞书、钉钉都不支持，默认分享到当前平台
+- `platforms` (`Array<String>`, 可选) - 分享平台，微信、企微、飞书、钉钉都不支持，默认分享到当前平台
 - `title` (String, 必填) - 分享标题
 - `description` (String, 可选) - 分享副标题
 - `url` (String, 可选) - 分享链接
@@ -526,10 +526,10 @@ Bridge 还提供了一些工具方法：
 | `getBrowserLocation` | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `openLocation`       | ✅     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
 | `scanCode`           | ❌     | ✅   | ✅       | ✅     | ✅   | ✅   | ✅     |
-| `chooseMedia`        | ❌     | ✅\*  | ✅       | ❌     | ✅   | ❌   | ✅     |
-| `uploadFile`         | ✅     | ✅\*  | ✅       | ❌     | ✅   | ❌   | ✅\*   |
-| `previewMedia`       | ✅     | ✅\*  | ✅       | ❌     | ✅   | ✅   | ✅     |
-| `previewFile`        | ❌     | ❌    | ✅       | ❌     | ❌   | ❌   | ❌     |
+| `chooseMedia`        | ❌     | ✅\* | ✅       | ❌     | ✅   | ❌   | ✅     |
+| `uploadFile`         | ✅     | ✅\* | ✅       | ❌     | ✅   | ❌   | ✅\*   |
+| `previewMedia`       | ✅     | ✅\* | ✅       | ❌     | ✅   | ✅   | ✅     |
+| `previewFile`        | ❌     | ❌   | ✅       | ❌     | ❌   | ❌   | ❌     |
 | `detectFace`         | ❌     | ❌   | ❌       | ❌     | ✅   | ❌   | ❌     |
 | `share`              | ❌     | ✅   | ✅       | ❌     | ✅   | ✅   | ✅     |
 
