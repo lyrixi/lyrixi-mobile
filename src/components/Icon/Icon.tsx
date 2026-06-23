@@ -50,7 +50,7 @@ const Icon = forwardRef<IconRef, IconProps>(function Icon(
       onClick={onClick}
       onTouchStart={onTouchStart}
     >
-      <Svg className="lyrixi-icon-svg" aria-hidden focusable="false" />
+      {Svg && <Svg className="lyrixi-icon-svg" aria-hidden focusable="false" />}
     </span>
   )
 })
