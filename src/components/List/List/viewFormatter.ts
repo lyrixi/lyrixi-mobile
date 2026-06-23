@@ -25,7 +25,7 @@ function viewFormatter(
   // 格式化单项
   if (typeof formatViewItem === 'function') {
     return rawList?.map((item, index) => {
-      return { ...formatViewItem(item, { index }) }
+      return { _raw: item._raw, ...formatViewItem(item, { index }) }
     })
   }
 

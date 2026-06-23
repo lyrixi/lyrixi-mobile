@@ -14,7 +14,7 @@ function viewFormatter(
 
   if (typeof formatViewItem === 'function') {
     return list?.map((item, index) => {
-      return { ...formatViewItem(item, { index }), _raw: item }
+      return { _raw: item, ...formatViewItem(item, { index }) }
     })
   }
 
