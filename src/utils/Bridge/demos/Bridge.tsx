@@ -1,9 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import vconsole from 'vconsole'
 
 import {
   Loading,
   Button,
+  Device,
   Bridge,
   Page,
   Divider,
@@ -20,6 +21,19 @@ new vconsole()
 
 export default function BridgeDemo() {
   const imageLocalFiles = useRef<unknown[] | null>(null)
+
+  useEffect(() => {
+    console.log('Platform', Device.platform)
+    console.log('Bridge', Bridge)
+    Bridge.load({
+      onSuccess: () => {
+        Bridge.setTitle({
+          title: '111'
+        })
+        console.log('Bridge loaded')
+      }
+    })
+  }, [])
 
   return (
     <Page>
