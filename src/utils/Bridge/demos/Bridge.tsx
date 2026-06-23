@@ -153,7 +153,7 @@ export default function BridgeDemo() {
               radius="m"
               onClick={() => {
                 Bridge.scanCode({
-                  scanType: ['barCode'],
+                  scanType: ['barCode', 'qrCode'],
                   onSuccess: (res: BridgeSuccessResult<BridgeScanCodeResultData>) => {
                     console.log(res)
                     alert(JSON.stringify(res))
