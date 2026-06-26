@@ -1,8 +1,8 @@
-import type { LocaleUtilLoadLyrixiLanguageResult } from './loadLocale.types'
+import type { LocaleUtilLoadLocaleResult } from './loadLocale.types'
 
 // 设置lyrixi语言
 async function loadLyrixiLanguage(language: string) {
-  return new Promise<LocaleUtilLoadLyrixiLanguageResult>((resolve) => {
+  return new Promise<LocaleUtilLoadLocaleResult>((resolve) => {
     if (!language) {
       resolve({
         status: 'error',
@@ -10,7 +10,7 @@ async function loadLyrixiLanguage(language: string) {
       })
       return
     }
-    let result: LocaleUtilLoadLyrixiLanguageResult = {
+    let result: LocaleUtilLoadLocaleResult = {
       status: 'error',
       message: 'Local ts file loaded failed'
     }
