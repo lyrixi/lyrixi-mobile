@@ -1,11 +1,11 @@
 const path = require('path')
 const fs = require('fs')
-const translateFolder = require('./utils/translateFolder')
-const writeFileSync = require('./utils/writeFileSync')
+const translateFolder = require('./translateFolder')
+const writeFileSync = require('./writeFileSync')
 
 async function translateSrc() {
   // 支持可选入参：无参数时扫描 cwd/src，有参数时扫描 cwd/<入参路径>
-  // 例: node translate-src.js  或  node translate-src.js src  或  node translate-src.js packages/app/src
+  // 例: node translateSrc.js  或  node translateSrc.js src  或  node translateSrc.js packages/app/src
   const customPath = process.argv[2]
   const folderPath = path.resolve(process.cwd(), customPath || 'src')
 

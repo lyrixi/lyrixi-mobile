@@ -59,7 +59,7 @@
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev",
-    "translate": "tsx scripts/translate-src.ts"
+    "translate": "tsx src/utils/LocaleUtil/scripts/translateSrc.ts"
   },
   "commitlint": {
     "extends": [
