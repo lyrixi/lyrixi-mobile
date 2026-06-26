@@ -1,6 +1,6 @@
 ---
 description: lyrixi-mobile 组件文档 index.zh-CN.md 结构规范（dumi 站点）
-globs: "src/components/**/index.zh-CN.md"
+globs: 'src/components/**/index.zh-CN.md'
 alwaysApply: false
 ---
 
@@ -8,15 +8,15 @@ alwaysApply: false
 
 适用范围：`src/components/<PackageName>/index.zh-CN.md`（英文文档 `index.en-US.md` 同构）。
 
-与组件包形态（见 [`develop-commponent-structure.md`](./develop-commponent-structure.md)）配合使用：先判断**是否有主组件**，再决定文档层级。
+与组件包形态（见 [`develop-component-structure.md`](./develop-component-structure.md)）配合使用：先判断**是否有主组件**，再决定文档层级。
 
 ## 判定
 
-| 条件 | 是否有主组件 |
-|------|--------------|
-| 包根存在 `<PackageName>.tsx` | 是 |
-| `demos/` 存在 `<PackageName>.tsx` 或 `<PackageName>.jsx` | 是 |
-| 仅有子目录挂载、无上述文件（形态 A，如 Input、ActionSheet） | 否 |
+| 条件                                                        | 是否有主组件 |
+| ----------------------------------------------------------- | ------------ |
+| 包根存在 `<PackageName>.tsx`                                | 是           |
+| `demos/` 存在 `<PackageName>.tsx` 或 `<PackageName>.jsx`    | 是           |
+| 仅有子目录挂载、无上述文件（形态 A，如 Input、ActionSheet） | 否           |
 
 ## 三种文档结构
 
@@ -30,7 +30,9 @@ alwaysApply: false
 简介
 
 ## 何时使用
+
 ## 代码演示
+
 ## API
 ```
 
@@ -46,10 +48,13 @@ alwaysApply: false
 ## Input.Text
 
 ### 何时使用
+
 ### 代码演示
+
 ### API
 
 ## Input.Number
+
 …
 ```
 
@@ -65,12 +70,15 @@ alwaysApply: false
 ## FooterBar
 
 ### 何时使用
+
 ### 代码演示
+
 ### API
 
 ## FooterBar.Button
 
 ### 何时使用
+
 …
 ```
 
@@ -89,6 +97,6 @@ alwaysApply: false
 
 ## 与其它规则的分工
 
-- **`develop-commponent-structure.md`**：源码目录与挂载形态。
+- **`develop-component-structure.md`**：源码目录与挂载形态。
 - **本文件**：站点文档 `index.zh-CN.md` 的标题层级与 TOC 菜单。
 - **`.ai/docs`**：AI 用 props/rules/example，由 `npm run build:ai-docs` 从 `src` 同步（若项目配置了该脚本）。

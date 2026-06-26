@@ -10,7 +10,7 @@ description: >-
 
 通过**多轮问答**收集需求，**仅**从 [reference/catalog.json](reference/catalog.json) 与 `.ai/docs` 读取参考，按 `.ai/rules` 生成新组件包并同步 `.ai/docs`。
 
-**约束：** 遵守 `.ai/rules/`（`develop-commponent-structure.md`、`develop-types-structure.md` 等）。查阅已有组件/工具 API 时配合 [docs](../docs/SKILL.md) 技能。**禁止 Read `src/` 下任何组件、工具或资源实现**（业务安装后库在 `node_modules`，与本仓库 `src/` 无关）。本技能迭代时可改 `.ai/skills/add-component/`。
+**约束：** 遵守 `.ai/rules/`（`develop-component-structure.md`、`develop-types-structure.md` 等）。查阅已有组件/工具 API 时配合 [docs](../docs/SKILL.md) 技能。**禁止 Read `src/` 下任何组件、工具或资源实现**（业务安装后库在 `node_modules`，与本仓库 `src/` 无关）。本技能迭代时可改 `.ai/skills/add-component/`。
 
 ## 何时启用
 
@@ -22,7 +22,7 @@ description: >-
 
 1. Read [reference/catalog.json](reference/catalog.json) — 参考模板清单（`morphology`、`reference`、`docs`）。
 2. Read [reference/generation.md](reference/generation.md) — 按参考文档改写与同步规则。
-3. Read [`.ai/rules/develop-commponent-structure.md`](../../rules/develop-commponent-structure.md) — 形态 A/B/C 与组件包目录。
+3. Read [`.ai/rules/develop-component-structure.md`](../../rules/develop-component-structure.md) — 形态 A/B/C 与组件包目录。
 
 ## 选定参考后（Q1b 之后必读）
 
@@ -46,13 +46,13 @@ description: >-
 
 ### Q1 — 组件形态（AskQuestion）
 
-**问题：** 新组件属于哪种包形态？（见 `develop-commponent-structure`）
+**问题：** 新组件属于哪种包形态？（见 `develop-component-structure`）
 
-| 选项 | 形态 | 说明 |
-|------|------|------|
-| 单一组件 | C | 无 `Xxx.Sub` 挂载，如 Amount、Badge |
-| 父 + 子组件 | B | 有主实现 + 对外子组件，如 Button、Accordion |
-| 纯子组件合集 | A | 仅子目录挂载，无主实现，如 Input |
+| 选项         | 形态 | 说明                                        |
+| ------------ | ---- | ------------------------------------------- |
+| 单一组件     | C    | 无 `Xxx.Sub` 挂载，如 Amount、Badge         |
+| 父 + 子组件  | B    | 有主实现 + 对外子组件，如 Button、Accordion |
+| 纯子组件合集 | A    | 仅子目录挂载，无主实现，如 Input            |
 
 记录 `morphology`。
 
@@ -67,10 +67,10 @@ description: >-
 
 **问题：** 组件有没有高保真设计稿？
 
-| 选项 | 下一步 |
-|------|--------|
-| 有 | **单独一轮**：请用户上传图片；分析后写入 `designNotes`，再进入 Q3 |
-| 没有 | 进入 Q2b |
+| 选项 | 下一步                                                            |
+| ---- | ----------------------------------------------------------------- |
+| 有   | **单独一轮**：请用户上传图片；分析后写入 `designNotes`，再进入 Q3 |
+| 没有 | 进入 Q2b                                                          |
 
 ### Q2b — 组件描述（仅当 Q2 选「没有」；单独一轮文字问）
 
@@ -113,9 +113,9 @@ description: >-
 
 **问题：** 是否需要 `forwardRef` 暴露 DOM 或命令式方法？
 
-| 选项 | 记录 |
-|------|------|
-| 需要 | 进入 Q6b |
+| 选项   | 记录                      |
+| ------ | ------------------------- |
+| 需要   | 进入 Q6b                  |
 | 不需要 | `api.ref = null`，进入 Q7 |
 
 #### Q6b — Ref 说明（单独一轮文字问）
@@ -128,9 +128,9 @@ description: >-
 
 **问题：** 组件内是否有需要翻译的固定文案？
 
-| 选项 | 下一步 |
-|------|--------|
-| 需要 | Q7b 单独问文案列表 |
+| 选项   | 下一步                         |
+| ------ | ------------------------------ |
+| 需要   | Q7b 单独问文案列表             |
 | 不需要 | `i18n.needed = false`，进入 Q8 |
 
 #### Q7b — 文案列表（单独一轮文字问）
@@ -152,9 +152,9 @@ description: >-
 ## 生成步骤
 
 1. **读参考（仅 `.ai/docs`）** — Read catalog 指向的 props + rules + example；按需 Read `.ai/docs/components/{reference}/demos/` 下示例源码。
-2. **读规则** — 按形态重读 `develop-commponent-structure.md`、`develop-types-structure.md`、`develop-doc-structure.md`。
+2. **读规则** — 按形态重读 `develop-component-structure.md`、`develop-types-structure.md`、`develop-doc-structure.md`。
 3. **写 `component-spec.json`** — 写入组件包根目录，结构见 [reference/component-spec.schema.json](reference/component-spec.schema.json)。
-4. **生成组件包** — 按 [reference/generation.md](reference/generation.md) 与 `develop-commponent-structure`：
+4. **生成组件包** — 按 [reference/generation.md](reference/generation.md) 与 `develop-component-structure`：
    - 以参考文档描述的目录形态为蓝本；
    - 替换组件名、类型、样式、Props 与交互；
    - 按 `design.designNotes` 调整 DOM 与样式；
@@ -166,7 +166,7 @@ description: >-
 
 ## 产出清单
 
-- 组件包（结构见 `develop-commponent-structure`）— 实现、类型、样式、`component-spec.json`
+- 组件包（结构见 `develop-component-structure`）— 实现、类型、样式、`component-spec.json`
 - 库导出入口 — 新增 `export`
 - `.ai/docs/components/{ComponentName}/` — props、rules、example、demos
 - `.ai/docs/mapping.json` — 新增检索条目

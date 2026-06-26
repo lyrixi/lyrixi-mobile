@@ -78,7 +78,7 @@
 - `develop-sequence-import.md` — import 语句排序
 - `develop-locale.md` — 国际化要求
 - `develop-page-structure.md` — 业务页面目录结构
-- `develop-commponent-structure.md` — 组件包目录结构
+- `develop-component-structure.md` — 组件包目录结构
 - `develop-types-structure.md` — 类型文件（types）组织、命名、目录
 - `develop-types-coding.md` — 实现层类型写法（any / React 事件 / forwardRef / Ref）
 

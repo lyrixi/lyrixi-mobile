@@ -1,7 +1,7 @@
 # 参考文档复制与改写
 
 参考文档：`.ai/docs/components/{reference}/` 三件套 + `demos/`（catalog 中 `docs`）  
-生成目标：新组件包目录（形态与文件布局见 [develop-commponent-structure.md](../../../rules/develop-commponent-structure.md)）
+生成目标：新组件包目录（形态与文件布局见 [develop-component-structure.md](../../../rules/develop-component-structure.md)）
 
 **禁止** Read `src/` 下参考组件或其它库内实现；示例写法只读 `.ai/docs/components/{reference}/demos/`。
 
@@ -9,11 +9,11 @@
 
 ## 形态与目录映射
 
-| 形态 | 参考 | 生成时保留 | 改写 |
-|------|------|------------|------|
-| C 单一 | Amount / Badge | `index.tsx` 或 `{Name}.tsx` + `index.ts`、`{Name}.less`、`types/`、`demos/` | 替换组件名、Props、样式 class 前缀 `lyrixi-{kebab}` |
-| B 父+子 | Button / Accordion / Flex | 父 `{Name}.tsx`、子文件或子目录、`*.modules.types.ts` | 按 spec 增删子组件挂载；内部模块不对外挂载 |
-| A 纯子 | Input | 各子目录 `Sub/index.tsx`、`index.ts` 挂载 | 按 spec 建子目录；`const Foo = {} as FooComponents` |
+| 形态    | 参考                      | 生成时保留                                                                  | 改写                                                |
+| ------- | ------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------- |
+| C 单一  | Amount / Badge            | `index.tsx` 或 `{Name}.tsx` + `index.ts`、`{Name}.less`、`types/`、`demos/` | 替换组件名、Props、样式 class 前缀 `lyrixi-{kebab}` |
+| B 父+子 | Button / Accordion / Flex | 父 `{Name}.tsx`、子文件或子目录、`*.modules.types.ts`                       | 按 spec 增删子组件挂载；内部模块不对外挂载          |
+| A 纯子  | Input                     | 各子目录 `Sub/index.tsx`、`index.ts` 挂载                                   | 按 spec 建子目录；`const Foo = {} as FooComponents` |
 
 包名 = 目录名 = 对外导出名，**PascalCase**。Less 类名与 CSS 变量前缀遵守 `.ai/rules`（`--lyrixi-*` / `@lyrixi-*`）。
 
@@ -36,12 +36,12 @@
 
 在 `.ai/docs/components/{Name}/` 创建：
 
-| 文件 | 内容 |
-|------|------|
-| `{Name}-props.ts` | Props/Ref；JSDoc 与联合类型完整，与实现 `types/` 一致 |
-| `{Name}-rules.md` | 何时使用、子组件、必须用库组件、demo 索引 |
-| `{Name}-example.md` | 运行脚本生成薄索引（见下） |
-| `demos/*.tsx` | 示例源码；demo 从 `lyrixi-mobile` 引入 |
+| 文件                | 内容                                                  |
+| ------------------- | ----------------------------------------------------- |
+| `{Name}-props.ts`   | Props/Ref；JSDoc 与联合类型完整，与实现 `types/` 一致 |
+| `{Name}-rules.md`   | 何时使用、子组件、必须用库组件、demo 索引             |
+| `{Name}-example.md` | 运行脚本生成薄索引（见下）                            |
+| `demos/*.tsx`       | 示例源码；demo 从 `lyrixi-mobile` 引入                |
 
 更新 [`.ai/docs/mapping.json`](../../../docs/mapping.json) `components` 数组：新增 `name`、`keywords`（`|` 分隔）、`props` / `rule` / `example` 路径。
 
