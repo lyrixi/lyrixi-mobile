@@ -18,7 +18,8 @@ function queryData() {
         } else {
           resolve({
             status: '500',
-            message: r.message || locale('获取数据错误！')
+            message:
+              r.message || locale('获取数据错误！', 'lyrixi_9c62a21f2d7a4426f205f92e85ea64b9')
           })
         }
       })
@@ -27,7 +28,8 @@ function queryData() {
         const e = err as { data?: { message?: string } }
         resolve({
           status: '500',
-          message: e?.data?.message || locale('获取数据异常！')
+          message:
+            e?.data?.message || locale('获取数据异常！', 'lyrixi_a085fb7c5cb81143dcec0f299fff709a')
         })
       })
   })
