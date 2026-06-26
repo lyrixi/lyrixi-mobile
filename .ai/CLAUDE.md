@@ -10,15 +10,12 @@
 
 - `npm start` — 启动开发服务器（webpack，端口 3000）
 - `npm run build` — 生产环境构建，输出到 `build/`
-- `npm test` — 运行 Jest 测试（交互式 watch 模式）
-- `npm test -- --watchAll=false` — CI 模式运行测试
-- `npm test -- --testPathPattern=DatePicker` — 运行单个测试文件
 
 ## 架构
 
-### 组件结构
+### 组件目录结构及文件命名
 
-每个组件位于 `src/components/<Name>/`，目录布局统一：
+每个组件位于 `src/components/<Name>/`，目录固定为：
 
 - `index.ts` — 桶导出，组装子组件（如 `Input.Text`、`Button.Icon`）
 - `<Name>.tsx` 或子文件夹 — 实现代码
@@ -27,7 +24,15 @@
 - `*.less` — 组件样式
 - `index.zh-CN.md` / `index.en-US.md` — 文档
 
-组件大量使用 `forwardRef`。`forward-ref-props-default.d.ts` 放宽了默认 props 泛型，避免未显式标注 Props 时产生 TS2339 错误。
+### 工具目录结构及文件命名
+
+每个工具位于 `src/utils/<Name>/`，目录固定为：
+
+- `index.ts` — 桶导出，组装子组件（如 `DateUtil.toDate`、`Button.startOrEnd`）
+- `<Name>.ts` 或子文件夹 — 实现代码
+- `types/` — TypeScript 类型定义（`*.types.ts`、`*.modules.types.ts`）
+- `demos/` — 使用示例
+- `index.zh-CN.md` / `index.en-US.md` — 文档
 
 ### 导入约定
 
@@ -42,10 +47,6 @@
 
 `Modal` 必须在 `src/index.ts` 中最先导出，因为其他组件在模块求值阶段依赖它。
 
-### 工具模块
-
-`src/utils/<Name>/` — 独立工具模块（ArrayUtil、DateUtil、Bridge、LocaleUtil 等），结构与组件一致：`index.ts` 入口 + `types/` 文件夹。
-
 ### 国际化
 
 - `src/assets/locale/` 包含 50+ 语言的翻译文件
@@ -57,11 +58,6 @@
 - Less + CSS 自定义属性（变量定义在 `src/assets/variables.less`）
 - CSS 变量前缀：`--lyrixi-*`
 - Less 变量前缀：`@lyrixi-*`
-
-### 构建脚本
-
-- `scripts/fix-types-folder-imports.mjs` — 类型文件迁移到 `types/` 子目录后，修正导入路径
-- `scripts/move-root-types-to-folder.mjs` — 将根级类型文件移入 `types/` 文件夹
 
 ### 全局类型扩展
 
@@ -85,13 +81,6 @@
 - `develop-commponent-structure.md` — 组件包目录结构
 - `develop-types-structure.md` — 类型文件（types）组织、命名、目录
 - `develop-types-coding.md` — 实现层类型写法（any / React 事件 / forwardRef / Ref）
-
-## Context
-
-详见 `.claude/context/` 目录：
-
-- 进行中任务的临时上下文（决策清单、组件 questions），用完归档到 `context/archive/`
-- 不要让 `memory/` 链接 `context/`（context 会消失）
 
 ## Skills
 
