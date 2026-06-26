@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
-const translateFolder = require('./translateFolder')
-const writeFileSync = require('./writeFileSync')
+const translateFolder = require('./utils/translateFolder')
+const writeFileSync = require('./utils/writeFileSync')
 
 async function translateSrc() {
   // 支持可选入参：无参数时扫描 cwd/src，有参数时扫描 cwd/<入参路径>
