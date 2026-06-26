@@ -65,6 +65,9 @@ function deleteCode(filePath, code) {
 // 复制css到dist目录
 copyFile('./umd/lyrixi-mobile.min.css', './esm/index.css')
 
+// 复制国际化生成脚本, npm run translate 使用
+copyFolder('./src/utils/LocaleUtil/scripts', './esm/utils/LocaleUtil/scripts')
+
 // 复制国际化文件: assets/locale目录到src/locale(改为直接用dist/assets/locale)
 // const currentLocaleFolder = `./src/assets/locale`
 // const targetLocaleFolder = `./esm/locale`
