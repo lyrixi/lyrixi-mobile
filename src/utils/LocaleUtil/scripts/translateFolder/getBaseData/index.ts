@@ -6,7 +6,7 @@ const generate = require('@babel/generator').default
 const t = require('@babel/types')
 const generateKey = require('./generateKey')
 const chalk = require('chalk')
-const formatFileSync = require('../../../../../../scripts/utils/formatFileSync')
+const formatFileSync = require('../../utils/formatFileSync')
 
 module.exports = async function getBaseData({
   ignore,
