@@ -9,7 +9,7 @@ function getUrlParameter(paramName?: string, url?: string) {
   if (!url) url = window.location.href
   const params: Record<string, string> = {}
   // 如果url中包含?说明有参数
-  if (url?.indexOf?.('?') !== -1) {
+  if (url?.includes('?')) {
     // 获取所有参数options: 如?a=1&b=2转为['a=1','b=2']
     let options = url.split('?')[1]?.split('&')
     if (options?.length) {
