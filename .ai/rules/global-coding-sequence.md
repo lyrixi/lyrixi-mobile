@@ -1,10 +1,12 @@
 ---
-description: JS/TS 文件 import 分组与排序顺序（lyrixi-mobile）
+description: JS/TS import 分组排序与 React 组件内部代码书写顺序
 globs: '**/*.{js,jsx,ts,tsx}'
 alwaysApply: false
 ---
 
-# import 顺序
+# 代码顺序规范
+
+## import 顺序
 
 同一文件内建议按以下顺序分组导入，组与组之间空一行，同组内按名称字母序排序：
 
@@ -48,4 +50,60 @@ import type { Item } from './types'
 import Arrow from './Arrow'
 
 import './index.less'
+```
+
+## 组件内部代码书写顺序
+
+指组件内部实现代码的组织顺序，严格按以下顺序书写:
+
+1. props 解构 / 默认值
+2. refs
+3. state
+4. derived values / memo
+5. internal helpers
+6. effects
+7. expose / imperative handle
+8. event handlers
+9. render helpers
+10. return
+
+示例:
+
+```tsx
+const Example = forwardRef<ExampleRef, ExampleProps>(({...}, ref) => {
+  // 1. props
+
+  // 2. refs
+  const xxRef = useRef<...>(...)
+
+  // 3. state
+  const [...] = useState(...)
+
+  // 4. derived values / memo
+
+  // 5. internal helpers
+  const initXX = () => {}
+  const loadXX = () => {}
+  const queryXX = () => {}
+  const updateXX = () => {}
+  const saveXX = () => {}
+  const getXX = () => {}
+
+  // 6. effects
+  useEffect(() => {}, [])
+
+  // 7. expose / imperative handle
+  useImperativeHandle(...)
+
+  // 8. event handlers
+  const handleXX = () => {}
+
+  // 9. render helpers
+  const renderArrow = () => {}
+
+  // 10. return
+  return (...)
+})
+
+export default Example
 ```

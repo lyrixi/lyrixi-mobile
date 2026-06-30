@@ -74,8 +74,7 @@
 详见 `.claude/rules/` 目录：
 
 - `global-coding-name.md` — 命名规范（props、refs、state、handlers、render helpers）
-- `sequence-coding.md` — 组件内部代码书写顺序
-- `sequence-import.md` — import 语句排序
+- `global-coding-sequence.md` — import 语句排序与组件内部代码书写顺序
 - `global-coding-locale.md` — 国际化要求
 - `page-structure.md` — 业务页面目录结构
 - `component-structure.md` — 组件包目录结构

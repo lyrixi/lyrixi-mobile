@@ -57,7 +57,7 @@ Q7 决定页面字段如何生成（写入 `page-spec.json` 的 `mockData`）；
 ## 导入
 
 - 业务页使用 `import { … } from 'lyrixi-mobile'`（测试包名模式）。
-- `import type` 放在第三方 import 之后、相对路径之前（见 `sequence-import.md`）。
+- `import type` 放在第三方 import 之后、相对路径之前（见 `global-coding-sequence.md`）。
 
 ## 不要复制
 

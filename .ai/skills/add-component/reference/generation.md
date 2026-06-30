@@ -20,7 +20,7 @@
 ## 实现改写清单
 
 1. **类型** — `types/{Name}.types.ts`（+ 子组件类型、`.modules.types.ts`）；遵守 [types-structure.md](../../../rules/types-structure.md)、[types-coding.md](../../../rules/types-coding.md)。
-2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [sequence-coding.md](../../../rules/sequence-coding.md)；命名见 [global-coding-name.md](../../../rules/global-coding-name.md)；Props 分组注释见 [component-annotation-props.mdc](../../../rules/component-annotation-props.mdc)。
+2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [global-coding-sequence.md](../../../rules/global-coding-sequence.md)；命名见 [global-coding-name.md](../../../rules/global-coding-name.md)；Props 分组注释见 [component-annotation-props.mdc](../../../rules/component-annotation-props.mdc)。
 3. **样式** — `{Name}.less`；变量用 `@lyrixi-*` / `var(--lyrixi-*)`。
 4. **入口** — `index.ts` 或 `index.tsx`；在库导出入口按字母序注册（**Modal 保持最先导出**）。
 5. **国际化** — 若 `i18n.needed`：`LocaleUtil.locale('中文', 'lyrixi_xxx')`；遵守 [global-coding-locale.md](../../../rules/global-coding-locale.md)。

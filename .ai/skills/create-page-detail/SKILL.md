@@ -10,7 +10,7 @@ description: >-
 
 详情页**目录架构**与 **`.ai/docs/pages/Detail/`** 参考模板说明。完整问答生成流程见 [create-page](../create-page/SKILL.md)。
 
-**约束：** 遵守 [`.ai/rules/page-structure.md`](../../rules/page-structure.md)、`sequence-import.md`、`global-coding-locale.md`。生成代码时**不要修改** `.ai/rules/`。
+**约束：** 遵守 [`.ai/rules/page-structure.md`](../../rules/page-structure.md)、[`global-coding-sequence.md`](../../rules/global-coding-sequence.md)、[`global-coding-locale.md`](../../rules/global-coding-locale.md)。生成代码时**不要修改** `.ai/rules/`。
 
 ## 何时启用
 
