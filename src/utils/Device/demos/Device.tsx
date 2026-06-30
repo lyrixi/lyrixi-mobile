@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Device, Card } from 'lyrixi-mobile'
+import { Page, Device, Card, Form } from 'lyrixi-mobile'
 
 export default function DeviceDemo() {
   return (
@@ -34,7 +34,19 @@ export default function DeviceDemo() {
         <p className="demo-title">userAgent</p>
         <Card style={{ padding: 12 }}>{Device.userAgent}</Card>
         <p className="demo-title">getUrlParameter</p>
-        <Card style={{ padding: 12 }}>{String(Device.getUrlParameter('locale') ?? '')}</Card>
+        <Card style={{ padding: 12 }}>
+          <Form layout="vertical">
+            <Form.Item label="paramName:'locale'">
+              {String(Device.getUrlParameter('locale'))}
+            </Form.Item>
+            <Form.Item label="paramName:'other'">
+              {String(Device.getUrlParameter('other'))}
+            </Form.Item>
+            <Form.Item label="paramName:undefined">
+              {JSON.stringify(Device.getUrlParameter())}
+            </Form.Item>
+          </Form>
+        </Card>
         <p className="demo-title">screenWidth</p>
         <Card style={{ padding: 12 }}>{Device.screenWidth}</Card>
         <p className="demo-title">screenHeight</p>
