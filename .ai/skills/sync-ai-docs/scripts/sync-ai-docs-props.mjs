@@ -5,9 +5,9 @@
  * - components：从 types/*.types.ts 合并缺失的公开 interface/type
  *
  * 用法（仓库根目录）：
- *   node .ai/skills/docs/scripts/sync-ai-docs-props.mjs
- *   node .ai/skills/docs/scripts/sync-ai-docs-props.mjs ArrayUtil NavBar
- *   node .ai/skills/docs/scripts/sync-ai-docs-props.mjs --check
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-props.mjs
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-props.mjs ArrayUtil NavBar
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-props.mjs --check
  */
 import fs from 'fs'
 import path from 'path'

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * 将 .ai/docs 下 *-props.json 转为 *-props.ts（AI 可读的类型文档）
- * 用法（仓库根目录）：node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs [--dry-run]
+ * 用法（仓库根目录）：node .ai/skills/sync-ai-docs/scripts/convert-props-json-to-ts.mjs [--dry-run]
  */
 import fs from 'fs'
 import path from 'path'
@@ -162,6 +162,7 @@ function updateReferences() {
   updateTextFile(path.join(docsDir, 'components', 'README.md'), replacePropsExt)
   updateTextFile(path.join(docsDir, 'utils', 'README.md'), replacePropsExt)
   updateTextFile(path.join(rootDir, '.ai', 'skills', 'docs', 'SKILL.md'), replacePropsExt)
+  updateTextFile(path.join(rootDir, '.ai', 'skills', 'sync-ai-docs', 'SKILL.md'), replacePropsExt)
 
   for (const sub of ['components', 'utils']) {
     const base = path.join(docsDir, sub)

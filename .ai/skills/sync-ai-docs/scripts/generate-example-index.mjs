@@ -2,8 +2,8 @@
 /**
  * 将 *-example.md 生成为薄索引（代码仅在 demos/，example 只链到 demo 文件）
  * 用法（仓库根目录）：
- *   node .ai/skills/docs/scripts/generate-example-index.mjs
- *   node .ai/skills/docs/scripts/generate-example-index.mjs Button Input
+ *   node .ai/skills/sync-ai-docs/scripts/generate-example-index.mjs
+ *   node .ai/skills/sync-ai-docs/scripts/generate-example-index.mjs Button Input
  */
 import fs from 'fs'
 import path from 'path'

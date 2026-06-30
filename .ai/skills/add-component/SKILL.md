@@ -161,7 +161,7 @@ description: >-
    - 按 `subComponents` 增删挂载与 `types/*.modules.types.ts`；
    - 在库导出入口注册新组件（字母序，Modal 保持最先导出）。
 5. **写 AI 文档** — 创建 `.ai/docs/components/{ComponentName}/` 三件套；demo 写在 `.ai/docs/components/{ComponentName}/demos/`；更新 `mapping.json` 的 `keywords`。
-6. **刷新 example 索引** — `node .ai/skills/docs/scripts/generate-example-index.mjs {ComponentName}`。
+6. **刷新 example 索引** — `node .ai/skills/sync-ai-docs/scripts/generate-example-index.mjs {ComponentName}`（详见 [sync-ai-docs](../sync-ai-docs/SKILL.md)）。
 7. **校验** — `npx tsc --noEmit`；修复新增文件中的类型错误。
 
 ## 产出清单

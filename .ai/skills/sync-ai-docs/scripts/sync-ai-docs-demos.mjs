@@ -2,8 +2,8 @@
 /**
  * 将 src/components、src/utils 的 demos 同步到 .ai/docs 对应目录
  * 用法（仓库根目录）：
- *   node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs
- *   node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs Button DatePicker
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-demos.mjs
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-demos.mjs Button DatePicker
  */
 import fs from 'fs'
 import path from 'path'

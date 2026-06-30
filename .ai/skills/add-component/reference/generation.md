@@ -48,10 +48,10 @@
 刷新 example 索引（仓库根目录）：
 
 ```bash
-node .ai/skills/docs/scripts/generate-example-index.mjs {Name}
+node .ai/skills/sync-ai-docs/scripts/generate-example-index.mjs {Name}
 ```
 
-> `sync-ai-docs-demos.mjs` 为维护者从实现树同步 demo 到 `.ai/docs` 时使用；**AI 不通过该脚本读实现**，demo 优先直接写在 `.ai/docs/components/{Name}/demos/`。
+> 维护流程见 [sync-ai-docs](../../sync-ai-docs/SKILL.md)。`sync-ai-docs-demos.mjs` 从 `src` 同步 demo；**写代码时** demo 优先读 `.ai/docs/components/{Name}/demos/`，不通过脚本读 `src`。
 
 ## 不要复制
 

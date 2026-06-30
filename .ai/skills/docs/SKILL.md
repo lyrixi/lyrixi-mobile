@@ -1,15 +1,17 @@
 ---
 name: docs
 description: >-
-  从 .ai/docs 检索 lyrixi-mobile 组件与工具文档并优先按文档生成代码。在用户要搭页面/UI、选用组件或工具、
-  询问 props/API、或提到 docs 技能、查文档、避免幻觉时使用。未命中文档时再回退 .cursorrules 与 src。
+  写代码时从 .ai/docs 检索 lyrixi-mobile 组件与工具文档并优先按文档生成实现。在用户要搭页面/UI、
+  选用组件或工具、询问 props/API、或提到 docs 技能、查文档、避免幻觉时使用。维护/同步 .ai/docs 请用 sync-ai-docs 技能。
 ---
 
-# docs
+# docs（写代码 · 查阅文档）
 
 生成或修改使用 **lyrixi-mobile** 组件/工具的代码时，**默认以 `.ai/docs` 为准**；仅当文档缺失或未覆盖时再查 `src/components`、`src/utils` 或 `.cursorrules`。
 
 **不要**一次性读完整 `mapping.json` 以外的全部 docs；用 **mapping 索引 + 按需精读** 控制上下文。
+
+**本技能只管「读文档写代码」**；从 `src` 同步 demos / props / rules、刷新 example 索引等维护工作 → 使用 [sync-ai-docs](../sync-ai-docs/SKILL.md)。
 
 ## 何时启用
 
@@ -54,8 +56,6 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 
 路径以 `resolve-docs` 输出为准（相对仓库根，如 `.ai/docs/components/Button/Button-props.ts`）。
 
-维护示例：`src` 变更后运行 `npm run build:ai-docs`（同步 demos / props / rules / example 索引）；可用 `npm run check:ai-docs` 检查 props 漂移。
-
 ### 4. 生成代码
 
 - 组件/工具从 `lyrixi-mobile` barrel 引入（业务代码）；内库改动用相对路径（见 `.cursorrules`）
@@ -67,19 +67,19 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 | 情况 | 做法 |
 |------|------|
 | mapping 无条目 | 查 `src/components/{Name}/index.zh-CN.md` 或 `src/utils/{Name}/` |
-| props 与实现不一致 | 以 `src` 源码为准；需同步时直接改 `.ai/docs` 或 `mapping.json` |
+| props 与实现不一致 | 以 `src` 源码为准；同步 `.ai/docs` 时用 [sync-ai-docs](../sync-ai-docs/SKILL.md) |
 | 页面级模板 | 另用 [create-page](../create-page/SKILL.md) + `pages/catalog.json` |
 | 新建库组件 | 另用 [add-component](../add-component/SKILL.md) + `reference/catalog.json` |
 
 ## mapping.json 与 keywords
 
 - 索引文件：[`.ai/docs/mapping.json`](../../docs/mapping.json)
-- `keywords` 为 `|` 分隔，手工维护；检索不全时直接编辑对应条目的 `keywords` 或 `name`
+- `keywords` 为 `|` 分隔，手工维护；检索不全时通过 [sync-ai-docs](../sync-ai-docs/SKILL.md) 编辑对应条目
 - **keywords 不全会影响检索**：`resolve-docs.mjs` 为子串/相等打分，同义词未写入则易漏检
 
 ## 业务页面
 
-整页骨架（列表/编辑/详情/报表）→ 使用 **create-page** 选 `pages/` 模板；新建库组件 → 使用 **add-component**；页面内或实现中引用的组件/工具仍按本技能查 `components/`、`utils/`。
+整页骨架（列表/编辑/详情/报表）→ 使用 **create-page** 选 `pages/` 模板；新建库组件 → 使用 **add-component**；页面内引用的组件/工具仍按本技能查 `components/`、`utils/`。
 
 ## 输出自检
 

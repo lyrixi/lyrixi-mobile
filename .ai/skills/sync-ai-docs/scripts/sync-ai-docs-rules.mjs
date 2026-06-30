@@ -2,8 +2,8 @@
 /**
  * 从 src/components、src/utils 的 index.ts 同步子组件/方法清单到 .ai/docs *-rules.md
  * 用法（仓库根目录）：
- *   node .ai/skills/docs/scripts/sync-ai-docs-rules.mjs
- *   node .ai/skills/docs/scripts/sync-ai-docs-rules.mjs Input ToolBar
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-rules.mjs
+ *   node .ai/skills/sync-ai-docs/scripts/sync-ai-docs-rules.mjs Input ToolBar
  */
 import fs from 'fs'
 import path from 'path'

@@ -17,6 +17,6 @@
 
 1. 改模板源码 → 同步 `demos/`
 2. 改可替换项 → 编辑 `{Variant}-props.ts`
-3. 刷新 example 索引：`node .ai/skills/docs/scripts/generate-page-example-index.mjs`
+3. 刷新 example 索引：`node .ai/skills/sync-ai-docs/scripts/generate-page-example-index.mjs`（详见 [sync-ai-docs 技能](../../skills/sync-ai-docs/SKILL.md)）
 
 AI 以本目录为准；生成业务页时读 **props + rules**，需要代码片段再 Read `demos/`。

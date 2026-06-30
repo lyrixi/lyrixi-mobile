@@ -41,11 +41,21 @@
 
 ## 如何使用
 
-1. **推荐**：启用技能 [`docs`](../skills/docs/SKILL.md)，用 `resolve-docs.mjs` + `mapping.json` 检索后按需读 props/rules。
-2. 新建组件：启用 [`add-component`](../skills/add-component/SKILL.md) → 问答收集需求 → 按 `reference/catalog.json` 选参考（**只读 `.ai/docs`**）→ 生成组件包并同步本目录。
-3. 生成业务页：查 `pages/catalog.json` 选模板 → 读 `{Variant}-props.ts` + `{Variant}-rules.md` → 按需 Read `demos/`。
-3. 关键词检索：查 [`mapping.json`](mapping.json)，按 `keywords` 定位组件/工具文档。
-4. 扩展文档：直接编辑 `.ai/docs` 下对应文件，并更新 `mapping.json` 中的路径与 `keywords`（与 `src` 不一致时以 `src` 为准）。
+### 写代码（查阅文档）
+
+启用技能 [`docs`](../skills/docs/SKILL.md)：用 `resolve-docs.mjs` + `mapping.json` 检索，按需读 props / rules / demos。
+
+- 生成业务页：查 `pages/catalog.json` → 读 `{Variant}-props.ts` + `{Variant}-rules.md`
+- 新建库组件：[`add-component`](../skills/add-component/SKILL.md) + [`docs`](../skills/docs/SKILL.md) 查阅依赖组件
+
+### 维护文档（从 src 同步）
+
+`src` 变更后启用技能 [`sync-ai-docs`](../skills/sync-ai-docs/SKILL.md)，或执行：
+
+```bash
+npm run build:ai-docs
+npm run check:ai-docs   # CI：检查 props 漂移
+```
 
 ## 为何 props 用 TypeScript
 
@@ -56,25 +66,4 @@
 - 工具 API 用 `export namespace DateUtil { export function toDate(...) }` 表达
 - 与业务代码同语言，AI 生成 props 时更不易编造枚举值
 
-从 JSON 迁移 props 时可运行：`node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs`
-
-同步 demo、props、rules 与 example 索引：
-
-```bash
-npm run build:ai-docs
-```
-
-检查 props 是否与 src 漂移（CI 可用）：
-
-```bash
-npm run check:ai-docs
-```
-
-或分步执行：
-
-```bash
-node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs [组件名]
-node .ai/skills/docs/scripts/sync-ai-docs-props.mjs [组件名]
-node .ai/skills/docs/scripts/sync-ai-docs-rules.mjs [组件名]
-node .ai/skills/docs/scripts/generate-example-index.mjs [组件名]
-```
+分步脚本与手工编辑原则见 [`sync-ai-docs` 技能](../skills/sync-ai-docs/SKILL.md)。

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * 为 .ai/docs/pages 各模板生成 *-example.md（薄索引，代码在 demos/）
- * 用法：node .ai/skills/docs/scripts/generate-page-example-index.mjs
+ * 用法：node .ai/skills/sync-ai-docs/scripts/generate-page-example-index.mjs
  */
 import fs from 'fs'
 import path from 'path'

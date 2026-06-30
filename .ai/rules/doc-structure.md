@@ -99,4 +99,4 @@ alwaysApply: false
 
 - **`develop-component-structure.md`**：源码目录与挂载形态。
 - **本文件**：站点文档 `index.zh-CN.md` 的标题层级与 TOC 菜单。
-- **`.ai/docs`**：AI 用 props/rules/example，由 `npm run build:ai-docs` 从 `src` 同步（若项目配置了该脚本）。
+- **`.ai/docs`**：AI 写代码时查阅 props/rules/example（[docs 技能](../skills/docs/SKILL.md)）；从 `src` 同步维护见 [sync-ai-docs 技能](../skills/sync-ai-docs/SKILL.md) 或 `npm run build:ai-docs`。
