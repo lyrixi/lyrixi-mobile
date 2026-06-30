@@ -17,24 +17,24 @@ alwaysApply: false
 
 ## 命名规范
 
-- 类名前缀：`{页面名}-`（页面目录 PascalCase → kebab-case，如 `OrderList` → `order-list-`）
-- 类名与组件名一致：`order-list-main`、`order-list-header`
-- 子元素在组件名后追加语义段：`order-list-divider`、`order-list-item`
+- 类名前缀：`{页面名}-`（页面目录 PascalCase **转全小写**，不在页面名内部插入 `-`，如 `OrderList` → `orderlist-`，不是 `order-list-`）
+- 类名与区域组件名一致：`orderlist-main`、`orderlist-header`
+- 子元素在组件名后追加语义段：`orderlist-divider`、`orderlist-item`
 - 多个类名用 `DOMUtil.classNames(...)` 合并，对外 `className` prop 放最后
 
 ```tsx
 import './OrderList.less'
 
-<ListAsync className="order-list-main" />
+<ListAsync className="orderlist-main" />
 ```
 
 ```tsx
-className={DOMUtil.classNames('order-list-header', active ? 'order-list-header-active' : '', className)}
+className={DOMUtil.classNames('orderlist-header', active ? 'orderlist-header-active' : '', className)}
 ```
 
 ```less
-.order-list-main {
-  .order-list-divider { ... }
-  .order-list-item { ... }
+.orderlist-main {
+  .orderlist-divider { ... }
+  .orderlist-item { ... }
 }
 ```

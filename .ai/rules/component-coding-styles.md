@@ -16,8 +16,12 @@ alwaysApply: false
 ## 命名规范
 
 - 类名前缀：`lyrixi-`
-- 类名与组件名一致：PascalCase → kebab-case（`Button` → `lyrixi-button`，`InputText` → `lyrixi-input-text`）
-- 子元素在组件名后追加语义段：`lyrixi-{组件kebab}-{元素kebab}`（如 `lyrixi-button-icon`）
+- 类名与**组件对外挂载名**一致：PascalCase **转全小写**，不在组件名内部插入 `-`
+  - `Button` → `lyrixi-button`
+  - `NavBar` → `lyrixi-navbar`（不是 `lyrixi-nav-bar`）
+  - `FooterBar` → `lyrixi-footerbar`、`DatePicker` → `lyrixi-datepicker`
+- **子组件**（`Parent.Sub`）：`lyrixi-{parent}-{sub}`，`Parent`、`Sub` 均转全小写（如 `Input.Text` → `lyrixi-input-text`，`NavBar.Button` → `lyrixi-navbar-button`）
+- 子元素在组件名后追加语义段：`lyrixi-{组件前缀}-{元素}`（如 `lyrixi-button-icon`、`lyrixi-navbar-title`）
 - 多个类名用 `DOMUtil.classNames(...)` 合并，对外 `className` prop 放最后
 
 ```tsx
