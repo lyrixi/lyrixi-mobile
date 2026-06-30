@@ -2,7 +2,7 @@
 
 模板根目录：`.ai/docs/pages/{templatePath}/`  
 文档三件套：`.ai/docs/pages/{Category}/{Variant}-props.ts`、`-rules.md`、`-example.md`  
-生成目标：`page-spec.output.outputPath`（相对仓库根；命名习惯见 [develop-page-structure.md](../../../rules/develop-page-structure.md)）
+生成目标：`page-spec.output.outputPath`（相对仓库根；命名习惯见 [page-structure.md](../../../rules/page-structure.md)）
 
 生成时以 **props.ts 中的可替换项** 为准，将 page-spec.json / 问答结果写入模板对应文件（见各 `-rules.md` 替换点表）。
 
@@ -57,7 +57,7 @@ Q7 决定页面字段如何生成（写入 `page-spec.json` 的 `mockData`）；
 ## 导入
 
 - 业务页使用 `import { … } from 'lyrixi-mobile'`（测试包名模式）。
-- `import type` 放在第三方 import 之后、相对路径之前（见 `develop-sequence-import.md`）。
+- `import type` 放在第三方 import 之后、相对路径之前（见 `sequence-import.md`）。
 
 ## 不要复制
 

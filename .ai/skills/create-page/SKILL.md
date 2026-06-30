@@ -9,7 +9,7 @@ description: >-
 
 通过**多轮问答**收集需求，读取 `.ai/docs/pages/` 中的参考模板，生成新业务页面。
 
-**约束：** 生成代码时**不要修改** `.ai/rules/`；遵守 `develop-page-structure.md`、`develop-sequence-import.md`、`global-coding-locale.md` 等 rules。本技能自身迭代时可改 `.cursor/skills/create-page/` 与 `.ai/skills/create-page/`。
+**约束：** 生成代码时**不要修改** `.ai/rules/`；遵守 `page-structure.md`、`sequence-import.md`、`global-coding-locale.md` 等 rules。本技能自身迭代时可改 `.cursor/skills/create-page/` 与 `.ai/skills/create-page/`。
 
 ## 何时启用
 

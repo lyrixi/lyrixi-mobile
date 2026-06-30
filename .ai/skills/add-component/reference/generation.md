@@ -1,7 +1,7 @@
 # 参考文档复制与改写
 
 参考文档：`.ai/docs/components/{reference}/` 三件套 + `demos/`（catalog 中 `docs`）  
-生成目标：新组件包目录（形态与文件布局见 [develop-component-structure.md](../../../rules/develop-component-structure.md)）
+生成目标：新组件包目录（形态与文件布局见 [component-structure.md](../../../rules/component-structure.md)）
 
 **禁止** Read `src/` 下参考组件或其它库内实现；示例写法只读 `.ai/docs/components/{reference}/demos/`。
 
@@ -19,8 +19,8 @@
 
 ## 实现改写清单
 
-1. **类型** — `types/{Name}.types.ts`（+ 子组件类型、`.modules.types.ts`）；遵守 [develop-types-structure.md](../../../rules/develop-types-structure.md)、[develop-types-coding.md](../../../rules/develop-types-coding.md)。
-2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [develop-sequence-coding.md](../../../rules/develop-sequence-coding.md)；命名见 [global-coding-name.md](../../../rules/global-coding-name.md)；Props 分组注释见 [component-annotation-props.mdc](../../../rules/component-annotation-props.mdc)。
+1. **类型** — `types/{Name}.types.ts`（+ 子组件类型、`.modules.types.ts`）；遵守 [types-structure.md](../../../rules/types-structure.md)、[types-coding.md](../../../rules/types-coding.md)。
+2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [sequence-coding.md](../../../rules/sequence-coding.md)；命名见 [global-coding-name.md](../../../rules/global-coding-name.md)；Props 分组注释见 [component-annotation-props.mdc](../../../rules/component-annotation-props.mdc)。
 3. **样式** — `{Name}.less`；变量用 `@lyrixi-*` / `var(--lyrixi-*)`。
 4. **入口** — `index.ts` 或 `index.tsx`；在库导出入口按字母序注册（**Modal 保持最先导出**）。
 5. **国际化** — 若 `i18n.needed`：`LocaleUtil.locale('中文', 'lyrixi_xxx')`；遵守 [global-coding-locale.md](../../../rules/global-coding-locale.md)。
@@ -30,7 +30,7 @@
 
 ### 组件包站点文档
 
-- `index.zh-CN.md`、`index.en-US.md` — 结构见 [develop-doc-structure.md](../../../rules/develop-doc-structure.md)。
+- `index.zh-CN.md`、`index.en-US.md` — 结构见 [doc-structure.md](../../../rules/doc-structure.md)。
 
 ### .ai/docs 三件套（AI 主文档）
 

@@ -10,7 +10,7 @@ description: >-
 
 列表页**目录架构**与 **`.ai/docs/pages/List/`** 参考模板说明。完整问答生成流程见 [create-page](../create-page/SKILL.md)。
 
-**约束：** 遵守 [`.ai/rules/develop-page-structure.md`](../../rules/develop-page-structure.md)、`develop-sequence-import.md`、`global-coding-locale.md`。生成代码时**不要修改** `.ai/rules/`。
+**约束：** 遵守 [`.ai/rules/page-structure.md`](../../rules/page-structure.md)、`sequence-import.md`、`global-coding-locale.md`。生成代码时**不要修改** `.ai/rules/`。
 
 ## 何时启用
 
@@ -20,7 +20,7 @@ description: >-
 
 ## 页面命名
 
-后缀用 `List`（下钻仍为列表时用 `Record`）。见 `develop-page-structure.md`。
+后缀用 `List`（下钻仍为列表时用 `Record`）。见 `page-structure.md`。
 
 ## 目录架构（业务页通用）
 
@@ -140,5 +140,5 @@ Common/
 ## 不允许
 
 - 在列表页 `Main/` 外散落请求逻辑（应走 `api/` 或 `format*`）
-- 随意自造与 `develop-page-structure.md` 冲突的目录名
+- 随意自造与 `page-structure.md` 冲突的目录名
 - 跳过 Read `props` + `rules` 直接照抄 demo 中的 `/api/examples/*` mock
