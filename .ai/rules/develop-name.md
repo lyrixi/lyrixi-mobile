@@ -47,13 +47,21 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 
 **仅约束类型定义里的回调签名**（如 `xxRender`、`loadData`、`formatXxx`、`onLoad` 等），**不改**组件 Props 接口名本身（如 `ButtonProps`）。
 
-- **单参数回调**：形参命名为 `options` 或 `xxOptions`
+- **单参数回调**：
+  - 参数类型**语义明确**（已有领域类型，或含义一眼可知）→ 保留语义形参名，如 `style`、`event`、`result`、`value`、`description`
+  - 参数是**匿名 / 混杂**的配置或上下文对象 → 形参命名为 `options` 或 `xxOptions`
 - **多参数回调**：首参保留业务语义（如 `value`、`item`、`payload`）；表示上下文/配置的后续形参命名为 `options` 或 `xxOptions`（如 `loadOptions`、`renderOptions`）
-- **禁止**使用 `ctx`、`props`、`params`、`payload`、`helpers`、`config`、`meta` 等作为上述上下文/配置形参名（单参数回调时 `payload` 等亦应改为 `options`）
+- **禁止**在匿名/混杂对象的回调形参上使用 `ctx`、`props`、`params`、`helpers`、`config`、`meta` 等（应改为 `options` 或 `xxOptions`）；多参数格式化回调的**首参** `payload`、`headers`、`response` 等语义名除外
 
 ```ts
-// ✅ 单参数回调
+// ✅ 语义明确的单参数回调
+callback?: (style: ViewStyle) => void
+onPress?: (event: GestureResponderEvent) => void
+onSuccess?: (result: BridgeSuccessResult<T>) => void
+
+// ✅ 匿名 / 混杂对象的单参数回调
 uploadRender?: (options: { uploadingType: string }) => ReactNode
+footerRender?: (options: ModalFilterModalFooterRenderOptions) => ReactNode
 onLoad?: (options: { result: ListAsyncLoadResult | null; action: string }) => void
 
 // ✅ 多参数：首参为业务数据，第二参上下文用 options
@@ -62,16 +70,20 @@ loadData?: (tabs: CascaderItem[], options: { list: CascaderItem[] }) => Promise<
 formatPayload?: (payload: Record<string, unknown>, options: { platform: string }) => unknown
 onSearch?: (keyword: string, options: { list: CascaderItem[] }) => void
 
-// ❌
+// ❌ 混杂对象却用 ctx / props / params 等
 uploadRender?: (ctx: { uploadingType: string }) => ReactNode
 headerRender?: (props: { open: boolean }) => ReactNode
 onChange?: (value: string, meta?: { action: string }) => void
 onLoad?: (params: { result: unknown }) => void
+
+// ❌ 语义已明确却强行改成 options
+callback?: (options: ViewStyle) => void
 ```
 
 **例外（保持原命名）**：
 
 - 组件 Props / Ref **类型名**及 Props 上的普通字段（非回调形参）
+- 单参数回调参数类型语义明确时（如 `ViewStyle`、`GestureResponderEvent`、`*Result`）保留 `style`、`event`、`result` 等形参名
 - 多参数格式化回调的**首参**为业务实体时保留语义名（如 `payload`、`headers`、`response`）
 - **第三方 API 类型**：对方 SDK / 库怎么定义形参名，我们就怎么声明、怎么透传，**不要**按本规则改名（如 Leaflet `extend(props)`、微信 JSSDK 回调签名等）
 - Canvas 绘图上下文 `ctx`（`CanvasRenderingContext2D`，非业务回调上下文）
