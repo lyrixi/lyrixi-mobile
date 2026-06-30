@@ -152,7 +152,9 @@ export default function DatePickerTypeSwitcherDemo() {
         </Card>
 
         <Card>
-          <Card.Header>下拉颜色与变体（dropdownColor / dropdownVariant / dropdownRadius）</Card.Header>
+          <Card.Header>
+            下拉颜色与变体（dropdownColor / dropdownVariant / dropdownRadius）
+          </Card.Header>
           <Card.Main>
             <DatePicker.TypeSwitcher
               variant="dropdown"
@@ -165,7 +167,18 @@ export default function DatePickerTypeSwitcherDemo() {
                 console.log('dropdownColor / dropdownVariant:', newValue)
                 setDropdownStyleValue(newValue)
               }}
-              pickerComboClassName="lyrixi-flex lyrixi-flex-justify-flex-start"
+            />
+
+            <DatePicker.TypeSwitcher
+              variant="dropdown"
+              dropdownVariant="filled"
+              dropdownRadius="m"
+              value={dropdownStyleValue as DatePickerTypeSwitcherValue | undefined}
+              types={dateTypes}
+              onChange={(newValue: unknown) => {
+                console.log('dropdownColor / dropdownVariant:', newValue)
+                setDropdownStyleValue(newValue)
+              }}
             />
           </Card.Main>
         </Card>

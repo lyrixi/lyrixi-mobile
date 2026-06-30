@@ -26,8 +26,8 @@ export default function ToolBarDemo() {
   const [searchActive, setSearchActive] = useState(false)
   const [filledSearchActive, setFilledSearchActive] = useState(false)
 
-  function renderDropdownModal(ctx: { open: boolean | null; onClose: () => void }) {
-    const onClose = ctx.onClose
+  function renderDropdownModal(options: { open: boolean | null; onClose: () => void }) {
+    const onClose = options.onClose
     return (
       <div>
         <div style={{ height: '300px' }}>Modal Content</div>

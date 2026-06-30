@@ -48,3 +48,66 @@ export interface LoadingRef {
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
 }
+
+export interface LoadingSpinFadeProps {
+  /** 颜色 */
+  color?: string
+  /** 尺寸 */
+  size?: string | number
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+}
+
+export interface LoadingSpinFadeRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+export interface LoadingOuroborosProps {
+  /** 颜色 */
+  color?: string
+  /** 尺寸 */
+  size?: string | number
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+}
+
+export interface LoadingOuroborosRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+export interface LoadingBallWaveProps {
+  /** 颜色 */
+  color?: string
+  /** 尺寸 */
+  size?: string | number
+  /** 自定义样式 */
+  style?: CSSProperties
+  /** 自定义类名 */
+  className?: string
+}
+
+export interface LoadingBallWaveRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+/** Loading.open 静态方法参数 */
+export type LoadingOpen = (props?: LoadingOpenProps) => string | void
+
+/** Loading.close 静态方法 */
+export type LoadingClose = (id?: string) => void
+
+/** Loading.exists 静态方法 */
+export type LoadingExists = (id?: string) => boolean

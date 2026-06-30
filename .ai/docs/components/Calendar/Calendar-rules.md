@@ -13,6 +13,7 @@
 
 ## 子组件
 - `Calendar.Header`
+- `Calendar.isDisabledDate`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Calendar.tsx`

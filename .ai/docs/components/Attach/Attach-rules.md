@@ -12,9 +12,11 @@
 - 需要预览附件文件时
 
 ## 子组件
-- `Attach.List`
 - `Attach.Button`
+- `Attach.List`
 - `Attach.Uploading`
+- `Attach.supportTypes`
+- `Attach.validateListStatus`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Attach.tsx`

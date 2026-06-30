@@ -3,9 +3,9 @@
  */
 
 import type { ComponentType, CSSProperties, ReactNode, SVGProps } from 'react'
-import type { ModalProps } from '../../../src/components/Modal/types'
+import type { ModalProps } from '../Modal/Modal-props'
 import type { SelectItem } from './Select-item-types'
-import type { ListViewItem } from '../../../src/components/List/types'
+import type { ListViewItem } from '../List/List-props'
 
 export interface SelectComboProps {
   /** 选中的值 */

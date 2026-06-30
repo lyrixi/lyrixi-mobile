@@ -12,9 +12,10 @@
 - 需要带安全区的页面时
 
 ## 子组件
+- `Page.Aside`
+- `Page.Footer`
 - `Page.Header`
 - `Page.Main`
-- `Page.Footer`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Page.tsx`

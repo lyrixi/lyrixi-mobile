@@ -6,7 +6,6 @@ import type { CSSProperties, ReactNode } from 'react'
 import type { FormInstance, FormProps as RcFormProps } from 'rc-field-form'
 import type { Store, ValidateMessages, Rule, NamePath } from 'rc-field-form/lib/interface'
 import type { ShouldUpdate } from 'rc-field-form/lib/Field'
-import type { WrappedFormInstance } from '../../../src/components/Form/types/Form.useForm.types'
 
 // ---------- Form ----------
 
@@ -117,7 +116,16 @@ export interface FormItemRef {
 // ---------- Form module types ----------
 
 /** Form.useForm 返回的表单实例（扩展了 scrollToField） */
-export type FormUseFormInstance = WrappedFormInstance
+export interface ScrollToFieldOptions {
+  behavior?: ScrollBehavior
+  block?: ScrollLogicalPosition
+  inline?: ScrollLogicalPosition
+  [key: string]: unknown
+}
+
+export type FormUseFormInstance = FormInstance & {
+  scrollToField: (name: string, options?: ScrollToFieldOptions) => void
+}
 
 /** Form.useWatch 的签名（同 rc-field-form useWatch） */
 export type FormUseWatch = typeof import('rc-field-form').useWatch

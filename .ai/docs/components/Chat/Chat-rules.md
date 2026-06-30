@@ -10,8 +10,8 @@
 - 见 `src/components/Chat/index.zh-CN.md` 中「何时使用」。
 
 ## 子组件
-- `Chat.List`
 - `Chat.Item`
+- `Chat.List`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/ChatList.tsx`

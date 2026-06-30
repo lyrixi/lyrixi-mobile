@@ -270,3 +270,30 @@ interface FileItem {
   filePath: string
   status: 'choose' | 'uploading' | 'error' | 'success'
 }
+
+/** Media.choose 工具方法参数 */
+export interface MediaChooseUtilOptions {
+  /** 是否异步上传 */
+  async: boolean
+  /** 最大选择数量 */
+  maxCount?: number
+  /** 当前列表 */
+  list?: FileItem[]
+  /** 上传位置 */
+  uploadPosition: 'start' | 'end' | string
+  /** 上传列表 */
+  uploadList: (
+    newList: FileItem[] | undefined,
+    opts?: { action?: string }
+  ) => Promise<FileItem[] | undefined>
+  /** 选择回调 */
+  onChoose?: () => void | FileItem[] | Promise<FileItem[] | void | null | undefined | unknown>
+  /** 变化回调 */
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
+}
+
+/** Media.validateListStatus 静态方法 */
+export type MediaValidateListStatus = (list: FileItem[]) => boolean
+
+/** Media.isAllowClear 静态方法 */
+export type MediaIsAllowClear = (item: FileItem) => boolean

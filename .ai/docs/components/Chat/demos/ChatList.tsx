@@ -2,7 +2,7 @@ import React from 'react'
 import { Page, Chat, type ChatItem } from 'lyrixi-mobile'
 
 const ChatListDemo = () => {
-  const list = [
+  const list: ChatItem[] = [
     {
       id: '1',
       placement: 'left',

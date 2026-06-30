@@ -5,10 +5,6 @@ import { Page, LocaleUtil, Card, Button } from 'lyrixi-mobile'
 export default function LocaleUtilDemo() {
   const [currentLanguage, setCurrentLanguage] = useState<string | null>(null)
 
-  useEffect(() => {
-    initLocale()
-  }, [])
-
   // 初始化国际化
   async function initLocale(language = 'en_US') {
     let newResult = await LocaleUtil.loadLocale(language)
@@ -25,9 +21,14 @@ export default function LocaleUtilDemo() {
     await initLocale(language)
   }
 
+  useEffect(() => {
+    initLocale()
+  }, [])
+
   if (!currentLanguage) {
     return null
   }
+
   return (
     <Page>
       <Page.Main>
@@ -51,31 +52,22 @@ export default function LocaleUtilDemo() {
 
         <Card>
           <Card.Header>No key use static value</Card.Header>
-          <Card.Main>
-            {LocaleUtil.locale('近{0}日', '', ['7'])}
-          </Card.Main>
+          <Card.Main>{LocaleUtil.locale('近{0}日', '', ['7'])}</Card.Main>
         </Card>
 
         <Card>
           <Card.Header>No key and value use mark(Node)</Card.Header>
-          <Card.Main>
-            {LocaleUtil.locale(<div>Node</div>)}
-          </Card.Main>
+          <Card.Main>{LocaleUtil.locale(<div>Node</div>)}</Card.Main>
         </Card>
 
         <Card>
           <Card.Header>No key and value use mark(Number)</Card.Header>
-          <Card.Main>
-            {LocaleUtil.locale(7)}
-          </Card.Main>
+          <Card.Main>{LocaleUtil.locale(7)}</Card.Main>
         </Card>
-
 
         <Card>
           <Card.Header>Dayjs locale</Card.Header>
-          <Card.Main>
-            {dayjs().format('YYYY-wo')}
-          </Card.Main>
+          <Card.Main>{dayjs().format('YYYY-wo')}</Card.Main>
         </Card>
       </Page.Main>
       <Page.Footer>

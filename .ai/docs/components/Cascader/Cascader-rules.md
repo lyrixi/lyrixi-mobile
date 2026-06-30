@@ -11,10 +11,12 @@
 
 ## 子组件
 - `Cascader.Combo`
-- `Cascader.Modal`
-- `Cascader.Main`
-- `Cascader.DistrictModal`
+- `Cascader.DistrictCombo`
 - `Cascader.DistrictMain`
+- `Cascader.DistrictModal`
+- `Cascader.Main`
+- `Cascader.Modal`
+- `Cascader.districtUtils`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/CascaderCombo.tsx`

@@ -139,3 +139,34 @@ export interface AttachButtonRef {
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
 }
+
+/** Attach.choose 工具方法参数 */
+export interface AttachChooseOptions {
+  /** 是否异步上传 */
+  async: boolean
+  /** 最大文件大小（字节） */
+  maxSize?: number
+  /** 最大选择数量 */
+  maxCount?: number
+  /** 来源类型 */
+  sourceType: string[]
+  /** 当前列表 */
+  list?: AttachFileItem[]
+  /** 上传位置 */
+  uploadPosition: 'start' | 'end' | string
+  /** 上传列表 */
+  uploadList: (
+    newList: AttachFileItem[],
+    opts?: { action?: string }
+  ) => Promise<AttachFileItem[] | undefined>
+  /** 选择前回调 */
+  onChoose?: () => unknown
+  /** 变化回调 */
+  onChange?: (list: AttachFileItem[], options: { action: string }) => void
+}
+
+/** Attach.validateListStatus 静态方法 */
+export type AttachValidateListStatus = (list: AttachFileItem[]) => boolean
+
+/** Attach.supportTypes 静态方法 — 返回支持的 MIME 类型列表 */
+export type AttachSupportTypes = () => string[]

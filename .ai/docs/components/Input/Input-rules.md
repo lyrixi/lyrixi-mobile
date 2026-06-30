@@ -10,11 +10,26 @@
 - 见 `src/components/Input/index.zh-CN.md` 中「何时使用」。
 
 ## 子组件
-- `Input.Text`
-- `Input.PasswordStrength`
+- `Input.AutoSize`
+- `Input.Icon`
+- `Input.IconClear`
+- `Input.IconLeftArrow`
+- `Input.IconRightArrow`
+- `Input.Node`
+- `Input.Number`
+- `Input.NumberBox`
+- `Input.NumberKeyboard`
 - `Input.OTP`
+- `Input.Password`
+- `Input.PasswordStrength`
 - `Input.Range`
 - `Input.Rate`
+- `Input.Search`
+- `Input.Select`
+- `Input.Tel`
+- `Input.Text`
+- `Input.Textarea`
+- `Input.Url`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/InputText.tsx`

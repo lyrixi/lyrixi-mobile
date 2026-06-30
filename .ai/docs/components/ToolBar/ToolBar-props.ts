@@ -3,6 +3,9 @@
  */
 
 import type { CSSProperties, MouseEvent, MouseEventHandler, ReactNode, RefObject, ComponentType, SVGProps } from 'react'
+import type { ActionSheetItem } from '../ActionSheet/ActionSheet-item-types'
+import type { ButtonRef } from '../Button/Button-props'
+import type { ComboRef } from '../Combo/Combo-props'
 
 export interface ToolBarProps {
   /** 变体 */
@@ -321,8 +324,3 @@ export interface ToolBarActionSheetRef {
   /** 打开面板 */
   open?: () => void
 }
-
-// 以下类型引用自外部模块，此处仅声明接口以供文档参考
-import type { ActionSheetItem } from '../../../src/components/ActionSheet/types'
-import type { ComboRef } from '../../../src/components/Combo/types'
-import type { ButtonRef } from '../../../src/components/Button/types'

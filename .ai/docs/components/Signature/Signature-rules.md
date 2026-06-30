@@ -11,8 +11,8 @@
 
 ## 子组件
 - `Signature.Combo`
-- `Signature.Modal`
 - `Signature.Main`
+- `Signature.Modal`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/SignatureCombo.tsx`

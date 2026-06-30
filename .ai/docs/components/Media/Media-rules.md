@@ -13,9 +13,11 @@
 
 ## 子组件
 - `Media.List`
-- `Media.PreviewModal`
-- `Media.PreviewMain`
 - `Media.Mark`
+- `Media.PreviewMain`
+- `Media.PreviewModal`
+- `Media.isAllowClear`
+- `Media.validateListStatus`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Media.tsx`

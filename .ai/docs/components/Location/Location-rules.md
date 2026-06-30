@@ -11,8 +11,8 @@
 
 ## 子组件
 - `Location.Combo`
-- `Location.Modal`
 - `Location.Main`
+- `Location.Modal`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/LocationCombo.tsx`

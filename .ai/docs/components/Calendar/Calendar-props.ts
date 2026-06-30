@@ -77,3 +77,44 @@ export interface CalendarHeaderRef {
   /** 获取根元素 */
   getElement?: () => HTMLDivElement
 }
+
+export interface CalendarBodyProps {
+  /** 是否显示 */
+  open?: boolean
+  /** 选中的值 */
+  value?: Date | Date[] | null
+  /** 选择模式 */
+  selectionMode?: 'single' | 'multiple' | 'range'
+  /** 日历页数据 */
+  pages?: unknown[] | null
+  /** 单元格高度 */
+  cellHeight: number
+  /** 最小日期 */
+  min?: Date
+  /** 最大日期 */
+  max?: Date
+  /** 是否可拖动 */
+  draggable?: Array<'horizontal' | 'vertical'>
+  /** 允许清除 */
+  allowClear?: boolean
+  /** 日期渲染 */
+  dateRender?: CalendarProps['dateRender']
+  /** 变化事件 */
+  onChange?: (date: Date, ctx: { action: 'select' | 'clear' }) => void
+  /** 横向滑动 */
+  onSlideX?: (action: 'previous' | 'next' | '') => void | Promise<void>
+  /** 纵向滑动 */
+  onSlideY?: (action: 'expand' | 'collapse' | '') => void | Promise<void>
+  /** 展开/收起切换 */
+  onToggle?: (e: MouseEvent) => void
+}
+
+export interface CalendarBodyRef {
+  /** 根元素 */
+  element: HTMLDivElement | null
+  /** 获取根元素 */
+  getElement: () => HTMLDivElement | null
+}
+
+/** Calendar.isDisabledDate 静态方法 */
+export type CalendarIsDisabledDate = (date: Date, options?: { min?: Date; max?: Date }) => boolean

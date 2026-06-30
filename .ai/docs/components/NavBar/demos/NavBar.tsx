@@ -5,19 +5,42 @@ export default function NavBarDemo() {
   return (
     <Page className="lyrixi-full lyrixi-bg-white">
       <Page.Main>
-        <Divider>Normal</Divider>
+        <Divider>Title NavBar</Divider>
+        <NavBar
+          title="Title"
+          leftRender={() => (
+            <>
+              <NavBar.Button>
+                <Button.Icon svg={Icons.ArrowLeft} />
+                <Button.Text>Back</Button.Text>
+              </NavBar.Button>
+              <NavBar.Button>
+                <Button.Text>Close</Button.Text>
+              </NavBar.Button>
+            </>
+          )}
+          rightRender={() => <NavBar.Button color="primary">Save</NavBar.Button>}
+        />
+
+        <Divider>Modal NavBar</Divider>
         <NavBar
           title="Title"
           leftRender={() => (
             <NavBar.Button>
-              <Button.Icon svg={Icons.ArrowLeft} />
-              <Button.Text>Back</Button.Text>
+              <Icon
+                svg={Icons.Close}
+                style={{ padding: 5 }}
+                radius="100%"
+                size="10px"
+                color="secondary"
+                backgroundColor="default"
+              />
             </NavBar.Button>
           )}
           rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
         />
 
-        <Divider>Button Shape</Divider>
+        <Divider>Icon</Divider>
         <NavBar
           leftRender={() => (
             <NavBar.Button>
@@ -44,24 +67,6 @@ export default function NavBarDemo() {
               <Button.Text>More</Button.Text>
             </NavBar.Button>
           )}
-        />
-
-        <Divider>Title</Divider>
-        <NavBar
-          title="Title"
-          leftRender={() => (
-            <NavBar.Button>
-              <Icon
-                svg={Icons.Close}
-                style={{ padding: 5 }}
-                radius="100%"
-                size="10px"
-                color="secondary"
-                backgroundColor="default"
-              />
-            </NavBar.Button>
-          )}
-          rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
         />
       </Page.Main>
     </Page>

@@ -97,6 +97,10 @@ export interface ListAsyncProps {
   onBottomRefresh?: () => void | Promise<void>
   /** 加载事件 */
   onLoad?: (params: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+  /** 滚动事件 */
+  onScroll?: (e: Event) => void
+  /** 滚动结束事件 */
+  onScrollEnd?: (e: Event) => void
 }
 
 export interface ListAsyncRef {

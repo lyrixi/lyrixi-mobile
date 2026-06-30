@@ -13,19 +13,22 @@
 
 ## 子组件
 - `DatePicker.Combo`
-- `DatePicker.Modal`
 - `DatePicker.Main`
+- `DatePicker.Modal`
 - `DatePicker.MultipleCombo`
-- `DatePicker.MultipleModal`
 - `DatePicker.MultipleMain`
+- `DatePicker.MultipleModal`
 - `DatePicker.RangeCombo`
-- `DatePicker.RangeModal`
 - `DatePicker.RangeMain`
+- `DatePicker.RangeModal`
 - `DatePicker.RangeSelector`
-- `DatePicker.WeekCombo`
-- `DatePicker.WeekModal`
-- `DatePicker.WeekMain`
 - `DatePicker.TypeSwitcher`
+- `DatePicker.WeekCombo`
+- `DatePicker.WeekMain`
+- `DatePicker.WeekModal`
+- `DatePicker.getDefaultRanges`
+- `DatePicker.getRangeId`
+- `DatePicker.getTitle`
 
 ## 静态方法
 - `DatePicker.getTitle`

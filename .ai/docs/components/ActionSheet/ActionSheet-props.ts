@@ -3,7 +3,7 @@
  */
 
 import type { ComponentType, CSSProperties, MouseEvent, ReactNode, RefObject, SVGProps } from 'react'
-import type { ComboRef } from '../../../src/components/Combo/types'
+import type { ComboRef } from '../Combo/Combo-props'
 import type { ActionSheetItem } from './ActionSheet-item-types'
 
 export interface ActionSheetComboProps {

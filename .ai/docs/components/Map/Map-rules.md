@@ -10,18 +10,26 @@
 - 见 `src/components/Map/index.zh-CN.md` 中「何时使用」。
 
 ## 子组件
-- `Map.MapContainer`
-- `Map.ZoomControl`
-- `Map.SearchControl`
 - `Map.CenterMarker`
-- `Map.Markers`
 - `Map.Circles`
-- `Map.Polyline`
-- `Map.Polygon`
 - `Map.LocationControl`
-- `Map.NearbyControl`
 - `Map.MapChoose`
+- `Map.MapContainer`
+- `Map.MapLoader`
 - `Map.MapMarkers`
+- `Map.Markers`
+- `Map.NearbyControl`
+- `Map.Polygon`
+- `Map.Polyline`
+- `Map.SearchControl`
+- `Map.ZoomControl`
+- `Map.coordsToWgs84`
+- `Map.getAddress`
+- `Map.getLocation`
+- `Map.getSuperAddress`
+- `Map.getSuperLocation`
+- `Map.queryNearby`
+- `Map.wgs84ToCoords`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/MapMapContainer.tsx`

@@ -3,7 +3,7 @@
  */
 
 import type { CSSProperties, ReactNode, RefObject } from 'react'
-import type { ComboRef } from '../../Combo/types'
+import type { ComboRef } from '../Combo/Combo-props'
 
 export interface TooltipProps {
   /** 点击遮罩关闭 */

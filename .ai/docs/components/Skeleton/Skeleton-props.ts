@@ -3,7 +3,8 @@
  */
 
 import type { CSSProperties, RefObject } from 'react'
-import type { PageLayout } from '../../../src/components/Page/types'
+
+export type PageLayout = 'horizontal' | 'vertical'
 
 // ===== Avatar =====
 

@@ -18,8 +18,8 @@
 - 推荐从 barrel 引入枚举：`import { Button, ButtonColor, ButtonVariant } from 'lyrixi-mobile'`。
 
 ## 子组件
-- `Button.Text` — 按钮内文本
-- `Button.Icon` — 按钮内图标（Props 同 Icon，`svg` 必填）
+- `Button.Icon`
+- `Button.Text`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/Button.tsx` — variant × color 矩阵、size、block

@@ -13,8 +13,8 @@
 
 ## 子组件
 - `Picker.Combo`
-- `Picker.Modal`
 - `Picker.Main`
+- `Picker.Modal`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/PickerCombo.tsx`

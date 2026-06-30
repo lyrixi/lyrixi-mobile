@@ -12,13 +12,15 @@
 - 需要自定义对话框结构（图标、标题、内容、底部按钮分区）时
 
 ## 子组件
-- `Message.Combo`
-- `Message.Modal`
-- `Message.Main`
-- `Message.Header`
-- `Message.Footer`
-- `Message.Title`
 - `Message.Button`
+- `Message.Combo`
+- `Message.Footer`
+- `Message.Header`
+- `Message.Main`
+- `Message.Modal`
+- `Message.Title`
+- `Message.close`
+- `Message.open`
 
 ## 静态方法
 - `Message.open`

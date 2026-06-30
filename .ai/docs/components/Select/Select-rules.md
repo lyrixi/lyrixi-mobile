@@ -11,8 +11,8 @@
 
 ## 子组件
 - `Select.Combo`
-- `Select.Modal`
 - `Select.Main`
+- `Select.Modal`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/SelectCombo.tsx`

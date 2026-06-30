@@ -10,10 +10,10 @@
 - 见 `src/components/TabBar/index.zh-CN.md` 中「何时使用」。
 
 ## 子组件
-- `TabBar.Tabs`
-- `TabBar.Slide`
-- `TabBar.Menus`
 - `TabBar.Group`
+- `TabBar.Menus`
+- `TabBar.Slide`
+- `TabBar.Tabs`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/TabBarTabs.tsx`

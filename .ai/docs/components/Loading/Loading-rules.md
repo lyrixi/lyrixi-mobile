@@ -11,6 +11,11 @@
 
 ## 子组件
 - `Loading.BallWave`
+- `Loading.Ouroboros`
+- `Loading.SpinFade`
+- `Loading.close`
+- `Loading.exists`
+- `Loading.open`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/LoadingOpen.tsx`

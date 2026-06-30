@@ -14,8 +14,7 @@ import type {
   SVGProps,
   TouchEvent
 } from 'react'
-import type { InputSize } from './Input-size-types'
-import type { IconSize } from '../../../src/components/Icon/types'
+import type { IconSize, InputSize } from './Input-size-types'
 
 export interface InputTextProps {
   /** 输入框 ID */

@@ -4,7 +4,7 @@ import { Page, Loading, Button, Toast } from 'lyrixi-mobile'
 export default function LoadingExistsDemo() {
   const [exists, setExists] = useState(false)
 
-  function handleShow() {
+  function handleOpen() {
     Loading.open({ content: 'Loading...' })
     setTimeout(() => {
       Loading.close()
@@ -12,7 +12,7 @@ export default function LoadingExistsDemo() {
     checkExists()
   }
 
-  function handleHide() {
+  function handleClose() {
     Loading.close()
     checkExists()
   }
@@ -34,8 +34,8 @@ export default function LoadingExistsDemo() {
             </div>
           </div>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            <Button onClick={handleShow}>Show Loading</Button>
-            <Button onClick={handleHide}>Hide Loading</Button>
+            <Button onClick={handleOpen}>Open Loading</Button>
+            <Button onClick={handleClose}>Close Loading</Button>
             <Button onClick={checkExists}>Check Exists</Button>
           </div>
         </div>

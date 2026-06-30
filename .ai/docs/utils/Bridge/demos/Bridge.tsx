@@ -1,9 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import vconsole from 'vconsole'
 
 import {
   Loading,
   Button,
+  Device,
   Bridge,
   Page,
   Divider,
@@ -20,6 +21,19 @@ new vconsole()
 
 export default function BridgeDemo() {
   const imageLocalFiles = useRef<unknown[] | null>(null)
+
+  useEffect(() => {
+    console.log('Platform', Device.platform)
+    console.log('Bridge', Bridge)
+    Bridge.load({
+      onSuccess: () => {
+        Bridge.setTitle({
+          title: '111'
+        })
+        console.log('Bridge loaded')
+      }
+    })
+  }, [])
 
   return (
     <Page>
@@ -129,22 +143,6 @@ export default function BridgeDemo() {
           </Card.Main>
         </Card>
 
-        <Card>
-          <Card.Header>返回首页(仅订货客户端支持)</Card.Header>
-          <Card.Main>
-            <Button
-              className="lyrixi-primary lyrixi-flex"
-              style={{ margin: '12px 10px' }}
-              radius="m"
-              onClick={() => {
-                Bridge.goHome()
-              }}
-            >
-              goHome
-            </Button>
-          </Card.Main>
-        </Card>
-
         <Divider>媒体接口</Divider>
         <Card>
           <Card.Header>扫码接口</Card.Header>
@@ -155,7 +153,7 @@ export default function BridgeDemo() {
               radius="m"
               onClick={() => {
                 Bridge.scanCode({
-                  scanType: ['barCode'],
+                  scanType: ['barCode', 'qrCode'],
                   onSuccess: (res: BridgeSuccessResult<BridgeScanCodeResultData>) => {
                     console.log(res)
                     alert(JSON.stringify(res))
@@ -270,9 +268,7 @@ export default function BridgeDemo() {
                       fileUrl: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
                     }
                   ],
-
-                  index: 0,
-                  current: 'https://lyrixi.github.io/lyrixi-mobile/assets/images/logo.png'
+                  index: 0
                 })
               }}
             >

@@ -11,8 +11,8 @@
 
 ## 子组件
 - `ActionSheet.Combo`
-- `ActionSheet.Modal`
 - `ActionSheet.Item`
+- `ActionSheet.Modal`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/ActionSheetCombo.tsx`

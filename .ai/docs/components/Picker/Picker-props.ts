@@ -3,7 +3,7 @@
  */
 
 import type { ComponentType, CSSProperties, MouseEvent, ReactNode, SVGProps } from 'react'
-import type { ModalProps } from '../../../src/components/Modal/types'
+import type { ModalProps } from '../Modal/Modal-props'
 import type { PickerItem } from './Picker-item-types'
 
 export interface PickerComboProps {

@@ -9,8 +9,14 @@ export interface NavBarProps {
   style?: CSSProperties
   /** 自定义类名 */
   className?: string
+  /** 标题 */
+  title?: ReactNode
   /** 导航栏内容 */
   children?: ReactNode
+  /** 左侧区域渲染 */
+  leftRender?: () => ReactNode
+  /** 右侧区域渲染 */
+  rightRender?: () => ReactNode
 }
 
 /** NavBar ref 类型 — 直接引用 HTMLDivElement */

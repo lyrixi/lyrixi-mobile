@@ -12,8 +12,8 @@
 - 需要在页面顶部显示导航栏时
 
 ## 子组件
-- `NavBar.Title`
 - `NavBar.Button`
+- `NavBar.Title`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/NavBar.tsx`

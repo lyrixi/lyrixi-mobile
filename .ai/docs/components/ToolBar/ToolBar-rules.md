@@ -12,9 +12,14 @@
 - 需要显示筛选、搜索等功能时
 
 ## 子组件
-- `ToolBar.Dropdown`
+- `ToolBar.ActionSheet`
+- `ToolBar.Button`
 - `ToolBar.DateRange`
+- `ToolBar.Dropdown`
 - `ToolBar.Filter`
+- `ToolBar.List`
+- `ToolBar.Search`
+- `ToolBar.SearchActive`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/ToolBar.tsx`

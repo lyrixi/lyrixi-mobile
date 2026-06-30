@@ -12,8 +12,9 @@
 - 需要从分页列表中单选/多选并展示在输入框或弹窗时
 
 ## 子组件
-- `ListPagination.Main`
 - `ListPagination.Combo`
+- `ListPagination.Main`
+- `ListPagination.Modal`
 
 ## Demo 索引（本目录 `demos/`）
 - `demos/ListPaginationMain/index.tsx`
