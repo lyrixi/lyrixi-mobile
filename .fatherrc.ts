@@ -3,9 +3,7 @@ import { defineConfig } from 'father'
 export default defineConfig({
   // more father config: https://github.com/umijs/father/blob/master/docs/config.md
   esm: {
-    output: 'esm',
-    // CLI scripts use CommonJS require/module.exports; exclude from library build
-    ignores: ['**/LocaleUtil/scripts/**']
+    output: 'esm'
   },
   extraBabelPlugins: [
     [

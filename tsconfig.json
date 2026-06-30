@@ -19,6 +19,5 @@
       "lyrixi-mobile/*": ["src/*", "*"]
     }
   },
-  "include": [".dumirc.ts", ".fatherrc.ts", "scripts/configureSrcSvgWebpack.ts", "src"],
-  "exclude": ["src/utils/LocaleUtil/scripts"]
+  "include": [".dumirc.ts", ".fatherrc.ts", "scripts/configureSrcSvgWebpack.ts", "src"]
 }

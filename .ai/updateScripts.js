@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const TRANSLATE_SCRIPT = 'tsx lyrixi-mobile/utils/LocaleUtil/scripts/translateSrc.ts'
+const TRANSLATE_SCRIPT = 'tsx lyrixi-mobile/scripts/LocaleUtil/translateSrc.ts'
 
 function parseArgs(argv) {
   return {
