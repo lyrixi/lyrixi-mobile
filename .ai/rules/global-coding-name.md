@@ -104,7 +104,7 @@ JSX 内变量名延续以上规范。
 
 ### className 类名
 
-`项目前缀(可以防冲突)-功能名`, 多个样式, 使用`DOMUtil.classNames`包裹
+`lyrixi-` 前缀 + 功能语义（kebab-case）；多个类名用 `DOMUtil.classNames` 合并。细则见 [`component-coding-styles.md`](./component-coding-styles.md)（组件库）、[`page-coding-styles.md`](./page-coding-styles.md)（业务页面）。
 
 ## props 和 state 值结构约定
 

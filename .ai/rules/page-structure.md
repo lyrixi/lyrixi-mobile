@@ -84,3 +84,9 @@ const Example = () => {
   )
 }
 ```
+
+## 与其它规则的分工
+
+- **本文件**：页面目录、api/Header/Main/Footer 职责与入口结构。
+- **`page-coding-styles.md`**：页面 class 命名、Less 目录、全局工具类优先策略。
+- **`global-coding-name.md`**：变量、handler、queryParams 等 TS 命名。

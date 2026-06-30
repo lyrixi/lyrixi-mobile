@@ -210,3 +210,4 @@ src/components/Amount/
 - **`global-coding-structure-types.md`**：`types/` 文件命名、一组件一类型、`.modules.types.ts`、`extends` 等。
 - **`global-coding-sequence.md`**：import 顺序与组件**内部**代码块顺序。
 - **`global-coding-name.md`**：变量、handler、ref 等命名。
+- **`component-coding-styles.md`**：class 命名、`DOMUtil.classNames`、Less 目录与聚合。
