@@ -4,9 +4,12 @@ import type { NavBarProps } from '../types'
 import Left from './../Left'
 import Right from './../Right'
 import Title from './../Title'
+import NavBarButton from './../Button'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import Button from './../../Button'
+import Icons from './../../../icons'
 // 内库使用-end
 
 /* 测试使用-start
@@ -24,10 +27,22 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
       title,
       children,
       leftRender,
-      rightRender
+      rightRender,
+
+      // Events
+      onBack
     },
     ref
   ) => {
+    const defaultLeftRender = () => {
+      if (!onBack) return null
+      return (
+        <NavBarButton onClick={onBack}>
+          <Button.Icon svg={Icons.ArrowLeft} />
+        </NavBarButton>
+      )
+    }
+
     return (
       <div
         ref={ref}
@@ -35,7 +50,7 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-navbar', className)}
       >
-        <Left>{typeof leftRender === 'function' && leftRender()}</Left>
+        <Left>{typeof leftRender === 'function' ? leftRender() : defaultLeftRender()}</Left>
         {title ? <Title>{title}</Title> : children}
         <Right>{typeof rightRender === 'function' && rightRender()}</Right>
       </div>

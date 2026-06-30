@@ -9,4 +9,6 @@ export interface NavBarProps {
   children?: ReactNode
   leftRender?: () => ReactNode
   rightRender?: () => ReactNode
+  // Events
+  onBack?: () => void
 }
