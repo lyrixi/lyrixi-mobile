@@ -4,6 +4,8 @@ import type { NavBarProps } from '../types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
+import Left from './../Left'
+import Right from './../Right'
 // 内库使用-end
 
 /* 测试使用-start
@@ -18,7 +20,9 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
       className,
 
       // Elements
-      children
+      children,
+      leftRender,
+      rightRender
     },
     ref
   ) => {
@@ -29,8 +33,9 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-navbar', className)}
       >
-        {/* Elements: Children */}
+        {typeof leftRender === 'function' && <Left>{leftRender()}</Left>}
         {children}
+        {typeof rightRender === 'function' && <Right>{rightRender()}</Right>}
       </div>
     )
   }

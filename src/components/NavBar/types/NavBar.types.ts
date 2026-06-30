@@ -6,4 +6,6 @@ export interface NavBarProps {
   className?: string
   // Elements
   children?: ReactNode
+  leftRender?: () => ReactNode
+  rightRender?: () => ReactNode
 }
