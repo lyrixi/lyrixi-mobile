@@ -48,20 +48,25 @@ const Head = forwardRef<ModalNavBarModalNavBarRef, ModalNavBarModalNavBarProps>(
 
     let OkNode = okVisible ? <Ok onClick={onOk}>{okNode}</Ok> : null
 
-    // 带按钮
     return (
-      <NavBar ref={barRef} style={style} className={className}>
-        {/* 取消按钮 */}
-        {cancelPosition === 'left' && CancelNode}
-        {okPosition === 'left' && OkNode}
-
-        {/* 标题 */}
-        <NavBar.Title>{title}</NavBar.Title>
-
-        {/* 确认 */}
-        {cancelPosition === 'right' && CancelNode}
-        {okPosition === 'right' && OkNode}
-      </NavBar>
+      <NavBar
+        ref={barRef}
+        style={style}
+        className={className}
+        title={title}
+        leftRender={() => (
+          <>
+            {cancelPosition === 'left' && CancelNode}
+            {okPosition === 'left' && OkNode}
+          </>
+        )}
+        rightRender={() => (
+          <>
+            {cancelPosition === 'right' && CancelNode}
+            {okPosition === 'right' && OkNode}
+          </>
+        )}
+      />
     )
   }
 )
