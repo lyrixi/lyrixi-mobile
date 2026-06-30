@@ -1,5 +1,5 @@
 export interface ClipboardCopyParams {
-  onSuccess?: (payload: { status: string; message: unknown }) => void
-  onError?: (payload: { status: string; message: unknown }) => void
+  onSuccess?: (options: { status: string; message: unknown }) => void
+  onError?: (options: { status: string; message: unknown }) => void
   errorMsg?: string
 }

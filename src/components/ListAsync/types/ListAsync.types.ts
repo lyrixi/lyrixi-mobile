@@ -29,14 +29,14 @@ export interface ListAsyncLoadResult {
 }
 
 export interface ListAsyncProps {
-  loadData?: (params: {
+  loadData?: (options: {
     previousResult: ListAsyncLoadResult | null
     action: string
   }) => Promise<ListAsyncLoadResult>
   // Status
   initialLoad?: boolean
   errorRetry?: boolean
-  onLoad?: (params: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+  onLoad?: (options: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
   disableTopRefresh?: boolean
   disableBottomRefresh?: boolean
   emptyRetry?: boolean

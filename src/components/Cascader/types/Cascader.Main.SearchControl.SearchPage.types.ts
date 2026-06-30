@@ -22,7 +22,7 @@ export interface CascaderMainSearchPageProps {
   list: CascaderItem[]
   onSearch?: (
     keyword: string,
-    ctx: { list: CascaderItem[] }
+    options: { list: CascaderItem[] }
   ) =>
     | void
     | CascaderMainSearchPageSearchResult

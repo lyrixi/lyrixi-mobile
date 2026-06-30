@@ -18,4 +18,4 @@ export type LoadDataResult = {
   async?: boolean
 }
 
-export type LoadDataFn = (tabs: CascaderItem[], ctx: { list: CascaderItem[] }) => Promise<LoadDataResult>
+export type LoadDataFn = (tabs: CascaderItem[], options: { list: CascaderItem[] }) => Promise<LoadDataResult>

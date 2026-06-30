@@ -22,9 +22,9 @@ export interface ChatItemProps {
   checkboxPosition?: string
   // Elements
   avatarUrl?: string
-  avatarRender?: (ctx: { checked?: boolean; [key: string]: unknown }) => ReactNode
+  avatarRender?: (options: { checked?: boolean; [key: string]: unknown }) => ReactNode
   avatarNode?: ReactNode
-  authorRender?: (ctx: { checked?: boolean; [key: string]: unknown }) => ReactNode
+  authorRender?: (options: { checked?: boolean; [key: string]: unknown }) => ReactNode
   authorNode?: ReactNode
   content?: ReactNode
   onChange?: (checked: boolean) => void

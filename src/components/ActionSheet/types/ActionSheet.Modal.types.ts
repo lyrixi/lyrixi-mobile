@@ -29,7 +29,7 @@ export interface ActionSheetModalProps {
   cancelVisible?: boolean
   itemRender?: (
     item: ActionSheetItem,
-    helpers: { onChange: (item: ActionSheetItem) => void }
+    options: { onChange: (item: ActionSheetItem) => void }
   ) => ReactNode
   // Events
   onChange?: (value: ActionSheetItem | null) => void

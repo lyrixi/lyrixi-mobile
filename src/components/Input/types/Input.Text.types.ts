@@ -57,12 +57,12 @@ export interface InputTextProps {
   size?: InputSize
   className?: string
   // Elements
-  inputRender?: (params: Record<string, unknown>) => ReactNode
+  inputRender?: (options: Record<string, unknown>) => ReactNode
   leftIconRender?: () => ReactNode
   leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   rightIconRender?: () => ReactNode
   rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
-  clearRender?: (params: {
+  clearRender?: (options: {
     clearable: boolean
     allowClear?: boolean
     onClear: (e?: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => void

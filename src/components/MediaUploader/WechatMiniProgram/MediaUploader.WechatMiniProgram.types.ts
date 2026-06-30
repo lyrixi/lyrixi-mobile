@@ -2,5 +2,5 @@ import type { MediaUploaderCommonProps } from '../types/MediaUploader.common.typ
 
 export interface MediaUploaderWechatMiniProgramProps extends MediaUploaderCommonProps {
   chooseExtraParams?: Record<string, unknown>
-  onNavigateTo?: (params: Record<string, unknown>) => Promise<boolean | void>
+  onNavigateTo?: (options: Record<string, unknown>) => Promise<boolean | void>
 }

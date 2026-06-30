@@ -8,8 +8,8 @@ export interface AttachChooseProps {
   // Style
   className?: string
   // Elements
-  uploadRender?: (ctx: { uploadingType: string }) => ReactNode
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadRender?: (options: { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: { uploadingType: string }) => ReactNode
   // Events
   onBeforeChoose?: (e: MouseEvent<HTMLDivElement>) => boolean | void | Promise<boolean | void>
   onChoose?: (e: MouseEvent<HTMLDivElement>) => void | Promise<unknown>

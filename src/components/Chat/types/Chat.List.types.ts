@@ -10,7 +10,7 @@ export interface ChatListProps {
   value?: ChatItem[]
   list?: ChatItem[]
   formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
-  formatViewItem?: (item: ChatItem, ctx: { index: number }) => ChatItem
+  formatViewItem?: (item: ChatItem, options: { index: number }) => ChatItem
   // Status
   checkable?: boolean
   // Style

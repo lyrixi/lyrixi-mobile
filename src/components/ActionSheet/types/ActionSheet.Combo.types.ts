@@ -26,7 +26,7 @@ export interface ActionSheetComboProps {
   style?: CSSProperties
   className?: string
   // Combo: Elements
-  comboRender?: (props: {
+  comboRender?: (options: {
     comboRef: RefObject<ComboRef | null>
     open: boolean
     onClick: () => void
@@ -54,7 +54,7 @@ export interface ActionSheetComboProps {
   cancelVisible?: boolean
   itemRender?: (
     item: ActionSheetItem,
-    helpers: { onChange: (item: ActionSheetItem) => void }
+    options: { onChange: (item: ActionSheetItem) => void }
   ) => ReactNode
   // Events
   onBeforeOpen?: () => Promise<boolean | void>

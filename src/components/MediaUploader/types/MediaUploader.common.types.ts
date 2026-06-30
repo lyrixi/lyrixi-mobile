@@ -57,12 +57,12 @@ export interface MediaUploaderCommonProps extends BridgeUploadFileParams {
   itemRender?: ReactNode
   previewPortal?: HTMLElement
   previewCancelPosition?: string
-  getItemExtra?: (params: {
+  getItemExtra?: (options: {
     platform: string
   }) => Promise<Record<string, unknown> | false | null> | Record<string, unknown> | false | null
   formatChoose?: (
     params: Record<string, unknown>,
-    extra: { platform: string }
+    options: { platform: string }
   ) => Promise<Record<string, unknown>> | Record<string, unknown>
   onBeforeChoose?: () => Promise<boolean | null | undefined> | boolean | null | undefined
   onUpload?: (item: FileItem) => Promise<FileItem>

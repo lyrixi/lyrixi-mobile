@@ -18,6 +18,6 @@ export interface ModalFilterModalProps
     | 'children'
     | 'onClose'
   > {
-  footerRender?: (params: { onClose?: (e?: MouseEvent<HTMLDivElement>) => void }) => ReactNode
+  footerRender?: (options: { onClose?: (e?: MouseEvent<HTMLDivElement>) => void }) => ReactNode
   onCancel?: () => void
 }

@@ -9,7 +9,7 @@ export type BridgeWeChatWechatConfigOptions = {
   url?: string
   headers?: Record<string, string>
   payload?: BridgeWeChatWechatPayload
-  formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
+  formatResponse?: (response: unknown, options: { platform: string }) => Promise<unknown> | unknown
   onSuccess?: BridgeSuccessCallback
   onError?: BridgeErrorCallback
 }
@@ -20,7 +20,7 @@ export type BridgeWeChatWecomAgentConfigOptions = {
   url?: string
   headers?: Record<string, string>
   payload?: BridgeWeChatWecomPayload
-  formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
+  formatResponse?: (response: unknown, options: { platform: string }) => Promise<unknown> | unknown
   onSuccess?: BridgeSuccessCallback
   onError?: BridgeErrorCallback
 }

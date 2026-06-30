@@ -50,7 +50,7 @@ export interface DatePickerTypeSwitcherProps {
   pickerDisabled?: boolean
   pickerComboRender?: (
     value: DatePickerTypeSwitcherValue,
-    ctx: { onChange: (d: Date) => void }
+    options: { onChange: (d: Date) => void }
   ) => ReactNode
   onChange?: (value: DatePickerTypeSwitcherValue) => void
 }

@@ -5,7 +5,7 @@ import type { CascaderItem } from './Cascader.common.types'
 
 export type LoadCountriesFn = () => Promise<DistrictResultState>
 export type LoadCountryRegionsFn = (id?: string | number) => Promise<DistrictResultState>
-export type LoadStreetsFn = (id: string | number, ctx?: { value?: CascaderItem[] }) => Promise<DistrictResultState>
+export type LoadStreetsFn = (id: string | number, options?: { value?: CascaderItem[] }) => Promise<DistrictResultState>
 
 export interface CascaderDistrictMainProps {
   // Modal: Status

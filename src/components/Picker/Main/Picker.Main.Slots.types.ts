@@ -5,7 +5,7 @@ export interface PickerMainSlotsProps {
   lists?: PickerItem[][]
   cellHeight?: number
   // Events
-  onDragEnd?: (payload: { slotIndex: string | number; rowIndex: number }) => void
+  onDragEnd?: (options: { slotIndex: string | number; rowIndex: number }) => void
 }
 
 export interface PickerMainSlotsTouchDragState {

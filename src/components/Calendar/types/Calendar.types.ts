@@ -39,20 +39,20 @@ export interface CalendarProps {
   allowClear?: boolean
   draggable?: CalendarDraggableAxis[]
   // Elements
-  titleRender?: (date: Date | null, ctx: { type: CalendarType | null }) => ReactNode
-  headerRender?: (params: CalendarHeaderRenderParams) => ReactNode
+  titleRender?: (date: Date | null, options: { type: CalendarType | null }) => ReactNode
+  headerRender?: (options: CalendarHeaderRenderParams) => ReactNode
   dateRender?: (
     date: CalendarCellDate,
-    ctx: { isSelected: string[] | null; isDisabled: false | CalendarErrorObject; isCurrent?: boolean }
+    options: { isSelected: string[] | null; isDisabled: false | CalendarErrorObject; isCurrent?: boolean }
   ) => ReactNode
   // Events
   onChange?: (
     value: CalendarValue,
-    ctx: { currentDate: Date; action: 'select' | 'clear' }
+    options: { currentDate: Date; action: 'select' | 'clear' }
   ) => void
   onPageChange?: (
     drawDate: Date | null,
-    ctx: { action: string; type: CalendarType | null; pages: unknown }
+    options: { action: string; type: CalendarType | null; pages: unknown }
   ) => void
   onError?: CalendarOnErrorHandler
 }

@@ -14,7 +14,7 @@ export type DistrictMainLoadCountryRegionsFn = (
 
 export type DistrictMainLoadStreetsFn = (
   id: string | number,
-  ctx?: { value?: DistrictMainLoadDataTab[] }
+  options?: { value?: DistrictMainLoadDataTab[] }
 ) => Promise<DistrictMainLoadDataApiResult>
 
 export interface DistrictMainLoadDataRunnerParams {

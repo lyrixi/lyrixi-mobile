@@ -20,7 +20,7 @@ export interface ChatViewItem extends ChatItem {
 }
 
 export interface ChatViewFormatterOptions {
-  formatViewItem?: (item: ChatItem, ctx: { index: number }) => ChatItem
+  formatViewItem?: (item: ChatItem, options: { index: number }) => ChatItem
   formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
 }
 

@@ -33,7 +33,7 @@ export interface DatePickerComboProps
   onBeforeOpen?: () => boolean | void | Promise<boolean | void>
   onOk?: (value: Date | null | undefined) => boolean | Date | void | Promise<boolean | Date | void>
   /** 自定义触发区域 */
-  comboRender?: (params: {
+  comboRender?: (options: {
     comboRef: RefObject<unknown>
     open: boolean
     onClick: () => void

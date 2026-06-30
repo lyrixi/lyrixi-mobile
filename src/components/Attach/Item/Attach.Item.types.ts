@@ -11,7 +11,7 @@ export interface AttachItemProps {
   item: FileItem
   index: number
   // Elements
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: { uploadingType: string }) => ReactNode
   itemRender?: (item: FileItem, index: number) => ReactNode
   // Events
   onDelete: ((item: FileItem, index: number) => void) | null

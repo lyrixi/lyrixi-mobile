@@ -9,7 +9,7 @@ export interface MediaChooseProps {
   // Style
   className?: string
   // Elements
-  uploadRender?: (ctx: { uploadType: string }) => ReactNode
+  uploadRender?: (options: { uploadType: string }) => ReactNode
   uploadingRender?: MediaUploadingProps['uploadingRender']
   // Events
   onBeforeChoose?: (e: MouseEvent) => void | boolean | Promise<void | boolean>

@@ -26,7 +26,7 @@ export type CascaderComboProps = Omit<InputSelectProps, 'onSearch' | 'value' | '
   okVisible?: boolean
   cancelVisible?: boolean
   searchVisible?: boolean
-  onSearch?: (keyword: string, ctx: { list: CascaderItem[] }) => void
+  onSearch?: (keyword: string, options: { list: CascaderItem[] }) => void
   onChange?: (value: CascaderItem[]) => void
   onBeforeOpen?: () => boolean | Promise<boolean>
 }

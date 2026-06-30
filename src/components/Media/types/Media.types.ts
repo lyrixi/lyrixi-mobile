@@ -45,8 +45,8 @@ export interface MediaProps {
   previewModalClassName?: string
   previewMaskStyle?: CSSProperties
   previewMaskClassName?: string
-  uploadRender?: (ctx: { uploadType: string }) => ReactNode
-  uploadingRender?: (ctx: FileItem & { uploadingType: string }) => ReactNode
+  uploadRender?: (options: { uploadType: string }) => ReactNode
+  uploadingRender?: (options: FileItem & { uploadingType: string }) => ReactNode
   itemRender?: (item: FileItem) => ReactNode
   previewPortal?: HTMLElement | null
   previewCancelPosition?: 'left' | 'right'

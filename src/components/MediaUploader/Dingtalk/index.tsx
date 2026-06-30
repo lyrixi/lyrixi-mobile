@@ -199,16 +199,16 @@ function MediaUploader(
     uploadRender === null || uploadRender === undefined
       ? undefined
       : typeof uploadRender === 'function'
-      ? (uploadRender as (ctx: { uploadType: string }) => ReactNode)
+      ? (uploadRender as (options: { uploadType: string }) => ReactNode)
       : () => uploadRender
 
   const uploadingRenderFn =
     uploadingRender === null || uploadingRender === undefined
       ? undefined
       : typeof uploadingRender === 'function'
-      ? (uploadingRender as (ctx: FileItem & { uploadingType: string }) => ReactNode)
+      ? (uploadingRender as (options: FileItem & { uploadingType: string }) => ReactNode)
       : // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        (ctx: FileItem & { uploadingType: string }) => uploadingRender
+        (options: FileItem & { uploadingType: string }) => uploadingRender
 
   const itemRenderFn =
     itemRender === null || itemRender === undefined

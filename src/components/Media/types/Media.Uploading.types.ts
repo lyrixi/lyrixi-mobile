@@ -11,5 +11,5 @@ export interface MediaUploadingProps {
   // Style
   className?: string
   // Elements
-  uploadingRender?: (ctx: FileItem & { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: FileItem & { uploadingType: string }) => ReactNode
 }

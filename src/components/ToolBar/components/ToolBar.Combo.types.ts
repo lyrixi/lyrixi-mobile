@@ -18,7 +18,7 @@ export interface ToolBarComboProps {
   style?: CSSProperties
   className?: string
   // Elements
-  arrowRender?: (props: { open: boolean | null }) => ReactNode
+  arrowRender?: (options: { open: boolean | null }) => ReactNode
   arrowSvg?: ComponentType<SVGProps<SVGSVGElement>> | null
   children?: ReactNode
   // Events

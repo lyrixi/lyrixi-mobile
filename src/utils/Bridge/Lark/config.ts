@@ -13,7 +13,7 @@ function config(params?: {
   url?: string
   headers?: Record<string, string>
   payload?: Record<string, unknown>
-  formatResponse?: (response: unknown, ctx: { platform: string }) => Promise<unknown> | unknown
+  formatResponse?: (response: unknown, options: { platform: string }) => Promise<unknown> | unknown
   onSuccess?: BridgeSuccessCallback
   onError?: BridgeErrorCallback
 }) {

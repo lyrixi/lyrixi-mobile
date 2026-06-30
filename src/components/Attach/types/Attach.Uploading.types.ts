@@ -6,5 +6,5 @@ export interface AttachUploadingProps {
   // Style
   className?: string
   // Elements
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: { uploadingType: string }) => ReactNode
 }

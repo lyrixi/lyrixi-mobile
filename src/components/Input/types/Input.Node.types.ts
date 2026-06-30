@@ -71,7 +71,7 @@ export interface InputNodeProps {
   leftIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
   rightIconRender?: () => ReactNode
   rightIconSvg?: ComponentType<SVGProps<SVGSVGElement>>
-  clearRender?: (params: {
+  clearRender?: (options: {
     clearable: boolean
     allowClear?: boolean
     onClear: (e?: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => void

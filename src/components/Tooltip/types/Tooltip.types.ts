@@ -15,12 +15,12 @@ export interface TooltipProps {
   maskClassName?: string
   // Elements
   children?: ReactNode
-  comboRender?: (ctx: {
+  comboRender?: (options: {
     comboRef: RefObject<ComboRef | null>
     open: boolean | null
     onClick: () => void
   }) => ReactNode
-  modalRender?: (ctx: { open: boolean | null; onClose: () => void }) => ReactNode
+  modalRender?: (options: { open: boolean | null; onClose: () => void }) => ReactNode
   referenceElement?: Element | null | (() => Element | null)
   portal?: boolean | Element | null
   // Events

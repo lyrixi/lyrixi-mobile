@@ -5,5 +5,5 @@ export interface MediaUploaderProps extends MediaUploaderCommonProps {
   compatible?: boolean | string
   timeout?: number
   chooseExtraParams?: Record<string, unknown>
-  onNavigateTo?: (params: Record<string, unknown>) => Promise<boolean | void>
+  onNavigateTo?: (options: Record<string, unknown>) => Promise<boolean | void>
 }

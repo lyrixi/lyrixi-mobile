@@ -13,17 +13,17 @@ import type {
 
 /** {@link Bridge.load} */
 export type BridgeLoadParams = {
-  getScriptSrc?: (ctx: { platform: string }) => string | undefined
+  getScriptSrc?: (options: { platform: string }) => string | undefined
   onSuccess?: BridgeSuccessCallback
   onError?: BridgeErrorCallback
 }
 
 /** {@link Bridge.config}（各端实现签名不一，回调放宽为 unknown 以兼容 App/initBridge 等调用） */
 export type BridgeConfigParams = {
-  getConfigUrl?: (ctx: { platform: string }) => Promise<string> | string
-  formatHeaders?: (headers: Record<string, string>, ctx: { platform: string }) => unknown
-  formatPayload?: (payload: Record<string, unknown>, ctx: { platform: string }) => unknown
-  formatResponse?: (response: unknown, ctx: { platform: string }) => unknown
+  getConfigUrl?: (options: { platform: string }) => Promise<string> | string
+  formatHeaders?: (headers: Record<string, string>, options: { platform: string }) => unknown
+  formatPayload?: (payload: Record<string, unknown>, options: { platform: string }) => unknown
+  formatResponse?: (response: unknown, options: { platform: string }) => unknown
   onSuccess?: (result: unknown) => void
   onError?: (result: unknown) => void
 } & Record<string, unknown>
@@ -151,8 +151,8 @@ export type BridgeUploadLocalFile = LocalFile
  */
 export type BridgeUploadFileParams = {
   localFile?: BridgeUploadLocalFile | unknown
-  /** `(ctx) => url`，ctx 因业务扩展（如含 uploadItem） */
-  getUploadUrl?: (ctx: {
+  /** `(options) => url`，options 因业务扩展（如含 uploadItem） */
+  getUploadUrl?: (options: {
     platform: string
   }) =>
     | string
@@ -161,15 +161,15 @@ export type BridgeUploadFileParams = {
     | Promise<string | undefined | { saveMediaUrl: string; getMediaUrl: string }>
   formatHeaders?: (
     headers: Record<string, string>,
-    ctx: { platform: string }
+    options: { platform: string }
   ) => Record<string, string> | Promise<Record<string, string>>
   formatPayload?: (
     payload: Record<string, unknown>,
-    ctx: { platform: string }
+    options: { platform: string }
   ) => Record<string, unknown> | Promise<Record<string, unknown>>
   formatResponse?: (
     response: unknown,
-    ctx: { platform: string }
+    options: { platform: string }
   ) => BridgeErrorResult | BridgeSuccessResult<FileItem>
   onSuccess?: BridgeSuccessCallback<FileItem>
   onError?: BridgeErrorCallback
@@ -217,7 +217,7 @@ export type BridgeShareParams = {
 
 /** {@link Bridge.detectFace} */
 export type BridgeDetectFaceParams = {
-  getConfig?: (ctx: {
+  getConfig?: (options: {
     platform: string
   }) => Promise<Record<string, unknown>> | Record<string, unknown>
   onSuccess?: BridgeSuccessCallback<BridgeDetectFaceResultData>

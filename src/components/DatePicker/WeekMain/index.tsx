@@ -48,8 +48,8 @@ const WeekMain = forwardRef<CalendarRef, DatePickerWeekMainProps>(function WeekM
     } as unknown as CalendarRef
   })
 
-  const handleChange: NonNullable<CalendarProps['onChange']> = (_calValue, ctx) => {
-    onChange?.(ctx.action === 'clear' ? null : ctx.currentDate)
+  const handleChange: NonNullable<CalendarProps['onChange']> = (_calValue, options) => {
+    onChange?.(options.action === 'clear' ? null : options.currentDate)
   }
 
   const weekDates = value ? DateUtil.getWeekDates(value, weekStart) : null

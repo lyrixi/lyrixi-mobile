@@ -26,11 +26,11 @@ export interface InputSelectProps extends Omit<InputNodeProps, 'value' | 'format
   autoFocus?: boolean
   autoSelect?: boolean
   enableCompositionEnd?: boolean
-  inputRender?: (params: Record<string, unknown>) => ReactNode
+  inputRender?: (options: Record<string, unknown>) => ReactNode
   onPreview?: (value: string) => Promise<boolean | undefined> | boolean | undefined
   onSearch?: (value: string) => void
   step?: number
-  iconRender?: (params: { className: string; style?: CSSProperties }) => ReactNode
+  iconRender?: (options: { className: string; style?: CSSProperties }) => ReactNode
   mode?: string
   autoSize?: boolean
   separator?: string

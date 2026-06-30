@@ -34,7 +34,7 @@ export interface ListPaginationListProps
   > {
   initialLoad?: boolean
   errorRetry?: boolean
-  onLoad?: (params: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+  onLoad?: (options: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
   disableTopRefresh?: boolean
   disableBottomRefresh?: boolean
   emptyRetry?: boolean

@@ -25,7 +25,7 @@ export interface MapMarkersPoint extends MapPoint {
 
 export interface AddMarkersIconOptions {
   icon: L.Icon | L.DivIcon | null
-  onClick?: ((payload: unknown) => void) | null
+  onClick?: ((options: unknown) => void) | null
 }
 
 export interface AddMarkersLayersOptions {
@@ -42,7 +42,7 @@ export interface MapMarkersLayerProps {
   style?: CSSProperties
   className?: string
   // Events
-  onClick?: (payload: unknown) => void
+  onClick?: (options: unknown) => void
 }
 
 export interface MapMarkersLayerHandle {

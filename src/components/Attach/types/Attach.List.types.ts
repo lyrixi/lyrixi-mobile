@@ -10,7 +10,7 @@ export interface AttachListProps {
   // Status
   allowClear?: boolean | ((item: unknown) => boolean)
   // Elements
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: { uploadingType: string }) => ReactNode
   itemRender?: (item: FileItem, index: number) => ReactNode
   // Events
   onChange?: (list: FileItem[], meta: { action: string }) => void

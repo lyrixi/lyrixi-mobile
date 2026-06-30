@@ -51,12 +51,12 @@ export interface CascaderMainProps {
   itemClassName?: string
   // Elements
   searchVisible?: boolean
-  tabbarRender?: (params: {
+  tabbarRender?: (options: {
     list: CascaderItem[]
     value: CascaderItem | undefined
     onChange: (tab: CascaderItem) => void
   }) => ReactNode
   // Events
-  onSearch?: (keyword: string, ctx: { list: CascaderItem[] }) => unknown
+  onSearch?: (keyword: string, options: { list: CascaderItem[] }) => unknown
   onChange?: (value: CascaderItem[]) => void
 }

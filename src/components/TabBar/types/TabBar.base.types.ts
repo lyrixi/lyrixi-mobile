@@ -6,8 +6,8 @@ export interface TabBarItem {
   description?: ReactNode
   placeholder?: ReactNode
   disabled?: boolean
-  iconRender?: (params: Record<string, unknown>) => ReactNode
-  content?: ReactNode | ((params: Record<string, unknown>) => ReactNode)
+  iconRender?: (options: Record<string, unknown>) => ReactNode
+  content?: ReactNode | ((options: Record<string, unknown>) => ReactNode)
 }
 
 export interface TabBarValue {

@@ -16,12 +16,12 @@ export interface ToolBarDropdownRef {
 export interface ToolBarDropdownProps
   extends ToolBarComboProps,
     Omit<ModalDropdownModalProps, 'open'> {
-  comboRender?: (params: {
+  comboRender?: (options: {
     comboRef: RefObject<ToolBarComboRef | null>
     open: boolean | null
     onClick: (e: MouseEvent) => void | Promise<void>
   }) => ReactNode
-  modalRender?: (ctx: { open: boolean | null; onClose: () => void }) => ReactNode
+  modalRender?: (options: { open: boolean | null; onClose: () => void }) => ReactNode
   onBeforeOpen?: () => boolean | void | Promise<boolean | void>
   onOpen?: () => void
   onClose?: () => void

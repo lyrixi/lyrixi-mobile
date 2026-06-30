@@ -27,8 +27,8 @@ export interface AttachProps {
   className?: string
   // Elements
   children?: ReactNode
-  uploadRender?: (ctx: { uploadingType: string }) => ReactNode
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadRender?: (options: { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: { uploadingType: string }) => ReactNode
   itemRender?: (item: FileItem, index: number) => ReactNode
   // Events
   onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>

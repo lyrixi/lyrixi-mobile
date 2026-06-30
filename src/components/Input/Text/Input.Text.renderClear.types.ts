@@ -1,7 +1,7 @@
 import type { MouseEvent, ReactNode, TouchEvent } from 'react'
 
 export interface InputTextRenderClearOptions {
-  clearRender?: (params: {
+  clearRender?: (options: {
     clearable: boolean
     allowClear?: boolean
     onClear: (e?: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => void

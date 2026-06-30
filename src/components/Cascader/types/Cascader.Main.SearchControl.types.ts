@@ -5,7 +5,7 @@ export interface CascaderMainSearchControlProps {
   // Value & Display Value
   list: CascaderItem[]
   // Events
-  onSearch?: (keyword: string, ctx: { list: CascaderItem[] }) => void
+  onSearch?: (keyword: string, options: { list: CascaderItem[] }) => void
   onChange?: (v: CascaderItem[]) => void
 }
 

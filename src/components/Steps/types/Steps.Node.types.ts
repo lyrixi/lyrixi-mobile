@@ -7,6 +7,6 @@ export interface StepsNodeProps {
   rail?: boolean
   description?: ReactNode
   // Elements
-  iconRender?: (params: { children: ReactNode; className: string; status?: string }) => ReactNode
+  iconRender?: (options: { children: ReactNode; className: string; status?: string }) => ReactNode
   title?: ReactNode
 }

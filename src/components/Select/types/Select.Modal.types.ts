@@ -19,7 +19,7 @@ export interface SelectModalProps extends SelectListProps {
   title?: ReactNode
   cancelNode?: ReactNode
   cancelVisible?: boolean
-  headerRender?: (ctx: {
+  headerRender?: (options: {
     open: boolean
     value?: SelectItem | SelectItem[] | null
     list?: SelectItem[]

@@ -13,13 +13,13 @@ export interface UploadFormatContext {
   result?: unknown
 }
 
-export type GetUploadUrlFn = (ctx: UploadFormatContext) => string | Promise<string>
+export type GetUploadUrlFn = (options: UploadFormatContext) => string | Promise<string>
 export type FormatHeadersFn = (
   headers: Record<string, string>,
   ctx: { platform: string }
 ) => Record<string, string> | Promise<Record<string, string>>
-export type FormatPayloadFn = (payload: unknown, ctx: { platform: string }) => unknown
-export type FormatResponseFn = (response: unknown, ctx: { platform: string }) => unknown
+export type FormatPayloadFn = (payload: unknown, options: { platform: string }) => unknown
+export type FormatResponseFn = (response: unknown, options: { platform: string }) => unknown
 
 export interface AttachUploaderProps {
   list?: FileItem[]
@@ -35,8 +35,8 @@ export interface AttachUploaderProps {
   allowChoose?: boolean
   className?: string
   uploadPosition?: 'start' | 'end'
-  uploadRender?: (ctx: { uploadingType: string }) => ReactNode
-  uploadingRender?: (ctx: { uploadingType: string }) => ReactNode
+  uploadRender?: (options: { uploadingType: string }) => ReactNode
+  uploadingRender?: (options: { uploadingType: string }) => ReactNode
   itemRender?: (item: FileItem, index: number) => ReactNode
   previewPortal?: ModalProps['portal']
   previewServerUrl?: string

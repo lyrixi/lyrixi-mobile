@@ -20,9 +20,9 @@ export interface AccordionProps {
   arrowClassName?: string
   // Elements
   title?: React.ReactNode
-  headerRender?: (props: { open: boolean; onClick: () => void }) => React.ReactNode
-  ellipsisRender?: (props: { open: boolean; onClick: () => void }) => React.ReactNode
-  arrowRender?: (props: { open: boolean }) => React.ReactNode
+  headerRender?: (options: { open: boolean; onClick: () => void }) => React.ReactNode
+  ellipsisRender?: (options: { open: boolean; onClick: () => void }) => React.ReactNode
+  arrowRender?: (options: { open: boolean }) => React.ReactNode
   children?: React.ReactNode
   // Events
   onOpen?: () => void

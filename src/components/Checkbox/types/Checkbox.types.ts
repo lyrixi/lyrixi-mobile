@@ -18,7 +18,7 @@ export interface CheckboxProps {
   className?: string
   // Elements
   children?: ReactNode
-  iconRender?: (props: { checked?: boolean }) => ReactNode
+  iconRender?: (options: { checked?: boolean }) => ReactNode
   // Events
   onChange?: (checked: boolean) => void
 }
