@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-import type { NavBarRightProps, NavBarRightRef } from '../types'
+import type { NavBarRightProps, NavBarRightRef } from '../types/NavBar.Right.types'
 
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'

@@ -1,5 +1,3 @@
 export * from './NavBar.Button.types'
 export * from './NavBar.types'
 export * from './NavBar.Title.types'
-export * from './NavBar.Left.types'
-export * from './NavBar.Right.types'

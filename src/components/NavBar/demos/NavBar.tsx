@@ -6,54 +6,64 @@ export default function NavBarDemo() {
     <Page className="lyrixi-full lyrixi-bg-white">
       <Page.Main>
         <Divider>Normal</Divider>
-        <NavBar>
-          <NavBar.Button>
-            <Button.Icon svg={Icons.ArrowLeft} />
-            <Button.Text>Back</Button.Text>
-          </NavBar.Button>
+        <NavBar
+          leftRender={() => (
+            <NavBar.Button>
+              <Button.Icon svg={Icons.ArrowLeft} />
+              <Button.Text>Back</Button.Text>
+            </NavBar.Button>
+          )}
+          rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
+        >
           <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Button color="primary">Ok</NavBar.Button>
         </NavBar>
 
         <Divider>Button Shape</Divider>
-        <NavBar>
-          <NavBar.Button>
-            <Icon
-              svg={Icons.Close}
-              style={{ padding: 5 }}
-              radius="100%"
-              size="10px"
-              color="secondary"
-              backgroundColor="default"
-            />
-          </NavBar.Button>
-          <NavBar.Button>
-            <Button.Icon
-              svg={Icons.ThreeDots}
-              style={{ padding: 5 }}
-              radius="100%"
-              size="10px"
-              color="secondary"
-              backgroundColor="default"
-            />
-            <Button.Text>More</Button.Text>
-          </NavBar.Button>
-        </NavBar>
+        <NavBar
+          leftRender={() => (
+            <NavBar.Button>
+              <Icon
+                svg={Icons.Close}
+                style={{ padding: 5 }}
+                radius="100%"
+                size="10px"
+                color="secondary"
+                backgroundColor="default"
+              />
+            </NavBar.Button>
+          )}
+          rightRender={() => (
+            <NavBar.Button>
+              <Button.Icon
+                svg={Icons.ThreeDots}
+                style={{ padding: 5 }}
+                radius="100%"
+                size="10px"
+                color="secondary"
+                backgroundColor="default"
+              />
+              <Button.Text>More</Button.Text>
+            </NavBar.Button>
+          )}
+        />
 
         <Divider>Title</Divider>
-        <NavBar>
-          <NavBar.Button>
-            <Icon
-              svg={Icons.Close}
-              style={{ padding: 5 }}
-              radius="100%"
-              size="10px"
-              color="secondary"
-              backgroundColor="default"
-            />
-          </NavBar.Button>
+        <NavBar
+          leftRender={() => (
+            <NavBar.Button>
+              <Icon
+                svg={Icons.Close}
+                style={{ padding: 5 }}
+                radius="100%"
+                size="10px"
+                color="secondary"
+                backgroundColor="default"
+              />
+            </NavBar.Button>
+          )}
+          rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
+        >
           <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Button color="primary">Ok</NavBar.Button>
         </NavBar>
       </Page.Main>
     </Page>

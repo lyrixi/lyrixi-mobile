@@ -6,22 +6,21 @@ export default function CommonDemo() {
     <Page className="lyrixi-full lyrixi-bg-white">
       <Page.Main>
         <Divider>Normal</Divider>
-        <NavBar>
-          <NavBar.Left>
+        <NavBar
+          leftRender={() => (
             <NavBar.Button>
               <Button.Icon svg={Icons.ArrowLeft} />
               <Button.Text>Back</Button.Text>
             </NavBar.Button>
-          </NavBar.Left>
+          )}
+          rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
+        >
           <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Right>
-            <NavBar.Button color="primary">Ok</NavBar.Button>
-          </NavBar.Right>
         </NavBar>
 
         <Divider>Button Shape</Divider>
-        <NavBar>
-          <NavBar.Left>
+        <NavBar
+          leftRender={() => (
             <NavBar.Button>
               <Icon
                 svg={Icons.Close}
@@ -32,8 +31,8 @@ export default function CommonDemo() {
                 backgroundColor="default"
               />
             </NavBar.Button>
-          </NavBar.Left>
-          <NavBar.Right>
+          )}
+          rightRender={() => (
             <NavBar.Button>
               <Button.Icon
                 svg={Icons.ThreeDots}
@@ -45,12 +44,12 @@ export default function CommonDemo() {
               />
               <Button.Text>More</Button.Text>
             </NavBar.Button>
-          </NavBar.Right>
-        </NavBar>
+          )}
+        />
 
         <Divider>Title</Divider>
-        <NavBar>
-          <NavBar.Left>
+        <NavBar
+          leftRender={() => (
             <NavBar.Button>
               <Icon
                 svg={Icons.Close}
@@ -60,11 +59,10 @@ export default function CommonDemo() {
                 backgroundColor="default"
               />
             </NavBar.Button>
-          </NavBar.Left>
+          )}
+          rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
+        >
           <NavBar.Title>Title</NavBar.Title>
-          <NavBar.Right>
-            <NavBar.Button color="primary">Ok</NavBar.Button>
-          </NavBar.Right>
         </NavBar>
       </Page.Main>
     </Page>

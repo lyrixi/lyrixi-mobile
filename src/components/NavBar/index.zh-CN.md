@@ -26,11 +26,13 @@ toc: content
 
 #### 属性
 
-| 属性      | 说明       | 类型             | 默认值 |
-| --------- | ---------- | ---------------- | ------ |
-| style     | 自定义样式 | `CSSProperties`  | -      |
-| className | 自定义类名 | `string`         | -      |
-| children  | 导航栏内容 | `ReactNode`      | -      |
+| 属性        | 说明         | 类型             | 默认值 |
+| ----------- | ------------ | ---------------- | ------ |
+| style       | 自定义样式   | `CSSProperties`  | -      |
+| className   | 自定义类名   | `string`         | -      |
+| children    | 导航栏内容   | `ReactNode`      | -      |
+| leftRender  | 左侧区域渲染 | `() => ReactNode` | -      |
+| rightRender | 右侧区域渲染 | `() => ReactNode` | -      |
 
 #### Ref
 
