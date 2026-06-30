@@ -170,7 +170,7 @@ async function translateSrc() {
       // 繁体中文（中国台湾）
       { from: 'zh_CN', to: 'zh_TW' }
     ],
-    onGenerateKey: ({ folders, value, oldKey, newKey }) => {
+    onGenerateKey: ({ oldKey, newKey }) => {
       if (oldKey) return oldKey
       return `lyrixi_${newKey}`
     }
@@ -178,7 +178,7 @@ async function translateSrc() {
 
   if (!data) return
 
-  let { baseData, diffData, files } = data
+  let { baseData, files } = data
 
   // 生成base.json
   await writeFileSync(oldBaseDataPath, JSON.stringify(baseData, null, 2))
