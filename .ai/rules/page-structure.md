@@ -1,6 +1,6 @@
 # 业务目录及文件结构命名规范
 
-`src/examples/**` `src/pages/**` 与组件下的 `demos/**` 属于业务侧，此rules仅对业务侧生效
+`src/examples/**` `src/pages/**` 与组件下的 `demos/**` 属于业务侧，此 rules 仅对业务侧生效
 
 ## 页面名称
 
@@ -53,6 +53,7 @@
 示例:
 
 ```jsx
+// 示例页面
 const Example = () => {
   // 查询参数
   let [queryParams, setQueryParams] = useState({})
