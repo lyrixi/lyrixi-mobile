@@ -1,23 +1,23 @@
 ---
 description: lyrixi-mobile 组件包目录与文件结构（Input / Accordion / Amount 三类）
-globs: "src/components/**/*.{ts,tsx,less}"
+globs: 'src/components/**/*.{ts,tsx,less}'
 alwaysApply: false
 ---
 
 # 组件目录及文件结构命名规范
 
-适用范围：`src/components/<组件包名>/`。类型文件放哪、怎么命名见 [`develop-types-structure.md`](./develop-types-structure.md)；入口 `index.ts` 挂载写法见其「组件入口」一节。
+适用范围：`src/components/<组件包名>/`。类型文件放哪、怎么命名见 [`types-structure.md`](./types-structure.md)；入口 `index.ts` 挂载写法见其「组件入口」一节。
 
 ## 总则
 
-| 项 | 规则 |
-|---|---|
-| 组件包路径 | `src/components/<PackageName>/`，目录名与对外导出名一致，**PascalCase**（如 `Input`、`Accordion`、`Amount`） |
-| 包入口 | 有子 export → **`index.ts`**；仅单一实现、无挂载 → **`index.tsx`** 或 `index.ts` 二选一（现有 `Amount` 用 `index.tsx`） |
-| 文档 | 包根必有 `index.zh-CN.md`、`index.en-US.md` |
-| 示例 | `demos/`，demo 文件名与演示子组件对应（如 `InputText.tsx`） |
-| 公共类型 | `types/` + `types/index.ts` 统一导出（细节见 `develop-types-structure.md`） |
-| 样式 | 包级 `\<PackageName\>.less`；子模块可用 `\<子目录\>/\<Feature\>.less` 或 `\<Parent\>\<Child\>.less` |
+| 项         | 规则                                                                                                                    |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| 组件包路径 | `src/components/<PackageName>/`，目录名与对外导出名一致，**PascalCase**（如 `Input`、`Accordion`、`Amount`）            |
+| 包入口     | 有子 export → **`index.ts`**；仅单一实现、无挂载 → **`index.tsx`** 或 `index.ts` 二选一（现有 `Amount` 用 `index.tsx`） |
+| 文档       | 包根必有 `index.zh-CN.md`、`index.en-US.md`                                                                             |
+| 示例       | `demos/`，demo 文件名与演示子组件对应（如 `InputText.tsx`）                                                             |
+| 公共类型   | `types/` + `types/index.ts` 统一导出（细节见 `types-structure.md`）                                                     |
+| 样式       | 包级 `\<PackageName\>.less`；子模块可用 `\<子目录\>/\<Feature\>.less` 或 `\<Parent\>\<Child\>.less`                     |
 
 **先判形态，再落目录：**
 
@@ -68,7 +68,7 @@ src/components/Input/
 1. 每个**对外挂载**的子组件占一个 **PascalCase 子目录**，实现入口为 **`<子目录>/index.tsx`**（如 `Text/index.tsx` → `Input.Text`）。
 2. 包入口 **`const Input = {} as InputComponents`**，再逐个 `Input.Text = Text`；**禁止** `export default { Text, Number, … }`。
 3. 子目录名 = 挂载属性名（`Text` → `Input.Text`）；不要用 `InputText` 当目录名除非挂载名就是 `InputText`。
-4. 仅库内使用、**不**在 `index.ts` 挂载的实现（如仅供父组件引用的过渡层）仍可用子目录，但**不要**在 `index.ts` 上赋值；类型是否进 `types/` 见 `develop-types-structure.md`「对外暴露」判别。
+4. 仅库内使用、**不**在 `index.ts` 挂载的实现（如仅供父组件引用的过渡层）仍可用子目录，但**不要**在 `index.ts` 上赋值；类型是否进 `types/` 见 `types-structure.md`「对外暴露」判别。
 5. 同一分组下的多个对外子项（如 `Icon/Clear` → `IconClear`）可放在 **`Icon/`** 等分组目录，挂载名按产品 API 定（`Input.IconClear`）。
 
 **入口示例（与仓库一致）：**
@@ -123,7 +123,7 @@ src/components/Accordion/
    - **多文件 / 含 utils**：**`<SubName>/index.tsx`** 子目录（与形态 A 相同）。
 3. 包入口：**`import _Accordion from './Accordion'`**，**`const Accordion = _Accordion as AccordionComponents`**，再挂载子项；父实现 import 用 **`_` + 包名**，禁止 `AccordionBase`。
 4. **内部子模块**（父 JSX 直接 import、不对外的）：独立子目录（如 `AccordionTransition/`），**不要**写在 `index.ts` 的 `Accordion.xxx =` 上；样式可由父 less `@import` 子目录样式。
-5. 子组件对外名与文件名：挂载键 `Group` ↔ 文件 `AccordionGroup.tsx`；类型文件 `Accordion.Group.types.ts`（见 `develop-types-structure.md`）。
+5. 子组件对外名与文件名：挂载键 `Group` ↔ 文件 `AccordionGroup.tsx`；类型文件 `Accordion.Group.types.ts`（见 `types-structure.md`）。
 
 **入口示例：**
 
@@ -169,27 +169,27 @@ src/components/Amount/
 
 ## 跨形态对照
 
-| 场景 | 形态 A `Input` | 形态 B `Accordion` | 形态 C `Amount` |
-|------|----------------|-------------------|-----------------|
-| 包根主实现 | 无 | `Accordion.tsx` | `index.tsx` |
-| 包入口文件 | `index.ts` | `index.ts` | `index.tsx` |
-| 对外子组件 | 仅子目录 `Text/` 等 | `AccordionGroup.tsx` 或子目录 | 无 |
-| 内部子模块 | 可有（不挂载） | `AccordionTransition/` | 无 |
-| `*.modules.types.ts` | 必须 | 必须 | 不需要 |
-| 挂载写法 | `const Input = {} as …` | `const Accordion = _Accordion as …` | `export default` 组件 |
+| 场景                 | 形态 A `Input`          | 形态 B `Accordion`                  | 形态 C `Amount`       |
+| -------------------- | ----------------------- | ----------------------------------- | --------------------- |
+| 包根主实现           | 无                      | `Accordion.tsx`                     | `index.tsx`           |
+| 包入口文件           | `index.ts`              | `index.ts`                          | `index.tsx`           |
+| 对外子组件           | 仅子目录 `Text/` 等     | `AccordionGroup.tsx` 或子目录       | 无                    |
+| 内部子模块           | 可有（不挂载）          | `AccordionTransition/`              | 无                    |
+| `*.modules.types.ts` | 必须                    | 必须                                | 不需要                |
+| 挂载写法             | `const Input = {} as …` | `const Accordion = _Accordion as …` | `export default` 组件 |
 
 ---
 
 ## 命名速查
 
-| 对象 | 命名 |
-|------|------|
-| 组件包目录 | `Input`、`Accordion`、`Amount`（与 `src/index.ts` 导出一致） |
-| 对外子目录 | PascalCase，与挂载名一致：`Text`、`AccordionTransition`（内部） |
-| 对外子单文件（形态 B） | `<Parent><Sub>.tsx`：`AccordionGroup.tsx` |
-| 子模块样式 | `InputText.less`、`AccordionGroup.less`，或放在子目录内 |
-| 私有类型 | 留在子目录，如 `Text/Input.Text.renderClear.types.ts` |
-| demos | `demos/<演示名>.tsx`，能看出对应 `Input.Text` / `Amount` |
+| 对象                   | 命名                                                            |
+| ---------------------- | --------------------------------------------------------------- |
+| 组件包目录             | `Input`、`Accordion`、`Amount`（与 `src/index.ts` 导出一致）    |
+| 对外子目录             | PascalCase，与挂载名一致：`Text`、`AccordionTransition`（内部） |
+| 对外子单文件（形态 B） | `<Parent><Sub>.tsx`：`AccordionGroup.tsx`                       |
+| 子模块样式             | `InputText.less`、`AccordionGroup.less`，或放在子目录内         |
+| 私有类型               | 留在子目录，如 `Text/Input.Text.renderClear.types.ts`           |
+| demos                  | `demos/<演示名>.tsx`，能看出对应 `Input.Text` / `Amount`        |
 
 ---
 
@@ -206,7 +206,7 @@ src/components/Amount/
 ## 与其它规则的分工
 
 - **本文件**：目录树、文件放哪、包形态选型、实现文件命名。
-- **`develop-doc-structure.md`**：`index.zh-CN.md` 文档标题层级与 dumi TOC 菜单。
-- **`develop-types-structure.md`**：`types/` 文件命名、一组件一类型、`.modules.types.ts`、`extends` 等。
-- **`develop-sequence-coding.md`**（原 page 顺序）：组件**内部**代码块顺序。
-- **`develop-name.md`**：变量、handler、ref 等命名。
+- **`doc-structure.md`**：`index.zh-CN.md` 文档标题层级与 dumi TOC 菜单。
+- **`types-structure.md`**：`types/` 文件命名、一组件一类型、`.modules.types.ts`、`extends` 等。
+- **`sequence-coding.md`**（原 page 顺序）：组件**内部**代码块顺序。
+- **`name.md`**：变量、handler、ref 等命名。

@@ -8,7 +8,7 @@ alwaysApply: false
 
 适用范围：`src/components/<PackageName>/index.zh-CN.md`（英文文档 `index.en-US.md` 同构）。
 
-与组件包形态（见 [`develop-component-structure.md`](./develop-component-structure.md)）配合使用：先判断**是否有主组件**，再决定文档层级。
+与组件包形态（见 [`component-structure.md`](./component-structure.md)）配合使用：先判断**是否有主组件**，再决定文档层级。
 
 ## 判定
 
@@ -97,6 +97,6 @@ alwaysApply: false
 
 ## 与其它规则的分工
 
-- **`develop-component-structure.md`**：源码目录与挂载形态。
+- **`component-structure.md`**：源码目录与挂载形态。
 - **本文件**：站点文档 `index.zh-CN.md` 的标题层级与 TOC 菜单。
 - **`.ai/docs`**：AI 写代码时查阅 props/rules/example（[docs 技能](../skills/docs/SKILL.md)）；从 `src` 同步维护见 [sync-ai-docs 技能](../skills/sync-ai-docs/SKILL.md) 或 `npm run build:ai-docs`。

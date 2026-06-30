@@ -6,7 +6,7 @@ alwaysApply: false
 
 # TypeScript 类型写法
 
-与 [`develop-types-structure.md`](./develop-types-structure.md) 分工：那边管 types **放哪、叫什么**；本文件管实现里 **怎么写类型**。
+与 [`types-structure.md`](./types-structure.md) 分工：那边管 types **放哪、叫什么**；本文件管实现里 **怎么写类型**。
 
 ## 禁 any
 
@@ -46,4 +46,4 @@ interface XxxRef {
 }
 ```
 
-Ref / 方法命名、受控值 `{ id, name }`、`onChange` 见 [`develop-name.md`](./develop-name.md)。
+Ref / 方法命名、受控值 `{ id, name }`、`onChange` 见 [`name.md`](./name.md)。
