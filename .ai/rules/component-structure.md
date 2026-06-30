@@ -209,4 +209,4 @@ src/components/Amount/
 - **`doc-structure.md`**：`index.zh-CN.md` 文档标题层级与 dumi TOC 菜单。
 - **`types-structure.md`**：`types/` 文件命名、一组件一类型、`.modules.types.ts`、`extends` 等。
 - **`sequence-coding.md`**（原 page 顺序）：组件**内部**代码块顺序。
-- **`name.md`**：变量、handler、ref 等命名。
+- **`global-coding-name.md`**：变量、handler、ref 等命名。

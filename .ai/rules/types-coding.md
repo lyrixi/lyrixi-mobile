@@ -46,4 +46,4 @@ interface XxxRef {
 }
 ```
 
-Ref / 方法命名、受控值 `{ id, name }`、`onChange` 见 [`name.md`](./name.md)。
+Ref / 方法命名、受控值 `{ id, name }`、`onChange` 见 [`global-coding-name.md`](./global-coding-name.md)。

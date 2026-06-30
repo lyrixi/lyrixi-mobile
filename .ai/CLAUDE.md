@@ -73,10 +73,10 @@
 
 详见 `.claude/rules/` 目录：
 
-- `develop-name.md` — 命名规范（props、refs、state、handlers、render helpers）
+- `global-coding-name.md` — 命名规范（props、refs、state、handlers、render helpers）
 - `develop-sequence-coding.md` — 组件内部代码书写顺序
 - `develop-sequence-import.md` — import 语句排序
-- `develop-locale.md` — 国际化要求
+- `global-coding-locale.md` — 国际化要求
 - `develop-page-structure.md` — 业务页面目录结构
 - `develop-component-structure.md` — 组件包目录结构
 - `develop-types-structure.md` — 类型文件（types）组织、命名、目录

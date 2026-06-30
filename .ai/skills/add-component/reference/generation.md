@@ -20,10 +20,10 @@
 ## 实现改写清单
 
 1. **类型** — `types/{Name}.types.ts`（+ 子组件类型、`.modules.types.ts`）；遵守 [develop-types-structure.md](../../../rules/develop-types-structure.md)、[develop-types-coding.md](../../../rules/develop-types-coding.md)。
-2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [develop-sequence-coding.md](../../../rules/develop-sequence-coding.md)；命名见 [develop-name.md](../../../rules/develop-name.md)；Props 分组注释见 [component-props-annotation.mdc](../../../rules/component-props-annotation.mdc)。
+2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [develop-sequence-coding.md](../../../rules/develop-sequence-coding.md)；命名见 [global-coding-name.md](../../../rules/global-coding-name.md)；Props 分组注释见 [component-annotation-props.mdc](../../../rules/component-annotation-props.mdc)。
 3. **样式** — `{Name}.less`；变量用 `@lyrixi-*` / `var(--lyrixi-*)`。
 4. **入口** — `index.ts` 或 `index.tsx`；在库导出入口按字母序注册（**Modal 保持最先导出**）。
-5. **国际化** — 若 `i18n.needed`：`LocaleUtil.locale('中文', 'lyrixi_xxx')`；遵守 [develop-locale.md](../../../rules/develop-locale.md)。
+5. **国际化** — 若 `i18n.needed`：`LocaleUtil.locale('中文', 'lyrixi_xxx')`；遵守 [global-coding-locale.md](../../../rules/global-coding-locale.md)。
 6. **依赖** — 业务与 demo 从 `lyrixi-mobile` barrel 引入；内库维护场景用相对路径 + 注释块（见 `.cursorrules`）。禁止自造已有组件/工具。
 
 ## 文档改写
