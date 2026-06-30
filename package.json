@@ -29,7 +29,8 @@
     },
     "./assets/*": "./esm/assets/*",
     "./components/*": "./esm/components/*",
-    "./utils/*": "./esm/utils/*"
+    "./utils/*": "./esm/utils/*",
+    "./scripts/*": "./scripts/*"
   },
   "main": "esm/index.js",
   "module": "esm/index.js",
