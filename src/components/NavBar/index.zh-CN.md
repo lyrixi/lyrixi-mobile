@@ -30,6 +30,7 @@ toc: content
 | ----------- | ------------ | ---------------- | ------ |
 | style       | 自定义样式   | `CSSProperties`  | -      |
 | className   | 自定义类名   | `string`         | -      |
+| title       | 标题         | `ReactNode`      | -      |
 | children    | 导航栏内容   | `ReactNode`      | -      |
 | leftRender  | 左侧区域渲染 | `() => ReactNode` | -      |
 | rightRender | 右侧区域渲染 | `() => ReactNode` | -      |
@@ -49,10 +50,6 @@ NavBar 通过 `forwardRef` 暴露原生 DOM 引用。
 ### 何时使用
 
 - 需要在导航栏中显示标题时
-
-### 代码演示
-
-<code src="./demos/NavBarTitle.tsx"></code>
 
 ### API
 
@@ -78,10 +75,6 @@ NavBar 通过 `forwardRef` 暴露原生 DOM 引用。
 ### 何时使用
 
 - 需要在导航栏中显示按钮时
-
-### 代码演示
-
-<code src="./demos/NavBarButton.tsx"></code>
 
 ### API
 

@@ -7,16 +7,15 @@ export default function NavBarDemo() {
       <Page.Main>
         <Divider>Normal</Divider>
         <NavBar
+          title="Title"
           leftRender={() => (
             <NavBar.Button>
               <Button.Icon svg={Icons.ArrowLeft} />
               <Button.Text>Back</Button.Text>
             </NavBar.Button>
           )}
-          rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
-        >
-          <NavBar.Title>Title</NavBar.Title>
-        </NavBar>
+          // rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
+        />
 
         <Divider>Button Shape</Divider>
         <NavBar
@@ -49,6 +48,7 @@ export default function NavBarDemo() {
 
         <Divider>Title</Divider>
         <NavBar
+          title="Title"
           leftRender={() => (
             <NavBar.Button>
               <Icon
@@ -62,9 +62,7 @@ export default function NavBarDemo() {
             </NavBar.Button>
           )}
           rightRender={() => <NavBar.Button color="primary">Ok</NavBar.Button>}
-        >
-          <NavBar.Title>Title</NavBar.Title>
-        </NavBar>
+        />
       </Page.Main>
     </Page>
   )

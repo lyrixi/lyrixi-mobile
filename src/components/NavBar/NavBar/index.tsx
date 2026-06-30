@@ -35,9 +35,9 @@ const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
         style={style}
         className={DOMUtil.classNames('lyrixi-navbar', className)}
       >
-        {typeof leftRender === 'function' && <Left>{leftRender()}</Left>}
+        <Left>{typeof leftRender === 'function' && leftRender()}</Left>
         {title ? <Title>{title}</Title> : children}
-        {typeof rightRender === 'function' && <Right>{rightRender()}</Right>}
+        <Right>{typeof rightRender === 'function' && rightRender()}</Right>
       </div>
     )
   }
