@@ -79,7 +79,7 @@
 - `page-structure.md` — 业务页面目录结构
 - `component-structure.md` — 组件包目录结构
 - `types-structure.md` — 类型文件（types）组织、命名、目录
-- `types-coding.md` — 实现层类型写法（any / React 事件 / forwardRef / Ref）
+- `global-coding-types.md` — 实现层类型写法（any / React 事件 / forwardRef / Ref）
 
 ## Skills
 

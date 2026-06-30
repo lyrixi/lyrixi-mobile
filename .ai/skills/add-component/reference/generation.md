@@ -19,7 +19,7 @@
 
 ## 实现改写清单
 
-1. **类型** — `types/{Name}.types.ts`（+ 子组件类型、`.modules.types.ts`）；遵守 [types-structure.md](../../../rules/types-structure.md)、[types-coding.md](../../../rules/types-coding.md)。
+1. **类型** — `types/{Name}.types.ts`（+ 子组件类型、`.modules.types.ts`）；遵守 [types-structure.md](../../../rules/types-structure.md)、[global-coding-types.md](../../../rules/global-coding-types.md)。
 2. **实现** — `forwardRef`（若 spec 需要 Ref）；内部顺序见 [global-coding-sequence.md](../../../rules/global-coding-sequence.md)；命名见 [global-coding-name.md](../../../rules/global-coding-name.md)；Props 分组注释见 [component-annotation-props.mdc](../../../rules/component-annotation-props.mdc)。
 3. **样式** — `{Name}.less`；变量用 `@lyrixi-*` / `var(--lyrixi-*)`。
 4. **入口** — `index.ts` 或 `index.tsx`；在库导出入口按字母序注册（**Modal 保持最先导出**）。

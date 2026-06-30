@@ -6,8 +6,6 @@ alwaysApply: false
 
 # TypeScript 类型写法
 
-与 [`types-structure.md`](./types-structure.md) 分工：那边管 types **放哪、叫什么**；本文件管实现里 **怎么写类型**。
-
 ## 禁 any
 
 - ❌ `: any` / `as any` / `<any>`
@@ -24,8 +22,7 @@ alwaysApply: false
 
 ## 通用 Props 字段
 
-- `style?: CSSProperties` · `className?: string` · `children?: ReactNode`（勿写 `ReactNode | ReactNode[]`）
-- 可选属性勿再加 `| undefined`
+- `style?: CSSProperties` · `className?: string` · `children?: ReactNode`
 
 ## forwardRef
 
