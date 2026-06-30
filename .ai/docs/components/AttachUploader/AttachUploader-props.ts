@@ -81,7 +81,7 @@ export interface AttachUploaderProps {
   /** 上传事件 */
   onUpload?: (item: AttachUploaderItem) => unknown
   /** 变化事件 */
-  onChange?: (list: AttachUploaderItem[], meta?: { action?: string }) => void
+  onChange?: (list: AttachUploaderItem[], options?: { action?: string }) => void
   /** 预览事件 */
   onPreview?: (item: AttachUploaderItem, index: number) => unknown
 }

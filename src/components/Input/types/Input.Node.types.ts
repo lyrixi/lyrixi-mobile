@@ -89,7 +89,7 @@ export interface InputNodeProps {
   spellCheck?: boolean | 'true' | 'false'
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
   // Events
-  onChange?: (value: InputNodeValue, meta?: { action: string }) => void
+  onChange?: (value: InputNodeValue, options?: { action: string }) => void
   onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   onFocus?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void

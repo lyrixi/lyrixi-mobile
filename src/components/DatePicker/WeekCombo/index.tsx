@@ -102,9 +102,9 @@ const WeekCombo = forwardRef<DatePickerWeekComboRef, DatePickerWeekComboProps>(f
 
   const modalValue: Date = value instanceof Date ? value : getDateDefaultValue({ min, max })
 
-  const handleInputChange: InputSelectProps['onChange'] = (v, meta) => {
+  const handleInputChange: InputSelectProps['onChange'] = (v, options) => {
     if (v instanceof Date || v === null) {
-      onChange?.(v, meta)
+      onChange?.(v, options)
     }
   }
 

@@ -16,7 +16,7 @@ export interface MediaListMainProps {
   uploadingRender?: MediaUploadingProps['uploadingRender']
   itemRender?: (item: FileItem) => ReactNode
   // Events
-  onChange?: (list: FileItem[], meta: { action: string }) => void
+  onChange?: (list: FileItem[], options: { action: string }) => void
   onReUpload?: (item: FileItem, index: number) => void
   onPreview?: (item: FileItem, index: number) => void
 }

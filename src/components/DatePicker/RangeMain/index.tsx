@@ -75,14 +75,14 @@ const RangeMain = forwardRef<Record<string, unknown> | null, DatePickerRangeMain
     }
 
     // unify onChange
-    function handleChange(newValue: (Date | null)[] | null, meta?: { rangeId?: string | null }) {
+    function handleChange(newValue: (Date | null)[] | null, options?: { rangeId?: string | null }) {
       onChange?.(newValue, {
-        rangeId: meta?.rangeId || null,
+        rangeId: options?.rangeId || null,
         ranges,
         displayValue: getDisplayValue({
           value: newValue,
           type: type,
-          rangeId: meta?.rangeId,
+          rangeId: options?.rangeId,
           ranges,
           separator: separator
         })

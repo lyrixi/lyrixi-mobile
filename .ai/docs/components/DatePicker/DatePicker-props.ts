@@ -86,7 +86,7 @@ export interface DatePickerComboProps {
   /** 打开前事件 */
   onBeforeOpen?: () => boolean | void | Promise<boolean | void>
   /** 变化事件 */
-  onChange?: (value: Date | null | undefined, meta?: unknown) => void
+  onChange?: (value: Date | null | undefined, options?: unknown) => void
   /** 确认事件 */
   onOk?: (value: Date | null | undefined) => boolean | Date | void | Promise<boolean | Date | void>
 }
@@ -266,7 +266,7 @@ export interface DatePickerRangeSelectorProps {
   /** 挂载节点 */
   portal?: HTMLElement | null
   /** 变化事件 */
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
   /** 确认事件 */
   onOk?: (value: (Date | null)[] | null) => void
 }
@@ -308,7 +308,7 @@ export interface DatePickerRangeComboProps extends Omit<
   /** 禁用结束日期 */
   endDisabled?: boolean
   /** 变化事件 */
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
   /** 确认事件 */
   onOk?: (value: (Date | null)[] | null) => boolean | Date[] | void | Promise<boolean | void | Date[]>
 }
@@ -328,7 +328,7 @@ export interface DatePickerRangeModalProps extends Omit<
   startDisabled?: boolean
   endDisabled?: boolean
   separator?: string
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
   onOk?: (value: (Date | null)[] | null) => void | boolean | Date[] | Promise<void | boolean | Date[]>
 }
 
@@ -351,7 +351,7 @@ export interface DatePickerRangeMainProps {
   rangesVisible?: boolean
   allowClear?: boolean
   portal?: HTMLElement | null
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
 }
 
 // DatePicker.WeekCombo / WeekModal / WeekMain
@@ -379,7 +379,7 @@ export interface DatePickerMultipleComboProps extends Omit<
   'value' | 'onChange' | 'onOk' | 'titleRender'
 > {
   value?: DatePickerMultipleValue
-  onChange?: (value: DatePickerMultipleValue, meta?: { action: string }) => void
+  onChange?: (value: DatePickerMultipleValue, options?: { action: string }) => void
   onOk?: (
     value: DatePickerMultipleValue
   ) => boolean | DatePickerMultipleValue | void | Promise<boolean | void | DatePickerMultipleValue>

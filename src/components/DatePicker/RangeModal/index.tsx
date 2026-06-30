@@ -113,13 +113,13 @@ const RangeModal = forwardRef<DatePickerModalRef, DatePickerRangeModalProps>(
       onClose?.()
     }
 
-    function handleChange(newValue: (Date | null)[] | null, meta?: { rangeId?: string | null }) {
+    function handleChange(newValue: (Date | null)[] | null, options?: { rangeId?: string | null }) {
       setCurrentValue(
         newValue && newValue.length === 2
           ? ([newValue[0], newValue[1]] as [Date | null, Date | null])
           : null
       )
-      setCurrentRangeId(meta?.rangeId)
+      setCurrentRangeId(options?.rangeId)
     }
 
     // 自定义标题节点

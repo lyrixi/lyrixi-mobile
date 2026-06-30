@@ -90,7 +90,7 @@ export interface InputTextProps {
   /** 点击事件 */
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
   /** 值变化事件 */
-  onChange?: (value: string, meta?: { action: string }) => void
+  onChange?: (value: string, options?: { action: string }) => void
   /** 失焦事件 */
   onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   /** 聚焦事件 */
@@ -189,7 +189,7 @@ export interface InputNodeProps {
   /** 点击事件 */
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
   /** 值变化事件 */
-  onChange?: (value: InputNodeValue, meta?: { action: string }) => void
+  onChange?: (value: InputNodeValue, options?: { action: string }) => void
   /** 失焦事件 */
   onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   /** 聚焦事件 */
@@ -316,7 +316,7 @@ export interface InputSelectProps {
   /** 点击事件 */
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
   /** 值变化事件 */
-  onChange?: (value: InputSelectValue, meta?: unknown) => void
+  onChange?: (value: InputSelectValue, options?: unknown) => void
   /** 失焦事件 */
   onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   /** 聚焦事件 */

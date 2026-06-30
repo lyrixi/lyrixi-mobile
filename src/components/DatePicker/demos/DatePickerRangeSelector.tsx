@@ -21,8 +21,8 @@ export default function DatePickerRangeSelectorDemo() {
               allowClear
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 if (newValue) setValue1(newValue)
                 setRangeId1(rangeId ?? null)
@@ -51,8 +51,8 @@ export default function DatePickerRangeSelectorDemo() {
               }}
               rangeId={rangeId2}
               value={value2}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 setValue2(newValue)
                 setRangeId2(rangeId ?? null)
@@ -69,8 +69,8 @@ export default function DatePickerRangeSelectorDemo() {
               type="datetime"
               rangeId={rangeId3}
               value={value3}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 setValue3(newValue)
                 setRangeId3(rangeId ?? null)
@@ -88,8 +88,8 @@ export default function DatePickerRangeSelectorDemo() {
               max={new Date()}
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 if (newValue) setValue1(newValue)
                 setRangeId1(rangeId ?? null)
@@ -107,8 +107,8 @@ export default function DatePickerRangeSelectorDemo() {
               endDisabled
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 if (newValue) setValue1(newValue)
                 setRangeId1(rangeId ?? null)
@@ -127,8 +127,8 @@ export default function DatePickerRangeSelectorDemo() {
               minuteStep={15}
               rangeId={rangeId3}
               value={value3}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 setValue3(newValue)
                 setRangeId3(rangeId ?? null)
@@ -144,8 +144,8 @@ export default function DatePickerRangeSelectorDemo() {
               allowClear
               rangeId={rangeId1}
               value={value1}
-              onChange={(newValue, meta) => {
-                const rangeId = meta?.rangeId
+              onChange={(newValue, options) => {
+                const rangeId = options?.rangeId
                 console.log('修改:', newValue, rangeId)
                 if (newValue) setValue1(newValue)
                 setRangeId1(rangeId ?? null)

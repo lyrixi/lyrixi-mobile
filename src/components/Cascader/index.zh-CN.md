@@ -112,7 +112,7 @@ toc: content
 | onClose        | 关闭事件     | `() => void`                                                        | -       |
 | onOk           | 确认事件     | `(value: CascaderItem[] \| null \| undefined) => boolean \| Promise<unknown> \| void` | - |
 | onSearch       | 搜索事件     | `(keyword: string, ctx: { list: CascaderItem[] }) => void`          | -       |
-| onChange       | 变化事件     | `(value: CascaderItem[], meta?: unknown) => void`                     | -       |
+| onChange       | 变化事件     | `(value: CascaderItem[], options?: unknown) => void`                     | -       |
 
 ## Cascader.Main
 

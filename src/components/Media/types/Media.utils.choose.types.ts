@@ -12,5 +12,5 @@ export interface MediaChooseUtilOptions {
     opts?: { action?: string }
   ) => Promise<FileItem[] | undefined>
   onChoose?: () => void | FileItem[] | Promise<FileItem[] | void | null | undefined | unknown>
-  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
 }

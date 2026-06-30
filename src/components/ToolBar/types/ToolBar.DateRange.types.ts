@@ -12,7 +12,7 @@ export interface ToolBarDateRangeBarProps extends ToolBarDropdownProps {
   ranges?: DatePickerRangesMap
   onOk?: (
     value: (Date | null)[] | null | undefined,
-    meta: { rangeId: string | null | undefined }
+    options: { rangeId: string | null | undefined }
   ) => void | boolean | (Date | null)[] | Promise<void | boolean | (Date | null)[]>
-  onChange?: (value: (Date | null)[] | null, meta: { rangeId: string | null | undefined }) => void
+  onChange?: (value: (Date | null)[] | null, options: { rangeId: string | null | undefined }) => void
 }

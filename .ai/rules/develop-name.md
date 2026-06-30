@@ -41,6 +41,42 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 
 统一用`handle`开头, 示例: `handleChange`, `handleInput`, `handleSelect`, `handleClick`, `handleClose`, `handleSubmit`
 
+## type 命名规则
+
+### 回调函数参数（types 内）
+
+**仅约束类型定义里的回调签名**（如 `xxRender`、`loadData`、`formatXxx`、`onLoad` 等），**不改**组件 Props 接口名本身（如 `ButtonProps`）。
+
+- **单参数回调**：形参命名为 `options` 或 `xxOptions`
+- **多参数回调**：首参保留业务语义（如 `value`、`item`、`payload`）；表示上下文/配置的后续形参命名为 `options` 或 `xxOptions`（如 `loadOptions`、`renderOptions`）
+- **禁止**使用 `ctx`、`props`、`params`、`payload`、`helpers`、`config`、`meta` 等作为上述上下文/配置形参名（单参数回调时 `payload` 等亦应改为 `options`）
+
+```ts
+// ✅ 单参数回调
+uploadRender?: (options: { uploadingType: string }) => ReactNode
+onLoad?: (options: { result: ListAsyncLoadResult | null; action: string }) => void
+
+// ✅ 多参数：首参为业务数据，第二参上下文用 options
+onChange?: (value: string, options?: { action: string }) => void
+loadData?: (tabs: CascaderItem[], options: { list: CascaderItem[] }) => Promise<LoadDataResult>
+formatPayload?: (payload: Record<string, unknown>, options: { platform: string }) => unknown
+onSearch?: (keyword: string, options: { list: CascaderItem[] }) => void
+
+// ❌
+uploadRender?: (ctx: { uploadingType: string }) => ReactNode
+headerRender?: (props: { open: boolean }) => ReactNode
+onChange?: (value: string, meta?: { action: string }) => void
+onLoad?: (params: { result: unknown }) => void
+```
+
+**例外（保持原命名）**：
+
+- 组件 Props / Ref **类型名**及 Props 上的普通字段（非回调形参）
+- 多参数格式化回调的**首参**为业务实体时保留语义名（如 `payload`、`headers`、`response`）
+- **第三方 API 类型**：对方 SDK / 库怎么定义形参名，我们就怎么声明、怎么透传，**不要**按本规则改名（如 Leaflet `extend(props)`、微信 JSSDK 回调签名等）
+- Canvas 绘图上下文 `ctx`（`CanvasRenderingContext2D`，非业务回调上下文）
+- Bridge 等工具**方法**入参（如 `Bridge.load(params?)`），区别于方法配置对象内的**回调**属性
+
 ## render helpers 规则
 
 - 统一用`render`开头, 示例: `renderArrow`, `renderHeader`, `renderFooter`, `renderContent`, `renderEmpty`, `renderLoading`

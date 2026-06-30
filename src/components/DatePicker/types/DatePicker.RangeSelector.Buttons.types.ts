@@ -8,5 +8,5 @@ export interface DatePickerRangeSelectorButtonsProps {
   // Status
   allowClear?: boolean
   // Events
-  onChange?: (value: (Date | null)[] | null, meta?: { rangeId?: string | null }) => void
+  onChange?: (value: (Date | null)[] | null, options?: { rangeId?: string | null }) => void
 }

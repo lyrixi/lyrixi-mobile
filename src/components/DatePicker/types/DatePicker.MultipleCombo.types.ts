@@ -7,7 +7,7 @@ import type { DatePickerComboProps } from './DatePicker.Combo.types'
 export interface DatePickerMultipleComboProps
   extends Omit<DatePickerComboProps, 'value' | 'onChange' | 'onOk' | 'titleRender'> {
   value?: DatePickerMultipleValue
-  onChange?: (value: DatePickerMultipleValue, meta?: { action: string }) => void
+  onChange?: (value: DatePickerMultipleValue, options?: { action: string }) => void
   onOk?: (
     value: DatePickerMultipleValue
   ) => boolean | DatePickerMultipleValue | void | Promise<boolean | void | DatePickerMultipleValue>

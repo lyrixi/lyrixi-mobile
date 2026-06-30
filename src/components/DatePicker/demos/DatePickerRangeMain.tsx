@@ -33,8 +33,8 @@ export default function DatePickerRangeMainDemo() {
           rangesVisible={true}
           rangeId={rangeId}
           value={value}
-          onChange={(newValue, meta) => {
-            const id = meta?.rangeId
+          onChange={(newValue, options) => {
+            const id = options?.rangeId
             console.log('修改:', newValue, id)
             if (newValue) setValue(newValue)
             setRangeId(id ?? null)

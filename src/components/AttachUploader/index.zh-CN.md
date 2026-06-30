@@ -52,7 +52,7 @@ toc: content
 | onBeforeChoose          | 选择前事件         | `() => boolean \| void \| Promise<boolean \| void>`                                                                         | -       |
 | onFileChange            | 文件变化事件       | `(fileItems: FileItem[]) => FileItem[] \| Promise<FileItem[] \| unknown>`                                                            | -       |
 | onUpload                | 上传事件           | `(item: FileItem) => unknown`                                                                                               | -       |
-| onChange                | 变化事件           | `(list: FileItem[], meta?: { action?: string }) => void`                                                                    | -       |
+| onChange                | 变化事件           | `(list: FileItem[], options?: { action?: string }) => void`                                                                    | -       |
 | onPreview               | 预览事件           | `(item: FileItem, index: number) => unknown`                                                                                | -       |
 
 ### Ref

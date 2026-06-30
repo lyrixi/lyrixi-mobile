@@ -68,7 +68,7 @@ toc: content
 | checkboxVariant  | 复选框外观   | `string`                        | -      |
 | checkboxPosition | 复选框位置   | `string`                        | -      |
 | onOk             | 确认事件     | `(value: SelectItem \| SelectItem[] \| null) => unknown` | -      |
-| onChange         | 变化事件     | `(value: InputSelectValue, meta?: unknown) => void` | -      |
+| onChange         | 变化事件     | `(value: InputSelectValue, options?: unknown) => void` | -      |
 | onBeforeOpen     | 打开前事件   | `() => boolean \| void \| Promise<boolean \| void>` | -      |
 
 #### Ref

@@ -119,9 +119,9 @@ function DateRangeBar({
   }
 
   // 修改
-  function handleChange(newValue: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) {
-    if (meta?.rangeId !== undefined) {
-      setRangeId(meta.rangeId)
+  function handleChange(newValue: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) {
+    if (options?.rangeId !== undefined) {
+      setRangeId(options.rangeId)
     }
     setValue(newValue)
   }

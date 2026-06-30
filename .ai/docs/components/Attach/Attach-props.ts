@@ -70,7 +70,7 @@ export interface AttachProps {
   /** 上传事件 */
   onUpload?: (item: AttachFileItem) => unknown
   /** 变化事件 */
-  onChange?: (list: AttachFileItem[], meta?: { action?: string }) => void
+  onChange?: (list: AttachFileItem[], options?: { action?: string }) => void
   /** 预览事件 */
   onPreview?: (item: AttachFileItem, index: number) => unknown
 }
@@ -87,7 +87,7 @@ export interface AttachRef {
   /** 选择 */
   choose: (e: SyntheticEvent) => Promise<unknown>
   /** 上传列表 */
-  uploadList: (newList?: AttachFileItem[] | null, meta?: { action?: string }) => Promise<AttachFileItem[]>
+  uploadList: (newList?: AttachFileItem[] | null, options?: { action?: string }) => Promise<AttachFileItem[]>
   /** 显示加载 */
   showLoading: (options?: { content?: string; index?: number }) => void
   /** 隐藏加载 */
@@ -106,7 +106,7 @@ export interface AttachListProps {
   /** 项渲染 */
   itemRender?: (item: AttachFileItem, index: number) => ReactNode
   /** 变化事件 */
-  onChange?: (list: AttachFileItem[], meta: { action: string }) => void
+  onChange?: (list: AttachFileItem[], options: { action: string }) => void
   /** 重新上传事件 */
   onReUpload?: (item: AttachFileItem, index: number) => void
   /** 预览事件 */

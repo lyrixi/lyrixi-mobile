@@ -106,7 +106,7 @@ toc: content
 | okVisible        | 确认按钮可见   | `boolean`                                                                              | -        |
 | cancelVisible    | 取消按钮可见   | `boolean`                                                                              | -        |
 | onBeforeOpen     | 打开前事件     | `() => boolean \| void \| Promise<boolean \| void>`                                    | -        |
-| onChange         | 变化事件       | `(value: Date \| null \| undefined, meta?: unknown) => void`                           | -        |
+| onChange         | 变化事件       | `(value: Date \| null \| undefined, options?: unknown) => void`                           | -        |
 | onOk             | 确认事件       | `(value: Date \| null \| undefined) => boolean \| Date \| void \| Promise<boolean \| Date \| void>` | -        |
 
 #### Ref
@@ -260,5 +260,5 @@ toc: content
 | style         | 自定义样式     | `CSSProperties`                                                    | -        |
 | className     | 自定义类名     | `string`                                                           | -        |
 | portal        | 挂载节点       | `HTMLElement \| null`                                              | -        |
-| onChange      | 变化事件       | `(value: (Date \| null)[] \| null, meta?: DatePickerRangeChangeMeta) => void` | -        |
+| onChange      | 变化事件       | `(value: (Date \| null)[] \| null, options?: DatePickerRangeChangeMeta) => void` | -        |
 | onOk          | 确认事件       | `(value: (Date \| null)[] \| null) => void`                        | -        |

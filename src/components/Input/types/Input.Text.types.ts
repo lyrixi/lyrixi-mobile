@@ -82,7 +82,7 @@ export interface InputTextProps {
   cursor?: boolean | null
   // Events
   onClick?: (e: MouseEvent<HTMLDivElement>) => void
-  onChange?: (value: string, meta?: { action: string }) => void
+  onChange?: (value: string, options?: { action: string }) => void
   onBlur?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   onFocus?: (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void

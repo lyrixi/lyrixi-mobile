@@ -30,5 +30,5 @@ export interface CascaderModalProps {
   onClose?: () => void
   onOk?: (value: CascaderItem[] | null | undefined) => boolean | Promise<unknown> | void
   onSearch?: (keyword: string, options: { list: CascaderItem[] }) => void
-  onChange?: (value: CascaderItem[], meta?: unknown) => void
+  onChange?: (value: CascaderItem[], options?: unknown) => void
 }

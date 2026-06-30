@@ -13,7 +13,7 @@ export interface AttachListProps {
   uploadingRender?: (options: { uploadingType: string }) => ReactNode
   itemRender?: (item: FileItem, index: number) => ReactNode
   // Events
-  onChange?: (list: FileItem[], meta: { action: string }) => void
+  onChange?: (list: FileItem[], options: { action: string }) => void
   onReUpload?: (item: FileItem, index: number) => void
   onPreview?: (item: FileItem, index: number) => unknown
 }

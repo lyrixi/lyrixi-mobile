@@ -43,7 +43,7 @@ toc: content
 | height               | 列表高度         | `number`                                                                                                                                                 | -        |
 | children             | 子元素           | `ReactNode`                                                                                                                                              | -        |
 | value                | 选中的项         | `ListAsyncItem \| ListAsyncItem[] \| null`                                                                                                                | -        |
-| formatViewList       | 格式化列表       | `(list: ListAsyncItem[], meta?: { result: ListAsyncLoadResult \| null }) => ListAsyncViewItem[]`                                                          | -        |
+| formatViewList       | 格式化列表       | `(list: ListAsyncItem[], options?: { result: ListAsyncLoadResult \| null }) => ListAsyncViewItem[]`                                                          | -        |
 | formatViewItem       | 格式化项         | `(item: ListAsyncItem, options: { index: number; result?: ListAsyncLoadResult \| null }) => ListAsyncViewItem`                                            | -        |
 | errorRetry           | 错误重试         | `boolean`                                                                                                                                                | `true`   |
 | emptyRetry           | 空状态重试       | `boolean`                                                                                                                                                | -        |

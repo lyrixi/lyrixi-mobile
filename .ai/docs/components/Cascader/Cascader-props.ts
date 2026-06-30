@@ -126,7 +126,7 @@ export interface CascaderModalProps {
   /** 搜索事件 */
   onSearch?: (keyword: string, ctx: { list: CascaderItem[] }) => void
   /** 变化事件 */
-  onChange?: (value: CascaderItem[], meta?: unknown) => void
+  onChange?: (value: CascaderItem[], options?: unknown) => void
 }
 
 export interface CascaderMainProps {

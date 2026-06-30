@@ -103,9 +103,9 @@ const DatePickerCombo = forwardRef<DatePickerComboRef, DatePickerComboProps>(
       setOpen(false)
     }
 
-    const handleInputChange: InputSelectProps['onChange'] = (v, meta) => {
+    const handleInputChange: InputSelectProps['onChange'] = (v, options) => {
       if (v instanceof Date || v === null) {
-        onChange?.(v, meta)
+        onChange?.(v, options)
       }
     }
 

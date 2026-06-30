@@ -22,7 +22,7 @@ export interface InputSelectProps extends Omit<InputNodeProps, 'value' | 'format
   name?: string
   value?: InputSelectValue
   formatter?: (value: InputSelectValue, options?: { separator?: string }) => string
-  onChange?: (value: InputSelectValue, meta?: unknown) => void
+  onChange?: (value: InputSelectValue, options?: unknown) => void
   autoFocus?: boolean
   autoSelect?: boolean
   enableCompositionEnd?: boolean

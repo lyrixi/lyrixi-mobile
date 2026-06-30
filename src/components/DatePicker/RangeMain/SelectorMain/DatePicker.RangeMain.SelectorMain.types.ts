@@ -13,5 +13,5 @@ export interface DatePickerRangeMainSelectorMainProps {
   className?: string
   style?: CSSProperties
   // Events
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
 }

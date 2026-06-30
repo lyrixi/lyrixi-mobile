@@ -60,7 +60,7 @@ toc: content
 | onChoose               | 选择事件       | `(e?: React.MouseEvent) => void \| Promise<unknown>`                                                                                                                         | -                     |
 | onFileChange           | 文件变化事件   | `(fileItems: FileItem[]) => FileItem[] \| Promise<FileItem[] \| unknown>`                                                                                                       | -                     |
 | onUpload               | 上传事件       | `(item: FileItem) => void \| Promise<unknown>`                                                                                                                               | -                     |
-| onChange               | 变化事件       | `(list: FileItem[], meta: { action: string }) => void \| Promise<unknown>`                                                                                                   | -                     |
+| onChange               | 变化事件       | `(list: FileItem[], options: { action: string }) => void \| Promise<unknown>`                                                                                                   | -                     |
 | onPreview              | 预览事件       | `(item: FileItem, index: number) => void \| boolean \| 'nativeMedia' \| 'nativeFile' \| 'browser' \| Promise<void \| boolean \| 'nativeMedia' \| 'nativeFile' \| 'browser'>` | -                     |
 
 #### Ref
@@ -108,7 +108,7 @@ toc: content
 | allowClear      | 允许清除     | `boolean \| ((item: FileItem) => boolean)`                 | -      |
 | uploadingRender | 上传中渲染   | `(ctx: FileItem & { uploadingType: string }) => ReactNode` | -      |
 | itemRender      | 项渲染       | `(item: FileItem) => ReactNode`                            | -      |
-| onChange        | 变化事件     | `(list: FileItem[], meta: { action: string }) => void`     | -      |
+| onChange        | 变化事件     | `(list: FileItem[], options: { action: string }) => void`     | -      |
 | onReUpload      | 重新上传事件 | `(item: object, index: number) => void`                    | -      |
 | onPreview       | 预览事件     | `(item: object, index: number) => void`                    | -      |
 

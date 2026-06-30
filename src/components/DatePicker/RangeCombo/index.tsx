@@ -111,9 +111,9 @@ const RangeCombo = forwardRef<unknown, DatePickerRangeComboProps>(function DateP
 
   const handleChange: (
     newValue: unknown,
-    meta?: { rangeId?: string | null; ranges?: DatePickerRangeChangeMeta['ranges']; action?: string }
-  ) => void = (newValue, meta) => {
-    onChange?.(newValue as (Date | null)[] | null, { rangeId: meta?.rangeId, ranges: meta?.ranges ?? ranges })
+    options?: { rangeId?: string | null; ranges?: DatePickerRangeChangeMeta['ranges']; action?: string }
+  ) => void = (newValue, options) => {
+    onChange?.(newValue as (Date | null)[] | null, { rangeId: options?.rangeId, ranges: options?.ranges ?? ranges })
   }
 
   const handleInputChange: InputSelectProps['onChange'] = (v, m) => handleChange(v, m as { rangeId?: string | null; ranges?: DatePickerRangeChangeMeta['ranges'] })

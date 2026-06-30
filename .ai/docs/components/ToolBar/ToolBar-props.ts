@@ -107,10 +107,10 @@ export interface ToolBarDateRangeProps extends ToolBarDropdownProps {
   /** 确认事件 */
   onOk?: (
     value: (Date | null)[] | null | undefined,
-    meta: { rangeId: string | null | undefined }
+    options: { rangeId: string | null | undefined }
   ) => void | boolean | (Date | null)[] | Promise<void | boolean | (Date | null)[]>
   /** 变化事件 */
-  onChange?: (value: (Date | null)[] | null, meta: { rangeId: string | null | undefined }) => void
+  onChange?: (value: (Date | null)[] | null, options: { rangeId: string | null | undefined }) => void
 }
 
 export interface ToolBarFilterProps {

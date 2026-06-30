@@ -24,6 +24,6 @@ export interface DatePickerRangeSelectorProps {
   // Elements
   portal?: HTMLElement | null
   // Events
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
   onOk?: (value: (Date | null)[] | null) => void
 }

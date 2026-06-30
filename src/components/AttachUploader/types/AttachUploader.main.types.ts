@@ -48,6 +48,6 @@ export interface AttachUploaderProps {
   onBeforeChoose?: () => boolean | void | Promise<boolean | void>
   onFileChange?: AttachProps['onFileChange']
   onUpload?: (item: FileItem) => unknown
-  onChange?: (list: FileItem[], meta?: { action?: string }) => void
+  onChange?: (list: FileItem[], options?: { action?: string }) => void
   onPreview?: (item: FileItem, index: number) => unknown
 }

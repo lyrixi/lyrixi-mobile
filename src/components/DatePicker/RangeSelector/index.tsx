@@ -63,14 +63,14 @@ const RangeSelector = forwardRef<Record<string, unknown> | null, DatePickerRange
     })
 
     // unify onChange
-    function handleChange(newValue: (Date | null)[] | null, meta?: { rangeId?: string | null }) {
+    function handleChange(newValue: (Date | null)[] | null, options?: { rangeId?: string | null }) {
       onChange?.(updateRangeValue(newValue ?? [null, null], type, { autoSwapValue }), {
-          rangeId: meta?.rangeId || null,
+          rangeId: options?.rangeId || null,
           ranges,
           displayValue: getDisplayValue({
             value: newValue,
             type,
-            rangeId: meta?.rangeId,
+            rangeId: options?.rangeId,
             ranges,
             separator: ' ~ '
           })

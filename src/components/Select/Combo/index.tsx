@@ -117,10 +117,10 @@ const SelectCombo = forwardRef<SelectComboRef, SelectComboProps>(function Select
     setOpen(false)
   }
 
-  const handleInputChange: InputSelectProps['onChange'] = (value, meta) => {
+  const handleInputChange: InputSelectProps['onChange'] = (value, options) => {
     onChange?.(
       value as SelectItem | SelectItem[] | null,
-      meta as { action?: string; checkedItem: SelectItem } | undefined
+      options as { action?: string; checkedItem: SelectItem } | undefined
     )
   }
 

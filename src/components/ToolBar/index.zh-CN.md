@@ -218,8 +218,8 @@ toc: content
 | okVisible      | 确认按钮可见 | `boolean`                                                                                                                                                                               | -      |
 | cancelVisible  | 取消按钮可见 | `boolean`                                                                                                                                                                               | -      |
 | onBeforeOpen   | 打开前事件   | `() => boolean \| void \| Promise<boolean \| void>`                                                                                                                                     | -      |
-| onChange       | 变化事件     | `(value: (Date \| null)[] \| null, meta: { rangeId: string \| null \| undefined }) => void`                                                                                             | -      |
-| onOk           | 确认事件     | `(value: (Date \| null)[] \| null \| undefined, meta: { rangeId: string \| null \| undefined }) => void \| boolean \| (Date \| null)[] \| Promise<void \| boolean \| (Date \| null)[]>` | -      |
+| onChange       | 变化事件     | `(value: (Date \| null)[] \| null, options: { rangeId: string \| null \| undefined }) => void`                                                                                             | -      |
+| onOk           | 确认事件     | `(value: (Date \| null)[] \| null \| undefined, options: { rangeId: string \| null \| undefined }) => void \| boolean \| (Date \| null)[] \| Promise<void \| boolean \| (Date \| null)[]>` | -      |
 
 #### Ref
 

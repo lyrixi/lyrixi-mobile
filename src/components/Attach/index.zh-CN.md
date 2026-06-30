@@ -50,7 +50,7 @@ toc: content
 | onChoose                | 选择事件           | `(e?: SyntheticEvent) => unknown`                                                                | -       |
 | onFileChange            | 文件变化事件       | `(fileItems: FileItem[]) => FileItem[] \| Promise<FileItem[] \| unknown>`                                       | -       |
 | onUpload                | 上传事件           | `(item: FileItem) => unknown`                                                                    | -       |
-| onChange                | 变化事件           | `(list: FileItem[], meta?: { action?: string }) => void`                                         | -       |
+| onChange                | 变化事件           | `(list: FileItem[], options?: { action?: string }) => void`                                         | -       |
 | onPreview               | 预览事件           | `(item: FileItem, index: number) => unknown`                                                     | -       |
 
 #### Ref
@@ -62,7 +62,7 @@ toc: content
 | updateStatus | 更新状态   | `() => void`                                               |
 | chooseFile   | 选择文件   | `(e: SyntheticEvent) => Promise<unknown>`                  |
 | choose       | 选择       | `(e: SyntheticEvent) => Promise<unknown>`                  |
-| uploadList   | 上传列表   | `(newList?: FileItem[] \| null, meta?: { action?: string }) => Promise<FileItem[]>` |
+| uploadList   | 上传列表   | `(newList?: FileItem[] \| null, options?: { action?: string }) => Promise<FileItem[]>` |
 | showLoading  | 显示加载   | `(options?: { content?: string; index?: number }) => void` |
 | hideLoading  | 隐藏加载   | `(options?: { failIndexes?: number[] }) => void`           |
 

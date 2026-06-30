@@ -96,8 +96,8 @@ const MultipleCombo = forwardRef<unknown, DatePickerMultipleComboProps>(function
     setOpen(false)
   }
 
-  const handleInputChange: InputSelectProps['onChange'] = (v, meta) => {
-    onChange?.(v as DatePickerMultipleValue, meta as { action: string })
+  const handleInputChange: InputSelectProps['onChange'] = (v, options) => {
+    onChange?.(v as DatePickerMultipleValue, options as { action: string })
   }
 
   const handleFormatter: InputSelectProps['formatter'] = (_v, options) => {

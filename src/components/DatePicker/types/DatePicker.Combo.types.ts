@@ -9,7 +9,7 @@ export interface DatePickerComboProps
   extends Omit<InputSelectProps, 'min' | 'max' | 'value' | 'onChange' | 'formatter'> {
   value?: Date | null
   formatter?: (value: Date | null | undefined, options?: { separator?: string }) => string
-  onChange?: (value: Date | null | undefined, meta?: unknown) => void
+  onChange?: (value: Date | null | undefined, options?: unknown) => void
   type?: DatePickerPickerType
   min?: Date | null
   max?: Date | null

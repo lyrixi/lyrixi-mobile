@@ -25,5 +25,5 @@ export interface InputSelectTagsProps {
   // Events
   onAdd?: (e: MouseEvent<HTMLDivElement>) => void
   onEdit?: (item: InputSelectItem) => void
-  onChange?: (value: InputSelectItem[], meta?: { action: string }) => void
+  onChange?: (value: InputSelectItem[], options?: { action: string }) => void
 }

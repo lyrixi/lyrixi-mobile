@@ -14,7 +14,7 @@ export type DatePickerRangeComboProps = Omit<
     value?: (Date | null)[] | null
     allowClear?: boolean
     maskClosable?: boolean
-    onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+    onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
     onOk?: DatePickerRangeModalProps['onOk']
     titleRender?: DatePickerRangeModalProps['titleRender']
   }

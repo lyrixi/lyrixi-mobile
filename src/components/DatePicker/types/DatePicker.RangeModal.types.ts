@@ -20,7 +20,7 @@ export interface DatePickerRangeModalProps
     value: (Date | null)[] | null | undefined,
     options: { type: string; separator?: string }
   ) => ReactNode
-  onChange?: (value: (Date | null)[] | null, meta?: DatePickerRangeChangeMeta) => void
+  onChange?: (value: (Date | null)[] | null, options?: DatePickerRangeChangeMeta) => void
   onOk?: (
     value: (Date | null)[] | null
   ) => void | boolean | Date[] | Promise<void | boolean | Date[]>

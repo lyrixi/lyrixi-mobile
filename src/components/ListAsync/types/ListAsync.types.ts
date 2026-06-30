@@ -53,7 +53,7 @@ export interface ListAsyncProps {
   value?: ListAsyncItem | ListAsyncItem[] | null
   formatViewList?: (
     list: ListAsyncItem[],
-    meta?: { result: ListAsyncLoadResult | null }
+    options?: { result: ListAsyncLoadResult | null }
   ) => ListAsyncViewItem[]
   formatViewItem?: (
     item: ListAsyncItem,

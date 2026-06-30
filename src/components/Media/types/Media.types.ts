@@ -51,7 +51,7 @@ export interface MediaProps {
   previewPortal?: HTMLElement | null
   previewCancelPosition?: 'left' | 'right'
   onUpload?: (item: FileItem) => void | Promise<unknown>
-  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
   onPreview?: (
     item: FileItem,
     index: number
@@ -64,7 +64,7 @@ export interface MediaProps {
     | Promise<void | boolean | 'nativeMedia' | 'nativeFile' | 'browser'>
 }
 
-export type MediaListChangeHandler = (list: FileItem[], meta: { action: string }) => void
+export type MediaListChangeHandler = (list: FileItem[], options: { action: string }) => void
 
 export type MediaFileChangeHandler = (e: ChangeEvent<HTMLInputElement>) => void | Promise<unknown>
 export type MediaOnBeforeChooseHandler = (e: MouseEvent) => void | boolean | Promise<void | boolean>

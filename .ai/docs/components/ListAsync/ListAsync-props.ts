@@ -32,7 +32,7 @@ export interface ListAsyncProps {
   /** 选中的项 */
   value?: ListAsyncItem | ListAsyncItem[] | null
   /** 格式化列表 */
-  formatViewList?: (list: ListAsyncItem[], meta?: { result: ListAsyncLoadResult | null }) => ListAsyncViewItem[]
+  formatViewList?: (list: ListAsyncItem[], options?: { result: ListAsyncLoadResult | null }) => ListAsyncViewItem[]
   /** 格式化项 */
   formatViewItem?: (item: ListAsyncItem, options: { index: number; result?: ListAsyncLoadResult | null }) => ListAsyncViewItem
   /** 错误重试，默认 `true` */

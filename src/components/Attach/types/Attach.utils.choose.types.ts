@@ -11,5 +11,5 @@ export interface AttachChooseOptions {
   uploadPosition: 'start' | 'end' | string
   uploadList: (newList: FileItem[], opts?: { action?: string }) => Promise<FileItem[] | undefined>
   onChoose?: () => unknown
-  onChange?: (list: FileItem[], meta: { action: string }) => void
+  onChange?: (list: FileItem[], options: { action: string }) => void
 }

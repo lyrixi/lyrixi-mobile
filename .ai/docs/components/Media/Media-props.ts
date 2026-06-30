@@ -70,7 +70,7 @@ export interface MediaProps {
   /** 上传事件 */
   onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
-  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
   /** 预览事件 */
   onPreview?: (
     item: FileItem,
@@ -116,7 +116,7 @@ export interface MediaListProps {
   /** 项渲染 */
   itemRender?: (item: FileItem) => ReactNode
   /** 变化事件 */
-  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
   /** 重新上传事件 */
   onReUpload?: (item: FileItem, index: number) => void
   /** 预览事件 */
@@ -186,7 +186,7 @@ export interface MediaPreviewModalProps {
   /** 上传事件 */
   onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
-  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
   /** 关闭事件 */
   onClose?: () => void
 }
@@ -233,7 +233,7 @@ export interface MediaPreviewMainProps {
   /** 上传事件 */
   onUpload?: (item: FileItem) => void | Promise<unknown>
   /** 变化事件 */
-  onChange?: (list: FileItem[], meta: { action: string }) => void | Promise<unknown>
+  onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
   /** 关闭事件 */
   onClose?: () => void
 }

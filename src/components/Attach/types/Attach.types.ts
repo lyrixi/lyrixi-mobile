@@ -35,7 +35,7 @@ export interface AttachProps {
   onChoose?: (e?: SyntheticEvent) => unknown
   onFileChange?: (fileItems: FileItem[]) => FileItem[] | Promise<FileItem[] | unknown>
   onUpload?: (item: FileItem) => unknown
-  onChange?: (list: FileItem[], meta?: { action?: string }) => void
+  onChange?: (list: FileItem[], options?: { action?: string }) => void
   onPreview?: (item: FileItem, index: number) => unknown
 }
 
@@ -45,7 +45,7 @@ export interface AttachRef {
   updateStatus: () => void
   chooseFile: (e: SyntheticEvent) => Promise<unknown>
   choose: (e: SyntheticEvent) => Promise<unknown>
-  uploadList: (newList?: FileItem[] | null, meta?: { action?: string }) => Promise<FileItem[]>
+  uploadList: (newList?: FileItem[] | null, options?: { action?: string }) => Promise<FileItem[]>
   showLoading: (options?: { content?: string; index?: number }) => void
   hideLoading: (options?: { failIndexes?: number[] }) => void
 }

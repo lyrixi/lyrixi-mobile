@@ -64,7 +64,7 @@ toc: content
 | spellCheck    | 拼写检查     | `boolean \| 'true' \| 'false'`                                                      | -        |
 | cursor        | 是否显示光标 | `boolean \| null`                                                                   | -        |
 | onClick       | 点击事件     | `MouseEventHandler<HTMLDivElement>`                                                                | -        |
-| onChange      | 值变化事件   | `(value: string, meta?: { action: string }) => void`                                                    | -        |
+| onChange      | 值变化事件   | `(value: string, options?: { action: string }) => void`                                                    | -        |
 | onBlur        | 失焦事件     | `FocusEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
 | onFocus       | 聚焦事件     | `FocusEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
 | onKeyDown     | 按键事件     | `KeyboardEventHandler<HTMLInputElement \| HTMLTextAreaElement>`                                                                | -        |
