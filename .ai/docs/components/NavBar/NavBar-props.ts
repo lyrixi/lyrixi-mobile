@@ -71,3 +71,42 @@ export interface NavBarTitleRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
+
+export interface NavBarLeftRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface NavBarLeftProps {
+
+  className?: string
+  style?: CSSProperties
+
+  children?: ReactNode
+}
+
+export interface NavBarRightRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface NavBarRightProps {
+
+  className?: string
+  style?: CSSProperties
+
+  children?: ReactNode
+}
+
+export interface NavBarTitleRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface NavBarTitleProps {
+
+  className?: string
+  style?: CSSProperties
+
+  children?: ReactNode
+}

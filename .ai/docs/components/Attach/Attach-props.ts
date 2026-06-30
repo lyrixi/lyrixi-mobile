@@ -170,3 +170,30 @@ export type AttachValidateListStatus = (list: AttachFileItem[]) => boolean
 
 /** Attach.supportTypes 静态方法 — 返回支持的 MIME 类型列表 */
 export type AttachSupportTypes = () => string[]
+
+export interface AttachPreviewMainProps {
+
+  fileName?: string
+  previewServerUrl?: string
+  fileUrl?: string
+  previewServerSourceType?: string[]
+}
+
+export interface AttachPreviewMainRef {
+  mainElement: HTMLDivElement | null
+  getMainElement: () => HTMLDivElement | null
+}
+
+export interface AttachPreviewModalProps {
+
+  fileName?: string
+  previewServerUrl?: string
+  fileUrl?: string
+  previewServerSourceType?: string[]
+
+  open?: boolean
+
+  portal?: ModalProps['portal']
+
+  onClose?: ModalProps['onClose']
+}

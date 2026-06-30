@@ -157,3 +157,15 @@ export interface ActionSheetComboRef {
   /** 打开面板 */
   open?: () => void
 }
+
+export interface ActionSheetComboHandle {
+  close: () => void
+  open: () => void
+}
+
+export interface ActionSheetItem {
+  id: string | number
+  name: string
+  disabled?: boolean
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}

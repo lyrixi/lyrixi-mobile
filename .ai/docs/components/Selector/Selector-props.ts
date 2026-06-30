@@ -44,3 +44,23 @@ export interface SelectorRef {
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
 }
+
+export interface SelectorItemProps {
+
+  disabled?: boolean
+  checked?: boolean
+
+  className?: string
+  style?: CSSProperties
+
+  children?: ReactNode
+
+  onChange?: (checked: boolean) => void
+}
+
+export type SelectorItemRef {
+  element: HTMLDivElement | null
+  inputElement: HTMLInputElement | null
+  getElement: () => HTMLDivElement | null
+  getInputElement: () => HTMLInputElement | null
+}

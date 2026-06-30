@@ -297,3 +297,97 @@ export type MediaValidateListStatus = (list: FileItem[]) => boolean
 
 /** Media.isAllowClear 静态方法 */
 export type MediaIsAllowClear = (item: FileItem) => boolean
+
+export interface MediaChooseProps {
+
+  mediaType?: string[]
+  sourceType?: string[]
+
+  className?: string
+
+  uploadRender?: (options: { uploadType: string }) => ReactNode
+  uploadingRender?: MediaUploadingProps['uploadingRender']
+
+  onBeforeChoose?: (e: MouseEvent) => void | boolean | Promise<void | boolean>
+  onChoose?: (e?: MouseEvent) => void
+  onFileChange?: (e: ChangeEvent<HTMLInputElement>) => void
+}
+
+export interface MediaItemDeleteProps {
+
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
+
+export interface MediaItemImgProps {
+
+  fileUrl?: string
+  /** 重新加载的key */
+  reloadKey?: unknown
+}
+
+export interface MediaItemReloadProps {
+
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
+
+export interface MediaRemainCountProps {
+
+  count: number
+}
+
+export interface MediaItemProps {
+
+  item: FileItem
+  index: number
+  remainCount?: number | null
+
+  uploadingRender?: MediaUploadingProps['uploadingRender']
+  itemRender?: (item: FileItem) => ReactNode
+
+  onDelete?: (item: FileItem, index: number) => void
+  onReUpload?: (item: FileItem, index: number) => void
+  onPreview?: (item: FileItem, index: number) => void
+}
+
+export interface MediaListMainProps {
+
+  list: FileItem[]
+  ellipsis?: { count?: number }
+
+  allowClear?: boolean | ((item: FileItem) => boolean)
+
+  uploadingRender?: MediaUploadingProps['uploadingRender']
+  itemRender?: (item: FileItem) => ReactNode
+
+  onChange?: (list: FileItem[], options: { action: string }) => void
+  onReUpload?: (item: FileItem, index: number) => void
+  onPreview?: (item: FileItem, index: number) => void
+}
+
+export interface MediaPreviewChooseProps {
+
+  mediaType?: string | string[]
+  sourceType: string[]
+
+  onBeforeChoose?: MediaChooseProps['onBeforeChoose']
+  onChoose?: MediaChooseProps['onChoose']
+  onFileChange?: MediaChooseProps['onFileChange']
+}
+
+export interface MediaPreviewToolbarProps {
+
+  onRotateAnticlockwise?: (e: MouseEvent) => void
+  onRotateClockwise?: (e: MouseEvent) => void
+  onZoomOut?: (e: MouseEvent) => void
+  onZoomIn?: (e: MouseEvent) => void
+}
+
+export interface MediaUploadingProps {
+
+  uploadingType: string
+  item?: FileItem
+
+  className?: string
+
+  uploadingRender?: (options: FileItem & { uploadingType: string }) => ReactNode
+}

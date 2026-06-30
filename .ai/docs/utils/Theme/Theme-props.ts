@@ -7,5 +7,6 @@ export namespace Theme {
   export function hexToRgb(...args: unknown[]): unknown
 
   /** 设置全局字体尺寸档位，可选 `'m'` | `'l'` | `'xl'` */
-  export function setFontSize(fontSize: 'm' | 'l' | 'xl' | string): void
+  export function setFontSize(...args: unknown[]): unknown
+
 }

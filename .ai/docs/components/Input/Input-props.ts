@@ -512,3 +512,81 @@ export interface InputPasswordStrengthRef {
   /** 获取强度等级 */
   getStrength: (newValue?: string) => number
 }
+
+export interface InputNumberBoxRef {
+  getInputRef: () => RefObject<InputTextRef | null>
+}
+
+export interface InputNumberKeyboardProps {
+  ok?: ReactNode | null
+  value?: string
+  onChange?: (value: string) => void
+}
+
+export interface InputSearchProps {
+  onSearch?: (value: string) => void
+}
+
+export interface InputSelectProps {
+  name?: string
+  value?: InputSelectValue
+  formatter?: (value: InputSelectValue, options?: { separator?: string }) => string
+  onChange?: (value: InputSelectValue, options?: unknown) => void
+  autoFocus?: boolean
+  autoSelect?: boolean
+  enableCompositionEnd?: boolean
+  inputRender?: (options: Record<string, unknown>) => ReactNode
+  onPreview?: (value: string) => Promise<boolean | undefined> | boolean | undefined
+  onSearch?: (value: string) => void
+  step?: number
+  iconRender?: (options: { className: string; style?: CSSProperties }) => ReactNode
+  mode?: string
+  autoSize?: boolean
+  separator?: string
+  onAdd?: (e: MouseEvent<HTMLDivElement>) => void
+  onEdit?: (item: InputSelectItem) => void
+}
+
+export interface InputTextCorrectValueOptions {
+  type?: string
+  min?: number
+  max?: number
+  maxLength?: number
+  trim?: boolean
+  precision?: number
+}
+
+export interface InputUrlProps {
+  onPreview?: (value: string) => Promise<boolean | undefined> | boolean | undefined
+}
+
+export interface InputAutoSizeProps {}
+
+export interface InputAutoSizeRef {}
+
+export type InputIconProps = IconProps
+export type InputIconRef = IconRef
+
+export type InputIconRef = IconRef
+
+export interface InputNumberProps {}
+
+export interface InputNumberRef {}
+
+export interface InputNumberKeyboardRef {}
+
+export interface InputPasswordProps {}
+
+export interface InputPasswordRef {}
+
+export interface InputSearchRef {}
+
+export interface InputTelProps {}
+
+export interface InputTelRef {}
+
+export interface InputTextareaProps {}
+
+export interface InputTextareaRef {}
+
+export interface InputUrlRef {}

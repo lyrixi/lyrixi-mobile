@@ -118,3 +118,13 @@ export interface CalendarBodyRef {
 
 /** Calendar.isDisabledDate 静态方法 */
 export type CalendarIsDisabledDate = (date: Date, options?: { min?: Date; max?: Date }) => boolean
+
+export interface CalendarHeaderRenderParams {
+  drawDate: Date | null
+  onPreviousMonth: (e?: React.MouseEvent) => void | Promise<void>
+  onNextMonth: (e?: React.MouseEvent) => void | Promise<void>
+  onPreviousYear: (e?: React.MouseEvent) => void
+  onNextYear: (e?: React.MouseEvent) => void
+  /** Formatted title for convenience (same as default header). */
+  title?: string
+}

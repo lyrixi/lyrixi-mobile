@@ -43,3 +43,9 @@ export interface FloatRef {
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
 }
+
+export interface FloatTreeListItem {
+  id: string
+  children?: FloatTreeListItem[]
+  [key: string]: unknown
+}

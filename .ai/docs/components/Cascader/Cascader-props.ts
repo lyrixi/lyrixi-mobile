@@ -337,3 +337,73 @@ export interface CascaderMainRef {
   /** 更新选中值 */
   update: (value: CascaderItem[] | null | undefined, opts?: { action?: string }) => void
 }
+
+export type CascaderDistrictComboRef {
+  open: () => void
+  close: () => void
+}
+
+export type CascaderDistrictModalMainHandle= { loadList: () => Promise<void>;
+
+export interface CascaderMainSearchPageSearchResult {
+  status: string
+  message?: ReactNode
+  list: CascaderMainSearchPageResultItem[]
+}
+
+export interface CascaderMainSearchPageProps {
+  list: CascaderItem[]
+  onSearch?: (
+    keyword: string,
+    options: { list: CascaderItem[] }
+  ) =>
+    | void
+    | CascaderMainSearchPageSearchResult
+    | Promise<CascaderMainSearchPageSearchResult | void>
+  onChange?: (v: CascaderItem[]) => void
+  onClose?: () => void
+}
+
+export interface CascaderMainSearchControlProps {
+
+  list: CascaderItem[]
+
+  onSearch?: (keyword: string, options: { list: CascaderItem[] }) => void
+  onChange?: (v: CascaderItem[]) => void
+}
+
+export interface CascaderMainAnchorItem {
+  anchor?: string
+  [key: string]: unknown
+}
+
+export interface CascaderMainUpdateIsLeafTabItem {
+  id?: string | number
+  isLeaf?: boolean
+  [key: string]: unknown
+}
+
+export interface CascaderMainUpdateIsLeafParams {
+  currentValue?: CascaderMainUpdateIsLeafTabItem[]
+  value?: CascaderMainUpdateIsLeafTabItem[]
+  tabsRef: MutableRefObject<CascaderMainUpdateIsLeafTabItem[]>
+}
+
+export interface CascaderMainLoadChildrenResult {
+  async: boolean
+  status: 'success' | 'error' | 'empty'
+  list?: CascaderItem[]
+  message?: string
+}
+
+export interface CascaderItem {
+  id: string | number
+  name?: string
+  anchor?: string
+  isLeaf?: boolean
+  isChoose?: boolean
+  parentid?: string | number | null
+  children?: CascaderItem[]
+}
+
+export interface CascaderMainSearchControlSearchBarFieldProps {}

@@ -99,3 +99,13 @@ export interface ChatItemRef {
   /** 获取根元素 */
   getElement: () => HTMLDivElement | null
 }
+
+export interface ChatViewFormatterOptions {
+  formatViewItem?: (item: ChatItem, options: { index: number }) => ChatItem
+  formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
+}
+
+export interface ChatSpaceDatesResult {
+  isOverTime: boolean
+  dates: Date[]
+}

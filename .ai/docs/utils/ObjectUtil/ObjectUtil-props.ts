@@ -3,14 +3,17 @@
  */
 
 export namespace ObjectUtil {
+  /** 深拷贝 */
+  export function cloneDeep(...args: unknown[]): unknown
+
+  /** 见源码与 demos */
+  export function debounce(...args: unknown[]): unknown
+
   /** 判断值是否为空（null / undefined / 空字符串 / 空数组 / 空对象） */
   export function isEmpty(...args: unknown[]): unknown
 
-  /** 防抖函数 */
-  export function debounce<T extends (...args: unknown[]) => unknown>(
-    fn: T,
-    wait?: number
-  ): (...args: Parameters<T>) => void
+  /** 深度比较是否相等 */
+  export function isEqual(...args: unknown[]): unknown
 
   /** 判断是否为纯对象 */
   export function isPlainObject(...args: unknown[]): unknown
@@ -18,12 +21,7 @@ export namespace ObjectUtil {
   /** 按条件过滤对象属性 */
   export function pickBy(...args: unknown[]): unknown
 
-  /** 深拷贝 */
-  export function cloneDeep(...args: unknown[]): unknown
-
-  /** 深度比较是否相等 */
-  export function isEqual(...args: unknown[]): unknown
-
   /** 生成 UUID */
   export function randomUUID(...args: unknown[]): unknown
+
 }

@@ -145,3 +145,5 @@ export interface LocationModalProps {
   /** 关闭事件 */
   onClose?: () => void
 }
+
+export interface LocationMainPreviewProps {}

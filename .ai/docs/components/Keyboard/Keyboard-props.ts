@@ -49,3 +49,28 @@ export interface KeyboardNumberRef {
   /** 获取根元素 */
   getElement: () => HTMLElement | null
 }
+
+export interface KeyboardNumberProps {
+
+  value?: string
+  dot?: boolean
+  minus?: boolean
+
+  safeArea?: boolean
+  open?: boolean
+  okVisible?: boolean
+  cancelVisible?: boolean
+
+  modalStyle?: CSSProperties
+  modalClassName?: string
+
+  portal?: HTMLElement
+  okNode?: ReactNode
+  cancelNode?: ReactNode
+
+  onChange?: (value: string, options: { action: KeyboardAction }) => void
+  onOk?: (value: string) => Promise<boolean | undefined> | boolean | undefined
+  onCancel?: () => void
+  onOpen?: () => void
+  onClose?: () => void
+}

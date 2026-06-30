@@ -324,3 +324,43 @@ export interface ToolBarActionSheetRef {
   /** 打开面板 */
   open?: () => void
 }
+
+export interface ToolBarDateRangeBarProps {
+  value?: (Date | null)[] | null
+  rangeId?: string | null
+  type?: string
+  placeholder?: string
+  allowClear?: boolean
+  min?: Date | null
+  max?: Date | null
+  ranges?: DatePickerRangesMap
+  onOk?: (
+    value: (Date | null)[] | null | undefined,
+    options: { rangeId: string | null | undefined }
+  ) => void | boolean | (Date | null)[] | Promise<void | boolean | (Date | null)[]>
+  onChange?: (value: (Date | null)[] | null, options: { rangeId: string | null | undefined }) => void
+}
+
+export interface ToolBarListProps {
+  value?: ToolBarItem | ToolBarItem[] | null
+  placeholder?: string
+  list: ToolBarItem[]
+  children?: ReactNode
+  onChange?: (value: ToolBarItem | ToolBarItem[] | null) => void
+}
+
+export interface ToolBarSearchActiveProps {
+  onCancel?: () => void
+}
+
+export interface ToolBarItem {
+  children?: ToolBarItem[]
+}
+
+export type ToolBarActionSheetComboRenderParams = Parameters<
+  NonNullable<ToolBarActionSheetProps['comboRender']>
+>[0]
+
+export interface ToolBarButtonProps {}
+
+export interface ToolBarSearchProps {}

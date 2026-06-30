@@ -257,3 +257,57 @@ export interface ListPaginationComboRef extends ListPaginationModalRef {
   /** 打开弹窗 */
   open: () => void
 }
+
+export interface ListPaginationListProps {
+  initialLoad?: boolean
+  errorRetry?: boolean
+  onLoad?: (options: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+  disableTopRefresh?: boolean
+  disableBottomRefresh?: boolean
+  emptyRetry?: boolean
+  loadingRender?: (options: { action?: string }) => ReactNode
+  loadingModalStyle?: CSSProperties
+  loadingModalClassName?: string
+  loadingMaskStyle?: CSSProperties
+  loadingMaskClassName?: string
+  loadingPortal?: HTMLElement
+  children?: ReactNode
+  value?: ListPaginationItem | ListPaginationItem[] | null
+  list?: ListPaginationItem[]
+  formatViewList?: (list: ListPaginationItem[]) => ListPaginationViewItem[]
+  formatViewItem?: (item: ListPaginationItem, options: { index: number }) => ListPaginationViewItem
+  virtual?: ListAsyncVirtualProp
+  threshold?: number
+  touchStopPropagation?: boolean
+  safeArea?: boolean
+  style?: CSSProperties
+  className?: string
+  itemRender?: (
+    item: ListPaginationItem,
+    options: { index: number; checked: boolean; onChange: (item: ListPaginationItem) => void }
+  ) => ReactNode
+  prependRender?: (options: {
+    list?: ListPaginationItem[]
+    value?: ListPaginationItem | ListPaginationItem[] | null
+    onChange?: (
+      newValue: ListPaginationItem | ListPaginationItem[] | null,
+      options?: { action?: string; checkedItem: ListPaginationItem }
+    ) => void
+  }) => ReactNode
+  appendRender?: (options: {
+    list?: ListPaginationItem[]
+    value?: ListPaginationItem | ListPaginationItem[] | null
+    onChange?: (
+      newValue: ListPaginationItem | ListPaginationItem[] | null,
+      options?: { action?: string; checkedItem: ListPaginationItem }
+    ) => void
+  }) => ReactNode
+  onChange?: (
+    newValue: ListPaginationItem | ListPaginationItem[] | null,
+    options?: { action?: string; checkedItem: ListPaginationItem }
+  ) => void
+  onScroll?: PageMainProps['onScroll']
+  onScrollEnd?: PageMainProps['onScrollEnd']
+  onTopRefresh?: PageMainProps['onTopRefresh']
+  onBottomRefresh?: PageMainProps['onBottomRefresh']
+}

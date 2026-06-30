@@ -409,3 +409,137 @@ export interface DatePickerMultipleMainProps {
   allowClear?: boolean
   onChange?: (value: DatePickerMultipleValue) => void
 }
+
+export interface DatePickerRangeSelectorButtonsProps {
+
+  value?: (Date | null)[] | null
+  rangeId?: string | null
+  ranges?: DatePickerRangesMap
+
+  allowClear?: boolean
+
+  onChange?: (value: (Date | null)[] | null, options?: { rangeId?: string | null }) => void
+}
+
+export type DatePickerRangeSelectorCustomDatesProps {
+  maskClassName?: string
+  maskStyle?: CSSProperties
+  modalClassName?: string
+  modalStyle?: CSSProperties
+}
+
+export type DatePickerRangeSelectorDatesInputTextProps {
+  value?: (Date | null)[] | null
+  displayValue?: string
+  type?: string
+  separator?: string
+  onChange?: (value: (Date | null)[] | null) => void
+}
+
+export type DatePickerTypeSwitcherDateComboComboProps {
+  value?: Date | null
+  type?: DatePickerPickerType | string
+  style?: CSSProperties
+  className?: string
+  children?: ReactNode
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
+
+export type DatePickerTypeSwitcherDateComboProps {
+  value?: Date | null
+  type: string
+  min?: Date | null
+  max?: Date | null
+  disabled?: boolean
+  style?: CSSProperties
+  className?: string
+  onChange?: (value: Date) => void
+}
+
+export interface DatePickerTypeSwitcherSwitcherProps {
+
+  variant?: DatePickerTypeSwitcherType
+  dropdownPortal?: HTMLElement
+  dropdownLeft?: string | number
+  dropdownColor?: ToolBarComboProps['color']
+  dropdownVariant?: ToolBarComboProps['variant']
+  dropdownSize?: ToolBarComboProps['size']
+  dropdownSizeEqual?: ToolBarComboProps['sizeEqual']
+  dropdownFontSize?: ToolBarComboProps['fontSize']
+  dropdownRadius?: ToolBarComboProps['radius']
+  dropdownClassName?: string
+  dropdownStyle?: CSSProperties
+  dropdownArrowSvg?: ToolBarComboProps['arrowSvg']
+  types: DatePickerTypeListItem[]
+  value: DatePickerTypeSwitcherValue
+
+  style?: CSSProperties
+  className?: string
+
+  onChange: (item: DatePickerTypeListItem) => void
+}
+
+export type DatePickerTypeSwitcherWeekComboComboProps {
+  value?: Date | null
+  style?: CSSProperties
+  className?: string
+  children?: React.ReactNode
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void
+}
+
+export type DatePickerTypeSwitcherWeekComboProps {
+  value?: Date | null
+  min?: Date | null
+  max?: Date | null
+  disabled?: boolean
+  style?: React.CSSProperties
+  className?: string
+  onChange?: (value: Date) => void
+}
+
+export interface DatePickerTypeListItem {
+  type: string
+  id?: string
+  name?: ReactNode
+  value?: Date
+  [key: string]: unknown
+}
+
+export interface DatePickerWeekMainProps {
+
+  value?: Date | null
+  min?: Date | null
+  max?: Date | null
+  weekStart?: string
+
+  open?: boolean
+  allowClear?: boolean
+
+  style?: CSSProperties
+  className?: string
+
+  onChange?: (value: Date | null) => void
+}
+
+export interface DatePickerPickerListItem {
+  id: number
+  /** LocaleUtil.locale 可能返回 string 或带占位节点 */
+  name: number | string | ReactNode | ReactElement
+}
+
+export type DatePickerModalRef = ModalRef & Record<string, unknown>
+
+export interface DatePickerWeekComboRef {}
+
+export interface DatePickerMultipleItem {
+  id?: string | number
+  name?: string
+  description?: ReactNode
+  value?: Date | null
+  disabled?: boolean
+}
+
+export interface DatePickerGetTitleOptions {
+  type?: DatePickerPickerType | string
+  separator?: string
+}

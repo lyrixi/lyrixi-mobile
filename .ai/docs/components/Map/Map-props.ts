@@ -190,3 +190,281 @@ export interface MapStaticUtils {
   /** 获取超级定位 */
   getSuperLocation: (options: { timeout?: number; cacheExpiresContinue?: boolean; cacheExpires?: number | null; type: string }) => Promise<{ status?: string; code?: string; longitude?: number; latitude?: number; [key: string]: unknown }>
 }
+
+export interface MapCenterMarkerProps {
+
+  value?: MapCenterMarkerPoint | null
+  map?: MapContainerAPI
+  icon?: L.Icon | L.DivIcon | null
+
+  style?: CSSProperties
+  className?: string
+
+  onClick?: ((info: MapPoint) => void) | null
+  onDragStart?: ((map: MapContainerAPI) => void) | null
+  onDragEnd?: ((map: MapContainerAPI) => void) | null
+}
+
+export interface MapCenterMarkerRef {
+  element: HTMLSpanElement | null
+  getElement: () => HTMLSpanElement | null
+}
+
+export interface MapCenterMarkerAddOptions {
+  onClick?: ((info: MapPoint & { setIcon?: unknown }) => void) | null
+  icon?: L.Icon | L.DivIcon | null
+}
+
+export interface MapCirclesRef {
+  redraw: () => void
+}
+
+export interface MapCirclesProps {
+
+  points?: unknown
+  color?: string
+  radius?: number
+  map?: MapContainerAPI
+}
+
+export interface MapLocationControlProps {
+
+  map?: MapContainerAPI
+
+  style?: CSSProperties
+  className?: string
+
+  onChange?: (result: unknown) => void
+}
+
+export interface MapLocationControlRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  update: () => Promise<unknown>
+}
+
+export interface MapChooseProps {
+
+  value?: MapChooseValue
+  center?: MapContainerProps['center']
+  zoom?: number
+  minZoom?: number
+  maxZoom?: number
+  cacheExpires?: number
+  autoLocation?: boolean
+  getAddress?: MapContainerProps['getAddress']
+  getLocation?: MapContainerProps['getLocation']
+  queryNearby?: MapContainerProps['queryNearby']
+  openLocation?: MapContainerProps['openLocation']
+
+  readOnly?: boolean
+  nearbyVisible?: boolean
+
+  style?: CSSProperties
+  className?: string
+  searchControlStyle?: CSSProperties
+  searchControlClassName?: string
+  centerMarkerStyle?: CSSProperties
+  centerMarkerClassName?: string
+  markersStyle?: CSSProperties
+  markersClassName?: string
+  zoomControlStyle?: CSSProperties
+  zoomControlClassName?: string
+  locationControlStyle?: CSSProperties
+  locationControlClassName?: string
+  nearbyControlStyle?: CSSProperties
+  nearbyControlClassName?: string
+
+  children?: ReactNode
+
+  onLoad?: MapContainerProps['onLoad']
+  onChange?: (value: WgsMapPoint | (WgsMapPoint | null)[] | null) => void
+  onMarkerClick?: (e: unknown) => void
+  onZoomStart?: MapContainerProps['onZoomStart']
+  onZoom?: MapContainerProps['onZoom']
+  onZoomEnd?: MapContainerProps['onZoomEnd']
+  onMoveStart?: MapContainerProps['onMoveStart']
+  onMove?: MapContainerProps['onMove']
+  onMoveEnd?: MapContainerProps['onMoveEnd']
+  onDragStart?: MapContainerProps['onDragStart']
+  onDrag?: MapContainerProps['onDrag']
+  onDragEnd?: MapContainerProps['onDragEnd']
+}
+
+export interface MapMapMarkersProps {
+
+  markers?: unknown
+  minZoom?: number
+  maxZoom?: number
+  polyline?: unknown
+  circles?: unknown
+  getAddress?: MapContainerProps['getAddress']
+  getLocation?: MapContainerProps['getLocation']
+  queryNearby?: MapContainerProps['queryNearby']
+  openLocation?: MapContainerProps['openLocation']
+
+  style?: CSSProperties
+  className?: string
+  polylineStyle?: CSSProperties
+  polylineClassName?: string
+  circlesStyle?: CSSProperties
+  circlesClassName?: string
+  zoomControlStyle?: CSSProperties
+  zoomControlClassName?: string
+
+  children?: ReactNode
+
+  onLoad?: MapContainerProps['onLoad']
+  onMarkerClick?: (e: unknown) => void
+  onZoomStart?: MapContainerProps['onZoomStart']
+  onZoom?: MapContainerProps['onZoom']
+  onZoomEnd?: MapContainerProps['onZoomEnd']
+  onMoveStart?: MapContainerProps['onMoveStart']
+  onMove?: MapContainerProps['onMove']
+  onMoveEnd?: MapContainerProps['onMoveEnd']
+  onDragStart?: MapContainerProps['onDragStart']
+  onDrag?: MapContainerProps['onDrag']
+  onDragEnd?: MapContainerProps['onDragEnd']
+}
+
+export interface MapMarkersLayerProps {
+
+  points?: unknown
+  map?: MapContainerAPI
+  icon?: unknown
+
+  style?: CSSProperties
+  className?: string
+
+  onClick?: (options: unknown) => void
+}
+
+export interface MapMarkersLayerHandle {
+  redraw: () => void
+  focus: (point: MapCoord) => void
+  blur: () => void
+}
+
+export interface MapNearbyControlCurrentProps {
+
+  value?: MapValue
+  map?: MapContainerAPI
+
+  readOnly?: boolean
+
+  onChange?: (item: unknown) => void
+}
+
+export interface MapNearbyControlProps {
+
+  value?: MapValue
+  radius?: number
+  map?: MapContainerAPI
+
+  readOnly?: boolean
+  nearbyVisible?: boolean
+
+  onChange?: (item: unknown) => void
+  onSuccess?: (result: unknown) => void
+  onError?: (result: unknown) => void
+}
+
+export interface MapNearbyControlRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  reload: () => void
+}
+
+export interface MapPolygonRef {
+  redraw: () => void
+}
+
+export interface MapPolygonProps {
+
+  points?: unknown
+  color?: string
+  fillColor?: string
+  fillOpacity?: number
+  weight?: number
+  map?: MapContainerAPI
+}
+
+export interface MapPolylineRef {
+  redraw: () => void
+}
+
+export interface MapPolylineProps {
+
+  points?: unknown
+  color?: string
+  map?: MapContainerAPI
+}
+
+export interface MapSearchControlProps {
+
+  map?: MapContainerAPI
+
+  style?: CSSProperties
+  className?: string
+
+  onChange?: (item: unknown) => void
+}
+
+export type MapSearchBarForwardedProps {
+  readOnly?: boolean
+  className?: string
+  style?: CSSProperties
+  onClick?: () => void
+}
+
+export interface MapZoomControlProps {
+
+  map?: MapContainerAPI
+
+  style?: CSSProperties
+  className?: string
+
+  onZoomIn?: (map: MapContainerAPI) => void
+  onZoomOut?: (map: MapContainerAPI) => void
+}
+
+export interface MapZoomControlRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+  zoomOut: () => void
+  zoomIn: () => void
+}
+
+export interface MapLoaderSourceConfig {
+  key?: string
+  type?: string
+  leaflet?: { css?: string; js?: string }
+  [key: string]: unknown
+}
+
+export type MapContainerChildInjectProps = Record<string, unknown>
+
+export type MapMapMarkersHandle =
+  | (MapContainerAPI & {
+      markersRef: MutableRefObject<MapMarkersLayerHandle | null>
+      polylineRef: MutableRefObject<MapPolylineRef | null>
+      circlesRef: MutableRefObject<MapCirclesRef | null>
+      zoomRef: MutableRefObject<MapZoomControlRef | null>
+    })
+  | null
+
+export type MapNearbyTabItem = ReturnType<typeof getTabs>[number]
+
+export interface MapOptions {}
+
+export interface Map {
+    setView(center: LatLngExpression, zoom?: number, options?: unknown): this
+    fitBounds(bounds: LatLngBoundsExpression, options?: { padding?: [number, number] }): this
+    panTo(center: LatLngExpression, options?: unknown): this
+    zoomIn(delta?: number): this
+    zoomOut(delta?: number): this
+    getZoom(): number
+    setZoom(zoom: number): this
+    getCenter(): { lat: number; lng: number }
+    on(type: string, fn: (...args: unknown[]) => void): this
+  }

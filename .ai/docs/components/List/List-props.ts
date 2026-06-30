@@ -150,3 +150,8 @@ export interface ListInfiniteScrollProps {
   /** 内容 */
   content?: ReactNode
 }
+
+export interface ListViewFormatterOptions {
+  formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
+  formatViewList?: (list: ListItem[]) => ListViewItem[]
+}

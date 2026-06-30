@@ -311,3 +311,23 @@ export interface MessageButtonRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
+
+export interface MessageBodyProps {
+
+  content?: ReactNode
+  buttonsLayout?: 'vertical' | 'horizontal'
+  buttons?: MessageComboButton[]
+
+  titleClassName?: string
+  titleStyle?: CSSProperties
+  contentClassName?: string
+  contentStyle?: CSSProperties
+  footerClassName?: string
+  footerStyle?: CSSProperties
+
+  iconSvg?: ComponentType<SVGProps<SVGSVGElement>>
+  iconSize?: string
+  iconColor?: string
+  iconRender?: () => ReactNode
+  title?: ReactNode
+}

@@ -232,3 +232,22 @@ export interface SelectMainRef {
   /** 获取主元素 */
   getMainElement: () => HTMLDivElement | null
 }
+
+export interface SelectItem {
+  children?: SelectItem[]
+}
+
+export interface SelectListProps {
+  value?: SelectItem | SelectItem[] | null
+  list?: SelectItem[]
+  formatViewList?: (list: SelectItem[]) => ListViewItem[]
+  formatViewItem?: (item: SelectItem, options: { index: number }) => ListViewItem
+  itemRender?: (
+    item: SelectItem,
+    options: { index: number; checked: boolean; onChange: (item: SelectItem) => void }
+  ) => ReactNode
+  onChange?: (
+    newValue: SelectItem | SelectItem[] | null,
+    options?: { action?: string; checkedItem: SelectItem }
+  ) => void
+}

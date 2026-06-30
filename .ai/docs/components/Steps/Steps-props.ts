@@ -41,3 +41,14 @@ export interface StepsRef {
   element: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
 }
+
+export interface StepsNodeProps {
+
+  iconChildren?: ReactNode
+  status?: string
+  rail?: boolean
+  description?: ReactNode
+
+  iconRender?: (options: { children: ReactNode; className: string; status?: string }) => ReactNode
+  title?: ReactNode
+}

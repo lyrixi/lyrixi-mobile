@@ -54,7 +54,7 @@ node .ai/skills/docs/scripts/resolve-docs.mjs 加载 弹窗 Form
 
 路径以 `resolve-docs` 输出为准（相对仓库根，如 `.ai/docs/components/Button/Button-props.ts`）。
 
-维护示例：同步 `src/**/demos` 后运行 `node .ai/skills/docs/scripts/generate-example-index.mjs [组件名]` 刷新索引。
+维护示例：`src` 变更后运行 `npm run build:ai-docs`（同步 demos / props / rules / example 索引）；可用 `npm run check:ai-docs` 检查 props 漂移。
 
 ### 4. 生成代码
 

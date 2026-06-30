@@ -60,7 +60,8 @@
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev",
     "translate": "tsx src/utils/LocaleUtil/scripts/translateSrc.ts",
-    "build:ai-docs": "node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs && node .ai/skills/docs/scripts/sync-ai-docs-rules.mjs && node .ai/skills/docs/scripts/generate-example-index.mjs"
+    "build:ai-docs": "node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs && node .ai/skills/docs/scripts/sync-ai-docs-props.mjs && node .ai/skills/docs/scripts/sync-ai-docs-rules.mjs && node .ai/skills/docs/scripts/generate-example-index.mjs",
+    "check:ai-docs": "node .ai/skills/docs/scripts/check-ai-docs-props.mjs"
   },
   "commitlint": {
     "extends": [

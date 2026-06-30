@@ -58,16 +58,23 @@
 
 从 JSON 迁移 props 时可运行：`node .ai/skills/docs/scripts/convert-props-json-to-ts.mjs`
 
-同步 demo 后刷新 example 索引与子组件清单：
+同步 demo、props、rules 与 example 索引：
 
 ```bash
 npm run build:ai-docs
+```
+
+检查 props 是否与 src 漂移（CI 可用）：
+
+```bash
+npm run check:ai-docs
 ```
 
 或分步执行：
 
 ```bash
 node .ai/skills/docs/scripts/sync-ai-docs-demos.mjs [组件名]
+node .ai/skills/docs/scripts/sync-ai-docs-props.mjs [组件名]
 node .ai/skills/docs/scripts/sync-ai-docs-rules.mjs [组件名]
 node .ai/skills/docs/scripts/generate-example-index.mjs [组件名]
 ```

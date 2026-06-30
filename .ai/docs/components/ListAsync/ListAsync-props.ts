@@ -117,3 +117,19 @@ export interface ListAsyncRef {
   /** 获取加载结果 */
   getResult?: () => ListAsyncLoadResult | null
 }
+
+export interface ListAsyncItem {
+  children?: ListAsyncItem[]
+}
+
+export interface ListAsyncViewItem {
+  children?: ListAsyncViewItem[]
+}
+
+export interface ListAsyncLoadResult {
+  status: string
+  message?: string
+  list?: ListAsyncItem[]
+  scrollTop?: number
+  [key: string]: unknown
+}

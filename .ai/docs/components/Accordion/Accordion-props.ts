@@ -73,3 +73,12 @@ export interface AccordionGroupRef {
   /** 收起全部 */
   close: () => void
 }
+
+export interface AccordionTransitionProps {
+
+  minHeight?: number
+
+  open: boolean
+
+  children?: ReactNode
+}

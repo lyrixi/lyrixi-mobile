@@ -4,15 +4,18 @@
 
 export namespace AssetUtil {
   /** 见源码与 demos */
+  export function accessImage(...args: unknown[]): unknown
 
+  /** 见源码与 demos */
   export function getFileExtension(...args: unknown[]): unknown
-  /** 见源码与 demos */
 
-  export function loadRemoteJs(...args: unknown[]): unknown
   /** 见源码与 demos */
-
-  export function loadRemoteJson(...args: unknown[]): unknown
-  /** 见源码与 demos */
-
   export function loadImage(...args: unknown[]): unknown
+
+  /** 见源码与 demos */
+  export function loadRemoteJs(...args: unknown[]): unknown
+
+  /** 见源码与 demos */
+  export function loadRemoteJson(...args: unknown[]): unknown
+
 }

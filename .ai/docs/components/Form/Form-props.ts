@@ -129,3 +129,73 @@ export type FormUseFormInstance = FormInstance & {
 
 /** Form.useWatch 的签名（同 rc-field-form useWatch） */
 export type FormUseWatch = typeof import('rc-field-form').useWatch
+
+export interface FormItemLayoutProps {
+
+  id?: string
+  name?: string
+  layout?: string
+  height?: number
+
+  style?: CSSProperties
+  className?: string
+
+  children?: ReactNode
+}
+
+export interface FormVirtualFormItemRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface FormItemLabelProps {
+
+  ellipsis?: EllipsisConfig
+  span?: number | string
+    required?: boolean
+  help?: ReactNode
+
+  style?: CSSProperties
+  className?: string
+
+  children?: ReactNode
+}
+
+export interface FormItemMainProps {
+
+  ellipsis?: EllipsisConfig
+  span?: number | string
+  errorMessage?: string
+
+  style?: CSSProperties
+  className?: string
+
+  inputExtraNode?: ReactNode
+  extraNode?: ReactNode
+  children?: ReactNode
+}
+
+export interface FormItemsRef {
+  element: HTMLDivElement | null
+  getElement: () => HTMLDivElement | null
+}
+
+export interface FormItemsProps {
+
+  layout?: string
+  labelSpan?: number
+  labelEllipsis?: EllipsisConfig | null
+  mainSpan?: number
+  mainEllipsis?: EllipsisConfig | null
+
+  style?: CSSProperties
+  className?: string
+
+  children?: ReactNode
+}
+
+export interface FormItemsLayoutProps {
+  virtual?: boolean
+}
+
+export interface FormVirtualFormItemProps {}

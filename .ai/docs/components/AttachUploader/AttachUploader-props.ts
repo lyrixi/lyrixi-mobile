@@ -87,3 +87,5 @@ export interface AttachUploaderProps {
 }
 
 export interface AttachUploaderRef extends AttachRef {}
+
+export interface AttachUploaderBrowserProps {}

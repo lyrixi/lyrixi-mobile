@@ -60,3 +60,20 @@ export interface IconStyleInput {
   /** 自定义类名 */
   className?: string
 }
+
+export interface IconProps {
+
+  svg: ComponentType<SVGProps<SVGSVGElement>>
+  color?: string
+  backgroundColor?: string
+  size?: IconSize | string | number
+  radius?: string
+
+  disabled?: boolean
+
+  style?: CSSProperties
+  className?: string
+
+  onClick?: MouseEventHandler<HTMLElement>
+  onTouchStart?: TouchEventHandler<HTMLElement>
+}

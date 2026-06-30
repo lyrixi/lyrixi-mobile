@@ -4,6 +4,12 @@
 
 export namespace Request {
   /** 见源码与 demos */
+  export function get(...args: unknown[]): unknown
 
+  /** 见源码与 demos */
+  export function post(...args: unknown[]): unknown
+
+  /** 见源码与 demos */
   export function serializeParams(...args: unknown[]): unknown
+
 }

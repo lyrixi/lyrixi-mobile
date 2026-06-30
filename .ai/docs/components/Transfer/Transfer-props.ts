@@ -215,3 +215,28 @@ export interface TransferRef {
   /** 获取主元素 */
   getMainElement?: () => HTMLDivElement
 }
+
+export interface TransferItemProps {
+
+  sortable?: boolean
+
+  children?: ReactNode
+
+  onAdd?: () => void
+  onDelete?: () => void
+}
+
+export interface TransferMainProps {
+
+  value: TransferItem[]
+  list: TransferItem[]
+  titles?: TransferTitlesInput
+
+  open?: boolean
+  allowClear?: boolean
+
+  className?: string
+  style?: CSSProperties
+
+  onChange?: (value: TransferItem[]) => void
+}

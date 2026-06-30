@@ -23,3 +23,25 @@ export interface AppProps {
   /** 应用内容 */
   children?: ReactNode
 }
+
+export interface AppInitBridgeConfig {
+  getScriptSrc?: () => string
+  getConfigUrl?: () => string
+  formatHeaders?: (...args: unknown[]) => unknown
+  formatPayload?: (...args: unknown[]) => unknown
+  formatResponse?: (...args: unknown[]) => unknown
+}
+
+export interface AppInitBridgeResult {
+  status: 'success' | 'error'
+  message: string | undefined
+}
+
+export interface AppMapConfig {
+  type: 'bmap' | 'amap' | 'google'
+  key: string
+}
+
+export interface AppThemeConfig {
+  fontSize?: 'm' | 'l' | 'xl'
+}

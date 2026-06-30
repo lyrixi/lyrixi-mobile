@@ -187,3 +187,11 @@ export interface SkeletonRef {
   /** 获取根元素 */
   getElement?: () => HTMLDivElement
 }
+
+export interface SkeletonAvatarProps {
+
+  animated?: boolean
+
+  className?: string
+  style?: CSSProperties
+}

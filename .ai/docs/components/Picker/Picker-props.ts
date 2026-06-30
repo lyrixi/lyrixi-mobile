@@ -161,3 +161,9 @@ export interface PickerMainRef {
   /** 更新视图 */
   update: () => void
 }
+
+export interface PickerItem {
+  id: string | number
+  name: string
+  [key: string]: unknown
+}

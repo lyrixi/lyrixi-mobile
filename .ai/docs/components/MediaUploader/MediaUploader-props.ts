@@ -151,3 +151,62 @@ export interface MediaUploaderRef {
   uploadList?: () => unknown
   [key: string]: unknown
 }
+
+export interface MediaUploaderCompatibleToggleListItem {
+  id: string
+  name: ReactNode
+}
+
+export interface MediaUploaderCompatibleToggleProps {
+
+  compatible?: boolean | string
+  compatiblePlatform?: string
+
+  onCompatiblePlatformChange?: (platform: string) => void
+}
+
+export interface MediaUploaderCommonProps {
+  list?: FileItem[]
+  maxUploadCount?: number
+  maxChooseCount?: number
+  mediaType?: string | string[]
+  ellipsis?: boolean
+  sourceType?: string[]
+  sizeType?: string[]
+  isSaveToAlbum?: number
+  fileImageCompress?: unknown
+  async?: boolean
+  reUpload?: boolean
+  allowClear?: boolean
+  allowChoose?: boolean
+  previewAllowChoose?: boolean
+  previewAllowClear?: boolean
+  style?: CSSProperties
+  className?: string
+  uploadPosition?: string
+  previewSafeArea?: boolean
+  navBarStyle?: CSSProperties
+  navBarClassName?: string
+  previewNavBarStyle?: CSSProperties
+  previewNavBarClassName?: string
+  previewModalStyle?: CSSProperties
+  previewModalClassName?: string
+  previewMaskStyle?: CSSProperties
+  previewMaskClassName?: string
+  uploadRender?: ReactNode
+  uploadingRender?: ReactNode
+  itemRender?: ReactNode
+  previewPortal?: HTMLElement
+  previewCancelPosition?: string
+  getItemExtra?: (options: {
+    platform: string
+  }) => Promise<Record<string, unknown> | false | null> | Record<string, unknown> | false | null
+  formatChoose?: (
+    params: Record<string, unknown>,
+    options: { platform: string }
+  ) => Promise<Record<string, unknown>> | Record<string, unknown>
+  onBeforeChoose?: () => Promise<boolean | null | undefined> | boolean | null | undefined
+  onUpload?: (item: FileItem) => Promise<FileItem>
+  onChange?: (list: FileItem[]) => void
+  onPreview?: (item: FileItem, index: number) => Promise<unknown>
+}
