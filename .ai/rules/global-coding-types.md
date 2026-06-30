@@ -23,6 +23,7 @@ alwaysApply: false
 ## 通用 Props 字段
 
 - `style?: CSSProperties` · `className?: string` · `children?: ReactNode`
+- 可选属性勿再加 `| undefined`
 
 ## forwardRef
 
