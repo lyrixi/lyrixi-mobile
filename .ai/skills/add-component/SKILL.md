@@ -10,7 +10,7 @@ description: >-
 
 通过**多轮问答**收集需求，**仅**从 [reference/catalog.json](reference/catalog.json) 与 `.ai/docs` 读取参考，按 `.ai/rules` 生成新组件包并同步 `.ai/docs`。
 
-**约束：** 遵守 `.ai/rules/`（`component-structure.md`、`types-structure.md` 等）。查阅已有组件/工具 API 时配合 [docs](../docs/SKILL.md) 技能。**禁止 Read `src/` 下任何组件、工具或资源实现**（业务安装后库在 `node_modules`，与本仓库 `src/` 无关）。本技能迭代时可改 `.ai/skills/add-component/`。
+**约束：** 遵守 `.ai/rules/`（`component-structure.md`、`global-coding-structure-types.md` 等）。查阅已有组件/工具 API 时配合 [docs](../docs/SKILL.md) 技能。**禁止 Read `src/` 下任何组件、工具或资源实现**（业务安装后库在 `node_modules`，与本仓库 `src/` 无关）。本技能迭代时可改 `.ai/skills/add-component/`。
 
 ## 何时启用
 
@@ -152,7 +152,7 @@ description: >-
 ## 生成步骤
 
 1. **读参考（仅 `.ai/docs`）** — Read catalog 指向的 props + rules + example；按需 Read `.ai/docs/components/{reference}/demos/` 下示例源码。
-2. **读规则** — 按形态重读 `component-structure.md`、`types-structure.md`、`doc-structure.md`。
+2. **读规则** — 按形态重读 `component-structure.md`、`global-coding-structure-types.md`、`doc-structure.md`。
 3. **写 `component-spec.json`** — 写入组件包根目录，结构见 [reference/component-spec.schema.json](reference/component-spec.schema.json)。
 4. **生成组件包** — 按 [reference/generation.md](reference/generation.md) 与 `component-structure`：
    - 以参考文档描述的目录形态为蓝本；
