@@ -8,10 +8,10 @@ import { MESSAGE_ID } from '../constants'
 import messageInstance from '../MessageInstance'
 import MessageModal from './MessageModal'
 
-import type { MessageOpenProps } from '../../types'
+import type { MessageComboProps } from '../../types'
 
 /** 打开消息对话框（全局同时仅存在一个，再次 open 会先关闭上一个） */
-export default async function open(props: MessageOpenProps): Promise<void> {
+export default async function open(props: MessageComboProps): Promise<void> {
   await close({ animated: false })
 
   const { portal: portalProp, ...modalProps } = props
