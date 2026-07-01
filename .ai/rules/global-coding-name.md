@@ -62,9 +62,9 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 
 - 业务值：`(主值, options?: { ... }) => void`
 - 仅附加信息：`(options: { ... }) => void`
-- DOM / React 事件：`(event: XxxEvent<Element>) => void`
+- DOM / React 事件：`(e: XxxEvent<Element>) => void`
 
-仅一个出参时可省略 `options`；`onClick`、`onFocus`、`onBlur` 等事件回调主出参统一用 `event`（禁止 `e`、`evt`）。
+仅一个出参时可省略 `options`；`onClick`、`onFocus`、`onBlur` 等事件回调主出参统一用 `e`（禁止 `evt` 等其它简写）。
 
 **第一出参（主值）形参名**：按业务语义自行抉择，能直接表达「变了什么」即可（禁止 `v` 等无意义简写）。
 
@@ -76,7 +76,7 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 | 布尔态变更             | `checked`      | `onChange?: (checked: boolean) => void`       |
 | 索引 / 序号变更        | `index`        | `onChange?: (index: number \| null) => void`  |
 | 成功 / 失败 / 异步结果 | `result`       | `onSuccess?: (result: XxxResult) => void`     |
-| DOM / React 事件       | `event`        | `onClick?: (event: MouseEvent<HTMLDivElement>) => void` |
+| DOM / React 事件       | `e`            | `onClick?: (e: MouseEvent<HTMLDivElement>) => void` |
 | 特定业务字面量         | 语义名         | `onChange?: (base64: string \| null) => void` |
 
 - 类型名：`XxxItem`、`XxxResult` 等（如 `TransferItem`、`ListItem`、`BridgeSuccessResult`）
@@ -90,7 +90,7 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 onChange?: (item: ListItem | ListItem[] | null, options?: { action?: string; checkedItem: ListItem }) => void
 onChange?: (list: FileItem[], options?: { action?: string }) => void
 onLoad?: (options: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
-onClick?: (event: MouseEvent<HTMLDivElement>) => void
+onClick?: (e: MouseEvent<HTMLDivElement>) => void
 ```
 
 **渲染 / 格式化类回调**（`itemRender`、`formatViewItem`、`formatViewList`）：
