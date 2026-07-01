@@ -1,13 +1,12 @@
 ---
 description: 组件样式目录与 class 命名规范
-globs:
-  - 'src/components/**/*.{ts,tsx}'
+globs: 'src/components/**/*.{tsx,less}'
 alwaysApply: false
 ---
 
 # 组件样式规范
 
-适用范围：**库内实现**，即 `src/components/` 下的组件代码。
+适用范围：**库内实现**，即 `src/components/`、`src/utils/` 下的组件与工具代码。
 
 **不适用于** `**/demos/**`、`src/examples/**`、`src/pages/**`、`src/entry/**` —— 这些属于业务/演示侧，样式见 [`page-coding-styles.md`](./page-coding-styles.md)。包目录见 [`component-structure.md`](./component-structure.md)。
 
