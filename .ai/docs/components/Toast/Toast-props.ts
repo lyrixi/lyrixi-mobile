@@ -46,3 +46,9 @@ export interface ToastComponents {
   /** 隐藏 Toast */
   close: (options?: ToastCloseOptions) => void
 }
+
+export interface ToastCloseParams {
+  onClose?: () => void
+  /** 是否播放关闭动画，默认 true */
+  animated?: boolean
+}

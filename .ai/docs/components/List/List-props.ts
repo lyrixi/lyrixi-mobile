@@ -155,3 +155,8 @@ export interface ListViewFormatterOptions {
   formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
   formatViewList?: (list: ListItem[]) => ListViewItem[]
 }
+
+export interface ListViewFormatterParams {
+  formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
+  formatViewList?: (list: ListItem[]) => ListViewItem[]
+}

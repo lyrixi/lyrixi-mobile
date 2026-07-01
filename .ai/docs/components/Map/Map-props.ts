@@ -468,3 +468,8 @@ export interface Map {
     getCenter(): { lat: number; lng: number }
     on(type: string, fn: (...args: unknown[]) => void): this
   }
+
+export interface MapCenterMarkerAddParams {
+  onClick?: ((info: MapPoint & { setIcon?: unknown }) => void) | null
+  icon?: L.Icon | L.DivIcon | null
+}

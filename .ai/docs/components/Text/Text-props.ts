@@ -52,3 +52,8 @@ export interface TextGetDisplayValueOptions {
 
 /** Text.getDisplayValue 的签名 */
 export type TextGetDisplayValue = (value: unknown, options?: TextGetDisplayValueOptions) => string
+
+export interface TextGetDisplayValueParams {
+  maxCount?: number
+  precision?: number
+}

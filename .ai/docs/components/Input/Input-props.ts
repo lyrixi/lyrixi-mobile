@@ -590,3 +590,12 @@ export interface InputTextareaProps {}
 export interface InputTextareaRef {}
 
 export interface InputUrlRef {}
+
+export interface InputTextCorrectValueParams {
+  type?: string
+  min?: number
+  max?: number
+  maxLength?: number
+  trim?: boolean
+  precision?: number
+}

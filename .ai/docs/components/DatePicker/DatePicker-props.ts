@@ -543,3 +543,8 @@ export interface DatePickerGetTitleOptions {
   type?: DatePickerPickerType | string
   separator?: string
 }
+
+export interface DatePickerGetTitleParams {
+  type?: DatePickerPickerType | string
+  separator?: string
+}

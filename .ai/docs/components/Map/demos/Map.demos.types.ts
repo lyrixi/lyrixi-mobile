@@ -3,11 +3,11 @@ import type { MapPoint } from '../types/Map.coordsToWgs84.types'
 
 /** Markers onClick 示例里用到的 payload（演示 setIcon） */
 export interface DemoMarkerClickPayload {
-  setIcon: (icon: L.Icon | L.DivIcon, opts?: { multiple?: boolean }) => void
+  setIcon: (icon: L.Icon | L.DivIcon, options?: { multiple?: boolean }) => void
 }
 
 /** demos/getPoints 随机点生成参数 */
-export interface GetPointsOptions {
+export interface GetPointsParams {
   center?: { latitude?: number; longitude?: number }
   radius?: number
   count?: number

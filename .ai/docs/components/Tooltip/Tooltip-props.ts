@@ -137,3 +137,19 @@ export interface TooltipGetRelativePositionParams {
   parentElement: HTMLElement
   animation: string
 }
+
+export interface TooltipUpdatePositionParams {
+  referenceElement?: HTMLElement | null
+  parentElement?: HTMLElement | null
+  animation?: string
+  bottom?: string | number | null
+  top?: string | number | null
+  left?: string | number | null
+  right?: string | number | null
+  offset?: {
+    top?: number
+    bottom?: number
+    left?: number
+    right?: number
+  }
+}

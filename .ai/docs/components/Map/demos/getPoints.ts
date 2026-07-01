@@ -1,4 +1,4 @@
-import type { DemoRandomMapPoint, GetPointsOptions } from './Map.demos.types'
+import type { DemoRandomMapPoint, GetPointsParams } from './Map.demos.types'
 
 // 生成随机点
 /*
@@ -10,7 +10,8 @@ points = getPoints({
   count: 100
 })
 */
-function getPoints({ center, radius = 1000, count = 110 }: GetPointsOptions = {}) {
+function getPoints(params: GetPointsParams = {}) {
+  const { center, radius = 1000, count = 110 } = params
   let latitude = center?.latitude || 31.990374883871525
   let longitude = center?.longitude || 118.73769931504451
 

@@ -109,3 +109,8 @@ export interface ChatSpaceDatesResult {
   isOverTime: boolean
   dates: Date[]
 }
+
+export interface ChatViewFormatterParams {
+  formatViewItem?: (item: ChatItem, options: { index: number }) => ChatItem
+  formatViewList?: (list: ChatViewItem[]) => ChatViewItem[]
+}

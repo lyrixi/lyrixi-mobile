@@ -9,6 +9,7 @@
 | Demo | 说明 |
 |------|------|
 | [demos/Loading.tsx](./demos/Loading.tsx) | 主示例 |
+| [demos/LoadingApi.tsx](./demos/LoadingApi.tsx) | Loading.Api 子组件示例 |
 | [demos/LoadingBallWave.tsx](./demos/LoadingBallWave.tsx) | Loading.BallWave 子组件示例 |
 | [demos/LoadingClose.tsx](./demos/LoadingClose.tsx) | Loading.Close 子组件示例 |
 | [demos/LoadingExists.tsx](./demos/LoadingExists.tsx) | Loading.Exists 子组件示例 |
