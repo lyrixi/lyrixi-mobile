@@ -6,7 +6,7 @@ import type { CSSProperties } from 'react'
 
 export type ToastPlacement = 'top' | 'middle' | 'bottom'
 
-export interface ToastOpenProps {
+export interface ToastProps {
   /** 显示时长（ms），默认 `2000` */
   duration?: number
   /** 遮罩是否可点击穿透 */
@@ -36,16 +36,13 @@ export interface ToastCloseOptions {
   onClose?: () => void
 }
 
-/** Toast 默认属性 */
-export type ToastDefaultProps = ToastOpenProps
-
 // ---------- Toast module types ----------
 
 export interface ToastComponents {
   /** 默认属性 */
-  defaultProps?: ToastOpenProps
+  defaultProps?: ToastProps
   /** 显示 Toast */
-  open: (this: { defaultProps?: ToastOpenProps } | void, props?: ToastOpenProps) => HTMLElement
+  open: (this: { defaultProps?: ToastProps } | void, props?: ToastProps) => HTMLElement
   /** 隐藏 Toast */
   close: (options?: ToastCloseOptions) => void
 }

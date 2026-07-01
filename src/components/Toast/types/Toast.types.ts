@@ -25,5 +25,3 @@ export interface ToastProps {
   onOpen?: () => void
   onClose?: () => void
 }
-
-export type ToastOpenProps = ToastProps

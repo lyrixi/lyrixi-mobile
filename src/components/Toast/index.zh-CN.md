@@ -98,4 +98,4 @@ Toast 的静态默认属性。
 
 ### 类型
 
-`ToastOpenProps`
+`ToastProps`

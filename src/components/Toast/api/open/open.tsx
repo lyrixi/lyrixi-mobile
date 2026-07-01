@@ -1,5 +1,5 @@
 import React from 'react'
-import type { ToastOpenProps } from '../../types'
+import type { ToastProps } from '../../types'
 
 import close from '../close'
 import { TOAST_ID } from '../constants'
@@ -12,8 +12,8 @@ import { createRoot } from '../../../../utils/ReactDOMClientCompat'
 
 /** 显示 Toast（全局同时仅存在一个，再次 open 会先关闭上一个） */
 function open(
-  this: { defaultProps?: ToastOpenProps } | void,
-  props?: ToastOpenProps
+  this: { defaultProps?: ToastProps } | void,
+  props?: ToastProps
 ): HTMLDivElement {
   void close({ animated: false })
 
