@@ -1,17 +1,19 @@
 import React from 'react'
-
-import { DEFAULT_LOADING_ID } from '../constants'
-import { getLoadingInstance, setLoadingInstance } from '../LoadingInstance'
-
 import type { LoadingOpenProps } from '../../types'
+
+import close from '../close'
+import { DEFAULT_LOADING_ID } from '../constants'
+import { setLoadingInstance } from '../LoadingInstance'
 
 // 内库使用-start
 import { createRoot } from '../../../../utils/ReactDOMClientCompat'
 import Loading from '../../Loading'
 // 内库使用-end
 
-/** 显示 Loading（再次 open 会更新当前实例） */
-export default function open(props?: LoadingOpenProps): HTMLDivElement {
+/** 显示 Loading（全局同时仅存在一个，再次 open 会先关闭上一个） */
+function open(props?: LoadingOpenProps): HTMLDivElement {
+  close()
+
   const { portal: portalProp, className, style, ...rest } = props || {}
   const id = DEFAULT_LOADING_ID
   const portal = portalProp || document.getElementById('root') || document.body
@@ -22,12 +24,6 @@ export default function open(props?: LoadingOpenProps): HTMLDivElement {
     maskStyle: rest.maskStyle,
     modalClassName: className,
     modalStyle: style
-  }
-
-  const existing = getLoadingInstance(id)
-  if (existing) {
-    existing.root.render(<Loading {...loadingProps} />)
-    return existing.rootElement
   }
 
   const rootElement = document.createElement('div')
@@ -41,3 +37,5 @@ export default function open(props?: LoadingOpenProps): HTMLDivElement {
 
   return rootElement
 }
+
+export default open
