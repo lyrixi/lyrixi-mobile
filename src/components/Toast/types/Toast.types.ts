@@ -26,6 +26,4 @@ export interface ToastProps {
   onClose?: () => void
 }
 
-export interface ToastOpenProps extends ToastProps {
-  id?: string
-}
+export type ToastOpenProps = ToastProps

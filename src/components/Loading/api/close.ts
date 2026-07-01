@@ -1,9 +1,20 @@
-// 移除Loading
-export default function closeLoading({ id }: { id?: string } = {}): void {
-  const loadingId = id || '__lyrixi_loading_mask__'
-  const mask = document.getElementById(loadingId)
+import { DEFAULT_LOADING_ID } from './constants'
+import { deleteLoadingInstance, getLoadingInstance } from './LoadingInstance'
 
-  if (mask && mask.parentNode) {
+/** 关闭 Loading.open 实例 */
+export default function close({ id }: { id?: string } = {}): void {
+  const loadingId = id || DEFAULT_LOADING_ID
+  const instance = getLoadingInstance(loadingId)
+
+  if (instance) {
+    instance.root.unmount()
+    instance.rootElement.remove()
+    deleteLoadingInstance(loadingId)
+    return
+  }
+
+  const mask = document.getElementById(loadingId)
+  if (mask?.parentNode) {
     mask.parentNode.removeChild(mask)
   }
 }

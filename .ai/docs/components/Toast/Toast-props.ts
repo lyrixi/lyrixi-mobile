@@ -13,8 +13,6 @@ export interface ToastOpenProps {
   maskClickable?: boolean
   /** 弹出位置，`top` 上、`middle` 中、`bottom` 下，默认 `middle` */
   placement?: ToastPlacement
-  /** 唯一标识 */
-  id?: string
   /** 内容文本 */
   content?: string
   /** 遮罩类名 */
