@@ -59,7 +59,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingExists.tsx"></code>
+见 Loading.open
 
 ### API
 
