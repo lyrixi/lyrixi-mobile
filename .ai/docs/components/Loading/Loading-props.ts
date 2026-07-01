@@ -23,21 +23,6 @@ export interface LoadingProps {
   children?: ReactNode
 }
 
-export interface LoadingOpenProps {
-  /** 提示内容 */
-  content?: string
-  /** 遮罩样式 */
-  maskStyle?: Record<string, string>
-  /** 遮罩类名 */
-  maskClassName?: string
-  /** 自定义类名 */
-  className?: string
-  /** 自定义样式 */
-  style?: Record<string, string>
-  /** 挂载节点 */
-  portal?: HTMLElement | null
-}
-
 export interface LoadingRef {
   /** 根元素 */
   element: HTMLDivElement | null
@@ -100,7 +85,7 @@ export interface LoadingBallWaveRef {
 }
 
 /** Loading.open 静态方法参数 */
-export type LoadingOpen = (props?: LoadingOpenProps) => string | void
+export type LoadingOpen = (props?: LoadingProps) => HTMLDivElement
 
 /** Loading.close 静态方法 */
 export type LoadingClose = () => void

@@ -25,14 +25,7 @@ toc: content
 
 #### 参数
 
-| 参数          | 说明       | 类型            | 默认值 |
-| ------------- | ---------- | --------------- | ------ |
-| portal        | 挂载节点   | `HTMLElement`   | -      |
-| maskClassName | 遮罩类名   | `string`        | -      |
-| maskStyle     | 遮罩样式   | `CSSProperties` | -      |
-| className     | 内容类名   | `string`        | -      |
-| style         | 内容样式   | `CSSProperties` | -      |
-| content       | 提示内容   | `string`        | -      |
+同 [Loading](#loading) 组件属性。
 
 ##### 返回值
 

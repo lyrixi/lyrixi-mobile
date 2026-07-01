@@ -10,9 +10,9 @@ export default function LoadingOpenDemo() {
     // }
 
     let loading = Loading.open({
-      style: { backgroundColor: 'blue' },
+      modalStyle: { backgroundColor: 'blue' },
       maskStyle: { backgroundColor: 'red' },
-      className: 'abc',
+      modalClassName: 'abc',
       content: '自定义加载'
     })
     console.log(loading)

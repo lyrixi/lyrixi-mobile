@@ -32,8 +32,8 @@ export default function LoadingApiDemo() {
   const handleOpenCustomStyle = () => {
     Loading.open({
       content: 'Custom style',
-      className: 'demo-loading-custom',
-      style: { backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff', borderRadius: '8px' },
+      modalClassName: 'demo-loading-custom',
+      modalStyle: { backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff', borderRadius: '8px' },
       maskClassName: 'demo-loading-mask',
       maskStyle: { backgroundColor: 'rgba(0, 0, 0, 0.6)' }
     })
