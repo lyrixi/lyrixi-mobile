@@ -58,37 +58,45 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 
 回调被调用时，组件 / 工具向外传递的值。适用于 `onChange`、`onSelect`、`onLoad`、`onSuccess`、`onError`、`onCancel`，以及 `itemRender`、`formatViewItem` 等函数类型 props 的形参。
 
-**通用签名**：`(newValue, data?: { ... }) => void`；仅一个出参时可省略 `data`；无主值、仅附加信息时单独用 `data`。
+**通用签名**（按场景三选一）：
 
-**第一出参（主值）形参名**（禁止 `value`、`v`、`val` 等简写）：
+- 业务值：`(主值, options?: { ... }) => void`
+- 仅附加信息：`(options: { ... }) => void`
+- DOM / React 事件：`(event: XxxEvent<Element>) => void`
 
-| 场景                   | 形参名     | 示例                                            |
-| ---------------------- | ---------- | ----------------------------------------------- |
-| 受控值 / 选中值变更    | `newValue` | `onChange?: (newValue: string) => void`         |
-| 列表集合变更           | `newList`  | `onChange?: (newList: FileItem[]) => void`      |
-| 单条记录选中           | `newItem`  | `onChange?: (newItem: TabBarItem) => void`      |
-| 布尔态变更             | `checked`  | `onChange?: (newChecked: boolean) => void`      |
-| 索引 / 序号变更        | `newValue` | `onChange?: (newValue: number \| null) => void` |
-| 成功 / 失败 / 异步结果 | `result`   | `onSuccess?: (newResult: XxxResult) => void`    |
-| 特定业务字面量         | 语义名     | `onChange?: (base64: string \| null) => void`   |
+仅一个出参时可省略 `options`；`onClick`、`onFocus`、`onBlur` 等事件回调主出参统一用 `event`（禁止 `e`、`evt`）。
+
+**第一出参（主值）形参名**：按业务语义自行抉择，能直接表达「变了什么」即可（禁止 `v` 等无意义简写）。
+
+| 场景                   | 形参名（示例） | 示例                                          |
+| ---------------------- | -------------- | --------------------------------------------- |
+| 受控值 / 选中值变更    | `value`        | `onChange?: (value: string) => void`          |
+| 列表集合变更           | `list`         | `onChange?: (list: FileItem[]) => void`       |
+| 单条记录选中           | `item`         | `onChange?: (item: TabBarItem) => void`       |
+| 布尔态变更             | `checked`      | `onChange?: (checked: boolean) => void`       |
+| 索引 / 序号变更        | `index`        | `onChange?: (index: number \| null) => void`  |
+| 成功 / 失败 / 异步结果 | `result`       | `onSuccess?: (result: XxxResult) => void`     |
+| DOM / React 事件       | `event`        | `onClick?: (event: MouseEvent<HTMLDivElement>) => void` |
+| 特定业务字面量         | 语义名         | `onChange?: (base64: string \| null) => void` |
 
 - 类型名：`XxxItem`、`XxxResult` 等（如 `TransferItem`、`ListItem`、`BridgeSuccessResult`）
 
 **第二出参（混合 / 附加信息）**：
 
-- 形参名统一 `data`（禁止 `options`、`opts`）
-- 类型为匿名对象或 `XxxChangeData` 等；字段保持语义，如 `{ action?: string; checkedItem: ListItem }`
+- 形参名统一 `options`（禁止 `opts`）
+- 类型为匿名对象或 `XxxChangeOptions` 等；字段保持语义，如 `{ action?: string; checkedItem: ListItem }`
 
 ```ts
-onChange?: (newValue: ListItem | ListItem[] | null, data?: { action?: string; checkedItem: ListItem }) => void
-onChange?: (newList: FileItem[], data?: { action?: string }) => void
-onLoad?: (data: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+onChange?: (item: ListItem | ListItem[] | null, options?: { action?: string; checkedItem: ListItem }) => void
+onChange?: (list: FileItem[], options?: { action?: string }) => void
+onLoad?: (options: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+onClick?: (event: MouseEvent<HTMLDivElement>) => void
 ```
 
 **渲染 / 格式化类回调**（`itemRender`、`formatViewItem`、`formatViewList`）：
 
 - 当前行 / 当前列表：形参 `item` 或 `list`（传入待渲染数据，非向外传出）
-- 索引、勾选态等附加信息：形参 `data`，如 `(item: XxxItem, data: { index: number; checked: boolean }) => ReactNode`
+- 索引、勾选态等附加信息：形参 `options`，如 `(item: XxxItem, options: { index: number; checked: boolean }) => ReactNode`
 
 ### 例外
 
