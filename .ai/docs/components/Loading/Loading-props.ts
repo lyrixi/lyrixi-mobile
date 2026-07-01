@@ -24,8 +24,6 @@ export interface LoadingProps {
 }
 
 export interface LoadingOpenProps {
-  /** 唯一 ID */
-  id?: string
   /** 提示内容 */
   content?: string
   /** 遮罩样式 */
@@ -107,7 +105,7 @@ export interface LoadingBallWaveRef {
 export type LoadingOpen = (props?: LoadingOpenProps) => string | void
 
 /** Loading.close 静态方法 */
-export type LoadingClose = (id?: string) => void
+export type LoadingClose = () => void
 
 /** Loading.exists 静态方法 */
-export type LoadingExists = (id?: string) => boolean
+export type LoadingExists = () => boolean

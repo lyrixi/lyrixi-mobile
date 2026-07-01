@@ -1,6 +1,5 @@
 export interface LoadingOpenProps {
   // Value & Display Value
-  id?: string
   content?: string
   // Style
   maskClassName?: string

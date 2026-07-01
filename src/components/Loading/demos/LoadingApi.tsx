@@ -2,14 +2,22 @@ import React from 'react'
 import { Page, Loading, Button, Toast } from 'lyrixi-mobile'
 
 export default function LoadingApiDemo() {
+  const closeAfter1s = () => {
+    setTimeout(() => {
+      Loading.close()
+    }, 1000)
+  }
+
   const handleOpenDefault = () => {
     Loading.open()
+    closeAfter1s()
   }
 
   const handleOpenContent = () => {
     Loading.open({
       content: 'Loading...'
     })
+    closeAfter1s()
   }
 
   const handleOpenCustomStyle = () => {
@@ -20,6 +28,7 @@ export default function LoadingApiDemo() {
       maskClassName: 'demo-loading-mask',
       maskStyle: { backgroundColor: 'rgba(0, 0, 0, 0.6)' }
     })
+    closeAfter1s()
   }
 
   const handleOpenOnOpen = () => {
@@ -29,6 +38,7 @@ export default function LoadingApiDemo() {
         console.log('Loading opened')
       }
     })
+    closeAfter1s()
   }
 
   const handleClose = () => {
@@ -37,15 +47,14 @@ export default function LoadingApiDemo() {
 
   const handleOpenLongThenClose = () => {
     Loading.open({ content: 'Will close in 1s' })
-    setTimeout(() => {
-      Loading.close()
-    }, 1000)
+    closeAfter1s()
   }
 
   const handleOpenReplace = () => {
     Loading.open({ content: 'First Loading' })
     setTimeout(() => {
       Loading.open({ content: 'Updated Loading' })
+      closeAfter1s()
     }, 2000)
   }
 

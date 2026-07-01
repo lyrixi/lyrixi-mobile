@@ -28,7 +28,6 @@ toc: content
 | 参数          | 说明       | 类型            | 默认值 |
 | ------------- | ---------- | --------------- | ------ |
 | portal        | 挂载节点   | `HTMLElement`   | -      |
-| id            | Loading ID | `string`        | -      |
 | maskClassName | 遮罩类名   | `string`        | -      |
 | maskStyle     | 遮罩样式   | `CSSProperties` | -      |
 | className     | 内容类名   | `string`        | -      |
@@ -54,9 +53,7 @@ toc: content
 
 #### 参数
 
-| 参数 | 说明       | 类型     | 默认值 |
-| ---- | ---------- | -------- | ------ |
-| id   | Loading ID | `string` | -      |
+无参数。
 
 #### 返回值
 
@@ -76,9 +73,7 @@ toc: content
 
 #### 参数
 
-| 参数 | 说明       | 类型     | 默认值 |
-| ---- | ---------- | -------- | ------ |
-| id   | Loading ID | `string` | -      |
+无参数。
 
 #### 返回值
 

@@ -10,7 +10,7 @@ import { createRoot } from '../../../../utils/ReactDOMClientCompat'
 import Loading from '../../Loading'
 // 内库使用-end
 
-/** 显示 Loading（同一 id 再次 open 会更新当前实例） */
+/** 显示 Loading（再次 open 会更新当前实例） */
 export default function open(props?: LoadingOpenProps): HTMLDivElement {
   const { portal: portalProp, className, style, onOpen, ...rest } = props || {}
   const id = DEFAULT_LOADING_ID

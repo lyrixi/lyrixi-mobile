@@ -272,7 +272,6 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
     function handleDrill({ children: _children, ...item }: CascaderItem) {
       // 防止用户快速点击多次触发
       Loading.open({
-        id: '__lyrixi_loading_cascader_drill_mask__',
         content: 'Get children...',
         style: {
           opacity: '0'
@@ -299,7 +298,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
 
       // 防止用户快速点击多次触发
       setTimeout(() => {
-        Loading.close({ id: '__lyrixi_loading_cascader_drill_mask__' })
+        Loading.close()
       }, 300)
     }
 
