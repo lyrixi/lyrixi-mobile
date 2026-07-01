@@ -1,1 +1,3 @@
-export { default } from './Stamp'
+import Stamp from './Stamp'
+
+export default Stamp

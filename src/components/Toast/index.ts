@@ -3,6 +3,9 @@ import close from './api/close'
 
 import type { ToastComponents } from './types/Toast.modules.types'
 
-const Toast: ToastComponents = { open, close }
+const Toast = {} as ToastComponents
+
+Toast.open = open
+Toast.close = close
 
 export default Toast

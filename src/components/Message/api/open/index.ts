@@ -1,1 +1,3 @@
-export { default } from './open'
+import open from './open'
+
+export default open
