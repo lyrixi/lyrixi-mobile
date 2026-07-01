@@ -1,18 +1,50 @@
-import type { ToastCloseExtendedHTMLElement, ToastCloseParams } from '../types'
+import { TOAST_ANIMATION_DURATION_CLOSE } from './constants'
+import toastInstance from './ToastInstance'
 
-// 移除Toast
-function close(params: ToastCloseParams = {}) {
-  const { onClose } = params
-  let toastId = '__lyrixi_toast_el__'
-  let mask = document.getElementById(toastId) as ToastCloseExtendedHTMLElement | null
+import type { ToastCloseParams } from '../types'
 
-  if (mask) {
-    if (mask.timeout) window.clearTimeout(mask.timeout)
-    mask.timeout = setTimeout(() => {
-      mask?.parentNode?.removeChild?.(mask)
-      if (onClose) onClose()
-    }, 300)
-  }
+let closeGeneration = 0
+
+function delay(ms: number) {
+  return new Promise<void>((resolve) => {
+    window.setTimeout(resolve, ms)
+  })
 }
 
-export default close
+function playCloseAnimation(rootElement: HTMLDivElement) {
+  rootElement.querySelector('.lyrixi-mask')?.classList.remove('lyrixi-active')
+  rootElement.querySelector('.lyrixi-toast')?.classList.remove('lyrixi-active')
+}
+
+function destroy() {
+  toastInstance.root?.unmount()
+  toastInstance.root = null
+  toastInstance.rootElement?.remove()
+  toastInstance.rootElement = null
+}
+
+/** 关闭当前 Toast.open 实例（全局仅允许一个） */
+export default async function close(params?: ToastCloseParams): Promise<void> {
+  const { onClose, animated = true } = params ?? {}
+
+  if (!toastInstance.root || !toastInstance.rootElement) {
+    return
+  }
+
+  const currentGeneration = ++closeGeneration
+  const root = toastInstance.root
+  const rootElement = toastInstance.rootElement
+
+  if (animated) {
+    playCloseAnimation(rootElement)
+    await delay(TOAST_ANIMATION_DURATION_CLOSE)
+    if (currentGeneration !== closeGeneration) {
+      return
+    }
+  }
+
+  if (toastInstance.root === root && toastInstance.rootElement === rootElement) {
+    destroy()
+    onClose?.()
+  }
+}

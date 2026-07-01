@@ -2,24 +2,17 @@ import type { CSSProperties } from 'react'
 
 export interface ToastCloseParams {
   onClose?: () => void
-}
-
-export type ToastOpenExtendedHTMLElement = HTMLElement & {
-  showTimeout?: ReturnType<typeof setTimeout>
-}
-
-export type ToastCloseExtendedHTMLElement = HTMLElement & {
-  timeout?: ReturnType<typeof setTimeout>
+  /** 是否播放关闭动画，默认 true */
+  animated?: boolean
 }
 
 export type ToastPlacement = 'top' | 'middle' | 'bottom'
 
-export interface ToastOpenProps {
+export interface ToastProps {
   // Value & Display Value
   duration?: number
   maskClickable?: boolean
   placement?: ToastPlacement
-  id?: string
   content?: string
   // Style
   maskClassName?: string
@@ -31,4 +24,8 @@ export interface ToastOpenProps {
   // Events
   onOpen?: () => void
   onClose?: () => void
+}
+
+export interface ToastOpenProps extends ToastProps {
+  id?: string
 }
