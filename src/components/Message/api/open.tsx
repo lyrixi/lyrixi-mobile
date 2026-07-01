@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 // 内库使用-start
-import { createRoot } from '../../../../utils/ReactDOMClientCompat'
+import { createRoot } from '../../../utils/ReactDOMClientCompat'
 // 内库使用-end
 
-import close from '../close'
-import { MESSAGE_ENTRANCE_ACTIVE_DELAY, MESSAGE_ID } from '../constants'
-import messageInstance from '../MessageInstance'
-import MessageModal from '../../Modal'
+import close from './close'
+import { MESSAGE_ENTRANCE_ACTIVE_DELAY, MESSAGE_ID } from './constants'
+import messageInstance from './MessageInstance'
+import MessageModal from '../Modal'
 
-import type { MessageComboProps, MessageModalProps } from '../../types'
+import type { MessageComboProps, MessageModalProps } from '../types'
 
 function OpenMessage(props: Omit<MessageComboProps, 'portal'>) {
   const { className, style, onOpen, open: comboOpen, ...modalProps } = props
