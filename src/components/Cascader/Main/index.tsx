@@ -273,7 +273,7 @@ const CascaderMain = forwardRef<CascaderMainRef, CascaderMainProps>(
       // 防止用户快速点击多次触发
       Loading.open({
         content: 'Get children...',
-        style: {
+        modalStyle: {
           opacity: '0'
         }
       })

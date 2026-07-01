@@ -27,7 +27,7 @@ function showLoading(
     itemElement.classList.add('lyrixi-uploading')
   }
 
-  Loading.open(content ? { content } : { className: 'lyrixi-hide' })
+  Loading.open(content ? { content } : { modalClassName: 'lyrixi-hide' })
 }
 
 export default showLoading
