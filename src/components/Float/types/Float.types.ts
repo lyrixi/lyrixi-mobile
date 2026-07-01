@@ -21,7 +21,7 @@ export interface SnapToEdgeParams {
 
 export interface AssistiveTouchParams {
   gap?: GapOption
-  onDragEnd?: (data: Record<string, unknown>) => void
+  onDragEnd?: (options: Record<string, unknown>) => void
 }
 
 export interface FloatRef {
@@ -42,7 +42,7 @@ export interface FloatProps {
   portal?: Element | DocumentFragment
   children?: ReactNode
   // Events
-  onDragEnd?: (data: { position: SnapPosition }) => void
+  onDragEnd?: (options: { position: SnapPosition }) => void
 }
 
 /** 悬浮菜单树节点（getItemById） */

@@ -32,7 +32,7 @@ export interface InputTextRef {
   inputElement: InputTextElement | null
   getElement: () => HTMLDivElement | null
   getInputElement: () => InputTextElement | null
-  correctValue: (val: string) => string
+  correctValue: (value: string) => string
   focus: () => void
   blur: () => void
 }

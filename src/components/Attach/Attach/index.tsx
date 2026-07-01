@@ -190,7 +190,7 @@ function Attach(
   }
 
   // 重新上传
-  async function handleReUpload(item: FileItem, index: number) {
+  async function handleReUpload(item: FileItem, { index }: { index: number }) {
     let newList = [...list]
     // 开始上传
     _showLoading({ index })
@@ -305,10 +305,10 @@ function Attach(
   })
 
   // 点击预览
-  async function handlePreview(item: FileItem, index: number) {
+  async function handlePreview(item: FileItem, { index }: { index: number }) {
     // 自定义预览
     if (typeof onPreview === 'function') {
-      let goOn = await onPreview(item, index)
+      let goOn = await onPreview(item, { index })
       if (goOn === false) return
       previewTypeRef.current = goOn
     }

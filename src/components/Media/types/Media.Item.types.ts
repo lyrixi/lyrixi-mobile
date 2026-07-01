@@ -15,7 +15,7 @@ export interface MediaItemProps {
   uploadingRender?: MediaUploadingProps['uploadingRender']
   itemRender?: (item: FileItem) => ReactNode
   // Events
-  onDelete?: (item: FileItem, index: number) => void
-  onReUpload?: (item: FileItem, index: number) => void
-  onPreview?: (item: FileItem, index: number) => void
+  onDelete?: (item: FileItem, options: { index: number }) => void
+  onReUpload?: (item: FileItem, options: { index: number }) => void
+  onPreview?: (item: FileItem, options: { index: number }) => void
 }

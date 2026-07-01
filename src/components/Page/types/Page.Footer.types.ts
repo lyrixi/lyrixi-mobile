@@ -11,7 +11,7 @@ export interface PageFooterProps {
   // Elements
   children?: ReactNode
   // Events
-  onChange?: (newValue: unknown) => void
+  onChange?: (value: unknown) => void
 }
 
 export interface PageFooterRef {

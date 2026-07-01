@@ -21,7 +21,7 @@ export interface LocationMainProps {
   getLocation?: MapContainerProps['getLocation']
   getAddress?: MapContainerProps['getAddress']
   // Events
-  onChange?: (newValue: LocationValue | null) => void
+  onChange?: (value: LocationValue | null) => void
   onOk?: ((value: LocationValue | null) => void) | null
   onClear?: (() => void) | null
 }

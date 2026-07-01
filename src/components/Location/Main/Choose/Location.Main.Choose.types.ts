@@ -15,7 +15,7 @@ export interface LocationMainChooseProps {
   loadingNode?: MapLoaderProps['loadingNode']
   loadingRender?: MapLoaderProps['loadingRender']
   // Events
-  onChange?: (newValue: MapChooseValue | null) => void
+  onChange?: (value: MapChooseValue | null) => void
   onSuccess?: MapLoaderProps['onSuccess']
   onError?: MapLoaderProps['onError']
 }

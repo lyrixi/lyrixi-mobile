@@ -17,6 +17,6 @@ export interface MediaListMainProps {
   itemRender?: (item: FileItem) => ReactNode
   // Events
   onChange?: (list: FileItem[], options: { action: string }) => void
-  onReUpload?: (item: FileItem, index: number) => void
-  onPreview?: (item: FileItem, index: number) => void
+  onReUpload?: (item: FileItem, options: { index: number }) => void
+  onPreview?: (item: FileItem, options: { index: number }) => void
 }

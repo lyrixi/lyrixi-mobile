@@ -29,14 +29,14 @@ export interface AttachProps {
   children?: ReactNode
   uploadRender?: (options: { uploadingType: string }) => ReactNode
   uploadingRender?: (options: { uploadingType: string }) => ReactNode
-  itemRender?: (item: FileItem, index: number) => ReactNode
+  itemRender?: (item: FileItem, options: { index: number }) => ReactNode
   // Events
   onBeforeChoose?: (e: SyntheticEvent) => boolean | void | Promise<boolean | void>
   onChoose?: (e?: SyntheticEvent) => unknown
   onFileChange?: (fileItems: FileItem[]) => FileItem[] | Promise<FileItem[] | unknown>
   onUpload?: (item: FileItem) => unknown
   onChange?: (list: FileItem[], options?: { action?: string }) => void
-  onPreview?: (item: FileItem, index: number) => unknown
+  onPreview?: (item: FileItem, options: { index: number }) => unknown
 }
 
 export interface AttachRef {
@@ -45,7 +45,7 @@ export interface AttachRef {
   updateStatus: () => void
   chooseFile: (e: SyntheticEvent) => Promise<unknown>
   choose: (e: SyntheticEvent) => Promise<unknown>
-  uploadList: (newList?: FileItem[] | null, options?: { action?: string }) => Promise<FileItem[]>
+  uploadList: (list?: FileItem[] | null, options?: { action?: string }) => Promise<FileItem[]>
   showLoading: (options?: { content?: string; index?: number }) => void
   hideLoading: (options?: { failIndexes?: number[] }) => void
 }

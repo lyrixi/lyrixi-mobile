@@ -12,9 +12,9 @@ export interface AttachItemProps {
   index: number
   // Elements
   uploadingRender?: (options: { uploadingType: string }) => ReactNode
-  itemRender?: (item: FileItem, index: number) => ReactNode
+  itemRender?: (item: FileItem, options: { index: number }) => ReactNode
   // Events
-  onDelete: ((item: FileItem, index: number) => void) | null
-  onReUpload?: (item: FileItem, index: number) => void
+  onDelete: ((item: FileItem, options: { index: number }) => void) | null
+  onReUpload?: (item: FileItem, options: { index: number }) => void
   onPreview?: AttachListProps['onPreview']
 }

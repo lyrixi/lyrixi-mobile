@@ -14,8 +14,8 @@ export interface MediaFileChooseParams {
   list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: FileItem[] | undefined,
-    opts?: { action?: string }
+    list: FileItem[] | undefined,
+    options?: { action?: string }
   ) => Promise<FileItem[] | undefined>
   onFileChange?: MediaProps['onFileChange']
   onChange?: MediaProps['onChange']

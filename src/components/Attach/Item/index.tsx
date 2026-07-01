@@ -52,7 +52,7 @@ const Item = ({
   async function handlePreview(attach: FileItem, attachIndex: number) {
     // 自定义预览
     if (typeof onPreview === 'function') {
-      const goOn = await onPreview(attach, attachIndex)
+      const goOn = await onPreview(attach, { index: attachIndex })
       if (goOn === false) return
       previewTypeRef.current = goOn
     }
@@ -154,7 +154,7 @@ const Item = ({
             onClick={(e) => {
               e.stopPropagation()
 
-              onReUpload(item, index)
+              onReUpload(item, { index })
             }}
           >
             <Icon svg={Icons.Update} size="xxxs" />
@@ -168,7 +168,7 @@ const Item = ({
             onClick={(e) => {
               e.stopPropagation()
 
-              onDelete(item, index)
+              onDelete(item, { index })
             }}
           >
             <Icon svg={Icons.Close} size="xxxs" />
@@ -184,7 +184,7 @@ const Item = ({
       </div>
 
       {/* 自定义渲染 */}
-      {itemRender?.(item, index)}
+      {itemRender?.(item, { index })}
     </div>
   )
 }

@@ -67,5 +67,5 @@ export interface MediaUploaderCommonProps extends BridgeUploadFileParams {
   onBeforeChoose?: () => Promise<boolean | null | undefined> | boolean | null | undefined
   onUpload?: (item: FileItem) => Promise<FileItem>
   onChange?: (list: FileItem[]) => void
-  onPreview?: (item: FileItem, index: number) => Promise<unknown>
+  onPreview?: (item: FileItem, options: { index: number }) => Promise<unknown>
 }

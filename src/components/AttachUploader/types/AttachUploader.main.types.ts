@@ -37,7 +37,7 @@ export interface AttachUploaderProps {
   uploadPosition?: 'start' | 'end'
   uploadRender?: (options: { uploadingType: string }) => ReactNode
   uploadingRender?: (options: { uploadingType: string }) => ReactNode
-  itemRender?: (item: FileItem, index: number) => ReactNode
+  itemRender?: (item: FileItem, options: { index: number }) => ReactNode
   previewPortal?: ModalProps['portal']
   previewServerUrl?: string
   previewServerSourceType?: string | string[]
@@ -49,5 +49,5 @@ export interface AttachUploaderProps {
   onFileChange?: AttachProps['onFileChange']
   onUpload?: (item: FileItem) => unknown
   onChange?: (list: FileItem[], options?: { action?: string }) => void
-  onPreview?: (item: FileItem, index: number) => unknown
+  onPreview?: (item: FileItem, options: { index: number }) => unknown
 }

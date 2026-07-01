@@ -12,7 +12,7 @@ export interface IndexBarProps {
   // Value & Display Value
   anchors?: string[]
   getScrollerElement: () => Element | null
-  scrollToAnchor?: (anchor: string, opts: { scrollerElement: Element | null }) => void
+  scrollToAnchor?: (anchor: string, options: { scrollerElement: Element | null }) => void
   // Style
   className?: string
   style?: CSSProperties

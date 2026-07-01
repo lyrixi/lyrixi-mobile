@@ -8,8 +8,8 @@ export interface MediaChooseUtilParams {
   list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
   uploadList: (
-    newList: FileItem[] | undefined,
-    opts?: { action?: string }
+    list: FileItem[] | undefined,
+    options?: { action?: string }
   ) => Promise<FileItem[] | undefined>
   onChoose?: () => void | FileItem[] | Promise<FileItem[] | void | null | undefined | unknown>
   onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>

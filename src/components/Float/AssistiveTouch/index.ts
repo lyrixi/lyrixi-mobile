@@ -5,7 +5,7 @@ import type { AssistiveTouchParams, GapOption } from './../types'
 class AssistiveTouch {
   private target!: HTMLElement
   private gap: GapOption | undefined
-  private onDragEnd: ((data: Record<string, unknown>) => void) | undefined
+  private onDragEnd: ((options: Record<string, unknown>) => void) | undefined
   private touches!: {
     isDragging: boolean
     startX: number

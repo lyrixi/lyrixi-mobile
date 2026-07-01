@@ -43,7 +43,7 @@ export interface MapContainerAPI {
   type: string
   currentMap: unknown
   leafletMap: L.Map | null
-  openLocation: ((opts: Record<string, unknown>) => void) | null | undefined
+  openLocation: ((options: Record<string, unknown>) => void) | null | undefined
   getAddress: (coord: MapPoint) => Promise<Record<string, unknown> | { status: string; message: string }>
   getLocation: (params: Record<string, unknown>) => Promise<MapPoint | null>
   queryNearby: QueryNearbyFn

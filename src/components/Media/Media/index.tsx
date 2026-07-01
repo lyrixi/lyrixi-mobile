@@ -257,7 +257,7 @@ const Media = forwardRef(function Media(
   }
 
   // 重新上传
-  async function handleReUpload(item: FileItem, index: number) {
+  async function handleReUpload(item: FileItem, { index }: { index: number }) {
     if (typeof onChange !== 'function') {
       console.warn('Media: onChange is not a function')
       return
@@ -275,10 +275,10 @@ const Media = forwardRef(function Media(
   }
 
   // 点击预览
-  async function handlePreview(item: FileItem, index: number) {
+  async function handlePreview(item: FileItem, { index }: { index: number }) {
     // 自定义预览
     if (typeof onPreview === 'function') {
-      const goOn = await onPreview(item, index)
+      const goOn = await onPreview(item, { index })
       if (goOn === false) return
       previewTypeRef.current = goOn as string | null
     }

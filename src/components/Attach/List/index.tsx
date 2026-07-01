@@ -31,7 +31,7 @@ const List = ({
   onPreview // 是否支持单击预览, readOnly为true时才生效
 }: AttachListProps) => {
   // Delete
-  function handleDelete(item: FileItem, index: number) {
+  function handleDelete(item: FileItem, { index }: { index: number }) {
     const newList = (list ?? []).filter((attach, attachIndex) => {
       return attachIndex !== index
     })

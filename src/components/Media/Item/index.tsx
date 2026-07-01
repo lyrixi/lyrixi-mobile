@@ -43,7 +43,7 @@ const Item = ({
       onClick={(e: MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
 
-        onPreview?.(item, index)
+        onPreview?.(item, { index })
       }}
     >
       {/* 缩略图 */}
@@ -57,7 +57,7 @@ const Item = ({
       {/* 重新上传图标 */}
       <Reload
         onClick={() => {
-          onReUpload?.(item, index)
+          onReUpload?.(item, { index })
         }}
       />
 
@@ -68,7 +68,7 @@ const Item = ({
       {onDelete && (
         <Delete
           onClick={() => {
-            onDelete(item, index)
+            onDelete(item, { index })
           }}
         />
       )}

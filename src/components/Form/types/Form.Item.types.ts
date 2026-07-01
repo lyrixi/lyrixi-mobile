@@ -29,8 +29,8 @@ export interface FormItemProps {  /** Field properties */
   // Elements
   label?: ReactNode
   labelHelp?: ReactNode
-  inputExtraRender?: (opts: { errors: string[] }) => ReactNode
-  extraRender?: (opts: { errors: string[] }) => ReactNode
-  extra?: (opts: { value: unknown }) => ReactNode
+  inputExtraRender?: (options: { errors: string[] }) => ReactNode
+  extraRender?: (options: { errors: string[] }) => ReactNode
+  extra?: (options: { value: unknown }) => ReactNode
   children?: ReactNode
 }

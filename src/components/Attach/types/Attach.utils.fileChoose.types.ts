@@ -12,7 +12,7 @@ export interface FileChooseParams {
   sourceType: string[]
   list?: FileItem[]
   uploadPosition: 'start' | 'end' | string
-  uploadList: (newList: FileItem[], opts?: { action?: string }) => Promise<FileItem[] | undefined>
+  uploadList: (list: FileItem[], options?: { action?: string }) => Promise<FileItem[] | undefined>
   onFileChange?: AttachProps['onFileChange']
   onChange?: AttachProps['onChange']
 }

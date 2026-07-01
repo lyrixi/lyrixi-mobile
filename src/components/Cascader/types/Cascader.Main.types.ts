@@ -36,7 +36,7 @@ export interface CascaderMainResultState {
 export interface CascaderMainRef {
   mainElement: HTMLDivElement | null
   getMainElement: () => HTMLDivElement | null
-  update: (value: CascaderItem[] | null | undefined, opts?: { action?: string }) => void
+  update: (value: CascaderItem[] | null | undefined, options?: { action?: string }) => void
 }
 
 export interface CascaderMainProps {

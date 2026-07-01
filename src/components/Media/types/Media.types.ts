@@ -54,7 +54,7 @@ export interface MediaProps {
   onChange?: (list: FileItem[], options: { action: string }) => void | Promise<unknown>
   onPreview?: (
     item: FileItem,
-    index: number
+    options: { index: number }
   ) =>
     | void
     | boolean
@@ -76,7 +76,7 @@ export interface MediaRef {
   updateStatus: () => void
   chooseFile: (e?: SyntheticEvent) => Promise<unknown>
   choose: (e?: SyntheticEvent) => Promise<unknown>
-  uploadList: (newList?: FileItem[], opts?: { action?: string }) => Promise<FileItem[] | undefined>
+  uploadList: (list?: FileItem[], options?: { action?: string }) => Promise<FileItem[] | undefined>
   showLoading: (options?: { content?: string; index?: number }) => void
   hideLoading: (options?: { failIndexes?: number[] }) => void
   setPreviewVisible: Dispatch<SetStateAction<number | null>>

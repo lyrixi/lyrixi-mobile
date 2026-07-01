@@ -45,7 +45,7 @@ export interface InputNodeRef {
   inputElement: HTMLDivElement | null
   getElement: () => HTMLDivElement | null
   getInputElement: () => HTMLDivElement | null
-  correctValue: (val: string) => string
+  correctValue: (value: string) => string
   focus: () => void
   blur: () => void
 }

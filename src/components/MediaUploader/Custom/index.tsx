@@ -267,9 +267,9 @@ function MediaUploader(
       onChoose={handleChoose}
       onUpload={uploadItem}
       onChange={onChange}
-      onPreview={async (item, index) => {
+      onPreview={async (item, { index }) => {
         if (typeof onPreview === 'function') {
-          const goOn = await onPreview(item, index)
+          const goOn = await onPreview(item, { index })
           if (goOn !== true) {
             return goOn as boolean | void | 'nativeMedia' | 'nativeFile' | 'browser'
           }
