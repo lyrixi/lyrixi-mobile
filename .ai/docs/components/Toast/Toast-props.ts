@@ -42,7 +42,7 @@ export interface ToastComponents {
   /** 默认属性 */
   defaultProps?: ToastProps
   /** 显示 Toast */
-  open: (this: { defaultProps?: ToastProps } | void, props?: ToastProps) => HTMLElement
+  open: (props?: ToastProps) => HTMLElement
   /** 隐藏 Toast */
   close: (options?: ToastCloseOptions) => void
 }

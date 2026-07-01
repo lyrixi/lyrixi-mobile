@@ -11,18 +11,10 @@ import { createRoot } from '../../../../utils/ReactDOMClientCompat'
 // 内库使用-end
 
 /** 显示 Toast（全局同时仅存在一个，再次 open 会先关闭上一个） */
-function open(
-  this: { defaultProps?: ToastProps } | void,
-  props?: ToastProps
-): HTMLDivElement {
+function open(props?: ToastProps): HTMLDivElement {
   void close({ animated: false })
 
-  const mergedProps = {
-    ...(this?.defaultProps || {}),
-    ...(props || {})
-  }
-
-  const { portal: portalProp, ...toastProps } = mergedProps
+  const { portal: portalProp, ...toastProps } = props || {}
   const portal = portalProp || document.getElementById('root') || document.body
   const rootElement = document.createElement('div')
   rootElement.id = TOAST_ID
