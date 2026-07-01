@@ -34,6 +34,8 @@ const MessageModal = forwardRef<MessageModalRef, MessageModalProps>(
       onClose,
       // Elements
       iconSvg,
+      iconSize,
+      iconColor,
       iconRender,
       title,
       // Style
@@ -92,6 +94,8 @@ const MessageModal = forwardRef<MessageModalRef, MessageModalProps>(
         {children ?? (hasBodyProps ? (
           <Main
             iconSvg={iconSvg}
+            iconSize={iconSize}
+            iconColor={iconColor}
             iconRender={iconRender}
             title={title}
             titleClassName={titleClassName}
