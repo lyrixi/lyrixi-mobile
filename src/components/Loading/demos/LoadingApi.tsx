@@ -31,16 +31,6 @@ export default function LoadingApiDemo() {
     closeAfter1s()
   }
 
-  const handleOpenOnOpen = () => {
-    Loading.open({
-      content: 'Check console',
-      onOpen: () => {
-        console.log('Loading opened')
-      }
-    })
-    closeAfter1s()
-  }
-
   const handleClose = () => {
     Loading.close()
   }
@@ -80,10 +70,6 @@ export default function LoadingApiDemo() {
 
           <Button className="lyrixi-flex" color="info" onClick={handleOpenCustomStyle}>
             Open Loading (custom style)
-          </Button>
-
-          <Button className="lyrixi-flex" color="default" onClick={handleOpenOnOpen}>
-            Open Loading (onOpen)
           </Button>
 
           <Button className="lyrixi-flex" color="danger" onClick={handleClose}>

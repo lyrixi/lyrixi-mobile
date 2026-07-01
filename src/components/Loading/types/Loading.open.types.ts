@@ -8,6 +8,4 @@ export interface LoadingOpenProps {
   style?: Record<string, string>
   // Elements
   portal?: HTMLElement | null
-  // Events
-  onOpen?: () => void
 }

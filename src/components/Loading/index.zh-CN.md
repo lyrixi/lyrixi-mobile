@@ -33,7 +33,6 @@ toc: content
 | className     | 内容类名   | `string`        | -      |
 | style         | 内容样式   | `CSSProperties` | -      |
 | content       | 提示内容   | `string`        | -      |
-| onOpen        | 打开事件   | `() => void`    | -      |
 
 ##### 返回值
 

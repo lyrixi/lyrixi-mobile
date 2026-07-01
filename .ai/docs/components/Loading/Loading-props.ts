@@ -36,8 +36,6 @@ export interface LoadingOpenProps {
   style?: Record<string, string>
   /** 挂载节点 */
   portal?: HTMLElement | null
-  /** 打开事件 */
-  onOpen?: () => void
 }
 
 export interface LoadingRef {
