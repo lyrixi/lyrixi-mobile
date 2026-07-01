@@ -187,8 +187,17 @@ export default Input
 
 - 主组件本身已是命名 export：`export default List as ListComponents`，挂载子项用 `(List as ListComponents).Item = Item`
 
+**无子组件、`<Package>.tsx` + `index.ts` re-export 时**（如 `Amount`、`Stamp`）：
+
+```ts
+import Amount from './Amount'
+
+export default Amount
+```
+
 **反例**：
 
+- ❌ `export { default } from './Amount'` 等 re-export 语法（须先 `import` 再 `export default`）
 - ❌ `export default { ... }` 无命名常量
 - ❌ 命名常量与组件包名不一致（如包名 `Button` 却 `const Btn = ...`，应统一为 `Button`）
 - ❌ 基础实现 import 用 `TextBase`、`ButtonBase` 等（应 `import _Text from './Text'`）

@@ -13,7 +13,7 @@ alwaysApply: false
 | 项         | 规则                                                                                                                    |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------- |
 | 组件包路径 | `src/components/<PackageName>/`，目录名与对外导出名一致，**PascalCase**（如 `Input`、`Accordion`、`Amount`）            |
-| 包入口     | 有子 export → **`index.ts`**；仅单一实现、无挂载 → **`index.tsx`** 或 `index.ts` 二选一（现有 `Amount` 用 `index.tsx`） |
+| 包入口     | 有子 export → **`index.ts`**；仅单一实现、无挂载 → **`Amount.tsx` + `index.ts`**（或单文件 **`index.tsx`**） |
 | 文档       | 包根必有 `index.zh-CN.md`、`index.en-US.md`                                                                             |
 | 示例       | `demos/`，demo 文件名与演示子组件对应（如 `InputText.tsx`）                                                             |
 | 公共类型   | `types/` + `types/index.ts` 统一导出（细节见 `global-coding-structure-types.md`）                                                     |
@@ -147,7 +147,8 @@ export default Accordion
 
 ```
 src/components/Amount/
-├── index.tsx                   # 实现 + export default
+├── Amount.tsx                  # 组件实现
+├── index.ts                    # import Amount from './Amount'；export default Amount
 ├── Amount.less
 ├── types/
 │   ├── index.ts
@@ -159,11 +160,20 @@ src/components/Amount/
 
 **规则：**
 
-1. 实现入口：**`index.tsx`**（或 `Amount.tsx` + `index.ts` re-export，新包优先 **`index.tsx` 单文件** 以减少层级）。
-2. 样式：**`Amount.less`** 与包名一致，与 `index.tsx` 同级。
+1. 实现入口：**`Amount.tsx`**；包入口 **`index.ts`** 先 `import` 再 `export default`（写法见 `global-coding-structure-types.md`「组件入口」）。也可保留单文件 **`index.tsx`**（实现 + `export default` 同文件）。
+2. 样式：**`Amount.less`** 与包名一致，与实现文件同级。
 3. 类型：**`types/Amount.types.ts`**，经 `types/index.ts` 导出；实现里 `import type { AmountProps } from './types'`。
 4. **不要** 为单一组件再建 `Amount/Amount/index.tsx` 等多余一层目录。
 5. **不要** 建 `*.modules.types.ts`（无复合 export）。
+6. **不要** 在 `index.ts` 使用 `export { default } from './Amount'` 等 re-export 语法。
+
+**入口示例：**
+
+```ts
+import Amount from './Amount'
+
+export default Amount
+```
 
 ---
 
@@ -171,8 +181,8 @@ src/components/Amount/
 
 | 场景                 | 形态 A `Input`          | 形态 B `Accordion`                  | 形态 C `Amount`       |
 | -------------------- | ----------------------- | ----------------------------------- | --------------------- |
-| 包根主实现           | 无                      | `Accordion.tsx`                     | `index.tsx`           |
-| 包入口文件           | `index.ts`              | `index.ts`                          | `index.tsx`           |
+| 包根主实现           | 无                      | `Accordion.tsx`                     | `Amount.tsx`          |
+| 包入口文件           | `index.ts`              | `index.ts`                          | `index.ts`            |
 | 对外子组件           | 仅子目录 `Text/` 等     | `AccordionGroup.tsx` 或子目录       | 无                    |
 | 内部子模块           | 可有（不挂载）          | `AccordionTransition/`              | 无                    |
 | `*.modules.types.ts` | 必须                    | 必须                                | 不需要                |
