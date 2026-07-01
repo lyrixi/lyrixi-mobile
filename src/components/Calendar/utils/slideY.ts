@@ -1,10 +1,10 @@
 import Months from './Months'
 
-import type { CalendarUtilsSlideYOp, CalendarUtilsSlideYOptions } from '../types'
+import type { CalendarUtilsSlideYOp, CalendarUtilsSlideYParams } from '../types'
 
 // 上下拉动
-function slideY(op: CalendarUtilsSlideYOp, options: CalendarUtilsSlideYOptions) {
-  const { duration, currentPage, drawDate, cellHeight, bodyHeight, body, bodyY } = options
+function slideY(op: CalendarUtilsSlideYOp, params: CalendarUtilsSlideYParams) {
+  const { duration, currentPage, drawDate, cellHeight, bodyHeight, body, bodyY } = params
   if (!body || !bodyY) {
     return
   }

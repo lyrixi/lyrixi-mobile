@@ -1,6 +1,6 @@
 import getPosition from './getPosition'
 import snapToEdge from './snapToEdge'
-import type { AssistiveTouchOptions, GapOption } from './../types'
+import type { AssistiveTouchParams, GapOption } from './../types'
 
 class AssistiveTouch {
   private target!: HTMLElement
@@ -14,7 +14,8 @@ class AssistiveTouch {
     currentTop: number
   }
 
-  constructor(target: HTMLElement, { gap, onDragEnd }: AssistiveTouchOptions = {}) {
+  constructor(target: HTMLElement, params: AssistiveTouchParams = {}) {
+    const { gap, onDragEnd } = params
     if (!target) return
 
     this.target = target

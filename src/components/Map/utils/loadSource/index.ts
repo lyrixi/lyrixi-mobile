@@ -6,7 +6,7 @@ import type { MapLoaderSourceConfig, LoadSourceResult } from '../../types'
 
 // Load leaflet map source
 async function loadSource(
-  options: MapLoaderSourceConfig = {
+  params: MapLoaderSourceConfig = {
     key: '',
     type: '', // google
     leaflet: {
@@ -15,18 +15,18 @@ async function loadSource(
     }
   }
 ): Promise<LoadSourceResult> {
-  let result = (await loadLeaflet(options?.leaflet)) as LoadSourceResult
+  let result = (await loadLeaflet(params?.leaflet)) as LoadSourceResult
   if (result.status === 'error') {
     return result
   }
 
-  if (options.type === 'google') {
-    result = (await loadGoogle(options?.key as string | undefined)) as LoadSourceResult
+  if (params.type === 'google') {
+    result = (await loadGoogle(params?.key as string | undefined)) as LoadSourceResult
     return result
   }
 
-  if (options.type === 'bmap') {
-    result = (await loadBaidu(options?.key as string | undefined)) as LoadSourceResult
+  if (params.type === 'bmap') {
+    result = (await loadBaidu(params?.key as string | undefined)) as LoadSourceResult
     return result
   }
 

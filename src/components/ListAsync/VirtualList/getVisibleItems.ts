@@ -1,18 +1,15 @@
 import constant from './constant'
 
 import type {
-  ListAsyncVirtualListGetVisibleItemsOptions,
+  ListAsyncVirtualListGetVisibleItemsParams,
   ListAsyncVirtualListVirtualItem
 } from './ListAsync.VirtualList.types'
 
 // 计算可见区域元素
-function getVisibleItems({
-  prependHeight,
-  items,
-  itemHeights,
-  scrollTop,
-  containerHeight
-}: ListAsyncVirtualListGetVisibleItemsOptions): ListAsyncVirtualListVirtualItem[] {
+function getVisibleItems(
+  params: ListAsyncVirtualListGetVisibleItemsParams
+): ListAsyncVirtualListVirtualItem[] {
+  const { prependHeight, items, itemHeights, scrollTop, containerHeight } = params
   if (!Array.isArray(items) || !items.length) return []
   const scrollTopValue = scrollTop ?? 0
   // 计算每一项的 top 值和高度

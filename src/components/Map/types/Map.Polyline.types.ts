@@ -17,7 +17,7 @@ export interface LinePoint {
   [key: string]: unknown
 }
 
-export interface LineStyleOptions {
+export interface LineStyleParams {
   color?: string
   [key: string]: unknown
 }

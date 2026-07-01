@@ -1,4 +1,4 @@
-import type { BridgeWeChatWechatConfigOptions } from './Bridge.WeChat.types'
+import type { BridgeWeChatWechatConfigParams } from './Bridge.WeChat.types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'
@@ -9,7 +9,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function wechatConfig(params?: BridgeWeChatWechatConfigOptions) {
+function wechatConfig(params?: BridgeWeChatWechatConfigParams) {
   const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload?.appId) {
     onError?.({

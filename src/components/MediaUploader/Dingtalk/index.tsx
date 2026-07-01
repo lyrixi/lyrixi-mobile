@@ -3,7 +3,7 @@ import getRemainCount from './../../Media/utils/getRemainCount'
 import _uploadItem from '../utils/uploadItem'
 
 import { MediaHandle, MediaUploaderCommonProps } from '../types'
-import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
+import type { FileImageCompressParams, MediaProps } from './../../Media/types'
 
 // 内库使用-start
 import type { FileItem } from './../../../utils/Bridge/types'
@@ -185,7 +185,7 @@ function MediaUploader(
       ? ellipsis
       : undefined
 
-  const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
+  const fileImageParams = fileImageCompress as FileImageCompressParams | undefined
 
   const uploadPositionNarrow: 'start' | 'end' | undefined =
     uploadPosition === 'start' || uploadPosition === 'end' ? uploadPosition : undefined
@@ -236,7 +236,7 @@ function MediaUploader(
       ellipsis={ellipsisForMedia}
       sourceType={sourceType}
       sizeType={sizeType}
-      fileImageCompress={fileImageOpts}
+      fileImageCompress={fileImageParams}
       // Status
       async={async}
       reUpload={reUpload}

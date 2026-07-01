@@ -16,11 +16,11 @@ export interface MapCenter {
   [key: string]: unknown
 }
 
-export interface CreateCurrentMapOptions {
+export interface CreateCurrentMapParams {
   center?: MapCenter | MapCenter[]
 }
 
-export interface CreateLeafletMapOptions {
+export interface CreateLeafletMapParams {
   center?: MapPoint | MapPoint[]
   minZoom?: number
   maxZoom?: number

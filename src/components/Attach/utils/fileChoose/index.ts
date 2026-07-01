@@ -3,7 +3,7 @@ import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 import convertBytes from './../../utils/convertBytes'
 
-import type { FileChooseOptions } from '../../types'
+import type { FileChooseParams } from '../../types'
 
 // 内库使用-start
 import type { FileItem } from '../../../../utils/Bridge/types'
@@ -21,18 +21,19 @@ function toToastString(s: string | import('react').ReactNode): string {
 }
 
 // 选择文件
-async function fileChoose({
-  file,
-  async: asyncMode,
-  maxSize,
-  maxCount,
-  sourceType,
-  list,
-  uploadPosition,
-  uploadList,
-  onFileChange,
-  onChange
-}: FileChooseOptions) {
+async function fileChoose(params: FileChooseParams) {
+  const {
+    file,
+    async: asyncMode,
+    maxSize,
+    maxCount,
+    sourceType,
+    list,
+    uploadPosition,
+    uploadList,
+    onFileChange,
+    onChange
+  } = params
   if (file.type !== 'file') return false
 
   if (!file.files?.[0]) {

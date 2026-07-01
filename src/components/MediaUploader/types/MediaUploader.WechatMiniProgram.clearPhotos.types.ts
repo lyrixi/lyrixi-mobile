@@ -3,6 +3,6 @@ export interface WechatMiniProgramClearPhotosResult {
   message?: string
 }
 
-export interface WechatMiniProgramClearPhotosOptions {
+export interface WechatMiniProgramClearPhotosParams {
   url: string
 }

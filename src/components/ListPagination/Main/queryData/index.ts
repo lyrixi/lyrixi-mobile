@@ -1,7 +1,7 @@
 import React from 'react'
 
 import type {
-  ListPaginationQueryDataOptions,
+  ListPaginationQueryDataParams,
   ListPaginationQueryResult
 } from './ListPagination.Main.queryData.types'
 
@@ -19,15 +19,9 @@ function queryData(
   url: string,
   headers: Record<string, string> = {},
   payload: Record<string, unknown> | undefined,
-  {
-    rows,
-    pageRef,
-    previousResult,
-    action,
-    formatPayload,
-    formatResult
-  }: ListPaginationQueryDataOptions = {} as ListPaginationQueryDataOptions
+  params: ListPaginationQueryDataParams = {} as ListPaginationQueryDataParams
 ): Promise<ListPaginationQueryResult> {
+  const { rows, pageRef, previousResult, action, formatPayload, formatResult } = params
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     if (action === 'bottomRefresh') {

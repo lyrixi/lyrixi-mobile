@@ -1,8 +1,8 @@
 import Storage from './../Storage'
 
 // Clear all caches named cacheName:xx
-function clearCache(cacheName: string, options: { match?: string } = {}) {
-  const { match } = options
+function clearCache(cacheName: string, params: { match?: string } = {}) {
+  const { match } = params
   const w = window as unknown as Record<string, unknown>
   delete w[cacheName]
   Storage.removeLocalStorage(cacheName)

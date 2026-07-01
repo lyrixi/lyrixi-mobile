@@ -1,11 +1,11 @@
 import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { LinePoint, LineStyleOptions } from '../../types'
+import type { LinePoint, LineStyleParams } from '../../types'
 
 // Polyline
 function addPolyline(
   points: LinePoint[] | null | undefined,
-  options: LineStyleOptions,
+  params: LineStyleParams,
   layer: L.LayerGroup
 ): void {
   let fitted: unknown = coordsToFit(points)
@@ -19,7 +19,7 @@ function addPolyline(
   const polyline = window.L!.polyline(
     list.map((point) => [point.latitude, point.longitude] as L.LatLngExpression),
     {
-      color: (options?.color as string) || 'red'
+      color: (params?.color as string) || 'red'
     }
   )
   polyline.addTo(layer)

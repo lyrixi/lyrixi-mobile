@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm as useRcForm } from 'rc-field-form'
 import type { FormInstance } from 'rc-field-form'
 
-import type { ScrollToFieldOptions, WrappedFormInstance } from '../types'
+import type { ScrollToFieldParams, WrappedFormInstance } from '../types'
 
 function useForm(form?: FormInstance): [WrappedFormInstance] {
   const [rcForm] = useRcForm()
@@ -13,11 +13,11 @@ function useForm(form?: FormInstance): [WrappedFormInstance] {
         ? (form as WrappedFormInstance)
         : {
             ...rcForm,
-            scrollToField: (name: string, options?: ScrollToFieldOptions) => {
+            scrollToField: (name: string, params?: ScrollToFieldParams) => {
               const fieldElement = document.getElementById(`lyrixi-form-item-${name}`)
 
               if (fieldElement) {
-                fieldElement.scrollIntoView({ behavior: 'smooth', block: 'start', ...options })
+                fieldElement.scrollIntoView({ behavior: 'smooth', block: 'start', ...params })
               }
             }
           },

@@ -1,5 +1,5 @@
 /** createCenterMarkerIcon 入参（与 defaultMarkerIcons.centerMarkerIcon 字段对齐） */
-export interface CenterMarkerIconOptions {
+export interface CenterMarkerIconParams {
   html?: string
   className?: string
   iconUrl?: string

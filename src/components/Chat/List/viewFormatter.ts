@@ -1,10 +1,11 @@
-import type { ChatItem, ChatViewFormatterOptions, ChatViewItem } from './../types'
+import type { ChatItem, ChatViewFormatterParams, ChatViewItem } from './../types'
 
 // 格式化列表数据为渲染数据, 用于渲染列表组件
 function viewFormatter(
   list: ChatItem[] | undefined,
-  { formatViewItem, formatViewList }: ChatViewFormatterOptions
+  params: ChatViewFormatterParams
 ): ChatViewItem[] | undefined {
+  const { formatViewItem, formatViewList } = params
   if (typeof formatViewList === 'function') {
     const newList: ChatViewItem[] = (list ?? []).map((item) => {
       return { ...item, _raw: item }

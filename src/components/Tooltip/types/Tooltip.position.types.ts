@@ -5,7 +5,7 @@ export interface TooltipPositionResult {
   right: number | null
 }
 
-export interface TooltipUpdatePositionOptions {
+export interface TooltipUpdatePositionParams {
   referenceElement?: HTMLElement | null
   parentElement?: HTMLElement | null
   animation?: string

@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
 import type { ModalProps } from '../../Modal/types'
-import type { FileImageCompressOptions, MediaProps } from './Media.types'
+import type { FileImageCompressParams, MediaProps } from './Media.types'
 
 // 内库使用-start
 import type { FileItem } from './../../../utils/Bridge/types'
@@ -16,7 +16,7 @@ export interface MediaPreviewModalProps {
   maxCount?: number
   sourceType?: string[]
   sizeType?: string[]
-  fileImageCompress?: FileImageCompressOptions
+  fileImageCompress?: FileImageCompressParams
   // Status
   open?: boolean
   allowChoose?: boolean

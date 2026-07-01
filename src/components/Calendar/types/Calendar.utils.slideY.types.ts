@@ -2,7 +2,7 @@ import type { CalendarCellDate } from './Calendar.common.types'
 
 export type CalendarUtilsSlideYOp = 'expand' | 'collapse' | ''
 
-export interface CalendarUtilsSlideYOptions {
+export interface CalendarUtilsSlideYParams {
   duration: number
   currentPage: CalendarCellDate[][] | undefined
   drawDate: Date | null

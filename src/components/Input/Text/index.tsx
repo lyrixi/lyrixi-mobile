@@ -9,7 +9,7 @@ import {
 import renderClear from './renderClear'
 
 import type { InputTextElement, InputTextProps, InputTextRef } from '../types'
-import type { InputTextRenderClearOptions } from './Input.Text.renderClear.types'
+import type { InputTextRenderClearParams } from './Input.Text.renderClear.types'
 // 内库使用-start
 import DOMUtil from './../../../utils/DOMUtil'
 import InputIcon from './../Icon'
@@ -486,7 +486,7 @@ const InputText = (
                 inputRef.current.preventBlur = true
               }
             }
-          } as InputTextRenderClearOptions)}
+          } as InputTextRenderClearParams)}
 
       {/* Right */}
       {renderRightIcon()}

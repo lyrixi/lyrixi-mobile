@@ -28,7 +28,7 @@ export interface TextRef {
   getElement: () => HTMLDivElement | null
 }
 
-export interface TextGetDisplayValueOptions {
+export interface TextGetDisplayValueParams {
   maxCount?: number
   precision?: number
 }

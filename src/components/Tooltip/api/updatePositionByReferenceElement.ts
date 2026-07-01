@@ -1,4 +1,4 @@
-import type { TooltipUpdatePositionOptions } from './../types'
+import type { TooltipUpdatePositionParams } from './../types'
 
 import getPositionByReferenceElement from './getPositionByReferenceElement'
 import getRelativePosition from './getRelativePosition'
@@ -6,7 +6,9 @@ import getRelativePosition from './getRelativePosition'
 // 修改元素位置相对于参考元素的定位
 function updatePositionByReferenceElement(
   current: HTMLElement,
-  {
+  params: TooltipUpdatePositionParams = {}
+) {
+  const {
     referenceElement,
     parentElement,
     animation = '',
@@ -15,8 +17,7 @@ function updatePositionByReferenceElement(
     left,
     right,
     offset
-  }: TooltipUpdatePositionOptions = {}
-) {
+  } = params
   // 自动计算位置
   let position =
     referenceElement && parentElement

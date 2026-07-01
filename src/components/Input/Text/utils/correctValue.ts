@@ -2,7 +2,7 @@ import maxLengthFormatter from './maxLengthFormatter'
 import minMaxFormatter from './minMaxFormatter'
 import precisionFormatter from './precisionFormatter'
 
-import type { InputTextCorrectValueOptions } from '../../types'
+import type { InputTextCorrectValueParams } from '../../types'
 
 // 内库使用-start
 import MathUtil from '../../../../utils/MathUtil'
@@ -13,10 +13,8 @@ import { MathUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 矫正最大长度和小数位截取
-function correctValue(
-  value: string,
-  { type, min, max, maxLength, trim, precision }: InputTextCorrectValueOptions
-): string {
+function correctValue(value: string, params: InputTextCorrectValueParams): string {
+  const { type, min, max, maxLength, trim, precision } = params
   let val: string = value
   if (!val) return val
   if (typeof val !== 'string') return ''

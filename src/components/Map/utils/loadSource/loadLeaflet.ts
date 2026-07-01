@@ -1,4 +1,4 @@
-import type { LoadLeafletOptions } from '../../types'
+import type { LoadLeafletParams } from '../../types'
 
 // 内库使用-start
 import AssetUtil from '../../../../utils/AssetUtil'
@@ -14,7 +14,8 @@ function pickResult(r: unknown): Record<string, unknown> {
 }
 
 // 加载地图资源
-function loadLeaflet({ css, js }: LoadLeafletOptions = {}): Promise<unknown> {
+function loadLeaflet(params: LoadLeafletParams = {}): Promise<unknown> {
+  const { css, js } = params
   return new Promise((resolve) => {
     if (window.L) {
       resolve({

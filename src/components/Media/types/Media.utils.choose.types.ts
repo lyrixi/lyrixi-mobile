@@ -2,7 +2,7 @@
 import type { FileItem } from './../../../utils/Bridge/types'
 // 内库使用-end
 
-export interface MediaChooseUtilOptions {
+export interface MediaChooseUtilParams {
   async: boolean
   maxCount?: number
   list?: FileItem[]

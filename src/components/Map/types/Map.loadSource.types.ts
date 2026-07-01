@@ -18,7 +18,7 @@ export interface LoadStatus {
   [key: string]: unknown
 }
 
-export interface LoadLeafletOptions {
+export interface LoadLeafletParams {
   css?: string
   js?: string
 }

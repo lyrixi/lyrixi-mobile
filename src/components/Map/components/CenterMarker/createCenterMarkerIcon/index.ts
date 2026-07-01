@@ -1,7 +1,7 @@
 import type { L } from '../../../types'
 import defaultMarkerIcons from './../../../utils/markerIcons'
 
-import type { CenterMarkerIconOptions } from '../../../types'
+import type { CenterMarkerIconParams } from '../../../types'
 
 // 内库使用-start
 import ObjectUtil from './../../../../../utils/ObjectUtil'
@@ -11,11 +11,11 @@ import ObjectUtil from './../../../../../utils/ObjectUtil'
 import { ObjectUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function createCenterMarkerIcon(icon?: CenterMarkerIconOptions | null): L.Icon | L.DivIcon | null {
+function createCenterMarkerIcon(icon?: CenterMarkerIconParams | null): L.Icon | L.DivIcon | null {
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   if (icon && (icon instanceof window.L.Icon || icon instanceof window.L.DivIcon)) {
-    // Runtime: Leaflet instance; static type is still CenterMarkerIconOptions (no structural overlap with Icon/DivIcon).
+    // Runtime: Leaflet instance; static type is still CenterMarkerIconParams (no structural overlap with Icon/DivIcon).
     return icon as unknown as L.Icon | L.DivIcon
   }
 

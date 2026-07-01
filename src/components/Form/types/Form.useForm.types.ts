@@ -1,6 +1,6 @@
 import type { FormInstance } from 'rc-field-form'
 
-export interface ScrollToFieldOptions {
+export interface ScrollToFieldParams {
   behavior?: ScrollBehavior
   block?: ScrollLogicalPosition
   inline?: ScrollLogicalPosition
@@ -8,5 +8,5 @@ export interface ScrollToFieldOptions {
 }
 
 export type WrappedFormInstance = FormInstance & {
-  scrollToField: (name: string, options?: ScrollToFieldOptions) => void
+  scrollToField: (name: string, params?: ScrollToFieldParams) => void
 }

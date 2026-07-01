@@ -1,10 +1,10 @@
 import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { CirclePoint, CircleOptions } from '../../types'
+import type { CirclePoint, CircleParams } from '../../types'
 
 function addCircles(
   points: CirclePoint[] | null | undefined,
-  options: CircleOptions,
+  params: CircleParams,
   layer: L.LayerGroup
 ): void {
   let fitted: unknown = coordsToFit(points)
@@ -17,8 +17,8 @@ function addCircles(
     const circle = window.L!.circle(
       [point.latitude, point.longitude] as L.LatLngExpression,
       {
-        radius: (point?.radius as number) || options?.radius || 200,
-        color: (point?.color as string) || (options?.color as string) || '#3388ff'
+        radius: (point?.radius as number) || params?.radius || 200,
+        color: (point?.color as string) || (params?.color as string) || '#3388ff'
       }
     )
     circle.addTo(layer)

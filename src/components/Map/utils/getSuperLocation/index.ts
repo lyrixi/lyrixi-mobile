@@ -4,7 +4,7 @@ import clearLocationCache from './clearLocationCache'
 import defaultGetLocation from './../getLocation'
 import getBrowserLocation from './getBrowserLocation'
 
-import type { GetSuperLocationCallOptions, LocResult, GetSuperLocationOptions } from '../../types'
+import type { GetSuperLocationCallParams, LocResult, GetSuperLocationParams } from '../../types'
 
 // 内库使用-start
 import Device from './../../../../utils/Device'
@@ -15,13 +15,8 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Device, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-async function getLocation({
-  browser,
-  cacheExpiresContinue,
-  cacheExpires,
-  timeout,
-  type
-}: GetSuperLocationCallOptions): Promise<unknown> {
+async function getLocation(params: GetSuperLocationCallParams): Promise<unknown> {
+  const { browser, cacheExpiresContinue, cacheExpires, timeout, type } = params
   return new Promise((resolve) => {
     console.log('定位方式:', type)
 
@@ -93,12 +88,8 @@ async function getLocation({
 /**
  * 定位：考虑定位超时场景，超时后再尝试浏览器定位
  */
-async function getSuperLocation({
-  timeout = 10000,
-  cacheExpiresContinue = true,
-  cacheExpires,
-  type
-}: GetSuperLocationOptions): Promise<unknown> {
+async function getSuperLocation(params: GetSuperLocationParams): Promise<unknown> {
+  const { timeout = 10000, cacheExpiresContinue = true, cacheExpires, type } = params
   if (Device.device === 'pc') {
     return getLocation({
       type,

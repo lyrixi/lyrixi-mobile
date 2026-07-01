@@ -11,7 +11,7 @@ export interface ListPaginationQueryResult {
   [key: string]: unknown
 }
 
-export interface ListPaginationQueryDataOptions {
+export interface ListPaginationQueryDataParams {
   rows?: number
   pageRef: RefObject<number>
   previousResult?: ListAsyncLoadResult | null

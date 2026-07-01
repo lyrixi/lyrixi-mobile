@@ -23,12 +23,12 @@ export interface MapMarkersPoint extends MapPoint {
   icon?: unknown
 }
 
-export interface AddMarkersIconOptions {
+export interface AddMarkersIconParams {
   icon: L.Icon | L.DivIcon | null
   onClick?: ((options: unknown) => void) | null
 }
 
-export interface AddMarkersLayersOptions {
+export interface AddMarkersLayersParams {
   layer: L.LayerGroup
   canvasLayer: CanvasMarkerLayer
 }

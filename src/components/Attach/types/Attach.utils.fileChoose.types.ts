@@ -4,7 +4,7 @@ import type { AttachProps } from './Attach.types'
 import type { FileItem } from '../../../utils/Bridge/types'
 // 内库使用-end
 
-export interface FileChooseOptions {
+export interface FileChooseParams {
   file: HTMLInputElement
   async: boolean
   maxSize?: number

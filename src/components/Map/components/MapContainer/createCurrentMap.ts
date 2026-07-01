@@ -1,6 +1,7 @@
-import type { CreateCurrentMapOptions } from '../../types'
+import type { CreateCurrentMapParams } from '../../types'
 
-function createCurrentMap(container: HTMLElement, { center }: CreateCurrentMapOptions = {}): unknown {
+function createCurrentMap(container: HTMLElement, params: CreateCurrentMapParams = {}): unknown {
+  const { center } = params
   let wgs84Center: { longitude: number | string; latitude: number | string } | null = null
 
   const centerObj = Array.isArray(center) ? null : center

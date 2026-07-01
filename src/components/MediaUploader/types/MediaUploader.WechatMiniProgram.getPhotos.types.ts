@@ -10,7 +10,7 @@ import { BridgeUploadFileParams, BridgeSuccessCallback, FileItem } from 'lyrixi-
 //   status: 'success' | 'error'
 // }
 
-export interface WechatMiniProgramGetPhotosOptions {
+export interface WechatMiniProgramGetPhotosParams {
   url: string
   formatResponse?: BridgeUploadFileParams['formatResponse']
 }

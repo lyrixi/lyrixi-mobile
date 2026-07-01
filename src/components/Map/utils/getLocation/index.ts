@@ -1,4 +1,4 @@
-import type { GetLocationOptions } from '../../types'
+import type { GetLocationParams } from '../../types'
 
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
@@ -10,8 +10,8 @@ import { Bridge } from 'lyrixi-mobile'
 测试使用-end */
 
 // 定位
-function getLocation(options: GetLocationOptions = {}): Promise<unknown> {
-  const t = options?.type || 'wgs84'
+function getLocation(params: GetLocationParams = {}): Promise<unknown> {
+  const t = params?.type || 'wgs84'
 
   return new Promise((resolve) => {
     const w = window

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-export interface ToastCloseOptions {
+export interface ToastCloseParams {
   onClose?: () => void
 }
 

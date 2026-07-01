@@ -1,6 +1,6 @@
 import getTitleByType from './getTitleByType'
 import type { DatePickerUtilsGetTitleMultiTab } from '../../types/DatePicker.utils.getTitle.types'
-import type { DatePickerGetTitleOptions } from './../../types'
+import type { DatePickerGetTitleParams } from './../../types'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
@@ -12,10 +12,10 @@ import { DateUtil } from 'lyrixi-mobile'
 
 function getTitle(
   value: Date | (Date | null)[] | DatePickerUtilsGetTitleMultiTab[] | null | undefined,
-  optionsOrFormat?: DatePickerGetTitleOptions | string
+  paramsOrFormat?: DatePickerGetTitleParams | string
 ): string | ReturnType<typeof getTitleByType> {
-  if (typeof optionsOrFormat === 'string') {
-    const pattern = optionsOrFormat
+  if (typeof paramsOrFormat === 'string') {
+    const pattern = paramsOrFormat
     if (Array.isArray(value)) {
       return value
         .map((item) => {
@@ -36,7 +36,7 @@ function getTitle(
     return String(getTitleByType('date'))
   }
 
-  const { type, separator } = optionsOrFormat ?? {}
+  const { type, separator } = paramsOrFormat ?? {}
   // Multiple Date
   if (Array.isArray(value)) {
     if (value.length && value[0] && typeof value[0] === 'object' && value[0] !== null && 'value' in value[0]) {

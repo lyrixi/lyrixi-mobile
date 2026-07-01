@@ -14,12 +14,12 @@ export interface SnapPosition {
   left: string
 }
 
-export interface SnapToEdgeOptions {
+export interface SnapToEdgeParams {
   gap?: GapOption
   onChange?: (pos: SnapPosition) => void
 }
 
-export interface AssistiveTouchOptions {
+export interface AssistiveTouchParams {
   gap?: GapOption
   onDragEnd?: (data: Record<string, unknown>) => void
 }

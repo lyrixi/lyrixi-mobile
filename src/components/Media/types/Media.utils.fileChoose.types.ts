@@ -4,7 +4,7 @@ import type { MediaProps } from './Media.types'
 import type { FileItem } from './../../../utils/Bridge/types'
 // 内库使用-end
 
-export interface MediaFileChooseOptions {
+export interface MediaFileChooseParams {
   file: HTMLInputElement
   async: boolean
   sizeType?: string[]

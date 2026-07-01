@@ -55,4 +55,4 @@ toc: content
 
 | 方法                                 | 说明             | 类型                                                                     |
 | ------------------------------------ | ---------------- | ------------------------------------------------------------------------ |
-| updatePositionByReferenceElement | 更新元素位置 | `(current: HTMLElement, options?: TooltipUpdatePositionOptions) => void` |
+| updatePositionByReferenceElement | 更新元素位置 | `(current: HTMLElement, options?: TooltipUpdatePositionParams) => void` |

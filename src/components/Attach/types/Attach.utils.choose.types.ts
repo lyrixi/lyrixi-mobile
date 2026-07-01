@@ -2,7 +2,7 @@
 import type { FileItem } from '../../../utils/Bridge/types'
 // 内库使用-end
 
-export interface AttachChooseOptions {
+export interface AttachChooseParams {
   async: boolean
   maxSize?: number
   maxCount?: number

@@ -7,7 +7,7 @@ export interface DemoMarkerClickPayload {
 }
 
 /** demos/getPoints 随机点生成参数 */
-export interface GetPointsOptions {
+export interface GetPointsParams {
   center?: { latitude?: number; longitude?: number }
   radius?: number
   count?: number

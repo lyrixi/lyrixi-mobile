@@ -2,7 +2,7 @@ import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react
 import type { L } from '../../types'
 import filterCoords from './../../utils/filterCoords'
 import addPolyline from './addPolyline'
-import type { LinePoint, LineStyleOptions } from '../../types'
+import type { LinePoint, LineStyleParams } from '../../types'
 import clearPolyline from './clearPolyline'
 
 import type { MapPolylineProps, MapPolylineRef } from '../../types'
@@ -71,7 +71,7 @@ const Polyline = forwardRef<MapPolylineRef | null, MapPolylineProps>(
       }
       clearPolyline(polylineLayerRef.current)
       if (!polylineLayerRef.current) return
-      const style: LineStyleOptions = { color }
+      const style: LineStyleParams = { color }
       addPolyline(points as LinePoint[], style, polylineLayerRef.current)
     }
 

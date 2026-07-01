@@ -5,7 +5,7 @@ import type { BridgeErrorCallback, BridgeSuccessCallback } from './../types/Brid
 
 export type BridgeWeChatWechatPayload = { appId?: string } & Record<string, unknown>
 
-export type BridgeWeChatWechatConfigOptions = {
+export type BridgeWeChatWechatConfigParams = {
   url?: string
   headers?: Record<string, string>
   payload?: BridgeWeChatWechatPayload
@@ -16,7 +16,7 @@ export type BridgeWeChatWechatConfigOptions = {
 
 export type BridgeWeChatWecomPayload = { appId?: string } & Record<string, unknown>
 
-export type BridgeWeChatWecomAgentConfigOptions = {
+export type BridgeWeChatWecomAgentConfigParams = {
   url?: string
   headers?: Record<string, string>
   payload?: BridgeWeChatWecomPayload

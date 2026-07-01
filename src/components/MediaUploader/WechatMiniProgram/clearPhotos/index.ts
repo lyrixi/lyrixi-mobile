@@ -1,5 +1,5 @@
 
-import type { WechatMiniProgramClearPhotosOptions, WechatMiniProgramClearPhotosResult } from '../../types'
+import type { WechatMiniProgramClearPhotosParams, WechatMiniProgramClearPhotosResult } from '../../types'
 
 // 内库使用-start
 import Toast from './../../../Toast'
@@ -11,7 +11,8 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Toast, Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function clearPhotos(id: string, { url }: WechatMiniProgramClearPhotosOptions): Promise<boolean> {
+function clearPhotos(id: string, params: WechatMiniProgramClearPhotosParams): Promise<boolean> {
+  const { url } = params
   return new Promise((resolve) => {
     console.log('清除照片:', url, id)
     Request.post(url, {

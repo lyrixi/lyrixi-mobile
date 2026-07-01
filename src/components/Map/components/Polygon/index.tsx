@@ -2,7 +2,7 @@ import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react
 import type { L } from '../../types'
 import filterCoords from './../../utils/filterCoords'
 import addPolygon from './addPolygon'
-import type { PolyPoint, PolyStyleOptions } from '../../types'
+import type { PolyPoint, PolyStyleParams } from '../../types'
 import clearPolygon from './clearPolygon'
 
 import type { MapPolygonProps, MapPolygonRef } from '../../types'
@@ -76,7 +76,7 @@ const Polygon = forwardRef<MapPolygonRef | null, MapPolygonProps>(
       }
       clearPolygon(polygonLayerRef.current)
       if (!polygonLayerRef.current) return
-      const style: PolyStyleOptions = {
+      const style: PolyStyleParams = {
         color,
         fillColor,
         fillOpacity,

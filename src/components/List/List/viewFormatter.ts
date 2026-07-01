@@ -1,10 +1,11 @@
-import type { ListViewFormatterOptions, ListItem, ListViewItem } from './../types'
+import type { ListViewFormatterParams, ListItem, ListViewItem } from './../types'
 
 // 将接口返回的 ListItem[] 转为带 `_raw` 的 ListViewItem[]，供列表渲染
 function viewFormatter(
   list: ListItem[] | undefined,
-  { formatViewItem, formatViewList }: ListViewFormatterOptions
+  params: ListViewFormatterParams
 ): ListViewItem[] | undefined {
+  const { formatViewItem, formatViewList } = params
   // 增加_raw字段，用于存储原始数据
   let rawList = list?.map((item: ListItem) => {
     // 格式化子项

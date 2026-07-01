@@ -13,7 +13,7 @@ import type { AttachProps } from './../../Attach/types'
 import type { FileItem } from './../../../utils/Bridge/types'
 // 内库使用-end
 
-export interface FileImageCompressOptions {
+export interface FileImageCompressParams {
   maxWidth?: number
   quality?: number
 }
@@ -28,7 +28,7 @@ export interface MediaProps {
   ellipsis?: { count?: number }
   sourceType?: string[]
   sizeType?: string[]
-  fileImageCompress?: FileImageCompressOptions
+  fileImageCompress?: FileImageCompressParams
   allowChoose?: boolean
   allowClear?: boolean | ((item: FileItem) => boolean)
   async?: boolean

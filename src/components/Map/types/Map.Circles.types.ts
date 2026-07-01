@@ -20,7 +20,7 @@ export interface CirclePoint {
   [key: string]: unknown
 }
 
-export interface CircleOptions {
+export interface CircleParams {
   radius?: number
   color?: string
   [key: string]: unknown

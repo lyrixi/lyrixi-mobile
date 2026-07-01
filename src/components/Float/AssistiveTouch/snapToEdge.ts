@@ -1,7 +1,8 @@
-import type { SnapToEdgeOptions } from './../types'
+import type { SnapToEdgeParams } from './../types'
 
 // 贴边逻辑（修复纵向越界）
-const snapToEdge = (target: HTMLElement, { gap, onChange }: SnapToEdgeOptions): void => {
+const snapToEdge = (target: HTMLElement, params: SnapToEdgeParams): void => {
+  const { gap, onChange } = params
   const rect = target.getBoundingClientRect()
   const screenWidth = window.innerWidth
   const screenHeight = window.innerHeight

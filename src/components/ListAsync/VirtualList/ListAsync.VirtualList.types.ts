@@ -9,7 +9,7 @@ export type ListAsyncVirtualListVirtualItem = Record<string, unknown> & {
   virtualData: ListAsyncVirtualListVirtualData
 }
 
-export interface ListAsyncVirtualListGetVisibleItemsOptions {
+export interface ListAsyncVirtualListGetVisibleItemsParams {
   prependHeight: number
   items: ListAsyncVirtualListVirtualItem[]
   itemHeights: number[]

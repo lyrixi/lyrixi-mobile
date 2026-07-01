@@ -1,6 +1,6 @@
 import HistoryUtil from './HistoryUtil'
 
-import type { HistoryUtilInstance, HistoryUtilNavigateOptions } from './types'
+import type { HistoryUtilInstance, HistoryUtilNavigateParams } from './types'
 
 // Instance methods
 const History = function (this: HistoryUtilInstance) {
@@ -31,7 +31,8 @@ const History = function (this: HistoryUtilInstance) {
       }
     })
   */
-  s.navigate = function (urlParameter: string, { onBack }: HistoryUtilNavigateOptions) {
+  s.navigate = function (urlParameter: string, params: HistoryUtilNavigateParams) {
+    const { onBack } = params
     s.onBack = onBack ?? null
     s.urlParameter = urlParameter
 

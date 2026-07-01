@@ -1,6 +1,6 @@
 import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { MapPoint, AddMarkersIconOptions, AddMarkersLayersOptions } from '../../types'
+import type { MapPoint, AddMarkersIconParams, AddMarkersLayersParams } from '../../types'
 import createMarkerIcon from './createMarkerIcon'
 import clearMarkers from './clearMarkers'
 import markerClickLeaflet from './markerClickLeaflet'
@@ -9,9 +9,11 @@ import markerClickCanvas from './markerClickCanvas'
 // Marker
 function addMarkers(
   points: MapPoint[] | null | undefined,
-  { icon, onClick = null }: AddMarkersIconOptions,
-  { layer, canvasLayer }: AddMarkersLayersOptions
+  iconParams: AddMarkersIconParams,
+  layerParams: AddMarkersLayersParams
 ): void {
+  const { icon, onClick = null } = iconParams
+  const { layer, canvasLayer } = layerParams
   if (!canvasLayer || !layer) return
 
   let fitted: unknown = coordsToFit(points)

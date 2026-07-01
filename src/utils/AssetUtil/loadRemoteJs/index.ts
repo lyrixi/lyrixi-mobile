@@ -1,8 +1,8 @@
 import loadScript from './loadScript'
-import type { AssetUtilLoadRemoteJsOptions } from '../types'
+import type { AssetUtilLoadRemoteJsParams } from '../types'
 
 // 动态加载script的方法
-function loadRemoteJs(src: string, opts?: AssetUtilLoadRemoteJsOptions) {
+function loadRemoteJs(src: string, params?: AssetUtilLoadRemoteJsParams) {
   const {
     async,
     charset,
@@ -15,7 +15,7 @@ function loadRemoteJs(src: string, opts?: AssetUtilLoadRemoteJsOptions) {
     referrerPolicy,
     onError,
     onSuccess
-  } = opts || {}
+  } = params || {}
   let attrs: Record<string, string> = {}
   if (id) attrs.id = id
   if (defer) attrs.defer = ''

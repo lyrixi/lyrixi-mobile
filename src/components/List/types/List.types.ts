@@ -41,7 +41,7 @@ export type ListViewItem = ListViewItemBase & {
 }
 
 // 格式化原始数据为渲染数据
-export interface ListViewFormatterOptions {
+export interface ListViewFormatterParams {
   formatViewItem?: (item: ListItem, options: { index: number }) => ListViewItem
   formatViewList?: (list: ListItem[]) => ListViewItem[]
 }

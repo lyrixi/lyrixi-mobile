@@ -1,7 +1,8 @@
-import type { ToastCloseExtendedHTMLElement, ToastCloseOptions } from '../types'
+import type { ToastCloseExtendedHTMLElement, ToastCloseParams } from '../types'
 
 // 移除Toast
-function close({ onClose }: ToastCloseOptions = {}) {
+function close(params: ToastCloseParams = {}) {
+  const { onClose } = params
   let toastId = '__lyrixi_toast_el__'
   let mask = document.getElementById(toastId) as ToastCloseExtendedHTMLElement | null
 

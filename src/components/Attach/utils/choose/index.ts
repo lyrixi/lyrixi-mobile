@@ -3,7 +3,7 @@ import convertBytes from './../../utils/convertBytes'
 import validateMaxSize from './../../utils/validateMaxSize'
 import supportTypes from './../../utils/supportTypes'
 
-import type { AttachChooseOptions } from '../../types'
+import type { AttachChooseParams } from '../../types'
 
 // 内库使用-start
 import type { FileItem } from '../../../../utils/Bridge/types'
@@ -21,17 +21,18 @@ function toToastString(s: string | import('react').ReactNode): string {
 }
 
 // 选择文件
-async function choose({
-  async: asyncMode,
-  maxSize,
-  maxCount,
-  sourceType,
-  list,
-  uploadPosition,
-  uploadList,
-  onChoose,
-  onChange
-}: AttachChooseOptions) {
+async function choose(params: AttachChooseParams) {
+  const {
+    async: asyncMode,
+    maxSize,
+    maxCount,
+    sourceType,
+    list,
+    uploadPosition,
+    uploadList,
+    onChoose,
+    onChange
+  } = params
   // 大于总数禁止选择
   if (typeof maxCount === 'number' && getRemainCount(maxCount, list?.length || 0) <= 0) {
     Toast.open({

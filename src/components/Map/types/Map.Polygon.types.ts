@@ -20,7 +20,7 @@ export interface PolyPoint {
   [key: string]: unknown
 }
 
-export interface PolyStyleOptions {
+export interface PolyStyleParams {
   color?: string
   fillColor?: string
   fillOpacity?: number

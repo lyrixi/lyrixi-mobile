@@ -38,7 +38,7 @@ export interface DatePickerPickerListItem {
 export type DatePickerPickerValueList = DatePickerPickerListItem[]
 
 /** getTitle 第二参 */
-export interface DatePickerGetTitleOptions {
+export interface DatePickerGetTitleParams {
   type?: DatePickerPickerType | string
   separator?: string
 }

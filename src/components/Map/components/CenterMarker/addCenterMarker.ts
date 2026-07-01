@@ -1,13 +1,14 @@
 import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
 import createMarkerIcon from './../Markers/createMarkerIcon'
-import type { MapPoint, MapCenterMarkerAddOptions } from '../../types'
+import type { MapPoint, MapCenterMarkerAddParams } from '../../types'
 
 function addCenterMarker(
   point: MapPoint,
-  { onClick, icon }: MapCenterMarkerAddOptions = {},
+  params: MapCenterMarkerAddParams = {},
   layer: L.LayerGroup | null
 ): L.Marker | null {
+  const { onClick, icon } = params
   if (!layer) return null
 
   // eslint-disable-next-line

@@ -18,7 +18,7 @@ export type InputTextElement = (HTMLInputElement | HTMLTextAreaElement) & {
   preventBlur?: boolean
 }
 
-export interface InputTextCorrectValueOptions {
+export interface InputTextCorrectValueParams {
   type?: string
   min?: number
   max?: number

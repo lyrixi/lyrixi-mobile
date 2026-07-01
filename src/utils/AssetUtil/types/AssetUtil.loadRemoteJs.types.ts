@@ -1,4 +1,4 @@
-export interface AssetUtilLoadRemoteJsOptions {
+export interface AssetUtilLoadRemoteJsParams {
   async?: boolean
   charset?: string
   text?: string

@@ -1,4 +1,4 @@
-import type { BridgeWeChatWecomAgentConfigOptions } from './Bridge.WeChat.types'
+import type { BridgeWeChatWecomAgentConfigParams } from './Bridge.WeChat.types'
 
 // 内库使用-start
 import Request from './../../../utils/Request'
@@ -10,7 +10,7 @@ import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
 // 企业微信自建应用和SASS应用鉴权
-function wecomAgentConfig(params?: BridgeWeChatWecomAgentConfigOptions) {
+function wecomAgentConfig(params?: BridgeWeChatWecomAgentConfigParams) {
   const { url, headers, payload, formatResponse, onSuccess, onError } = params || {}
   if (!url || !payload?.appId) {
     onError?.({

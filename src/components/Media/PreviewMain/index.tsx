@@ -27,7 +27,7 @@ import PreviewToolbar from './PreviewToolbar'
 
 import type {
   MediaProps,
-  MediaFileChooseOptions,
+  MediaFileChooseParams,
   MediaPreviewMainProps,
   MediaPreviewMainRef
 } from './../types'
@@ -135,12 +135,12 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
     }
   })
 
-  function _showLoading(options?: { content?: string; index?: number }) {
-    showLoading(swiperRef.current as unknown as Element, options)
+  function _showLoading(params?: { content?: string; index?: number }) {
+    showLoading(swiperRef.current as unknown as Element, params)
   }
 
-  function _hideLoading(options?: { failIndexes?: number[] }) {
-    hideLoading(swiperRef.current as unknown as Element, options)
+  function _hideLoading(params?: { failIndexes?: number[] }) {
+    hideLoading(swiperRef.current as unknown as Element, params)
   }
 
   function handleSwipe(swiper: SwiperClass) {
@@ -222,7 +222,7 @@ const PreviewMain = forwardRef<MediaPreviewMainRef, MediaPreviewMainProps>(funct
       list,
       uploadPosition: 'end',
       uploadList,
-      onFileChange: onFileChangeRef.current as MediaFileChooseOptions['onFileChange'] | undefined,
+      onFileChange: onFileChangeRef.current as MediaFileChooseParams['onFileChange'] | undefined,
       onChange: onChangeRef.current
     })
     _hideLoading()

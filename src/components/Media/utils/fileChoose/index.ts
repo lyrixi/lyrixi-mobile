@@ -1,7 +1,7 @@
 import getRemainCount from './../getRemainCount'
 import compressImage from './compressImage'
 
-import type { MediaFileChooseOptions } from '../../types'
+import type { MediaFileChooseParams } from '../../types'
 
 // 内库使用-start
 import type { FileItem } from './../../../../utils/Bridge/types'
@@ -19,19 +19,20 @@ function toToastString(s: string | import('react').ReactNode): string {
 }
 
 // 选择文件
-async function fileChoose({
-  file,
-  async: asyncMode,
-  sizeType,
-  maxWidth,
-  quality,
-  maxCount,
-  list,
-  uploadPosition,
-  uploadList,
-  onFileChange,
-  onChange
-}: MediaFileChooseOptions) {
+async function fileChoose(params: MediaFileChooseParams) {
+  const {
+    file,
+    async: asyncMode,
+    sizeType,
+    maxWidth,
+    quality,
+    maxCount,
+    list,
+    uploadPosition,
+    uploadList,
+    onFileChange,
+    onChange
+  } = params
   if (file.type !== 'file') return false
 
   if (!file.files?.[0]) {

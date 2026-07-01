@@ -28,7 +28,7 @@ export interface MapCenterMarkerRef {
   getElement: () => HTMLSpanElement | null
 }
 
-export interface MapCenterMarkerAddOptions {
+export interface MapCenterMarkerAddParams {
   onClick?: ((info: MapPoint & { setIcon?: unknown }) => void) | null
   icon?: L.Icon | L.DivIcon | null
 }

@@ -1,7 +1,7 @@
 import { MESSAGE_ANIMATION_DURATION_CLOSE } from './constants'
 import messageInstance from './MessageInstance'
 
-type CloseOptions = {
+type CloseParams = {
   /** 是否播放关闭动画，默认 true */
   animated?: boolean
 }
@@ -27,8 +27,8 @@ function destroy() {
 }
 
 /** 关闭当前 Message.open 实例（全局仅允许一个） */
-export default async function close(options?: CloseOptions): Promise<void> {
-  const { animated = true } = options ?? {}
+export default async function close(params?: CloseParams): Promise<void> {
+  const { animated = true } = params ?? {}
 
   if (!messageInstance.root || !messageInstance.rootElement) {
     return

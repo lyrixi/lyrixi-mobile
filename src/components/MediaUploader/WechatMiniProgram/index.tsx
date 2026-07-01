@@ -14,7 +14,7 @@ import generateId from './generateId'
 
 import type { MediaHandle } from '../types'
 import type { MediaUploaderWechatMiniProgramProps } from './MediaUploader.WechatMiniProgram.types'
-import type { FileImageCompressOptions, MediaProps } from './../../Media/types'
+import type { FileImageCompressParams, MediaProps } from './../../Media/types'
 
 // 内库使用-start
 import type { FileItem } from './../../../utils/Bridge/types'
@@ -310,7 +310,7 @@ function WechatMiniProgram(
         ? ellipsis
         : undefined
 
-  const fileImageOpts = fileImageCompress as FileImageCompressOptions | undefined
+  const fileImageParams = fileImageCompress as FileImageCompressParams | undefined
 
   const uploadPositionNarrow: 'start' | 'end' | undefined =
     uploadPosition === 'start' || uploadPosition === 'end' ? uploadPosition : undefined
@@ -362,7 +362,7 @@ function WechatMiniProgram(
         ellipsis={ellipsisForMedia}
         sourceType={sourceType}
         sizeType={sizeType}
-        fileImageCompress={fileImageOpts}
+        fileImageCompress={fileImageParams}
         // Status
         async={async}
         reUpload={reUpload}

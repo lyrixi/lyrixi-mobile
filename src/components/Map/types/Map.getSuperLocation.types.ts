@@ -1,5 +1,5 @@
-/** getSuperLocation 内部调用的定位参数（与 utils/getLocation 的 GetLocationOptions 区分） */
-export interface GetSuperLocationCallOptions {
+/** getSuperLocation 内部调用的定位参数（与 utils/getLocation 的 GetLocationParams 区分） */
+export interface GetSuperLocationCallParams {
   browser?: boolean
   cacheExpiresContinue?: boolean
   cacheExpires?: number | null
@@ -15,7 +15,7 @@ export interface LocResult {
   [key: string]: unknown
 }
 
-export interface GetSuperLocationOptions {
+export interface GetSuperLocationParams {
   timeout?: number
   cacheExpiresContinue?: boolean
   cacheExpires?: number | null

@@ -1,11 +1,12 @@
 import type { L } from '../../types'
 import coordsToFit from './../../utils/coordsToFit'
-import type { MapPoint, CreateLeafletMapOptions } from '../../types'
+import type { MapPoint, CreateLeafletMapParams } from '../../types'
 
 function createLeafletMap(
   container: HTMLElement | null,
-  { center, minZoom, maxZoom, zoom }: CreateLeafletMapOptions
+  params: CreateLeafletMapParams
 ): L.Map | Promise<L.Map> | null {
+  const { center, minZoom, maxZoom, zoom } = params
   if (!window.L || !window.L?.tileLayer?.currentTileLayer) {
     return null
   }

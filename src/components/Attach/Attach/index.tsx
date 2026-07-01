@@ -118,12 +118,12 @@ function Attach(
   }
 
   // 显隐Loading
-  function _showLoading(options?: { content?: string; index?: number }) {
-    showLoading(rootRef.current, options ?? {})
+  function _showLoading(params?: { content?: string; index?: number }) {
+    showLoading(rootRef.current, params ?? {})
   }
 
-  function _hideLoading(options?: { failIndexes?: number[] }) {
-    hideLoading(rootRef.current, options ?? {})
+  function _hideLoading(params?: { failIndexes?: number[] }) {
+    hideLoading(rootRef.current, params ?? {})
   }
 
   // 上传

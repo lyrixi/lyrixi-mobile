@@ -1,16 +1,11 @@
 import React from 'react'
 
-import type { InputTextRenderClearOptions } from './Input.Text.renderClear.types'
+import type { InputTextRenderClearParams } from './Input.Text.renderClear.types'
 import IconClear from './../Icons/Clear'
 
 // 渲染清除按钮
-function renderClear({
-  clearRender,
-  allowClear,
-  clearable = false,
-  onClear,
-  onTouchStart
-}: InputTextRenderClearOptions): React.ReactNode {
+function renderClear(params: InputTextRenderClearParams): React.ReactNode {
+  const { clearRender, allowClear, clearable = false, onClear, onTouchStart } = params
   // 自定义渲染清空按钮
   if (typeof clearRender === 'function') {
     let clearNode = clearRender({

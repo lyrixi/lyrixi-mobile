@@ -6,7 +6,7 @@ export * from './Map.CenterMarker.createCenterMarkerIcon.types'
 export type {
   MapCenterMarkerProps,
   MapCenterMarkerRef,
-  MapCenterMarkerAddOptions
+  MapCenterMarkerAddParams
 } from './Map.CenterMarker.types'
 export * from './Map.Circles.types'
 export * from './Map.LocationControl.types'
@@ -17,8 +17,8 @@ export * from './Map.Markers.createMarkerIcon.types'
 export type {
   MapCoord,
   CanvasMarkerLayer,
-  AddMarkersIconOptions,
-  AddMarkersLayersOptions,
+  AddMarkersIconParams,
+  AddMarkersLayersParams,
   MapMarkersLayerProps,
   MapMarkersLayerHandle
 } from './Map.Markers.types'
@@ -37,8 +37,8 @@ export * from './Map.getLocation.types'
 export * from './Map.getMapType.types'
 export * from './Map.getSuperAddress.types'
 export type {
-  GetSuperLocationCallOptions,
-  GetSuperLocationOptions,
+  GetSuperLocationCallParams,
+  GetSuperLocationParams,
   LocResult,
   LocCacheData,
   LocationStorageCache

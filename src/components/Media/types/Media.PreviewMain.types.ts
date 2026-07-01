@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { SwiperRef } from 'swiper/react'
 
-import type { FileImageCompressOptions, MediaProps } from './Media.types'
+import type { FileImageCompressParams, MediaProps } from './Media.types'
 
 // 内库使用-start
 import type { FileItem } from './../../../utils/Bridge/types'
@@ -15,7 +15,7 @@ export interface MediaPreviewMainProps {
   sourceType?: string[]
   sizeType?: string[]
   maxCount?: number
-  fileImageCompress?: FileImageCompressOptions
+  fileImageCompress?: FileImageCompressParams
   // Status
   open?: boolean
   closable?: boolean

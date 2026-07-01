@@ -1,4 +1,4 @@
-import type { WechatMiniProgramGetPhotosOptions } from '../../types'
+import type { WechatMiniProgramGetPhotosParams } from '../../types'
 
 // 内库使用-start
 import type {
@@ -14,10 +14,8 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 import { Request, LocaleUtil } from 'lyrixi-mobile'
 测试使用-end */
 
-function getPhotos(
-  id: string,
-  { url, formatResponse }: WechatMiniProgramGetPhotosOptions
-): Promise<string | FileItem | null> {
+function getPhotos(id: string, params: WechatMiniProgramGetPhotosParams): Promise<string | FileItem | null> {
+  const { url, formatResponse } = params
   return new Promise((resolve) => {
     Request.get(`${url}?fileCheckKey=${id}`)
       .then(async (result) => {
