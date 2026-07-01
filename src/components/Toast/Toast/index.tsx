@@ -68,10 +68,9 @@ function Toast({
         )}
       >
         <div className={DOMUtil.classNames('lyrixi-toast-wrapper', className)} style={style}>
-          <div
-            className="lyrixi-toast-content"
-            dangerouslySetInnerHTML={content != null && content !== '' ? { __html: content } : undefined}
-          />
+          <div className="lyrixi-toast-content">
+            <span>{content}</span>
+          </div>
         </div>
       </div>
     </div>
