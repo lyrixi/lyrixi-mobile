@@ -43,21 +43,52 @@ useEffect 不用命名, 示例: useEffect(() => { ... }, [value])
 
 ## type 命名规则
 
-### 方法入参与回调参数（types 内）
+### 方法入参与回调出参（types 内）
 
-**仅约束 src/components 和 src/utils 里的方法出参与入参**（如 `xxRender`、`loadData`、`formatXxx`、`onLoad`、`onChange` 等），**不改**组件 Props 接口名本身（如 `ButtonProps`）。
+**仅约束** `src/components` 和 `src/utils` 里方法的入参形参与回调出参形参（如 `xxRender`、`loadData`、`formatXxx`、`onLoad`、`onChange` 等），**不改**组件 Props / Ref **类型名**本身（如 `ButtonProps`）。
 
-#### 出参(值、结果等出参)
+#### 方法/工具函数入参
 
-这类参数常用于`onLoad`、`onChange`、`onSuccess`、`onError`、`onCancel`，等事件类回调参数
-
-- 类型名(保留形参)：`XxxItem`、`XxxResult`等（如 `TransferItem`、`ListItem`、`SelectorItem`）
-- 形参名：`value`、`item`、`xxItem`、`result`、`xxResult`
-
-#### 入参
+调用方传入的配置或上下文对象。
 
 - 类型名：`XxxParams`（如 `GetLocationParams`、`AttachChooseParams`）
 - 形参名：`params`、`xxParams`（如 `iconParams`、`layerParams`）
+
+#### 回调出参
+
+回调被调用时，组件 / 工具向外传递的值。适用于 `onChange`、`onSelect`、`onLoad`、`onSuccess`、`onError`、`onCancel`，以及 `itemRender`、`formatViewItem` 等函数类型 props 的形参。
+
+**通用签名**：`(newValue, data?: { ... }) => void`；仅一个出参时可省略 `data`；无主值、仅附加信息时单独用 `data`。
+
+**第一出参（主值）形参名**（禁止 `value`、`v`、`val` 等简写）：
+
+| 场景                   | 形参名     | 示例                                            |
+| ---------------------- | ---------- | ----------------------------------------------- |
+| 受控值 / 选中值变更    | `newValue` | `onChange?: (newValue: string) => void`         |
+| 列表集合变更           | `newList`  | `onChange?: (newList: FileItem[]) => void`      |
+| 单条记录选中           | `newItem`  | `onChange?: (newItem: TabBarItem) => void`      |
+| 布尔态变更             | `checked`  | `onChange?: (newChecked: boolean) => void`      |
+| 索引 / 序号变更        | `newValue` | `onChange?: (newValue: number \| null) => void` |
+| 成功 / 失败 / 异步结果 | `result`   | `onSuccess?: (newResult: XxxResult) => void`    |
+| 特定业务字面量         | 语义名     | `onChange?: (base64: string \| null) => void`   |
+
+- 类型名：`XxxItem`、`XxxResult` 等（如 `TransferItem`、`ListItem`、`BridgeSuccessResult`）
+
+**第二出参（混合 / 附加信息）**：
+
+- 形参名统一 `data`（禁止 `options`、`opts`）
+- 类型为匿名对象或 `XxxChangeData` 等；字段保持语义，如 `{ action?: string; checkedItem: ListItem }`
+
+```ts
+onChange?: (newValue: ListItem | ListItem[] | null, data?: { action?: string; checkedItem: ListItem }) => void
+onChange?: (newList: FileItem[], data?: { action?: string }) => void
+onLoad?: (data: { result: ListAsyncLoadResult | null; action: ListAsyncLoadAction }) => void
+```
+
+**渲染 / 格式化类回调**（`itemRender`、`formatViewItem`、`formatViewList`）：
+
+- 当前行 / 当前列表：形参 `item` 或 `list`（传入待渲染数据，非向外传出）
+- 索引、勾选态等附加信息：形参 `data`，如 `(item: XxxItem, data: { index: number; checked: boolean }) => ReactNode`
 
 ### 例外
 
