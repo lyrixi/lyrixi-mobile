@@ -8,7 +8,7 @@ alwaysApply: false
 
 适用范围：**库内实现**，即 `src/components/`、`src/utils/` 下的组件与工具代码。
 
-**不适用于** `**/demos/**`、`**/examples/**`、`**/pages/**`、`**/entry/**` —— 这些属于业务/演示侧，样式见 [`page-coding-styles.md`](./page-coding-styles.md)。包目录见 [`component-structure.md`](./component-structure.md)。
+**不适用于** `**/demos/**`、`src/examples/**`、`src/pages/**`、`src/entry/**` —— 这些属于业务/演示侧，样式见 [`page-coding-styles.md`](./page-coding-styles.md)。包目录见 [`component-structure.md`](./component-structure.md)。
 
 ## 目录规范
 

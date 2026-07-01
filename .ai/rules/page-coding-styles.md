@@ -6,7 +6,7 @@ alwaysApply: false
 
 # 页面样式规范
 
-适用范围：`src/pages/`、`src/examples/`。页面目录见 [`page-structure.md`](./page-structure.md)。
+适用范围：`**/demos/**`、`src/pages/`、`src/examples/`。页面目录见 [`page-structure.md`](./page-structure.md)。
 
 与 [`component-coding-styles.md`](./component-coding-styles.md) **规则相同**，仅类名前缀不同。
 
@@ -24,8 +24,7 @@ alwaysApply: false
 
 ```tsx
 import './OrderList.less'
-
-<ListAsync className="orderlist-main" />
+;<ListAsync className="orderlist-main" />
 ```
 
 ```tsx
@@ -34,7 +33,11 @@ className={DOMUtil.classNames('orderlist-header', active ? 'orderlist-header-act
 
 ```less
 .orderlist-main {
-  .orderlist-divider { ... }
-  .orderlist-item { ... }
+  .orderlist-divider {
+    ...;
+  }
+  .orderlist-item {
+    ...;
+  }
 }
 ```
