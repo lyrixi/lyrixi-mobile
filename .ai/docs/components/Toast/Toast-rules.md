@@ -12,8 +12,8 @@
 - 需要显示成功、错误、警告等信息时
 
 ## Demo 索引（本目录 `demos/`）
-- `demos/open/index.tsx`
-- `demos/close/index.tsx`
+- `demos/Toast.tsx`
+- `demos/ToastApi.tsx` — Toast.open / close 命令式 API
 
 ## 查阅顺序
 - Props：`Toast-props.ts`

@@ -17,8 +17,8 @@ export interface ToastProps {
   // Style
   maskClassName?: string
   maskStyle?: CSSProperties
-  className?: string
-  style?: CSSProperties
+  modalClassName?: string
+  modalStyle?: CSSProperties
   // Elements
   portal?: HTMLElement
   // Events

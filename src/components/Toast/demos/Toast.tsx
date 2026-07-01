@@ -46,8 +46,8 @@ export default function ToastDemo() {
         {type === 'custom' && (
           <Toast
             content="Custom style"
-            className="demo-toast-custom"
-            style={{ backgroundColor: '#333', color: '#fff' }}
+            modalClassName="demo-toast-custom"
+            modalStyle={{ backgroundColor: '#333', color: '#fff' }}
             maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}
           />
         )}

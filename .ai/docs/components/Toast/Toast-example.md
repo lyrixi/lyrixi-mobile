@@ -9,9 +9,7 @@
 | Demo | 说明 |
 |------|------|
 | [demos/Toast.tsx](./demos/Toast.tsx) | 主示例 |
-| [demos/ToastApi.tsx](./demos/ToastApi.tsx) | Toast.Api 子组件示例 |
-
-_暂无 demo 文件，请查阅 `-rules.md`、`-props.ts` 与源码。_
+| [demos/ToastApi.tsx](./demos/ToastApi.tsx) | Toast.open / close 命令式 API |
 
 ## 查阅顺序
 

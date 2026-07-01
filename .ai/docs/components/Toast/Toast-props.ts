@@ -19,10 +19,10 @@ export interface ToastProps {
   maskClassName?: string
   /** 遮罩样式 */
   maskStyle?: CSSProperties
-  /** 自定义类名 */
-  className?: string
-  /** 自定义样式 */
-  style?: CSSProperties
+  /** 内容区类名 */
+  modalClassName?: string
+  /** 内容区样式 */
+  modalStyle?: CSSProperties
   /** 挂载节点 */
   portal?: HTMLElement
   /** 打开回调 */

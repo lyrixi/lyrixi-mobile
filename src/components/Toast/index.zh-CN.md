@@ -37,8 +37,8 @@ toc: content
 | portal        | 挂载节点                                     | `HTMLElement`                   | -          |
 | maskClassName | 遮罩类名                                     | `string`                        | -          |
 | maskStyle     | 遮罩样式                                     | `CSSProperties`                 | -          |
-| className     | 内容类名                                     | `string`                        | -          |
-| style         | 内容样式                                     | `CSSProperties`                 | -          |
+| modalClassName | 内容区类名                                   | `string`                        | -          |
+| modalStyle     | 内容区样式                                   | `CSSProperties`                 | -          |
 | content       | 提示内容                                     | `string`                        | -          |
 | onOpen        | 打开事件                                     | `() => void`                    | -          |
 | onClose       | 关闭事件                                     | `() => void`                    | -          |
@@ -86,8 +86,8 @@ toc: content
 | content       | 提示内容         | `string`                        | -          |
 | maskClassName | 遮罩类名         | `string`                        | -          |
 | maskStyle     | 遮罩样式         | `CSSProperties`                 | -          |
-| className     | 内容类名         | `string`                        | -          |
-| style         | 内容样式         | `CSSProperties`                 | -          |
+| modalClassName | 内容区类名       | `string`                        | -          |
+| modalStyle     | 内容区样式       | `CSSProperties`                 | -          |
 | portal        | 挂载节点         | `HTMLElement`                   | -          |
 | onOpen        | 打开事件         | `() => void`                    | -          |
 | onClose       | 关闭事件         | `() => void`                    | -          |

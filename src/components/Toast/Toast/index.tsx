@@ -17,8 +17,8 @@ function Toast({
   content,
   maskClassName,
   maskStyle,
-  className,
-  style,
+  modalClassName,
+  modalStyle,
   portal,
   onOpen,
   onClose
@@ -67,10 +67,11 @@ function Toast({
           activeClass
         )}
       >
-        <div className={DOMUtil.classNames('lyrixi-toast-wrapper', className)} style={style}>
-          <div className="lyrixi-toast-content">
-            <span>{content}</span>
-          </div>
+        <div
+          className={DOMUtil.classNames('lyrixi-toast-wrapper', modalClassName)}
+          style={modalStyle}
+        >
+          <div className="lyrixi-toast-content">{content}</div>
         </div>
       </div>
     </div>

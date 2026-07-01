@@ -47,8 +47,8 @@ export default function ToastApiDemo() {
   const handleOpenCustomStyle = () => {
     Toast.open({
       content: 'Custom style',
-      className: 'demo-toast-custom',
-      style: { backgroundColor: '#333', color: '#fff' },
+      modalClassName: 'demo-toast-custom',
+      modalStyle: { backgroundColor: '#333', color: '#fff' },
       maskClassName: 'demo-toast-mask',
       maskStyle: { backgroundColor: 'rgba(0, 0, 0, 0.6)' },
       duration: 3000

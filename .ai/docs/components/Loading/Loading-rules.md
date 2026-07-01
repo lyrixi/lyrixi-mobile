@@ -18,13 +18,11 @@
 - `Loading.open`
 
 ## Demo 索引（本目录 `demos/`）
-- `demos/LoadingOpen.tsx`
-- `demos/LoadingClose.tsx`
-- `demos/LoadingExists.tsx`
 - `demos/Loading.tsx`
-- `demos/LoadingSpinFade.tsx`
-- `demos/LoadingOuroboros.tsx`
+- `demos/LoadingApi.tsx` — Loading.open / close / exists 命令式 API
 - `demos/LoadingBallWave.tsx`
+- `demos/LoadingOuroboros.tsx`
+- `demos/LoadingSpinFade.tsx`
 
 ## 查阅顺序
 - Props：`Loading-props.ts`
