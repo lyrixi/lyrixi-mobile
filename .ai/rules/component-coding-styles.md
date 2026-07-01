@@ -6,7 +6,9 @@ alwaysApply: false
 
 # 组件样式规范
 
-适用范围：`src/components/`。组件目录见 [`component-structure.md`](./component-structure.md)。
+适用范围：**库内实现**，即 `src/components/`、`src/utils/` 下的组件与工具代码。
+
+**不适用于** `**/demos/**`、`**/examples/**`、`**/pages/**`、`**/entry/**` —— 这些属于业务/演示侧，样式见 [`page-coding-styles.md`](./page-coding-styles.md)。包目录见 [`component-structure.md`](./component-structure.md)。
 
 ## 目录规范
 
@@ -30,7 +32,11 @@ className={DOMUtil.classNames('lyrixi-button', disabled ? 'lyrixi-button-disable
 
 ```less
 .lyrixi-button {
-  &-icon { ... }
-  &.lyrixi-button-disabled { ... }
+  &-icon {
+    ...;
+  }
+  &.lyrixi-button-disabled {
+    ...;
+  }
 }
 ```
