@@ -32,7 +32,9 @@ export default function LoadingDemo() {
 
         {type === 'default' && <Loading />}
 
-        {type === 'customIcon' && <Loading iconRender={() => <Loading.Ouroboros />} />}
+        {type === 'customIcon' && (
+          <Loading iconRender={() => <Loading.Ouroboros color="white" />} />
+        )}
 
         {type === 'customContent' && <Loading content="Custom content..." />}
       </Page.Main>
