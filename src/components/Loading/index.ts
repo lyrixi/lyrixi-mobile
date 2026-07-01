@@ -4,7 +4,7 @@ import Ouroboros from './Ouroboros'
 import BallWave from './BallWave'
 import open from './api/open'
 import close from './api/close'
-import exists from './exists'
+import exists from './api/exists'
 
 import type { LoadingComponents } from './types/Loading.modules.types'
 

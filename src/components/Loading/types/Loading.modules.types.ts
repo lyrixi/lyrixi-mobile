@@ -1,5 +1,5 @@
 import BallWave from '../BallWave'
-import exists from '../exists'
+import exists from '../api/exists'
 import close from '../api/close'
 import Loading from '../Loading'
 import Ouroboros from '../Ouroboros'
