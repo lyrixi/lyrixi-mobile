@@ -1,6 +1,8 @@
 ---
 description: 组件样式目录与 class 命名规范
-globs: 'src/components/**/*.{tsx,less}'
+globs:
+  - 'src/components/**/*.{ts,tsx}'
+  - 'src/utils/**/*.{ts,tsx}'
 alwaysApply: false
 ---
 
