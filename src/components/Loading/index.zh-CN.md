@@ -19,7 +19,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingOpen.tsx"></code>
+<code src="./demos/LoadingApi.tsx"></code>
 
 ### API
 
@@ -48,7 +48,7 @@ toc: content
 
 ### 代码演示
 
-<code src="./demos/LoadingClose.tsx"></code>
+见 Loading.open
 
 ### API
 
